@@ -1,0 +1,41 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "L#B",
+    "CXM",
+    "*-Y"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:fire_charge"
+    },
+    "C": {
+      "item": "minecraft:gunpowder"
+    },
+    "X": {
+      "item": "minecraft:stone_pickaxe"
+    },
+    "*": {
+      "item": "minecraft:ink_sac"
+    },
+    "-": {
+      "item": "minecraft:water_bucket"
+    },
+    "M": {
+      "item": "minecraft:nautilus_shell"
+    },
+    "B": {
+      "item": "minecraft:black_wool"
+    },
+    "Y": {
+      "item": "minecraft:charcoal"
+    },
+    "L": {
+      "item": "minecraft:emerald_block"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:sriunk",
+    "count": 1
+  }
+}

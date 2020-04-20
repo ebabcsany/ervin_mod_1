@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "ervin_mod_1:block/viltdrop"
+    "all": "ervin_mod_1:block/viltdrop_block"
   }
 }

@@ -1,6 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1;
 
 import com.babcsany.minecraft.ervin_mod_1.init.BlockInit;
+import com.babcsany.minecraft.ervin_mod_1.init.ItemInit;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.BlockItem;
@@ -49,6 +50,7 @@ public class Ervin_mod_1 {
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
 
+        ItemInit.ITEMS.register(modEventBus);
         BlockInit.BLOCKS.register(modEventBus);
     }
 
