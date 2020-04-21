@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "# #",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "ervin_mod_1:sriunk"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:sriunk_chestplate",
+    "count": 1
+  }
+}

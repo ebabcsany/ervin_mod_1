@@ -2,8 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "L#B",
-    "CXM",
-    "*-Y"
+    "C*Y",
+    "X-M"
   ],
   "key": {
     "#": {
