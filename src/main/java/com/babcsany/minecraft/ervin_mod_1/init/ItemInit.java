@@ -17,36 +17,39 @@ public class ItemInit {
     public static final DeferredRegister<Item> ITEMS = new DeferredRegister<>(ForgeRegistries.ITEMS, Ervin_mod_1.MOD_ID);
 
     public static final RegistryObject<Item> SRIUNK_PICKAXE = ITEMS.register("sriunk_pickaxe", () -> new PickaxeItem(
-            ModItemTier.SRIUNK, 8, -2.0F, (new Item.Properties()).group(ItemGroup.TOOLS)));
-    public static final RegistryObject<Item> SRIUNK = ITEMS.register("sriunk", () -> new Item(
-            (new Item.Properties()).group(ItemGroup.MATERIALS)
+            ModItemTier.SRIUNK, 8, -2.0F, (new Item.Properties())
     ));
-
+    public static final RegistryObject<Item> SRIUNK = ITEMS.register("sriunk", () -> new Item(
+            (new Item.Properties())
+    ));
     public static final RegistryObject<Item> SRIUNK_AXE = ITEMS.register("sriunk_axe", () -> new AxeItem(
-            ModItemTier.SRIUNK, 20, 4.0F, (new Item.Properties()).group(ItemGroup.TOOLS)));
+            ModItemTier.SRIUNK, 20, -2.0F, (new Item.Properties())
+    ));
     public static final RegistryObject<Item> SRIUNK_HOE = ITEMS.register("sriunk_hoe", () -> new HoeItem(
-            ModItemTier.SRIUNK, 1.0F, (new Item.Properties()).group(ItemGroup.TOOLS)));
-
-
+            ModItemTier.SRIUNK, -3.0F, (new Item.Properties())
+    ));
     public static final RegistryObject<Item> SRIUNK_SHOVEL = ITEMS.register("sriunk_shovel", () -> new ShovelItem(
-            ModItemTier.SRIUNK, 3, -2.0F, (new Item.Properties()).group(ItemGroup.TOOLS)));
-    public static final RegistryObject<Item> SRIUNK_SWORD = ITEMS.register("sriunk_sword", () -> new HoeItem(
-            ModItemTier.SRIUNK, 3.0F, (new Item.Properties()).group(ItemGroup.TOOLS)));
-
-
+            ModItemTier.SRIUNK, 3, -2.0F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> SRIUNK_SWORD = ITEMS.register("sriunk_sword", () -> new SwordItem(
+            ModItemTier.SRIUNK, 10, -3.0F, (new Item.Properties())
+    ));
     public static final RegistryObject<Item> SRIUNK_HELMET = ITEMS.register("sriunk_helmet", () -> new ArmorItem(
-            ModArmorMaterial.SRIUNK, EquipmentSlotType.HEAD, (new Item.Properties()).group(ItemGroup.COMBAT)));
+            ModArmorMaterial.SRIUNK, EquipmentSlotType.HEAD, (new Item.Properties())
+    ));
     public static final RegistryObject<Item> SRIUNK_CHESTPLATE = ITEMS.register("sriunk_chestplate", () -> new ArmorItem(
-            ModArmorMaterial.SRIUNK, EquipmentSlotType.CHEST, (new Item.Properties()).group(ItemGroup.COMBAT)));
-
-
+            ModArmorMaterial.SRIUNK, EquipmentSlotType.CHEST, (new Item.Properties())
+    ));
     public static final RegistryObject<Item> SRIUNK_LEGGINGS = ITEMS.register("sriunk_leggings", () -> new ArmorItem(
-            ModArmorMaterial.SRIUNK, EquipmentSlotType.LEGS, (new Item.Properties()).group(ItemGroup.COMBAT)));
+            ModArmorMaterial.SRIUNK, EquipmentSlotType.LEGS, (new Item.Properties())
+    ));
     public static final RegistryObject<Item> SRIUNK_BOOTS = ITEMS.register("sriunk_boots", () -> new ArmorItem(
-            ModArmorMaterial.SRIUNK, EquipmentSlotType.FEET, (new Item.Properties()).group(ItemGroup.COMBAT)));
-
-
+            ModArmorMaterial.SRIUNK, EquipmentSlotType.FEET, (new Item.Properties())
+    ));
     public static final RegistryObject<Item> VILTDROP = ITEMS.register("viltdrop", () -> new Item(
-            (new Item.Properties()).group(ItemGroup.MATERIALS)
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> SRIUNK_STICK = ITEMS.register("sriunk_stick", () -> new Item(
+            (new Item.Properties())
     ));
 }

@@ -2,6 +2,7 @@ package com.babcsany.minecraft.ervin_mod_1.init;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.block.SriunkBlock;
+import com.babcsany.minecraft.ervin_mod_1.block.Trugn;
 import com.babcsany.minecraft.ervin_mod_1.block.ViltdropBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -25,5 +26,11 @@ public class BlockInit {
                     .harvestLevel(3)
                     .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(500.0f)
+    ));
+    public static final RegistryObject<Block> TRUGN = BLOCKS.register("trugn", () -> new Trugn(
+            Block.Properties.create(Material.ROCK)
+                    .harvestLevel(2)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(1000.0f)
     ));
 }
