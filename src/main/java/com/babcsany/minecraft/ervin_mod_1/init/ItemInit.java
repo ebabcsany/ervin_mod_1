@@ -52,4 +52,13 @@ public class ItemInit {
     public static final RegistryObject<Item> SRIUNK_STICK = ITEMS.register("sriunk_stick", () -> new Item(
             (new Item.Properties())
     ));
+    public static final RegistryObject<Item> REGDEM = ITEMS.register("regdem", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> DREIN = ITEMS.register("drein", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> NIRG = ITEMS.register("nirg", () -> new Item(
+            (new Item.Properties())
+    ));
 }

@@ -6,6 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
@@ -102,6 +103,7 @@ public class Ervin_mod_1 {
             final IForgeRegistry<Item> registry = event.getRegistry();
             BlockInit.BLOCKS.getEntries().stream().map(RegistryObject::get).forEach(block -> {
                 final Item.Properties properties = new Item.Properties();
+                properties.group(ItemGroup.MATERIALS);
                 final BlockItem blockItem = new BlockItem(block, properties);
                 ResourceLocation registryName = block.getRegistryName();
                 if (null != registryName) {

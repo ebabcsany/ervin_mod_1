@@ -1,6 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.init;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
+import com.babcsany.minecraft.ervin_mod_1.block.RegdemBlock;
 import com.babcsany.minecraft.ervin_mod_1.block.SriunkBlock;
 import com.babcsany.minecraft.ervin_mod_1.block.Trugn;
 import com.babcsany.minecraft.ervin_mod_1.block.ViltdropBlock;
@@ -32,5 +33,11 @@ public class BlockInit {
                     .harvestLevel(2)
                     .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(1000.0f)
+    ));
+    public static final RegistryObject<Block> REGDEM_BLOCK = BLOCKS.register("regdem_block", () -> new RegdemBlock(
+            Block.Properties.create(Material.ROCK)
+                    .harvestLevel(3)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(10.0f)
     ));
 }
