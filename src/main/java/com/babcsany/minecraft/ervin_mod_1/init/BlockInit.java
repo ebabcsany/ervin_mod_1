@@ -32,12 +32,10 @@ public class BlockInit {
             Block.Properties.create(Material.ROCK)
                     .harvestLevel(2)
                     .harvestTool(ToolType.PICKAXE)
-                    .hardnessAndResistance(1000.0f)
+                    .hardnessAndResistance(100000.0f)
     ));
     public static final RegistryObject<Block> REGDEM_BLOCK = BLOCKS.register("regdem_block", () -> new RegdemBlock(
             Block.Properties.create(Material.ROCK)
-                    .harvestLevel(3)
-                    .harvestTool(ToolType.PICKAXE)
-                    .hardnessAndResistance(10.0f)
+                    .hardnessAndResistance(100.0f)
     ));
 }

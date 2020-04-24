@@ -2,16 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "minecraft:hay_block"
-    },
-    {
-      "item": "minecraft:dried_kelp"
-    },
-    {
-      "item": "minecraft:smooth_stone"
-    },
-    {
-      "item": "minecraft:charcoal"
+      "tag": "ervin_mod_1:nirg_ingredient"
     }
   ],
   "result": {

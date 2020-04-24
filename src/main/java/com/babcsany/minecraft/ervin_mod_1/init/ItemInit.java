@@ -61,4 +61,10 @@ public class ItemInit {
     public static final RegistryObject<Item> NIRG = ITEMS.register("nirg", () -> new Item(
             (new Item.Properties())
     ));
+    public static final RegistryObject<Item> KIRT = ITEMS.register("kirt", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> KIRT_STIK = ITEMS.register("kirt_stik", () -> new Item(
+            (new Item.Properties())
+    ));
 }
