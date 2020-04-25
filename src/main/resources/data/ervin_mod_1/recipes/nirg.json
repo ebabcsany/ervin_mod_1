@@ -3,17 +3,19 @@
   "ingredients": [
     [
       {
-        "item": "minecraft:hay_block"
-        },
-      {
-        "item": "minecraft:dried_kelp"
+        "tag": "ervin_mod_1:nirg_ingredient"
         },
       {
         "item": "minecraft:smooth_stone"
         },
-      {
-        "item": "minecraft:charcoal"
-      }
+      [
+        {
+          "item": "minecraft:charcoal"
+        },
+        {
+          "item": "minecraft:coal"
+        }
+      ]
     ]
   ],
   "result": {
