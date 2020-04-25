@@ -18,9 +18,14 @@
     {
       "item": "minecraft:gunpowder"
     },
+    [
     {
       "item": "minecraft:charcoal"
     },
+      {
+        "item": "minecraft:coal"
+      }
+    ],
     {
       "item": "minecraft:ink_sac"
     },
