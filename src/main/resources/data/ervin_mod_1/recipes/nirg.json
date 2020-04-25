@@ -3,8 +3,11 @@
   "ingredients": [
     [
       {
-        "tag": "ervin_mod_1:nirg_ingredient"
+        "item": "minecraft:blaze_powder"
         },
+      {
+        "item": "minecraft:fire_charge"
+      },
       {
         "item": "minecraft:smooth_stone"
         },
