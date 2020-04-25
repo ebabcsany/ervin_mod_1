@@ -7,24 +7,22 @@
     {
       "item": "minecraft:blue_wool"
     },
+    {
+      "item": "minecraft:water_bucket"
+    },
+    {
+      "item": "ervin_mod_1:regdem_block"
+    },
     [
-      {
-        "item": "minecraft:water_bucket"
-      }
-      ],
-        {
-          "item": "ervin_mod_1:regdem_block"
-        },
-      [
       {
         "item": "ervin_mod_1:sriunk"
       },
-        {
-          "item": "ervin_mod_1:viltdrop"
-        },
-        {
-          "item": "ervin_mod_1:nirg"
-        }
+      {
+        "item": "ervin_mod_1:viltdrop"
+      },
+      {
+        "item": "ervin_mod_1:nirg"
+      }
     ]
   ],
   "result": {
