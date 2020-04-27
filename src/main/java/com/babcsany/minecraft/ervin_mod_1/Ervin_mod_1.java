@@ -1,6 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1;
 
 import com.babcsany.minecraft.ervin_mod_1.init.BlockInit;
+import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.ItemInit;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -53,6 +54,7 @@ public class Ervin_mod_1 {
 
         ItemInit.ITEMS.register(modEventBus);
         BlockInit.BLOCKS.register(modEventBus);
+        EntityInit.ENTITY_TYPES.register(modEventBus);
     }
 
     private void setup(final FMLCommonSetupEvent event) {

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:item",
+  "pools": [
+    {
+      "rolls": 2,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:viltdrop"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:sriunk"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ]
+    }
+  ]
+}
