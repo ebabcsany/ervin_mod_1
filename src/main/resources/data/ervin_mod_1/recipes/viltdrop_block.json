@@ -21,11 +21,11 @@
     "-": {
       "item": "minecraft:magma_cream"
     },
-    ".": {
-      "item": "ervin_mod_1:viltdrop_ingredient"
-    },
-    ]
-  ]
+    ".":
+    {
+      "item": "ervin_mod_1:sriunk_block"
+    }
+  },
   "result": {
     "item": "ervin_mod_1:viltdrop_block",
     "count": 1

@@ -6,7 +6,7 @@ import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 
-public class ZurEntityModel<T extends ZurEntity1> extends EntityModel<T> {
+public class ZurEntity1Model<T extends ZurEntity1> extends EntityModel<T> {
 
     private final ModelRenderer Body;
     private final ModelRenderer Legs;
@@ -18,7 +18,7 @@ public class ZurEntityModel<T extends ZurEntity1> extends EntityModel<T> {
     private final ModelRenderer LeftFront;
     private final ModelRenderer Head;
 
-    public ZurEntityModel() {
+    public ZurEntity1Model() {
         textureWidth = 64;
         textureHeight = 64;
 

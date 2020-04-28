@@ -1,7 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.util;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
-import com.babcsany.minecraft.ervin_mod_1.client.entity.render.ZurEntityRender;
+import com.babcsany.minecraft.ervin_mod_1.client.entity.render.ZurkEntityRender;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -14,6 +14,6 @@ public class ClientEventBusSubscriber {
 
     @SubscribeEvent
     public static void clientSetup(FMLClientSetupEvent event) {
-        RenderingRegistry.registerEntityRenderingHandler(EntityInit.ZUR_ENTITY.get(), ZurEntityRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityInit.ZUR_ENTITY.get(), ZurkEntityRender::new);
     }
 }
