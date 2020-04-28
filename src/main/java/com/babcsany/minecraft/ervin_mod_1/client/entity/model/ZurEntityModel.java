@@ -1,12 +1,13 @@
 package com.babcsany.minecraft.ervin_mod_1.client.entity.model;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.animal.ZurEntity1;
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 
-public class ZurEntityModel<T extends ZurEntity1> extends EntityModel<T> {
+public class ZurEntityModel<T extends ZurEntity> extends EntityModel<T> {
 
     private final ModelRenderer Body;
     private final ModelRenderer Legs;

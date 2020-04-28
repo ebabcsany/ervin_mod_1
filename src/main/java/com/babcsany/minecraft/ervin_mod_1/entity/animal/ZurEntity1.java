@@ -26,7 +26,7 @@ public class ZurEntity1 extends AnimalEntity {
 
     @Override
     public AgeableEntity createChild(AgeableEntity ageable) {
-        ZurEntity1 entity = new ZurEntity1(EntityInit.ZUR_ENTITY.get(), this.world);
+        ZurEntity1 entity = new ZurEntity1(EntityInit.ZUR_ENTITY1.get(), this.world);
         entity.onInitialSpawn(this.world, this.world.getDifficultyForLocation(new BlockPos(entity)),
                 SpawnReason.BREEDING, (ILivingEntityData) null, (CompoundNBT) null);
         entity.setGlowing(true);
