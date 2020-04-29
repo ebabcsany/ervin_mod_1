@@ -67,4 +67,7 @@ public class ItemInit {
     public static final RegistryObject<Item> KIRT_STIK = ITEMS.register("kirt_stik", () -> new Item(
             (new Item.Properties())
     ));
+    public static final RegistryObject<Item> LEAT = ITEMS.register("leat", () -> new Item(
+            (new Item.Properties())
+    ));
 }

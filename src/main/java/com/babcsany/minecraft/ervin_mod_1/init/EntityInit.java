@@ -23,7 +23,7 @@ public class EntityInit {
 
     public static final RegistryObject<EntityType<ZurEntity>> ZUR_ENTITY = ENTITY_TYPES
             .register("zur_entity",
-                    () -> EntityType.Builder.<ZurEntity>create(ZurEntity::new, EntityClassification.CREATURE)
-                            .size(0.9f, 1.3f)
+                    () -> EntityType.Builder.<ZurEntity>create(ZurEntity::new, EntityClassification.MONSTER)
+                            .size(0.6f, 1.95f)
                             .build(new ResourceLocation(Ervin_mod_1.MOD_ID, "zur_entity").toString()));
 }

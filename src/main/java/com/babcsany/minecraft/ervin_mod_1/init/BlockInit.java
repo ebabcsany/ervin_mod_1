@@ -1,10 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.init;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
-import com.babcsany.minecraft.ervin_mod_1.block.RegdemBlock;
-import com.babcsany.minecraft.ervin_mod_1.block.SriunkBlock;
-import com.babcsany.minecraft.ervin_mod_1.block.Trugn;
-import com.babcsany.minecraft.ervin_mod_1.block.ViltdropBlock;
+import com.babcsany.minecraft.ervin_mod_1.block.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.common.ToolType;
@@ -38,4 +35,15 @@ public class BlockInit {
             Block.Properties.create(Material.ROCK)
                     .hardnessAndResistance(100.0f)
     ));
+    public static final RegistryObject<Block> LEAT_BLOCK = BLOCKS.register("leat_block", () -> new LeatBlock(
+            Block.Properties.create(Material.LAVA)
+                    .hardnessAndResistance(100.0f)
+    ));
+
+    public static final RegistryObject<Block> LEAT_BLOCK_CRAFTING_TABLE = BLOCKS.register("leat_block_crafting_table", () -> new Block(
+            Block.Properties.create(Material.PORTAL)
+                    .harvestLevel(0)
+                    .hardnessAndResistance(50.0f)
+    ));
+
 }
