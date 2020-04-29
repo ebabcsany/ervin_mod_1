@@ -15,10 +15,13 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import static net.minecraftforge.api.distmarker.Dist.CLIENT;
+
 public class ZurEntity1 extends AnimalEntity {
 
     private EatGrassGoal eatGrassGoal;
     private int eatingGrassTimer;
+    private Object lightningBolt;
 
     public ZurEntity1(EntityType<ZurEntity1> entityType, World world) {
         super(entityType, world);
@@ -27,6 +30,7 @@ public class ZurEntity1 extends AnimalEntity {
     @Override
     public AgeableEntity createChild(AgeableEntity ageable) {
         ZurEntity1 entity = new ZurEntity1(EntityInit.ZUR_ENTITY1.get(), this.world);
+
         entity.onInitialSpawn(this.world, this.world.getDifficultyForLocation(new BlockPos(entity)),
                 SpawnReason.BREEDING, (ILivingEntityData) null, (CompoundNBT) null);
         entity.setGlowing(true);
@@ -70,7 +74,7 @@ public class ZurEntity1 extends AnimalEntity {
         this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.23D);
     }
 
-    @OnlyIn(Dist.CLIENT)
+    @OnlyIn(CLIENT)
     public void handleStatusUpdate(byte id) {
         if (id == 10) {
             this.eatingGrassTimer = 40;
@@ -80,7 +84,7 @@ public class ZurEntity1 extends AnimalEntity {
 
     }
 
-    @OnlyIn(Dist.CLIENT)
+    @OnlyIn(CLIENT)
     public float getHeadRotationPointY(float p_70894_1_) {
         if (this.eatingGrassTimer <= 0) {
             return 0.0F;
@@ -108,8 +112,8 @@ public class ZurEntity1 extends AnimalEntity {
     }
 
 
-   // @Override
-   // protected SoundEvent getAmbientSound() {
-     //   return SoundInit.AMBIENT.get();
-    }
+    // @Override
+    // protected SoundEvent getAmbientSound() {
+    //   return SoundInit.AMBIENT.get();
+}
 
