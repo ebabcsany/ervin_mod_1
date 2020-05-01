@@ -70,4 +70,10 @@ public class ItemInit {
     public static final RegistryObject<Item> LEAT = ITEMS.register("leat", () -> new Item(
             (new Item.Properties())
     ));
+    public static final RegistryObject<Item> RUBY = ITEMS.register("ruby", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> GRET = ITEMS.register("gret", () -> new Item(
+            (new Item.Properties())
+    ));
 }

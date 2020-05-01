@@ -29,11 +29,15 @@ public class ZurEntity extends MonsterEntity {
     private int eatingGrassTimer;
 
     public ZurEntity(EntityType<ZurEntity> entityType, World world) {
+        super(entityType, world);
+    }
+
+    public ZurEntity(World world) {
         super(EntityInit.ZUR_ENTITY.get(), world);
     }
 
     public ZurEntity createChild(AgeableEntity ageable) {
-        ZurEntity entity = new ZurEntity(EntityInit.ZUR_ENTITY.get(), this.world);
+        ZurEntity entity = new ZurEntity(this.world);
         entity.onInitialSpawn(this.world, this.world.getDifficultyForLocation(new BlockPos(entity)),
                 SpawnReason.BREEDING, (ILivingEntityData) null, (CompoundNBT) null);
         entity.setGlowing(true);
@@ -68,9 +72,9 @@ public class ZurEntity extends MonsterEntity {
     @Override
     protected void registerAttributes() {
         super.registerAttributes();
-        this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(1600.0D);
-        this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(1.0D);
-        this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(2000.0D);
+        this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(160.0D);
+        this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.23D);
+        this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(20.0D);
     }
 
     @OnlyIn(Dist.CLIENT)

@@ -11,11 +11,11 @@
     },
     "key": {
       "X": {
-        "item": "minecraft:oak_wood"
+        "item": "minecraft:acacia_wood"
       }
     },
     "result": {
-      "item": "minecraft:oak_sapling",
+      "item": "minecraft:acacia_sapling",
       "count": 1
     }
   }

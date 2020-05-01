@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:leat_block"
+    }
+  ],
+  "result": {
+    "item": "ervin_mod_1:leat",
+    "count": 9
+  }
+}

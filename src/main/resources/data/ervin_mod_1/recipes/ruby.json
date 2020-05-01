@@ -1,17 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "  ",
-    "# ",
-    " #"
+    "###",
+    "###",
+    "###"
   ],
   "key": {
     "#": {
-      "item": "minecraft:stick"
+      "item": "ervin_mod_1:leat"
     }
   },
   "result": {
-    "item": "minecraft:oak_planks",
+    "item": "minecraft:ruby",
     "count": 1
   }
 }

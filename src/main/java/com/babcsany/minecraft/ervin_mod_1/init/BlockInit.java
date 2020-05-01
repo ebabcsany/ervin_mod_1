@@ -33,16 +33,23 @@ public class BlockInit {
     ));
     public static final RegistryObject<Block> REGDEM_BLOCK = BLOCKS.register("regdem_block", () -> new RegdemBlock(
             Block.Properties.create(Material.ROCK)
+                    .harvestLevel(2)
+                    .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(100.0f)
     ));
     public static final RegistryObject<Block> LEAT_BLOCK = BLOCKS.register("leat_block", () -> new LeatBlock(
-            Block.Properties.create(Material.LAVA)
+            Block.Properties.create(Material.FIRE)
+                    .harvestLevel(2)
+                    .harvestTool(ToolType.AXE)
                     .hardnessAndResistance(100.0f)
     ));
 
     public static final RegistryObject<Block> LEAT_BLOCK_CRAFTING_TABLE = BLOCKS.register("leat_block_crafting_table", () -> new Block(
-            Block.Properties.create(Material.PORTAL)
+            Block.Properties.create(Material.DRAGON_EGG)
                     .harvestLevel(0)
+                    .harvestTool(ToolType.AXE)
+                    .harvestTool(ToolType.PICKAXE)
+                    .harvestTool(ToolType.SHOVEL)
                     .hardnessAndResistance(50.0f)
     ));
 
