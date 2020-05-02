@@ -1,6 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1;
 
 import com.babcsany.minecraft.ervin_mod_1.init.BlockInit;
+import com.babcsany.minecraft.ervin_mod_1.init.ContainerInit;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.ItemInit;
 import net.minecraft.block.Block;
@@ -54,6 +55,7 @@ public class Ervin_mod_1 {
 
         ItemInit.ITEMS.register(modEventBus);
         BlockInit.BLOCKS.register(modEventBus);
+        ContainerInit.CONTAINER_TYPES.register(modEventBus);
         EntityInit.ENTITY_TYPES.register(modEventBus);
     }
 
@@ -105,7 +107,7 @@ public class Ervin_mod_1 {
             final IForgeRegistry<Item> registry = event.getRegistry();
             BlockInit.BLOCKS.getEntries().stream().map(RegistryObject::get).forEach(block -> {
                 final Item.Properties properties = new Item.Properties();
-                properties.group(ItemGroup.MATERIALS);
+             //   properties.group(ItemGroup.MATERIALS);
                 final BlockItem blockItem = new BlockItem(block, properties);
                 ResourceLocation registryName = block.getRegistryName();
                 if (null != registryName) {

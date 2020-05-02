@@ -44,7 +44,7 @@ public class BlockInit {
                     .hardnessAndResistance(100.0f)
     ));
 
-    public static final RegistryObject<Block> LEAT_BLOCK_CRAFTING_TABLE = BLOCKS.register("leat_block_crafting_table", () -> new Block(
+    public static final RegistryObject<Block> LEAT_BLOCK_CRAFTING_TABLE = BLOCKS.register("leat_block_crafting_table", () -> new LeatBlockCraftingTable(
             Block.Properties.create(Material.DRAGON_EGG)
                     .harvestLevel(0)
                     .harvestTool(ToolType.AXE)

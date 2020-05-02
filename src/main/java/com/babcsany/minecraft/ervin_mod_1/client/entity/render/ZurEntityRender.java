@@ -13,9 +13,6 @@ import net.minecraft.util.ResourceLocation;
 
 public class ZurEntityRender extends AbstractZurEntityRender<ZurEntity, ZurEntityModel<ZurEntity>> {
 
-    private static final ResourceLocation TEXTURE = new ResourceLocation(Ervin_mod_1.MOD_ID,
-            "textures/entity/zur_entity.png");
-
     public ZurEntityRender(EntityRendererManager rendererManager) {
         super(rendererManager, new ZurEntityModel<>(0.0F, false), new ZurEntityModel<>(0.5F, true), new ZurEntityModel<>(1.0F, true));
     }
