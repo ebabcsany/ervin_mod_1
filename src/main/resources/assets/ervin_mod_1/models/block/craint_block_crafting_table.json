@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "up": "ervin_mod_1:block/craint_block_crafting_table_top",
+    "down": "ervin_mod_1:block/craint_block_crafting_table_bottom",
+    "north": "ervin_mod_1:block/craint_block_crafting_table_front",
+    "east": "ervin_mod_1:block/craint_block_crafting_table_left",
+    "west": "ervin_mod_1:block/craint_block_crafting_table_right",
+    "south": "ervin_mod_1:block/craint_block_crafting_table_back",
+    "particle": "ervin_mod_1:block/craint_block_crafting_table_top"
+  }
+}

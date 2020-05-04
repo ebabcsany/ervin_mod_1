@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "ervin_mod_1:craint"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:craint_block",
+    "count": 1
+  }
+}

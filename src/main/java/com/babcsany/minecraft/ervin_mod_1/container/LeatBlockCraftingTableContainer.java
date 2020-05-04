@@ -59,17 +59,17 @@ public class LeatBlockCraftingTableContainer extends RecipeBookContainer<Craftin
         }
 
         for(int l = 0; l < 9; ++l) {
-            this.addSlot(new Slot(craftingTableInventory, l, 48 + l * 18, 98));
+            this.addSlot(new Slot(craftingTableInventory, l, 47 + l * 18, 98));
         }
 
         for(int k = 0; k < 3; ++k) {
             for(int i1 = 0; i1 < 9; ++i1) {
-                this.addSlot(new Slot(playerInventory, i1 + k * 9 + 9, 48 + i1 * 18, 130 + k * 18));
+                this.addSlot(new Slot(playerInventory, i1 + k * 9 + 9, 47 + i1 * 18, 129 + k * 18));
             }
         }
 
         for(int l = 0; l < 9; ++l) {
-            this.addSlot(new Slot(playerInventory, l, 48 + l * 18, 188));
+            this.addSlot(new Slot(playerInventory, l, 47 + l * 18, 187));
         }
 
     }

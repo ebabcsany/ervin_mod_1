@@ -52,5 +52,16 @@ public class BlockInit {
                     .harvestTool(ToolType.SHOVEL)
                     .hardnessAndResistance(50.0f)
     ));
-
+    public static final RegistryObject<Block> CRAINT_BLOCK = BLOCKS.register("craint_block", () -> new CraintBlock(
+            Block.Properties.create(Material.FIRE)
+                    .harvestLevel(2)
+                    .harvestTool(ToolType.AXE)
+                    .hardnessAndResistance(100.0f)
+    ));
+    public static final RegistryObject<Block> CRAINT_BLOCK_CRAFTING_TABLE = BLOCKS.register("craint_block_crafting_table", () -> new Block(
+            Block.Properties.create(Material.FIRE)
+                    .harvestLevel(2)
+                    .harvestTool(ToolType.AXE)
+                    .hardnessAndResistance(100.0f)
+    ));
 }

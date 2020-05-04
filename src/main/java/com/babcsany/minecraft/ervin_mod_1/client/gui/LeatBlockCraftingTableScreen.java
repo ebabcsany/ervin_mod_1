@@ -27,8 +27,10 @@ public class LeatBlockCraftingTableScreen extends ContainerScreen<LeatBlockCraft
     }
 
     protected void init() {
+        this.xSize = 256;
+        this.ySize = 211;
         super.init();
-        this.widthTooNarrow = this.width < 379;
+        this.widthTooNarrow = this.width < 459;
         this.recipeBookGui.init(this.width, this.height, this.minecraft, this.widthTooNarrow, this.container);
         this.guiLeft = this.recipeBookGui.updateScreenPosition(this.widthTooNarrow, this.width, this.xSize);
         this.children.add(this.recipeBookGui);
