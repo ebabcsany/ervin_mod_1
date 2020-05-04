@@ -1,32 +1,37 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    {
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#CN",
+    "MX ",
+    "   "
+  ],
+  "key": {
+    "#": {
       "item": "minecraft:nether_wart_block"
     },
-    {
-      "item": "minecraft:blue_wool"
-    },
-    {
-      "item": "minecraft:water_bucket"
-    },
-    {
-      "item": "ervin_mod_1:regdem_block"
-    },
-    [
-      {
-        "item": "ervin_mod_1:sriunk"
+    "key": {
+      "C": {
+        "item": "minecraft:blue_wool"
       },
-      {
-        "item": "ervin_mod_1:viltdrop"
-      },
-      {
-        "item": "ervin_mod_1:nirg"
+      "key": {
+        "N": {
+          "item": "minecraft:water_bucket"
+        },
+        "key": {
+          "M": {
+            "item": "ervin_mod_1:regdem_block"
+          },
+          "key": {
+            "X": {
+              "tag": "ervin_mod_1:drein_ingredient"
+            }
+          },
+          "result": {
+            "item": "ervin_mod_1:drein",
+            "count": 64
+          }
+        }
       }
-    ]
-  ],
-  "result": {
-    "item": "ervin_mod_1:drein",
-    "count": 64
+    }
   }
 }

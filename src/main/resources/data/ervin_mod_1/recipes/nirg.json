@@ -1,28 +1,42 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    [
-      {
-        "item": "minecraft:blaze_powder"
-        },
-      {
-        "item": "minecraft:fire_charge"
-      },
-      {
-        "item": "minecraft:smooth_stone"
-        },
-      [
-        {
-          "item": "minecraft:charcoal"
-        },
-        {
-          "item": "minecraft:coal"
-        }
-      ]
-    ]
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BNB",
+    "#C#",
+    "XMX"
   ],
-  "result": {
-    "item": "ervin_mod_1:nirg",
-    "count": 9
+  "key": {
+    "#": {
+      "item": "minecraft:redstone_block"
+    },
+    "key": {
+      "X": {
+        "item": "minecraft:red_wool"
+      },
+      "key": {
+        "C": {
+          "item": "minecraft:golden_pickaxe"
+        },
+        "key": {
+          "N": {
+            "item": "minecraft:magma_cream"
+          },
+          "key": {
+            "M": {
+              "item": "minecraft:blaze_rod"
+            },
+            "key": {
+              "B": {
+                "tag": "ervin_mod_1:viltdrop_ingredient"
+              }
+            },
+            "result": {
+              "item": "ervin_mod_1:nirg",
+              "count": 9
+            }
+          }
+        }
+      }
+    }
   }
 }

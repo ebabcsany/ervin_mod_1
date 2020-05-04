@@ -7,11 +7,11 @@
   ],
   "key": {
     "#": {
-      "item": "minecraft:leat"
+      "item": "ervin_mod_1:leat"
     }
   },
   "result": {
-    "item": "minecraft:leat_block",
+    "item": "ervin_mod_1:leat_block",
     "count": 1
   }
 }

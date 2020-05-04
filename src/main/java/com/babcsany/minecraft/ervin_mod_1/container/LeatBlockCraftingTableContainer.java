@@ -1,6 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.container;
 
 import com.babcsany.minecraft.ervin_mod_1.init.BlockInit;
+import com.babcsany.minecraft.ervin_mod_1.init.ContainerInit;
 import com.babcsany.minecraft.ervin_mod_1.inventory.LeatBlockCraftingTableInventory;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
@@ -45,7 +46,7 @@ public class LeatBlockCraftingTableContainer extends RecipeBookContainer<Craftin
     }
 
     public LeatBlockCraftingTableContainer(int windowId, PlayerInventory playerInventory, IWorldPosCallable p_i50090_3_) {
-        super(ContainerType.CRAFTING, windowId);
+        super(ContainerInit.LEAT_BLOCK_CRAFTING_TABLE.get(), windowId);
         this.field_217070_e = p_i50090_3_;
         this.player = playerInventory.player;
         this.addSlot(new CraftingResultSlot(playerInventory.player, this.craftMatrix, this.craftResult, CRAFT_RESULT_SLOT_INDEX, CRAFT_RESULT_X_POSITION, CRAFT_RESULT_Y_POSITION));

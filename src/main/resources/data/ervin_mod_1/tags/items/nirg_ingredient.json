@@ -1,7 +1,11 @@
 {
   "replace": false,
   "values": [
-    "minecraft:hay_block",
-    "minecraft:dried_kelp_block"
+    "minecraft:blaze_powder",
+    "minecraft:fire_charge",
+    "minecraft:smooth_stone",
+    "minecraft:charcoal",
+    "minecraft:coal",
+    "minecraft:hay_block"
   ]
 }
