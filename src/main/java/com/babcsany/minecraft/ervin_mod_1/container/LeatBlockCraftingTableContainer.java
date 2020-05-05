@@ -3,7 +3,9 @@ package com.babcsany.minecraft.ervin_mod_1.container;
 import com.babcsany.minecraft.ervin_mod_1.init.BlockInit;
 import com.babcsany.minecraft.ervin_mod_1.init.ContainerInit;
 import com.babcsany.minecraft.ervin_mod_1.inventory.LeatBlockCraftingTableInventory;
+import com.google.common.collect.Lists;
 import net.minecraft.block.Blocks;
+import net.minecraft.client.util.RecipeBookCategories;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -23,6 +25,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import java.util.List;
 import java.util.Optional;
 
 public class LeatBlockCraftingTableContainer extends RecipeBookContainer<CraftingInventory> {
@@ -209,5 +212,10 @@ public class LeatBlockCraftingTableContainer extends RecipeBookContainer<Craftin
     @OnlyIn(Dist.CLIENT)
     public int getSize() {
         return 20;
+    }
+
+    @Override
+    public List<RecipeBookCategories> getRecipeBookCategories() {
+        return Lists.newArrayList(RecipeBookCategories.SEARCH, RecipeBookCategories.EQUIPMENT, RecipeBookCategories.BUILDING_BLOCKS, RecipeBookCategories.MISC, RecipeBookCategories.REDSTONE);
     }
 }

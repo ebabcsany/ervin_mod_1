@@ -64,4 +64,10 @@ public class BlockInit {
                     .harvestTool(ToolType.AXE)
                     .hardnessAndResistance(100.0f)
     ));
+    public static final RegistryObject<Block> NARIN_BLOCK = BLOCKS.register("narin_block", () -> new Block(
+            Block.Properties.create(Material.FIRE)
+                    .harvestLevel(2)
+                    .harvestTool(ToolType.AXE)
+                    .hardnessAndResistance(100.0f)
+    ));
 }

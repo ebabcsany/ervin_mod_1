@@ -79,4 +79,7 @@ public class ItemInit {
     public static final RegistryObject<Item> CRAINT = ITEMS.register("craint", () -> new Item(
             (new Item.Properties())
     ));
+    public static final RegistryObject<Item> NARIN = ITEMS.register("narin", () -> new Item(
+            (new Item.Properties())
+    ));
 }

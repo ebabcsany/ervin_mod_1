@@ -9,6 +9,8 @@ import net.minecraft.block.Blocks;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.item.crafting.IRecipeSerializer;
+import net.minecraft.item.crafting.ShapedRecipe;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
@@ -115,6 +117,11 @@ public class Ervin_mod_1 {
                 }
                 registry.register(blockItem);
             });
+        }
+
+        @SubscribeEvent
+        public static void onRegisterRecipeSerializers(final RegistryEvent.Register<IRecipeSerializer<?>> event) {
+            ShapedRecipe.setCraftingSize(4, 4);
         }
     }
 }

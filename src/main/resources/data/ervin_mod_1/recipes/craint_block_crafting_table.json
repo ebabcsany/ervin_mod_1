@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "####",
+    "#**#",
+    "#**#",
+    "####"
+  ],
+  "key": {
+    "#": {
+      "item": "ervin_mod_1:leat_block_crafting_table"
+    },
+    "*": {
+      "item": "ervin_mod_1:narin_block"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:craint_block_crafting_table",
+    "count": 1
+  }
+}
+
