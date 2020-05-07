@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "####",
+    "####",
+    "####",
+    "####"
+  ],
+  "key": {
+    "#": {
+      "item": "ervin_mod_1:plmk"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:plmk_block",
+    "count": 1
+  }
+}

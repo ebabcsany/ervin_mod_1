@@ -1,57 +1,41 @@
 {
-  "type": "minecraft:crafting_shapeless",
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "#MN",
-    "BXL",
-    ".-C"
+    "BLX",
+    "VKC"
   ],
   "key": {
     "#": {
       "item": "minecraft:emerald_block"
     },
-    "key": {
-      "M": {
-        "tag": "ervin_mod_1:sriunk_ingredient"
-      },
-      "key": {
-        "N": {
-          "item": "minecraft:black_wool"
-        },
-        "key": {
-          "B": {
-            "item": "minecraft:gunpowder"
-          },
-          "key": {
-            "X": {
-              "tag": "ervin_mod_1:sriunk_ingredient_1"
-            },
-            "key": {
-              "L": {
-                "item": "minecraft:ink_sac"
-              },
-              "key": {
-                ".": {
-                  "item": "minecraft:stone_pickaxe"
-                },
-                "key": {
-                  "-": {
-                    "item": "minecraft:water_bucket"
-                  },
-                  "key": {
-                    "C": {
-                      "item": "minecraft:nautilus_shell"
-                    }
-                  },
-                  "result": {
-                    "item": "ervin_mod_1:sriunk",
-                    "count": 1
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
+    "M": {
+      "tag": "ervin_mod_1:sriunk_ingredient"
+    },
+    "N": {
+      "item": "minecraft:black_wool"
+    },
+    "B": {
+      "item": "minecraft:gunpowder"
+    },
+    "X": {
+      "tag": "ervin_mod_1:sriunk_ingredient_1"
+    },
+    "L": {
+      "item": "minecraft:ink_sac"
+    },
+    "V": {
+      "item": "minecraft:stone_pickaxe"
+    },
+    "K": {
+      "item": "minecraft:water_bucket"
+    },
+    "C": {
+      "item": "minecraft:nautilus_shell"
     }
+  },
+  "result": {
+    "item": "ervin_mod_1:sriunk",
+    "count": 1
   }
 }

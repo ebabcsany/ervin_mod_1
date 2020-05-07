@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "ervin_mod_1:oak_wood"
+      "item": "minecraft:oak_wood"
     }
   ],
   "result": {

@@ -1,5 +1,5 @@
 {
-  "type": "minecraft:crafting_shapedd",
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "#CN",
     "MX ",
@@ -9,29 +9,21 @@
     "#": {
       "item": "minecraft:nether_wart_block"
     },
-    "key": {
-      "C": {
-        "item": "minecraft:blue_wool"
-      },
-      "key": {
-        "N": {
-          "item": "minecraft:water_bucket"
-        },
-        "key": {
-          "M": {
-            "item": "ervin_mod_1:regdem_block"
-          },
-          "key": {
-            "X": {
-              "tag": "ervin_mod_1:drein_ingredient"
-            }
-          },
-          "result": {
-            "item": "ervin_mod_1:drein",
-            "count": 64
-          }
-        }
-      }
+    "C": {
+      "item": "minecraft:blue_wool"
+    },
+    "N": {
+      "item": "minecraft:water_bucket"
+    },
+    "M": {
+      "item": "ervin_mod_1:regdem_block"
+    },
+    "X": {
+      "tag": "ervin_mod_1:drein_ingredient"
     }
+  },
+  "result": {
+    "item": "ervin_mod_1:drein",
+    "count": 64
   }
 }

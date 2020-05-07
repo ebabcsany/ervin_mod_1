@@ -9,9 +9,8 @@
     "#": {
       "item": "minecraft:bone_block"
     },
-    "key": {
-      "X": {
-        "item": "minecraft:oak_wood"
+    "X": {
+      "item": "minecraft:oak_wood"
       }
     },
     "result": {
@@ -19,4 +18,3 @@
       "count": 1
     }
   }
-}

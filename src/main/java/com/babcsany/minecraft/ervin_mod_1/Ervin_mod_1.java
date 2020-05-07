@@ -121,7 +121,7 @@ public class Ervin_mod_1 {
 
         @SubscribeEvent
         public static void onRegisterRecipeSerializers(final RegistryEvent.Register<IRecipeSerializer<?>> event) {
-            ShapedRecipe.setCraftingSize(4, 4);
+            ShapedRecipe.setCraftingSize(5, 5);
         }
     }
 }

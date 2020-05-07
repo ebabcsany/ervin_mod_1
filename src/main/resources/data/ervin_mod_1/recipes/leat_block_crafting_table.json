@@ -9,19 +9,16 @@
     "#": {
       "item": "ervin_mod_1:leat_block"
     },
-    "key": {
-      "M": {
-        "item": "ervin_mod_1:leat"
-      },
-      "key": {
-        "B": {
-          "item": "minecraft:crafting_table"
+    "M": {
+      "item": "ervin_mod_1:leat"
+    },
+    "B": {
+      "item": "minecraft:crafting_table"
         }
-      }
+
     },
     "result": {
       "item": "ervin_mod_1:leat_block_crafting_table",
       "count": 1
     }
   }
-}

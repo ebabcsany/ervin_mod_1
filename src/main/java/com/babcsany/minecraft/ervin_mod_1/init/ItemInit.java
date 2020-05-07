@@ -82,4 +82,28 @@ public class ItemInit {
     public static final RegistryObject<Item> NARIN = ITEMS.register("narin", () -> new Item(
             (new Item.Properties())
     ));
+    public static final RegistryObject<Item> TERAT = ITEMS.register("terat", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> TERAT_PICKAXE = ITEMS.register("terat_pickaxe", () -> new PickaxeItem(
+            ModItemTier.TERAT, 200,10.0F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> PLMK = ITEMS.register("plmk", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> TERAT_AXE = ITEMS.register("terat_axe", () -> new AxeItem(
+            ModItemTier.TERAT, 400,20.0F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> TERAT_SHOVEL = ITEMS.register("terat_shovel", () -> new ShovelItem(
+            ModItemTier.TERAT, 300,15.0F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> TERAT_HOE = ITEMS.register("terat_hoe", () -> new HoeItem(
+            ModItemTier.TERAT, -6.0F, (new Item.Properties())
+    ));
+  //  public static final RegistryObject<Item> SRIUNK_HORSE_ARMOR = ITEMS.register("sriunk_horse_armor", () -> new HorseArmorItem(
+    //        ModArmorMaterial.SRIUNK, EquipmentSlotType.MAINHAND, (new Item.Properties())
+    //));
+  public static final RegistryObject<Item> TERAT_SWORD = ITEMS.register("terat_sword", () -> new SwordItem(
+          ModItemTier.SRIUNK, 10, -3.0F, (new Item.Properties())
+  ));
 }

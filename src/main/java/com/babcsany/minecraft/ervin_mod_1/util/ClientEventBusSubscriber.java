@@ -3,6 +3,7 @@ package com.babcsany.minecraft.ervin_mod_1.util;
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.client.entity.render.ZurEntity1Render;
 import com.babcsany.minecraft.ervin_mod_1.client.entity.render.ZurEntityRender;
+import com.babcsany.minecraft.ervin_mod_1.client.gui.CraintBlockCraftingTableScreen;
 import com.babcsany.minecraft.ervin_mod_1.client.gui.LeatBlockCraftingTableScreen;
 import com.babcsany.minecraft.ervin_mod_1.init.ContainerInit;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
@@ -25,6 +26,9 @@ public class ClientEventBusSubscriber {
         // ScreenManager.registerFactory is not safe to call during parallel mod loading so we queue it to run later
         DeferredWorkQueue.runLater(() -> {
             ScreenManager.registerFactory(ContainerInit.LEAT_BLOCK_CRAFTING_TABLE.get(), LeatBlockCraftingTableScreen::new);
+        });
+        DeferredWorkQueue.runLater(() -> {
+            ScreenManager.registerFactory(ContainerInit.CRAINT_BLOCK_CRAFTING_TABLE.get(), CraintBlockCraftingTableScreen::new);
         });
     }
 }

@@ -29,45 +29,63 @@ public class BlockInit {
             Block.Properties.create(Material.ROCK)
                     .harvestLevel(2)
                     .harvestTool(ToolType.PICKAXE)
-                    .hardnessAndResistance(100000.0f)
+                    .hardnessAndResistance(10000000.0f)
     ));
     public static final RegistryObject<Block> REGDEM_BLOCK = BLOCKS.register("regdem_block", () -> new RegdemBlock(
-            Block.Properties.create(Material.ROCK)
-                    .harvestLevel(2)
-                    .harvestTool(ToolType.PICKAXE)
-                    .hardnessAndResistance(100.0f)
+            Block.Properties.create(Material.EARTH)
+                    .harvestLevel(0)
+                    .harvestTool(ToolType.AXE)
+                    .hardnessAndResistance(10.0f)
     ));
     public static final RegistryObject<Block> LEAT_BLOCK = BLOCKS.register("leat_block", () -> new LeatBlock(
-            Block.Properties.create(Material.FIRE)
+            Block.Properties.create(Material.ROCK)
                     .harvestLevel(2)
                     .harvestTool(ToolType.AXE)
                     .hardnessAndResistance(100.0f)
     ));
 
     public static final RegistryObject<Block> LEAT_BLOCK_CRAFTING_TABLE = BLOCKS.register("leat_block_crafting_table", () -> new LeatBlockCraftingTable(
-            Block.Properties.create(Material.DRAGON_EGG)
+            Block.Properties.create(Material.ROCK)
                     .harvestLevel(0)
                     .harvestTool(ToolType.AXE)
                     .harvestTool(ToolType.PICKAXE)
                     .harvestTool(ToolType.SHOVEL)
-                    .hardnessAndResistance(50.0f)
+                    .hardnessAndResistance(500.0f)
     ));
     public static final RegistryObject<Block> CRAINT_BLOCK = BLOCKS.register("craint_block", () -> new CraintBlock(
-            Block.Properties.create(Material.FIRE)
-                    .harvestLevel(2)
-                    .harvestTool(ToolType.AXE)
-                    .hardnessAndResistance(100.0f)
+            Block.Properties.create(Material.ROCK)
+                    .harvestLevel(4)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(1000.0f)
     ));
-    public static final RegistryObject<Block> CRAINT_BLOCK_CRAFTING_TABLE = BLOCKS.register("craint_block_crafting_table", () -> new Block(
-            Block.Properties.create(Material.FIRE)
-                    .harvestLevel(2)
-                    .harvestTool(ToolType.AXE)
-                    .hardnessAndResistance(100.0f)
+    public static final RegistryObject<Block> CRAINT_BLOCK_CRAFTING_TABLE = BLOCKS.register("craint_block_crafting_table", () -> new CraintBlockCraftingTable(
+            Block.Properties.create(Material.ROCK)
+                    .harvestLevel(4)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(10000.0f)
     ));
-    public static final RegistryObject<Block> NARIN_BLOCK = BLOCKS.register("narin_block", () -> new Block(
-            Block.Properties.create(Material.FIRE)
+    public static final RegistryObject<Block> NARIN_BLOCK = BLOCKS.register("narin_block", () -> new NarinBlock(
+            Block.Properties.create(Material.ROCK)
                     .harvestLevel(2)
-                    .harvestTool(ToolType.AXE)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(5000.0f)
+    ));
+    public static final RegistryObject<Block> TERAT_BLOCK = BLOCKS.register("terat_block", () -> new TeratBlock(
+            Block.Properties.create(Material.ROCK)
+                    .harvestLevel(32)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(1000000.0f)
+    ));
+    public static final RegistryObject<Block> PLMK_BLOCK = BLOCKS.register("plmk_block", () -> new PlmkBlock(
+            Block.Properties.create(Material.ROCK)
+                    .harvestLevel(-1)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(100000000000000.0f)
+    ));
+    public static final RegistryObject<Block> SRIUNK_ORE = BLOCKS.register("sriunk_ore", () -> new SriunkOre(
+            Block.Properties.create(Material.ROCK)
+                    .harvestLevel(4)
+                    .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(100.0f)
     ));
 }

@@ -30,16 +30,16 @@ public class LeatBlockCraftingTableScreen extends ContainerScreen<LeatBlockCraft
         this.xSize = 256;
         this.ySize = 211;
         super.init();
-        this.widthTooNarrow = this.width < 459;
+        this.widthTooNarrow = this.width < 559;
         this.recipeBookGui.init(this.width, this.height, this.minecraft, this.widthTooNarrow, this.container);
         this.guiLeft = this.recipeBookGui.updateScreenPosition(this.widthTooNarrow, this.width, this.xSize);
         this.children.add(this.recipeBookGui);
         this.setFocusedDefault(this.recipeBookGui);
-        this.addButton(new ImageButton(this.guiLeft + 5, this.height / 2 - 49, 20, 18, 0, 0, 19, RECIPE_BUTTON_TEXTURE, (p_214076_1_) -> {
+        this.addButton(new ImageButton(this.guiLeft + 5, this.height / 10 - 49, 20, 18, 0, 0, 19, RECIPE_BUTTON_TEXTURE, (p_214076_1_) -> {
             this.recipeBookGui.initSearchBar(this.widthTooNarrow);
             this.recipeBookGui.toggleVisibility();
             this.guiLeft = this.recipeBookGui.updateScreenPosition(this.widthTooNarrow, this.width, this.xSize);
-            ((ImageButton) p_214076_1_).setPosition(this.guiLeft + 5, this.height / 2 - 49);
+            ((ImageButton) p_214076_1_).setPosition(this.guiLeft + 5, this.height / 10 - 49);
         }));
     }
 
