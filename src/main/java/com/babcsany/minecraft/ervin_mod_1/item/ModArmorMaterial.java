@@ -14,10 +14,10 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.function.Supplier;
 
 public enum ModArmorMaterial implements IArmorMaterial {
-    SRIUNK(Ervin_mod_1.MOD_ID + ":sriunk", 5, new int[]{7, 9, 11, 7}, 420, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 6.9F, () -> { return Ingredient.fromItems(ItemInit.SRIUNK.get()); }),
-    TERAT(Ervin_mod_1.MOD_ID +":terat", 5,new int[]{7, 9, 11, 7}, 420,SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 6.9F, () -> { return Ingredient.fromItems(ItemInit.TERAT.get()); });
+    SRIUNK(Ervin_mod_1.MOD_ID + ":sriunk", 20, new int[]{28, 36, 44, 28}, 1680, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 20.7F, () -> { return Ingredient.fromItems(ItemInit.SRIUNK.get()); }),
+    TERAT(Ervin_mod_1.MOD_ID +":terat", 80,new int[]{112, 144, 176, 112}, 1680,SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 86.8F, () -> { return Ingredient.fromItems(ItemInit.TERAT.get()); });
 
-    private static final int[] MAX_DAMAGE_ARRAY = new int[] { 16, 16, 16, 16 };
+    private static final int[] MAX_DAMAGE_ARRAY = new int[] { 200, 200, 200, 200 };
     private final String name;
     private final int maxDamageFactor;
     private final int[] damageReductionAmountArray;

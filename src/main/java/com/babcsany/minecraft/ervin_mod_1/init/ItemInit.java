@@ -7,6 +7,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -100,10 +101,22 @@ public class ItemInit {
     public static final RegistryObject<Item> TERAT_HOE = ITEMS.register("terat_hoe", () -> new HoeItem(
             ModItemTier.TERAT, -6.0F, (new Item.Properties())
     ));
-  //  public static final RegistryObject<Item> SRIUNK_HORSE_ARMOR = ITEMS.register("sriunk_horse_armor", () -> new HorseArmorItem(
-    //        ModArmorMaterial.SRIUNK, EquipmentSlotType.MAINHAND, (new Item.Properties())
-    //));
-  public static final RegistryObject<Item> TERAT_SWORD = ITEMS.register("terat_sword", () -> new SwordItem(
-          ModItemTier.SRIUNK, 10, -3.0F, (new Item.Properties())
-  ));
+    public static final RegistryObject<Item> SRIUNK_HORSE_ARMOR = ITEMS.register("sriunk_horse_armor", () -> new HorseArmorItem(
+            44, new ResourceLocation(Ervin_mod_1.MOD_ID, "textures/entity/horse/armor/sriunk_horse_armor.png"), (new Item.Properties()).maxStackSize(1).group(ItemGroup.MISC)
+    ));
+    public static final RegistryObject<Item> TERAT_SWORD = ITEMS.register("terat_sword", () -> new SwordItem(
+            ModItemTier.SRIUNK, 10, -3.0F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> TERAT_HELMET = ITEMS.register("terat_helmet", () -> new ArmorItem(
+            ModArmorMaterial.TERAT, EquipmentSlotType.HEAD, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> TERAT_CHESTPLATE = ITEMS.register("terat_chestplate", () -> new ArmorItem(
+            ModArmorMaterial.TERAT, EquipmentSlotType.CHEST, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> TERAT_LEGGINGS = ITEMS.register("terat_leggings", () -> new ArmorItem(
+            ModArmorMaterial.TERAT, EquipmentSlotType.LEGS, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> TERAT_BOOTS = ITEMS.register("terat_boots", () -> new ArmorItem(
+            ModArmorMaterial.TERAT, EquipmentSlotType.FEET, (new Item.Properties())
+    ));
 }
