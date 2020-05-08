@@ -119,4 +119,28 @@ public class ItemInit {
     public static final RegistryObject<Item> TERAT_BOOTS = ITEMS.register("terat_boots", () -> new ArmorItem(
             ModArmorMaterial.TERAT, EquipmentSlotType.FEET, (new Item.Properties())
     ));
+    public static final RegistryObject<Item> NIRK = ITEMS.register("nirk", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> FRIM = ITEMS.register("frim", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> FRIN = ITEMS.register("frin", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> FIRT = ITEMS.register("firt", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> FIRN = ITEMS.register("firn", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> GRINT = ITEMS.register("grint", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> BREND = ITEMS.register("brend", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> SIRK = ITEMS.register("sirk", () -> new Item(
+            (new Item.Properties())
+    ));
 }

@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#C#",
+    " N ",
+    "#M#"
+  ],
+  "key": {
+    "#": {
+      "item": "ervin_mod_1:firn_ingredient"
+    },
+    "M": {
+      "item": "ervin_mod_1:sriunk"
+    },
+    "N": {
+      "item": "minecraft:white_wool"
+    },
+    "C": {
+      "item": "ervin_mod_1:avter"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:firn",
+    "count": 1
+  }
+}

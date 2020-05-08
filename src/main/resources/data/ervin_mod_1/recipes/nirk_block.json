@@ -7,11 +7,11 @@
   ],
   "key": {
     "#": {
-      "item": "ervin_mod_1:red_stone"
+      "item": "ervin_mod_1:nirk"
     }
   },
   "result": {
-    "item": "ervin_mod_1:ruby",
+    "item": "ervin_mod_1:nirk_block",
     "count": 1
   }
 }

@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "O**O",
+    "M##M",
+    "M##M",
+    "O##O"
+  ],
+  "key": {
+    "#": {
+      "item": "ervin_mod_1:nirk_block"
+    },
+    "O": {
+      "item": "minecraft:lily_pad"
+    },
+    "*": {
+      "item": "ervin_mod_1:leat"
+    },
+    "M": {
+      "tag": "minecraft:leaves"
+    },
+    "N": {
+      "item": "ervin_mod_1:ruby"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:brend",
+    "count": 1
+  }
+}

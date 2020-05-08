@@ -84,8 +84,44 @@ public class BlockInit {
     ));
     public static final RegistryObject<Block> SRIUNK_ORE = BLOCKS.register("sriunk_ore", () -> new SriunkOre(
             Block.Properties.create(Material.ROCK)
+                    .harvestLevel(3)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(100.0f)
+    ));
+    public static final RegistryObject<Block> NIRK_BLOCK = BLOCKS.register("nirk_block", () -> new NirkBlock(
+            Block.Properties.create(Material.ROCK)
                     .harvestLevel(4)
                     .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(100.0f)
+    ));
+    public static final RegistryObject<Block> RUBY_BLOCK = BLOCKS.register("ruby_block", () -> new RubyBlock(
+            Block.Properties.create(Material.ROCK)
+                    .harvestLevel(4)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(100.0f)
+    ));
+    public static final RegistryObject<Block> GRINT_BLOCK = BLOCKS.register("grint_block", () -> new GrintBlock(
+            Block.Properties.create(Material.ROCK)
+                    .harvestLevel(4)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(100.0f)
+    ));
+    public static final RegistryObject<Block> RED_STONE = BLOCKS.register("red_stone", () -> new RedStone(
+            Block.Properties.create(Material.ROCK)
+                    .harvestLevel(0)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(10.0f)
+    ));
+    public static final RegistryObject<Block> RED_COBBLESTONE = BLOCKS.register("red_cobblestone", () -> new RedCobblestone(
+            Block.Properties.create(Material.ROCK)
+                    .harvestLevel(0)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(10.0f)
+    ));
+    public static final RegistryObject<Block> EPKIN = BLOCKS.register("epkin", () -> new Epkin(
+            Block.Properties.create(Material.ROCK)
+                    .harvestLevel(0)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(1000000.0f)
     ));
 }

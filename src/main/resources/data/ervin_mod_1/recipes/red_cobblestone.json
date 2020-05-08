@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "****",
+    "*##*",
+    "*##*",
+    "****"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:red_dye"
+    },
+    "*": {
+      "item": "minecraft:cobblestone"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:red_cobblestone",
+    "count": 12
+  }
+}
