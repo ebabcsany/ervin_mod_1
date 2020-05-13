@@ -2,6 +2,7 @@ package com.babcsany.minecraft.ervin_mod_1.entity.animal;
 
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.ItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.SoundInit;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.effect.LightningBoltEntity;
@@ -9,6 +10,7 @@ import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -45,7 +47,7 @@ public class ZurEntity1 extends AnimalEntity {
         this.goalSelector.addGoal(1, new PanicGoal(this, 1.25D));
         this.goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
         this.goalSelector.addGoal(3,
-                new TemptGoal(this, 1.1D, Ingredient.fromItems(ItemInit.SRIUNK.get()), false));
+                new TemptGoal(this, 1.1D, Ingredient.fromItems(ItemInit.FRIM.get()), false));
         this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.1D));
         this.goalSelector.addGoal(5, this.eatGrassGoal);
         this.goalSelector.addGoal(6, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
@@ -112,8 +114,9 @@ public class ZurEntity1 extends AnimalEntity {
     }
 
 
-    // @Override
-    // protected SoundEvent getAmbientSound() {
-    //   return SoundInit.AMBIENT.get();
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return SoundInit.AMBIENT.get();
+    }
 }
 

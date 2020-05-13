@@ -33,8 +33,8 @@ import java.util.Optional;
 public class CraintBlockCraftingTableContainer extends RecipeBookContainer<CraftingInventory> {
         private static final int CRAFT_MATRIX_WIDTH = 5;
         private static final int CRAFT_MATRIX_HEIGHT = 5;
-        private static final int CRAFT_RESULT_X_POSITION = 159;
-        private static final int CRAFT_RESULT_Y_POSITION = 44;
+        private static final int CRAFT_RESULT_X_POSITION = 169;
+        private static final int CRAFT_RESULT_Y_POSITION = 53;
         private static final int CRAFT_RESULT_SLOT_INDEX = 0;
         private static final int CRAFT_MATRIX_TOP_LEFT_SLOT_X_POSITION = 47;
         private static final int CRAFT_MATRIX_TOP_LEFT_SLOT_Y_POSITION = 18;
@@ -55,7 +55,7 @@ public class CraintBlockCraftingTableContainer extends RecipeBookContainer<Craft
             this.field_217070_e = p_i50090_3_;
             this.player = playerInventory.player;
             this.addSlot(new CraftingResultSlot(playerInventory.player, this.craftMatrix, this.craftResult, CRAFT_RESULT_SLOT_INDEX, CRAFT_RESULT_X_POSITION, CRAFT_RESULT_Y_POSITION));
-            this.addSlot(new Slot(craftingTableInventory, 9, 209, 45));
+            this.addSlot(new Slot(craftingTableInventory, 9, 203, 106));
 
             for(int i = 0; i < CRAFT_MATRIX_HEIGHT; ++i) {
                 for(int j = 0; j < CRAFT_MATRIX_WIDTH; ++j) {

@@ -26,9 +26,9 @@ public class CraintBlockCraftingTableScreen extends ContainerScreen<CraintBlockC
 
     protected void init() {
         this.xSize = 256;
-        this.ySize = 211;
+        this.ySize = 256;
         super.init();
-        this.widthTooNarrow = this.width < 559;
+        this.widthTooNarrow = this.width < 494;
         this.recipeBookGui.init(this.width, this.height, this.minecraft, this.widthTooNarrow, this.container);
         this.guiLeft = this.recipeBookGui.updateScreenPosition(this.widthTooNarrow, this.width, this.xSize);
         this.children.add(this.recipeBookGui);
@@ -66,8 +66,8 @@ public class CraintBlockCraftingTableScreen extends ContainerScreen<CraintBlockC
      * Draw the foreground layer for the GuiContainer (everything in front of the items)
      */
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        this.font.drawString(this.title.getFormattedText(), 46.0F, 6.0F, 0x404040);
-        this.font.drawString(this.playerInventory.getDisplayName().getFormattedText(), 46.0F, 116.0F, 0x404040);
+        this.font.drawString(this.title.getFormattedText(), 46.0F, 15.0F, 0x404040);
+        this.font.drawString(this.playerInventory.getDisplayName().getFormattedText(), 46.0F, 127.0F, 0x404040);
     }
 
     /**

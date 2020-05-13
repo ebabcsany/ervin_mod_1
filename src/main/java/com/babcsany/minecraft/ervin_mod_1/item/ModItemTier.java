@@ -21,7 +21,8 @@ public enum ModItemTier implements IItemTier {
     // int harvestLevel, int maxUses, float efficiency, float attackDamage, int
     // enchantability, Supplier<Ingredient> repairMaterial
     SRIUNK(4, 10000, 20.0F, 8.0F, 250, () -> Ingredient.fromItems(ItemInit.SRIUNK.get())),
-    TERAT( 32, 80000, 160000.0F, 64.0F, 2000, () -> Ingredient.fromItems(ItemInit.TERAT.get()));
+    TERAT( 32, 80000, 160000.0F, 64.0F, 2000, () -> Ingredient.fromItems(ItemInit.TERAT.get())),
+    RED_COBBLESTONE(2, 262, 20.0F, 8.0F, 250, () -> Ingredient.fromItems(BlockInit.RED_COBBLESTONE.get()));
 
     private final int harvestLevel;
     private final int maxUses;

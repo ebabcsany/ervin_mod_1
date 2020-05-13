@@ -1,18 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "####",
-    "####",
-    "####",
-    "####"
+    "###",
+    "###",
+    "###"
   ],
   "key": {
     "#": {
-      "item": "ervin_mod_1:plmk"
+      "item": "ervin_mod_1:firn"
     }
   },
   "result": {
-    "item": "ervin_mod_1:plmk_block",
+    "item": "ervin_mod_1:firk",
     "count": 1
   }
 }

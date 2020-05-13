@@ -4,6 +4,8 @@ import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.block.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.item.Food;
+import net.minecraft.item.Item;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -43,7 +45,6 @@ public class BlockInit {
                     .harvestTool(ToolType.AXE)
                     .hardnessAndResistance(100.0f)
     ));
-
     public static final RegistryObject<Block> LEAT_BLOCK_CRAFTING_TABLE = BLOCKS.register("leat_block_crafting_table", () -> new LeatBlockCraftingTable(
             Block.Properties.create(Material.ROCK)
                     .harvestLevel(0)
@@ -75,12 +76,6 @@ public class BlockInit {
                     .harvestLevel(32)
                     .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(1000000.0f)
-    ));
-    public static final RegistryObject<Block> PLMK_BLOCK = BLOCKS.register("plmk_block", () -> new PlmkBlock(
-            Block.Properties.create(Material.ROCK)
-                    .harvestLevel(-1)
-                    .harvestTool(ToolType.PICKAXE)
-                    .hardnessAndResistance(100000000000000.0f)
     ));
     public static final RegistryObject<Block> SRIUNK_ORE = BLOCKS.register("sriunk_ore", () -> new SriunkOre(
             Block.Properties.create(Material.ROCK)
@@ -123,5 +118,35 @@ public class BlockInit {
                     .harvestLevel(0)
                     .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(1000000.0f)
+    ));
+    public static final RegistryObject<Block> RED_SMOOTH_STONE = BLOCKS.register("red_smooth_stone", () -> new RedSmoothStone(
+            Block.Properties.create(Material.ROCK)
+                    .harvestLevel(0)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(1000000.0f)
+    ));
+    public static final RegistryObject<Block> RED_FURANCE = BLOCKS.register("red_furance", () -> new RedFurance(
+            Block.Properties.create(Material.ROCK)
+                    .harvestLevel(0)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(10.0f)
+    ));
+    public static final RegistryObject<Block> AVTER_BLOCK = BLOCKS.register("avter_block", () -> new AvterBlock(
+            Block.Properties.create(Material.ROCK)
+                    .harvestLevel(5)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(6000.0f)
+    ));
+    public static final RegistryObject<Block> FIRG = BLOCKS.register("firg", () -> new Block(
+            Block.Properties.create(Material.ROCK)
+                    .harvestLevel(1)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(60.0f)
+    ));
+    public static final RegistryObject<Block> FRIT_BLOCK = BLOCKS.register("frit_block", () -> new FritBlock(
+            Block.Properties.create(Material.ROCK)
+                    .harvestLevel(1)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(60.0f)
     ));
 }

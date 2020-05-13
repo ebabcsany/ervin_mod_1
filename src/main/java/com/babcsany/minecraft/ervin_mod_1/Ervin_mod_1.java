@@ -108,14 +108,16 @@ public class Ervin_mod_1 {
         public static void onRegisterItems (final RegistryEvent.Register<Item> event) {
             final IForgeRegistry<Item> registry = event.getRegistry();
             BlockInit.BLOCKS.getEntries().stream().map(RegistryObject::get).forEach(block -> {
-                final Item.Properties properties = new Item.Properties();
-             //   properties.group(ItemGroup.MATERIALS);
-                final BlockItem blockItem = new BlockItem(block, properties);
-                ResourceLocation registryName = block.getRegistryName();
-                if (null != registryName) {
-                    blockItem.setRegistryName(registryName);
+                if (!block.equals(BlockInit.FIRG.get())) {
+                    final Item.Properties properties = new Item.Properties();
+                    properties.group(ItemGroup.MATERIALS);
+                    final BlockItem blockItem = new BlockItem(block, properties);
+                    ResourceLocation registryName = block.getRegistryName();
+                    if (null != registryName) {
+                        blockItem.setRegistryName(registryName);
+                    }
+                    registry.register(blockItem);
                 }
-                registry.register(blockItem);
             });
         }
 

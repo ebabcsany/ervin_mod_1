@@ -2,16 +2,16 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "###",
-    "###",
+    "# #",
     "###"
   ],
   "key": {
     "#": {
-      "item": "ervin_mod_1:firk"
+      "item": "ervin_mod_1:red_cobblestone"
     }
   },
   "result": {
-    "item": "ervin_mod_1:firt",
+    "item": "ervin_mod_1:red_furance",
     "count": 1
   }
 }

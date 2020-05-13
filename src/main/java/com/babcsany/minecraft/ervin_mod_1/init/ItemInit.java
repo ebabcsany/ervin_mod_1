@@ -1,6 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.init;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
+import com.babcsany.minecraft.ervin_mod_1.item.GretItem;
 import com.babcsany.minecraft.ervin_mod_1.item.ModArmorMaterial;
 import com.babcsany.minecraft.ervin_mod_1.item.ModItemTier;
 import net.minecraft.block.Block;
@@ -74,9 +75,6 @@ public class ItemInit {
     public static final RegistryObject<Item> RUBY = ITEMS.register("ruby", () -> new Item(
             (new Item.Properties())
     ));
-    public static final RegistryObject<Item> GRET = ITEMS.register("gret", () -> new Item(
-            (new Item.Properties())
-    ));
     public static final RegistryObject<Item> CRAINT = ITEMS.register("craint", () -> new Item(
             (new Item.Properties())
     ));
@@ -88,9 +86,6 @@ public class ItemInit {
     ));
     public static final RegistryObject<Item> TERAT_PICKAXE = ITEMS.register("terat_pickaxe", () -> new PickaxeItem(
             ModItemTier.TERAT, 200,10.0F, (new Item.Properties())
-    ));
-    public static final RegistryObject<Item> PLMK = ITEMS.register("plmk", () -> new Item(
-            (new Item.Properties())
     ));
     public static final RegistryObject<Item> TERAT_AXE = ITEMS.register("terat_axe", () -> new AxeItem(
             ModItemTier.TERAT, 400,20.0F, (new Item.Properties())
@@ -123,7 +118,7 @@ public class ItemInit {
             (new Item.Properties())
     ));
     public static final RegistryObject<Item> FRIM = ITEMS.register("frim", () -> new Item(
-            (new Item.Properties())
+            (new Item.Properties()).food(FoodInit.FRIM)
     ));
     public static final RegistryObject<Item> FRIN = ITEMS.register("frin", () -> new Item(
             (new Item.Properties())
@@ -141,6 +136,18 @@ public class ItemInit {
             (new Item.Properties())
     ));
     public static final RegistryObject<Item> SIRK = ITEMS.register("sirk", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> FIRG = ITEMS.register("firg", () -> new Item(
+            (new Item.Properties()).food(FoodInit.FIRG)
+    ));
+    public static final RegistryObject<Item> AVTER = ITEMS.register("avter", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> FRIT = ITEMS.register("frit", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> SRIUNK_GRET = ITEMS.register("sriunk_gret", () -> new Item(
             (new Item.Properties())
     ));
 }

@@ -1,6 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.init;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
+import com.babcsany.minecraft.ervin_mod_1.entity.animal.FreinEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.animal.ZurEntity1;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
 import net.minecraft.entity.EntityClassification;
@@ -26,4 +27,12 @@ public class EntityInit {
                     () -> EntityType.Builder.<ZurEntity>create(ZurEntity::new, EntityClassification.MONSTER)
                             .size(0.6f, 1.95f)
                             .build(new ResourceLocation(Ervin_mod_1.MOD_ID, "zur_entity").toString()));
+
+/*
+    public static final RegistryObject<EntityType<FreinEntity>> FREIN_ENTITY = ENTITY_TYPES
+            .register("frein_entity",
+                    () -> EntityType.Builder.<FreinEntity>create(FreinEntity::new, EntityClassification.MONSTER)
+                            .size(0.6f, 1.95f)
+                            .build(new ResourceLocation(Ervin_mod_1.MOD_ID, "frein_entity").toString()));
+*/
 }

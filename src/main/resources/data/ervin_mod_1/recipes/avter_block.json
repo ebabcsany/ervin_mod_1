@@ -7,11 +7,11 @@
   ],
   "key": {
     "#": {
-      "item": "ervin_mod_1:firk"
+      "item": "minecraft:avter"
     }
   },
   "result": {
-    "item": "ervin_mod_1:firt",
+    "item": "minecraft:avter_block",
     "count": 1
   }
 }
