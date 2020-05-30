@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "---",
+    "-#-",
+    "C#C"
+  ],
+  "key": {
+    "-": {
+      "item": "minecraft:end_stone"
+    },
+    "#": {
+      "item": "ervin_mod_1:end_srackt"
+    },
+    "C": {
+      "item": "ervin_mod_1:end_sract"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:end_stone_cisk",
+    "count": 1
+  }
+}
