@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "ervin_mod_1:shz_block"
+    }
+  ],
+  "result": {
+    "item": "ervin_mod_1:shz",
+    "count": 9
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "ervin_mod_1:sacr"
+  },
+  "result": "ervin_mod_1:scra",
+  "experience": 1.2,
+  "cookingtime": 2400
+}

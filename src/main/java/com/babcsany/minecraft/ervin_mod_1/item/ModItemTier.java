@@ -22,7 +22,9 @@ public enum ModItemTier implements IItemTier {
     // enchantability, Supplier<Ingredient> repairMaterial
     SRIUNK(4, 10000, 20.0F, 8.0F, 250, () -> Ingredient.fromItems(ItemInit.SRIUNK.get())),
     TERAT( 32, 80000, 160000.0F, 64.0F, 2000, () -> Ingredient.fromItems(ItemInit.TERAT.get())),
-    RED_COBBLESTONE(2, 262, 20.0F, 8.0F, 250, () -> Ingredient.fromItems(BlockInit.RED_COBBLESTONE.get()));
+    RED_COBBLESTONE(2, 262, 8.0F, 2.0F, 10, () -> Ingredient.fromItems(BlockInit.RED_COBBLESTONE.get())),
+    ENDER_SRACKT(1, 24, 2, 0, 20, () -> Ingredient.fromItems(ItemInit.ENDER_SRACKT.get())),
+    FIRT( 5, 1965, 14.0F, 6.0F, 148, () -> Ingredient.fromItems(ItemInit.FIRT.get()));
 
     private final int harvestLevel;
     private final int maxUses;

@@ -34,7 +34,7 @@ import java.util.stream.Collectors;
 import static com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1.MOD_ID;
 
 // The value here should match an entry in the META-INF/mods.toml file
-@Mod(MOD_ID)
+@Mod(Ervin_mod_1.MOD_ID)
 public class Ervin_mod_1 {
 
     public static final String MOD_ID = "ervin_mod_1";
@@ -108,15 +108,18 @@ public class Ervin_mod_1 {
         public static void onRegisterItems (final RegistryEvent.Register<Item> event) {
             final IForgeRegistry<Item> registry = event.getRegistry();
             BlockInit.BLOCKS.getEntries().stream().map(RegistryObject::get).forEach(block -> {
-                if (!block.equals(BlockInit.FIRG.get())) {
-                    final Item.Properties properties = new Item.Properties();
-                    properties.group(ItemGroup.MATERIALS);
-                    final BlockItem blockItem = new BlockItem(block, properties);
-                    ResourceLocation registryName = block.getRegistryName();
-                    if (null != registryName) {
-                        blockItem.setRegistryName(registryName);
-                    }
-                    registry.register(blockItem);
+                if (!block.equals(BlockInit.FIRG.get()))
+                    if (!block.equals(BlockInit.VIRK_BLOCK.get()))
+                    if (!block.equals(BlockInit.ENDER_SRACKHT.get()))
+                  if (!block.equals(BlockInit.SCRAFTH.get())) {
+                        final Item.Properties properties = new Item.Properties();
+                        properties.group(ItemGroup.MATERIALS);
+                        final BlockItem blockItem = new BlockItem(block, properties);
+                        ResourceLocation registryName = block.getRegistryName();
+                        if (null != registryName) {
+                            blockItem.setRegistryName(registryName);
+                        }
+                        registry.register(blockItem);
                 }
             });
         }

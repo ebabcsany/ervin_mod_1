@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "-",
+    "#",
+    "C"
+  ],
+  "key": {
+    "-": {
+      "item": "minecraft:ender_pearl"
+    },
+    "#": {
+      "item": "ervin_mod_1:end_stone_crisk"
+    },
+    "C": {
+      "item": "ervin_mod_1:ender_srackt"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:end_stone_stik",
+    "count": 1
+  }
+}

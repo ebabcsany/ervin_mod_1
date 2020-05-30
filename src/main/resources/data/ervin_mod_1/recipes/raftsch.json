@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "ervin_mod_1:raftsc"
+  },
+  "result": "ervin_mod_1:raftsch",
+  "experience": 0.375,
+  "cookingtime": 75
+}

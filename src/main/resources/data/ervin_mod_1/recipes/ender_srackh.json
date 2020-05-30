@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "X#X",
+    "XXX"
+  ],
+  "key": {
+    "#": {
+      "item": "ervin_mod_1:ender_scrakt"
+    },
+    "X": {
+      "item": "minecraft:end_stone"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:ender_srackh",
+    "count": 1
+  }
+}

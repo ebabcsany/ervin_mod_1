@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "ervin_mod_1:scrafth"
+  },
+  "result": "minecraft:air",
+  "experience": 0.10,
+  "cookingtime": 20
+}

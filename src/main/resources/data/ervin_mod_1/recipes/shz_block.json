@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "ervin_mod_1:shz"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:shz_block",
+    "count": 1
+  }
+}

@@ -13,7 +13,10 @@ import net.minecraft.inventory.container.ClickType;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
+@OnlyIn(Dist.CLIENT)
 public class CraintBlockCraftingTableScreen extends ContainerScreen<CraintBlockCraftingTableContainer> implements IRecipeShownListener {
     private static final ResourceLocation CRAFTING_TABLE_GUI_TEXTURES = new ResourceLocation(Ervin_mod_1.MOD_ID,"textures/gui/container/craint_block_crafting_table_gui_container.png");
     private static final ResourceLocation RECIPE_BUTTON_TEXTURE = new ResourceLocation(Ervin_mod_1.MOD_ID,"textures/gui/container/craint_block_crafting_table_gui_container_button.png");

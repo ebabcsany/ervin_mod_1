@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "minecraft:gunpowder"
+  },
+  "result": "ervin_mod_1:raftsh",
+  "experience": 0.75,
+  "cookingtime": 150
+}

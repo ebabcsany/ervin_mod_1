@@ -2,11 +2,11 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "minecraft:oak_wood"
+      "item": "ervin_mod_1:avter_block"
     }
   ],
   "result": {
-    "item": "minecraft:oak_planks",
+    "item": "ervin_mod_1:avter",
     "count": 9
   }
 }

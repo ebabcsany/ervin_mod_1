@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "ervin_mod_1:crast"
+  },
+  "result": "ervin_mod_1:sract",
+  "experience": 0.9,
+  "cookingtime": 1800
+}
