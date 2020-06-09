@@ -249,4 +249,7 @@ public class ItemInit {
     public static final RegistryObject<Item> SHZ = ITEMS.register("shz", () -> new Item(
             (new Item.Properties())
     ));
+    public static final RegistryObject<Item> TIRSK = ITEMS.register("tirsk", () -> new Item(
+            (new Item.Properties())
+    ));
 }

@@ -253,4 +253,10 @@ public class BlockInit {
                     .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(60.0f)
     ));
+    public static final RegistryObject<Block> TIRSK_BLOCK = BLOCKS.register("tirsk_block", () -> new TirskBlock(
+            Block.Properties.create(Material.ROCK)
+                    .harvestLevel(2)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(60.0f)
+    ));
 }
