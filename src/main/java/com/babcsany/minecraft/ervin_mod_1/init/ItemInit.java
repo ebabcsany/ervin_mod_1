@@ -6,6 +6,7 @@ import com.babcsany.minecraft.ervin_mod_1.item.ModArmorMaterial;
 import com.babcsany.minecraft.ervin_mod_1.item.ModItemTier;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.EntityType;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.util.ResourceLocation;
@@ -250,6 +251,13 @@ public class ItemInit {
             (new Item.Properties())
     ));
     public static final RegistryObject<Item> TIRSK = ITEMS.register("tirsk", () -> new Item(
+            (new Item.Properties())
+    ));
+    /*public static final RegistryObject<Item> ZUR_ENTITY_SPAWN_EGG = ITEMS.register("zur_entity_spawn_egg", new SpawnEggItem(
+            EntityType.ZUR_ENTITY,8, 6,
+            (new Item.Properties())
+    ));*/
+    public static final RegistryObject<Item> ZUR_ENTITY_SPAWN_EGG = ITEMS.register("zur_entity_spawn_egg", () -> new Item(
             (new Item.Properties())
     ));
 }
