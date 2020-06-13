@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "ervin_mod_1:surv"
+    }
+  ],
+  "result": {
+    "item": "ervin_mod_1:cobblestone",
+    "count": 10
+  }
+}

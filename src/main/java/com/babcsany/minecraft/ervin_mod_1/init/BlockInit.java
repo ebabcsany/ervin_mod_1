@@ -259,4 +259,40 @@ public class BlockInit {
                     .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(60.0f)
     ));
+    public static final RegistryObject<Block> KALT_BLOCK = BLOCKS.register("kalt_block", () -> new KaltBlock(
+            Block.Properties.create(Material.ROCK)
+                    .harvestLevel(2)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(60.0f)
+    ));
+    public static final RegistryObject<Block> VILKT_BLOCK = BLOCKS.register("vilkt_block", () -> new VilktBlock(
+            Block.Properties.create(Material.ROCK)
+                    .harvestLevel(2)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(60.0f)
+    ));
+    public static final RegistryObject<Block> URVI = BLOCKS.register("urvi", () -> new Urvi(
+            Block.Properties.create(Material.ROCK)
+                    .harvestLevel(0)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(3.0F,9.0F)
+    ));
+    public static final RegistryObject<Block> SURVI = BLOCKS.register("survi", () -> new Survi(
+            Block.Properties.create(Material.ROCK)
+                    .harvestLevel(0)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(2.0F,9.0F)
+    ));
+    public static final RegistryObject<Block> SURV = BLOCKS.register("surv", () -> new Surv(
+            Block.Properties.create(Material.ROCK)
+                    .harvestLevel(1)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(4.0F,10.0F)
+    ));
+    public static final RegistryObject<Block> SURT = BLOCKS.register("surt", () -> new Surt(
+            Block.Properties.create(Material.ROCK)
+                    .harvestLevel(1)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(5.0F,12.0F)
+    ));
 }

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "ervin_mod_1:kalt_block"
+    }
+  ],
+  "result": {
+    "item": "ervin_mod_1:kalt",
+    "count": 9
+  }
+}

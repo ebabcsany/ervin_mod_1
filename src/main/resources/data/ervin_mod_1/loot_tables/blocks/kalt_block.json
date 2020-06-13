@@ -1,0 +1,43 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:kalt_block"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:bedrock"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:viltdrop_block"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:craint_block_crafting_table"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:trugn"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:scrafth"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:zur_entity_spawn_egg"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ]
+    }
+  ]
+}

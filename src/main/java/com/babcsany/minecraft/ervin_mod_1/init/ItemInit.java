@@ -253,11 +253,13 @@ public class ItemInit {
     public static final RegistryObject<Item> TIRSK = ITEMS.register("tirsk", () -> new Item(
             (new Item.Properties())
     ));
-    /*public static final RegistryObject<Item> ZUR_ENTITY_SPAWN_EGG = ITEMS.register("zur_entity_spawn_egg", new SpawnEggItem(
-            EntityType.ZUR_ENTITY,8, 6,
-            (new Item.Properties())
-    ));*/
     public static final RegistryObject<Item> ZUR_ENTITY_SPAWN_EGG = ITEMS.register("zur_entity_spawn_egg", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> KALT = ITEMS.register("kalt", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> VILKT = ITEMS.register("vilkt", () -> new Item(
             (new Item.Properties())
     ));
 }
