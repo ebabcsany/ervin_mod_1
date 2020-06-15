@@ -1,6 +1,6 @@
 {
   "parent": "item/handheld",
   "textures": {
-    "layer0": "ervin_mod_1:item/red_stone_pickaxe"
+    "layer0": "ervin_mod_1:item/firt_sword"
   }
 }
