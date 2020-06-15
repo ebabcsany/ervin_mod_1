@@ -229,7 +229,7 @@ public class ItemInit {
             (new Item.Properties()).food(FoodInit.VIRK)
     ));
     public static final RegistryObject<Item> RED_STONE_PICKAXE = ITEMS.register("red_stone_pickaxe", () -> new PickaxeItem(
-            ModItemTier.RED_COBBLESTONE, 2, -1F, (new Item.Properties())
+            ModItemTier.RED_COBBLESTONE, 2, -1.4F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> FIRT_PICKAXE = ITEMS.register("firt_pickaxe", () -> new PickaxeItem(
             ModItemTier.FIRT, 4, 8.4F, (new Item.Properties())
@@ -262,6 +262,33 @@ public class ItemInit {
             (new Item.Properties())
     ));
     public static final RegistryObject<Item> VILKT = ITEMS.register("vilkt", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> RED_STONE_AXE = ITEMS.register("sriunk_axe", () -> new AxeItem(
+            ModItemTier.RED_COBBLESTONE, 14, 1.2F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> RED_STONE_SHOVEL = ITEMS.register("sriunk_hoe", () -> new ShovelItem(
+            ModItemTier.RED_COBBLESTONE,3, -1.0F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> RED_STONE_HOE = ITEMS.register("sriunk_shovel", () -> new HoeItem(
+            ModItemTier.RED_COBBLESTONE, -1.0F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> RED_STONE_SWORD = ITEMS.register("sriunk_sword", () -> new SwordItem(
+            ModItemTier.RED_COBBLESTONE, 6, -1.0F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> FIRT_AXE = ITEMS.register("firt_axe", () -> new AxeItem(
+            ModItemTier.RED_COBBLESTONE, 2, -1.4F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> FIRT_SHOVEL = ITEMS.register("firt_shovel", () -> new ShovelItem(
+            ModItemTier.RED_COBBLESTONE, 2, -1.4F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> FIRT_HOE = ITEMS.register("firt_hoe", () -> new HoeItem(
+            ModItemTier.RED_COBBLESTONE, -1.4F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> FIRT_SWORD = ITEMS.register("firt_sword", () -> new SwordItem(
+            ModItemTier.RED_COBBLESTONE, 2, -1.4F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> TERAT_GRET = ITEMS.register("terat_gret", () -> new Item(
             (new Item.Properties())
     ));
 }
