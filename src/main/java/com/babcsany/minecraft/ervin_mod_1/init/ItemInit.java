@@ -4,6 +4,8 @@ import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.item.GretItem;
 import com.babcsany.minecraft.ervin_mod_1.item.ModArmorMaterial;
 import com.babcsany.minecraft.ervin_mod_1.item.ModItemTier;
+import com.babcsany.minecraft.ervin_mod_1.item.ModSpawnEggItem;
+import com.babcsany.minecraft.ervin_mod_1.item.ModSpawnEggItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityType;
@@ -253,8 +255,8 @@ public class ItemInit {
     public static final RegistryObject<Item> TIRSK = ITEMS.register("tirsk", () -> new Item(
             (new Item.Properties())
     ));
-    public static final RegistryObject<Item> ZUR_ENTITY_SPAWN_EGG = ITEMS.register("zur_entity_spawn_egg", () -> new Item(
-            (new Item.Properties())
+    public static final RegistryObject<ModSpawnEggItem> ZUR_ENTITY_SPAWN_EGG = ITEMS.register("zur_entity_spawn_egg", () -> new ModSpawnEggItem(
+            EntityInit.ZUR_ENTITY, 0xF0A5A2, 0xA9672B, new Item.Properties()
     ));
     public static final RegistryObject<Item> KALT = ITEMS.register("kalt", () -> new Item(
             (new Item.Properties())
