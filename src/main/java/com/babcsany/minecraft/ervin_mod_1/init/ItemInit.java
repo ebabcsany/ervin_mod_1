@@ -103,7 +103,7 @@ public class ItemInit {
             44, new ResourceLocation(Ervin_mod_1.MOD_ID, "textures/entity/horse/armor/sriunk_horse_armor.png"), (new Item.Properties()).maxStackSize(1).group(ItemGroup.MISC)
     ));
     public static final RegistryObject<Item> TERAT_SWORD = ITEMS.register("terat_sword", () -> new SwordItem(
-            ModItemTier.SRIUNK, 10, 60.0F, (new Item.Properties())
+            ModItemTier.TERAT, 250, 60.0F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> TERAT_HELMET = ITEMS.register("terat_helmet", () -> new ArmorItem(
             ModArmorMaterial.TERAT, EquipmentSlotType.HEAD, (new Item.Properties())
@@ -277,16 +277,16 @@ public class ItemInit {
             ModItemTier.RED_COBBLESTONE, 6, -1.0F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> FIRT_AXE = ITEMS.register("firt_axe", () -> new AxeItem(
-            ModItemTier.RED_COBBLESTONE, 2, -1.4F, (new Item.Properties())
+            ModItemTier.RED_COBBLESTONE, 16, 21.0F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> FIRT_SHOVEL = ITEMS.register("firt_shovel", () -> new ShovelItem(
-            ModItemTier.RED_COBBLESTONE, 2, -1.4F, (new Item.Properties())
+            ModItemTier.RED_COBBLESTONE, 12, 16.8F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> FIRT_HOE = ITEMS.register("firt_hoe", () -> new HoeItem(
-            ModItemTier.RED_COBBLESTONE, -1.4F, (new Item.Properties())
+            ModItemTier.RED_COBBLESTONE, -1F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> FIRT_SWORD = ITEMS.register("firt_sword", () -> new SwordItem(
-            ModItemTier.RED_COBBLESTONE, 2, -1.4F, (new Item.Properties())
+            ModItemTier.RED_COBBLESTONE, 8, 12.6F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> TERAT_GRET = ITEMS.register("terat_gret", () -> new Item(
             (new Item.Properties())
