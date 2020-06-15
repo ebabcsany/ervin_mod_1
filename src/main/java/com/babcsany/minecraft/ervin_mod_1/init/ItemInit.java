@@ -22,22 +22,22 @@ public class ItemInit {
     public static final DeferredRegister<Item> ITEMS = new DeferredRegister<>(ForgeRegistries.ITEMS, Ervin_mod_1.MOD_ID);
 
     public static final RegistryObject<Item> SRIUNK_PICKAXE = ITEMS.register("sriunk_pickaxe", () -> new PickaxeItem(
-            ModItemTier.SRIUNK, 8, -22.0F, (new Item.Properties())
+            ModItemTier.SRIUNK, 8, 22.0F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> SRIUNK = ITEMS.register("sriunk", () -> new Item(
             (new Item.Properties())
     ));
     public static final RegistryObject<Item> SRIUNK_AXE = ITEMS.register("sriunk_axe", () -> new AxeItem(
-            ModItemTier.SRIUNK, 20, -50.0F, (new Item.Properties())
+            ModItemTier.SRIUNK, 20, 40.0F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> SRIUNK_HOE = ITEMS.register("sriunk_hoe", () -> new HoeItem(
-            ModItemTier.SRIUNK, -5.0F, (new Item.Properties())
+            ModItemTier.SRIUNK, 4.0F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> SRIUNK_SHOVEL = ITEMS.register("sriunk_shovel", () -> new ShovelItem(
-            ModItemTier.SRIUNK, 12, -34.0F, (new Item.Properties())
+            ModItemTier.SRIUNK, 12, 30.0F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> SRIUNK_SWORD = ITEMS.register("sriunk_sword", () -> new SwordItem(
-            ModItemTier.SRIUNK, 15, -42.0F, (new Item.Properties())
+            ModItemTier.SRIUNK, 15, 36.0F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> SRIUNK_HELMET = ITEMS.register("sriunk_helmet", () -> new ArmorItem(
             ModArmorMaterial.SRIUNK, EquipmentSlotType.HEAD, (new Item.Properties())
@@ -88,22 +88,22 @@ public class ItemInit {
             (new Item.Properties())
     ));
     public static final RegistryObject<Item> TERAT_PICKAXE = ITEMS.register("terat_pickaxe", () -> new PickaxeItem(
-            ModItemTier.TERAT, 200,-200.0F, (new Item.Properties())
+            ModItemTier.TERAT, 200,200.0F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> TERAT_AXE = ITEMS.register("terat_axe", () -> new AxeItem(
-            ModItemTier.TERAT, 400,-400.0F, (new Item.Properties())
+            ModItemTier.TERAT, 400,400.0F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> TERAT_SHOVEL = ITEMS.register("terat_shovel", () -> new ShovelItem(
-            ModItemTier.TERAT, 300,-150.0F, (new Item.Properties())
+            ModItemTier.TERAT, 300,150.0F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> TERAT_HOE = ITEMS.register("terat_hoe", () -> new HoeItem(
-            ModItemTier.TERAT, -60.0F, (new Item.Properties())
+            ModItemTier.TERAT, 50.0F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> SRIUNK_HORSE_ARMOR = ITEMS.register("sriunk_horse_armor", () -> new HorseArmorItem(
             44, new ResourceLocation(Ervin_mod_1.MOD_ID, "textures/entity/horse/armor/sriunk_horse_armor.png"), (new Item.Properties()).maxStackSize(1).group(ItemGroup.MISC)
     ));
     public static final RegistryObject<Item> TERAT_SWORD = ITEMS.register("terat_sword", () -> new SwordItem(
-            ModItemTier.SRIUNK, 10, -70.0F, (new Item.Properties())
+            ModItemTier.SRIUNK, 10, 60.0F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> TERAT_HELMET = ITEMS.register("terat_helmet", () -> new ArmorItem(
             ModArmorMaterial.TERAT, EquipmentSlotType.HEAD, (new Item.Properties())
@@ -229,10 +229,10 @@ public class ItemInit {
             (new Item.Properties()).food(FoodInit.VIRK)
     ));
     public static final RegistryObject<Item> RED_STONE_PICKAXE = ITEMS.register("red_stone_pickaxe", () -> new PickaxeItem(
-            ModItemTier.RED_COBBLESTONE, 2, -5.6F, (new Item.Properties())
+            ModItemTier.RED_COBBLESTONE, 2, -1F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> FIRT_PICKAXE = ITEMS.register("firt_pickaxe", () -> new PickaxeItem(
-            ModItemTier.FIRT, 4, -9.4F, (new Item.Properties())
+            ModItemTier.FIRT, 4, 8.4F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> VIRK_BLOCK = ITEMS.register("virk_block", () -> new Item(
             (new Item.Properties()).food(FoodInit.VIRK_BLOCK)
