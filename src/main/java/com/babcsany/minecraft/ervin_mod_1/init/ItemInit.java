@@ -264,16 +264,16 @@ public class ItemInit {
     public static final RegistryObject<Item> VILKT = ITEMS.register("vilkt", () -> new Item(
             (new Item.Properties())
     ));
-    public static final RegistryObject<Item> RED_STONE_AXE = ITEMS.register("sriunk_axe", () -> new AxeItem(
+    public static final RegistryObject<Item> RED_STONE_AXE = ITEMS.register("red_stone_axe", () -> new AxeItem(
             ModItemTier.RED_COBBLESTONE, 14, 1.2F, (new Item.Properties())
     ));
-    public static final RegistryObject<Item> RED_STONE_SHOVEL = ITEMS.register("sriunk_hoe", () -> new ShovelItem(
+    public static final RegistryObject<Item> RED_STONE_SHOVEL = ITEMS.register("red_stone_hoe", () -> new ShovelItem(
             ModItemTier.RED_COBBLESTONE,3, -1.0F, (new Item.Properties())
     ));
-    public static final RegistryObject<Item> RED_STONE_HOE = ITEMS.register("sriunk_shovel", () -> new HoeItem(
+    public static final RegistryObject<Item> RED_STONE_HOE = ITEMS.register("red_stone_shovel", () -> new HoeItem(
             ModItemTier.RED_COBBLESTONE, -1.0F, (new Item.Properties())
     ));
-    public static final RegistryObject<Item> RED_STONE_SWORD = ITEMS.register("sriunk_sword", () -> new SwordItem(
+    public static final RegistryObject<Item> RED_STONE_SWORD = ITEMS.register("red_stone_sword", () -> new SwordItem(
             ModItemTier.RED_COBBLESTONE, 6, -1.0F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> FIRT_AXE = ITEMS.register("firt_axe", () -> new AxeItem(
