@@ -44,6 +44,11 @@
               ],
               "name": "ervin_mod_1:sriunk"
             }
+          ],
+          "conditions": [
+            {
+              "condition": "minecraft:survives_explosion"
+            }
           ]
         }
       ]
