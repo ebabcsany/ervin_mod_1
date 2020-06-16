@@ -303,4 +303,7 @@ public class ItemInit {
     public static final RegistryObject<Item> FIRT_BOOTS = ITEMS.register("firt_boots", () -> new ArmorItem(
             ModArmorMaterial.FIRT, EquipmentSlotType.FEET, (new Item.Properties())
     ));
+    public static final RegistryObject<Item> VOLMNT = ITEMS.register("volmnt", () -> new Item(
+            (new Item.Properties()).food(FoodInit.VOLMNT)
+    ));
 }
