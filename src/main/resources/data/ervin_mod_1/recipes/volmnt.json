@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "ervin_mod_1:volmnt_ingredient"
+    }
+  ],
+  "result": {
+    "item": "ervin_mod_1:volmnt",
+    "count": 9
+  }
+}
