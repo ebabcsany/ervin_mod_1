@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "# #",
+    "# #"
+  ],
+  "key": {
+    "#": {
+      "item": "ervin_mod_1:firt"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:firt_boots",
+    "count": 1
+  }
+}
