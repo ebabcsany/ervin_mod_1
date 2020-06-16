@@ -1,20 +1,9 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "XXX",
-    "X#X",
-    "XXX"
-  ],
-  "key": {
-    "#": {
-      "item": "minecraft:ender_pearl"
-    },
-    "X": {
-      "item": "minecraft:end_stone"
-    }
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "ervin_mod_1:end_srackt"
   },
-  "result": {
-    "item": "ervin_mod_1:ender_sract",
-    "count": 1
-  }
+  "result": "ervin_mod_1:end_sract",
+  "experience": 1.0,
+  "cookingtime": 1000
 }
