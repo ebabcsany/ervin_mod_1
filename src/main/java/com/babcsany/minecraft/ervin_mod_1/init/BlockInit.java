@@ -248,10 +248,9 @@ public class BlockInit {
                     .hardnessAndResistance(60.0f)
     ));
     public static final RegistryObject<Block> SHZ_BLOCK = BLOCKS.register("shz_block", () -> new ShzBlock(
-            Block.Properties.create(Material.ROCK)
-                    .harvestLevel(2)
-                    .harvestTool(ToolType.PICKAXE)
-                    .hardnessAndResistance(60.0f)
+            Block.Properties.create(Material.ORGANIC)
+                    .hardnessAndResistance(6000000.0f)
+                    .lightValue(15)
     ));
     public static final RegistryObject<Block> TIRSK_BLOCK = BLOCKS.register("tirsk_block", () -> new TirskBlock(
             Block.Properties.create(Material.ROCK)
