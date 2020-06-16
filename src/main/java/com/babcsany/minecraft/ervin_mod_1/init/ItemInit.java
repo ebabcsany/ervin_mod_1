@@ -277,16 +277,16 @@ public class ItemInit {
             ModItemTier.RED_COBBLESTONE, 6, -1.0F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> FIRT_AXE = ITEMS.register("firt_axe", () -> new AxeItem(
-            ModItemTier.RED_COBBLESTONE, 16, 21.0F, (new Item.Properties())
+            ModItemTier.FIRT, 16, 21.0F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> FIRT_SHOVEL = ITEMS.register("firt_shovel", () -> new ShovelItem(
-            ModItemTier.RED_COBBLESTONE, 12, 16.8F, (new Item.Properties())
+            ModItemTier.FIRT, 12, 16.8F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> FIRT_HOE = ITEMS.register("firt_hoe", () -> new HoeItem(
-            ModItemTier.RED_COBBLESTONE, -1F, (new Item.Properties())
+            ModItemTier.FIRT, -1F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> FIRT_SWORD = ITEMS.register("firt_sword", () -> new SwordItem(
-            ModItemTier.RED_COBBLESTONE, 8, 12.6F, (new Item.Properties())
+            ModItemTier.FIRT, 8, 12.6F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> TERAT_GRET = ITEMS.register("terat_gret", () -> new Item(
             (new Item.Properties())
