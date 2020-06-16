@@ -291,4 +291,16 @@ public class ItemInit {
     public static final RegistryObject<Item> TERAT_GRET = ITEMS.register("terat_gret", () -> new Item(
             (new Item.Properties())
     ));
+    public static final RegistryObject<Item> FIRT_HELMET = ITEMS.register("firt_helmet", () -> new ArmorItem(
+            ModArmorMaterial.FIRT, EquipmentSlotType.HEAD, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> FIRT_CHESTPLATE = ITEMS.register("firt_chestplate", () -> new ArmorItem(
+            ModArmorMaterial.FIRT, EquipmentSlotType.CHEST, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> FIRT_LEGGINGS = ITEMS.register("firt_leggings", () -> new ArmorItem(
+            ModArmorMaterial.FIRT, EquipmentSlotType.LEGS, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> FIRT_BOOTS = ITEMS.register("firt_boots", () -> new ArmorItem(
+            ModArmorMaterial.FIRT, EquipmentSlotType.FEET, (new Item.Properties())
+    ));
 }
