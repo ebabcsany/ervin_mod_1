@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "ervin_mod_1:magenta_wool_ingredient"
+    },
+    {
+      "item": "minecraft:magenta_dye"
+    }
+  ],
+  "result": {
+    "item": "minecraft:magenta_wool",
+    "count": 1
+  }
+}
