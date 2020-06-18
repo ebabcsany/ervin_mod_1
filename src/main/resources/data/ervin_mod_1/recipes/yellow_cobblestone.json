@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "tag": "ervin_mod_1:cobblestone_ingredient_1"
+      "tag": "ervin_mod_1:yellow_cobblestone_ingredient"
     },
     {
       "item": "minecraft:yellow_dye"
