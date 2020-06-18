@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "tag": "ervin_mod_1:lime_cobblestone_ingedient"
+      "tag": "ervin_mod_1:lime_cobblestone_ingredient"
     },
     {
       "item": "minecraft:lime_dye"
