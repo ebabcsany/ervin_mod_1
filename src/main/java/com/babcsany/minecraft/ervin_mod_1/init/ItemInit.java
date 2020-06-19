@@ -256,7 +256,7 @@ public class ItemInit {
             (new Item.Properties())
     ));
     public static final RegistryObject<ModSpawnEggItem> ZUR_ENTITY_SPAWN_EGG = ITEMS.register("zur_entity_spawn_egg", () -> new ModSpawnEggItem(
-            EntityInit.ZUR_ENTITY, 0x649678, 0x324b3c, new Item.Properties()
+            EntityInit.ZUR_ENTITY, 0x6ea587, 0x446648, new Item.Properties()
     ));
     public static final RegistryObject<Item> KALT = ITEMS.register("kalt", () -> new Item(
             (new Item.Properties())
