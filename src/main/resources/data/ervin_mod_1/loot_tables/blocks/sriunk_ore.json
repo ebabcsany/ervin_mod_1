@@ -24,7 +24,7 @@
                   }
                 }
               ],
-              "name": "minecraft:sriunk_ore"
+              "name": "ervin_mod_1:sriunk_ore"
             },
             {
               "type": "minecraft:item",
@@ -38,7 +38,7 @@
                   "function": "minecraft:explosion_decay"
                 }
               ],
-              "name": "minecraft:sriunk"
+              "name": "ervin_mod_1:sriunk"
             }
           ]
         }
