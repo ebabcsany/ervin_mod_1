@@ -5,8 +5,6 @@
     "minecraft:fire_charge",
     "minecraft:smooth_stone",
     "minecraft:charcoal",
-    "minecraft:coal",
- /*   "minecraft:hay_block",
-    "minecraft:dried_kelp_block"*/
+    "minecraft:coal"
   ]
 }
