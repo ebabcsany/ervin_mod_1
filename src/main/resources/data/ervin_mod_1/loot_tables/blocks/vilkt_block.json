@@ -1,0 +1,623 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "tag": "ervin_mod_1:avter"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:avter_block"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:black_cobblestone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:blue_cobblestone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:brend"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:brown_cobblestone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:craint"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:craint_block"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:craint_block_crafting_table"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:crast"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:cyan_cobblestone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:drein"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:end_portal"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:end_srackt"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:end_sract"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:end_stone_cisk"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:end_stone_crisk"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:end_stone_stik"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:ender_sackt"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:ender_sact"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:ender_scrak"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:ender_scrakt"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:ender_srack"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:ender_srackh"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:ender_srackht"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:ender_srackt"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:ender_sract"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:epkin"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:firg"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:firk"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:firn"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:firt"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:firt_axe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:firt_block"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:firt_boots"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:firt_chestplate"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:firt_helmet"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:firt_hoe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:firt_leggings"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:firt_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:firt_shovel"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:firt_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:frim"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:frin"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:frit"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:frit_block"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:green_cobblestone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:grint"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:grint_block"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:kalt"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:kalt_block"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:kirt"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:kirt_stik"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:leat"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:leat_block"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:leat_block_crafting_table"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:light_blue_cobblestone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:lime_cobblestone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:magenta_cobblestone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:narin"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:narin_block"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:nether_portal"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:nirg"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:nirk"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:nirk_block"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:orange_cobblestone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:pack"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:pack_block"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:pink_cobblestone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:purple_cobblestone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:raftsc"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:raftsch"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:raftsh"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:rasc"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:rasch"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:rascht"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:red_cobblestone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:red_furance"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:red_smooth_stone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:red_stone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:red_stone_axe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:red_stone_hoe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:red_stone_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:red_stone_shovel"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:red_stone_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:regdem"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:regdem_block"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:ruby"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:ruby_block"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:sacht"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:sacr"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:sarct"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:schraft"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:scra"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:scraf"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:scraft"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:scrafth"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:shz"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:shz_block"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:sirk"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:srac"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:srach"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:sract"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:sriunk"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:sriunk_axe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:sriunk_block"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:sriunk_boots"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:sriunk_chestplate"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:sriunk_gret"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:sriunk_helmet"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:sriunk_hoe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:sriunk_horse_armor"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:sriunk_leggings"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:sriunk_ore"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:sriunk_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:sriunk_shovel"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:sriunk_stick"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:sriunk_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:surt"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:surv"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:survi"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:terat"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:terat_axe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:terat_block"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:terat_boots"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:terat_chestplate"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:terat_gret"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:terat_helmet"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:terat_hoe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:terat_leggings"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:terat_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:terat_shovel"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:terat_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tirks"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tirks_block"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tirsk"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tirsk_block"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tring"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:trugn"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:urvi"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:vilkt"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:vilkt_block"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:viltdrop"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:viltdrop_block"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:virk"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:virk_block"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:volmint"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:white_cobblestone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:yellow_cobblestone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:zribt"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:zript"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:zur_entity_spawn_egg"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ]
+    }
+  ]
+}
