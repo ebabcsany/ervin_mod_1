@@ -262,6 +262,10 @@
         },
         {
           "type": "minecraft:item",
+          "name": "ervin_mod_1:nirk_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
           "name": "ervin_mod_1:nirk_block"
         },
         {
