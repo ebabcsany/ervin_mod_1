@@ -111,6 +111,7 @@ public class Ervin_mod_1 {
                 if (!block.equals(BlockInit.FIRG.get()))
                     if (!block.equals(BlockInit.VIRK_BLOCK.get()))
                     if (!block.equals(BlockInit.ENDER_SRACKHT.get()))
+                        if (!block.equals(BlockInit.ENDER_STAKRACH.get()))
                   if (!block.equals(BlockInit.SCRAFTH.get())) {
                         final Item.Properties properties = new Item.Properties();
                         properties.group(ItemGroup.MATERIALS);

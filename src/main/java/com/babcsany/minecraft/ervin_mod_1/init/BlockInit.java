@@ -32,7 +32,7 @@ public class BlockInit {
                     .hardnessAndResistance(10000000.0f)
     ));
     public static final RegistryObject<Block> REGDEM_BLOCK = BLOCKS.register("regdem_block", () -> new RegdemBlock(
-            Block.Properties.create(Material.EARTH)
+            Block.Properties.create(Material.WOOD)
                     .harvestLevel(0)
                     .harvestTool(ToolType.AXE)
                     .hardnessAndResistance(10.0f)
@@ -83,15 +83,15 @@ public class BlockInit {
     ));
     public static final RegistryObject<Block> NIRK_BLOCK = BLOCKS.register("nirk_block", () -> new NirkBlock(
             Block.Properties.create(Material.ROCK)
-                    .harvestLevel(4)
+                    .harvestLevel(20)
                     .harvestTool(ToolType.PICKAXE)
-                    .hardnessAndResistance(100.0f)
+                    .hardnessAndResistance(1562.0f)
     ));
     public static final RegistryObject<Block> RUBY_BLOCK = BLOCKS.register("ruby_block", () -> new RubyBlock(
             Block.Properties.create(Material.ROCK)
                     .harvestLevel(4)
                     .harvestTool(ToolType.PICKAXE)
-                    .hardnessAndResistance(100.0f)
+                    .hardnessAndResistance(10.0f)
     ));
     public static final RegistryObject<Block> GRINT_BLOCK = BLOCKS.register("grint_block", () -> new GrintBlock(
             Block.Properties.create(Material.ROCK)
@@ -158,9 +158,10 @@ public class BlockInit {
                     .harvestLevel(0)
                     .hardnessAndResistance(10.0f)
     ));
-    public static final RegistryObject<Block> ENDER_SRACKHT = BLOCKS.register("ender_srackht", () -> new Block(
+    public static final RegistryObject<Block> ENDER_SRACKHT = BLOCKS.register("ender_srackht", () -> new EnderSrackht(
             Block.Properties.create(Material.SPONGE)
                     .harvestLevel(1)
+                    .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(20.0f)
     ));
     public static final RegistryObject<Block> END_STONE_CISK = BLOCKS.register("end_stone_cisk", () -> new EndStoneCisk(
@@ -372,10 +373,22 @@ public class BlockInit {
                     .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(2.0F,12.0F)
     ));
-    public static final RegistryObject<Block> NETHER_PORTAL = BLOCKS.register("nether_portal", () -> new NetherPortal(
+    public static final RegistryObject<Block> NETHER_PORTAL = BLOCKS.register("nether_portal", () -> new Block(
             Block.Properties.create(Material.ROCK)
                     .harvestLevel(0)
                     .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(2.0F,12.0F)
+    ));
+    public static final RegistryObject<Block> ENDER_STAKRACH = BLOCKS.register("ender_stakrach", () -> new EnderStakrach(
+            Block.Properties.create(Material.SPONGE)
+                    .harvestLevel(2)
+                    .harvestTool(ToolType.AXE)
+                    .hardnessAndResistance(40.0f)
+    ));
+    public static final RegistryObject<Block> ENDER_SRACKTH = BLOCKS.register("ender_srackth", () -> new EnderSrackth(
+            Block.Properties.create(Material.SPONGE)
+                    .harvestLevel(1)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(20.0f)
     ));
 }

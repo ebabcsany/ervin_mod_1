@@ -24,7 +24,9 @@ public enum ModItemTier implements IItemTier {
     TERAT( 32, 80000, 160000.0F, 64.0F, 2000, () -> Ingredient.fromItems(ItemInit.TERAT.get())),
     RED_COBBLESTONE(2, 262, 8.0F, 2.0F, 10, () -> Ingredient.fromItems(BlockInit.RED_COBBLESTONE.get())),
     ENDER_SRACKT(1, 24, 2, 0, 20, () -> Ingredient.fromItems(ItemInit.ENDER_SRACKT.get())),
-    FIRT( 5, 1965, 14.0F, 6.0F, 148, () -> Ingredient.fromItems(ItemInit.FIRT.get()));
+    FIRT( 5, 1965, 14.0F, 6.0F, 148, () -> Ingredient.fromItems(ItemInit.FIRT.get())),
+    NIRK( 20, 12281, 387.5F, 37.5F, 925, () -> Ingredient.fromItems(ItemInit.NIRK.get())),
+    ENDER_SRACKHT(2, 48, 4.0F, 2.0F, 40, () -> Ingredient.fromItems(ItemInit.ENDER_SRACKHT.get()));
 
     private final int harvestLevel;
     private final int maxUses;
