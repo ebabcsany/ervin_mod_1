@@ -312,7 +312,7 @@ public class ItemInit {
     public static final RegistryObject<Item> ENDER_STAKRACH = ITEMS.register("ender_stakrach", () -> new AxeItem(
             ModItemTier.ENDER_SRACKHT, 2, 2.0F, (new Item.Properties())
     ));
-    public static final RegistryObject<Item> SURV_PICKAXE = ITEMS.register("nirk_pickaxe", () -> new PickaxeItem(
+    public static final RegistryObject<Item> SURV_PICKAXE = ITEMS.register("surv_pickaxe", () -> new PickaxeItem(
             ModItemTier.NIRK, 10, 3.0F, (new Item.Properties())
     ));
 }
