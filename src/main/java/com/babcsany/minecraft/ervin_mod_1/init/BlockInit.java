@@ -397,4 +397,10 @@ public class BlockInit {
                     .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(20.0f)
     ));
+    public static final RegistryObject<Block> ENDER_SRAKTCAF = BLOCKS.register("ender_sraktcaf", () -> new EnderSraktcaf(
+            Block.Properties.create(Material.SPONGE)
+                    .harvestLevel(3)
+                    .harvestTool(ToolType.SHOVEL)
+                    .hardnessAndResistance(60.0f)
+    ));
 }

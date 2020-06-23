@@ -315,4 +315,7 @@ public class ItemInit {
     public static final RegistryObject<Item> SURV_PICKAXE = ITEMS.register("surv_pickaxe", () -> new PickaxeItem(
             ModItemTier.NIRK, 10, 3.0F, (new Item.Properties())
     ));
+    public static final RegistryObject<Item> ENDER_SRAKTCAF = ITEMS.register("ender_sraktcaf", () -> new ShovelItem(
+            ModItemTier.ENDER_STAKRACH, 3, 4.0F, (new Item.Properties())
+    ));
 }
