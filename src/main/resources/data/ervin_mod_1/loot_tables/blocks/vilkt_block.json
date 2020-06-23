@@ -110,7 +110,15 @@
         },
         {
           "type": "minecraft:item",
+          "name": "ervin_mod_1:ender_srackth"
+        },
+        {
+          "type": "minecraft:item",
           "name": "ervin_mod_1:ender_sract"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:ender_stakrach"
         },
         {
           "type": "minecraft:item",
@@ -267,6 +275,14 @@
         {
           "type": "minecraft:item",
           "name": "ervin_mod_1:nirk_block"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:nirk_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:oak_turg"
         },
         {
           "type": "minecraft:item",
@@ -487,6 +503,10 @@
         {
           "type": "minecraft:item",
           "name": "ervin_mod_1:surv"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:surv_pickaxe"
         },
         {
           "type": "minecraft:item",
