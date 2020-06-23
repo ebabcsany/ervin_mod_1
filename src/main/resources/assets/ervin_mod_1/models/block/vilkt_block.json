@@ -13,12 +13,12 @@
     {   "from": [ 0, 0, 0 ],
       "to": [ 16, 16, 16 ],
       "faces": {
-        "down":  { "texture": "#down", "cullface": "down" },
-        "up":    { "texture": "#up", "cullface": "up" },
-        "north": { "texture": "#north", "cullface": "north" },
-        "south": { "texture": "#south", "cullface": "south" },
-        "west":  { "texture": "#west", "cullface": "west" },
-        "east":  { "texture": "#east", "cullface": "east" }
+        "down":  { "texture": "ervin_mod_1:block/vilkt_block_bottom", "cullface": "down" },
+        "up":    { "texture": "ervin_mod_1:block/vilkt_block_top", "cullface": "up" },
+        "north": { "texture": "ervin_mod_1:block/vilkt_block_front", "cullface": "north" },
+        "south": { "texture": "ervin_mod_1:block/vilkt_block_back", "cullface": "south" },
+        "west":  { "texture": "ervin_mod_1:block/vilkt_block_right", "cullface": "west" },
+        "east":  { "texture": "ervin_mod_1:block/vilkt_block_left", "cullface": "east" }
       }
     }
   ]
