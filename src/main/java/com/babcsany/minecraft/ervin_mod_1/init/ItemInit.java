@@ -307,9 +307,12 @@ public class ItemInit {
             (new Item.Properties()).food(FoodInit.VOLMINT)
     ));
     public static final RegistryObject<Item> NIRK_PICKAXE = ITEMS.register("nirk_pickaxe", () -> new PickaxeItem(
-            ModItemTier.NIRK, 25, 52.5F, (new Item.Properties())
+            ModItemTier.NIRK, 50, 105.0F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> ENDER_STAKRACH = ITEMS.register("ender_stakrach", () -> new AxeItem(
             ModItemTier.ENDER_SRACKHT, 2, 2.0F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> SURV_PICKAXE = ITEMS.register("nirk_pickaxe", () -> new PickaxeItem(
+            ModItemTier.NIRK, 10, 3.0F, (new Item.Properties())
     ));
 }

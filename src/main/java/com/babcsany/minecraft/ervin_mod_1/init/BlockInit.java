@@ -373,7 +373,7 @@ public class BlockInit {
                     .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(2.0F,12.0F)
     ));
-    public static final RegistryObject<Block> NETHER_PORTAL = BLOCKS.register("nether_portal", () -> new Block(
+    public static final RegistryObject<Block> NETHER_PORTAL = BLOCKS.register("nether_portal", () -> new NetherPortal(
             Block.Properties.create(Material.ROCK)
                     .harvestLevel(0)
                     .harvestTool(ToolType.PICKAXE)
@@ -386,6 +386,12 @@ public class BlockInit {
                     .hardnessAndResistance(40.0f)
     ));
     public static final RegistryObject<Block> ENDER_SRACKTH = BLOCKS.register("ender_srackth", () -> new EnderSrackth(
+            Block.Properties.create(Material.SPONGE)
+                    .harvestLevel(1)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(20.0f)
+    ));
+    public static final RegistryObject<Block> OAK_TURG = BLOCKS.register("oak_turg", () -> new EnderSrackth(
             Block.Properties.create(Material.SPONGE)
                     .harvestLevel(1)
                     .harvestTool(ToolType.PICKAXE)
