@@ -394,7 +394,7 @@ public class BlockInit {
     public static final RegistryObject<Block> OAK_TURG = BLOCKS.register("oak_turg", () -> new EnderSrackth(
             Block.Properties.create(Material.SPONGE)
                     .harvestLevel(1)
-                    .harvestTool(ToolType.PICKAXE)
+                    .harvestTool(ToolType.AXE)
                     .hardnessAndResistance(20.0f)
     ));
     public static final RegistryObject<Block> ENDER_SRAKTCAF = BLOCKS.register("ender_sraktcaf", () -> new EnderSraktcaf(
@@ -406,11 +406,16 @@ public class BlockInit {
     public static final RegistryObject<Block> ENDER_TRASKRACH = BLOCKS.register("ender_traskrach", () -> new EnderTraskrach(
             Block.Properties.create(Material.SPONGE)
                     .harvestLevel(4)
-                    .hardnessAndResistance(60.0f)
+                    .hardnessAndResistance(80.0f)
     ));
     public static final RegistryObject<Block> ENDER_TRASKCRAFTH = BLOCKS.register("ender_traskcrafth", () -> new EnderTraskcrafth(
             Block.Properties.create(Material.SPONGE)
                     .harvestLevel(5)
-                    .hardnessAndResistance(60.0f)
+                    .hardnessAndResistance(100.0f)
+    ));
+    public static final RegistryObject<Block> ENDER_TRASK = BLOCKS.register("ender_trask", () -> new EnderTrask(
+            Block.Properties.create(Material.SPONGE)
+                    .harvestLevel(6)
+                    .hardnessAndResistance(160.0f)
     ));
 }
