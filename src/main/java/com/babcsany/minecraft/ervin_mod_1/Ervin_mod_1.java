@@ -109,11 +109,13 @@ public class Ervin_mod_1 {
             final IForgeRegistry<Item> registry = event.getRegistry();
             BlockInit.BLOCKS.getEntries().stream().map(RegistryObject::get).forEach(block -> {
                 if (!block.equals(BlockInit.FIRG.get()))
-                    if (!block.equals(BlockInit.VIRK_BLOCK.get()))
-                    if (!block.equals(BlockInit.ENDER_SRACKHT.get()))
-                        if (!block.equals(BlockInit.ENDER_STAKRACH.get()))
-                            if (!block.equals(BlockInit.ENDER_SRAKTCAF.get()))
-                  if (!block.equals(BlockInit.SCRAFTH.get())) {
+                if (!block.equals(BlockInit.VIRK_BLOCK.get()))
+                if (!block.equals(BlockInit.ENDER_SRACKHT.get()))
+                if (!block.equals(BlockInit.ENDER_STAKRACH.get()))
+                if (!block.equals(BlockInit.ENDER_SRAKTCAF.get()))
+                if (!block.equals(BlockInit.ENDER_TRASKRACH.get()))
+                if (!block.equals(BlockInit.ENDER_TRASKCRAFTH.get()))
+                if (!block.equals(BlockInit.SCRAFTH.get())) {
                         final Item.Properties properties = new Item.Properties();
                         properties.group(ItemGroup.MATERIALS);
                         final BlockItem blockItem = new BlockItem(block, properties);

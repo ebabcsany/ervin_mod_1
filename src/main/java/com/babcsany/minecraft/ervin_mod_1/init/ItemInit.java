@@ -319,6 +319,9 @@ public class ItemInit {
             ModItemTier.ENDER_STAKRACH, 3, 4.0F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> ENDER_TRASKRACH = ITEMS.register("ender_traskrach", () -> new HoeItem(
-            ModItemTier.FIRT, 5F, (new Item.Properties())
+            ModItemTier.ENDER_SRAKTCAF, 5F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> ENDER_TRASKCRAFTH = ITEMS.register("ender_traskcrafth", () -> new SwordItem(
+            ModItemTier.ENDER_TRASKRACH, 6, 6.0F, (new Item.Properties())
     ));
 }
