@@ -318,4 +318,7 @@ public class ItemInit {
     public static final RegistryObject<Item> ENDER_SRAKTCAF = ITEMS.register("ender_sraktcaf", () -> new ShovelItem(
             ModItemTier.ENDER_STAKRACH, 3, 4.0F, (new Item.Properties())
     ));
+    public static final RegistryObject<Item> ENDER_TRASKRACH = ITEMS.register("ender_traskrach", () -> new HoeItem(
+            ModItemTier.FIRT, 5F, (new Item.Properties())
+    ));
 }

@@ -403,4 +403,10 @@ public class BlockInit {
                     .harvestTool(ToolType.SHOVEL)
                     .hardnessAndResistance(60.0f)
     ));
+    public static final RegistryObject<Block> ENDER_TRASKRACH = BLOCKS.register("ender_traskrach", () -> new EnderTraskrach(
+            Block.Properties.create(Material.SPONGE)
+                    .harvestLevel(4)
+                    .harvestTool(ToolType.SHOVEL)
+                    .hardnessAndResistance(60.0f)
+    ));
 }
