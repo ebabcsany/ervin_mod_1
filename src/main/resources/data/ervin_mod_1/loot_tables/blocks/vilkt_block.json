@@ -118,7 +118,23 @@
         },
         {
           "type": "minecraft:item",
+          "name": "ervin_mod_1:ender_sraktcaf"
+        },
+        {
+          "type": "minecraft:item",
           "name": "ervin_mod_1:ender_stakrach"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:ender_trask"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:ender_traskcrafth"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:ender_traskrach"
         },
         {
           "type": "minecraft:item",
