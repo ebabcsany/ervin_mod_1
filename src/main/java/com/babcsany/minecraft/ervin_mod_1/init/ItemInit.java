@@ -313,7 +313,7 @@ public class ItemInit {
             ModItemTier.ENDER_SRACKHT, 2, 2.0F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> SURV_PICKAXE = ITEMS.register("surv_pickaxe", () -> new PickaxeItem(
-            ModItemTier.NIRK, 10, 3.0F, (new Item.Properties())
+            ModItemTier.SURV, 10, 3.0F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> ENDER_SRAKTCAF = ITEMS.register("ender_sraktcaf", () -> new ShovelItem(
             ModItemTier.ENDER_STAKRACH, 3, 4.0F, (new Item.Properties())
@@ -323,5 +323,17 @@ public class ItemInit {
     ));
     public static final RegistryObject<Item> ENDER_TRASKCRAFTH = ITEMS.register("ender_traskcrafth", () -> new SwordItem(
             ModItemTier.ENDER_TRASKRACH, 6, 6.0F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> SURV_AXE = ITEMS.register("surv_axe", () -> new AxeItem(
+            ModItemTier.SURV, 30, 10.0F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> SURV_SHOVEL = ITEMS.register("surv_shovel", () -> new ShovelItem(
+            ModItemTier.SURV, 20, 5.0F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> SURV_HOE = ITEMS.register("surv_hoe", () -> new HoeItem(
+            ModItemTier.SURV, 2F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> SURV_SWORD = ITEMS.register("surv_sword", () -> new SwordItem(
+            ModItemTier.SURV, 15, 8.0F, (new Item.Properties())
     ));
 }
