@@ -2,16 +2,15 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "#",
-    " ",
     "#"
   ],
   "key": {
     "#": {
-      "item": "minecraft:stick"
+      "item": "minecraft:birch_slab"
     }
   },
   "result": {
     "item": "minecraft:birch_planks",
-    "count": 1
+    "count": 4
   }
 }
