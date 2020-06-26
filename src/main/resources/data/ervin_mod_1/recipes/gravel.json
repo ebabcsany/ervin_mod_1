@@ -13,11 +13,11 @@
       "item": "minecraft:gravel"
     },
     "W": {
-      "item": "minecraft:cobblestone"
+      "item": "ervin_mod_1:scrafth"
     }
   },
   "result": {
     "item": "minecraft:gravel",
-    "count": 8
+    "count": 9
   }
 }
