@@ -3,6 +3,7 @@ package com.babcsany.minecraft.ervin_mod_1.init;
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.block.*;
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
@@ -239,7 +240,7 @@ public class BlockInit {
     public static final RegistryObject<Block> PACK_BLOCK = BLOCKS.register("pack_block", () -> new PackBlock(
             Block.Properties.create(Material.ROCK)
                     .harvestLevel(2)
-                    .harvestTool(ToolType.PICKAXE)
+                    .harvestTool(ToolType.SHOVEL)
                     .hardnessAndResistance(60.0f)
     ));
     public static final RegistryObject<Block> TIRKS_BLOCK = BLOCKS.register("tirks_block", () -> new TirksBlock(
@@ -395,7 +396,7 @@ public class BlockInit {
             Block.Properties.create(Material.SPONGE)
                     .harvestLevel(1)
                     .harvestTool(ToolType.AXE)
-                    .hardnessAndResistance(20.0f)
+                    .hardnessAndResistance(20.0f).sound(SoundType.WOOD)
     ));
     public static final RegistryObject<Block> ENDER_SRAKTCAF = BLOCKS.register("ender_sraktcaf", () -> new EnderSraktcaf(
             Block.Properties.create(Material.SPONGE)

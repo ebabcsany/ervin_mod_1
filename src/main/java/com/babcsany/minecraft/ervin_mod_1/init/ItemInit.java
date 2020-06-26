@@ -267,10 +267,10 @@ public class ItemInit {
     public static final RegistryObject<Item> RED_STONE_AXE = ITEMS.register("red_stone_axe", () -> new AxeItem(
             ModItemTier.RED_COBBLESTONE, 14, 1.2F, (new Item.Properties())
     ));
-    public static final RegistryObject<Item> RED_STONE_SHOVEL = ITEMS.register("red_stone_hoe", () -> new ShovelItem(
+    public static final RegistryObject<Item> RED_STONE_SHOVEL = ITEMS.register("red_stone_shovel", () -> new ShovelItem(
             ModItemTier.RED_COBBLESTONE,3, -1.0F, (new Item.Properties())
     ));
-    public static final RegistryObject<Item> RED_STONE_HOE = ITEMS.register("red_stone_shovel", () -> new HoeItem(
+    public static final RegistryObject<Item> RED_STONE_HOE = ITEMS.register("red_stone_hoe", () -> new HoeItem(
             ModItemTier.RED_COBBLESTONE, -1.0F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> RED_STONE_SWORD = ITEMS.register("red_stone_sword", () -> new SwordItem(
