@@ -419,4 +419,9 @@ public class BlockInit {
                     .harvestLevel(6)
                     .hardnessAndResistance(160.0f)
     ));
+    public static final RegistryObject<Block> VILKT_BLOCK_1 = BLOCKS.register("vilkt_block_1", () -> new VilktBlock1(
+            Block.Properties.create(Material.SPONGE)
+                    .harvestLevel(6)
+                    .hardnessAndResistance(160.0f)
+    ));
 }
