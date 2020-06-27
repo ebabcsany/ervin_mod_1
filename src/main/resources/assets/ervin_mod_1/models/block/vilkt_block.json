@@ -8,7 +8,7 @@
     "west": "ervin_mod_1:block/vilkt_block_right",
     "south": "ervin_mod_1:block/vilkt_block_back",
     "particle": "ervin_mod_1:block/vilkt_block_top"
-  },
+  }
   /*"elements": [
     {   "from": [ 0, 0, 0 ],
       "to": [ 16, 16, 16 ],

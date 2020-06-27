@@ -3,10 +3,10 @@
   "textures": {
     "up": "ervin_mod_1:block/vilkt_block_bottom",
     "down": "ervin_mod_1:block/vilkt_block_top",
-    "north": "ervin_mod_1:block/vilkt_block_back",
-    "east": "ervin_mod_1:block/vilkt_block_right",
-    "west": "ervin_mod_1:block/vilkt_block_left",
-    "south": "ervin_mod_1:block/vilkt_block_front",
+    "north": "ervin_mod_1:block/vilkt_block_right",
+    "east": "ervin_mod_1:block/vilkt_block_front",
+    "west": "ervin_mod_1:block/vilkt_block_back",
+    "south": "ervin_mod_1:block/vilkt_block_left",
     "particle": "ervin_mod_1:block/vilkt_block_bottom"
   }
 }
