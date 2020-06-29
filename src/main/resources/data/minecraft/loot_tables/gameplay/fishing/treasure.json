@@ -70,6 +70,31 @@
         {
           "type": "minecraft:item",
           "name": "ervin_mod_1:scrafth"
+        },
+        {
+          "rolls": 1.0,
+          "entries": [
+            {
+              "type": "minecraft:item",
+              "name": "minecraft:gunpowder"
+            },
+            {
+              "type": "minecraft:item",
+              "name": "ervin_mod_1:raftsh"
+            },
+            {
+              "type": "minecraft:item",
+              "name": "ervin_mod_1:raftsc"
+            },
+            {
+              "type": "minecraft:item",
+              "name": "ervin_mod_1:raftsch"
+            },
+            {
+              "type": "minecraft:item",
+              "name": "ervin_mod_1:schraft"
+            }
+          ]
         }
       ]
     }
