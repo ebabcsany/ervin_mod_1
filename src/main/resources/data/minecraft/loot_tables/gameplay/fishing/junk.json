@@ -110,7 +110,7 @@
         {
           "type": "minecraft:item",
           "weight": 1,
-          "name": "minecraft:iron"
+          "name": "minecraft:iron_ingot"
         },
         {
           "type": "minecraft:item",
@@ -134,7 +134,7 @@
         {
           "type": "minecraft:item",
           "weight": 1,
-          "name": "minecraft:iron"
+          "name": "minecraft:iron_ingot"
         },
         {
           "type": "minecraft:item",
@@ -158,7 +158,7 @@
         {
           "type": "minecraft:item",
           "weight": 1,
-          "name": "minecraft:iron"
+          "name": "minecraft:iron_ingot"
         },
         {
           "type": "minecraft:item",
@@ -182,7 +182,7 @@
         {
           "type": "minecraft:item",
           "weight": 1,
-          "name": "minecraft:iron"
+          "name": "minecraft:iron_ingot"
         },
         {
           "type": "minecraft:item",
@@ -206,7 +206,7 @@
         {
           "type": "minecraft:item",
           "weight": 1,
-          "name": "minecraft:iron"
+          "name": "minecraft:iron_ingot"
         },
         {
           "type": "minecraft:item",
@@ -230,7 +230,7 @@
         {
           "type": "minecraft:item",
           "weight": 1,
-          "name": "minecraft:iron"
+          "name": "minecraft:iron_ingot"
         },
         {
           "type": "minecraft:item",
@@ -254,7 +254,7 @@
         {
           "type": "minecraft:item",
           "weight": 1,
-          "name": "minecraft:iron"
+          "name": "minecraft:iron_ingot"
         },
         {
           "type": "minecraft:item",
@@ -278,7 +278,7 @@
         {
           "type": "minecraft:item",
           "weight": 1,
-          "name": "minecraft:iron"
+          "name": "minecraft:iron_ingot"
         },
         {
           "type": "minecraft:item",
@@ -302,7 +302,7 @@
         {
           "type": "minecraft:item",
           "weight": 1,
-          "name": "minecraft:iron"
+          "name": "minecraft:iron_ingot"
         },
         {
           "type": "minecraft:item",
@@ -326,7 +326,7 @@
         {
           "type": "minecraft:item",
           "weight": 1,
-          "name": "minecraft:iron"
+          "name": "minecraft:iron_ingot"
         },
         {
           "type": "minecraft:item",
