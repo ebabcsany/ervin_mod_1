@@ -133,6 +133,16 @@
         },
         {
           "type": "minecraft:item",
+          "weight": 1,
+          "name": "minecraft:iron"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "minecraft:kelp"
+        },
+        {
+          "type": "minecraft:item",
           "weight": 0.1,
           "functions": [
             {
@@ -144,6 +154,16 @@
             }
           ],
           "name": "ervin_mod_1:firt_chestplate"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "minecraft:iron"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "minecraft:kelp"
         },
         {
           "type": "minecraft:item",
@@ -161,6 +181,16 @@
         },
         {
           "type": "minecraft:item",
+          "weight": 1,
+          "name": "minecraft:iron"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "minecraft:kelp"
+        },
+        {
+          "type": "minecraft:item",
           "weight": 0.1,
           "functions": [
             {
@@ -172,6 +202,16 @@
             }
           ],
           "name": "ervin_mod_1:firt_hoe"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "minecraft:iron"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "minecraft:kelp"
         },
         {
           "type": "minecraft:item",
@@ -189,6 +229,16 @@
         },
         {
           "type": "minecraft:item",
+          "weight": 1,
+          "name": "minecraft:iron"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "minecraft:kelp"
+        },
+        {
+          "type": "minecraft:item",
           "weight": 0.1,
           "functions": [
             {
@@ -200,6 +250,16 @@
             }
           ],
           "name": "ervin_mod_1:firt_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "minecraft:iron"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "minecraft:kelp"
         },
         {
           "type": "minecraft:item",
@@ -217,6 +277,16 @@
         },
         {
           "type": "minecraft:item",
+          "weight": 1,
+          "name": "minecraft:iron"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "minecraft:kelp"
+        },
+        {
+          "type": "minecraft:item",
           "weight": 0.1,
           "functions": [
             {
@@ -231,6 +301,16 @@
         },
         {
           "type": "minecraft:item",
+          "weight": 1,
+          "name": "minecraft:iron"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "minecraft:kelp"
+        },
+        {
+          "type": "minecraft:item",
           "weight": 0.4,
           "functions": [
             {
@@ -242,6 +322,16 @@
             }
           ],
           "name": "ervin_mod_1:firt"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "minecraft:iron"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "minecraft:kelp"
         },
         {
           "type": "minecraft:item",
