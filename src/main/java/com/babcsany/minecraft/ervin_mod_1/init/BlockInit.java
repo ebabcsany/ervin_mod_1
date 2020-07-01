@@ -4,6 +4,7 @@ import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.block.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.StairsBlock;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
@@ -270,7 +271,7 @@ public class BlockInit {
             Block.Properties.create(Material.ROCK)
                     .harvestLevel(2)
                     .harvestTool(ToolType.PICKAXE)
-                    .hardnessAndResistance(60.0f)
+                    .hardnessAndResistance(60.0f, 60)
     ));
     public static final RegistryObject<Block> URVI = BLOCKS.register("urvi", () -> new Urvi(
             Block.Properties.create(Material.ROCK)
@@ -419,9 +420,42 @@ public class BlockInit {
                     .harvestLevel(6)
                     .hardnessAndResistance(160.0f)
     ));
-    public static final RegistryObject<Block> VILKT_BLOCK_1 = BLOCKS.register("vilkt_block_1", () -> new VilktBlock1(
+    public static final RegistryObject<Block> VILKT_BLOCK_2 = BLOCKS.register("vilkt_block_2", () -> new VilktBlock2(
             Block.Properties.create(Material.SPONGE)
                     .harvestLevel(6)
                     .hardnessAndResistance(160.0f)
+    ));
+    /*public static final RegistryObject<Block> SRIUNK_STAIRS = BLOCKS.register("sriunk_stairs", new StairsBlock(
+            SRIUNK_BLOCK. Block.Properties.from(SRIUNK_BLOCK)
+    ));*/
+    public static final RegistryObject<Block> ACACIA_TURG = BLOCKS.register("acacia_turg", () -> new AcaciaTurg(
+            Block.Properties.create(Material.SPONGE)
+                    .harvestLevel(1)
+                    .harvestTool(ToolType.AXE)
+                    .hardnessAndResistance(20.0f).sound(SoundType.WOOD)
+    ));
+    public static final RegistryObject<Block> BIRCH_TURG = BLOCKS.register("birch_turg", () -> new BirchTurg(
+            Block.Properties.create(Material.SPONGE)
+                    .harvestLevel(1)
+                    .harvestTool(ToolType.AXE)
+                    .hardnessAndResistance(20.0f).sound(SoundType.WOOD)
+    ));
+    public static final RegistryObject<Block> DARK_OAK_TURG = BLOCKS.register("dark_oak_turg", () -> new DarkOakTurg(
+            Block.Properties.create(Material.SPONGE)
+                    .harvestLevel(1)
+                    .harvestTool(ToolType.AXE)
+                    .hardnessAndResistance(20.0f).sound(SoundType.WOOD)
+    ));
+    public static final RegistryObject<Block> JUNGLE_TURG = BLOCKS.register("jungle_turg", () -> new JungleTurg(
+            Block.Properties.create(Material.SPONGE)
+                    .harvestLevel(1)
+                    .harvestTool(ToolType.AXE)
+                    .hardnessAndResistance(20.0f).sound(SoundType.WOOD)
+    ));
+    public static final RegistryObject<Block> SPRUCE_TURG = BLOCKS.register("spruce_turg", () -> new SpruceTurg(
+            Block.Properties.create(Material.SPONGE)
+                    .harvestLevel(1)
+                    .harvestTool(ToolType.AXE)
+                    .hardnessAndResistance(20.0f).sound(SoundType.WOOD)
     ));
 }
