@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#S#",
+    "S#S",
+    "#S#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:spruce_wood"
+    },
+    "S": {
+      "item": "minecraft:stripped_spruce_wood"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:spruce_turg",
+    "count": 1
+  }
+}

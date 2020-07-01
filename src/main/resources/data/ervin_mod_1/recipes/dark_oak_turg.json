@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#S#",
+    "S#S",
+    "#S#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:dark_oak_wood"
+    },
+    "S": {
+      "item": "minecraft:stripped_dark_oak_wood"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:dark_oak_turg",
+    "count": 1
+  }
+}
