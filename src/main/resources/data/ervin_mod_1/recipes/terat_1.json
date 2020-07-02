@@ -1,20 +1,14 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "M#MS",
-    "S##M",
-    "#SMS",
-    "SM#M"
+    "####",
+    "####",
+    "####",
+    "####"
   ],
   "key": {
     "#": {
-      "item": "minecraft:bedrock"
-    },
-    "S": {
-      "item": "ervin_mod_1:leat_block_crafting_table"
-    },
-    "M": {
-      "item": "ervin_mod_1:viltdrop"
+      "item": "ervin_mod_1:terat_nugget"
     }
   },
   "result": {
