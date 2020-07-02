@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "tag": "ervin_mod_1:terat_ingredient"
+  },
+  "result": "ervin_mod_1:terat_nugget",
+  "experience": 50,
+  "cookingtime": 10000
+}
