@@ -339,4 +339,7 @@ public class ItemInit {
     public static final RegistryObject<Item> FIRT_HORSE_ARMOR = ITEMS.register("firt_horse_armor", () -> new HorseArmorItem(
             36, new ResourceLocation(Ervin_mod_1.MOD_ID, "textures/entity/horse/armor/firt_horse_armor.png"), (new Item.Properties()).maxStackSize(1).group(ItemGroup.MISC)
     ));
+    public static final RegistryObject<Item> TERAT_NUGGET = ITEMS.register("terat_nugget", () -> new Item(
+            (new Item.Properties())
+    ));
 }
