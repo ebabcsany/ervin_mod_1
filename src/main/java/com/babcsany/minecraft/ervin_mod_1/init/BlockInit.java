@@ -458,4 +458,10 @@ public class BlockInit {
                     .harvestTool(ToolType.AXE)
                     .hardnessAndResistance(20.0f).sound(SoundType.WOOD)
     ));
+    public static final RegistryObject<Block> TURG = BLOCKS.register("turg", () -> new Turg(
+            Block.Properties.create(Material.SPONGE)
+                    .harvestLevel(1)
+                    .harvestTool(ToolType.AXE)
+                    .hardnessAndResistance(20.0f).sound(SoundType.WOOD)
+    ));
 }
