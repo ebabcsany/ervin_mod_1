@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smoking",
+  "ingredient": {
+    "tag": "ervin_mod_1:volmint_ingredient"
+  },
+  "result": "ervin_mod_1:volmint",
+  "experience": 1.0,
+  "cookingtime": 100
+}
