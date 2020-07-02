@@ -186,7 +186,7 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 1,
+          "weight": 5,
           "name": "minecraft:dirt"
         },
         {
@@ -234,13 +234,13 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 1,
-          "name": "minecraft:iron_ingot"
+          "weight": 5,
+          "name": "minecraft:sand"
         },
         {
           "type": "minecraft:item",
           "weight": 10,
-          "name": "minecraft:kelp"
+          "name": "minecraft:charcoal"
         },
         {
           "type": "minecraft:item",
@@ -259,12 +259,12 @@
         {
           "type": "minecraft:item",
           "weight": 1,
-          "name": "minecraft:iron_ingot"
+          "name": "minecraft:charcoal_block"
         },
         {
           "type": "minecraft:item",
           "weight": 10,
-          "name": "minecraft:kelp"
+          "name": "ervin_mod_1:boat_ingredient"
         },
         {
           "type": "minecraft:item",
