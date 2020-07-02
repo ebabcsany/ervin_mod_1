@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "ervin_mod_1:sriunk_ore"
+  },
+  "result": "ervin_mod_1:sriunk",
+  "experience": 2.0,
+  "cookingtime": 200
+}
