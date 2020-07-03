@@ -259,7 +259,7 @@
         {
           "type": "minecraft:item",
           "weight": 1,
-          "name": "minecraft:charcoal_block"
+          "name": "ervin_mod_1:charcoal_block"
         },
         {
           "type": "minecraft:item",
