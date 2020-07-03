@@ -342,4 +342,16 @@ public class ItemInit {
     public static final RegistryObject<Item> TERAT_NUGGET = ITEMS.register("terat_nugget", () -> new Item(
             (new Item.Properties())
     ));
+    public static final RegistryObject<Item> NIRK_AXE = ITEMS.register("nirk_axe", () -> new AxeItem(
+            ModItemTier.NIRK, 160, 320.0F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> NIRK_HOE = ITEMS.register("nirk_hoe", () -> new HoeItem(
+            ModItemTier.NIRK, 64.0F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> NIRK_SHOVEL = ITEMS.register("nirk_shovel", () -> new ShovelItem(
+            ModItemTier.NIRK, 120, 160.0F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> NIRK_SWORD = ITEMS.register("surv_sword", () -> new SwordItem(
+            ModItemTier.NIRK, 80, 256.0F, (new Item.Properties())
+    ));
 }
