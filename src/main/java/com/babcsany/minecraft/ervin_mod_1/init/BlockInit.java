@@ -464,4 +464,8 @@ public class BlockInit {
                     .harvestTool(ToolType.AXE)
                     .hardnessAndResistance(20.0f).sound(SoundType.WOOD)
     ));
+    public static final RegistryObject<Block> CHARCOAL_BLOCK = BLOCKS.register("charcoal_block", () -> new CharcoalBlock(
+            Block.Properties.create(Material.ROCK)
+                    .hardnessAndResistance(5.0F, 6.0F)
+    ));
 }
