@@ -6,11 +6,19 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "name": "ervin_mod_1:acacia_turg"
+        },
+        {
+          "type": "minecraft:item",
           "name": "ervin_mod_1:avter"
         },
         {
           "type": "minecraft:item",
           "name": "ervin_mod_1:avter_block"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:birch_turg"
         },
         {
           "type": "minecraft:item",
@@ -47,6 +55,10 @@
         {
           "type": "minecraft:item",
           "name": "ervin_mod_1:cyan_cobblestone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:dark_oak_turg"
         },
         {
           "type": "minecraft:item",
@@ -182,6 +194,10 @@
         },
         {
           "type": "minecraft:item",
+          "name": "ervin_mod_1:firt_horse_armor"
+        },
+        {
+          "type": "minecraft:item",
           "name": "ervin_mod_1:firt_leggings"
         },
         {
@@ -223,6 +239,10 @@
         {
           "type": "minecraft:item",
           "name": "ervin_mod_1:grint_block"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:jungle_turg"
         },
         {
           "type": "minecraft:item",
@@ -286,7 +306,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:nirk_pickaxe"
+          "name": "ervin_mod_1:nirk_axe"
         },
         {
           "type": "minecraft:item",
@@ -294,7 +314,19 @@
         },
         {
           "type": "minecraft:item",
+          "name": "ervin_mod_1:nirk_hoe"
+        },
+        {
+          "type": "minecraft:item",
           "name": "ervin_mod_1:nirk_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:nirk_shovel"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:nirk_sword"
         },
         {
           "type": "minecraft:item",
@@ -442,6 +474,10 @@
         },
         {
           "type": "minecraft:item",
+          "name": "ervin_mod_1:spruce_turg"
+        },
+        {
+          "type": "minecraft:item",
           "name": "ervin_mod_1:srac"
         },
         {
@@ -522,7 +558,23 @@
         },
         {
           "type": "minecraft:item",
+          "name": "ervin_mod_1:surv_axe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:surv_hoe"
+        },
+        {
+          "type": "minecraft:item",
           "name": "ervin_mod_1:surv_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:surv_shovel"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:surv_sword"
         },
         {
           "type": "minecraft:item",
@@ -563,6 +615,10 @@
         {
           "type": "minecraft:item",
           "name": "ervin_mod_1:terat_leggings"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:terat_nugget"
         },
         {
           "type": "minecraft:item",
