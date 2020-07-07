@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#S#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:diamond_block"
+    },
+    "S": {
+      "item": "minecraft:obsidian"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:gnith",
+    "count": 1
+  }
+}
