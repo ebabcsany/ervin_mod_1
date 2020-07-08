@@ -354,4 +354,10 @@ public class ItemInit {
     public static final RegistryObject<Item> NIRK_SWORD = ITEMS.register("nirk_sword", () -> new SwordItem(
             ModItemTier.NIRK, 80, 256.0F, (new Item.Properties())
     ));
+    public static final RegistryObject<Item> TRINK = ITEMS.register("trink", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> GNITH = ITEMS.register("gnith", () -> new Item(
+            (new Item.Properties())
+    ));
 }
