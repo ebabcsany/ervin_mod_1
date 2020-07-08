@@ -6,6 +6,46 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "name": "ervin_mod_1:0"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:1"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:2"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:3"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:4"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:5"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:6"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:7"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:8"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:9"
+        },
+        {
+          "type": "minecraft:item",
           "name": "ervin_mod_1:acacia_turg"
         },
         {
@@ -35,6 +75,10 @@
         {
           "type": "minecraft:item",
           "name": "ervin_mod_1:brown_cobblestone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:charcoal_block"
         },
         {
           "type": "minecraft:item",
@@ -227,6 +271,14 @@
         {
           "type": "minecraft:item",
           "name": "ervin_mod_1:frit_block"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:gnith"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:gnith_block"
         },
         {
           "type": "minecraft:item",
@@ -542,6 +594,10 @@
         },
         {
           "type": "minecraft:item",
+          "name": "ervin_mod_1:sriunk_slab"
+        },
+        {
+          "type": "minecraft:item",
           "name": "ervin_mod_1:sriunk_stick"
         },
         {
@@ -654,7 +710,19 @@
         },
         {
           "type": "minecraft:item",
+          "name": "ervin_mod_1:trink"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:trinks"
+        },
+        {
+          "type": "minecraft:item",
           "name": "ervin_mod_1:trugn"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:turg"
         },
         {
           "type": "minecraft:item",
