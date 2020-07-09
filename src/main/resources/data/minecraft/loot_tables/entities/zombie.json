@@ -23,7 +23,7 @@
               }
             }
           ],
-          "tag": "ervin_mod_1:zombie_ingredient"
+          "item": "minecraft:rotten_flesh"
         }
       ]
     },
@@ -41,6 +41,10 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:potato"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:volmint"
         }
       ],
       "conditions": [
