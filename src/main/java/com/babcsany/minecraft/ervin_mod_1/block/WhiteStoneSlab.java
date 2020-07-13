@@ -25,13 +25,13 @@ import net.minecraft.world.IWorld;
 
 import javax.annotation.Nullable;
 
-public class RedstoneSlab extends Block implements IWaterLoggable {
+public class WhiteStoneSlab extends Block implements IWaterLoggable {
    public static final EnumProperty<SlabType> TYPE = BlockStateProperties.SLAB_TYPE;
    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
    protected static final VoxelShape BOTTOM_SHAPE = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D);
    protected static final VoxelShape TOP_SHAPE = Block.makeCuboidShape(0.0D, 8.0D, 0.0D, 16.0D, 16.0D, 16.0D);
 
-   public RedstoneSlab(Properties properties) {
+   public WhiteStoneSlab(Properties properties) {
       super(properties);
       this.setDefaultState(this.getDefaultState().with(TYPE, SlabType.BOTTOM).with(WATERLOGGED, Boolean.valueOf(false)));
    }
