@@ -1,21 +1,15 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "****",
-    "*##*",
-    "*##*",
-    "****"
-  ],
-  "key": {
-    "#": {
-      "item": "minecraft:red_dye"
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "ervin_mod_1:red_stone_ingredient"
     },
-    "*": {
-      "item": "minecraft:stone"
+    {
+      "item": "minecraft:red_dye"
     }
-  },
+  ],
   "result": {
     "item": "ervin_mod_1:red_stone",
-    "count": 12
+    "count": 1
   }
 }
