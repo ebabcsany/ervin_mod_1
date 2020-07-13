@@ -1,9 +1,9 @@
 {
   "type": "minecraft:smelting",
   "ingredient": {
-    "item": "ervin_mod_1:cobblestone_slab"
+    "item": "minecraft:cobblestone_slab"
   },
-  "result": "ervin_mod_1:stone_slab",
+  "result": "minecraft:stone_slab",
   "experience": 0.05,
   "cookingtime": 200
 }
