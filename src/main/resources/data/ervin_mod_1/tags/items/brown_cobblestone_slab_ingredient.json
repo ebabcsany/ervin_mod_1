@@ -1,0 +1,20 @@
+{
+  "replace": false,
+  "values": [
+    "ervin_mod_1:black_cobblestone_slab",
+    "ervin_mod_1:blue_cobblestone_slab",
+    "minecraft:cobblestone_slab",
+    "ervin_mod_1:cyan_cobblestone_slab",
+    "ervin_mod_1:green_cobblestone_slab",
+    "ervin_mod_1:light_blue_cobblestone_slab",
+    "ervin_mod_1:light_gray_cobblestone_slab",
+    "ervin_mod_1:lime_cobblestone_slab",
+    "ervin_mod_1:magenta_cobblestone_slab",
+    "ervin_mod_1:orange_cobblestone_slab",
+    "ervin_mod_1:pink_cobblestone_slab",
+    "ervin_mod_1:purple_cobblestone_slab",
+    "ervin_mod_1:red_cobblestone_slab",
+    "ervin_mod_1:white_cobblestone_slab",
+    "ervin_mod_1:yellow_cobblestone_slab"
+  ]
+}

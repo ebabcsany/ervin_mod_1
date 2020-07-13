@@ -1,0 +1,20 @@
+{
+  "replace": false,
+  "values": [
+    "ervin_mod_1:black_stone",
+    "ervin_mod_1:blue_stone",
+    "ervin_mod_1:brown_stone",
+    "minecraft:stone",
+    "ervin_mod_1:cyan_stone",
+    "ervin_mod_1:green_stone",
+    "ervin_mod_1:light_blue_stone",
+    "ervin_mod_1:light_gray_stone",
+    "ervin_mod_1:lime_stone",
+    "ervin_mod_1:magenta_stone",
+    "ervin_mod_1:pink_stone",
+    "ervin_mod_1:purple_stone",
+    "ervin_mod_1:red_stone",
+    "ervin_mod_1:white_stone",
+    "ervin_mod_1:yellow_stone"
+  ]
+}
