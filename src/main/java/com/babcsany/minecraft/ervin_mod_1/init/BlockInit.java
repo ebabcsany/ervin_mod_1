@@ -238,8 +238,8 @@ public class BlockInit {
                     .hardnessAndResistance(60.0f)
     ));
     public static final RegistryObject<Block> PACK_BLOCK = BLOCKS.register("pack_block", () -> new PackBlock(
-            Block.Properties.create(Material.ROCK)
-                    .harvestLevel(2)
+            Block.Properties.create(Material.EARTH)
+                    .harvestLevel(1)
                     .harvestTool(ToolType.SHOVEL)
                     .hardnessAndResistance(60.0f)
     ));
@@ -377,8 +377,9 @@ public class BlockInit {
     public static final RegistryObject<Block> NETHER_PORTAL = BLOCKS.register("nether_portal", () -> new NetherPortal(
             Block.Properties.create(Material.ROCK)
                     .harvestLevel(0)
+                    .lightValue(15)
                     .harvestTool(ToolType.PICKAXE)
-                    .hardnessAndResistance(2.0F, 12.0F)
+                    .hardnessAndResistance(120.0F, 12.0F)
     ));
     public static final RegistryObject<Block> ENDER_STAKRACH = BLOCKS.register("ender_stakrach", () -> new EnderStakrach(
             Block.Properties.create(Material.SPONGE)
@@ -743,6 +744,12 @@ public class BlockInit {
                     .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(2.0F, 6.0F)
     ));
+    public static final RegistryObject<Block> RED_COBBLESTONE_SLAB = BLOCKS.register("red_cobblestone_slab", () -> new RedCobblestoneSlab(
+            Block.Properties.create(Material.ROCK)
+                    .harvestLevel(0)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(2.0F, 6.0F)
+    ));
     public static final RegistryObject<Block> WHITE_COBBLESTONE_SLAB = BLOCKS.register("white_cobblestone_slab", () -> new WhiteCobblestoneSlab(
             Block.Properties.create(Material.ROCK)
                     .harvestLevel(0)
@@ -827,6 +834,12 @@ public class BlockInit {
                     .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(2.0F, 6.0F)
     ));
+    public static final RegistryObject<Block> RED_STONE_SLAB = BLOCKS.register("red_stone_slab", () -> new RedStoneSlab(
+            Block.Properties.create(Material.ROCK)
+                    .harvestLevel(0)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(2.0F, 6.0F)
+    ));
     public static final RegistryObject<Block> WHITE_STONE_SLAB = BLOCKS.register("white_stone_slab", () -> new WhiteStoneSlab(
             Block.Properties.create(Material.ROCK)
                     .harvestLevel(0)
@@ -838,5 +851,30 @@ public class BlockInit {
                     .harvestLevel(0)
                     .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(2.0F, 6.0F)
+    ));
+    public static final RegistryObject<Block> GRITK_BLOCK = BLOCKS.register("gritk_block", () -> new GritkBlock(
+            Block.Properties.create(Material.IRON)
+                    .harvestLevel(0)
+                    .lightValue(15)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(500000.0F, 1200000.0F)
+    ));
+    public static final RegistryObject<Block> COAL_SLAB = BLOCKS.register("coal_slab", () -> new CoalSlab(
+            Block.Properties.create(Material.ROCK, MaterialColor.BLACK)
+                    .harvestLevel(0)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(6.0F, 6.0F)
+    ));
+    public static final RegistryObject<Block> CHARCOAL_SLAB = BLOCKS.register("charcoal_slab", () -> new CharcoalSlab(
+            Block.Properties.create(Material.ROCK)
+                    .harvestLevel(0)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(6.0F, 6.0F)
+    ));
+    public static final RegistryObject<Block> GRINT_SLAB = BLOCKS.register("grint_slab", () -> new GrintSlab(
+            Block.Properties.create(Material.ROCK)
+                    .harvestLevel(4)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(120.0f)
     ));
 }

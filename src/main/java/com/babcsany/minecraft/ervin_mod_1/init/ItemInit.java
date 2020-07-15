@@ -360,4 +360,43 @@ public class ItemInit {
     public static final RegistryObject<Item> GNITH = ITEMS.register("gnith", () -> new Item(
             (new Item.Properties())
     ));
+    public static final RegistryObject<Item> KIRT_STICK = ITEMS.register("kirt_stick", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> KIRT_PICKAXE = ITEMS.register("kirt_pickaxe", () -> new PickaxeItem(
+            ModItemTier.KIRT, 0, 1.0F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> GRITK = ITEMS.register("gritk", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> KIRT_AXE = ITEMS.register("kirt_axe", () -> new AxeItem(
+            ModItemTier.KIRT, 3, 2.0F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> KIRT_HOE = ITEMS.register("kirt_hoe", () -> new HoeItem(
+            ModItemTier.KIRT, 0.0F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> KIRT_SHOVEL = ITEMS.register("kirt_shovel", () -> new ShovelItem(
+            ModItemTier.KIRT, 1, 1.0F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> KIRT_SWORD = ITEMS.register("kirt_sword", () -> new SwordItem(
+            ModItemTier.KIRT, 2, 2.0F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> DURG = ITEMS.register("durg", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> DURG_SWORD = ITEMS.register("durg_sword", () -> new SwordItem(
+            ModItemTier.DURG, 72, 113.4F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> DURG_AXE = ITEMS.register("durg_axe", () -> new AxeItem(
+            ModItemTier.DURG, 144, 189.0F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> DURG_SHOVEL = ITEMS.register("durg_shovel", () -> new ShovelItem(
+            ModItemTier.DURG, 108, 151.2F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> DURG_PICKAXE = ITEMS.register("durg_pickaxe", () -> new PickaxeItem(
+            ModItemTier.DURG, 36, 75.6F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> DURG_HOE = ITEMS.register("durg_hoe", () -> new HoeItem(
+            ModItemTier.DURG, 10F, (new Item.Properties())
+    ));
 }

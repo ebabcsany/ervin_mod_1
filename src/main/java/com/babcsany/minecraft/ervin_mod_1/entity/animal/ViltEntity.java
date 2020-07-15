@@ -49,7 +49,7 @@ public class ViltEntity extends AnimalEntity {
         this.goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
         this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 20.0F));
         this.goalSelector.addGoal(3,
-                new TemptGoal(this, 1.1D, Ingredient.fromItems(ItemInit.SCRAFTH.get()), false));
+                new TemptGoal(this, 11.5D, Ingredient.fromItems(ItemInit.SCRAFTH.get()), false));
         this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.1D));
         this.goalSelector.addGoal(5, this.eatGrassGoal);
         this.goalSelector.addGoal(2, new ViltAttackGoal(this, 1.0D, false));

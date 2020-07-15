@@ -1,10 +1,12 @@
 package com.babcsany.minecraft.ervin_mod_1.util;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
+import com.babcsany.minecraft.ervin_mod_1.client.entity.render.ViltEntityRender;
 import com.babcsany.minecraft.ervin_mod_1.client.entity.render.ZurEntity1Render;
 import com.babcsany.minecraft.ervin_mod_1.client.entity.render.ZurEntityRender;
 import com.babcsany.minecraft.ervin_mod_1.client.gui.CraintBlockCraftingTableScreen;
 import com.babcsany.minecraft.ervin_mod_1.client.gui.LeatBlockCraftingTableScreen;
+import com.babcsany.minecraft.ervin_mod_1.entity.animal.ViltEntity;
 import com.babcsany.minecraft.ervin_mod_1.init.ContainerInit;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import net.minecraft.client.gui.ScreenManager;
@@ -22,6 +24,7 @@ public class ClientEventBusSubscriber {
     public static void clientSetup(FMLClientSetupEvent event) {
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.ZUR_ENTITY1.get(), ZurEntity1Render::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.ZUR_ENTITY.get(), ZurEntityRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityInit.VILT_ENTITY.get(), ViltEntityRender::new);
         // Register ContainerType Screens
         // ScreenManager.registerFactory is not safe to call during parallel mod loading so we queue it to run later
         DeferredWorkQueue.runLater(() -> {
