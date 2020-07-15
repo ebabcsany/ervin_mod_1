@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "nether_portal:block/nether_portal"
+      "model": "ervin_mod_1:block/nether_portal"
     }
   }
 }
