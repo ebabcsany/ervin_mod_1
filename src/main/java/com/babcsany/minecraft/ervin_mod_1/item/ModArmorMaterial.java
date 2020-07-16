@@ -15,10 +15,11 @@ import java.util.function.Supplier;
 
 public enum ModArmorMaterial implements IArmorMaterial {
     SRIUNK(Ervin_mod_1.MOD_ID + ":sriunk", 20, new int[]{28, 36, 44, 28}, 1680, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 20.7F, () -> { return Ingredient.fromItems(ItemInit.SRIUNK.get()); }),
-    TERAT(Ervin_mod_1.MOD_ID + ":terat", 80,new int[]{112, 144, 176, 112}, 6720,SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 86.8F, () -> { return Ingredient.fromItems(ItemInit.TERAT.get()); }),
-    FIRT(Ervin_mod_1.MOD_ID + ":firt", 12, new int[]{16, 24, 32, 16}, 1050, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 12.4F, () -> { return Ingredient.fromItems(ItemInit.FIRT.get()); });
+    TERAT(Ervin_mod_1.MOD_ID + ":terat", 160,new int[]{224, 288, 352, 224}, 13440,SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 173.6F, () -> { return Ingredient.fromItems(ItemInit.TERAT.get()); }),
+    FIRT(Ervin_mod_1.MOD_ID + ":firt", 12, new int[]{16, 24, 32, 16}, 1050, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 12.4F, () -> { return Ingredient.fromItems(ItemInit.FIRT.get()); }),
+    DURG(Ervin_mod_1.MOD_ID + ":durg", 108, new int[]{144, 216, 288, 144}, 9450, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 111.6F, () -> { return Ingredient.fromItems(ItemInit.DURG.get()); });
 
-    private static final int[] MAX_DAMAGE_ARRAY = new int[] { 200, 200, 200, 200 };
+    private static final int[] MAX_DAMAGE_ARRAY = new int[] { 400, 400, 400, 400 };
     private final String name;
     private final int maxDamageFactor;
     private final int[] damageReductionAmountArray;
