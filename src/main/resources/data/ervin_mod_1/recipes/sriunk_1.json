@@ -7,7 +7,7 @@
   ],
   "key": {
     "#": {
-        "tag": "ervin_mod_1:sriunk_ingredient_1"
+      "tag": "ervin_mod_1:sriunk_ingredient_1"
     },
     "M": {
       "tag": "ervin_mod_1:sriunk_ingredient"
@@ -22,7 +22,7 @@
       "tag": "ervin_mod_1:coal_ingredient"
     },
     "L": {
-      "item": "minecraft:ink_sac"
+      "tag": "ervin_mod_1:sriunk_ingredient_2"
     },
     "V": {
       "item": "minecraft:stone_pickaxe"
