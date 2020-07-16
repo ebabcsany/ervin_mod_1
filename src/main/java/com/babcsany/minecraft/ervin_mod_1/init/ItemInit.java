@@ -399,4 +399,25 @@ public class ItemInit {
     public static final RegistryObject<Item> DURG_HOE = ITEMS.register("durg_hoe", () -> new HoeItem(
             ModItemTier.DURG, 10F, (new Item.Properties())
     ));
+    public static final RegistryObject<Item> TERAT_HORSE_ARMOR = ITEMS.register("terat_horse_armor", () -> new HorseArmorItem(
+            220, new ResourceLocation(Ervin_mod_1.MOD_ID, "textures/entity/horse/armor/terat_horse_armor.png"), (new Item.Properties()).maxStackSize(1).group(ItemGroup.MISC)
+    ));
+    public static final RegistryObject<Item> CHAK = ITEMS.register("chak", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> DURG_HELMET = ITEMS.register("durg_helmet", () -> new ArmorItem(
+            ModArmorMaterial.DURG, EquipmentSlotType.HEAD, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> DURK = ITEMS.register("durk", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> DURG_CHESTPLATE = ITEMS.register("durg_chestplate", () -> new ArmorItem(
+            ModArmorMaterial.DURG, EquipmentSlotType.CHEST, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> DURG_LEGGINGS = ITEMS.register("durg_leggings", () -> new ArmorItem(
+            ModArmorMaterial.DURG, EquipmentSlotType.LEGS, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> DURG_BOOTS = ITEMS.register("durg_boots", () -> new ArmorItem(
+            ModArmorMaterial.DURG, EquipmentSlotType.FEET, (new Item.Properties())
+    ));
 }
