@@ -24,7 +24,7 @@
                   }
                 }
               ],
-              "name": "ervin_mod_1:pink_stone"
+              "name": "ervin_mod_1:orange_stone"
             },
             {
               "type": "minecraft:item",
@@ -33,7 +33,7 @@
                   "condition": "minecraft:survives_explosion"
                 }
               ],
-              "name": "ervin_mod_1:pink_cobblestone"
+              "name": "ervin_mod_1:orange_cobblestone"
             }
           ]
         }
