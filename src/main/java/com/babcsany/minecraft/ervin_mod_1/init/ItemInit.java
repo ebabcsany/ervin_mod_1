@@ -400,7 +400,7 @@ public class ItemInit {
             ModItemTier.DURG, 10F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> TERAT_HORSE_ARMOR = ITEMS.register("terat_horse_armor", () -> new HorseArmorItem(
-            220, new ResourceLocation(Ervin_mod_1.MOD_ID, "textures/entity/horse/armor/terat_horse_armor.png"), (new Item.Properties()).maxStackSize(1).group(ItemGroup.MISC)
+            440, new ResourceLocation(Ervin_mod_1.MOD_ID, "textures/entity/horse/armor/terat_horse_armor.png"), (new Item.Properties()).maxStackSize(1).group(ItemGroup.MISC)
     ));
     public static final RegistryObject<Item> CHAK = ITEMS.register("chak", () -> new Item(
             (new Item.Properties())
@@ -419,5 +419,53 @@ public class ItemInit {
     ));
     public static final RegistryObject<Item> DURG_BOOTS = ITEMS.register("durg_boots", () -> new ArmorItem(
             ModArmorMaterial.DURG, EquipmentSlotType.FEET, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> DURG_HORSE_ARMOR = ITEMS.register("durg_horse_armor", () -> new HorseArmorItem(
+            324, new ResourceLocation(Ervin_mod_1.MOD_ID, "textures/entity/horse/armor/durg_horse_armor.png"), (new Item.Properties()).maxStackSize(1).group(ItemGroup.MISC)
+    ));
+    public static final RegistryObject<Item> GURT = ITEMS.register("gurt", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> GURB = ITEMS.register("gurb", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> ZURK = ITEMS.register("zurk", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> GURK = ITEMS.register("gurk", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> GURL = ITEMS.register("gurl", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> GRUV = ITEMS.register("gruv", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> GRUK = ITEMS.register("gruk", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> GRUKT = ITEMS.register("grukt", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> GRUGT = ITEMS.register("grugt", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> GRUT = ITEMS.register("grut", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> GURF = ITEMS.register("gurf", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> GART = ITEMS.register("gart", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> GERB = ITEMS.register("gerb", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> GARK = ITEMS.register("gark", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> SCIK = ITEMS.register("scik", () -> new Item(
+            (new Item.Properties())
     ));
 }

@@ -10,6 +10,8 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.function.Supplier;
+
 public class BlockInit {
 
     public static final DeferredRegister<Block> BLOCKS = new DeferredRegister<>(ForgeRegistries.BLOCKS, Ervin_mod_1.MOD_ID);
@@ -525,8 +527,9 @@ public class BlockInit {
                     .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(200.0F, 5000.0F)
     ));
-    //public static final RegistryObject<Block> SRIUNK_STAIRS = BLOCKS.register("sriunk_stairs", () -> new SriunkStairs(
-    //*(Supplier<BlockState>)*/ /*SRIUNK_BLOCK*//*getDefaultState(),*//*Block*/.Block.Properties.from(SRIUNK_BLOCK));
+    public static final RegistryObject<Block> SRIUNK_STAIRS = BLOCKS.register("sriunk_stairs", () -> new SriunkStairs(
+        () -> SRIUNK_BLOCK.get().getDefaultState(),Block.Properties.from(SRIUNK_BLOCK.get())
+    ));
 
     public static final RegistryObject<Block> SRIUNK_SLAB = BLOCKS.register("sriunk_slab", () -> new SriunkSlab(
             Block.Properties.create(Material.ROCK)
@@ -876,5 +879,25 @@ public class BlockInit {
                     .harvestLevel(4)
                     .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(120.0f)
+    ));
+    public static final RegistryObject<Block> GURK_BLOCK = BLOCKS.register("gurk_block", () -> new GurkBlock(
+            Block.Properties.create(Material.WOOD)
+                    .harvestLevel(1)
+                    .hardnessAndResistance(20.0f)
+    ));
+    public static final RegistryObject<Block> GURK_SLAB = BLOCKS.register("gurk_slab", () -> new GurkSlab(
+            Block.Properties.create(Material.WOOD)
+                    .harvestLevel(1)
+                    .hardnessAndResistance(20.0f, 22.0f)
+    ));
+    public static final RegistryObject<Block> GARK_BLOCK = BLOCKS.register("gark_block", () -> new GarkBlock(
+        Block.Properties.create(Material.ROCK)
+                    .harvestLevel(12)
+                    .hardnessAndResistance(2000.0f)
+    ));
+    public static final RegistryObject<Block> GARK_SLAB = BLOCKS.register("gark_slab", () -> new GarkSlab(
+            Block.Properties.create(Material.ROCK)
+                    .harvestLevel(12)
+                    .hardnessAndResistance(2000.0f, 2200.0f)
     ));
 }
