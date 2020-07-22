@@ -7,11 +7,11 @@
   ],
   "key": {
     "#": {
-      "item": "ervin_mod_1:kalt"
+      "item": "minecraft:lava_bucket"
     }
   },
   "result": {
-    "item": "ervin_mod_1:kalt_block",
+    "item": "ervin_mod_1:gart",
     "count": 1
   }
 }

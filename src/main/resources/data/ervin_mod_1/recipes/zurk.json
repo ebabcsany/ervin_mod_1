@@ -7,11 +7,11 @@
   ],
   "key": {
     "#": {
-      "item": "ervin_mod_1:kalt"
+      "tag": "ervin_mod_1:zurk_ingredient"
     }
   },
   "result": {
-    "item": "ervin_mod_1:kalt_block",
+    "item": "ervin_mod_1:zurk",
     "count": 1
   }
 }

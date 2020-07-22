@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#C#",
+    "# #"
+  ],
+  "key": {
+    "#": {
+      "item": "ervin_mod_1:durg"
+    },
+    "C": {
+      "item": "ervin_mod_1:durk"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:durg_helmet",
+    "count": 1
+  }
+}
