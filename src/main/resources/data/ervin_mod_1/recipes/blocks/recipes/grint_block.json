@@ -6,11 +6,11 @@
   ],
   "key": {
     "#": {
-      "item": "minecraft:sandstone_slab"
+      "item": "ervin_mod_1:grint_slab"
     }
   },
   "result": {
-    "item": "minecraft:sandstone",
+    "item": "ervin_mod_1:grint_block",
     "count": 4
   }
 }

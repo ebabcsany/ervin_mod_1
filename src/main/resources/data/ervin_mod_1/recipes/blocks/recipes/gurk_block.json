@@ -6,11 +6,11 @@
   ],
   "key": {
     "#": {
-      "item": "ervin_mod_1:lime_stone_slab"
+      "item": "ervin_mod_1:gurk_slab"
     }
   },
   "result": {
-    "item": "ervin_mod_1:lime_stone",
-    "count": 1
+    "item": "ervin_mod_1:gurk_block",
+    "count": 4
   }
 }
