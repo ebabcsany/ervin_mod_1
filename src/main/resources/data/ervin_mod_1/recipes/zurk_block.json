@@ -7,11 +7,11 @@
   ],
   "key": {
     "#": {
-      "item": "ervin_mod_1:zurb"
+      "item": "ervin_mod_1:zurk"
     }
   },
   "result": {
-    "item": "ervin_mod_1:zurk",
+    "item": "ervin_mod_1:zurk_block",
     "count": 1
   }
 }
