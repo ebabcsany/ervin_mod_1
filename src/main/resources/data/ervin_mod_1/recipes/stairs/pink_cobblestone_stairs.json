@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "ervin_mod_1:pink_cobblestone"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:pink_cobblestone_stairs",
+    "count": 1
+  }
+}
