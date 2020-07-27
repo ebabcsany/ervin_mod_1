@@ -468,4 +468,19 @@ public class ItemInit {
     public static final RegistryObject<Item> SCIK = ITEMS.register("scik", () -> new Item(
             (new Item.Properties())
     ));
+    public static final RegistryObject<Item> ZUNB = ITEMS.register("zunb", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> ZUNK = ITEMS.register("zunk", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> ZUNT = ITEMS.register("zunt", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> ZURB = ITEMS.register("zurb", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> ZURT = ITEMS.register("zurt", () -> new Item(
+            (new Item.Properties())
+    ));
 }
