@@ -2,6 +2,8 @@ package com.babcsany.minecraft.ervin_mod_1.init;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.block.*;
+import com.babcsany.minecraft.ervin_mod_1.block.FirgSaplingBlock;
+import com.babcsany.minecraft.ervin_mod_1.block.trees.FirgTree;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -9,10 +11,6 @@ import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-
-import java.util.function.Supplier;
-
-import static net.minecraft.block.Blocks.SMOOTH_STONE;
 
 public class BlockInit {
 
@@ -32,7 +30,7 @@ public class BlockInit {
     ));
     public static final RegistryObject<Block> TRUGN = BLOCKS.register("trugn", () -> new Trugn(
             Block.Properties.create(Material.ROCK)
-                    .harvestLevel(2)
+                    .harvestLevel(8)
                     .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(10000000.0f)
     ));
@@ -885,11 +883,13 @@ public class BlockInit {
     public static final RegistryObject<Block> GURK_BLOCK = BLOCKS.register("gurk_block", () -> new GurkBlock(
             Block.Properties.create(Material.EARTH)
                     .harvestLevel(1)
+                    .harvestTool(ToolType.SHOVEL)
                     .hardnessAndResistance(20.0f)
     ));
     public static final RegistryObject<Block> GURK_SLAB = BLOCKS.register("gurk_slab", () -> new GurkSlab(
             Block.Properties.create(Material.EARTH)
                     .harvestLevel(1)
+                    .harvestTool(ToolType.SHOVEL)
                     .hardnessAndResistance(20.0f, 22.0f)
     ));
     public static final RegistryObject<Block> GARK_BLOCK = BLOCKS.register("gark_block", () -> new GarkBlock(
@@ -1250,7 +1250,35 @@ public class BlockInit {
             () -> YELLOW_STONE.get().getDefaultState(),Block.Properties.from(YELLOW_STONE.get())
     ));
     public static final RegistryObject<Block> SMOOTH_STONE_STAIRS = BLOCKS.register("smooth_stone_stairs", () -> new SmoothStoneStairs(
-            (Supplier<BlockState>) SMOOTH_STONE.getDefaultState(), Block.Properties.from(SMOOTH_STONE)
+            () -> YELLOW_STONE.get().getDefaultState(),Block.Properties.from(YELLOW_STONE.get())
     ));
-
+    public static final RegistryObject<Block> FREIN_BLOCK = BLOCKS.register("frein_block", () -> new FreinBlock(
+            Block.Properties.create(Material.CLAY)
+                    .slipperiness(1.0F)
+                    .sound(SoundType.SLIME)
+                    .hardnessAndResistance(0.0F)
+                    .notSolid()
+    ));
+    public static final RegistryObject<Block> GANK_BLOCK = BLOCKS.register("gank_block", () -> new GankBlock(
+            Block.Properties.create(Material.ROCK)
+                    .harvestLevel(0)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(990.0F)
+    ));
+    public static final RegistryObject<Block> FIRG_SAPLING = BLOCKS.register("firg_sapling", () -> new FirgSaplingBlock(
+            new FirgTree(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().sound(SoundType.PLANT)
+    ));
+    public static final RegistryObject<Block> FIRG_LOG = BLOCKS.register("firg_log", () -> new FirgLog(
+            Block.Properties.create(Material.WOOD)
+                    .harvestLevel(0)
+                    .harvestTool(ToolType.AXE)
+                    .hardnessAndResistance(2.0F)
+    ));
+    public static final RegistryObject<Block> FIRG_LEAVES = BLOCKS.register("firg_leaves", () -> new FirgLeaves(
+            Block.Properties.create(Material.LEAVES)
+                    .hardnessAndResistance(0.2F)
+                    .tickRandomly()
+                    .sound(SoundType.PLANT)
+                    .notSolid()
+    ));
 }
