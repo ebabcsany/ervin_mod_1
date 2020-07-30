@@ -28,13 +28,13 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.Random;
 import java.util.stream.IntStream;
 
-public class MagentaStoneStairs extends Block implements IWaterLoggable {
+public class SmoothStoneStairs extends Block implements IWaterLoggable {
    public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
    public static final EnumProperty<Half> HALF = BlockStateProperties.HALF;
    public static final EnumProperty<StairsShape> SHAPE = BlockStateProperties.STAIRS_SHAPE;
    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-   protected static final VoxelShape AABB_SLAB_TOP = MagentaStoneSlab.TOP_SHAPE;
-   protected static final VoxelShape AABB_SLAB_BOTTOM = MagentaStoneSlab.BOTTOM_SHAPE;
+   protected static final VoxelShape AABB_SLAB_TOP = SmoothStoneSlab.TOP_SHAPE;
+   protected static final VoxelShape AABB_SLAB_BOTTOM = SmoothStoneSlab.BOTTOM_SHAPE;
    protected static final VoxelShape NWD_CORNER = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 8.0D, 8.0D, 8.0D);
    protected static final VoxelShape SWD_CORNER = Block.makeCuboidShape(0.0D, 0.0D, 8.0D, 8.0D, 8.0D, 16.0D);
    protected static final VoxelShape NWU_CORNER = Block.makeCuboidShape(0.0D, 8.0D, 0.0D, 8.0D, 16.0D, 8.0D);
@@ -83,7 +83,7 @@ public class MagentaStoneStairs extends Block implements IWaterLoggable {
 
    // Forge: Use the other constructor that takes a Supplier
    @Deprecated
-   protected MagentaStoneStairs(BlockState state, Properties properties) {
+   protected SmoothStoneStairs(BlockState state, Properties properties) {
       super(properties);
       this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH).with(HALF, Half.BOTTOM).with(SHAPE, StairsShape.STRAIGHT).with(WATERLOGGED, Boolean.valueOf(false)));
       this.modelBlock = state.getBlock();
@@ -91,7 +91,7 @@ public class MagentaStoneStairs extends Block implements IWaterLoggable {
       this.stateSupplier = () -> state;
    }
 
-   public MagentaStoneStairs(java.util.function.Supplier<BlockState> state, Properties properties) {
+   public SmoothStoneStairs(java.util.function.Supplier<BlockState> state, Properties properties) {
       super(properties);
       this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH).with(HALF, Half.BOTTOM).with(SHAPE, StairsShape.STRAIGHT).with(WATERLOGGED, Boolean.valueOf(false)));
       this.modelBlock = Blocks.AIR; // These are unused, fields are redirected
@@ -241,7 +241,7 @@ public class MagentaStoneStairs extends Block implements IWaterLoggable {
    }
 
    public static boolean isBlockStairs(BlockState state) {
-      return state.getBlock() instanceof MagentaStoneStairs;
+      return state.getBlock() instanceof SmoothStoneStairs;
    }
 
    /*

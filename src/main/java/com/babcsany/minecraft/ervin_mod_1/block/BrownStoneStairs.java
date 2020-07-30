@@ -33,8 +33,8 @@ public class BrownStoneStairs extends Block implements IWaterLoggable {
    public static final EnumProperty<Half> HALF = BlockStateProperties.HALF;
    public static final EnumProperty<StairsShape> SHAPE = BlockStateProperties.STAIRS_SHAPE;
    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-   protected static final VoxelShape AABB_SLAB_TOP = SriunkSlab.TOP_SHAPE;
-   protected static final VoxelShape AABB_SLAB_BOTTOM = SriunkSlab.BOTTOM_SHAPE;
+   protected static final VoxelShape AABB_SLAB_TOP = BrownStoneSlab.TOP_SHAPE;
+   protected static final VoxelShape AABB_SLAB_BOTTOM = BrownStoneSlab.BOTTOM_SHAPE;
    protected static final VoxelShape NWD_CORNER = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 8.0D, 8.0D, 8.0D);
    protected static final VoxelShape SWD_CORNER = Block.makeCuboidShape(0.0D, 0.0D, 8.0D, 8.0D, 8.0D, 16.0D);
    protected static final VoxelShape NWU_CORNER = Block.makeCuboidShape(0.0D, 8.0D, 0.0D, 8.0D, 16.0D, 8.0D);
