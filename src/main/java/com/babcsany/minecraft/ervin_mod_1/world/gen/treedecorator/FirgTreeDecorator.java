@@ -23,24 +23,39 @@ import net.minecraft.world.gen.treedecorator.BeehiveTreeDecorator;
 import net.minecraft.world.gen.treedecorator.TreeDecorator;
 import net.minecraft.world.gen.treedecorator.TreeDecoratorType;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class FirgTreeDecorator extends TreeDecorator {
 
-   private static class FirgDecoratorType extends TreeDecoratorType<FirgTreeDecorator> {
+   public static final TreeDecoratorType<FirgTreeDecorator> FIRG = registerTreeDecoratorType("firg", FirgTreeDecorator::new);
 
+   public static TreeDecoratorType<FirgTreeDecorator> registerTreeDecoratorType(String name, Function<Dynamic<?>, FirgTreeDecorator> constructor) {
+      Method registerMethod = null;
+      try {
+         registerMethod = TreeDecoratorType.class.getDeclaredMethod("register", String.class, Function.class);
+         return (TreeDecoratorType<FirgTreeDecorator>) registerMethod.invoke(null, name, constructor);
+      } catch (NoSuchMethodException e) {
+         e.printStackTrace();
+      } catch (IllegalAccessException e) {
+         e.printStackTrace();
+      } catch (InvocationTargetException e) {
+         e.printStackTrace();
+      }
+      return null;
    }
-
-   public static final TreeDecoratorType<FirgTreeDecorator> FIRG = Registry.register(Registry.TREE_DECORATOR_TYPE, "firg", BeehiveTreeDecorator::new);
 
    /** Probability to generate a beehive */
    private final float probability;
 
    public FirgTreeDecorator(float probabilityIn) {
-      super(TreeDecoratorType.BEEHIVE);
+      super(FIRG);
       this.probability = probabilityIn;
    }
 
@@ -50,7 +65,7 @@ public class FirgTreeDecorator extends TreeDecorator {
 
    public void func_225576_a_(IWorld p_225576_1_, Random p_225576_2_, List<BlockPos> p_225576_3_, List<BlockPos> p_225576_4_, Set<BlockPos> p_225576_5_, MutableBoundingBox p_225576_6_) {
       if (!(p_225576_2_.nextFloat() >= this.probability)) {
-         Direction direction = Firg.GENERATE_DIRECTIONS[p_225576_2_.nextInt(Firg.GENERATE_DIRECTIONS.length)];
+         Direction direction = Direction.EAST;
          int i = !p_225576_4_.isEmpty() ? Math.max(p_225576_4_.get(0).getY() - 1, p_225576_3_.get(0).getY()) : Math.min(p_225576_3_.get(0).getY() + 1 + p_225576_2_.nextInt(3), p_225576_3_.get(p_225576_3_.size() - 1).getY());
          List<BlockPos> list = p_225576_3_.stream().filter((p_227416_1_) -> {
             return p_227416_1_.getY() == i;
