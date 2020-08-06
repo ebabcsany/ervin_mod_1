@@ -1,26 +1,27 @@
 package com.babcsany.minecraft.ervin_mod_1.init;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
-import com.babcsany.minecraft.ervin_mod_1.item.GretItem;
-import com.babcsany.minecraft.ervin_mod_1.item.ModArmorMaterial;
-import com.babcsany.minecraft.ervin_mod_1.item.ModItemTier;
+import com.babcsany.minecraft.ervin_mod_1.entity.item.FirgBoatEntity;
+import com.babcsany.minecraft.ervin_mod_1.item.*;
 import com.babcsany.minecraft.ervin_mod_1.item.ModSpawnEggItem;
-import com.babcsany.minecraft.ervin_mod_1.item.ModSpawnEggItem;
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-import net.minecraft.entity.EntityType;
+import net.minecraft.block.Blocks;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+
+import static net.minecraft.item.Items.BUCKET;
 
 public class ItemInit {
 
     public static final DeferredRegister<Item> ITEMS = new DeferredRegister<>(ForgeRegistries.ITEMS, Ervin_mod_1.MOD_ID);
 
+    public static final RegistryObject<SpecialItem> DEF_ITEM = ITEMS.register("def_item", () -> new SpecialItem(
+            new Item.Properties()
+    ));
     public static final RegistryObject<Item> SRIUNK_PICKAXE = ITEMS.register("sriunk_pickaxe", () -> new PickaxeItem(
             ModItemTier.SRIUNK, 8, 22.0F, (new Item.Properties())
     ));
@@ -394,7 +395,7 @@ public class ItemInit {
             ModItemTier.DURG, 108, 151.2F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> DURG_PICKAXE = ITEMS.register("durg_pickaxe", () -> new PickaxeItem(
-            ModItemTier.DURG, 36, 75.6F, (new Item.Properties())
+            ModItemTier.DURG, 36, 75.6F, (new Item.Properties()).maxStackSize(64)
     ));
     public static final RegistryObject<Item> DURG_HOE = ITEMS.register("durg_hoe", () -> new HoeItem(
             ModItemTier.DURG, 10F, (new Item.Properties())
@@ -459,7 +460,7 @@ public class ItemInit {
     public static final RegistryObject<Item> GART = ITEMS.register("gart", () -> new Item(
             (new Item.Properties())
     ));
-    public static final RegistryObject<Item> GERB = ITEMS.register("gerb", () -> new Item(
+    public static final RegistryObject<Item> GARB = ITEMS.register("garb", () -> new Item(
             (new Item.Properties())
     ));
     public static final RegistryObject<Item> GARK = ITEMS.register("gark", () -> new Item(
@@ -475,7 +476,7 @@ public class ItemInit {
             (new Item.Properties())
     ));
     public static final RegistryObject<Item> ZUNT = ITEMS.register("zunt", () -> new Item(
-            (new Item.Properties())
+            (new Item.Properties()).food(FoodInit.ZUNT)
     ));
     public static final RegistryObject<Item> ZURB = ITEMS.register("zurb", () -> new Item(
             (new Item.Properties())
@@ -485,5 +486,51 @@ public class ItemInit {
     ));
     public static final RegistryObject<Item> GURLT = ITEMS.register("gurlt", () -> new Item(
             (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> TURG_SHIELD = ITEMS.register("turg_shield", () -> new TurgShieldItem(
+            (new Item.Properties())
+                    .maxDamage(5000)
+    ));
+    public static final RegistryObject<Item> FREIN_BALL = ITEMS.register("frein_ball", () -> new FreinballItem(
+            (new Item.Properties()).maxStackSize(16)
+    ));
+    public static final RegistryObject<Item> ENDER_CRAKTH = ITEMS.register("ender_crakth", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> SCRAKTHS_PEARL = ITEMS.register("scrakths_pearl", () -> new ScrakthsPearlItem(
+            (new Item.Properties()).maxStackSize(16)
+    ));
+    public static final RegistryObject<Item> ENDER_CRAKTHS = ITEMS.register("ender_crakths", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> FIRG_BOAT = ITEMS.register("firg_boat", () -> new FirgBoatItem(
+            FirgBoatEntity.Type.FIRG, (new Item.Properties()).maxStackSize(1)
+    ));
+    public static final RegistryObject<Item> GANT = ITEMS.register("gant", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> GANK = ITEMS.register("gank", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> GANB = ITEMS.register("ganb", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> JURK_BUCKET = ITEMS.register("jurk_bucket", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> RUGT = ITEMS.register("rugt", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> RUGB = ITEMS.register("rugb", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> RUGK = ITEMS.register("rugk", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> CRAKH = ITEMS.register("crakh", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> REAT = ITEMS.register("reat", () -> new Item(
+            (new Item.Properties()).food(FoodInit.REAT)
     ));
 }
