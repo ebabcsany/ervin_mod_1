@@ -1,17 +1,10 @@
 {
   "variants": {
-    "": {
-      "facing=down": {
-        "model": "ervin_mod_1:block/vilkt_block_1",
-        "x": 180
-      },
-      "facing=up": {
-        "model": "ervin_mod_1:block/vilkt_block"
-      }
-      /*"facing=north": { "model": "ervin_mod_1:block/vilkt_block_2", "x": 90 },
-    "facing=south": { "model": "ervin_mod_1:block/vilkt_block_3", "x": 90, "y": 180 },
-    "facing=west": { "model": "ervin_mod_1:block/vilkt_block_4", "x": 90, "y": 270 },
-    "facing=east": { "model": "ervin_mod_1:block/vilkt_block_5", "x": 90, "y": 90 }*/
-    }
+    "facing=down": { "model": "ervin_mod_1:block/vilkt_block", "x": 180 },
+    "facing=up": { "model": "ervin_mod_1:block/vilkt_block" },
+    "facing=north": { "model": "ervin_mod_1:block/vilkt_block", "x": 90 },
+    "facing=south": { "model": "ervin_mod_1:block/vilkt_block", "x": 90, "y": 180 },
+    "facing=west": { "model": "ervin_mod_1:block/vilkt_block", "x": 90, "y": 270 },
+    "facing=east": { "model": "ervin_mod_1:block/vilkt_block", "x": 90, "y": 90 }
   }
 }
