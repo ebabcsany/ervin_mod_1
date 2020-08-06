@@ -1,0 +1,8 @@
+{
+  "parent": "block/outer_stairs",
+  "textures": {
+    "bottom": "ervin_mod_1:block/sriunk_block",
+    "top": "ervin_mod_1:block/sriunk_block",
+    "side": "ervin_mod_1:block/sriunk_block"
+  }
+}
