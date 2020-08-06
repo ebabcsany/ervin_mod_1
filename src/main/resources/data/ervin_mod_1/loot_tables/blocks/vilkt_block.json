@@ -730,6 +730,10 @@
         },
         {
           "type": "minecraft:item",
+          "name": "ervin_mod_1:jurk_bucket"
+        },
+        {
+          "type": "minecraft:item",
           "name": "ervin_mod_1:kalt"
         },
         {
@@ -783,6 +787,10 @@
         {
           "type": "minecraft:item",
           "name": "ervin_mod_1:leat_block_crafting_table"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:leaves"
         },
         {
           "type": "minecraft:item",
@@ -1251,6 +1259,10 @@
         {
           "type": "minecraft:item",
           "name": "ervin_mod_1:sirk"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:smooth_stone_stairs"
         },
         {
           "type": "minecraft:item",
