@@ -10,23 +10,23 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 public class FreinEntityModel <T extends Entity> extends SegmentedModel<T> {
 
-        private final ModelRenderer slimeBodies;
-        private final ModelRenderer slimeRightEye;
-        private final ModelRenderer slimeLeftEye;
-        private final ModelRenderer slimeMouth;
+        private final ModelRenderer freinBodies;
+        private final ModelRenderer freinRightEye;
+        private final ModelRenderer freinLeftEye;
+        private final ModelRenderer freinMouth;
 
-        public FreinEntityModel(int slimeBodyTexOffY) {
-            this.slimeBodies = new ModelRenderer(this, 0, slimeBodyTexOffY);
-            this.slimeRightEye = new ModelRenderer(this, 32, 0);
-            this.slimeLeftEye = new ModelRenderer(this, 32, 4);
-            this.slimeMouth = new ModelRenderer(this, 32, 8);
-            if (slimeBodyTexOffY > 0) {
-                this.slimeBodies.addBox(-3.0F, 17.0F, -3.0F, 6.0F, 6.0F, 6.0F);
-                this.slimeRightEye.addBox(-3.25F, 18.0F, -3.5F, 2.0F, 2.0F, 2.0F);
-                this.slimeLeftEye.addBox(1.25F, 18.0F, -3.5F, 2.0F, 2.0F, 2.0F);
-                this.slimeMouth.addBox(0.0F, 21.0F, -3.5F, 1.0F, 1.0F, 1.0F);
+        public FreinEntityModel(int freinBodyTexOffY) {
+            this.freinBodies = new ModelRenderer(this, 0, freinBodyTexOffY);
+            this.freinRightEye = new ModelRenderer(this, 32, 0);
+            this.freinLeftEye = new ModelRenderer(this, 32, 4);
+            this.freinMouth = new ModelRenderer(this, 32, 8);
+            if (freinBodyTexOffY > 0) {
+                this.freinBodies.addBox(-3.0F, 17.0F, -3.0F, 6.0F, 6.0F, 6.0F);
+                this.freinRightEye.addBox(-3.25F, 18.0F, -3.5F, 2.0F, 2.0F, 2.0F);
+                this.freinLeftEye.addBox(1.25F, 18.0F, -3.5F, 2.0F, 2.0F, 2.0F);
+                this.freinMouth.addBox(0.0F, 21.0F, -3.5F, 1.0F, 1.0F, 1.0F);
             } else {
-                this.slimeBodies.addBox(-4.0F, 16.0F, -4.0F, 8.0F, 8.0F, 8.0F);
+                this.freinBodies.addBox(-4.0F, 16.0F, -4.0F, 8.0F, 8.0F, 8.0F);
             }
 
         }
@@ -38,7 +38,7 @@ public class FreinEntityModel <T extends Entity> extends SegmentedModel<T> {
         }
 
         public Iterable<ModelRenderer> getParts() {
-            return ImmutableList.of(this.slimeBodies, this.slimeRightEye, this.slimeLeftEye, this.slimeMouth);
+            return ImmutableList.of(this.freinBodies, this.freinRightEye, this.freinLeftEye, this.freinMouth);
         }
     }
 
