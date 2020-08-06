@@ -32,7 +32,7 @@ public class DecoratorInit {
 
     public static final DeferredRegister<Placement<?>> DECORATORS = new DeferredRegister<>(ForgeRegistries.DECORATORS, Ervin_mod_1.MOD_ID);
 
-    public static final TreeDecoratorType<FirgTreeDecorator> FIRG_TREE_DECORATOR_TREE_DECORATOR_TYPE = DECORATORS.register("firg", () -> new FirgTreeDecorator(0.5f));
+    //public static final RegistryObject<Placement<?>> FIRG_TREE_DECORATOR_TREE_DECORATOR_TYPE = DECORATORS.register("firg", () -> new FirgTreeDecorator(0.5f));
     //public static final RegistryObject<Placement<NoPlacementConfig>> FIRG = DECORATORS.register("firg", );
 
 
