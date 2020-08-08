@@ -22,11 +22,15 @@ public class FirgTree extends Tree {
     */
    @Nullable
    protected ConfiguredFeature<TreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean p_225546_2_) {
-      return randomIn.nextInt(10) == 0 ? Feature.FANCY_TREE.withConfiguration(p_225546_2_ ? ModDefaultBiomeFeatures.FIRG_TREE_WITH_MORE_BEEHIVES_CONFIG : ModDefaultBiomeFeatures.FIRG_TREE_CONFIG) : Feature.NORMAL_TREE.withConfiguration(p_225546_2_ ? ModDefaultBiomeFeatures.FIRG_TREE_WITH_MORE_BEEHIVES_CONFIG1 : ModDefaultBiomeFeatures.FIRG_TREE_CONFIG1);
+      return randomIn.nextInt(20) == 0 ? Feature.FANCY_TREE.withConfiguration(p_225546_2_ ? ModDefaultBiomeFeatures.FIRG_TREE_WITH_MORE_BEEHIVES_CONFIG : ModDefaultBiomeFeatures.FIRG_TREE_CONFIG) : Feature.NORMAL_TREE.withConfiguration(p_225546_2_ ? ModDefaultBiomeFeatures.FIRG_TREE_WITH_MORE_BEEHIVES_CONFIG1 : ModDefaultBiomeFeatures.FIRG_TREE_CONFIG1);
    }
    @Nullable
    protected ConfiguredFeature<TreeFeatureConfig, ?> getFirgTreeFeature(Random randomIn, boolean p_225546_2_) {
-      return randomIn.nextInt(20) == 0 ? Feature.ACACIA_TREE.withConfiguration(p_225546_2_ ? ModDefaultBiomeFeatures.FIRG_TREE_WITH_MORE_FIRGS_CONFIG : ModDefaultBiomeFeatures.FIRG_TREE_CONFIG) : Feature.NORMAL_TREE.withConfiguration(p_225546_2_ ? ModDefaultBiomeFeatures.FIRG_TREE_WITH_MORE_BEEHIVES_CONFIG1 : ModDefaultBiomeFeatures.FIRG_TREE_CONFIG1);
+      return randomIn.nextInt(10) == 0 ? Feature.FANCY_TREE.withConfiguration(p_225546_2_ ? ModDefaultBiomeFeatures.FIRG_TREE_WITH_MORE_BEEHIVES_CONFIG : ModDefaultBiomeFeatures.FIRG_TREE_CONFIG2) : Feature.NORMAL_TREE.withConfiguration(p_225546_2_ ? ModDefaultBiomeFeatures.FIRG_TREE_WITH_MORE_BEEHIVES_CONFIG1 : ModDefaultBiomeFeatures.FIRG_TREE_CONFIG3);
+   }
+   @Nullable
+   protected ConfiguredFeature<TreeFeatureConfig, ?> getTree_Feature(Random randomIn, boolean p_225546_2_) {
+      return Feature.ACACIA_TREE.withConfiguration(ModDefaultBiomeFeatures.FIRG_TREE_CONFIG3);
    }
    @Nullable
    protected ConfiguredFeature<HugeTreeFeatureConfig, ?> getHugeTreeFeature(Random p_225547_1_) {
