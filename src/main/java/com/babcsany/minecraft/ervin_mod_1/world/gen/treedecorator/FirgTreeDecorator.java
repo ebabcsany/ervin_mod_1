@@ -55,7 +55,7 @@ public class FirgTreeDecorator extends TreeDecorator {
    private final float probability;
 
    public FirgTreeDecorator(float probabilityIn) {
-      super(FIRG);
+      super(TreeDecoratorType.BEEHIVE);
       this.probability = probabilityIn;
    }
 
