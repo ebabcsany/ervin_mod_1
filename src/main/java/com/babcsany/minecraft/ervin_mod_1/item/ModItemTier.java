@@ -33,7 +33,8 @@ public enum ModItemTier implements IItemTier {
     ENDER_TRASKRACH(5, 180, 10.0F, 8.0F, 100, () -> Ingredient.fromItems(ItemInit.ENDER_TRASKRACH.get())),
     ENDER_TRASK(6, 320, 16.0F, 12.0F, 160, () -> Ingredient.fromItems(BlockInit.ENDER_TRASK.get())),
     KIRT(0, 1, 1.0F, 1.0F, 4, () -> Ingredient.fromItems(ItemInit.KIRT.get())),
-    DURG(12, 17685, 126.0F, 54.0F, 1332, () -> Ingredient.fromItems(ItemInit.DURG.get()));
+    DURG(12, 17685, 126.0F, 54.0F, 1332, () -> Ingredient.fromItems(ItemInit.DURG.get())),
+    DURT(3, 2672, 24.0F, 5.0F, 320, () -> Ingredient.fromItems(BlockInit.DURT.get()));
 
     private final int harvestLevel;
     private final int maxUses;
