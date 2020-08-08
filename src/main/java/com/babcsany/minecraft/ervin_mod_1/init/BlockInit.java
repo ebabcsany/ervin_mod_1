@@ -1116,12 +1116,12 @@ public class BlockInit {
     ));
     public static final RegistryObject<Block> ZURK_BLOCK = BLOCKS.register("zurk_block", () -> new ZurkBlock(
             Block.Properties.create(Material.EARTH)
-                    .harvestLevel(6)
+                    .harvestLevel(2)
                     .hardnessAndResistance(200.0F)
     ));
     public static final RegistryObject<Block> ZUNK_BLOCK = BLOCKS.register("zunk_block", () -> new ZunkBlock(
             Block.Properties.create(Material.ROCK)
-                    .harvestLevel(2)
+                    .harvestLevel(1)
                     .hardnessAndResistance(40.0F)
     ));
     public static final RegistryObject<Block> BLACK_COBBLESTONE_STAIRS = BLOCKS.register("black_cobblestone_stairs", () -> new BlackCobblestoneStairs(
@@ -1334,9 +1334,10 @@ public class BlockInit {
                     .hardnessAndResistance(160.0f)
     ));
     public static final RegistryObject<Block> RUGK_BLOCK = BLOCKS.register("rugk_block", () -> new RugkBlock(
-            Block.Properties.create(Material.SPONGE)
-                    .harvestLevel(6)
-                    .hardnessAndResistance(160.0f)
+            Block.Properties.create(Material.ROCK)
+                    .harvestLevel(4)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(3590.0f)
     ));
     /*public static final RegistryObject<Block> JURK = BLOCKS.register("jurk", () -> new JurkFlowingFluid(
             () -> ModFluids.JURK, Block.Properties.create(Material.WATER)
@@ -1347,6 +1348,7 @@ public class BlockInit {
     public static final RegistryObject<Block> DURT = BLOCKS.register("durt", () -> new Durt(
             Block.Properties.create(Material.ROCK)
                     .harvestLevel(2)
+                    .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(30.0f, 400.0f)
     ));
     public static final RegistryObject<Block> JURK = BLOCKS.register("jurk", () -> new Durt(
@@ -1382,5 +1384,23 @@ public class BlockInit {
                     .tickRandomly()
                     .sound(SoundType.PLANT)
                     .notSolid()
+    ));
+    public static final RegistryObject<Block> ZUNK_SLAB = BLOCKS.register("zunk_slab", () -> new ZunkSlab(
+            Block.Properties.create(Material.ROCK)
+                    .harvestLevel(1)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(40.0F, 50.0F)
+    ));
+    public static final RegistryObject<Block> ZURK_SLAB = BLOCKS.register("zurk_slab", () -> new ZurkSlab(
+            Block.Properties.create(Material.ROCK)
+                    .harvestLevel(2)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(200.0F, 210.0F)
+    ));
+    public static final RegistryObject<Block> RUGK_SLAB = BLOCKS.register("rugk_slab", () -> new RugkSlab(
+            Block.Properties.create(Material.ROCK)
+                    .harvestLevel(4)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(3590.0F, 3600.0F)
     ));
 }

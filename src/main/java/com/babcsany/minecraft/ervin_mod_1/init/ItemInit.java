@@ -395,7 +395,7 @@ public class ItemInit {
             ModItemTier.DURG, 108, 151.2F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> DURG_PICKAXE = ITEMS.register("durg_pickaxe", () -> new PickaxeItem(
-            ModItemTier.DURG, 36, 75.6F, (new Item.Properties()).maxStackSize(64)
+            ModItemTier.DURG, 36, 75.6F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> DURG_HOE = ITEMS.register("durg_hoe", () -> new HoeItem(
             ModItemTier.DURG, 10F, (new Item.Properties())
@@ -532,5 +532,17 @@ public class ItemInit {
     ));
     public static final RegistryObject<Item> REAT = ITEMS.register("reat", () -> new Item(
             (new Item.Properties()).food(FoodInit.REAT)
+    ));
+    public static final RegistryObject<Item> DURT_PICKAXE = ITEMS.register("durt_pickaxe", () -> new PickaxeItem(
+            ModItemTier.DURT, 4, 1.0F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> DURT_AXE = ITEMS.register("durt_axe", () -> new AxeItem(
+            ModItemTier.DURT, 14, 2.0F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> BLACK_STRING = ITEMS.register("black_string", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> GRAY_STRING = ITEMS.register("gray_string", () -> new Item(
+            (new Item.Properties())
     ));
 }
