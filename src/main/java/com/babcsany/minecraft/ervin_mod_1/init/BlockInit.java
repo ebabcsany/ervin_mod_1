@@ -3,14 +3,16 @@ package com.babcsany.minecraft.ervin_mod_1.init;
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.block.*;
 import com.babcsany.minecraft.ervin_mod_1.block.FirgSapling;
+import com.babcsany.minecraft.ervin_mod_1.block.material.MaterialColor1;
 import com.babcsany.minecraft.ervin_mod_1.block.trees.FirgTree;
 import com.babcsany.minecraft.ervin_mod_1.block.trees.FrimTree;
+import com.babcsany.minecraft.ervin_mod_1.block.tripwires.BlackTripWire;
+import com.babcsany.minecraft.ervin_mod_1.block.tripwires.tripwire_hooks.BlackTripWireHook;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.JazzTree;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.ModSaplingBlock;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
-import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -1259,8 +1261,14 @@ public class BlockInit {
     public static final RegistryObject<Block> YELLOW_STONE_STAIRS = BLOCKS.register("yellow_stone_stairs", () -> new YellowStoneStairs(
             () -> YELLOW_STONE.get().getDefaultState(),Block.Properties.from(YELLOW_STONE.get())
     ));
+    public static final RegistryObject<Block> SMOOTH_STONE = BLOCKS.register("smooth_stone", () -> new SmoothStone(
+            Block.Properties.create(Material.ROCK)
+                    .harvestLevel(0)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(1.5F, 6.0F)
+    ));
     public static final RegistryObject<Block> SMOOTH_STONE_STAIRS = BLOCKS.register("smooth_stone_stairs", () -> new SmoothStoneStairs(
-            () -> YELLOW_STONE.get().getDefaultState(),Block.Properties.from(YELLOW_STONE.get())
+            () -> SMOOTH_STONE.get().getDefaultState(),Block.Properties.from(SMOOTH_STONE.get())
     ));
     public static final RegistryObject<Block> FREIN_BLOCK = BLOCKS.register("frein_block", () -> new FreinBlock(
             Block.Properties.create(Material.CLAY)
@@ -1402,5 +1410,38 @@ public class BlockInit {
                     .harvestLevel(4)
                     .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(3590.0F, 3600.0F)
+    ));
+    public static final RegistryObject<Block> BLACK_TRIPWIRE_HOOK = BLOCKS.register("tripwires/tripwire_hooks/black_tripwire_hook", () -> new BlackTripWireHook(
+            Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()
+    ));
+    public static final RegistryObject<Block> BLACK_TRIPWIRE = BLOCKS.register("tripwires/black_string", () -> new BlackTripWire(
+            (BlackTripWireHook) BLACK_TRIPWIRE_HOOK.get(), Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()
+    ));
+    public static final RegistryObject<Block> GRITH_MUSHROOM = BLOCKS.register("brown_mushroom", () -> new BrownMushroom(
+            Block.Properties.create(Material.PLANTS)
+                    .hardnessAndResistance(0.0F)
+                    .doesNotBlockMovement()
+                    .tickRandomly()
+                    .sound(SoundType.PLANT)
+                    .lightValue(1)
+    ));
+    public static final RegistryObject<Block> FRIM_PLANKS = BLOCKS.register("frim_planks", () -> new FrimPlanks(
+            Block.Properties.create(Material.WOOD, MaterialColor.WOOD)
+                    .hardnessAndResistance(2.0F, 3.0F)
+                    .sound(SoundType.WOOD)
+    ));
+    public static final RegistryObject<Block> DIAMOND_BLOCK = BLOCKS.register("diamond_block", () -> new DiamondBlock(
+            Block.Properties.create(Material.IRON, MaterialColor.DIAMOND)
+                    .hardnessAndResistance(5.0F, 6.0F)
+                    .sound(SoundType.METAL)
+    ));
+    public static final RegistryObject<Block> DIAMOND_STAIRS = BLOCKS.register("diamond_stairs", () -> new DiamondStairs(
+            () -> DIAMOND_BLOCK.get().getDefaultState(),Block.Properties.from(DIAMOND_BLOCK.get())
+    ));
+    public static final RegistryObject<Block> CRASK = BLOCKS.register("crask", () -> new Crask(
+            Block.Properties.create(Material.WOOL)
+                    .harvestLevel(2)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(100.0f)
     ));
 }

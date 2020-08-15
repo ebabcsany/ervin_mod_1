@@ -2,9 +2,7 @@ package com.babcsany.minecraft.ervin_mod_1.init;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 //import com.babcsany.minecraft.ervin_mod_1.entity.animal.FreinEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.animal.FreinEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.animal.ViltEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.animal.ZurEntity1;
+import com.babcsany.minecraft.ervin_mod_1.entity.animal.*;
 import com.babcsany.minecraft.ervin_mod_1.entity.item.FirgBoatEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.projectile.ScrakthsPearlEntity;
@@ -43,6 +41,18 @@ public class EntityInit {
             .register("vilt_entity",
                     () -> EntityType.Builder.<ViltEntity>create(ViltEntity::new, EntityClassification.CREATURE)
                             .size(1.0f, 2.0f)
-                            .build(new ResourceLocation(Ervin_mod_1.MOD_ID, "vilt_entity").toString()));
-
+                            .build(new ResourceLocation(Ervin_mod_1.MOD_ID, "crask").toString()
+                            ));
+    public static final RegistryObject<EntityType<SrachEntity>> SRACH_ENTITY = ENTITY_TYPES
+            .register("srach/srach",
+                    () -> EntityType.Builder.<SrachEntity>create(SrachEntity::new, EntityClassification.CREATURE)
+                            .size(0.9f, 1.4f)
+                            .build(new ResourceLocation(Ervin_mod_1.MOD_ID, "srach/srach").toString()
+                            ));
+    public static final RegistryObject<EntityType<ShertEntity>> SHERT_ENTITY = ENTITY_TYPES
+            .register("srach/shert",
+                    () -> EntityType.Builder.<ShertEntity>create(ShertEntity::new, EntityClassification.CREATURE)
+                            .size(0.9f, 1.4f)
+                            .build(new ResourceLocation(Ervin_mod_1.MOD_ID, "srach/shert").toString()
+                            ));
 }

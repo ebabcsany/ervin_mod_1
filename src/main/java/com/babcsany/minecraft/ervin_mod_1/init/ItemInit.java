@@ -504,7 +504,7 @@ public class ItemInit {
             (new Item.Properties())
     ));
     public static final RegistryObject<Item> FIRG_BOAT = ITEMS.register("firg_boat", () -> new FirgBoatItem(
-            FirgBoatEntity.Type.FIRG, (new Item.Properties()).maxStackSize(1)
+            FirgBoatEntity.Type1.FIRG, (new Item.Properties()).maxStackSize(1)
     ));
     public static final RegistryObject<Item> GANT = ITEMS.register("gant", () -> new Item(
             (new Item.Properties())
@@ -515,7 +515,7 @@ public class ItemInit {
     public static final RegistryObject<Item> GANB = ITEMS.register("ganb", () -> new Item(
             (new Item.Properties())
     ));
-    public static final RegistryObject<Item> JURK_BUCKET = ITEMS.register("jurk_bucket", () -> new Item(
+    public static final RegistryObject<Item> JURK_BUCKET = ITEMS.register("jurk_bucket", () -> new JurkBucketItem(
             (new Item.Properties())
     ));
     public static final RegistryObject<Item> RUGT = ITEMS.register("rugt", () -> new Item(
@@ -539,10 +539,52 @@ public class ItemInit {
     public static final RegistryObject<Item> DURT_AXE = ITEMS.register("durt_axe", () -> new AxeItem(
             ModItemTier.DURT, 14, 2.0F, (new Item.Properties())
     ));
-    public static final RegistryObject<Item> BLACK_STRING = ITEMS.register("black_string", () -> new Item(
-            (new Item.Properties())
+    /*public static final RegistryObject<Item> BLACK_STRING = ITEMS.register("strings/black_string", () -> new BlockNamedItem(
+            BlockInit.BLACK_TRIPWIRE.get(), (new Item.Properties())
+    ));*/
+    public static final RegistryObject<Item> GRAY_STRING = ITEMS.register("gray_string", () -> new BlockNamedItem(
+            Blocks.TRIPWIRE, (new Item.Properties())
     ));
-    public static final RegistryObject<Item> GRAY_STRING = ITEMS.register("gray_string", () -> new Item(
-            (new Item.Properties())
+    public static final RegistryObject<Item> LIGHT_GRAY_STRING = ITEMS.register("light_gray_string", () -> new BlockNamedItem(
+            Blocks.TRIPWIRE, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> BLUE_STRING = ITEMS.register("blue_string", () -> new BlockNamedItem(
+            Blocks.TRIPWIRE, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> BROWN_STRING = ITEMS.register("brown_string", () -> new BlockNamedItem(
+            Blocks.TRIPWIRE, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> CYAN_STRING = ITEMS.register("cyan_string", () -> new BlockNamedItem(
+            Blocks.TRIPWIRE, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> GREEN_STRING = ITEMS.register("green_string", () -> new BlockNamedItem(
+            Blocks.TRIPWIRE, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> LIGHT_BLUE_STRING = ITEMS.register("light_blue_string", () -> new BlockNamedItem(
+            Blocks.TRIPWIRE, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> LIME_STRING = ITEMS.register("lime_string", () -> new BlockNamedItem(
+            Blocks.TRIPWIRE, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> MAGENTA_STRING = ITEMS.register("magenta_string", () -> new BlockNamedItem(
+            Blocks.TRIPWIRE, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> ORANGE_STRING = ITEMS.register("orange_string", () -> new BlockNamedItem(
+            Blocks.TRIPWIRE, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> PINK_STRING = ITEMS.register("pink_string", () -> new BlockNamedItem(
+            Blocks.TRIPWIRE, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> PURPLE_STRING = ITEMS.register("purple_string", () -> new BlockNamedItem(
+            Blocks.TRIPWIRE, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> RED_STRING = ITEMS.register("red_string", () -> new BlockNamedItem(
+            Blocks.TRIPWIRE, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> YELLOW_STRING = ITEMS.register("yellow_string", () -> new BlockNamedItem(
+            Blocks.TRIPWIRE, (new Item.Properties())
+    ));
+    public static final RegistryObject<ModSpawnEggItem> VILT_ENTITY_SPAWN_EGG = ITEMS.register("vilt_entity_spawn_egg", () -> new ModSpawnEggItem(
+            EntityInit.VILT_ENTITY, 0xc02020, 0xc02020, new Item.Properties()
     ));
 }
