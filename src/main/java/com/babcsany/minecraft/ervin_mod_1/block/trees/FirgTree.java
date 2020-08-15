@@ -16,7 +16,7 @@ import net.minecraftforge.common.IPlantable;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class FirgTree extends Tree {
+public class FirgTree extends Tree1 {
    /**
     * Get a {@link ConfiguredFeature} of tree
     */
@@ -25,8 +25,8 @@ public class FirgTree extends Tree {
       return randomIn.nextInt(20) == 0 ? Feature.FANCY_TREE.withConfiguration(p_225546_2_ ? ModDefaultBiomeFeatures.FIRG_TREE_WITH_MORE_BEEHIVES_CONFIG : ModDefaultBiomeFeatures.FIRG_TREE_CONFIG) : Feature.NORMAL_TREE.withConfiguration(p_225546_2_ ? ModDefaultBiomeFeatures.FIRG_TREE_WITH_MORE_BEEHIVES_CONFIG1 : ModDefaultBiomeFeatures.FIRG_TREE_CONFIG1);
    }
    @Nullable
-   protected ConfiguredFeature<TreeFeatureConfig, ?> getFirgTreeFeature(Random randomIn, boolean p_225546_2_) {
-      return randomIn.nextInt(10) == 0 ? Feature.FANCY_TREE.withConfiguration(p_225546_2_ ? ModDefaultBiomeFeatures.FIRG_TREE_WITH_MORE_BEEHIVES_CONFIG : ModDefaultBiomeFeatures.FIRG_TREE_CONFIG2) : Feature.NORMAL_TREE.withConfiguration(p_225546_2_ ? ModDefaultBiomeFeatures.FIRG_TREE_WITH_MORE_BEEHIVES_CONFIG1 : ModDefaultBiomeFeatures.FIRG_TREE_CONFIG3);
+   protected ConfiguredFeature<TreeFeatureConfig, ?> getTreeFeature1(Random randomIn, boolean p_225546_2_) {
+      return randomIn.nextInt(10) == 0 ? Feature.FANCY_TREE.withConfiguration(p_225546_2_ ? ModDefaultBiomeFeatures.FIRG_TREE_WITH_MORE_FIRGS_CONFIG : ModDefaultBiomeFeatures.FIRG_TREE_CONFIG2) : Feature.NORMAL_TREE.withConfiguration(p_225546_2_ ? ModDefaultBiomeFeatures.FIRG_TREE_WITH_MORE_FIRGS_CONFIG1 : ModDefaultBiomeFeatures.FIRG_TREE_CONFIG3);
    }
    @Nullable
    protected ConfiguredFeature<TreeFeatureConfig, ?> getTree_Feature(Random randomIn, boolean p_225546_2_) {
