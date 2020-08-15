@@ -1,5 +1,8 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.monster;
 
+import com.babcsany.minecraft.ervin_mod_1.entity.TemptGoal1;
+import com.babcsany.minecraft.ervin_mod_1.entity.ai.BreedGoal1;
+import com.babcsany.minecraft.ervin_mod_1.entity.ai.FollowParentGoal1;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.ItemInit;
 import net.minecraft.entity.*;
@@ -49,15 +52,19 @@ public class ZurEntity extends MonsterEntity {
     @Override
     protected void registerGoals() {
         this.eatGrassGoal = new EatGrassGoal(this);
-        //this.goalSelector.addGoal(4, new ZurEntity(1.0D, this, 3));
+        this.goalSelector.addGoal(1, new PanicGoal(this, 1.25D));
+        //this.goalSelector.addGoal(2, new BreedGoal1(this, 1.0D));
         this.goalSelector.addGoal(0, new SwimGoal(this));
         this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 8.0F));
-        new TemptGoal(this, 4.4D, Ingredient.fromItems(ItemInit.FRIM.get()), false);
-        //this.goalSelector.addGoal(8, new
+            new TemptGoal(this, 1.1D, Ingredient.fromItems(ItemInit.LEAT.get()), false);
         this.goalSelector.addGoal(7, new LookAtGoal(this, PlayerEntity.class, 6.0F));
         this.goalSelector.addGoal(5, eatGrassGoal);
-        this.goalSelector.addGoal(2, new ZurAttackGoal(this, 1.0D, false));
+        this.goalSelector.addGoal(2, new ZurAttackGoal(this, 1.0D, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
+        this.goalSelector.addGoal(5, this.eatGrassGoal);
+        this.goalSelector.addGoal(6, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
+        this.goalSelector.addGoal(7, new LookAtGoal(this, PlayerEntity.class, 6.0F));
+        this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
     }
 
 
