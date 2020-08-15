@@ -1,0 +1,6 @@
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "ervin_mod_1:block/jazz_sapling"
+  }
+}
