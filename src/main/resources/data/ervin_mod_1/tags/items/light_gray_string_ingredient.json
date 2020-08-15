@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "ervin_mod_1:tripwires/black_string",
+    "ervin_mod_1:blue_string",
+    "ervin_mod_1:gray_string",
+    "minecraft:string"
+  ]
+}
