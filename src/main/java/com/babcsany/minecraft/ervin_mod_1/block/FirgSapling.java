@@ -1,5 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.block;
 
+import com.babcsany.minecraft.ervin_mod_1.block.trees.Tree1;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BushBlock;
@@ -20,11 +21,11 @@ import java.util.Random;
 public class FirgSapling extends BushBlock implements IGrowable {
    public static final IntegerProperty STAGE = BlockStateProperties.STAGE_0_1;
    protected static final VoxelShape SHAPE = Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 12.0D, 14.0D);
-   private final Tree tree;
+   private final Tree1 tree1;
 
-   public FirgSapling(Tree treeIn, Properties properties) {
+   public FirgSapling(Tree1 tree1In, Properties properties) {
       super(properties);
-      this.tree = treeIn;
+      this.tree1 = tree1In;
       this.setDefaultState(this.stateContainer.getBaseState().with(STAGE, Integer.valueOf(0)));
    }
 
@@ -46,7 +47,7 @@ public class FirgSapling extends BushBlock implements IGrowable {
          p_226942_1_.setBlockState(p_226942_2_, p_226942_3_.cycle(STAGE), 4);
       } else {
          if (!net.minecraftforge.event.ForgeEventFactory.saplingGrowTree(p_226942_1_, p_226942_4_, p_226942_2_)) return;
-         this.tree.func_225545_a_(p_226942_1_, p_226942_1_.getChunkProvider().getChunkGenerator(), p_226942_2_, p_226942_3_, p_226942_4_);
+         this.tree1.func_225545_a_(p_226942_1_, p_226942_1_.getChunkProvider().getChunkGenerator(), p_226942_2_, p_226942_3_, p_226942_4_);
       }
 
    }
