@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "ervin_mod_1:firg_log",
+    "ervin_mod_1:frim_log",
+    "minecraft:acacia_log",
+    "minecraft:birch_log",
+    "minecraft:jungle_log",
+    "minecraft:oak_log",
+    "minecraft:spruce_log"
+  ]
+}
