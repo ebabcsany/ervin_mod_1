@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "ervin_mod_1:acacia_turg"
+    ]
+  },
+  "criteria": {
+    "has_nether_star": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "ervin_mod_1:acacia_turg"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "ervin_mod_1:acacia_turg"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_acacia_wood",
+      "has_the_recipe"
+    ]
+  ]
+}
