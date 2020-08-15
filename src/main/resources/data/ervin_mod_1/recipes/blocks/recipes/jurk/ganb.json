@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "ervin_mod_1:garb"
+    },
+    {
+      "item": "ervin_mod_1:gurb"
+    }
+  ],
+  "result": {
+    "item": "ervin_mod_1:ganb",
+    "count": 1
+  }
+}
