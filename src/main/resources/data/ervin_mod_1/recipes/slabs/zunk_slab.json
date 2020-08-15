@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "ervin_mod_1:zunk_block"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:zunk_slab",
+    "count": 6
+  }
+}
