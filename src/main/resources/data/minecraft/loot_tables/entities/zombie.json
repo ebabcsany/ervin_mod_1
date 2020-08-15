@@ -23,7 +23,7 @@
               }
             }
           ],
-          "item": "minecraft:rotten_flesh"
+          "name": "minecraft:rotten_flesh"
         }
       ]
     },
@@ -60,4 +60,3 @@
     }
   ]
 }
-
