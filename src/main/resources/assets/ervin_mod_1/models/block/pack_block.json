@@ -1,12 +1,12 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    /*"up": "ervin_mod_1:block/pack_block_top",
+    "up": "ervin_mod_1:block/pack_block_top",
     "down": "ervin_mod_1:block/pack_block_bottom",
-    "north": "ervin_mod_1:block/pack_block_front",
-    "east": "ervin_mod_1:block/pack_block_left",
-    "west": "ervin_mod_1:block/pack_block_right",
-    "south": "ervin_mod_1:block/pack_block_back",
-    "particle": "ervin_mod_1:block/pack_block_top"*/
+    "north": "ervin_mod_1:block/pack_block",
+    "east": "ervin_mod_1:block/pack_block",
+    "west": "ervin_mod_1:block/pack_block",
+    "south": "ervin_mod_1:block/pack_block",
+    "particle": "ervin_mod_1:block/pack_block_top"
   }
 }
