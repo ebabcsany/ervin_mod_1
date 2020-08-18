@@ -53,9 +53,10 @@ public class FreinEntity extends MobEntity implements IMob {
         this.goalSelector.addGoal(3, new com.babcsany.minecraft.ervin_mod_1.entity.animal.FreinEntity.FaceRandomGoal(this));
         this.goalSelector.addGoal(5, new com.babcsany.minecraft.ervin_mod_1.entity.animal.FreinEntity.HopGoal(this));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, 10, true, false, (p_213811_1_) -> {
-            return Math.abs(p_213811_1_.getPosY() - this.getPosY()) <= 4.0D;
-        }));
+            return Math.abs(p_213811_1_.getPosY() - this.getPosY()) <= 40.0D;
+            }));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, WolfEntity1.class, true));
     }
 
     protected void registerData() {
@@ -137,10 +138,10 @@ public class FreinEntity extends MobEntity implements IMob {
                 float f1 = this.rand.nextFloat() * 0.5F + 0.5F;
                 float f2 = MathHelper.sin(f) * (float)i * 0.5F * f1;
                 float f3 = MathHelper.cos(f) * (float)i * 0.5F * f1;
-                this.world.addParticle(this.getSquishParticle(), this.getPosX() + (double)f2, this.getPosY(), this.getPosZ() + (double)f3, 0.0D, 0.0D, 0.0D);
+                this.world.addParticle(this.getSquishParticle(), this.getPosX() + (double)f2, this.getPosY(), this.getPosZ() + (double)f3, 10.0D, 10.0D, 10.0D);
             }
 
-            this.playSound(this.getSquishSound(), this.getSoundVolume(), ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F) / 0.8F);
+            this.playSound(this.getSquishSound(), this.getSoundVolume(), ((this.rand.nextFloat() - this.rand.nextFloat()) * 20.0F + 10.0F) / 80.0F);
             this.squishAmount = -0.5F;
         } else if (!this.onGround && this.wasOnGround) {
             this.squishAmount = 1.0F;
