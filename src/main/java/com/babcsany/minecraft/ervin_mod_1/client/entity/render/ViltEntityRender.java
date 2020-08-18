@@ -17,7 +17,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class ViltEntityRender extends MobRenderer<ViltEntity, ViltEntityModel<ViltEntity>> {
-    private static final ResourceLocation SHEARED_VILT_TEXTURES = new ResourceLocation(Ervin_mod_1.MOD_ID,"textures/entity/crask.png");
+    private static final ResourceLocation SHEARED_VILT_TEXTURES = new ResourceLocation(Ervin_mod_1.MOD_ID,"textures/entity/crask1.png");
 
     public ViltEntityRender(EntityRendererManager renderManagerIn) {
         super(renderManagerIn, new ViltEntityModel<>(), 0.7F);

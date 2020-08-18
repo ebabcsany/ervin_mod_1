@@ -1,5 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.client.entity.render;
 
+import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.client.entity.layers.FreinGelLayer;
 import com.babcsany.minecraft.ervin_mod_1.client.entity.model.FreinEntityModel;
 //import com.babcsany.minecraft.ervin_mod_1.entity.animal.FreinEntity;
@@ -18,7 +19,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class FreinEntityRender extends MobRenderer<FreinEntity, FreinEntityModel<FreinEntity>> {
-    private static final ResourceLocation FREIN_TEXTURES = new ResourceLocation("textures/entity/frein_entity.png");
+    private static final ResourceLocation FREIN_TEXTURES = new ResourceLocation(Ervin_mod_1.MOD_ID,"textures/entity/frein_entity.png");
 
     public FreinEntityRender(EntityRendererManager renderManagerIn) {
         super(renderManagerIn, new FreinEntityModel<>(16), 0.25F);
