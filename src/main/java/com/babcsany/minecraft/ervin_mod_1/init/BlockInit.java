@@ -7,7 +7,9 @@ import com.babcsany.minecraft.ervin_mod_1.block.material.MaterialColor1;
 import com.babcsany.minecraft.ervin_mod_1.block.trees.FirgTree;
 import com.babcsany.minecraft.ervin_mod_1.block.trees.FrimTree;
 import com.babcsany.minecraft.ervin_mod_1.block.tripwires.BlackTripWire;
+import com.babcsany.minecraft.ervin_mod_1.block.tripwires.BlueTripWire;
 import com.babcsany.minecraft.ervin_mod_1.block.tripwires.tripwire_hooks.BlackTripWireHook;
+import com.babcsany.minecraft.ervin_mod_1.block.tripwires.tripwire_hooks.BlueTripWireHook;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.JazzTree;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.ModSaplingBlock;
 import net.minecraft.block.*;
@@ -1417,6 +1419,12 @@ public class BlockInit {
     public static final RegistryObject<Block> BLACK_TRIPWIRE = BLOCKS.register("tripwires/black_string", () -> new BlackTripWire(
             (BlackTripWireHook) BLACK_TRIPWIRE_HOOK.get(), Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()
     ));
+    public static final RegistryObject<Block> BLUE_TRIPWIRE_HOOK = BLOCKS.register("tripwires/tripwire_hooks/blue_tripwire_hook", () -> new BlueTripWireHook(
+            Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()
+    ));
+    public static final RegistryObject<Block> BLUE_TRIPWIRE = BLOCKS.register("tripwires/blue_string", () -> new BlueTripWire(
+            (BlueTripWireHook) BLUE_TRIPWIRE_HOOK.get(), Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()
+    ));
     public static final RegistryObject<Block> GRITH_MUSHROOM = BLOCKS.register("brown_mushroom", () -> new BrownMushroom(
             Block.Properties.create(Material.PLANTS)
                     .hardnessAndResistance(0.0F)
@@ -1443,5 +1451,12 @@ public class BlockInit {
                     .harvestLevel(2)
                     .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(100.0f)
+    ));
+    public static final RegistryObject<Block> TARG = BLOCKS.register("targ", () -> new TargCropsBlock(
+            Block.Properties.create(Material.PLANTS)
+                    .hardnessAndResistance(0.0F)
+                    .doesNotBlockMovement()
+                    .tickRandomly()
+                    .sound(SoundType.CROP)
     ));
 }

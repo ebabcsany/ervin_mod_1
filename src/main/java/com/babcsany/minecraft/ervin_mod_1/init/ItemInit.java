@@ -587,4 +587,8 @@ public class ItemInit {
     public static final RegistryObject<ModSpawnEggItem> VILT_ENTITY_SPAWN_EGG = ITEMS.register("vilt_entity_spawn_egg", () -> new ModSpawnEggItem(
             EntityInit.VILT_ENTITY, 0xc02020, 0xc02020, new Item.Properties()
     ));
+    public static final RegistryObject<Item> TARG_SEEDS = ITEMS.register("targ_seeds", () -> new BlockNamedItem(
+            BlockInit.TARG.get(), (new Item.Properties())
+    ));
+
 }

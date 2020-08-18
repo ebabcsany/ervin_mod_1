@@ -55,4 +55,10 @@ public class EntityInit {
                             .size(0.9f, 1.4f)
                             .build(new ResourceLocation(Ervin_mod_1.MOD_ID, "srach/shert").toString()
                             ));
+    public static final RegistryObject<EntityType<WolfEntity1>> HHIJ_ENTITY = ENTITY_TYPES
+            .register("wolf1",
+                    () -> EntityType.Builder.<WolfEntity1>create(WolfEntity1::new, EntityClassification.CREATURE)
+                            .size(0.6f, 0.85f)
+                            .build(new ResourceLocation(Ervin_mod_1.MOD_ID, "srach/shert").toString()
+                            ));
 }
