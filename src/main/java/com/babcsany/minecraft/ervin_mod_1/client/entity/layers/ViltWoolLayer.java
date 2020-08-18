@@ -15,7 +15,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class ViltWoolLayer extends LayerRenderer<ViltEntity, ViltEntityModel<ViltEntity>> {
-   public static final ResourceLocation TEXTURE = new ResourceLocation(Ervin_mod_1.MOD_ID,"textures/entity/crask_fur.png");
+   public static final ResourceLocation TEXTURE = new ResourceLocation(Ervin_mod_1.MOD_ID,"textures/entity/crask1_fur.png");
    public final ViltWoolModel<ViltEntity> viltModel = new ViltWoolModel<>();
 
    public ViltWoolLayer(IEntityRenderer<ViltEntity, ViltEntityModel<ViltEntity>> rendererIn) {
