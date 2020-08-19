@@ -15,7 +15,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:gray_string"
+          "name": "ervin_mod_1:tripwires/gray_string"
         }
       ],
       "conditions": [
