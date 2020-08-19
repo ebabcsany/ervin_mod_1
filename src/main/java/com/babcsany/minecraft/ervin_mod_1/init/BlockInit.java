@@ -6,10 +6,8 @@ import com.babcsany.minecraft.ervin_mod_1.block.FirgSapling;
 import com.babcsany.minecraft.ervin_mod_1.block.material.MaterialColor1;
 import com.babcsany.minecraft.ervin_mod_1.block.trees.FirgTree;
 import com.babcsany.minecraft.ervin_mod_1.block.trees.FrimTree;
-import com.babcsany.minecraft.ervin_mod_1.block.tripwires.BlackTripWire;
-import com.babcsany.minecraft.ervin_mod_1.block.tripwires.BlueTripWire;
-import com.babcsany.minecraft.ervin_mod_1.block.tripwires.tripwire_hooks.BlackTripWireHook;
-import com.babcsany.minecraft.ervin_mod_1.block.tripwires.tripwire_hooks.BlueTripWireHook;
+import com.babcsany.minecraft.ervin_mod_1.block.tripwires.*;
+import com.babcsany.minecraft.ervin_mod_1.block.tripwires.tripwire_hooks.*;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.JazzTree;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.ModSaplingBlock;
 import net.minecraft.block.*;
@@ -1424,6 +1422,84 @@ public class BlockInit {
     ));
     public static final RegistryObject<Block> BLUE_TRIPWIRE = BLOCKS.register("tripwires/blue_string", () -> new BlueTripWire(
             (BlueTripWireHook) BLUE_TRIPWIRE_HOOK.get(), Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()
+    ));
+    public static final RegistryObject<Block> BROWN_TRIPWIRE_HOOK = BLOCKS.register("tripwires/tripwire_hooks/brown_tripwire_hook", () -> new BrownTripWireHook(
+            Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()
+    ));
+    public static final RegistryObject<Block> BROWN_TRIPWIRE = BLOCKS.register("tripwires/brown_string", () -> new BrownTripWire(
+            (BrownTripWireHook) BROWN_TRIPWIRE_HOOK.get(), Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()
+    ));
+    public static final RegistryObject<Block> CYAN_TRIPWIRE_HOOK = BLOCKS.register("tripwires/tripwire_hooks/cyan_tripwire_hook", () -> new CyanTripWireHook(
+            Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()
+    ));
+    public static final RegistryObject<Block> CYAN_TRIPWIRE = BLOCKS.register("tripwires/cyan_string", () -> new CyanTripWire(
+            (CyanTripWireHook) CYAN_TRIPWIRE_HOOK.get(), Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()
+    ));
+    public static final RegistryObject<Block> GRAY_TRIPWIRE_HOOK = BLOCKS.register("tripwires/tripwire_hooks/gray_tripwire_hook", () -> new GrayTripWireHook(
+            Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()
+    ));
+    public static final RegistryObject<Block> GRAY_TRIPWIRE = BLOCKS.register("tripwires/gray_string", () -> new GrayTripWire(
+            (GrayTripWireHook) GRAY_TRIPWIRE_HOOK.get(), Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()
+    ));
+    public static final RegistryObject<Block> GREEN_TRIPWIRE_HOOK = BLOCKS.register("tripwires/tripwire_hooks/green_tripwire_hook", () -> new GreenTripWireHook(
+            Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()
+    ));
+    public static final RegistryObject<Block> GREEN_TRIPWIRE = BLOCKS.register("tripwires/green_string", () -> new GreenTripWire(
+            (GreenTripWireHook) GREEN_TRIPWIRE_HOOK.get(), Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()
+    ));
+    public static final RegistryObject<Block> LIGHT_BLUE_TRIPWIRE_HOOK = BLOCKS.register("tripwires/tripwire_hooks/light_blue_tripwire_hook", () -> new LightBlueTripWireHook(
+            Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()
+    ));
+    public static final RegistryObject<Block> LIGHT_BLUE_TRIPWIRE = BLOCKS.register("tripwires/light_blue_string", () -> new LightBlueTripWire(
+            (LightBlueTripWireHook) LIGHT_BLUE_TRIPWIRE_HOOK.get(), Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()
+    ));
+    public static final RegistryObject<Block> LIGHT_GRAY_TRIPWIRE_HOOK = BLOCKS.register("tripwires/tripwire_hooks/light_gray_tripwire_hook", () -> new LightGrayTripWireHook(
+            Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()
+    ));
+    public static final RegistryObject<Block> LIGHT_GRAY_TRIPWIRE = BLOCKS.register("tripwires/light_gray_string", () -> new LightGrayTripWire(
+            (LightGrayTripWireHook) LIGHT_GRAY_TRIPWIRE_HOOK.get(), Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()
+    ));
+    public static final RegistryObject<Block> LIME_TRIPWIRE_HOOK = BLOCKS.register("tripwires/tripwire_hooks/lime_tripwire_hook", () -> new LimeTripWireHook(
+            Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()
+    ));
+    public static final RegistryObject<Block> LIME_TRIPWIRE = BLOCKS.register("tripwires/lime_string", () -> new LimeTripWire(
+            (LimeTripWireHook) LIME_TRIPWIRE_HOOK.get(), Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()
+    ));
+    public static final RegistryObject<Block> MAGENTA_TRIPWIRE_HOOK = BLOCKS.register("tripwires/tripwire_hooks/magenta_tripwire_hook", () -> new MagentaTripWireHook(
+            Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()
+    ));
+    public static final RegistryObject<Block> MAGENTA_TRIPWIRE = BLOCKS.register("tripwires/magenta_string", () -> new MagentaTripWire(
+            (MagentaTripWireHook) MAGENTA_TRIPWIRE_HOOK.get(), Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()
+    ));
+    public static final RegistryObject<Block> ORANGE_TRIPWIRE_HOOK = BLOCKS.register("tripwires/tripwire_hooks/orange_tripwire_hook", () -> new OrangeTripWireHook(
+            Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()
+    ));
+    public static final RegistryObject<Block> ORANGE_TRIPWIRE = BLOCKS.register("tripwires/orange_string", () -> new OrangeTripWire(
+            (OrangeTripWireHook) ORANGE_TRIPWIRE_HOOK.get(), Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()
+    ));
+    public static final RegistryObject<Block> PINK_TRIPWIRE_HOOK = BLOCKS.register("tripwires/tripwire_hooks/pink_tripwire_hook", () -> new PinkTripWireHook(
+            Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()
+    ));
+    public static final RegistryObject<Block> PINK_TRIPWIRE = BLOCKS.register("tripwires/pink_string", () -> new PinkTripWire(
+            (PinkTripWireHook) PINK_TRIPWIRE_HOOK.get(), Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()
+    ));
+    public static final RegistryObject<Block> PURPLE_TRIPWIRE_HOOK = BLOCKS.register("tripwires/tripwire_hooks/purple_tripwire_hook", () -> new PurpleTripWireHook(
+            Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()
+    ));
+    public static final RegistryObject<Block> PURPLE_TRIPWIRE = BLOCKS.register("tripwires/purple_string", () -> new PurpleTripWire(
+            (PurpleTripWireHook) PURPLE_TRIPWIRE_HOOK.get(), Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()
+    ));
+    public static final RegistryObject<Block> RED_TRIPWIRE_HOOK = BLOCKS.register("tripwires/tripwire_hooks/red_tripwire_hook", () -> new RedTripWireHook(
+            Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()
+    ));
+    public static final RegistryObject<Block> RED_TRIPWIRE = BLOCKS.register("tripwires/red_string", () -> new RedTripWire(
+            (RedTripWireHook) RED_TRIPWIRE_HOOK.get(), Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()
+    ));
+    public static final RegistryObject<Block> YELLOW_TRIPWIRE_HOOK = BLOCKS.register("tripwires/tripwire_hooks/yellow_tripwire_hook", () -> new YellowTripWireHook(
+            Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()
+    ));
+    public static final RegistryObject<Block> YELLOW_TRIPWIRE = BLOCKS.register("tripwires/yellow_string", () -> new YellowTripWire(
+            (YellowTripWireHook) YELLOW_TRIPWIRE_HOOK.get(), Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()
     ));
     public static final RegistryObject<Block> GRITH_MUSHROOM = BLOCKS.register("brown_mushroom", () -> new BrownMushroom(
             Block.Properties.create(Material.PLANTS)
