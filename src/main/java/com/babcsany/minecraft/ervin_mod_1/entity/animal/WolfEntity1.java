@@ -5,11 +5,10 @@ import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.boss.WitherEntity;
 import net.minecraft.entity.boss.dragon.EnderDragonEntity;
-import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
 import net.minecraft.entity.merchant.villager.VillagerEntity;
 import net.minecraft.entity.merchant.villager.WanderingTraderEntity;
-import net.minecraft.entity.monster.AbstractSkeletonEntity;
 import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.entity.monster.GhastEntity;
 import net.minecraft.entity.monster.MonsterEntity;
@@ -109,6 +108,7 @@ public class WolfEntity1 extends TameableEntity {
       this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, ShertEntity.class, false));
       this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, FoxEntity.class, false));
       this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, EnderDragonEntity.class, false));
+      this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, WitherEntity.class, false));
    }
 
    protected void registerAttributes() {
