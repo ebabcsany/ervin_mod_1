@@ -40,7 +40,8 @@ public class Ervin_mod_1 {
 
     public static final String MOD_ID = "ervin_mod_1";
     // Directly reference a log4j logger.
-    private static final Logger LOGGER = LogManager.getLogger();
+    public static final Logger LOGGER = LogManager.getLogger();
+    public static final ResourceLocation EXAMPLE_DIM_TYPE = new ResourceLocation(Ervin_mod_1.MOD_ID, "example");
 
     public Ervin_mod_1() {
         // Register the setup method for modloading
@@ -61,6 +62,9 @@ public class Ervin_mod_1 {
         ContainerInit.CONTAINER_TYPES.register(modEventBus);
         EntityInit.ENTITY_TYPES.register(modEventBus);
         BiomeInit.BIOMES.register(modEventBus);
+        SoundInit.SOUNDS.register(modEventBus);
+        FluidInit.FLUIDS.register(modEventBus);
+        DimensionInit.MOD_DIMENSIONS.register(modEventBus);
     }
 
     private void setup(final FMLCommonSetupEvent event) {
