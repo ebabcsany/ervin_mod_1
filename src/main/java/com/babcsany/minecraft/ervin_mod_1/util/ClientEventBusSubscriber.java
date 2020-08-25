@@ -5,9 +5,12 @@ import com.babcsany.minecraft.ervin_mod_1.client.entity.render.*;
 import com.babcsany.minecraft.ervin_mod_1.client.gui.CraintBlockCraftingTableScreen;
 import com.babcsany.minecraft.ervin_mod_1.client.gui.LeatBlockCraftingTableScreen;
 import com.babcsany.minecraft.ervin_mod_1.init.ContainerInit;
+import com.babcsany.minecraft.ervin_mod_1.init.DimensionInit;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import net.minecraft.client.gui.ScreenManager;
+import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
@@ -34,5 +37,9 @@ public class ClientEventBusSubscriber {
         DeferredWorkQueue.runLater(() -> {
             ScreenManager.registerFactory(ContainerInit.CRAINT_BLOCK_CRAFTING_TABLE.get(), CraintBlockCraftingTableScreen::new);
         });
+        if (DimensionType.byName(Ervin_mod_1.EXAMPLE_DIM_TYPE) == null) {
+            DimensionManager.registerDimension(Ervin_mod_1.EXAMPLE_DIM_TYPE, DimensionInit.EXAMPLE_DIM.get(), null,
+                    true);
+        }
     }
 }
