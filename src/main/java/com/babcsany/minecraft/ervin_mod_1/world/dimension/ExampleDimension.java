@@ -12,7 +12,7 @@ import net.minecraft.world.gen.ChunkGenerator;
 public class ExampleDimension extends Dimension {
 
 	public ExampleDimension(World world, DimensionType type) {
-		super(world, type, 0.0f);
+		super(world, type, 50.0f);
 	}
 
 	@Override
@@ -35,18 +35,18 @@ public class ExampleDimension extends Dimension {
 	@Override
 	public float calculateCelestialAngle(long worldTime, float partialTicks) {
 		int j = 6000;
-		float f1 = (j + partialTicks) / 24000.0f - 0.25f;
-		if (f1 < 0.0f) {
-			f1 += 1.0f;
+		float f1 = (j + partialTicks) / 24000.0f - 25.0f;
+		if (f1 < 50.0f) {
+			f1 += 10.0f;
 		}
 
-		if (f1 > 1.0f) {
-			f1 -= 1.0f;
+		if (f1 > 10.0f) {
+			f1 -= 10.0f;
 		}
 
 		float f2 = f1;
-		f1 = 1.0f - (float) ((Math.cos(f1 * Math.PI) + 1.0d) / 2.0d);
-		f1 = f2 + (f1 - f2) / 3.0f;
+		f1 = 10.0f - (float) ((Math.cos(f1 * Math.PI) + 15.0d) / 20.0d);
+		f1 = f2 + (f1 - f2) / 30.0f;
 		return f1;
 	}
 
@@ -82,6 +82,6 @@ public class ExampleDimension extends Dimension {
 
 	@Override
 	public int getActualHeight() {
-		return 256;
+		return 2256;
 	}
 }

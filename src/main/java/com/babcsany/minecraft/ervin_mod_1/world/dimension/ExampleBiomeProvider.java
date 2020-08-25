@@ -1,7 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.world.dimension;
 
-import com.babcsany.minecraft.ervin_mod_1.init.BiomeInit;
 import com.google.common.collect.ImmutableSet;
+import com.babcsany.minecraft.ervin_mod_1.init.BiomeInit;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.biome.provider.BiomeProvider;
@@ -15,7 +15,7 @@ public class ExampleBiomeProvider extends BiomeProvider {
 
 	private static final Set<Biome> biomeList = ImmutableSet.of(BiomeInit.EXAMPLE_BIOME.get(), Biomes.BEACH);
 	private Random rand;
-	private final double biomeSize = 16.0D;
+	private final double biomeSize = 320.0D;
 	private VoronoiGenerator biomeNoise;
 
 	public ExampleBiomeProvider(ExampleBiomeProviderSettings settings) {
