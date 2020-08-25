@@ -28,7 +28,7 @@ public class ItemInit {
     public static final RegistryObject<Item> SRIUNK = ITEMS.register("sriunk", () -> new Item(
             (new Item.Properties())
     ));
-    public static final RegistryObject<Item> SRIUNK_AXE = ITEMS.register("sriunk_axe", () -> new AxeItem(
+    public static final RegistryObject<Item> SRIUNK_AXE = ITEMS.register("sriunk_axe", () -> new AxeItem1(
             ModItemTier.SRIUNK, 20, 40.0F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> SRIUNK_HOE = ITEMS.register("sriunk_hoe", () -> new HoeItem(
@@ -85,13 +85,13 @@ public class ItemInit {
     public static final RegistryObject<Item> NARIN = ITEMS.register("narin", () -> new Item(
             (new Item.Properties())
     ));
-    public static final RegistryObject<Item> TERAT = ITEMS.register("terat", () -> new Item(
+    public static final RegistryObject<Item> TERAT = ITEMS.register("terat", () -> new GItem(
             (new Item.Properties())
     ));
     public static final RegistryObject<Item> TERAT_PICKAXE = ITEMS.register("terat_pickaxe", () -> new PickaxeItem(
             ModItemTier.TERAT, 200,200.0F, (new Item.Properties())
     ));
-    public static final RegistryObject<Item> TERAT_AXE = ITEMS.register("terat_axe", () -> new AxeItem(
+    public static final RegistryObject<Item> TERAT_AXE = ITEMS.register("terat_axe", () -> new AxeItem1(
             ModItemTier.TERAT, 400,400.0F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> TERAT_SHOVEL = ITEMS.register("terat_shovel", () -> new ShovelItem(
@@ -265,7 +265,7 @@ public class ItemInit {
     public static final RegistryObject<Item> VILKT = ITEMS.register("vilkt", () -> new Item(
             (new Item.Properties())
     ));
-    public static final RegistryObject<Item> RED_STONE_AXE = ITEMS.register("red_stone_axe", () -> new AxeItem(
+    public static final RegistryObject<Item> RED_STONE_AXE = ITEMS.register("red_stone_axe", () -> new AxeItem1(
             ModItemTier.RED_COBBLESTONE, 14, 1.2F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> RED_STONE_SHOVEL = ITEMS.register("red_stone_shovel", () -> new ShovelItem(
@@ -277,7 +277,7 @@ public class ItemInit {
     public static final RegistryObject<Item> RED_STONE_SWORD = ITEMS.register("red_stone_sword", () -> new SwordItem(
             ModItemTier.RED_COBBLESTONE, 6, -1.0F, (new Item.Properties())
     ));
-    public static final RegistryObject<Item> FIRT_AXE = ITEMS.register("firt_axe", () -> new AxeItem(
+    public static final RegistryObject<Item> FIRT_AXE = ITEMS.register("firt_axe", () -> new AxeItem1(
             ModItemTier.FIRT, 16, 21.0F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> FIRT_SHOVEL = ITEMS.register("firt_shovel", () -> new ShovelItem(
@@ -310,7 +310,7 @@ public class ItemInit {
     public static final RegistryObject<Item> NIRK_PICKAXE = ITEMS.register("nirk_pickaxe", () -> new PickaxeItem(
             ModItemTier.NIRK, 50, 105.0F, (new Item.Properties())
     ));
-    public static final RegistryObject<Item> ENDER_STAKRACH = ITEMS.register("ender_stakrach", () -> new AxeItem(
+    public static final RegistryObject<Item> ENDER_STAKRACH = ITEMS.register("ender_stakrach", () -> new AxeItem1(
             ModItemTier.ENDER_SRACKHT, 2, 2.0F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> SURV_PICKAXE = ITEMS.register("surv_pickaxe", () -> new PickaxeItem(
@@ -325,7 +325,7 @@ public class ItemInit {
     public static final RegistryObject<Item> ENDER_TRASKCRAFTH = ITEMS.register("ender_traskcrafth", () -> new SwordItem(
             ModItemTier.ENDER_TRASKRACH, 6, 6.0F, (new Item.Properties())
     ));
-    public static final RegistryObject<Item> SURV_AXE = ITEMS.register("surv_axe", () -> new AxeItem(
+    public static final RegistryObject<Item> SURV_AXE = ITEMS.register("surv_axe", () -> new AxeItem1(
             ModItemTier.SURV, 30, 10.0F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> SURV_SHOVEL = ITEMS.register("surv_shovel", () -> new ShovelItem(
@@ -343,7 +343,7 @@ public class ItemInit {
     public static final RegistryObject<Item> TERAT_NUGGET = ITEMS.register("terat_nugget", () -> new Item(
             (new Item.Properties())
     ));
-    public static final RegistryObject<Item> NIRK_AXE = ITEMS.register("nirk_axe", () -> new AxeItem(
+    public static final RegistryObject<Item> NIRK_AXE = ITEMS.register("nirk_axe", () -> new AxeItem1(
             ModItemTier.NIRK, 160, 320.0F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> NIRK_HOE = ITEMS.register("nirk_hoe", () -> new HoeItem(
@@ -370,7 +370,7 @@ public class ItemInit {
     public static final RegistryObject<Item> GRITK = ITEMS.register("gritk", () -> new Item(
             (new Item.Properties())
     ));
-    public static final RegistryObject<Item> KIRT_AXE = ITEMS.register("kirt_axe", () -> new AxeItem(
+    public static final RegistryObject<Item> KIRT_AXE = ITEMS.register("kirt_axe", () -> new AxeItem1(
             ModItemTier.KIRT, 3, 2.0F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> KIRT_HOE = ITEMS.register("kirt_hoe", () -> new HoeItem(
@@ -388,7 +388,7 @@ public class ItemInit {
     public static final RegistryObject<Item> DURG_SWORD = ITEMS.register("durg_sword", () -> new SwordItem(
             ModItemTier.DURG, 72, 113.4F, (new Item.Properties())
     ));
-    public static final RegistryObject<Item> DURG_AXE = ITEMS.register("durg_axe", () -> new AxeItem(
+    public static final RegistryObject<Item> DURG_AXE = ITEMS.register("durg_axe", () -> new AxeItem1(
             ModItemTier.DURG, 144, 189.0F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> DURG_SHOVEL = ITEMS.register("durg_shovel", () -> new ShovelItem(
@@ -536,53 +536,53 @@ public class ItemInit {
     public static final RegistryObject<Item> DURT_PICKAXE = ITEMS.register("durt_pickaxe", () -> new PickaxeItem(
             ModItemTier.DURT, 4, 1.0F, (new Item.Properties())
     ));
-    public static final RegistryObject<Item> DURT_AXE = ITEMS.register("durt_axe", () -> new AxeItem(
+    public static final RegistryObject<Item> DURT_AXE = ITEMS.register("durt_axe", () -> new AxeItem1(
             ModItemTier.DURT, 14, 2.0F, (new Item.Properties())
     ));
-    /*public static final RegistryObject<Item> BLACK_STRING = ITEMS.register("strings/black_string", () -> new BlockNamedItem(
-            BlockInit.BLACK_TRIPWIRE.get(), (new Item.Properties())
-    ));*/
-    public static final RegistryObject<Item> GRAY_STRING = ITEMS.register("gray_string", () -> new BlockNamedItem(
-            Blocks.TRIPWIRE, (new Item.Properties())
+    public static final RegistryObject<Item> BLACK_IRON_INGOT = ITEMS.register("black_iron_ingot", () -> new Item(
+            (new Item.Properties())
     ));
-    public static final RegistryObject<Item> LIGHT_GRAY_STRING = ITEMS.register("light_gray_string", () -> new BlockNamedItem(
-            Blocks.TRIPWIRE, (new Item.Properties())
+    public static final RegistryObject<Item> BLUE_IRON_INGOT = ITEMS.register("blue_iron_ingot", () -> new Item(
+            (new Item.Properties())
     ));
-    public static final RegistryObject<Item> BLUE_STRING = ITEMS.register("blue_string", () -> new BlockNamedItem(
-            Blocks.TRIPWIRE, (new Item.Properties())
+    public static final RegistryObject<Item> BROWN_IRON_INGOT = ITEMS.register("brown_iron_ingot", () -> new Item(
+            (new Item.Properties())
     ));
-    public static final RegistryObject<Item> BROWN_STRING = ITEMS.register("brown_string", () -> new BlockNamedItem(
-            Blocks.TRIPWIRE, (new Item.Properties())
+    public static final RegistryObject<Item> CYAN_IRON_INGOT = ITEMS.register("cyan_iron_ingot", () -> new Item(
+            (new Item.Properties())
     ));
-    public static final RegistryObject<Item> CYAN_STRING = ITEMS.register("cyan_string", () -> new BlockNamedItem(
-            Blocks.TRIPWIRE, (new Item.Properties())
+    public static final RegistryObject<Item> GRAY_IRON_INGOT = ITEMS.register("gray_iron_ingot", () -> new Item(
+            (new Item.Properties())
     ));
-    public static final RegistryObject<Item> GREEN_STRING = ITEMS.register("green_string", () -> new BlockNamedItem(
-            Blocks.TRIPWIRE, (new Item.Properties())
+    public static final RegistryObject<Item> GREEN_IRON_INGOT = ITEMS.register("green_iron_ingot", () -> new Item(
+            (new Item.Properties())
     ));
-    public static final RegistryObject<Item> LIGHT_BLUE_STRING = ITEMS.register("light_blue_string", () -> new BlockNamedItem(
-            Blocks.TRIPWIRE, (new Item.Properties())
+    public static final RegistryObject<Item> LIGHT_BLUE_IRON_INGOT = ITEMS.register("light_blue_iron_ingot", () -> new Item(
+            (new Item.Properties())
     ));
-    public static final RegistryObject<Item> LIME_STRING = ITEMS.register("lime_string", () -> new BlockNamedItem(
-            Blocks.TRIPWIRE, (new Item.Properties())
+    public static final RegistryObject<Item> LIGHT_GRAY_IRON_INGOT = ITEMS.register("light_gray_iron_ingot", () -> new Item(
+            (new Item.Properties())
     ));
-    public static final RegistryObject<Item> MAGENTA_STRING = ITEMS.register("magenta_string", () -> new BlockNamedItem(
-            Blocks.TRIPWIRE, (new Item.Properties())
+    public static final RegistryObject<Item> LIME_IRON_INGOT = ITEMS.register("lime_iron_ingot", () -> new Item(
+            (new Item.Properties())
     ));
-    public static final RegistryObject<Item> ORANGE_STRING = ITEMS.register("orange_string", () -> new BlockNamedItem(
-            Blocks.TRIPWIRE, (new Item.Properties())
+    public static final RegistryObject<Item> MAGENTA_IRON_INGOT = ITEMS.register("magenta_iron_ingot", () -> new Item(
+            (new Item.Properties())
     ));
-    public static final RegistryObject<Item> PINK_STRING = ITEMS.register("pink_string", () -> new BlockNamedItem(
-            Blocks.TRIPWIRE, (new Item.Properties())
+    public static final RegistryObject<Item> ORANGE_IRON_INGOT = ITEMS.register("orange_iron_ingot", () -> new Item(
+            (new Item.Properties())
     ));
-    public static final RegistryObject<Item> PURPLE_STRING = ITEMS.register("purple_string", () -> new BlockNamedItem(
-            Blocks.TRIPWIRE, (new Item.Properties())
+    public static final RegistryObject<Item> PINK_IRON_INGOT = ITEMS.register("pink_iron_ingot", () -> new Item(
+            (new Item.Properties())
     ));
-    public static final RegistryObject<Item> RED_STRING = ITEMS.register("red_string", () -> new BlockNamedItem(
-            Blocks.TRIPWIRE, (new Item.Properties())
+    public static final RegistryObject<Item> PURPLE_IRON_INGOT = ITEMS.register("purple_iron_ingot", () -> new Item(
+            (new Item.Properties())
     ));
-    public static final RegistryObject<Item> YELLOW_STRING = ITEMS.register("yellow_string", () -> new BlockNamedItem(
-            Blocks.TRIPWIRE, (new Item.Properties())
+    public static final RegistryObject<Item> RED_IRON_INGOT = ITEMS.register("red_iron_ingot", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> YELLOW_IRON_INGOT = ITEMS.register("yellow_iron_ingot", () -> new Item(
+            (new Item.Properties())
     ));
     public static final RegistryObject<ModSpawnEggItem> VILT_ENTITY_SPAWN_EGG = ITEMS.register("vilt_entity_spawn_egg", () -> new ModSpawnEggItem(
             EntityInit.VILT_ENTITY, 0xc02020, 0xc02020, new Item.Properties()
@@ -590,5 +590,10 @@ public class ItemInit {
     public static final RegistryObject<Item> TARG_SEEDS = ITEMS.register("targ_seeds", () -> new BlockNamedItem(
             BlockInit.TARG.get(), (new Item.Properties())
     ));
-
+    public static final RegistryObject<ModSpawnEggItem> SRACH_ENTITY_SPAWN_EGG = ITEMS.register("srach_entity_spawn_egg", () -> new ModSpawnEggItem(
+            EntityInit.SRACH_ENTITY, 0x8000ff, 0x8000ff, new Item.Properties()
+    ));
+    public static final RegistryObject<Item> VIRKT = ITEMS.register("virkt", () -> new Item(
+            (new Item.Properties())
+    ));
 }

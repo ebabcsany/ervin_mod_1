@@ -10,6 +10,7 @@ import net.minecraft.entity.AreaEffectCloudEntity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.WeightedRandom;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -44,13 +45,13 @@ public class EntityInit {
                             .build(new ResourceLocation(Ervin_mod_1.MOD_ID, "crask").toString()
                             ));
     public static final RegistryObject<EntityType<SrachEntity>> SRACH_ENTITY = ENTITY_TYPES
-            .register("srach/srach",
+            .register("srach_entity",
                     () -> EntityType.Builder.<SrachEntity>create(SrachEntity::new, EntityClassification.CREATURE)
                             .size(0.9f, 1.4f)
                             .build(new ResourceLocation(Ervin_mod_1.MOD_ID, "srach/srach").toString()
                             ));
     public static final RegistryObject<EntityType<ShertEntity>> SHERT_ENTITY = ENTITY_TYPES
-            .register("srach/shert",
+            .register("shert_entity",
                     () -> EntityType.Builder.<ShertEntity>create(ShertEntity::new, EntityClassification.CREATURE)
                             .size(0.9f, 1.4f)
                             .build(new ResourceLocation(Ervin_mod_1.MOD_ID, "srach/shert").toString()

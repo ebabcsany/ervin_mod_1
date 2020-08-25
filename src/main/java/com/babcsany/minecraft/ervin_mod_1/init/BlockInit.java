@@ -1318,10 +1318,21 @@ public class BlockInit {
             .hardnessAndResistance(2.0F)
             .sound(SoundType.WOOD)
     ));
-    public static final RegistryObject<Block> FIRG_WOOD = BLOCKS.register("firg_wood", () -> new StrippedFirgWood(
+    public static final RegistryObject<Block> STRIPPED_FRIM_LOG = BLOCKS.register("stripped_frim_log", () -> new StrippedFrimLog(
+            MaterialColor.WOOD, Block.Properties.create(Material.WOOD)
+            .hardnessAndResistance(2.0F)
+            .sound(SoundType.WOOD)
+    ));
+    public static final RegistryObject<Block> FIRG_WOOD = BLOCKS.register("firg_wood", () -> new FirgWood(
+            Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD)
+    ));
+    public static final RegistryObject<Block> FRIM_WOOD = BLOCKS.register("frim_wood", () -> new StrippedFrimWood(
             Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD)
     ));
     public static final RegistryObject<Block> STRIPPED_FIRG_WOOD = BLOCKS.register("stripped_firg_wood", () -> new StrippedFirgWood(
+            Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD)
+    ));
+    public static final RegistryObject<Block> STRIPPED_FRIM_WOOD = BLOCKS.register("stripped_frim_wood", () -> new StrippedFrimWood(
             Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD)
     ));
     public static final RegistryObject<Block> GANK_SLAB = BLOCKS.register("gank_slab", () -> new GankSlab(
@@ -1359,7 +1370,7 @@ public class BlockInit {
                     .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(30.0f, 400.0f)
     ));
-    public static final RegistryObject<Block> JURK = BLOCKS.register("jurk", () -> new Durt(
+    public static final RegistryObject<Block> JURK = BLOCKS.register("jurk", () -> new Block(
             Block.Properties.create(Material.ROCK)
                     .harvestLevel(2)
                     .hardnessAndResistance(30.0f, 400.0f)
@@ -1525,7 +1536,6 @@ public class BlockInit {
     public static final RegistryObject<Block> CRASK = BLOCKS.register("crask", () -> new Crask(
             Block.Properties.create(Material.WOOL)
                     .harvestLevel(2)
-                    .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(100.0f)
     ));
     public static final RegistryObject<Block> TARG = BLOCKS.register("targ", () -> new TargCropsBlock(

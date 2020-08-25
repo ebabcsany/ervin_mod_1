@@ -4,17 +4,20 @@ import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.block.Firg;
 import com.babcsany.minecraft.ervin_mod_1.block.FrimLeaves;
 import com.babcsany.minecraft.ervin_mod_1.container.CraintBlockCraftingTableContainer;
+import com.babcsany.minecraft.ervin_mod_1.entity.animal.ZurEntity1;
 import com.babcsany.minecraft.ervin_mod_1.world.gen.treedecorator.FirgTreeDecorator;
+import net.minecraft.entity.EntityClassification;
+import net.minecraft.entity.EntityType;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.GenerationSettings;
 import net.minecraft.world.gen.placement.NoPlacementConfig;
 import net.minecraft.world.gen.placement.Placement;
-import net.minecraft.world.gen.treedecorator.BeehiveTreeDecorator;
-import net.minecraft.world.gen.treedecorator.TreeDecoratorType;
+import net.minecraft.world.gen.treedecorator.*;
 import net.minecraft.block.Block;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.treedecorator.TreeDecoratorType;
@@ -36,6 +39,7 @@ public class DecoratorInit {
     //public static final RegistryObject<Placement<NoPlacementConfig>> FIRG = DECORATORS.register("firg", );
     //public static final RegistryObject<Placement<?>> FIRG = DECORATORS.register("sriunk", () -> new TreeDecoratorType<FirgTreeDecorator>(
       //      (new Decorator.Properties())));
+    //public static final RegistryObject<Placement<?>> FIRG = DECORATORS.register("example_block", () -> new TreeDecorator()
 
 
 }
