@@ -34,7 +34,7 @@ import java.util.stream.Collectors;
 
 public class FirgTreeDecorator extends TreeDecorator {
 
-   public static final TreeDecoratorType<FirgTreeDecorator> FIRG = registerTreeDecoratorType("firg", FirgTreeDecorator::new);
+   /*public static final TreeDecoratorType<FirgTreeDecorator> FIRG = registerTreeDecoratorType("firg", FirgTreeDecorator::new);
 
    public static TreeDecoratorType<FirgTreeDecorator> registerTreeDecoratorType(String name, Function<Dynamic<?>, FirgTreeDecorator> constructor) {
       Method registerMethod = null;
@@ -49,7 +49,7 @@ public class FirgTreeDecorator extends TreeDecorator {
          e.printStackTrace();
       }
       return null;
-   }
+   }*/
 
    /** Probability to generate a beehive */
    private final float probability;
