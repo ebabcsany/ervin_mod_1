@@ -56,7 +56,7 @@ public class ZurEntity extends MonsterEntity {
         //this.goalSelector.addGoal(2, new BreedGoal1(this, 1.0D));
         this.goalSelector.addGoal(0, new SwimGoal(this));
         this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 8.0F));
-            new TemptGoal(this, 1.1D, Ingredient.fromItems(ItemInit.LEAT.get()), false);
+            new TemptGoal(this, 5.1D, Ingredient.fromItems(ItemInit.LEAT.get()), false);
         this.goalSelector.addGoal(7, new LookAtGoal(this, PlayerEntity.class, 6.0F));
         this.goalSelector.addGoal(5, eatGrassGoal);
         this.goalSelector.addGoal(2, new ZurAttackGoal(this, 1.0D, true));
