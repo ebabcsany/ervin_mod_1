@@ -42,6 +42,10 @@
         },
         {
           "type": "minecraft:item",
+          "name": "ervin_mod_1:air"
+        },
+        {
+          "type": "minecraft:item",
           "functions": [
             {
               "function": "minecraft:set_damage",
