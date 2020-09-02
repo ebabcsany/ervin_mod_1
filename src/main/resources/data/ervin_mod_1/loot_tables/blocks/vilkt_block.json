@@ -78,6 +78,10 @@
         },
         {
           "type": "minecraft:item",
+          "name": "ervin_mod_1:black_iron_ingot"
+        },
+        {
+          "type": "minecraft:item",
           "name": "ervin_mod_1:black_smooth_stone"
         },
         {
@@ -102,6 +106,10 @@
         },
         {
           "type": "minecraft:item",
+          "name": "ervin_mod_1:tripwires/black_string"
+        },
+        {
+          "type": "minecraft:item",
           "name": "ervin_mod_1:blue_cobblestone"
         },
         {
@@ -111,6 +119,10 @@
         {
           "type": "minecraft:item",
           "name": "ervin_mod_1:blue_cobblestone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:blue_iron_ingot"
         },
         {
           "type": "minecraft:item",
@@ -138,6 +150,10 @@
         },
         {
           "type": "minecraft:item",
+          "name": "ervin_mod_1:tripwires/blue_string"
+        },
+        {
+          "type": "minecraft:item",
           "name": "ervin_mod_1:brend"
         },
         {
@@ -151,6 +167,10 @@
         {
           "type": "minecraft:item",
           "name": "ervin_mod_1:brown_cobblestone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:brown_iron_ingot"
         },
         {
           "type": "minecraft:item",
@@ -175,6 +195,10 @@
         {
           "type": "minecraft:item",
           "name": "ervin_mod_1:brown_stone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tripwires/brown_string"
         },
         {
           "type": "minecraft:item",
@@ -226,6 +250,10 @@
         },
         {
           "type": "minecraft:item",
+          "name": "ervin_mod_1:cyan_iron_ingot"
+        },
+        {
+          "type": "minecraft:item",
           "name": "ervin_mod_1:cyan_smooth_stone"
         },
         {
@@ -247,6 +275,10 @@
         {
           "type": "minecraft:item",
           "name": "ervin_mod_1:cyan_stone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tripwires/cyan_string"
         },
         {
           "type": "minecraft:item",
@@ -311,6 +343,30 @@
         {
           "type": "minecraft:item",
           "name": "ervin_mod_1:durk"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:durt"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:durt_axe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:durt_hoe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:durt_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:durt_shovel"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:durt_sword"
         },
         {
           "type": "minecraft:item",
@@ -435,6 +491,10 @@
         {
           "type": "minecraft:item",
           "name": "ervin_mod_1:epkin"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:example_block"
         },
         {
           "type": "minecraft:item",
@@ -610,6 +670,14 @@
         },
         {
           "type": "minecraft:item",
+          "name": "ervin_mod_1:gray_iron_ingot"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tripwires/gray_string"
+        },
+        {
+          "type": "minecraft:item",
           "name": "ervin_mod_1:green_cobblestone"
         },
         {
@@ -619,6 +687,10 @@
         {
           "type": "minecraft:item",
           "name": "ervin_mod_1:green_cobblestone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:green_iron_ingot"
         },
         {
           "type": "minecraft:item",
@@ -646,6 +718,10 @@
         },
         {
           "type": "minecraft:item",
+          "name": "ervin_mod_1:tripwires/green_string"
+        },
+        {
+          "type": "minecraft:item",
           "name": "ervin_mod_1:grint"
         },
         {
@@ -655,6 +731,14 @@
         {
           "type": "minecraft:item",
           "name": "ervin_mod_1:grint_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:grith"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:grith_block"
         },
         {
           "type": "minecraft:item",
@@ -707,6 +791,14 @@
         {
           "type": "minecraft:item",
           "name": "ervin_mod_1:gurk_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:gurkt"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:gurkth"
         },
         {
           "type": "minecraft:item",
@@ -806,6 +898,10 @@
         },
         {
           "type": "minecraft:item",
+          "name": "ervin_mod_1:light_blue_iron_ingot"
+        },
+        {
+          "type": "minecraft:item",
           "name": "ervin_mod_1:light_blue_smooth_stone"
         },
         {
@@ -830,6 +926,10 @@
         },
         {
           "type": "minecraft:item",
+          "name": "ervin_mod_1:tripwires/light_blue_string"
+        },
+        {
+          "type": "minecraft:item",
           "name": "ervin_mod_1:light_gray_cobblestone"
         },
         {
@@ -839,6 +939,10 @@
         {
           "type": "minecraft:item",
           "name": "ervin_mod_1:light_gray_cobblestone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:light_gray_iron_ingot"
         },
         {
           "type": "minecraft:item",
@@ -866,6 +970,10 @@
         },
         {
           "type": "minecraft:item",
+          "name": "ervin_mod_1:tripwires/light_gray_string"
+        },
+        {
+          "type": "minecraft:item",
           "name": "ervin_mod_1:lime_cobblestone"
         },
         {
@@ -875,6 +983,10 @@
         {
           "type": "minecraft:item",
           "name": "ervin_mod_1:lime_cobblestone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:lime_iron_ingot"
         },
         {
           "type": "minecraft:item",
@@ -902,6 +1014,10 @@
         },
         {
           "type": "minecraft:item",
+          "name": "ervin_mod_1:tripwires/lime_string"
+        },
+        {
+          "type": "minecraft:item",
           "name": "ervin_mod_1:magenta_cobblestone"
         },
         {
@@ -911,6 +1027,10 @@
         {
           "type": "minecraft:item",
           "name": "ervin_mod_1:magenta_cobblestone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:magenta_iron_ingot"
         },
         {
           "type": "minecraft:item",
@@ -935,6 +1055,10 @@
         {
           "type": "minecraft:item",
           "name": "ervin_mod_1:magenta_stone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tripwires/magenta_string"
         },
         {
           "type": "minecraft:item",
@@ -986,6 +1110,10 @@
         },
         {
           "type": "minecraft:item",
+          "name": "ervin_mod_1:obsidian_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
           "name": "ervin_mod_1:orange_cobblestone"
         },
         {
@@ -995,6 +1123,10 @@
         {
           "type": "minecraft:item",
           "name": "ervin_mod_1:orange_cobblestone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:orange_iron_ingot"
         },
         {
           "type": "minecraft:item",
@@ -1022,6 +1154,10 @@
         },
         {
           "type": "minecraft:item",
+          "name": "ervin_mod_1:tripwires/orange_string"
+        },
+        {
+          "type": "minecraft:item",
           "name": "ervin_mod_1:pack"
         },
         {
@@ -1039,6 +1175,10 @@
         {
           "type": "minecraft:item",
           "name": "ervin_mod_1:pink_cobblestone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:pink_iron_ingot"
         },
         {
           "type": "minecraft:item",
@@ -1066,6 +1206,10 @@
         },
         {
           "type": "minecraft:item",
+          "name": "ervin_mod_1:tripwires/pink_string"
+        },
+        {
+          "type": "minecraft:item",
           "name": "ervin_mod_1:purple_cobblestone"
         },
         {
@@ -1075,6 +1219,10 @@
         {
           "type": "minecraft:item",
           "name": "ervin_mod_1:purple_cobblestone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:purple_iron_ingot"
         },
         {
           "type": "minecraft:item",
@@ -1099,6 +1247,10 @@
         {
           "type": "minecraft:item",
           "name": "ervin_mod_1:purple_stone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tripwires/purple_string"
         },
         {
           "type": "minecraft:item",
@@ -1135,6 +1287,10 @@
         {
           "type": "minecraft:item",
           "name": "ervin_mod_1:red_cobblestone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:red_iron_ingot"
         },
         {
           "type": "minecraft:item",
@@ -1183,6 +1339,10 @@
         {
           "type": "minecraft:item",
           "name": "ervin_mod_1:red_stone_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tripwires/red_string"
         },
         {
           "type": "minecraft:item",
@@ -1390,6 +1550,14 @@
         },
         {
           "type": "minecraft:item",
+          "name": "ervin_mod_1:targ"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:targ_seeds"
+        },
+        {
+          "type": "minecraft:item",
           "name": "ervin_mod_1:terat"
         },
         {
@@ -1474,7 +1642,27 @@
         },
         {
           "type": "minecraft:item",
+          "name": "ervin_mod_1:trugh"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:trugk"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:trugk_block"
+        },
+        {
+          "type": "minecraft:item",
           "name": "ervin_mod_1:trugn"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:trugn_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:trugt"
         },
         {
           "type": "minecraft:item",
@@ -1495,6 +1683,10 @@
         {
           "type": "minecraft:item",
           "name": "ervin_mod_1:vilkt_block"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:vilt_entity_spawn_egg"
         },
         {
           "type": "minecraft:item",
@@ -1566,6 +1758,10 @@
         },
         {
           "type": "minecraft:item",
+          "name": "ervin_mod_1:yellow_iron_ingot"
+        },
+        {
+          "type": "minecraft:item",
           "name": "ervin_mod_1:yellow_smooth_stone"
         },
         {
@@ -1587,6 +1783,10 @@
         {
           "type": "minecraft:item",
           "name": "ervin_mod_1:yellow_stone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tripwires/yellow_string"
         },
         {
           "type": "minecraft:item",
