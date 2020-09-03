@@ -95,6 +95,7 @@ public class ExampleBiome extends Biome {
 		DefaultBiomeFeatures.addExtraGoldOre(this);
 		ModDefaultBiomeFeatures.addExtraEmeraldOre(this);
 		ModBiomeFeatures.addExampleFeature(this, 1000);
+		ModDefaultBiomeFeatures.addStones(this);
 		ModDefaultBiomeFeatures.addKiomne(this);
 	}
 

@@ -2,6 +2,7 @@ package com.babcsany.minecraft.ervin_mod_1.world.biomes;
 
 import com.babcsany.minecraft.ervin_mod_1.init.ModBiomeFeatures;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.JazzTree;
+import com.babcsany.minecraft.ervin_mod_1.world.feature.ModDefaultBiomeFeatures;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.world.biome.Biome;
@@ -47,6 +48,24 @@ public class ExampleBiome5 extends Biome {
 
 		DefaultBiomeFeatures.addOres(this);
 		DefaultBiomeFeatures.addExtraGoldOre(this);
+		ModDefaultBiomeFeatures.addExtraBlackStone(this);
+		ModDefaultBiomeFeatures.addExtraBlueStone(this);
+		ModDefaultBiomeFeatures.addExtraBrownStone(this);
+		ModDefaultBiomeFeatures.addExtraCyanStone(this);
+		ModDefaultBiomeFeatures.addExtraGreenStone(this);
+		ModDefaultBiomeFeatures.addExtraLightBlueStone(this);
+		ModDefaultBiomeFeatures.addExtraLightGrayStone(this);
+		ModDefaultBiomeFeatures.addExtraLimeStone(this);
+		ModDefaultBiomeFeatures.addExtraMagentaStone(this);
+		ModDefaultBiomeFeatures.addExtraOrangeStone(this);
+		ModDefaultBiomeFeatures.addExtraPinkStone(this);
+		ModDefaultBiomeFeatures.addExtraPurpleStone(this);
+		ModDefaultBiomeFeatures.addExtraRedStone(this);
+		ModDefaultBiomeFeatures.addExtraWhiteStone(this);
+		ModDefaultBiomeFeatures.addExtraYellowStone(this);
+		ModDefaultBiomeFeatures.addWaterLakes(this);
+		ModDefaultBiomeFeatures.addStones(this);
+		ModDefaultBiomeFeatures.addStoneVariants(this);
 		DefaultBiomeFeatures.addExtraEmeraldOre(this);
 		ModBiomeFeatures.addExampleFeature(this, 10);
 	}

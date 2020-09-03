@@ -69,8 +69,22 @@ public class ExampleBiome4 extends Biome {
 
 		DefaultBiomeFeatures.addOres(this);
 		DefaultBiomeFeatures.addExtraGoldOre(this);
+		ModDefaultBiomeFeatures.addExtraBlackStone(this);
+		ModDefaultBiomeFeatures.addExtraBlueStone(this);
+		ModDefaultBiomeFeatures.addExtraBrownStone(this);
+		ModDefaultBiomeFeatures.addExtraCyanStone(this);
+		ModDefaultBiomeFeatures.addExtraGreenStone(this);
+		ModDefaultBiomeFeatures.addExtraLightBlueStone(this);
+		ModDefaultBiomeFeatures.addExtraLightGrayStone(this);
+		ModDefaultBiomeFeatures.addExtraLimeStone(this);
+		ModDefaultBiomeFeatures.addExtraMagentaStone(this);
+		ModDefaultBiomeFeatures.addExtraOrangeStone(this);
+		ModDefaultBiomeFeatures.addExtraPinkStone(this);
+		ModDefaultBiomeFeatures.addExtraPurpleStone(this);
+		ModDefaultBiomeFeatures.addExtraRedStone(this);
+		ModDefaultBiomeFeatures.addExtraWhiteStone(this);
+		ModDefaultBiomeFeatures.addExtraYellowStone(this);
 		ModDefaultBiomeFeatures.addExtraEmeraldOre(this);
-		ModBiomeFeatures.addExampleFeature(this, 10000);
 		ModDefaultBiomeFeatures.addExtraVilktBlock(this);
 		ModDefaultBiomeFeatures.addExtraVilktBlock1(this);
 		ModDefaultBiomeFeatures.addExtraVilktBlock2(this);
@@ -87,7 +101,9 @@ public class ExampleBiome4 extends Biome {
 		ModDefaultBiomeFeatures.addExtraVilktBlock13(this);
 		ModDefaultBiomeFeatures.addExtraVilktBlock14(this);
 		ModDefaultBiomeFeatures.addExtraVilktBlock15(this);
+		ModBiomeFeatures.addExampleFeature(this, 10000);
 		ModDefaultBiomeFeatures.addKiomne(this);
+		ModDefaultBiomeFeatures.addStones(this);
 		ModDefaultBiomeFeatures.addEndCity(this);
 	}
 
