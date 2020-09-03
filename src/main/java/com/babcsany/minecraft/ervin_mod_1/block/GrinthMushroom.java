@@ -17,10 +17,10 @@ import net.minecraft.world.server.ServerWorld;
 
 import java.util.Random;
 
-public class BrownMushroom extends BushBlock implements IGrowable {
+public class GrinthMushroom extends BushBlock implements IGrowable {
    protected static final VoxelShape SHAPE = Block.makeCuboidShape(5.0D, 0.0D, 5.0D, 11.0D, 6.0D, 11.0D);
 
-   public BrownMushroom(Properties properties) {
+   public GrinthMushroom(Properties properties) {
       super(properties);
    }
 
@@ -77,7 +77,7 @@ public class BrownMushroom extends BushBlock implements IGrowable {
    public boolean func_226940_a_(ServerWorld p_226940_1_, BlockPos p_226940_2_, BlockState p_226940_3_, Random p_226940_4_) {
       p_226940_1_.removeBlock(p_226940_2_, false);
       ConfiguredFeature<BigMushroomFeatureConfig, ?> configuredfeature;
-      if (this == BlockInit.GRITH_MUSHROOM.get()) {
+      if (this == BlockInit.GRINTH_MUSHROOM.get()) {
          configuredfeature = Feature.HUGE_BROWN_MUSHROOM.withConfiguration(ModDefaultBiomeFeatures.BIG_BROWN_MUSHROOM);
       } else {
          if (this != Blocks.RED_MUSHROOM) {
