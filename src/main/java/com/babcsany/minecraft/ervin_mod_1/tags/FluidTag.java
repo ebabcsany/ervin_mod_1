@@ -13,7 +13,9 @@ public class FluidTag {
       return Optional.empty();
    }, "", false, "");
    private static int generation;
-   public static final Tag<Fluid> JURK = makeWrapperTag("water");
+   public static final Tag<Fluid> WATER = makeWrapperTag("water");
+   public static final Tag<Fluid> JURK = makeWrapperTag("jurk");
+   public static final Tag<Fluid> MILK = makeWrapperTag("milk");
    public static final Tag<Fluid> LAVA = makeWrapperTag("lava");
 
    public static void setCollection(TagCollection<Fluid> collectionIn) {
