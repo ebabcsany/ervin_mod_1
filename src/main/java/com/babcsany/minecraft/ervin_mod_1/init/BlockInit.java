@@ -129,7 +129,7 @@ public class BlockInit {
             Block.Properties.create(Material.ROCK)
                     .harvestLevel(0)
                     .harvestTool(ToolType.PICKAXE)
-                    .hardnessAndResistance(10.0f)
+                    .hardnessAndResistance(1.5F, 6.0F)
     ));
     public static final RegistryObject<Block> RED_COBBLESTONE = BLOCKS.register("red_cobblestone", () -> new RedCobblestone(
             Block.Properties.create(Material.ROCK)
