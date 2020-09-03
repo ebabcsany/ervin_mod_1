@@ -27,14 +27,16 @@ public class ExampleBiomeSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderCon
 			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock,
 					defaultFluid, seaLevel, seed,
 					new SurfaceBuilderConfig(BlockInit.LEAT_BLOCK_CRAFTING_TABLE.get().getDefaultState(),
-							BlockInit.TRINKS.get().getDefaultState(), BlockInit.GRITK_BLOCK.get().getDefaultState()));
+							BlockInit.CRASK.get().getDefaultState(), BlockInit.GRITK_BLOCK.get().getDefaultState()
+					));
 		} else {
 			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock,
 					defaultFluid, seaLevel, seed,
 					new SurfaceBuilderConfig(
 							i == 1 ? Blocks.GRASS_BLOCK.getDefaultState()
 									: BlockInit.SRIUNK_BLOCK.get().getDefaultState(),
-							BlockInit.TRUGN.get().getDefaultState(), Blocks.ACACIA_PLANKS.getDefaultState()));
+							BlockInit.TRUGN.get().getDefaultState(), BlockInit.TRINKS.get().getDefaultState()
+					));
 		}
 	}
 }

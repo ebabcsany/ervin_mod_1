@@ -1,6 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.world.biomes;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
+import com.babcsany.minecraft.ervin_mod_1.client.entity.render.ZurEntity1Render;
 import com.babcsany.minecraft.ervin_mod_1.entity.animal.SrachEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.animal.ViltEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.animal.WolfEntity1;
@@ -25,22 +26,22 @@ import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.placement.*;
 import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
 public class ExampleBiome extends Biome {
 
-	private static final EntityType<ZurEntity> ZUR_ENTITY = register("zur_entity", EntityType.Builder.<ZurEntity>create(ZurEntity::new, EntityClassification.MONSTER).size(0.9F, 1.95F));
-	private static final EntityType<ZurEntity1> ZUR_ENTITY1 = register("zur_entity1", EntityType.Builder.<ZurEntity1>create(ZurEntity1::new, EntityClassification.CREATURE).size(0.9F, 1.3F));
-	private static final EntityType<ViltEntity> VILT_ENTITY = register("vilt_entity", EntityType.Builder.<ViltEntity>create(ViltEntity::new, EntityClassification.CREATURE).size(1.0F, 2.0F));
-	private static final EntityType<SrachEntity> SRACH_ENTITY = register("srach_entity", EntityType.Builder.<SrachEntity>create(SrachEntity::new, EntityClassification.CREATURE).size(0.9F, 1.4F));
+	//private static final EntityType<ZurEntity> ZUR_ENTITY = register("zur_entity", EntityType.Builder.<ZurEntity>create(ZurEntity::new, EntityClassification.MONSTER).size(0.9F, 1.95F));
+	//private static final EntityType<ZurEntity1> ZUR_ENTITY1 = register("zur_entity1", EntityType.Builder.<ZurEntity1>create(ZurEntity1::new, EntityClassification.CREATURE).size(0.9F, 1.3F));
+	//private static final EntityType<ViltEntity> VILT_ENTITY = register("vilt_entity", EntityType.Builder.<ViltEntity>create(ViltEntity::new, EntityClassification.CREATURE).size(1.0F, 2.0F));
+	//private static final EntityType<SrachEntity> SRACH_ENTITY = register("srach_entity", EntityType.Builder.<SrachEntity>create(SrachEntity::new, EntityClassification.CREATURE).size(0.9F, 1.4F));
 
 	public ExampleBiome(Builder biomeBuilder) {
 		super(biomeBuilder);
-		this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityType.ZOMBIE, 10, 2, 5));
-		//this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ZUR_ENTITY, 5, 5, 20));
+		this.addSpawn(EntityClassification.MONSTER, new Biome.SpawnListEntry(EntityType.ZOMBIE, 10, 2, 5));
+		//this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityInit.ZUR_ENTITY.get(), 5, 5, 20));
 		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.BEE, 20, 2, 10));
-		//this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ZUR_ENTITY1, 15, 10, 30));
-		//this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(VILT_ENTITY, 30, 15, 40));
-		//this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(SRACH_ENTITY, 8, 8, 16));
+		//this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.VILT_ENTITY.get(), 30, 15, 40));
+		//this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.SRACH_ENTITY.get(), 8, 8, 16));
 		this.addCarver(GenerationStage.Carving.AIR,
 				Biome.createCarver(WorldCarver.CAVE, new ProbabilityConfig(0.14285715F)));
 		this.addCarver(GenerationStage.Carving.AIR,
@@ -92,7 +93,7 @@ public class ExampleBiome extends Biome {
 
 		DefaultBiomeFeatures.addOres(this);
 		DefaultBiomeFeatures.addExtraGoldOre(this);
-		DefaultBiomeFeatures.addExtraEmeraldOre(this);
+		ModDefaultBiomeFeatures.addExtraEmeraldOre(this);
 		ModBiomeFeatures.addExampleFeature(this, 1000);
 		ModDefaultBiomeFeatures.addKiomne(this);
 	}
