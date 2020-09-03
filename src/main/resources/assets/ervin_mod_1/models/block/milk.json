@@ -1,0 +1,6 @@
+{
+    "textures": {
+        "all": "ervin_mod_1:block/milk_flow",
+        "particle": "ervin_mod_1:block/milk_still"
+    }
+}
