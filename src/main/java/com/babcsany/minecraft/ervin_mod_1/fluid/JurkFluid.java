@@ -33,7 +33,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public abstract class JurkFluid extends FlowingFluid {
+public abstract class JurkFluid extends FlowingFluid2 {
    public Fluid getFlowingFluid() {
       return ModFluids.FLOWING_JURK;
    }

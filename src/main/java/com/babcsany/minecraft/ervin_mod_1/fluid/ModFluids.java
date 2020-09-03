@@ -4,13 +4,15 @@ import net.minecraft.fluid.*;
 import net.minecraft.util.registry.Registry;
 
 public class ModFluids {
-   //public static final FlowingFluid EMPTY = register("empty", new EmptyFluid.Flowing());
-//   public static final FlowingFluid FLOWING_WATER = register("flowing_water", new WaterFluid.Flowing());
-//   public static final FlowingFluid WATER = register("water", new WaterFluid.Source());
-//   public static final FlowingFluid FLOWING_LAVA = register("flowing_lava", new LavaFluid.Flowing());
-//   public static final FlowingFluid LAVA = register("lava", new LavaFluid.Source());
-   public static final FlowingFluid FLOWING_JURK = register("flowing_jurk", new JurkFluid.Flowing());
-   public static final FlowingFluid JURK = register("jurk", new JurkFluid() {
+   public static final Fluid EMPTY = register("empty", new EmptyFluid());
+   public static final FlowingFluid FLOWING_WATER = register("flowing_water", new WaterFluid.Flowing());
+   public static final FlowingFluid WATER = register("water", new WaterFluid.Source());
+   public static final FlowingFluid FLOWING_LAVA = register("flowing_lava", new LavaFluid.Flowing());
+   public static final FlowingFluid LAVA = register("lava", new LavaFluid.Source());
+   public static final FlowingFluid2 FLOWING_JURK = register("flowing_jurk", new JurkFluid.Flowing());
+   public static final FlowingFluid2 JURK = register("jurk", new JurkFluid.Source());
+   public static final FlowingFluid1 FLOWING_MILK = register("flowing_milk", new MilkFluid.Flowing());
+   public static final FlowingFluid1 MILK = register("milk", new MilkFluid() {
 
       @Override
       public boolean isSource(IFluidState state) {
