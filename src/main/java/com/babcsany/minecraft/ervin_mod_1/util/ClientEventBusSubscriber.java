@@ -41,5 +41,21 @@ public class ClientEventBusSubscriber {
             DimensionManager.registerDimension(Ervin_mod_1.EXAMPLE_DIM_TYPE, DimensionInit.EXAMPLE_DIM.get(), null,
                     true);
         }
+        if (DimensionType.byName(Ervin_mod_1.EXAMPLE_DIM_TYPE0) == null) {
+            DimensionManager.registerDimension(Ervin_mod_1.EXAMPLE_DIM_TYPE0, DimensionInit.EXAMPLE_DIM0.get(), null,
+                    true);
+        }
+        if (DimensionType.byName(Ervin_mod_1.EXAMPLE_DIM_TYPE1) == null) {
+            DimensionManager.registerDimension(Ervin_mod_1.EXAMPLE_DIM_TYPE1, DimensionInit.EXAMPLE_DIM1.get(), null,
+                    true);
+        }
+        if (DimensionType.byName(Ervin_mod_1.EXAMPLE_DIM_TYPE2) == null) {
+            DimensionManager.registerDimension(Ervin_mod_1.EXAMPLE_DIM_TYPE2, DimensionInit.EXAMPLE_DIM2.get(), null,
+                    true);
+        }
+        if (DimensionType.byName(Ervin_mod_1.EXAMPLE_DIM_TYPE3) == null) {
+            DimensionManager.registerDimension(Ervin_mod_1.EXAMPLE_DIM_TYPE3, DimensionInit.EXAMPLE_DIM3.get(), null,
+                    true);
+        }
     }
 }
