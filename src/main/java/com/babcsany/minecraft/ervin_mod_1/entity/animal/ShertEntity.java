@@ -61,7 +61,7 @@ public class ShertEntity extends SrachEntity implements net.minecraftforge.commo
    public void onStruckByLightning(LightningBoltEntity lightningBolt) {
       UUID uuid = lightningBolt.getUniqueID();
       if (!uuid.equals(this.lightningUUID)) {
-         this.setShertType(this.getShertType() == Type.GRITH ? ShertEntity.Type.BROWN : Type.GRITH);
+         this.setShertType(this.getShertType() == Type.GRINTH ? ShertEntity.Type.BROWN : Type.GRINTH);
          this.lightningUUID = uuid;
          this.playSound(SoundEvents.ENTITY_MOOSHROOM_CONVERT, 2.0F, 1.0F);
       }
@@ -70,7 +70,7 @@ public class ShertEntity extends SrachEntity implements net.minecraftforge.commo
 
    protected void registerData() {
       super.registerData();
-      this.dataManager.register(SHERT_TYPE, Type.GRITH.name);
+      this.dataManager.register(SHERT_TYPE, Type.GRINTH.name);
    }
 
    public boolean processInteract(PlayerEntity player, Hand hand) {
@@ -249,7 +249,7 @@ public class ShertEntity extends SrachEntity implements net.minecraftforge.commo
 
    public static enum Type {
       RED("red", Blocks.RED_MUSHROOM.getDefaultState()),
-      GRITH("grith", BlockInit.GRITH_MUSHROOM.get().getDefaultState()),
+      GRINTH("grith", BlockInit.GRINTH_MUSHROOM.get().getDefaultState()),
       BROWN("brown", Blocks.BROWN_MUSHROOM.getDefaultState());
 
       private final String name;
@@ -275,7 +275,7 @@ public class ShertEntity extends SrachEntity implements net.minecraftforge.commo
             }
          }
 
-         return GRITH;
+         return GRINTH;
       }
    }
 }
