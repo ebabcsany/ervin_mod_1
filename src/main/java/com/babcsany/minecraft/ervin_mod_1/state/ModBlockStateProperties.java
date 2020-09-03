@@ -98,8 +98,10 @@ public class ModBlockStateProperties {
    public static final IntegerProperty LEVEL_0_3 = IntegerProperty.create("level", 0, 3);
    public static final IntegerProperty LEVEL_0_8 = IntegerProperty.create("level", 0, 8);
    public static final IntegerProperty LEVEL_1_8 = IntegerProperty.create("level", 1, 8);
+   public static final IntegerProperty LEVEL_1_16 = IntegerProperty.create("level", 1, 16);
    public static final IntegerProperty HONEY_LEVEL = IntegerProperty.create("honey_level", 0, 5);
    public static final IntegerProperty LEVEL_0_15 = IntegerProperty.create("level", 0, 15);
+   public static final IntegerProperty LEVEL_0_16 = IntegerProperty.create("level", 0, 16);
    public static final IntegerProperty MOISTURE_0_7 = IntegerProperty.create("moisture", 0, 7);
    public static final IntegerProperty NOTE_0_24 = IntegerProperty.create("note", 0, 24);
    public static final IntegerProperty PICKLES_1_4 = IntegerProperty.create("pickles", 1, 4);
