@@ -42,6 +42,10 @@ public class Ervin_mod_1 {
     // Directly reference a log4j logger.
     public static final Logger LOGGER = LogManager.getLogger();
     public static final ResourceLocation EXAMPLE_DIM_TYPE = new ResourceLocation(Ervin_mod_1.MOD_ID, "example");
+    public static final ResourceLocation EXAMPLE_DIM_TYPE0 = new ResourceLocation(Ervin_mod_1.MOD_ID, "example0");
+    public static final ResourceLocation EXAMPLE_DIM_TYPE1 = new ResourceLocation(Ervin_mod_1.MOD_ID, "example1");
+    public static final ResourceLocation EXAMPLE_DIM_TYPE2 = new ResourceLocation(Ervin_mod_1.MOD_ID, "example2");
+    public static final ResourceLocation EXAMPLE_DIM_TYPE3 = new ResourceLocation(Ervin_mod_1.MOD_ID, "example3");
 
     public Ervin_mod_1() {
         // Register the setup method for modloading
@@ -60,6 +64,7 @@ public class Ervin_mod_1 {
         ItemInit.ITEMS.register(modEventBus);
         BlockInit.BLOCKS.register(modEventBus);
         ContainerInit.CONTAINER_TYPES.register(modEventBus);
+        DecoratorInit.DECORATORS.register(modEventBus);
         EntityInit.ENTITY_TYPES.register(modEventBus);
         BiomeInit.BIOMES.register(modEventBus);
         SoundInit.SOUNDS.register(modEventBus);
