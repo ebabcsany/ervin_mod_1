@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "ervin_mod_1:block/fluid/jurk_flow"
+      "model": "ervin_mod_1:block/jurk"
     }
   }
 }
