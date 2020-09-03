@@ -487,7 +487,7 @@ public class ItemInit {
     public static final RegistryObject<Item> GURLT = ITEMS.register("gurlt", () -> new Item(
             (new Item.Properties())
     ));
-    public static final RegistryObject<Item> TURG_SHIELD = ITEMS.register("turg_shield", () -> new TurgShieldItem(
+    public static final RegistryObject<Item> TURG_SHIELD = ITEMS.register("turg_shield", () -> new ShieldItem(
             (new Item.Properties())
                     .maxDamage(5000)
     ));
@@ -536,8 +536,17 @@ public class ItemInit {
     public static final RegistryObject<Item> DURT_PICKAXE = ITEMS.register("durt_pickaxe", () -> new PickaxeItem(
             ModItemTier.DURT, 4, 1.0F, (new Item.Properties())
     ));
-    public static final RegistryObject<Item> DURT_AXE = ITEMS.register("durt_axe", () -> new AxeItem1(
+    public static final RegistryObject<Item> DURT_AXE = ITEMS.register("durt_axe", () -> new AxeItem(
             ModItemTier.DURT, 14, 2.0F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> DURT_HOE = ITEMS.register("durt_hoe", () -> new HoeItem(
+            ModItemTier.DURT, 0.8F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> DURT_SHOVEL = ITEMS.register("durt_shovel", () -> new ShovelItem(
+            ModItemTier.DURT, 11, 1.5F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> DURT_SWORD = ITEMS.register("durt_sword", () -> new SwordItem(
+            ModItemTier.DURT, 8, 1.2F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> BLACK_IRON_INGOT = ITEMS.register("black_iron_ingot", () -> new Item(
             (new Item.Properties())
@@ -595,5 +604,29 @@ public class ItemInit {
     ));
     public static final RegistryObject<Item> VIRKT = ITEMS.register("virkt", () -> new Item(
             (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> OBSIDIAN_PICKAXE = ITEMS.register("obsidian_pickaxe", () -> new PickaxeItem(
+            ModItemTier.OBSIDIAN, 2, -2.0F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> GRITH = ITEMS.register("grith", () -> new SpecialItem1(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> GURKT = ITEMS.register("gurkt", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> GURKTH = ITEMS.register("gurkth", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> TRUGH = ITEMS.register("trugh", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> TRUGK = ITEMS.register("trugk", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> TRUGT = ITEMS.register("trugt", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> TRUGN_PICKAXE = ITEMS.register("trugn_pickaxe", () -> new PickaxeItem(
+            ModItemTier.TRUGN, 2600, 1620.0F, (new Item.Properties())
     ));
 }

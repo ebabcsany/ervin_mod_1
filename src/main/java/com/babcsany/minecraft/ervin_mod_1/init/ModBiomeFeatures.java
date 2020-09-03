@@ -1,7 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.init;
 
-import com.babcsany.minecraft.ervin_mod_1.world.feature.SriunkFeature;
-import com.babcsany.minecraft.ervin_mod_1.world.feature.SriunkFeature;
+import com.babcsany.minecraft.ervin_mod_1.world.feature.ExampleFeature;
+import com.babcsany.minecraft.ervin_mod_1.world.feature.ExampleFeature1;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.IFeatureConfig;
@@ -13,7 +13,16 @@ public class ModBiomeFeatures {
 
 	public static void addExampleFeature(Biome biome, int chance) {
 		biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES,
-				new SriunkFeature(NoFeatureConfig::deserialize).withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG)
-						.withPlacement(Placement.CHANCE_HEIGHTMAP_DOUBLE.configure(new ChanceConfig(chance))));
+				new ExampleFeature(NoFeatureConfig::deserialize).withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG)
+						.withPlacement(Placement.CHANCE_HEIGHTMAP_DOUBLE.configure(new ChanceConfig(chance))
+						));
+
+	}
+	public static void addExampleFeature1(Biome biome, int chance) {
+		biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES,
+				new ExampleFeature1(NoFeatureConfig::deserialize).withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG)
+						.withPlacement(Placement.CHANCE_PASSTHROUGH.configure(new ChanceConfig(chance))
+						));
+
 	}
 }

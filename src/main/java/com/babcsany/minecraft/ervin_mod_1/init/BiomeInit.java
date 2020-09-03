@@ -1,11 +1,8 @@
 package com.babcsany.minecraft.ervin_mod_1.init;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
-import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
-import com.babcsany.minecraft.ervin_mod_1.world.biomes.ExampleBiome;
-import com.babcsany.minecraft.ervin_mod_1.world.biomes.ExampleBiomeSurfaceBuilder;
-import com.babcsany.minecraft.ervin_mod_1.world.biomes.MigBiome;
-import com.babcsany.minecraft.ervin_mod_1.world.biomes.MigBiomeSurfaceBuilder;
+import com.babcsany.minecraft.ervin_mod_1.world.biomes.*;
+import com.babcsany.minecraft.ervin_mod_1.world.gen.surfacebuilders.SurfaceBuilderConfig1;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
@@ -69,15 +66,96 @@ public class BiomeInit {
 													new SurfaceBuilderConfig(Blocks.COARSE_DIRT.getDefaultState(),
 															Blocks.DIRT.getDefaultState(),
 															Blocks.DIRT.getDefaultState())))
-									.category(Category.PLAINS).downfall(0.5f).depth(0.12f).parent(null)));
+									.category(Category.PLAINS).downfall(0.5f).depth(0.12f).parent(null)
+					));
+	public static final RegistryObject<Biome> EXAMPLE_BIOME0 = BIOMES
+			.register("example_biome0",
+					() -> new ExampleBiome0(
+							new Biome.Builder().precipitation(RainType.SNOW).scale(1.2f).temperature(0.5f)
+									.waterColor(16724639).waterFogColor(16762304)
+									.surfaceBuilder(
+											new ConfiguredSurfaceBuilder<SurfaceBuilderConfig>(
+													register("example_surface0",
+															new ExampleBiomeSurfaceBuilder0(
+																	SurfaceBuilderConfig::deserialize)),
+													new SurfaceBuilderConfig(Blocks.COARSE_DIRT.getDefaultState(),
+															Blocks.DIRT.getDefaultState(),
+															Blocks.DIRT.getDefaultState())))
+									.category(Category.PLAINS).downfall(0.5f).depth(0.12f).parent(null)
+					));
+	public static final RegistryObject<Biome> EXAMPLE_BIOME1 = BIOMES
+			.register("example_biome1",
+					() -> new ExampleBiome1(
+							new Biome.Builder().precipitation(RainType.RAIN).scale(1.2f).temperature(0.5f)
+									.waterColor(4563891).waterFogColor(7543209)
+									.surfaceBuilder(
+											new ConfiguredSurfaceBuilder<SurfaceBuilderConfig>(
+													register("example_surface1",
+															new ExampleBiomeSurfaceBuilder1(
+																	SurfaceBuilderConfig::deserialize)),
+													new SurfaceBuilderConfig(Blocks.COARSE_DIRT.getDefaultState(),
+															Blocks.GRASS_BLOCK.getDefaultState(),
+															Blocks.DIRT.getDefaultState())))
+									.category(Category.PLAINS).downfall(5.5f).depth(12.12f).parent(null)
+					));
+	public static final RegistryObject<Biome> EXAMPLE_BIOME2 = BIOMES
+			.register("example_biome2",
+					() -> new ExampleBiome(
+							new Biome.Builder().precipitation(RainType.SNOW).scale(1.2f).temperature(0.5f)
+									.waterColor(16724639).waterFogColor(16762304)
+									.surfaceBuilder(
+											new ConfiguredSurfaceBuilder<SurfaceBuilderConfig>(
+													register("example_surface2",
+															new ExampleBiomeSurfaceBuilder(
+																	SurfaceBuilderConfig::deserialize)),
+													new SurfaceBuilderConfig(Blocks.COARSE_DIRT.getDefaultState(),
+															Blocks.DIRT.getDefaultState(),
+															Blocks.DIRT.getDefaultState())))
+									.category(Category.PLAINS).downfall(0.5f).depth(0.12f).parent(null)
+					));
+	public static final RegistryObject<Biome> EXAMPLE_BIOME3 = BIOMES
+			.register("example_biome3",
+					() -> new ExampleBiome3(
+							new Biome.Builder().precipitation(RainType.RAIN).scale(1000.0f).temperature(500.0f)
+									.waterColor(64895).waterFogColor(71263)
+									.surfaceBuilder(
+											new ConfiguredSurfaceBuilder<SurfaceBuilderConfig>(
+													register("example_surface3",
+															new ExampleBiomeSurfaceBuilder3(
+																	SurfaceBuilderConfig::deserialize)),
+													new SurfaceBuilderConfig(Blocks.BEDROCK.getDefaultState(),
+															Blocks.OBSIDIAN.getDefaultState(),
+															Blocks.CAVE_AIR.getDefaultState())))
+									.category(Category.PLAINS).downfall(500.0f).depth(100.0f).parent(null)
+					));
+	public static final RegistryObject<Biome> EXAMPLE_BIOME4 = BIOMES
+			.register("example_biome4",
+					() -> new ExampleBiome4(
+							new Biome.Builder().precipitation(RainType.NONE).scale(10000.0f).temperature(50.0f)
+									.waterColor(34895).waterFogColor(131263)
+									.surfaceBuilder(
+											new ConfiguredSurfaceBuilder<SurfaceBuilderConfig>(
+													register("example_surface4",
+															new ExampleBiomeSurfaceBuilder4(
+																	SurfaceBuilderConfig::deserialize)),
+													new SurfaceBuilderConfig(Blocks.GRASS_BLOCK.getDefaultState(),
+															Blocks.DIRT.getDefaultState(),
+															Blocks.COARSE_DIRT.getDefaultState())))
+									.category(Category.DESERT).downfall(50.0f).depth(10.0f).parent(null)
+					));
 
 	public static void registerBiomes() {
 		registerBiome(EXAMPLE_BIOME.get(), Type.PLAINS, Type.OVERWORLD);
+		registerBiome(EXAMPLE_BIOME1.get(), Type.PLAINS, Type.OVERWORLD);
+		registerBiome(EXAMPLE_BIOME0.get(), Type.PLAINS, Type.BEACH);
+		registerBiome(EXAMPLE_BIOME2.get(), Type.PLAINS, Type.OVERWORLD);
+		registerBiome(EXAMPLE_BIOME3.get(), Type.PLAINS, Type.OVERWORLD);
+		registerBiome(EXAMPLE_BIOME4.get(), Type.BEACH, Type.RARE);
 	}
 
 	private static void registerBiome(Biome biome, Type... types) {
 		// the line below will make it spawn in the overworld
-		BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(biome, 100));
+		BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(biome, 100000));
 		BiomeDictionary.addTypes(biome, types);
 		BiomeManager.addSpawnBiome(biome);
 	}

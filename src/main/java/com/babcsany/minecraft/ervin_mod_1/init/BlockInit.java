@@ -3,7 +3,6 @@ package com.babcsany.minecraft.ervin_mod_1.init;
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.block.*;
 import com.babcsany.minecraft.ervin_mod_1.block.FirgSapling;
-import com.babcsany.minecraft.ervin_mod_1.block.material.MaterialColor1;
 import com.babcsany.minecraft.ervin_mod_1.block.trees.FirgTree;
 import com.babcsany.minecraft.ervin_mod_1.block.trees.FrimTree;
 import com.babcsany.minecraft.ervin_mod_1.block.tripwires.*;
@@ -34,6 +33,9 @@ public class BlockInit {
     public static final RegistryObject<Block> JAZZ_LEAVES = BLOCKS.register("jazz_leaves", () -> new LeavesBlock(
             Block.Properties.from(Blocks.OAK_LEAVES)
     ));
+    public static final RegistryObject<Block> FIRG_LEAVES = BLOCKS.register("firg_leaves", () -> new FirgLeaves(
+            Block.Properties.from(Blocks.OAK_LEAVES)
+    ));
     public static final RegistryObject<Block> JAZZ_SAPLING = BLOCKS.register("jazz_sapling", () -> new ModSaplingBlock(
             () -> new JazzTree(), Block.Properties.from(Blocks.OAK_SAPLING)
     ));
@@ -50,9 +52,9 @@ public class BlockInit {
                     .hardnessAndResistance(500.0f)
     ));
     public static final RegistryObject<Block> TRUGN = BLOCKS.register("trugn", () -> new Trugn(
-            Block.Properties.create(Material.ROCK)
-                    .harvestLevel(8)
-                    .harvestTool(ToolType.PICKAXE)
+            Block.Properties.create(Material.EARTH)
+                    .harvestLevel(18)
+                    .harvestTool(ToolType.SHOVEL)
                     .hardnessAndResistance(10000000.0f)
     ));
     public static final RegistryObject<Block> REGDEM_BLOCK = BLOCKS.register("regdem_block", () -> new RegdemBlock(
@@ -255,9 +257,9 @@ public class BlockInit {
                     .hardnessAndResistance(60.0f)
     ));
     public static final RegistryObject<Block> TRING = BLOCKS.register("tring", () -> new Tring(
-            Block.Properties.create(Material.ROCK)
-                    .harvestLevel(2)
-                    .harvestTool(ToolType.PICKAXE)
+            Block.Properties.create(Material.SPONGE)
+                    .harvestLevel(1)
+                    .harvestTool(ToolType.AXE)
                     .hardnessAndResistance(60.0f)
     ));
     public static final RegistryObject<Block> PACK_BLOCK = BLOCKS.register("pack_block", () -> new PackBlock(
@@ -1292,13 +1294,13 @@ public class BlockInit {
             .hardnessAndResistance(2.0F)
             .sound(SoundType.WOOD)
     ));
-    public static final RegistryObject<Block> FIRG_LEAVES = BLOCKS.register("firg_leaves", () -> new FirgLeaves(
+    /*public static final RegistryObject<Block> FIRG_LEAVES = BLOCKS.register("firg_leaves", () -> new FirgLeaves(
             Block.Properties.create(Material.LEAVES)
                     .hardnessAndResistance(0.2F)
                     .tickRandomly()
                     .sound(SoundType.PLANT)
                     .notSolid()
-    ));
+    ));*/
     public static final RegistryObject<Block> FIRG_PLANKS = BLOCKS.register("firg_planks", () -> new FirgPlanks(
             Block.Properties.create(Material.WOOD, MaterialColor.WOOD)
                     .hardnessAndResistance(2.0F, 3.0F)
@@ -1512,7 +1514,7 @@ public class BlockInit {
     public static final RegistryObject<Block> YELLOW_TRIPWIRE = BLOCKS.register("tripwires/yellow_string", () -> new YellowTripWire(
             (YellowTripWireHook) YELLOW_TRIPWIRE_HOOK.get(), Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()
     ));
-    public static final RegistryObject<Block> GRITH_MUSHROOM = BLOCKS.register("brown_mushroom", () -> new BrownMushroom(
+    public static final RegistryObject<Block> GRINTH_MUSHROOM = BLOCKS.register("brown_mushroom", () -> new GrinthMushroom(
             Block.Properties.create(Material.PLANTS)
                     .hardnessAndResistance(0.0F)
                     .doesNotBlockMovement()
@@ -1545,4 +1547,47 @@ public class BlockInit {
                     .tickRandomly()
                     .sound(SoundType.CROP)
     ));
+    /*public static final Block1 RUGK_SLAB = BLOCKS.register("rugk_slab", () -> new Block1(
+   //         Block1.Properties.create(Material1.ROCK)
+   //                 .harvestLevel1(4)
+   //                 .harvestTool1(ToolType1.HOE)
+   //                 .hardnessAndResistance1(3590.0F, 3600.0F)
+    ));*/
+    /*public static final RegistryObject<Block> MILK = BLOCKS.register("milk", () -> new FlowingFluidBlock1(
+            () -> FluidInit.MILK_FLUID.get(), Block.Properties.create(Material.WATER)
+            .doesNotBlockMovement()
+            .hardnessAndResistance(100.0F)
+            .noDrops()
+    ));*/
+    public static final RegistryObject<Block> GRITH_BLOCK = BLOCKS.register("grith_block", () -> new GrithBlock(
+            Block.Properties.create(Material.ROCK)
+                    .harvestLevel(30)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(1000000000.0F)
+                    .lightValue(15)
+    ));
+    public static final RegistryObject<Block> TRUGK_BLOCK = BLOCKS.register("trugk_block", () -> new TrugkBlock(
+            Block.Properties.create(Material.EARTH)
+                    .harvestLevel(13)
+                    .harvestTool(ToolType.SHOVEL)
+                    .hardnessAndResistance(50000.0F)
+    ));
+    public static final RegistryObject<Block> GRITK_BLOCK1 = BLOCKS.register("example_portal_block", () -> new ExamplePortalBlock(
+            Block.Properties.create(Material.IRON)
+                    .harvestLevel(0)
+                    .lightValue(15)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(500000.0F, 1200000.0F)
+    ));
+    public static final RegistryObject<Block> RED_GRASS_BLOCK = BLOCKS.register("red_grass_block", () -> new RedGrassBlock(
+            Block.Properties.create(Material.ORGANIC)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(0.6F)
+                    .sound(SoundType.PLANT)
+                    .tickRandomly()
+    ));
+    public static final RegistryObject<Block> GRINTH_MUSHROOM_BLOCK = BLOCKS.register("red_mushroom_block", () -> new HugeMushroomBlock(
+            Block.Properties.create(Material.WOOD, MaterialColor.GREEN)
+                    .hardnessAndResistance(0.2F)
+                    .sound(SoundType.WOOD)));
 }
