@@ -30,6 +30,27 @@ import net.minecraft.world.gen.treedecorator.*;
 public class ModDefaultBiomeFeatures {
    private static final BlockState GRASS = Blocks.GRASS.getDefaultState();
    private static final BlockState FIRG = BlockInit.FIRG.get().getDefaultState();
+   private static final BlockState BARRIER = Blocks.BARRIER.getDefaultState();
+   private static final BlockState END_STONE = Blocks.END_STONE.getDefaultState();
+   private static final BlockState BLACK_STONE = BlockInit.BLACK_STONE.get().getDefaultState();
+   private static final BlockState BLUE_STONE = BlockInit.BLUE_STONE.get().getDefaultState();
+   private static final BlockState BROWN_STONE = BlockInit.BROWN_STONE.get().getDefaultState();
+   private static final BlockState CYAN_STONE = BlockInit.CYAN_STONE.get().getDefaultState();
+   private static final BlockState GREEN_STONE = BlockInit.GREEN_STONE.get().getDefaultState();
+   private static final BlockState LIGHT_BLUE_STONE = BlockInit.LIGHT_BLUE_STONE.get().getDefaultState();
+   private static final BlockState LIGHT_GRAY_STONE = BlockInit.LIGHT_GRAY_STONE.get().getDefaultState();
+   private static final BlockState LIME_STONE = BlockInit.LIME_STONE.get().getDefaultState();
+   private static final BlockState MAGENTA_STONE = BlockInit.MAGENTA_STONE.get().getDefaultState();
+   private static final BlockState ORANGE_STONE = BlockInit.ORANGE_STONE.get().getDefaultState();
+   private static final BlockState PINK_STONE = BlockInit.PINK_STONE.get().getDefaultState();
+   private static final BlockState PURPLE_STONE = BlockInit.PURPLE_STONE.get().getDefaultState();
+   private static final BlockState RED_STONE = BlockInit.RED_STONE.get().getDefaultState();
+   private static final BlockState WHITE_STONE = BlockInit.WHITE_STONE.get().getDefaultState();
+   private static final BlockState YELLOW_STONE = BlockInit.YELLOW_STONE.get().getDefaultState();
+   private static final BlockState SRIUNK_ORE = BlockInit.SRIUNK_ORE.get().getDefaultState();
+   private static final BlockState SRIUNK_BLOCK = BlockInit.SRIUNK_BLOCK.get().getDefaultState();
+   private static final BlockState KALT_BLOCK = BlockInit.KALT_BLOCK.get().getDefaultState();
+   private static final BlockState VILKT_BLOCK = BlockInit.VILKT_BLOCK.get().getDefaultState();
    private static final BlockState FIRG_LOG = BlockInit.FIRG_LOG.get().getDefaultState();
    private static final BlockState FRIM_LOG = BlockInit.FRIM_LOG.get().getDefaultState();
    private static final BlockState FIRG_LEAVES = BlockInit.FIRG_LEAVES.get().getDefaultState();
@@ -75,6 +96,7 @@ public class ModDefaultBiomeFeatures {
    private static final BlockState PEONY = Blocks.PEONY.getDefaultState();
    private static final BlockState BROWN_MUSHROOM = Blocks.BROWN_MUSHROOM.getDefaultState();
    private static final BlockState RED_MUSHROOM = Blocks.RED_MUSHROOM.getDefaultState();
+   private static final BlockState GRINTH_MUSHROOM = Blocks.RED_MUSHROOM.getDefaultState();
    private static final BlockState SEAGRASS = Blocks.SEAGRASS.getDefaultState();
    private static final BlockState PACKED_ICE = Blocks.PACKED_ICE.getDefaultState();
    private static final BlockState BLUE_ICE = Blocks.BLUE_ICE.getDefaultState();
@@ -95,6 +117,7 @@ public class ModDefaultBiomeFeatures {
    private static final BlockState CACTUS = Blocks.CACTUS.getDefaultState();
    private static final BlockState SUGAR_CANE = Blocks.SUGAR_CANE.getDefaultState();
    private static final BlockState RED_MUSHROOM_BLOCK = Blocks.RED_MUSHROOM_BLOCK.getDefaultState().with(HugeMushroomBlock.DOWN, Boolean.valueOf(false));
+   private static final BlockState GRINTH_MUSHROOM_BLOCK = Blocks.RED_MUSHROOM_BLOCK.getDefaultState().with(HugeMushroomBlock.DOWN, Boolean.valueOf(false));
    private static final BlockState BROWN_MUSHROOM_BLOCK = Blocks.BROWN_MUSHROOM_BLOCK.getDefaultState().with(HugeMushroomBlock.UP, Boolean.valueOf(true)).with(HugeMushroomBlock.DOWN, Boolean.valueOf(false));
    private static final BlockState MUSHROOM_STEM = Blocks.MUSHROOM_STEM.getDefaultState().with(HugeMushroomBlock.UP, Boolean.valueOf(false)).with(HugeMushroomBlock.DOWN, Boolean.valueOf(false));
    public static final TreeFeatureConfig OAK_TREE_CONFIG = (new TreeFeatureConfig.Builder(new SimpleBlockStateProvider(OAK_LOG), new SimpleBlockStateProvider(OAK_LEAVES), new BlobFoliagePlacer(2, 0))).baseHeight(4).heightRandA(2).foliageHeight(3).ignoreVines().setSapling((net.minecraftforge.common.IPlantable) Blocks.OAK_SAPLING).build();
@@ -161,12 +184,14 @@ public class ModDefaultBiomeFeatures {
    public static final BlockStateProvidingFeatureConfig SNOW_PILE_CONFIG = new BlockStateProvidingFeatureConfig(new SimpleBlockStateProvider(SNOW));
    public static final BlockStateProvidingFeatureConfig MELON_PILE_CONFIG = new BlockStateProvidingFeatureConfig(new SimpleBlockStateProvider(MELON));
    public static final BlockStateProvidingFeatureConfig PUMPKIN_PILE_CONFIG = new BlockStateProvidingFeatureConfig((new WeightedBlockStateProvider()).func_227407_a_(PUMPKIN, 19).func_227407_a_(JACK_O_LATERN, 1));
-   public static final BlockStateProvidingFeatureConfig BLUE_ICE_PILE_CONFIG = new BlockStateProvidingFeatureConfig((new WeightedBlockStateProvider()).func_227407_a_(BLUE_ICE, 1).func_227407_a_(PACKED_ICE, 5));
+   public static final BlockStateProvidingFeatureConfig SRIUNK_PILE_CONFIG = new BlockStateProvidingFeatureConfig((new WeightedBlockStateProvider()).func_227407_a_(PUMPKIN, 19).func_227407_a_(JACK_O_LATERN, 1));
+   public static final BlockStateProvidingFeatureConfig BLUE_ICE_PILE_CONFIG = new BlockStateProvidingFeatureConfig((new WeightedBlockStateProvider()).func_227407_a_(SRIUNK_BLOCK, 1).func_227407_a_(BARRIER, 5));
    public static final LiquidsConfig WATER_SPRING_CONFIG = new LiquidsConfig(Fluids.WATER.getDefaultState(), true, 4, 1, ImmutableSet.of(Blocks.STONE, Blocks.GRANITE, Blocks.DIORITE, Blocks.ANDESITE));
    public static final LiquidsConfig LAVA_SPRING_CONFIG = new LiquidsConfig(Fluids.LAVA.getDefaultState(), true, 4, 1, ImmutableSet.of(Blocks.STONE, Blocks.GRANITE, Blocks.DIORITE, Blocks.ANDESITE));
    public static final LiquidsConfig NETHER_SPRING_CONFIG = new LiquidsConfig(Fluids.LAVA.getDefaultState(), false, 4, 1, ImmutableSet.of(Blocks.NETHERRACK));
    public static final LiquidsConfig ENCLOSED_NETHER_SPRING_CONFIG = new LiquidsConfig(Fluids.LAVA.getDefaultState(), false, 5, 0, ImmutableSet.of(Blocks.NETHERRACK));
    public static final BigMushroomFeatureConfig BIG_RED_MUSHROOM = new BigMushroomFeatureConfig(new SimpleBlockStateProvider(RED_MUSHROOM_BLOCK), new SimpleBlockStateProvider(MUSHROOM_STEM), 2);
+   public static final BigMushroomFeatureConfig BIG_GRINTH_MUSHROOM = new BigMushroomFeatureConfig(new SimpleBlockStateProvider(GRINTH_MUSHROOM_BLOCK), new SimpleBlockStateProvider(MUSHROOM_STEM), 2);
    public static final BigMushroomFeatureConfig BIG_BROWN_MUSHROOM = new BigMushroomFeatureConfig(new SimpleBlockStateProvider(BROWN_MUSHROOM_BLOCK), new SimpleBlockStateProvider(MUSHROOM_STEM), 3);
 
    public static void addCarvers(Biome biomeIn) {
@@ -233,6 +258,78 @@ public class ModDefaultBiomeFeatures {
 
    public static void addExtraEmeraldOre(Biome biomeIn) {
       biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.EMERALD_ORE.withConfiguration(new ReplaceBlockConfig(STONE, EMERALD_ORE)).withPlacement(Placement.EMERALD_ORE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+   }
+
+   public static void addExtraSriunkOre(Biome biomeIn) {
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.EMERALD_ORE.withConfiguration(new ReplaceBlockConfig(END_STONE, SRIUNK_ORE)).withPlacement(Placement.EMERALD_ORE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+   }
+
+   public static void addExtraKaltBlock(Biome biomeIn) {
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.EMERALD_ORE.withConfiguration(new ReplaceBlockConfig(END_STONE, KALT_BLOCK)).withPlacement(Placement.EMERALD_ORE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+   }
+
+   public static void addExtraVilktBlock(Biome biomeIn) {
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.EMERALD_ORE.withConfiguration(new ReplaceBlockConfig(STONE, VILKT_BLOCK)).withPlacement(Placement.EMERALD_ORE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+   }
+
+   public static void addExtraVilktBlock1(Biome biomeIn) {
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.EMERALD_ORE.withConfiguration(new ReplaceBlockConfig(BLACK_STONE, VILKT_BLOCK)).withPlacement(Placement.EMERALD_ORE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+   }
+
+   public static void addExtraVilktBlock2(Biome biomeIn) {
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.EMERALD_ORE.withConfiguration(new ReplaceBlockConfig(BLUE_STONE, VILKT_BLOCK)).withPlacement(Placement.EMERALD_ORE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+   }
+
+   public static void addExtraVilktBlock3(Biome biomeIn) {
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.EMERALD_ORE.withConfiguration(new ReplaceBlockConfig(BROWN_STONE, VILKT_BLOCK)).withPlacement(Placement.EMERALD_ORE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+   }
+
+   public static void addExtraVilktBlock4(Biome biomeIn) {
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.EMERALD_ORE.withConfiguration(new ReplaceBlockConfig(CYAN_STONE, VILKT_BLOCK)).withPlacement(Placement.EMERALD_ORE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+   }
+
+   public static void addExtraVilktBlock5(Biome biomeIn) {
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.EMERALD_ORE.withConfiguration(new ReplaceBlockConfig(GREEN_STONE, VILKT_BLOCK)).withPlacement(Placement.EMERALD_ORE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+   }
+
+   public static void addExtraVilktBlock6(Biome biomeIn) {
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.EMERALD_ORE.withConfiguration(new ReplaceBlockConfig(LIGHT_BLUE_STONE, VILKT_BLOCK)).withPlacement(Placement.EMERALD_ORE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+   }
+
+   public static void addExtraVilktBlock7(Biome biomeIn) {
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.EMERALD_ORE.withConfiguration(new ReplaceBlockConfig(LIGHT_GRAY_STONE, VILKT_BLOCK)).withPlacement(Placement.EMERALD_ORE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+   }
+
+   public static void addExtraVilktBlock8(Biome biomeIn) {
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.EMERALD_ORE.withConfiguration(new ReplaceBlockConfig(LIME_STONE, VILKT_BLOCK)).withPlacement(Placement.EMERALD_ORE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+   }
+
+   public static void addExtraVilktBlock9(Biome biomeIn) {
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.EMERALD_ORE.withConfiguration(new ReplaceBlockConfig(MAGENTA_STONE, VILKT_BLOCK)).withPlacement(Placement.EMERALD_ORE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+   }
+
+   public static void addExtraVilktBlock10(Biome biomeIn) {
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.EMERALD_ORE.withConfiguration(new ReplaceBlockConfig(ORANGE_STONE, VILKT_BLOCK)).withPlacement(Placement.EMERALD_ORE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+   }
+
+   public static void addExtraVilktBlock11(Biome biomeIn) {
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.EMERALD_ORE.withConfiguration(new ReplaceBlockConfig(PINK_STONE, VILKT_BLOCK)).withPlacement(Placement.EMERALD_ORE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+   }
+
+   public static void addExtraVilktBlock12(Biome biomeIn) {
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.EMERALD_ORE.withConfiguration(new ReplaceBlockConfig(PURPLE_STONE, VILKT_BLOCK)).withPlacement(Placement.EMERALD_ORE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+   }
+
+   public static void addExtraVilktBlock13(Biome biomeIn) {
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.EMERALD_ORE.withConfiguration(new ReplaceBlockConfig(RED_STONE, VILKT_BLOCK)).withPlacement(Placement.EMERALD_ORE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+   }
+
+   public static void addExtraVilktBlock14(Biome biomeIn) {
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.EMERALD_ORE.withConfiguration(new ReplaceBlockConfig(WHITE_STONE, VILKT_BLOCK)).withPlacement(Placement.EMERALD_ORE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+   }
+
+   public static void addExtraVilktBlock15(Biome biomeIn) {
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.EMERALD_ORE.withConfiguration(new ReplaceBlockConfig(YELLOW_STONE, VILKT_BLOCK)).withPlacement(Placement.EMERALD_ORE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
    }
 
    public static void addInfestedStone(Biome biomeIn) {
@@ -501,6 +598,6 @@ public class ModDefaultBiomeFeatures {
       p_225489_0_.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, Feature.END_CITY.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
    }
    public static void addKiomne(Biome biomeIn) {
-      biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(Feature.FANCY_TREE.withConfiguration(FIRG_TREE_CONFIG).withChance(0.1F),Feature.JUNGLE_GROUND_BUSH.withConfiguration(JUNGLE_GROUND_BUSH_CONFIG).withChance(0.5F),Feature.MEGA_JUNGLE_TREE.withConfiguration(MEGA_JUNGLE_TREE_CONFIG).withChance(0.33333334F)),Feature.NORMAL_TREE.withConfiguration(JUNGLE_TREE_CONFIG))).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(50, 0.1F,1))));
+      biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(Feature.FANCY_TREE.withConfiguration(FIRG_TREE_CONFIG).withChance(10.0F),Feature.JUNGLE_GROUND_BUSH.withConfiguration(JUNGLE_GROUND_BUSH_CONFIG).withChance(50.0F),Feature.MEGA_JUNGLE_TREE.withConfiguration(MEGA_FIRG_TREE_CONFIG).withChance(0.33333334F)),Feature.NORMAL_TREE.withConfiguration(FRIM_TREE_CONFIG))).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(5000, 10.0F,100))));
    }
 }

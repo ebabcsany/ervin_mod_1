@@ -17,13 +17,14 @@ import net.minecraft.world.gen.GenerationSettings;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
+import net.minecraft.world.gen.feature.structure.ShipwreckConfig;
 import net.minecraft.world.gen.feature.template.BlockIgnoreStructureProcessor;
 import net.minecraft.world.gen.feature.template.IntegrityProcessor;
 import net.minecraft.world.gen.feature.template.PlacementSettings;
 import net.minecraft.world.gen.feature.template.Template;
 import net.minecraft.world.server.ServerWorld;
 
-public class SriunkFeature extends Feature<NoFeatureConfig> {
+public class ExampleFeature extends Feature<NoFeatureConfig> {
 
     private static final ResourceLocation STRUCTURE_SPINE_01 = new ResourceLocation("fossil/spine_1");
     private static final ResourceLocation STRUCTURE_SPINE_02 = new ResourceLocation("fossil/spine_2");
@@ -32,7 +33,7 @@ public class SriunkFeature extends Feature<NoFeatureConfig> {
     private static final ResourceLocation[] FOSSILS = new ResourceLocation[] { STRUCTURE_SPINE_01, STRUCTURE_SPINE_02,
             STRUCTURE_SPINE_03, STRUCTURE_SPINE_04 };
 
-    public SriunkFeature(Function<Dynamic<?>, ? extends NoFeatureConfig> config) {
+    public ExampleFeature(Function<Dynamic<?>, ? extends NoFeatureConfig> config) {
         super(config);
     }
 
