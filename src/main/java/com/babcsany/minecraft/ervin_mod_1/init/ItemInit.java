@@ -230,7 +230,7 @@ public class ItemInit {
             (new Item.Properties()).food(FoodInit.VIRK)
     ));
     public static final RegistryObject<Item> RED_STONE_PICKAXE = ITEMS.register("red_stone_pickaxe", () -> new PickaxeItem(
-            ModItemTier.RED_COBBLESTONE, 2, -1.4F, (new Item.Properties())
+            ModItemTier.RED_COBBLESTONE, 1, -2.8F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> FIRT_PICKAXE = ITEMS.register("firt_pickaxe", () -> new PickaxeItem(
             ModItemTier.FIRT, 4, 8.4F, (new Item.Properties())

@@ -16,4 +16,5 @@ public class DimensionInit {
 	public static final RegistryObject<ModDimension> EXAMPLE_DIM1 = MOD_DIMENSIONS.register("example_dim1", () -> new ExampleModDimension1());
 	public static final RegistryObject<ModDimension> EXAMPLE_DIM2 = MOD_DIMENSIONS.register("example_dim2", () -> new ExampleModDimension2());
 	public static final RegistryObject<ModDimension> EXAMPLE_DIM3 = MOD_DIMENSIONS.register("example_dim3", () -> new ExampleModDimension3());
+	public static final RegistryObject<ModDimension> EXAMPLE_DIM4 = MOD_DIMENSIONS.register("example_dim4", () -> new ExampleModDimension4());
 }

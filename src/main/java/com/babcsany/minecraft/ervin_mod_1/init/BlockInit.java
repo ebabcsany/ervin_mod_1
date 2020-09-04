@@ -163,9 +163,9 @@ public class BlockInit {
     ));
     public static final RegistryObject<Block> FIRG = BLOCKS.register("firg", () -> new Firg(
             Block.Properties.create(Material.ROCK)
-                    .harvestLevel(1)
+                    .harvestLevel(0)
                     .harvestTool(ToolType.PICKAXE)
-                    .hardnessAndResistance(60.0f)
+                    .hardnessAndResistance(10.0f)
     ));
     public static final RegistryObject<Block> FRIT_BLOCK = BLOCKS.register("frit_block", () -> new FritBlock(
             Block.Properties.create(Material.ROCK)

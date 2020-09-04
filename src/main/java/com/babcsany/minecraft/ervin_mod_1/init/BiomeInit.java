@@ -143,6 +143,36 @@ public class BiomeInit {
 															Blocks.COARSE_DIRT.getDefaultState())))
 									.category(Category.DESERT).downfall(50.0f).depth(10.0f).parent(null)
 					));
+	public static final RegistryObject<Biome> EXAMPLE_BIOME5 = BIOMES
+			.register("example_biome5",
+					() -> new ExampleBiome5(
+							new Biome.Builder().precipitation(RainType.SNOW).scale(1.2f).temperature(0.5f)
+									.waterColor(16724639).waterFogColor(16762304)
+									.surfaceBuilder(
+											new ConfiguredSurfaceBuilder<SurfaceBuilderConfig>(
+													register("example_surface5",
+															new ExampleBiomeSurfaceBuilder5(
+																	SurfaceBuilderConfig::deserialize)),
+													new SurfaceBuilderConfig(Blocks.COARSE_DIRT.getDefaultState(),
+															Blocks.DIRT.getDefaultState(),
+															Blocks.DIRT.getDefaultState())))
+									.category(Category.PLAINS).downfall(0.5f).depth(0.12f).parent(null)
+					));
+	public static final RegistryObject<Biome> FIRG_BIOME = BIOMES
+			.register("firg_biome",
+					() -> new FirgBiome(
+							new Biome.Builder().precipitation(RainType.SNOW).scale(1.2f).temperature(0.5f)
+									.waterColor(16777100).waterFogColor(16777215)
+									.surfaceBuilder(
+											new ConfiguredSurfaceBuilder<SurfaceBuilderConfig>(
+													register("firg_surface",
+															new FirgBiomeSurfaceBuilder(
+																	SurfaceBuilderConfig::deserialize)),
+													new SurfaceBuilderConfig(BlockInit.FIRG.get().getDefaultState(),
+															BlockInit.FIRG.get().getDefaultState(),
+															BlockInit.FIRG.get().getDefaultState())))
+									.category(Category.THEEND).downfall(0.5f).depth(0.12f).parent(null)
+					));
 
 	public static void registerBiomes() {
 		registerBiome(EXAMPLE_BIOME.get(), Type.PLAINS, Type.OVERWORLD);
@@ -151,6 +181,8 @@ public class BiomeInit {
 		registerBiome(EXAMPLE_BIOME2.get(), Type.PLAINS, Type.OVERWORLD);
 		registerBiome(EXAMPLE_BIOME3.get(), Type.PLAINS, Type.OVERWORLD);
 		registerBiome(EXAMPLE_BIOME4.get(), Type.BEACH, Type.RARE);
+		registerBiome(EXAMPLE_BIOME5.get(), Type.DEAD, Type.RARE);
+		registerBiome(EXAMPLE_BIOME5.get(), Type.END, Type.OVERWORLD);
 	}
 
 	private static void registerBiome(Biome biome, Type... types) {
