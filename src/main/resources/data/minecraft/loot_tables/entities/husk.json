@@ -1,0 +1,130 @@
+{
+  "type": "minecraft:entity",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 0.0,
+                "max": 2.0,
+                "type": "minecraft:uniform"
+              }
+            },
+            {
+              "function": "minecraft:looting_enchant",
+              "count": {
+                "min": 0.0,
+                "max": 1.0
+              }
+            }
+          ],
+          "name": "minecraft:rotten_flesh"
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:iron_ingot"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:black_iron_ingot"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:blue_iron_ingot"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:brown_iron_ingot"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:cyan_iron_ingot"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:gray_iron_ingot"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:green_iron_ingot"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:light_blue_iron_ingot"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:light_gray_iron_ingot"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:lime_iron_ingot"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:magenta_iron_ingot"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:orange_iron_ingot"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:pink_iron_ingot"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:purple_iron_ingot"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:red_iron_ingot"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:yellow_iron_ingot"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:carrot"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:potato"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:wheat"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:targ"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:volmint"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:killed_by_player"
+        },
+        {
+          "condition": "minecraft:random_chance_with_looting",
+          "chance": 0.025,
+          "looting_multiplier": 0.01
+        }
+      ]
+    }
+  ]
+}
