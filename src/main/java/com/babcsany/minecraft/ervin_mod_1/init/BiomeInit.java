@@ -146,7 +146,7 @@ public class BiomeInit {
 	public static final RegistryObject<Biome> EXAMPLE_BIOME5 = BIOMES
 			.register("example_biome5",
 					() -> new ExampleBiome5(
-							new Biome.Builder().precipitation(RainType.SNOW).scale(1.2f).temperature(0.5f)
+							new Biome.Builder().precipitation(RainType.RAIN).scale(1.2f).temperature(0.5f)
 									.waterColor(16724639).waterFogColor(16762304)
 									.surfaceBuilder(
 											new ConfiguredSurfaceBuilder<SurfaceBuilderConfig>(
@@ -162,7 +162,7 @@ public class BiomeInit {
 			.register("firg_biome",
 					() -> new FirgBiome(
 							new Biome.Builder().precipitation(RainType.SNOW).scale(1.2f).temperature(0.5f)
-									.waterColor(16777100).waterFogColor(16777215)
+									.waterColor(16777215).waterFogColor(16777210)
 									.surfaceBuilder(
 											new ConfiguredSurfaceBuilder<SurfaceBuilderConfig>(
 													register("firg_surface",
