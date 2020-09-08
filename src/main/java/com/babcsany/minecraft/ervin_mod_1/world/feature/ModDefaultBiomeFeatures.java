@@ -1,5 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.world.feature;
 
+import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.init.BlockInit;
 import com.babcsany.minecraft.ervin_mod_1.world.gen.treedecorator.FirgTreeDecorator;
 import com.google.common.collect.ImmutableList;
@@ -31,6 +32,7 @@ import org.antlr.v4.runtime.atn.SemanticContext;
 public class ModDefaultBiomeFeatures {
    private static final BlockState GRASS = Blocks.GRASS.getDefaultState();
    private static final BlockState FIRG = BlockInit.FIRG.get().getDefaultState();
+   private static final BlockState SCRAFTH = BlockInit.SCRAFTH.get().getDefaultState();
    private static final BlockState BARRIER = Blocks.BARRIER.getDefaultState();
    private static final BlockState END_STONE = Blocks.END_STONE.getDefaultState();
    private static final BlockState BLACK_STONE = BlockInit.BLACK_STONE.get().getDefaultState();
@@ -182,11 +184,12 @@ public class ModDefaultBiomeFeatures {
    public static final BlockClusterFeatureConfig CACTUS_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(CACTUS), new ColumnBlockPlacer(1, 2))).tries(10).func_227317_b_().build();
    public static final BlockClusterFeatureConfig SUGAR_CANE_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(SUGAR_CANE), new ColumnBlockPlacer(2, 2))).tries(20).xSpread(4).ySpread(0).zSpread(4).func_227317_b_().requiresWater().build();
    public static final BlockStateProvidingFeatureConfig HAY_PILE_CONFIG = new BlockStateProvidingFeatureConfig(new AxisRotatingBlockStateProvider(Blocks.HAY_BLOCK));
+   public static final BlockStateProvidingFeatureConfig SRIUNK_PILE_CONFIG = new BlockStateProvidingFeatureConfig(new AxisRotatingBlockStateProvider(BlockInit.SRIUNK_BLOCK.get()));
    public static final BlockStateProvidingFeatureConfig SNOW_PILE_CONFIG = new BlockStateProvidingFeatureConfig(new SimpleBlockStateProvider(SNOW));
    public static final BlockStateProvidingFeatureConfig MELON_PILE_CONFIG = new BlockStateProvidingFeatureConfig(new SimpleBlockStateProvider(MELON));
    public static final BlockStateProvidingFeatureConfig PUMPKIN_PILE_CONFIG = new BlockStateProvidingFeatureConfig((new WeightedBlockStateProvider()).func_227407_a_(PUMPKIN, 19).func_227407_a_(JACK_O_LATERN, 1));
-   public static final BlockStateProvidingFeatureConfig SRIUNK_PILE_CONFIG = new BlockStateProvidingFeatureConfig((new WeightedBlockStateProvider()).func_227407_a_(PUMPKIN, 19).func_227407_a_(JACK_O_LATERN, 1));
-   public static final BlockStateProvidingFeatureConfig BLUE_ICE_PILE_CONFIG = new BlockStateProvidingFeatureConfig((new WeightedBlockStateProvider()).func_227407_a_(SRIUNK_BLOCK, 1).func_227407_a_(BARRIER, 5));
+   public static final BlockStateProvidingFeatureConfig SRIUNK_PILE_CONFIG1 = new BlockStateProvidingFeatureConfig((new WeightedBlockStateProvider()).func_227407_a_(SRIUNK_BLOCK, 19).func_227407_a_(BARRIER, 1));
+   public static final BlockStateProvidingFeatureConfig BLUE_ICE_PILE_CONFIG = new BlockStateProvidingFeatureConfig((new WeightedBlockStateProvider()).func_227407_a_(BLUE_ICE, 1).func_227407_a_(PACKED_ICE, 5));
    public static final LiquidsConfig WATER_SPRING_CONFIG = new LiquidsConfig(Fluids.WATER.getDefaultState(), true, 4, 1, ImmutableSet.of(Blocks.STONE, Blocks.GRANITE, Blocks.DIORITE, Blocks.ANDESITE));
    public static final LiquidsConfig LAVA_SPRING_CONFIG = new LiquidsConfig(Fluids.LAVA.getDefaultState(), true, 4, 1, ImmutableSet.of(Blocks.STONE, Blocks.GRANITE, Blocks.DIORITE, Blocks.ANDESITE));
    public static final LiquidsConfig NETHER_SPRING_CONFIG = new LiquidsConfig(Fluids.LAVA.getDefaultState(), false, 4, 1, ImmutableSet.of(Blocks.NETHERRACK));
@@ -223,6 +226,22 @@ public class ModDefaultBiomeFeatures {
       biomeIn.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, Feature.VILLAGE.withConfiguration(new VillageConfig("village/plains/town_centers", 6)).withPlacement(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
    }
 
+   public static void addStructures1(Biome biomeIn) {
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_STRUCTURES, Feature.MINESHAFT.withConfiguration(new MineshaftConfig((double)0.004F, MineshaftStructure.Type.NORMAL)).withPlacement(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+      biomeIn.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, Feature.PILLAGER_OUTPOST.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_STRUCTURES, Feature.STRONGHOLD.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+      biomeIn.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, Feature.SWAMP_HUT.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+      biomeIn.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, Feature.DESERT_PYRAMID.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+      biomeIn.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, Feature.JUNGLE_TEMPLE.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+      biomeIn.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, Feature.IGLOO.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+      biomeIn.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, Feature.SHIPWRECK.withConfiguration(new ShipwreckConfig(false)).withPlacement(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+      biomeIn.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, Feature.OCEAN_MONUMENT.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+      biomeIn.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, Feature.WOODLAND_MANSION.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+      biomeIn.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, Feature.OCEAN_RUIN.withConfiguration(new OceanRuinConfig(OceanRuinStructure.Type.COLD, 0.3F, 0.9F)).withPlacement(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_STRUCTURES, Feature.BURIED_TREASURE.withConfiguration(new BuriedTreasureConfig(0.01F)).withPlacement(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+      biomeIn.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, Feature.VILLAGE.withConfiguration(new VillageConfig("village/plains/town_centers1", 6)).withPlacement(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+   }
+
    public static void addLakes(Biome biomeIn) {
       biomeIn.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, Feature.LAKE.withConfiguration(new BlockStateFeatureConfig(WATER)).withPlacement(Placement.WATER_LAKE.configure(new ChanceConfig(4))));
       biomeIn.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, Feature.LAKE.withConfiguration(new BlockStateFeatureConfig(LAVA)).withPlacement(Placement.LAVA_LAKE.configure(new ChanceConfig(80))));
@@ -249,7 +268,11 @@ public class ModDefaultBiomeFeatures {
    }
 
    public static void addFirgs(Biome biomeIn) {
-      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, FIRG, 400)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(4000, 0, 0, 20000))));
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, FIRG, 400)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(400, 0, 0, 2000))));
+   }
+
+   public static void addScrafth(Biome biomeIn) {
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, FIRG, 400)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(400, 0, 0, 2000))));
    }
 
    public static void addStones(Biome biomeIn) {
@@ -481,6 +504,10 @@ public class ModDefaultBiomeFeatures {
 
    public static void addForestTrees(Biome biomeIn) {
       biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(Feature.NORMAL_TREE.withConfiguration(field_230129_h_).withChance(0.2F), Feature.FANCY_TREE.withConfiguration(field_230131_m_).withChance(0.1F)), Feature.NORMAL_TREE.withConfiguration(field_230132_o_))).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(10, 0.1F, 1))));
+   }
+
+   public static void addFrimTrees(Biome biomeIn) {
+      biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.NORMAL_TREE.withConfiguration(field_230136_t_).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(20, 1.0F, 2))));
    }
 
    public static void addTallBirchForestTrees(Biome biomeIn) {
