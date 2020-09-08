@@ -175,13 +175,13 @@ public class BiomeInit {
 					));
 	public static final RegistryObject<Biome> SCRAFTH_BIOME = BIOMES
 			.register("scrafth_biome",
-					() -> new FirgBiome(
+					() -> new ScrafthBiome(
 							new Biome.Builder().precipitation(RainType.SNOW).scale(1.2f).temperature(0.5f)
 									.waterColor(16777215).waterFogColor(16777210)
 									.surfaceBuilder(
 											new ConfiguredSurfaceBuilder<SurfaceBuilderConfig>(
 													register("scrafth_surface",
-															new FirgBiomeSurfaceBuilder(
+															new ScrafthBiomeSurfaceBuilder(
 																	SurfaceBuilderConfig::deserialize)),
 													new SurfaceBuilderConfig(BlockInit.SCRAFTH.get().getDefaultState(),
 															BlockInit.SCRAFTH.get().getDefaultState(),
@@ -197,7 +197,8 @@ public class BiomeInit {
 		registerBiome(EXAMPLE_BIOME3.get(), Type.PLAINS, Type.OVERWORLD);
 		registerBiome(EXAMPLE_BIOME4.get(), Type.BEACH, Type.RARE);
 		registerBiome(EXAMPLE_BIOME5.get(), Type.DEAD, Type.RARE);
-		registerBiome(EXAMPLE_BIOME5.get(), Type.END, Type.OVERWORLD);
+		registerBiome(FIRG_BIOME.get(), Type.END, Type.END);
+		registerBiome(SCRAFTH_BIOME.get(), Type.END, Type.END);
 	}
 
 	private static void registerBiome(Biome biome, Type... types) {
