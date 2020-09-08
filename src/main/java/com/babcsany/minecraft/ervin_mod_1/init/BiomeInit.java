@@ -173,6 +173,21 @@ public class BiomeInit {
 															BlockInit.FIRG.get().getDefaultState())))
 									.category(Category.THEEND).downfall(0.5f).depth(0.12f).parent(null)
 					));
+	public static final RegistryObject<Biome> SCRAFTH_BIOME = BIOMES
+			.register("scrafth_biome",
+					() -> new FirgBiome(
+							new Biome.Builder().precipitation(RainType.SNOW).scale(1.2f).temperature(0.5f)
+									.waterColor(16777215).waterFogColor(16777210)
+									.surfaceBuilder(
+											new ConfiguredSurfaceBuilder<SurfaceBuilderConfig>(
+													register("scrafth_surface",
+															new FirgBiomeSurfaceBuilder(
+																	SurfaceBuilderConfig::deserialize)),
+													new SurfaceBuilderConfig(BlockInit.SCRAFTH.get().getDefaultState(),
+															BlockInit.SCRAFTH.get().getDefaultState(),
+															BlockInit.SCRAFTH.get().getDefaultState())))
+									.category(Category.THEEND).downfall(0.5f).depth(0.12f).parent(null)
+					));
 
 	public static void registerBiomes() {
 		registerBiome(EXAMPLE_BIOME.get(), Type.PLAINS, Type.OVERWORLD);

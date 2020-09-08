@@ -5,6 +5,7 @@ import com.babcsany.minecraft.ervin_mod_1.entity.item.FirgBoatEntity;
 import com.babcsany.minecraft.ervin_mod_1.item.*;
 import com.babcsany.minecraft.ervin_mod_1.item.ModSpawnEggItem;
 import net.minecraft.block.Blocks;
+import net.minecraft.entity.EntityType;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
@@ -628,5 +629,8 @@ public class ItemInit {
     ));
     public static final RegistryObject<Item> TRUGN_PICKAXE = ITEMS.register("trugn_pickaxe", () -> new PickaxeItem(
             ModItemTier.TRUGN, 2600, 1620.0F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> GIANT_SPAWN_EGG = ITEMS.register("giant_spawn_egg", () -> new SpawnEggItem(
+            EntityType.GIANT, 7425368, 3462945, new Item.Properties()
     ));
 }
