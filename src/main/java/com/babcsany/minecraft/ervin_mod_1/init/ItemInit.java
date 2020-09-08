@@ -639,9 +639,6 @@ public class ItemInit {
     public static final RegistryObject<Item> IRON_GOLEM_SPAWN_EGG = ITEMS.register("iron_golem_spawn_egg", () -> new SpawnEggItem(
             EntityType.IRON_GOLEM, 16777215, 5000268, new Item.Properties()
     ));
-    public static final RegistryObject<Item> PLAYER_SPAWN_EGG = ITEMS.register("player_spawn_egg", () -> new SpawnEggItem(
-            EntityType.PLAYER, 31034672, 3210268, new Item.Properties()
-    ));
     public static final RegistryObject<Item> SNOW_GOLEM_SPAWN_EGG = ITEMS.register("snow_golem_spawn_egg", () -> new SpawnEggItem(
             EntityType.SNOW_GOLEM, 27649, 146359, new Item.Properties()
     ));
