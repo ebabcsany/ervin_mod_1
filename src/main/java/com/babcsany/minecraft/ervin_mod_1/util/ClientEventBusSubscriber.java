@@ -69,5 +69,9 @@ public class ClientEventBusSubscriber {
             DimensionManager.registerDimension(Ervin_mod_1.FIRG_DIM_TYPE, DimensionInit.FIRG_DIM.get(), null,
                     true);
         }
+        if (DimensionType.byName(Ervin_mod_1.SCRAFTH_DIM_TYPE) == null) {
+            DimensionManager.registerDimension(Ervin_mod_1.SCRAFTH_DIM_TYPE, DimensionInit.SCRAFTH_DIM.get(), null,
+                    true);
+        }
     }
 }
