@@ -12,6 +12,7 @@ import com.babcsany.minecraft.ervin_mod_1.world.feature.ModSaplingBlock;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
+import net.minecraft.client.audio.Sound;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -1589,5 +1590,82 @@ public class BlockInit {
     public static final RegistryObject<Block> GRINTH_MUSHROOM_BLOCK = BLOCKS.register("red_mushroom_block", () -> new HugeMushroomBlock(
             Block.Properties.create(Material.WOOD, MaterialColor.GREEN)
                     .hardnessAndResistance(0.2F)
-                    .sound(SoundType.WOOD)));
+                    .sound(SoundType.WOOD)
+    ));
+    public static final RegistryObject<Block> BLACK_IRON_BLOCK = BLOCKS.register("black_iron_block", () -> new BlackIronBlock(
+            Block.Properties.create(Material.IRON, MaterialColor.IRON)
+                    .hardnessAndResistance(5.0F,6.0F)
+                    .sound(SoundType.METAL)
+    ));
+    public static final RegistryObject<Block> BLUE_IRON_BLOCK = BLOCKS.register("blue_iron_block", () -> new BlueIronBlock(
+            Block.Properties.create(Material.IRON, MaterialColor.IRON)
+                    .hardnessAndResistance(5.0F,6.0F)
+                    .sound(SoundType.METAL)
+    ));
+    public static final RegistryObject<Block> BROWN_IRON_BLOCK = BLOCKS.register("brown_iron_block", () -> new BrownIronBlock(
+            Block.Properties.create(Material.IRON, MaterialColor.IRON)
+                    .hardnessAndResistance(5.0F,6.0F)
+                    .sound(SoundType.METAL)
+    ));
+    public static final RegistryObject<Block> CYAN_IRON_BLOCK = BLOCKS.register("cyan_iron_block", () -> new CyanIronBlock(
+            Block.Properties.create(Material.IRON, MaterialColor.IRON)
+                    .hardnessAndResistance(5.0F,6.0F)
+                    .sound(SoundType.METAL)
+    ));
+    public static final RegistryObject<Block> GRAY_IRON_BLOCK = BLOCKS.register("gray_iron_block", () -> new GrayIronBlock(
+            Block.Properties.create(Material.IRON, MaterialColor.IRON)
+                    .hardnessAndResistance(5.0F,6.0F)
+                    .sound(SoundType.METAL)
+    ));
+    public static final RegistryObject<Block> GREEN_IRON_BLOCK = BLOCKS.register("green_iron_block", () -> new GreenIronBlock(
+            Block.Properties.create(Material.IRON, MaterialColor.IRON)
+                    .hardnessAndResistance(5.0F,6.0F)
+                    .sound(SoundType.METAL)
+    ));
+    public static final RegistryObject<Block> LIGHT_BLUE_IRON_BLOCK = BLOCKS.register("light_blue_iron_block", () -> new LightBlueIronBlock(
+            Block.Properties.create(Material.IRON, MaterialColor.IRON)
+                    .hardnessAndResistance(5.0F,6.0F)
+                    .sound(SoundType.METAL)
+    ));
+    public static final RegistryObject<Block> LIGHT_GRAY_IRON_BLOCK = BLOCKS.register("light_gray_iron_block", () -> new LightGrayIronBlock(
+            Block.Properties.create(Material.IRON, MaterialColor.IRON)
+                    .hardnessAndResistance(5.0F,6.0F)
+                    .sound(SoundType.METAL)
+    ));
+    public static final RegistryObject<Block> LIME_IRON_BLOCK = BLOCKS.register("lime_iron_block", () -> new LimeIronBlock(
+            Block.Properties.create(Material.IRON, MaterialColor.IRON)
+                    .hardnessAndResistance(5.0F,6.0F)
+                    .sound(SoundType.METAL)
+    ));
+    public static final RegistryObject<Block> MAGENTA_IRON_BLOCK = BLOCKS.register("magenta_iron_block", () -> new MagentaIronBlock(
+            Block.Properties.create(Material.IRON, MaterialColor.IRON)
+                    .hardnessAndResistance(5.0F,6.0F)
+                    .sound(SoundType.METAL)
+    ));
+    public static final RegistryObject<Block> ORANGE_IRON_BLOCK = BLOCKS.register("orange_iron_block", () -> new OrangeIronBlock(
+            Block.Properties.create(Material.IRON, MaterialColor.IRON)
+                    .hardnessAndResistance(5.0F,6.0F)
+                    .sound(SoundType.METAL)
+    ));
+    public static final RegistryObject<Block> PINK_IRON_BLOCK = BLOCKS.register("pink_iron_block", () -> new PinkIronBlock(
+            Block.Properties.create(Material.IRON, MaterialColor.IRON)
+                    .hardnessAndResistance(5.0F,6.0F)
+                    .sound(SoundType.METAL)
+    ));
+    public static final RegistryObject<Block> PURPLE_IRON_BLOCK = BLOCKS.register("purple_iron_block", () -> new PurpleIronBlock(
+            Block.Properties.create(Material.IRON, MaterialColor.IRON)
+                    .hardnessAndResistance(5.0F,6.0F)
+                    .sound(SoundType.METAL)
+    ));
+    public static final RegistryObject<Block> RED_IRON_BLOCK = BLOCKS.register("red_iron_block", () -> new RedIronBlock(
+            Block.Properties.create(Material.IRON, MaterialColor.IRON)
+                    .hardnessAndResistance(5.0F,6.0F)
+                    .sound(SoundType.METAL)
+    ));
+    public static final RegistryObject<Block> YELLOW_IRON_BLOCK = BLOCKS.register("yellow_iron_block", () -> new YellowIronBlock(
+            Block.Properties.create(Material.IRON, MaterialColor.IRON)
+                    .hardnessAndResistance(5.0F,6.0F)
+                    .sound(SoundType.METAL)
+    ));
+
 }
