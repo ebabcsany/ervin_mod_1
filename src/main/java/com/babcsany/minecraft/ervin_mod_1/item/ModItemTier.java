@@ -35,7 +35,7 @@ public enum ModItemTier implements IItemTier {
     ENDER_TRASK(6, 320, 16.0F, 12.0F, 160, () -> Ingredient.fromItems(BlockInit.ENDER_TRASK.get())),
     KIRT(0, 1, 1.0F, 1.0F, 4, () -> Ingredient.fromItems(ItemInit.KIRT.get())),
     DURG(12, 17685, 126.0F, 54.0F, 1332, () -> Ingredient.fromItems(ItemInit.DURG.get())),
-    OBSIDIAN(4, 3214, 16.0F, 4.0F, 8, () -> Ingredient.fromItems(Items.OBSIDIAN)),
+    OBSIDIAN(4, 3214, 64.0F, 4.0F, 8, () -> Ingredient.fromItems(Items.OBSIDIAN)),
     DURT(3, 2672, 24.0F, 5.0F, 320, () -> Ingredient.fromItems(BlockInit.DURT.get())),
     TRUGN( 33, 120000, 5600000.0F, 720.0F, 30000, () -> Ingredient.fromItems(BlockInit.TRUGN.get()));
 
