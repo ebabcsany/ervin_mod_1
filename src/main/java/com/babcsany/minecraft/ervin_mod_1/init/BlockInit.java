@@ -7,6 +7,7 @@ import com.babcsany.minecraft.ervin_mod_1.block.trees.FirgTree;
 import com.babcsany.minecraft.ervin_mod_1.block.trees.FrimTree;
 import com.babcsany.minecraft.ervin_mod_1.block.tripwires.*;
 import com.babcsany.minecraft.ervin_mod_1.block.tripwires.tripwire_hooks.*;
+import com.babcsany.minecraft.ervin_mod_1.world.feature.FirgTree;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.JazzTree;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.ModSaplingBlock;
 import net.minecraft.block.*;
@@ -1287,8 +1288,8 @@ public class BlockInit {
                     .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(990.0F)
     ));
-    public static final RegistryObject<Block> FIRG_SAPLING = BLOCKS.register("firg_sapling", () -> new FirgSapling(
-            new FirgTree(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().sound(SoundType.PLANT)
+    public static final RegistryObject<Block> FIRG_SAPLING = BLOCKS.register("firg_sapling", () -> new ModSaplingBlock(
+            () -> new FirgTree(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().sound(SoundType.PLANT)
     ));
     public static final RegistryObject<Block> FIRG_LOG = BLOCKS.register("firg_log", () -> new FirgLog(
             MaterialColor.WOOD, Block.Properties.create(Material.WOOD)
