@@ -53,6 +53,11 @@ public class FirgTree extends Tree {
 
     @Override
     protected ConfiguredFeature<TreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean b) {
-        return Feature.NORMAL_TREE.withConfiguration(FIRG_TREE_CONFIG);
+        return Feature.FANCY_TREE.withConfiguration(FIRG_TREE_CONFIG);
+        return Feature.FANCY_TREE.withConfiguration(FIRG_TREE_CONFIG1);
+        return Feature.FANCY_TREE.withConfiguration(FIRG_TREE_CONFIG2);
+        return Feature.FANCY_TREE.withConfiguration(FIRG_TREE_CONFIG3);
+        return Feature.FANCY_TREE.withConfiguration(FIRG_TREE_WITH_MORE_BEEHIVES_CONFIG);
+        return Feature.FANCY_TREE.withConfiguration(FIRG_TREE_WITH_MORE_BEEHIVES_CONFIG1);
     }
 }
