@@ -11,9 +11,9 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
-public class ExampleBiomeProvider0 extends BiomeProvider {
+public class ExampleBiomeProvider0 /*extends BiomeProvider*/ {
 
-	private static final Set<Biome> biomeList = ImmutableSet.of(BiomeInit.EXAMPLE_BIOME.get(), Biomes.BEACH);
+	/*private static final Set<Biome> biomeList = ImmutableSet.of(BiomeInit.EXAMPLE_BIOME.get(), Biomes.BEACH);
 	private Random rand;
 	private final double biomeSize = 16.0D;
 	private VoronoiGenerator biomeNoise;
@@ -37,5 +37,5 @@ public class ExampleBiomeProvider0 extends BiomeProvider {
 				return biomeList.get(i);
 		}
 		return biomeList.get(biomeList.size() - 1);
-	}
+	}*/
 }

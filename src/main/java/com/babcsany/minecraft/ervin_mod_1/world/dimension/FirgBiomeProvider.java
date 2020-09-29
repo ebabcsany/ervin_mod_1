@@ -11,9 +11,9 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
-public class FirgBiomeProvider extends BiomeProvider {
+public class FirgBiomeProvider /*extends BiomeProvider*/ {
 
-	private static final Set<Biome> biomeList = ImmutableSet.of(BiomeInit.FIRG_BIOME.get(), Biomes.THE_END);
+	/*private static final Set<Biome> biomeList = ImmutableSet.of(BiomeInit.FIRG_BIOME.get(), Biomes.THE_END);
 	private Random rand;
 	private final double biomeSize = 16.0D;
 	private VoronoiGenerator biomeNoise;
@@ -37,5 +37,5 @@ public class FirgBiomeProvider extends BiomeProvider {
 				return biomeList.get(i);
 		}
 		return biomeList.get(biomeList.size() - 1);
-	}
+	}*/
 }

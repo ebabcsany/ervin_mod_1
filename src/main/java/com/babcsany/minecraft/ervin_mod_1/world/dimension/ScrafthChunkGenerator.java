@@ -5,7 +5,6 @@ import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IWorld;
-import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.gen.NoiseChunkGenerator;
@@ -13,8 +12,8 @@ import net.minecraft.world.gen.OctavesNoiseGenerator;
 
 import java.util.List;
 
-public class ScrafthChunkGenerator extends NoiseChunkGenerator<ScrafthGenSettings> {
-	private static final float[] field_222576_h = Util.make(new float[25], (p_222575_0_) -> {
+public class ScrafthChunkGenerator /*extends NoiseChunkGenerator<ScrafthGenSettings>*/ {
+	/*private static final float[] field_222576_h = Util.make(new float[25], (p_222575_0_) -> {
 		for (int i = -2; i <= 2; ++i) {
 			for (int j = -2; j <= 2; ++j) {
 				float f = 10.0F / MathHelper.sqrt((float) (i * i + j * j) + 0.2F);
@@ -129,5 +128,5 @@ public class ScrafthChunkGenerator extends NoiseChunkGenerator<ScrafthGenSetting
 
 	public int getSeaLevel() {
 		return 63;
-	}
+	}*/
 }

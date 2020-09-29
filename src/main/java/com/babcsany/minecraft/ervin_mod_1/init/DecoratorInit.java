@@ -7,7 +7,6 @@ import com.babcsany.minecraft.ervin_mod_1.container.CraintBlockCraftingTableCont
 import com.babcsany.minecraft.ervin_mod_1.entity.animal.ShertEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.animal.ZurEntity1;
 import com.babcsany.minecraft.ervin_mod_1.world.gen.treedecorator.FirgTreeDecorator;
-import com.mojang.datafixers.Dynamic;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.inventory.container.ContainerType;
@@ -18,7 +17,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.GenerationSettings;
 import net.minecraft.world.gen.placement.*;
 import net.minecraft.world.gen.treedecorator.*;
 import net.minecraft.block.Block;
@@ -36,7 +34,7 @@ import java.util.stream.Stream;
 
 public class DecoratorInit {
 
-    public static final DeferredRegister<Placement<?>> DECORATORS = new DeferredRegister<>(ForgeRegistries.DECORATORS, Ervin_mod_1.MOD_ID);
+    public static final DeferredRegister<Placement<?>> DECORATORS = DeferredRegister.create(ForgeRegistries.DECORATORS, Ervin_mod_1.MOD_ID);
 
     //public static final RegistryObject<Placement<?>> FIRG = DECORATORS.register("firg", () -> new FirgTreeDecorator(0.5f));
     //public static final RegistryObject<Placement<NoPlacementConfig>> FIRG = DECORATORS.register("firg", );

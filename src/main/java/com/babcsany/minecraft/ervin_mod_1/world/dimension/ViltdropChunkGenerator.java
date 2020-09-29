@@ -3,7 +3,6 @@ package com.babcsany.minecraft.ervin_mod_1.world.dimension;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IWorld;
-import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.gen.OctavesNoiseGenerator;
 

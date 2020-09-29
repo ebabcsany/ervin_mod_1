@@ -32,13 +32,13 @@ public class ExampleBiome3 extends Biome {
 				Feature.FOSSIL.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG)
 						.withPlacement(Placement.CHANCE_PASSTHROUGH.configure(new ChanceConfig(5120))));
 		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
-				Feature.MEGA_JUNGLE_TREE.withConfiguration(ModDefaultBiomeFeatures.MEGA_FIRG_TREE_CONFIG)
+				Feature.field_236291_c_.withConfiguration(ModDefaultBiomeFeatures.MEGA_FIRG_TREE_CONFIG)
 						.withPlacement(Placement.CHANCE_HEIGHTMAP_DOUBLE.configure(new ChanceConfig(24))));
 		this.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION,
-				Feature.END_CITY.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG)
+				Feature.END_ISLAND.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG)
 						.withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(15))));
 		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
-				Feature.NETHER_BRIDGE.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG)
+				Feature.VOID_START_PLATFORM.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG)
 						.withPlacement(Placement.CHANCE_TOP_SOLID_HEIGHTMAP.configure(new ChanceConfig(20))));
 		this.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION,
 				Feature.RANDOM_PATCH.withConfiguration(ModDefaultBiomeFeatures.GRASS_CONFIG)
@@ -53,7 +53,7 @@ public class ExampleBiome3 extends Biome {
 				Feature.RANDOM_BOOLEAN_SELECTOR
 						.withConfiguration(new TwoFeatureChoiceConfig(
 								Feature.HUGE_RED_MUSHROOM.withConfiguration(ModDefaultBiomeFeatures.BIG_BROWN_MUSHROOM),
-								Feature.ACACIA_TREE.withConfiguration(ModDefaultBiomeFeatures.FRIM_TREE_CONFIG)))
+								Feature.field_236291_c_.withConfiguration(ModDefaultBiomeFeatures.FRIM_TREE_CONFIG)))
 						.withPlacement(Placement.CHANCE_PASSTHROUGH.configure(new ChanceConfig(1))));
 		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
 				Feature.RANDOM_PATCH.withConfiguration(DefaultBiomeFeatures.BROWN_MUSHROOM_CONFIG).withPlacement(
@@ -62,13 +62,13 @@ public class ExampleBiome3 extends Biome {
 				Feature.RANDOM_PATCH.withConfiguration(DefaultBiomeFeatures.RED_MUSHROOM_CONFIG).withPlacement(
 						Placement.COUNT_CHANCE_HEIGHTMAP_DOUBLE.configure(new HeightWithChanceConfig(1, 0.125F))));
 		this.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES,
-				Feature.ACACIA_TREE.withConfiguration(ModDefaultBiomeFeatures.FANCY_TREE_WITH_MORE_BEEHIVES_CONFIG).withPlacement(
+				Feature.field_236291_c_.withConfiguration(ModDefaultBiomeFeatures.FANCY_TREE_WITH_MORE_BEEHIVES_CONFIG).withPlacement(
 						Placement.CHANCE_TOP_SOLID_HEIGHTMAP.configure(new ChanceConfig(25))));
 		//this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
 		//		Feature.NORMAL_TREE.withConfiguration(JazzTree.JAZZ_TREE_CONFIG).withPlacement(
 		//				Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(7, 0.1f, 1))));
 		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
-				Feature.FANCY_TREE.withConfiguration(FirgTree.FIRG_TREE_CONFIG).withPlacement(
+				Feature.field_236291_c_.withConfiguration(FirgTree.FIRG_TREE_CONFIG).withPlacement(
 						Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(18, 4.8f, 10))));
 
 		DefaultBiomeFeatures.addOres(this);

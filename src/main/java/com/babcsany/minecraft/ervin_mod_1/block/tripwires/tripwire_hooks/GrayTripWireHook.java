@@ -1,12 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.block.tripwires.tripwire_hooks;
 
-import com.babcsany.minecraft.ervin_mod_1.block.tripwires.BlackTripWire;
-import com.babcsany.minecraft.ervin_mod_1.init.BlockInit;
 import com.google.common.base.MoreObjects;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.HorizontalBlock;
+import net.minecraft.block.*;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
@@ -60,7 +55,7 @@ public class GrayTripWireHook extends Block {
       Direction direction = state.get(FACING);
       BlockPos blockpos = pos.offset(direction.getOpposite());
       BlockState blockstate = worldIn.getBlockState(blockpos);
-      return direction.getAxis().isHorizontal() && blockstate.isSolidSide(worldIn, blockpos, direction) && !blockstate.canProvidePower();
+      return direction.getAxis().isHorizontal() && blockstate.isSolidSide(worldIn, blockpos, direction);
    }
 
    /**
@@ -100,7 +95,7 @@ public class GrayTripWireHook extends Block {
       this.calculateState(worldIn, pos, state, false, false, -1, (BlockState)null);
    }
 
-   public void calculateState(World worldIn, BlockPos pos, BlockState hookState, boolean p_176260_4_, boolean p_176260_5_, int p_176260_6_, @Nullable BlockState p_176260_7_) {
+   public void calculateState(World worldIn, BlockPos pos, BlockState hookState, boolean p_176260_4_, boolean p_176260_5_, int p_176260_6_, @Nullable BlockState state) {
       Direction direction = hookState.get(FACING);
       boolean flag = hookState.get(ATTACHED);
       boolean flag1 = hookState.get(POWERED);
@@ -112,27 +107,27 @@ public class GrayTripWireHook extends Block {
       for(int j = 1; j < 42; ++j) {
          BlockPos blockpos = pos.offset(direction, j);
          BlockState blockstate = worldIn.getBlockState(blockpos);
-         if (blockstate.getBlock() == BlockInit.BLACK_TRIPWIRE_HOOK.get()) {
+         if (blockstate.isIn(Blocks.TRIPWIRE_HOOK)) {
             if (blockstate.get(FACING) == direction.getOpposite()) {
                i = j;
             }
             break;
          }
 
-         if (blockstate.getBlock() != BlockInit.BLACK_TRIPWIRE.get() && j != p_176260_6_) {
+         if (!blockstate.isIn(Blocks.TRIPWIRE) && j != p_176260_6_) {
             ablockstate[j] = null;
             flag2 = false;
          } else {
             if (j == p_176260_6_) {
-               blockstate = MoreObjects.firstNonNull(p_176260_7_, blockstate);
+               blockstate = MoreObjects.firstNonNull(state, blockstate);
             }
 
-            boolean flag4 = !blockstate.get(BlackTripWire.DISARMED);
-            boolean flag5 = blockstate.get(BlackTripWire.POWERED);
+            boolean flag4 = !blockstate.get(TripWireBlock.DISARMED);
+            boolean flag5 = blockstate.get(TripWireBlock.POWERED);
             flag3 |= flag4 && flag5;
             ablockstate[j] = blockstate;
             if (j == p_176260_6_) {
-               worldIn.getPendingBlockTicks().scheduleTick(pos, this, this.tickRate(worldIn));
+               worldIn.getPendingBlockTicks().scheduleTick(pos, this, 10);
                flag2 &= flag4;
             }
          }
@@ -164,7 +159,6 @@ public class GrayTripWireHook extends Block {
             if (blockstate2 != null) {
                worldIn.setBlockState(blockpos2, blockstate2.with(ATTACHED, Boolean.valueOf(flag2)), 3);
                if (!worldIn.getBlockState(blockpos2).isAir()) {
-                  ;
                }
             }
          }
@@ -176,14 +170,14 @@ public class GrayTripWireHook extends Block {
       this.calculateState(worldIn, pos, state, false, true, -1, (BlockState)null);
    }
 
-   private void playSound(World worldIn, BlockPos pos, boolean p_180694_3_, boolean p_180694_4_, boolean p_180694_5_, boolean p_180694_6_) {
-      if (p_180694_4_ && !p_180694_6_) {
+   private void playSound(World worldIn, BlockPos pos, boolean attaching, boolean activated, boolean detaching, boolean deactivating) {
+      if (activated && !deactivating) {
          worldIn.playSound((PlayerEntity)null, pos, SoundEvents.BLOCK_TRIPWIRE_CLICK_ON, SoundCategory.BLOCKS, 0.4F, 0.6F);
-      } else if (!p_180694_4_ && p_180694_6_) {
+      } else if (!activated && deactivating) {
          worldIn.playSound((PlayerEntity)null, pos, SoundEvents.BLOCK_TRIPWIRE_CLICK_OFF, SoundCategory.BLOCKS, 0.4F, 0.5F);
-      } else if (p_180694_3_ && !p_180694_5_) {
+      } else if (attaching && !detaching) {
          worldIn.playSound((PlayerEntity)null, pos, SoundEvents.BLOCK_TRIPWIRE_ATTACH, SoundCategory.BLOCKS, 0.4F, 0.7F);
-      } else if (!p_180694_3_ && p_180694_5_) {
+      } else if (!attaching && detaching) {
          worldIn.playSound((PlayerEntity)null, pos, SoundEvents.BLOCK_TRIPWIRE_DETACH, SoundCategory.BLOCKS, 0.4F, 1.2F / (worldIn.rand.nextFloat() * 0.2F + 0.9F));
       }
 
@@ -195,7 +189,7 @@ public class GrayTripWireHook extends Block {
    }
 
    public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
-      if (!isMoving && state.getBlock() != newState.getBlock()) {
+      if (!isMoving && !state.isIn(newState.getBlock())) {
          boolean flag = state.get(ATTACHED);
          boolean flag1 = state.get(POWERED);
          if (flag || flag1) {

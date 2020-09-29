@@ -1,5 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.block;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.block.material.MaterialColor;
@@ -21,6 +22,6 @@ public class FirgLog extends FirgWood {
     * Implementing/overriding is fine.
     */
    public MaterialColor getMaterialColor(BlockState state, IBlockReader worldIn, BlockPos pos) {
-      return state.get(AXIS) == Direction.Axis.Y ? this.verticalColor : this.materialColor;
+      return state.get(AXIS) == Direction.Axis.Y ? this.verticalColor : this.verticalColor;
    }
 }

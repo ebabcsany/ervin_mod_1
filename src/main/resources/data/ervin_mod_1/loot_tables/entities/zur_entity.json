@@ -10,7 +10,7 @@
             {
               "function": "minecraft:set_count",
               "count": {
-                "min": 0.0,
+                "min": -5.0,
                 "max": 1.0,
                 "type": "minecraft:uniform"
               }
@@ -18,7 +18,7 @@
             {
               "function": "minecraft:looting_enchant",
               "count": {
-                "min": 0.0,
+                "min": -5.0,
                 "max": 1.0
               }
             }
@@ -29,6 +29,25 @@
       "conditions": [
         {
           "condition": "minecraft:survives_explosion"
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:zur_entity_spawn_egg"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:killed_by_player"
+        },
+        {
+          "condition": "minecraft:random_chance_with_looting",
+          "chance": 0.0025,
+          "looting_multiplier": 0.001
         }
       ]
     }

@@ -30,7 +30,7 @@ public class Example0Biome extends Biome {
 		DefaultBiomeFeatures.addExtraDefaultFlowers(this);
 		ModDefaultBiomeFeatures.addExtraEmeraldOre(this);
 		ModDefaultBiomeFeatures.addOceanCarvers(this);
-		ModDefaultBiomeFeatures.addOceanCarvers(this);
+		ModDefaultBiomeFeatures.addStoneVariants(this);
 		ModDefaultBiomeFeatures.addCarvers(this);
 		ModDefaultBiomeFeatures.addEndCity(this);
 		ModDefaultBiomeFeatures.addWaterLakes(this);

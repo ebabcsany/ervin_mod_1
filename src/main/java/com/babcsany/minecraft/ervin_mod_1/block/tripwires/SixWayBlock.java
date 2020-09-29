@@ -23,17 +23,17 @@ public class SixWayBlock extends Block {
    public static final BooleanProperty WEST = BlockStateProperties.WEST;
    public static final BooleanProperty UP = BlockStateProperties.UP;
    public static final BooleanProperty DOWN = BlockStateProperties.DOWN;
-   public static final Map<Direction, BooleanProperty> FACING_TO_PROPERTY_MAP = Util.make(Maps.newEnumMap(Direction.class), (p_203421_0_) -> {
-      p_203421_0_.put(Direction.NORTH, NORTH);
-      p_203421_0_.put(Direction.EAST, EAST);
-      p_203421_0_.put(Direction.SOUTH, SOUTH);
-      p_203421_0_.put(Direction.WEST, WEST);
-      p_203421_0_.put(Direction.UP, UP);
-      p_203421_0_.put(Direction.DOWN, DOWN);
+   public static final Map<Direction, BooleanProperty> FACING_TO_PROPERTY_MAP = Util.make(Maps.newEnumMap(Direction.class), (directions) -> {
+      directions.put(Direction.NORTH, NORTH);
+      directions.put(Direction.EAST, EAST);
+      directions.put(Direction.SOUTH, SOUTH);
+      directions.put(Direction.WEST, WEST);
+      directions.put(Direction.UP, UP);
+      directions.put(Direction.DOWN, DOWN);
    });
    protected final VoxelShape[] shapes;
 
-   protected SixWayBlock(float apothem, Properties properties) {
+   public SixWayBlock(float apothem, Properties properties) {
       super(properties);
       this.shapes = this.makeShapes(apothem);
    }

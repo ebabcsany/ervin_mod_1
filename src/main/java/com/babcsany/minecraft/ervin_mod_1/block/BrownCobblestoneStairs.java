@@ -3,8 +3,8 @@ package com.babcsany.minecraft.ervin_mod_1.block;
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
-import net.minecraft.fluid.IFluidState;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.BooleanProperty;
@@ -20,7 +20,10 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
-import net.minecraft.world.*;
+import net.minecraft.world.Explosion;
+import net.minecraft.world.IBlockReader;
+import net.minecraft.world.IWorld;
+import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -81,9 +84,8 @@ public class BrownCobblestoneStairs extends Block implements IWaterLoggable {
       return voxelshape;
    }
 
-   // Forge: Use the other constructor that takes a Supplier
-   @Deprecated
-   protected BrownCobblestoneStairs(BlockState state, Properties properties) {
+   @Deprecated // Forge: Use the other constructor that takes a Supplier
+   public BrownCobblestoneStairs(BlockState state, Properties properties) {
       super(properties);
       this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH).with(HALF, Half.BOTTOM).with(SHAPE, StairsShape.STRAIGHT).with(WATERLOGGED, Boolean.valueOf(false)));
       this.modelBlock = state.getBlock();
@@ -111,7 +113,7 @@ public class BrownCobblestoneStairs extends Block implements IWaterLoggable {
       return state.get(SHAPE).ordinal() * 4 + state.get(FACING).getHorizontalIndex();
    }
 
-   /*
+   /* *
     * Called periodically clientside on blocks near the player to show effects (like furnace fire particles). Note that
     * this method is unrelated to {@link randomTick} and {@link #needsRandomTick}, and will always be called regardless
     * of whether the block can receive random update ticks
@@ -139,22 +141,15 @@ public class BrownCobblestoneStairs extends Block implements IWaterLoggable {
       return this.modelBlock.getExplosionResistance();
    }
 
-   /**
-    * How many world ticks before ticking
-    */
-   public int tickRate(IWorldReader worldIn) {
-      return this.modelBlock.tickRate(worldIn);
-   }
-
    public void onBlockAdded(BlockState state, World worldIn, BlockPos pos, BlockState oldState, boolean isMoving) {
-      if (state.getBlock() != state.getBlock()) {
+      if (!state.isIn(state.getBlock())) {
          this.modelState.neighborChanged(worldIn, pos, Blocks.AIR, pos, false);
          this.modelBlock.onBlockAdded(this.modelState, worldIn, pos, oldState, false);
       }
    }
 
    public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
-      if (state.getBlock() != newState.getBlock()) {
+      if (!state.isIn(newState.getBlock())) {
          this.modelState.onReplaced(worldIn, pos, newState, isMoving);
       }
    }
@@ -164,6 +159,21 @@ public class BrownCobblestoneStairs extends Block implements IWaterLoggable {
     */
    public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
       this.modelBlock.onEntityWalk(worldIn, pos, entityIn);
+   }
+
+   /**
+    * Returns whether or not this block is of a type that needs random ticking. Called for ref-counting purposes by
+    * ExtendedBlockStorage in order to broadly cull a chunk from the random chunk update list for efficiency's sake.
+    */
+   public boolean ticksRandomly(BlockState state) {
+      return this.modelBlock.ticksRandomly(state);
+   }
+
+   /**
+    * Performs a random tick on a block.
+    */
+   public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
+      this.modelBlock.randomTick(state, worldIn, pos, random);
    }
 
    public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
@@ -184,8 +194,8 @@ public class BrownCobblestoneStairs extends Block implements IWaterLoggable {
    public BlockState getStateForPlacement(BlockItemUseContext context) {
       Direction direction = context.getFace();
       BlockPos blockpos = context.getPos();
-      IFluidState ifluidstate = context.getWorld().getFluidState(blockpos);
-      BlockState blockstate = this.getDefaultState().with(FACING, context.getPlacementHorizontalFacing()).with(HALF, direction != Direction.DOWN && (direction == Direction.UP || !(context.getHitVec().y - (double)blockpos.getY() > 0.5D)) ? Half.BOTTOM : Half.TOP).with(WATERLOGGED, Boolean.valueOf(ifluidstate.getFluid() == Fluids.WATER));
+      FluidState fluidstate = context.getWorld().getFluidState(blockpos);
+      BlockState blockstate = this.getDefaultState().with(FACING, context.getPlacementHorizontalFacing()).with(HALF, direction != Direction.DOWN && (direction == Direction.UP || !(context.getHitVec().y - (double)blockpos.getY() > 0.5D)) ? Half.BOTTOM : Half.TOP).with(WATERLOGGED, Boolean.valueOf(fluidstate.getFluid() == Fluids.WATER));
       return blockstate.with(SHAPE, getShapeProperty(blockstate, context.getWorld(), blockpos));
    }
 
@@ -244,7 +254,7 @@ public class BrownCobblestoneStairs extends Block implements IWaterLoggable {
       return state.getBlock() instanceof BrownCobblestoneStairs;
    }
 
-   /*
+   /* *
     * Returns the blockstate with the given rotation from the passed blockstate. If inapplicable, returns the passed
     * blockstate.
     * @deprecated call via {@link IBlockState#withRotation(Rotation)} whenever possible. Implementing/overriding is
@@ -254,7 +264,7 @@ public class BrownCobblestoneStairs extends Block implements IWaterLoggable {
       return state.with(FACING, rot.rotate(state.get(FACING)));
    }
 
-   /*
+   /* *
     * Returns the blockstate with the given mirror of the passed blockstate. If inapplicable, returns the passed
     * blockstate.
     * @deprecated call via {@link IBlockState#withMirror(Mirror)} whenever possible. Implementing/overriding is fine.
@@ -303,7 +313,7 @@ public class BrownCobblestoneStairs extends Block implements IWaterLoggable {
       builder.add(FACING, HALF, SHAPE, WATERLOGGED);
    }
 
-   public IFluidState getFluidState(BlockState state) {
+   public FluidState getFluidState(BlockState state) {
       return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
    }
 
@@ -311,6 +321,7 @@ public class BrownCobblestoneStairs extends Block implements IWaterLoggable {
       return false;
    }
 
+   // Forge Start
    private final java.util.function.Supplier<BlockState> stateSupplier;
    private Block getModelBlock() {
        return getModelState().getBlock();
@@ -318,4 +329,5 @@ public class BrownCobblestoneStairs extends Block implements IWaterLoggable {
    private BlockState getModelState() {
        return stateSupplier.get();
    }
+   // Forge end
 }

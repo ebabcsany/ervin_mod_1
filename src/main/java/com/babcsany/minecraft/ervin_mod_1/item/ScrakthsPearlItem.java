@@ -1,6 +1,5 @@
 package com.babcsany.minecraft.ervin_mod_1.item;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.projectile.ScrakthsPearlEntity;
 import net.minecraft.entity.item.EnderPearlEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -24,12 +23,12 @@ public class ScrakthsPearlItem extends Item {
    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
       ItemStack itemstack = playerIn.getHeldItem(handIn);
       worldIn.playSound((PlayerEntity)null, playerIn.getPosX(), playerIn.getPosY(), playerIn.getPosZ(), SoundEvents.ENTITY_ENDER_PEARL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
-      playerIn.getCooldownTracker().setCooldown(this, 1);
+      playerIn.getCooldownTracker().setCooldown(this, 20);
       if (!worldIn.isRemote) {
-         ScrakthsPearlEntity scrakthspearlentity = new ScrakthsPearlEntity(worldIn, playerIn);
-         scrakthspearlentity.setItem(itemstack);
-         scrakthspearlentity.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
-         worldIn.addEntity(scrakthspearlentity);
+         EnderPearlEntity enderpearlentity = new EnderPearlEntity(worldIn, playerIn);
+         enderpearlentity.setItem(itemstack);
+         enderpearlentity.func_234612_a_(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
+         worldIn.addEntity(enderpearlentity);
       }
 
       playerIn.addStat(Stats.ITEM_USED.get(this));
@@ -37,6 +36,6 @@ public class ScrakthsPearlItem extends Item {
          itemstack.shrink(1);
       }
 
-      return ActionResult.resultSuccess(itemstack);
+      return ActionResult.func_233538_a_(itemstack, worldIn.isRemote());
    }
 }

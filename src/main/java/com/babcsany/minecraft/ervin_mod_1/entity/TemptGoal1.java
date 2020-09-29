@@ -1,6 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.entity;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.CreatureEntity1;
+import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntityPredicate;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.player.PlayerEntity;
@@ -13,7 +13,7 @@ import java.util.EnumSet;
 
 public class TemptGoal1 extends Goal {
    private static final EntityPredicate ENTITY_PREDICATE = (new EntityPredicate()).setDistance(10.0D).allowInvulnerable().allowFriendlyFire().setSkipAttackChecks().setLineOfSiteRequired();
-   protected final CreatureEntity1 creature1;
+   protected final CreatureEntity creature1;
    private final double speed;
    private double targetX;
    private double targetY;
@@ -26,11 +26,11 @@ public class TemptGoal1 extends Goal {
    private final Ingredient temptItem;
    private final boolean scaredByPlayerMovement;
 
-   public TemptGoal1(CreatureEntity1 creatureIn, double speedIn, Ingredient temptItemsIn, boolean scaredByPlayerMovementIn) {
+   public TemptGoal1(CreatureEntity creatureIn, double speedIn, Ingredient temptItemsIn, boolean scaredByPlayerMovementIn) {
       this(creatureIn, speedIn, scaredByPlayerMovementIn, temptItemsIn);
    }
 
-   public TemptGoal1(CreatureEntity1 creature1In, double speedIn, boolean scaredByPlayerMovementIn, Ingredient temptItemsIn) {
+   public TemptGoal1(CreatureEntity creature1In, double speedIn, boolean scaredByPlayerMovementIn, Ingredient temptItemsIn) {
       this.creature1 = creature1In;
       this.speed = speedIn;
       this.temptItem = temptItemsIn;

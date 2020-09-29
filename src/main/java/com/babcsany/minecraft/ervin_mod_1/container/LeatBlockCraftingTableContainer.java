@@ -81,7 +81,7 @@ public class LeatBlockCraftingTableContainer extends RecipeBookContainer<Craftin
         this(windowId, playerInventory, IWorldPosCallable.DUMMY);
     }
 
-    protected static void func_217066_a(int p_217066_0_, World p_217066_1_, PlayerEntity p_217066_2_, CraftingInventory p_217066_3_, CraftResultInventory p_217066_4_) {
+    public static void func_217066_a(int p_217066_0_, World p_217066_1_, PlayerEntity p_217066_2_, CraftingInventory p_217066_3_, CraftResultInventory p_217066_4_) {
         if (!p_217066_1_.isRemote) {
             ServerPlayerEntity serverplayerentity = (ServerPlayerEntity)p_217066_2_;
             ItemStack itemstack = ItemStack.EMPTY;
@@ -216,6 +216,6 @@ public class LeatBlockCraftingTableContainer extends RecipeBookContainer<Craftin
 
     @Override
     public List<RecipeBookCategories> getRecipeBookCategories() {
-        return Lists.newArrayList(RecipeBookCategories.SEARCH, RecipeBookCategories.EQUIPMENT, RecipeBookCategories.BUILDING_BLOCKS, RecipeBookCategories.MISC, RecipeBookCategories.REDSTONE);
+        return Lists.newArrayList(RecipeBookCategories.SEARCH, RecipeBookCategories.CRAFTING_EQUIPMENT, RecipeBookCategories.CRAFTING_BUILDING_BLOCKS, RecipeBookCategories.CRAFTING_MISC, RecipeBookCategories.CRAFTING_REDSTONE);
     }
 }

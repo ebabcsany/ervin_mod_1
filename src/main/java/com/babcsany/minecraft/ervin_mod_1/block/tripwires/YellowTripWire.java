@@ -1,10 +1,10 @@
 package com.babcsany.minecraft.ervin_mod_1.block.tripwires;
 
-import com.babcsany.minecraft.ervin_mod_1.block.tripwires.tripwire_hooks.BlackTripWireHook;
+
 import com.babcsany.minecraft.ervin_mod_1.block.tripwires.tripwire_hooks.YellowTripWireHook;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.SixWayBlock;
+import net.minecraft.block.TripWireHookBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
@@ -31,19 +31,19 @@ public class YellowTripWire extends Block {
    public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
    public static final BooleanProperty ATTACHED = BlockStateProperties.ATTACHED;
    public static final BooleanProperty DISARMED = BlockStateProperties.DISARMED;
-   public static final BooleanProperty NORTH = SixWayBlock.NORTH;
-   public static final BooleanProperty EAST = SixWayBlock.EAST;
-   public static final BooleanProperty SOUTH = SixWayBlock.SOUTH;
+   public static final BooleanProperty NORTH = net.minecraft.block.SixWayBlock.NORTH;
+   public static final BooleanProperty EAST = net.minecraft.block.SixWayBlock.EAST;
+   public static final BooleanProperty SOUTH = net.minecraft.block.SixWayBlock.SOUTH;
    public static final BooleanProperty WEST = SixWayBlock.WEST;
-   private static final Map<Direction, BooleanProperty> field_196537_E = FourWayBlock.FACING_TO_PROPERTY_MAP;
+   private static final Map<Direction, BooleanProperty> FACING_TO_PROPERTY_MAP = FourWayBlock.FACING_TO_PROPERTY_MAP;
    protected static final VoxelShape AABB = Block.makeCuboidShape(0.0D, 1.0D, 0.0D, 16.0D, 2.5D, 16.0D);
    protected static final VoxelShape TRIP_WRITE_ATTACHED_AABB = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D);
-   private final YellowTripWireHook field_196538_F;
+   private final YellowTripWireHook hook;
 
-   public YellowTripWire(YellowTripWireHook p_i48305_1_, Properties properties) {
+   public YellowTripWire(YellowTripWireHook hook, Properties properties) {
       super(properties);
       this.setDefaultState(this.stateContainer.getBaseState().with(POWERED, Boolean.valueOf(false)).with(ATTACHED, Boolean.valueOf(false)).with(DISARMED, Boolean.valueOf(false)).with(NORTH, Boolean.valueOf(false)).with(EAST, Boolean.valueOf(false)).with(SOUTH, Boolean.valueOf(false)).with(WEST, Boolean.valueOf(false)));
-      this.field_196538_F = p_i48305_1_;
+      this.hook = hook;
    }
 
    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
@@ -63,17 +63,17 @@ public class YellowTripWire extends Block {
     * Note that this method should ideally consider only the specific face passed in.
     */
    public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-      return facing.getAxis().isHorizontal() ? stateIn.with(field_196537_E.get(facing), Boolean.valueOf(this.shouldConnectTo(facingState, facing))) : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+      return facing.getAxis().isHorizontal() ? stateIn.with(FACING_TO_PROPERTY_MAP.get(facing), Boolean.valueOf(this.shouldConnectTo(facingState, facing))) : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
    }
 
    public void onBlockAdded(BlockState state, World worldIn, BlockPos pos, BlockState oldState, boolean isMoving) {
-      if (oldState.getBlock() != state.getBlock()) {
+      if (!oldState.isIn(state.getBlock())) {
          this.notifyHook(worldIn, pos, state);
       }
    }
 
    public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
-      if (!isMoving && state.getBlock() != newState.getBlock()) {
+      if (!isMoving && !state.isIn(newState.getBlock())) {
          this.notifyHook(worldIn, pos, state.with(POWERED, Boolean.valueOf(true)));
       }
    }
@@ -95,14 +95,14 @@ public class YellowTripWire extends Block {
          for(int i = 1; i < 42; ++i) {
             BlockPos blockpos = pos.offset(direction, i);
             BlockState blockstate = worldIn.getBlockState(blockpos);
-            if (blockstate.getBlock() == this.field_196538_F) {
-               if (blockstate.get(BlackTripWireHook.FACING) == direction.getOpposite()) {
-                  this.field_196538_F.calculateState(worldIn, blockpos, blockstate, false, true, i, state);
+            if (blockstate.isIn(this.hook)) {
+               if (blockstate.get(TripWireHookBlock.FACING) == direction.getOpposite()) {
+                  this.hook.calculateState(worldIn, blockpos, blockstate, false, true, i, state);
                }
                break;
             }
 
-            if (blockstate.getBlock() != this) {
+            if (!blockstate.isIn(this)) {
                break;
             }
          }
@@ -145,15 +145,15 @@ public class YellowTripWire extends Block {
       }
 
       if (flag1) {
-         worldIn.getPendingBlockTicks().scheduleTick(new BlockPos(pos), this, this.tickRate(worldIn));
+         worldIn.getPendingBlockTicks().scheduleTick(new BlockPos(pos), this, 10);
       }
 
    }
 
-   public boolean shouldConnectTo(BlockState p_196536_1_, Direction p_196536_2_) {
-      Block block = p_196536_1_.getBlock();
-      if (block == this.field_196538_F) {
-         return p_196536_1_.get(BlackTripWireHook.FACING) == p_196536_2_.getOpposite();
+   public boolean shouldConnectTo(BlockState state, Direction direction) {
+      Block block = state.getBlock();
+      if (block == this.hook) {
+         return state.get(TripWireHookBlock.FACING) == direction.getOpposite();
       } else {
          return block == this;
       }

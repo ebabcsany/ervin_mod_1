@@ -7,10 +7,12 @@ import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockRendererDispatcher;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
-import net.minecraft.client.renderer.Vector3f;
 import net.minecraft.client.renderer.entity.IEntityRenderer;
 import net.minecraft.client.renderer.entity.LivingRenderer;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
+import net.minecraft.client.renderer.entity.model.CowModel;
+import net.minecraft.entity.passive.MooshroomEntity;
+import net.minecraft.util.math.vector.Vector3f;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -23,7 +25,7 @@ public class ShertMushroomLayer<T extends ShertEntity> extends LayerRenderer<T, 
    public void render(MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn, T entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
       if (!entitylivingbaseIn.isChild() && !entitylivingbaseIn.isInvisible()) {
          BlockRendererDispatcher blockrendererdispatcher = Minecraft.getInstance().getBlockRendererDispatcher();
-         BlockState blockstate = entitylivingbaseIn.getShertType().getRenderState();
+         BlockState blockstate = entitylivingbaseIn.getMooshroomType().getRenderState();
          int i = LivingRenderer.getPackedOverlay(entitylivingbaseIn, 0.0F);
          matrixStackIn.push();
          matrixStackIn.translate((double)0.2F, (double)-0.35F, 0.5D);

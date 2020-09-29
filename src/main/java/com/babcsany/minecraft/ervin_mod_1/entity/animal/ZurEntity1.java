@@ -3,7 +3,10 @@ package com.babcsany.minecraft.ervin_mod_1.entity.animal;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.ItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.SoundInit;
+import net.minecraft.dispenser.IPosition;
 import net.minecraft.entity.*;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.entity.passive.AnimalEntity;
@@ -33,7 +36,7 @@ public class ZurEntity1 extends AnimalEntity {
     public AgeableEntity createChild(AgeableEntity ageable) {
         ZurEntity1 entity = new ZurEntity1(EntityInit.ZUR_ENTITY1.get(), this.world);
 
-        entity.onInitialSpawn(this.world, this.world.getDifficultyForLocation(new BlockPos(entity)),
+        entity.onInitialSpawn(this.world, this.world.getDifficultyForLocation(new BlockPos((IPosition) entity)),
                 SpawnReason.BREEDING, (ILivingEntityData) null, (CompoundNBT) null);
         entity.setGlowing(true);
         return entity;
@@ -69,11 +72,8 @@ public class ZurEntity1 extends AnimalEntity {
         super.livingTick();
     }
 
-    @Override
-    protected void registerAttributes() {
-        super.registerAttributes();
-        this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(16.0D);
-        this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.23D);
+    public static AttributeModifierMap.MutableAttribute func_234225_eI_() {
+        return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 8.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, (double)0.23F);
     }
 
     @OnlyIn(CLIENT)

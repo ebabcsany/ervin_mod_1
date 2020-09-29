@@ -26,7 +26,6 @@ public class CriteriaTriggers1 {
    public static final UsedEnderEyeTrigger USED_ENDER_EYE = register(new UsedEnderEyeTrigger());
    public static final SummonedEntityTrigger SUMMONED_ENTITY = register(new SummonedEntityTrigger());
    public static final BredAnimalsTrigger BRED_ANIMALS = register(new BredAnimalsTrigger());
-   public static final BredAnimalsTrigger1 BRED_ANIMALS1 = register(new BredAnimalsTrigger1());
    public static final PositionTrigger LOCATION = register(new PositionTrigger(new ResourceLocation("location")));
    public static final PositionTrigger SLEPT_IN_BED = register(new PositionTrigger(new ResourceLocation("slept_in_bed")));
    public static final CuredZombieVillagerTrigger CURED_ZOMBIE_VILLAGER = register(new CuredZombieVillagerTrigger());
@@ -36,7 +35,6 @@ public class CriteriaTriggers1 {
    public static final ChangeDimensionTrigger CHANGED_DIMENSION = register(new ChangeDimensionTrigger());
    public static final TickTrigger TICK = register(new TickTrigger());
    public static final TameAnimalTrigger TAME_ANIMAL = register(new TameAnimalTrigger());
-   public static final TameMonsterTrigger1 TAME_MONSTER = register(new TameMonsterTrigger1());
    public static final PlacedBlockTrigger PLACED_BLOCK = register(new PlacedBlockTrigger());
    public static final ConsumeItemTrigger CONSUME_ITEM = register(new ConsumeItemTrigger());
    public static final EffectsChangedTrigger EFFECTS_CHANGED = register(new EffectsChangedTrigger());
@@ -48,9 +46,13 @@ public class CriteriaTriggers1 {
    public static final KilledByCrossbowTrigger KILLED_BY_CROSSBOW = register(new KilledByCrossbowTrigger());
    public static final PositionTrigger HERO_OF_THE_VILLAGE = register(new PositionTrigger(new ResourceLocation("hero_of_the_village")));
    public static final PositionTrigger VOLUNTARY_EXILE = register(new PositionTrigger(new ResourceLocation("voluntary_exile")));
-   public static final RightClickBlockWithItemTrigger SAFELY_HARVEST_HONEY = register(new RightClickBlockWithItemTrigger(new ResourceLocation("safely_harvest_honey")));
-   public static final SlideDownBlockTrigger field_229864_K_ = register(new SlideDownBlockTrigger());
+   public static final SlideDownBlockTrigger SLIDE_DOWN_BLOCK = register(new SlideDownBlockTrigger());
    public static final BeeNestDestroyedTrigger BEE_NEST_DESTROYED = register(new BeeNestDestroyedTrigger());
+   public static final TargetHitTrigger TARGET_HIT = register(new TargetHitTrigger());
+   public static final RightClickBlockWithItemTrigger RIGHT_CLICK_BLOCK_WITH_ITEM = register(new RightClickBlockWithItemTrigger());
+   public static final PlayerGeneratesContainerLootTrigger PLAYER_GENERATES_CONTAINER_LOOT = register(new PlayerGeneratesContainerLootTrigger());
+   public static final ThrownItemPickedUpByEntityTrigger THROWN_ITEM_PICKED_UP_BY_ENTITY = register(new ThrownItemPickedUpByEntityTrigger());
+   public static final PlayerEntityInteractionTrigger PLAYER_ENTITY_INTERACTION = register(new PlayerEntityInteractionTrigger());
 
    public static <T extends ICriterionTrigger<?>> T register(T criterion) {
       if (REGISTRY.containsKey(criterion.getId())) {
@@ -63,7 +65,7 @@ public class CriteriaTriggers1 {
 
    @Nullable
    public static <T extends ICriterionInstance> ICriterionTrigger<T> get(ResourceLocation id) {
-      return (ICriterionTrigger<T>)REGISTRY.get(id);
+      return (ICriterionTrigger<T>) REGISTRY.get(id);
    }
 
    public static Iterable<? extends ICriterionTrigger<?>> getAll() {

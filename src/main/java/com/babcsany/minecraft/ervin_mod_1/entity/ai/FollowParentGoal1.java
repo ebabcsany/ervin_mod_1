@@ -1,18 +1,18 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.ai;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.AgeableEntity1;
 import net.minecraft.entity.ai.goal.Goal;
+import net.minecraft.entity.passive.AnimalEntity;
 
 import java.util.List;
 
 public class FollowParentGoal1 extends Goal {
-   private final AgeableEntity1 childMonster;
-   private AgeableEntity1 parentMonster;
+   private final AnimalEntity childAnimal;
+   private AnimalEntity parentAnimal;
    private final double moveSpeed;
    private int delayCounter;
 
-   public FollowParentGoal1(AgeableEntity1 monster, double speed) {
-      this.childMonster = monster;
+   public FollowParentGoal1(AnimalEntity animal, double speed) {
+      this.childAnimal = animal;
       this.moveSpeed = speed;
    }
 
@@ -21,29 +21,29 @@ public class FollowParentGoal1 extends Goal {
     * method as well.
     */
    public boolean shouldExecute() {
-      if (this.childMonster.getGrowingAge() >= 0) {
+      if (this.childAnimal.getGrowingAge() >= 0) {
          return false;
       } else {
-         List<AgeableEntity1> list = this.childMonster.world.getEntitiesWithinAABB(this.childMonster.getClass(), this.childMonster.getBoundingBox().grow(8.0D, 4.0D, 8.0D));
-         AgeableEntity1 monsterentity1 = null;
+         List<AnimalEntity> list = this.childAnimal.world.getEntitiesWithinAABB(this.childAnimal.getClass(), this.childAnimal.getBoundingBox().grow(8.0D, 4.0D, 8.0D));
+         AnimalEntity animalentity = null;
          double d0 = Double.MAX_VALUE;
 
-         for(AgeableEntity1 monsterentity : list) {
-            if (monsterentity1.getGrowingAge() >= 0) {
-               double d1 = this.childMonster.getDistanceSq(monsterentity1);
+         for(AnimalEntity animalentity1 : list) {
+            if (animalentity1.getGrowingAge() >= 0) {
+               double d1 = this.childAnimal.getDistanceSq(animalentity1);
                if (!(d1 > d0)) {
                   d0 = d1;
-                  monsterentity1 = monsterentity;
+                  animalentity = animalentity1;
                }
             }
          }
 
-         if (monsterentity1 == null) {
+         if (animalentity == null) {
             return false;
          } else if (d0 < 9.0D) {
             return false;
          } else {
-            this.parentMonster = monsterentity1;
+            this.parentAnimal = animalentity;
             return true;
          }
       }
@@ -53,12 +53,12 @@ public class FollowParentGoal1 extends Goal {
     * Returns whether an in-progress EntityAIBase should continue executing
     */
    public boolean shouldContinueExecuting() {
-      if (this.childMonster.getGrowingAge() >= 0) {
+      if (this.childAnimal.getGrowingAge() >= 0) {
          return false;
-      } else if (!this.parentMonster.isAlive()) {
+      } else if (!this.parentAnimal.isAlive()) {
          return false;
       } else {
-         double d0 = this.childMonster.getDistanceSq(this.parentMonster);
+         double d0 = this.childAnimal.getDistanceSq(this.parentAnimal);
          return !(d0 < 9.0D) && !(d0 > 256.0D);
       }
    }
@@ -74,7 +74,7 @@ public class FollowParentGoal1 extends Goal {
     * Reset the task's internal state. Called when this task is interrupted by another one
     */
    public void resetTask() {
-      this.parentMonster = null;
+      this.parentAnimal = null;
    }
 
    /**
@@ -83,7 +83,7 @@ public class FollowParentGoal1 extends Goal {
    public void tick() {
       if (--this.delayCounter <= 0) {
          this.delayCounter = 10;
-         this.childMonster.getNavigator().tryMoveToEntityLiving(this.parentMonster, this.moveSpeed);
+         this.childAnimal.getNavigator().tryMoveToEntityLiving(this.parentAnimal, this.moveSpeed);
       }
    }
 }

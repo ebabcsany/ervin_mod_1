@@ -1,7 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.world.biomes;
 
 import com.babcsany.minecraft.ervin_mod_1.init.BlockInit;
-import com.mojang.datafixers.Dynamic;
+import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.IChunk;
@@ -13,7 +13,7 @@ import java.util.function.Function;
 
 public class ScrafthBiomeSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig> {
 
-	public ScrafthBiomeSurfaceBuilder(Function<Dynamic<?>, ? extends SurfaceBuilderConfig> function) {
+	public ScrafthBiomeSurfaceBuilder(Codec<SurfaceBuilderConfig> function) {
 		super(function);
 	}
 

@@ -1,9 +1,10 @@
 package com.babcsany.minecraft.ervin_mod_1.entity;
 
+import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.goal.SitGoal;
+import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
@@ -15,6 +16,7 @@ import net.minecraft.particles.ParticleTypes;
 import net.minecraft.scoreboard.Team;
 import net.minecraft.server.management.PreYggdrasilConverter;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.Util;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -24,10 +26,10 @@ import javax.annotation.Nullable;
 import java.util.Optional;
 import java.util.UUID;
 
-public abstract class TameableEntity1 extends AgeableEntity1 {
+public abstract class TameableEntity1 extends AnimalEntity {
    protected static final DataParameter<Byte> TAMED = EntityDataManager.createKey(TameableEntity1.class, DataSerializers.BYTE);
    protected static final DataParameter<Optional<UUID>> OWNER_UNIQUE_ID = EntityDataManager.createKey(TameableEntity1.class, DataSerializers.OPTIONAL_UNIQUE_ID);
-   protected SitGoal sitGoal;
+   private boolean field_233683_bw_;
 
    protected TameableEntity1(EntityType<? extends TameableEntity1> type, World worldIn) {
       super(type, worldIn);
@@ -42,13 +44,11 @@ public abstract class TameableEntity1 extends AgeableEntity1 {
 
    public void writeAdditional(CompoundNBT compound) {
       super.writeAdditional(compound);
-      if (this.getOwnerId() == null) {
-         compound.putString("OwnerUUID", "");
-      } else {
-         compound.putString("OwnerUUID", this.getOwnerId().toString());
+      if (this.getOwnerId() != null) {
+         compound.putUniqueId("Owner", this.getOwnerId());
       }
 
-      compound.putBoolean("Sitting", this.isSitting());
+      compound.putBoolean("Sitting", this.field_233683_bw_);
    }
 
    /**
@@ -56,28 +56,25 @@ public abstract class TameableEntity1 extends AgeableEntity1 {
     */
    public void readAdditional(CompoundNBT compound) {
       super.readAdditional(compound);
-      String s;
-      if (compound.contains("OwnerUUID", 8)) {
-         s = compound.getString("OwnerUUID");
+      UUID uuid;
+      if (compound.hasUniqueId("Owner")) {
+         uuid = compound.getUniqueId("Owner");
       } else {
-         String s1 = compound.getString("Owner");
-         s = PreYggdrasilConverter.convertMobOwnerIfNeeded(this.getServer(), s1);
+         String s = compound.getString("Owner");
+         uuid = PreYggdrasilConverter.convertMobOwnerIfNeeded(this.getServer(), s);
       }
 
-      if (!s.isEmpty()) {
+      if (uuid != null) {
          try {
-            this.setOwnerId(UUID.fromString(s));
+            this.setOwnerId(uuid);
             this.setTamed(true);
-         } catch (Throwable var4) {
+         } catch (Throwable throwable) {
             this.setTamed(false);
          }
       }
 
-      if (this.sitGoal != null) {
-         this.sitGoal.setSitting(compound.getBoolean("Sitting"));
-      }
-
-      this.setSitting(compound.getBoolean("Sitting"));
+      this.field_233683_bw_ = compound.getBoolean("Sitting");
+      this.func_233686_v_(this.field_233683_bw_);
    }
 
    public boolean canBeLeashedTo(PlayerEntity player) {
@@ -136,13 +133,13 @@ public abstract class TameableEntity1 extends AgeableEntity1 {
    protected void setupTamedAI() {
    }
 
-   public boolean isSitting() {
+   public boolean func_233684_eK_() {
       return (this.dataManager.get(TAMED) & 1) != 0;
    }
 
-   public void setSitting(boolean sitting) {
+   public void func_233686_v_(boolean p_233686_1_) {
       byte b0 = this.dataManager.get(TAMED);
-      if (sitting) {
+      if (p_233686_1_) {
          this.dataManager.set(TAMED, (byte)(b0 | 1));
       } else {
          this.dataManager.set(TAMED, (byte)(b0 & -2));
@@ -163,7 +160,7 @@ public abstract class TameableEntity1 extends AgeableEntity1 {
       this.setTamed(true);
       this.setOwnerId(player.getUniqueID());
       if (player instanceof ServerPlayerEntity) {
-         CriteriaTriggers1.TAME_MONSTER.trigger((ServerPlayerEntity)player, this);
+         CriteriaTriggers.TAME_ANIMAL.trigger((ServerPlayerEntity)player, this);
       }
 
    }
@@ -173,7 +170,7 @@ public abstract class TameableEntity1 extends AgeableEntity1 {
       try {
          UUID uuid = this.getOwnerId();
          return uuid == null ? null : this.world.getPlayerByUuid(uuid);
-      } catch (IllegalArgumentException var2) {
+      } catch (IllegalArgumentException illegalargumentexception) {
          return null;
       }
    }
@@ -184,13 +181,6 @@ public abstract class TameableEntity1 extends AgeableEntity1 {
 
    public boolean isOwner(LivingEntity entityIn) {
       return entityIn == this.getOwner();
-   }
-
-   /**
-    * Returns the AITask responsible of the sit logic
-    */
-   public SitGoal getAISit() {
-      return this.sitGoal;
    }
 
    public boolean shouldAttackEntity(LivingEntity target, LivingEntity owner) {
@@ -231,9 +221,17 @@ public abstract class TameableEntity1 extends AgeableEntity1 {
     */
    public void onDeath(DamageSource cause) {
       if (!this.world.isRemote && this.world.getGameRules().getBoolean(GameRules.SHOW_DEATH_MESSAGES) && this.getOwner() instanceof ServerPlayerEntity) {
-         this.getOwner().sendMessage(this.getCombatTracker().getDeathMessage());
+         this.getOwner().sendMessage(this.getCombatTracker().getDeathMessage(), Util.DUMMY_UUID);
       }
 
       super.onDeath(cause);
+   }
+
+   public boolean func_233685_eM_() {
+      return this.field_233683_bw_;
+   }
+
+   public void func_233687_w_(boolean p_233687_1_) {
+      this.field_233683_bw_ = p_233687_1_;
    }
 }

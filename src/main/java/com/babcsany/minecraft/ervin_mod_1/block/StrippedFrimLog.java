@@ -20,6 +20,6 @@ public class StrippedFrimLog extends StrippedFrimWood {
     * Implementing/overriding is fine.
     */
    public MaterialColor getMaterialColor(BlockState state, IBlockReader worldIn, BlockPos pos) {
-      return state.get(AXIS) == Direction.Axis.Y ? this.verticalColor : this.materialColor;
+      return state.get(AXIS) == Direction.Axis.Y ? this.verticalColor : this.verticalColor;
    }
 }

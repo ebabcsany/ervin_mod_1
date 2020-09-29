@@ -3,15 +3,33 @@ package com.babcsany.minecraft.ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.init.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.client.*;
+import net.minecraft.client.audio.SoundHandler;
+import net.minecraft.client.entity.player.ClientPlayerEntity;
+import net.minecraft.client.gui.IngameGui;
+import net.minecraft.client.gui.chat.NarratorChatListener;
+import net.minecraft.client.gui.screen.DeathScreen;
+import net.minecraft.client.gui.screen.MainMenuScreen;
+import net.minecraft.client.gui.screen.MultiplayerScreen;
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.multiplayer.ServerData;
+import net.minecraft.client.network.play.ClientPlayNetHandler;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.client.settings.KeyBinding;
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.ShapedRecipe;
+import net.minecraft.server.integrated.IntegratedServer;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.Tag;
+import net.minecraft.tags.ITag;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SharedConstants;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -30,9 +48,8 @@ import net.minecraftforge.registries.IForgeRegistry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.annotation.Nullable;
 import java.util.stream.Collectors;
-
-import static com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1.MOD_ID;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(Ervin_mod_1.MOD_ID)
@@ -73,7 +90,7 @@ public class Ervin_mod_1 {
         BiomeInit.BIOMES.register(modEventBus);
         SoundInit.SOUNDS.register(modEventBus);
         FluidInit.FLUIDS.register(modEventBus);
-        DimensionInit.MOD_DIMENSIONS.register(modEventBus);
+        //DimensionInit.MOD_DIMENSIONS.register(modEventBus);
     }
 
     private void setup(final FMLCommonSetupEvent event) {
@@ -149,16 +166,95 @@ public class Ervin_mod_1 {
         }
     }
 
+    /*public final IngameGui ingameGUI;
+    public final GameSettings gameSettings;
+    public final MouseHelper mouseHelper;
+    private final MainWindow mainWindow;
+    public boolean skipRenderWorld;
+    private final SoundHandler soundHandler;*/
+    public boolean func_230151_c_() {
+        return !"vanilla".equals(ClientBrandRetriever.getClientModName()) || Minecraft.class.getSigners() == null;
+    }
+    @Nullable
+    public ClientPlayNetHandler getConnection() {
+        return this.player == null ? null : this.player.connection;
+    }
+    @Nullable
+    public ClientPlayerEntity player;
+    @Nullable
+    public Screen currentScreen;
+    private boolean connectedToRealms;
+    @Nullable
+    private ServerData currentServerData;
+    @Nullable
+    private IntegratedServer integratedServer;
+    public boolean isConnectedToRealms() {
+        return this.connectedToRealms;
+    }
+    @Nullable
+    public ClientWorld world;
+    private String func_230149_ax_() {
+        StringBuilder stringbuilder = new StringBuilder("Minecraft");
+        if (this.func_230151_c_()) {
+            stringbuilder.append("*");
+        }
+
+        stringbuilder.append(" ");
+        stringbuilder.append(SharedConstants.getVersion().getName());
+        ClientPlayNetHandler clientplaynethandler = this.getConnection();
+        if (clientplaynethandler != null && clientplaynethandler.getNetworkManager().isChannelOpen()) {
+            stringbuilder.append(" - ");
+            if (this.integratedServer != null && !this.integratedServer.getPublic()) {
+                stringbuilder.append(I18n.format("title.singleplayer"));
+            } else if (this.isConnectedToRealms()) {
+                stringbuilder.append(I18n.format("title.multiplayer.realms"));
+            } else if (this.integratedServer == null && (this.currentServerData == null || !this.currentServerData.isOnLAN())) {
+                stringbuilder.append(I18n.format("title.multiplayer.other"));
+            } else {
+                stringbuilder.append(I18n.format("title.multiplayer.lan"));
+            }
+        }
+
+        return stringbuilder.toString();
+    }
+    /*public void func_230150_b_() {
+        this.mainWindow.func_230148_b_(this.func_230149_ax_());
+    }*/
+
     @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
     public static class ForgeEvents {
         @SubscribeEvent
         public static void onLeftClickBlock(final PlayerInteractEvent.LeftClickBlock event) {
             PlayerEntity player = event.getPlayer();
             ResourceLocation MaterialBlocksTagId = new ResourceLocation(Ervin_mod_1.MOD_ID, "material_blocks");
-            Tag<Block> MaterialBlocks = BlockTags.getCollection().get(MaterialBlocksTagId);
+            ITag<Block> MaterialBlocks = BlockTags.getCollection().get(MaterialBlocksTagId);
             if (event.getWorld().hasBlockState(event.getPos(), blockState -> {
                 assert MaterialBlocks != null;
                 return blockState.isIn(MaterialBlocks) && player.isCreative();
+            })) {
+                event.setCanceled(true);
+            }
+        }
+        @SubscribeEvent
+        public static void onRightClickBlock(final PlayerInteractEvent.RightClickBlock event) {
+            PlayerEntity player = event.getPlayer();
+            ResourceLocation MaterialSetblocksTagId = new ResourceLocation(Ervin_mod_1.MOD_ID, "material_setblocks");
+            ITag<Block> MaterialSetblocks = BlockTags.getCollection().get(MaterialSetblocksTagId);
+            if (event.getWorld().hasBlockState(event.getPos(), blockState -> {
+                assert MaterialSetblocks != null;
+                return blockState.isIn(MaterialSetblocks) && player.isCreative();
+            })) {
+                event.setCanceled(true);
+            }
+        }
+        @SubscribeEvent
+        public static void onRightClickItem(final PlayerInteractEvent.RightClickItem event) {
+            PlayerEntity player = event.getPlayer();
+            ResourceLocation MaterialItemsTagId = new ResourceLocation(Ervin_mod_1.MOD_ID, "material_items");
+            ITag<Item> MaterialItems = ItemTags.getCollection().get(MaterialItemsTagId);
+            if (event.getWorld().hasBlockState(event.getPos(), blockState -> {
+                assert MaterialItems != null;
+                return player.isCreative();
             })) {
                 event.setCanceled(true);
             }

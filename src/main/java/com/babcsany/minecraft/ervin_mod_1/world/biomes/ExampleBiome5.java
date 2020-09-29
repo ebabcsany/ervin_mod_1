@@ -26,7 +26,7 @@ public class ExampleBiome5 extends Biome {
 		this.addCarver(GenerationStage.Carving.AIR,
 				Biome.createCarver(WorldCarver.CAVE, new ProbabilityConfig(0.14285715F)));
 		this.addCarver(GenerationStage.Carving.AIR,
-				Biome.createCarver(WorldCarver.HELL_CAVE, new ProbabilityConfig(0.02F)));
+				Biome.createCarver(WorldCarver.field_236240_b_, new ProbabilityConfig(0.02F)));
 		/*this.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION,
 				Feature.FOSSIL.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG)
 						.withPlacement(Placement.CHANCE_PASSTHROUGH.configure(new ChanceConfig(128))));*/
@@ -43,7 +43,7 @@ public class ExampleBiome5 extends Biome {
 				Feature.RANDOM_PATCH.withConfiguration(DefaultBiomeFeatures.RED_MUSHROOM_CONFIG).withPlacement(
 						Placement.COUNT_CHANCE_HEIGHTMAP_DOUBLE.configure(new HeightWithChanceConfig(1, 0.125F))));
 		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
-				Feature.NORMAL_TREE.withConfiguration(JazzTree.JAZZ_TREE_CONFIG).withPlacement(
+				Feature.field_236291_c_.withConfiguration(JazzTree.JAZZ_TREE_CONFIG).withPlacement(
 						Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(7, 0.1f, 1))));
 
 		DefaultBiomeFeatures.addOres(this);

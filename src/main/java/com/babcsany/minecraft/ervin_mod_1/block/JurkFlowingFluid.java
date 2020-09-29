@@ -8,7 +8,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.fluid.FlowingFluid;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
-import net.minecraft.fluid.IFluidState;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.IntegerProperty;
@@ -25,7 +25,7 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraft.world.storage.loot.LootContext;
+import net.minecraft.loot.LootContext;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -36,7 +36,7 @@ import java.util.Random;
 public class JurkFlowingFluid extends Block implements IBucketPickupHandler {
    public static final IntegerProperty LEVEL = BlockStateProperties.LEVEL_0_15;
    private final FlowingFluid fluid;
-   private final List<IFluidState> field_212565_c;
+   private final List<FluidState> field_212565_c;
 
    // Forge: Use the constructor that takes a supplier
    @Deprecated
@@ -82,7 +82,7 @@ public class JurkFlowingFluid extends Block implements IBucketPickupHandler {
       return !this.fluid.isIn(FluidTag.JURK);
    }
 
-   public IFluidState getFluidState(BlockState state) {
+   public FluidState getFluidState(BlockState state) {
       int i = state.get(LEVEL);
       if (!fluidStateCacheInitialized) initFluidStateCache();
       return this.field_212565_c.get(Math.min(i, 8));
@@ -157,7 +157,7 @@ public class JurkFlowingFluid extends Block implements IBucketPickupHandler {
          }
 
          if (flag) {
-            IFluidState ifluidstate = worldIn.getFluidState(pos);
+            FluidState ifluidstate = worldIn.getFluidState(pos);
             if (ifluidstate.isSource()) {
                worldIn.setBlockState(pos, net.minecraftforge.event.ForgeEventFactory.fireFluidPlaceBlockEvent(worldIn, pos, pos, Blocks.OBSIDIAN.getDefaultState()));
                this.triggerMixEffects(worldIn, pos);

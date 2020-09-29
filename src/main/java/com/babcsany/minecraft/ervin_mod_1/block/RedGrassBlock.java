@@ -42,7 +42,7 @@ public class RedGrassBlock extends SpreadableSnowyDirtBlock implements IGrowable
          while(true) {
             if (j >= i / 16) {
                BlockState blockstate2 = worldIn.getBlockState(blockpos1);
-               if (blockstate2.getBlock() == blockstate.getBlock() && rand.nextInt(10) == 0) {
+               if (blockstate2.isIn(blockstate.getBlock()) && rand.nextInt(10) == 0) {
                   ((IGrowable)blockstate.getBlock()).grow(worldIn, rand, blockpos1, blockstate2);
                }
 
@@ -70,7 +70,7 @@ public class RedGrassBlock extends SpreadableSnowyDirtBlock implements IGrowable
             }
 
             blockpos1 = blockpos1.add(rand.nextInt(3) - 1, (rand.nextInt(3) - 1) * rand.nextInt(3) / 2, rand.nextInt(3) - 1);
-            if (worldIn.getBlockState(blockpos1.down()).getBlock() != this || worldIn.getBlockState(blockpos1).isCollisionShapeOpaque(worldIn, blockpos1)) {
+            if (!worldIn.getBlockState(blockpos1.down()).isIn(this) || worldIn.getBlockState(blockpos1).hasOpaqueCollisionShape(worldIn, blockpos1)) {
                break;
             }
 

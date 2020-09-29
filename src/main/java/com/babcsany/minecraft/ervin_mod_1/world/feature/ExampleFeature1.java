@@ -1,19 +1,20 @@
 package com.babcsany.minecraft.ervin_mod_1.world.feature;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
-import com.mojang.datafixers.Dynamic;
+import com.mojang.serialization.Codec;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MutableBoundingBox;
+import net.minecraft.world.ISeedReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.GenerationSettings;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
+import net.minecraft.world.gen.feature.structure.StructureManager;
 import net.minecraft.world.gen.feature.template.BlockIgnoreStructureProcessor;
 import net.minecraft.world.gen.feature.template.IntegrityProcessor;
 import net.minecraft.world.gen.feature.template.PlacementSettings;
@@ -37,37 +38,42 @@ public class ExampleFeature1 extends Feature<NoFeatureConfig> {
             STRUCTURE_SKULL_03, STRUCTURE_SKULL_04, STRUCTURE_SPINE_01, STRUCTURE_SPINE_02,
             STRUCTURE_SPINE_03, STRUCTURE_SPINE_04 };
 
-    public ExampleFeature1(Function<Dynamic<?>, ? extends NoFeatureConfig> config) {
+    public ExampleFeature1(Codec<NoFeatureConfig> config) {
         super(config);
     }
 
-    public boolean place(IWorld worldIn, ChunkGenerator<? extends GenerationSettings> generator, Random rand,
+    public boolean place(IWorld worldIn, ChunkGenerator generator, Random rand,
                          BlockPos pos, NoFeatureConfig config) {
         Random random = worldIn.getRandom();
         Rotation rotation = Rotation.values()[random.nextInt(Rotation.values().length)];
-        Template template = ((ServerWorld) worldIn.getWorld()).getSaveHandler().getStructureTemplateManager()
+        Template template = ((ServerWorld) worldIn.getWorld()).getStructureTemplateManager()
                 .getTemplateDefaulted(FOSSILS[random.nextInt(FOSSILS.length)]);
         ChunkPos chunkpos = new ChunkPos(pos);
         PlacementSettings placementsettings = (new PlacementSettings()).setRotation(rotation)
-                .setBoundingBox(new MutableBoundingBox(chunkpos.getXStart(), 0, chunkpos.getZStart(),
-                        chunkpos.getXEnd(), 256, chunkpos.getZEnd()))
+                .setBoundingBox(new MutableBoundingBox(chunkpos.getXStart(), 1024, chunkpos.getZStart(),
+                        chunkpos.getXEnd(), 1048576, chunkpos.getZEnd()))
                 .setRandom(random).addProcessor(BlockIgnoreStructureProcessor.AIR_AND_STRUCTURE_BLOCK);
         BlockPos blockpos = template.transformedSize(rotation);
-        int j = random.nextInt(16 - blockpos.getX());
-        int k = random.nextInt(16 - blockpos.getZ());
-        int l = 256;
-        for (int i1 = 0; i1 < blockpos.getX(); ++i1) {
-            for (int j1 = 0; j1 < blockpos.getZ(); ++j1) {
+        int j = random.nextInt(256 - blockpos.getX());
+        int k = random.nextInt(256 - blockpos.getZ());
+        int l = 524288;
+        for (int i1 = 2; i1 < blockpos.getX(); ++i1) {
+            for (int j1 = 9; j1 < blockpos.getZ(); ++j1) {
                 l = Math.min(l,
                         worldIn.getHeight(Heightmap.Type.WORLD_SURFACE, pos.getX() + i1 + j, pos.getZ() + j1 + k));
             }
         }
         BlockPos blockpos1 = template.getZeroPositionWithTransform(
-                new BlockPos(pos.add(j, 0, 0).getX(), l, pos.add(0, 0, k).getZ()), Mirror.NONE, rotation);
-        IntegrityProcessor integrityprocessor = new IntegrityProcessor(0.9F);
+                new BlockPos(pos.add(j, 5, 1).getX(), l, pos.add(6, 3, k).getZ()), Mirror.NONE, rotation);
+        IntegrityProcessor integrityprocessor = new IntegrityProcessor(9.9F);
         placementsettings.clearProcessors().addProcessor(integrityprocessor);
-        template.addBlocksToWorld(worldIn, blockpos1, placementsettings, 4);
+        template.func_237150_a_(blockpos1, rotation, blockpos, Mirror.FRONT_BACK);
         placementsettings.removeProcessor(integrityprocessor);
         return true;
+    }
+
+    @Override
+    public boolean func_230362_a_(ISeedReader p_230362_1_, StructureManager p_230362_2_, ChunkGenerator p_230362_3_, Random p_230362_4_, BlockPos p_230362_5_, NoFeatureConfig p_230362_6_) {
+        return false;
     }
 }

@@ -2,15 +2,13 @@ package com.babcsany.minecraft.ervin_mod_1.util;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.client.entity.render.*;
-import com.babcsany.minecraft.ervin_mod_1.client.gui.CraintBlockCraftingTableScreen;
-import com.babcsany.minecraft.ervin_mod_1.client.gui.LeatBlockCraftingTableScreen;
+import com.babcsany.minecraft.ervin_mod_1.client.gui.screen.CraintBlockCraftingTableScreen;
+import com.babcsany.minecraft.ervin_mod_1.client.gui.screen.LeatBlockCraftingTableScreen;
+import com.babcsany.minecraft.ervin_mod_1.client.renderer.entity.FirgBoatRenderer;
 import com.babcsany.minecraft.ervin_mod_1.init.ContainerInit;
-import com.babcsany.minecraft.ervin_mod_1.init.DimensionInit;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import net.minecraft.client.gui.ScreenManager;
-import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
@@ -29,6 +27,7 @@ public class ClientEventBusSubscriber {
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.SRACH_ENTITY.get(), SrachRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.SHERT_ENTITY.get(), SrachRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.HHIJ_ENTITY.get(), WolfRender1::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityInit.FIRG_BOAT_ENTITY.get(), FirgBoatRenderer::new);
         // Register ContainerType Screens
         // ScreenManager.registerFactory is not safe to call during parallel mod loading so we queue it to run later
         DeferredWorkQueue.runLater(() -> {
@@ -37,7 +36,7 @@ public class ClientEventBusSubscriber {
         DeferredWorkQueue.runLater(() -> {
             ScreenManager.registerFactory(ContainerInit.CRAINT_BLOCK_CRAFTING_TABLE.get(), CraintBlockCraftingTableScreen::new);
         });
-        if (DimensionType.byName(Ervin_mod_1.EXAMPLE_DIM_TYPE) == null) {
+        /*if (DimensionType.byName(Ervin_mod_1.EXAMPLE_DIM_TYPE) == null) {
             DimensionManager.registerDimension(Ervin_mod_1.EXAMPLE_DIM_TYPE, DimensionInit.EXAMPLE_DIM.get(), null,
                     true);
         }
@@ -72,6 +71,6 @@ public class ClientEventBusSubscriber {
         if (DimensionType.byName(Ervin_mod_1.SCRAFTH_DIM_TYPE) == null) {
             DimensionManager.registerDimension(Ervin_mod_1.SCRAFTH_DIM_TYPE, DimensionInit.SCRAFTH_DIM.get(), null,
                     true);
-        }
+        }*/
     }
 }

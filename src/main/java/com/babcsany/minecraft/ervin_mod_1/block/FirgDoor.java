@@ -1,9 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.block;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.HorizontalBlock;
+import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.PushReaction;
 import net.minecraft.entity.LivingEntity;
@@ -18,14 +15,13 @@ import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.state.properties.DoorHingeSide;
 import net.minecraft.state.properties.DoubleBlockHalf;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
@@ -46,7 +42,7 @@ public class FirgDoor extends Block {
    protected static final VoxelShape WEST_AABB = Block.makeCuboidShape(13.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
    protected static final VoxelShape EAST_AABB = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 3.0D, 16.0D, 16.0D);
 
-   protected FirgDoor(Properties builder) {
+   public FirgDoor(Properties builder) {
       super(builder);
       this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH).with(OPEN, Boolean.valueOf(false)).with(HINGE, DoorHingeSide.LEFT).with(POWERED, Boolean.valueOf(false)).with(HALF, DoubleBlockHalf.LOWER));
    }
@@ -77,18 +73,10 @@ public class FirgDoor extends Block {
    public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
       DoubleBlockHalf doubleblockhalf = stateIn.get(HALF);
       if (facing.getAxis() == Direction.Axis.Y && doubleblockhalf == DoubleBlockHalf.LOWER == (facing == Direction.UP)) {
-         return facingState.getBlock() == this && facingState.get(HALF) != doubleblockhalf ? stateIn.with(FACING, facingState.get(FACING)).with(OPEN, facingState.get(OPEN)).with(HINGE, facingState.get(HINGE)).with(POWERED, facingState.get(POWERED)) : Blocks.AIR.getDefaultState();
+         return facingState.isIn(this) && facingState.get(HALF) != doubleblockhalf ? stateIn.with(FACING, facingState.get(FACING)).with(OPEN, facingState.get(OPEN)).with(HINGE, facingState.get(HINGE)).with(POWERED, facingState.get(POWERED)) : Blocks.AIR.getDefaultState();
       } else {
          return doubleblockhalf == DoubleBlockHalf.LOWER && facing == Direction.DOWN && !stateIn.isValidPosition(worldIn, currentPos) ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
       }
-   }
-
-   /**
-    * Spawns the block's drops in the world. By the time this is called the Block has possibly been set to air via
-    * Block.removedByPlayer
-    */
-   public void harvestBlock(World worldIn, PlayerEntity player, BlockPos pos, BlockState state, @Nullable TileEntity te, ItemStack stack) {
-      super.harvestBlock(worldIn, player, pos, Blocks.AIR.getDefaultState(), te, stack);
    }
 
    /**
@@ -96,17 +84,8 @@ public class FirgDoor extends Block {
     * this block
     */
    public void onBlockHarvested(World worldIn, BlockPos pos, BlockState state, PlayerEntity player) {
-      DoubleBlockHalf doubleblockhalf = state.get(HALF);
-      BlockPos blockpos = doubleblockhalf == DoubleBlockHalf.LOWER ? pos.up() : pos.down();
-      BlockState blockstate = worldIn.getBlockState(blockpos);
-      if (blockstate.getBlock() == this && blockstate.get(HALF) != doubleblockhalf) {
-         worldIn.setBlockState(blockpos, Blocks.AIR.getDefaultState(), 35);
-         worldIn.playEvent(player, 2001, blockpos, Block.getStateId(blockstate));
-         ItemStack itemstack = player.getHeldItemMainhand();
-         if (!worldIn.isRemote && !player.isCreative() && player.canHarvestBlock(blockstate)) {
-            Block.spawnDrops(state, worldIn, pos, (TileEntity)null, player, itemstack);
-            Block.spawnDrops(blockstate, worldIn, blockpos, (TileEntity)null, player, itemstack);
-         }
+      if (!worldIn.isRemote && player.isCreative()) {
+         DoublePlantBlock1.func_241471_b_(worldIn, pos, state, player);
       }
 
       super.onBlockHarvested(worldIn, pos, state, player);
@@ -152,10 +131,10 @@ public class FirgDoor extends Block {
       worldIn.setBlockState(pos.up(), state.with(HALF, DoubleBlockHalf.UPPER), 3);
    }
 
-   private DoorHingeSide getHingeSide(BlockItemUseContext p_208073_1_) {
-      IBlockReader iblockreader = p_208073_1_.getWorld();
-      BlockPos blockpos = p_208073_1_.getPos();
-      Direction direction = p_208073_1_.getPlacementHorizontalFacing();
+   private DoorHingeSide getHingeSide(BlockItemUseContext context) {
+      IBlockReader iblockreader = context.getWorld();
+      BlockPos blockpos = context.getPos();
+      Direction direction = context.getPlacementHorizontalFacing();
       BlockPos blockpos1 = blockpos.up();
       Direction direction1 = direction.rotateYCCW();
       BlockPos blockpos2 = blockpos.offset(direction1);
@@ -167,16 +146,16 @@ public class FirgDoor extends Block {
       BlockState blockstate2 = iblockreader.getBlockState(blockpos4);
       BlockPos blockpos5 = blockpos1.offset(direction2);
       BlockState blockstate3 = iblockreader.getBlockState(blockpos5);
-      int i = (blockstate.isCollisionShapeOpaque(iblockreader, blockpos2) ? -1 : 0) + (blockstate1.isCollisionShapeOpaque(iblockreader, blockpos3) ? -1 : 0) + (blockstate2.isCollisionShapeOpaque(iblockreader, blockpos4) ? 1 : 0) + (blockstate3.isCollisionShapeOpaque(iblockreader, blockpos5) ? 1 : 0);
-      boolean flag = blockstate.getBlock() == this && blockstate.get(HALF) == DoubleBlockHalf.LOWER;
-      boolean flag1 = blockstate2.getBlock() == this && blockstate2.get(HALF) == DoubleBlockHalf.LOWER;
+      int i = (blockstate.hasOpaqueCollisionShape(iblockreader, blockpos2) ? -1 : 0) + (blockstate1.hasOpaqueCollisionShape(iblockreader, blockpos3) ? -1 : 0) + (blockstate2.hasOpaqueCollisionShape(iblockreader, blockpos4) ? 1 : 0) + (blockstate3.hasOpaqueCollisionShape(iblockreader, blockpos5) ? 1 : 0);
+      boolean flag = blockstate.isIn(this) && blockstate.get(HALF) == DoubleBlockHalf.LOWER;
+      boolean flag1 = blockstate2.isIn(this) && blockstate2.get(HALF) == DoubleBlockHalf.LOWER;
       if ((!flag || flag1) && i <= 0) {
          if ((!flag1 || flag) && i >= 0) {
             int j = direction.getXOffset();
             int k = direction.getZOffset();
-            Vec3d vec3d = p_208073_1_.getHitVec();
-            double d0 = vec3d.x - (double)blockpos.getX();
-            double d1 = vec3d.z - (double)blockpos.getZ();
+            Vector3d vector3d = context.getHitVec();
+            double d0 = vector3d.x - (double)blockpos.getX();
+            double d1 = vector3d.z - (double)blockpos.getZ();
             return (j >= 0 || !(d1 < 0.5D)) && (j <= 0 || !(d1 > 0.5D)) && (k >= 0 || !(d0 > 0.5D)) && (k <= 0 || !(d0 < 0.5D)) ? DoorHingeSide.LEFT : DoorHingeSide.RIGHT;
          } else {
             return DoorHingeSide.LEFT;
@@ -190,16 +169,16 @@ public class FirgDoor extends Block {
       if (this.material == Material.IRON) {
          return ActionResultType.PASS;
       } else {
-         state = state.cycle(OPEN);
+         state = state.func_235896_a_(OPEN);
          worldIn.setBlockState(pos, state, 10);
          worldIn.playEvent(player, state.get(OPEN) ? this.getOpenSound() : this.getCloseSound(), pos, 0);
-         return ActionResultType.SUCCESS;
+         return ActionResultType.func_233537_a_(worldIn.isRemote);
       }
    }
 
    public void toggleDoor(World worldIn, BlockPos pos, boolean open) {
       BlockState blockstate = worldIn.getBlockState(pos);
-      if (blockstate.getBlock() == this && blockstate.get(OPEN) != open) {
+      if (blockstate.isIn(this) && blockstate.get(OPEN) != open) {
          worldIn.setBlockState(pos, blockstate.with(OPEN, Boolean.valueOf(open)), 10);
          this.playSound(worldIn, pos, open);
       }
@@ -220,11 +199,7 @@ public class FirgDoor extends Block {
    public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
       BlockPos blockpos = pos.down();
       BlockState blockstate = worldIn.getBlockState(blockpos);
-      if (state.get(HALF) == DoubleBlockHalf.LOWER) {
-         return blockstate.isSolidSide(worldIn, blockpos, Direction.UP);
-      } else {
-         return blockstate.getBlock() == this;
-      }
+      return state.get(HALF) == DoubleBlockHalf.LOWER ? blockstate.isSolidSide(worldIn, blockpos, Direction.UP) : blockstate.isIn(this);
    }
 
    private void playSound(World worldIn, BlockPos pos, boolean isOpening) {
@@ -254,7 +229,7 @@ public class FirgDoor extends Block {
     * @deprecated call via {@link IBlockState#withMirror(Mirror)} whenever possible. Implementing/overriding is fine.
     */
    public BlockState mirror(BlockState state, Mirror mirrorIn) {
-      return mirrorIn == Mirror.NONE ? state : state.rotate(mirrorIn.toRotation(state.get(FACING))).cycle(HINGE);
+      return mirrorIn == Mirror.NONE ? state : state.rotate(mirrorIn.toRotation(state.get(FACING))).func_235896_a_(HINGE);
    }
 
    /* *
@@ -267,5 +242,13 @@ public class FirgDoor extends Block {
 
    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
       builder.add(HALF, FACING, OPEN, HINGE, POWERED);
+   }
+
+   public static boolean isWooden(World world, BlockPos pos) {
+      return isWooden(world.getBlockState(pos));
+   }
+
+   public static boolean isWooden(BlockState state) {
+      return state.getBlock() instanceof FirgDoor && (state.getMaterial() == Material.WOOD || state.getMaterial() == Material.NETHER_WOOD);
    }
 }

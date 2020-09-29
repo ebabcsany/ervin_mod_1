@@ -1,6 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.world.dimension;
 
-import net.minecraft.world.gen.GenerationSettings;
+import com.babcsany.minecraft.ervin_mod_1.world.feature.GenerationSettings;
 
 public class ExampleGenSettings1 extends GenerationSettings {
 

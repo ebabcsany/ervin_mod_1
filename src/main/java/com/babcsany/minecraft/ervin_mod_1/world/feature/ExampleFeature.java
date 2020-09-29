@@ -3,21 +3,23 @@ package com.babcsany.minecraft.ervin_mod_1.world.feature;
 import java.util.Random;
 import java.util.function.Function;
 
-import com.mojang.datafixers.Dynamic;
+//import com.mojang.serialization.Dynamic;
 
+import com.mojang.serialization.Codec;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MutableBoundingBox;
+import net.minecraft.world.ISeedReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.GenerationSettings;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.structure.ShipwreckConfig;
+import net.minecraft.world.gen.feature.structure.StructureManager;
 import net.minecraft.world.gen.feature.template.BlockIgnoreStructureProcessor;
 import net.minecraft.world.gen.feature.template.IntegrityProcessor;
 import net.minecraft.world.gen.feature.template.PlacementSettings;
@@ -33,15 +35,20 @@ public class ExampleFeature extends Feature<NoFeatureConfig> {
     private static final ResourceLocation[] FOSSILS = new ResourceLocation[] { STRUCTURE_SPINE_01, STRUCTURE_SPINE_02,
             STRUCTURE_SPINE_03, STRUCTURE_SPINE_04 };
 
-    public ExampleFeature(Function<Dynamic<?>, ? extends NoFeatureConfig> config) {
+    public ExampleFeature(Codec<NoFeatureConfig> config) {
         super(config);
     }
 
-    public boolean place(IWorld worldIn, ChunkGenerator<? extends GenerationSettings> generator, Random rand,
+    @Override
+    public boolean func_230362_a_(ISeedReader p_230362_1_, StructureManager p_230362_2_, ChunkGenerator p_230362_3_, Random p_230362_4_, BlockPos p_230362_5_, NoFeatureConfig p_230362_6_) {
+        return false;
+    }
+
+    public boolean place(IWorld worldIn, ChunkGenerator generator, Random rand,
                          BlockPos pos, NoFeatureConfig config) {
         Random random = worldIn.getRandom();
         Rotation rotation = Rotation.values()[random.nextInt(Rotation.values().length)];
-        Template template = ((ServerWorld) worldIn.getWorld()).getSaveHandler().getStructureTemplateManager()
+        Template template = ((ServerWorld) worldIn.getWorld()).getStructureTemplateManager()
                 .getTemplateDefaulted(FOSSILS[random.nextInt(FOSSILS.length)]);
         ChunkPos chunkpos = new ChunkPos(pos);
         PlacementSettings placementsettings = (new PlacementSettings()).setRotation(rotation)
@@ -62,7 +69,7 @@ public class ExampleFeature extends Feature<NoFeatureConfig> {
                 new BlockPos(pos.add(j, 0, 0).getX(), l, pos.add(0, 0, k).getZ()), Mirror.NONE, rotation);
         IntegrityProcessor integrityprocessor = new IntegrityProcessor(0.9F);
         placementsettings.clearProcessors().addProcessor(integrityprocessor);
-        template.addBlocksToWorld(worldIn, blockpos1, placementsettings, 4);
+        template.func_237150_a_(blockpos1, rotation, blockpos, Mirror.NONE);
         placementsettings.removeProcessor(integrityprocessor);
         return true;
     }

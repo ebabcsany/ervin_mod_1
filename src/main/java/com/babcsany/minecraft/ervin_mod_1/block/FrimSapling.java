@@ -1,10 +1,11 @@
 package com.babcsany.minecraft.ervin_mod_1.block;
 
+import com.babcsany.minecraft.ervin_mod_1.block.trees.FirgTree;
+import com.babcsany.minecraft.ervin_mod_1.block.trees.FrimTree;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BushBlock;
 import net.minecraft.block.IGrowable;
-import net.minecraft.block.trees.Tree;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
@@ -20,9 +21,9 @@ import java.util.Random;
 public class FrimSapling extends BushBlock implements IGrowable {
    public static final IntegerProperty STAGE = BlockStateProperties.STAGE_0_1;
    protected static final VoxelShape SHAPE = Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 12.0D, 14.0D);
-   private final Tree tree;
+   private final FrimTree tree;
 
-   public FrimSapling(Tree treeIn, Properties properties) {
+   public FrimSapling(FrimTree treeIn, Properties properties) {
       super(properties);
       this.tree = treeIn;
       this.setDefaultState(this.stateContainer.getBaseState().with(STAGE, Integer.valueOf(0)));
@@ -32,21 +33,23 @@ public class FrimSapling extends BushBlock implements IGrowable {
       return SHAPE;
    }
 
-   public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
-      super.tick(state, worldIn, pos, rand);
+   /**
+    * Performs a random tick on a block.
+    */
+   public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
+      if (worldIn.getLight(pos.up()) >= 9 && random.nextInt(7) == 0) {
       if (!worldIn.isAreaLoaded(pos, 1)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light
-      if (worldIn.getLight(pos.up()) >= 9 && rand.nextInt(7) == 0) {
-         this.func_226942_a_(worldIn, pos, state, rand);
+         this.placeTree(worldIn, pos, state, random);
       }
 
    }
 
-   public void func_226942_a_(ServerWorld p_226942_1_, BlockPos p_226942_2_, BlockState p_226942_3_, Random p_226942_4_) {
-      if (p_226942_3_.get(STAGE) == 0) {
-         p_226942_1_.setBlockState(p_226942_2_, p_226942_3_.cycle(STAGE), 4);
+   public void placeTree(ServerWorld world, BlockPos pos, BlockState state, Random rand) {
+      if (state.get(STAGE) == 0) {
+         world.setBlockState(pos, state.func_235896_a_(STAGE), 4);
       } else {
-         if (!net.minecraftforge.event.ForgeEventFactory.saplingGrowTree(p_226942_1_, p_226942_4_, p_226942_2_)) return;
-         this.tree.func_225545_a_(p_226942_1_, p_226942_1_.getChunkProvider().getChunkGenerator(), p_226942_2_, p_226942_3_, p_226942_4_);
+         if (!net.minecraftforge.event.ForgeEventFactory.saplingGrowTree(world, rand, pos)) return;
+         this.tree.attemptGrowTree(world, world.getChunkProvider().getChunkGenerator(), pos, state, rand);
       }
 
    }
@@ -63,7 +66,7 @@ public class FrimSapling extends BushBlock implements IGrowable {
    }
 
    public void grow(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state) {
-      this.func_226942_a_(worldIn, pos, state, rand);
+      this.placeTree(worldIn, pos, state, rand);
    }
 
    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {

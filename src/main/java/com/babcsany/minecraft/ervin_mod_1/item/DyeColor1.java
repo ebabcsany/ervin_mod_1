@@ -2,11 +2,14 @@ package com.babcsany.minecraft.ervin_mod_1.item;
 
 import com.babcsany.minecraft.ervin_mod_1.block.material.MaterialColor1;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
+import net.minecraft.block.material.MaterialColor;
+import net.minecraft.item.DyeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
 
 import javax.annotation.Nullable;
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.stream.Collectors;
@@ -33,7 +36,7 @@ public enum DyeColor1 implements IStringSerializable {
    private static final DyeColor1[] VALUES = Arrays.stream(values()).sorted(Comparator.comparingInt(DyeColor1::getId)).toArray((p_199795_0_) -> {
       return new DyeColor1[p_199795_0_];
    });
-   private static final Int2ObjectOpenHashMap<DyeColor1> BY_FIREWORK_COLOR1 = new Int2ObjectOpenHashMap<>(Arrays.stream(values()).collect(Collectors.toMap((p_199793_0_) -> {
+   private static final Int2ObjectOpenHashMap<DyeColor1> BY_FIREWORK_COLOR = new Int2ObjectOpenHashMap<>(Arrays.stream(values()).collect(Collectors.toMap((p_199793_0_) -> {
       return p_199793_0_.fireworkColor;
    }, (p_199794_0_) -> {
       return p_199794_0_;
@@ -45,7 +48,7 @@ public enum DyeColor1 implements IStringSerializable {
    private final int swappedColorValue;
    private final float[] colorComponentValues;
    private final int fireworkColor;
-   private final net.minecraft.tags.Tag<Item> tag;
+   private final net.minecraft.tags.ITag<Item> tag;
    private final int textColor;
 
    private DyeColor1(int idIn, String translationKeyIn, int colorValueIn, MaterialColor1 mapColorIn, int fireworkColorIn, int textColorIn) {
@@ -58,7 +61,7 @@ public enum DyeColor1 implements IStringSerializable {
       int j = (colorValueIn & '\uff00') >> 8;
       int k = (colorValueIn & 255) >> 0;
       this.swappedColorValue = k << 16 | j << 8 | i << 0;
-      this.tag = new net.minecraft.tags.ItemTags.Wrapper(new net.minecraft.util.ResourceLocation("forge", "dyes/" + translationKeyIn));
+      this.tag = net.minecraft.tags.ItemTags.makeWrapperTag("forge:dyes/" + translationKeyIn);
       this.colorComponentValues = new float[]{(float)i / 255.0F, (float)j / 255.0F, (float)k / 255.0F};
       this.fireworkColor = fireworkColorIn;
    }
@@ -99,26 +102,26 @@ public enum DyeColor1 implements IStringSerializable {
       return VALUES[colorId];
    }
 
-   public static DyeColor1 byTranslationKey(String p_204271_0_, DyeColor1 p_204271_1_) {
+   public static DyeColor1 byTranslationKey(String translationKeyIn, DyeColor1 fallback) {
       for(DyeColor1 dyecolor : values()) {
-         if (dyecolor.translationKey.equals(p_204271_0_)) {
+         if (dyecolor.translationKey.equals(translationKeyIn)) {
             return dyecolor;
          }
       }
 
-      return p_204271_1_;
+      return fallback;
    }
 
    @Nullable
    public static DyeColor1 byFireworkColor(int fireworkColorIn) {
-      return BY_FIREWORK_COLOR1.get(fireworkColorIn);
+      return BY_FIREWORK_COLOR.get(fireworkColorIn);
    }
 
    public String toString() {
       return this.translationKey;
    }
 
-   public String getName() {
+   public String getString() {
       return this.translationKey;
    }
 
@@ -126,14 +129,14 @@ public enum DyeColor1 implements IStringSerializable {
       return colorValue;
    }
 
-   public net.minecraft.tags.Tag<Item> getTag() {
+   public net.minecraft.tags.ITag<Item> getTag() {
       return tag;
    }
 
    @Nullable
-   public static DyeColor1 getColor(ItemStack stack) {
-      if (stack.getItem() instanceof DyeItem1)
-         return ((DyeItem1)stack.getItem()).getDyeColor1();
+   public static Serializable getColor(ItemStack stack) {
+      if (stack.getItem() instanceof DyeItem)
+         return ((DyeItem)stack.getItem()).getDyeColor();
 
       for (DyeColor1 color : VALUES) {
          if (stack.getItem().isIn(color.getTag()))

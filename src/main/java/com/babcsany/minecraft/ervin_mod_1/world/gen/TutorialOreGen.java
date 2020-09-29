@@ -1,7 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.world.gen;
 
 import com.babcsany.minecraft.ervin_mod_1.init.BlockInit;
-import com.babcsany.minecraft.ervin_mod_1.world.feature.OreFeatureConfig1;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.gen.GenerationStage;

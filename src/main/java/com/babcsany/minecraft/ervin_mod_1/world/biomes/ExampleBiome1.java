@@ -44,7 +44,7 @@ public class ExampleBiome1 extends Biome {
 		this.addCarver(GenerationStage.Carving.AIR,
 				Biome.createCarver(WorldCarver.UNDERWATER_CAVE, new ProbabilityConfig(4.14285715F)));
 		this.addCarver(GenerationStage.Carving.AIR,
-				Biome.createCarver(WorldCarver.HELL_CAVE, new ProbabilityConfig(16.02F)));
+				Biome.createCarver(WorldCarver.field_236240_b_, new ProbabilityConfig(16.02F)));
 		this.addCarver(GenerationStage.Carving.AIR,
 				Biome.createCarver(WorldCarver.CANYON, new ProbabilityConfig(60.7421563921F)));
 		this.addCarver(GenerationStage.Carving.AIR,
@@ -55,16 +55,16 @@ public class ExampleBiome1 extends Biome {
 				Feature.FOSSIL.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG)
 						.withPlacement(Placement.CHANCE_PASSTHROUGH.configure(new ChanceConfig(128))));
 		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
-				Feature.FANCY_TREE.withConfiguration(ModDefaultBiomeFeatures.FIRG_TREE_CONFIG3)
+				Feature.field_236291_c_.withConfiguration(ModDefaultBiomeFeatures.FIRG_TREE_CONFIG3)
 						.withPlacement(Placement.CHANCE_HEIGHTMAP_DOUBLE.configure(new ChanceConfig(240))));
 		this.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION,
-				Feature.FANCY_TREE.withConfiguration(ModDefaultBiomeFeatures.FIRG_TREE_CONFIG2)
+				Feature.field_236291_c_.withConfiguration(ModDefaultBiomeFeatures.FIRG_TREE_CONFIG2)
 						.withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(150))));
 		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
-				Feature.FANCY_TREE.withConfiguration(ModDefaultBiomeFeatures.FIRG_TREE_CONFIG1)
+				Feature.field_236291_c_.withConfiguration(ModDefaultBiomeFeatures.FIRG_TREE_CONFIG1)
 						.withPlacement(Placement.CHANCE_TOP_SOLID_HEIGHTMAP.configure(new ChanceConfig(200))));
 		this.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION,
-				Feature.FANCY_TREE.withConfiguration(ModDefaultBiomeFeatures.FIRG_TREE_CONFIG)
+				Feature.field_236291_c_.withConfiguration(ModDefaultBiomeFeatures.FIRG_TREE_CONFIG)
 						.withPlacement(Placement.CHANCE_PASSTHROUGH.configure(new ChanceConfig(100))));
 		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
 				Feature.RANDOM_BOOLEAN_SELECTOR
@@ -75,8 +75,8 @@ public class ExampleBiome1 extends Biome {
 		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
 				Feature.RANDOM_BOOLEAN_SELECTOR
 						.withConfiguration(new TwoFeatureChoiceConfig(
-								Feature.FANCY_TREE.withConfiguration(ModDefaultBiomeFeatures.field_230136_t_),
-								Feature.ACACIA_TREE.withConfiguration(ModDefaultBiomeFeatures.FRIM_TREE_CONFIG)))
+								Feature.field_236291_c_.withConfiguration(ModDefaultBiomeFeatures.field_230136_t_),
+								Feature.field_236291_c_.withConfiguration(ModDefaultBiomeFeatures.FRIM_TREE_CONFIG)))
 						.withPlacement(Placement.CHANCE_PASSTHROUGH.configure(new ChanceConfig(1))));
 		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
 				Feature.RANDOM_PATCH.withConfiguration(DefaultBiomeFeatures.BROWN_MUSHROOM_CONFIG).withPlacement(
@@ -85,13 +85,13 @@ public class ExampleBiome1 extends Biome {
 				Feature.RANDOM_PATCH.withConfiguration(DefaultBiomeFeatures.RED_MUSHROOM_CONFIG).withPlacement(
 						Placement.COUNT_CHANCE_HEIGHTMAP_DOUBLE.configure(new HeightWithChanceConfig(1, 0.125F))));
 		this.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES,
-				Feature.ACACIA_TREE.withConfiguration(ModDefaultBiomeFeatures.FIRG_TREE_WITH_MORE_BEEHIVES_CONFIG1).withPlacement(
+				Feature.field_236291_c_.withConfiguration(ModDefaultBiomeFeatures.FIRG_TREE_WITH_MORE_BEEHIVES_CONFIG1).withPlacement(
 						Placement.CHANCE_TOP_SOLID_HEIGHTMAP.configure(new ChanceConfig(250))));
 		//this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
 		//		Feature.NORMAL_TREE.withConfiguration(JazzTree.JAZZ_TREE_CONFIG).withPlacement(
 		//				Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(7, 0.1f, 1))));
 		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
-				Feature.FANCY_TREE.withConfiguration(FirgTree.FIRG_TREE_CONFIG).withPlacement(
+				Feature.field_236291_c_.withConfiguration(FirgTree.FIRG_TREE_CONFIG).withPlacement(
 						Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(18, 4.8f, 10))));
 
 		DefaultBiomeFeatures.addOres(this);

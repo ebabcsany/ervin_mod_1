@@ -13,6 +13,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class WorldCarverInit {
 
-    public static final DeferredRegister<WorldCarver<?>> CARVERS = new DeferredRegister<>(ForgeRegistries.WORLD_CARVERS,
+    public static final DeferredRegister<WorldCarver<?>> CARVERS = DeferredRegister.create(ForgeRegistries.WORLD_CARVERS,
             Ervin_mod_1.MOD_ID);
 }

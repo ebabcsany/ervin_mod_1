@@ -18,7 +18,7 @@ import static net.minecraft.item.Items.BUCKET;
 
 public class ItemInit {
 
-    public static final DeferredRegister<Item> ITEMS = new DeferredRegister<>(ForgeRegistries.ITEMS, Ervin_mod_1.MOD_ID);
+    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Ervin_mod_1.MOD_ID);
 
     public static final RegistryObject<SpecialItem> DEF_ITEM = ITEMS.register("def_item", () -> new SpecialItem(
             new Item.Properties()
@@ -33,7 +33,7 @@ public class ItemInit {
             ModItemTier.SRIUNK, 20, 40.0F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> SRIUNK_HOE = ITEMS.register("sriunk_hoe", () -> new HoeItem(
-            ModItemTier.SRIUNK, 4.0F, (new Item.Properties())
+            ModItemTier.SRIUNK, 6, 4.0F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> SRIUNK_SHOVEL = ITEMS.register("sriunk_shovel", () -> new ShovelItem(
             ModItemTier.SRIUNK, 12, 30.0F, (new Item.Properties())
@@ -99,7 +99,7 @@ public class ItemInit {
             ModItemTier.TERAT, 300,150.0F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> TERAT_HOE = ITEMS.register("terat_hoe", () -> new HoeItem(
-            ModItemTier.TERAT, 50.0F, (new Item.Properties())
+            ModItemTier.TERAT, 100, 50.0F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> SRIUNK_HORSE_ARMOR = ITEMS.register("sriunk_horse_armor", () -> new HorseArmorItem(
             44, new ResourceLocation(Ervin_mod_1.MOD_ID, "textures/entity/horse/armor/sriunk_horse_armor.png"), (new Item.Properties()).maxStackSize(1).group(ItemGroup.MISC)
@@ -273,19 +273,19 @@ public class ItemInit {
             ModItemTier.RED_COBBLESTONE,3, -1.0F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> RED_STONE_HOE = ITEMS.register("red_stone_hoe", () -> new HoeItem(
-            ModItemTier.RED_COBBLESTONE, -1.0F, (new Item.Properties())
+            ModItemTier.RED_COBBLESTONE, -1, -2.0F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> RED_STONE_SWORD = ITEMS.register("red_stone_sword", () -> new SwordItem(
             ModItemTier.RED_COBBLESTONE, 6, -1.0F, (new Item.Properties())
     ));
-    public static final RegistryObject<Item> FIRT_AXE = ITEMS.register("firt_axe", () -> new AxeItem1(
+    public static final RegistryObject<Item> FIRT_AXE = ITEMS.register("firt_axe", () -> new AxeItem(
             ModItemTier.FIRT, 16, 21.0F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> FIRT_SHOVEL = ITEMS.register("firt_shovel", () -> new ShovelItem(
             ModItemTier.FIRT, 12, 16.8F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> FIRT_HOE = ITEMS.register("firt_hoe", () -> new HoeItem(
-            ModItemTier.FIRT, -1F, (new Item.Properties())
+            ModItemTier.FIRT, 2, -1F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> FIRT_SWORD = ITEMS.register("firt_sword", () -> new SwordItem(
             ModItemTier.FIRT, 8, 12.6F, (new Item.Properties())
@@ -321,7 +321,7 @@ public class ItemInit {
             ModItemTier.ENDER_STAKRACH, 3, 4.0F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> ENDER_TRASKRACH = ITEMS.register("ender_traskrach", () -> new HoeItem(
-            ModItemTier.ENDER_SRAKTCAF, 5F, (new Item.Properties())
+            ModItemTier.ENDER_SRAKTCAF, 1, 5F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> ENDER_TRASKCRAFTH = ITEMS.register("ender_traskcrafth", () -> new SwordItem(
             ModItemTier.ENDER_TRASKRACH, 6, 6.0F, (new Item.Properties())
@@ -333,7 +333,7 @@ public class ItemInit {
             ModItemTier.SURV, 20, 5.0F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> SURV_HOE = ITEMS.register("surv_hoe", () -> new HoeItem(
-            ModItemTier.SURV, 2F, (new Item.Properties())
+            ModItemTier.SURV, 5, 2F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> SURV_SWORD = ITEMS.register("surv_sword", () -> new SwordItem(
             ModItemTier.SURV, 15, 8.0F, (new Item.Properties())
@@ -348,7 +348,7 @@ public class ItemInit {
             ModItemTier.NIRK, 160, 320.0F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> NIRK_HOE = ITEMS.register("nirk_hoe", () -> new HoeItem(
-            ModItemTier.NIRK, 64.0F, (new Item.Properties())
+            ModItemTier.NIRK, 50, 64.0F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> NIRK_SHOVEL = ITEMS.register("nirk_shovel", () -> new ShovelItem(
             ModItemTier.NIRK, 120, 160.0F, (new Item.Properties())
@@ -375,7 +375,7 @@ public class ItemInit {
             ModItemTier.KIRT, 3, 2.0F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> KIRT_HOE = ITEMS.register("kirt_hoe", () -> new HoeItem(
-            ModItemTier.KIRT, 0.0F, (new Item.Properties())
+            ModItemTier.KIRT, 0, 0.0F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> KIRT_SHOVEL = ITEMS.register("kirt_shovel", () -> new ShovelItem(
             ModItemTier.KIRT, 1, 1.0F, (new Item.Properties())
@@ -399,7 +399,7 @@ public class ItemInit {
             ModItemTier.DURG, 36, 75.6F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> DURG_HOE = ITEMS.register("durg_hoe", () -> new HoeItem(
-            ModItemTier.DURG, 10F, (new Item.Properties())
+            ModItemTier.DURG, 5, 10F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> TERAT_HORSE_ARMOR = ITEMS.register("terat_horse_armor", () -> new HorseArmorItem(
             440, new ResourceLocation(Ervin_mod_1.MOD_ID, "textures/entity/horse/armor/terat_horse_armor.png"), (new Item.Properties()).maxStackSize(1).group(ItemGroup.MISC)
@@ -504,8 +504,8 @@ public class ItemInit {
     public static final RegistryObject<Item> ENDER_CRAKTHS = ITEMS.register("ender_crakths", () -> new Item(
             (new Item.Properties())
     ));
-    public static final RegistryObject<Item> FIRG_BOAT = ITEMS.register("firg_boat", () -> new FirgBoatItem(
-            FirgBoatEntity.Type1.FIRG, (new Item.Properties()).maxStackSize(1)
+    public static final RegistryObject<Item> FIRG_BOAT = ITEMS.register("firg_boat", () -> new ModSpawnEggItem(
+            EntityInit.FIRG_BOAT_ENTITY, 0xc8c8c8, 0xc8c8c8, new Item.Properties().maxStackSize(1)
     ));
     public static final RegistryObject<Item> GANT = ITEMS.register("gant", () -> new Item(
             (new Item.Properties())
@@ -541,7 +541,7 @@ public class ItemInit {
             ModItemTier.DURT, 14, 2.0F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> DURT_HOE = ITEMS.register("durt_hoe", () -> new HoeItem(
-            ModItemTier.DURT, 0.8F, (new Item.Properties())
+            ModItemTier.DURT, 1, 0.8F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> DURT_SHOVEL = ITEMS.register("durt_shovel", () -> new ShovelItem(
             ModItemTier.DURT, 11, 1.5F, (new Item.Properties())

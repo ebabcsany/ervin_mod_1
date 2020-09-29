@@ -9,6 +9,7 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.IEntityRenderer;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
+import net.minecraft.item.DyeColor;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -24,7 +25,7 @@ public class ViltWoolLayer extends LayerRenderer<ViltEntity, ViltEntityModel<Vil
 
    @Override
    public void render(MatrixStack matrixStackIn, IRenderTypeBuffer buffer1In, int packedLightIn, ViltEntity entitylivingbase1In, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
-      if (!entitylivingbase1In.getSheared1() && !entitylivingbase1In.isInvisible()) {
+      if (!entitylivingbase1In.getSheared() && !entitylivingbase1In.isInvisible()) {
          float f;
          float f1;
          float f2;
@@ -35,13 +36,13 @@ public class ViltWoolLayer extends LayerRenderer<ViltEntity, ViltEntityModel<Vil
             int m = i % j;
             int t = (i + 1) % j;
             float f3 = ((float)(entitylivingbase1In.ticksExisted % 25) + partialTicks) / 25.0F;
-            float[] afloat1 = ViltEntity.getDyeRgb1(DyeColor1.byId(m));
-            float[] afloat2 = ViltEntity.getDyeRgb1(DyeColor1.byId(t));
+            float[] afloat1 = ViltEntity.getDyeRgb(DyeColor.byId(m));
+            float[] afloat2 = ViltEntity.getDyeRgb(DyeColor.byId(t));
             f = afloat1[0] * (1.0F - f3) + afloat2[0] * f3;
             f1 = afloat1[1] * (1.0F - f3) + afloat2[1] * f3;
             f2 = afloat1[2] * (1.0F - f3) + afloat2[2] * f3;
          } else {
-            float[] afloat1 = ViltEntity.getDyeRgb1(entitylivingbase1In.getFleeceColor1());
+            float[] afloat1 = ViltEntity.getDyeRgb(entitylivingbase1In.getFleeceColor());
             f = afloat1[0];
             f1 = afloat1[1];
             f2 = afloat1[2];

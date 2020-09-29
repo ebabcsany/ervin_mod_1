@@ -2,7 +2,6 @@ package com.babcsany.minecraft.ervin_mod_1.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.EntityType;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.BooleanProperty;
@@ -12,6 +11,8 @@ import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
@@ -21,13 +22,17 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.Random;
 
-public class FirgLeaves extends Block implements net.minecraftforge.common.IShearable {
+public class FirgLeaves extends Block implements net.minecraftforge.common.IForgeShearable {
    public static final IntegerProperty DISTANCE = BlockStateProperties.DISTANCE_1_7;
    public static final BooleanProperty PERSISTENT = BlockStateProperties.PERSISTENT;
 
    public FirgLeaves(Properties properties) {
       super(properties);
       this.setDefaultState(this.stateContainer.getBaseState().with(DISTANCE, Integer.valueOf(7)).with(PERSISTENT, Boolean.valueOf(false)));
+   }
+
+   public VoxelShape getCollisionShape(BlockState state, IBlockReader reader, BlockPos pos) {
+      return VoxelShapes.empty();
    }
 
    /**
@@ -74,14 +79,13 @@ public class FirgLeaves extends Block implements net.minecraftforge.common.IShea
 
    private static BlockState updateDistance(BlockState state, IWorld worldIn, BlockPos pos) {
       int i = 7;
+      BlockPos.Mutable blockpos$mutable = new BlockPos.Mutable();
 
-      try (BlockPos.PooledMutable blockpos$pooledmutable = BlockPos.PooledMutable.retain()) {
-         for(Direction direction : Direction.values()) {
-            blockpos$pooledmutable.setPos(pos).move(direction);
-            i = Math.min(i, getDistance(worldIn.getBlockState(blockpos$pooledmutable)) + 1);
-            if (i == 1) {
-               break;
-            }
+      for(Direction direction : Direction.values()) {
+         blockpos$mutable.func_239622_a_(pos, direction);
+         i = Math.min(i, getDistance(worldIn.getBlockState(blockpos$mutable)) + 1);
+         if (i == 1) {
+            break;
          }
       }
 
@@ -108,21 +112,13 @@ public class FirgLeaves extends Block implements net.minecraftforge.common.IShea
             BlockPos blockpos = pos.down();
             BlockState blockstate = worldIn.getBlockState(blockpos);
             if (!blockstate.isSolid() || !blockstate.isSolidSide(worldIn, blockpos, Direction.UP)) {
-               double d0 = (double)((float)pos.getX() + rand.nextFloat());
+               double d0 = (double)pos.getX() + rand.nextDouble();
                double d1 = (double)pos.getY() - 0.05D;
-               double d2 = (double)((float)pos.getZ() + rand.nextFloat());
+               double d2 = (double)pos.getZ() + rand.nextDouble();
                worldIn.addParticle(ParticleTypes.DRIPPING_WATER, d0, d1, d2, 0.0D, 0.0D, 0.0D);
             }
          }
       }
-   }
-
-   public boolean causesSuffocation(BlockState state, IBlockReader worldIn, BlockPos pos) {
-      return false;
-   }
-
-   public boolean canEntitySpawn(BlockState state, IBlockReader worldIn, BlockPos pos, EntityType<?> type) {
-      return type == EntityType.OCELOT || type == EntityType.PARROT;
    }
 
    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {

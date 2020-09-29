@@ -3,15 +3,15 @@ package com.babcsany.minecraft.ervin_mod_1.world.dimension;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
-import net.minecraft.world.dimension.Dimension;
-import net.minecraft.world.dimension.DimensionType;
+import net.minecraft.world.Dimension;
+import net.minecraft.world.DimensionType;
 import net.minecraft.world.gen.ChunkGenerator;
 
-public class ExampleDimension3 extends Dimension {
+public class ExampleDimension3 /*extends Dimension*/ {
 
-	public ExampleDimension3(World world, DimensionType type) {
+	/*public ExampleDimension3(World world, DimensionType type) {
 		super(world, type, 1.0f);
 	}
 
@@ -83,5 +83,5 @@ public class ExampleDimension3 extends Dimension {
 	@Override
 	public int getActualHeight() {
 		return 200;
-	}
+	}*/
 }

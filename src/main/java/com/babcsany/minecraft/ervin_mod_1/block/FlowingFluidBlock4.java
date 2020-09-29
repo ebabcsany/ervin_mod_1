@@ -1,53 +1,44 @@
 package com.babcsany.minecraft.ervin_mod_1.block;
 
-import com.babcsany.minecraft.ervin_mod_1.fluid.FlowingFluid1;
-import com.babcsany.minecraft.ervin_mod_1.init.BlockInit;
-import com.babcsany.minecraft.ervin_mod_1.tags.FluidTag;
 import com.google.common.collect.Lists;
-import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.fluid.FlowingFluid;
 import net.minecraft.fluid.Fluid;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
-import net.minecraft.fluid.IFluidState;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.DebugPacketSender;
+import net.minecraft.loot.LootContext;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Direction;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
-import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraft.world.storage.loot.LootContext;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 import java.util.Random;
 
 public class FlowingFluidBlock4 extends Block implements IBucketPickupHandler {
    public static final IntegerProperty LEVEL = BlockStateProperties.LEVEL_0_15;
-   public final FlowingFluid1 fluid;
-   public final List<IFluidState> field_212565_c;
+   private final FlowingFluid fluid;
+   private final List<FluidState> field_212565_c;
+   public static final VoxelShape field_235510_c_ = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D);
 
-   // Forge: Use the constructor that takes a supplier
-   @Deprecated
-   protected FlowingFluidBlock4(FlowingFluid1 fluidIn, Properties builder) {
+   @Deprecated  // Forge: Use the constructor that takes a supplier
+   public FlowingFluidBlock4(FlowingFluid fluidIn, Properties builder) {
       super(builder);
       this.fluid = fluidIn;
       this.field_212565_c = Lists.newArrayList();
@@ -66,30 +57,42 @@ public class FlowingFluidBlock4 extends Block implements IBucketPickupHandler {
    /**
     * @param supplier A fluid supplier such as {@link net.minecraftforge.fml.RegistryObject<Fluid>}
     */
-   public FlowingFluidBlock4(java.util.function.Supplier<? extends FlowingFluid1> supplier, Properties p_i48368_1_) {
-      super(p_i48368_1_);
+   public FlowingFluidBlock4(java.util.function.Supplier<? extends FlowingFluid> supplier, Properties properties) {
+      super(properties);
       this.fluid = null;
       this.field_212565_c = Lists.newArrayList();
       this.setDefaultState(this.stateContainer.getBaseState().with(LEVEL, Integer.valueOf(0)));
       this.supplier = supplier;
    }
 
+   public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+      return context.func_216378_a(field_235510_c_, pos, true) && state.get(LEVEL) == 0 && context.func_230426_a_(worldIn.getFluidState(pos.up()), this.fluid) ? field_235510_c_ : VoxelShapes.empty();
+   }
+
+   /**
+    * Returns whether or not this block is of a type that needs random ticking. Called for ref-counting purposes by
+    * ExtendedBlockStorage in order to broadly cull a chunk from the random chunk update list for efficiency's sake.
+    */
+   public boolean ticksRandomly(BlockState state) {
+      return state.getFluidState().ticksRandomly();
+   }
+
    /**
     * Performs a random tick on a block.
     */
    public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
-      worldIn.getFluidState(pos).randomTick(worldIn, pos, random);
+      state.getFluidState().randomTick(worldIn, pos, random);
    }
 
    public boolean propagatesSkylightDown(BlockState state, IBlockReader reader, BlockPos pos) {
       return false;
    }
 
-   public boolean allowsMovement(/*BlockState state, IBlockReader worldIn, BlockPos pos, PathType type*/) {
+   public boolean allowsMovement(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type) {
       return !this.fluid.isIn(FluidTags.LAVA);
    }
 
-   public IFluidState getFluidState(BlockState state) {
+   public FluidState getFluidState(BlockState state) {
       int i = state.get(LEVEL);
       if (!fluidStateCacheInitialized) initFluidStateCache();
       return this.field_212565_c.get(Math.min(i, 8));
@@ -117,20 +120,9 @@ public class FlowingFluidBlock4 extends Block implements IBucketPickupHandler {
       return VoxelShapes.empty();
    }
 
-   /**
-    * How many world ticks before ticking
-    */
-
-    public int tickRate(IWorldReader worldIn) {
-       int tickRate = this.fluid.getTickRate(worldIn);
-       return tickRate;
-    }
-
-   public void onBlockAdded(BlockState state, World worldIn, BlockPos pos, boolean isMoving) {
+   public void onBlockAdded(BlockState state, World worldIn, BlockPos pos, BlockState oldState, boolean isMoving) {
       if (this.reactWithNeighbors(worldIn, pos, state)) {
-         worldIn.getPendingFluidTicks().scheduleTick(pos, state.getFluidState().getFluid(), this.tickRate(worldIn));
-      } else {
-         return;
+         worldIn.getPendingFluidTicks().scheduleTick(pos, state.getFluidState().getFluid(), this.fluid.getTickRate(worldIn));
       }
 
    }
@@ -141,57 +133,45 @@ public class FlowingFluidBlock4 extends Block implements IBucketPickupHandler {
     * returns its solidified counterpart.
     * Note that this method should ideally consider only the specific face passed in.
     */
-
-   @Override
-   @Deprecated
    public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-      if (!stateIn.getFluidState().isSource() && !facingState.getFluidState().isSource()) {
-         return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+      if (stateIn.getFluidState().isSource() || facingState.getFluidState().isSource()) {
+         worldIn.getPendingFluidTicks().scheduleTick(currentPos, stateIn.getFluidState().getFluid(), this.fluid.getTickRate(worldIn));
       }
-      worldIn.getPendingFluidTicks().scheduleTick(currentPos, stateIn.getFluidState().getFluid(), this.tickRate(worldIn));
 
       return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
    }
 
    public void neighborChanged(BlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
       if (this.reactWithNeighbors(worldIn, pos, state)) {
-         worldIn.getPendingFluidTicks().scheduleTick(pos, state.getFluidState().getFluid(), this.tickRate(worldIn));
-      } else {
-         return;
+         worldIn.getPendingFluidTicks().scheduleTick(pos, state.getFluidState().getFluid(), this.fluid.getTickRate(worldIn));
       }
 
    }
 
    private boolean reactWithNeighbors(World worldIn, BlockPos pos, BlockState state) {
       if (this.fluid.isIn(FluidTags.LAVA)) {
-         boolean flag = false;
+         boolean flag = worldIn.getBlockState(pos.down()).isIn(Blocks.SOUL_SOIL);
 
-         for (Direction direction : Direction.values()) {
-            if (direction != Direction.DOWN && worldIn.getFluidState(pos.offset(direction)).isTagged(FluidTags.WATER)) {
-               flag = true;
-               break;
+         for(Direction direction : Direction.values()) {
+            if (direction != Direction.DOWN) {
+               BlockPos blockpos = pos.offset(direction);
+               if (worldIn.getFluidState(blockpos).isTagged(FluidTags.WATER)) {
+                  Block block = worldIn.getFluidState(pos).isSource() ? Blocks.OBSIDIAN : Blocks.COBBLESTONE;
+                  worldIn.setBlockState(pos, net.minecraftforge.event.ForgeEventFactory.fireFluidPlaceBlockEvent(worldIn, pos, pos, block.getDefaultState()));
+                  this.triggerMixEffects(worldIn, pos);
+                  return false;
+               }
+
+               if (flag && worldIn.getBlockState(blockpos).isIn(Blocks.BLUE_ICE)) {
+                  worldIn.setBlockState(pos, net.minecraftforge.event.ForgeEventFactory.fireFluidPlaceBlockEvent(worldIn, pos, pos, Blocks.BASALT.getDefaultState()));
+                  this.triggerMixEffects(worldIn, pos);
+                  return false;
+               }
             }
          }
-
-         if (flag) {
-            IFluidState ifluidstate = worldIn.getFluidState(pos);
-            if (ifluidstate.isSource()) {
-               worldIn.setBlockState(pos, net.minecraftforge.event.ForgeEventFactory.fireFluidPlaceBlockEvent(worldIn, pos, pos, Blocks.OBSIDIAN.getDefaultState()));
-               this.triggerMixEffects(worldIn, pos);
-               return false;
-            }
-
-            if (ifluidstate.getActualHeight(worldIn, pos) >= 0.44444445F) {
-               worldIn.setBlockState(pos, net.minecraftforge.event.ForgeEventFactory.fireFluidPlaceBlockEvent(worldIn, pos, pos, Blocks.GOLD_ORE.getDefaultState()));
-               this.triggerMixEffects(worldIn, pos);
-               return false;
-            }
-         }
-
-         return true;
-      } else {
-         return true;
       }
+
+      return true;
    }
 
    private void triggerMixEffects(IWorld worldIn, BlockPos pos) {
@@ -211,18 +191,21 @@ public class FlowingFluidBlock4 extends Block implements IBucketPickupHandler {
       }
    }
 
-   public void onEntityCollision(/*BlockState state, World worldIn, BlockPos pos,*/ Entity entityIn) {
-      if (this.fluid.isIn(FluidTag.LAVA)) Objects.requireNonNull(entityIn).setInLava();
-      else {
-         return;
+   public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
+      if (this.fluid.isIn(FluidTags.LAVA)) {
+         float f = (float)pos.getY() + state.getFluidState().getActualHeight(worldIn, pos);
+         AxisAlignedBB axisalignedbb = entityIn.getBoundingBox();
+         if (axisalignedbb.minY < (double)f || (double)f > axisalignedbb.maxY) {
+            entityIn.setInLava();
+         }
       }
 
    }
 
    // Forge start
    private final java.util.function.Supplier<? extends Fluid> supplier;
-   public FlowingFluid1 getFluid() {
-      return (FlowingFluid1)supplier.get();
+   public FlowingFluid getFluid() {
+      return (FlowingFluid)supplier.get();
    }
 
    private boolean fluidStateCacheInitialized = false;

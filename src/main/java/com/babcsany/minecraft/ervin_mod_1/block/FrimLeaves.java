@@ -1,10 +1,8 @@
 package com.babcsany.minecraft.ervin_mod_1.block;
 
-import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.state.ModBlockStateProperties;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.EntityType;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.BooleanProperty;
@@ -14,6 +12,8 @@ import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
@@ -21,16 +21,19 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-import javax.annotation.Nullable;
 import java.util.Random;
 
-public class FrimLeaves extends Block implements net.minecraftforge.common.IShearable {
+public class FrimLeaves extends Block implements net.minecraftforge.common.IForgeShearable {
    public static final IntegerProperty DISTANCE = ModBlockStateProperties.DISTANCE_1_32;
    public static final BooleanProperty PERSISTENT = BlockStateProperties.PERSISTENT;
 
    public FrimLeaves(Properties properties) {
       super(properties);
-      this.setDefaultState(this.stateContainer.getBaseState().with(DISTANCE, Integer.valueOf(7)).with(PERSISTENT, Boolean.valueOf(false)));
+      this.setDefaultState(this.stateContainer.getBaseState().with(DISTANCE, Integer.valueOf(32)).with(PERSISTENT, Boolean.valueOf(false)));
+   }
+
+   public VoxelShape getCollisionShape(BlockState state, IBlockReader reader, BlockPos pos) {
+      return VoxelShapes.empty();
    }
 
    /**
@@ -38,14 +41,14 @@ public class FrimLeaves extends Block implements net.minecraftforge.common.IShea
     * ExtendedBlockStorage in order to broadly cull a chunk from the random chunk update list for efficiency's sake.
     */
    public boolean ticksRandomly(BlockState state) {
-      return state.get(DISTANCE) == 7 && !state.get(PERSISTENT);
+      return state.get(DISTANCE) == 32 && !state.get(PERSISTENT);
    }
 
    /**
     * Performs a random tick on a block.
     */
    public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
-      if (!state.get(PERSISTENT) && state.get(DISTANCE) == 21) {
+      if (!state.get(PERSISTENT) && state.get(DISTANCE) == 32) {
          spawnDrops(state, worldIn, pos);
          worldIn.removeBlock(pos, false);
       }
@@ -53,11 +56,11 @@ public class FrimLeaves extends Block implements net.minecraftforge.common.IShea
    }
 
    public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
-      worldIn.setBlockState(pos, updateDistance(state, worldIn, pos), 3);
+      worldIn.setBlockState(pos, updateDistance(state, worldIn, pos), 6);
    }
 
    public int getOpacity(BlockState state, IBlockReader worldIn, BlockPos pos) {
-      return 1;
+      return 2;
    }
 
    /**
@@ -67,24 +70,23 @@ public class FrimLeaves extends Block implements net.minecraftforge.common.IShea
     * Note that this method should ideally consider only the specific face passed in.
     */
    public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-      int i = getDistance(facingState) + 1;
+      int i = getDistance(facingState) + 2;
       if (i != 1 || stateIn.get(DISTANCE) != i) {
-         worldIn.getPendingBlockTicks().scheduleTick(currentPos, this, 1);
+         worldIn.getPendingBlockTicks().scheduleTick(currentPos, this, 2);
       }
 
       return stateIn;
    }
 
    private static BlockState updateDistance(BlockState state, IWorld worldIn, BlockPos pos) {
-      int i = 7;
+      int i = 32;
+      BlockPos.Mutable blockpos$mutable = new BlockPos.Mutable();
 
-      try (BlockPos.PooledMutable blockpos$pooledmutable = BlockPos.PooledMutable.retain()) {
-         for(Direction direction : Direction.values()) {
-            blockpos$pooledmutable.setPos(pos).move(direction);
-            i = Math.min(i, getDistance(worldIn.getBlockState(blockpos$pooledmutable)) + 1);
-            if (i == 1) {
-               break;
-            }
+      for(Direction direction : Direction.values()) {
+         blockpos$mutable.func_239622_a_(pos, direction);
+         i = Math.min(i, getDistance(worldIn.getBlockState(blockpos$mutable)) + 2);
+         if (i == 1) {
+            break;
          }
       }
 
@@ -93,9 +95,9 @@ public class FrimLeaves extends Block implements net.minecraftforge.common.IShea
 
    private static int getDistance(BlockState neighbor) {
       if (BlockTags.LOGS.contains(neighbor.getBlock())) {
-         return 0;
+         return 1;
       } else {
-         return neighbor.getBlock() instanceof FrimLeaves ? neighbor.get(DISTANCE) : 7;
+         return neighbor.getBlock() instanceof FrimLeaves ? neighbor.get(DISTANCE) : 32;
       }
    }
 
@@ -107,25 +109,17 @@ public class FrimLeaves extends Block implements net.minecraftforge.common.IShea
    @OnlyIn(Dist.CLIENT)
    public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
       if (worldIn.isRainingAt(pos.up())) {
-         if (rand.nextInt(15) == 1) {
+         if (rand.nextInt(30) == 2) {
             BlockPos blockpos = pos.down();
             BlockState blockstate = worldIn.getBlockState(blockpos);
             if (!blockstate.isSolid() || !blockstate.isSolidSide(worldIn, blockpos, Direction.UP)) {
-               double d0 = (double)((float)pos.getX() + rand.nextFloat());
-               double d1 = (double)pos.getY() - 0.05D;
-               double d2 = (double)((float)pos.getZ() + rand.nextFloat());
-               worldIn.addParticle(ParticleTypes.DRIPPING_WATER, d0, d1, d2, 0.0D, 0.0D, 0.0D);
+               double d0 = (double)pos.getX() + rand.nextDouble();
+               double d1 = (double)pos.getY() - 0.1D;
+               double d2 = (double)pos.getZ() + rand.nextDouble();
+               worldIn.addParticle(ParticleTypes.DRIPPING_WATER, d0, d1, d2, 1.0D, 1.0D, 1.0D);
             }
          }
       }
-   }
-
-   public boolean causesSuffocation(BlockState state, IBlockReader worldIn, BlockPos pos) {
-      return false;
-   }
-
-   public boolean canEntitySpawn(BlockState state, IBlockReader worldIn, BlockPos pos, EntityType<?> type) {
-      return type == EntityInit.VILT_ENTITY.get() || type == EntityType.PARROT;
    }
 
    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {

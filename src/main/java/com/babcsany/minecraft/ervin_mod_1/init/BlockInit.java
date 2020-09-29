@@ -3,25 +3,38 @@ package com.babcsany.minecraft.ervin_mod_1.init;
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.block.*;
 import com.babcsany.minecraft.ervin_mod_1.block.FirgSapling;
-import com.babcsany.minecraft.ervin_mod_1.block.trees.FirgTree;
-import com.babcsany.minecraft.ervin_mod_1.block.trees.FrimTree;
+import com.babcsany.minecraft.ervin_mod_1.block.FlowerPotBlock;
+import com.babcsany.minecraft.ervin_mod_1.block.RotatedPillarBlock;
+import com.babcsany.minecraft.ervin_mod_1.block.trees.Tree1;
 import com.babcsany.minecraft.ervin_mod_1.block.tripwires.*;
 import com.babcsany.minecraft.ervin_mod_1.block.tripwires.tripwire_hooks.*;
+import com.babcsany.minecraft.ervin_mod_1.fluid.ForgeFlowingFluid1;
+import com.babcsany.minecraft.ervin_mod_1.fluid.ModFluids;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.FirgTree;
+import com.babcsany.minecraft.ervin_mod_1.world.feature.FrimTree;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.JazzTree;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.ModSaplingBlock;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
+import net.minecraft.block.trees.Tree;
 import net.minecraft.client.audio.Sound;
+import net.minecraft.fluid.Fluids;
+import net.minecraft.util.Direction;
+import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
+import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.Random;
+
+import static net.minecraft.block.Blocks.OAK_SAPLING;
+
 public class BlockInit {
 
-    public static final DeferredRegister<Block> BLOCKS = new DeferredRegister<>(ForgeRegistries.BLOCKS, Ervin_mod_1.MOD_ID);
+    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Ervin_mod_1.MOD_ID);
 
     public static final RegistryObject<Block> EXAMPLE_BLOCK = BLOCKS.register("example_block", () -> new Block(
             Block.Properties.create(Material.IRON).hardnessAndResistance(0.5f, 15.0f).sound(SoundType.SAND)
@@ -29,7 +42,7 @@ public class BlockInit {
     public static final RegistryObject<Block> DEF_BLOCK = BLOCKS.register("def_block", () -> new Block(
             Block.Properties.create(Material.IRON)
     ));
-    public static final RegistryObject<Block> JAZZ_LOG = BLOCKS.register("jazz_log", () -> new LogBlock(
+    public static final RegistryObject<Block> JAZZ_LOG = BLOCKS.register("jazz_log", () -> new JazzLog(
             MaterialColor.WOOD, Block.Properties.from(Blocks.OAK_LOG)
     ));
     public static final RegistryObject<Block> JAZZ_LEAVES = BLOCKS.register("jazz_leaves", () -> new LeavesBlock(
@@ -39,7 +52,7 @@ public class BlockInit {
             Block.Properties.from(Blocks.OAK_LEAVES)
     ));
     public static final RegistryObject<Block> JAZZ_SAPLING = BLOCKS.register("jazz_sapling", () -> new ModSaplingBlock(
-            () -> new JazzTree(), Block.Properties.from(Blocks.OAK_SAPLING)
+            () -> new JazzTree(), Block.Properties.from(OAK_SAPLING)
     ));
     public static final RegistryObject<Block> VILTDROP_BLOCK = BLOCKS.register("viltdrop_block", () -> new ViltdropBlock(
             Block.Properties.create(Material.ROCK)
@@ -279,7 +292,7 @@ public class BlockInit {
     public static final RegistryObject<Block> SHZ_BLOCK = BLOCKS.register("shz_block", () -> new ShzBlock(
             Block.Properties.create(Material.ORGANIC)
                     //.hardnessAndResistance(6000000.0f)
-                    .lightValue(15)
+                    .setLightLevel(Value -> 15)
     ));
     public static final RegistryObject<Block> TIRSK_BLOCK = BLOCKS.register("tirsk_block", () -> new TirskBlock(
             Block.Properties.create(Material.ROCK)
@@ -404,7 +417,7 @@ public class BlockInit {
     public static final RegistryObject<Block> NETHER_PORTAL = BLOCKS.register("nether_portal", () -> new NetherPortal(
             Block.Properties.create(Material.ROCK)
                     .harvestLevel(0)
-                    .lightValue(15)
+                    .setLightLevel(Value -> 15)
                     .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(120.0F, 12.0F)
     ));
@@ -492,44 +505,44 @@ public class BlockInit {
     ));
     public static final RegistryObject<Block> L0 = BLOCKS.register("0", () -> new L0(
             Block.Properties.create(Material.ORGANIC)
-                    .lightValue(15)
+                    .setLightLevel(Value -> 15)
     ));
     public static final RegistryObject<Block> L1 = BLOCKS.register("1", () -> new L1(
             Block.Properties.create(Material.ORGANIC)
-                    .lightValue(15)
+                    .setLightLevel(Value -> 15)
     ));
     public static final RegistryObject<Block> L2 = BLOCKS.register("2", () -> new L2(
             Block.Properties.create(Material.ORGANIC)
-                    .lightValue(15)
+                    .setLightLevel(Value -> 15)
     ));
     public static final RegistryObject<Block> L3 = BLOCKS.register("3", () -> new L3(
             Block.Properties.create(Material.ORGANIC)
-                    .lightValue(15)
+                    .setLightLevel(Value -> 15)
     ));
     public static final RegistryObject<Block> L4 = BLOCKS.register("4", () -> new L4(
             Block.Properties.create(Material.ORGANIC)
-                    .lightValue(15)
+                    .setLightLevel(Value -> 15)
     ));
     public static final RegistryObject<Block> L5 = BLOCKS.register("5", () -> new L5(
             Block.Properties.create(Material.ORGANIC)
-                    .lightValue(15)
+                    .setLightLevel(Value -> 15)
     ));
     public static final RegistryObject<Block> L6 = BLOCKS.register("6", () -> new L6(
             Block.Properties.create(Material.ORGANIC)
-                    .lightValue(15)
+                    .setLightLevel(Value -> 15)
     ));
     public static final RegistryObject<Block> L7 = BLOCKS.register("7", () -> new L7(
             Block.Properties.create(Material.ORGANIC)
-                    .lightValue(15)
+                    .setLightLevel(Value -> 15)
     ));
     public static final RegistryObject<Block> L8 = BLOCKS.register("8", () -> new L8(
             Block.Properties.create(Material.ORGANIC)
-                    .lightValue(15)
+                    .setLightLevel(Value -> 15)
     ));
     public static final RegistryObject<Block> L9 = BLOCKS.register("9", () -> new L9(
             Block.Properties.create(Material.ORGANIC)
                     .hardnessAndResistance(200.0F, 5000.0F)
-                    .lightValue(15)
+                    .setLightLevel(Value -> 15)
     ));
     public static final RegistryObject<Block> AIR = BLOCKS.register("air", () -> new Air(
             Block.Properties.create(Material.AIR)
@@ -539,7 +552,7 @@ public class BlockInit {
     public static final RegistryObject<Block> TRINKS = BLOCKS.register("trinks", () -> new Trinks(
             Block.Properties.create(Material.ROCK)
                     .doesNotBlockMovement()
-                    .lightValue(15)
+                    .setLightLevel(Value -> 15)
     ));
     public static final RegistryObject<Block> GNITH_BLOCK = BLOCKS.register("gnith_block", () -> new GnithBlock(
             Block.Properties.create(Material.ROCK)
@@ -874,7 +887,7 @@ public class BlockInit {
     public static final RegistryObject<Block> GRITK_BLOCK = BLOCKS.register("gritk_block", () -> new GritkBlock(
             Block.Properties.create(Material.IRON)
                     .harvestLevel(0)
-                    .lightValue(15)
+                    .setLightLevel(Value -> 15)
                     .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(500000.0F, 1200000.0F)
     ));
@@ -1283,7 +1296,7 @@ public class BlockInit {
                     .jumpFactor(6)
     ));
     public static final RegistryObject<Block> GANK_BLOCK = BLOCKS.register("gank_block", () -> new GankBlock(
-            Block.Properties.create(Material.ROCK)
+            AbstractBlock.Properties.create(Material.ROCK)
                     .harvestLevel(0)
                     .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(990.0F)
@@ -1292,7 +1305,7 @@ public class BlockInit {
             () -> new FirgTree(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().sound(SoundType.PLANT)
     ));
     public static final RegistryObject<Block> FIRG_LOG = BLOCKS.register("firg_log", () -> new FirgLog(
-            MaterialColor.WOOD, Block.Properties.create(Material.WOOD)
+            MaterialColor.WOOD, AbstractBlock.Properties.create(Material.WOOD)
             .hardnessAndResistance(2.0F)
             .sound(SoundType.WOOD)
     ));
@@ -1374,15 +1387,15 @@ public class BlockInit {
                     .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(30.0f, 400.0f)
     ));
-    public static final RegistryObject<Block> JURK = BLOCKS.register("jurk", () -> new Block(
+    /*public static final RegistryObject<Block> JURK = BLOCKS.register("jurk", () -> new Block(
             Block.Properties.create(Material.ROCK)
                     .harvestLevel(2)
                     .hardnessAndResistance(30.0f, 400.0f)
-    ));
+    ));*/
     public static final RegistryObject<Block> GRITK_BLOCK_1 = BLOCKS.register("gritk_block_1", () -> new GritkBlock1(
             Block.Properties.create(Material.IRON)
                     .harvestLevel(0)
-                    .lightValue(15)
+                    .setLightLevel(Value -> 15)
                     .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(500000.0F, 1200000.0F)
     ));
@@ -1391,8 +1404,8 @@ public class BlockInit {
             .hardnessAndResistance(2.0F)
             .sound(SoundType.WOOD)
     ));
-    public static final RegistryObject<Block> FRIM_SAPLING = BLOCKS.register("frim_sapling", () -> new FrimSapling(
-            new FrimTree(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().sound(SoundType.PLANT)
+    public static final RegistryObject<Block> FRIM_SAPLING = BLOCKS.register("frim_sapling", () -> new ModSaplingBlock(
+            () -> new FrimTree(), AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().sound(SoundType.PLANT)
     ));
     public static final RegistryObject<Block> LEAVES = BLOCKS.register("leaves", () -> new Leaves(
             Block.Properties.create(Material.LEAVES)
@@ -1522,7 +1535,7 @@ public class BlockInit {
                     .doesNotBlockMovement()
                     .tickRandomly()
                     .sound(SoundType.PLANT)
-                    .lightValue(1)
+                    .setLightLevel(Value -> 1)
     ));
     public static final RegistryObject<Block> FRIM_PLANKS = BLOCKS.register("frim_planks", () -> new FrimPlanks(
             Block.Properties.create(Material.WOOD, MaterialColor.WOOD)
@@ -1566,7 +1579,7 @@ public class BlockInit {
                     .harvestLevel(30)
                     .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(1000000000.0F)
-                    .lightValue(15)
+                    .setLightLevel(Value -> 15)
     ));
     public static final RegistryObject<Block> TRUGK_BLOCK = BLOCKS.register("trugk_block", () -> new TrugkBlock(
             Block.Properties.create(Material.EARTH)
@@ -1577,7 +1590,7 @@ public class BlockInit {
     public static final RegistryObject<Block> GRITK_BLOCK1 = BLOCKS.register("example_portal_block", () -> new ExamplePortalBlock(
             Block.Properties.create(Material.IRON)
                     .harvestLevel(0)
-                    .lightValue(15)
+                    .setLightLevel(Value -> 15)
                     .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(500000.0F, 1200000.0F)
     ));
@@ -1664,9 +1677,13 @@ public class BlockInit {
                     .sound(SoundType.METAL)
     ));
     public static final RegistryObject<Block> YELLOW_IRON_BLOCK = BLOCKS.register("yellow_iron_block", () -> new YellowIronBlock(
-            Block.Properties.create(Material.IRON, MaterialColor.IRON)
+            AbstractBlock.Properties.create(Material.IRON, MaterialColor.IRON)
                     .hardnessAndResistance(5.0F,6.0F)
                     .sound(SoundType.METAL)
     ));
-
+    /*public static final RegistryObject<Block> JURK = BLOCKS.register("jurk", () -> new FlowingFluidBlock1(
+            ModFluids.JURK, AbstractBlock.Properties.create(Material.WATER)
+            .doesNotBlockMovement()
+            .hardnessAndResistance(100.0F)
+    ));*/
 }

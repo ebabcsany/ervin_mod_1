@@ -6,6 +6,7 @@ import com.babcsany.minecraft.ervin_mod_1.entity.animal.*;
 import com.babcsany.minecraft.ervin_mod_1.entity.item.FirgBoatEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.projectile.ScrakthsPearlEntity;
+import com.babcsany.minecraft.ervin_mod_1.item.FirgBoatItem;
 import net.minecraft.entity.AreaEffectCloudEntity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
@@ -17,7 +18,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class EntityInit {
 
-    public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = new DeferredRegister<>(ForgeRegistries.ENTITIES,
+    public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITIES,
             Ervin_mod_1.MOD_ID);
 
     public static final RegistryObject<EntityType<ZurEntity1>> ZUR_ENTITY1 = ENTITY_TYPES
@@ -59,6 +60,12 @@ public class EntityInit {
     public static final RegistryObject<EntityType<WolfEntity1>> HHIJ_ENTITY = ENTITY_TYPES
             .register("wolf1",
                     () -> EntityType.Builder.<WolfEntity1>create(WolfEntity1::new, EntityClassification.CREATURE)
+                            .size(0.6f, 0.85f)
+                            .build(new ResourceLocation(Ervin_mod_1.MOD_ID, "srach/shert").toString()
+                            ));
+    public static final RegistryObject<EntityType<FirgBoatEntity>> FIRG_BOAT_ENTITY = ENTITY_TYPES
+            .register("firg_boat",
+                    () -> EntityType.Builder.<FirgBoatEntity>create(FirgBoatEntity::new, EntityClassification.MISC)
                             .size(0.6f, 0.85f)
                             .build(new ResourceLocation(Ervin_mod_1.MOD_ID, "srach/shert").toString()
                             ));

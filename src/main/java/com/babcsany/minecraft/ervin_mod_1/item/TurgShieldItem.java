@@ -1,13 +1,12 @@
 package com.babcsany.minecraft.ervin_mod_1.item;
 
-import com.babcsany.minecraft.ervin_mod_1.tags.ItemTag;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -19,9 +18,6 @@ import java.util.List;
 public class TurgShieldItem extends Item {
    public TurgShieldItem(Properties builder) {
       super(builder);
-      this.addPropertyOverride(new ResourceLocation("blocking"), (p_210314_0_, p_210314_1_, p_210314_2_) -> {
-         return p_210314_2_ != null && p_210314_2_.isHandActive() && p_210314_2_.getActiveItemStack() == p_210314_0_ ? 1.0F : 0.0F;
-      });
       DispenserBlock.registerDispenseBehavior(this, ArmorItem.DISPENSER_BEHAVIOR);
    }
 
@@ -69,7 +65,7 @@ public class TurgShieldItem extends Item {
     * Return whether this item is repairable in an anvil.
     */
    public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
-      return ItemTag.TURG.contains(repair.getItem()) || super.getIsRepairable(toRepair, repair);
+      return ItemTags.PLANKS.contains(repair.getItem()) || super.getIsRepairable(toRepair, repair);
    }
 
    public static DyeColor getColor(ItemStack stack) {

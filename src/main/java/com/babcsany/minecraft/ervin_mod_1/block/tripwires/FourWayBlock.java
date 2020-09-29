@@ -6,8 +6,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.IWaterLoggable;
 import net.minecraft.block.SixWayBlock;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
-import net.minecraft.fluid.IFluidState;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.properties.BlockStateProperties;
@@ -24,10 +24,10 @@ import net.minecraft.world.IBlockReader;
 import java.util.Map;
 
 public class FourWayBlock extends Block implements IWaterLoggable {
-   public static final BooleanProperty NORTH = SixWayBlock.NORTH;
-   public static final BooleanProperty EAST = SixWayBlock.EAST;
-   public static final BooleanProperty SOUTH = SixWayBlock.SOUTH;
-   public static final BooleanProperty WEST = SixWayBlock.WEST;
+   public static final BooleanProperty NORTH = net.minecraft.block.SixWayBlock.NORTH;
+   public static final BooleanProperty EAST = net.minecraft.block.SixWayBlock.EAST;
+   public static final BooleanProperty SOUTH = net.minecraft.block.SixWayBlock.SOUTH;
+   public static final BooleanProperty WEST = net.minecraft.block.SixWayBlock.WEST;
    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
    protected static final Map<Direction, BooleanProperty> FACING_TO_PROPERTY_MAP = SixWayBlock.FACING_TO_PROPERTY_MAP.entrySet().stream().filter((p_199775_0_) -> {
       return p_199775_0_.getKey().getAxis().isHorizontal();
@@ -36,10 +36,15 @@ public class FourWayBlock extends Block implements IWaterLoggable {
    protected final VoxelShape[] shapes;
    private final Object2IntMap<BlockState> field_223008_i = new Object2IntOpenHashMap<>();
 
-   protected FourWayBlock(float nodeWidth, float extensionWidth, float p_i48420_3_, float p_i48420_4_, float collisionY, Properties properties) {
+   public FourWayBlock(float nodeWidth, float extensionWidth, float p_i48420_3_, float p_i48420_4_, float collisionY, Properties properties) {
       super(properties);
       this.collisionShapes = this.makeShapes(nodeWidth, extensionWidth, collisionY, 0.0F, collisionY);
       this.shapes = this.makeShapes(nodeWidth, extensionWidth, p_i48420_3_, 0.0F, p_i48420_4_);
+
+      for(BlockState blockstate : this.stateContainer.getValidStates()) {
+         this.getIndex(blockstate);
+      }
+
    }
 
    protected VoxelShape[] makeShapes(float nodeWidth, float extensionWidth, float p_196408_3_, float p_196408_4_, float p_196408_5_) {
@@ -102,7 +107,7 @@ public class FourWayBlock extends Block implements IWaterLoggable {
       });
    }
 
-   public IFluidState getFluidState(BlockState state) {
+   public FluidState getFluidState(BlockState state) {
       return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
    }
 

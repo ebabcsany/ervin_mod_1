@@ -1,7 +1,5 @@
 package com.babcsany.minecraft.ervin_mod_1.block;
 
-import com.babcsany.minecraft.ervin_mod_1.init.BlockInit;
-import com.babcsany.minecraft.ervin_mod_1.world.feature.ModDefaultBiomeFeatures;
 import net.minecraft.block.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -28,13 +26,16 @@ public class GrinthMushroom extends BushBlock implements IGrowable {
       return SHAPE;
    }
 
-   public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
-      if (rand.nextInt(25) == 0) {
+   /**
+    * Performs a random tick on a block.
+    */
+   public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
+      if (random.nextInt(25) == 0) {
          int i = 5;
          int j = 4;
 
          for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-4, -1, -4), pos.add(4, 1, 4))) {
-            if (worldIn.getBlockState(blockpos).getBlock() == this) {
+            if (worldIn.getBlockState(blockpos).isIn(this)) {
                --i;
                if (i <= 0) {
                   return;
@@ -42,14 +43,14 @@ public class GrinthMushroom extends BushBlock implements IGrowable {
             }
          }
 
-         BlockPos blockpos1 = pos.add(rand.nextInt(3) - 1, rand.nextInt(2) - rand.nextInt(2), rand.nextInt(3) - 1);
+         BlockPos blockpos1 = pos.add(random.nextInt(3) - 1, random.nextInt(2) - random.nextInt(2), random.nextInt(3) - 1);
 
          for(int k = 0; k < 4; ++k) {
             if (worldIn.isAirBlock(blockpos1) && state.isValidPosition(worldIn, blockpos1)) {
                pos = blockpos1;
             }
 
-            blockpos1 = pos.add(rand.nextInt(3) - 1, rand.nextInt(2) - rand.nextInt(2), rand.nextInt(3) - 1);
+            blockpos1 = pos.add(random.nextInt(3) - 1, random.nextInt(2) - random.nextInt(2), random.nextInt(3) - 1);
          }
 
          if (worldIn.isAirBlock(blockpos1) && state.isValidPosition(worldIn, blockpos1)) {
@@ -66,32 +67,31 @@ public class GrinthMushroom extends BushBlock implements IGrowable {
    public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
       BlockPos blockpos = pos.down();
       BlockState blockstate = worldIn.getBlockState(blockpos);
-      Block block = blockstate.getBlock();
-      if (block != Blocks.MYCELIUM && block != Blocks.PODZOL) {
+      if (!blockstate.isIn(Blocks.MYCELIUM) && !blockstate.isIn(Blocks.PODZOL)) {
          return worldIn.getLightSubtracted(pos, 0) < 13 && blockstate.canSustainPlant(worldIn, blockpos, net.minecraft.util.Direction.UP, this);
       } else {
          return true;
       }
    }
 
-   public boolean func_226940_a_(ServerWorld p_226940_1_, BlockPos p_226940_2_, BlockState p_226940_3_, Random p_226940_4_) {
-      p_226940_1_.removeBlock(p_226940_2_, false);
+   public boolean grow(ServerWorld world, BlockPos pos, BlockState state, Random rand) {
+      world.removeBlock(pos, false);
       ConfiguredFeature<BigMushroomFeatureConfig, ?> configuredfeature;
-      if (this == BlockInit.GRINTH_MUSHROOM.get()) {
-         configuredfeature = Feature.HUGE_BROWN_MUSHROOM.withConfiguration(ModDefaultBiomeFeatures.BIG_BROWN_MUSHROOM);
+      if (this == Blocks.BROWN_MUSHROOM) {
+         configuredfeature = Feature.HUGE_BROWN_MUSHROOM.withConfiguration(DefaultBiomeFeatures.BIG_BROWN_MUSHROOM);
       } else {
          if (this != Blocks.RED_MUSHROOM) {
-            p_226940_1_.setBlockState(p_226940_2_, p_226940_3_, 3);
+            world.setBlockState(pos, state, 3);
             return false;
          }
 
          configuredfeature = Feature.HUGE_RED_MUSHROOM.withConfiguration(DefaultBiomeFeatures.BIG_RED_MUSHROOM);
       }
 
-      if (configuredfeature.place(p_226940_1_, p_226940_1_.getChunkProvider().getChunkGenerator(), p_226940_4_, p_226940_2_)) {
+      if (configuredfeature.func_236265_a_(world, world.func_241112_a_(), world.getChunkProvider().getChunkGenerator(), rand, pos)) {
          return true;
       } else {
-         p_226940_1_.setBlockState(p_226940_2_, p_226940_3_, 3);
+         world.setBlockState(pos, state, 3);
          return false;
       }
    }
@@ -108,10 +108,6 @@ public class GrinthMushroom extends BushBlock implements IGrowable {
    }
 
    public void grow(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state) {
-      this.func_226940_a_(worldIn, pos, state, rand);
-   }
-
-   public boolean needsPostProcessing(BlockState state, IBlockReader worldIn, BlockPos pos) {
-      return true;
+      this.grow(worldIn, pos, state, rand);
    }
 }

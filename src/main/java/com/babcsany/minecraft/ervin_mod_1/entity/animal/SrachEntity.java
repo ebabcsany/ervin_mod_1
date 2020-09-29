@@ -1,19 +1,17 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.animal;
 
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
-import com.babcsany.minecraft.ervin_mod_1.init.ItemInit;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -33,10 +31,8 @@ public class SrachEntity extends AnimalEntity {
       this.goalSelector.addGoal(7, new LookRandomlyGoal(this));
    }
 
-   protected void registerAttributes() {
-      super.registerAttributes();
-      this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10.0D);
-      this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue((double)0.2F);
+   public static AttributeModifierMap.MutableAttribute func_234188_eI_() {
+      return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 10.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, (double)0.2F);
    }
 
    protected SoundEvent getAmbientSound() {
@@ -62,20 +58,15 @@ public class SrachEntity extends AnimalEntity {
       return 0.4F;
    }
 
-   public boolean processInteract(PlayerEntity player, Hand hand) {
-      ItemStack itemstack = player.getHeldItem(hand);
-      if (itemstack.getItem() == Items.BUCKET && !player.abilities.isCreativeMode && !this.isChild()) {
-         player.playSound(SoundEvents.ENTITY_COW_MILK, 1.0F, 1.0F);
-         itemstack.shrink(1);
-         if (itemstack.isEmpty()) {
-            player.setHeldItem(hand, new ItemStack(ItemInit.JURK_BUCKET.get()));
-         } else if (!player.inventory.addItemStackToInventory(new ItemStack(ItemInit.JURK_BUCKET.get()))) {
-            player.dropItem(new ItemStack(ItemInit.JURK_BUCKET.get()), false);
-         }
-
-         return true;
+   public ActionResultType func_230254_b_(PlayerEntity p_230254_1_, Hand p_230254_2_) {
+      ItemStack itemstack = p_230254_1_.getHeldItem(p_230254_2_);
+      if (itemstack.getItem() == Items.BUCKET && !this.isChild()) {
+         p_230254_1_.playSound(SoundEvents.ENTITY_COW_MILK, 1.0F, 1.0F);
+         ItemStack itemstack1 = DrinkHelper.func_241445_a_(itemstack, p_230254_1_, Items.MILK_BUCKET.getDefaultInstance());
+         p_230254_1_.setHeldItem(p_230254_2_, itemstack1);
+         return ActionResultType.func_233537_a_(this.world.isRemote);
       } else {
-         return super.processInteract(player, hand);
+         return super.func_230254_b_(p_230254_1_, p_230254_2_);
       }
    }
 

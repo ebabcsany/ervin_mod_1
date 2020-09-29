@@ -1,8 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.world.biomes;
 
 import com.babcsany.minecraft.ervin_mod_1.init.BlockInit;
-import com.mojang.datafixers.Dynamic;
-import com.babcsany.minecraft.ervin_mod_1.init.BlockInit;
+import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.world.biome.Biome;
@@ -15,7 +14,7 @@ import java.util.function.Function;
 
 public class MigBiomeSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig> {
 
-	public MigBiomeSurfaceBuilder(Function<Dynamic<?>, ? extends SurfaceBuilderConfig> function) {
+	public MigBiomeSurfaceBuilder(Codec<SurfaceBuilderConfig> function) {
 		super(function);
 	}
 

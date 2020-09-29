@@ -3,15 +3,15 @@ package com.babcsany.minecraft.ervin_mod_1.world.dimension;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
-import net.minecraft.world.dimension.Dimension;
-import net.minecraft.world.dimension.DimensionType;
+import net.minecraft.world.Dimension;
+import net.minecraft.world.DimensionType;
 import net.minecraft.world.gen.ChunkGenerator;
 
-public class FirgDimension extends Dimension {
+public class FirgDimension /*extends Dimension*/ {
 
-	public FirgDimension(World world, DimensionType type) {
+	/*public FirgDimension(World world, DimensionType type) {
 		super(world, type, 0.0f);
 	}
 
@@ -56,8 +56,8 @@ public class FirgDimension extends Dimension {
 	}
 
 	@Override
-	public Vec3d getFogColor(float celestialAngle, float partialTicks) {
-		return Vec3d.ZERO;
+	public Vector3d getFogColor(float celestialAngle, float partialTicks) {
+		return Vector3d.ZERO;
 	}
 
 	@Override
@@ -71,8 +71,8 @@ public class FirgDimension extends Dimension {
 	}
 
 	@Override
-	public SleepResult canSleepAt(PlayerEntity player, BlockPos pos) {
-		return SleepResult.BED_EXPLODES;
+	public PlayerEntity.SleepResult canSleepAt(PlayerEntity player, BlockPos pos) {
+		return PlayerEntity.SleepResult.OTHER_PROBLEM;
 	}
 
 	@Override
@@ -83,5 +83,5 @@ public class FirgDimension extends Dimension {
 	@Override
 	public int getActualHeight() {
 		return 256;
-	}
+	}*/
 }

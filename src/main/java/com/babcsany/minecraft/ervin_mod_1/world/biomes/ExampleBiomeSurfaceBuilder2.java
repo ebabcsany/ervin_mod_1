@@ -2,7 +2,7 @@ package com.babcsany.minecraft.ervin_mod_1.world.biomes;
 
 import com.babcsany.minecraft.ervin_mod_1.init.BlockInit;
 import com.babcsany.minecraft.ervin_mod_1.world.gen.surfacebuilders.SurfaceBuilderConfig1;
-import com.mojang.datafixers.Dynamic;
+import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.world.biome.Biome;
@@ -13,13 +13,17 @@ import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 import java.util.Random;
 import java.util.function.Function;
 
-public class ExampleBiomeSurfaceBuilder2 extends SurfaceBuilder<SurfaceBuilderConfig1> {
+public class ExampleBiomeSurfaceBuilder2 extends SurfaceBuilder<SurfaceBuilderConfig> {
 
-	public ExampleBiomeSurfaceBuilder2(Function<Dynamic<?>, ? extends SurfaceBuilderConfig1> function) {
+	public ExampleBiomeSurfaceBuilder2(Codec<SurfaceBuilderConfig> function) {
 		super(function);
 	}
 
 	@Override
+	public void buildSurface(Random random, IChunk chunkIn, Biome biomeIn, int x, int z, int startHeight, double noise, BlockState defaultBlock, BlockState defaultFluid, int seaLevel, long seed, SurfaceBuilderConfig config) {
+
+	}
+
 	public void buildSurface(Random random, IChunk chunkIn, Biome biomeIn, int x, int z, int startHeight, double noise,
 			BlockState defaultBlock, BlockState defaultFluid, int seaLevel, long seed, SurfaceBuilderConfig1 config) {
 		Random rd = new Random();

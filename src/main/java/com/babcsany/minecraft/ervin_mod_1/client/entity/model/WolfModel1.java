@@ -1,7 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.client.entity.model;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.animal.WolfEntity1;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.UrgEntity;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.client.renderer.entity.model.TintedAgeableModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
@@ -70,13 +69,13 @@ public class WolfModel1<T extends WolfEntity1> extends TintedAgeableModel<T> {
    }
 
    public void setLivingAnimations(T entityIn, float limbSwing, float limbSwingAmount, float partialTick) {
-      if (entityIn.isAngry()) {
+      if (entityIn.func_233678_J__()) {
          this.tail.rotateAngleY = 0.0F;
       } else {
          this.tail.rotateAngleY = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
       }
 
-      if (entityIn.isSitting()) {
+      if (entityIn.func_233684_eK_()) {
          this.mane.setRotationPoint(-1.0F, 16.0F, -3.0F);
          this.mane.rotateAngleX = 1.2566371F;
          this.mane.rotateAngleY = 0.0F;

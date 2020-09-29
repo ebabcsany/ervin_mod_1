@@ -2,14 +2,14 @@ package com.babcsany.minecraft.ervin_mod_1.init;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.world.dimension.*;
-import net.minecraftforge.common.ModDimension;
+import net.minecraft.world.Dimension;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class DimensionInit {
 	
-	public static final DeferredRegister<ModDimension> MOD_DIMENSIONS = new DeferredRegister<>(ForgeRegistries.MOD_DIMENSIONS, Ervin_mod_1.MOD_ID);
+	/*public static final DeferredRegister<ModDimension> MOD_DIMENSIONS = DeferredRegister.create(ForgeRegistries.MOD_DIMENSIONS, Ervin_mod_1.MOD_ID);
 	
 	public static final RegistryObject<ModDimension> EXAMPLE_DIM = MOD_DIMENSIONS.register("example_dim", () -> new ExampleModDimension());
 	public static final RegistryObject<ModDimension> EXAMPLE_DIM0 = MOD_DIMENSIONS.register("example_dim0", () -> new ExampleModDimension0());
@@ -19,5 +19,6 @@ public class DimensionInit {
 	public static final RegistryObject<ModDimension> EXAMPLE_DIM4 = MOD_DIMENSIONS.register("example_dim4", () -> new ExampleModDimension4());
 	public static final RegistryObject<ModDimension> EXAMPLE_DIM5 = MOD_DIMENSIONS.register("example_dim5", () -> new ExampleModDimension5());
 	public static final RegistryObject<ModDimension> FIRG_DIM = MOD_DIMENSIONS.register("firg_dim", () -> new FirgModDimension());
-	public static final RegistryObject<ModDimension> SCRAFTH_DIM = MOD_DIMENSIONS.register("scrafth_dim", () -> new ScrafthModDimension());
+	public static final RegistryObject<ModDimension> SCRAFTH_DIM = MOD_DIMENSIONS.register("scrafth_dim", () -> new ScrafthModDimension()
+	);*/
 }

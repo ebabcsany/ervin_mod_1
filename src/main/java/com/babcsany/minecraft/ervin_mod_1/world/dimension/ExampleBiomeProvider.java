@@ -1,19 +1,16 @@
 package com.babcsany.minecraft.ervin_mod_1.world.dimension;
 
-import com.google.common.collect.ImmutableSet;
 import com.babcsany.minecraft.ervin_mod_1.init.BiomeInit;
+import com.mojang.serialization.Codec;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.biome.provider.BiomeProvider;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
-public class ExampleBiomeProvider extends BiomeProvider {
+public class ExampleBiomeProvider /*extends BiomeProvider*/ {
 
-	private static final Set<Biome> biomeList = ImmutableSet.of(BiomeInit.EXAMPLE_BIOME.get(), Biomes.BEACH);
+	/*private static final List<Biome> biomeList = new List(BiomeInit.EXAMPLE_BIOME.get(), Biomes.BEACH);
 	private Random rand;
 	private final double biomeSize = 320.0D;
 	private VoronoiGenerator biomeNoise;
@@ -38,4 +35,14 @@ public class ExampleBiomeProvider extends BiomeProvider {
 		}
 		return biomeList.get(biomeList.size() - 1);
 	}
+
+	@Override
+	protected Codec<? extends BiomeProvider> func_230319_a_() {
+		return null;
+	}
+
+	@Override
+	public BiomeProvider func_230320_a_(long p_230320_1_) {
+		return null;
+	}*/
 }

@@ -26,7 +26,7 @@ public class ExampleBiome0 extends Biome {
 		this.addCarver(GenerationStage.Carving.AIR,
 				Biome.createCarver(WorldCarver.CAVE, new ProbabilityConfig(0.14285715F)));
 		this.addCarver(GenerationStage.Carving.AIR,
-				Biome.createCarver(WorldCarver.HELL_CAVE, new ProbabilityConfig(0.02F)));
+				Biome.createCarver(WorldCarver.field_236240_b_, new ProbabilityConfig(0.02F)));
 		this.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION,
 				Feature.FOSSIL.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG)
 						.withPlacement(Placement.CHANCE_PASSTHROUGH.configure(new ChanceConfig(128))));

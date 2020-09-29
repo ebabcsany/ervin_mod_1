@@ -1,12 +1,10 @@
 package com.babcsany.minecraft.ervin_mod_1.world.dimension;
 
-import net.minecraft.world.WorldType;
-import net.minecraft.world.biome.provider.IBiomeProviderSettings;
-import net.minecraft.world.storage.WorldInfo;
 
-public class FirgBiomeProviderSettings implements IBiomeProviderSettings {
 
-	private final long seed;
+public class FirgBiomeProviderSettings /*implements IBiomeProviderSettings*/ {
+
+	/*private final long seed;
 	private final WorldType worldType;
 	private FirgGenSettings generatorSettings = new FirgGenSettings();
 
@@ -30,5 +28,5 @@ public class FirgBiomeProviderSettings implements IBiomeProviderSettings {
 
 	public FirgGenSettings getGeneratorSettings() {
 		return this.generatorSettings;
-	}
+	}*/
 }

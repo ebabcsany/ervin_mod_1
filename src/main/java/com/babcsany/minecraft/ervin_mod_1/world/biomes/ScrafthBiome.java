@@ -40,7 +40,7 @@ public class ScrafthBiome extends Biome {
 		this.addCarver(GenerationStage.Carving.AIR,
 				Biome.createCarver(WorldCarver.CAVE, new ProbabilityConfig(0.14285715F)));
 		this.addCarver(GenerationStage.Carving.AIR,
-				Biome.createCarver(WorldCarver.HELL_CAVE, new ProbabilityConfig(0.02F)));
+				Biome.createCarver(WorldCarver.field_236240_b_, new ProbabilityConfig(0.02F)));
 		this.addCarver(GenerationStage.Carving.AIR,
 				Biome.createCarver(WorldCarver.CANYON, new ProbabilityConfig(0.7421563921F)));
 

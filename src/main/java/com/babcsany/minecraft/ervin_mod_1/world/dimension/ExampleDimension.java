@@ -3,20 +3,21 @@ package com.babcsany.minecraft.ervin_mod_1.world.dimension;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.world.Dimension;
+import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
-import net.minecraft.world.dimension.Dimension;
-import net.minecraft.world.dimension.DimensionType;
+
 import net.minecraft.world.gen.ChunkGenerator;
 
-public class ExampleDimension extends Dimension {
+public class ExampleDimension /*extends Dimension*/ {
 
-	public ExampleDimension(World world, DimensionType type) {
+	/*public ExampleDimension(World world, DimensionType type) {
 		super(world, type, 50.0f);
 	}
 
 	@Override
-	public ChunkGenerator<?> createChunkGenerator() {
+	public ChunkGenerator createChunkGenerator() {
 		return new ExampleChunkGenerator(world,
 				new ExampleBiomeProvider(new ExampleBiomeProviderSettings(this.world.getWorldInfo())),
 				new ExampleGenSettings());
@@ -56,7 +57,7 @@ public class ExampleDimension extends Dimension {
 	}
 
 	@Override
-	public Vec3d getFogColor(float celestialAngle, float partialTicks) {
+	public Vector3d getFogColor(float celestialAngle, float partialTicks) {
 		return Vec3d.ZERO;
 	}
 
@@ -71,8 +72,8 @@ public class ExampleDimension extends Dimension {
 	}
 
 	@Override
-	public SleepResult canSleepAt(PlayerEntity player, BlockPos pos) {
-		return SleepResult.BED_EXPLODES;
+	public PlayerEntity.SleepResult canSleepAt(PlayerEntity player, BlockPos pos) {
+		return PlayerEntity.SleepResult.NOT_POSSIBLE_HERE;
 	}
 
 	@Override
@@ -83,5 +84,5 @@ public class ExampleDimension extends Dimension {
 	@Override
 	public int getActualHeight() {
 		return 2256;
-	}
+	}*/
 }

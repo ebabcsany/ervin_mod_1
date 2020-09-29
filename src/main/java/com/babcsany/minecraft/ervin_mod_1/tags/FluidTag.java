@@ -1,76 +1,45 @@
 package com.babcsany.minecraft.ervin_mod_1.tags;
 
 import net.minecraft.fluid.Fluid;
-import net.minecraft.tags.Tag;
+import net.minecraft.tags.ITag;
 import net.minecraft.tags.TagCollection;
+import net.minecraft.tags.TagRegistry;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
-import java.util.Collection;
-import java.util.Optional;
+import java.util.List;
+import java.util.Set;
 
 public class FluidTag {
-   private static TagCollection<Fluid> collection = new TagCollection<>((p_206955_0_) -> {
-      return Optional.empty();
-   }, "", false, "");
-   private static int generation;
-   public static final Tag<Fluid> WATER = makeWrapperTag("water");
-   public static final Tag<Fluid> JURK = makeWrapperTag("jurk");
-   public static final Tag<Fluid> MILK = makeWrapperTag("milk");
-   public static final Tag<Fluid> LAVA = makeWrapperTag("lava");
+   private static final TagRegistry<Fluid> collection = new TagRegistry<>();
+   public static final ITag.INamedTag<Fluid> WATER = makeWrapperTag("water");
+   public static final ITag.INamedTag<Fluid> LAVA = makeWrapperTag("lava");
+   public static final ITag.INamedTag<Fluid> MILK = makeWrapperTag("milk");
+   public static final ITag.INamedTag<Fluid> JURK = makeWrapperTag("jurk");
+
+   public static ITag.INamedTag<Fluid> makeWrapperTag(String id) {
+      return collection.func_232937_a_(id);
+   }
 
    public static void setCollection(TagCollection<Fluid> collectionIn) {
-      collection = collectionIn;
-      ++generation;
+      collection.func_232935_a_(collectionIn);
+   }
+
+   @OnlyIn(Dist.CLIENT)
+   public static void func_232899_a_() {
+      collection.func_232932_a_();
    }
 
    public static TagCollection<Fluid> getCollection() {
-      return collection;
+      return collection.func_232939_b_();
    }
 
-   public static int getGeneration() {
-      return generation;
+   public static List<TagRegistry.NamedTag<Fluid>> func_241280_c_() {
+      return collection.func_241288_c_();
    }
 
-   private static Tag<Fluid> makeWrapperTag(String p_206956_0_) {
-      return new FluidTag.Wrapper(new ResourceLocation(p_206956_0_));
-   }
-
-   public static class Wrapper extends Tag<Fluid> {
-      private int lastKnownGeneration = -1;
-      private Tag<Fluid> cachedTag;
-
-      public Wrapper(ResourceLocation p_i49117_1_) {
-         super(p_i49117_1_);
-      }
-
-      /**
-       * Returns true if this set contains the specified element.
-       */
-      public boolean contains(Fluid itemIn) {
-         if (this.lastKnownGeneration != FluidTag.generation) {
-            this.cachedTag = FluidTag.collection.getOrCreate(this.getId());
-            this.lastKnownGeneration = FluidTag.generation;
-         }
-
-         return this.cachedTag.contains(itemIn);
-      }
-
-      public Collection<Fluid> getAllElements() {
-         if (this.lastKnownGeneration != FluidTag.generation) {
-            this.cachedTag = FluidTag.collection.getOrCreate(this.getId());
-            this.lastKnownGeneration = FluidTag.generation;
-         }
-
-         return this.cachedTag.getAllElements();
-      }
-
-      public Collection<ITagEntry<Fluid>> getEntries() {
-         if (this.lastKnownGeneration != FluidTag.generation) {
-            this.cachedTag = FluidTag.collection.getOrCreate(this.getId());
-            this.lastKnownGeneration = FluidTag.generation;
-         }
-
-         return this.cachedTag.getEntries();
-      }
+   public static Set<ResourceLocation> func_232901_b_(TagCollection<Fluid> p_232901_0_) {
+      return collection.func_232940_b_(p_232901_0_);
    }
 }

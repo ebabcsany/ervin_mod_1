@@ -1,12 +1,20 @@
 package com.babcsany.minecraft.ervin_mod_1.world.gen.surfacebuilders;
 
-import com.babcsany.minecraft.ervin_mod_1.init.BlockInit;
-import com.mojang.datafixers.Dynamic;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.world.gen.surfacebuilders.ISurfaceBuilderConfig;
 
 public class SurfaceBuilderConfig1 implements ISurfaceBuilderConfig {
+   public static final Codec<SurfaceBuilderConfig1> field_237203_a_ = RecordCodecBuilder.create((p_237204_0_) -> {
+      return p_237204_0_.group(BlockState.BLOCKSTATE_CODEC.fieldOf("top_material").forGetter((p_237207_0_) -> {
+         return p_237207_0_.topMaterial;
+      }), BlockState.BLOCKSTATE_CODEC.fieldOf("under_material").forGetter((p_237206_0_) -> {
+         return p_237206_0_.underMaterial;
+      }), BlockState.BLOCKSTATE_CODEC.fieldOf("underwater_material").forGetter((p_237205_0_) -> {
+         return p_237205_0_.underWaterMaterial;
+      })).apply(p_237204_0_, SurfaceBuilderConfig1::new);
+   });
    private final BlockState topMaterial;
    private final BlockState underMaterial;
    private final BlockState underWaterMaterial;
@@ -27,12 +35,5 @@ public class SurfaceBuilderConfig1 implements ISurfaceBuilderConfig {
 
    public BlockState getUnderWaterMaterial() {
       return this.underWaterMaterial;
-   }
-
-   public static SurfaceBuilderConfig1 deserialize(Dynamic<?> p_215455_0_) {
-      BlockState blockstate = p_215455_0_.get("top_material").map(BlockState::deserialize).orElse(BlockInit.AIR.get().getDefaultState());
-      BlockState blockstate1 = p_215455_0_.get("under_material").map(BlockState::deserialize).orElse(BlockInit.AIR.get().getDefaultState());
-      BlockState blockstate2 = p_215455_0_.get("underwater_material").map(BlockState::deserialize).orElse(BlockInit.AIR.get().getDefaultState());
-      return new SurfaceBuilderConfig1(blockstate, blockstate1, blockstate2);
    }
 }

@@ -13,14 +13,14 @@ public class ModBiomeFeatures {
 
 	public static void addExampleFeature(Biome biome, int chance) {
 		biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES,
-				new ExampleFeature(NoFeatureConfig::deserialize).withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG)
+				new ExampleFeature(NoFeatureConfig.field_236558_a_).withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG)
 						.withPlacement(Placement.CHANCE_HEIGHTMAP_DOUBLE.configure(new ChanceConfig(chance))
 						));
 
 	}
 	public static void addExampleFeature1(Biome biome, int chance) {
 		biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES,
-				new ExampleFeature1(NoFeatureConfig::deserialize).withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG)
+				new ExampleFeature1(NoFeatureConfig.field_236558_a_).withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG)
 						.withPlacement(Placement.CHANCE_PASSTHROUGH.configure(new ChanceConfig(chance))
 						));
 

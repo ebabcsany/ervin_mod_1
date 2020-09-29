@@ -9,35 +9,37 @@ import com.babcsany.minecraft.ervin_mod_1.entity.animal.ZurEntity1;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.ModBiomeFeatures;
+import com.babcsany.minecraft.ervin_mod_1.init.SurfaceBuilderInit;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.FirgTree;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.JazzTree;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.ModDefaultBiomeFeatures;
+import com.babcsany.minecraft.ervin_mod_1.world.gen.surfacebuilders.ExampleSurfaceBuilder;
+import com.google.common.collect.ImmutableList;
+import net.minecraft.block.Blocks;
+import net.minecraft.client.audio.BackgroundMusicTracks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.monster.ZombieEntity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.DefaultBiomeFeatures;
+import net.minecraft.world.biome.*;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.placement.*;
+import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
 public class ExampleBiome extends Biome {
-
-	//private static final EntityType<ZurEntity> ZUR_ENTITY = register("zur_entity", EntityType.Builder.<ZurEntity>create(ZurEntity::new, EntityClassification.MONSTER).size(0.9F, 1.95F));
-	//private static final EntityType<ZurEntity1> ZUR_ENTITY1 = register("zur_entity1", EntityType.Builder.<ZurEntity1>create(ZurEntity1::new, EntityClassification.CREATURE).size(0.9F, 1.3F));
-	//private static final EntityType<ViltEntity> VILT_ENTITY = register("vilt_entity", EntityType.Builder.<ViltEntity>create(ViltEntity::new, EntityClassification.CREATURE).size(1.0F, 2.0F));
-	//private static final EntityType<SrachEntity> SRACH_ENTITY = register("srach_entity", EntityType.Builder.<SrachEntity>create(SrachEntity::new, EntityClassification.CREATURE).size(0.9F, 1.4F));
-
 	public ExampleBiome(Builder biomeBuilder) {
 		super(biomeBuilder);
-		this.addSpawn(EntityClassification.MONSTER, new Biome.SpawnListEntry(EntityType.ZOMBIE, 10, 2, 5));
+		this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityType.ZOMBIE, 10, 2, 5));
 		//this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityInit.ZUR_ENTITY.get(), 5, 5, 20));
 		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.BEE, 20, 2, 10));
 		//this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.VILT_ENTITY.get(), 30, 15, 40));
@@ -45,23 +47,23 @@ public class ExampleBiome extends Biome {
 		this.addCarver(GenerationStage.Carving.AIR,
 				Biome.createCarver(WorldCarver.CAVE, new ProbabilityConfig(0.14285715F)));
 		this.addCarver(GenerationStage.Carving.AIR,
-				Biome.createCarver(WorldCarver.HELL_CAVE, new ProbabilityConfig(0.02F)));
+				Biome.createCarver(WorldCarver.field_236240_b_, new ProbabilityConfig(0.02F)));
 		this.addCarver(GenerationStage.Carving.AIR,
 				Biome.createCarver(WorldCarver.CANYON, new ProbabilityConfig(0.7421563921F)));
 		this.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION,
 				Feature.FOSSIL.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG)
 						.withPlacement(Placement.CHANCE_PASSTHROUGH.configure(new ChanceConfig(128))));
 		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
-				Feature.FANCY_TREE.withConfiguration(ModDefaultBiomeFeatures.FIRG_TREE_CONFIG3)
+				Feature.field_236291_c_.withConfiguration(ModDefaultBiomeFeatures.FIRG_TREE_CONFIG3)
 						.withPlacement(Placement.CHANCE_HEIGHTMAP_DOUBLE.configure(new ChanceConfig(240))));
 		this.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION,
-				Feature.FANCY_TREE.withConfiguration(ModDefaultBiomeFeatures.FIRG_TREE_CONFIG2)
+				Feature.field_236291_c_.withConfiguration(ModDefaultBiomeFeatures.FIRG_TREE_CONFIG2)
 						.withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(150))));
 		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
-				Feature.FANCY_TREE.withConfiguration(ModDefaultBiomeFeatures.FIRG_TREE_CONFIG1)
+				Feature.field_236291_c_.withConfiguration(ModDefaultBiomeFeatures.FIRG_TREE_CONFIG1)
 						.withPlacement(Placement.CHANCE_TOP_SOLID_HEIGHTMAP.configure(new ChanceConfig(200))));
 		this.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION,
-				Feature.FANCY_TREE.withConfiguration(ModDefaultBiomeFeatures.FIRG_TREE_CONFIG)
+				Feature.field_236291_c_.withConfiguration(ModDefaultBiomeFeatures.FIRG_TREE_CONFIG)
 						.withPlacement(Placement.CHANCE_PASSTHROUGH.configure(new ChanceConfig(100))));
 		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
 				Feature.RANDOM_BOOLEAN_SELECTOR
@@ -72,8 +74,8 @@ public class ExampleBiome extends Biome {
 		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
 				Feature.RANDOM_BOOLEAN_SELECTOR
 						.withConfiguration(new TwoFeatureChoiceConfig(
-								Feature.FANCY_TREE.withConfiguration(ModDefaultBiomeFeatures.field_230136_t_),
-								Feature.ACACIA_TREE.withConfiguration(ModDefaultBiomeFeatures.FRIM_TREE_CONFIG)))
+								Feature.field_236291_c_.withConfiguration(ModDefaultBiomeFeatures.field_230136_t_),
+								Feature.field_236291_c_.withConfiguration(ModDefaultBiomeFeatures.FRIM_TREE_CONFIG)))
 						.withPlacement(Placement.CHANCE_PASSTHROUGH.configure(new ChanceConfig(1))));
 		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
 				Feature.RANDOM_PATCH.withConfiguration(DefaultBiomeFeatures.BROWN_MUSHROOM_CONFIG).withPlacement(
@@ -82,13 +84,13 @@ public class ExampleBiome extends Biome {
 				Feature.RANDOM_PATCH.withConfiguration(DefaultBiomeFeatures.RED_MUSHROOM_CONFIG).withPlacement(
 						Placement.COUNT_CHANCE_HEIGHTMAP_DOUBLE.configure(new HeightWithChanceConfig(1, 0.125F))));
 		this.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES,
-				Feature.ACACIA_TREE.withConfiguration(ModDefaultBiomeFeatures.FANCY_TREE_WITH_MORE_BEEHIVES_CONFIG).withPlacement(
+				Feature.field_236291_c_.withConfiguration(ModDefaultBiomeFeatures.FANCY_TREE_WITH_MORE_BEEHIVES_CONFIG).withPlacement(
 						Placement.CHANCE_TOP_SOLID_HEIGHTMAP.configure(new ChanceConfig(250))));
 		//this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
 		//		Feature.NORMAL_TREE.withConfiguration(JazzTree.JAZZ_TREE_CONFIG).withPlacement(
 		//				Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(7, 0.1f, 1))));
 		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
-				Feature.FANCY_TREE.withConfiguration(FirgTree.FIRG_TREE_CONFIG).withPlacement(
+				Feature.field_236291_c_.withConfiguration(FirgTree.FIRG_TREE_CONFIG).withPlacement(
 						Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(18, 4.8f, 10))));
 
 		DefaultBiomeFeatures.addOres(this);
@@ -97,10 +99,6 @@ public class ExampleBiome extends Biome {
 		ModBiomeFeatures.addExampleFeature(this, 1000);
 		ModDefaultBiomeFeatures.addStones(this);
 		ModDefaultBiomeFeatures.addKiomne(this);
-	}
-
-	private static <T extends Entity> EntityType<T> register(String key, EntityType.Builder<T> builder) {
-		return Registry.register(Registry.ENTITY_TYPE, key, builder.build(key));
 	}
 	
 	@Override

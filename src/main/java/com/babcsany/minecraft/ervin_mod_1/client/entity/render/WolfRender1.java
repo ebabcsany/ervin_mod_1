@@ -12,14 +12,15 @@ import net.minecraft.client.renderer.entity.layers.WolfCollarLayer;
 import net.minecraft.client.renderer.entity.model.WolfModel;
 import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class WolfRender1 extends MobRenderer<WolfEntity1, WolfModel1<WolfEntity1>> {
-   private static final ResourceLocation WOLF_TEXTURES = new ResourceLocation(Ervin_mod_1.MOD_ID,"textures/entity/srach/shert.png");
-   private static final ResourceLocation TAMED_WOLF_TEXTURES = new ResourceLocation(Ervin_mod_1.MOD_ID,"textures/entity/srach/shert.png");
-   private static final ResourceLocation ANGRY_WOLF_TEXTURES = new ResourceLocation(Ervin_mod_1.MOD_ID,"textures/entity/srach/shert.png");
+   private static final ResourceLocation WOLF_TEXTURES = new ResourceLocation(Ervin_mod_1.MOD_ID,"textures/entity/wolf/wolf.png");
+   private static final ResourceLocation TAMED_WOLF_TEXTURES = new ResourceLocation(Ervin_mod_1.MOD_ID,"textures/entity/wolf/wolf_tame.png");
+   private static final ResourceLocation ANGRY_WOLF_TEXTURES = new ResourceLocation(Ervin_mod_1.MOD_ID,"textures/entity/wolf/wolf_angry.png");
 
    public WolfRender1(EntityRendererManager renderManagerIn) {
       super(renderManagerIn, new WolfModel1<>(), 0.5F);
@@ -35,7 +36,7 @@ public class WolfRender1 extends MobRenderer<WolfEntity1, WolfModel1<WolfEntity1
 
    public void render(WolfEntity1 entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
       if (entityIn.isWolfWet()) {
-         float f = entityIn.getBrightness() * entityIn.getShadingWhileWet(partialTicks);
+         float f = MathHelper.clamp(entityIn.getBrightness() * entityIn.getShadingWhileWet(partialTicks), 0.0F, 1.0F);
          this.entityModel.setTint(f, f, f);
       }
 
@@ -53,7 +54,7 @@ public class WolfRender1 extends MobRenderer<WolfEntity1, WolfModel1<WolfEntity1
       if (entity.isTamed()) {
          return TAMED_WOLF_TEXTURES;
       } else {
-         return entity.isAngry() ? ANGRY_WOLF_TEXTURES : WOLF_TEXTURES;
+         return entity.func_233678_J__() ? ANGRY_WOLF_TEXTURES : WOLF_TEXTURES;
       }
    }
 }
