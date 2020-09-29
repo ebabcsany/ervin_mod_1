@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XS#",
+    "S#S",
+    "#S#"
+  ],
+  "key": {
+    "#": {
+      "item": "ervin_mod_1:turg_ingredient_13"
+    },
+    "S": {
+      "item": "minecraft:acacia_wood"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:turg",
+    "count": 1
+  }
+}

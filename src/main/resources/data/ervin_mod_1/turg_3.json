@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#S#",
+    "S#S",
+    "#S#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:birch_wood"
+    },
+    "S": {
+      "item": "ervin_mod_1:turg_ingredient_5"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:turg",
+    "count": 1
+  }
+}
