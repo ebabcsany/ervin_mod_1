@@ -70,7 +70,6 @@ public class FirgTree extends Tree {
             .func_236685_a_(ImmutableList.of(BEEHIVES2));
 
 
-    @Override
     protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean b) {
         return Feature.field_236291_c_.withConfiguration(FIRG_TREE_CONFIG);
     }

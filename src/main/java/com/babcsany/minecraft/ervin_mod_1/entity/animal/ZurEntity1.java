@@ -72,7 +72,7 @@ public class ZurEntity1 extends AnimalEntity {
         super.livingTick();
     }
 
-    public static AttributeModifierMap.MutableAttribute func_234225_eI_() {
+    public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
         return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 8.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, (double)0.23F);
     }
 

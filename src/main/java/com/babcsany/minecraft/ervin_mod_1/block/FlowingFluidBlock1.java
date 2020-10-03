@@ -39,7 +39,7 @@ public class FlowingFluidBlock1 extends Block implements IBucketPickupHandler {
    private final List<FluidState> field_212565_c;
    public static final VoxelShape field_235510_c_ = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D);
 
-   @Deprecated  // Forge: Use the constructor that takes a supplier
+   // Forge: Use the constructor that takes a supplier
    public FlowingFluidBlock1(FlowingFluid fluidIn, Properties builder) {
       super(builder);
       this.fluid = fluidIn;

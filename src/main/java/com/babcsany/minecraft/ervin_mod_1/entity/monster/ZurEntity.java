@@ -1,5 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.monster;
 
+import com.babcsany.minecraft.ervin_mod_1.entity.villager.WanderingTraderNirtreEntity;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.ItemInit;
 import net.minecraft.block.BlockState;
@@ -12,10 +13,7 @@ import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
 import net.minecraft.entity.merchant.villager.VillagerEntity;
-import net.minecraft.entity.monster.CreeperEntity;
-import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraft.entity.monster.ZombieVillagerEntity;
-import net.minecraft.entity.monster.ZombifiedPiglinEntity;
+import net.minecraft.entity.monster.*;
 import net.minecraft.entity.passive.ChickenEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.passive.TurtleEntity;
@@ -50,7 +48,7 @@ public class ZurEntity extends MonsterEntity {
    private static final AttributeModifier BABY_SPEED_BOOST = new AttributeModifier(BABY_SPEED_BOOST_ID, "Baby speed boost", 0.5D, AttributeModifier.Operation.MULTIPLY_BASE);
    private static final DataParameter<Boolean> IS_CHILD = EntityDataManager.createKey(ZurEntity.class, DataSerializers.BOOLEAN);
    private static final DataParameter<Integer> VILLAGER_TYPE = EntityDataManager.createKey(ZurEntity.class, DataSerializers.VARINT);
-   private static final DataParameter<Boolean> DROWNING = EntityDataManager.createKey(ZurEntity.class, DataSerializers.BOOLEAN);
+   private static final DataParameter<Boolean> ROVENT = EntityDataManager.createKey(ZurEntity.class, DataSerializers.BOOLEAN);
    private static final Predicate<Difficulty> HARD_DIFFICULTY_PREDICATE = (p_213697_0_) -> {
       return p_213697_0_ == Difficulty.HARD;
    };
@@ -69,7 +67,7 @@ public class ZurEntity extends MonsterEntity {
    }
 
    protected void registerGoals() {
-      this.goalSelector.addGoal(4, new ZurEntity.AttackTurtleEggGoal(this, 1.0D, 3));
+      this.goalSelector.addGoal(4, new ZurEntity.AttackGrassBlockGoal(this, 1.0D, 3));
       this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 8.0F));
       this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
       this.applyEntityAI();
@@ -77,32 +75,34 @@ public class ZurEntity extends MonsterEntity {
 
    protected void applyEntityAI() {
       this.eatGrassGoal = new EatGrassGoal(this);
-      this.goalSelector.addGoal(2, new ZurAttackGoal(this, 1.0D, false));
+      this.goalSelector.addGoal(2, new ZurAttackGoal(this, 1.0D, true));
+      this.goalSelector.addGoal(4, new SwimGoal(this));
       this.goalSelector.addGoal(6, new MoveThroughVillageGoal(this, 1.0D, true, 4, this::isBreakDoorsTaskSet));
       this.goalSelector.addGoal(7, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
          new TemptGoal(this, 5.1D, Ingredient.fromItems(ItemInit.LEAT.get()), false);
       this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setCallsForHelp(ZombifiedPiglinEntity.class));
       this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
+      this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, ZombieEntity.class, true));
       this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillagerEntity.class, false));
       this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
-      this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, TurtleEntity.class, 10, true, false, TurtleEntity.TARGET_DRY_BABY));
+      this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, SkeletonEntity.class, 10, true, false, TurtleEntity.TARGET_DRY_BABY));
       this.goalSelector.addGoal(5, this.eatGrassGoal);
       this.goalSelector.addGoal(5, eatGrassGoal);
    }
 
-   public static AttributeModifierMap.MutableAttribute func_234342_eQ_() {
-      return MonsterEntity.func_234295_eP_().createMutableAttribute(Attributes.FOLLOW_RANGE, 35.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, (double)0.23F).createMutableAttribute(Attributes.ATTACK_DAMAGE, 3.0D).createMutableAttribute(Attributes.ARMOR, 2.0D).createMutableAttribute(Attributes.ZOMBIE_SPAWN_REINFORCEMENTS);
+   public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
+      return MonsterEntity.func_234295_eP_().createMutableAttribute(Attributes.FOLLOW_RANGE, 100.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, (double)0.23F).createMutableAttribute(Attributes.ATTACK_DAMAGE, 40.0D).createMutableAttribute(Attributes.ARMOR, 4.0D).createMutableAttribute(Attributes.ZOMBIE_SPAWN_REINFORCEMENTS);
    }
 
    protected void registerData() {
       super.registerData();
       this.getDataManager().register(IS_CHILD, false);
       this.getDataManager().register(VILLAGER_TYPE, 0);
-      this.getDataManager().register(DROWNING, false);
+      this.getDataManager().register(ROVENT, false);
    }
 
    public boolean isDrowning() {
-      return this.getDataManager().get(DROWNING);
+      return this.getDataManager().get(ROVENT);
    }
 
    public boolean isBreakDoorsTaskSet() {
@@ -155,12 +155,12 @@ public class ZurEntity extends MonsterEntity {
    /**
     * Set whether this zombie is a child.
     */
-   public void setChild(boolean childZombie) {
-      this.getDataManager().set(IS_CHILD, childZombie);
+   public void setChild(boolean childZur) {
+      this.getDataManager().set(IS_CHILD, childZur);
       if (this.world != null && !this.world.isRemote) {
          ModifiableAttributeInstance modifiableattributeinstance = this.getAttribute(Attributes.MOVEMENT_SPEED);
          modifiableattributeinstance.removeModifier(BABY_SPEED_BOOST);
-         if (childZombie) {
+         if (childZur) {
             modifiableattributeinstance.applyNonPersistentModifier(BABY_SPEED_BOOST);
          }
       }
@@ -187,13 +187,13 @@ public class ZurEntity extends MonsterEntity {
          if (this.isDrowning()) {
             --this.drownedConversionTime;
             if (this.drownedConversionTime < 0) {
-               this.onDrowned();
+               this.onRovent();
             }
          } else if (this.shouldDrown()) {
             if (this.areEyesInFluid(FluidTags.WATER)) {
                ++this.inWaterTime;
                if (this.inWaterTime >= 600) {
-                  this.startDrowning(300);
+                  this.startRovent(300);
                }
             } else {
                this.inWaterTime = -1;
@@ -234,13 +234,13 @@ public class ZurEntity extends MonsterEntity {
       super.livingTick();
    }
 
-   private void startDrowning(int p_204704_1_) {
+   private void startRovent(int p_204704_1_) {
       this.drownedConversionTime = p_204704_1_;
-      this.getDataManager().set(DROWNING, true);
+      this.getDataManager().set(ROVENT, true);
    }
 
-   protected void onDrowned() {
-      this.func_234341_c_(EntityInit.ZUR_ENTITY.get());
+   protected void onRovent() {
+      this.func_234341_c_(EntityInit.ROVENT_ENTITY.get());
       if (!this.isSilent()) {
          this.world.playEvent((PlayerEntity)null, 1040, this.getPosition(), 0);
       }
@@ -349,15 +349,39 @@ public class ZurEntity extends MonsterEntity {
     */
    protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty) {
       super.setEquipmentBasedOnDifficulty(difficulty);
-      if (this.rand.nextFloat() < (this.world.getDifficulty() == Difficulty.HARD ? 0.05F : 0.01F)) {
-         int i = this.rand.nextInt(3);
+      if (this.rand.nextFloat() < (this.world.getDifficulty() == Difficulty.HARD ? 50.0F : 10.0F)) {
+         int i = this.rand.nextInt(192);
          if (i == 0) {
-            this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(Items.IRON_SWORD));
+            this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(ItemInit.DURG_SWORD.get()));
          } else {
-            this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(Items.IRON_SHOVEL));
+            this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(ItemInit.DURG_SHOVEL.get()));
          }
       }
 
+   }
+
+   protected void setEquipmentBasedOnDifficulty1(DifficultyInstance difficulty) {
+      super.setEquipmentBasedOnDifficulty(difficulty);
+      if (this.rand.nextFloat() < (this.world.getDifficulty() == Difficulty.NORMAL ? 5.0F : 1.0F)) {
+         int i = this.rand.nextInt(48);
+         if (i == 0) {
+            this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(ItemInit.NIRK_SWORD.get()));
+         } else {
+            this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(ItemInit.NIRK_SHOVEL.get()));
+         }
+      }
+   }
+
+   protected void setEquipmentBasedOnDifficulty2(DifficultyInstance difficulty) {
+      super.setEquipmentBasedOnDifficulty(difficulty);
+      if (this.rand.nextFloat() < (this.world.getDifficulty() == Difficulty.EASY ? 0.5F : 0.1F)) {
+         int i = this.rand.nextInt(12);
+         if (i == 0) {
+            this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(ItemInit.SRIUNK_SWORD.get()));
+         } else {
+            this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(ItemInit.SRIUNK_SHOVEL.get()));
+         }
+      }
    }
 
    public void writeAdditional(CompoundNBT compound) {
@@ -383,7 +407,7 @@ public class ZurEntity extends MonsterEntity {
       this.setBreakDoorsAItask(compound.getBoolean("CanBreakDoors"));
       this.inWaterTime = compound.getInt("InWaterTime");
       if (compound.contains("DrownedConversionTime", 99) && compound.getInt("DrownedConversionTime") > -1) {
-         this.startDrowning(compound.getInt("DrownedConversionTime"));
+         this.startRovent(compound.getInt("DrownedConversionTime"));
       }
 
    }
@@ -393,18 +417,18 @@ public class ZurEntity extends MonsterEntity {
     */
    public void onKillEntity(LivingEntity entityLivingIn) {
       super.onKillEntity(entityLivingIn);
-      if ((this.world.getDifficulty() == Difficulty.NORMAL || this.world.getDifficulty() == Difficulty.HARD) && entityLivingIn instanceof VillagerEntity) {
+      if ((this.world.getDifficulty() == Difficulty.NORMAL || this.world.getDifficulty() == Difficulty.HARD) && entityLivingIn instanceof WanderingTraderNirtreEntity) {
          if (this.world.getDifficulty() != Difficulty.HARD && this.rand.nextBoolean()) {
             return;
          }
 
-         VillagerEntity villagerentity = (VillagerEntity)entityLivingIn;
-         ZombieVillagerEntity zombievillagerentity = EntityType.ZOMBIE_VILLAGER.create(this.world);
+         WanderingTraderNirtreEntity villagerentity = (WanderingTraderNirtreEntity)entityLivingIn;
+         ZurNirtreEntity zombievillagerentity = EntityInit.ZUR_NIRTRE_ENTITY.get().create(this.world);
          zombievillagerentity.copyLocationAndAnglesFrom(villagerentity);
          villagerentity.remove();
          zombievillagerentity.onInitialSpawn(this.world, this.world.getDifficultyForLocation(zombievillagerentity.getPosition()), SpawnReason.CONVERSION, new ZurEntity.GroupData(false, true), (CompoundNBT)null);
-         zombievillagerentity.setVillagerData(villagerentity.getVillagerData());
-         zombievillagerentity.setGossips(villagerentity.getGossip().func_234058_a_(NBTDynamicOps.INSTANCE).getValue());
+         //zombievillagerentity.setVillagerData(villagerentity.getVillagerData());
+         //zombievillagerentity.setGossips(villagerentity.getGossip().func_234058_a_(NBTDynamicOps.INSTANCE).getValue());
          zombievillagerentity.setOffers(villagerentity.getOffers().write());
          zombievillagerentity.setEXP(villagerentity.getXp());
          zombievillagerentity.setChild(villagerentity.isChild());

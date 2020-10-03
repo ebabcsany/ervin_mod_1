@@ -117,8 +117,8 @@ public class ViltEntity extends AnimalEntity implements IShearable, net.minecraf
       super.livingTick();
    }
 
-   public static AttributeModifierMap.MutableAttribute func_234225_eI_() {
-      return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 8.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, (double)0.23F);
+   public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
+      return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 8.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, (double)0.23F).createMutableAttribute(Attributes.ATTACK_DAMAGE, 4.0D);
    }
 
    protected void registerData() {

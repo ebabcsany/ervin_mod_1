@@ -2,13 +2,8 @@ package com.babcsany.minecraft.ervin_mod_1.init;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.block.*;
-import com.babcsany.minecraft.ervin_mod_1.block.FirgSapling;
-import com.babcsany.minecraft.ervin_mod_1.block.FlowerPotBlock;
-import com.babcsany.minecraft.ervin_mod_1.block.RotatedPillarBlock;
-import com.babcsany.minecraft.ervin_mod_1.block.trees.Tree1;
 import com.babcsany.minecraft.ervin_mod_1.block.tripwires.*;
 import com.babcsany.minecraft.ervin_mod_1.block.tripwires.tripwire_hooks.*;
-import com.babcsany.minecraft.ervin_mod_1.fluid.ForgeFlowingFluid1;
 import com.babcsany.minecraft.ervin_mod_1.fluid.ModFluids;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.FirgTree;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.FrimTree;
@@ -17,12 +12,7 @@ import com.babcsany.minecraft.ervin_mod_1.world.feature.ModSaplingBlock;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
-import net.minecraft.block.trees.Tree;
-import net.minecraft.client.audio.Sound;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.util.Direction;
-import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
+import net.minecraft.fluid.Fluid;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -48,7 +38,7 @@ public class BlockInit {
     public static final RegistryObject<Block> JAZZ_LEAVES = BLOCKS.register("jazz_leaves", () -> new LeavesBlock(
             Block.Properties.from(Blocks.OAK_LEAVES)
     ));
-    public static final RegistryObject<Block> FIRG_LEAVES = BLOCKS.register("firg_leaves", () -> new FirgLeaves(
+    public static final RegistryObject<Block> FIRG_LEAVES = BLOCKS.register("firg_leaves", () -> new LeavesBlock(
             Block.Properties.from(Blocks.OAK_LEAVES)
     ));
     public static final RegistryObject<Block> JAZZ_SAPLING = BLOCKS.register("jazz_sapling", () -> new ModSaplingBlock(
@@ -1681,6 +1671,8 @@ public class BlockInit {
                     .hardnessAndResistance(5.0F,6.0F)
                     .sound(SoundType.METAL)
     ));
+    public static final DeferredRegister<Fluid> FLUIDS = DeferredRegister.create(ForgeRegistries.FLUIDS,
+            Ervin_mod_1.MOD_ID);
     /*public static final RegistryObject<Block> JURK = BLOCKS.register("jurk", () -> new FlowingFluidBlock1(
             ModFluids.JURK, AbstractBlock.Properties.create(Material.WATER)
             .doesNotBlockMovement()

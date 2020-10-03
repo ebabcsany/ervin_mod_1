@@ -1,6 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.animal;
 
 import net.minecraft.entity.*;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.controller.MovementController;
 import net.minecraft.entity.ai.goal.Goal;
@@ -51,6 +52,10 @@ public class FreinEntity extends MobEntity implements IMob {
          return Math.abs(p_213811_1_.getPosY() - this.getPosY()) <= 4.0D;
       }));
       this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
+   }
+
+   public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
+      return LivingEntity.registerAttributes().createMutableAttribute(Attributes.FOLLOW_RANGE, 16.0D).createMutableAttribute(Attributes.ATTACK_KNOCKBACK);
    }
 
    protected void registerData() {

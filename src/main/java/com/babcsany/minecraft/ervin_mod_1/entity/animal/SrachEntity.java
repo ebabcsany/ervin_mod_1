@@ -1,6 +1,8 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.animal;
 
+import com.babcsany.minecraft.ervin_mod_1.init.BlockInit;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
+import com.babcsany.minecraft.ervin_mod_1.init.ItemInit;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
@@ -24,14 +26,14 @@ public class SrachEntity extends AnimalEntity {
       this.goalSelector.addGoal(0, new SwimGoal(this));
       this.goalSelector.addGoal(1, new PanicGoal(this, 2.0D));
       this.goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
-      this.goalSelector.addGoal(3, new TemptGoal(this, 1.25D, Ingredient.fromItems(Items.WHEAT), false));
+      this.goalSelector.addGoal(3, new TemptGoal(this, 1.25D, Ingredient.fromItems(BlockInit.TARG.get()), false));
       this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.25D));
       this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
       this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 6.0F));
       this.goalSelector.addGoal(7, new LookRandomlyGoal(this));
    }
 
-   public static AttributeModifierMap.MutableAttribute func_234188_eI_() {
+   public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
       return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 10.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, (double)0.2F);
    }
 

@@ -128,7 +128,7 @@ public class WolfEntity1 extends TameableEntity implements IAngerable {
       this.targetSelector.addGoal(8, new ResetAngerGoal<>(this, true));
    }
 
-   public static AttributeModifierMap.MutableAttribute func_234233_eS_() {
+   public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
       return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MOVEMENT_SPEED, (double)0.3F).createMutableAttribute(Attributes.MAX_HEALTH, 20000.0D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 5000.0D);
    }
 

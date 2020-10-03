@@ -29,8 +29,11 @@ import java.util.OptionalInt;
 
 public class ModDefaultBiomeFeatures {
    private static final BlockState GRASS = Blocks.GRASS.getDefaultState();
+   private static final BlockState OBSIDIAN = Blocks.OBSIDIAN.getDefaultState();
    private static final BlockState FIRG = BlockInit.FIRG.get().getDefaultState();
    private static final BlockState SCRAFTH = BlockInit.SCRAFTH.get().getDefaultState();
+   private static final BlockState GRITH_BLOCK = BlockInit.GRITH_BLOCK.get().getDefaultState();
+   private static final BlockState GRINT_BLOCK = BlockInit.GRINT_BLOCK.get().getDefaultState();
    private static final BlockState RED_GRASS_BLOCK = BlockInit.RED_GRASS_BLOCK.get().getDefaultState();
    private static final BlockState BARRIER = Blocks.BARRIER.getDefaultState();
    private static final BlockState END_STONE = Blocks.END_STONE.getDefaultState();
@@ -98,7 +101,7 @@ public class ModDefaultBiomeFeatures {
    private static final BlockState PEONY = Blocks.PEONY.getDefaultState();
    private static final BlockState BROWN_MUSHROOM = Blocks.BROWN_MUSHROOM.getDefaultState();
    private static final BlockState RED_MUSHROOM = Blocks.RED_MUSHROOM.getDefaultState();
-   private static final BlockState GRINTH_MUSHROOM = Blocks.RED_MUSHROOM.getDefaultState();
+   private static final BlockState GRINTH_MUSHROOM = BlockInit.GRINTH_MUSHROOM.get().getDefaultState();
    private static final BlockState SEAGRASS = Blocks.SEAGRASS.getDefaultState();
    private static final BlockState PACKED_ICE = Blocks.PACKED_ICE.getDefaultState();
    private static final BlockState BLUE_ICE = Blocks.BLUE_ICE.getDefaultState();
@@ -123,7 +126,7 @@ public class ModDefaultBiomeFeatures {
    public static final StructureFeature<ShipwreckConfig, ? extends Structure<ShipwreckConfig>> RUINED_PORTAL = Structure.field_236373_i_.func_236391_a_(new ShipwreckConfig(false));
    public static final StructureFeature<NoFeatureConfig, ? extends Structure<NoFeatureConfig>> STRONGHOLD = Structure.field_236375_k_.func_236391_a_(NoFeatureConfig.field_236559_b_);
    private static final BlockState RED_MUSHROOM_BLOCK = Blocks.RED_MUSHROOM_BLOCK.getDefaultState().with(HugeMushroomBlock.DOWN, Boolean.valueOf(false));
-   private static final BlockState GRINTH_MUSHROOM_BLOCK = Blocks.RED_MUSHROOM_BLOCK.getDefaultState().with(HugeMushroomBlock.DOWN, Boolean.valueOf(false));
+   private static final BlockState GRINTH_MUSHROOM_BLOCK = BlockInit.GRINTH_MUSHROOM_BLOCK.get().getDefaultState().with(HugeMushroomBlock.DOWN, Boolean.valueOf(false));
    private static final BlockState BROWN_MUSHROOM_BLOCK = Blocks.BROWN_MUSHROOM_BLOCK.getDefaultState().with(HugeMushroomBlock.UP, Boolean.valueOf(true)).with(HugeMushroomBlock.DOWN, Boolean.valueOf(false));
    private static final BlockState MUSHROOM_STEM = Blocks.MUSHROOM_STEM.getDefaultState().with(HugeMushroomBlock.UP, Boolean.valueOf(false)).with(HugeMushroomBlock.DOWN, Boolean.valueOf(false));
    public static final BaseTreeFeatureConfig OAK_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(OAK_LOG), new SimpleBlockStateProvider(OAK_LEAVES), new BlobFoliagePlacer(2, 0, 0, 0, 3), new StraightTrunkPlacer(4, 2, 0), new TwoLayerFeature(1, 0, 1))).setIgnoreVines().build();
@@ -193,6 +196,7 @@ public class ModDefaultBiomeFeatures {
    public static final BlockClusterFeatureConfig NETHER_FIRE_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(FIRE), new SimpleBlockPlacer())).tries(64).whitelist(ImmutableSet.of(NETHERRACK.getBlock())).func_227317_b_().build();
    public static final BlockClusterFeatureConfig LILY_PAD_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(LILY_PAD), new SimpleBlockPlacer())).tries(10).build();
    public static final BlockClusterFeatureConfig RED_MUSHROOM_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(RED_MUSHROOM), new SimpleBlockPlacer())).tries(64).func_227317_b_().build();
+   public static final BlockClusterFeatureConfig SCRAFTH_MUSHROOM_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(SCRAFTH), new SimpleBlockPlacer())).tries(64).func_227317_b_().build();
    public static final BlockClusterFeatureConfig BROWN_MUSHROOM_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(BROWN_MUSHROOM), new SimpleBlockPlacer())).tries(64).func_227317_b_().build();
    public static final BlockClusterFeatureConfig LILAC_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(LILAC), new DoublePlantBlockPlacer())).tries(64).func_227317_b_().build();
    public static final BlockClusterFeatureConfig ROSE_BUSH_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ROSE_BUSH), new DoublePlantBlockPlacer())).tries(64).func_227317_b_().build();
@@ -203,7 +207,7 @@ public class ModDefaultBiomeFeatures {
    public static final BlockClusterFeatureConfig CACTUS_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(CACTUS), new ColumnBlockPlacer(1, 2))).tries(10).func_227317_b_().build();
    public static final BlockClusterFeatureConfig SUGAR_CANE_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(SUGAR_CANE), new ColumnBlockPlacer(2, 2))).tries(20).xSpread(4).ySpread(0).zSpread(4).func_227317_b_().requiresWater().build();
    public static final BlockStateProvidingFeatureConfig HAY_PILE_CONFIG = new BlockStateProvidingFeatureConfig(new AxisRotatingBlockStateProvider(Blocks.HAY_BLOCK));
-   public static final BlockStateProvidingFeatureConfig SRIUNK_PILE_CONFIG = new BlockStateProvidingFeatureConfig(new AxisRotatingBlockStateProvider(BlockInit.SRIUNK_BLOCK.get()));
+   public static final BlockStateProvidingFeatureConfig SRIUNK_PILE_CONFIG = new BlockStateProvidingFeatureConfig(new SimpleBlockStateProvider(SRIUNK_BLOCK));
    public static final BlockStateProvidingFeatureConfig SNOW_PILE_CONFIG = new BlockStateProvidingFeatureConfig(new SimpleBlockStateProvider(SNOW));
    public static final BlockStateProvidingFeatureConfig MELON_PILE_CONFIG = new BlockStateProvidingFeatureConfig(new SimpleBlockStateProvider(MELON));
    public static final BlockStateProvidingFeatureConfig PUMPKIN_PILE_CONFIG = new BlockStateProvidingFeatureConfig((new WeightedBlockStateProvider()).addWeightedBlockstate(PUMPKIN, 19).addWeightedBlockstate(JACK_O_LATERN, 1));
@@ -215,6 +219,7 @@ public class ModDefaultBiomeFeatures {
    public static final LiquidsConfig ENCLOSED_NETHER_SPRING_CONFIG = new LiquidsConfig(Fluids.LAVA.getDefaultState(), false, 5, 0, ImmutableSet.of(Blocks.NETHERRACK));
    public static final BigMushroomFeatureConfig BIG_RED_MUSHROOM = new BigMushroomFeatureConfig(new SimpleBlockStateProvider(RED_MUSHROOM_BLOCK), new SimpleBlockStateProvider(MUSHROOM_STEM), 2);
    public static final BigMushroomFeatureConfig BIG_GRINTH_MUSHROOM = new BigMushroomFeatureConfig(new SimpleBlockStateProvider(GRINTH_MUSHROOM_BLOCK), new SimpleBlockStateProvider(MUSHROOM_STEM), 2);
+   public static final BigMushroomFeatureConfig BIG_SCRAFTH_MUSHROOM = new BigMushroomFeatureConfig(new SimpleBlockStateProvider(SCRAFTH), new SimpleBlockStateProvider(GRINT_BLOCK), 4);
    public static final BigMushroomFeatureConfig BIG_BROWN_MUSHROOM = new BigMushroomFeatureConfig(new SimpleBlockStateProvider(BROWN_MUSHROOM_BLOCK), new SimpleBlockStateProvider(MUSHROOM_STEM), 3);
 
    public static void addCarvers(Biome biomeIn) {
@@ -526,6 +531,13 @@ public class ModDefaultBiomeFeatures {
 
    public static void addFrimTrees(Biome biomeIn) {
       biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(Feature.field_236291_c_.withConfiguration(FRIM_TREE_WITH_FEW_BEEHIVES_CONFIG).withChance(0.2F), Feature.field_236291_c_.withConfiguration(FANCY_TREE_WITH_FEW_BEEHIVES_CONFIG).withChance(0.1F)), Feature.field_236291_c_.withConfiguration(OAK_TREE_WITH_FEW_BEEHIVES_CONFIG))).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(20, 1.0F, 2))));
+   }
+
+   public static void addFirgTrees(Biome biomeIn) {
+      biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(Feature.field_236291_c_.withConfiguration(FIRG_TREE_CONFIG).withChance(10.0F), Feature.field_236291_c_.withConfiguration(FIRG_TREE_WITH_FEW_BEEHIVES_CONFIG).withChance(5.0F)), Feature.field_236291_c_.withConfiguration(FIRG_TREE_WITH_MORE_BEEHIVES_CONFIG))).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(100, 5.0F, 10))));
+      biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(Feature.field_236291_c_.withConfiguration(FIRG_TREE_CONFIG1).withChance(10.0F), Feature.field_236291_c_.withConfiguration(FIRG_TREE_WITH_MORE_BEEHIVES_CONFIG1).withChance(5.0F)), Feature.field_236291_c_.withConfiguration(FIRG_TREE_WITH_MANY_BEEHIVES_CONFIG))).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(100, 5.0F, 10))));
+      biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(Feature.field_236291_c_.withConfiguration(FIRG_TREE_CONFIG2).withChance(10.0F), Feature.field_236291_c_.withConfiguration(FIRG_TREE_WITH_MORE_BEEHIVES_CONFIG).withChance(5.0F)), Feature.field_236291_c_.withConfiguration(FIRG_TREE_WITH_MORE_BEEHIVES_CONFIG1))).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(100, 5.0F, 10))));
+      biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(Feature.field_236291_c_.withConfiguration(FIRG_TREE_CONFIG3).withChance(10.0F), Feature.field_236291_c_.withConfiguration(FIRG_TREE_WITH_MANY_BEEHIVES_CONFIG).withChance(5.0F)), Feature.field_236291_c_.withConfiguration(FIRG_TREE_WITH_FEW_BEEHIVES_CONFIG))).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(100, 5.0F, 10))));
    }
 
    public static void addTallBirchForestTrees(Biome biomeIn) {

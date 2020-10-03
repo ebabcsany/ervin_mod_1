@@ -7,9 +7,9 @@ public class ZurAttackGoal extends MeleeAttackGoal {
    private final ZurEntity zur;
    private int raiseArmTicks;
 
-   public ZurAttackGoal(ZurEntity zombieIn, double speedIn, boolean longMemoryIn) {
-      super(zombieIn, speedIn, longMemoryIn);
-      this.zur = zombieIn;
+   public ZurAttackGoal(ZurEntity zurIn, double speedIn, boolean longMemoryIn) {
+      super(zurIn, speedIn, longMemoryIn);
+      this.zur = zurIn;
    }
 
    /**

@@ -29,7 +29,9 @@ public class CriteriaTriggers1 {
    public static final PositionTrigger LOCATION = register(new PositionTrigger(new ResourceLocation("location")));
    public static final PositionTrigger SLEPT_IN_BED = register(new PositionTrigger(new ResourceLocation("slept_in_bed")));
    public static final CuredZombieVillagerTrigger CURED_ZOMBIE_VILLAGER = register(new CuredZombieVillagerTrigger());
+   public static final CuredZurNirtreTrigger CURED_ZUR_NIRTRE = register(new CuredZurNirtreTrigger());
    public static final VillagerTradeTrigger VILLAGER_TRADE = register(new VillagerTradeTrigger());
+   public static final NirtreTradeTrigger NIRTRE_TRADE = register(new NirtreTradeTrigger());
    public static final ItemDurabilityTrigger ITEM_DURABILITY_CHANGED = register(new ItemDurabilityTrigger());
    public static final LevitationTrigger LEVITATION = register(new LevitationTrigger());
    public static final ChangeDimensionTrigger CHANGED_DIMENSION = register(new ChangeDimensionTrigger());
