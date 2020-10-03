@@ -7,13 +7,13 @@
     <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$\run"/>
     <module name="ervin_mod_1.main"/>
     <envs>
-      <env name="MOD_CLASSES" value="ervinmod1%%$PROJECT_DIR$\build\resources\main;ervinmod1%%$PROJECT_DIR$\build\classes\java\main"/>
-      <env name="MCP_MAPPINGS" value="snapshot_20200427-1.15.1"/>
-      <env name="MCP_VERSION" value="20200122.131323"/>
-      <env name="FORGE_VERSION" value="31.1.9"/>
+      <env name="MOD_CLASSES" value="ervin_mod_1%%$PROJECT_DIR$\build\resources\main;ervin_mod_1%%$PROJECT_DIR$\build\classes\java\main"/>
+      <env name="MCP_MAPPINGS" value="snapshot_20200723-1.16.1"/>
+      <env name="MCP_VERSION" value="20200625.160719"/>
+      <env name="FORGE_VERSION" value="32.0.75"/>
       <env name="FORGE_GROUP" value="net.minecraftforge"/>
       <env name="target" value="fmluserdevserver"/>
-      <env name="MC_VERSION" value="1.15.2"/>
+      <env name="MC_VERSION" value="1.16.1"/>
     </envs>
     <method v="2">
       <option enabled="true" name="Make"/>
