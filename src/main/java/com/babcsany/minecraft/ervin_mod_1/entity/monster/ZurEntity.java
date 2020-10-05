@@ -77,21 +77,16 @@ public class ZurEntity extends MonsterEntity {
       this.eatGrassGoal = new EatGrassGoal(this);
       this.goalSelector.addGoal(2, new ZurAttackGoal(this, 1.0D, true));
       this.goalSelector.addGoal(4, new SwimGoal(this));
-      this.goalSelector.addGoal(6, new MoveThroughVillageGoal(this, 1.0D, true, 4, this::isBreakDoorsTaskSet));
       this.goalSelector.addGoal(7, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
          new TemptGoal(this, 5.1D, Ingredient.fromItems(ItemInit.LEAT.get()), false);
       this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setCallsForHelp(ZombifiedPiglinEntity.class));
       this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
-      this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, ZombieEntity.class, true));
-      this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillagerEntity.class, false));
-      this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
-      this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, SkeletonEntity.class, 10, true, false, TurtleEntity.TARGET_DRY_BABY));
       this.goalSelector.addGoal(5, this.eatGrassGoal);
       this.goalSelector.addGoal(5, eatGrassGoal);
    }
 
    public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
-      return MonsterEntity.func_234295_eP_().createMutableAttribute(Attributes.FOLLOW_RANGE, 100.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, (double)0.23F).createMutableAttribute(Attributes.ATTACK_DAMAGE, 40.0D).createMutableAttribute(Attributes.ARMOR, 4.0D).createMutableAttribute(Attributes.ZOMBIE_SPAWN_REINFORCEMENTS);
+      return MonsterEntity.func_234295_eP_().createMutableAttribute(Attributes.FOLLOW_RANGE, 100.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, (double)0.23F).createMutableAttribute(Attributes.ATTACK_DAMAGE, 40.0D).createMutableAttribute(Attributes.ARMOR, 4.0D).createMutableAttribute(Attributes.MAX_HEALTH, 160);
    }
 
    protected void registerData() {
