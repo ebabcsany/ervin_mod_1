@@ -8,6 +8,7 @@ import com.babcsany.minecraft.ervin_mod_1.entity.monster.RoventEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurNirtreEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.projectile.ScrakthsPearlEntity;
+import com.babcsany.minecraft.ervin_mod_1.entity.villager.TraderNirtreEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.WanderingTraderNirtreEntity;
 import com.babcsany.minecraft.ervin_mod_1.item.FirgBoatItem;
 import com.mojang.serialization.Codec;
@@ -97,6 +98,11 @@ public class EntityInit {
                             .size(0.6f, 0.85f).func_233606_a_(10)
                             .build(new ResourceLocation(Ervin_mod_1.MOD_ID, "wandering_trader_nirtre_entity").toString()
                             ));
-
+    public static final RegistryObject<EntityType<TraderNirtreEntity>> TRADER_NIRTRE_ENTITY = ENTITY_TYPES
+            .register("trader_nirtre_entity",
+                    () -> EntityType.Builder.<TraderNirtreEntity>create(TraderNirtreEntity::new, EntityClassification.CREATURE)
+                            .size(0.6f, 0.85f).func_233606_a_(10)
+                            .build(new ResourceLocation(Ervin_mod_1.MOD_ID, "zur_entity").toString()
+                            ));
 
 }

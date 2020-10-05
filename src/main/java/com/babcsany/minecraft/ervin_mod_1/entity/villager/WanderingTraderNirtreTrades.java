@@ -104,7 +104,7 @@ public class WanderingTraderNirtreTrades {
            new WanderingTraderNirtreTrades.ItemsForRubiesTrade(ItemInit.SRIUNK.get(), 30, 1, 10, 2),
            new WanderingTraderNirtreTrades.ItemsForRubiesTrade(ItemInit.PACK.get(), 4, 1, 50, 1),
            new WanderingTraderNirtreTrades.ItemsForRubiesTrade(ItemInit.LEAT.get(), 40, 1, 20, 3),
-           new WanderingTraderNirtreTrades.ItemsForRubiesTrade(BlockInit.FIRG.get(), 1, 5, 100, 1),
+           new WanderingTraderNirtreTrades.ItemsForRubiesTrade(ItemInit.FIRG.get(), 1, 5, 100, 1),
            new WanderingTraderNirtreTrades.ItemsForRubiesTrade(BlockInit.EXAMPLE_BLOCK.get(), 3, 1, 7, 2),
            new WanderingTraderNirtreTrades.ItemsForRubiesTrade(ItemInit.FIRT.get(), 1, 4, 14, 1),
            new WanderingTraderNirtreTrades.ItemsForRubiesTrade(ItemInit.VILKT.get(), 35, 1, 2, 6),
