@@ -2,7 +2,6 @@ package com.babcsany.minecraft.ervin_mod_1.entity.villager;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.CriteriaTriggers1;
 import com.google.common.collect.Sets;
-import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.entity.*;
 import net.minecraft.entity.merchant.IMerchant;
 import net.minecraft.entity.player.PlayerEntity;
@@ -225,7 +224,7 @@ public abstract class AbstractNirtreEntity extends AgeableEntity implements INPC
    /**
     * add limites numbers of trades to the given MerchantOffers
     */
-   protected void addTrades(MerchantOffers givenMerchantOffers, NirtreTrades.ITrade[] newTrades, int maxNumbers) {
+   protected void addTrades(MerchantOffers givenMerchantOffers, WanderingTraderNirtreTrades.ITrade[] newTrades, int maxNumbers) {
       Set<Integer> set = Sets.newHashSet();
       if (newTrades.length > maxNumbers) {
          while(set.size() < maxNumbers) {
@@ -238,7 +237,7 @@ public abstract class AbstractNirtreEntity extends AgeableEntity implements INPC
       }
 
       for(Integer integer : set) {
-         NirtreTrades.ITrade villagertrades$itrade = newTrades[integer];
+         WanderingTraderNirtreTrades.ITrade villagertrades$itrade = newTrades[integer];
          MerchantOffer merchantoffer = villagertrades$itrade.getOffer(this, this.rand);
          if (merchantoffer != null) {
             givenMerchantOffers.add(merchantoffer);

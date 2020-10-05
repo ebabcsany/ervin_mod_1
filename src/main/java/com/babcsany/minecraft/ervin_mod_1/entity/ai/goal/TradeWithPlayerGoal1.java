@@ -10,8 +10,8 @@ import java.util.EnumSet;
 public class TradeWithPlayerGoal1 extends Goal {
    private final AbstractNirtreEntity nirtre;
 
-   public TradeWithPlayerGoal1(AbstractNirtreEntity nirtre1) {
-      this.nirtre = nirtre1;
+   public TradeWithPlayerGoal1(AbstractNirtreEntity nirtre) {
+      this.nirtre = nirtre;
       this.setMutexFlags(EnumSet.of(Flag.JUMP, Flag.MOVE));
    }
 

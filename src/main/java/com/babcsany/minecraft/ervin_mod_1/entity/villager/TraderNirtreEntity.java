@@ -1,8 +1,5 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.villager;
 
-import java.util.EnumSet;
-import javax.annotation.Nullable;
-
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.LookAtCustomerGoal1;
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.TradeWithPlayerGoal1;
 import com.babcsany.minecraft.ervin_mod_1.init.ItemInit;
@@ -15,53 +12,31 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.MerchantOffer;
-import net.minecraft.item.MerchantOffers;
+import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.NBTUtil;
-import net.minecraft.potion.PotionUtils;
-import net.minecraft.potion.Potions;
 import net.minecraft.stats.Stats;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 
-public class WanderingTraderNirtreEntity extends AbstractNirtreEntity {
+import javax.annotation.Nullable;
+
+public class TraderNirtreEntity extends AbstractNirtreEntity {
    @Nullable
    private BlockPos wanderTarget;
    private int despawnDelay;
 
-   public WanderingTraderNirtreEntity(EntityType<? extends WanderingTraderNirtreEntity> type, World worldIn) {
+   public TraderNirtreEntity(EntityType<? extends TraderNirtreEntity> type, World worldIn) {
       super(type, worldIn);
       this.forceSpawn = true;
    }
 
    protected void registerGoals() {
       this.goalSelector.addGoal(0, new SwimGoal(this));
-      this.goalSelector.addGoal(0, new UseItemGoal<>(this, PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.LONG_INVISIBILITY), SoundEvents.ENTITY_WANDERING_TRADER_DISAPPEARED, (trader) -> {
-         return !this.world.isDaytime() && !trader.isInvisible();
-      }));
-      this.goalSelector.addGoal(0, new UseItemGoal<>(this, PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.LONG_SLOW_FALLING), SoundEvents.ENTITY_WANDERING_TRADER_DISAPPEARED, (trader) -> {
-         return !this.world.isDaytime() && !trader.isInvisible();
-      }));
-      this.goalSelector.addGoal(0, new UseItemGoal<>(this, PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.LONG_FIRE_RESISTANCE), SoundEvents.ENTITY_WANDERING_TRADER_DISAPPEARED, (trader) -> {
-         return !this.world.isDaytime() && !trader.isInvisible();
-      }));
-      this.goalSelector.addGoal(0, new UseItemGoal<>(this, new ItemStack(Items.MILK_BUCKET), SoundEvents.ENTITY_WANDERING_TRADER_REAPPEARED, (trader) -> {
-         return this.world.isDaytime() && trader.isInvisible();
-      }));
       this.goalSelector.addGoal(1, new TradeWithPlayerGoal1(this));
       this.goalSelector.addGoal(1, new PanicGoal(this, 0.5D));
       this.goalSelector.addGoal(1, new LookAtCustomerGoal1(this));
-      this.goalSelector.addGoal(2, new WanderingTraderNirtreEntity.MoveToGoal(this, 2.0D, 0.35D));
       this.goalSelector.addGoal(4, new MoveTowardsRestrictionGoal(this, 0.35D));
       this.goalSelector.addGoal(8, new WaterAvoidingRandomWalkingGoal(this, 0.35D));
       this.goalSelector.addGoal(9, new LookAtWithoutMovingGoal(this, PlayerEntity.class, 3.0F, 1.0F));
@@ -70,7 +45,7 @@ public class WanderingTraderNirtreEntity extends AbstractNirtreEntity {
    }
 
    public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
-      return LivingEntity.registerAttributes().createMutableAttribute(Attributes.FOLLOW_RANGE, 16.0D).createMutableAttribute(Attributes.MAX_HEALTH, 1600000.0D).createMutableAttribute(Attributes.ATTACK_KNOCKBACK).createMutableAttribute(Attributes.ATTACK_DAMAGE, 2.0D);
+      return LivingEntity.registerAttributes().createMutableAttribute(Attributes.FOLLOW_RANGE, 16.0D).createMutableAttribute(Attributes.MAX_HEALTH, 16000.0D).createMutableAttribute(Attributes.ATTACK_KNOCKBACK).createMutableAttribute(Attributes.ATTACK_DAMAGE, 10.0D);
    }
 
    @Nullable
@@ -220,54 +195,4 @@ public class WanderingTraderNirtreEntity extends AbstractNirtreEntity {
       return this.wanderTarget;
    }
 
-   class MoveToGoal extends Goal {
-      final WanderingTraderNirtreEntity traderEntity;
-      final double maxDistance;
-      final double speed;
-
-      MoveToGoal(WanderingTraderNirtreEntity traderEntityIn, double distanceIn, double speedIn) {
-         this.traderEntity = traderEntityIn;
-         this.maxDistance = distanceIn;
-         this.speed = speedIn;
-         this.setMutexFlags(EnumSet.of(Flag.MOVE));
-      }
-
-      /**
-       * Reset the task's internal state. Called when this task is interrupted by another one
-       */
-      public void resetTask() {
-         this.traderEntity.setWanderTarget((BlockPos)null);
-         WanderingTraderNirtreEntity.this.navigator.clearPath();
-      }
-
-      /**
-       * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
-       * method as well.
-       */
-      public boolean shouldExecute() {
-         BlockPos blockpos = this.traderEntity.getWanderTarget();
-         return blockpos != null && this.isWithinDistance(blockpos, this.maxDistance);
-      }
-
-      /**
-       * Keep ticking a continuous task that has already been started
-       */
-      public void tick() {
-         BlockPos blockpos = this.traderEntity.getWanderTarget();
-         if (blockpos != null && WanderingTraderNirtreEntity.this.navigator.noPath()) {
-            if (this.isWithinDistance(blockpos, 10.0D)) {
-               Vector3d vector3d = (new Vector3d((double)blockpos.getX() - this.traderEntity.getPosX(), (double)blockpos.getY() - this.traderEntity.getPosY(), (double)blockpos.getZ() - this.traderEntity.getPosZ())).normalize();
-               Vector3d vector3d1 = vector3d.scale(10.0D).add(this.traderEntity.getPosX(), this.traderEntity.getPosY(), this.traderEntity.getPosZ());
-               WanderingTraderNirtreEntity.this.navigator.tryMoveToXYZ(vector3d1.x, vector3d1.y, vector3d1.z, this.speed);
-            } else {
-               WanderingTraderNirtreEntity.this.navigator.tryMoveToXYZ((double)blockpos.getX(), (double)blockpos.getY(), (double)blockpos.getZ(), this.speed);
-            }
-         }
-
-      }
-
-      private boolean isWithinDistance(BlockPos pos, double distance) {
-         return !pos.withinDistance(this.traderEntity.getPositionVec(), distance);
-      }
-   }
 }
