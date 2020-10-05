@@ -648,4 +648,7 @@ public class ItemInit {
     public static final RegistryObject<Item> ENDER_DRAGON_SPAWN_EGG = ITEMS.register("ender_dragon_spawn_egg", () -> new SpawnEggItem(
             EntityType.ENDER_DRAGON, 6741, 55263, new Item.Properties()
     ));
+    public static final RegistryObject<Item> MLONK = ITEMS.register("mlonk", () -> new Item(
+            (new Item.Properties())
+    ));
 }

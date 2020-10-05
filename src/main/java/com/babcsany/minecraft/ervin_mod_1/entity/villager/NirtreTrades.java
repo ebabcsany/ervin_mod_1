@@ -116,6 +116,9 @@ public class NirtreTrades {
            new NirtreTrades.ItemsForRubiesTrade(ItemInit.VILKT.get(), 35, 1, 2, 6),
            new NirtreTrades.ItemsForRubiesTrade(ItemInit.GRINT.get(), 25, 1, 22, 2),
            new NirtreTrades.ItemsForRubiesTrade(ItemInit.TARG_SEEDS.get(), 2, 1, 5, 1),
+           new NirtreTrades.ItemsForNautilusShellsTrade(BlockInit.DURT.get(), 5, 1, 20, 3),
+           new NirtreTrades.ItemsForMlonksTrade(BlockInit.SHZ_BLOCK.get(), 4, 1, 10, 2),
+           new NirtreTrades.ItemsForGrassBlocksTrade(ItemInit.ZUR_ENTITY_SPAWN_EGG.get(), 4, 1, 9, 1),
    }));
 
    private static Int2ObjectMap<NirtreTrades.ITrade[]> gatAsIntMap(ImmutableMap<Integer, NirtreTrades.ITrade[]> p_221238_0_) {
@@ -632,6 +635,120 @@ public class NirtreTrades {
 
       public MerchantOffer getOffer(Entity trader, Random rand) {
          return new MerchantOffer(new ItemStack(ItemInit.RUBY.get(), this.rubyCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+      }
+   }
+
+   static class ItemsForNautilusShellsTrade implements NirtreTrades.ITrade {
+      private final ItemStack sellingItem;
+      private final int nautilusShellCount;
+      private final int sellingItemCount;
+      private final int maxUses;
+      private final int xpValue;
+      private final float priceMultiplier;
+
+      public ItemsForNautilusShellsTrade(Block sellingItem, int nautilusShellCount, int sellingItemCount, int maxUses, int xpValue) {
+         this(new ItemStack(sellingItem), nautilusShellCount, sellingItemCount, maxUses, xpValue);
+      }
+
+      public ItemsForNautilusShellsTrade(Item sellingItem, int nautilusShellCount, int sellingItemCount, int xpValue) {
+         this(new ItemStack(sellingItem), nautilusShellCount, sellingItemCount, 12, xpValue);
+      }
+
+      public ItemsForNautilusShellsTrade(Item sellingItem, int nautilusShellCount, int sellingItemCount, int maxUses, int xpValue) {
+         this(new ItemStack(sellingItem), nautilusShellCount, sellingItemCount, maxUses, xpValue);
+      }
+
+      public ItemsForNautilusShellsTrade(ItemStack sellingItem, int nautilusShellCount, int sellingItemCount, int maxUses, int xpValue) {
+         this(sellingItem, nautilusShellCount, sellingItemCount, maxUses, xpValue, 0.05F);
+      }
+
+      public ItemsForNautilusShellsTrade(ItemStack sellingItem, int nautilusShellCount, int sellingItemCount, int maxUses, int xpValue, float priceMultiplier) {
+         this.sellingItem = sellingItem;
+         this.nautilusShellCount = nautilusShellCount;
+         this.sellingItemCount = sellingItemCount;
+         this.maxUses = maxUses;
+         this.xpValue = xpValue;
+         this.priceMultiplier = priceMultiplier;
+      }
+
+      public MerchantOffer getOffer(Entity trader, Random rand) {
+         return new MerchantOffer(new ItemStack(Items.NAUTILUS_SHELL, this.nautilusShellCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+      }
+   }
+
+   static class ItemsForMlonksTrade implements NirtreTrades.ITrade {
+      private final ItemStack sellingItem;
+      private final int mlonkCount;
+      private final int sellingItemCount;
+      private final int maxUses;
+      private final int xpValue;
+      private final float priceMultiplier;
+
+      public ItemsForMlonksTrade(Block sellingItem, int mlonkCount, int sellingItemCount, int maxUses, int xpValue) {
+         this(new ItemStack(sellingItem), mlonkCount, sellingItemCount, maxUses, xpValue);
+      }
+
+      public ItemsForMlonksTrade(Item sellingItem, int mlonkCount, int sellingItemCount, int xpValue) {
+         this(new ItemStack(sellingItem), mlonkCount, sellingItemCount, 12, xpValue);
+      }
+
+      public ItemsForMlonksTrade(Item sellingItem, int mlonkCount, int sellingItemCount, int maxUses, int xpValue) {
+         this(new ItemStack(sellingItem), mlonkCount, sellingItemCount, maxUses, xpValue);
+      }
+
+      public ItemsForMlonksTrade(ItemStack sellingItem, int mlonkCount, int sellingItemCount, int maxUses, int xpValue) {
+         this(sellingItem, mlonkCount, sellingItemCount, maxUses, xpValue, 0.05F);
+      }
+
+      public ItemsForMlonksTrade(ItemStack sellingItem, int mlonkCount, int sellingItemCount, int maxUses, int xpValue, float priceMultiplier) {
+         this.sellingItem = sellingItem;
+         this.mlonkCount = mlonkCount;
+         this.sellingItemCount = sellingItemCount;
+         this.maxUses = maxUses;
+         this.xpValue = xpValue;
+         this.priceMultiplier = priceMultiplier;
+      }
+
+      public MerchantOffer getOffer(Entity trader, Random rand) {
+         return new MerchantOffer(new ItemStack(ItemInit.MLONK.get(), this.mlonkCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+      }
+   }
+
+   static class ItemsForGrassBlocksTrade implements NirtreTrades.ITrade {
+      private final ItemStack sellingItem;
+      private final int grassBlockCount;
+      private final int sellingItemCount;
+      private final int maxUses;
+      private final int xpValue;
+      private final float priceMultiplier;
+
+      public ItemsForGrassBlocksTrade(Block sellingItem, int grassBlockCount, int sellingItemCount, int maxUses, int xpValue) {
+         this(new ItemStack(sellingItem), grassBlockCount, sellingItemCount, maxUses, xpValue);
+      }
+
+      public ItemsForGrassBlocksTrade(Item sellingItem, int grassBlockCount, int sellingItemCount, int xpValue) {
+         this(new ItemStack(sellingItem), grassBlockCount, sellingItemCount, 12, xpValue);
+      }
+
+      public ItemsForGrassBlocksTrade(Item sellingItem, int grassBlockCount, int sellingItemCount, int maxUses, int xpValue) {
+         this(new ItemStack(sellingItem), grassBlockCount, sellingItemCount, maxUses, xpValue);
+      }
+
+      public ItemsForGrassBlocksTrade(ItemStack sellingItem, int grassBlockCount, int sellingItemCount, int maxUses, int xpValue) {
+         this(sellingItem, grassBlockCount, maxUses, maxUses, xpValue, 0.05F);
+      }
+
+      public ItemsForGrassBlocksTrade(ItemStack sellingItem, int grassBlockCount, int sellingItemCount, int maxUses, int xpValue, float priceMultiplier) {
+         this.sellingItem = sellingItem;
+         this.grassBlockCount = grassBlockCount;
+         this.sellingItemCount = sellingItemCount;
+         this.maxUses = maxUses;
+         this.xpValue = xpValue;
+         this.priceMultiplier = priceMultiplier;
+      }
+
+      public MerchantOffer getOffer(Entity trader, Random rand) {
+         return new MerchantOffer(new ItemStack(Items.GRASS_BLOCK, this.grassBlockCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 
