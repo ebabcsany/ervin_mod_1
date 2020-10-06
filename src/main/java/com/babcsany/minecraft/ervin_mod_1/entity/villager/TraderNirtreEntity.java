@@ -80,15 +80,11 @@ public class TraderNirtreEntity extends AbstractNirtreEntity {
    }
 
    protected void populateTradeData() {
-      WanderingTraderNirtreTrades.ITrade[] avillagertrades$itrade = WanderingTraderNirtreTrades.field_221240_b.get(1);
-      WanderingTraderNirtreTrades.ITrade[] avillagertrades$itrade1 = WanderingTraderNirtreTrades.field_221240_b.get(2);
-      WanderingTraderNirtreTrades.ITrade[] avillagertrades$itrade2 = WanderingTraderNirtreTrades.field_221240_b.get(3);
-      if (avillagertrades$itrade != null && avillagertrades$itrade1 != null && avillagertrades$itrade2 !=null) {
+      TraderNirtreTrades.ITrade[] avillagernirtretrades$itrade = TraderNirtreTrades.field_221240_b.get(1);
+      if (avillagernirtretrades$itrade != null) {
          MerchantOffers merchantoffers = this.getOffers();
-         this.addTrades(merchantoffers, avillagertrades$itrade, 5);
-         this.addTrades(merchantoffers, avillagertrades$itrade2, 10);
-         int i = this.rand.nextInt(avillagertrades$itrade1.length);
-         WanderingTraderNirtreTrades.ITrade villagertrades$itrade = avillagertrades$itrade1[i];
+         int i = this.rand.nextInt(avillagernirtretrades$itrade.length);
+         TraderNirtreTrades.ITrade villagertrades$itrade = avillagernirtretrades$itrade[i];
          MerchantOffer merchantoffer = villagertrades$itrade.getOffer(this, this.rand);
          if (merchantoffer != null) {
             merchantoffers.add(merchantoffer);

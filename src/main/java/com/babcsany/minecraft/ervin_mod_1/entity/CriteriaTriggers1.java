@@ -32,6 +32,7 @@ public class CriteriaTriggers1 {
    public static final CuredZurNirtreTrigger CURED_ZUR_NIRTRE = register(new CuredZurNirtreTrigger());
    public static final VillagerTradeTrigger VILLAGER_TRADE = register(new VillagerTradeTrigger());
    public static final NirtreTradeTrigger NIRTRE_TRADE = register(new NirtreTradeTrigger());
+   public static final TraderNirtreTradeTrigger TRADER_NIRTRE_TRADE = register(new TraderNirtreTradeTrigger());
    public static final ItemDurabilityTrigger ITEM_DURABILITY_CHANGED = register(new ItemDurabilityTrigger());
    public static final LevitationTrigger LEVITATION = register(new LevitationTrigger());
    public static final ChangeDimensionTrigger CHANGED_DIMENSION = register(new ChangeDimensionTrigger());
