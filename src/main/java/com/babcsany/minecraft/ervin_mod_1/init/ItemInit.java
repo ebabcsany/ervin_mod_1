@@ -651,4 +651,10 @@ public class ItemInit {
     public static final RegistryObject<Item> MLONK = ITEMS.register("mlonk", () -> new Item(
             (new Item.Properties())
     ));
+    public static final RegistryObject<Item> TRADER_NIRTRE_SPAWN_EGG = ITEMS.register("trader_nirtre_spawn_egg", () -> new ModSpawnEggItem(
+            EntityInit.TRADER_NIRTRE_ENTITY, 0x3c7828, 0x3c2850, new Item.Properties()
+    ));
+    public static final RegistryObject<Item> WANDERING_TRADER_NIRTRE_SPAWN_EGG = ITEMS.register("wandering_trader_nirtre_spawn_egg", () -> new ModSpawnEggItem(
+            EntityInit.WANDERING_TRADER_NIRTRE_ENTITY, 0x503c28, 0x283c50, new Item.Properties()
+    ));
 }
