@@ -36,6 +36,7 @@ import net.minecraft.tags.ITag;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SharedConstants;
+import net.minecraft.util.Util;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
@@ -104,7 +105,7 @@ public class Ervin_mod_1 {
     private void setup(final FMLCommonSetupEvent event) {
         // some preinit code
         LOGGER.info("HELLO FROM PREINIT");
-        LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
+        LOGGER.info("DIRT BLOCK >> {}", Blocks.OBSIDIAN.getRegistryName());
         DeferredWorkQueue.runLater(() -> {
             GlobalEntityTypeAttributes.put(EntityInit.ZUR_ENTITY1.get(), ZurEntity1.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(EntityInit.ZUR_ENTITY.get(), ZurEntity.setCustomAttributes().create());
@@ -190,51 +191,6 @@ public class Ervin_mod_1 {
     public boolean func_230151_c_() {
         return !"vanilla".equals(ClientBrandRetriever.getClientModName()) || Minecraft.class.getSigners() == null;
     }
-    @Nullable
-    public ClientPlayNetHandler getConnection() {
-        return this.player == null ? null : this.player.connection;
-    }
-    @Nullable
-    public ClientPlayerEntity player;
-    @Nullable
-    public Screen currentScreen;
-    private boolean connectedToRealms;
-    @Nullable
-    private ServerData currentServerData;
-    @Nullable
-    private IntegratedServer integratedServer;
-    public boolean isConnectedToRealms() {
-        return this.connectedToRealms;
-    }
-    @Nullable
-    public ClientWorld world;
-    private String func_230149_ax_() {
-        StringBuilder stringbuilder = new StringBuilder("Minecraft");
-        if (this.func_230151_c_()) {
-            stringbuilder.append("*");
-        }
-
-        stringbuilder.append(" ");
-        stringbuilder.append(SharedConstants.getVersion().getName());
-        ClientPlayNetHandler clientplaynethandler = this.getConnection();
-        if (clientplaynethandler != null && clientplaynethandler.getNetworkManager().isChannelOpen()) {
-            stringbuilder.append(" - ");
-            if (this.integratedServer != null && !this.integratedServer.getPublic()) {
-                stringbuilder.append(I18n.format("title.singleplayer"));
-            } else if (this.isConnectedToRealms()) {
-                stringbuilder.append(I18n.format("title.multiplayer.realms"));
-            } else if (this.integratedServer == null && (this.currentServerData == null || !this.currentServerData.isOnLAN())) {
-                stringbuilder.append(I18n.format("title.multiplayer.other"));
-            } else {
-                stringbuilder.append(I18n.format("title.multiplayer.lan"));
-            }
-        }
-
-        return stringbuilder.toString();
-    }
-    /*public void func_230150_b_() {
-        this.mainWindow.func_230148_b_(this.func_230149_ax_());
-    }*/
 
     @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
     public static class ForgeEvents {
