@@ -15,7 +15,7 @@ public class FoodInit {
     public static final Food TIRKS = (new Food.Builder()).hunger(0).saturation(0).effect(new EffectInstance(Effects.HEALTH_BOOST, 10000, 1000), 1000).setAlwaysEdible().fastToEat().build();
     public static final Food VOLMINT = (new Food.Builder()).hunger(1).saturation(2).effect(new EffectInstance(Effects.NAUSEA, 30, 30), 30).effect(new EffectInstance(Effects.HUNGER, 120, 30), 30).effect(new EffectInstance(Effects.UNLUCK, 30, 30), 30).effect(new EffectInstance(Effects.INSTANT_DAMAGE, 1, 1),1).effect(new EffectInstance(Effects.SLOWNESS,5, 10),10).effect(new EffectInstance(Effects.SATURATION,5,2),1).effect(new EffectInstance(Effects.WEAKNESS,30,30),30).effect(new EffectInstance(Effects.MINING_FATIGUE,5,30),30).effect(new EffectInstance(Effects.GLOWING,30,30),30).effect(new EffectInstance(Effects.WITHER,2,1),1).meat().build();
     public static final Food ZUNT = (new Food.Builder()).hunger(16).saturation(1.2F).build();
-    public static final Food REAT = (new Food.Builder()).hunger(24).saturation(30).effect(new EffectInstance(Effects.REGENERATION, 300, 10000), 10000.0F).setAlwaysEdible().build();
+    public static final Food REAT = (new Food.Builder()).hunger(24).saturation(30).effect(new EffectInstance(Effects.INSTANT_HEALTH, 300, 10000), 10000.0F).setAlwaysEdible().build();
     public static final Food REAT1 = (new Food.Builder()).hunger(24).saturation(30).effect(new EffectInstance(Effects.REGENERATION, 300, 10000), 10000.0F).setAlwaysEdible().fastToEat().build();
     public static final Food REATl = (new Food.Builder()).hunger(0).saturation(0).effect(new EffectInstance(Effects.WATER_BREATHING, 3000, 10000), 10000.0F).setAlwaysEdible().fastToEat().build();
 

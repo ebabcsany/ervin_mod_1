@@ -230,7 +230,7 @@ public class ItemInit {
     public static final RegistryObject<Item> VIRK = ITEMS.register("virk", () -> new Item(
             (new Item.Properties()).food(FoodInit.VIRK)
     ));
-    public static final RegistryObject<Item> RED_STONE_PICKAXE = ITEMS.register("red_stone_pickaxe", () -> new PickaxeItem(
+    public static final RegistryObject<Item> RED_STONE_PICKAXE = ITEMS.register("stone_pickaxe/red_stone_pickaxe", () -> new PickaxeItem(
             ModItemTier.RED_COBBLESTONE, 1, -2.8F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> FIRT_PICKAXE = ITEMS.register("firt_pickaxe", () -> new PickaxeItem(
@@ -266,8 +266,8 @@ public class ItemInit {
     public static final RegistryObject<Item> VILKT = ITEMS.register("vilkt", () -> new Item(
             (new Item.Properties())
     ));
-    public static final RegistryObject<Item> RED_STONE_AXE = ITEMS.register("red_stone_axe", () -> new AxeItem1(
-            ModItemTier.RED_COBBLESTONE, 14, 1.2F, (new Item.Properties())
+    public static final RegistryObject<Item> RED_STONE_AXE = ITEMS.register("stone_axe/red_stone_axe", () -> new AxeItem(
+            ModItemTier.RED_COBBLESTONE, 7.0F, -3.2F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> RED_STONE_SHOVEL = ITEMS.register("red_stone_shovel", () -> new ShovelItem(
             ModItemTier.RED_COBBLESTONE,3, -1.0F, (new Item.Properties())

@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "ervin_mod_1:block/black_iron_block"
+    "all": "ervin_mod_1:block/dirt1"
   }
 }
