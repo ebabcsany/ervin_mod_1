@@ -85,7 +85,7 @@ public class ExampleBiome3 extends Biome {
 	
 	@Override
 	public int getGrassColor(double posX, double posZ) {
-		return 0xFF0000;
+		return 0x80ff00;
 	}
 }
 
