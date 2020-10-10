@@ -27,6 +27,8 @@ public class MigBiome extends Biome {
                 Biome.createCarver(WorldCarver.CAVE, new ProbabilityConfig(0.14285715F)));
         this.addCarver(GenerationStage.Carving.AIR,
                 Biome.createCarver(WorldCarver.field_236240_b_, new ProbabilityConfig(0.02F)));
+        DefaultBiomeFeatures.func_235189_a_(this);
+        this.func_235063_a_(DefaultBiomeFeatures.RUINED_PORTAL_STANDARD);
         this.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION,
                 Feature.FOSSIL.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG)
                         .withPlacement(Placement.CHANCE_PASSTHROUGH.configure(new ChanceConfig(128))));

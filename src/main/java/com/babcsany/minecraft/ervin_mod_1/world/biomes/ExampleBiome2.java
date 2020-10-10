@@ -37,6 +37,7 @@ public class ExampleBiome2 extends Biome {
 		//this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.ZUR_ENTITY1.get(), 15, 10, 30));
 		//this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.VILT_ENTITY.get(), 30, 15, 40));
 		//this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.SRACH_ENTITY.get(), 8, 8, 16));
+		DefaultBiomeFeatures.func_235197_c_(this);
 		this.addCarver(GenerationStage.Carving.AIR,
 				Biome.createCarver(WorldCarver.UNDERWATER_CAVE, new ProbabilityConfig(4.14285715F)));
 		this.addCarver(GenerationStage.Carving.AIR,
@@ -96,10 +97,6 @@ public class ExampleBiome2 extends Biome {
 		ModBiomeFeatures.addExampleFeature(this, 1000);
 		ModDefaultBiomeFeatures.addStones(this);
 		ModDefaultBiomeFeatures.addKiomne(this);
-	}
-
-	private static <T extends Entity> EntityType<T> register(String key, EntityType.Builder<T> builder) {
-		return Registry.register(Registry.ENTITY_TYPE, key, builder.build(key));
 	}
 	
 	@Override

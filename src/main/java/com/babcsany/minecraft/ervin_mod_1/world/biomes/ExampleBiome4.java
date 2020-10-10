@@ -24,6 +24,7 @@ public class ExampleBiome4 extends Biome {
 		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.BEE, 20, 2, 10));
 		this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityType.SKELETON, 40, 10, 20));
 		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.BAT, 30, 20, 40));
+		DefaultBiomeFeatures.func_235196_b_(this);
 		this.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION,
 				Feature.FOSSIL.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG)
 						.withPlacement(Placement.CHANCE_PASSTHROUGH.configure(new ChanceConfig(5120))));
@@ -105,10 +106,6 @@ public class ExampleBiome4 extends Biome {
 		ModDefaultBiomeFeatures.addKiomne(this);
 		ModDefaultBiomeFeatures.addStones(this);
 		ModDefaultBiomeFeatures.addEndCity(this);
-	}
-
-	private static <T extends Entity> EntityType<T> register(String key, EntityType.Builder<T> builder) {
-		return Registry.register(Registry.ENTITY_TYPE, key, builder.build(key));
 	}
 	
 	@Override
