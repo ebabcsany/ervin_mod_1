@@ -32,36 +32,22 @@ public class BiomeInit {
 	public static final DeferredRegister<Biome> BIOMES = DeferredRegister.create(ForgeRegistries.BIOMES,
 			Ervin_mod_1.MOD_ID);
 
-	/*public static final RegistryObject<Biome> MIG_BIOME = BIOMES
+	public static final RegistryObject<Biome> MIG_BIOME = BIOMES
 			.register("mig_biome",
 					() -> new MigBiome(
 							new Biome.Builder().precipitation(RainType.SNOW).scale(1.2f).temperature(0.5f)
-									.waterColor(16724639).waterFogColor(16762304)
+									.func_235097_a_((new BiomeAmbience.Builder()).setWaterColor(10456252).setWaterFogColor(26762304).setFogColor(12538462).build())
 									.surfaceBuilder(
 											new ConfiguredSurfaceBuilder<SurfaceBuilderConfig>(
 													register("mig_surface",
 															new MigBiomeSurfaceBuilder(
-																	SurfaceBuilderConfig::deserialize)),
-													new SurfaceBuilderConfig(Blocks.COARSE_DIRT.getDefaultState(),
-															Blocks.DIRT.getDefaultState(),
-															Blocks.DIRT.getDefaultState())))
-									.category(Category.PLAINS).downfall(0.5f).depth(0.12f).parent(null)));
-
-	public static void registerBiomes() {
-		registerBiome(MIG_BIOME.get(), Type.PLAINS, Type.OVERWORLD);
-	}
-
-	private static void registerBiome(Biome biome, Type... types) {
-		// the line below will make it spawn in the overworld
-		BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(biome, 100));
-		BiomeDictionary.addTypes(biome, types);
-		BiomeManager.addSpawnBiome(biome);
-	}
-
-	@SuppressWarnings("deprecation")
-	private static <C extends ISurfaceBuilderConfig, F extends SurfaceBuilder<C>> F register(String key, F builderIn) {
-		return (F) (Registry.<SurfaceBuilder<?>>register(Registry.SURFACE_BUILDER, key, builderIn));
-	}*/
+																	SurfaceBuilderConfig.field_237203_a_)),
+													new SurfaceBuilderConfig(Blocks.WATER.getDefaultState(),
+															Blocks.GRASS.getDefaultState(),
+															Blocks.CARVED_PUMPKIN.getDefaultState())))
+									.category(Category.PLAINS).downfall(12.4f).depth(6.5f).parent(null)
+									.func_235098_a_(ImmutableList.of(new Biome.Attributes(10.25F, -6.5F, 13.5F, 9.2F, 3.0F)))
+					));
 	public static final RegistryObject<Biome> EXAMPLE_BIOME = BIOMES
 			.register("example_biome",
 					() -> new ExampleBiome(
@@ -199,6 +185,7 @@ public class BiomeInit {
 					));
 
 	public static void registerBiomes() {
+		registerBiome(MIG_BIOME.get(), Type.PLAINS, Type.OVERWORLD);
 		registerBiome(EXAMPLE_BIOME.get(), Type.DEAD, Type.OVERWORLD);
 		registerBiome(EXAMPLE_BIOME1.get(), Type.PLAINS, Type.OVERWORLD);
 		registerBiome(EXAMPLE_BIOME0.get(), Type.PLAINS, Type.BEACH);

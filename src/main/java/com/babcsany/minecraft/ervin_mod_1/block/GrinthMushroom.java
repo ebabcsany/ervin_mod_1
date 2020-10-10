@@ -1,5 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.block;
 
+import com.babcsany.minecraft.ervin_mod_1.init.BlockInit;
+import com.babcsany.minecraft.ervin_mod_1.world.feature.ModDefaultBiomeFeatures;
 import net.minecraft.block.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -80,12 +82,12 @@ public class GrinthMushroom extends BushBlock implements IGrowable {
       if (this == Blocks.BROWN_MUSHROOM) {
          configuredfeature = Feature.HUGE_BROWN_MUSHROOM.withConfiguration(DefaultBiomeFeatures.BIG_BROWN_MUSHROOM);
       } else {
-         if (this != Blocks.RED_MUSHROOM) {
+         if (this != BlockInit.GRINTH_MUSHROOM.get()) {
             world.setBlockState(pos, state, 3);
             return false;
          }
 
-         configuredfeature = Feature.HUGE_RED_MUSHROOM.withConfiguration(DefaultBiomeFeatures.BIG_RED_MUSHROOM);
+         configuredfeature = Feature.HUGE_RED_MUSHROOM.withConfiguration(ModDefaultBiomeFeatures.BIG_GRINTH_MUSHROOM);
       }
 
       if (configuredfeature.func_236265_a_(world, world.func_241112_a_(), world.getChunkProvider().getChunkGenerator(), rand, pos)) {
