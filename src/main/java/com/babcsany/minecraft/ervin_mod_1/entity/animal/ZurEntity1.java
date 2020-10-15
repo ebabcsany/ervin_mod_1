@@ -1,5 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.animal;
 
+import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.EatPumpkinGoal;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.ItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.SoundInit;
@@ -25,6 +26,7 @@ import static net.minecraftforge.api.distmarker.Dist.CLIENT;
 public class ZurEntity1 extends AnimalEntity {
 
     private EatGrassGoal eatGrassGoal;
+    private EatPumpkinGoal eatPumpkinGoal;
     private int eatingGrassTimer;
     private Object lightningBolt;
 
@@ -46,6 +48,7 @@ public class ZurEntity1 extends AnimalEntity {
     protected void registerGoals() {
         super.registerGoals();
         this.eatGrassGoal = new EatGrassGoal(this);
+        this.eatPumpkinGoal = new EatPumpkinGoal(this);
         this.goalSelector.addGoal(0, new SwimGoal(this));
         this.goalSelector.addGoal(1, new PanicGoal(this, 1.25D));
         this.goalSelector.addGoal(2, new BreedGoal(this, 1.0D));

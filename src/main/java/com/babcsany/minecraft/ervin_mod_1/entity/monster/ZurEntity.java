@@ -1,5 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.monster;
 
+import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.EatPumpkinGoal;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.WanderingTraderNirtreEntity;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.ItemInit;
@@ -75,6 +76,7 @@ public class ZurEntity extends MonsterEntity {
 
    protected void applyEntityAI() {
       this.eatGrassGoal = new EatGrassGoal(this);
+      EatPumpkinGoal eatPumpkinGoal = new EatPumpkinGoal(this);
       this.goalSelector.addGoal(2, new ZurAttackGoal(this, 1.0D, true));
       this.goalSelector.addGoal(4, new SwimGoal(this));
       this.goalSelector.addGoal(7, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
