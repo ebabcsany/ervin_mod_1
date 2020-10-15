@@ -110,7 +110,7 @@ public class Ervin_mod_1 {
             GlobalEntityTypeAttributes.put(EntityInit.ZUR_ENTITY1.get(), ZurEntity1.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(EntityInit.ZUR_ENTITY.get(), ZurEntity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(EntityInit.ROVENT_ENTITY.get(), RoventEntity.setCustomAttributes().create());
-            GlobalEntityTypeAttributes.put(EntityInit.ZUR_NIRTRE_ENTITY.get(), ZurNirtreEntity.setCustomAttributes().create());
+            //GlobalEntityTypeAttributes.put(EntityInit.ZUR_NIRTRE_ENTITY.get(), ZurNirtreEntity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(EntityInit.FREIN_ENTITY.get(), FreinEntity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(EntityInit.VILT_ENTITY.get(), ViltEntity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(EntityInit.SRACH_ENTITY.get(), SrachEntity.setCustomAttributes().create());

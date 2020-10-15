@@ -54,20 +54,20 @@ public class FluidInit {
 							.block(() -> FluidInit.MILK_BLOCK.get());
 
 	public static final RegistryObject<FlowingFluid> JURK_FLUID = FLUIDS.register("jurk_fluid",
-			() -> new ForgeFlowingFluid1.Source(FluidInit.JURK_PROPERTIES));
+			() -> new ForgeFlowingFluid.Source(FluidInit.JURK_PROPERTIES));
 
 	public static final RegistryObject<FlowingFluid> JURK_FLOWING = FLUIDS.register("jurk_flowing",
-			() -> new ForgeFlowingFluid1.Flowing(FluidInit.JURK_PROPERTIES));
+			() -> new ForgeFlowingFluid.Flowing(FluidInit.JURK_PROPERTIES));
 
-	public static final RegistryObject<FlowingFluidBlock1> JURK_BLOCK = BLOCKS.register("jurk",
-			() -> new FlowingFluidBlock1(FluidInit.JURK_FLUID, Block.Properties.create(Material.WATER)
+	public static final RegistryObject<FlowingFluidBlock> JURK_BLOCK = BLOCKS.register("jurk",
+			() -> new FlowingFluidBlock(FluidInit.JURK_FLUID, Block.Properties.create(Material.WATER)
 					.doesNotBlockMovement().hardnessAndResistance(100.0f).noDrops()));
 
-	public static final ForgeFlowingFluid1.Properties JURK_PROPERTIES = new ForgeFlowingFluid1.Properties(
+	public static final ForgeFlowingFluid.Properties JURK_PROPERTIES = new ForgeFlowingFluid.Properties(
 			() -> JURK_FLUID.get(), () -> JURK_FLOWING.get(),
 			FluidAttributes.builder(JURK_STILL_RL, JURK_FLOWING_RL).density(5).luminosity(10).rarity(Rarity.RARE)
 					.sound(SoundEvents.ITEM_HONEY_BOTTLE_DRINK).overlay(JURK_OVERLAY_RL))
-			.block1(() -> FluidInit.JURK_BLOCK.get());
+			.block(() -> FluidInit.JURK_BLOCK.get());
 
 	/*public static final RegistryObject<FlowingFluid> JURK_FLUID1 = FLUIDS.register("jurk_fluid",
 			() -> new ForgeFlowingFluid1.Source(FluidInit.JURK_PROPERTIES1));

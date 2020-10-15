@@ -32,6 +32,11 @@
           "type": "minecraft:item",
           "weight": 2,
           "name": "ervin_mod_1:firg"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 4,
+          "name": "ervin_mod_1:durt"
         }
       ]
     },

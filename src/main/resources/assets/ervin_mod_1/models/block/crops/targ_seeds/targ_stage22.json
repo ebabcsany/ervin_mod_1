@@ -1,6 +1,6 @@
 {
   "parent": "block/crop",
   "textures": {
-    "crop": "ervin_mod_1:block/targ_stage22"
+    "crop": "ervin_mod_1:block/targ_stage/targ_stage22"
   }
 }

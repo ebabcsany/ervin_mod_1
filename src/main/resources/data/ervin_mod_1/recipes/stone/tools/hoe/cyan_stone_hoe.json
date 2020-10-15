@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    " S",
+    " S"
+  ],
+  "key": {
+    "#": {
+      "item": "ervin_mod_1:cyan_cobblestone"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:stone_hoe/cyan_stone_hoe",
+    "count": 1
+  }
+}

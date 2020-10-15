@@ -201,6 +201,7 @@ public class ZurNirtreEntity extends ZurEntity /*implements IVillagerDataHolder*
 
    private void cureZombie(ServerWorld p_213791_1_) {
       WanderingTraderNirtreEntity wanderingtradernirtreentity = EntityInit.WANDERING_TRADER_NIRTRE_ENTITY.get().create(p_213791_1_);
+      VillagerEntity villagerentity = EntityType.VILLAGER.create(p_213791_1_);
 
       for(EquipmentSlotType equipmentslottype : EquipmentSlotType.values()) {
          ItemStack itemstack = this.getItemStackFromSlot(equipmentslottype);

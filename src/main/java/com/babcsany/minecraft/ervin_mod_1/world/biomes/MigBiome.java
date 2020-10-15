@@ -21,10 +21,10 @@ public class MigBiome extends Biome {
         super(biomeBuilder);
         this.addSpawn(EntityClassification.MONSTER, new Biome.SpawnListEntry(EntityType.ZOMBIE, 10, 2, 5));
         this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.BEE, 20, 2, 10));
-        this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.VILT_ENTITY.get(), 4, 2, 5));
-        this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityInit.ZUR_ENTITY.get(), 8, 2, 4));
+        //this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.VILT_ENTITY.get(), 4, 2, 5));
+        //this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityInit.ZUR_ENTITY.get(), 8, 2, 4));
         this.addCarver(GenerationStage.Carving.AIR,
-                Biome.createCarver(WorldCarver.CAVE, new ProbabilityConfig(0.14285715F)));
+                Biome.createCarver(WorldCarver.CAVE, new ProbabilityConfig(2.7542778539F)));
         this.addCarver(GenerationStage.Carving.AIR,
                 Biome.createCarver(WorldCarver.field_236240_b_, new ProbabilityConfig(0.02F)));
         DefaultBiomeFeatures.func_235189_a_(this);
@@ -46,7 +46,7 @@ public class MigBiome extends Biome {
                         Placement.COUNT_CHANCE_HEIGHTMAP_DOUBLE.configure(new HeightWithChanceConfig(1, 0.125F))));
         this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
                 Feature.field_236291_c_.withConfiguration(ModDefaultBiomeFeatures.FIRG_TREE_CONFIG).withPlacement(
-                        Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(7, 0.1f, 1))));
+                        Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(9, 4.7f, 15))));
 
         DefaultBiomeFeatures.addOres(this);
         DefaultBiomeFeatures.addExtraGoldOre(this);

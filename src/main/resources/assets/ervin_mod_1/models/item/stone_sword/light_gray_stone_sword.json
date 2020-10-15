@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "ervin_mod_1:item/stone_sword/light_gray_stone_sword"
+  }
+}

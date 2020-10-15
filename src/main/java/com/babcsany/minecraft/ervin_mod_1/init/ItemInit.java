@@ -21,43 +21,43 @@ public class ItemInit {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Ervin_mod_1.MOD_ID);
 
     public static final RegistryObject<SpecialItem> DEF_ITEM = ITEMS.register("def_item", () -> new SpecialItem(
-            new Item.Properties()
+            new Item.Properties().isBurnable()
     ));
     public static final RegistryObject<Item> SRIUNK_PICKAXE = ITEMS.register("sriunk_pickaxe", () -> new PickaxeItem(
-            ModItemTier.SRIUNK, 8, 22.0F, (new Item.Properties())
+            ModItemTier.SRIUNK, 8, 22.0F, (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> SRIUNK = ITEMS.register("sriunk", () -> new Item(
-            (new Item.Properties())
+            (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> SRIUNK_AXE = ITEMS.register("sriunk_axe", () -> new AxeItem1(
-            ModItemTier.SRIUNK, 20, 40.0F, (new Item.Properties())
+            ModItemTier.SRIUNK, 20, 40.0F, (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> SRIUNK_HOE = ITEMS.register("sriunk_hoe", () -> new HoeItem(
-            ModItemTier.SRIUNK, 6, 4.0F, (new Item.Properties())
+            ModItemTier.SRIUNK, 6, 4.0F, (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> SRIUNK_SHOVEL = ITEMS.register("sriunk_shovel", () -> new ShovelItem(
-            ModItemTier.SRIUNK, 12, 30.0F, (new Item.Properties())
+            ModItemTier.SRIUNK, 12, 30.0F, (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> SRIUNK_SWORD = ITEMS.register("sriunk_sword", () -> new SwordItem(
-            ModItemTier.SRIUNK, 15, 36.0F, (new Item.Properties())
+            ModItemTier.SRIUNK, 15, 36.0F, (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> SRIUNK_HELMET = ITEMS.register("sriunk_helmet", () -> new ArmorItem(
-            ModArmorMaterial.SRIUNK, EquipmentSlotType.HEAD, (new Item.Properties())
+            ModArmorMaterial.SRIUNK, EquipmentSlotType.HEAD, (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> SRIUNK_CHESTPLATE = ITEMS.register("sriunk_chestplate", () -> new ArmorItem(
-            ModArmorMaterial.SRIUNK, EquipmentSlotType.CHEST, (new Item.Properties())
+            ModArmorMaterial.SRIUNK, EquipmentSlotType.CHEST, (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> SRIUNK_LEGGINGS = ITEMS.register("sriunk_leggings", () -> new ArmorItem(
-            ModArmorMaterial.SRIUNK, EquipmentSlotType.LEGS, (new Item.Properties())
+            ModArmorMaterial.SRIUNK, EquipmentSlotType.LEGS, (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> SRIUNK_BOOTS = ITEMS.register("sriunk_boots", () -> new ArmorItem(
-            ModArmorMaterial.SRIUNK, EquipmentSlotType.FEET, (new Item.Properties())
+            ModArmorMaterial.SRIUNK, EquipmentSlotType.FEET, (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> VILTDROP = ITEMS.register("viltdrop", () -> new Item(
-            (new Item.Properties())
+            (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> SRIUNK_STICK = ITEMS.register("sriunk_stick", () -> new Item(
-            (new Item.Properties())
+            (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> REGDEM = ITEMS.register("regdem", () -> new Item(
             (new Item.Properties())
@@ -87,40 +87,41 @@ public class ItemInit {
             (new Item.Properties())
     ));
     public static final RegistryObject<Item> TERAT = ITEMS.register("terat", () -> new GItem(
-            (new Item.Properties())
+            (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> TERAT_PICKAXE = ITEMS.register("terat_pickaxe", () -> new PickaxeItem(
-            ModItemTier.TERAT, 200,200.0F, (new Item.Properties())
+            ModItemTier.TERAT, 200,200.0F, (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> TERAT_AXE = ITEMS.register("terat_axe", () -> new AxeItem1(
-            ModItemTier.TERAT, 400,400.0F, (new Item.Properties())
+            ModItemTier.TERAT, 400,400.0F, (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> TERAT_SHOVEL = ITEMS.register("terat_shovel", () -> new ShovelItem(
-            ModItemTier.TERAT, 300,150.0F, (new Item.Properties())
+            ModItemTier.TERAT, 300,150.0F, (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> TERAT_HOE = ITEMS.register("terat_hoe", () -> new HoeItem(
-            ModItemTier.TERAT, 100, 50.0F, (new Item.Properties())
+            ModItemTier.TERAT, 100, 50.0F, (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> SRIUNK_HORSE_ARMOR = ITEMS.register("sriunk_horse_armor", () -> new HorseArmorItem(
-            44, new ResourceLocation(Ervin_mod_1.MOD_ID, "textures/entity/horse/armor/sriunk_horse_armor.png"), (new Item.Properties()).maxStackSize(1).group(ItemGroup.MISC)
+            44, new ResourceLocation(Ervin_mod_1.MOD_ID, "textures/entity/horse/armor/sriunk_horse_armor.png"),
+            (new Item.Properties()).maxStackSize(1).group(ItemGroup.MISC).isBurnable()
     ));
     public static final RegistryObject<Item> TERAT_SWORD = ITEMS.register("terat_sword", () -> new SwordItem(
-            ModItemTier.TERAT, 250, 60.0F, (new Item.Properties())
+            ModItemTier.TERAT, 250, 60.0F, (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> TERAT_HELMET = ITEMS.register("terat_helmet", () -> new ArmorItem(
-            ModArmorMaterial.TERAT, EquipmentSlotType.HEAD, (new Item.Properties())
+            ModArmorMaterial.TERAT, EquipmentSlotType.HEAD, (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> TERAT_CHESTPLATE = ITEMS.register("terat_chestplate", () -> new ArmorItem(
-            ModArmorMaterial.TERAT, EquipmentSlotType.CHEST, (new Item.Properties())
+            ModArmorMaterial.TERAT, EquipmentSlotType.CHEST, (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> TERAT_LEGGINGS = ITEMS.register("terat_leggings", () -> new ArmorItem(
-            ModArmorMaterial.TERAT, EquipmentSlotType.LEGS, (new Item.Properties())
+            ModArmorMaterial.TERAT, EquipmentSlotType.LEGS, (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> TERAT_BOOTS = ITEMS.register("terat_boots", () -> new ArmorItem(
-            ModArmorMaterial.TERAT, EquipmentSlotType.FEET, (new Item.Properties())
+            ModArmorMaterial.TERAT, EquipmentSlotType.FEET, (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> NIRK = ITEMS.register("nirk", () -> new Item(
-            (new Item.Properties())
+            (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> FRIM = ITEMS.register("frim", () -> new Item(
             (new Item.Properties()).food(FoodInit.FRIM)
@@ -153,7 +154,7 @@ public class ItemInit {
             (new Item.Properties())
     ));
     public static final RegistryObject<Item> SRIUNK_GRET = ITEMS.register("sriunk_gret", () -> new Item(
-            (new Item.Properties())
+            (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> FIRK = ITEMS.register("firk", () -> new Item(
             (new Item.Properties())
@@ -228,7 +229,7 @@ public class ItemInit {
             (new Item.Properties())
     ));
     public static final RegistryObject<Item> VIRK = ITEMS.register("virk", () -> new Item(
-            (new Item.Properties()).food(FoodInit.VIRK)
+            (new Item.Properties()).food(FoodInit.VIRK).isBurnable()
     ));
     public static final RegistryObject<Item> RED_STONE_PICKAXE = ITEMS.register("stone_pickaxe/red_stone_pickaxe", () -> new PickaxeItem(
             ModItemTier.RED_COBBLESTONE, 1, -2.8F, (new Item.Properties())
@@ -249,10 +250,10 @@ public class ItemInit {
             (new Item.Properties())
     ));
     public static final RegistryObject<Item> TIRKS = ITEMS.register("tirks", () -> new Item(
-            (new Item.Properties()).food(FoodInit.TIRKS)
+            (new Item.Properties()).food(FoodInit.TIRKS).isBurnable()
     ));
     public static final RegistryObject<Item> SHZ = ITEMS.register("shz", () -> new Item(
-            (new Item.Properties())
+            (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> TIRSK = ITEMS.register("tirsk", () -> new Item(
             (new Item.Properties())
@@ -269,14 +270,14 @@ public class ItemInit {
     public static final RegistryObject<Item> RED_STONE_AXE = ITEMS.register("stone_axe/red_stone_axe", () -> new AxeItem(
             ModItemTier.RED_COBBLESTONE, 7.0F, -3.2F, (new Item.Properties())
     ));
-    public static final RegistryObject<Item> RED_STONE_SHOVEL = ITEMS.register("red_stone_shovel", () -> new ShovelItem(
-            ModItemTier.RED_COBBLESTONE,3, -1.0F, (new Item.Properties())
+    public static final RegistryObject<Item> RED_STONE_SHOVEL = ITEMS.register("stone_shovel/red_stone_shovel", () -> new ShovelItem(
+            ModItemTier.RED_COBBLESTONE,1.5F, -3.0F, (new Item.Properties())
     ));
-    public static final RegistryObject<Item> RED_STONE_HOE = ITEMS.register("red_stone_hoe", () -> new HoeItem(
+    public static final RegistryObject<Item> RED_STONE_HOE = ITEMS.register("stone_hoe/red_stone_hoe", () -> new HoeItem(
             ModItemTier.RED_COBBLESTONE, -1, -2.0F, (new Item.Properties())
     ));
-    public static final RegistryObject<Item> RED_STONE_SWORD = ITEMS.register("red_stone_sword", () -> new SwordItem(
-            ModItemTier.RED_COBBLESTONE, 6, -1.0F, (new Item.Properties())
+    public static final RegistryObject<Item> RED_STONE_SWORD = ITEMS.register("stone_sword/red_stone_sword", () -> new SwordItem(
+            ModItemTier.RED_COBBLESTONE, 3, -2.4F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> FIRT_AXE = ITEMS.register("firt_axe", () -> new AxeItem(
             ModItemTier.FIRT, 16, 21.0F, (new Item.Properties())
@@ -291,7 +292,7 @@ public class ItemInit {
             ModItemTier.FIRT, 8, 12.6F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> TERAT_GRET = ITEMS.register("terat_gret", () -> new Item(
-            (new Item.Properties())
+            (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> FIRT_HELMET = ITEMS.register("firt_helmet", () -> new ArmorItem(
             ModArmorMaterial.FIRT, EquipmentSlotType.HEAD, (new Item.Properties())
@@ -309,7 +310,7 @@ public class ItemInit {
             (new Item.Properties()).food(FoodInit.VOLMINT)
     ));
     public static final RegistryObject<Item> NIRK_PICKAXE = ITEMS.register("nirk_pickaxe", () -> new PickaxeItem(
-            ModItemTier.NIRK, 50, 105.0F, (new Item.Properties())
+            ModItemTier.NIRK, 50, 105.0F, (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> ENDER_STAKRACH = ITEMS.register("ender_stakrach", () -> new AxeItem1(
             ModItemTier.ENDER_SRACKHT, 2, 2.0F, (new Item.Properties())
@@ -342,19 +343,19 @@ public class ItemInit {
             36, new ResourceLocation(Ervin_mod_1.MOD_ID, "textures/entity/horse/armor/firt_horse_armor.png"), (new Item.Properties()).maxStackSize(1).group(ItemGroup.MISC)
     ));
     public static final RegistryObject<Item> TERAT_NUGGET = ITEMS.register("terat_nugget", () -> new Item(
-            (new Item.Properties())
+            (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> NIRK_AXE = ITEMS.register("nirk_axe", () -> new AxeItem1(
-            ModItemTier.NIRK, 160, 320.0F, (new Item.Properties())
+            ModItemTier.NIRK, 160, 320.0F, (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> NIRK_HOE = ITEMS.register("nirk_hoe", () -> new HoeItem(
-            ModItemTier.NIRK, 50, 64.0F, (new Item.Properties())
+            ModItemTier.NIRK, 50, 64.0F, (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> NIRK_SHOVEL = ITEMS.register("nirk_shovel", () -> new ShovelItem(
-            ModItemTier.NIRK, 120, 160.0F, (new Item.Properties())
+            ModItemTier.NIRK, 120, 160.0F, (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> NIRK_SWORD = ITEMS.register("nirk_sword", () -> new SwordItem(
-            ModItemTier.NIRK, 80, 256.0F, (new Item.Properties())
+            ModItemTier.NIRK, 80, 256.0F, (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> TRINK = ITEMS.register("trink", () -> new Item(
             (new Item.Properties())
@@ -402,7 +403,7 @@ public class ItemInit {
             ModItemTier.DURG, 5, 10F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> TERAT_HORSE_ARMOR = ITEMS.register("terat_horse_armor", () -> new HorseArmorItem(
-            440, new ResourceLocation(Ervin_mod_1.MOD_ID, "textures/entity/horse/armor/terat_horse_armor.png"), (new Item.Properties()).maxStackSize(1).group(ItemGroup.MISC)
+            440, new ResourceLocation(Ervin_mod_1.MOD_ID, "textures/entity/horse/armor/terat_horse_armor.png"), (new Item.Properties()).maxStackSize(1).group(ItemGroup.MISC).isBurnable()
     ));
     public static final RegistryObject<Item> CHAK = ITEMS.register("chak", () -> new Item(
             (new Item.Properties())
@@ -609,8 +610,8 @@ public class ItemInit {
     public static final RegistryObject<Item> OBSIDIAN_PICKAXE = ITEMS.register("obsidian_pickaxe", () -> new PickaxeItem(
             ModItemTier.OBSIDIAN, 2, -2.0F, (new Item.Properties())
     ));
-    public static final RegistryObject<Item> GRITH = ITEMS.register("grith", () -> new SpecialItem1(
-            (new Item.Properties())
+    public static final RegistryObject<SpecialItem1> GRITH = ITEMS.register("grith", () -> new SpecialItem1(
+            (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> GURKT = ITEMS.register("gurkt", () -> new Item(
             (new Item.Properties())
@@ -619,16 +620,16 @@ public class ItemInit {
             (new Item.Properties())
     ));
     public static final RegistryObject<Item> TRUGH = ITEMS.register("trugh", () -> new Item(
-            (new Item.Properties())
+            (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> TRUGK = ITEMS.register("trugk", () -> new Item(
-            (new Item.Properties())
+            (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> TRUGT = ITEMS.register("trugt", () -> new Item(
-            (new Item.Properties())
+            (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> TRUGN_PICKAXE = ITEMS.register("trugn_pickaxe", () -> new PickaxeItem(
-            ModItemTier.TRUGN, 2600, 1620.0F, (new Item.Properties())
+            ModItemTier.TRUGN, 2600, 1620.0F, (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> GIANT_SPAWN_EGG = ITEMS.register("giant_spawn_egg", () -> new SpawnEggItem(
             EntityType.GIANT, 7425368, 3462945, new Item.Properties()
@@ -657,4 +658,226 @@ public class ItemInit {
     public static final RegistryObject<Item> WANDERING_TRADER_NIRTRE_SPAWN_EGG = ITEMS.register("wandering_trader_nirtre_spawn_egg", () -> new ModSpawnEggItem(
             EntityInit.WANDERING_TRADER_NIRTRE_ENTITY, 0x503c28, 0x283c50, new Item.Properties()
     ));
+    public static final RegistryObject<Item> BLACK_STONE_AXE = ITEMS.register("stone_axe/black_stone_axe", () -> new AxeItem(
+            ModItemTier.BLACK_COBBLESTONE, 7.0F, -3.2F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> BLACK_STONE_HOE = ITEMS.register("stone_hoe/black_stone_hoe", () -> new HoeItem(
+            ModItemTier.BLACK_COBBLESTONE, -1, -2.0F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> BLACK_STONE_PICKAXE = ITEMS.register("stone_pickaxe/black_stone_pickaxe", () -> new PickaxeItem(
+            ModItemTier.BLACK_COBBLESTONE, 1, -2.8F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> BLACK_STONE_SHOVEL = ITEMS.register("stone_shovel/black_stone_shovel", () -> new ShovelItem(
+            ModItemTier.BLACK_COBBLESTONE,1.5F, -3.0F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> BLACK_STONE_SWORD = ITEMS.register("stone_sword/black_stone_sword", () -> new SwordItem(
+            ModItemTier.BLACK_COBBLESTONE, 3, -2.4F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> BLUE_STONE_AXE = ITEMS.register("stone_axe/blue_stone_axe", () -> new AxeItem(
+            ModItemTier.BLUE_COBBLESTONE, 7.0F, -3.2F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> BLUE_STONE_HOE = ITEMS.register("stone_hoe/blue_stone_hoe", () -> new HoeItem(
+            ModItemTier.BLUE_COBBLESTONE, -1, -2.0F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> BLUE_STONE_PICKAXE = ITEMS.register("stone_pickaxe/blue_stone_pickaxe", () -> new PickaxeItem(
+            ModItemTier.BLUE_COBBLESTONE, 1, -2.8F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> BLUE_STONE_SHOVEL = ITEMS.register("stone_shovel/blue_stone_shovel", () -> new ShovelItem(
+            ModItemTier.BLUE_COBBLESTONE,1.5F, -3.0F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> BLUE_STONE_SWORD = ITEMS.register("stone_sword/blue_stone_sword", () -> new SwordItem(
+            ModItemTier.BLUE_COBBLESTONE, 3, -2.4F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> BROWN_STONE_AXE = ITEMS.register("stone_axe/brown_stone_axe", () -> new AxeItem(
+            ModItemTier.BROWN_COBBLESTONE, 7.0F, -3.2F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> BROWN_STONE_HOE = ITEMS.register("stone_hoe/brown_stone_hoe", () -> new HoeItem(
+            ModItemTier.BROWN_COBBLESTONE, -1, -2.0F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> BROWN_STONE_PICKAXE = ITEMS.register("stone_pickaxe/brown_stone_pickaxe", () -> new PickaxeItem(
+            ModItemTier.BROWN_COBBLESTONE, 1, -2.8F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> BROWN_STONE_SHOVEL = ITEMS.register("stone_shovel/brown_stone_shovel", () -> new ShovelItem(
+            ModItemTier.BROWN_COBBLESTONE,1.5F, -3.0F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> BROWN_STONE_SWORD = ITEMS.register("stone_sword/brown_stone_sword", () -> new SwordItem(
+            ModItemTier.BROWN_COBBLESTONE, 3, -2.4F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> CYAN_STONE_AXE = ITEMS.register("stone_axe/cyan_stone_axe", () -> new AxeItem(
+            ModItemTier.CYAN_COBBLESTONE, 7.0F, -3.2F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> CYAN_STONE_HOE = ITEMS.register("stone_hoe/cyan_stone_hoe", () -> new HoeItem(
+            ModItemTier.CYAN_COBBLESTONE, -1, -2.0F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> CYAN_STONE_PICKAXE = ITEMS.register("stone_pickaxe/cyan_stone_pickaxe", () -> new PickaxeItem(
+            ModItemTier.CYAN_COBBLESTONE, 1, -2.8F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> CYAN_STONE_SHOVEL = ITEMS.register("stone_shovel/cyan_stone_shovel", () -> new ShovelItem(
+            ModItemTier.CYAN_COBBLESTONE,1.5F, -3.0F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> CYAN_STONE_SWORD = ITEMS.register("stone_sword/cyan_stone_sword", () -> new SwordItem(
+            ModItemTier.CYAN_COBBLESTONE, 3, -2.4F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> GREEN_STONE_AXE = ITEMS.register("stone_axe/green_stone_axe", () -> new AxeItem(
+            ModItemTier.GREEN_COBBLESTONE, 7.0F, -3.2F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> GREEN_STONE_HOE = ITEMS.register("stone_hoe/green_stone_hoe", () -> new HoeItem(
+            ModItemTier.GREEN_COBBLESTONE, -1, -2.0F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> GREEN_STONE_PICKAXE = ITEMS.register("stone_pickaxe/green_stone_pickaxe", () -> new PickaxeItem(
+            ModItemTier.GREEN_COBBLESTONE, 1, -2.8F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> GREEN_STONE_SHOVEL = ITEMS.register("stone_shovel/green_stone_shovel", () -> new ShovelItem(
+            ModItemTier.GREEN_COBBLESTONE,1.5F, -3.0F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> GREEN_STONE_SWORD = ITEMS.register("stone_sword/green_stone_sword", () -> new SwordItem(
+            ModItemTier.GREEN_COBBLESTONE, 3, -2.4F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> LIGHT_BLUE_STONE_AXE = ITEMS.register("stone_axe/light_blue_stone_axe", () -> new AxeItem(
+            ModItemTier.LIGHT_BLUE_COBBLESTONE, 7.0F, -3.2F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> LIGHT_BLUE_STONE_HOE = ITEMS.register("stone_hoe/light_blue_stone_hoe", () -> new HoeItem(
+            ModItemTier.LIGHT_BLUE_COBBLESTONE, -1, -2.0F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> LIGHT_BLUE_STONE_PICKAXE = ITEMS.register("stone_pickaxe/light_blue_stone_pickaxe", () -> new PickaxeItem(
+            ModItemTier.LIGHT_BLUE_COBBLESTONE, 1, -2.8F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> LIGHT_BLUE_STONE_SHOVEL = ITEMS.register("stone_shovel/light_blue_stone_shovel", () -> new ShovelItem(
+            ModItemTier.LIGHT_BLUE_COBBLESTONE,1.5F, -3.0F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> LIGHT_BLUE_STONE_SWORD = ITEMS.register("stone_sword/light_blue_stone_sword", () -> new SwordItem(
+            ModItemTier.LIGHT_BLUE_COBBLESTONE, 3, -2.4F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> LIGHT_GRAY_STONE_AXE = ITEMS.register("stone_axe/light_gray_stone_axe", () -> new AxeItem(
+            ModItemTier.LIGHT_GRAY_COBBLESTONE, 7.0F, -3.2F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> LIGHT_GRAY_STONE_HOE = ITEMS.register("stone_hoe/light_gray_stone_hoe", () -> new HoeItem(
+            ModItemTier.LIGHT_GRAY_COBBLESTONE, -1, -2.0F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> LIGHT_GRAY_STONE_PICKAXE = ITEMS.register("stone_pickaxe/light_gray_stone_pickaxe", () -> new PickaxeItem(
+            ModItemTier.LIGHT_GRAY_COBBLESTONE, 1, -2.8F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> LIGHT_GRAY_STONE_SHOVEL = ITEMS.register("stone_shovel/light_gray_stone_shovel", () -> new ShovelItem(
+            ModItemTier.LIGHT_GRAY_COBBLESTONE,1.5F, -3.0F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> LIGHT_GRAY_STONE_SWORD = ITEMS.register("stone_sword/light_gray_stone_sword", () -> new SwordItem(
+            ModItemTier.LIGHT_GRAY_COBBLESTONE, 3, -2.4F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> LIME_STONE_AXE = ITEMS.register("stone_axe/lime_stone_axe", () -> new AxeItem(
+            ModItemTier.LIME_COBBLESTONE, 7.0F, -3.2F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> LIME_STONE_HOE = ITEMS.register("stone_hoe/lime_stone_hoe", () -> new HoeItem(
+            ModItemTier.LIME_COBBLESTONE, -1, -2.0F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> LIME_STONE_PICKAXE = ITEMS.register("stone_pickaxe/lime_stone_pickaxe", () -> new PickaxeItem(
+            ModItemTier.LIME_COBBLESTONE, 1, -2.8F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> LIME_STONE_SHOVEL = ITEMS.register("stone_shovel/lime_stone_shovel", () -> new ShovelItem(
+            ModItemTier.LIME_COBBLESTONE,1.5F, -3.0F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> LIME_STONE_SWORD = ITEMS.register("stone_sword/lime_stone_sword", () -> new SwordItem(
+            ModItemTier.LIME_COBBLESTONE, 3, -2.4F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> MAGENTA_STONE_AXE = ITEMS.register("stone_axe/magenta_stone_axe", () -> new AxeItem(
+            ModItemTier.MAGENTA_COBBLESTONE, 7.0F, -3.2F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> MAGENTA_STONE_HOE = ITEMS.register("stone_hoe/magenta_stone_hoe", () -> new HoeItem(
+            ModItemTier.MAGENTA_COBBLESTONE, -1, -2.0F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> MAGENTA_STONE_PICKAXE = ITEMS.register("stone_pickaxe/magenta_stone_pickaxe", () -> new PickaxeItem(
+            ModItemTier.MAGENTA_COBBLESTONE, 1, -2.8F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> MAGENTA_STONE_SHOVEL = ITEMS.register("stone_shovel/magenta_stone_shovel", () -> new ShovelItem(
+            ModItemTier.MAGENTA_COBBLESTONE,1.5F, -3.0F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> MAGENTA_STONE_SWORD = ITEMS.register("stone_sword/magenta_stone_sword", () -> new SwordItem(
+            ModItemTier.MAGENTA_COBBLESTONE, 3, -2.4F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> ORANGE_STONE_AXE = ITEMS.register("stone_axe/orange_stone_axe", () -> new AxeItem(
+            ModItemTier.ORANGE_COBBLESTONE, 7.0F, -3.2F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> ORANGE_STONE_HOE = ITEMS.register("stone_hoe/orange_stone_hoe", () -> new HoeItem(
+            ModItemTier.ORANGE_COBBLESTONE, -1, -2.0F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> ORANGE_STONE_PICKAXE = ITEMS.register("stone_pickaxe/orange_stone_pickaxe", () -> new PickaxeItem(
+            ModItemTier.ORANGE_COBBLESTONE, 1, -2.8F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> ORANGE_STONE_SHOVEL = ITEMS.register("stone_shovel/orange_stone_shovel", () -> new ShovelItem(
+            ModItemTier.ORANGE_COBBLESTONE,1.5F, -3.0F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> ORANGE_STONE_SWORD = ITEMS.register("stone_sword/orange_stone_sword", () -> new SwordItem(
+            ModItemTier.ORANGE_COBBLESTONE, 3, -2.4F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> PINK_STONE_AXE = ITEMS.register("stone_axe/pink_stone_axe", () -> new AxeItem(
+            ModItemTier.PINK_COBBLESTONE, 7.0F, -3.2F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> PINK_STONE_HOE = ITEMS.register("stone_hoe/pink_stone_hoe", () -> new HoeItem(
+            ModItemTier.PINK_COBBLESTONE, -1, -2.0F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> PINK_STONE_PICKAXE = ITEMS.register("stone_pickaxe/pink_stone_pickaxe", () -> new PickaxeItem(
+            ModItemTier.PINK_COBBLESTONE, 1, -2.8F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> PINK_STONE_SHOVEL = ITEMS.register("stone_shovel/pink_stone_shovel", () -> new ShovelItem(
+            ModItemTier.PINK_COBBLESTONE,1.5F, -3.0F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> PINK_STONE_SWORD = ITEMS.register("stone_sword/pink_stone_sword", () -> new SwordItem(
+            ModItemTier.PINK_COBBLESTONE, 3, -2.4F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> PURPLE_STONE_AXE = ITEMS.register("stone_axe/purple_stone_axe", () -> new AxeItem(
+            ModItemTier.PURPLE_COBBLESTONE, 7.0F, -3.2F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> PURPLE_STONE_HOE = ITEMS.register("stone_hoe/purple_stone_hoe", () -> new HoeItem(
+            ModItemTier.PURPLE_COBBLESTONE, -1, -2.0F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> PURPLE_STONE_PICKAXE = ITEMS.register("stone_pickaxe/purple_stone_pickaxe", () -> new PickaxeItem(
+            ModItemTier.PURPLE_COBBLESTONE, 1, -2.8F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> PURPLE_STONE_SHOVEL = ITEMS.register("stone_shovel/purple_stone_shovel", () -> new ShovelItem(
+            ModItemTier.PURPLE_COBBLESTONE,1.5F, -3.0F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> PURPLE_STONE_SWORD = ITEMS.register("stone_sword/purple_stone_sword", () -> new SwordItem(
+            ModItemTier.PURPLE_COBBLESTONE, 3, -2.4F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> WHITE_STONE_AXE = ITEMS.register("stone_axe/white_stone_axe", () -> new AxeItem(
+            ModItemTier.WHITE_COBBLESTONE, 7.0F, -3.2F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> WHITE_STONE_HOE = ITEMS.register("stone_hoe/white_stone_hoe", () -> new HoeItem(
+            ModItemTier.WHITE_COBBLESTONE, -1, -2.0F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> WHITE_STONE_PICKAXE = ITEMS.register("stone_pickaxe/white_stone_pickaxe", () -> new PickaxeItem(
+            ModItemTier.WHITE_COBBLESTONE, 1, -2.8F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> WHITE_STONE_SHOVEL = ITEMS.register("stone_shovel/white_stone_shovel", () -> new ShovelItem(
+            ModItemTier.WHITE_COBBLESTONE,1.5F, -3.0F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> WHITE_STONE_SWORD = ITEMS.register("stone_sword/white_stone_sword", () -> new SwordItem(
+            ModItemTier.WHITE_COBBLESTONE, 3, -2.4F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> YELLOW_STONE_AXE = ITEMS.register("stone_axe/yellow_stone_axe", () -> new AxeItem(
+            ModItemTier.YELLOW_COBBLESTONE, 7.0F, -3.2F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> YELLOW_STONE_HOE = ITEMS.register("stone_hoe/yellow_stone_hoe", () -> new HoeItem(
+            ModItemTier.YELLOW_COBBLESTONE, -1, -2.0F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> YELLOW_STONE_PICKAXE = ITEMS.register("stone_pickaxe/yellow_stone_pickaxe", () -> new PickaxeItem(
+            ModItemTier.YELLOW_COBBLESTONE, 1, -2.8F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> YELLOW_STONE_SHOVEL = ITEMS.register("stone_shovel/yellow_stone_shovel", () -> new ShovelItem(
+            ModItemTier.YELLOW_COBBLESTONE,1.5F, -3.0F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> YELLOW_STONE_SWORD = ITEMS.register("stone_sword/yellow_stone_sword", () -> new SwordItem(
+            ModItemTier.YELLOW_COBBLESTONE, 3, -2.4F, (new Item.Properties())
+    ));
+    /*public static final RegistryObject<Item> TRUGN = ITEMS.register("trugn", () -> new Item(
+            (new Item.Properties()).isBurnable()
+    ));
+    public static final RegistryObject<Item> TERAT_BLOCK = ITEMS.register("terat_block", () -> new Item(
+            (new Item.Properties()).isBurnable()
+    ));
+    public static final RegistryObject<Item> NIRK_BLOCK = ITEMS.register("nirk_block", () -> new Item(
+            (new Item.Properties()).isBurnable()
+    ));
+    public static final RegistryObject<Item> SRIUNK_BLOCK = ITEMS.register("sriunk_block", () -> new Item(
+            (new Item.Properties()).isBurnable()
+    ));*/
 }

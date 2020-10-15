@@ -87,7 +87,7 @@ public class SpecialItem2 extends Item {
 	}
 
 	public enum ModRarity implements IExtensibleEnum {
-		TEST(TextFormatting.DARK_BLUE);
+		TEST(TextFormatting.BLUE);
 
 		public final TextFormatting color;
 
@@ -102,10 +102,10 @@ public class SpecialItem2 extends Item {
 
 	@Override
 	public ActionResultType onItemUse(ItemUseContext context) {
-		if (context.getWorld().getBlockState(context.getPos()).getBlock() == BlockInit.DIAMOND_BLOCK.get()) {
+		if (context.getWorld().getBlockState(context.getPos()).getBlock() == BlockInit.VIRK_BLOCK.get()) {
 			for (ItemStack stack : context.getPlayer().inventory.mainInventory) {
 				if (stack.isEmpty()) {
-					context.getPlayer().addItemStackToInventory(new ItemStack(ItemInit.FRIN.get()));
+					context.getPlayer().addItemStackToInventory(new ItemStack(ItemInit.FIRK.get()));
 					context.getItem().damageItem(5, context.getPlayer(), (playerIn) -> {
 						playerIn.sendBreakAnimation(context.getHand());
 					});
@@ -113,7 +113,7 @@ public class SpecialItem2 extends Item {
 				}
 			}
 			context.getWorld().addEntity(new ItemEntity(context.getWorld(), context.getPos().getX(),
-					context.getPos().getY(), context.getPos().getZ(), new ItemStack(ItemInit.PACK.get())));
+					context.getPos().getY(), context.getPos().getZ(), new ItemStack(ItemInit.FIRK.get())));
 			return ActionResultType.SUCCESS;
 		}
 		return ActionResultType.FAIL;

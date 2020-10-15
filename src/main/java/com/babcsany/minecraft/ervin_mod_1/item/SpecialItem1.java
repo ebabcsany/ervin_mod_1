@@ -66,9 +66,9 @@ public class SpecialItem1 extends Item {
 
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
-		playerIn.addPotionEffect(new EffectInstance(Effects.ABSORPTION, 500, 255));
-		playerIn.addPotionEffect(new EffectInstance(Effects.INSTANT_HEALTH, 1000, 510));
-		playerIn.addPotionEffect(new EffectInstance(Effects.HEALTH_BOOST, 2000, 2040));
+		playerIn.addPotionEffect(new EffectInstance(Effects.ABSORPTION, 5000, 2550));
+		playerIn.addPotionEffect(new EffectInstance(Effects.INSTANT_HEALTH, 1000, 51000));
+		playerIn.addPotionEffect(new EffectInstance(Effects.HEALTH_BOOST, 20000, 20400));
 		worldIn.setRainStrength(200.0f);
 
 		return super.onItemRightClick(worldIn, playerIn, handIn);
@@ -104,7 +104,7 @@ public class SpecialItem1 extends Item {
 		if (context.getWorld().getBlockState(context.getPos()).getBlock() == BlockInit.GRITH_BLOCK.get()) {
 			for (ItemStack stack : context.getPlayer().inventory.mainInventory) {
 				if (stack.isEmpty()) {
-					context.getPlayer().addItemStackToInventory(new ItemStack(ItemInit.DEF_ITEM.get()));
+					context.getPlayer().addItemStackToInventory(new ItemStack(ItemInit.GRITH.get()));
 					context.getItem().damageItem(1, context.getPlayer(), (playerIn) -> {
 						playerIn.sendBreakAnimation(context.getHand());
 					});
@@ -112,7 +112,7 @@ public class SpecialItem1 extends Item {
 				}
 			}
 			context.getWorld().addEntity(new ItemEntity(context.getWorld(), context.getPos().getX(),
-					context.getPos().getY(), context.getPos().getZ(), new ItemStack(ItemInit.DEF_ITEM.get())));
+					context.getPos().getY(), context.getPos().getZ(), new ItemStack(ItemInit.GRITH.get())));
 			return ActionResultType.SUCCESS;
 		}
 		return ActionResultType.FAIL;

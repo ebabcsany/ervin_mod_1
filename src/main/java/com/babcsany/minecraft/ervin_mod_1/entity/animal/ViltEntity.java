@@ -2,6 +2,8 @@ package com.babcsany.minecraft.ervin_mod_1.entity.animal;
 
 import com.babcsany.minecraft.ervin_mod_1.init.BlockInit;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
+import com.babcsany.minecraft.ervin_mod_1.init.ItemInit;
+import com.babcsany.minecraft.ervin_mod_1.world.storage.loot.LootTables1;
 import com.google.common.collect.Maps;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -92,7 +94,7 @@ public class ViltEntity extends AnimalEntity implements IShearable, net.minecraf
       this.goalSelector.addGoal(0, new SwimGoal(this));
       this.goalSelector.addGoal(1, new PanicGoal(this, 1.25D));
       this.goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
-      this.goalSelector.addGoal(3, new TemptGoal(this, 1.1D, Ingredient.fromItems(Items.WHEAT), false));
+      this.goalSelector.addGoal(3, new TemptGoal(this, 10.0D, Ingredient.fromItems(ItemInit.VILTDROP.get()), false));
       this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.1D));
       this.goalSelector.addGoal(5, this.eatGrassGoal);
       this.goalSelector.addGoal(6, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
@@ -118,7 +120,7 @@ public class ViltEntity extends AnimalEntity implements IShearable, net.minecraf
    }
 
    public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
-      return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 8.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, (double)0.23F).createMutableAttribute(Attributes.ATTACK_DAMAGE, 4.0D);
+      return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 80.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, (double)2.3F).createMutableAttribute(Attributes.ATTACK_DAMAGE, 2.0D);
    }
 
    protected void registerData() {
@@ -161,7 +163,7 @@ public class ViltEntity extends AnimalEntity implements IShearable, net.minecraf
          case GREEN:
             return LootTables.ENTITIES_SHEEP_GREEN;
          case RED:
-            return LootTables.ENTITIES_SHEEP_RED;
+            return LootTables1.ENTITIES_VILT1;
          case BLACK:
             return LootTables.ENTITIES_SHEEP_BLACK;
          }

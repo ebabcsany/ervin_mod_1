@@ -47,7 +47,7 @@ public class ZurEntity extends MonsterEntity {
    private static final UUID BABY_SPEED_BOOST_ID = UUID.fromString("B9766B59-9566-4402-BC1F-2EE2A276D836");
    private static final AttributeModifier BABY_SPEED_BOOST = new AttributeModifier(BABY_SPEED_BOOST_ID, "Baby speed boost", 0.5D, AttributeModifier.Operation.MULTIPLY_BASE);
    private static final DataParameter<Boolean> IS_CHILD = EntityDataManager.createKey(ZurEntity.class, DataSerializers.BOOLEAN);
-   private static final DataParameter<Integer> VILLAGER_TYPE = EntityDataManager.createKey(ZurEntity.class, DataSerializers.VARINT);
+   //private static final DataParameter<Integer> VILLAGER_TYPE = EntityDataManager.createKey(ZurEntity.class, DataSerializers.VARINT);
    private static final DataParameter<Boolean> ROVENT = EntityDataManager.createKey(ZurEntity.class, DataSerializers.BOOLEAN);
    private static final Predicate<Difficulty> HARD_DIFFICULTY_PREDICATE = (p_213697_0_) -> {
       return p_213697_0_ == Difficulty.HARD;
@@ -86,13 +86,13 @@ public class ZurEntity extends MonsterEntity {
    }
 
    public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
-      return MonsterEntity.func_234295_eP_().createMutableAttribute(Attributes.FOLLOW_RANGE, 100.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, (double)0.23F).createMutableAttribute(Attributes.ATTACK_DAMAGE, 40.0D).createMutableAttribute(Attributes.ARMOR, 4.0D).createMutableAttribute(Attributes.MAX_HEALTH, 160);
+      return MonsterEntity.func_234295_eP_().createMutableAttribute(Attributes.FOLLOW_RANGE, 100.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, (double)0.92F).createMutableAttribute(Attributes.ATTACK_DAMAGE, 40.0D).createMutableAttribute(Attributes.ARMOR, 20.0D).createMutableAttribute(Attributes.MAX_HEALTH, 160);
    }
 
    protected void registerData() {
       super.registerData();
       this.getDataManager().register(IS_CHILD, false);
-      this.getDataManager().register(VILLAGER_TYPE, 0);
+      //this.getDataManager().register(VILLAGER_TYPE, 0);
       this.getDataManager().register(ROVENT, false);
    }
 
