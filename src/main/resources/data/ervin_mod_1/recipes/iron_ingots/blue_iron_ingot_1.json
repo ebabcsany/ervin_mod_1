@@ -2,11 +2,11 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "ervin_mod_1:blue_iron_block"
+      "item": "ervin_mod_1:iron_block/blue_iron_block"
     }
   ],
   "result": {
-    "item": "ervin_mod_1:blue_iron_ingot",
+    "item": "ervin_mod_1:iron_ingots/blue_iron_ingot",
     "count": 9
   }
 }

@@ -1,5 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.monster;
 
+import com.babcsany.minecraft.ervin_mod_1.entity.ai.Attributes1;
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.EatPumpkinGoal;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.WanderingTraderNirtreEntity;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
@@ -260,7 +261,7 @@ public class ZurEntity extends MonsterEntity {
    /**
     * Called when the entity is attacked.
     */
-   public boolean attackEntityFrom(DamageSource source, float amount) {
+   /*public boolean attackEntityFrom(DamageSource source, float amount) {
       if (super.attackEntityFrom(source, amount)) {
          LivingEntity livingentity = this.getAttackTarget();
          if (livingentity == null && source.getTrueSource() instanceof LivingEntity) {
@@ -271,10 +272,10 @@ public class ZurEntity extends MonsterEntity {
             int j = MathHelper.floor(this.getPosY());
             int k = MathHelper.floor(this.getPosZ());
 
-         com.babcsany.minecraft.ervin_mod_1.entity.living.ZurEvent.SummonAidEvent1 event = com.babcsany.minecraft.ervin_mod_1.entity.event.ForgeEventFactory1.fireZurSummonAid(this, world, i, j, k, livingentity, this.getAttribute(Attributes.ZOMBIE_SPAWN_REINFORCEMENTS).getValue());
+         com.babcsany.minecraft.ervin_mod_1.entity.living.ZurEvent.SummonAidEvent1 event = com.babcsany.minecraft.ervin_mod_1.entity.event.ForgeEventFactory1.fireZurSummonAid(this, world, i, j, k, livingentity, this.getAttribute(Attributes.ATTACK_DAMAGE).getValue());
          if (event.getResult() == net.minecraftforge.eventbus.api.Event.Result.DENY) return true;
          if (event.getResult() == net.minecraftforge.eventbus.api.Event.Result.ALLOW  ||
-            livingentity != null && this.world.getDifficulty() == Difficulty.HARD && (double)this.rand.nextFloat() < this.getAttribute(Attributes.ZOMBIE_SPAWN_REINFORCEMENTS).getValue() && this.world.getGameRules().getBoolean(GameRules.DO_MOB_SPAWNING)) {
+            livingentity != null && this.world.getDifficulty() == Difficulty.HARD && (double)this.rand.nextFloat() < this.getAttribute(Attributes.ATTACK_SPEED).getValue() && this.world.getGameRules().getBoolean(GameRules.DO_MOB_SPAWNING)) {
             ZurEntity zombieentity = event.getCustomSummonedAid1() != null && event.getResult() == net.minecraftforge.eventbus.api.Event.Result.ALLOW ? event.getCustomSummonedAid1() : EntityInit.ZUR_ENTITY.get().create(this.world);
 
             for(int l = 0; l < 50; ++l) {
@@ -291,8 +292,8 @@ public class ZurEntity extends MonsterEntity {
                      if (livingentity != null)
                      zombieentity.setAttackTarget(livingentity);
                      zombieentity.onInitialSpawn(this.world, this.world.getDifficultyForLocation(zombieentity.getPosition()), SpawnReason.REINFORCEMENT, (ILivingEntityData)null, (CompoundNBT)null);
-                     this.getAttribute(Attributes.ZOMBIE_SPAWN_REINFORCEMENTS).applyPersistentModifier(new AttributeModifier("Zombie reinforcement caller charge", (double)-0.05F, AttributeModifier.Operation.ADDITION));
-                     zombieentity.getAttribute(Attributes.ZOMBIE_SPAWN_REINFORCEMENTS).applyPersistentModifier(new AttributeModifier("Zombie reinforcement callee charge", (double)-0.05F, AttributeModifier.Operation.ADDITION));
+                     this.getAttribute(Attributes.ATTACK_SPEED).applyPersistentModifier(new AttributeModifier("Zombie reinforcement caller charge", (double)-0.05F, AttributeModifier.Operation.ADDITION));
+                     zombieentity.getAttribute(Attributes.ATTACK_SPEED).applyPersistentModifier(new AttributeModifier("Zombie reinforcement callee charge", (double)-0.05F, AttributeModifier.Operation.ADDITION));
                      break;
                   }
                }
@@ -303,7 +304,7 @@ public class ZurEntity extends MonsterEntity {
       } else {
          return false;
       }
-   }
+   }*/
 
    public boolean attackEntityAsMob(Entity entityIn) {
       boolean flag = super.attackEntityAsMob(entityIn);
@@ -456,7 +457,7 @@ public class ZurEntity extends MonsterEntity {
       return stack.getItem() == Items.EGG && this.isChild() && this.isPassenger() ? false : super.canEquipItem(stack);
    }
 
-   @Nullable
+   /*@Nullable
    public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
       spawnDataIn = super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
       float f = difficultyIn.getClampedAdditionalDifficulty();
@@ -505,31 +506,30 @@ public class ZurEntity extends MonsterEntity {
 
       this.applyAttributeBonuses(f);
       return spawnDataIn;
-   }
+   }*/
 
    public static boolean func_241399_a_(Random p_241399_0_) {
       return p_241399_0_.nextFloat() < net.minecraftforge.common.ForgeConfig.SERVER.zombieBabyChance.get();
    }
 
    protected void applyAttributeBonuses(float difficulty) {
-      this.func_230291_eT_();
       this.getAttribute(Attributes.KNOCKBACK_RESISTANCE).applyPersistentModifier(new AttributeModifier("Random spawn bonus", this.rand.nextDouble() * (double)0.05F, AttributeModifier.Operation.ADDITION));
       double d0 = this.rand.nextDouble() * 1.5D * (double)difficulty;
       if (d0 > 1.0D) {
-         this.getAttribute(Attributes.FOLLOW_RANGE).applyPersistentModifier(new AttributeModifier("Random zombie-spawn bonus", d0, AttributeModifier.Operation.MULTIPLY_TOTAL));
+         this.getAttribute(Attributes.FOLLOW_RANGE).applyPersistentModifier(new AttributeModifier("Random zur-spawn bonus", d0, AttributeModifier.Operation.MULTIPLY_TOTAL));
       }
 
       if (this.rand.nextFloat() < difficulty * 0.05F) {
-         this.getAttribute(Attributes.ZOMBIE_SPAWN_REINFORCEMENTS).applyPersistentModifier(new AttributeModifier("Leader zombie bonus", this.rand.nextDouble() * 0.25D + 0.5D, AttributeModifier.Operation.ADDITION));
-         this.getAttribute(Attributes.MAX_HEALTH).applyPersistentModifier(new AttributeModifier("Leader zombie bonus", this.rand.nextDouble() * 3.0D + 1.0D, AttributeModifier.Operation.MULTIPLY_TOTAL));
+         //this.getAttribute(Attributes1.ZUR_SPAWN_REINFORCEMENTS).applyPersistentModifier(new AttributeModifier("Leader zur bonus", this.rand.nextDouble() * 0.25D + 0.5D, AttributeModifier.Operation.ADDITION));
+         this.getAttribute(Attributes.MAX_HEALTH).applyPersistentModifier(new AttributeModifier("Leader zur bonus", this.rand.nextDouble() * 3.0D + 1.0D, AttributeModifier.Operation.MULTIPLY_TOTAL));
          this.setBreakDoorsAItask(this.canBreakDoors());
       }
 
    }
 
-   protected void func_230291_eT_() {
-      this.getAttribute(Attributes.ZOMBIE_SPAWN_REINFORCEMENTS).setBaseValue(this.rand.nextDouble() * net.minecraftforge.common.ForgeConfig.SERVER.zombieBaseSummonChance.get());
-   }
+   /*protected void func_230291_eT_() {
+      this.getAttribute(Attributes1.ZUR_SPAWN_REINFORCEMENTS).setBaseValue(this.rand.nextDouble() * net.minecraftforge.common.ForgeConfig.SERVER.zombieBaseSummonChance.get());
+   }*/
 
    /**
     * Returns the Y Offset of this entity.

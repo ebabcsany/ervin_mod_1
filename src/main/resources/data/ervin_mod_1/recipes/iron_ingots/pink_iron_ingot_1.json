@@ -2,11 +2,11 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "ervin_mod_1:pink_iron_block"
+      "item": "ervin_mod_1:iron_block/pink_iron_block"
     }
   ],
   "result": {
-    "item": "ervin_mod_1:pink_iron_ingot",
+    "item": "ervin_mod_1:iron_ingots/pink_iron_ingot",
     "count": 9
   }
 }
