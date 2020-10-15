@@ -7,11 +7,11 @@
   ],
   "key": {
     "#": {
-      "item": "ervin_mod_1:light_blue_iron_ingot"
+      "item": "ervin_mod_1:iron_ingots/light_blue_iron_ingot"
     }
   },
   "result": {
-    "item": "ervin_mod_1:light_blue_iron_block",
+    "item": "ervin_mod_1:iron_block/light_blue_iron_block",
     "count": 1
   }
 }
