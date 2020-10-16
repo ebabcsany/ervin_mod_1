@@ -7,8 +7,8 @@ import net.minecraft.state.StateContainer;
 
 import static net.minecraft.block.HorizontalBlock.HORIZONTAL_FACING;
 
-public class RedFurance extends Block{
-    public RedFurance(Properties properties) {
+public class RedFurnace extends Block{
+    public RedFurnace(Properties properties) {
         super(properties);
     }
 
