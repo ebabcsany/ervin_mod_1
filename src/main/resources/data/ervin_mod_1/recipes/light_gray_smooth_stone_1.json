@@ -1,7 +1,7 @@
 {
   "type": "minecraft:smelting",
   "ingredient": {
-    "item": "ervin_mod_1:light_gray_stone"
+    "item": "ervin_mod_1:stones/light_gray_stone"
   },
   "result": "ervin_mod_1:light_gray_smooth_stone",
   "experience": 0.1,

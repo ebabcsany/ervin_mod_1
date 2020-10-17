@@ -550,49 +550,49 @@ public class ItemInit {
     public static final RegistryObject<Item> DURT_SWORD = ITEMS.register("durt_sword", () -> new SwordItem(
             ModItemTier.DURT, 8, 1.2F, (new Item.Properties())
     ));
-    public static final RegistryObject<Item> BLACK_IRON_INGOT = ITEMS.register("black_iron_ingot", () -> new Item(
+    public static final RegistryObject<Item> BLACK_IRON_INGOT = ITEMS.register("iron_ingots/black_iron_ingot", () -> new Item(
             (new Item.Properties())
     ));
-    public static final RegistryObject<Item> BLUE_IRON_INGOT = ITEMS.register("blue_iron_ingot", () -> new Item(
+    public static final RegistryObject<Item> BLUE_IRON_INGOT = ITEMS.register("iron_ingots/blue_iron_ingot", () -> new Item(
             (new Item.Properties())
     ));
-    public static final RegistryObject<Item> BROWN_IRON_INGOT = ITEMS.register("brown_iron_ingot", () -> new Item(
+    public static final RegistryObject<Item> BROWN_IRON_INGOT = ITEMS.register("iron_ingots/brown_iron_ingot", () -> new Item(
             (new Item.Properties())
     ));
-    public static final RegistryObject<Item> CYAN_IRON_INGOT = ITEMS.register("cyan_iron_ingot", () -> new Item(
+    public static final RegistryObject<Item> CYAN_IRON_INGOT = ITEMS.register("iron_ingots/cyan_iron_ingot", () -> new Item(
             (new Item.Properties())
     ));
-    public static final RegistryObject<Item> GRAY_IRON_INGOT = ITEMS.register("gray_iron_ingot", () -> new Item(
+    public static final RegistryObject<Item> GRAY_IRON_INGOT = ITEMS.register("iron_ingots/gray_iron_ingot", () -> new Item(
             (new Item.Properties())
     ));
-    public static final RegistryObject<Item> GREEN_IRON_INGOT = ITEMS.register("green_iron_ingot", () -> new Item(
+    public static final RegistryObject<Item> GREEN_IRON_INGOT = ITEMS.register("iron_ingots/green_iron_ingot", () -> new Item(
             (new Item.Properties())
     ));
-    public static final RegistryObject<Item> LIGHT_BLUE_IRON_INGOT = ITEMS.register("light_blue_iron_ingot", () -> new Item(
+    public static final RegistryObject<Item> LIGHT_BLUE_IRON_INGOT = ITEMS.register("iron_ingots/light_blue_iron_ingot", () -> new Item(
             (new Item.Properties())
     ));
-    public static final RegistryObject<Item> LIGHT_GRAY_IRON_INGOT = ITEMS.register("light_gray_iron_ingot", () -> new Item(
+    public static final RegistryObject<Item> LIGHT_GRAY_IRON_INGOT = ITEMS.register("iron_ingots/light_gray_iron_ingot", () -> new Item(
             (new Item.Properties())
     ));
-    public static final RegistryObject<Item> LIME_IRON_INGOT = ITEMS.register("lime_iron_ingot", () -> new Item(
+    public static final RegistryObject<Item> LIME_IRON_INGOT = ITEMS.register("iron_ingots/lime_iron_ingot", () -> new Item(
             (new Item.Properties())
     ));
-    public static final RegistryObject<Item> MAGENTA_IRON_INGOT = ITEMS.register("magenta_iron_ingot", () -> new Item(
+    public static final RegistryObject<Item> MAGENTA_IRON_INGOT = ITEMS.register("iron_ingots/magenta_iron_ingot", () -> new Item(
             (new Item.Properties())
     ));
-    public static final RegistryObject<Item> ORANGE_IRON_INGOT = ITEMS.register("orange_iron_ingot", () -> new Item(
+    public static final RegistryObject<Item> ORANGE_IRON_INGOT = ITEMS.register("iron_ingots/orange_iron_ingot", () -> new Item(
             (new Item.Properties())
     ));
-    public static final RegistryObject<Item> PINK_IRON_INGOT = ITEMS.register("pink_iron_ingot", () -> new Item(
+    public static final RegistryObject<Item> PINK_IRON_INGOT = ITEMS.register("iron_ingots/pink_iron_ingot", () -> new Item(
             (new Item.Properties())
     ));
-    public static final RegistryObject<Item> PURPLE_IRON_INGOT = ITEMS.register("purple_iron_ingot", () -> new Item(
+    public static final RegistryObject<Item> PURPLE_IRON_INGOT = ITEMS.register("iron_ingots/purple_iron_ingot", () -> new Item(
             (new Item.Properties())
     ));
-    public static final RegistryObject<Item> RED_IRON_INGOT = ITEMS.register("red_iron_ingot", () -> new Item(
+    public static final RegistryObject<Item> RED_IRON_INGOT = ITEMS.register("iron_ingots/red_iron_ingot", () -> new Item(
             (new Item.Properties())
     ));
-    public static final RegistryObject<Item> YELLOW_IRON_INGOT = ITEMS.register("yellow_iron_ingot", () -> new Item(
+    public static final RegistryObject<Item> YELLOW_IRON_INGOT = ITEMS.register("iron_ingots/yellow_iron_ingot", () -> new Item(
             (new Item.Properties())
     ));
     public static final RegistryObject<ModSpawnEggItem> VILT_ENTITY_SPAWN_EGG = ITEMS.register("vilt_entity_spawn_egg", () -> new ModSpawnEggItem(

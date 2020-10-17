@@ -139,7 +139,7 @@ public class BlockInit {
                     .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(100.0f)
     ));
-    public static final RegistryObject<Block> RED_STONE = BLOCKS.register("red_stone", () -> new RedStone(
+    public static final RegistryObject<Block> RED_STONE = BLOCKS.register("stones/red_stone", () -> new RedStone(
             Block.Properties.create(Material.ROCK)
                     .setRequiresTool()
                     .harvestLevel(0)
@@ -717,98 +717,98 @@ public class BlockInit {
                     .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(2.0F, 12.0F)
     ));
-    public static final RegistryObject<Block> BLACK_STONE = BLOCKS.register("black_stone", () -> new BlackStone(
+    public static final RegistryObject<Block> BLACK_STONE = BLOCKS.register("stones/black_stone", () -> new BlackStone(
             Block.Properties.create(Material.ROCK)
                     .setRequiresTool()
                     .harvestLevel(0)
                     .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(1.5F, 6.0F)
     ));
-    public static final RegistryObject<Block> BLUE_STONE = BLOCKS.register("blue_stone", () -> new BlueStone(
+    public static final RegistryObject<Block> BLUE_STONE = BLOCKS.register("stones/blue_stone", () -> new BlueStone(
             Block.Properties.create(Material.ROCK)
                     .setRequiresTool()
                     .harvestLevel(0)
                     .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(1.5F, 6.0F)
     ));
-    public static final RegistryObject<Block> BROWN_STONE = BLOCKS.register("brown_stone", () -> new BrownStone(
+    public static final RegistryObject<Block> BROWN_STONE = BLOCKS.register("stones/brown_stone", () -> new BrownStone(
             Block.Properties.create(Material.ROCK)
                     .setRequiresTool()
                     .harvestLevel(0)
                     .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(1.5F, 6.0F)
     ));
-    public static final RegistryObject<Block> CYAN_STONE = BLOCKS.register("cyan_stone", () -> new CyanStone(
+    public static final RegistryObject<Block> CYAN_STONE = BLOCKS.register("stones/cyan_stone", () -> new CyanStone(
             Block.Properties.create(Material.ROCK)
                     .setRequiresTool()
                     .harvestLevel(0)
                     .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(1.5F, 6.0F)
     ));
-    public static final RegistryObject<Block> GREEN_STONE = BLOCKS.register("green_stone", () -> new GreenStone(
+    public static final RegistryObject<Block> GREEN_STONE = BLOCKS.register("stones/green_stone", () -> new GreenStone(
             Block.Properties.create(Material.ROCK)
                     .setRequiresTool()
                     .harvestLevel(0)
                     .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(1.5F, 6.0F)
     ));
-    public static final RegistryObject<Block> LIGHT_BLUE_STONE = BLOCKS.register("light_blue_stone", () -> new LightBlueStone(
+    public static final RegistryObject<Block> LIGHT_BLUE_STONE = BLOCKS.register("stones/light_blue_stone", () -> new LightBlueStone(
             Block.Properties.create(Material.ROCK)
                     .setRequiresTool()
                     .harvestLevel(0)
                     .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(1.5F, 6.0F)
     ));
-    public static final RegistryObject<Block> LIGHT_GRAY_STONE = BLOCKS.register("light_gray_stone", () -> new LightGrayStone(
+    public static final RegistryObject<Block> LIGHT_GRAY_STONE = BLOCKS.register("stones/light_gray_stone", () -> new LightGrayStone(
             Block.Properties.create(Material.ROCK)
                     .setRequiresTool()
                     .harvestLevel(0)
                     .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(1.5F, 6.0F)
     ));
-    public static final RegistryObject<Block> LIME_STONE = BLOCKS.register("lime_stone", () -> new LimeStone(
+    public static final RegistryObject<Block> LIME_STONE = BLOCKS.register("stones/lime_stone", () -> new LimeStone(
             Block.Properties.create(Material.ROCK)
                     .setRequiresTool()
                     .harvestLevel(0)
                     .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(1.5F, 6.0F)
     ));
-    public static final RegistryObject<Block> MAGENTA_STONE = BLOCKS.register("magenta_stone", () -> new MagentaStone(
+    public static final RegistryObject<Block> MAGENTA_STONE = BLOCKS.register("stones/magenta_stone", () -> new MagentaStone(
             Block.Properties.create(Material.ROCK)
                     .setRequiresTool()
                     .harvestLevel(0)
                     .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(1.5F, 6.0F)
     ));
-    public static final RegistryObject<Block> ORANGE_STONE = BLOCKS.register("orange_stone", () -> new OrangeStone(
+    public static final RegistryObject<Block> ORANGE_STONE = BLOCKS.register("stones/orange_stone", () -> new OrangeStone(
             Block.Properties.create(Material.ROCK)
                     .setRequiresTool()
                     .harvestLevel(0)
                     .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(1.5F, 6.0F)
     ));
-    public static final RegistryObject<Block> PINK_STONE = BLOCKS.register("pink_stone", () -> new PinkStone(
+    public static final RegistryObject<Block> PINK_STONE = BLOCKS.register("stones/pink_stone", () -> new PinkStone(
             Block.Properties.create(Material.ROCK)
                     .setRequiresTool()
                     .harvestLevel(0)
                     .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(1.5F, 6.0F)
     ));
-    public static final RegistryObject<Block> PURPLE_STONE = BLOCKS.register("purple_stone", () -> new PurpleStone(
+    public static final RegistryObject<Block> PURPLE_STONE = BLOCKS.register("stones/purple_stone", () -> new PurpleStone(
             Block.Properties.create(Material.ROCK)
                     .setRequiresTool()
                     .harvestLevel(0)
                     .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(1.5F, 6.0F)
     ));
-    public static final RegistryObject<Block> WHITE_STONE = BLOCKS.register("white_stone", () -> new WhiteStone(
+    public static final RegistryObject<Block> WHITE_STONE = BLOCKS.register("stones/white_stone", () -> new WhiteStone(
             Block.Properties.create(Material.ROCK)
                     .setRequiresTool()
                     .harvestLevel(0)
                     .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(1.5F, 6.0F)
     ));
-    public static final RegistryObject<Block> YELLOW_STONE = BLOCKS.register("yellow_stone", () -> new YellowStone(
+    public static final RegistryObject<Block> YELLOW_STONE = BLOCKS.register("stones/yellow_stone", () -> new YellowStone(
             Block.Properties.create(Material.ROCK)
                     .setRequiresTool()
                     .harvestLevel(0)
@@ -1898,6 +1898,12 @@ public class BlockInit {
             AbstractBlock.Properties.create(Material.IRON, MaterialColor.IRON)
                     .setRequiresTool()
                     .hardnessAndResistance(5.0F,6.0F)
+                    .sound(SoundType.METAL)
+    ));
+    public static final RegistryObject<Block> BLACK_STONE_RED_IRON_ORE = BLOCKS.register("iron_ore/black_stone/red_iron_ore", () -> new RedIronOre(
+            AbstractBlock.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .hardnessAndResistance(3.0F,3.0F)
                     .sound(SoundType.METAL)
     ));
 }

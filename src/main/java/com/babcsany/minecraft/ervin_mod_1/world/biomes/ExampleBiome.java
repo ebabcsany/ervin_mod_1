@@ -104,6 +104,7 @@ public class ExampleBiome extends Biome {
 						Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(180, 48.0f, 100))));
 
 		DefaultBiomeFeatures.addOres(this);
+		ModDefaultBiomeFeatures.addIronOres(this);
 		DefaultBiomeFeatures.addExtraGoldOre(this);
 		ModDefaultBiomeFeatures.addExtraEmeraldOre(this);
 		ModBiomeFeatures.addExampleFeature(this, 1000);

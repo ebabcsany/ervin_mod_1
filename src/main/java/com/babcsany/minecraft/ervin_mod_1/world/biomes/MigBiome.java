@@ -51,6 +51,7 @@ public class MigBiome extends Biome {
         DefaultBiomeFeatures.addOres(this);
         DefaultBiomeFeatures.addExtraGoldOre(this);
         DefaultBiomeFeatures.addExtraEmeraldOre(this);
+        ModDefaultBiomeFeatures.addOrangeStone(this);
         ModBiomeFeatures.addExampleFeature(this, 10);
     }
 

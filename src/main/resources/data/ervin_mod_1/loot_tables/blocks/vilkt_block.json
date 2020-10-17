@@ -78,7 +78,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:black_iron_ingot"
+          "name": "ervin_mod_1:iron_ingots/black_iron_ingot"
         },
         {
           "type": "minecraft:item",
@@ -94,7 +94,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:black_stone"
+          "name": "ervin_mod_1:stones/black_stone"
         },
         {
           "type": "minecraft:item",
@@ -122,7 +122,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:blue_iron_ingot"
+          "name": "ervin_mod_1:iron_ingots/blue_iron_ingot"
         },
         {
           "type": "minecraft:item",
@@ -138,7 +138,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:blue_stone"
+          "name": "ervin_mod_1:stones/blue_stone"
         },
         {
           "type": "minecraft:item",
@@ -170,7 +170,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:brown_iron_ingot"
+          "name": "ervin_mod_1:iron_ingots/brown_iron_ingot"
         },
         {
           "type": "minecraft:item",
@@ -186,7 +186,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:brown_stone"
+          "name": "ervin_mod_1:stones/brown_stone"
         },
         {
           "type": "minecraft:item",
@@ -250,7 +250,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:cyan_iron_ingot"
+          "name": "ervin_mod_1:iron_ingots/cyan_iron_ingot"
         },
         {
           "type": "minecraft:item",
@@ -266,7 +266,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:cyan_stone"
+          "name": "ervin_mod_1:stones/cyan_stone"
         },
         {
           "type": "minecraft:item",
@@ -670,7 +670,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:gray_iron_ingot"
+          "name": "ervin_mod_1:iron_ingots/gray_iron_ingot"
         },
         {
           "type": "minecraft:item",
@@ -690,7 +690,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:green_iron_ingot"
+          "name": "ervin_mod_1:iron_ingots/green_iron_ingot"
         },
         {
           "type": "minecraft:item",
@@ -706,7 +706,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:green_stone"
+          "name": "ervin_mod_1:stones/green_stone"
         },
         {
           "type": "minecraft:item",
@@ -898,7 +898,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:light_blue_iron_ingot"
+          "name": "ervin_mod_1:iron_ingots/light_blue_iron_ingot"
         },
         {
           "type": "minecraft:item",
@@ -914,7 +914,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:light_blue_stone"
+          "name": "ervin_mod_1:stones/light_blue_stone"
         },
         {
           "type": "minecraft:item",
@@ -942,7 +942,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:light_gray_iron_ingot"
+          "name": "ervin_mod_1:iron_ingots/light_gray_iron_ingot"
         },
         {
           "type": "minecraft:item",
@@ -958,7 +958,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:light_gray_stone"
+          "name": "ervin_mod_1:stones/light_gray_stone"
         },
         {
           "type": "minecraft:item",
@@ -986,7 +986,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:lime_iron_ingot"
+          "name": "ervin_mod_1:iron_ingots/lime_iron_ingot"
         },
         {
           "type": "minecraft:item",
@@ -1002,7 +1002,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:lime_stone"
+          "name": "ervin_mod_1:stones/lime_stone"
         },
         {
           "type": "minecraft:item",
@@ -1030,7 +1030,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:magenta_iron_ingot"
+          "name": "ervin_mod_1:iron_ingots/magenta_iron_ingot"
         },
         {
           "type": "minecraft:item",
@@ -1046,7 +1046,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:magenta_stone"
+          "name": "ervin_mod_1:stones/magenta_stone"
         },
         {
           "type": "minecraft:item",
@@ -1126,7 +1126,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:orange_iron_ingot"
+          "name": "ervin_mod_1:iron_ingots/orange_iron_ingot"
         },
         {
           "type": "minecraft:item",
@@ -1142,7 +1142,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:orange_stone"
+          "name": "ervin_mod_1:stones/orange_stone"
         },
         {
           "type": "minecraft:item",
@@ -1178,7 +1178,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:pink_iron_ingot"
+          "name": "ervin_mod_1:iron_ingots/pink_iron_ingot"
         },
         {
           "type": "minecraft:item",
@@ -1194,7 +1194,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:pink_stone"
+          "name": "ervin_mod_1:stones/pink_stone"
         },
         {
           "type": "minecraft:item",
@@ -1222,7 +1222,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:purple_iron_ingot"
+          "name": "ervin_mod_1:iron_ingots/purple_iron_ingot"
         },
         {
           "type": "minecraft:item",
@@ -1238,7 +1238,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:purple_stone"
+          "name": "ervin_mod_1:stones/purple_stone"
         },
         {
           "type": "minecraft:item",
@@ -1290,7 +1290,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:red_iron_ingot"
+          "name": "ervin_mod_1:iron_ingots/red_iron_ingot"
         },
         {
           "type": "minecraft:item",
@@ -1310,7 +1310,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:red_stone"
+          "name": "ervin_mod_1:stones/red_stone"
         },
         {
           "type": "minecraft:item",
@@ -1734,7 +1734,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:white_stone"
+          "name": "ervin_mod_1:stones/white_stone"
         },
         {
           "type": "minecraft:item",
@@ -1758,7 +1758,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:yellow_iron_ingot"
+          "name": "ervin_mod_1:iron_ingots/yellow_iron_ingot"
         },
         {
           "type": "minecraft:item",
@@ -1774,7 +1774,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:yellow_stone"
+          "name": "ervin_mod_1:stones/yellow_stone"
         },
         {
           "type": "minecraft:item",

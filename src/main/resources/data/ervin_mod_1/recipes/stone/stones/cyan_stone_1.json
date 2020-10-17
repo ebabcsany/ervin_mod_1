@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "ervin_mod_1:cyan_cobblestone"
   },
-  "result": "ervin_mod_1:cyan_stone",
+  "result": "ervin_mod_1:stones/cyan_stone",
   "experience": 0.1,
   "cookingtime": 200
 }
