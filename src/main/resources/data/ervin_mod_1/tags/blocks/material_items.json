@@ -1,5 +1,5 @@
 {
-  "replace": false,
+  /*"replace": false,
   "values": [
     "ervin_mod_1:ender_dragon_spawn_egg",
     "minecraft:acacia_boat",
@@ -27,5 +27,5 @@
     "minecraft:ender_pearl",
     "ervin_mod_1:def_item",
     "ervin_mod_1:scrakths_pearl"
-  ]
+  ]*/
 }

@@ -185,21 +185,56 @@ public class BiomeInit {
 					));
 
 	public static void registerBiomes() {
-		registerBiome(MIG_BIOME.get(), Type.PLAINS, Type.OVERWORLD);
-		registerBiome(EXAMPLE_BIOME.get(), Type.DEAD, Type.OVERWORLD);
-		registerBiome(EXAMPLE_BIOME1.get(), Type.PLAINS, Type.OVERWORLD);
-		registerBiome(EXAMPLE_BIOME0.get(), Type.PLAINS, Type.BEACH);
-		registerBiome(EXAMPLE_BIOME2.get(), Type.PLAINS, Type.OVERWORLD);
-		registerBiome(EXAMPLE_BIOME3.get(), Type.PLAINS, Type.OVERWORLD);
-		registerBiome(EXAMPLE_BIOME4.get(), Type.BEACH, Type.RARE);
-		registerBiome(EXAMPLE_BIOME5.get(), Type.DEAD, Type.RARE);
-		registerBiome(FIRG_BIOME.get(), Type.END, Type.END);
-		registerBiome(SCRAFTH_BIOME.get(), Type.END, Type.END);
+		registerBiomeCool1(MIG_BIOME.get(), Type.PLAINS, Type.OVERWORLD);
+		registerBiomeCool2(EXAMPLE_BIOME.get(), Type.DEAD, Type.PLAINS);
+		registerBiomeDesert(EXAMPLE_BIOME1.get(), Type.PLAINS, Type.OVERWORLD);
+		registerBiomeIcy(EXAMPLE_BIOME0.get(), Type.PLAINS, Type.BEACH);
+		registerBiomeWarm(EXAMPLE_BIOME2.get(), Type.PLAINS, Type.OVERWORLD);
+		registerBiomeWarm(EXAMPLE_BIOME3.get(), Type.PLAINS, Type.OVERWORLD);
+		registerBiomeDesert(EXAMPLE_BIOME4.get(), Type.BEACH, Type.RARE);
+		registerBiomeCool(EXAMPLE_BIOME5.get(), Type.DEAD, Type.RARE);
+		registerBiomeCool2(FIRG_BIOME.get(), Type.END, Type.END);
+		registerBiomeCool1(SCRAFTH_BIOME.get(), Type.END, Type.END);
 	}
 
-	private static void registerBiome(Biome biome, Type... types) {
+	private static void registerBiomeCool(Biome biome, Type... types) {
+		// the line below will make it spawn in the overworld
+		BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(biome, 10000));
+		BiomeDictionary.addTypes(biome, types);
+		BiomeManager.addSpawnBiome(biome);
+	}
+
+	private static void registerBiomeCool1(Biome biome, Type... types) {
 		// the line below will make it spawn in the overworld
 		BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(biome, 100000));
+		BiomeDictionary.addTypes(biome, types);
+		BiomeManager.addSpawnBiome(biome);
+	}
+
+	private static void registerBiomeCool2(Biome biome, Type... types) {
+		// the line below will make it spawn in the overworld
+		BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(biome, 1000000));
+		BiomeDictionary.addTypes(biome, types);
+		BiomeManager.addSpawnBiome(biome);
+	}
+
+	private static void registerBiomeDesert(Biome biome, Type... types) {
+		// the line below will make it spawn in the overworld
+		BiomeManager.addBiome(BiomeManager.BiomeType.DESERT, new BiomeManager.BiomeEntry(biome, 1000000));
+		BiomeDictionary.addTypes(biome, types);
+		BiomeManager.addSpawnBiome(biome);
+	}
+
+	private static void registerBiomeIcy(Biome biome, Type... types) {
+		// the line below will make it spawn in the overworld
+		BiomeManager.addBiome(BiomeManager.BiomeType.ICY, new BiomeManager.BiomeEntry(biome, 1000000));
+		BiomeDictionary.addTypes(biome, types);
+		BiomeManager.addSpawnBiome(biome);
+	}
+
+	private static void registerBiomeWarm(Biome biome, Type... types) {
+		// the line below will make it spawn in the overworld
+		BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(biome, 1000000));
 		BiomeDictionary.addTypes(biome, types);
 		BiomeManager.addSpawnBiome(biome);
 	}

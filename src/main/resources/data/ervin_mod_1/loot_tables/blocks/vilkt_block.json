@@ -1294,7 +1294,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:red_furance"
+          "name": "ervin_mod_1:red_furnace"
         },
         {
           "type": "minecraft:item",
@@ -1314,19 +1314,19 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:red_stone_axe"
+          "name": "ervin_mod_1:stone_axe/red_stone_axe"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:red_stone_hoe"
+          "name": "ervin_mod_1:stone_hoe/red_stone_hoe"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:red_stone_pickaxe"
+          "name": "ervin_mod_1:stone_pickaxe/red_stone_pickaxe"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:red_stone_shovel"
+          "name": "ervin_mod_1:stone_shovel/red_stone_shovel"
         },
         {
           "type": "minecraft:item",
@@ -1338,7 +1338,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:red_stone_sword"
+          "name": "ervin_mod_1:stone_sword/red_stone_sword"
         },
         {
           "type": "minecraft:item",
