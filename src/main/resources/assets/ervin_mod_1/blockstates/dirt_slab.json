@@ -1,7 +1,13 @@
 {
   "variants": {
-    "type=bottom": { "model": "ervin_mod_1:block/dirt_slab" },
-    "type=top": { "model": "ervin_mod_1:block/dirt_slab_top" },
-    "type=double": { "model": "minecraft:block/dirt" }
+    "type=bottom": {
+      "model": "ervin_mod_1:block/dirt_slab"
+    },
+    "type=double": {
+      "model": "minecraft:block/dirt"
+    },
+    "type=top": {
+      "model": "ervin_mod_1:block/dirt_slab_top"
+    }
   }
 }

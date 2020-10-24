@@ -1,7 +1,13 @@
 {
   "variants": {
-    "type=bottom": { "model": "ervin_mod_1:block/coal_slab" },
-    "type=top": { "model": "ervin_mod_1:block/coal_slab_top" },
-    "type=double": { "model": "minecraft:block/coal_block" }
+    "type=bottom": {
+      "model": "ervin_mod_1:block/coal_slab"
+    },
+    "type=double": {
+      "model": "minecraft:block/coal_block"
+    },
+    "type=top": {
+      "model": "ervin_mod_1:block/coal_slab_top"
+    }
   }
 }

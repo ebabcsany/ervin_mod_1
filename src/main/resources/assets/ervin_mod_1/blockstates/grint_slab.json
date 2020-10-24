@@ -1,7 +1,13 @@
 {
   "variants": {
-    "type=bottom": { "model": "ervin_mod_1:block/grint_slab" },
-    "type=top": { "model": "ervin_mod_1:block/grint_slab_top" },
-    "type=double": { "model": "ervin_mod_1:block/grint_block" }
+    "type=bottom": {
+      "model": "ervin_mod_1:block/grint_slab"
+    },
+    "type=double": {
+      "model": "ervin_mod_1:block/grint_block"
+    },
+    "type=top": {
+      "model": "ervin_mod_1:block/grint_slab_top"
+    }
   }
 }
