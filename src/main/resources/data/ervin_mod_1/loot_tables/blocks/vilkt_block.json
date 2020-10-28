@@ -484,10 +484,6 @@
           "type": "minecraft:item",
           "name": "ervin_mod_1:firg_boat"
         },
-        /*{
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:firg_door"
-        },*/
         {
           "type": "minecraft:item",
           "name": "ervin_mod_1:firg_leaves"
@@ -823,10 +819,6 @@
         {
           "type": "minecraft:item",
           "name": "ervin_mod_1:jungle_turg"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:jurk"
         },
         {
           "type": "minecraft:item",
