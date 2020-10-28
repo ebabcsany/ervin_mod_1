@@ -4,11 +4,14 @@ import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.block.FlowingFluidBlock1;
 import com.babcsany.minecraft.ervin_mod_1.fluid.FlowingFluidBlock2;
 import com.babcsany.minecraft.ervin_mod_1.fluid.ForgeFlowingFluid1;
+import com.babcsany.minecraft.ervin_mod_1.fluid.JurkFluid;
 import net.minecraft.block.Block;
 import net.minecraft.block.FlowingFluidBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.fluid.FlowingFluid;
 import net.minecraft.fluid.Fluid;
+import net.minecraft.fluid.FluidState;
+import net.minecraft.fluid.WaterFluid;
 import net.minecraft.item.Rarity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvents;
@@ -37,6 +40,9 @@ public class FluidInit {
 	public static final DeferredRegister<Fluid> FLUIDS = DeferredRegister.create(ForgeRegistries.FLUIDS,
 			Ervin_mod_1.MOD_ID);
 
+	public static final RegistryObject<FlowingFluid> FLOWING_JURK = FLUIDS.register("flowing_jurk", () -> new WaterFluid.Flowing());
+	public static final RegistryObject<FlowingFluid> JURK = FLUIDS.register("jurk", () -> new WaterFluid.Source());
+
 	public static final RegistryObject<FlowingFluid> MILK_FLUID = FLUIDS.register("milk_fluid",
 			() -> new ForgeFlowingFluid.Source(FluidInit.MILK_PROPERTIES));
 
@@ -53,7 +59,7 @@ public class FluidInit {
 					.sound(SoundEvents.ITEM_HONEY_BOTTLE_DRINK).overlay(MILK_OVERLAY_RL))
 							.block(() -> FluidInit.MILK_BLOCK.get());
 
-	public static final RegistryObject<FlowingFluid> JURK_FLUID = FLUIDS.register("jurk_fluid",
+	/*public static final RegistryObject<FlowingFluid> JURK_FLUID = FLUIDS.register("jurk_fluid",
 			() -> new ForgeFlowingFluid.Source(FluidInit.JURK_PROPERTIES));
 
 	public static final RegistryObject<FlowingFluid> JURK_FLOWING = FLUIDS.register("jurk_flowing",
@@ -67,7 +73,7 @@ public class FluidInit {
 			() -> JURK_FLUID.get(), () -> JURK_FLOWING.get(),
 			FluidAttributes.builder(JURK_STILL_RL, JURK_FLOWING_RL).density(5).luminosity(10).rarity(Rarity.RARE)
 					.sound(SoundEvents.ITEM_HONEY_BOTTLE_DRINK).overlay(JURK_OVERLAY_RL))
-			.block(() -> FluidInit.JURK_BLOCK.get());
+			.block(() -> FluidInit.JURK_BLOCK.get());*/
 
 	/*public static final RegistryObject<FlowingFluid> JURK_FLUID1 = FLUIDS.register("jurk_fluid",
 			() -> new ForgeFlowingFluid1.Source(FluidInit.JURK_PROPERTIES1));

@@ -1,5 +1,5 @@
 {
-  "parent": "block/slab_top",
+  "parent": "minecraft:block/slab_top",
   "textures": {
     "bottom": "ervin_mod_1:block/gank_block",
     "top": "ervin_mod_1:block/gank_block",

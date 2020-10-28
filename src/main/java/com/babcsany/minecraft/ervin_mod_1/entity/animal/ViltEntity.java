@@ -46,6 +46,7 @@ import java.util.stream.Collectors;
 public class ViltEntity extends AnimalEntity implements IShearable, net.minecraftforge.common.IForgeShearable {
    private static final DataParameter<Byte> DYE_COLOR = EntityDataManager.createKey(ViltEntity.class, DataSerializers.BYTE);
    private static final Map<DyeColor, IItemProvider> WOOL_BY_COLOR = Util.make(Maps.newEnumMap(DyeColor.class), (p_203402_0_) -> {
+      p_203402_0_.put(DyeColor.RED, BlockInit.CRASK.get());
       p_203402_0_.put(DyeColor.WHITE, Blocks.WHITE_WOOL);
       p_203402_0_.put(DyeColor.ORANGE, Blocks.ORANGE_WOOL);
       p_203402_0_.put(DyeColor.MAGENTA, Blocks.MAGENTA_WOOL);
@@ -60,7 +61,6 @@ public class ViltEntity extends AnimalEntity implements IShearable, net.minecraf
       p_203402_0_.put(DyeColor.BLUE, Blocks.BLUE_WOOL);
       p_203402_0_.put(DyeColor.BROWN, Blocks.BROWN_WOOL);
       p_203402_0_.put(DyeColor.GREEN, Blocks.GREEN_WOOL);
-      p_203402_0_.put(DyeColor.RED, BlockInit.CRASK.get());
       p_203402_0_.put(DyeColor.BLACK, Blocks.BLACK_WOOL);
    });
    /** Map from EnumDyeColor to RGB values for passage to GlStateManager.color() */
@@ -71,7 +71,7 @@ public class ViltEntity extends AnimalEntity implements IShearable, net.minecraf
    private EatGrassGoal eatGrassGoal;
 
    private static float[] createSheepColor(DyeColor dyeColorIn) {
-      if (dyeColorIn == DyeColor.WHITE) {
+      if (dyeColorIn == DyeColor.RED) {
          return new float[]{0.9019608F, 0.9019608F, 0.9019608F};
       } else {
          float[] afloat = dyeColorIn.getColorComponentValues();
@@ -133,9 +133,9 @@ public class ViltEntity extends AnimalEntity implements IShearable, net.minecraf
          return this.getType().getLootTable();
       } else {
          switch(this.getFleeceColor()) {
-         case WHITE:
+            case RED:
          default:
-            return LootTables.ENTITIES_SHEEP_WHITE;
+            return LootTables1.ENTITIES_VILT1;
          case ORANGE:
             return LootTables.ENTITIES_SHEEP_ORANGE;
          case MAGENTA:
@@ -162,8 +162,8 @@ public class ViltEntity extends AnimalEntity implements IShearable, net.minecraf
             return LootTables.ENTITIES_SHEEP_BROWN;
          case GREEN:
             return LootTables.ENTITIES_SHEEP_GREEN;
-         case RED:
-            return LootTables1.ENTITIES_VILT1;
+         case WHITE:
+            return LootTables.ENTITIES_SHEEP_WHITE;
          case BLACK:
             return LootTables.ENTITIES_SHEEP_BLACK;
          }
@@ -319,7 +319,7 @@ public class ViltEntity extends AnimalEntity implements IShearable, net.minecraf
       } else if (i < 18) {
          return DyeColor.BROWN;
       } else {
-         return random.nextInt(500) == 0 ? DyeColor.PINK : DyeColor.WHITE;
+         return random.nextInt(500) == 0 ? DyeColor.PINK : DyeColor.RED;
       }
    }
 

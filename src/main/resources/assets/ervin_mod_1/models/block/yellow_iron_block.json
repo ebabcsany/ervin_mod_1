@@ -1,6 +1,0 @@
-{
-  "parent": "block/cube_all",
-  "textures": {
-    "all": "ervin_mod_1:block/yellow_iron_block"
-  }
-}

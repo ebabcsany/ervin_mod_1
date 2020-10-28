@@ -12,8 +12,8 @@ public class ModFluids {
    public static final FlowingFluid LAVA = register("lava", new LavaFluid.Source());
    public static final FlowingFluid FLOWING_MILK = register("flowing_milk", new MilkFluid.Flowing());
    public static final FlowingFluid MILK = register("milk", new MilkFluid.Source());
-   public static final FlowingFluid FLOWING_JURK = register("flowing_jurk", new JurkFluid.Flowing());
-   public static final FlowingFluid JURK = register("jurk", new JurkFluid.Source());
+   /*public static final FlowingFluid FLOWING_JURK = register("flowing_jurk", new JurkFluid.Flowing());
+   public static final FlowingFluid JURK = register("jurk", new JurkFluid.Source());*/
 
    private static <T extends Fluid> T register(String key, T p_215710_1_) {
       return Registry.register(Registry.FLUID, key, p_215710_1_);

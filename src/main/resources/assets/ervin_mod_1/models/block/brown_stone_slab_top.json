@@ -1,8 +1,8 @@
 {
-  "parent": "block/slab_top",
+  "parent": "minecraft:block/slab_top",
   "textures": {
-    "bottom": "ervin_mod_1:block/brown_stone",
-    "top": "ervin_mod_1:block/brown_stone",
-    "side": "ervin_mod_1:block/brown_stone"
+    "bottom": "ervin_mod_1:block/stones/brown_stone",
+    "top": "ervin_mod_1:block/stones/brown_stone",
+    "side": "ervin_mod_1:block/stones/brown_stone"
   }
 }

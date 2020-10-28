@@ -12,8 +12,10 @@ import com.babcsany.minecraft.ervin_mod_1.world.feature.FrimTree;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.JazzTree;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.ModSaplingBlock;
 import net.minecraft.block.*;
+import net.minecraft.block.SandBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
+import net.minecraft.fluid.Fluids;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -2191,4 +2193,22 @@ public class BlockInit {
                     .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(100.0F, 2500.0F)
     ));
+    public static final RegistryObject<Block> NIRTK = BLOCKS.register("nirtk", () -> new Nirtk(
+            Block.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .harvestLevel(0)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(1.0F, 1000000000000000.0F)
+    ));
+    public static final RegistryObject<Block> NIRTKB = BLOCKS.register("nirtkb", () -> new Nirtkb(
+            14406560, AbstractBlock.Properties.create(Material.SAND)
+            .hardnessAndResistance(5.0F)
+    ));
+    public static final RegistryObject<Block> JURK = BLOCKS.register("fluid/jurk", () -> new FlowingFluidBlock1(
+            FluidInit.JURK, AbstractBlock.Properties.create(Material.WATER)
+            .doesNotBlockMovement()
+            .tickRandomly()
+            .hardnessAndResistance(100.0F)
+            .setLightLevel(Value -> 6)
+            .noDrops()));
 }

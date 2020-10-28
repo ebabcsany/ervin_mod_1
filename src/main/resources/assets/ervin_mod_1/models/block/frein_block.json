@@ -1,5 +1,5 @@
 {
-  "parent": "block/block",
+  "parent": "minecraft:block/block",
   "textures": {
     "particle": "ervin_mod_1:block/frein_block",
     "texture": "ervin_mod_1:block/frein_block"

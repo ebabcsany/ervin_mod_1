@@ -109,7 +109,7 @@ public class WanderingTraderNirtreTrades {
            new WanderingTraderNirtreTrades.ItemsForRubiesTrade(ItemInit.FIRT.get(), 1, 4, 14, 1),
            new WanderingTraderNirtreTrades.ItemsForRubiesTrade(ItemInit.VILKT.get(), 35, 1, 2, 6),
            new WanderingTraderNirtreTrades.ItemsForRubiesTrade(ItemInit.GRINT.get(), 25, 1, 22, 2),
-           new WanderingTraderNirtreTrades.ItemsForRubiesTrade(ItemInit.TARG_SEEDS.get(), 2, 1, 5, 1),
+           //new WanderingTraderNirtreTrades.ItemsForRubiesTrade(ItemInit.TARG_SEEDS.get(), 2, 1, 5, 1),
            new WanderingTraderNirtreTrades.ItemsForNautilusShellsTrade(BlockInit.DURT.get(), 5, 1, 20, 3),
            new WanderingTraderNirtreTrades.ItemsForMlonksTrade(BlockInit.SHZ_BLOCK.get(), 4, 1, 10, 2),
            new WanderingTraderNirtreTrades.ItemsForGrassBlocksTrade(ItemInit.ZUR_ENTITY_SPAWN_EGG.get(), 4, 1, 9, 1),

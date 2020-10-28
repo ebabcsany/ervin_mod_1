@@ -1,5 +1,5 @@
 {
-  "parent": "block/cube",
+  "parent": "minecraft:block/cube",
   "textures": {
     "up": "ervin_mod_1:block/craint_block_crafting_table_top",
     "down": "ervin_mod_1:block/craint_block_crafting_table_bottom",

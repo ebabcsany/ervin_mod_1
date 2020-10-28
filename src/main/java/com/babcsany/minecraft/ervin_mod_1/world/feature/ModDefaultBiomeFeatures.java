@@ -31,6 +31,7 @@ public class ModDefaultBiomeFeatures {
    private static final BlockState GRASS = Blocks.GRASS.getDefaultState();
    private static final BlockState OBSIDIAN = Blocks.OBSIDIAN.getDefaultState();
    private static final BlockState FIRG = BlockInit.FIRG.get().getDefaultState();
+   private static final BlockState NIRTKB = BlockInit.NIRTKB.get().getDefaultState();
    private static final BlockState SCRAFTH = BlockInit.SCRAFTH.get().getDefaultState();
    private static final BlockState GRITH_BLOCK = BlockInit.GRITH_BLOCK.get().getDefaultState();
    private static final BlockState GRINT_BLOCK = BlockInit.GRINT_BLOCK.get().getDefaultState();
@@ -308,6 +309,14 @@ public class ModDefaultBiomeFeatures {
 
    public static void addFirgs(Biome biomeIn) {
       biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, FIRG, 400)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(400, 0, 0, 2000))));
+   }
+
+   public static void addNirtkb(Biome biomeIn) {
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, NIRTKB, 400)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(400, 0, 0, 2000))));
+   }
+
+   public static void addNirtkb1(Biome biomeIn) {
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, NIRTKB, 100)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(100, 0, 0, 2000))));
    }
 
    public static void addScrafth(Biome biomeIn) {

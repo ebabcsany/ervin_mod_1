@@ -36,11 +36,11 @@ import java.util.Random;
 
 public abstract class JurkFluid extends FlowingFluid {
    public Fluid getFlowingFluid() {
-      return ModFluids.FLOWING_JURK;
+      return FluidInit.FLOWING_JURK.get();
    }
 
    public Fluid getStillFluid() {
-      return ModFluids.JURK;
+      return FluidInit.JURK.get();
    }
 
    public Item getFilledBucket() {
@@ -79,11 +79,11 @@ public abstract class JurkFluid extends FlowingFluid {
    }
 
    public BlockState getBlockState(FluidState state) {
-      return Blocks.WATER.getDefaultState().with(FlowingFluidBlock1.LEVEL, Integer.valueOf(getLevelFromState(state)));
+      return BlockInit.JURK.get().getDefaultState().with(FlowingFluidBlock1.LEVEL, Integer.valueOf(getLevelFromState(state)));
    }
 
    public boolean isEquivalentTo(Fluid fluidIn) {
-      return fluidIn == ModFluids.JURK || fluidIn == ModFluids.FLOWING_JURK;
+      return fluidIn == FluidInit.JURK.get() || fluidIn == FluidInit.FLOWING_JURK.get();
    }
 
    public int getLevelDecreasePerBlock(IWorldReader worldIn) {

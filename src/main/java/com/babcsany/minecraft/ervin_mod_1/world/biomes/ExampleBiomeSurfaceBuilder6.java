@@ -1,0 +1,42 @@
+package com.babcsany.minecraft.ervin_mod_1.world.biomes;
+
+import com.babcsany.minecraft.ervin_mod_1.init.BlockInit;
+import com.mojang.serialization.Codec;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.chunk.IChunk;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
+
+import java.util.Random;
+
+public class ExampleBiomeSurfaceBuilder6 extends SurfaceBuilder<SurfaceBuilderConfig> {
+
+	public ExampleBiomeSurfaceBuilder6(Codec<SurfaceBuilderConfig> function) {
+		super(function);
+	}
+
+	@Override
+	public void buildSurface(Random random, IChunk chunkIn, Biome biomeIn, int x, int z, int startHeight, double noise,
+			BlockState defaultBlock, BlockState defaultFluid, int seaLevel, long seed, SurfaceBuilderConfig config) {
+		Random rd = new Random();
+		int i = rd.nextInt(3);
+		if (i == 0) {
+			SurfaceBuilder.SWAMP.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock,
+					defaultFluid, seaLevel, seed,
+					new SurfaceBuilderConfig(
+							Blocks.GRASS_BLOCK.getDefaultState(),
+							BlockInit.KALT_BLOCK.get().getDefaultState(),
+							Blocks.WATER.getDefaultState()));
+		} else {
+			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock,
+					defaultFluid, seaLevel, seed,
+					new SurfaceBuilderConfig(
+							BlockInit.SRIUNK_BLOCK.get().getDefaultState(),
+							BlockInit.TRUGN.get().getDefaultState(),
+							BlockInit.TRINKS.get().getDefaultState()
+					));
+		}
+	}
+}

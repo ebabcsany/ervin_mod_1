@@ -1,5 +1,5 @@
 {
-  "parent": "block/stairs",
+  "parent": "minecraft:block/stairs",
   "textures": {
     "bottom": "ervin_mod_1:block/light_blue_smooth_stone",
     "top": "ervin_mod_1:block/light_blue_smooth_stone",

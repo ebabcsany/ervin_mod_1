@@ -1,5 +1,5 @@
 {
-  "parent": "block/slab",
+  "parent": "minecraft:block/slab",
   "textures": {
     "bottom": "minecraft:block/coal_block",
     "top": "minecraft:block/coal_block",

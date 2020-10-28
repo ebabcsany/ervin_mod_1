@@ -1,0 +1,6 @@
+{
+  "parent": "ervin_mod_1:item/generated",
+  "textures": {
+    "layer0": "minecraft:item/rotten_flesh"
+  }
+}

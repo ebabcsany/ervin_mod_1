@@ -1,7 +1,13 @@
 {
   "variants": {
-    "type=bottom": { "model": "ervin_mod_1:block/sriunk_slab1" },
-    "type=top": { "model": "ervin_mod_1:block/sriunk_slab1_top" },
-    "type=double": { "model": "ervin_mod_1:block/sriunk_block" }
+    "type=bottom": {
+      "model": "ervin_mod_1:block/sriunk_slab1"
+    },
+    "type=double": {
+      "model": "ervin_mod_1:block/sriunk_slab"
+    },
+    "type=top": {
+      "model": "ervin_mod_1:block/sriunk_slab1_top"
+    }
   }
 }

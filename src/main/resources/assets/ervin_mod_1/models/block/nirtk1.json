@@ -1,0 +1,8 @@
+{
+  "parent": "ervin_mod_1:block/block1",
+  "textures": {
+    "bottom": "ervin_mod_1:block/nirtk",
+    "top": "ervin_mod_1:block/nirtk",
+    "side": "ervin_mod_1:block/nirtk"
+  }
+}

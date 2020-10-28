@@ -48,6 +48,21 @@ public class BiomeInit {
 									.category(Category.PLAINS).downfall(12.4f).depth(6.5f).parent(null)
 									.func_235098_a_(ImmutableList.of(new Biome.Attributes(10.25F, -6.5F, 13.5F, 9.2F, 3.0F)))
 					));
+	public static final RegistryObject<Biome> EXAMPLE_BIOME6 = BIOMES
+			.register("example_biome6",
+					() -> new ExampleBiome6(
+							new Biome.Builder().precipitation(RainType.NONE).scale(1.2f).temperature(0.5f)
+									.func_235097_a_((new BiomeAmbience.Builder()).setWaterColor(10456252).setWaterFogColor(26762304).setFogColor(12538462).build())
+									.surfaceBuilder(
+											new ConfiguredSurfaceBuilder<SurfaceBuilderConfig>(
+													register("example_surface6",
+															new ExampleBiomeSurfaceBuilder6(
+																	SurfaceBuilderConfig.field_237203_a_)),
+													new SurfaceBuilderConfig(BlockInit.KALT_BLOCK.get().getDefaultState(),
+															BlockInit.NIRTKB.get().getDefaultState(),
+															BlockInit.NIRTK.get().getDefaultState())))
+									.category(Category.PLAINS).downfall(12.4f).depth(6.5f).parent(null)
+					));
 	public static final RegistryObject<Biome> EXAMPLE_BIOME = BIOMES
 			.register("example_biome",
 					() -> new ExampleBiome(

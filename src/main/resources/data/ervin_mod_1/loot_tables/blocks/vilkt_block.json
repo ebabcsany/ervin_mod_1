@@ -484,10 +484,10 @@
           "type": "minecraft:item",
           "name": "ervin_mod_1:firg_boat"
         },
-        {
+        /*{
           "type": "minecraft:item",
           "name": "ervin_mod_1:firg_door"
-        },
+        },*/
         {
           "type": "minecraft:item",
           "name": "ervin_mod_1:firg_leaves"

@@ -1,5 +1,5 @@
 {
-  "parent": "block/outer_stairs",
+  "parent": "minecraft:block/outer_stairs",
   "textures": {
     "bottom": "ervin_mod_1:block/light_blue_cobblestone",
     "top": "ervin_mod_1:block/light_blue_cobblestone",
