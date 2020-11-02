@@ -8,6 +8,7 @@ import net.minecraft.client.world.ClientWorld;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.particles.IParticleData;
 import net.minecraft.particles.ParticleType;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
@@ -16,11 +17,11 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.Locale;
 
-public class ColouredParticle extends SpriteTexturedParticle {
+public class ColouredParticle /*extends SpriteTexturedParticle*/ {
 
 	private double posX, posY, posZ;
 
-	public ColouredParticle(World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn,
+	/*public ColouredParticle(World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn,
                             double ySpeedIn, double zSpeedIn, ColouredParticleData data, IAnimatedSprite sprite) {
 		super((ClientWorld) worldIn, xCoordIn, yCoordIn, zCoordIn, xSpeedIn, ySpeedIn, zSpeedIn);
 
@@ -132,7 +133,7 @@ public class ColouredParticle extends SpriteTexturedParticle {
 
 		@Override
 		public ParticleType<ColouredParticleData> getType() {
-			return ParticleInit.COLOURED_PARTICLE.get();
+			return ParticleTypes.CLOUD;
 		}
 
 		@OnlyIn(Dist.CLIENT)
@@ -154,6 +155,6 @@ public class ColouredParticle extends SpriteTexturedParticle {
 		public float getAlpha() {
 			return this.alpha;
 		}
-	}
+	}*/
 
 }

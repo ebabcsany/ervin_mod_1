@@ -2406,63 +2406,63 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:tripwire_hooks/black_tripwire_hook"
+          "name": "ervin_mod_1:tripwires/tripwire_hooks/black_tripwire_hook"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:tripwire_hooks/blue_tripwire_hook"
+          "name": "ervin_mod_1:tripwires/tripwire_hooks/blue_tripwire_hook"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:tripwire_hooks/brown_tripwire_hook"
+          "name": "ervin_mod_1:tripwires/tripwire_hooks/brown_tripwire_hook"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:tripwire_hooks/cyan_tripwire_hook"
+          "name": "ervin_mod_1:tripwires/tripwire_hooks/cyan_tripwire_hook"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:tripwire_hooks/gray_tripwire_hook"
+          "name": "ervin_mod_1:tripwires/tripwire_hooks/gray_tripwire_hook"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:tripwire_hooks/green_tripwire_hook"
+          "name": "ervin_mod_1:tripwires/tripwire_hooks/green_tripwire_hook"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:tripwire_hooks/light_blue_tripwire_hook"
+          "name": "ervin_mod_1:tripwires/tripwire_hooks/light_blue_tripwire_hook"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:tripwire_hooks/light_gray_tripwire_hook"
+          "name": "ervin_mod_1:tripwires/tripwire_hooks/light_gray_tripwire_hook"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:tripwire_hooks/lime_tripwire_hook"
+          "name": "ervin_mod_1:tripwires/tripwire_hooks/lime_tripwire_hook"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:tripwire_hooks/magenta_tripwire_hook"
+          "name": "ervin_mod_1:tripwires/tripwire_hooks/magenta_tripwire_hook"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:tripwire_hooks/orange_tripwire_hook"
+          "name": "ervin_mod_1:tripwires/tripwire_hooks/orange_tripwire_hook"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:tripwire_hooks/pink_tripwire_hook"
+          "name": "ervin_mod_1:tripwires/tripwire_hooks/pink_tripwire_hook"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:tripwire_hooks/purple_tripwire_hook"
+          "name": "ervin_mod_1:tripwires/tripwire_hooks/purple_tripwire_hook"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:tripwire_hooks/red_tripwire_hook"
+          "name": "ervin_mod_1:tripwires/tripwire_hooks/red_tripwire_hook"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:tripwire_hooks/yellow_tripwire_hook"
+          "name": "ervin_mod_1:tripwires/tripwire_hooks/yellow_tripwire_hook"
         }
       ],
       "conditions": [

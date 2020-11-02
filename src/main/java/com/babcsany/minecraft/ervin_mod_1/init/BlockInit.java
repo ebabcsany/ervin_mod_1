@@ -1810,7 +1810,7 @@ public class BlockInit {
                     .harvestLevel(2)
                     .hardnessAndResistance(100.0f)
     ));
-    public static final RegistryObject<Block> TARG_SEEDS = BLOCKS.register("targ_seeds", () -> new TargCropsBlock(
+    public static final RegistryObject<Block> TARG_SEEDS = BLOCKS.register("crops/targ_seeds", () -> new TargCropsBlock(
             Block.Properties.create(Material.PLANTS)
                     .zeroHardnessAndResistance()
                     .doesNotBlockMovement()
