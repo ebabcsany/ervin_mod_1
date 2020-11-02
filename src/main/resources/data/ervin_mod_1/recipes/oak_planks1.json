@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:oak_planks"
+    },
+    {
+      "item": "ervin_mod_1:air"
+    }
+  ],
+  "result": {
+    "item": "ervin_mod_1:oak_planks1",
+    "count": 1
+  }
+}

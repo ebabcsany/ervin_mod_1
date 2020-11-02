@@ -1,5 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.block;
 
+import com.babcsany.minecraft.ervin_mod_1.init.BlockInit;
 import com.babcsany.minecraft.ervin_mod_1.init.ItemInit;
 import com.babcsany.minecraft.ervin_mod_1.state.ModBlockStateProperties;
 import net.minecraft.block.*;
@@ -188,7 +189,7 @@ public class TargCropsBlock extends BushBlock implements IGrowable {
    }
 
    protected IItemProvider getSeedsItem() {
-      return ItemInit.TERAT.get();
+      return BlockInit.TARG_SEEDS.get();
    }
 
    public ItemStack getItem(IBlockReader worldIn, BlockPos pos, BlockState state) {

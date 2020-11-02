@@ -27,8 +27,11 @@ import net.minecraft.world.gen.trunkplacer.*;
 
 import java.util.OptionalInt;
 
+import static net.minecraft.block.Blocks.SOUL_SOIL;
+
 public class ModDefaultBiomeFeatures {
    private static final BlockState GRASS = Blocks.GRASS.getDefaultState();
+   private static final BlockState SOUL_FIRE = Blocks.GRASS.getDefaultState();
    private static final BlockState OBSIDIAN = Blocks.OBSIDIAN.getDefaultState();
    private static final BlockState FIRG = BlockInit.FIRG.get().getDefaultState();
    private static final BlockState NIRTKB = BlockInit.NIRTKB.get().getDefaultState();
@@ -90,6 +93,7 @@ public class ModDefaultBiomeFeatures {
    private static final BlockState CYAN_STONE_IRON_ORE = BlockInit.CYAN_STONE_IRON_ORE.get().getDefaultState();
    private static final BlockState GREEN_STONE_IRON_ORE = BlockInit.GREEN_STONE_IRON_ORE.get().getDefaultState();
    private static final BlockState LIGHT_BLUE_STONE_IRON_ORE = BlockInit.LIGHT_BLUE_STONE_IRON_ORE.get().getDefaultState();
+   private static final BlockState LIGHT_BLUE1_STONE_IRON_ORE = BlockInit.LIGHT_BLUE1_STONE_IRON_ORE.get().getDefaultState();
    private static final BlockState LIGHT_GRAY_STONE_IRON_ORE = BlockInit.LIGHT_GRAY_STONE_IRON_ORE.get().getDefaultState();
    private static final BlockState LIME_STONE_IRON_ORE = BlockInit.LIME_STONE_IRON_ORE.get().getDefaultState();
    private static final BlockState MAGENTA_STONE_IRON_ORE = BlockInit.MAGENTA_STONE_IRON_ORE.get().getDefaultState();
@@ -99,6 +103,22 @@ public class ModDefaultBiomeFeatures {
    private static final BlockState RED_STONE_IRON_ORE = BlockInit.RED_STONE_IRON_ORE.get().getDefaultState();
    private static final BlockState WHITE_STONE_IRON_ORE = BlockInit.WHITE_STONE_IRON_ORE.get().getDefaultState();
    private static final BlockState YELLOW_STONE_IRON_ORE = BlockInit.YELLOW_STONE_IRON_ORE.get().getDefaultState();
+   private static final BlockState BLACK_STONE_BLACK_IRON_ORE = BlockInit.BLACK_STONE_BLACK_IRON_ORE.get().getDefaultState();
+   private static final BlockState BLUE_STONE_BLACK_IRON_ORE = BlockInit.BLUE_STONE_BLACK_IRON_ORE.get().getDefaultState();
+   private static final BlockState BROWN_STONE_BLACK_IRON_ORE = BlockInit.BROWN_STONE_BLACK_IRON_ORE.get().getDefaultState();
+   private static final BlockState CYAN_STONE_BLACK_IRON_ORE = BlockInit.CYAN_STONE_BLACK_IRON_ORE.get().getDefaultState();
+   private static final BlockState GREEN_STONE_BLACK_IRON_ORE = BlockInit.GREEN_STONE_BLACK_IRON_ORE.get().getDefaultState();
+   private static final BlockState LIGHT_BLUE_STONE_BLACK_IRON_ORE = BlockInit.LIGHT_BLUE_STONE_BLACK_IRON_ORE.get().getDefaultState();
+   private static final BlockState LIGHT_BLUE1_STONE_BLACK_IRON_ORE = BlockInit.LIGHT_BLUE1_STONE_BLACK_IRON_ORE.get().getDefaultState();
+   private static final BlockState LIGHT_GRAY_STONE_BLACK_IRON_ORE = BlockInit.LIGHT_GRAY_STONE_BLACK_IRON_ORE.get().getDefaultState();
+   private static final BlockState LIME_STONE_BLACK_IRON_ORE = BlockInit.LIME_STONE_BLACK_IRON_ORE.get().getDefaultState();
+   private static final BlockState MAGENTA_STONE_BLACK_IRON_ORE = BlockInit.MAGENTA_STONE_BLACK_IRON_ORE.get().getDefaultState();
+   private static final BlockState ORANGE_STONE_BLACK_IRON_ORE = BlockInit.ORANGE_STONE_BLACK_IRON_ORE.get().getDefaultState();
+   private static final BlockState PINK_STONE_BLACK_IRON_ORE = BlockInit.PINK_STONE_BLACK_IRON_ORE.get().getDefaultState();
+   private static final BlockState PURPLE_STONE_BLACK_IRON_ORE = BlockInit.PURPLE_STONE_BLACK_IRON_ORE.get().getDefaultState();
+   private static final BlockState RED_STONE_BLACK_IRON_ORE = BlockInit.RED_STONE_BLACK_IRON_ORE.get().getDefaultState();
+   private static final BlockState WHITE_STONE_BLACK_IRON_ORE = BlockInit.WHITE_STONE_BLACK_IRON_ORE.get().getDefaultState();
+   private static final BlockState YELLOW_STONE_BLACK_IRON_ORE = BlockInit.YELLOW_STONE_BLACK_IRON_ORE.get().getDefaultState();
    private static final BlockState BLACK_STONE_RED_IRON_ORE = BlockInit.BLACK_STONE_RED_IRON_ORE.get().getDefaultState();
    private static final BlockState GOLD_ORE = Blocks.GOLD_ORE.getDefaultState();
    private static final BlockState REDSTONE_ORE = Blocks.REDSTONE_ORE.getDefaultState();
@@ -216,6 +236,7 @@ public class ModDefaultBiomeFeatures {
    public static final BlockClusterFeatureConfig SCRAFTH_MUSHROOM_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(SCRAFTH), new SimpleBlockPlacer())).tries(64).func_227317_b_().build();
    public static final BlockClusterFeatureConfig BROWN_MUSHROOM_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(BROWN_MUSHROOM), new SimpleBlockPlacer())).tries(64).func_227317_b_().build();
    public static final BlockClusterFeatureConfig LILAC_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(LILAC), new DoublePlantBlockPlacer())).tries(64).func_227317_b_().build();
+   public static final BlockClusterFeatureConfig NETHER_SOUL_FIRE = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(SOUL_FIRE), new SimpleBlockPlacer())).tries(64).whitelist(ImmutableSet.of(SOUL_SOIL.getBlock())).func_227317_b_().build();
    public static final BlockClusterFeatureConfig ROSE_BUSH_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ROSE_BUSH), new DoublePlantBlockPlacer())).tries(64).func_227317_b_().build();
    public static final BlockClusterFeatureConfig PEONY_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(PEONY), new DoublePlantBlockPlacer())).tries(64).func_227317_b_().build();
    public static final BlockClusterFeatureConfig SUNFLOWER_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(SUNFLOWER), new DoublePlantBlockPlacer())).tries(64).func_227317_b_().build();
@@ -362,6 +383,7 @@ public class ModDefaultBiomeFeatures {
       biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, CYAN_STONE_IRON_ORE, 9)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(20, 0, 0, 64))));
       biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, GREEN_STONE_IRON_ORE, 9)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(20, 0, 0, 64))));
       biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, LIGHT_BLUE_STONE_IRON_ORE, 9)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(20, 0, 0, 64))));
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, LIGHT_BLUE1_STONE_IRON_ORE, 9)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(20, 0, 0, 64))));
       biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, LIGHT_GRAY_STONE_IRON_ORE, 9)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(20, 0, 0, 64))));
       biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, LIME_STONE_IRON_ORE, 9)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(20, 0, 0, 64))));
       biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, MAGENTA_STONE_IRON_ORE, 9)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(20, 0, 0, 64))));
@@ -371,6 +393,25 @@ public class ModDefaultBiomeFeatures {
       biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, RED_STONE_IRON_ORE, 9)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(20, 0, 0, 64))));
       biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, WHITE_STONE_IRON_ORE, 9)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(20, 0, 0, 64))));
       biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, YELLOW_STONE_IRON_ORE, 9)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(20, 0, 0, 64))));
+   }
+
+   public static void addBlackIronOres(Biome biomeIn) {
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, BLACK_STONE_BLACK_IRON_ORE, 9)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(20, 0, 0, 64))));
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, BLUE_STONE_BLACK_IRON_ORE, 9)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(20, 0, 0, 64))));
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, BROWN_STONE_BLACK_IRON_ORE, 9)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(20, 0, 0, 64))));
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, CYAN_STONE_BLACK_IRON_ORE, 9)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(20, 0, 0, 64))));
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, GREEN_STONE_BLACK_IRON_ORE, 9)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(20, 0, 0, 64))));
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, LIGHT_BLUE_STONE_BLACK_IRON_ORE, 9)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(20, 0, 0, 64))));
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, LIGHT_BLUE1_STONE_BLACK_IRON_ORE, 9)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(20, 0, 0, 64))));
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, LIGHT_GRAY_STONE_BLACK_IRON_ORE, 9)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(20, 0, 0, 64))));
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, LIME_STONE_BLACK_IRON_ORE, 9)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(20, 0, 0, 64))));
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, MAGENTA_STONE_BLACK_IRON_ORE, 9)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(20, 0, 0, 64))));
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, ORANGE_STONE_BLACK_IRON_ORE, 9)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(20, 0, 0, 64))));
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, PINK_STONE_BLACK_IRON_ORE, 9)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(20, 0, 0, 64))));
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, PURPLE_STONE_BLACK_IRON_ORE, 9)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(20, 0, 0, 64))));
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, RED_STONE_BLACK_IRON_ORE, 9)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(20, 0, 0, 64))));
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, WHITE_STONE_BLACK_IRON_ORE, 9)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(20, 0, 0, 64))));
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, YELLOW_STONE_BLACK_IRON_ORE, 9)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(20, 0, 0, 64))));
    }
 
    public static void addRedIronOres(Biome biomeIn) {

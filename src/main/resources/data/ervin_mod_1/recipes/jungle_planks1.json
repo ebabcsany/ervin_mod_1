@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:jungle_planks"
+    },
+    {
+      "item": "ervin_mod_1:air"
+    }
+  ],
+  "result": {
+    "item": "ervin_mod_1:jungle_planks1",
+    "count": 1
+  }
+}

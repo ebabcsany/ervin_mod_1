@@ -1,7 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.villager;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.LookAtCustomerGoal1;
-import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.TradeWithPlayerGoal1;
+import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.WanderingTraderTradeWithPlayerGoal;
 import com.babcsany.minecraft.ervin_mod_1.init.ItemInit;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
@@ -34,7 +34,7 @@ public class TraderNirtreEntity extends AbstractNirtreEntity {
 
    protected void registerGoals() {
       this.goalSelector.addGoal(0, new SwimGoal(this));
-      this.goalSelector.addGoal(1, new TradeWithPlayerGoal1(this));
+      this.goalSelector.addGoal(1, new WanderingTraderTradeWithPlayerGoal(this));
       this.goalSelector.addGoal(1, new PanicGoal(this, 0.5D));
       this.goalSelector.addGoal(1, new LookAtCustomerGoal1(this));
       this.goalSelector.addGoal(4, new MoveTowardsRestrictionGoal(this, 0.35D));

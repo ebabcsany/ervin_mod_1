@@ -43,7 +43,7 @@ public class BlockInit {
             Block.Properties.from(Blocks.OAK_LEAVES)
     ));
     public static final RegistryObject<Block> JAZZ_SAPLING = BLOCKS.register("jazz_sapling", () -> new ModSaplingBlock(
-            () -> new JazzTree(), Block.Properties.from(OAK_SAPLING)
+            JazzTree::new, Block.Properties.from(OAK_SAPLING)
     ));
     public static final RegistryObject<Block> VILTDROP_BLOCK = BLOCKS.register("viltdrop_block", () -> new ViltdropBlock(
             Block.Properties.create(Material.ROCK)
@@ -1810,7 +1810,7 @@ public class BlockInit {
                     .harvestLevel(2)
                     .hardnessAndResistance(100.0f)
     ));
-    public static final RegistryObject<Block> TARG = BLOCKS.register("targ_seeds", () -> new TargCropsBlock(
+    public static final RegistryObject<Block> TARG_SEEDS = BLOCKS.register("targ_seeds", () -> new TargCropsBlock(
             Block.Properties.create(Material.PLANTS)
                     .zeroHardnessAndResistance()
                     .doesNotBlockMovement()
@@ -1976,7 +1976,7 @@ public class BlockInit {
                     .hardnessAndResistance(3.0F,3.0F)
                     .sound(SoundType.METAL)
     ));
-    /*public static final RegistryObject<Block> BROWN_STONE_BLACK_IRON_ORE = BLOCKS.register("iron_ores/brown_stone/black_iron_ore", () -> new BlackIronOre(
+    public static final RegistryObject<Block> BROWN_STONE_BLACK_IRON_ORE = BLOCKS.register("iron_ores/brown_stone/black_iron_ore", () -> new BlackIronOre(
             AbstractBlock.Properties.create(Material.ROCK)
                     .harvestLevel(1)
                     .setRequiresTool()
@@ -1998,6 +1998,13 @@ public class BlockInit {
                     .sound(SoundType.METAL)
     ));
     public static final RegistryObject<Block> LIGHT_BLUE_STONE_BLACK_IRON_ORE = BLOCKS.register("iron_ores/light_blue_stone/black_iron_ore", () -> new BlackIronOre(
+            AbstractBlock.Properties.create(Material.ROCK)
+                    .harvestLevel(1)
+                    .setRequiresTool()
+                    .hardnessAndResistance(3.0F,3.0F)
+                    .sound(SoundType.METAL)
+    ));
+    public static final RegistryObject<Block> LIGHT_BLUE1_STONE_BLACK_IRON_ORE = BLOCKS.register("iron_ores/light_blue1_stone/black_iron_ore", () -> new BlackIronOre(
             AbstractBlock.Properties.create(Material.ROCK)
                     .harvestLevel(1)
                     .setRequiresTool()
@@ -2066,7 +2073,7 @@ public class BlockInit {
                     .setRequiresTool()
                     .hardnessAndResistance(3.0F,3.0F)
                     .sound(SoundType.METAL)
-    ));*/
+    ));
     public static final RegistryObject<Block> BLACK_STONE_IRON_ORE = BLOCKS.register("iron_ores/black_stone/iron_ore", () -> new IronOre(
             AbstractBlock.Properties.create(Material.ROCK)
                     .harvestLevel(1)
@@ -2204,11 +2211,60 @@ public class BlockInit {
             14406560, AbstractBlock.Properties.create(Material.SAND)
             .hardnessAndResistance(5.0F)
     ));
-    public static final RegistryObject<Block> JURK = BLOCKS.register("fluid/jurk", () -> new FlowingFluidBlock1(
+    public static final RegistryObject<Block> JURK = BLOCKS.register("fluid/jurk", () -> new FlowingFluidBlock(
             FluidInit.JURK, AbstractBlock.Properties.create(Material.WATER)
             .doesNotBlockMovement()
             .tickRandomly()
             .hardnessAndResistance(100.0F)
             .setLightLevel(Value -> 6)
-            .noDrops()));
+            .noDrops()
+    ));
+    public static final RegistryObject<Block> ACACIA_PLANKS1 = BLOCKS.register("acacia_planks1", () -> new AcaciaPlanks1(
+            AbstractBlock.Properties.create(Material.WOOD, MaterialColor.ADOBE)
+                    .hardnessAndResistance(2.0F, 3.0F)
+                    .doesNotBlockMovement()
+                    .sound(SoundType.WOOD)
+    ));
+    public static final RegistryObject<Block> BIRCH_PLANKS1 = BLOCKS.register("birch_planks1", () -> new BirchPlanks1(
+            AbstractBlock.Properties.create(Material.WOOD, MaterialColor.SAND)
+                    .hardnessAndResistance(2.0F, 3.0F)
+                    .doesNotBlockMovement()
+                    .sound(SoundType.WOOD)
+    ));
+    public static final RegistryObject<Block> DARK_OAK_PLANKS1 = BLOCKS.register("dark_oak_planks1", () -> new DarkOakPlanks1(
+            AbstractBlock.Properties.create(Material.WOOD, MaterialColor.BROWN)
+                    .hardnessAndResistance(2.0F, 3.0F)
+                    .doesNotBlockMovement()
+                    .sound(SoundType.WOOD)
+    ));
+    /*public static final RegistryObject<Block> FIRG_PLANKS1 = BLOCKS.register("firg_planks1", () -> new FirgPlanks(
+            Block.Properties.create(Material.WOOD, MaterialColor.WOOD)
+                    .hardnessAndResistance(2.0F, 3.0F)
+                    .sound(SoundType.WOOD)
+    ));*/
+    public static final RegistryObject<Block> JUNGLE_PLANKS1 = BLOCKS.register("jungle_planks1", () -> new JunglePlanks1(
+            AbstractBlock.Properties.create(Material.WOOD, MaterialColor.DIRT)
+                    .hardnessAndResistance(2.0F, 3.0F)
+                    .doesNotBlockMovement()
+                    .sound(SoundType.WOOD)
+    ));
+    public static final RegistryObject<Block> OAK_PLANKS1 = BLOCKS.register("oak_planks1", () -> new OakPlanks1(
+            AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD)
+                    .hardnessAndResistance(2.0F, 3.0F)
+                    .doesNotBlockMovement()
+                    .sound(SoundType.WOOD)
+    ));
+    public static final RegistryObject<Block> SPRUCE_PLANKS1 = BLOCKS.register("spruce_planks1", () -> new SprucePlanks1(
+            AbstractBlock.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN)
+                    .hardnessAndResistance(2.0F, 3.0F)
+                    .doesNotBlockMovement()
+                    .sound(SoundType.WOOD)
+    ));
+    public static final RegistryObject<Block> RUBY_ORE = BLOCKS.register("ruby_ore", () -> new RubyOre(
+            AbstractBlock.Properties.create(Material.ROCK)
+                    .harvestLevel(2)
+                    .setRequiresTool()
+                    .hardnessAndResistance(3.0F, 3.0F)
+                    .sound(SoundType.WOOD)
+    ));
 }

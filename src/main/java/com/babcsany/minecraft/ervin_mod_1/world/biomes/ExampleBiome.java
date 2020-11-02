@@ -8,6 +8,7 @@ import com.babcsany.minecraft.ervin_mod_1.entity.animal.WolfEntity1;
 import com.babcsany.minecraft.ervin_mod_1.entity.animal.ZurEntity1;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
+import com.babcsany.minecraft.ervin_mod_1.init.FeatureInit;
 import com.babcsany.minecraft.ervin_mod_1.init.ModBiomeFeatures;
 import com.babcsany.minecraft.ervin_mod_1.init.SurfaceBuilderInit;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.FirgTree;
@@ -76,7 +77,7 @@ public class ExampleBiome extends Biome {
 				Feature.RANDOM_BOOLEAN_SELECTOR
 						.withConfiguration(new TwoFeatureChoiceConfig(
 								Feature.HUGE_RED_MUSHROOM.withConfiguration(ModDefaultBiomeFeatures.BIG_GRINTH_MUSHROOM),
-								Feature.HUGE_BROWN_MUSHROOM.withConfiguration(ModDefaultBiomeFeatures.BIG_SCRAFTH_MUSHROOM)))
+								Feature.HUGE_RED_MUSHROOM.withConfiguration(ModDefaultBiomeFeatures.BIG_SCRAFTH_MUSHROOM)))
 						.withPlacement(Placement.CHANCE_PASSTHROUGH.configure(new ChanceConfig(1))));
 		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
 				Feature.RANDOM_BOOLEAN_SELECTOR
@@ -104,7 +105,9 @@ public class ExampleBiome extends Biome {
 						Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(180, 48.0f, 100))));
 
 		DefaultBiomeFeatures.addOres(this);
+		ModDefaultBiomeFeatures.addBlackIronOres(this);
 		ModDefaultBiomeFeatures.addIronOres(this);
+		ModDefaultBiomeFeatures.addRedIronOres(this);
 		DefaultBiomeFeatures.addExtraGoldOre(this);
 		ModDefaultBiomeFeatures.addExtraEmeraldOre(this);
 		ModBiomeFeatures.addExampleFeature(this, 1000);

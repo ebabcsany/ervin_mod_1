@@ -17,20 +17,20 @@ public class OreBlock1 extends Block {
    }
 
    protected int getExperience(Random rand) {
-      if (this == Blocks.COAL_ORE) {
-         return MathHelper.nextInt(rand, 0, 2);
-      } else if (this == Blocks.DIAMOND_ORE) {
+      if (this == BlockInit.SRIUNK_ORE.get()) {
+         return MathHelper.nextInt(rand, 1, 5);
+      /*} else if (this == Blocks.DIAMOND_ORE) {
          return MathHelper.nextInt(rand, 3, 7);
       } else if (this == BlockInit.SRIUNK_ORE.get()) {
-         return MathHelper.nextInt(rand, 4, 9);
-      } else if (this == Blocks.EMERALD_ORE) {
+         return MathHelper.nextInt(rand, 4, 9);*/
+      } else if (this == BlockInit.RUBY_ORE.get()) {
          return MathHelper.nextInt(rand, 3, 7);
-      } else if (this == Blocks.LAPIS_ORE) {
+      /*} else if (this == Blocks.LAPIS_ORE) {
          return MathHelper.nextInt(rand, 2, 5);
       } else if (this == Blocks.NETHER_QUARTZ_ORE) {
-         return MathHelper.nextInt(rand, 2, 5);
+         return MathHelper.nextInt(rand, 2, 5);*/
       } else {
-         return this == Blocks.NETHER_GOLD_ORE ? MathHelper.nextInt(rand, 0, 1) : 0;
+         return this == BlockInit.VILKT_BLOCK.get() ? MathHelper.nextInt(rand, 0, 10) : 0;
       }
    }
 

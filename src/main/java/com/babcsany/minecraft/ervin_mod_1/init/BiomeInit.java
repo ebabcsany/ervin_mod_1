@@ -2,6 +2,7 @@ package com.babcsany.minecraft.ervin_mod_1.init;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.world.biomes.*;
+import com.babcsany.minecraft.ervin_mod_1.world.gen.surfacebuilders.SriunkBlockValleySurfaceBuilder;
 import com.babcsany.minecraft.ervin_mod_1.world.gen.surfacebuilders.SurfaceBuilderConfig1;
 import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
@@ -47,6 +48,21 @@ public class BiomeInit {
 															Blocks.CARVED_PUMPKIN.getDefaultState())))
 									.category(Category.PLAINS).downfall(12.4f).depth(6.5f).parent(null)
 									.func_235098_a_(ImmutableList.of(new Biome.Attributes(10.25F, -6.5F, 13.5F, 9.2F, 3.0F)))
+					));
+	public static final RegistryObject<Biome> SRIUNK_VALLEY_BIOME = BIOMES
+			.register("sriunk_valley_biome",
+					() -> new SriunkValleyBiome(
+							new Biome.Builder().precipitation(RainType.NONE).scale(1.2f).temperature(0.5f)
+									.func_235097_a_((new BiomeAmbience.Builder()).setWaterColor(10456252).setWaterFogColor(26762304).setFogColor(12538462).build())
+									.surfaceBuilder(
+											new ConfiguredSurfaceBuilder<SurfaceBuilderConfig>(
+													register("sriunk_valley_surface",
+															new SriunkBlockValleySurfaceBuilder(
+																	SurfaceBuilderConfig.field_237203_a_)),
+													new SurfaceBuilderConfig(BlockInit.END_PORTAL.get().getDefaultState(),
+															BlockInit.NETHER_PORTAL.get().getDefaultState(),
+															BlockInit.DURT.get().getDefaultState())))
+									.category(Category.PLAINS).downfall(12.4f).depth(6.5f).parent(null)
 					));
 	public static final RegistryObject<Biome> EXAMPLE_BIOME6 = BIOMES
 			.register("example_biome6",

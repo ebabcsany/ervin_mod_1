@@ -12,7 +12,7 @@ public class LootTables1 {
    public static final ResourceLocation EMPTY = new ResourceLocation("empty");
    public static final ResourceLocation CHESTS_SPAWN_BONUS_CHEST = register("chests/spawn_bonus_chest");
    public static final ResourceLocation CHESTS_END_CITY_TREASURE = register("chests/end_city_treasure");
-   public static final ResourceLocation CHESTS_SIMPLE_DUNGEON = register("chests/simple_dungeon");
+   public static final ResourceLocation CHESTS_SIMPLE_DUNGEON1 = register("chests/simple_dungeon1");
    public static final ResourceLocation CHESTS_VILLAGE_VILLAGE_WEAPONSMITH = register("chests/village/village_weaponsmith");
    public static final ResourceLocation CHESTS_VILLAGE_VILLAGE_TOOLSMITH = register("chests/village/village_toolsmith");
    public static final ResourceLocation CHESTS_VILLAGE_VILLAGE_ARMORER = register("chests/village/village_armorer");

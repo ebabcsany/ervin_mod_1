@@ -4,7 +4,7 @@ import java.util.EnumSet;
 import javax.annotation.Nullable;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.LookAtCustomerGoal1;
-import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.TradeWithPlayerGoal1;
+import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.WanderingTraderTradeWithPlayerGoal;
 import com.babcsany.minecraft.ervin_mod_1.init.ItemInit;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
@@ -49,16 +49,7 @@ public class WanderingTraderNirtreEntity extends AbstractNirtreEntity {
       this.goalSelector.addGoal(0, new UseItemGoal<>(this, PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.LONG_INVISIBILITY), SoundEvents.ENTITY_WANDERING_TRADER_DISAPPEARED, (trader) -> {
          return !this.world.isDaytime() && !trader.isInvisible();
       }));
-      this.goalSelector.addGoal(0, new UseItemGoal<>(this, PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.LONG_SLOW_FALLING), SoundEvents.ENTITY_WANDERING_TRADER_DISAPPEARED, (trader) -> {
-         return !this.world.isDaytime() && !trader.isInvisible();
-      }));
-      this.goalSelector.addGoal(0, new UseItemGoal<>(this, PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.LONG_FIRE_RESISTANCE), SoundEvents.ENTITY_WANDERING_TRADER_DISAPPEARED, (trader) -> {
-         return !this.world.isDaytime() && !trader.isInvisible();
-      }));
-      this.goalSelector.addGoal(0, new UseItemGoal<>(this, new ItemStack(Items.MILK_BUCKET), SoundEvents.ENTITY_WANDERING_TRADER_REAPPEARED, (trader) -> {
-         return this.world.isDaytime() && trader.isInvisible();
-      }));
-      this.goalSelector.addGoal(1, new TradeWithPlayerGoal1(this));
+      this.goalSelector.addGoal(1, new WanderingTraderTradeWithPlayerGoal(this));
       this.goalSelector.addGoal(1, new PanicGoal(this, 0.5D));
       this.goalSelector.addGoal(1, new LookAtCustomerGoal1(this));
       this.goalSelector.addGoal(2, new WanderingTraderNirtreEntity.MoveToGoal(this, 2.0D, 0.35D));
