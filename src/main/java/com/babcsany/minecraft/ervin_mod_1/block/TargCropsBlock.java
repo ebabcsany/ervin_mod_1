@@ -189,7 +189,7 @@ public class TargCropsBlock extends BushBlock implements IGrowable {
    }
 
    protected IItemProvider getSeedsItem() {
-      return BlockInit.TARG_SEEDS.get();
+      return BlockInit.TARG_STAGE.get();
    }
 
    public ItemStack getItem(IBlockReader worldIn, BlockPos pos, BlockState state) {

@@ -601,9 +601,9 @@ public class ItemInit {
     public static final RegistryObject<ModSpawnEggItem> VILT_ENTITY_SPAWN_EGG = ITEMS.register("vilt_entity_spawn_egg", () -> new ModSpawnEggItem(
             EntityInit.VILT_ENTITY, 0xc02020, 0xc02020, new Item.Properties()
     ));
-    /*public static final RegistryObject<Item> TARG = ITEMS.register("targ", () -> new BlockNamedItem(
-            BlockInit.TARG_SEEDS.get(), (new Item.Properties())
-    ));*/
+    public static final RegistryObject<Item> TARG_SEEDS = ITEMS.register("crops/targ_seeds", () -> new BlockNamedItem(
+            BlockInit.TARG_STAGE.get(), (new Item.Properties())
+    ));
     public static final RegistryObject<Item> TARG = ITEMS.register("targ", () -> new Item(
             (new Item.Properties())
     ));
@@ -889,17 +889,21 @@ public class ItemInit {
     public static final RegistryObject<Item> YELLOW_STONE_SWORD = ITEMS.register("stone_sword/yellow_stone_sword", () -> new SwordItem(
             ModItemTier.YELLOW_COBBLESTONE, 3, -2.4F, (new Item.Properties())
     ));
-    /*public static final RegistryObject<Item> TRUGN = ITEMS.register("trugn", () -> new Item(
-            (new Item.Properties()).isBurnable()
+    /*public static final RegistryObject<Item> TRUGN = ITEMS.register("trugn", () -> new BlockItem(
+            BlockInit.TRUGN.get(), (new Item.Properties())
+            .isBurnable()
     ));
-    public static final RegistryObject<Item> TERAT_BLOCK = ITEMS.register("terat_block", () -> new Item(
-            (new Item.Properties()).isBurnable()
+    public static final RegistryObject<Item> TERAT_BLOCK = ITEMS.register("terat_block", () -> new BlockItem(
+            BlockInit.TERAT_BLOCK.get(), (new Item.Properties())
+            .isBurnable()
     ));
-    public static final RegistryObject<Item> NIRK_BLOCK = ITEMS.register("nirk_block", () -> new Item(
-            (new Item.Properties()).isBurnable()
+    public static final RegistryObject<Item> NIRK_BLOCK = ITEMS.register("nirk_block", () -> new BlockItem(
+            BlockInit.NIRK_BLOCK.get(), (new Item.Properties())
+            .isBurnable()
     ));
-    public static final RegistryObject<Item> SRIUNK_BLOCK = ITEMS.register("sriunk_block", () -> new Item(
-            (new Item.Properties()).isBurnable()
+    public static final RegistryObject<Item> SRIUNK_BLOCK = ITEMS.register("sriunk_block", () -> new BlockItem(
+            BlockInit.SRIUNK_BLOCK.get(), (new Item.Properties())
+            .isBurnable()
     ));*/
     public static final RegistryObject<Item> BLACK_IRON_AXE = ITEMS.register("iron_axe/black_iron_axe", () -> new AxeItem(
             ModItemTier.BLACK_IRON_INGOT, 6.0F, -3.1F, (new Item.Properties())
@@ -930,5 +934,38 @@ public class ItemInit {
     ));
     public static final RegistryObject<Item> RED_IRON_SWORD = ITEMS.register("iron_sword/red_iron_sword", () -> new SwordItem(
             ModItemTier.RED_IRON_INGOT, 3, -2.4F, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> $_1$ = ITEMS.register("$/1$", () -> new $_1$(
+            (new Item.Properties()).isBurnable()
+    ));
+    public static final RegistryObject<Item> $_2$ = ITEMS.register("$/2$", () -> new $_2$(
+            (new Item.Properties()).isBurnable()
+    ));
+    public static final RegistryObject<Item> $_3$ = ITEMS.register("$/3$", () -> new $_3$(
+            (new Item.Properties()).isBurnable()
+    ));
+    public static final RegistryObject<Item> $_4$ = ITEMS.register("$/4$", () -> new $_4$(
+            (new Item.Properties()).isBurnable()
+    ));
+    public static final RegistryObject<Item> $_5$ = ITEMS.register("$/5$", () -> new $_5$(
+            (new Item.Properties()).isBurnable()
+    ));
+    public static final RegistryObject<Item> $_6$ = ITEMS.register("$/6$", () -> new $_6$(
+            (new Item.Properties()).isBurnable()
+    ));
+    public static final RegistryObject<Item> $_7$ = ITEMS.register("$/7$", () -> new $_7$(
+            (new Item.Properties()).isBurnable()
+    ));
+    public static final RegistryObject<Item> $_8$ = ITEMS.register("$/8$", () -> new $_8$(
+            (new Item.Properties()).isBurnable()
+    ));
+    public static final RegistryObject<Item> $_9$ = ITEMS.register("$/9$", () -> new $_9$(
+            (new Item.Properties()).isBurnable()
+    ));
+    public static final RegistryObject<Item> $_10$ = ITEMS.register("$/10$", () -> new $_10$(
+            (new Item.Properties()).isBurnable()
+    ));
+    public static final RegistryObject<ModSpawnEggItem> $_TRADER_ENTITY_SPAWN_EGG = ITEMS.register("$_trader_spawn_egg", () -> new ModSpawnEggItem(
+            EntityInit.$_TRADER_ENTITY, 0x204080, 0x402080, new Item.Properties()
     ));
 }

@@ -2,7 +2,7 @@
   "replace": false,
   "values": [
     "ervin_mod_1:iron_ores/black_stone/red_iron_ore",
-    "ervin_mod_1:iron_ores/blue_stone/red_iron_ore",
+    /*"ervin_mod_1:iron_ores/blue_stone/red_iron_ore",
     "ervin_mod_1:iron_ores/brown_stone/red_iron_ore",
     "ervin_mod_1:iron_ores/cyan_stone/red_iron_ore",
     "ervin_mod_1:iron_ores/green_stone/red_iron_ore",
@@ -16,6 +16,6 @@
     "ervin_mod_1:iron_ores/purple_stone/red_iron_ore",
     "ervin_mod_1:iron_ores/red_stone/red_iron_ore",
     "ervin_mod_1:iron_ores/white_stone/red_iron_ore",
-    "ervin_mod_1:iron_ores/yellow_stone/red_iron_ore"
+    "ervin_mod_1:iron_ores/yellow_stone/red_iron_ore"*/
   ]
 }

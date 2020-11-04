@@ -1,7 +1,16 @@
 {
   "variants": {
-    "axis=y": { "model": "ervin_mod_1:block/firg_log" },
-    "axis=z": { "model": "ervin_mod_1:block/firg_log", "x": 90 },
-    "axis=x": { "model": "ervin_mod_1:block/firg_log", "x": 90, "y": 90 }
+    "axis=x": {
+      "model": "ervin_mod_1:block/firg_log_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "ervin_mod_1:block/firg_log"
+    },
+    "axis=z": {
+      "model": "ervin_mod_1:block/firg_log_horizontal",
+      "x": 90
+    }
   }
 }

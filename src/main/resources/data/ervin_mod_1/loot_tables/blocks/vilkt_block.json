@@ -1478,6 +1478,10 @@
         },
         {
           "type": "minecraft:item",
+          "name": "ervin_mod_1:targ"
+        },
+        {
+          "type": "minecraft:item",
           "name": "ervin_mod_1:terat"
         },
         {
@@ -2427,10 +2431,6 @@
         {
           "type": "minecraft:item",
           "name": "ervin_mod_1:tripwires/green_string"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:tripwires/light_blue1_string"
         },
         {
           "type": "minecraft:item",

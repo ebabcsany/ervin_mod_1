@@ -4,6 +4,7 @@ import com.babcsany.minecraft.ervin_mod_1.entity.animal.*;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.RoventEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurNirtreEntity;
+import com.babcsany.minecraft.ervin_mod_1.entity.villager.$TraderEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.TraderNirtreEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.WanderingTraderNirtreEntity;
 import com.babcsany.minecraft.ervin_mod_1.init.*;
@@ -118,6 +119,7 @@ public class Ervin_mod_1 {
             GlobalEntityTypeAttributes.put(EntityInit.HHIJ_ENTITY.get(), WolfEntity1.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(EntityInit.WANDERING_TRADER_NIRTRE_ENTITY.get(), WanderingTraderNirtreEntity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(EntityInit.TRADER_NIRTRE_ENTITY.get(), TraderNirtreEntity.setCustomAttributes().create());
+            GlobalEntityTypeAttributes.put(EntityInit.$_TRADER_ENTITY.get(), $TraderEntity.setCustomAttributes().create());
         });
     }
 

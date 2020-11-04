@@ -49,6 +49,12 @@ public class WanderingTraderNirtreEntity extends AbstractNirtreEntity {
       this.goalSelector.addGoal(0, new UseItemGoal<>(this, PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.LONG_INVISIBILITY), SoundEvents.ENTITY_WANDERING_TRADER_DISAPPEARED, (trader) -> {
          return !this.world.isDaytime() && !trader.isInvisible();
       }));
+      this.goalSelector.addGoal(0, new UseItemGoal<>(this, PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.LONG_NIGHT_VISION), SoundEvents.ENTITY_WANDERING_TRADER_DISAPPEARED, (trader) -> {
+         return !this.world.isRaining() && !trader.isInvisible();
+      }));
+      this.goalSelector.addGoal(0, new UseItemGoal<>(this, PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.LONG_FIRE_RESISTANCE), SoundEvents.ENTITY_WANDERING_TRADER_DISAPPEARED, (trader) -> {
+         return !this.world.isNightTime() && !trader.isInvisible();
+      }));
       this.goalSelector.addGoal(1, new WanderingTraderTradeWithPlayerGoal(this));
       this.goalSelector.addGoal(1, new PanicGoal(this, 0.5D));
       this.goalSelector.addGoal(1, new LookAtCustomerGoal1(this));
@@ -61,7 +67,7 @@ public class WanderingTraderNirtreEntity extends AbstractNirtreEntity {
    }
 
    public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
-      return LivingEntity.registerAttributes().createMutableAttribute(Attributes.FOLLOW_RANGE, 16.0D).createMutableAttribute(Attributes.MAX_HEALTH, 1600000.0D).createMutableAttribute(Attributes.ATTACK_KNOCKBACK).createMutableAttribute(Attributes.ATTACK_DAMAGE, 2.0D);
+      return LivingEntity.registerAttributes().createMutableAttribute(Attributes.FOLLOW_RANGE, 16.0D).createMutableAttribute(Attributes.MAX_HEALTH, 16.0D).createMutableAttribute(Attributes.ATTACK_KNOCKBACK).createMutableAttribute(Attributes.ATTACK_DAMAGE, 2.0D);
    }
 
    @Nullable

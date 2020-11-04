@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:iron_ores/stone/iron_ore"
+          "name": "minecraft:iron_ore"
         }
       ],
       "conditions": [

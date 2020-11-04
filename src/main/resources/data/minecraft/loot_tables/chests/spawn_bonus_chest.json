@@ -566,6 +566,11 @@
           "type": "minecraft:item",
           "weight": 7,
           "name": "ervin_mod_1:wandering_trader_nirtre_spawn_egg"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "ervin_mod_1:$_trader_spawn_egg"
         }
       ]
     },

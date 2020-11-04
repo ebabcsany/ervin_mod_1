@@ -12,17 +12,17 @@
               "conditions": [
                 {
                   "condition": "minecraft:block_state_property",
-                  "block": "ervin_mod_1:targ",
+                  "block": "ervin_mod_1:crops/targ_seeds",
                   "properties": {
-                    "age": "43"
+                    "age": "42"
                   }
                 }
               ],
-              "name": "ervin_mod_1:targ"
+              "name": "ervin_mod_1:crops/targ_seeds"
             },
             {
               "type": "minecraft:item",
-              "name": "ervin_mod_1:targ_seeds"
+              "name": "ervin_mod_1:crops/targ_seeds"
             }
           ]
         }
@@ -39,20 +39,20 @@
               "enchantment": "minecraft:fortune",
               "formula": "minecraft:binomial_with_bonus_count",
               "parameters": {
-                "extra": 10,
-                "probability": 0.071428575
+                "extra": 32,
+                "probability": 0.42
               }
             }
           ],
-          "name": "ervin_mod_1:targ_seeds"
+          "name": "ervin_mod_1:crops/targ_seeds"
         }
       ],
       "conditions": [
         {
           "condition": "minecraft:block_state_property",
-          "block": "ervin_mod_1:targ",
+          "block": "ervin_mod_1:crops/targ_seeds",
           "properties": {
-            "age": "43"
+            "age": "42"
           }
         }
       ]
