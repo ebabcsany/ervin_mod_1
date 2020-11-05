@@ -41,6 +41,7 @@ public class TraderNirtreTrades {
            new TraderNirtreTrades.ItemsForChaksTrade(Items.NAUTILUS_SHELL, 5, 1, 20, 3),
            new TraderNirtreTrades.ItemsForChaksTrade(ItemInit.MLONK.get(), 4, 1, 10, 2),
            new TraderNirtreTrades.ItemsForChaksTrade(Items.GRASS_BLOCK, 4, 1, 9, 1),
+           new TraderNirtreTrades.ItemsForKirtsTrade(ItemInit.$_TRADER_ENTITY_SPAWN_EGG.get(), 64, 1, 20, 1),
    }));
 
    private static Int2ObjectMap<TraderNirtreTrades.ITrade[]> gatAsIntMap(ImmutableMap<Integer, TraderNirtreTrades.ITrade[]> p_221238_0_) {
@@ -519,6 +520,44 @@ public class TraderNirtreTrades {
 
       public MerchantOffer getOffer(Entity trader, Random rand) {
          return new MerchantOffer(new ItemStack(ItemInit.CHAK.get(), this.chakCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+      }
+   }
+
+   static class ItemsForKirtsTrade implements TraderNirtreTrades.ITrade {
+      private final ItemStack sellingItem;
+      private final int kirtCount;
+      private final int sellingItemCount;
+      private final int maxUses;
+      private final int xpValue;
+      private final float priceMultiplier;
+
+      public ItemsForKirtsTrade(Block sellingItem, int kirtCount, int sellingItemCount, int maxUses, int xpValue) {
+         this(new ItemStack(sellingItem), kirtCount, sellingItemCount, maxUses, xpValue);
+      }
+
+      public ItemsForKirtsTrade(Item sellingItem, int kirtCount, int sellingItemCount, int xpValue) {
+         this(new ItemStack(sellingItem), kirtCount, sellingItemCount, 12, xpValue);
+      }
+
+      public ItemsForKirtsTrade(Item sellingItem, int kirtCount, int sellingItemCount, int maxUses, int xpValue) {
+         this(new ItemStack(sellingItem), kirtCount, sellingItemCount, maxUses, xpValue);
+      }
+
+      public ItemsForKirtsTrade(ItemStack sellingItem, int kirtCount, int sellingItemCount, int maxUses, int xpValue) {
+         this(sellingItem, kirtCount, sellingItemCount, maxUses, xpValue, 0.05F);
+      }
+
+      public ItemsForKirtsTrade(ItemStack sellingItem, int kirtCount, int sellingItemCount, int maxUses, int xpValue, float priceMultiplier) {
+         this.sellingItem = sellingItem;
+         this.kirtCount = kirtCount;
+         this.sellingItemCount = sellingItemCount;
+         this.maxUses = maxUses;
+         this.xpValue = xpValue;
+         this.priceMultiplier = priceMultiplier;
+      }
+
+      public MerchantOffer getOffer(Entity trader, Random rand) {
+         return new MerchantOffer(new ItemStack(ItemInit.KIRT.get(), this.kirtCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 
