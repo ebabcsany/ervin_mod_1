@@ -1,0 +1,9 @@
+{
+  "ervin_mod_1:adventure/adventuring_time": {
+    "criteria": {
+      "ervin_mod_1:example_biome": "2020-10-30 09:07:22 +0100"
+    },
+    "done": false
+  },
+  "DataVersion": 2567
+}

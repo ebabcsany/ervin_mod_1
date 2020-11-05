@@ -1,0 +1,21 @@
+{
+  "minecraft:recipes/decorations/torch": {
+    "criteria": {
+      "has_stone_pickaxe": "2020-11-04 15:41:20 +0100"
+    },
+    "done": true
+  },
+  "minecraft:story/upgrade_tools": {
+    "criteria": {
+      "stone_pickaxe": "2020-11-04 15:41:20 +0100"
+    },
+    "done": true
+  },
+  "ervin_mod_1:adventure/adventuring_time": {
+    "criteria": {
+      "ervin_mod_1:example_biome": "2020-10-30 08:59:53 +0100"
+    },
+    "done": false
+  },
+  "DataVersion": 2567
+}

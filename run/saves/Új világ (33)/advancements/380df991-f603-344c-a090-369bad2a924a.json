@@ -1,0 +1,21 @@
+{
+  "minecraft:recipes/decorations/chest": {
+    "criteria": {
+      "has_lots_of_items": "2020-10-27 17:49:36 +0100"
+    },
+    "done": true
+  },
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "minecraft:plains": "2020-10-26 18:44:57 +0100"
+    },
+    "done": false
+  },
+  "ervin_mod_1:adventure/adventuring_time": {
+    "criteria": {
+      "minecraft:plains": "2020-10-26 18:44:57 +0100"
+    },
+    "done": false
+  },
+  "DataVersion": 2567
+}

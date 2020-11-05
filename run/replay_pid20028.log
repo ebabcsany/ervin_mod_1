@@ -1,0 +1,1179 @@
+JvmtiExport can_access_local_variables 0
+JvmtiExport can_hotswap_or_post_breakpoint 0
+JvmtiExport can_post_on_exceptions 0
+# 358 ciObject found
+ciMethod java/lang/Object <init> ()V 4097 1 7936681 0 96
+ciMethod java/lang/Object getClass ()Ljava/lang/Class; 2049 1 256 0 -1
+ciMethod java/lang/Object hashCode ()I 3073 1 384 0 -1
+ciMethod java/lang/Object equals (Ljava/lang/Object;)Z 3385 1 219748 0 -1
+ciMethod java/lang/Object clone ()Ljava/lang/Object; 2049 1 256 0 -1
+ciMethod java/lang/Comparable compareTo (Ljava/lang/Object;)I 0 0 1 0 -1
+ciMethod java/lang/String <init> ([CII)V 4097 1 5883 0 576
+ciMethod java/lang/String <init> ([CZ)V 4097 1 48989 0 0
+ciMethod java/lang/String length ()I 16961 1 1785290 0 0
+ciMethod java/lang/String charAt (I)C 4097 1 3183617 0 128
+ciMethod java/lang/String getChars ([CI)V 2049 1 5421 0 0
+ciMethod java/lang/String equals (Ljava/lang/Object;)Z 18009 25625 16455 0 -1
+ciMethod java/lang/String equalsIgnoreCase (Ljava/lang/String;)Z 1569 1 5451 0 160
+ciMethod java/lang/String regionMatches (ZILjava/lang/String;II)Z 17609 753 7635 0 2048
+ciMethod java/lang/String hashCode ()I 2801 32769 2967 0 288
+ciMethod java/lang/String lastIndexOf (I)I 3073 1 69508 0 288
+ciMethod java/lang/String lastIndexOf (II)I 1633 172033 984 0 320
+ciMethod java/lang/String lastIndexOfSupplementary (II)I 0 0 1 0 -1
+ciMethod java/lang/String substring (II)Ljava/lang/String; 4097 1 5716 0 864
+ciMethod java/lang/String concat (Ljava/lang/String;)Ljava/lang/String; 2049 1 5394 0 864
+ciMethod java/lang/String replace (CC)Ljava/lang/String; 1681 172033 999 0 1120
+ciMethod java/lang/Class getGenericInterfaces ()[Ljava/lang/reflect/Type; 2273 1 11789 0 -1
+ciMethod java/lang/ClassLoader preDefineClass (Ljava/lang/String;Ljava/security/ProtectionDomain;)Ljava/security/ProtectionDomain; 3601 1 5446 0 -1
+ciMethod java/lang/ClassLoader defineClassSourceLocation (Ljava/security/ProtectionDomain;)Ljava/lang/String; 3601 1 5446 0 -1
+ciMethod java/lang/ClassLoader postDefineClass (Ljava/lang/Class;Ljava/security/ProtectionDomain;)V 3601 1 5446 0 -1
+ciMethod java/lang/ClassLoader defineClass (Ljava/lang/String;[BIILjava/security/ProtectionDomain;)Ljava/lang/Class; 2545 1 5446 0 -1
+ciMethod java/lang/ClassLoader defineClass (Ljava/lang/String;Ljava/nio/ByteBuffer;Ljava/security/ProtectionDomain;)Ljava/lang/Class; 0 0 1 0 -1
+ciMethod java/lang/ClassLoader defineClass2 (Ljava/lang/String;Ljava/nio/ByteBuffer;IILjava/security/ProtectionDomain;Ljava/lang/String;)Ljava/lang/Class; 0 0 1 0 -1
+ciMethod java/lang/ClassLoader definePackage (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/net/URL;)Ljava/lang/Package; 393 1 489 0 0
+ciMethod java/lang/ClassLoader getPackage (Ljava/lang/String;)Ljava/lang/Package; 2049 1 5386 0 9568
+ciMethod java/lang/System nanoTime ()J 2049 1 256 0 -1
+ciMethod java/lang/System arraycopy (Ljava/lang/Object;ILjava/lang/Object;II)V 72705 1 9088 0 -1
+ciMethod java/security/ProtectionDomain <init> (Ljava/security/CodeSource;Ljava/security/PermissionCollection;Ljava/lang/ClassLoader;[Ljava/security/Principal;)V 105 1 92 0 -1
+ciMethod java/security/SecureClassLoader defineClass (Ljava/lang/String;[BIILjava/security/CodeSource;)Ljava/lang/Class; 2545 1 3660 0 -1
+ciMethod java/security/SecureClassLoader defineClass (Ljava/lang/String;Ljava/nio/ByteBuffer;Ljava/security/CodeSource;)Ljava/lang/Class; 0 0 1 0 -1
+ciMethod java/security/SecureClassLoader getPermissions (Ljava/security/CodeSource;)Ljava/security/PermissionCollection; 409 1 51 0 -1
+ciMethod java/security/SecureClassLoader getProtectionDomain (Ljava/security/CodeSource;)Ljava/security/ProtectionDomain; 2545 1 3662 0 -1
+ciMethod java/lang/ref/SoftReference <init> (Ljava/lang/Object;)V 897 1 12675 0 -1
+ciMethod java/lang/ref/SoftReference get ()Ljava/lang/Object; 4097 1 51983 0 -1
+ciMethod java/lang/Thread currentThread ()Ljava/lang/Thread; 4097 1 512 0 -1
+ciMethod java/lang/Thread interrupt ()V 0 0 1 0 -1
+ciMethod java/lang/Thread interrupted ()Z 2049 1 11792 0 -1
+ciMethod java/util/Map get (Ljava/lang/Object;)Ljava/lang/Object; 0 0 1 0 -1
+ciMethod java/lang/StringBuilder <init> ()V 4097 1 278513 0 -1
+ciMethod java/lang/StringBuilder append (Ljava/lang/Object;)Ljava/lang/StringBuilder; 1065 1 68772 0 -1
+ciMethod java/lang/StringBuilder append (Ljava/lang/String;)Ljava/lang/StringBuilder; 4097 1 801581 0 -1
+ciMethod java/lang/StringBuilder toString ()Ljava/lang/String; 4097 1 271198 0 -1
+ciMethod java/io/ByteArrayInputStream <init> ([B)V 81 1 3525 0 -1
+ciMethod java/io/InputStream read ([BII)I 0 0 1 0 -1
+ciMethod java/io/InputStream close ()V 0 0 1 0 -1
+ciMethod java/net/URLClassLoader getAndVerifyPackage (Ljava/lang/String;Ljava/util/jar/Manifest;Ljava/net/URL;)Ljava/lang/Package; 2049 1 3652 0 0
+ciMethod java/net/URLClassLoader definePackageInternal (Ljava/lang/String;Ljava/util/jar/Manifest;Ljava/net/URL;)V 2545 1 3652 0 0
+ciMethod java/net/URLClassLoader defineClass (Ljava/lang/String;Lsun/misc/Resource;)Ljava/lang/Class; 1521 1 3652 0 0
+ciMethod java/net/URLClassLoader definePackage (Ljava/lang/String;Ljava/util/jar/Manifest;Ljava/net/URL;)Ljava/lang/Package; 393 1 256 0 0
+ciMethod java/net/URLClassLoader isSealed (Ljava/lang/String;Ljava/util/jar/Manifest;)Z 1761 1 3398 0 0
+ciMethod java/net/URLClassLoader access$000 (Ljava/net/URLClassLoader;)Lsun/misc/URLClassPath; 1033 1 129 0 0
+ciMethod java/net/URLClassLoader access$100 (Ljava/net/URLClassLoader;Ljava/lang/String;Lsun/misc/Resource;)Ljava/lang/Class; 1521 1 3651 0 0
+ciMethod java/util/jar/Manifest <init> (Ljava/io/InputStream;)V 65 1 1972 0 -1
+ciMethod java/util/jar/Manifest getMainAttributes ()Ljava/util/jar/Attributes; 1025 1 128 0 0
+ciMethod java/util/jar/Manifest getEntries ()Ljava/util/Map; 6049 1 756 0 0
+ciMethod java/util/jar/Manifest getAttributes (Ljava/lang/String;)Ljava/util/jar/Attributes; 4097 1 86150 0 1216
+ciMethod java/security/CodeSource <init> (Ljava/net/URL;[Ljava/security/CodeSigner;)V 2057 1 3653 0 -1
+ciMethod java/nio/Buffer position ()I 5329 1 666 0 -1
+ciMethod java/nio/Buffer remaining ()I 2009 1 165653 0 -1
+ciMethod java/lang/Character toLowerCase (C)C 4097 1 40458 0 -1
+ciMethod java/lang/Character toUpperCase (C)C 2057 1 15005 0 -1
+ciMethod java/util/Comparator compare (Ljava/lang/Object;Ljava/lang/Object;)I 0 0 1 0 -1
+ciMethod java/lang/Math min (II)I 16753 1 410925 0 -1
+ciMethod java/util/HashMap hash (Ljava/lang/Object;)I 4097 1 576944 0 160
+ciMethod java/util/HashMap comparableClassFor (Ljava/lang/Object;)Ljava/lang/Class; 4097 1 11790 0 128
+ciMethod java/util/HashMap compareComparables (Ljava/lang/Class;Ljava/lang/Object;Ljava/lang/Object;)I 0 0 1 0 0
+ciMethod java/util/HashMap get (Ljava/lang/Object;)Ljava/lang/Object; 4097 1 62607 0 672
+ciMethod java/util/HashMap getNode (ILjava/lang/Object;)Ljava/util/HashMap$Node; 4097 113 50330 0 1472
+ciMethod java/util/HashMap put (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object; 4097 1 364235 0 -1
+ciMethod java/util/Arrays copyOf ([BI)[B 4097 1 65244 0 -1
+ciMethod java/util/Arrays copyOf ([CI)[C 4097 1 21282 0 448
+ciMethod java/util/Arrays copyOfRange ([CII)[C 4097 1 5681 0 512
+ciMethod java/nio/ByteBuffer get ([B)Ljava/nio/ByteBuffer; 0 0 1 0 -1
+ciMethod java/nio/ByteBuffer hasArray ()Z 3185 1 16837 0 -1
+ciMethod java/nio/ByteBuffer array ()[B 1457 1 45539 0 -1
+ciMethod java/nio/ByteBuffer arrayOffset ()I 3793 1 68196 0 -1
+ciMethod java/nio/ByteBuffer isDirect ()Z 0 0 1 0 -1
+ciMethodData java/lang/Object <init> ()V 2 7936681 orig 264 136 112 148 112 0 0 0 0 136 4 216 22 0 0 0 0 32 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 73 197 200 3 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 255 255 255 255 0 0 0 0 0 0 0 0 data 0 oops 0
+ciMethod java/lang/IllegalArgumentException <init> (Ljava/lang/String;)V 0 0 34 0 -1
+ciMethod sun/security/util/Debug println (Ljava/lang/String;)V 0 0 1 0 -1
+ciMethodData java/lang/String charAt (I)C 2 3183689 orig 264 136 112 148 112 0 0 0 0 128 61 216 22 0 0 0 0 120 1 0 0 32 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 25 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 73 146 132 1 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 80 0 0 0 255 255 255 255 7 0 1 0 0 0 0 0 data 10 0x10007 0x0 0x40 0x309649 0xa0007 0x30964f 0x30 0x0 0x120002 0x0 oops 0
+ciMethod java/util/HashMap$TreeNode root ()Ljava/util/HashMap$TreeNode; 0 0 1 0 0
+ciMethod java/util/HashMap$TreeNode find (ILjava/lang/Object;Ljava/lang/Class;)Ljava/util/HashMap$TreeNode; 2625 1929 15965 0 1056
+ciMethod java/util/HashMap$TreeNode getTreeNode (ILjava/lang/Object;)Ljava/util/HashMap$TreeNode; 457 1 4427 0 0
+ciMethodData java/lang/String hashCode ()I 2 93175 orig 264 136 112 148 112 0 0 0 0 200 79 216 22 0 0 0 0 152 1 0 0 32 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 16 0 0 201 81 0 0 185 223 10 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 120 0 0 0 255 255 255 255 7 0 6 0 0 0 0 0 data 15 0x60007 0x516 0x78 0x523 0xe0007 0x1 0x58 0x522 0x1e0007 0x51f 0x38 0x15bbb 0x2d0003 0x15bbb 0xffffffffffffffe0 oops 0
+ciMethod sun/misc/URLClassPath getResource (Ljava/lang/String;Z)Lsun/misc/Resource; 993 32857 1078 0 11264
+ciMethod sun/misc/URLClassPath getLookupCache (Ljava/lang/String;)[I 1329 1 2060 0 -1
+ciMethod sun/misc/URLClassPath getNextLoader ([II)Lsun/misc/URLClassPath$Loader; 3073 1 6794 0 -1
+ciMethodData java/lang/String length ()I 2 1785290 orig 264 136 112 148 112 0 0 0 0 48 60 216 22 0 0 0 0 32 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 17 172 217 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 3 0 1 0 0 0 0 0 0 0 255 255 255 255 0 0 0 0 0 0 0 0 data 0 oops 0
+ciMethodData java/lang/String <init> ([CII)V 2 5883 orig 264 136 112 148 112 0 0 0 0 136 49 216 22 0 0 0 0 16 2 0 0 144 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 25 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 217 167 0 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 9 0 2 0 0 0 176 0 0 0 255 255 255 255 2 0 1 0 0 0 0 0 data 22 0x10002 0x14fb 0x50007 0x14fb 0x30 0x0 0xd0002 0x0 0x120007 0x14fb 0x30 0x0 0x1a0002 0x0 0x230007 0x14fb 0x30 0x0 0x2d0002 0x0 0x370002 0x14fb oops 0
+ciMethodData java/util/Arrays copyOfRange ([CII)[C 2 5681 orig 264 136 112 148 112 0 0 0 0 56 87 233 22 0 0 0 0 120 2 0 0 240 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 29 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 137 161 0 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 9 0 2 0 0 0 32 1 0 0 255 255 255 255 7 0 5 0 0 0 0 0 data 36 0x50007 0x1431 0x100 0x0 0x100002 0x0 0x140005 0x0 0x0 0x0 0x0 0x0 0x190005 0x0 0x0 0x0 0x0 0x0 0x1d0005 0x0 0x0 0x0 0x0 0x0 0x200005 0x0 0x0 0x0 0x0 0x0 0x230002 0x0 0x360002 0x1431 0x390002 0x1431 oops 0
+ciMethodData java/util/HashMap hash (Ljava/lang/Object;)I 2 576944 orig 264 136 112 148 112 0 0 0 0 16 205 231 22 0 0 0 0 176 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 3 0 0 0 0 17 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 129 93 70 0 1 0 0 0 97 248 1 0 0 0 0 0 2 0 0 0 0 0 6 0 2 0 0 0 104 0 0 0 255 255 255 255 7 224 1 0 0 0 0 0 data 13 0x1e007 0x8c3fc 0x38 0x7b6 0x50003 0x7b6 0x48 0x90005 0x66e27 0x2a6f860 0x23c57 0x1907c800 0xc5 oops 2 9 java/lang/String 11 java/io/File
+ciMethod java/net/URLClassLoader$1 run ()Ljava/lang/Class; 3089 1 6659 0 -1
+ciMethod sun/misc/URLClassPath$JarLoader access$500 (Lsun/misc/URLClassPath$JarLoader;)Ljava/net/URL; 2049 1 256 0 0
+ciMethod sun/misc/URLClassPath$JarLoader access$600 (Lsun/misc/URLClassPath$JarLoader;)Ljava/util/jar/JarFile; 1025 1 128 0 0
+ciMethod sun/misc/URLClassPath$Loader getResource (Ljava/lang/String;Z)Lsun/misc/Resource; 0 0 1 0 -1
+ciMethod java/util/zip/ZipFile getInputStream (Ljava/util/zip/ZipEntry;)Ljava/io/InputStream; 2649 1 5486 0 -1
+ciMethod java/util/jar/JarFile getManifest ()Ljava/util/jar/Manifest; 2049 1 7015 0 0
+ciMethod java/util/jar/JarFile getManifestFromReference ()Ljava/util/jar/Manifest; 1929 1 5366 0 7008
+ciMethod java/util/jar/JarFile getBytes (Ljava/util/zip/ZipEntry;)[B 617 1 2222 0 -1
+ciMethod java/util/jar/JarFile getManEntry ()Ljava/util/jar/JarEntry; 593 1 2167 0 -1
+ciMethod sun/misc/PerfCounter get ()J 1825 1 18424 0 -1
+ciMethod sun/misc/PerfCounter add (J)V 1825 1 18424 0 -1
+ciMethod sun/misc/PerfCounter addElapsedTimeFrom (J)V 913 1 9791 0 -1
+ciMethod sun/misc/PerfCounter getReadClassBytesTime ()Lsun/misc/PerfCounter; 2545 1 3652 0 -1
+ciMethod java/nio/LongBuffer get (I)J 0 0 1 0 -1
+ciMethod java/nio/LongBuffer put (IJ)Ljava/nio/LongBuffer; 0 0 1 0 -1
+ciMethod java/util/jar/JarEntry getCodeSigners ()[Ljava/security/CodeSigner; 0 0 1 0 -1
+ciMethod java/util/jar/Attributes get (Ljava/lang/Object;)Ljava/lang/Object; 2049 1 6664 0 0
+ciMethod java/util/jar/Attributes getValue (Ljava/util/jar/Attributes$Name;)Ljava/lang/String; 2049 1 6651 0 0
+ciMethod java/util/jar/Attributes$Name equals (Ljava/lang/Object;)Z 2081 1 670 0 0
+ciMethod java/util/jar/Attributes$Name hashCode ()I 4097 1 6190 0 640
+ciMethod sun/misc/ASCIICaseInsensitiveComparator compare (Ljava/lang/String;Ljava/lang/String;)I 825 16809 670 0 0
+ciMethod sun/misc/ASCIICaseInsensitiveComparator lowerCaseHashCode (Ljava/lang/String;)I 2049 30361 1732 0 640
+ciMethod sun/misc/ASCIICaseInsensitiveComparator isUpper (I)Z 4097 1 23461 0 -1
+ciMethod sun/misc/ASCIICaseInsensitiveComparator toLower (I)I 4097 1 23461 0 64
+ciMethod sun/misc/ASCIICaseInsensitiveComparator compare (Ljava/lang/Object;Ljava/lang/Object;)I 2081 1 670 0 0
+ciMethodData sun/misc/ASCIICaseInsensitiveComparator toLower (I)I 2 23461 orig 264 136 112 148 112 0 0 0 0 232 187 252 22 0 0 0 0 144 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 41 205 2 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 10 0 2 0 0 0 72 0 0 0 255 255 255 255 2 0 1 0 0 0 0 0 data 9 0x10002 0x59a5 0x40007 0x410c 0x38 0x1899 0xb0003 0x1899 0x18 oops 0
+ciMethodData java/util/HashMap getNode (ILjava/lang/Object;)Ljava/util/HashMap$Node; 2 50330 orig 264 136 112 148 112 0 0 0 0 192 214 231 22 0 0 0 0 8 4 0 0 96 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 3 0 0 0 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7 0 0 0 0 17 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 209 20 6 0 169 234 0 0 154 194 0 0 85 29 0 0 2 0 0 0 2 0 45 0 2 0 0 0 176 2 0 0 255 255 255 255 7 0 6 0 0 0 0 0 data 86 0x60007 0x245 0x2b0 0xc055 0xe0007 0x0 0x290 0xc055 0x1c0007 0x1397 0x270 0xacbe 0x250007 0x254c 0xb0 0x8772 0x310007 0xbb9 0x90 0x7bb9 0x350007 0x0 0x70 0x7bb9 0x3b0005 0x74c4 0x1bf238d0 0x6b 0x2a6f860 0x68a 0x3ee007 0x2156 0x20 0x5a65 0x4c0007 0x8b6 0x1a0 0x3dec 0x510004 0xffffffffffffd2f2 0x1c502d90 0xa6 0x195219e0 0x44 0x54e007 0x2d0e 0x80 0x10e1 0x590004 0x0 0x1951e490 0x10e1 0x0 0x0 0x5e0005 0x5c 0x1951e490 0x1085 0x0 0x0 0x680007 0x70b 0xb0 0x4115 0x740007 0x20a 0x90 0x3f0b 0x780007 0x0 0x70 0x3f0b 0x7e0005 0x3d9b 0x1bf238d0 0x69 0x2a6f860 0x107 0x81e007 0x168e 0x20 0x287f 0x8f0007 0x1b12 0xffffffffffffff50 0x287 oops 8 26 java/util/jar/Attributes$Name 28 java/lang/String 40 java/util/HashMap$Node 42 java/util/LinkedHashMap$Entry 50 java/util/HashMap$TreeNode 56 java/util/HashMap$TreeNode 74 java/util/jar/Attributes$Name 76 java/lang/String
+ciMethod java/util/jar/JarVerifier <init> ([B)V 65 1 1969 0 -1
+ciMethodData java/lang/String lastIndexOf (II)I 2 46431 orig 264 136 112 148 112 0 0 0 0 152 83 216 22 0 0 0 0 240 1 0 0 32 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 17 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 84 0 0 97 24 0 0 249 10 3 0 0 0 0 0 0 0 0 0 2 0 0 0 1 0 14 0 2 0 0 0 152 0 0 0 255 255 255 255 7 0 3 0 0 0 0 0 data 19 0x30007 0x0 0x88 0x30c 0x100002 0x30c 0x170007 0x59 0x58 0x636f 0x1f0007 0x60bc 0x20 0x2b3 0x280003 0x60bc 0xffffffffffffffc0 0x300002 0x0 oops 0
+ciMethodData java/util/Arrays copyOf ([CI)[C 2 21282 orig 264 136 112 148 112 0 0 0 0 112 79 233 22 0 0 0 0 112 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 21 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 17 137 2 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 7 0 2 0 0 0 32 0 0 0 255 255 255 255 2 0 11 0 0 0 0 0 data 4 0xb0002 0x5122 0xe0002 0x5122 oops 0
+ciMethodData java/util/HashMap get (Ljava/lang/Object;)Ljava/lang/Object; 2 62607 orig 264 136 112 148 112 0 0 0 0 144 213 231 22 0 0 0 0 200 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 17 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 121 148 7 0 1 0 0 0 222 67 0 0 0 0 0 0 2 0 0 0 0 0 10 0 2 0 0 0 120 0 0 0 255 255 255 255 2 0 2 0 0 0 0 0 data 15 0x20002 0xf28f 0x60005 0x7ab 0x19ad3d10 0xeae5 0x0 0x0 0xb0007 0xb62b 0x38 0x3c67 0xf0003 0x3c67 0x18 oops 1 4 java/util/HashMap
+ciMethodData java/lang/String substring (II)Ljava/lang/String; 2 5716 orig 264 136 112 148 112 0 0 0 0 128 92 216 22 0 0 0 0 40 2 0 0 208 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 25 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 161 162 0 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 15 0 2 0 0 0 248 0 0 0 255 255 255 255 7 0 1 0 0 0 0 0 data 31 0x10007 0x1454 0x30 0x0 0x90002 0x0 0x130007 0x1454 0x30 0x0 0x1b0002 0x0 0x240007 0x1454 0x30 0x0 0x2c0002 0x0 0x310007 0x545 0x58 0xf0f 0x3a0007 0x76b 0x38 0x7a4 0x3e0003 0x7a4 0x28 0x4b0002 0xcb0 oops 0
+ciMethodData java/lang/String <init> ([CZ)V 2 48989 orig 264 136 112 148 112 0 0 0 0 152 59 216 22 0 0 0 0 64 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 233 234 5 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 3 0 2 0 0 0 16 0 0 0 255 255 255 255 2 0 1 0 0 0 0 0 data 2 0x10002 0xbd5f oops 0
+ciMethod sun/misc/URLClassPath$JarLoader$2 getCodeSourceURL ()Ljava/net/URL; 2049 1 3652 0 0
+ciMethod sun/misc/URLClassPath$JarLoader$2 getManifest ()Ljava/util/jar/Manifest; 2049 1 3652 0 0
+ciMethod sun/misc/URLClassPath$JarLoader$2 getCodeSigners ()[Ljava/security/CodeSigner; 4097 1 3654 0 -1
+ciMethod sun/misc/Resource getCodeSourceURL ()Ljava/net/URL; 0 0 1 0 -1
+ciMethod sun/misc/Resource getInputStream ()Ljava/io/InputStream; 0 0 1 0 -1
+ciMethod sun/misc/Resource getContentLength ()I 0 0 1 0 -1
+ciMethod sun/misc/Resource cachedInputStream ()Ljava/io/InputStream; 2049 1 7308 0 -1
+ciMethod sun/misc/Resource getBytes ()[B 2545 6321 3652 0 -1
+ciMethod sun/misc/Resource getByteBuffer ()Ljava/nio/ByteBuffer; 2545 1 3652 0 -1
+ciMethod sun/misc/Resource getManifest ()Ljava/util/jar/Manifest; 0 0 1 0 -1
+ciMethod sun/misc/Resource getCodeSigners ()[Ljava/security/CodeSigner; 0 0 1 0 -1
+ciMethod java/lang/Package isSealed ()Z 1761 1 3398 0 0
+ciMethod java/lang/Package isSealed (Ljava/net/URL;)Z 0 0 1 0 -1
+ciMethod java/lang/Package <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/net/URL;Ljava/lang/ClassLoader;)V 2049 1 489 0 -1
+ciMethod java/lang/Package getSystemPackage (Ljava/lang/String;)Ljava/lang/Package; 385 1 666 0 -1
+ciMethod sun/nio/ByteBuffered getByteBuffer ()Ljava/nio/ByteBuffer; 0 0 1 0 -1
+ciMethodData sun/misc/ASCIICaseInsensitiveComparator lowerCaseHashCode (Ljava/lang/String;)I 2 24707 orig 264 136 112 148 112 0 0 0 0 8 186 252 22 0 0 0 0 240 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 17 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 211 14 0 0 33 46 0 0 129 141 2 0 0 0 0 0 0 0 0 0 2 0 0 0 1 0 20 0 2 0 0 0 168 0 0 0 255 255 255 255 5 0 3 0 0 0 0 0 data 21 0x30005 0x144 0x2a6f860 0x480 0x0 0x0 0xb0007 0x5c4 0x78 0x51a2 0x140005 0x1206 0x2a6f860 0x3f9c 0x0 0x0 0x170002 0x51a2 0x1f0003 0x51a2 0xffffffffffffffa0 oops 2 2 java/lang/String 12 java/lang/String
+ciMethodData java/util/jar/Attributes$Name hashCode ()I 2 6190 orig 264 136 112 148 112 0 0 0 0 160 172 252 22 0 0 0 0 120 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 17 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 113 177 0 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 6 0 2 0 0 0 48 0 0 0 255 255 255 255 7 0 5 0 0 0 0 0 data 6 0x50007 0x7b8 0x30 0xe76 0xd0002 0xe76 oops 0
+ciMethodData java/util/jar/Manifest getAttributes (Ljava/lang/String;)Ljava/util/jar/Attributes; 2 86150 orig 264 136 112 148 112 0 0 0 0 216 214 224 22 0 0 0 0 224 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 49 116 10 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 3 0 2 0 0 0 144 0 0 0 255 255 255 255 5 0 1 0 0 0 0 0 data 18 0x10005 0x0 0x1907c9b0 0x14e86 0x0 0x0 0x50005 0x0 0x19ad3d10 0x14e86 0x0 0x0 0xa0104 0x0 0x1bf22bf0 0x155 0x0 0x0 oops 3 2 java/util/jar/Manifest 8 java/util/HashMap 14 java/util/jar/Attributes
+ciMethodData java/lang/String replace (CC)Ljava/lang/String; 2 47407 orig 264 136 112 148 112 0 0 0 0 0 95 216 22 0 0 0 0 136 2 0 0 184 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 25 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 84 0 0 169 24 0 0 121 41 3 0 0 0 0 0 0 0 0 0 2 0 0 0 3 0 23 0 2 0 0 0 80 1 0 0 255 255 255 255 7 0 2 0 0 0 0 0 data 42 0x20007 0x0 0x150 0x315 0x1a0007 0x73 0x58 0x1a2d 0x230007 0x178b 0xffffffffffffffe0 0x2a2 0x260003 0x2a2 0x18 0x2c0007 0x73 0xd8 0x2a2 0x3b0007 0x2a2 0x38 0x9da 0x4b0003 0x9da 0xffffffffffffffe0 0x510007 0x2a2 0x70 0x4106 0x620007 0x3961 0x38 0x7a5 0x660003 0x7a5 0x18 0x6f0003 0x4106 0xffffffffffffffa8 0x790002 0x2a2 oops 0
+ciMethodData java/lang/String lastIndexOf (I)I 2 69508 orig 264 136 112 148 112 0 0 0 0 200 82 216 22 0 0 0 0 128 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 128 1 0 0 33 112 8 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 3 0 2 0 0 0 48 0 0 0 255 255 255 255 5 0 9 0 0 0 0 0 data 6 0x90005 0x0 0x2a6f860 0x10e04 0x0 0x0 oops 1 2 java/lang/String
+ciMethodData sun/misc/PerfCounter add (J)V 2 18424 orig 264 136 112 148 112 0 0 0 0 176 137 247 22 0 0 0 0 184 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 228 0 0 0 161 56 2 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 4 0 2 0 0 0 96 0 0 0 255 255 255 255 5 0 1 0 0 0 0 0 data 12 0x10005 0x0 0x248667d0 0x4714 0x0 0x0 0xd0005 0x0 0x1befb840 0x4714 0x0 0x0 oops 2 2 sun/misc/PerfCounter 8 java/nio/DirectLongBufferU
+ciMethodData sun/misc/PerfCounter get ()J 2 18424 orig 264 136 112 148 112 0 0 0 0 112 136 247 22 0 0 0 0 120 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 228 0 0 0 161 56 2 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 3 0 2 0 0 0 48 0 0 0 255 255 255 255 5 0 5 0 0 0 0 0 data 6 0x50005 0x0 0x1befb840 0x4714 0x0 0x0 oops 1 2 java/nio/DirectLongBufferU
+ciMethodData sun/misc/PerfCounter addElapsedTimeFrom (J)V 2 9795 orig 264 136 112 148 112 0 0 0 0 120 139 247 22 0 0 0 0 152 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 114 0 0 0 137 46 1 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 5 0 2 0 0 0 64 0 0 0 255 255 255 255 2 0 1 0 0 0 0 0 data 8 0x10002 0x25d1 0x60005 0x0 0x248667d0 0x25d1 0x0 0x0 oops 1 4 sun/misc/PerfCounter
+ciMethod java/lang/SecurityException <init> (Ljava/lang/String;)V 9 1 1 0 -1
+ciMethodData java/lang/String regionMatches (ZILjava/lang/String;II)Z 2 7635 orig 264 136 112 148 112 0 0 0 0 224 76 216 22 0 0 0 0 24 3 0 0 96 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 17 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 9 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 54 1 0 0 209 169 0 0 145 60 0 0 0 0 0 0 0 0 0 0 2 0 0 0 1 0 24 0 2 0 0 0 168 1 0 0 255 255 255 255 7 0 21 0 0 0 0 0 data 53 0x150007 0x0 0x80 0x153a 0x190007 0x0 0x60 0x153a 0x290007 0x6e6 0x40 0xe54 0x3a0007 0xe54 0x20 0x0 0x440007 0xb8 0x128 0x152f 0x5f0007 0xda3 0x38 0x78c 0x620003 0x78c 0xffffffffffffffc0 0x660007 0x0 0xd0 0xda3 0x6b0002 0xda3 0x720002 0xda3 0x7b0007 0xd9d 0x38 0x6 0x7e0003 0x6 0xffffffffffffff48 0x830002 0xd9d 0x880002 0xd9d 0x8b0007 0xd9d 0x38 0x0 0x8e0003 0x0 0xfffffffffffffef0 oops 0
+ciMethodData java/lang/String equalsIgnoreCase (Ljava/lang/String;)Z 2 5451 orig 264 136 112 148 112 0 0 0 0 48 73 216 22 0 0 0 0 48 2 0 0 32 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 17 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 196 0 0 0 57 164 0 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 13 0 2 0 0 0 224 0 0 0 255 255 255 255 7 0 2 0 0 0 0 0 data 28 0x20007 0x10f1 0x38 0x396 0x60003 0x396 0xc0 0xa0007 0x3ca 0xa8 0xd27 0x170007 0x7b5 0x88 0x572 0x240005 0x78 0x2a6f860 0x4fa 0x0 0x0 0x270007 0x404 0x38 0x16e 0x2b0003 0x16e 0x18 oops 1 17 java/lang/String
+ciMethodData sun/misc/URLClassPath getResource (Ljava/lang/String;Z)Lsun/misc/Resource; 2 32146 orig 264 136 112 148 112 0 0 0 0 152 241 244 22 0 0 0 0 32 3 0 0 32 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 25 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 11 16 0 0 209 29 0 0 57 108 3 0 0 0 0 0 0 0 0 0 2 0 0 0 1 0 9 0 2 0 0 0 200 1 0 0 255 255 255 255 7 0 3 0 0 0 0 0 data 57 0x30007 0x3ba 0x120 0x0 0xd0002 0x0 0x120005 0x0 0x0 0x0 0x0 0x0 0x160005 0x0 0x0 0x0 0x0 0x0 0x1b0005 0x0 0x0 0x0 0x0 0x0 0x1e0005 0x0 0x0 0x0 0x0 0x0 0x210005 0x0 0x0 0x0 0x0 0x0 0x260002 0x3ba 0x330002 0x7141 0x380007 0x211 0x88 0x6f30 0x3e0005 0x0 0x2204d030 0x6bda 0x19538160 0x356 0x450007 0x6d87 0x20 0x1a9 0x4e0003 0x6d87 0xffffffffffffff80 oops 2 46 sun/misc/URLClassPath$JarLoader 48 sun/misc/URLClassPath$FileLoader
+ciMethodData java/lang/String concat (Ljava/lang/String;)Ljava/lang/String; 2 5394 orig 264 136 112 148 112 0 0 0 0 224 93 216 22 0 0 0 0 240 1 0 0 48 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 25 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 3 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 0 0 145 160 0 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 10 0 2 0 0 0 160 0 0 0 255 255 255 255 5 0 1 0 0 0 0 0 data 20 0x10005 0x0 0x2a6f860 0x1412 0x0 0x0 0x60007 0x1412 0x20 0x0 0x180002 0x1412 0x210005 0x0 0x2a6f860 0x1412 0x0 0x0 0x2b0002 0x1412 oops 2 2 java/lang/String 14 java/lang/String
+ciMethodData java/lang/String getChars ([CI)V 2 5421 orig 264 136 112 148 112 0 0 0 0 0 65 216 22 0 0 0 0 104 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 17 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 105 161 0 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 3 0 2 0 0 0 16 0 0 0 255 255 255 255 2 0 12 0 0 0 0 0 data 2 0xc0002 0x142d oops 0
+ciMethodData sun/misc/Resource cachedInputStream ()Ljava/io/InputStream; 2 7308 orig 264 136 112 148 112 0 0 0 0 16 165 253 22 0 0 0 0 152 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 97 220 0 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 6 0 2 0 0 0 80 0 0 0 255 255 255 255 7 0 4 0 0 0 0 0 data 10 0x40007 0xdc6 0x50 0xdc6 0x90005 0x0 0x220475c0 0xdc6 0x0 0x0 oops 1 6 sun/misc/URLClassPath$JarLoader$2
+ciMethodData java/util/jar/Attributes getValue (Ljava/util/jar/Attributes$Name;)Ljava/lang/String; 2 6651 orig 264 136 112 148 112 0 0 0 0 208 120 252 22 0 0 0 0 176 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 217 199 0 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 3 0 2 0 0 0 96 0 0 0 255 255 255 255 5 0 2 0 0 0 0 0 data 12 0x20005 0x0 0x1bf22bf0 0x18fb 0x0 0x0 0x50104 0x0 0x2a6f860 0x23c 0x0 0x0 oops 2 2 java/util/jar/Attributes 8 java/lang/String
+ciMethodData java/util/jar/Attributes get (Ljava/lang/Object;)Ljava/lang/Object; 2 6664 orig 264 136 112 148 112 0 0 0 0 152 119 252 22 0 0 0 0 128 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 65 200 0 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 3 0 2 0 0 0 48 0 0 0 255 255 255 255 5 0 5 0 0 0 0 0 data 6 0x50005 0x0 0x19ad3d10 0x1908 0x0 0x0 oops 1 2 java/util/HashMap
+ciMethodData sun/misc/ASCIICaseInsensitiveComparator compare (Ljava/lang/String;Ljava/lang/String;)I 2 13690 orig 264 136 112 148 112 0 0 0 0 80 185 252 22 0 0 0 0 88 3 0 0 128 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 25 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 7 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 53 8 0 0 185 17 0 0 41 106 1 0 0 0 0 0 0 0 0 0 2 0 0 0 1 0 43 0 2 0 0 0 0 2 0 0 255 255 255 255 5 0 1 0 0 0 0 0 data 64 0x10005 0x0 0x2a6f860 0x237 0x0 0x0 0x60005 0x0 0x2a6f860 0x237 0x0 0x0 0xe0007 0x237 0x38 0x0 0x120003 0x0 0x18 0x200007 0x237 0x168 0x2d45 0x260005 0x0 0x2a6f860 0x2d45 0x0 0x0 0x2e0005 0x0 0x2a6f860 0x2d45 0x0 0x0 0x360007 0x2d45 0x70 0x0 0x3d0007 0x0 0x40 0x0 0x440007 0x0 0x30 0x0 0x4b0002 0x0 0x530007 0x2d45 0x60 0x0 0x580002 0x0 0x600002 0x0 0x6a0007 0x0 0x20 0x0 0x760003 0x2d45 0xfffffffffffffeb0 oops 4 2 java/lang/String 8 java/lang/String 25 java/lang/String 31 java/lang/String
+ciMethodData java/lang/ClassLoader getPackage (Ljava/lang/String;)Ljava/lang/Package; 2 5386 orig 264 136 112 148 112 0 0 0 0 16 109 217 22 0 0 0 0 96 3 0 0 224 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 17 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 81 160 0 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 23 0 2 0 0 0 16 2 0 0 255 255 255 255 5 0 12 0 0 0 0 0 data 66 0xc0005 0x0 0x19ad3d10 0x140a 0x0 0x0 0xf0104 0x0 0x239bd610 0xe91 0x0 0x0 0x150003 0x140a 0x18 0x200007 0xe91 0x198 0x579 0x270007 0x264 0x68 0x315 0x2f0005 0x0 0x1907cb60 0x224 0x1907cad0 0xf1 0x330003 0x315 0x28 0x370002 0x264 0x3c0007 0x578 0x100 0x1 0x4b0005 0x0 0x19ad3d10 0x1 0x0 0x0 0x4e0104 0x0 0x0 0x0 0x0 0x0 0x550007 0x0 0x68 0x1 0x5e0005 0x0 0x19ad3d10 0x1 0x0 0x0 0x620003 0x1 0x18 0x6a0003 0x1 0x18 oops 6 2 java/util/HashMap 8 java/lang/Package 25 sun/misc/Launcher$ExtClassLoader 27 sun/misc/Launcher$AppClassLoader 40 java/util/HashMap 56 java/util/HashMap
+ciMethodData java/net/URLClassLoader$1 run ()Ljava/lang/Class; 2 6659 orig 264 136 112 148 112 0 0 0 0 120 170 245 22 0 0 0 0 40 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 130 1 0 0 9 196 0 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 7 0 2 0 0 0 224 0 0 0 255 255 255 255 5 0 8 0 0 0 0 0 data 28 0x80005 0x7e 0x2a6f860 0x1803 0x0 0x0 0xd0005 0x7e 0x2a6f860 0x1803 0x0 0x0 0x150002 0x1881 0x1a0005 0x0 0x24420ec0 0x1881 0x0 0x0 0x1f0007 0xafc 0x40 0xd84 0x2b0002 0xd84 0x390002 0x0 oops 3 2 java/lang/String 8 java/lang/String 16 sun/misc/URLClassPath
+ciMethodData java/net/URLClassLoader access$100 (Ljava/net/URLClassLoader;Ljava/lang/String;Lsun/misc/Resource;)Ljava/lang/Class; 2 3652 orig 264 136 112 148 112 0 0 0 0 224 149 224 22 0 0 0 0 64 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 190 0 0 0 49 108 0 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 3 0 2 0 0 0 16 0 0 0 255 255 255 255 2 0 3 0 0 0 0 0 data 2 0x30002 0xd86 oops 0
+ciMethodData java/net/URLClassLoader defineClass (Ljava/lang/String;Lsun/misc/Resource;)Ljava/lang/Class; 2 3652 orig 264 136 112 148 112 0 0 0 0 136 141 224 22 0 0 0 0 56 4 0 0 208 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 190 0 0 0 49 108 0 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 20 0 2 0 0 0 224 2 0 0 255 255 255 255 2 0 0 0 0 0 0 0 data 92 0x2 0xd86 0x70005 0x83 0x2a6f860 0xd03 0x0 0x0 0xd0005 0x0 0x220475c0 0xd86 0x0 0x0 0x150007 0x0 0x90 0xd86 0x1c0005 0x83 0x2a6f860 0xd03 0x0 0x0 0x220005 0x0 0x220475c0 0xd86 0x0 0x0 0x2e0002 0xd86 0x320005 0x0 0x220475c0 0xd86 0x0 0x0 0x390007 0xd86 0xd0 0x0 0x3d0005 0x0 0x0 0x0 0x0 0x0 0x4a0002 0x0 0x4f0002 0x0 0x530005 0x0 0x0 0x0 0x0 0x0 0x5c0005 0x0 0x0 0x0 0x0 0x0 0x610005 0x0 0x220475c0 0xd86 0x0 0x0 0x670005 0x0 0x220475c0 0xd86 0x0 0x0 0x740002 0xd86 0x790002 0xd86 0x7d0005 0x0 0x248667d0 0xd86 0x0 0x0 0x8a0005 0x83 0x1907cad0 0xa43 0x1907cb60 0x2c0 oops 10 4 java/lang/String 10 sun/misc/URLClassPath$JarLoader$2 20 java/lang/String 26 sun/misc/URLClassPath$JarLoader$2 34 sun/misc/URLClassPath$JarLoader$2 66 sun/misc/URLClassPath$JarLoader$2 72 sun/misc/URLClassPath$JarLoader$2 82 sun/misc/PerfCounter 88 sun/misc/Launcher$AppClassLoader 90 sun/misc/Launcher$ExtClassLoader
+ciMethodData java/util/jar/JarFile getManifestFromReference ()Ljava/util/jar/Manifest; 2 5366 orig 264 136 112 148 112 0 0 0 0 112 179 246 22 0 0 0 0 248 2 0 0 144 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 25 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 241 0 0 0 41 160 0 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 28 0 2 0 0 0 176 1 0 0 255 255 255 255 7 0 4 0 0 0 0 0 data 54 0x40007 0x7ac 0x98 0xc59 0xb0005 0x0 0x2a70720 0xc59 0x0 0x0 0xe0004 0x0 0x1907c9b0 0xc59 0x0 0x0 0x110003 0xc59 0x18 0x170007 0xc59 0x118 0x7ac 0x1b0002 0x7ac 0x200007 0x0 0xe8 0x7ac 0x270007 0x6 0x98 0x7a6 0x2c0002 0x7a6 0x390002 0x7a6 0x3c0002 0x7a6 0x440007 0x0 0x30 0x7a6 0x4d0002 0x7a6 0x530003 0x7a6 0x38 0x5c0002 0x6 0x5f0002 0x6 0x690002 0x7ac oops 2 6 java/lang/ref/SoftReference 12 java/util/jar/Manifest
+ciMethodData java/util/jar/JarFile getManifest ()Ljava/util/jar/Manifest; 2 7015 orig 264 136 112 148 112 0 0 0 0 96 178 246 22 0 0 0 0 48 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 17 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 57 211 0 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 3 0 2 0 0 0 16 0 0 0 255 255 255 255 2 0 1 0 0 0 0 0 data 2 0x10002 0x1a67 oops 0
+ciMethodData sun/misc/URLClassPath$JarLoader$2 getCodeSourceURL ()Ljava/net/URL; 2 3652 orig 264 136 112 148 112 0 0 0 0 104 153 253 22 0 0 0 0 88 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 33 106 0 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 3 0 2 0 0 0 16 0 0 0 255 255 255 255 2 0 4 0 0 0 0 0 data 2 0x40002 0xd44 oops 0
+ciMethodData sun/misc/URLClassPath$JarLoader$2 getManifest ()Ljava/util/jar/Manifest; 2 3652 orig 264 136 112 148 112 0 0 0 0 64 155 253 22 0 0 0 0 136 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 33 106 0 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 3 0 2 0 0 0 64 0 0 0 255 255 255 255 2 0 4 0 0 0 0 0 data 8 0x40002 0xd44 0x70005 0x0 0x239b6ba0 0xd44 0x0 0x0 oops 1 4 java/util/jar/JarFile
+ciMethodData java/net/URLClassLoader getAndVerifyPackage (Ljava/lang/String;Ljava/util/jar/Manifest;Ljava/net/URL;)Ljava/lang/Package; 2 3652 orig 264 136 112 148 112 0 0 0 0 88 139 224 22 0 0 0 0 96 4 0 0 192 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 33 106 0 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 22 0 2 0 0 0 0 3 0 0 255 255 255 255 5 0 2 0 0 0 0 0 data 96 0x20005 0x0 0x1907cad0 0xa84 0x1907cb60 0x2c0 0x90007 0xda 0x2d0 0xc6a 0xe0005 0x0 0x239bd610 0xc6a 0x0 0x0 0x110007 0xc6a 0x150 0x0 0x170005 0x0 0x0 0x0 0x0 0x0 0x1a0007 0x0 0x230 0x0 0x250002 0x0 0x2a0005 0x0 0x0 0x0 0x0 0x0 0x2e0005 0x0 0x0 0x0 0x0 0x0 0x330005 0x0 0x0 0x0 0x0 0x0 0x360005 0x0 0x0 0x0 0x0 0x0 0x390002 0x0 0x3e0007 0x0 0x130 0xc6a 0x440002 0xc6a 0x470007 0xc6a 0x100 0x0 0x520002 0x0 0x570005 0x0 0x0 0x0 0x0 0x0 0x5b0005 0x0 0x0 0x0 0x0 0x0 0x600005 0x0 0x0 0x0 0x0 0x0 0x630005 0x0 0x0 0x0 0x0 0x0 0x660002 0x0 oops 3 2 sun/misc/Launcher$AppClassLoader 4 sun/misc/Launcher$ExtClassLoader 12 java/lang/Package
+ciMethodData java/lang/Package isSealed ()Z 2 3398 orig 264 136 112 148 112 0 0 0 0 240 194 253 22 0 0 0 0 88 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 220 0 0 0 81 99 0 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 56 0 0 0 255 255 255 255 7 0 4 0 0 0 0 0 data 7 0x40007 0xc6a 0x38 0x0 0x80003 0x0 0x18 oops 0
+ciMethodData java/lang/Package isSealed (Ljava/net/URL;)Z 1 0 orig 264 136 112 148 112 0 0 0 0 136 195 253 22 0 0 0 0 128 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 17 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 48 0 0 0 255 255 255 255 5 0 5 0 0 0 0 0 data 6 0x50005 0x0 0x0 0x0 0x0 0x0 oops 0
+ciMethodData java/net/URLClassLoader isSealed (Ljava/lang/String;Ljava/util/jar/Manifest;)Z 2 3398 orig 264 136 112 148 112 0 0 0 0 40 144 224 22 0 0 0 0 8 3 0 0 80 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 220 0 0 0 81 99 0 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 11 0 2 0 0 0 176 1 0 0 255 255 255 255 5 0 5 0 0 0 0 0 data 54 0x50005 0x82 0x2a6f860 0xbe8 0x0 0x0 0xa0005 0x82 0x2a6f860 0xbe8 0x0 0x0 0x100005 0x0 0x1907c9b0 0xc6a 0x0 0x0 0x1a0007 0xc1b 0x50 0x4f 0x220005 0x0 0x1bf22bf0 0x4f 0x0 0x0 0x290007 0x0 0xa0 0xc6a 0x2d0005 0x0 0x1907c9b0 0xc6a 0x0 0x0 0x330007 0x0 0x50 0xc6a 0x3b0005 0x0 0x1bf22bf0 0xc6a 0x0 0x0 0x440005 0x82 0x2a6f860 0xbe8 0x0 0x0 oops 7 2 java/lang/String 8 java/lang/String 14 java/util/jar/Manifest 24 java/util/jar/Attributes 34 java/util/jar/Manifest 44 java/util/jar/Attributes 50 java/lang/String
+ciMethodData java/security/CodeSource <init> (Ljava/net/URL;[Ljava/security/CodeSigner;)V 2 3655 orig 264 136 112 148 112 0 0 0 0 240 28 225 22 0 0 0 0 232 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 49 106 0 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 6 0 2 0 0 0 144 0 0 0 255 255 255 255 2 0 1 0 0 0 0 0 data 18 0x10002 0xd46 0x190007 0xc69 0x80 0xdd 0x1e0005 0x0 0x248665c0 0xdd 0x0 0x0 0x210004 0x0 0x248665c0 0xdd 0x0 0x0 oops 2 8 [Ljava/security/CodeSigner; 14 [Ljava/security/CodeSigner;
+ciMethodData java/net/URLClassLoader definePackageInternal (Ljava/lang/String;Ljava/util/jar/Manifest;Ljava/net/URL;)V 2 3652 orig 264 136 112 148 112 0 0 0 0 80 140 224 22 0 0 0 0 32 3 0 0 200 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 62 1 0 0 49 104 0 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 12 0 2 0 0 0 192 1 0 0 255 255 255 255 2 0 4 0 0 0 0 0 data 56 0x40002 0xd06 0x70007 0xc2c 0x1b0 0xda 0xb0007 0x0 0x68 0xda 0x120005 0x0 0x1907cad0 0xb9 0x1907cb60 0x21 0x160003 0xda 0x48 0x220005 0x0 0x0 0x0 0x0 0x0 0x260003 0xda 0xf8 0x2f0002 0x0 0x320007 0x0 0xd0 0x0 0x3d0002 0x0 0x420005 0x0 0x0 0x0 0x0 0x0 0x460005 0x0 0x0 0x0 0x0 0x0 0x490005 0x0 0x0 0x0 0x0 0x0 0x4c0002 0x0 oops 2 12 sun/misc/Launcher$AppClassLoader 14 sun/misc/Launcher$ExtClassLoader
+ciMethodData sun/misc/Resource getByteBuffer ()Ljava/nio/ByteBuffer; 2 3654 orig 264 136 112 148 112 0 0 0 0 192 167 253 22 0 0 0 0 8 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 62 1 0 0 65 104 0 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 192 0 0 0 255 255 255 255 2 0 1 0 0 0 0 0 data 24 0x10002 0xd08 0x60004 0xfffffffffffff2f8 0x1953a880 0x3 0x0 0x0 0x90007 0xd08 0x80 0x0 0xd0004 0x0 0x0 0x0 0x0 0x0 0x100005 0x0 0x0 0x0 0x0 0x0 oops 1 4 java/util/zip/ZipFile$ZipFileInflaterInputStream
+ciMethodData sun/misc/PerfCounter getReadClassBytesTime ()Lsun/misc/PerfCounter; 2 3654 orig 264 136 112 148 112 0 0 0 0 240 141 247 22 0 0 0 0 24 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 62 1 0 0 65 104 0 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 255 255 255 255 0 0 0 0 0 0 0 0 data 0 oops 0
+ciMethodData java/security/SecureClassLoader defineClass (Ljava/lang/String;Ljava/nio/ByteBuffer;Ljava/security/CodeSource;)Ljava/lang/Class; 1 0 orig 264 136 112 148 112 0 0 0 0 144 88 218 22 0 0 0 0 160 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 64 0 0 0 255 255 255 255 2 0 5 0 0 0 0 0 data 8 0x50002 0x0 0x80005 0x0 0x0 0x0 0x0 0x0 oops 0
+ciMethodData java/security/SecureClassLoader getProtectionDomain (Ljava/security/CodeSource;)Ljava/security/ProtectionDomain; 2 3662 orig 264 136 112 148 112 0 0 0 0 80 90 218 22 0 0 0 0 152 3 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 62 1 0 0 129 104 0 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 13 0 2 0 0 0 72 2 0 0 255 255 255 255 7 0 1 0 0 0 0 0 data 73 0x10007 0xd10 0x20 0x0 0x140005 0x0 0x19ad3d10 0xd10 0x0 0x0 0x170104 0x0 0x2a6ff20 0xce3 0x0 0x0 0x1c0007 0xce3 0x1b0 0x2d 0x210005 0x1 0x1907cad0 0x27 0x1907cb60 0x5 0x2f0002 0x2d 0x390005 0x0 0x19ad3d10 0x2d 0x0 0x0 0x400007 0x2d 0x120 0x0 0x4a0002 0x0 0x4f0005 0x0 0x0 0x0 0x0 0x0 0x530005 0x0 0x0 0x0 0x0 0x0 0x560005 0x0 0x0 0x0 0x0 0x0 0x590005 0x0 0x0 0x0 0x0 0x0 0x610005 0x0 0x0 0x0 0x0 0x0 0x660003 0xd10 0x18 oops 5 6 java/util/HashMap 12 java/security/ProtectionDomain 22 sun/misc/Launcher$AppClassLoader 24 sun/misc/Launcher$ExtClassLoader 30 java/util/HashMap
+ciMethodData java/lang/ClassLoader defineClass (Ljava/lang/String;Ljava/nio/ByteBuffer;Ljava/security/ProtectionDomain;)Ljava/lang/Class; 1 0 orig 264 136 112 148 112 0 0 0 0 208 82 217 22 0 0 0 0 192 3 0 0 96 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 96 2 0 0 255 255 255 255 5 0 1 0 0 0 0 0 data 76 0x10005 0x0 0x0 0x0 0x0 0x0 0x70005 0x0 0x0 0x0 0x0 0x0 0xa0007 0x0 0x190 0x0 0xe0005 0x0 0x0 0x0 0x0 0x0 0x110007 0x0 0xe0 0x0 0x170005 0x0 0x0 0x0 0x0 0x0 0x1b0005 0x0 0x0 0x0 0x0 0x0 0x1f0005 0x0 0x0 0x0 0x0 0x0 0x260005 0x0 0x0 0x0 0x0 0x0 0x330005 0x0 0x0 0x0 0x0 0x0 0x3f0005 0x0 0x0 0x0 0x0 0x0 0x460002 0x0 0x4c0002 0x0 0x550005 0x0 0x0 0x0 0x0 0x0 0x5d0002 0x0 0x660002 0x0 oops 0
+ciMethodData sun/misc/Resource getBytes ()[B 2 8803 orig 264 136 112 148 112 0 0 0 0 16 167 253 22 0 0 0 0 48 5 0 0 112 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 22 3 0 0 65 104 0 0 105 250 0 0 0 0 0 0 0 0 0 0 2 0 0 0 2 0 64 0 2 0 0 0 232 3 0 0 255 255 255 255 2 0 1 0 0 0 0 0 data 125 0x10002 0xd08 0x50002 0xd08 0xa0005 0x0 0x220475c0 0xd08 0x0 0x0 0xf0003 0xd08 0x40 0x140002 0x0 0x1a0003 0x0 0xffffffffffffffa8 0x240007 0xd08 0x20 0x0 0x320007 0xd08 0x1a0 0x1f4d 0x390007 0x6a 0x78 0x1ee3 0x470002 0x1ee3 0x530007 0x0 0x48 0x1ee3 0x5c0002 0x1ee3 0x600003 0x1ee3 0x18 0x730005 0x2e 0x1953a880 0x1d1c 0x1953a930 0x203 0x780003 0x1f4d 0x28 0x7d0002 0x0 0x850007 0x1f4d 0x98 0x0 0x8c0007 0x0 0x30 0x0 0x950002 0x0 0x9d0007 0x0 0x60 0x0 0xa30002 0x0 0xa70003 0x0 0x30 0xb10003 0x1f4d 0xfffffffffffffe78 0xb50005 0x19 0x1953a880 0xc12 0x1953a930 0xdd 0xb80003 0xd08 0x30 0xbf0003 0x0 0x18 0xc50007 0xd08 0x138 0x0 0xc80002 0x0 0xcb0005 0x0 0x0 0x0 0x0 0x0 0xce0003 0x0 0xd8 0xd40005 0x0 0x0 0x0 0x0 0x0 0xd70003 0x0 0x30 0xde0003 0x0 0x18 0xe40007 0x0 0x60 0x0 0xe70002 0x0 0xea0005 0x0 0x0 0x0 0x0 0x0 oops 5 6 sun/misc/URLClassPath$JarLoader$2 43 java/util/zip/ZipFile$ZipFileInflaterInputStream 45 java/util/jar/JarVerifier$VerifierStream 76 java/util/zip/ZipFile$ZipFileInflaterInputStream 78 java/util/jar/JarVerifier$VerifierStream
+ciMethodData java/security/SecureClassLoader defineClass (Ljava/lang/String;[BIILjava/security/CodeSource;)Ljava/lang/Class; 2 3662 orig 264 136 112 148 112 0 0 0 0 240 87 218 22 0 0 0 0 176 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 62 1 0 0 129 104 0 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 64 0 0 0 255 255 255 255 2 0 9 0 0 0 0 0 data 8 0x90002 0xd10 0xc0005 0xb 0x1907cad0 0xa45 0x1907cb60 0x2c0 oops 2 4 sun/misc/Launcher$AppClassLoader 6 sun/misc/Launcher$ExtClassLoader
+ciMethodData java/lang/ClassLoader defineClass (Ljava/lang/String;[BIILjava/security/ProtectionDomain;)Ljava/lang/Class; 2 5446 orig 264 136 112 148 112 0 0 0 0 192 81 217 22 0 0 0 0 136 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 17 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 62 1 0 0 65 160 0 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 15 0 2 0 0 0 64 0 0 0 255 255 255 255 2 0 4 0 0 0 0 0 data 8 0x40002 0x1408 0xc0002 0x1408 0x1b0002 0x1408 0x250002 0x1408 oops 0
+ciMethodData java/net/URLClassLoader definePackage (Ljava/lang/String;Ljava/util/jar/Manifest;Ljava/net/URL;)Ljava/lang/Package; 1 256 orig 264 136 112 148 112 0 0 0 0 72 143 224 22 0 0 0 0 96 6 0 0 176 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 49 0 0 0 121 6 0 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 0 5 0 0 255 255 255 255 5 0 5 0 0 0 0 0 data 160 0x50005 0xcf 0x0 0x0 0x0 0x0 0xa0005 0xcf 0x0 0x0 0x0 0x0 0x2a0005 0x0 0x1907c9b0 0xcf 0x0 0x0 0x310007 0xc5 0x170 0xa 0x390005 0x0 0x1bf22bf0 0xa 0x0 0x0 0x430005 0x0 0x1bf22bf0 0xa 0x0 0x0 0x4d0005 0x0 0x1bf22bf0 0xa 0x0 0x0 0x570005 0x0 0x1bf22bf0 0xa 0x0 0x0 0x610005 0x0 0x1bf22bf0 0xa 0x0 0x0 0x6b0005 0x0 0x1bf22bf0 0xa 0x0 0x0 0x750005 0x0 0x1bf22bf0 0xa 0x0 0x0 0x7b0005 0x0 0x1907c9b0 0xcf 0x0 0x0 0x820007 0x0 0x250 0xcf 0x870007 0xa 0x50 0xc5 0x8f0005 0x0 0x1bf22bf0 0xc5 0x0 0x0 0x960007 0xa 0x50 0xc5 0x9e0005 0x0 0x1bf22bf0 0xc5 0x0 0x0 0xa50007 0xa 0x50 0xc5 0xad0005 0x0 0x1bf22bf0 0xc5 0x0 0x0 0xb40007 0xa 0x50 0xc5 0xbc0005 0x0 0x1bf22bf0 0xc5 0x0 0x0 0xc30007 0xa 0x50 0xc5 0xcb0005 0x0 0x1bf22bf0 0xc5 0x0 0x0 0xd20007 0xa 0x50 0xc5 0xda0005 0x0 0x1bf22bf0 0xc5 0x0 0x0 0xe10007 0x0 0x50 0xcf 0xe90005 0x0 0x1bf22bf0 0xcf 0x0 0x0 0xf20005 0xcf 0x0 0x0 0x0 0x0 0xf50007 0xcf 0x20 0x0 0x10b0005 0x0 0x1907cad0 0xb0 0x1907cb60 0x1f oops 18 14 java/util/jar/Manifest 24 java/util/jar/Attributes 30 java/util/jar/Attributes 36 java/util/jar/Attributes 42 java/util/jar/Attributes 48 java/util/jar/Attributes 54 java/util/jar/Attributes 60 java/util/jar/Attributes 66 java/util/jar/Manifest 80 java/util/jar/Attributes 90 java/util/jar/Attributes 100 java/util/jar/Attributes 110 java/util/jar/Attributes 120 java/util/jar/Attributes 130 java/util/jar/Attributes 140 java/util/jar/Attributes 156 sun/misc/Launcher$AppClassLoader 158 sun/misc/Launcher$ExtClassLoader
+ciMethodData java/lang/ClassLoader definePackage (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/net/URL;)Ljava/lang/Package; 1 490 orig 264 136 112 148 112 0 0 0 0 216 107 217 22 0 0 0 0 40 2 0 0 80 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 49 0 0 0 201 13 0 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 9 0 2 0 0 0 160 0 0 0 255 255 255 255 5 0 10 0 0 0 0 0 data 20 0xa0005 0xea 0x1907cad0 0xb0 0x1907cb60 0x1f 0x110007 0x1b9 0x30 0x0 0x190002 0x0 0x2f0002 0x1b9 0x3b0005 0x0 0x19ad3d10 0x1b9 0x0 0x0 oops 3 2 sun/misc/Launcher$AppClassLoader 4 sun/misc/Launcher$ExtClassLoader 16 java/util/HashMap
+ciMethodData java/lang/ClassLoader preDefineClass (Ljava/lang/String;Ljava/security/ProtectionDomain;)Ljava/security/ProtectionDomain; 2 5446 orig 264 136 112 148 112 0 0 0 0 152 79 217 22 0 0 0 0 56 4 0 0 96 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 25 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 4 0 0 0 0 0 0 0 4 0 0 0 0 0 0 0 194 1 0 0 33 156 0 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 16 0 2 0 0 0 224 2 0 0 255 255 255 255 2 0 2 0 0 0 0 0 data 92 0x20002 0x1384 0x50007 0x1384 0xd0 0x0 0x100002 0x0 0x150005 0x0 0x0 0x0 0x0 0x0 0x190005 0x0 0x0 0x0 0x0 0x0 0x1c0005 0x0 0x0 0x0 0x0 0x0 0x1f0002 0x0 0x240007 0x0 0x180 0x1384 0x2a0005 0x82 0x2a6f860 0x1302 0x0 0x0 0x2d0007 0x1384 0x130 0x0 0x380002 0x0 0x3d0005 0x0 0x0 0x0 0x0 0x0 0x450005 0x0 0x0 0x0 0x0 0x0 0x480005 0x0 0x0 0x0 0x0 0x0 0x4b0005 0x0 0x0 0x0 0x0 0x0 0x4e0005 0x0 0x0 0x0 0x0 0x0 0x510002 0x0 0x560007 0xace 0x20 0x8b6 0x5f0007 0x0 0x60 0x1384 0x650005 0x82 0x2a6ff20 0x1302 0x0 0x0 0x680002 0x1384 oops 2 34 java/lang/String 86 java/security/ProtectionDomain
+ciMethodData java/util/jar/Attributes$Name equals (Ljava/lang/Object;)Z 1 670 orig 264 136 112 148 112 0 0 0 0 248 171 252 22 0 0 0 0 56 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 17 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 4 1 0 0 209 12 0 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 8 0 2 0 0 0 232 0 0 0 255 255 255 255 4 0 1 0 0 0 0 0 data 29 0x10004 0x0 0x1bf238d0 0x19a 0x0 0x0 0x40007 0x0 0xb8 0x19a 0x110004 0x0 0x1bf238d0 0x19a 0x0 0x0 0x170005 0x0 0x1c59ac30 0x19a 0x0 0x0 0x1c0007 0x0 0x38 0x19a 0x200003 0x19a 0x18 oops 3 2 java/util/jar/Attributes$Name 12 java/util/jar/Attributes$Name 18 sun/misc/ASCIICaseInsensitiveComparator
+ciMethodData sun/misc/ASCIICaseInsensitiveComparator compare (Ljava/lang/Object;Ljava/lang/Object;)I 1 670 orig 264 136 112 148 112 0 0 0 0 40 189 252 22 0 0 0 0 232 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 4 1 0 0 209 12 0 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 3 0 2 0 0 0 144 0 0 0 255 255 255 255 4 0 2 0 0 0 0 0 data 18 0x20004 0x0 0x0 0x0 0x0 0x0 0x60004 0x0 0x0 0x0 0x0 0x0 0x90005 0x0 0x1c59ac30 0x19a 0x0 0x0 oops 1 14 sun/misc/ASCIICaseInsensitiveComparator
+ciMethod java/lang/reflect/ParameterizedType getActualTypeArguments ()[Ljava/lang/reflect/Type; 0 0 1 0 -1
+ciMethod java/lang/reflect/ParameterizedType getRawType ()Ljava/lang/reflect/Type; 0 0 1 0 -1
+ciMethodData sun/misc/URLClassPath$JarLoader$2 getCodeSigners ()[Ljava/security/CodeSigner; 2 3654 orig 264 136 112 148 112 0 0 0 0 112 156 253 22 0 0 0 0 120 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 49 98 0 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 3 0 2 0 0 0 48 0 0 0 255 255 255 255 5 0 4 0 0 0 0 0 data 6 0x40005 0x0 0x1953a020 0xc46 0x0 0x0 oops 1 2 java/util/jar/JarFile$JarFileEntry
+ciMethodData java/nio/Buffer remaining ()I 2 165653 orig 264 136 112 148 112 0 0 0 0 72 68 225 22 0 0 0 0 32 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 251 0 0 0 209 48 20 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 3 0 1 0 0 0 0 0 0 0 255 255 255 255 0 0 0 0 0 0 0 0 data 0 oops 0
+ciMethodData java/lang/Package <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/net/URL;Ljava/lang/ClassLoader;)V 1 490 orig 264 136 112 148 112 0 0 0 0 24 207 253 22 0 0 0 0 120 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 81 7 0 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 3 0 2 0 0 0 16 0 0 0 255 255 255 255 2 0 1 0 0 0 0 0 data 2 0x10002 0xea oops 0
+ciMethodData java/util/HashMap comparableClassFor (Ljava/lang/Object;)Ljava/lang/Class; 2 11790 orig 264 136 112 148 112 0 0 0 0 24 206 231 22 0 0 0 0 208 3 0 0 208 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 17 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 113 96 1 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 1 0 28 0 2 0 0 0 136 2 0 0 255 255 255 255 4 0 1 0 0 0 0 0 data 81 0x10004 0xffffffffffffd3f2 0x19539310 0x4f 0x0 0x0 0x40007 0x2c0e 0x258 0x0 0x80005 0x0 0x0 0x0 0x0 0x0 0xf0007 0x0 0x20 0x0 0x150005 0x0 0x0 0x0 0x0 0x0 0x1a0007 0x0 0x1b8 0x0 0x240007 0x0 0x198 0x0 0x2e0004 0x0 0x0 0x0 0x0 0x0 0x310007 0x0 0x130 0x0 0x360004 0x0 0x0 0x0 0x0 0x0 0x3c0005 0x0 0x0 0x0 0x0 0x0 0x430007 0x0 0xb0 0x0 0x480005 0x0 0x0 0x0 0x0 0x0 0x4f0007 0x0 0x60 0x0 0x550007 0x0 0x40 0x0 0x5c0007 0x0 0x20 0x0 0x640003 0x0 0xfffffffffffffe80 oops 1 2 com/google/common/collect/RegularImmutableMap
+ciMethodData java/util/HashMap$TreeNode getTreeNode (ILjava/lang/Object;)Ljava/util/HashMap$TreeNode; 2 4427 orig 264 136 112 148 112 0 0 0 0 192 149 243 22 0 0 0 0 240 1 0 0 80 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 17 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 57 0 0 0 145 136 0 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 152 0 0 0 255 255 255 255 7 0 4 0 0 0 0 0 data 19 0x40007 0x1112 0x68 0x0 0x80005 0x0 0x0 0x0 0x0 0x0 0xb0003 0x0 0x18 0x120005 0x41 0x1951e490 0x10d1 0x0 0x0 oops 1 15 java/util/HashMap$TreeNode
+ciMethodData java/util/HashMap$TreeNode root ()Ljava/util/HashMap$TreeNode; 1 0 orig 264 136 112 148 112 0 0 0 0 168 146 243 22 0 0 0 0 88 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 56 0 0 0 255 255 255 255 7 0 8 0 0 0 0 0 data 7 0x80007 0x0 0x20 0x0 0xf0003 0x0 0xffffffffffffffe0 oops 0
+ciMethodData java/util/HashMap$TreeNode find (ILjava/lang/Object;Ljava/lang/Class;)Ljava/util/HashMap$TreeNode; 2 18409 orig 264 136 112 148 112 0 0 0 0 24 149 243 22 0 0 0 0 16 4 0 0 112 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 72 1 0 0 169 232 1 0 193 55 2 0 0 0 0 0 0 0 0 0 2 0 0 0 1 0 43 0 2 0 0 0 176 2 0 0 255 255 255 255 7 0 26 0 0 0 0 0 data 86 0x1a0007 0x680e 0x38 0x58 0x210003 0x58 0x270 0x270007 0x66d0 0x38 0x13e 0x2e0003 0x13e 0x238 0x3a0007 0x0 0x90 0x66d0 0x3e0007 0x0 0x70 0x66d0 0x440005 0x0 0x19ad3d10 0x66cf 0x1907d1b0 0x1 0x470007 0x55d3 0x20 0x10fd 0x4f0007 0x3004 0x38 0x25cf 0x560003 0x25cf 0x170 0x5b0007 0x2a84 0x38 0x580 0x620003 0x580 0x138 0x660007 0x0 0x50 0x2a84 0x6a0002 0x2a84 0x6f0007 0x2a84 0xa0 0x0 0x760002 0x0 0x7c0007 0x0 0x70 0x0 0x810007 0x0 0x38 0x0 0x860003 0x0 0x18 0x8d0003 0x0 0x68 0x950005 0x72 0x1951e490 0x2a12 0x0 0x0 0x9b0007 0x1ac0 0x20 0xfc4 0xa70007 0x2b50 0xfffffffffffffd70 0x1c55 oops 3 24 java/util/HashMap 26 java/lang/Integer 74 java/util/HashMap$TreeNode
+ciMethodData java/util/HashMap compareComparables (Ljava/lang/Class;Ljava/lang/Object;Ljava/lang/Object;)I 1 0 orig 264 136 112 148 112 0 0 0 0 200 206 231 22 0 0 0 0 64 2 0 0 112 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 17 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 232 0 0 0 255 255 255 255 7 0 1 0 0 0 0 0 data 29 0x10007 0x0 0x70 0x0 0x50005 0x0 0x0 0x0 0x0 0x0 0x90007 0x0 0x38 0x0 0xd0003 0x0 0x78 0x110004 0x0 0x0 0x0 0x0 0x0 0x150005 0x0 0x0 0x0 0x0 0x0 oops 0
+instanceKlass net/minecraft/command/impl/LocateCommand$$Lambda$5073
+instanceKlass net/minecraft/command/impl/LocateCommand$$Lambda$5072
+instanceKlass net/minecraft/command/impl/LocateCommand
+instanceKlass net/minecraft/command/impl/ListCommand$$Lambda$5071
+instanceKlass net/minecraft/command/impl/ListCommand$$Lambda$5070
+instanceKlass net/minecraft/command/impl/ListCommand
+instanceKlass net/minecraft/command/impl/KillCommand$$Lambda$5069
+instanceKlass net/minecraft/command/impl/KillCommand$$Lambda$5068
+instanceKlass net/minecraft/command/impl/KillCommand$$Lambda$5067
+instanceKlass net/minecraft/command/impl/KillCommand
+instanceKlass net/minecraft/command/impl/KickCommand$$Lambda$5066
+instanceKlass net/minecraft/command/impl/KickCommand$$Lambda$5065
+instanceKlass net/minecraft/command/impl/KickCommand$$Lambda$5064
+instanceKlass net/minecraft/command/impl/KickCommand
+instanceKlass net/minecraft/command/impl/HelpCommand$$Lambda$5063
+instanceKlass net/minecraft/command/impl/HelpCommand$$Lambda$5062
+instanceKlass net/minecraft/command/impl/HelpCommand
+instanceKlass net/minecraft/command/impl/GiveCommand$$Lambda$5061
+instanceKlass net/minecraft/command/impl/GiveCommand$$Lambda$5060
+instanceKlass net/minecraft/command/impl/GiveCommand$$Lambda$5059
+instanceKlass net/minecraft/command/impl/GiveCommand
+instanceKlass net/minecraft/command/impl/GameRuleCommand$1$$Lambda$5058
+instanceKlass net/minecraft/command/impl/GameRuleCommand$1$$Lambda$5057
+instanceKlass net/minecraft/world/GameRules$$Lambda$5056
+instanceKlass net/minecraft/command/impl/GameRuleCommand$1
+instanceKlass net/minecraft/command/impl/GameRuleCommand$$Lambda$5055
+instanceKlass net/minecraft/command/impl/GameRuleCommand
+instanceKlass net/minecraft/command/impl/GameModeCommand$$Lambda$5054
+instanceKlass net/minecraft/command/impl/GameModeCommand$$Lambda$5053
+instanceKlass net/minecraft/command/impl/GameModeCommand$$Lambda$5052
+instanceKlass net/minecraft/command/impl/GameModeCommand
+instanceKlass net/minecraft/command/impl/FunctionCommand$$Lambda$5051
+instanceKlass net/minecraft/command/arguments/FunctionArgument$$Lambda$5050
+instanceKlass net/minecraft/command/arguments/FunctionArgument$$Lambda$5049
+instanceKlass net/minecraft/command/impl/FunctionCommand$$Lambda$5048
+instanceKlass net/minecraft/command/impl/FunctionCommand$$Lambda$5047
+instanceKlass net/minecraft/command/impl/FunctionCommand
+instanceKlass net/minecraft/command/impl/ForceLoadCommand$$Lambda$5046
+instanceKlass net/minecraft/command/impl/ForceLoadCommand$$Lambda$5045
+instanceKlass net/minecraft/command/impl/ForceLoadCommand$$Lambda$5044
+instanceKlass net/minecraft/command/impl/ForceLoadCommand$$Lambda$5043
+instanceKlass net/minecraft/command/impl/ForceLoadCommand$$Lambda$5042
+instanceKlass net/minecraft/command/impl/ForceLoadCommand$$Lambda$5041
+instanceKlass net/minecraft/command/impl/ForceLoadCommand$$Lambda$5040
+instanceKlass net/minecraft/command/impl/ForceLoadCommand$$Lambda$5039
+instanceKlass net/minecraft/command/impl/ForceLoadCommand$$Lambda$5038
+instanceKlass net/minecraft/command/impl/ForceLoadCommand$$Lambda$5037
+instanceKlass net/minecraft/command/impl/ForceLoadCommand
+instanceKlass net/minecraft/command/impl/FillCommand$$Lambda$5036
+instanceKlass net/minecraft/command/impl/FillCommand$$Lambda$5035
+instanceKlass net/minecraft/command/impl/FillCommand$$Lambda$5034
+instanceKlass net/minecraft/command/impl/FillCommand$$Lambda$5033
+instanceKlass net/minecraft/command/impl/FillCommand$$Lambda$5032
+instanceKlass net/minecraft/command/impl/FillCommand$$Lambda$5031
+instanceKlass net/minecraft/command/impl/FillCommand$$Lambda$5030
+instanceKlass net/minecraft/command/impl/FillCommand$$Lambda$5029
+instanceKlass net/minecraft/command/arguments/BlockStateInput
+instanceKlass net/minecraft/command/impl/FillCommand$$Lambda$5028
+instanceKlass net/minecraft/command/impl/FillCommand
+instanceKlass net/minecraft/command/impl/ExperienceCommand$$Lambda$5027
+instanceKlass net/minecraft/command/impl/ExperienceCommand$$Lambda$5026
+instanceKlass net/minecraft/command/impl/ExperienceCommand$$Lambda$5025
+instanceKlass net/minecraft/command/impl/ExperienceCommand$$Lambda$5024
+instanceKlass net/minecraft/command/impl/ExperienceCommand$$Lambda$5023
+instanceKlass net/minecraft/command/impl/ExperienceCommand$$Lambda$5022
+instanceKlass net/minecraft/command/impl/ExperienceCommand$$Lambda$5021
+instanceKlass net/minecraft/command/impl/ExperienceCommand$$Lambda$5020
+instanceKlass net/minecraft/command/impl/ExperienceCommand$$Lambda$5019
+instanceKlass net/minecraft/command/impl/ExperienceCommand$$Lambda$5018
+instanceKlass net/minecraft/command/impl/ExperienceCommand
+instanceKlass net/minecraft/command/impl/EnchantCommand$$Lambda$5017
+instanceKlass net/minecraft/command/impl/EnchantCommand$$Lambda$5016
+instanceKlass net/minecraft/command/arguments/EnchantmentArgument$$Lambda$5015
+instanceKlass net/minecraft/command/impl/EnchantCommand$$Lambda$5014
+instanceKlass net/minecraft/command/impl/EnchantCommand$$Lambda$5013
+instanceKlass net/minecraft/command/impl/EnchantCommand$$Lambda$5012
+instanceKlass net/minecraft/command/impl/EnchantCommand$$Lambda$5011
+instanceKlass net/minecraft/command/impl/EnchantCommand$$Lambda$5010
+instanceKlass net/minecraft/command/impl/EnchantCommand
+instanceKlass net/minecraft/command/impl/MeCommand$$Lambda$5009
+instanceKlass net/minecraft/command/impl/MeCommand
+instanceKlass net/minecraft/command/impl/EffectCommand$$Lambda$5008
+instanceKlass net/minecraft/command/impl/EffectCommand$$Lambda$5007
+instanceKlass net/minecraft/command/impl/EffectCommand$$Lambda$5006
+instanceKlass net/minecraft/command/impl/EffectCommand$$Lambda$5005
+instanceKlass net/minecraft/command/impl/EffectCommand$$Lambda$5004
+instanceKlass net/minecraft/command/arguments/PotionArgument$$Lambda$5003
+instanceKlass net/minecraft/command/impl/EffectCommand$$Lambda$5002
+instanceKlass net/minecraft/command/impl/EffectCommand$$Lambda$5001
+instanceKlass net/minecraft/command/impl/EffectCommand$$Lambda$5000
+instanceKlass net/minecraft/command/impl/EffectCommand
+instanceKlass net/minecraft/command/impl/DifficultyCommand$$Lambda$4999
+instanceKlass net/minecraft/command/impl/DifficultyCommand$$Lambda$4998
+instanceKlass net/minecraft/command/impl/DifficultyCommand$$Lambda$4997
+instanceKlass net/minecraft/command/impl/DifficultyCommand$$Lambda$4996
+instanceKlass net/minecraft/command/impl/DifficultyCommand
+instanceKlass net/minecraft/command/impl/DefaultGameModeCommand$$Lambda$4995
+instanceKlass net/minecraft/command/impl/DefaultGameModeCommand$$Lambda$4994
+instanceKlass net/minecraft/command/impl/DefaultGameModeCommand
+instanceKlass net/minecraft/command/impl/DebugCommand$$Lambda$4993
+instanceKlass net/minecraft/command/impl/DebugCommand$$Lambda$4992
+instanceKlass net/minecraft/command/impl/DebugCommand$$Lambda$4991
+instanceKlass net/minecraft/command/impl/DebugCommand$$Lambda$4990
+instanceKlass net/minecraft/command/impl/DebugCommand$$Lambda$4989
+instanceKlass net/minecraft/command/impl/DebugCommand
+instanceKlass net/minecraft/command/impl/DataPackCommand$$Lambda$4988
+instanceKlass net/minecraft/command/impl/DataPackCommand$$Lambda$4987
+instanceKlass net/minecraft/command/impl/DataPackCommand$$Lambda$4986
+instanceKlass net/minecraft/command/impl/DataPackCommand$$Lambda$4985
+instanceKlass net/minecraft/command/impl/DataPackCommand$$Lambda$4984
+instanceKlass net/minecraft/command/impl/DataPackCommand$$Lambda$4983
+instanceKlass net/minecraft/command/impl/DataPackCommand$$Lambda$4982
+instanceKlass net/minecraft/command/impl/DataPackCommand$$Lambda$4981
+instanceKlass net/minecraft/command/impl/DataPackCommand$$Lambda$4980
+instanceKlass net/minecraft/command/impl/DataPackCommand$$Lambda$4979
+instanceKlass net/minecraft/command/impl/DataPackCommand$$Lambda$4978
+instanceKlass net/minecraft/command/impl/DataPackCommand$$Lambda$4977
+instanceKlass net/minecraft/command/impl/DataPackCommand$$Lambda$4976
+instanceKlass net/minecraft/command/impl/DataPackCommand$$Lambda$4975
+instanceKlass net/minecraft/command/impl/DataPackCommand$$Lambda$4974
+instanceKlass net/minecraft/command/impl/DataPackCommand
+instanceKlass net/minecraft/command/impl/data/DataCommand$$Lambda$4973
+instanceKlass net/minecraft/command/impl/data/DataCommand$$Lambda$4972
+instanceKlass net/minecraft/command/impl/data/DataCommand$$Lambda$4971
+instanceKlass net/minecraft/command/impl/data/DataCommand$$Lambda$4970
+instanceKlass net/minecraft/command/impl/data/DataCommand$$Lambda$4969
+instanceKlass net/minecraft/command/impl/data/DataCommand$$Lambda$4968
+instanceKlass net/minecraft/command/impl/data/DataCommand$$Lambda$4967
+instanceKlass net/minecraft/command/impl/data/DataCommand$$Lambda$4966
+instanceKlass net/minecraft/command/impl/data/DataCommand$$Lambda$4965
+instanceKlass net/minecraft/command/impl/data/DataCommand$$Lambda$4964
+instanceKlass net/minecraft/command/arguments/NBTPathArgument$NBTPath
+instanceKlass net/minecraft/command/impl/data/DataCommand$$Lambda$4963
+instanceKlass net/minecraft/command/impl/data/DataCommand$IModificationType
+instanceKlass net/minecraft/command/impl/data/DataCommand$$Lambda$4962
+instanceKlass net/minecraft/command/impl/data/DataCommand$$Lambda$4961
+instanceKlass net/minecraft/command/impl/data/DataCommand$IModificationSourceArgumentBuilder
+instanceKlass net/minecraft/command/impl/data/DataCommand$$Lambda$4960
+instanceKlass net/minecraft/command/impl/data/DataCommand$$Lambda$4959
+instanceKlass net/minecraft/command/impl/data/DataCommand$$Lambda$4958
+instanceKlass net/minecraft/command/impl/data/DataCommand$$Lambda$4957
+instanceKlass net/minecraft/command/impl/data/DataCommand$$Lambda$4956
+instanceKlass net/minecraft/command/impl/data/DataCommand$$Lambda$4955
+instanceKlass net/minecraft/command/impl/data/DataCommand$$Lambda$4954
+instanceKlass net/minecraft/command/impl/data/DataCommand$$Lambda$4953
+instanceKlass net/minecraft/command/impl/data/DataCommand$$Lambda$4952
+instanceKlass net/minecraft/command/impl/CloneCommand$$Lambda$4951
+instanceKlass net/minecraft/command/impl/CloneCommand$$Lambda$4950
+instanceKlass net/minecraft/command/impl/CloneCommand$$Lambda$4949
+instanceKlass net/minecraft/command/impl/CloneCommand$$Lambda$4948
+instanceKlass net/minecraft/command/impl/CloneCommand$$Lambda$4947
+instanceKlass net/minecraft/command/impl/CloneCommand$$Lambda$4946
+instanceKlass net/minecraft/command/impl/CloneCommand$$Lambda$4945
+instanceKlass net/minecraft/command/impl/CloneCommand$$Lambda$4944
+instanceKlass net/minecraft/command/impl/CloneCommand$$Lambda$4943
+instanceKlass net/minecraft/command/impl/CloneCommand$$Lambda$4942
+instanceKlass net/minecraft/command/impl/CloneCommand$$Lambda$4941
+instanceKlass net/minecraft/command/impl/CloneCommand$$Lambda$4940
+instanceKlass net/minecraft/command/impl/CloneCommand$$Lambda$4939
+instanceKlass net/minecraft/command/impl/CloneCommand$$Lambda$4938
+instanceKlass net/minecraft/command/impl/CloneCommand$$Lambda$4937
+instanceKlass net/minecraft/util/CachedBlockInfo
+instanceKlass net/minecraft/command/impl/CloneCommand$$Lambda$4936
+instanceKlass net/minecraft/command/impl/CloneCommand
+instanceKlass net/minecraft/command/impl/ClearCommand$$Lambda$4935
+instanceKlass net/minecraft/command/impl/ClearCommand$$Lambda$4934
+instanceKlass net/minecraft/command/arguments/ItemPredicateArgument$$Lambda$4933
+instanceKlass net/minecraft/command/impl/ClearCommand$$Lambda$4932
+instanceKlass net/minecraft/command/impl/ClearCommand$$Lambda$4931
+instanceKlass net/minecraft/command/impl/ClearCommand$$Lambda$4930
+instanceKlass net/minecraft/command/impl/ClearCommand$$Lambda$4929
+instanceKlass net/minecraft/command/impl/ClearCommand$$Lambda$4928
+instanceKlass net/minecraft/command/impl/ClearCommand
+instanceKlass net/minecraft/command/impl/BossBarCommand$$Lambda$4927
+instanceKlass net/minecraft/command/impl/BossBarCommand$$Lambda$4926
+instanceKlass net/minecraft/command/impl/BossBarCommand$$Lambda$4925
+instanceKlass net/minecraft/command/impl/BossBarCommand$$Lambda$4924
+instanceKlass net/minecraft/command/impl/BossBarCommand$$Lambda$4923
+instanceKlass net/minecraft/command/impl/BossBarCommand$$Lambda$4922
+instanceKlass net/minecraft/command/impl/BossBarCommand$$Lambda$4921
+instanceKlass net/minecraft/command/impl/BossBarCommand$$Lambda$4920
+instanceKlass net/minecraft/command/impl/BossBarCommand$$Lambda$4919
+instanceKlass net/minecraft/command/impl/BossBarCommand$$Lambda$4918
+instanceKlass net/minecraft/command/impl/BossBarCommand$$Lambda$4917
+instanceKlass net/minecraft/command/impl/BossBarCommand$$Lambda$4916
+instanceKlass net/minecraft/command/impl/BossBarCommand$$Lambda$4915
+instanceKlass net/minecraft/command/impl/BossBarCommand$$Lambda$4914
+instanceKlass net/minecraft/command/impl/BossBarCommand$$Lambda$4913
+instanceKlass net/minecraft/command/impl/BossBarCommand$$Lambda$4912
+instanceKlass net/minecraft/command/impl/BossBarCommand$$Lambda$4911
+instanceKlass net/minecraft/command/impl/BossBarCommand$$Lambda$4910
+instanceKlass net/minecraft/command/impl/BossBarCommand$$Lambda$4909
+instanceKlass net/minecraft/command/impl/BossBarCommand$$Lambda$4908
+instanceKlass net/minecraft/command/impl/BossBarCommand$$Lambda$4907
+instanceKlass net/minecraft/command/impl/BossBarCommand$$Lambda$4906
+instanceKlass net/minecraft/command/impl/BossBarCommand$$Lambda$4905
+instanceKlass net/minecraft/command/impl/BossBarCommand$$Lambda$4904
+instanceKlass net/minecraft/command/impl/BossBarCommand$$Lambda$4903
+instanceKlass net/minecraft/command/arguments/ComponentArgument$$Lambda$4902
+instanceKlass net/minecraft/command/impl/BossBarCommand$$Lambda$4901
+instanceKlass net/minecraft/command/impl/ExecuteCommand$$Lambda$4900
+instanceKlass net/minecraft/command/arguments/DimensionArgument$$Lambda$4899
+instanceKlass net/minecraft/command/arguments/DimensionArgument$$Lambda$4898
+instanceKlass net/minecraft/command/impl/ExecuteCommand$$Lambda$4897
+instanceKlass net/minecraft/command/impl/ExecuteCommand$$Lambda$4896
+instanceKlass net/minecraft/command/impl/ExecuteCommand$$Lambda$4895
+instanceKlass net/minecraft/command/impl/ExecuteCommand$$Lambda$4894
+instanceKlass net/minecraft/command/arguments/EntityAnchorArgument$$Lambda$4893
+instanceKlass net/minecraft/command/impl/ExecuteCommand$$Lambda$4892
+instanceKlass net/minecraft/command/impl/ExecuteCommand$$Lambda$4891
+instanceKlass net/minecraft/command/impl/ExecuteCommand$$Lambda$4890
+instanceKlass net/minecraft/command/impl/ExecuteCommand$$Lambda$4889
+instanceKlass net/minecraft/command/impl/ExecuteCommand$$Lambda$4888
+instanceKlass net/minecraft/command/impl/ExecuteCommand$$Lambda$4887
+instanceKlass net/minecraft/command/impl/ExecuteCommand$$Lambda$4886
+instanceKlass net/minecraft/command/impl/ExecuteCommand$$Lambda$4885
+instanceKlass net/minecraft/command/impl/ExecuteCommand$$Lambda$4884
+instanceKlass net/minecraft/command/impl/ExecuteCommand$$Lambda$4883
+instanceKlass net/minecraft/command/impl/ExecuteCommand$$Lambda$4882
+instanceKlass java/lang/invoke/LambdaForm$DMH
+instanceKlass net/minecraft/command/impl/ExecuteCommand$$Lambda$4881
+instanceKlass net/minecraft/command/impl/ExecuteCommand$$Lambda$4880
+instanceKlass net/minecraft/command/impl/BossBarCommand$$Lambda$4879
+instanceKlass net/minecraft/command/impl/BossBarCommand$$Lambda$4878
+instanceKlass net/minecraft/command/impl/BossBarCommand$$Lambda$4877
+instanceKlass net/minecraft/command/impl/BossBarCommand
+instanceKlass com/mojang/brigadier/builder/ArgumentBuilder$$Lambda$4876
+instanceKlass net/minecraft/command/impl/ExecuteCommand$$Lambda$4875
+instanceKlass com/mojang/brigadier/SingleRedirectModifier
+instanceKlass net/minecraft/command/impl/ExecuteCommand$$Lambda$4874
+instanceKlass net/minecraft/command/impl/ExecuteCommand$$Lambda$4873
+instanceKlass net/minecraft/command/impl/ExecuteCommand$$Lambda$4872
+instanceKlass net/minecraft/command/impl/ExecuteCommand$$Lambda$4871
+instanceKlass net/minecraft/command/impl/ExecuteCommand$$Lambda$4870
+instanceKlass net/minecraft/command/impl/ExecuteCommand$$Lambda$4869
+instanceKlass net/minecraft/command/arguments/NBTPathArgument$$Lambda$4868
+instanceKlass net/minecraft/command/impl/ExecuteCommand$$Lambda$4867
+instanceKlass net/minecraft/command/impl/data/DataCommand$$Lambda$4866
+instanceKlass net/minecraft/command/impl/data/StorageAccessor$1
+instanceKlass net/minecraft/command/impl/data/BlockDataAccessor$1
+instanceKlass net/minecraft/command/impl/data/EntityDataAccessor$1
+instanceKlass net/minecraft/command/impl/data/DataCommand$$Lambda$4865
+instanceKlass net/minecraft/command/impl/data/StorageAccessor$$Lambda$4864
+instanceKlass net/minecraft/command/impl/data/StorageAccessor$$Lambda$4863
+instanceKlass net/minecraft/command/impl/data/StorageAccessor
+instanceKlass net/minecraft/command/impl/data/BlockDataAccessor$$Lambda$4862
+instanceKlass net/minecraft/command/impl/data/BlockDataAccessor
+instanceKlass net/minecraft/command/impl/data/EntityDataAccessor$$Lambda$4861
+instanceKlass net/minecraft/command/impl/data/DataCommand$IDataProvider
+instanceKlass net/minecraft/command/impl/data/EntityDataAccessor
+instanceKlass net/minecraft/command/impl/data/IDataAccessor
+instanceKlass net/minecraft/command/impl/data/DataCommand$$Lambda$4860
+instanceKlass net/minecraft/command/impl/data/DataCommand$$Lambda$4859
+instanceKlass net/minecraft/command/impl/data/DataCommand$$Lambda$4858
+instanceKlass net/minecraft/command/impl/data/DataCommand$$Lambda$4857
+instanceKlass net/minecraft/command/impl/data/DataCommand$$Lambda$4856
+instanceKlass net/minecraft/command/impl/data/DataCommand
+instanceKlass net/minecraft/command/impl/ExecuteCommand$$Lambda$4855
+instanceKlass net/minecraft/command/impl/ExecuteCommand$$Lambda$4854
+instanceKlass net/minecraft/command/impl/ExecuteCommand$$Lambda$4853
+instanceKlass net/minecraft/command/impl/ExecuteCommand$INumericTest
+instanceKlass net/minecraft/command/impl/ExecuteCommand$$Lambda$4852
+instanceKlass net/minecraft/command/impl/ExecuteCommand$$Lambda$4851
+instanceKlass net/minecraft/command/impl/ExecuteCommand$$Lambda$4850
+instanceKlass net/minecraft/command/impl/ExecuteCommand$$Lambda$4849
+instanceKlass net/minecraft/command/impl/ExecuteCommand$$Lambda$4848
+instanceKlass net/minecraft/command/impl/ExecuteCommand$$Lambda$4847
+instanceKlass net/minecraft/command/impl/ExecuteCommand$$Lambda$4846
+instanceKlass net/minecraft/command/impl/ExecuteCommand$$Lambda$4845
+instanceKlass net/minecraft/command/impl/ExecuteCommand$$Lambda$4844
+instanceKlass net/minecraft/command/arguments/ObjectiveArgument$$Lambda$4843
+instanceKlass net/minecraft/command/arguments/ObjectiveArgument$$Lambda$4842
+instanceKlass net/minecraft/command/arguments/ObjectiveArgument$$Lambda$4841
+instanceKlass net/minecraft/command/arguments/ScoreHolderArgument$$Lambda$4840
+instanceKlass net/minecraft/command/arguments/ScoreHolderArgument$INameProvider
+instanceKlass net/minecraft/command/impl/ExecuteCommand$$Lambda$4839
+instanceKlass java/lang/invoke/LambdaForm$MH
+instanceKlass net/minecraft/command/impl/ExecuteCommand$$Lambda$4838
+instanceKlass net/minecraft/command/impl/ExecuteCommand$$Lambda$4837
+instanceKlass net/minecraft/command/impl/ExecuteCommand$IBooleanTest
+instanceKlass net/minecraft/command/arguments/BlockPredicateArgument$$Lambda$4836
+instanceKlass net/minecraft/command/impl/ExecuteCommand$$Lambda$4835
+instanceKlass net/minecraft/command/impl/ExecuteCommand$$Lambda$4834
+instanceKlass net/minecraft/command/impl/ExecuteCommand$$Lambda$4833
+instanceKlass net/minecraft/command/impl/ExecuteCommand$$Lambda$4832
+instanceKlass net/minecraft/command/impl/ExecuteCommand$$Lambda$4831
+instanceKlass net/minecraft/command/impl/ExecuteCommand$$Lambda$4830
+instanceKlass net/minecraft/command/impl/ExecuteCommand
+instanceKlass net/minecraft/command/impl/AttributeCommand$$Lambda$4829
+instanceKlass net/minecraft/command/impl/AttributeCommand$$Lambda$4828
+instanceKlass net/minecraft/command/impl/AttributeCommand$$Lambda$4827
+instanceKlass net/minecraft/command/impl/AttributeCommand$$Lambda$4826
+instanceKlass net/minecraft/command/impl/AttributeCommand$$Lambda$4825
+instanceKlass net/minecraft/command/impl/AttributeCommand$$Lambda$4824
+instanceKlass net/minecraft/command/impl/AttributeCommand$$Lambda$4823
+instanceKlass net/minecraft/command/impl/AttributeCommand$$Lambda$4822
+instanceKlass net/minecraft/command/impl/AttributeCommand$$Lambda$4821
+instanceKlass net/minecraft/command/impl/AttributeCommand$$Lambda$4820
+instanceKlass net/minecraft/command/impl/AttributeCommand$$Lambda$4819
+instanceKlass net/minecraft/command/impl/AttributeCommand$$Lambda$4818
+instanceKlass net/minecraft/command/impl/AttributeCommand$$Lambda$4817
+instanceKlass net/minecraft/command/impl/AttributeCommand$$Lambda$4816
+instanceKlass com/mojang/brigadier/exceptions/Dynamic3CommandExceptionType$Function
+instanceKlass com/mojang/brigadier/exceptions/Dynamic3CommandExceptionType
+instanceKlass net/minecraft/command/impl/AttributeCommand$$Lambda$4815
+instanceKlass net/minecraft/command/impl/AttributeCommand$$Lambda$4814
+instanceKlass net/minecraft/command/impl/AttributeCommand$$Lambda$4813
+instanceKlass net/minecraft/command/impl/AttributeCommand
+instanceKlass net/minecraft/command/impl/AdvancementCommand$$Lambda$4812
+instanceKlass net/minecraft/command/impl/AdvancementCommand$$Lambda$4811
+instanceKlass net/minecraft/command/impl/AdvancementCommand$$Lambda$4810
+instanceKlass net/minecraft/command/impl/AdvancementCommand$$Lambda$4809
+instanceKlass net/minecraft/command/impl/AdvancementCommand$$Lambda$4808
+instanceKlass net/minecraft/command/impl/AdvancementCommand$$Lambda$4807
+instanceKlass net/minecraft/command/impl/AdvancementCommand$$Lambda$4806
+instanceKlass net/minecraft/command/impl/AdvancementCommand$$Lambda$4805
+instanceKlass net/minecraft/command/impl/AdvancementCommand$$Lambda$4804
+instanceKlass net/minecraft/command/impl/AdvancementCommand$$Lambda$4803
+instanceKlass net/minecraft/command/impl/AdvancementCommand$$Lambda$4802
+instanceKlass com/mojang/brigadier/tree/CommandNode$$Lambda$4801
+instanceKlass com/mojang/brigadier/tree/CommandNode$$Lambda$4800
+instanceKlass com/mojang/brigadier/tree/CommandNode$$Lambda$4799
+instanceKlass com/mojang/brigadier/tree/CommandNode$$Lambda$4798
+instanceKlass java/util/Map$Entry$$Lambda$4797
+instanceKlass net/minecraft/command/impl/AdvancementCommand$$Lambda$4796
+instanceKlass net/minecraft/command/impl/AdvancementCommand$$Lambda$4795
+instanceKlass net/minecraft/command/impl/AdvancementCommand$$Lambda$4794
+instanceKlass com/mojang/brigadier/Command
+instanceKlass net/minecraft/command/arguments/ResourceLocationArgument$$Lambda$4793
+instanceKlass net/minecraft/command/arguments/ResourceLocationArgument$$Lambda$4792
+instanceKlass net/minecraft/command/arguments/ResourceLocationArgument$$Lambda$4791
+instanceKlass net/minecraft/command/arguments/ResourceLocationArgument$$Lambda$4790
+instanceKlass net/minecraft/command/impl/AdvancementCommand$$Lambda$4789
+instanceKlass net/minecraft/command/CommandSource
+instanceKlass net/minecraft/command/ISuggestionProvider
+instanceKlass com/mojang/brigadier/builder/ArgumentBuilder$$Lambda$4788
+instanceKlass com/mojang/brigadier/builder/ArgumentBuilder
+instanceKlass net/minecraft/command/impl/AdvancementCommand$$Lambda$4787
+instanceKlass com/mojang/brigadier/suggestion/SuggestionProvider
+instanceKlass com/mojang/brigadier/suggestion/SuggestionsBuilder
+instanceKlass net/minecraft/command/impl/AdvancementCommand
+instanceKlass com/mojang/brigadier/CommandDispatcher$$Lambda$4786
+instanceKlass com/mojang/brigadier/ResultConsumer
+instanceKlass com/mojang/brigadier/CommandDispatcher$1
+instanceKlass com/mojang/brigadier/tree/RootCommandNode$$Lambda$4785
+instanceKlass com/mojang/brigadier/RedirectModifier
+instanceKlass com/mojang/brigadier/context/CommandContext
+instanceKlass com/mojang/brigadier/tree/RootCommandNode$$Lambda$4784
+instanceKlass com/mojang/brigadier/tree/CommandNode
+instanceKlass net/minecraft/command/Commands
+instanceKlass net/minecraft/advancements/AdvancementList
+instanceKlass net/minecraft/loot/LootTable$Serializer
+instanceKlass net/minecraft/loot/LootTable
+instanceKlass net/minecraft/loot/LootPool$Serializer
+instanceKlass net/minecraft/loot/LootPool
+instanceKlass net/minecraft/loot/functions/LootFunctionManager$$Lambda$4783
+instanceKlass net/minecraft/loot/LootEntryManager$$Lambda$4782
+instanceKlass net/minecraft/loot/IntClamper$Serializer
+instanceKlass net/minecraft/loot/IntClamper
+instanceKlass java/util/function/IntUnaryOperator
+instanceKlass net/minecraft/loot/LootTypesManager$Serializer
+instanceKlass net/minecraft/loot/LootTypesManager$LootTypeRegistryWrapper
+instanceKlass net/minecraft/loot/LootTypesManager
+instanceKlass net/minecraft/loot/conditions/LootConditionManager$$Lambda$4781
+instanceKlass net/minecraft/loot/ConstantRange$Serializer
+instanceKlass net/minecraft/loot/ConstantRange
+instanceKlass net/minecraft/loot/BinomialRange$Serializer
+instanceKlass net/minecraft/loot/BinomialRange
+instanceKlass net/minecraft/loot/RandomValueRange$Serializer
+instanceKlass net/minecraft/loot/RandomValueRange
+instanceKlass net/minecraft/loot/IRandomRange
+instanceKlass net/minecraft/loot/LootSerializers
+instanceKlass net/minecraft/tags/NetworkTagCollection$$Lambda$4780
+instanceKlass net/minecraft/server/MinecraftServer$$Lambda$4779
+instanceKlass com/google/common/collect/ImmutableSet$Indexed$$Lambda$4778
+instanceKlass net/minecraft/resources/ResourcePackList$$Lambda$4777
+instanceKlass net/minecraftforge/fml/server/ServerLifecycleHooks$$Lambda$4776
+instanceKlass net/minecraft/resources/ServerPackFinder$$Lambda$4775
+instanceKlass net/minecraftforge/fml/server/ServerLifecycleHooks$$Lambda$4774
+instanceKlass net/minecraft/server/MinecraftServer$$Lambda$4773
+instanceKlass net/minecraftforge/fml/server/ServerLifecycleHooks
+instanceKlass net/minecraft/world/storage/SaveFormat$LevelSave$$Lambda$4772
+instanceKlass net/minecraft/world/storage/FolderName
+instanceKlass net/minecraft/resources/ServerPackFinder
+instanceKlass net/minecraft/client/Minecraft$$Lambda$4771
+instanceKlass java/lang/invoke/LambdaForm$DMH
+instanceKlass net/minecraft/world/storage/SaveFormat$$Lambda$4770
+instanceKlass net/minecraft/world/storage/SaveFormat$LevelSave$$Lambda$4769
+instanceKlass net/minecraft/world/border/IBorderListener
+instanceKlass net/minecraft/world/storage/IServerWorldInfo
+instanceKlass java/awt/image/RenderedImage
+instanceKlass java/nio/file/FileVisitor
+instanceKlass net/minecraft/client/Minecraft$$Lambda$4768
+instanceKlass net/minecraft/client/Minecraft$$Lambda$4767
+instanceKlass net/minecraft/server/IDynamicRegistries$Impl$$Lambda$4766
+instanceKlass net/minecraft/server/IDynamicRegistries$Impl$$Lambda$4765
+instanceKlass net/minecraft/util/registry/SimpleRegistry$$Lambda$4764
+instanceKlass net/minecraft/util/registry/SimpleRegistry$$Lambda$4763
+instanceKlass net/minecraft/util/datafix/codec/RangeCodec$$Lambda$4762
+instanceKlass net/minecraft/util/registry/RegistryKeyCodec
+instanceKlass com/mojang/datafixers/kinds/Applicative$$Lambda$4761
+instanceKlass net/minecraft/world/DimensionType$$Lambda$4760
+instanceKlass com/mojang/datafixers/util/Function13
+instanceKlass java/lang/invoke/LambdaForm$DMH
+instanceKlass com/mojang/datafixers/Products$P13
+instanceKlass net/minecraft/world/DimensionType$$Lambda$4759
+instanceKlass net/minecraft/world/DimensionType$$Lambda$4758
+instanceKlass net/minecraft/world/DimensionType$$Lambda$4757
+instanceKlass net/minecraft/world/DimensionType$$Lambda$4756
+instanceKlass net/minecraft/world/DimensionType$$Lambda$4755
+instanceKlass net/minecraft/world/DimensionType$$Lambda$4754
+instanceKlass net/minecraft/world/DimensionType$$Lambda$4753
+instanceKlass net/minecraft/world/DimensionType$$Lambda$4752
+instanceKlass net/minecraft/world/DimensionType$$Lambda$4751
+instanceKlass net/minecraft/world/DimensionType$$Lambda$4750
+instanceKlass net/minecraft/world/DimensionType$$Lambda$4749
+instanceKlass net/minecraft/world/DimensionType$$Lambda$4748
+instanceKlass net/minecraft/world/DimensionType$$Lambda$4747
+instanceKlass net/minecraft/world/DimensionType$$Lambda$4746
+instanceKlass net/minecraft/world/DimensionType$$Lambda$4745
+instanceKlass java/util/OptionalLong
+instanceKlass net/minecraft/world/DimensionType$$Lambda$4744
+instanceKlass net/minecraft/world/biome/IBiomeMagnifier
+instanceKlass net/minecraft/world/DimensionType
+instanceKlass net/minecraft/server/IDynamicRegistries$Impl
+instanceKlass net/minecraft/client/gui/screen/WorldSelectionScreen$$Lambda$4743
+instanceKlass java/nio/DirectByteBuffer$1
+instanceKlass net/minecraft/util/text/CharacterManager$StringWidthProcessor
+instanceKlass java/lang/invoke/LambdaForm$MH
+instanceKlass java/lang/invoke/LambdaForm$DMH
+instanceKlass java/lang/invoke/LambdaForm$DMH
+instanceKlass net/minecraft/client/gui/INestedGuiEventHandler$$Lambda$4742
+instanceKlass java/lang/invoke/LambdaForm$DMH
+instanceKlass net/minecraft/client/MouseHelper$$Lambda$4741
+instanceKlass net/minecraft/client/gui/screen/WorldSelectionScreen$$Lambda$4740
+instanceKlass net/minecraft/client/gui/DialogTexts
+instanceKlass net/minecraft/client/gui/screen/WorldSelectionScreen$$Lambda$4739
+instanceKlass net/minecraft/client/gui/screen/WorldSelectionScreen$$Lambda$4738
+instanceKlass net/minecraft/client/gui/screen/WorldSelectionScreen$$Lambda$4737
+instanceKlass net/minecraft/client/gui/screen/WorldSelectionScreen$$Lambda$4736
+instanceKlass net/minecraft/client/gui/screen/WorldSelectionScreen$$Lambda$4735
+instanceKlass com/google/common/hash/HashCode
+instanceKlass com/google/common/hash/AbstractHasher
+instanceKlass com/google/common/hash/Hasher
+instanceKlass com/google/common/hash/PrimitiveSink
+instanceKlass com/google/common/hash/AbstractStreamingHashFunction
+instanceKlass com/google/common/hash/Hashing$Sha1Holder
+instanceKlass com/google/common/hash/HashFunction
+instanceKlass com/google/common/hash/Hashing
+instanceKlass java/util/stream/StreamSpliterators$WrappingSpliterator$$Lambda$4734
+instanceKlass java/util/stream/StreamSpliterators$WrappingSpliterator$$Lambda$4733
+instanceKlass com/mojang/serialization/DynamicLike$$Lambda$4732
+instanceKlass net/minecraft/util/datafix/fixes/LevelUUID$$Lambda$4731
+instanceKlass com/mojang/serialization/DynamicLike$$Lambda$4730
+instanceKlass com/mojang/serialization/Dynamic$$Lambda$4729
+instanceKlass com/mojang/serialization/Dynamic$$Lambda$4728
+instanceKlass net/minecraft/nbt/NBTDynamicOps$$Lambda$4727
+instanceKlass net/minecraft/util/datafix/fixes/LevelUUID$$Lambda$4726
+instanceKlass net/minecraft/util/datafix/fixes/LevelUUID$$Lambda$4725
+instanceKlass com/mojang/serialization/Dynamic$$Lambda$4724
+instanceKlass net/minecraft/nbt/NBTDynamicOps$$Lambda$4723
+instanceKlass net/minecraft/nbt/NBTDynamicOps$$Lambda$4722
+instanceKlass com/mojang/serialization/Dynamic$$Lambda$4721
+instanceKlass java/util/stream/Nodes$IntArrayNode
+instanceKlass java/util/Spliterators$IntArraySpliterator
+instanceKlass net/minecraft/util/datafix/fixes/AbstractUUIDFix$$Lambda$4720
+instanceKlass net/minecraft/util/datafix/fixes/LevelUUID$$Lambda$4719
+instanceKlass net/minecraft/util/datafix/fixes/LevelUUID$$Lambda$4718
+instanceKlass com/mojang/serialization/DataResult$$Lambda$4717
+instanceKlass com/mojang/serialization/DataResult$$Lambda$4716
+instanceKlass net/minecraft/world/GameRules$$Lambda$4715
+instanceKlass net/minecraft/world/GameRules$$Lambda$4714
+instanceKlass net/minecraft/world/GameRules$$Lambda$4713
+instanceKlass net/minecraft/world/GameRules$$Lambda$4712
+instanceKlass java/util/Map$Entry$$Lambda$4711
+instanceKlass java/util/TreeMap$TreeMapSpliterator
+instanceKlass net/minecraft/world/GameRules$$Lambda$4710
+instanceKlass net/minecraft/world/GameRules$$Lambda$4709
+instanceKlass net/minecraft/world/GameRules$IntegerValue$$Lambda$4708
+instanceKlass net/minecraft/world/GameRules$IntegerValue$$Lambda$4707
+instanceKlass net/minecraft/world/GameRules$IntegerValue$$Lambda$4706
+instanceKlass net/minecraft/world/GameRules$IntegerValue$$Lambda$4705
+instanceKlass net/minecraft/world/GameRules$BooleanValue$$Lambda$4704
+instanceKlass net/minecraft/world/GameRules$IRule
+instanceKlass net/minecraft/world/GameRules$BooleanValue$$Lambda$4703
+instanceKlass net/minecraft/world/GameRules$BooleanValue$$Lambda$4702
+instanceKlass net/minecraft/world/GameRules$RuleType
+instanceKlass net/minecraft/world/GameRules$BooleanValue$$Lambda$4701
+instanceKlass net/minecraft/world/GameRules$RuleValue
+instanceKlass net/minecraft/world/GameRules$$Lambda$4700
+instanceKlass net/minecraft/world/GameRules$RuleKey
+instanceKlass net/minecraft/world/GameRules
+instanceKlass net/minecraft/world/WorldSettings$$Lambda$4699
+instanceKlass net/minecraft/world/WorldSettings
+instanceKlass net/minecraft/world/storage/SaveFormat$$Lambda$4698
+instanceKlass com/mojang/serialization/Decoder$$Lambda$4697
+instanceKlass com/mojang/serialization/MapCodec$MapCodecCodec$$Lambda$4696
+instanceKlass com/mojang/serialization/Decoder$$Lambda$4695
+instanceKlass com/mojang/datafixers/util/Either$$Lambda$4694
+instanceKlass com/mojang/datafixers/util/Either$$Lambda$4693
+instanceKlass com/mojang/serialization/DataResult$$Lambda$4692
+instanceKlass com/mojang/serialization/codecs/ListCodec$$Lambda$4691
+instanceKlass com/google/common/collect/Iterators$PeekingImpl
+instanceKlass java/util/Spliterators$1Adapter
+instanceKlass com/mojang/serialization/codecs/ListCodec$$Lambda$4690
+instanceKlass com/mojang/serialization/codecs/ListCodec$$Lambda$4689
+instanceKlass com/mojang/serialization/codecs/PrimitiveCodec$$Lambda$4688
+instanceKlass com/mojang/serialization/codecs/ListCodec$$Lambda$4687
+instanceKlass com/mojang/serialization/codecs/ListCodec$$Lambda$4686
+instanceKlass net/minecraft/nbt/NBTDynamicOps$$Lambda$4685
+instanceKlass com/mojang/serialization/MapDecoder$$Lambda$4684
+instanceKlass net/minecraft/world/storage/SaveFormat$$Lambda$4683
+instanceKlass com/mojang/serialization/OptionalDynamic$$Lambda$4682
+instanceKlass com/mojang/serialization/OptionalDynamic$$Lambda$4681
+instanceKlass net/minecraft/world/storage/VersionData
+instanceKlass com/mojang/serialization/DataResult$$Lambda$4680
+instanceKlass com/mojang/serialization/DataResult$$Lambda$4679
+instanceKlass com/mojang/datafixers/DataFixerUpper$$Lambda$4678
+instanceKlass com/mojang/datafixers/Typed$$Lambda$4677
+instanceKlass com/mojang/datafixers/kinds/IdF
+instanceKlass net/minecraft/util/datafix/fixes/AbstractUUIDFix$$Lambda$4676
+instanceKlass net/minecraft/util/datafix/fixes/AbstractUUIDFix$$Lambda$4675
+instanceKlass net/minecraft/util/datafix/fixes/LevelUUID$$Lambda$4674
+instanceKlass net/minecraft/util/datafix/fixes/LevelUUID$$Lambda$4673
+instanceKlass net/minecraft/nbt/NBTDynamicOps$$Lambda$4672
+instanceKlass net/minecraft/nbt/NBTDynamicOps$$Lambda$4671
+instanceKlass com/mojang/serialization/DynamicOps$$Lambda$4670
+instanceKlass com/mojang/serialization/Dynamic$$Lambda$4669
+instanceKlass com/mojang/serialization/Dynamic$$Lambda$4668
+instanceKlass com/mojang/serialization/Dynamic$$Lambda$4667
+instanceKlass com/mojang/serialization/Dynamic$$Lambda$4666
+instanceKlass com/mojang/serialization/Dynamic$$Lambda$4665
+instanceKlass net/minecraft/nbt/NBTDynamicOps$$Lambda$4664
+instanceKlass net/minecraft/util/datafix/fixes/LevelUUID$$Lambda$4663
+instanceKlass com/mojang/serialization/DynamicOps$$Lambda$4662
+instanceKlass com/mojang/serialization/DynamicOps$$Lambda$4661
+instanceKlass com/mojang/serialization/DynamicOps$$Lambda$4660
+instanceKlass com/mojang/serialization/DynamicOps$$Lambda$4659
+instanceKlass com/mojang/serialization/Dynamic$$Lambda$4658
+instanceKlass com/mojang/serialization/Dynamic$$Lambda$4657
+instanceKlass net/minecraft/util/datafix/fixes/LevelUUID$$Lambda$4656
+instanceKlass net/minecraft/util/datafix/fixes/LevelUUID$$Lambda$4655
+instanceKlass com/mojang/datafixers/util/Pair$Instance$$Lambda$4654
+instanceKlass com/mojang/datafixers/optics/profunctors/TraversalP$1$$Lambda$4653
+instanceKlass com/mojang/datafixers/optics/Traversal$Instance$1$$Lambda$4652
+instanceKlass com/mojang/datafixers/Typed$$Lambda$4651
+instanceKlass com/mojang/datafixers/optics/Lens$$Lambda$4650
+instanceKlass com/mojang/datafixers/optics/Lens$$Lambda$4649
+instanceKlass com/mojang/datafixers/optics/profunctors/TraversalP$$Lambda$4648
+instanceKlass com/mojang/datafixers/optics/profunctors/TraversalP$$Lambda$4647
+instanceKlass com/mojang/datafixers/optics/Traversal$Instance$2
+instanceKlass com/mojang/datafixers/optics/profunctors/TraversalP$1
+instanceKlass com/mojang/datafixers/util/Pair$Instance
+instanceKlass com/mojang/datafixers/kinds/CartesianLike
+instanceKlass com/mojang/datafixers/optics/Traversal$Instance$1
+instanceKlass com/mojang/datafixers/optics/Traversal$Instance$$Lambda$4646
+instanceKlass com/mojang/datafixers/optics/Adapter$$Lambda$4645
+instanceKlass com/mojang/datafixers/optics/Adapter$$Lambda$4644
+instanceKlass com/mojang/datafixers/optics/Optics$1
+instanceKlass com/mojang/datafixers/optics/Traversal$Instance
+instanceKlass com/mojang/datafixers/Typed$$Lambda$4643
+instanceKlass com/mojang/datafixers/Typed$$Lambda$4642
+instanceKlass com/mojang/datafixers/util/Either$$Lambda$4641
+instanceKlass com/mojang/datafixers/util/Either$$Lambda$4640
+instanceKlass com/mojang/datafixers/util/Either$$Lambda$4639
+instanceKlass com/mojang/datafixers/util/Either$$Lambda$4638
+instanceKlass com/mojang/datafixers/types/templates/Named$NamedType$$Lambda$4637
+instanceKlass com/mojang/datafixers/types/Type$$Lambda$4636
+instanceKlass com/mojang/datafixers/types/Type$$Lambda$4635
+instanceKlass com/mojang/datafixers/types/Type$TypeError
+instanceKlass com/mojang/datafixers/FieldFinder$Matcher
+instanceKlass net/minecraft/util/datafix/fixes/LevelUUID$$Lambda$4634
+instanceKlass com/mojang/datafixers/DataFix$$Lambda$4633
+instanceKlass com/mojang/datafixers/types/Type$$Lambda$4632
+instanceKlass com/mojang/datafixers/types/templates/Named$NamedType$1$$Lambda$4631
+instanceKlass com/mojang/serialization/DataResult$$Lambda$4630
+instanceKlass com/mojang/datafixers/types/templates/Named$NamedType$1$$Lambda$4629
+instanceKlass com/mojang/datafixers/types/templates/Named$NamedType$1
+instanceKlass net/minecraft/nbt/LongNBT$Cache
+instanceKlass net/minecraft/nbt/LongArrayNBT$1
+instanceKlass net/minecraft/nbt/IntArrayNBT$1
+instanceKlass net/minecraft/nbt/ByteArrayNBT$1
+instanceKlass net/minecraft/nbt/DoubleNBT$1
+instanceKlass net/minecraft/nbt/FloatNBT$1
+instanceKlass net/minecraft/nbt/LongNBT$1
+instanceKlass net/minecraft/nbt/ByteNBT$Cache
+instanceKlass net/minecraft/nbt/ByteNBT$1
+instanceKlass net/minecraft/nbt/EndNBT$1
+instanceKlass net/minecraft/nbt/EndNBT
+instanceKlass net/minecraft/nbt/NBTTypes
+instanceKlass net/minecraft/nbt/NBTSizeTracker
+instanceKlass net/minecraft/nbt/CompressedStreamTools
+instanceKlass net/minecraft/world/storage/SaveFormat$$Lambda$4628
+instanceKlass net/minecraft/world/storage/WorldSummary
+instanceKlass net/minecraft/server/SessionLockManager
+instanceKlass net/minecraft/client/gui/screen/WorldSelectionScreen$$Lambda$4627
+instanceKlass net/minecraft/client/gui/screen/WorldSelectionScreen$$Lambda$4626
+instanceKlass net/minecraft/client/gui/widget/TextFieldWidget$$Lambda$4625
+instanceKlass net/minecraft/client/gui/widget/TextFieldWidget$$Lambda$4624
+instanceKlass net/minecraft/client/audio/SoundSource$$Lambda$4623
+instanceKlass net/minecraft/client/audio/SoundEngine$$Lambda$4622
+instanceKlass net/minecraft/client/audio/OggAudioStream$Buffer$$Lambda$4621
+instanceKlass net/minecraft/client/audio/SoundEngine$$Lambda$4620
+instanceKlass net/minecraft/client/audio/AudioStreamManager$$Lambda$4619
+instanceKlass net/minecraft/client/audio/AudioStreamManager$$Lambda$4618
+instanceKlass java/lang/invoke/LambdaForm$MH
+instanceKlass java/lang/invoke/LambdaForm$DMH
+instanceKlass java/lang/invoke/LambdaForm$DMH
+instanceKlass net/minecraft/client/MouseHelper$$Lambda$4617
+instanceKlass java/lang/invoke/LambdaForm$DMH
+instanceKlass java/lang/invoke/LambdaForm$MH
+instanceKlass java/lang/invoke/LambdaForm$DMH
+instanceKlass java/lang/invoke/LambdaForm$DMH
+instanceKlass net/minecraft/client/MouseHelper$$Lambda$4616
+instanceKlass net/minecraftforge/fml/BrandingControl$$Lambda$4615
+instanceKlass net/minecraft/client/gui/screen/MainMenuScreen$$Lambda$4614
+instanceKlass net/minecraftforge/fml/BrandingControl$$Lambda$4613
+instanceKlass java/util/stream/IntPipeline$$Lambda$4612
+instanceKlass java/text/FieldPosition$Delegate
+instanceKlass net/minecraft/client/gui/screen/MainMenuScreen$$Lambda$4611
+instanceKlass java/lang/invoke/LambdaForm$DMH
+instanceKlass net/minecraftforge/client/ForgeHooksClient$1
+instanceKlass com/mojang/blaze3d/platform/GlStateManager$$Lambda$4610
+instanceKlass com/mojang/blaze3d/systems/RenderSystem$$Lambda$4609
+instanceKlass com/mojang/blaze3d/systems/RenderSystem$$Lambda$4608
+instanceKlass net/minecraft/client/renderer/RenderType$Type$$Lambda$4607
+instanceKlass com/mojang/blaze3d/platform/GlStateManager$$Lambda$4606
+instanceKlass com/mojang/blaze3d/systems/RenderSystem$$Lambda$4605
+instanceKlass org/lwjgl/opengl/GL$ICDStatic$WriteOnce
+instanceKlass com/mojang/blaze3d/platform/GlStateManager$$Lambda$4604
+instanceKlass com/mojang/blaze3d/systems/RenderSystem$$Lambda$4603
+instanceKlass com/mojang/blaze3d/systems/RenderSystem$$Lambda$4602
+instanceKlass com/mojang/blaze3d/systems/RenderSystem$$Lambda$4601
+instanceKlass net/minecraft/client/renderer/RenderType$Type$$Lambda$4600
+instanceKlass com/google/common/primitives/Floats
+instanceKlass net/minecraft/client/renderer/BufferBuilder$$Lambda$4599
+instanceKlass net/minecraft/client/renderer/IRenderTypeBuffer$Impl$$Lambda$4598
+instanceKlass net/minecraft/client/gui/fonts/Font$$Lambda$4597
+instanceKlass net/minecraft/client/gui/FontRenderer$CharacterRenderer
+instanceKlass net/minecraft/util/text/TextProcessing$$Lambda$4596
+instanceKlass net/minecraft/util/text/CharacterManager$$Lambda$4595
+instanceKlass net/minecraft/client/gui/screen/MainMenuScreen$$Lambda$4594
+instanceKlass sun/net/www/protocol/http/HttpURLConnection$10
+instanceKlass java/net/PasswordAuthentication
+instanceKlass sun/net/www/protocol/http/ntlm/NTLMAuthenticationCallback
+instanceKlass sun/net/www/protocol/http/NTLMAuthenticationProxy
+instanceKlass sun/net/www/protocol/http/AuthenticationHeader$SchemeMapValue
+instanceKlass sun/net/www/HeaderParser$ParserIterator
+instanceKlass sun/net/www/protocol/http/HttpCallerInfo
+instanceKlass sun/net/www/protocol/http/AuthenticationHeader
+instanceKlass sun/net/www/MessageHeader$HeaderIterator
+instanceKlass java/lang/invoke/LambdaForm$MH
+instanceKlass java/lang/invoke/LambdaForm$DMH
+instanceKlass net/minecraft/client/MouseHelper$$Lambda$4593
+instanceKlass java/lang/invoke/LambdaForm$DMH
+instanceKlass java/lang/invoke/LambdaForm$MH
+instanceKlass java/lang/invoke/LambdaForm$DMH
+instanceKlass java/lang/invoke/LambdaForm$DMH
+instanceKlass net/minecraft/client/MouseHelper$$Lambda$4592
+instanceKlass sun/security/provider/certpath/BuildStep
+instanceKlass sun/security/provider/certpath/AdjacencyList
+instanceKlass java/security/cert/CertPathBuilderResult
+instanceKlass sun/security/provider/certpath/Vertex
+instanceKlass sun/security/provider/certpath/ForwardBuilder$PKIXCertComparator
+instanceKlass sun/security/provider/certpath/Builder
+instanceKlass sun/security/provider/certpath/ForwardState
+instanceKlass sun/security/provider/certpath/State
+instanceKlass sun/security/provider/certpath/PKIX$CertStoreComparator
+instanceKlass java/security/cert/CertPathBuilderSpi
+instanceKlass java/security/cert/CertPathBuilder
+instanceKlass java/security/cert/CertStoreSpi
+instanceKlass java/security/cert/CertStore
+instanceKlass java/security/cert/CollectionCertStoreParameters
+instanceKlass java/security/cert/CertStoreParameters
+instanceKlass net/minecraft/client/audio/SoundSource$$Lambda$4591
+instanceKlass java/lang/invoke/LambdaForm$DMH
+instanceKlass net/minecraft/client/audio/AudioStreamBuffer
+instanceKlass net/minecraft/client/audio/OggAudioStream$Buffer
+instanceKlass net/minecraft/client/audio/SoundEngine$$Lambda$4590
+instanceKlass javax/sound/sampled/AudioFormat$Encoding
+instanceKlass javax/sound/sampled/AudioFormat
+instanceKlass org/lwjgl/stb/STBVorbis
+instanceKlass net/minecraft/client/audio/OggAudioStream
+instanceKlass net/minecraft/client/audio/SoundEngine$$Lambda$4589
+instanceKlass net/minecraft/client/audio/AudioStreamManager$$Lambda$4588
+instanceKlass net/minecraft/client/audio/ChannelManager$Entry$$Lambda$4587
+instanceKlass java/lang/invoke/LambdaForm$MH
+instanceKlass java/lang/invoke/LambdaForm$DMH
+instanceKlass java/lang/invoke/LambdaForm$DMH
+instanceKlass net/minecraft/client/audio/SoundEngine$$Lambda$4586
+instanceKlass java/lang/invoke/LambdaForm$DMH
+instanceKlass net/minecraft/client/audio/ChannelManager$Entry
+instanceKlass net/minecraft/client/audio/SoundSource
+instanceKlass net/minecraft/client/audio/ChannelManager$$Lambda$4585
+instanceKlass com/mojang/blaze3d/systems/RenderSystem$$Lambda$4584
+instanceKlass com/mojang/blaze3d/systems/RenderSystem$$Lambda$4583
+instanceKlass com/mojang/blaze3d/systems/RenderSystem$$Lambda$4582
+instanceKlass com/mojang/blaze3d/systems/RenderSystem$$Lambda$4581
+instanceKlass com/mojang/blaze3d/platform/GlStateManager$$Lambda$4580
+instanceKlass com/mojang/blaze3d/systems/RenderSystem$$Lambda$4579
+instanceKlass com/mojang/blaze3d/platform/GlStateManager$$Lambda$4578
+instanceKlass com/mojang/blaze3d/platform/GlStateManager$$Lambda$4577
+instanceKlass com/mojang/blaze3d/systems/RenderSystem$$Lambda$4576
+instanceKlass com/mojang/realmsclient/client/Request
+instanceKlass com/mojang/realmsclient/client/RealmsClientConfig
+instanceKlass net/minecraft/realms/PersistenceSerializer
+instanceKlass net/minecraft/realms/IPersistentSerializable
+instanceKlass net/minecraft/client/Minecraft$$Lambda$4575
+instanceKlass com/mojang/realmsclient/client/RealmsClient
+instanceKlass net/minecraft/client/gui/screen/MainMenuScreen$$Lambda$4574
+instanceKlass net/minecraft/client/gui/screen/MainMenuScreen$$Lambda$4573
+instanceKlass net/minecraft/client/gui/screen/MainMenuScreen$$Lambda$4572
+instanceKlass net/minecraft/client/gui/screen/MainMenuScreen$$Lambda$4571
+instanceKlass net/minecraft/client/gui/screen/Screen$$Lambda$4570
+instanceKlass net/minecraft/client/gui/screen/MainMenuScreen$$Lambda$4569
+instanceKlass net/minecraft/client/gui/screen/MainMenuScreen$$Lambda$4568
+instanceKlass net/minecraft/client/gui/screen/MainMenuScreen$$Lambda$4567
+instanceKlass net/minecraft/client/gui/screen/MainMenuScreen$$Lambda$4566
+instanceKlass net/minecraft/client/gui/widget/button/Button$IPressable
+instanceKlass net/minecraft/client/gui/widget/button/Button$$Lambda$4565
+instanceKlass net/minecraft/client/gui/widget/button/Button$ITooltip
+instanceKlass java/lang/invoke/LambdaForm$DMH
+instanceKlass java/lang/invoke/LambdaForm$DMH
+instanceKlass net/minecraft/client/gui/fonts/Font$$Lambda$4564
+instanceKlass net/minecraft/util/text/TextProcessing
+instanceKlass net/minecraft/util/text/CharacterManager$$Lambda$4563
+instanceKlass java/lang/invoke/LambdaForm$DMH
+instanceKlass net/minecraft/client/gui/screen/Screen$$Lambda$4562
+instanceKlass net/minecraft/client/gui/screen/Screen$$Lambda$4561
+instanceKlass net/minecraft/client/renderer/RenderSkybox
+instanceKlass net/minecraftforge/fml/client/ClientHooks
+instanceKlass net/minecraft/client/Minecraft$$Lambda$4560
+instanceKlass java/lang/invoke/LambdaForm$DMH
+instanceKlass net/minecraft/client/Minecraft$$Lambda$4559
+instanceKlass net/minecraft/client/renderer/texture/PreloadedTexture$$Lambda$4558
+instanceKlass org/lwjgl/system/MultiReleaseTextDecoding
+instanceKlass com/mojang/blaze3d/platform/GlStateManager$$Lambda$4557
+instanceKlass com/mojang/blaze3d/platform/PlatformDescriptors
+instanceKlass net/minecraft/client/particle/ParticleManager$$Lambda$4556
+instanceKlass net/minecraft/client/particle/ParticleManager$$Lambda$4555
+instanceKlass it/unimi/dsi/fastutil/Arrays
+instanceKlass net/minecraft/client/util/SuffixArray$$Lambda$4554
+instanceKlass it/unimi/dsi/fastutil/Swapper
+instanceKlass java/lang/invoke/LambdaForm$DMH
+instanceKlass net/minecraft/client/util/SuffixArray$1
+instanceKlass net/minecraft/client/shader/ShaderInstance$$Lambda$4553
+instanceKlass com/mojang/blaze3d/platform/GlStateManager$$Lambda$4552
+instanceKlass com/mojang/blaze3d/platform/GlStateManager$$Lambda$4551
+instanceKlass net/minecraft/client/shader/ShaderInstance$$Lambda$4550
+instanceKlass com/mojang/blaze3d/platform/GlStateManager$$Lambda$4549
+instanceKlass com/mojang/blaze3d/platform/GlStateManager$$Lambda$4548
+instanceKlass com/mojang/blaze3d/platform/GlStateManager$$Lambda$4547
+instanceKlass net/minecraft/client/shader/ShaderLoader$$Lambda$4546
+instanceKlass net/minecraft/client/shader/ShaderLinkHelper$$Lambda$4545
+instanceKlass com/mojang/blaze3d/platform/GlStateManager$$Lambda$4544
+instanceKlass net/minecraft/client/shader/ShaderLinkHelper$$Lambda$4543
+instanceKlass net/minecraft/client/shader/ShaderLinkHelper
+instanceKlass com/mojang/blaze3d/platform/GlStateManager$$Lambda$4542
+instanceKlass com/mojang/blaze3d/platform/GlStateManager$$Lambda$4541
+instanceKlass org/lwjgl/opengl/GL20C$$Lambda$4540
+instanceKlass org/lwjgl/system/APIUtil$Encoder
+instanceKlass com/mojang/blaze3d/platform/GlStateManager$$Lambda$4539
+instanceKlass com/mojang/blaze3d/platform/GlStateManager$$Lambda$4538
+instanceKlass net/minecraft/client/renderer/texture/TextureUtil$$Lambda$4537
+instanceKlass net/minecraft/client/shader/ShaderLoader$$Lambda$4536
+instanceKlass net/minecraft/client/shader/ShaderLoader
+instanceKlass net/minecraft/client/util/JSONBlendingMode
+instanceKlass net/minecraft/client/shader/ShaderDefault
+instanceKlass net/minecraft/client/shader/ShaderInstance
+instanceKlass net/minecraft/client/shader/IShaderManager
+instanceKlass net/minecraft/client/shader/Shader
+instanceKlass net/minecraft/client/shader/ShaderGroup
+instanceKlass net/minecraft/client/Minecraft$$Lambda$4535
+instanceKlass net/minecraft/client/renderer/BlockModelShapes$$Lambda$4534
+instanceKlass net/minecraft/client/renderer/model/ItemOverrideList$$Lambda$4533
+instanceKlass net/minecraft/client/renderer/model/ItemOverrideList$$Lambda$4532
+instanceKlass net/minecraft/client/renderer/model/BlockModel$$Lambda$4531
+instanceKlass net/minecraft/client/renderer/model/BuiltInModel
+instanceKlass net/minecraft/client/renderer/model/ModelBakery$$Lambda$4530
+instanceKlass net/minecraft/client/renderer/model/ItemModelGenerator$1
+instanceKlass net/minecraft/client/renderer/model/ItemModelGenerator$Span
+instanceKlass net/minecraft/util/WeightedRandom
+instanceKlass net/minecraft/client/renderer/model/WeightedBakedModel
+instanceKlass net/minecraft/client/renderer/model/FaceBakery$1
+instanceKlass net/minecraft/client/renderer/model/MultipartBakedModel
+instanceKlass net/minecraft/client/renderer/model/UVTransformationUtil$$Lambda$4529
+instanceKlass net/minecraft/client/renderer/model/UVTransformationUtil$$Lambda$4528
+instanceKlass net/minecraft/client/renderer/model/UVTransformationUtil
+instanceKlass net/minecraft/client/renderer/model/FaceBakery$$Lambda$4527
+instanceKlass net/minecraft/client/renderer/model/MultipartBakedModel$Builder
+instanceKlass net/minecraft/client/renderer/model/SimpleBakedModel
+instanceKlass net/minecraft/client/renderer/model/BakedQuad
+instanceKlass net/minecraftforge/client/model/pipeline/IVertexProducer
+instanceKlass net/minecraft/client/renderer/FaceDirection$$Lambda$4526
+instanceKlass net/minecraft/client/renderer/FaceDirection$VertexInformation
+instanceKlass net/minecraft/client/renderer/FaceDirection$Constants
+instanceKlass net/minecraft/client/renderer/model/ItemCameraTransforms$1
+instanceKlass net/minecraft/client/renderer/model/ItemOverrideList
+instanceKlass net/minecraft/client/renderer/model/SimpleBakedModel$Builder
+instanceKlass net/minecraft/client/renderer/model/WeightedBakedModel$Builder
+instanceKlass net/minecraft/client/renderer/model/ModelBakery$$Lambda$4525
+instanceKlass net/minecraft/client/renderer/model/ModelBakery$$Lambda$4524
+instanceKlass net/minecraft/client/renderer/texture/SpriteMap$$Lambda$4523
+instanceKlass net/minecraft/client/renderer/model/ModelBakery$$Lambda$4522
+instanceKlass net/minecraft/client/renderer/texture/SpriteMap
+instanceKlass net/minecraft/client/renderer/texture/Texture$$Lambda$4521
+instanceKlass net/minecraft/world/FoliageColors
+instanceKlass net/minecraft/world/GrassColors
+instanceKlass net/minecraft/client/gui/fonts/Font$$Lambda$4520
+instanceKlass net/minecraft/client/gui/fonts/FontResourceManager$1$$Lambda$4519
+instanceKlass net/minecraft/client/gui/fonts/FontResourceManager$1$$Lambda$4518
+instanceKlass net/minecraft/client/audio/SoundEngine$$Lambda$4517
+instanceKlass net/minecraft/client/audio/AudioStreamManager$$Lambda$4516
+instanceKlass net/minecraft/client/audio/AudioStreamManager$$Lambda$4515
+instanceKlass org/lwjgl/openal/AL$ICDStatic$WriteOnce
+instanceKlass org/lwjgl/openal/SOFTSourceResampler
+instanceKlass org/lwjgl/openal/SOFTSourceLatency
+instanceKlass org/lwjgl/openal/SOFTDeferredUpdates
+instanceKlass org/lwjgl/openal/EXTEfx
+instanceKlass org/lwjgl/openal/AL10
+instanceKlass org/lwjgl/openal/ALCapabilities
+instanceKlass org/lwjgl/system/APIUtil$APIVersion
+instanceKlass net/minecraft/client/audio/SoundSystem$HandlerImpl
+instanceKlass org/lwjgl/openal/SOFTPauseDevice
+instanceKlass org/lwjgl/openal/SOFTLoopback
+instanceKlass org/lwjgl/openal/SOFTHRTF
+instanceKlass org/lwjgl/openal/SOFTDeviceClock
+instanceKlass org/lwjgl/openal/EXTThreadLocalContext
+instanceKlass org/lwjgl/openal/EXTCapture
+instanceKlass net/minecraft/client/audio/ALUtils
+instanceKlass org/lwjgl/openal/AL$1
+instanceKlass org/lwjgl/openal/AL$ICDStatic
+instanceKlass org/lwjgl/openal/AL$ICD
+instanceKlass org/lwjgl/openal/AL
+instanceKlass org/lwjgl/openal/ALCCapabilities
+instanceKlass org/lwjgl/openal/ALC$1
+instanceKlass org/lwjgl/system/FunctionProviderLocal
+instanceKlass org/lwjgl/openal/ALC
+instanceKlass org/lwjgl/openal/ALC10
+instanceKlass net/minecraft/client/renderer/texture/PreloadedTexture$$Lambda$4514
+instanceKlass net/minecraft/client/renderer/texture/PreloadedTexture$$Lambda$4513
+instanceKlass net/minecraft/client/renderer/texture/PreloadedTexture$$Lambda$4512
+instanceKlass net/minecraft/client/renderer/texture/PreloadedTexture$$Lambda$4511
+instanceKlass com/mojang/realmsclient/RealmsMainScreen$$Lambda$4510
+instanceKlass com/mojang/realmsclient/RealmsMainScreen$$Lambda$4509
+instanceKlass com/mojang/realmsclient/gui/RealmsDataFetcher$UnreadNewsTask
+instanceKlass com/mojang/realmsclient/gui/RealmsDataFetcher$LiveStatsTask
+instanceKlass com/mojang/realmsclient/gui/RealmsDataFetcher$TrialAvailabilityTask
+instanceKlass com/mojang/realmsclient/gui/RealmsDataFetcher$PendingInviteUpdateTask
+instanceKlass com/mojang/realmsclient/gui/RealmsDataFetcher$ServerListUpdateTask
+instanceKlass java/util/concurrent/RunnableScheduledFuture
+instanceKlass java/util/concurrent/ScheduledFuture
+instanceKlass java/util/concurrent/Delayed
+instanceKlass com/mojang/realmsclient/gui/RealmsDataFetcher
+instanceKlass net/minecraft/client/gui/widget/list/AbstractList$AbstractListEntry
+instanceKlass com/mojang/realmsclient/gui/LongRunningTask
+instanceKlass net/minecraft/realms/IErrorConsumer
+instanceKlass net/minecraft/client/renderer/texture/TextureManager$$Lambda$4508
+instanceKlass net/minecraft/client/resources/I18n
+instanceKlass net/minecraft/client/resources/ClientLanguageMap$$Lambda$4507
+instanceKlass net/minecraft/client/resources/data/LanguageMetadataSectionSerializer
+instanceKlass net/minecraft/client/resources/data/LanguageMetadataSection
+instanceKlass net/minecraft/client/resources/LanguageManager$$Lambda$4506
+instanceKlass net/minecraftforge/fml/client/ClientModLoader$$Lambda$4505
+instanceKlass net/minecraftforge/fml/ModLoader$$Lambda$4504
+instanceKlass net/minecraftforge/registries/GameData$$Lambda$4503
+instanceKlass net/minecraftforge/fml/event/lifecycle/FMLModIdMappingEvent$$Lambda$4502
+instanceKlass net/minecraftforge/registries/GameData$$Lambda$4501
+instanceKlass net/minecraftforge/registries/ForgeRegistry$$Lambda$4500
+instanceKlass net/minecraftforge/registries/ForgeRegistry$$Lambda$4499
+instanceKlass org/apache/logging/log4j/message/TimestampMessage
+instanceKlass org/apache/logging/log4j/message/AsynchronouslyFormattable
+instanceKlass org/apache/logging/log4j/core/async/InternalAsyncUtil
+instanceKlass net/minecraftforge/registries/ForgeRegistry$$Lambda$4498
+instanceKlass net/minecraftforge/fml/loading/AdvancedLogMessageAdapter
+instanceKlass net/minecraftforge/registries/ForgeRegistry$$Lambda$4497
+instanceKlass org/apache/logging/log4j/util/MessageSupplier
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/ExamplePortalBlock$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/tripwires/tripwire_hooks/YellowTripWireHook$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/tripwires/tripwire_hooks/RedTripWireHook$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/tripwires/tripwire_hooks/PurpleTripWireHook$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/tripwires/tripwire_hooks/PinkTripWireHook$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/tripwires/tripwire_hooks/OrangeTripWireHook$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/tripwires/tripwire_hooks/MagentaTripWireHook$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/tripwires/tripwire_hooks/LimeTripWireHook$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/tripwires/tripwire_hooks/LightGrayTripWireHook$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/tripwires/tripwire_hooks/LightBlueTripWireHook$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/tripwires/tripwire_hooks/GreenTripWireHook$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/tripwires/tripwire_hooks/GrayTripWireHook$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/tripwires/tripwire_hooks/CyanTripWireHook$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/tripwires/tripwire_hooks/BrownTripWireHook$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/tripwires/tripwire_hooks/BlueTripWireHook$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/tripwires/tripwire_hooks/BlackTripWireHook$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/RugkSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/ZurkSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/ZunkSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/GankSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/FirgSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/YellowSmoothStoneSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/WhiteSmoothStoneSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/RedSmoothStoneSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/PurpleSmoothStoneSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/PinkSmoothStoneSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/OrangeSmoothStoneSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/MagentaSmoothStoneSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/LimeSmoothStoneSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/LightGraySmoothStoneSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/LightBlueSmoothStoneSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/GreenSmoothStoneSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/CyanSmoothStoneSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/BrownSmoothStoneSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/BlueSmoothStoneSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/BlackSmoothStoneSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/GarkSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/GurkSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/GrintSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/CharcoalSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/CoalSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/YellowStoneSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/WhiteStoneSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/RedStoneSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/PurpleStoneSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/PinkStoneSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/OrangeStoneSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/MagentaStoneSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/LimeStoneSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/LightGrayStoneSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/LightBlueStoneSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/GreenStoneSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/CyanStoneSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/BrownStoneSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/BlueStoneSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/BlackStoneSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/YellowCobblestoneSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/WhiteCobblestoneSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/RedCobblestoneSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/PurpleCobblestoneSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/PinkCobblestoneSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/OrangeCobblestoneSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/MagentaCobblestoneSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/LimeCobblestoneSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/LightGrayCobblestoneSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/LightBlueCobblestoneSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/GreenCobblestoneSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/CyanCobblestoneSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/BrownCobblestoneSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/BlueCobblestoneSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/BlackCobblestoneSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/RubySlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/EmeraldSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/LapisSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/DirtSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/Redstone_Slab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/GoldSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/IronSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/DiamondSlab$1
+instanceKlass com/babcsany/minecraft/ervin_mod_1/block/SriunkSlab$1
+instanceKlass net/minecraft/block/LecternBlock$1
+instanceKlass net/minecraft/block/GrindstoneBlock$1
+instanceKlass net/minecraft/block/AbstractBlock$1
+instanceKlass net/minecraft/block/EndRodBlock$1
+instanceKlass net/minecraft/block/SlabBlock$1
+instanceKlass net/minecraft/block/HopperBlock$1
+instanceKlass net/minecraft/block/TripWireHookBlock$1
+instanceKlass net/minecraft/block/CocoaBlock$1
+instanceKlass net/minecraft/util/math/shapes/NonOverlappingMerger$$Lambda$4496
+instanceKlass java/lang/invoke/LambdaForm$DMH
+instanceKlass net/minecraft/block/TrapDoorBlock$1
+instanceKlass net/minecraft/block/NetherPortalBlock$1
+instanceKlass net/minecraft/block/AbstractButtonBlock$1
+instanceKlass net/minecraft/block/LeverBlock$1
+instanceKlass net/minecraft/block/LadderBlock$1
+instanceKlass net/minecraft/block/DoorBlock$1
+instanceKlass net/minecraft/block/ChestBlock$4

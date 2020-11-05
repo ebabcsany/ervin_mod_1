@@ -1,0 +1,46 @@
+JvmtiExport can_access_local_variables 0
+JvmtiExport can_hotswap_or_post_breakpoint 0
+JvmtiExport can_post_on_exceptions 0
+# 199 ciObject found
+ciMethod java/lang/Object <init> ()V 4097 1 4771481 0 96
+ciMethod java/lang/Object toString ()Ljava/lang/String; 2049 1 2326 0 -1
+ciMethod java/lang/String <init> ([CZ)V 4097 1 25683 0 64
+ciMethod java/lang/String length ()I 4097 1 1145437 0 64
+ciMethod java/lang/String charAt (I)C 4097 1 1742330 0 128
+ciMethod java/lang/String equals (Ljava/lang/Object;)Z 21633 24993 11980 0 -1
+ciMethod java/lang/String equalsIgnoreCase (Ljava/lang/String;)Z 1569 1 5347 0 -1
+ciMethod java/lang/String indexOf (I)I 4097 1 199742 0 -1
+ciMethod java/lang/String substring (II)Ljava/lang/String; 4097 1 5645 0 -1
+ciMethod java/lang/String replace (CC)Ljava/lang/String; 1673 172033 982 0 1120
+ciMethod java/lang/System arraycopy (Ljava/lang/Object;ILjava/lang/Object;II)V 72705 1 9088 0 -1
+ciMethod java/lang/StringBuffer <init> (I)V 3929 1 6816 0 -1
+ciMethod java/lang/StringBuffer length ()I 729 1 91 0 -1
+ciMethod java/lang/StringBuffer charAt (I)C 0 0 1 0 -1
+ciMethod java/lang/StringBuffer append (Ljava/lang/String;)Ljava/lang/StringBuffer; 3361 1 18302 0 -1
+ciMethod java/lang/StringBuffer append (C)Ljava/lang/StringBuffer; 4097 1 144365 0 -1
+ciMethod java/lang/StringBuffer toString ()Ljava/lang/String; 3793 1 6624 0 -1
+ciMethod java/lang/StringBuilder <init> (I)V 457 1 18446 0 -1
+ciMethod java/lang/StringBuilder append (Ljava/lang/String;)Ljava/lang/StringBuilder; 4097 1 224412 0 -1
+ciMethod java/lang/StringBuilder append (C)Ljava/lang/StringBuilder; 4097 1 145841 0 -1
+ciMethod java/lang/StringBuilder toString ()Ljava/lang/String; 4097 1 89635 0 -1
+ciMethod java/io/File <init> (Ljava/lang/String;)V 4097 1 7801 0 1632
+ciMethod java/net/URL getHost ()Ljava/lang/String; 3089 1 386 0 0
+ciMethod java/net/URL getFile ()Ljava/lang/String; 5129 1 641 0 0
+ciMethod java/nio/Buffer clear ()Ljava/nio/Buffer; 1793 1 45365 0 -1
+ciMethod java/nio/Buffer flip ()Ljava/nio/Buffer; 2233 1 30896 0 -1
+ciMethod java/nio/charset/CharsetDecoder onMalformedInput (Ljava/nio/charset/CodingErrorAction;)Ljava/nio/charset/CharsetDecoder; 641 1 2119 0 -1
+ciMethod java/nio/charset/CharsetDecoder onUnmappableCharacter (Ljava/nio/charset/CodingErrorAction;)Ljava/nio/charset/CharsetDecoder; 641 1 2119 0 -1
+ciMethod java/nio/charset/CharsetDecoder decode (Ljava/nio/ByteBuffer;Ljava/nio/CharBuffer;Z)Ljava/nio/charset/CoderResult; 1145 1 19635 0 -1
+ciMethod java/nio/charset/CharsetDecoder flush (Ljava/nio/CharBuffer;)Ljava/nio/charset/CoderResult; 737 1 10345 0 -1
+ciMethod java/nio/charset/CharsetDecoder reset ()Ljava/nio/charset/CharsetDecoder; 1241 1 13736 0 -1
+ciMethod java/nio/ByteBuffer allocate (I)Ljava/nio/ByteBuffer; 625 1 698 0 -1
+ciMethod java/nio/ByteBuffer put (B)Ljava/nio/ByteBuffer; 0 0 1 0 -1
+ciMethod java/io/WinNTFileSystem isSlash (C)Z 4097 1 148494 0 -1
+ciMethod java/io/WinNTFileSystem isLetter (C)Z 4097 1 8645 0 0
+ciMethod java/io/WinNTFileSystem normalize (Ljava/lang/String;)Ljava/lang/String; 1649 196609 2917 0 864
+ciMethod java/io/WinNTFileSystem normalize (Ljava/lang/String;II)Ljava/lang/String; 1609 221185 986 0 17184
+ciMethod java/io/WinNTFileSystem normalizePrefix (Ljava/lang/String;ILjava/lang/StringBuffer;)I 2705 2705 944 0 -1
+ciMethod java/io/WinNTFileSystem prefixLength (Ljava/lang/String;)I 4097 1 7701 0 448
+ciMethod java/io/FileSystem normalize (Ljava/lang/String;)Ljava/lang/String; 0 0 1 0 -1
+ciMethod java/io/FileSystem prefixLength (Ljava/lang/String;)I 0 0 1 0 -1
+ciMethodData java/lang/Object <init> ()V 2 4771481 orig 264 136 112 152 90 0 0 0 0 136 4 8 23 0 0 0 0 32 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 201 100 70 2 1
