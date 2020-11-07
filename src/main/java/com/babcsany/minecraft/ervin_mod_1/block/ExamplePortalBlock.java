@@ -1,5 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.block;
 
+import com.babcsany.minecraft.ervin_mod_1.init.BlockInit;
+import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.google.common.cache.LoadingCache;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -61,8 +63,8 @@ public class ExamplePortalBlock extends Block {
             pos = pos.down();
          }
 
-         if (worldIn.getBlockState(pos).canEntitySpawn(worldIn, pos, EntityType.ZOMBIFIED_PIGLIN)) {
-            Entity entity = EntityType.ZOMBIFIED_PIGLIN.spawn(worldIn, (CompoundNBT)null, (ITextComponent)null, (PlayerEntity)null, pos.up(), SpawnReason.STRUCTURE, false, false);
+         if (worldIn.getBlockState(pos).canEntitySpawn(worldIn, pos, EntityInit.ZUR_ENTITY.get())) {
+            Entity entity = EntityInit.ZUR_ENTITY.get().spawn(worldIn, (CompoundNBT)null, (ITextComponent)null, (PlayerEntity)null, pos.up(), SpawnReason.STRUCTURE, false, false);
             if (entity != null) {
                entity.timeUntilPortal = entity.getPortalCooldown();
             }
@@ -71,10 +73,10 @@ public class ExamplePortalBlock extends Block {
 
    }
 
-   public static boolean trySpawnPortal(IWorld world, BlockPos worldIn) {
-      ExamplePortalBlock.Size netherportalblock$size = isExamplePortal(world, worldIn);
-      if (netherportalblock$size != null && !com.babcsany.minecraft.ervin_mod_1.block.portal.Portal.onTrySpawnExamplePortal(world, worldIn, netherportalblock$size)) {
-         netherportalblock$size.placePortalBlocks();
+   public static boolean trySpawnExamplePortal(IWorld world, BlockPos worldIn) {
+      ExamplePortalBlock.Size exampleportalblock$size = isExamplePortal(world, worldIn);
+      if (exampleportalblock$size != null && !com.babcsany.minecraft.ervin_mod_1.block.portal.Portal.onTrySpawnExamplePortal(world, worldIn, exampleportalblock$size)) {
+         exampleportalblock$size.placeExamplePortalBlocks();
          return true;
       } else {
          return false;
@@ -84,11 +86,11 @@ public class ExamplePortalBlock extends Block {
    @Nullable
    public static ExamplePortalBlock.Size isExamplePortal(IWorld world, BlockPos worldIn) {
       ExamplePortalBlock.Size exampleportalblock$size = new ExamplePortalBlock.Size(world, worldIn, Direction.Axis.X);
-      if (exampleportalblock$size.isValid() && exampleportalblock$size.portalBlockCount == 0) {
+      if (exampleportalblock$size.isValid() && exampleportalblock$size.examplePortalBlockCount == 0) {
          return exampleportalblock$size;
       } else {
          ExamplePortalBlock.Size exampleportalblock$size1 = new ExamplePortalBlock.Size(world, worldIn, Direction.Axis.Z);
-         return exampleportalblock$size.isValid() && exampleportalblock$size1.portalBlockCount == 0 ? exampleportalblock$size1 : null;
+         return exampleportalblock$size1.isValid() && exampleportalblock$size1.examplePortalBlockCount == 0 ? exampleportalblock$size1 : null;
       }
    }
 
@@ -107,7 +109,7 @@ public class ExamplePortalBlock extends Block {
 
    public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
       if (!entityIn.isPassenger() && !entityIn.isBeingRidden() && entityIn.isNonBoss()) {
-         entityIn.setPortal(pos);
+         entityIn.setExamplePortal(pos);
       }
 
    }
@@ -177,25 +179,25 @@ public class ExamplePortalBlock extends Block {
 
    public static BlockPattern.PatternHelper createPatternHelper(IWorld world, BlockPos worldIn) {
       Direction.Axis direction$axis = Direction.Axis.Z;
-      ExamplePortalBlock.Size netherportalblock$size = new ExamplePortalBlock.Size(world, worldIn, Direction.Axis.X);
+      ExamplePortalBlock.Size exampleportalblock$size = new ExamplePortalBlock.Size(world, worldIn, Direction.Axis.X);
       LoadingCache<BlockPos, CachedBlockInfo> loadingcache = BlockPattern.createLoadingCache(world, true);
-      if (!netherportalblock$size.isValid()) {
+      if (!exampleportalblock$size.isValid()) {
          direction$axis = Direction.Axis.X;
-         netherportalblock$size = new ExamplePortalBlock.Size(world, worldIn, Direction.Axis.Z);
+         exampleportalblock$size = new ExamplePortalBlock.Size(world, worldIn, Direction.Axis.Z);
       }
 
-      if (!netherportalblock$size.isValid()) {
+      if (!exampleportalblock$size.isValid()) {
          return new BlockPattern.PatternHelper(worldIn, Direction.NORTH, Direction.UP, loadingcache, 1, 1, 1);
       } else {
          int[] aint = new int[Direction.AxisDirection.values().length];
-         Direction direction = netherportalblock$size.rightDir.rotateYCCW();
-         BlockPos blockpos = netherportalblock$size.bottomLeft.up(netherportalblock$size.getHeight() - 1);
+         Direction direction = exampleportalblock$size.rightDir.rotateYCCW();
+         BlockPos blockpos = exampleportalblock$size.bottomLeft.up(exampleportalblock$size.getHeight() - 1);
 
          for(Direction.AxisDirection direction$axisdirection : Direction.AxisDirection.values()) {
-            BlockPattern.PatternHelper blockpattern$patternhelper = new BlockPattern.PatternHelper(direction.getAxisDirection() == direction$axisdirection ? blockpos : blockpos.offset(netherportalblock$size.rightDir, netherportalblock$size.getWidth() - 1), Direction.getFacingFromAxis(direction$axisdirection, direction$axis), Direction.UP, loadingcache, netherportalblock$size.getWidth(), netherportalblock$size.getHeight(), 1);
+            BlockPattern.PatternHelper blockpattern$patternhelper = new BlockPattern.PatternHelper(direction.getAxisDirection() == direction$axisdirection ? blockpos : blockpos.offset(exampleportalblock$size.rightDir, exampleportalblock$size.getWidth() - 1), Direction.getFacingFromAxis(direction$axisdirection, direction$axis), Direction.UP, loadingcache, exampleportalblock$size.getWidth(), exampleportalblock$size.getHeight(), 1);
 
-            for(int i = 0; i < netherportalblock$size.getWidth(); ++i) {
-               for(int j = 0; j < netherportalblock$size.getHeight(); ++j) {
+            for(int i = 0; i < exampleportalblock$size.getWidth(); ++i) {
+               for(int j = 0; j < exampleportalblock$size.getHeight(); ++j) {
                   CachedBlockInfo cachedblockinfo = blockpattern$patternhelper.translateOffset(i, j, 1);
                   if (!cachedblockinfo.getBlockState().isAir()) {
                      ++aint[direction$axisdirection.ordinal()];
@@ -212,7 +214,7 @@ public class ExamplePortalBlock extends Block {
             }
          }
 
-         return new BlockPattern.PatternHelper(direction.getAxisDirection() == direction$axisdirection1 ? blockpos : blockpos.offset(netherportalblock$size.rightDir, netherportalblock$size.getWidth() - 1), Direction.getFacingFromAxis(direction$axisdirection1, direction$axis), Direction.UP, loadingcache, netherportalblock$size.getWidth(), netherportalblock$size.getHeight(), 1);
+         return new BlockPattern.PatternHelper(direction.getAxisDirection() == direction$axisdirection1 ? blockpos : blockpos.offset(exampleportalblock$size.rightDir, exampleportalblock$size.getWidth() - 1), Direction.getFacingFromAxis(direction$axisdirection1, direction$axis), Direction.UP, loadingcache, exampleportalblock$size.getWidth(), exampleportalblock$size.getHeight(), 1);
       }
    }
 
@@ -221,7 +223,7 @@ public class ExamplePortalBlock extends Block {
       private final Direction.Axis axis;
       private final Direction rightDir;
       private final Direction leftDir;
-      private int portalBlockCount;
+      private int examplePortalBlockCount;
       @Nullable
       private BlockPos bottomLeft;
       private int height;
@@ -261,12 +263,12 @@ public class ExamplePortalBlock extends Block {
          int i;
          for(i = 0; i < 22; ++i) {
             BlockPos blockpos = pos.offset(directionIn, i);
-            if (!this.canConnect(this.world.getBlockState(blockpos)) || !this.world.getBlockState(blockpos.down()).isPortalFrame(world, blockpos.down())) {
+            if (!this.canConnect(this.world.getBlockState(blockpos)) || !this.world.getBlockState(blockpos.down()).isExamplePortalFrame(world, blockpos.down())) {
                break;
             }
          }
 
-         return this.world.getBlockState(pos.offset(directionIn, i)).isPortalFrame(world, pos.offset(directionIn, i)) ? i : 0;
+         return this.world.getBlockState(pos.offset(directionIn, i)).isExamplePortalFrame(world, pos.offset(directionIn, i)) ? i : 0;
       }
 
       public int getHeight() {
@@ -287,22 +289,22 @@ public class ExamplePortalBlock extends Block {
                   break label56;
                }
 
-               if (blockstate.isIn(Blocks.NETHER_PORTAL)) {
-                  ++this.portalBlockCount;
+               if (blockstate.isIn(BlockInit.EXAMPLE_PORTAL_BLOCK.get())) {
+                  ++this.examplePortalBlockCount;
                }
 
                if (i == 0) {
-                  if (!this.world.getBlockState(blockpos.offset(this.leftDir)).isPortalFrame(world, blockpos.offset(this.leftDir))) {
+                  if (!this.world.getBlockState(blockpos.offset(this.leftDir)).isExamplePortalFrame(world, blockpos.offset(this.leftDir))) {
                      break label56;
                   }
-               } else if (i == this.width - 1 && !this.world.getBlockState(blockpos.offset(this.rightDir)).isPortalFrame(world, blockpos.offset(this.rightDir))) {
+               } else if (i == this.width - 1 && !this.world.getBlockState(blockpos.offset(this.rightDir)).isExamplePortalFrame(world, blockpos.offset(this.rightDir))) {
                   break label56;
                }
             }
          }
 
          for(int j = 0; j < this.width; ++j) {
-            if (!this.world.getBlockState(this.bottomLeft.offset(this.rightDir, j).up(this.height)).isPortalFrame(world, this.bottomLeft.offset(this.rightDir, j).up(this.height))) {
+            if (!this.world.getBlockState(this.bottomLeft.offset(this.rightDir, j).up(this.height)).isExamplePortalFrame(world, this.bottomLeft.offset(this.rightDir, j).up(this.height))) {
                this.height = 0;
                break;
             }
@@ -319,30 +321,30 @@ public class ExamplePortalBlock extends Block {
       }
 
       protected boolean canConnect(BlockState pos) {
-         return pos.isAir() || pos.isIn(BlockTags.FIRE) || pos.isIn(Blocks.NETHER_PORTAL);
+         return pos.isAir() || pos.isIn(BlockTags.FIRE) || pos.isIn(BlockInit.EXAMPLE_PORTAL_BLOCK.get());
       }
 
       public boolean isValid() {
          return this.bottomLeft != null && this.width >= 2 && this.width <= 21 && this.height >= 3 && this.height <= 21;
       }
 
-      public void placePortalBlocks() {
+      public void placeExamplePortalBlocks() {
          for(int i = 0; i < this.width; ++i) {
             BlockPos blockpos = this.bottomLeft.offset(this.rightDir, i);
 
             for(int j = 0; j < this.height; ++j) {
-               this.world.setBlockState(blockpos.up(j), Blocks.NETHER_PORTAL.getDefaultState().with(ExamplePortalBlock.AXIS, this.axis), 18);
+               this.world.setBlockState(blockpos.up(j), BlockInit.EXAMPLE_PORTAL_BLOCK.get().getDefaultState().with(ExamplePortalBlock.AXIS, this.axis), 18);
             }
          }
 
       }
 
-      private boolean isPortalCountValidForSize() {
-         return this.portalBlockCount >= this.width * this.height;
+      private boolean isExamplePortalCountValidForSize() {
+         return this.examplePortalBlockCount >= this.width * this.height;
       }
 
       public boolean validatePortal() {
-         return this.isValid() && this.isPortalCountValidForSize();
+         return this.isValid() && this.isExamplePortalCountValidForSize();
       }
    }
 }

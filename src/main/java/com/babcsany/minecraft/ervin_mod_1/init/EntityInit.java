@@ -11,6 +11,7 @@ import com.babcsany.minecraft.ervin_mod_1.entity.projectile.ScrakthsPearlEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.$TraderEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.TraderNirtreEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.WanderingTraderNirtreEntity;
+import com.babcsany.minecraft.ervin_mod_1.entity.villager.ZombieTraderEntity;
 import com.babcsany.minecraft.ervin_mod_1.item.FirgBoatItem;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -110,6 +111,12 @@ public class EntityInit {
                     () -> EntityType.Builder.<$TraderEntity>create($TraderEntity::new, EntityClassification.CREATURE)
                             .size(0.6f, 0.85f).func_233606_a_(10)
                             .build(new ResourceLocation(Ervin_mod_1.MOD_ID, "steve1").toString()
+                            ));
+    public static final RegistryObject<EntityType<ZombieTraderEntity>> ZOMBIE_TRADER_ENTITY = ENTITY_TYPES
+            .register("zombie_trader_entity",
+                    () -> EntityType.Builder.<ZombieTraderEntity>create(ZombieTraderEntity::new, EntityClassification.CREATURE)
+                            .size(0.6f, 0.85f).func_233606_a_(10)
+                            .build(new ResourceLocation("zombie/zombie").toString()
                             ));
 
 }

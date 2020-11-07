@@ -59,6 +59,7 @@ public class ZurEntity extends MonsterEntity {
    private int inWaterTime;
    private int drownedConversionTime;
    private EatGrassGoal eatGrassGoal;
+   private EatPumpkinGoal eatPumpkinGoal;
 
    public ZurEntity(EntityType<? extends ZurEntity> type, World worldIn) {
       super(type, worldIn);
@@ -77,7 +78,7 @@ public class ZurEntity extends MonsterEntity {
 
    protected void applyEntityAI() {
       this.eatGrassGoal = new EatGrassGoal(this);
-      EatPumpkinGoal eatPumpkinGoal = new EatPumpkinGoal(this);
+      this.eatPumpkinGoal = new EatPumpkinGoal(this);
       this.goalSelector.addGoal(2, new ZurAttackGoal(this, 1.0D, true));
       this.goalSelector.addGoal(4, new SwimGoal(this));
       this.goalSelector.addGoal(7, new WaterAvoidingRandomWalkingGoal(this, 1.0D));

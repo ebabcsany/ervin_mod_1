@@ -14,7 +14,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public abstract class Abstract$TraderRender<T extends $TraderEntity, M extends $TraderModel<T>> extends BipedRenderer<T, M> {
-   private static final ResourceLocation field_217771_a = new ResourceLocation(Ervin_mod_1.MOD_ID,"textures/entity/zur_entity.png");
+   private static final ResourceLocation field_217771_a = new ResourceLocation(Ervin_mod_1.MOD_ID,"textures/entity/steve1.png");
 
    protected Abstract$TraderRender(EntityRendererManager p_i50974_1_, M p_i50974_2_, M p_i50974_3_, M p_i50974_4_) {
       super(p_i50974_1_, p_i50974_2_, 0.5F);

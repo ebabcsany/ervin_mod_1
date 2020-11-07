@@ -1,0 +1,23 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:cobblestone",
+    "minecraft:blackstone",
+    "ervin_mod_1:black_cobblestone",
+    "ervin_mod_1:blue_cobblestone",
+    "ervin_mod_1:brown_cobblestone",
+    "ervin_mod_1:cyan_cobblestone",
+    "ervin_mod_1:green_cobblestone",
+    "ervin_mod_1:light_blue1_cobblestone",
+    "ervin_mod_1:light_blue_cobblestone",
+    "ervin_mod_1:light_gray_cobblestone",
+    "ervin_mod_1:lime_cobblestone",
+    "ervin_mod_1:magenta_cobblestone",
+    "ervin_mod_1:orange_cobblestone",
+    "ervin_mod_1:pink_cobblestone",
+    "ervin_mod_1:purple_cobblestone",
+    "ervin_mod_1:red_cobblestone",
+    "ervin_mod_1:white_cobblestone",
+    "ervin_mod_1:yellow_cobblestone"
+  ]
+}

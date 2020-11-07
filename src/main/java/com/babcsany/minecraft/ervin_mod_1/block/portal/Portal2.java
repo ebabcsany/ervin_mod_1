@@ -17,6 +17,6 @@ public interface Portal2 {
 
     default boolean isExamplePortalFrame(BlockState state, IWorldReader world, BlockPos pos)
     {
-        return state.getBlock() == BlockInit.GRITK_BLOCK1.get();
+        return state.getBlock() == BlockInit.EXAMPLE_PORTAL_BLOCK.get();
     }
 }

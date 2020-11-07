@@ -116,7 +116,7 @@ public class BlockInit {
                     .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(1000000.0f)
     ));
-    public static final RegistryObject<Block> SRIUNK_ORE = BLOCKS.register("sriunk_ore", () -> new SriunkOre(
+    public static final RegistryObject<Block> SRIUNK_ORE = BLOCKS.register("sriunk_ore", () -> new OreBlock1(
             Block.Properties.create(Material.ROCK)
                     .setRequiresTool()
                     .harvestLevel(3)
@@ -1844,13 +1844,13 @@ public class BlockInit {
                     .harvestTool(ToolType.SHOVEL)
                     .hardnessAndResistance(50000.0F)
     ));
-    public static final RegistryObject<Block> GRITK_BLOCK1 = BLOCKS.register("example_portal_block", () -> new ExamplePortalBlock(
-            Block.Properties.create(Material.IRON)
-                    .setRequiresTool()
-                    .harvestLevel(0)
-                    .setLightLevel(Value -> 15)
-                    .harvestTool(ToolType.PICKAXE)
-                    .hardnessAndResistance(500000.0F, 1200000.0F)
+    public static final RegistryObject<Block> EXAMPLE_PORTAL_BLOCK = BLOCKS.register("example_portal_block", () -> new ExamplePortalBlock(
+            AbstractBlock.Properties.create(Material.PORTAL)
+                    .doesNotBlockMovement()
+                    .tickRandomly()
+                    .hardnessAndResistance(-1.0F)
+                    .sound(SoundType.GLASS)
+                    .setLightLevel(LightValue -> 11)
     ));
     public static final RegistryObject<Block> RED_GRASS_BLOCK = BLOCKS.register("red_grass_block", () -> new RedGrassBlock(
             Block.Properties.create(Material.ORGANIC)
@@ -2260,7 +2260,7 @@ public class BlockInit {
                     .doesNotBlockMovement()
                     .sound(SoundType.WOOD)
     ));
-    public static final RegistryObject<Block> RUBY_ORE = BLOCKS.register("ruby_ore", () -> new RubyOre(
+    public static final RegistryObject<Block> RUBY_ORE = BLOCKS.register("ruby_ore", () -> new OreBlock1(
             AbstractBlock.Properties.create(Material.ROCK)
                     .harvestLevel(2)
                     .setRequiresTool()

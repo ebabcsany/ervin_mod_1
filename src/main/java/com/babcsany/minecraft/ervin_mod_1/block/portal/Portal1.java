@@ -13,6 +13,6 @@ public interface Portal1 {
 
     default boolean isExamplePortalFrame(IWorldReader world, BlockPos pos)
     {
-        return getBlockState().getBlock().isPortalFrame(getBlockState(), world, pos);
+        return getBlockState().getBlock().isExamplePortalFrame(getBlockState(), world, pos);
     }
 }

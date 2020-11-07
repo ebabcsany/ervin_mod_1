@@ -601,7 +601,7 @@ public class ItemInit {
     public static final RegistryObject<ModSpawnEggItem> VILT_ENTITY_SPAWN_EGG = ITEMS.register("vilt_entity_spawn_egg", () -> new ModSpawnEggItem(
             EntityInit.VILT_ENTITY, 0xc02020, 0xc02020, new Item.Properties()
     ));
-    public static final RegistryObject<Item> TARG_SEEDS = ITEMS.register("crops/targ_seeds", () -> new BlockNamedItem(
+    public static final RegistryObject<Item> TARG_SEEDS = ITEMS.register("seeds/targ_seeds", () -> new BlockNamedItem(
             BlockInit.TARG_STAGE.get(), (new Item.Properties())
     ));
     public static final RegistryObject<Item> TARG = ITEMS.register("targ", () -> new Item(
@@ -967,5 +967,8 @@ public class ItemInit {
     ));
     public static final RegistryObject<ModSpawnEggItem> $_TRADER_ENTITY_SPAWN_EGG = ITEMS.register("$_trader_spawn_egg", () -> new ModSpawnEggItem(
             EntityInit.$_TRADER_ENTITY, 0x204080, 0x402080, new Item.Properties()
+    ));
+    public static final RegistryObject<ModSpawnEggItem> ZOMBIE_TRADER_SPAWN_EGG = ITEMS.register("zombie_trader_spawn_egg", () -> new ModSpawnEggItem(
+            EntityInit.ZOMBIE_TRADER_ENTITY, 0x40c080, 0x20a0c0, new Item.Properties()
     ));
 }

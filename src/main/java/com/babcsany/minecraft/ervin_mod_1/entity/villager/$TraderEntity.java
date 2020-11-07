@@ -1,8 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.villager;
 
+import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.$TraderLookAtCustomerGoal;
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.$TraderTradeWithPlayerGoal;
-import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.LookAtCustomerGoal1;
-import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.WanderingTraderTradeWithPlayerGoal;
 import com.babcsany.minecraft.ervin_mod_1.init.ItemInit;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
@@ -23,9 +22,9 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public class $TraderEntity extends AbstractNirtreEntity {
+public class $TraderEntity extends Abstract$TraderEntity {
    @Nullable
-   private BlockPos wanderTarget;
+   private BlockPos $traderTarget;
    private int despawnDelay;
 
    public $TraderEntity(EntityType<? extends $TraderEntity> type, World worldIn) {
@@ -37,8 +36,7 @@ public class $TraderEntity extends AbstractNirtreEntity {
       this.goalSelector.addGoal(0, new SwimGoal(this));
       this.goalSelector.addGoal(1, new $TraderTradeWithPlayerGoal(this));
       this.goalSelector.addGoal(1, new PanicGoal(this, 0.5D));
-      this.goalSelector.addGoal(1, new LookAtCustomerGoal1(this));
-      this.goalSelector.addGoal(4, new MoveTowardsRestrictionGoal(this, 0.35D));
+      this.goalSelector.addGoal(1, new $TraderLookAtCustomerGoal(this));
       this.goalSelector.addGoal(8, new WaterAvoidingRandomWalkingGoal(this, 0.35D));
       this.goalSelector.addGoal(9, new LookAtWithoutMovingGoal(this, PlayerEntity.class, 3.0F, 1.0F));
       this.targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, false));
@@ -81,11 +79,12 @@ public class $TraderEntity extends AbstractNirtreEntity {
    }
 
    protected void populateTradeData() {
-      $TraderTrades.ITrade[] a$tradernirtretrades$itrade = $TraderTrades.field_221240_b.get(1);
-      if (a$tradernirtretrades$itrade != null) {
+      $TraderTrades.ITrade[] a$tradertrades$itrade = $TraderTrades.field_221240_b.get(1);
+      if (a$tradertrades$itrade != null) {
          MerchantOffers merchantoffers = this.getOffers();
-         int i = this.rand.nextInt(a$tradernirtretrades$itrade.length);
-         $TraderTrades.ITrade $tradertrades$itrade = a$tradernirtretrades$itrade[i];
+         this.addTrades(merchantoffers, a$tradertrades$itrade, 10);
+         int i = this.rand.nextInt(a$tradertrades$itrade.length);
+         $TraderTrades.ITrade $tradertrades$itrade = a$tradertrades$itrade[i];
          MerchantOffer merchantoffer = $tradertrades$itrade.getOffer(this, this.rand);
          if (merchantoffer != null) {
             merchantoffers.add(merchantoffer);
@@ -97,8 +96,8 @@ public class $TraderEntity extends AbstractNirtreEntity {
    public void writeAdditional(CompoundNBT compound) {
       super.writeAdditional(compound);
       compound.putInt("DespawnDelay", this.despawnDelay);
-      if (this.wanderTarget != null) {
-         compound.put("WanderTarget", NBTUtil.writeBlockPos(this.wanderTarget));
+      if (this.$traderTarget != null) {
+         compound.put("$traderTarget", NBTUtil.writeBlockPos(this.$traderTarget));
       }
 
    }
@@ -112,8 +111,8 @@ public class $TraderEntity extends AbstractNirtreEntity {
          this.despawnDelay = compound.getInt("DespawnDelay");
       }
 
-      if (compound.contains("TraderTarget")) {
-         this.wanderTarget = NBTUtil.readBlockPos(compound.getCompound("TraderTarget"));
+      if (compound.contains("$traderTarget")) {
+         this.$traderTarget = NBTUtil.readBlockPos(compound.getCompound("$traderTarget"));
       }
 
       this.setGrowingAge(Math.max(0, this.getGrowingAge()));
@@ -123,7 +122,7 @@ public class $TraderEntity extends AbstractNirtreEntity {
       return false;
    }
 
-   protected void onVillagerTrade(MerchantOffer offer) {
+   protected void on$TraderTrade(MerchantOffer offer) {
       if (offer.getDoesRewardExp()) {
          int i = 3 + this.rand.nextInt(4);
          this.world.addEntity(new ExperienceOrbEntity(this.world, this.getPosX(), this.getPosY() + 0.5D, this.getPosZ(), i));
@@ -131,30 +130,30 @@ public class $TraderEntity extends AbstractNirtreEntity {
 
    }
 
-   /*protected SoundEvent getAmbientSound() {
+   protected SoundEvent getAmbientSound() {
       return this.hasCustomer() ? SoundEvents.ENTITY_WANDERING_TRADER_TRADE : SoundEvents.ENTITY_WANDERING_TRADER_AMBIENT;
    }
 
    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
       return SoundEvents.ENTITY_WANDERING_TRADER_HURT;
-   }*/
+   }
 
    protected SoundEvent getDeathSound() {
       return SoundEvents.ENTITY_WANDERING_TRADER_DEATH;
    }
 
-   /*protected SoundEvent getDrinkSound(ItemStack stack) {
+   protected SoundEvent getDrinkSound(ItemStack stack) {
       Item item = stack.getItem();
       return item == Items.MILK_BUCKET ? SoundEvents.ENTITY_WANDERING_TRADER_DRINK_MILK : SoundEvents.ENTITY_WANDERING_TRADER_DRINK_POTION;
    }
 
-   protected SoundEvent getVillagerYesNoSound(boolean getYesSound) {
+   protected SoundEvent get$TraderYesNoSound(boolean getYesSound) {
       return getYesSound ? SoundEvents.ENTITY_WANDERING_TRADER_YES : SoundEvents.ENTITY_WANDERING_TRADER_NO;
    }
 
    public SoundEvent getYesSound() {
       return SoundEvents.ENTITY_WANDERING_TRADER_YES;
-   }*/
+   }
 
    public void setDespawnDelay(int delay) {
       this.despawnDelay = delay;
@@ -183,13 +182,13 @@ public class $TraderEntity extends AbstractNirtreEntity {
 
    }
 
-   public void setWanderTarget(@Nullable BlockPos pos) {
-      this.wanderTarget = pos;
+   public void set$traderTarget(@Nullable BlockPos pos) {
+      this.$traderTarget = pos;
    }
 
    @Nullable
-   private BlockPos getWanderTarget() {
-      return this.wanderTarget;
+   private BlockPos set$traderTarget() {
+      return this.$traderTarget;
    }
 
 }

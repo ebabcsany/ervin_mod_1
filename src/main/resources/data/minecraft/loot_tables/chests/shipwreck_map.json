@@ -36,7 +36,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:targ_seeds"
+          "name": "ervin_mod_1:seeds/targ_seeds"
         },
         {
           "type": "minecraft:item",

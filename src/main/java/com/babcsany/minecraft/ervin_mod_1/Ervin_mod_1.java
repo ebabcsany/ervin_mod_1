@@ -7,6 +7,7 @@ import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurNirtreEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.$TraderEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.TraderNirtreEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.WanderingTraderNirtreEntity;
+import com.babcsany.minecraft.ervin_mod_1.entity.villager.ZombieTraderEntity;
 import com.babcsany.minecraft.ervin_mod_1.init.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -120,6 +121,7 @@ public class Ervin_mod_1 {
             GlobalEntityTypeAttributes.put(EntityInit.WANDERING_TRADER_NIRTRE_ENTITY.get(), WanderingTraderNirtreEntity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(EntityInit.TRADER_NIRTRE_ENTITY.get(), TraderNirtreEntity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(EntityInit.$_TRADER_ENTITY.get(), $TraderEntity.setCustomAttributes().create());
+            GlobalEntityTypeAttributes.put(EntityInit.ZOMBIE_TRADER_ENTITY.get(), ZombieTraderEntity.setCustomAttributes().create());
         });
     }
 

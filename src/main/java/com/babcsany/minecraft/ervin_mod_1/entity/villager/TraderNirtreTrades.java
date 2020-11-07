@@ -42,6 +42,7 @@ public class TraderNirtreTrades {
            new TraderNirtreTrades.ItemsForChaksTrade(ItemInit.MLONK.get(), 4, 1, 10, 2),
            new TraderNirtreTrades.ItemsForChaksTrade(Items.GRASS_BLOCK, 4, 1, 9, 1),
            new TraderNirtreTrades.ItemsForKirtsTrade(ItemInit.$_TRADER_ENTITY_SPAWN_EGG.get(), 64, 1, 20, 1),
+           new TraderNirtreTrades.ItemsForEmeraldBlocksTrade(ItemInit.WANDERING_TRADER_NIRTRE_SPAWN_EGG.get(), 1, 1, 20, 1),
    }));
 
    private static Int2ObjectMap<TraderNirtreTrades.ITrade[]> gatAsIntMap(ImmutableMap<Integer, TraderNirtreTrades.ITrade[]> p_221238_0_) {
@@ -558,6 +559,44 @@ public class TraderNirtreTrades {
 
       public MerchantOffer getOffer(Entity trader, Random rand) {
          return new MerchantOffer(new ItemStack(ItemInit.KIRT.get(), this.kirtCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+      }
+   }
+
+   static class ItemsForEmeraldBlocksTrade implements TraderNirtreTrades.ITrade {
+      private final ItemStack sellingItem;
+      private final int emeraldBlockCount;
+      private final int sellingItemCount;
+      private final int maxUses;
+      private final int xpValue;
+      private final float priceMultiplier;
+
+      public ItemsForEmeraldBlocksTrade(Block sellingItem, int emeraldBlockCount, int sellingItemCount, int maxUses, int xpValue) {
+         this(new ItemStack(sellingItem), emeraldBlockCount, sellingItemCount, maxUses, xpValue);
+      }
+
+      public ItemsForEmeraldBlocksTrade(Item sellingItem, int emeraldBlockCount, int sellingItemCount, int xpValue) {
+         this(new ItemStack(sellingItem), emeraldBlockCount, sellingItemCount, 12, xpValue);
+      }
+
+      public ItemsForEmeraldBlocksTrade(Item sellingItem, int emeraldBlockCount, int sellingItemCount, int maxUses, int xpValue) {
+         this(new ItemStack(sellingItem), emeraldBlockCount, sellingItemCount, maxUses, xpValue);
+      }
+
+      public ItemsForEmeraldBlocksTrade(ItemStack sellingItem, int emeraldBlockCount, int sellingItemCount, int maxUses, int xpValue) {
+         this(sellingItem, emeraldBlockCount, sellingItemCount, maxUses, xpValue, 0.05F);
+      }
+
+      public ItemsForEmeraldBlocksTrade(ItemStack sellingItem, int emeraldBlockCount, int sellingItemCount, int maxUses, int xpValue, float priceMultiplier) {
+         this.sellingItem = sellingItem;
+         this.emeraldBlockCount = emeraldBlockCount;
+         this.sellingItemCount = sellingItemCount;
+         this.maxUses = maxUses;
+         this.xpValue = xpValue;
+         this.priceMultiplier = priceMultiplier;
+      }
+
+      public MerchantOffer getOffer(Entity trader, Random rand) {
+         return new MerchantOffer(new ItemStack(Items.EMERALD_BLOCK, this.emeraldBlockCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 

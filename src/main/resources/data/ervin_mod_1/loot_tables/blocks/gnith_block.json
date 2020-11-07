@@ -5,29 +5,54 @@
       "rolls": 1,
       "entries": [
         {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:gnith_block"
-        }
-      ]
-    },
-    {
-      "rolls": 1,
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:air"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:gnith"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:trink"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:trinks"
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:match_tool",
+                  "predicate": {
+                    "enchantments": [
+                      {
+                        "enchantment": "minecraft:silk_touch",
+                        "levels": {
+                          "min": 1
+                        }
+                      }
+                    ]
+                  }
+                }
+              ],
+              "name": "ervin_mod_1:gnith_block"
+            },
+            {
+              "type": "minecraft:item",
+              "name": "ervin_mod_1:gnith"
+            },
+            {
+              "type": "minecraft:item",
+              "functions": [
+                {
+                  "function": "minecraft:apply_bonus",
+                  "enchantment": "minecraft:fortune",
+                  "formula": "minecraft:ore_drops"
+                },
+                {
+                  "function": "minecraft:explosion_decay"
+                }
+              ],
+              "name": "ervin_mod_1:air"
+            },
+            {
+              "type": "minecraft:item",
+              "name": "ervin_mod_1:trink"
+            },
+            {
+              "type": "minecraft:item",
+              "name": "ervin_mod_1:trinks"
+            }
+          ]
         }
       ]
     }
