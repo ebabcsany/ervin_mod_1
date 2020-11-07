@@ -42,6 +42,8 @@ import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.registry.Bootstrap;
 import net.minecraft.village.PointOfInterestType;
+import net.minecraft.world.Dimension;
+import net.minecraft.world.DimensionType;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.ChunkStatus;
 import net.minecraft.world.gen.blockplacer.BlockPlacerType;

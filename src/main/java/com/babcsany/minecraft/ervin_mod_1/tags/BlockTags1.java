@@ -94,6 +94,7 @@ public class BlockTags1 {
    public static final ITag.INamedTag<Block> FENCE_GATES = makeWrapperTag("fence_gates");
    public static final ITag.INamedTag<Block> UNSTABLE_BOTTOM_CENTER = makeWrapperTag("unstable_bottom_center");
    public static final ITag.INamedTag<Block> INFINIBURN_OVERWORLD = makeWrapperTag("infiniburn_overworld");
+   public static final ITag.INamedTag<Block> INFINIBURN_EXAMPLE_OVERWORLD = makeWrapperTag("infiniburn_example_overworld");
    public static final ITag.INamedTag<Block> INFINIBURN_NETHER = makeWrapperTag("infiniburn_nether");
    public static final ITag.INamedTag<Block> INFINIBURN_END = makeWrapperTag("infiniburn_end");
 

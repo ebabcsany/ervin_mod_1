@@ -1,23 +1,13 @@
 package com.babcsany.minecraft.ervin_mod_1.init;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
-import com.babcsany.minecraft.ervin_mod_1.world.biomes.ExampleBiomeSurfaceBuilder;
-import com.babcsany.minecraft.ervin_mod_1.world.gen.surfacebuilders.ExampleSurfaceBuilder;
 import com.babcsany.minecraft.ervin_mod_1.world.gen.surfacebuilders.SriunkBlockValleySurfaceBuilder;
-import com.babcsany.minecraft.ervin_mod_1.world.gen.surfacebuilders.SurfaceBuilder2;
-import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.gen.surfacebuilders.*;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-
-import java.util.Random;
 
 public class SurfaceBuilderInit {
 

@@ -1,21 +1,15 @@
 package com.babcsany.minecraft.ervin_mod_1.init;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
-import com.babcsany.minecraft.ervin_mod_1.world.biomes.*;
+import com.babcsany.minecraft.ervin_mod_1.world.biome.*;
 import com.babcsany.minecraft.ervin_mod_1.world.gen.surfacebuilders.SriunkBlockValleySurfaceBuilder;
-import com.babcsany.minecraft.ervin_mod_1.world.gen.surfacebuilders.SurfaceBuilderConfig1;
 import com.google.common.collect.ImmutableList;
-import com.mojang.serialization.Codec;
 import net.minecraft.block.Blocks;
-import net.minecraft.client.audio.BackgroundMusicTracks;
-import net.minecraft.util.SoundEvents;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.Category;
 import net.minecraft.world.biome.Biome.RainType;
 import net.minecraft.world.biome.BiomeAmbience;
-import net.minecraft.world.biome.MoodSoundAmbience;
-import net.minecraft.world.biome.SoundAdditionsAmbience;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.ISurfaceBuilderConfig;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
@@ -26,8 +20,6 @@ import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-
-import static net.java.games.input.Component.Identifier.Key.O;
 
 public class BiomeInit {
 	public static final DeferredRegister<Biome> BIOMES = DeferredRegister.create(ForgeRegistries.BIOMES,
