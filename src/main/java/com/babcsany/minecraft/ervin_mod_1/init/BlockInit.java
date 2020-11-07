@@ -1562,11 +1562,11 @@ public class BlockInit {
                     .notSolid()
     ));*/
     public static final RegistryObject<Block> FIRG_PLANKS = BLOCKS.register("firg_planks", () -> new FirgPlanks(
-            Block.Properties.create(Material.WOOD, MaterialColor.WOOD)
+            AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD)
                     .hardnessAndResistance(2.0F, 3.0F)
                     .sound(SoundType.WOOD)
     ));
-    public static final RegistryObject<Block> FIRG_STAIRS = BLOCKS.register("firg_stairs", () -> new SmoothStoneStairs(
+    public static final RegistryObject<Block> FIRG_STAIRS = BLOCKS.register("firg_stairs", () -> new FirgStairs(
             () -> FIRG_PLANKS.get().getDefaultState(),Block.Properties.from(FIRG_PLANKS.get())
     ));
     public static final RegistryObject<Block> FIRG_SLAB = BLOCKS.register("firg_slab", () -> new FirgSlab(

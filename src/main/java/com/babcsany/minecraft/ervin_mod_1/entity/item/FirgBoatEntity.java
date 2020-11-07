@@ -1,9 +1,10 @@
-package net.minecraft.entity.item;
+package com.babcsany.minecraft.ervin_mod_1.entity.item;
 
 import java.util.List;
 import javax.annotation.Nullable;
 
 import com.babcsany.minecraft.ervin_mod_1.init.BlockInit;
+import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.ItemInit;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -15,6 +16,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.Pose;
+import net.minecraft.entity.item.BoatEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.WaterMobEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -50,14 +52,14 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class BoatEntity extends Entity {
-   private static final DataParameter<Integer> TIME_SINCE_HIT = EntityDataManager.createKey(BoatEntity.class, DataSerializers.VARINT);
-   private static final DataParameter<Integer> FORWARD_DIRECTION = EntityDataManager.createKey(BoatEntity.class, DataSerializers.VARINT);
-   private static final DataParameter<Float> DAMAGE_TAKEN = EntityDataManager.createKey(BoatEntity.class, DataSerializers.FLOAT);
-   private static final DataParameter<Integer> BOAT_TYPE = EntityDataManager.createKey(BoatEntity.class, DataSerializers.VARINT);
-   private static final DataParameter<Boolean> LEFT_PADDLE = EntityDataManager.createKey(BoatEntity.class, DataSerializers.BOOLEAN);
-   private static final DataParameter<Boolean> RIGHT_PADDLE = EntityDataManager.createKey(BoatEntity.class, DataSerializers.BOOLEAN);
-   private static final DataParameter<Integer> ROCKING_TICKS = EntityDataManager.createKey(BoatEntity.class, DataSerializers.VARINT);
+public class FirgBoatEntity extends Entity {
+   private static final DataParameter<Integer> TIME_SINCE_HIT = EntityDataManager.createKey(FirgBoatEntity.class, DataSerializers.VARINT);
+   private static final DataParameter<Integer> FORWARD_DIRECTION = EntityDataManager.createKey(FirgBoatEntity.class, DataSerializers.VARINT);
+   private static final DataParameter<Float> DAMAGE_TAKEN = EntityDataManager.createKey(FirgBoatEntity.class, DataSerializers.FLOAT);
+   private static final DataParameter<Integer> BOAT_TYPE = EntityDataManager.createKey(FirgBoatEntity.class, DataSerializers.VARINT);
+   private static final DataParameter<Boolean> LEFT_PADDLE = EntityDataManager.createKey(FirgBoatEntity.class, DataSerializers.BOOLEAN);
+   private static final DataParameter<Boolean> RIGHT_PADDLE = EntityDataManager.createKey(FirgBoatEntity.class, DataSerializers.BOOLEAN);
+   private static final DataParameter<Integer> ROCKING_TICKS = EntityDataManager.createKey(FirgBoatEntity.class, DataSerializers.VARINT);
    private final float[] paddlePositions = new float[2];
    private float momentum;
    private float outOfControlTicks;
@@ -74,8 +76,8 @@ public class BoatEntity extends Entity {
    private boolean backInputDown;
    private double waterLevel;
    private float boatGlide;
-   private Status status;
-   private Status previousStatus;
+   private FirgBoatEntity.Status status;
+   private FirgBoatEntity.Status previousStatus;
    private double lastYd;
    private boolean rocking;
    private boolean field_203060_aN;
@@ -83,13 +85,13 @@ public class BoatEntity extends Entity {
    private float rockingAngle;
    private float prevRockingAngle;
 
-   public BoatEntity(EntityType<? extends BoatEntity> p_i50129_1_, World world) {
+   public FirgBoatEntity(EntityType<? extends FirgBoatEntity> p_i50129_1_, World world) {
       super(p_i50129_1_, world);
       this.preventEntitySpawning = true;
    }
 
-   public BoatEntity(World worldIn, double x, double y, double z) {
-      this(EntityType.BOAT, worldIn);
+   public FirgBoatEntity(World worldIn, double x, double y, double z) {
+      this(EntityInit.FIRG_BOAT_ENTITY.get(), worldIn);
       this.setPosition(x, y, z);
       this.setMotion(Vector3d.ZERO);
       this.prevPosX = x;
@@ -109,7 +111,7 @@ public class BoatEntity extends Entity {
       this.dataManager.register(TIME_SINCE_HIT, 0);
       this.dataManager.register(FORWARD_DIRECTION, 1);
       this.dataManager.register(DAMAGE_TAKEN, 0.0F);
-      this.dataManager.register(BOAT_TYPE, Type.OAK.ordinal());
+      this.dataManager.register(BOAT_TYPE, FirgBoatEntity.Type.OAK.ordinal());
       this.dataManager.register(LEFT_PADDLE, false);
       this.dataManager.register(RIGHT_PADDLE, false);
       this.dataManager.register(ROCKING_TICKS, 0);
@@ -127,9 +129,9 @@ public class BoatEntity extends Entity {
    /* *
     * Returns the <b>solid</b> collision bounding box for this entity. Used to make (e.g.) boats solid. Return null if
     * this entity is not solid.
-    *  
+    *
     * For general purposes, use {@link #width} and {@link #height}.
-    *  
+    *
     * @see getEntityBoundingBox
     */
    @Nullable
@@ -197,7 +199,7 @@ public class BoatEntity extends Entity {
     * Applies a velocity to the entities, to push them away from eachother.
     */
    public void applyEntityCollision(Entity entityIn) {
-      if (entityIn instanceof BoatEntity) {
+      if (entityIn instanceof FirgBoatEntity) {
          if (entityIn.getBoundingBox().minY < this.getBoundingBox().maxY) {
             super.applyEntityCollision(entityIn);
          }
@@ -209,21 +211,21 @@ public class BoatEntity extends Entity {
 
    public Item getItemBoat() {
       switch(this.getBoatType()) {
-      case OAK:
-      default:
-         return Items.OAK_BOAT;
-      case SPRUCE:
-         return Items.SPRUCE_BOAT;
-      case BIRCH:
-         return Items.BIRCH_BOAT;
-      case JUNGLE:
-         return Items.JUNGLE_BOAT;
-      case ACACIA:
-         return Items.ACACIA_BOAT;
-      case DARK_OAK:
-         return Items.DARK_OAK_BOAT;
-      case FIRG:
-         return ItemInit.FIRG_BOAT.get();
+         case OAK:
+         default:
+            return Items.OAK_BOAT;
+         case SPRUCE:
+            return Items.SPRUCE_BOAT;
+         case BIRCH:
+            return Items.BIRCH_BOAT;
+         case JUNGLE:
+            return Items.JUNGLE_BOAT;
+         case ACACIA:
+            return Items.ACACIA_BOAT;
+         case DARK_OAK:
+            return Items.DARK_OAK_BOAT;
+         case FIRG:
+            return ItemInit.FIRG_BOAT.get();
       }
    }
 
@@ -270,7 +272,7 @@ public class BoatEntity extends Entity {
    public void tick() {
       this.previousStatus = this.status;
       this.status = this.getBoatStatus();
-      if (this.status != Status.UNDER_WATER && this.status != Status.UNDER_FLOWING_WATER) {
+      if (this.status != FirgBoatEntity.Status.UNDER_WATER && this.status != FirgBoatEntity.Status.UNDER_FLOWING_WATER) {
          this.outOfControlTicks = 0.0F;
       } else {
          ++this.outOfControlTicks;
@@ -387,15 +389,15 @@ public class BoatEntity extends Entity {
    @Nullable
    protected SoundEvent getPaddleSound() {
       switch(this.getBoatStatus()) {
-      case IN_WATER:
-      case UNDER_WATER:
-      case UNDER_FLOWING_WATER:
-         return SoundEvents.ENTITY_BOAT_PADDLE_WATER;
-      case ON_LAND:
-         return SoundEvents.ENTITY_BOAT_PADDLE_LAND;
-      case IN_AIR:
-      default:
-         return null;
+         case IN_WATER:
+         case UNDER_WATER:
+         case UNDER_FLOWING_WATER:
+            return SoundEvents.ENTITY_BOAT_PADDLE_WATER;
+         case ON_LAND:
+            return SoundEvents.ENTITY_BOAT_PADDLE_LAND;
+         case IN_AIR:
+         default:
+            return null;
       }
    }
 
@@ -431,20 +433,20 @@ public class BoatEntity extends Entity {
    /**
     * Determines whether the boat is in water, gliding on land, or in air
     */
-   private Status getBoatStatus() {
-      Status boatentity$status = this.getUnderwaterStatus();
+   private FirgBoatEntity.Status getBoatStatus() {
+      FirgBoatEntity.Status boatentity$status = this.getUnderwaterStatus();
       if (boatentity$status != null) {
          this.waterLevel = this.getBoundingBox().maxY;
          return boatentity$status;
       } else if (this.checkInWater()) {
-         return Status.IN_WATER;
+         return FirgBoatEntity.Status.IN_WATER;
       } else {
          float f = this.getBoatGlide();
          if (f > 0.0F) {
             this.boatGlide = f;
-            return Status.ON_LAND;
+            return FirgBoatEntity.Status.ON_LAND;
          } else {
-            return Status.IN_AIR;
+            return FirgBoatEntity.Status.IN_AIR;
          }
       }
    }
@@ -562,7 +564,7 @@ public class BoatEntity extends Entity {
     * Decides whether the boat is currently underwater.
     */
    @Nullable
-   private Status getUnderwaterStatus() {
+   private FirgBoatEntity.Status getUnderwaterStatus() {
       AxisAlignedBB axisalignedbb = this.getBoundingBox();
       double d0 = axisalignedbb.maxY + 0.001D;
       int i = MathHelper.floor(axisalignedbb.minX);
@@ -581,7 +583,7 @@ public class BoatEntity extends Entity {
                FluidState fluidstate = this.world.getFluidState(blockpos$mutable);
                if (fluidstate.isTagged(FluidTags.WATER) && d0 < (double)((float)blockpos$mutable.getY() + fluidstate.getActualHeight(this.world, blockpos$mutable))) {
                   if (!fluidstate.isSource()) {
-                     return Status.UNDER_FLOWING_WATER;
+                     return FirgBoatEntity.Status.UNDER_FLOWING_WATER;
                   }
 
                   flag = true;
@@ -590,7 +592,7 @@ public class BoatEntity extends Entity {
          }
       }
 
-      return flag ? Status.UNDER_WATER : null;
+      return flag ? FirgBoatEntity.Status.UNDER_WATER : null;
    }
 
    /**
@@ -601,25 +603,25 @@ public class BoatEntity extends Entity {
       double d1 = this.hasNoGravity() ? 0.0D : (double)-0.04F;
       double d2 = 0.0D;
       this.momentum = 0.05F;
-      if (this.previousStatus == Status.IN_AIR && this.status != Status.IN_AIR && this.status != Status.ON_LAND) {
+      if (this.previousStatus == FirgBoatEntity.Status.IN_AIR && this.status != FirgBoatEntity.Status.IN_AIR && this.status != FirgBoatEntity.Status.ON_LAND) {
          this.waterLevel = this.getPosYHeight(1.0D);
          this.setPosition(this.getPosX(), (double)(this.getWaterLevelAbove() - this.getHeight()) + 0.101D, this.getPosZ());
          this.setMotion(this.getMotion().mul(1.0D, 0.0D, 1.0D));
          this.lastYd = 0.0D;
-         this.status = Status.IN_WATER;
+         this.status = FirgBoatEntity.Status.IN_WATER;
       } else {
-         if (this.status == Status.IN_WATER) {
+         if (this.status == FirgBoatEntity.Status.IN_WATER) {
             d2 = (this.waterLevel - this.getPosY()) / (double)this.getHeight();
             this.momentum = 0.9F;
-         } else if (this.status == Status.UNDER_FLOWING_WATER) {
+         } else if (this.status == FirgBoatEntity.Status.UNDER_FLOWING_WATER) {
             d1 = -7.0E-4D;
             this.momentum = 0.9F;
-         } else if (this.status == Status.UNDER_WATER) {
+         } else if (this.status == FirgBoatEntity.Status.UNDER_WATER) {
             d2 = (double)0.01F;
             this.momentum = 0.45F;
-         } else if (this.status == Status.IN_AIR) {
+         } else if (this.status == FirgBoatEntity.Status.IN_AIR) {
             this.momentum = 0.9F;
-         } else if (this.status == Status.ON_LAND) {
+         } else if (this.status == FirgBoatEntity.Status.ON_LAND) {
             this.momentum = this.boatGlide;
             if (this.getControllingPassenger() instanceof PlayerEntity) {
                this.boatGlide /= 2.0F;
@@ -758,7 +760,7 @@ public class BoatEntity extends Entity {
     */
    protected void readAdditional(CompoundNBT compound) {
       if (compound.contains("Type", 8)) {
-         this.setBoatType(Type.getTypeFromString(compound.getString("Type")));
+         this.setBoatType(FirgBoatEntity.Type.getTypeFromString(compound.getString("Type")));
       }
 
    }
@@ -782,7 +784,7 @@ public class BoatEntity extends Entity {
       if (!this.isPassenger()) {
          if (onGroundIn) {
             if (this.fallDistance > 3.0F) {
-               if (this.status != Status.ON_LAND) {
+               if (this.status != FirgBoatEntity.Status.ON_LAND) {
                   this.fallDistance = 0.0F;
                   return;
                }
@@ -869,12 +871,12 @@ public class BoatEntity extends Entity {
       return this.dataManager.get(FORWARD_DIRECTION);
    }
 
-   public void setBoatType(Type boatType) {
+   public void setBoatType(FirgBoatEntity.Type boatType) {
       this.dataManager.set(BOAT_TYPE, boatType.ordinal());
    }
 
-   public Type getBoatType() {
-      return Type.byId(this.dataManager.get(BOAT_TYPE));
+   public FirgBoatEntity.Type getBoatType() {
+      return FirgBoatEntity.Type.byId(this.dataManager.get(BOAT_TYPE));
    }
 
    protected boolean canFitPassenger(Entity passenger) {
@@ -904,7 +906,7 @@ public class BoatEntity extends Entity {
    }
 
    public boolean canSwim() {
-      return this.status == Status.UNDER_WATER || this.status == Status.UNDER_FLOWING_WATER;
+      return this.status == FirgBoatEntity.Status.UNDER_WATER || this.status == FirgBoatEntity.Status.UNDER_FLOWING_WATER;
    }
 
    // Forge: Fix MC-119811 by instantly completing lerp on board
@@ -957,8 +959,8 @@ public class BoatEntity extends Entity {
       /**
        * Get a boat type by it's enum ordinal
        */
-      public static Type byId(int id) {
-         Type[] aboatentity$type = values();
+      public static FirgBoatEntity.Type byId(int id) {
+         FirgBoatEntity.Type[] aboatentity$type = values();
          if (id < 0 || id >= aboatentity$type.length) {
             id = 0;
          }
@@ -966,8 +968,8 @@ public class BoatEntity extends Entity {
          return aboatentity$type[id];
       }
 
-      public static Type getTypeFromString(String nameIn) {
-         Type[] aboatentity$type = values();
+      public static FirgBoatEntity.Type getTypeFromString(String nameIn) {
+         FirgBoatEntity.Type[] aboatentity$type = values();
 
          for(int i = 0; i < aboatentity$type.length; ++i) {
             if (aboatentity$type[i].getName().equals(nameIn)) {

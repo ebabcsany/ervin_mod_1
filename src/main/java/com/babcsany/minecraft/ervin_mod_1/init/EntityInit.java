@@ -2,6 +2,7 @@ package com.babcsany.minecraft.ervin_mod_1.init;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.entity.animal.*;
+import com.babcsany.minecraft.ervin_mod_1.entity.item.FirgBoatEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.RoventEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurNirtreEntity;
@@ -84,6 +85,12 @@ public class EntityInit {
                     () -> EntityType.Builder.<WolfEntity1>create(WolfEntity1::new, EntityClassification.CREATURE)
                             .size(0.6f, 0.85f).func_233606_a_(20)
                             .build(new ResourceLocation(Ervin_mod_1.MOD_ID, "srach/shert").toString()
+                            ));
+    public static final RegistryObject<EntityType<FirgBoatEntity>> FIRG_BOAT_ENTITY = ENTITY_TYPES
+            .register("firg_boat",
+                    () -> EntityType.Builder.<FirgBoatEntity>create(FirgBoatEntity::new, EntityClassification.MISC)
+                            .size(1.375F, 0.5625F).func_233606_a_(10)
+                            .build(new ResourceLocation(Ervin_mod_1.MOD_ID, "boat/firg").toString()
                             ));
     public static final RegistryObject<EntityType<WanderingTraderNirtreEntity>> WANDERING_TRADER_NIRTRE_ENTITY = ENTITY_TYPES
             .register("wandering_trader_nirtre_entity",
