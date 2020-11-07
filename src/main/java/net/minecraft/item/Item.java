@@ -394,6 +394,7 @@ public class Item extends net.minecraftforge.registries.ForgeRegistryEntry<Item>
    private final java.util.function.Supplier<net.minecraft.client.renderer.tileentity.ItemStackTileEntityRenderer> ister;
    private final Map<net.minecraftforge.common.ToolType, Integer> toolClasses = Maps.newHashMap();
    private final net.minecraftforge.common.util.ReverseTagWrapper<Item> reverseTags = new net.minecraftforge.common.util.ReverseTagWrapper<>(this, net.minecraft.tags.ItemTags::getCollection);
+   private final net.minecraftforge.common.util.ReverseTagWrapper<Item> reverseTag = new net.minecraftforge.common.util.ReverseTagWrapper<>(this, com.babcsany.minecraft.ervin_mod_1.tags.ItemTag::getCollection);
    protected final boolean canRepair;
 
    @Override
@@ -464,7 +465,7 @@ public class Item extends net.minecraftforge.registries.ForgeRegistryEntry<Item>
    }
 
    public static class Properties {
-      private int maxStackSize = 1024;
+      private int maxStackSize = 2048;
       private int maxDamage;
       private Item containerItem;
       private ItemGroup group;
@@ -496,7 +497,7 @@ public class Item extends net.minecraftforge.registries.ForgeRegistryEntry<Item>
 
       public Properties maxDamage(int maxDamageIn) {
          this.maxDamage = maxDamageIn;
-         this.maxStackSize = 1;
+         //this.maxStackSize = 1;
          return this;
       }
 

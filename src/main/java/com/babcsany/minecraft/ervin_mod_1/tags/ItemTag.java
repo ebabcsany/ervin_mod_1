@@ -34,6 +34,8 @@ public class ItemTag {
    public static final ITag.INamedTag<Item> ACACIA_LOGS = makeWrapperTag("acacia_logs");
    public static final ITag.INamedTag<Item> JUNGLE_LOGS = makeWrapperTag("jungle_logs");
    public static final ITag.INamedTag<Item> SPRUCE_LOGS = makeWrapperTag("spruce_logs");
+   public static final ITag.INamedTag<Item> FIRG_LOGS = makeWrapperTag("firg_logs");
+   public static final ITag.INamedTag<Item> FRIM_LOGS = makeWrapperTag("frim_logs");
    public static final ITag.INamedTag<Item> field_232913_w_ = makeWrapperTag("crimson_stems");
    public static final ITag.INamedTag<Item> field_232914_x_ = makeWrapperTag("warped_stems");
    public static final ITag.INamedTag<Item> BANNERS = makeWrapperTag("banners");

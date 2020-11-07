@@ -4,7 +4,6 @@ import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.client.entity.render.*;
 import com.babcsany.minecraft.ervin_mod_1.client.gui.screen.CraintBlockCraftingTableScreen;
 import com.babcsany.minecraft.ervin_mod_1.client.gui.screen.LeatBlockCraftingTableScreen;
-import com.babcsany.minecraft.ervin_mod_1.client.renderer.entity.FirgBoatRenderer;
 import com.babcsany.minecraft.ervin_mod_1.init.ContainerInit;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import net.minecraft.client.gui.ScreenManager;
@@ -29,7 +28,6 @@ public class ClientEventBusSubscriber {
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.SRACH_ENTITY.get(), SrachRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.SHERT_ENTITY.get(), SrachRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.HHIJ_ENTITY.get(), WolfRender1::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityInit.FIRG_BOAT_ENTITY.get(), FirgBoatRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.WANDERING_TRADER_NIRTRE_ENTITY.get(), WanderingTraderNirtreRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.TRADER_NIRTRE_ENTITY.get(), TraderNirtreRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.$_TRADER_ENTITY.get(), $TraderRender::new);

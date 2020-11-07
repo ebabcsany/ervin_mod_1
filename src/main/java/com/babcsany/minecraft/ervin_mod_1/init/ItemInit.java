@@ -1,11 +1,11 @@
 package com.babcsany.minecraft.ervin_mod_1.init;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
-import com.babcsany.minecraft.ervin_mod_1.entity.item.FirgBoatEntity;
 import com.babcsany.minecraft.ervin_mod_1.item.*;
 import com.babcsany.minecraft.ervin_mod_1.item.ModSpawnEggItem;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.item.BoatEntity;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
@@ -505,8 +505,9 @@ public class ItemInit {
     public static final RegistryObject<Item> ENDER_CRAKTHS = ITEMS.register("ender_crakths", () -> new Item(
             (new Item.Properties())
     ));
-    public static final RegistryObject<Item> FIRG_BOAT = ITEMS.register("firg_boat", () -> new ModSpawnEggItem(
-            EntityInit.FIRG_BOAT_ENTITY, 0xc8c8c8, 0xc8c8c8, new Item.Properties().maxStackSize(1)
+    public static final RegistryObject<Item> FIRG_BOAT = ITEMS.register("firg_boat", () -> new BoatItem(
+            BoatEntity.Type.FIRG, (new Item.Properties())
+            .maxStackSize(1)
     ));
     public static final RegistryObject<Item> GANT = ITEMS.register("gant", () -> new Item(
             (new Item.Properties())

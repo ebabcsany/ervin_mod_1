@@ -2,7 +2,6 @@ package com.babcsany.minecraft.ervin_mod_1.entity.animal;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.BegGoal1;
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.WolfEntity1TradeWithPlayerGoal;
-import com.babcsany.minecraft.ervin_mod_1.entity.item.FirgBoatEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.AbstractNirtreEntity;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import net.minecraft.block.BlockState;
