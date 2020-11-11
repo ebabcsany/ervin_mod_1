@@ -49,7 +49,7 @@ public class BiomeInit {
 									.surfaceBuilder(
 											new ConfiguredSurfaceBuilder<SurfaceBuilderConfig>(
 													register("sriunk_valley_surface",
-															new SriunkBlockValleySurfaceBuilder(
+															new SriunkValleySurfaceBuilder(
 																	SurfaceBuilderConfig.field_237203_a_)),
 													new SurfaceBuilderConfig(BlockInit.END_PORTAL.get().getDefaultState(),
 															BlockInit.NETHER_PORTAL.get().getDefaultState(),

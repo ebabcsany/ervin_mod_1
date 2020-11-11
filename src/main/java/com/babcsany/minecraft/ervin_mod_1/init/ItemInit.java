@@ -258,7 +258,7 @@ public class ItemInit {
     public static final RegistryObject<Item> TIRSK = ITEMS.register("tirsk", () -> new Item(
             (new Item.Properties())
     ));
-    public static final RegistryObject<ModSpawnEggItem> ZUR_ENTITY_SPAWN_EGG = ITEMS.register("zur_entity_spawn_egg", () -> new ModSpawnEggItem(
+    public static final RegistryObject<ModSpawnEggItem> ZUR_ENTITY_SPAWN_EGG = ITEMS.register("spawn_eggs/zur_entity_spawn_egg", () -> new ModSpawnEggItem(
             EntityInit.ZUR_ENTITY, 0x6ea587, 0x446648, new Item.Properties()
     ));
     public static final RegistryObject<Item> KALT = ITEMS.register("kalt", () -> new Item(
@@ -598,7 +598,7 @@ public class ItemInit {
     public static final RegistryObject<Item> YELLOW_IRON_INGOT = ITEMS.register("iron_ingots/yellow_iron_ingot", () -> new Item(
             (new Item.Properties())
     ));
-    public static final RegistryObject<ModSpawnEggItem> VILT_ENTITY_SPAWN_EGG = ITEMS.register("vilt_entity_spawn_egg", () -> new ModSpawnEggItem(
+    public static final RegistryObject<ModSpawnEggItem> VILT_ENTITY_SPAWN_EGG = ITEMS.register("spawn_eggs/vilt_entity_spawn_egg", () -> new ModSpawnEggItem(
             EntityInit.VILT_ENTITY, 0xc02020, 0xc02020, new Item.Properties()
     ));
     public static final RegistryObject<Item> TARG_SEEDS = ITEMS.register("seeds/targ_seeds", () -> new BlockNamedItem(
@@ -607,7 +607,7 @@ public class ItemInit {
     public static final RegistryObject<Item> TARG = ITEMS.register("targ", () -> new Item(
             (new Item.Properties())
     ));
-    public static final RegistryObject<ModSpawnEggItem> SRACH_ENTITY_SPAWN_EGG = ITEMS.register("srach_entity_spawn_egg", () -> new ModSpawnEggItem(
+    public static final RegistryObject<ModSpawnEggItem> SRACH_ENTITY_SPAWN_EGG = ITEMS.register("spawn_eggs/srach_entity_spawn_egg", () -> new ModSpawnEggItem(
             EntityInit.SRACH_ENTITY, 0x8000ff, 0x8000ff, new Item.Properties()
     ));
     public static final RegistryObject<Item> VIRKT = ITEMS.register("virkt", () -> new Item(
@@ -637,31 +637,31 @@ public class ItemInit {
     public static final RegistryObject<Item> TRUGN_PICKAXE = ITEMS.register("trugn_pickaxe", () -> new PickaxeItem(
             ModItemTier.TRUGN, 2600, 1620.0F, (new Item.Properties()).isBurnable()
     ));
-    public static final RegistryObject<Item> GIANT_SPAWN_EGG = ITEMS.register("giant_spawn_egg", () -> new SpawnEggItem(
+    public static final RegistryObject<Item> GIANT_SPAWN_EGG = ITEMS.register("spawn_eggs/giant_spawn_egg", () -> new SpawnEggItem(
             EntityType.GIANT, 7425368, 3462945, new Item.Properties()
     ));
-    public static final RegistryObject<Item> ILLUSIONER_SPAWN_EGG = ITEMS.register("illusioner_spawn_egg", () -> new SpawnEggItem(
+    public static final RegistryObject<Item> ILLUSIONER_SPAWN_EGG = ITEMS.register("spawn_eggs/illusioner_spawn_egg", () -> new SpawnEggItem(
             EntityType.ILLUSIONER, 10574382, 10893626, new Item.Properties()
     ));
-    public static final RegistryObject<Item> IRON_GOLEM_SPAWN_EGG = ITEMS.register("iron_golem_spawn_egg", () -> new SpawnEggItem(
+    public static final RegistryObject<Item> IRON_GOLEM_SPAWN_EGG = ITEMS.register("spawn_eggs/iron_golem_spawn_egg", () -> new SpawnEggItem(
             EntityType.IRON_GOLEM, 16777215, 5000268, new Item.Properties()
     ));
-    public static final RegistryObject<Item> SNOW_GOLEM_SPAWN_EGG = ITEMS.register("snow_golem_spawn_egg", () -> new SpawnEggItem(
+    public static final RegistryObject<Item> SNOW_GOLEM_SPAWN_EGG = ITEMS.register("spawn_eggs/snow_golem_spawn_egg", () -> new SpawnEggItem(
             EntityType.SNOW_GOLEM, 27649, 146359, new Item.Properties()
     ));
-    public static final RegistryObject<Item> WITHER_SPAWN_EGG = ITEMS.register("wither_spawn_egg", () -> new SpawnEggItem(
+    public static final RegistryObject<Item> WITHER_SPAWN_EGG = ITEMS.register("spawn_eggs/wither_spawn_egg", () -> new SpawnEggItem(
             EntityType.WITHER, 1644825, 2468825, new Item.Properties()
     ));
-    public static final RegistryObject<Item> ENDER_DRAGON_SPAWN_EGG = ITEMS.register("ender_dragon_spawn_egg", () -> new SpawnEggItem(
+    public static final RegistryObject<Item> ENDER_DRAGON_SPAWN_EGG = ITEMS.register("spawn_eggs/ender_dragon_spawn_egg", () -> new SpawnEggItem(
             EntityType.ENDER_DRAGON, 6741, 55263, new Item.Properties()
     ));
     public static final RegistryObject<Item> MLONK = ITEMS.register("mlonk", () -> new Item(
             (new Item.Properties())
     ));
-    public static final RegistryObject<Item> TRADER_NIRTRE_SPAWN_EGG = ITEMS.register("trader_nirtre_spawn_egg", () -> new ModSpawnEggItem(
+    public static final RegistryObject<Item> TRADER_NIRTRE_SPAWN_EGG = ITEMS.register("spawn_eggs/trader_nirtre_spawn_egg", () -> new ModSpawnEggItem(
             EntityInit.TRADER_NIRTRE_ENTITY, 0x3c7828, 0x3c2850, new Item.Properties()
     ));
-    public static final RegistryObject<Item> WANDERING_TRADER_NIRTRE_SPAWN_EGG = ITEMS.register("wandering_trader_nirtre_spawn_egg", () -> new ModSpawnEggItem(
+    public static final RegistryObject<Item> WANDERING_TRADER_NIRTRE_SPAWN_EGG = ITEMS.register("spawn_eggs/wandering_trader_nirtre_spawn_egg", () -> new ModSpawnEggItem(
             EntityInit.WANDERING_TRADER_NIRTRE_ENTITY, 0x503c28, 0x283c50, new Item.Properties()
     ));
     public static final RegistryObject<Item> BLACK_STONE_AXE = ITEMS.register("stone_axe/black_stone_axe", () -> new AxeItem(
@@ -965,10 +965,13 @@ public class ItemInit {
     public static final RegistryObject<Item> $_10$ = ITEMS.register("$/10$", () -> new $_10$(
             (new Item.Properties()).isBurnable()
     ));
-    public static final RegistryObject<ModSpawnEggItem> $_TRADER_ENTITY_SPAWN_EGG = ITEMS.register("$_trader_spawn_egg", () -> new ModSpawnEggItem(
+    public static final RegistryObject<ModSpawnEggItem> $_TRADER_ENTITY_SPAWN_EGG = ITEMS.register("spawn_eggs/$_trader_spawn_egg", () -> new ModSpawnEggItem(
             EntityInit.$_TRADER_ENTITY, 0x204080, 0x402080, new Item.Properties()
     ));
-    public static final RegistryObject<ModSpawnEggItem> ZOMBIE_TRADER_SPAWN_EGG = ITEMS.register("zombie_trader_spawn_egg", () -> new ModSpawnEggItem(
+    public static final RegistryObject<ModSpawnEggItem> ZOMBIE_TRADER_SPAWN_EGG = ITEMS.register("spawn_eggs/zombie_trader_spawn_egg", () -> new ModSpawnEggItem(
             EntityInit.ZOMBIE_TRADER_ENTITY, 0x40c080, 0x20a0c0, new Item.Properties()
+    ));
+    public static final RegistryObject<ModSpawnEggItem> ROVENT_ENTITY_SPAWN_EGG = ITEMS.register("spawn_eggs/rovent_entity_spawn_egg", () -> new ModSpawnEggItem(
+            EntityInit.ROVENT_ENTITY, 0x244830, 0x28384e, new Item.Properties()
     ));
 }

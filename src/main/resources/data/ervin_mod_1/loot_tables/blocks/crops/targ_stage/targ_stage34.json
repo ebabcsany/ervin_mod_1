@@ -12,17 +12,17 @@
               "conditions": [
                 {
                   "condition": "minecraft:block_state_property",
-                  "block": "ervin_mod_1:crops/targ_seeds",
+                  "block": "ervin_mod_1:crops/targ_stage",
                   "properties": {
                     "age": "34"
                   }
                 }
               ],
-              "name": "ervin_mod_1:crops/targ_seeds"
+              "name": "ervin_mod_1:seeds/targ_seeds"
             },
             {
               "type": "minecraft:item",
-              "name": "ervin_mod_1:crops/targ_seeds"
+              "name": "ervin_mod_1:seeds/targ_seeds"
             }
           ]
         }
@@ -44,13 +44,13 @@
               }
             }
           ],
-          "name": "ervin_mod_1:crops/targ_seeds"
+          "name": "ervin_mod_1:seeds/targ_seeds"
         }
       ],
       "conditions": [
         {
           "condition": "minecraft:block_state_property",
-          "block": "ervin_mod_1:crops/targ_seeds",
+          "block": "ervin_mod_1:crops/targ_stage",
           "properties": {
             "age": "34"
           }

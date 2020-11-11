@@ -26,8 +26,8 @@ public class SriunkValleySurfaceBuilder extends SurfaceBuilder<SurfaceBuilderCon
 		if (i == 0) {
 			SurfaceBuilderInit.SRIUNK_BLOCK_SURFACE_BUILDER.get().buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock,
 					defaultFluid, seaLevel, seed,
-					new SurfaceBuilderConfig(BlockInit.LEAT_BLOCK_CRAFTING_TABLE.get().getDefaultState(),
-							BlockInit.CRASK.get().getDefaultState(), BlockInit.GRITK_BLOCK.get().getDefaultState()
+					new SurfaceBuilderConfig(BlockInit.AVTER_BLOCK.get().getDefaultState(),
+							BlockInit.NIRTKB.get().getDefaultState(), BlockInit.SRIUNK_SLAB.get().getDefaultState()
 					));
 		} else {
 			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock,
@@ -35,7 +35,7 @@ public class SriunkValleySurfaceBuilder extends SurfaceBuilder<SurfaceBuilderCon
 					new SurfaceBuilderConfig(
 							i == 1 ? Blocks.GRASS_BLOCK.getDefaultState()
 									: BlockInit.SRIUNK_BLOCK.get().getDefaultState(),
-							BlockInit.TRUGN.get().getDefaultState(), BlockInit.TRINKS.get().getDefaultState()
+							BlockInit.TRINKS.get().getDefaultState(), Blocks.OBSIDIAN.getDefaultState()
 					));
 		}
 	}

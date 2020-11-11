@@ -14,6 +14,10 @@
         },
         {
           "type": "minecraft:item",
+          "name": "minecraft:barrier"
+        },
+        {
+          "type": "minecraft:item",
           "name": "ervin_mod_1:viltdrop_block"
         },
         {
@@ -31,6 +35,10 @@
         {
           "type": "minecraft:item",
           "name": "ervin_mod_1:zur_entity_spawn_egg"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:rovent_entity_spawn_egg"
         }
       ],
       "conditions": [

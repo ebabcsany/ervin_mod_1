@@ -23,7 +23,7 @@
               }
             }
           ],
-          "name": "ervin_mod_1:$_trader_spawn_egg"
+          "name": "ervin_mod_1:spawn_eggs/$_trader_spawn_egg"
         }
       ]
     }

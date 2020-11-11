@@ -554,11 +554,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:srach_entity_spawn_egg"
+          "name": "ervin_mod_1:spawn_eggs/srach_entity_spawn_egg"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:vilt_entity_spawn_egg"
+          "name": "ervin_mod_1:spawn_eggs/vilt_entity_spawn_egg"
         }
       ]
     },
