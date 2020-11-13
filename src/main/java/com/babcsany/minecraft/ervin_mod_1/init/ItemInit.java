@@ -974,4 +974,8 @@ public class ItemInit {
     public static final RegistryObject<ModSpawnEggItem> ROVENT_ENTITY_SPAWN_EGG = ITEMS.register("spawn_eggs/rovent_entity_spawn_egg", () -> new ModSpawnEggItem(
             EntityInit.ROVENT_ENTITY, 0x244830, 0x28384e, new Item.Properties()
     ));
+    //public static final RegistryObject<Item> COD_BUCKET = ITEMS.register("cod_bucket", new FishBucketItem(EntityInit.GUBROV_ENTITY.get(), Fluids.WATER, (new Item.Properties()).maxStackSize(1).group(ItemGroup.MISC)));
+    public static final RegistryObject<ModSpawnEggItem> GUBROV_ENTITY_SPAWN_EGG = ITEMS.register("spawn_eggs/rovent_entity_spawn_egg", () -> new ModSpawnEggItem(
+            EntityInit.GUBROV_ENTITY, 0x244830, 0x28384e, new Item.Properties()
+    ));
 }

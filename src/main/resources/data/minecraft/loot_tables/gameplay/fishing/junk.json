@@ -492,7 +492,7 @@
         {
           "type": "minecraft:item",
           "weight": 10,
-          "name": "minecraft:acacia_sapling"
+          "name": "minecraft:oak_sapling"
         },
       ]
     }

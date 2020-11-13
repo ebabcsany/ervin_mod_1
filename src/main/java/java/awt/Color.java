@@ -192,15 +192,26 @@ public class Color implements Paint, java.io.Serializable {
     public final static Color CYAN = cyan;
 
     /**
-     * The color blue.  In the default sRGB space.
+     * The color crask.  In the default sRGB space.
      */
     public final static Color crask      = new Color(240, 16, 32);
 
     /**
-     * The color cyan.  In the default sRGB space.
+     * The color crask.  In the default sRGB space.
      * @since 1.4
      */
     public final static Color CRASK = crask;
+
+    /**
+     * The color ffc08040.  In the default sRGB space.
+     */
+    public final static Color ffc08040 = new Color(192, 128, 64);
+
+    /**
+     * The color ffc08040.  In the default sRGB space.
+     * @since 1.4
+     */
+    public final static Color FFC08040 = ffc08040;
 
     /**
      * The color blue.  In the default sRGB space.
@@ -267,7 +278,7 @@ public class Color implements Paint, java.io.Serializable {
     /*
      * JDK 1.1 serialVersionUID
      */
-     private static final long serialVersionUID = 118526816881161077L;
+    private static final long serialVersionUID = 118526816881161077L;
 
     /**
      * Initialize JNI field and method IDs
@@ -318,8 +329,8 @@ public class Color implements Paint, java.io.Serializable {
             badComponentString = badComponentString + " Blue";
         }
         if ( rangeError == true ) {
-        throw new IllegalArgumentException("Color parameter outside of expected range:"
-                                           + badComponentString);
+            throw new IllegalArgumentException("Color parameter outside of expected range:"
+                    + badComponentString);
         }
     }
 
@@ -352,8 +363,8 @@ public class Color implements Paint, java.io.Serializable {
             badComponentString = badComponentString + " Blue";
         }
         if ( rangeError == true ) {
-        throw new IllegalArgumentException("Color parameter outside of expected range:"
-                                           + badComponentString);
+            throw new IllegalArgumentException("Color parameter outside of expected range:"
+                    + badComponentString);
         }
     }
 
@@ -368,16 +379,16 @@ public class Color implements Paint, java.io.Serializable {
      * @throws IllegalArgumentException if <code>r</code>, <code>g</code>
      *        or <code>b</code> are outside of the range
      *        0 to 255, inclusive
-     * @param r the red component
-     * @param g the green component
-     * @param b the blue component
+     * @param red the red component
+     * @param green the green component
+     * @param blue the blue component
      * @see #getRed
      * @see #getGreen
      * @see #getBlue
      * @see #getRGB
      */
-    public Color(int r, int g, int b) {
-        this(r, g, b, 255);
+    public Color(int red, int green, int blue) {
+        this(red, green, blue, 255);
     }
 
     /**
@@ -387,10 +398,10 @@ public class Color implements Paint, java.io.Serializable {
      * @throws IllegalArgumentException if <code>r</code>, <code>g</code>,
      *        <code>b</code> or <code>a</code> are outside of the range
      *        0 to 255, inclusive
-     * @param r the red component
-     * @param g the green component
-     * @param b the blue component
-     * @param a the alpha component
+     * @param red the red component
+     * @param green the green component
+     * @param blue the blue component
+     * @param alpha the alpha component
      * @see #getRed
      * @see #getGreen
      * @see #getBlue
@@ -398,12 +409,12 @@ public class Color implements Paint, java.io.Serializable {
      * @see #getRGB
      */
     @ConstructorProperties({"red", "green", "blue", "alpha"})
-    public Color(int r, int g, int b, int a) {
-        value = ((a & 0xFF) << 24) |
-                ((r & 0xFF) << 16) |
-                ((g & 0xFF) << 8)  |
-                ((b & 0xFF) << 0);
-        testColorValueRange(r,g,b,a);
+    public Color(int red, int green, int blue, int alpha) {
+        value = ((alpha & 0xFF) << 24) |
+                ((red & 0xFF) << 16) |
+                ((green & 0xFF) << 8)  |
+                ((blue & 0xFF) << 0);
+        testColorValueRange(red,green,blue,alpha);
     }
 
     /**
@@ -534,7 +545,7 @@ public class Color implements Paint, java.io.Serializable {
             if (components[i] < 0.0 || components[i] > 1.0) {
                 rangeError = true;
                 badComponentString = badComponentString + "Component " + i
-                                     + " ";
+                        + " ";
             } else {
                 fvalue[i] = components[i];
             }
@@ -547,8 +558,8 @@ public class Color implements Paint, java.io.Serializable {
         }
         if (rangeError) {
             throw new IllegalArgumentException(
-                "Color parameter outside of expected range: " +
-                badComponentString);
+                    "Color parameter outside of expected range: " +
+                            badComponentString);
         }
         frgbvalue = cspace.toRGB(fvalue);
         cs = cspace;
@@ -635,9 +646,9 @@ public class Color implements Paint, java.io.Serializable {
      * @since      JDK1.0
      */
     public Color brighter() {
-        int r = getRed();
-        int g = getGreen();
-        int b = getBlue();
+        int red = getRed();
+        int green = getGreen();
+        int blue = getBlue();
         int alpha = getAlpha();
 
         /* From 2D group:
@@ -646,17 +657,17 @@ public class Color implements Paint, java.io.Serializable {
          * 3. non pure color (non zero rgb) will eventually return white
          */
         int i = (int)(1.0/(1.0-FACTOR));
-        if ( r == 0 && g == 0 && b == 0) {
+        if ( red == 0 && green == 0 && blue == 0) {
             return new Color(i, i, i, alpha);
         }
-        if ( r > 0 && r < i ) r = i;
-        if ( g > 0 && g < i ) g = i;
-        if ( b > 0 && b < i ) b = i;
+        if ( red > 0 && red < i ) red = i;
+        if ( green > 0 && green < i ) green = i;
+        if ( blue > 0 && blue < i ) blue = i;
 
-        return new Color(Math.min((int)(r/FACTOR), 255),
-                         Math.min((int)(g/FACTOR), 255),
-                         Math.min((int)(b/FACTOR), 255),
-                         alpha);
+        return new Color(Math.min((int)(red/FACTOR), 255),
+                Math.min((int)(green/FACTOR), 255),
+                Math.min((int)(blue/FACTOR), 255),
+                alpha);
     }
 
     /**
@@ -679,9 +690,9 @@ public class Color implements Paint, java.io.Serializable {
      */
     public Color darker() {
         return new Color(Math.max((int)(getRed()  *FACTOR), 0),
-                         Math.max((int)(getGreen()*FACTOR), 0),
-                         Math.max((int)(getBlue() *FACTOR), 0),
-                         getAlpha());
+                Math.max((int)(getGreen()*FACTOR), 0),
+                Math.max((int)(getBlue() *FACTOR), 0),
+                getAlpha());
     }
 
     /**
@@ -858,36 +869,36 @@ public class Color implements Paint, java.io.Serializable {
             float q = brightness * (1.0f - saturation * f);
             float t = brightness * (1.0f - (saturation * (1.0f - f)));
             switch ((int) h) {
-            case 0:
-                r = (int) (brightness * 255.0f + 0.5f);
-                g = (int) (t * 255.0f + 0.5f);
-                b = (int) (p * 255.0f + 0.5f);
-                break;
-            case 1:
-                r = (int) (q * 255.0f + 0.5f);
-                g = (int) (brightness * 255.0f + 0.5f);
-                b = (int) (p * 255.0f + 0.5f);
-                break;
-            case 2:
-                r = (int) (p * 255.0f + 0.5f);
-                g = (int) (brightness * 255.0f + 0.5f);
-                b = (int) (t * 255.0f + 0.5f);
-                break;
-            case 3:
-                r = (int) (p * 255.0f + 0.5f);
-                g = (int) (q * 255.0f + 0.5f);
-                b = (int) (brightness * 255.0f + 0.5f);
-                break;
-            case 4:
-                r = (int) (t * 255.0f + 0.5f);
-                g = (int) (p * 255.0f + 0.5f);
-                b = (int) (brightness * 255.0f + 0.5f);
-                break;
-            case 5:
-                r = (int) (brightness * 255.0f + 0.5f);
-                g = (int) (p * 255.0f + 0.5f);
-                b = (int) (q * 255.0f + 0.5f);
-                break;
+                case 0:
+                    r = (int) (brightness * 255.0f + 0.5f);
+                    g = (int) (t * 255.0f + 0.5f);
+                    b = (int) (p * 255.0f + 0.5f);
+                    break;
+                case 1:
+                    r = (int) (q * 255.0f + 0.5f);
+                    g = (int) (brightness * 255.0f + 0.5f);
+                    b = (int) (p * 255.0f + 0.5f);
+                    break;
+                case 2:
+                    r = (int) (p * 255.0f + 0.5f);
+                    g = (int) (brightness * 255.0f + 0.5f);
+                    b = (int) (t * 255.0f + 0.5f);
+                    break;
+                case 3:
+                    r = (int) (p * 255.0f + 0.5f);
+                    g = (int) (q * 255.0f + 0.5f);
+                    b = (int) (brightness * 255.0f + 0.5f);
+                    break;
+                case 4:
+                    r = (int) (t * 255.0f + 0.5f);
+                    g = (int) (p * 255.0f + 0.5f);
+                    b = (int) (brightness * 255.0f + 0.5f);
+                    break;
+                case 5:
+                    r = (int) (brightness * 255.0f + 0.5f);
+                    g = (int) (p * 255.0f + 0.5f);
+                    b = (int) (q * 255.0f + 0.5f);
+                    break;
             }
         }
         return 0xff000000 | (r << 16) | (g << 8) | (b << 0);
@@ -902,9 +913,9 @@ public class Color implements Paint, java.io.Serializable {
      * new array is allocated to return the result. Otherwise, the method
      * returns the array <code>hsbvals</code>, with the values put into
      * that array.
-     * @param     r   the red component of the color
-     * @param     g   the green component of the color
-     * @param     b   the blue component of the color
+     * @param     red   the red component of the color
+     * @param     green   the green component of the color
+     * @param     blue   the blue component of the color
      * @param     hsbvals  the array used to return the
      *                     three HSB values, or <code>null</code>
      * @return    an array of three elements containing the hue, saturation,
@@ -915,15 +926,15 @@ public class Color implements Paint, java.io.Serializable {
      * @see       ColorModel#getRGBdefault()
      * @since     JDK1.0
      */
-    public static float[] RGBtoHSB(int r, int g, int b, float[] hsbvals) {
+    public static float[] RGBtoHSB(int red, int green, int blue, float[] hsbvals) {
         float hue, saturation, brightness;
         if (hsbvals == null) {
             hsbvals = new float[3];
         }
-        int cmax = (r > g) ? r : g;
-        if (b > cmax) cmax = b;
-        int cmin = (r < g) ? r : g;
-        if (b < cmin) cmin = b;
+        int cmax = (red > green) ? red : green;
+        if (blue > cmax) cmax = blue;
+        int cmin = (red < green) ? red : green;
+        if (blue < cmin) cmin = blue;
 
         brightness = ((float) cmax) / 255.0f;
         if (cmax != 0)
@@ -933,12 +944,12 @@ public class Color implements Paint, java.io.Serializable {
         if (saturation == 0)
             hue = 0;
         else {
-            float redc = ((float) (cmax - r)) / ((float) (cmax - cmin));
-            float greenc = ((float) (cmax - g)) / ((float) (cmax - cmin));
-            float bluec = ((float) (cmax - b)) / ((float) (cmax - cmin));
-            if (r == cmax)
+            float redc = ((float) (cmax - red)) / ((float) (cmax - cmin));
+            float greenc = ((float) (cmax - green)) / ((float) (cmax - cmin));
+            float bluec = ((float) (cmax - blue)) / ((float) (cmax - cmin));
+            if (red == cmax)
                 hue = bluec - greenc;
-            else if (g == cmax)
+            else if (green == cmax)
                 hue = 2.0f + redc - bluec;
             else
                 hue = 4.0f + greenc - redc;

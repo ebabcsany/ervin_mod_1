@@ -2,6 +2,7 @@ package com.babcsany.minecraft.ervin_mod_1.init;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.entity.animal.*;
+import com.babcsany.minecraft.ervin_mod_1.entity.fish.GubrovEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.item.FirgBoatEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.RoventEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
@@ -116,5 +117,10 @@ public class EntityInit {
                             .size(0.6f, 1.95f).func_233606_a_(10)
                             .build(new ResourceLocation("zombie/zombie").toString()
                             ));
-
+    public static final RegistryObject<EntityType<GubrovEntity>> GUBROV_ENTITY = ENTITY_TYPES
+            .register("gubrov_entity",
+                    () -> EntityType.Builder.<GubrovEntity>create(GubrovEntity::new, EntityClassification.WATER_CREATURE)
+                            .size(0.6f, 1.95f).func_233606_a_(10)
+                            .build(new ResourceLocation("zombie/zombie").toString()
+                            ));
 }
