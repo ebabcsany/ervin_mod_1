@@ -61,6 +61,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.annotation.Nullable;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -167,15 +170,18 @@ public class Ervin_mod_1 {
         @SubscribeEvent
         public static void onRegisterItems (final RegistryEvent.Register<Item> event) {
             final IForgeRegistry<Item> registry = event.getRegistry();
+            Set<Block> cannotBePlacedBlocks = new HashSet<>(Arrays.asList(
+                    BlockInit.FIRG.get(),
+                    BlockInit.VIRK_BLOCK.get(),
+                    BlockInit.ENDER_SRACKHT.get(),
+                    BlockInit.ENDER_STAKRACH.get(),
+                    BlockInit.ENDER_SRAKTCAF.get(),
+                    BlockInit.ENDER_TRASKRACH.get(),
+                    BlockInit.ENDER_TRASKCRAFTH.get(),
+                    BlockInit.SCRAFTH.get()
+            ));
             BlockInit.BLOCKS.getEntries().stream().map(RegistryObject::get).forEach(block -> {
-                if (!block.equals(BlockInit.FIRG.get()))
-                if (!block.equals(BlockInit.VIRK_BLOCK.get()))
-                if (!block.equals(BlockInit.ENDER_SRACKHT.get()))
-                if (!block.equals(BlockInit.ENDER_STAKRACH.get()))
-                if (!block.equals(BlockInit.ENDER_SRAKTCAF.get()))
-                if (!block.equals(BlockInit.ENDER_TRASKRACH.get()))
-                if (!block.equals(BlockInit.ENDER_TRASKCRAFTH.get()))
-                if (!block.equals(BlockInit.SCRAFTH.get())) {
+                if (!cannotBePlacedBlocks.contains(block)) {
                         final Item.Properties properties = new Item.Properties();
                         properties.group(ItemGroup.MATERIALS);
                         final BlockItem blockItem = new BlockItem(block, properties);
