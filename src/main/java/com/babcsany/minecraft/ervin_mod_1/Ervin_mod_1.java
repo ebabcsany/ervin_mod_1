@@ -218,7 +218,7 @@ public class Ervin_mod_1 {
                 event.setCanceled(true);
             }
         }
-        @SubscribeEvent
+        /*@SubscribeEvent
         public static void onRightClickBlock(final PlayerInteractEvent.RightClickBlock event) {
             PlayerEntity player = event.getPlayer();
             ResourceLocation MaterialSetblocksTagId = new ResourceLocation(Ervin_mod_1.MOD_ID, "material_setblocks");
@@ -241,6 +241,6 @@ public class Ervin_mod_1 {
             })) {
                 event.setCanceled(true);
             }
-        }
+        }*/
     }
 }
