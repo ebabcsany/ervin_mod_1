@@ -1,11 +1,11 @@
 package com.babcsany.minecraft.ervin_mod_1.particles;
 
-import com.babcsany.minecraft.ervin_mod_1.init.ParticleInit;
 import com.mojang.brigadier.StringReader;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.particles.BasicParticleType;
 import net.minecraft.particles.IParticleData;
 import net.minecraft.particles.ParticleType;
 import net.minecraft.particles.ParticleTypes;
@@ -17,11 +17,11 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.Locale;
 
-public class ColouredParticle /*extends SpriteTexturedParticle*/ {
+public class ColouredParticle extends SpriteTexturedParticle {
 
 	private double posX, posY, posZ;
 
-	/*public ColouredParticle(World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn,
+	public ColouredParticle(World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn,
                             double ySpeedIn, double zSpeedIn, ColouredParticleData data, IAnimatedSprite sprite) {
 		super((ClientWorld) worldIn, xCoordIn, yCoordIn, zCoordIn, xSpeedIn, ySpeedIn, zSpeedIn);
 
@@ -132,8 +132,8 @@ public class ColouredParticle /*extends SpriteTexturedParticle*/ {
 		}
 
 		@Override
-		public ParticleType<ColouredParticleData> getType() {
-			return ParticleTypes.CLOUD;
+		public BasicParticleType getType() {
+			return ParticleTypes.FLAME;
 		}
 
 		@OnlyIn(Dist.CLIENT)
@@ -155,6 +155,6 @@ public class ColouredParticle /*extends SpriteTexturedParticle*/ {
 		public float getAlpha() {
 			return this.alpha;
 		}
-	}*/
+	}
 
 }
