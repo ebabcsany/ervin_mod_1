@@ -120,7 +120,7 @@ public class ViltEntity extends AnimalEntity implements IShearable, net.minecraf
    }
 
    public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
-      return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 80.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, (double)2.3F).createMutableAttribute(Attributes.ATTACK_DAMAGE, 2.0D);
+      return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 80.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, (double)0.92F).createMutableAttribute(Attributes.ATTACK_DAMAGE, 2.0D);
    }
 
    protected void registerData() {
