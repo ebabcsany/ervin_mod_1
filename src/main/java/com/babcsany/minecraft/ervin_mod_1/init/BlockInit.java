@@ -12,14 +12,8 @@ import com.babcsany.minecraft.ervin_mod_1.world.feature.FrimTree;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.JazzTree;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.ModSaplingBlock;
 import net.minecraft.block.*;
-import net.minecraft.block.SandBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
-import net.minecraft.entity.EntityType;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.item.FishBucketItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -43,8 +37,12 @@ public class BlockInit {
     public static final RegistryObject<Block> JAZZ_LEAVES = BLOCKS.register("jazz_leaves", () -> new LeavesBlock(
             Block.Properties.from(Blocks.OAK_LEAVES)
     ));
-    public static final RegistryObject<Block> FIRG_LEAVES = BLOCKS.register("firg_leaves", () -> new LeavesBlock(
-            Block.Properties.from(Blocks.OAK_LEAVES)
+    public static final RegistryObject<Block> FIRG_LEAVES = BLOCKS.register("firg_leaves", () -> new FirgLeaves(
+            Block.Properties.create(Material.LEAVES)
+                    .hardnessAndResistance(0.2F)
+                    .tickRandomly()
+                    .sound(SoundType.PLANT)
+                    .notSolid()
     ));
     public static final RegistryObject<Block> JAZZ_SAPLING = BLOCKS.register("jazz_sapling", () -> new ModSaplingBlock(
             JazzTree::new, Block.Properties.from(OAK_SAPLING)

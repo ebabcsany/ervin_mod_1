@@ -26,7 +26,7 @@ public enum TextFormatting {
    LIGHT_PURPLE("LIGHT_PURPLE", 'd', 13, 16733695),
    YELLOW("YELLOW", 'e', 14, 16777045),
    WHITE("WHITE", 'f', 15, 16777215),
-   CRASK("CRASK", 'g', 16, 16777215),
+   CRASK("CRASK", 'g', 16, 16724525),
    OBFUSCATED("OBFUSCATED", 'k', true),
    BOLD("BOLD", 'l', true),
    STRIKETHROUGH("STRIKETHROUGH", 'm', true),

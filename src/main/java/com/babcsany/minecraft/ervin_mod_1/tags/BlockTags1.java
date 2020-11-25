@@ -30,6 +30,7 @@ public class BlockTags1 {
    public static final ITag.INamedTag<Block> SAPLINGS = makeWrapperTag("saplings");
    public static final ITag.INamedTag<Block> LOGS_THAT_BURN = makeWrapperTag("logs_that_burn");
    public static final ITag.INamedTag<Block> LOGS = makeWrapperTag("logs");
+   public static final ITag.INamedTag<Block> LOGS1 = makeWrapperTag("logs1");
    public static final ITag.INamedTag<Block> DARK_OAK_LOGS = makeWrapperTag("dark_oak_logs");
    public static final ITag.INamedTag<Block> OAK_LOGS = makeWrapperTag("oak_logs");
    public static final ITag.INamedTag<Block> FIRG_LOGS = makeWrapperTag("firg_logs");

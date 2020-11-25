@@ -1,5 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.block;
 
+import com.babcsany.minecraft.ervin_mod_1.tags.BlockTags1;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.BlockItemUseContext;
@@ -93,7 +94,7 @@ public class FirgLeaves extends Block implements net.minecraftforge.common.IForg
    }
 
    private static int getDistance(BlockState neighbor) {
-      if (BlockTags.LOGS.contains(neighbor.getBlock())) {
+      if (BlockTags1.LOGS1.contains(neighbor.getBlock())) {
          return 0;
       } else {
          return neighbor.getBlock() instanceof FirgLeaves ? neighbor.get(DISTANCE) : 7;

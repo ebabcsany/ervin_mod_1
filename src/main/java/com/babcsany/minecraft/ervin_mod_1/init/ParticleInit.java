@@ -1,7 +1,9 @@
 package com.babcsany.minecraft.ervin_mod_1.init;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
+import com.babcsany.minecraft.ervin_mod_1.particles.BasicParticleType1;
 import com.babcsany.minecraft.ervin_mod_1.particles.ColouredParticle;
+import com.babcsany.minecraft.ervin_mod_1.particles.ParticleType1;
 import com.mojang.serialization.Codec;
 import net.minecraft.client.Minecraft;
 import net.minecraft.particles.BasicParticleType;
