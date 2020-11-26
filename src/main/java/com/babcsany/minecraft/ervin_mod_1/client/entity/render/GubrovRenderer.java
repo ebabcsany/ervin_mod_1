@@ -1,5 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.client.entity.render;
 
+import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.entity.fish.GubrovEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
@@ -14,7 +15,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class GubrovRenderer extends MobRenderer<GubrovEntity, CodModel<GubrovEntity>> {
-   private static final ResourceLocation GUBROV_LOCATION = new ResourceLocation("textures/entity/fish/cod.png");
+   private static final ResourceLocation GUBROV_LOCATION = new ResourceLocation(Ervin_mod_1.MOD_ID,"textures/entity/fish/gubrov.png");
 
    public GubrovRenderer(EntityRendererManager renderManagerIn) {
       super(renderManagerIn, new CodModel<>(), 0.3F);

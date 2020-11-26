@@ -18,6 +18,7 @@ public class FoodInit {
     public static final Food REAT = (new Food.Builder()).hunger(24).saturation(30).effect(new EffectInstance(Effects.INSTANT_HEALTH, 300, 10000), 10000.0F).setAlwaysEdible().build();
     public static final Food REAT1 = (new Food.Builder()).hunger(24).saturation(30).effect(new EffectInstance(Effects.REGENERATION, 300, 10000), 10000.0F).setAlwaysEdible().fastToEat().build();
     public static final Food REATl = (new Food.Builder()).hunger(0).saturation(0).effect(new EffectInstance(Effects.WATER_BREATHING, 3000, 10000), 10000.0F).setAlwaysEdible().fastToEat().build();
+    public static final Food GUBROV = (new Food.Builder()).hunger(4).saturation(0.8F).build();
 
     private static Food buildShek(int hunger) {
         return (new Food.Builder()).hunger(hunger).saturation(20.0F).build();
