@@ -981,4 +981,7 @@ public class ItemInit {
     public static final RegistryObject<Item> GUBROV = ITEMS.register("gubrov", () -> new Gubrov(
             (new Item.Properties()).food(FoodInit.GUBROV)
     ));
+    /*public static final RegistryObject<Item> GUBROV_BUCKET = ITEMS.register("gubrov_bucket", () -> new FishBucketItem(
+            EntityInit.GUBROV_ENTITY.get(), Fluids.WATER, (new Item.Properties()).maxStackSize(1)
+    ));*/
 }
