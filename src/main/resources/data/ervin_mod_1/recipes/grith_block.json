@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "####",
+    "####",
+    "####",
+    "####"
+  ],
+  "key": {
+    "#": {
+      "item": "ervin_mod_1:grith"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:grith_block",
+    "count": 1
+  }
+}

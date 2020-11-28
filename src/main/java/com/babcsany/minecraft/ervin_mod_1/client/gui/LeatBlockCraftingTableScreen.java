@@ -35,7 +35,7 @@ public class LeatBlockCraftingTableScreen extends ContainerScreen<LeatBlockCraft
         this.guiLeft = this.recipeBookGui.updateScreenPosition(this.widthTooNarrow, this.width, this.xSize);
         this.children.add(this.recipeBookGui);
         this.setFocusedDefault(this.recipeBookGui);
-        this.addButton(new ImageButton(this.guiLeft + 5, this.height / 10 - 49, 20, 18, 0, 0, 19, RECIPE_BUTTON_TEXTURE, (p_214076_1_) -> {
+        this.addButton(new ImageButton(this.guiLeft + 5, this.height / 3 - 49, 20, 18, 0, 0, 19, RECIPE_BUTTON_TEXTURE, (p_214076_1_) -> {
             this.recipeBookGui.initSearchBar(this.widthTooNarrow);
             this.recipeBookGui.toggleVisibility();
             this.guiLeft = this.recipeBookGui.updateScreenPosition(this.widthTooNarrow, this.width, this.xSize);

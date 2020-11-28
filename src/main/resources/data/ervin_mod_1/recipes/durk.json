@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "ervin_mod_1:durg"
+    },
+    {
+      "item": "ervin_mod_1:sriunk_stick"
+    }
+  ],
+  "result": {
+    "item": "ervin_mod_1:durk",
+    "count": 1
+  }
+}

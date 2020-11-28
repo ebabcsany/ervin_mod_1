@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "boat",
+  "pattern": [
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "ervin_mod_1:firg_planks"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:firg_boat"
+  }
+}

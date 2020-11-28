@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "ervin_mod_1:scrafth"
   },
-  "result": "minecraft:air",
+  "result": "ervin_mod_1:air",
   "experience": 0.10,
   "cookingtime": 20
 }

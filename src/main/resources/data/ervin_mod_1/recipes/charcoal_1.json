@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "tag": "ervin_mod_1:charcoal_ingredient"
+  },
+  "result": "minecraft:charcoal",
+  "experience": 0.15,
+  "cookingtime": 200
+}

@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:nautilus_shell"
+    },
+    {
+      "item": "ervin_mod_1:kirt"
+    }
+  ],
+  "result": {
+    "item": "ervin_mod_1:gurl",
+    "count": 1
+  }
+}

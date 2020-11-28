@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XCX",
+    "C#C",
+    "XCX"
+  ],
+  "key": {
+    "#": {
+      "item": "ervin_mod_1:scraft"
+    },
+    "C": {
+      "item": "ervin_mod_1:scrafth"
+    },
+    "X": {
+      "item": "minecraft:stone"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:chak",
+    "count": 256
+  }
+}

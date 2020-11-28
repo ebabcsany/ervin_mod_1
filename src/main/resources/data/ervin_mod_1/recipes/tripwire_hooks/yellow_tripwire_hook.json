@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "I",
+    "S",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "tag": "ervin_mod_1:planks_ingredient"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "I": {
+      "item": "ervin_mod_1:yellow_iron_ingot"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:tripwires/tripwire_hooks/black_tripwire_hook",
+    "count": 2
+  }
+}

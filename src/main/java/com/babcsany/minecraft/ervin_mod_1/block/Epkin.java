@@ -1,6 +1,5 @@
 package com.babcsany.minecraft.ervin_mod_1.block;
 
-import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;

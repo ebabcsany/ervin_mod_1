@@ -1,6 +1,12 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "ervin_mod_1:block/pack_block"
+    "up": "ervin_mod_1:block/pack_block_top",
+    "down": "ervin_mod_1:block/pack_block_bottom",
+    "north": "ervin_mod_1:block/pack_block",
+    "east": "ervin_mod_1:block/pack_block",
+    "west": "ervin_mod_1:block/pack_block",
+    "south": "ervin_mod_1:block/pack_block",
+    "particle": "ervin_mod_1:block/pack_block_top"
   }
 }

@@ -55,7 +55,7 @@ public class CraintBlockCraftingTableContainer extends RecipeBookContainer<Craft
             this.field_217070_e = p_i50090_3_;
             this.player = playerInventory.player;
             this.addSlot(new CraftingResultSlot(playerInventory.player, this.craftMatrix, this.craftResult, CRAFT_RESULT_SLOT_INDEX, CRAFT_RESULT_X_POSITION, CRAFT_RESULT_Y_POSITION));
-            this.addSlot(new Slot(craftingTableInventory, 9, 203, 106));
+            this.addSlot(new Slot(craftingTableInventory, 9, 212, 55));
 
             for(int i = 0; i < CRAFT_MATRIX_HEIGHT; ++i) {
                 for(int j = 0; j < CRAFT_MATRIX_WIDTH; ++j) {
@@ -64,17 +64,17 @@ public class CraintBlockCraftingTableContainer extends RecipeBookContainer<Craft
             }
 
             for(int l = 0; l < 9; ++l) {
-                this.addSlot(new Slot(craftingTableInventory, l, 47 + l * 18, 98));
+                this.addSlot(new Slot(craftingTableInventory, l, 47 + l * 18, 116));
             }
 
             for(int k = 0; k < 3; ++k) {
                 for(int i1 = 0; i1 < 9; ++i1) {
-                    this.addSlot(new Slot(playerInventory, i1 + k * 9 + 9, 47 + i1 * 18, 129 + k * 18));
+                    this.addSlot(new Slot(playerInventory, i1 + k * 9 + 9, 47 + i1 * 18, 148 + k * 18));
                 }
             }
 
             for(int l = 0; l < 9; ++l) {
-                this.addSlot(new Slot(playerInventory, l, 47 + l * 18, 187));
+                this.addSlot(new Slot(playerInventory, l, 47 + l * 18, 205));
             }
 
         }

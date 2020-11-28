@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:light_gray_wool"
+    }
+  ],
+  "result": {
+    "item": "ervin_mod_1:tripwires/light_gray_string",
+    "count": 4
+  }
+}

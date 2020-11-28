@@ -1,7 +1,7 @@
 {
   "type": "minecraft:smelting",
   "ingredient": {
-    "tag": "ervin_mod_1:volmnt_ingredient"
+    "tag": "ervin_mod_1:volmint_ingredient"
   },
   "result": "ervin_mod_1:volmint",
   "experience": 1.0,

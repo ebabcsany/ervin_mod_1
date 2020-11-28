@@ -1,0 +1,12 @@
+{
+  "parent": "block/orientable",
+  "textures": {
+    "top": "ervin_mod_1:block/0_1",
+    //"down": "ervin_mod_1:block/0_1",
+    "side": "ervin_mod_1:block/0",
+    //"east": "ervin_mod_1:block/0",
+    //"west": "ervin_mod_1:block/0",
+    //"south": "ervin_mod_1:block/0",
+    "particle": "ervin_mod_1:block/0_1",
+  }
+}

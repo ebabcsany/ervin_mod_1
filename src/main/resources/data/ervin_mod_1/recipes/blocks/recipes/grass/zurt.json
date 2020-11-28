@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:grass"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:zurt",
+    "count": 1
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "ervin_mod_1:lime_stone_slab"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:lime_stone",
+    "count": 1
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "replace": false,
+  "values": [
+    "ervin_mod_1:black_iron_ingot",
+    "ervin_mod_1:blue_iron_ingot",
+    "ervin_mod_1:brown_iron_ingot",
+    "minecraft:iron_ingot",
+    "ervin_mod_1:cyan_iron_ingot",
+    "ervin_mod_1:gray_iron_ingot",
+    "ervin_mod_1:green_iron_ingot",
+    "ervin_mod_1:light_blue_iron_ingot",
+    "ervin_mod_1:light_gray_iron_ingot",
+    "ervin_mod_1:lime_iron_ingot",
+    "ervin_mod_1:magenta_iron_ingot",
+    "ervin_mod_1:orange_iron_ingot",
+    "ervin_mod_1:pink_iron_ingot",
+    "ervin_mod_1:red_iron_ingot",
+    "ervin_mod_1:yellow_iron_ingot"
+  ]
+}

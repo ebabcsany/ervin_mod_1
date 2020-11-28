@@ -11,7 +11,7 @@
               "function": "minecraft:set_count",
               "count": {
                 "min": 0.0,
-                "max": 1.0,
+                "max": 2.0,
                 "type": "minecraft:uniform"
               }
             },
@@ -25,10 +25,24 @@
           ],
           "name": "ervin_mod_1:viltdrop"
         }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:frim"
+        }
       ],
       "conditions": [
         {
           "condition": "minecraft:killed_by_player"
+        },
+        {
+          "condition": "minecraft:random_chance_with_looting",
+          "chance": 3.125,
+          "looting_multiplier": 1.25
         }
       ]
     }

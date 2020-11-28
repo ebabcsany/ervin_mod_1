@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "ervin_mod_1:black_cobblestone"
+  },
+  "result": "ervin_mod_1:black_stone",
+  "experience": 0.1,
+  "cookingtime": 200
+}

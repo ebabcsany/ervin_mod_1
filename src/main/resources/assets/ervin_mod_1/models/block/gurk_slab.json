@@ -1,0 +1,8 @@
+{
+  "parent": "block/slab",
+  "textures": {
+    "bottom": "ervin_mod_1:block/gurk_block",
+    "top": "ervin_mod_1:block/gurk_block",
+    "side": "ervin_mod_1:block/gurk_block"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:lava_bucket"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:gart",
+    "count": 1
+  }
+}

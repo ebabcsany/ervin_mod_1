@@ -8,10 +8,10 @@
   ],
   "key": {
     "#": {
-      "item": "ervin_mod_1:leat_block_crafting_table"
+      "item": "ervin_mod_1:craint_block"
     },
     "*": {
-      "item": "ervin_mod_1:narin_block"
+      "item": "ervin_mod_1:leat_block_crafting_table"
     }
   },
   "result": {

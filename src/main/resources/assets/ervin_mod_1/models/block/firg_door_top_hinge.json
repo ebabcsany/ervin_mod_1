@@ -1,0 +1,7 @@
+{
+  "parent": "block/door_top_rh",
+  "textures": {
+    "bottom": "ervin_mod_1:block/firg_door_bottom",
+    "top": "ervin_mod_1:block/firg_door_top"
+  }
+}

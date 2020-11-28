@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "axis=y": { "model": "ervin_mod_1:block/frim_log" },
+    "axis=z": { "model": "ervin_mod_1:block/frim_log", "x": 90 },
+    "axis=x": { "model": "ervin_mod_1:block/frim_log", "x": 90, "y": 90 }
+  }
+}
