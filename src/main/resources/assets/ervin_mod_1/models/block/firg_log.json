@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_column",
+  "textures": {
+    "end": "ervin_mod_1:block/firg_log_top",
+    "side": "ervin_mod_1:block/firg_log"
+  }
+}

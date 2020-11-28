@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WoW",
+    "WWW",
+    " W "
+  ],
+  "key": {
+    "W": {
+      "item": "ervin_mod_1:turg"
+    },
+    "o": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:turg_shield"
+  }
+}

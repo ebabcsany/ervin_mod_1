@@ -1,0 +1,8 @@
+{
+  "parent": "block/inner_stairs",
+  "textures": {
+    "bottom": "ervin_mod_1:block/yellow_cobblestone",
+    "top": "ervin_mod_1:block/yellow_cobblestone",
+    "side": "ervin_mod_1:block/yellow_cobblestone"
+  }
+}

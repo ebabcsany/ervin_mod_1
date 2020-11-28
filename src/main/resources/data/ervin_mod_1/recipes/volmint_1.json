@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "ingredient": {
+    "tag": "ervin_mod_1:volmint_ingredient"
+  },
+  "result": "ervin_mod_1:volmint",
+  "experience": 1.0,
+  "cookingtime": 1000
+}

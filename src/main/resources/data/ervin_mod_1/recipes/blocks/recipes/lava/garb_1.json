@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "ervin_mod_1:gark"
+    }
+  ],
+  "result": {
+    "item": "ervin_mod_1:garb",
+    "count": 9
+  }
+}

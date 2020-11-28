@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "ervin_mod_1:orange_cobblestone_slab"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:orange_cobblestone",
+    "count": 1
+  }
+}

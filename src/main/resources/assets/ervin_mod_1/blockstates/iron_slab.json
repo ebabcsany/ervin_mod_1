@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "type=bottom": { "model": "ervin_mod_1:block/iron_slab" },
+    "type=top": { "model": "ervin_mod_1:block/iron_slab_top" },
+    "type=double": { "model": "minecraft:block/iron_block" }
+  }
+}

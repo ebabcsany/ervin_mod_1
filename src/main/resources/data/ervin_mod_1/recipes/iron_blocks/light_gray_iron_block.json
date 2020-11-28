@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "ervin_mod_1:light_gray_iron_ingot"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:light_gray_iron_block",
+    "count": 1
+  }
+}

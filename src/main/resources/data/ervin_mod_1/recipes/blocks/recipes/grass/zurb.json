@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "ervin_mod_1:zurt"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:zurb",
+    "count": 1
+  }
+}

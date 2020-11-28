@@ -1,19 +1,20 @@
 package com.babcsany.minecraft.ervin_mod_1;
 
-import com.babcsany.minecraft.ervin_mod_1.init.BlockInit;
-import com.babcsany.minecraft.ervin_mod_1.init.ContainerInit;
-import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
-import com.babcsany.minecraft.ervin_mod_1.init.ItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.ShapedRecipe;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.Tag;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
@@ -39,7 +40,16 @@ public class Ervin_mod_1 {
 
     public static final String MOD_ID = "ervin_mod_1";
     // Directly reference a log4j logger.
-    private static final Logger LOGGER = LogManager.getLogger();
+    public static final Logger LOGGER = LogManager.getLogger();
+    public static final ResourceLocation EXAMPLE_DIM_TYPE = new ResourceLocation(Ervin_mod_1.MOD_ID, "example");
+    public static final ResourceLocation EXAMPLE_DIM_TYPE0 = new ResourceLocation(Ervin_mod_1.MOD_ID, "example0");
+    public static final ResourceLocation EXAMPLE_DIM_TYPE1 = new ResourceLocation(Ervin_mod_1.MOD_ID, "example1");
+    public static final ResourceLocation EXAMPLE_DIM_TYPE2 = new ResourceLocation(Ervin_mod_1.MOD_ID, "example2");
+    public static final ResourceLocation EXAMPLE_DIM_TYPE3 = new ResourceLocation(Ervin_mod_1.MOD_ID, "example3");
+    public static final ResourceLocation EXAMPLE_DIM_TYPE4 = new ResourceLocation(Ervin_mod_1.MOD_ID, "example4");
+    public static final ResourceLocation EXAMPLE_DIM_TYPE5 = new ResourceLocation(Ervin_mod_1.MOD_ID, "example5");
+    public static final ResourceLocation FIRG_DIM_TYPE = new ResourceLocation(Ervin_mod_1.MOD_ID, "firg");
+    public static final ResourceLocation SCRAFTH_DIM_TYPE = new ResourceLocation(Ervin_mod_1.MOD_ID, "scrafth");
 
     public Ervin_mod_1() {
         // Register the setup method for modloading
@@ -58,7 +68,12 @@ public class Ervin_mod_1 {
         ItemInit.ITEMS.register(modEventBus);
         BlockInit.BLOCKS.register(modEventBus);
         ContainerInit.CONTAINER_TYPES.register(modEventBus);
+        DecoratorInit.DECORATORS.register(modEventBus);
         EntityInit.ENTITY_TYPES.register(modEventBus);
+        BiomeInit.BIOMES.register(modEventBus);
+        SoundInit.SOUNDS.register(modEventBus);
+        FluidInit.FLUIDS.register(modEventBus);
+        DimensionInit.MOD_DIMENSIONS.register(modEventBus);
     }
 
     private void setup(final FMLCommonSetupEvent event) {
@@ -109,9 +124,13 @@ public class Ervin_mod_1 {
             final IForgeRegistry<Item> registry = event.getRegistry();
             BlockInit.BLOCKS.getEntries().stream().map(RegistryObject::get).forEach(block -> {
                 if (!block.equals(BlockInit.FIRG.get()))
-                    if (!block.equals(BlockInit.VIRK_BLOCK.get()))
-                    if (!block.equals(BlockInit.ENDER_SRACKHT.get()))
-                  if (!block.equals(BlockInit.SCRAFTH.get())) {
+                if (!block.equals(BlockInit.VIRK_BLOCK.get()))
+                if (!block.equals(BlockInit.ENDER_SRACKHT.get()))
+                if (!block.equals(BlockInit.ENDER_STAKRACH.get()))
+                if (!block.equals(BlockInit.ENDER_SRAKTCAF.get()))
+                if (!block.equals(BlockInit.ENDER_TRASKRACH.get()))
+                if (!block.equals(BlockInit.ENDER_TRASKCRAFTH.get()))
+                if (!block.equals(BlockInit.SCRAFTH.get())) {
                         final Item.Properties properties = new Item.Properties();
                         properties.group(ItemGroup.MATERIALS);
                         final BlockItem blockItem = new BlockItem(block, properties);
@@ -127,6 +146,22 @@ public class Ervin_mod_1 {
         @SubscribeEvent
         public static void onRegisterRecipeSerializers(final RegistryEvent.Register<IRecipeSerializer<?>> event) {
             ShapedRecipe.setCraftingSize(5, 5);
+        }
+    }
+
+    @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
+    public static class ForgeEvents {
+        @SubscribeEvent
+        public static void onLeftClickBlock(final PlayerInteractEvent.LeftClickBlock event) {
+            PlayerEntity player = event.getPlayer();
+            ResourceLocation MaterialBlocksTagId = new ResourceLocation(Ervin_mod_1.MOD_ID, "material_blocks");
+            Tag<Block> MaterialBlocks = BlockTags.getCollection().get(MaterialBlocksTagId);
+            if (event.getWorld().hasBlockState(event.getPos(), blockState -> {
+                assert MaterialBlocks != null;
+                return blockState.isIn(MaterialBlocks) && player.isCreative();
+            })) {
+                event.setCanceled(true);
+            }
         }
     }
 }

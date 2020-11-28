@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "ervin_mod_1:firg_wood_ingredient"
+    }
+  ],
+  "result": {
+    "item": "ervin_mod_1:firg_planks",
+    "count": 4
+  }
+}

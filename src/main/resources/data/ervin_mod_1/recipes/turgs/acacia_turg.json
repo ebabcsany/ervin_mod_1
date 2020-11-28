@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#S#",
+    "S#S",
+    "#S#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:acacia_wood"
+    },
+    "S": {
+      "item": "minecraft:stripped_acacia_wood"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:acacia_turg",
+    "count": 1
+  }
+}

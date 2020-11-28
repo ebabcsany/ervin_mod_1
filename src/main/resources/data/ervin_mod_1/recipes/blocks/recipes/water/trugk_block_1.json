@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "ervin_mod_1:trugt"
+    }
+  ],
+  "result": {
+    "item": "ervin_mod_1:trugk_block",
+    "count": 25
+  }
+}

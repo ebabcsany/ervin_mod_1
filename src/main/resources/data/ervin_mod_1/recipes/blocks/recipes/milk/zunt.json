@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:milk_bucket"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:zunt",
+    "count": 1
+  }
+}

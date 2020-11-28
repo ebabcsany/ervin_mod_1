@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "ervin_mod_1:tripwires/pink_string"
+    }
+  },
+  "result": {
+    "item": "minecraft:pink_wool",
+    "count": 1
+  }
+}

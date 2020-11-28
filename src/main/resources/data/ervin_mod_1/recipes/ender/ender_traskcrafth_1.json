@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "ervin_mod_1:ender_trask_1"
+    }
+  ],
+  "result": {
+    "item": "ervin_mod_1:ender_traskcrafth_1",
+    "count": 4
+  }
+}

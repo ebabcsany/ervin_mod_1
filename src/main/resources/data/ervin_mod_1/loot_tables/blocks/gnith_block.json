@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:gnith_block"
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:air"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:gnith"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:trink"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:trinks"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,145 @@
+{
+  "type": "minecraft:gift",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "minecraft:rabbit_hide"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "minecraft:rabbit_foot"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "minecraft:chicken"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "minecraft:feather"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "minecraft:rotten_flesh"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "minecraft:string"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "ervin_mod_1:tripwires/black_string"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "ervin_mod_1:tripwires/blue_string"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "ervin_mod_1:tripwires/brown_string"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "ervin_mod_1:tripwires/cyan_string"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "ervin_mod_1:tripwires/gray_string"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "ervin_mod_1:tripwires/green_string"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "ervin_mod_1:tripwires/light_blue_string"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "ervin_mod_1:tripwires/light_gray_string"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "ervin_mod_1:tripwires/lime_string"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "ervin_mod_1:tripwires/magenta_string"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "ervin_mod_1:tripwires/orange_string"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "ervin_mod_1:tripwires/pink_string"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "ervin_mod_1:tripwires/purple_string"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "ervin_mod_1:tripwires/red_string"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "ervin_mod_1:tripwires/yellow_string"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 2,
+          "name": "minecraft:phantom_membrane"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "ervin_mod_1:scrakths_pearl"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 20,
+          "name": "ervin_mod_1:firg"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 4,
+          "name": "ervin_mod_1:zur_entity_spawn_egg"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "ervin_mod_1:crakh"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "minecraft:end_portal_frame"
+        }
+      ]
+    }
+  ]
+}

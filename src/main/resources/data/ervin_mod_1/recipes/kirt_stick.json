@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#X#",
+    "#C#",
+    "#-#"
+  ],
+  "key": {
+    "-": {
+      "item": "minecraft:rotten_flesh"
+    },
+    "#": {
+      "item": "ervin_mod_1:kirt"
+    },
+    "X": {
+      "item": "ervin_mod_1:kirt_stik"
+    },
+    "C": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:kirt_stick",
+    "count": 1
+  }
+}

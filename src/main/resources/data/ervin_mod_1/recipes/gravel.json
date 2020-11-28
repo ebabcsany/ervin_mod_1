@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SSS",
+    "S#S",
+    "SWS"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:cobblestone"
+    },
+    "S": {
+      "item": "minecraft:gravel"
+    },
+    "W": {
+      "item": "ervin_mod_1:scrafth"
+    }
+  },
+  "result": {
+    "item": "minecraft:gravel",
+    "count": 9
+  }
+}
