@@ -1,7 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.item;
 
 import net.minecraft.item.*;
-import com.babcsany.minecraft.ervin_mod_1.item.TextFormatting1;
 
 public class GItem extends Item {
    public GItem(Properties builder) {

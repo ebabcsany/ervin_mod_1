@@ -1,6 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.block;
 
 import com.babcsany.minecraft.ervin_mod_1.init.BlockInit;
+import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockInit;
 import com.babcsany.minecraft.ervin_mod_1.tags.FluidTag;
 import com.google.common.collect.Lists;
 import net.minecraft.block.*;
@@ -152,7 +153,7 @@ public class FlowingFluidBlock1 extends Block implements IBucketPickupHandler {
 
    private boolean reactWithNeighbors(World worldIn, BlockPos pos, BlockState state) {
       if (this.fluid.isIn(FluidTags.LAVA)) {
-         boolean flag = worldIn.getBlockState(pos.down()).isIn(BlockInit.SRIUNK_BLOCK.get());
+         boolean flag = worldIn.getBlockState(pos.down()).isIn(isBurnableBlockInit.SRIUNK_BLOCK.get());
 
          for(Direction direction : Direction.values()) {
             if (direction != Direction.DOWN) {

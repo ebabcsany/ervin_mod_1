@@ -10,14 +10,16 @@ import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.placement.*;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class ExampleBiome extends Biome {
 	public ExampleBiome(Builder biomeBuilder) {
 		super(biomeBuilder);
-		this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityType.ZOMBIE, 30, 1, 30));
-		this.addSpawn(EntityClassification.AMBIENT, new SpawnListEntry(EntityType.BAT, 40, 1, 40));
-		this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityType.SKELETON, 20, 1, 20));
-		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.BEE, 10, 1, 10));
+		this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityType.ZOMBIE, 30, 1, 15));
+		this.addSpawn(EntityClassification.AMBIENT, new SpawnListEntry(EntityType.BAT, 40, 1, 20));
+		this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityType.SKELETON, 20, 1, 10));
+		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.BEE, 10, 1, 5));
 		//this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.VILT_ENTITY.get(), 30, 15, 40));
 		//this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.SRACH_ENTITY.get(), 8, 8, 16));
 		DefaultBiomeFeatures.func_235197_c_(this);
@@ -89,11 +91,18 @@ public class ExampleBiome extends Biome {
 		ModDefaultBiomeFeatures.addStones(this);
 		ModDefaultBiomeFeatures.addKiomne(this);
 		ModDefaultBiomeFeatures.addFirgTrees(this);
+		DefaultBiomeFeatures.addFreezeTopLayer(this);
+		this.func_235063_a_(DefaultBiomeFeatures.RUINED_PORTAL_STANDARD);
 	}
 	
 	@Override
 	public int getGrassColor(double posX, double posZ) {
 		return 0xFF0000;
+	}
+
+	@OnlyIn(Dist.CLIENT)
+	public int getSkyColor() {
+		return 10;
 	}
 }
 

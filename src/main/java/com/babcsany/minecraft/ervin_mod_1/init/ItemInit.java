@@ -3,10 +3,8 @@ package com.babcsany.minecraft.ervin_mod_1.init;
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.item.*;
 import com.babcsany.minecraft.ervin_mod_1.item.ModSpawnEggItem;
-import net.minecraft.block.Blocks;
+import com.babcsany.minecraft.ervin_mod_1.registries.ForgeRegistries1;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.item.BoatEntity;
-import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.util.ResourceLocation;
@@ -27,9 +25,12 @@ public class ItemInit {
             ModItemTier.SRIUNK, 8, 22.0F, (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> SRIUNK = ITEMS.register("sriunk", () -> new Item(
-            (new Item.Properties()).isBurnable()
+            new Item.Properties().isBurnable()
     ));
-    public static final RegistryObject<Item> SRIUNK_AXE = ITEMS.register("sriunk_axe", () -> new AxeItem1(
+    /*public static final RegistryObject<Item> SRIUNK = ITEMS.register("sriunk", () -> new Item(
+            (new Item.Properties()).isBurnable()
+    ));*/
+    public static final RegistryObject<Item> SRIUNK_AXE = ITEMS.register("sriunk_axe", () -> new AxeItem(
             ModItemTier.SRIUNK, 20, 40.0F, (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> SRIUNK_HOE = ITEMS.register("sriunk_hoe", () -> new HoeItem(
@@ -132,7 +133,7 @@ public class ItemInit {
     public static final RegistryObject<Item> FIRT = ITEMS.register("firt", () -> new Item(
             (new Item.Properties())
     ));
-    public static final RegistryObject<Item> FIRN = ITEMS.register("firn", () -> new Item(
+    public static final RegistryObject<SpecialItem2> FIRN = ITEMS.register("firn", () -> new SpecialItem2(
             (new Item.Properties())
     ));
     public static final RegistryObject<Item> GRINT = ITEMS.register("grint", () -> new Item(
@@ -460,13 +461,13 @@ public class ItemInit {
             (new Item.Properties())
     ));
     public static final RegistryObject<Item> GART = ITEMS.register("gart", () -> new Item(
-            (new Item.Properties())
+            (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> GARB = ITEMS.register("garb", () -> new Item(
-            (new Item.Properties())
+            (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> GARK = ITEMS.register("gark", () -> new Item(
-            (new Item.Properties())
+            (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> SCIK = ITEMS.register("scik", () -> new Item(
             (new Item.Properties())
@@ -521,13 +522,13 @@ public class ItemInit {
             (new Item.Properties())
     ));
     public static final RegistryObject<Item> RUGT = ITEMS.register("rugt", () -> new Item(
-            (new Item.Properties())
+            (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> RUGB = ITEMS.register("rugb", () -> new Item(
-            (new Item.Properties())
+            (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> RUGK = ITEMS.register("rugk", () -> new Item(
-            (new Item.Properties())
+            (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> CRAKH = ITEMS.register("crakh", () -> new Item(
             (new Item.Properties())
@@ -889,22 +890,6 @@ public class ItemInit {
     public static final RegistryObject<Item> YELLOW_STONE_SWORD = ITEMS.register("stone_sword/yellow_stone_sword", () -> new SwordItem(
             ModItemTier.YELLOW_COBBLESTONE, 3, -2.4F, (new Item.Properties())
     ));
-    /*public static final RegistryObject<Item> TRUGN = ITEMS.register("trugn", () -> new BlockItem(
-            BlockInit.TRUGN.get(), (new Item.Properties())
-            .isBurnable()
-    ));
-    public static final RegistryObject<Item> TERAT_BLOCK = ITEMS.register("terat_block", () -> new BlockItem(
-            BlockInit.TERAT_BLOCK.get(), (new Item.Properties())
-            .isBurnable()
-    ));
-    public static final RegistryObject<Item> NIRK_BLOCK = ITEMS.register("nirk_block", () -> new BlockItem(
-            BlockInit.NIRK_BLOCK.get(), (new Item.Properties())
-            .isBurnable()
-    ));
-    public static final RegistryObject<Item> SRIUNK_BLOCK = ITEMS.register("sriunk_block", () -> new BlockItem(
-            BlockInit.SRIUNK_BLOCK.get(), (new Item.Properties())
-            .isBurnable()
-    ));*/
     public static final RegistryObject<Item> BLACK_IRON_AXE = ITEMS.register("iron_axe/black_iron_axe", () -> new AxeItem(
             ModItemTier.BLACK_IRON_INGOT, 6.0F, -3.1F, (new Item.Properties())
     ));

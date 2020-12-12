@@ -3,7 +3,6 @@ package com.babcsany.minecraft.ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.entity.animal.*;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.RoventEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurNirtreEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.$TraderEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.TraderNirtreEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.WanderingTraderNirtreEntity;
@@ -12,19 +11,6 @@ import com.babcsany.minecraft.ervin_mod_1.init.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.*;
-import net.minecraft.client.audio.SoundHandler;
-import net.minecraft.client.entity.player.ClientPlayerEntity;
-import net.minecraft.client.gui.IngameGui;
-import net.minecraft.client.gui.chat.NarratorChatListener;
-import net.minecraft.client.gui.screen.DeathScreen;
-import net.minecraft.client.gui.screen.MainMenuScreen;
-import net.minecraft.client.gui.screen.MultiplayerScreen;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.multiplayer.ServerData;
-import net.minecraft.client.network.play.ClientPlayNetHandler;
-import net.minecraft.client.resources.I18n;
-import net.minecraft.client.settings.KeyBinding;
-import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.entity.passive.fish.AbstractFishEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -33,14 +19,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.ShapedRecipe;
-import net.minecraft.server.integrated.IntegratedServer;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ITag;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SharedConstants;
-import net.minecraft.util.Util;
-import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -60,7 +41,6 @@ import net.minecraftforge.registries.IForgeRegistry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -73,7 +53,7 @@ public class Ervin_mod_1 {
     public static final String MOD_ID = "ervin_mod_1";
     // Directly reference a log4j logger.
     public static final Logger LOGGER = LogManager.getLogger();
-    public static final ResourceLocation EXAMPLE_DIM_TYPE = new ResourceLocation(Ervin_mod_1.MOD_ID, "example");
+    /*public static final ResourceLocation EXAMPLE_DIM_TYPE = new ResourceLocation(Ervin_mod_1.MOD_ID, "example");
     public static final ResourceLocation EXAMPLE_DIM_TYPE0 = new ResourceLocation(Ervin_mod_1.MOD_ID, "example0");
     public static final ResourceLocation EXAMPLE_DIM_TYPE1 = new ResourceLocation(Ervin_mod_1.MOD_ID, "example1");
     public static final ResourceLocation EXAMPLE_DIM_TYPE2 = new ResourceLocation(Ervin_mod_1.MOD_ID, "example2");
@@ -81,7 +61,7 @@ public class Ervin_mod_1 {
     public static final ResourceLocation EXAMPLE_DIM_TYPE4 = new ResourceLocation(Ervin_mod_1.MOD_ID, "example4");
     public static final ResourceLocation EXAMPLE_DIM_TYPE5 = new ResourceLocation(Ervin_mod_1.MOD_ID, "example5");
     public static final ResourceLocation FIRG_DIM_TYPE = new ResourceLocation(Ervin_mod_1.MOD_ID, "firg");
-    public static final ResourceLocation SCRAFTH_DIM_TYPE = new ResourceLocation(Ervin_mod_1.MOD_ID, "scrafth");
+    public static final ResourceLocation SCRAFTH_DIM_TYPE = new ResourceLocation(Ervin_mod_1.MOD_ID, "scrafth");*/
 
     public Ervin_mod_1() {
         // Register the setup method for modloading
@@ -99,12 +79,18 @@ public class Ervin_mod_1 {
 
         ItemInit.ITEMS.register(modEventBus);
         BlockInit.BLOCKS.register(modEventBus);
+        isBurnableBlockInit.BURNABLE_BLOCKS.register(modEventBus);
         ContainerInit.CONTAINER_TYPES.register(modEventBus);
         DecoratorInit.DECORATORS.register(modEventBus);
         EntityInit.ENTITY_TYPES.register(modEventBus);
         BiomeInit.BIOMES.register(modEventBus);
         SoundInit.SOUNDS.register(modEventBus);
         FluidInit.FLUIDS.register(modEventBus);
+        FeatureInit.FEATURES.register(modEventBus);
+        ParticleInit.PARTICLE_TYPES.register(modEventBus);
+        SurfaceBuilderInit.SURFACE_BUILDERS.register(modEventBus);
+        TreeDecoratorInit.TREE_DECORATOR_TYPES.register(modEventBus);
+        WorldCarverInit.CARVERS.register(modEventBus);
         //DimensionInit.MOD_DIMENSIONS.register(modEventBus);
     }
 
@@ -192,6 +178,19 @@ public class Ervin_mod_1 {
                         registry.register(blockItem);
                 }
             });
+            isBurnableBlockInit.BURNABLE_BLOCKS.getEntries().stream().map(RegistryObject::get).forEach(block -> {
+                if (!cannotBePlacedBlocks.contains(block)) {
+                    final Item.Properties properties = new Item.Properties().isBurnable();
+                    properties.group(ItemGroup.MATERIALS);
+                    final BlockItem blockItem = new BlockItem(block, properties);
+                    ResourceLocation registryName = block.getRegistryName();
+                    if (null != registryName) {
+                        blockItem.setRegistryName(registryName);
+                    }
+                    registry.register(blockItem);
+                }
+            });
+            
         }
 
         @SubscribeEvent
@@ -200,9 +199,9 @@ public class Ervin_mod_1 {
         }
     }
 
-    public boolean func_230151_c_() {
+    /*public boolean func_230151_c_() {
         return !"vanilla".equals(ClientBrandRetriever.getClientModName()) || Minecraft.class.getSigners() == null;
-    }
+    }*/
 
     @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
     public static class ForgeEvents {
@@ -218,29 +217,6 @@ public class Ervin_mod_1 {
                 event.setCanceled(true);
             }
         }
-        /*@SubscribeEvent
-        public static void onRightClickBlock(final PlayerInteractEvent.RightClickBlock event) {
-            PlayerEntity player = event.getPlayer();
-            ResourceLocation MaterialSetblocksTagId = new ResourceLocation(Ervin_mod_1.MOD_ID, "material_setblocks");
-            ITag<Block> MaterialSetblocks = BlockTags.getCollection().get(MaterialSetblocksTagId);
-            if (event.getWorld().hasBlockState(event.getPos(), blockState -> {
-                assert MaterialSetblocks != null;
-                return blockState.isIn(MaterialSetblocks) && player.isCreative();
-            })) {
-                event.setCanceled(true);
-            }
-        }
-        @SubscribeEvent
-        public static void onRightClickItem(final PlayerInteractEvent.RightClickItem event) {
-            PlayerEntity player = event.getPlayer();
-            ResourceLocation MaterialItemsTagId = new ResourceLocation(Ervin_mod_1.MOD_ID, "material_items");
-            ITag<Item> MaterialItems = ItemTags.getCollection().get(MaterialItemsTagId);
-            if (event.getWorld().hasBlockState(event.getPos(), blockState -> {
-                assert MaterialItems != null;
-                return player.isCreative();
-            })) {
-                event.setCanceled(true);
-            }
-        }*/
+
     }
 }

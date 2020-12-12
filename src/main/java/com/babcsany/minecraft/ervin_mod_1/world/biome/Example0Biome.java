@@ -29,6 +29,7 @@ public class Example0Biome extends Biome {
 		ModDefaultBiomeFeatures.addStones(this);
 		ModDefaultBiomeFeatures.addExtraVilktBlock(this);
 		ModDefaultBiomeFeatures.addKiomne(this);
+		DefaultBiomeFeatures.addFreezeTopLayer(this);
 	}
 	
 	@Override

@@ -1,22 +1,14 @@
 package com.babcsany.minecraft.ervin_mod_1.item;
 
-import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.init.BlockInit;
+import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockInit;
 import com.babcsany.minecraft.ervin_mod_1.init.ItemInit;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.LazyValue;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.function.Supplier;
-
-import static com.babcsany.minecraft.ervin_mod_1.init.ItemInit.TERAT;
 
 public enum ModItemTier implements IItemTier {
     // int harvestLevel, int maxUses, float efficiency, float attackDamage, int
@@ -54,7 +46,7 @@ public enum ModItemTier implements IItemTier {
     DURG(12, 17685, 126.0F, 54.0F, 1332, () -> Ingredient.fromItems(ItemInit.DURG.get())),
     OBSIDIAN(4, 3214, 64.0F, 4.0F, 8, () -> Ingredient.fromItems(Items.OBSIDIAN)),
     DURT(3, 2672, 24.0F, 5.0F, 320, () -> Ingredient.fromItems(BlockInit.DURT.get())),
-    TRUGN( 33, 120000, 5600000.0F, 720.0F, 30000, () -> Ingredient.fromItems(BlockInit.TRUGN.get()));
+    TRUGN( 33, 120000, 5600000.0F, 720.0F, 30000, () -> Ingredient.fromItems(isBurnableBlockInit.TRUGN.get()));
 
     private final int harvestLevel;
     private final int maxUses;

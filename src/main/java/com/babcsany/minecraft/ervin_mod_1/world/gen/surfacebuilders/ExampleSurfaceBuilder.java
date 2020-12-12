@@ -1,6 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.world.gen.surfacebuilders;
 
 import com.babcsany.minecraft.ervin_mod_1.init.BlockInit;
+import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockInit;
 import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
@@ -13,8 +14,8 @@ public class ExampleSurfaceBuilder extends ValleySurfaceBuilder {
    private static final BlockState CRASK = BlockInit.CRASK.get().getDefaultState();
    private static final BlockState GRITK_BLOCK = BlockInit.GRITK_BLOCK.get().getDefaultState();
    private static final BlockState GRASS_BLOCK = Blocks.GRASS_BLOCK.getDefaultState();
-   private static final BlockState SRIUNK_BLOCK = BlockInit.SRIUNK_BLOCK.get().getDefaultState();
-   private static final BlockState TRUGN = BlockInit.TRUGN.get().getDefaultState();
+   private static final BlockState SRIUNK_BLOCK = isBurnableBlockInit.SRIUNK_BLOCK.get().getDefaultState();
+   private static final BlockState TRUGN = isBurnableBlockInit.TRUGN.get().getDefaultState();
    private static final BlockState TRINKS = BlockInit.TRINKS.get().getDefaultState();
    private static final BlockState WATER = Blocks.WATER.getDefaultState();
    private static final BlockState LAVA = Blocks.LAVA.getDefaultState();

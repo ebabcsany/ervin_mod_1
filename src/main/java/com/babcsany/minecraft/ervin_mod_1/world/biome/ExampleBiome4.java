@@ -104,6 +104,7 @@ public class ExampleBiome4 extends Biome {
 		ModDefaultBiomeFeatures.addKiomne(this);
 		ModDefaultBiomeFeatures.addStones(this);
 		ModDefaultBiomeFeatures.addEndCity(this);
+		DefaultBiomeFeatures.addFreezeTopLayer(this);
 	}
 	
 	@Override

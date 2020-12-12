@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "ervin_mod_1:stones/red_stone"
+  },
+  "result": "ervin_mod_1:red_stone_stairs",
+  "count": 1
+}

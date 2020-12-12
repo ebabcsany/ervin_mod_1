@@ -1,11 +1,9 @@
 package com.babcsany.minecraft.ervin_mod_1.world.biome.provider;
 
-import com.babcsany.minecraft.ervin_mod_1.init.BiomeInit;
 import com.babcsany.minecraft.ervin_mod_1.world.dimension.ExampleBiomeProviderSettings;
 import com.babcsany.minecraft.ervin_mod_1.world.dimension.VoronoiGenerator;
 import com.mojang.serialization.Codec;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.biome.provider.BiomeProvider;
 
 import java.util.*;

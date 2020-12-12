@@ -421,7 +421,7 @@ public class ZurEntity extends MonsterEntity {
             return;
          }
 
-         WanderingTraderNirtreEntity villagerentity = (WanderingTraderNirtreEntity)entityLivingIn;
+         /*WanderingTraderNirtreEntity villagerentity = (WanderingTraderNirtreEntity)entityLivingIn;
          ZurNirtreEntity zombievillagerentity = EntityInit.ZUR_NIRTRE_ENTITY.get().create(this.world);
          zombievillagerentity.copyLocationAndAnglesFrom(villagerentity);
          villagerentity.remove();
@@ -445,7 +445,7 @@ public class ZurEntity extends MonsterEntity {
          this.world.addEntity(zombievillagerentity);
          if (!this.isSilent()) {
             this.world.playEvent((PlayerEntity)null, 1026, this.getPosition(), 0);
-         }
+         }*/
       }
 
    }

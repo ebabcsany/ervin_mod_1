@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "ervin_mod_1:cobblestones/black_cobblestone"
+  },
+  "result": "ervin_mod_1:red_stone_slab",
+  "count": 2
+}

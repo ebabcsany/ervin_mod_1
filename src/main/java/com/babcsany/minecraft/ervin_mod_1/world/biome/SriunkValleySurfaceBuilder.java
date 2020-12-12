@@ -2,6 +2,7 @@ package com.babcsany.minecraft.ervin_mod_1.world.biome;
 
 import com.babcsany.minecraft.ervin_mod_1.init.BlockInit;
 import com.babcsany.minecraft.ervin_mod_1.init.SurfaceBuilderInit;
+import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockInit;
 import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -34,7 +35,7 @@ public class SriunkValleySurfaceBuilder extends SurfaceBuilder<SurfaceBuilderCon
 					defaultFluid, seaLevel, seed,
 					new SurfaceBuilderConfig(
 							i == 1 ? Blocks.GRASS_BLOCK.getDefaultState()
-									: BlockInit.SRIUNK_BLOCK.get().getDefaultState(),
+									: isBurnableBlockInit.SRIUNK_BLOCK.get().getDefaultState(),
 							BlockInit.TRINKS.get().getDefaultState(), Blocks.OBSIDIAN.getDefaultState()
 					));
 		}

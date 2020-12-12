@@ -5,6 +5,7 @@ import com.babcsany.minecraft.ervin_mod_1.world.gen.treedecorator.FirgTreeDecora
 import net.minecraft.world.gen.feature.ProbabilityConfig;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.treedecorator.BeehiveTreeDecorator;
+import net.minecraft.world.gen.treedecorator.TreeDecorator;
 import net.minecraft.world.gen.treedecorator.TreeDecoratorType;
 import net.minecraft.world.gen.treedecorator.TrunkVineTreeDecorator;
 import net.minecraftforge.fml.RegistryObject;
@@ -16,7 +17,8 @@ public class TreeDecoratorInit {
 
     public static final DeferredRegister<TreeDecoratorType<?>> TREE_DECORATOR_TYPES = DeferredRegister.create(ForgeRegistries.TREE_DECORATOR_TYPES, Ervin_mod_1.MOD_ID);
 
-    //public static final RegistryObject<TreeDecoratorType<BeehiveTreeDecorator>> BEEHIVE = TREE_DECORATOR_TYPES.register("beehive", BeehiveTreeDecorator.field_236863_a_);
+    /*public static final RegistryObject<TreeDecoratorType<FirgTreeDecorator>> FIRG = TREE_DECORATOR_TYPES
+            .register("firg", () -> FirgTreeDecorator.field_236863_a_);*/
 
     //public static final RegistryObject<TreeDecoratorType<TrunkVineTreeDecorator>> TRUNK_VINE = TREE_DECORATOR_TYPES.register("trunk_vine", TrunkVineTreeDecorator.field_236878_a_);
 

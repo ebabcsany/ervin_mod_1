@@ -1,12 +1,10 @@
 package com.babcsany.minecraft.ervin_mod_1.world.gen.surfacebuilders;
 
 import com.babcsany.minecraft.ervin_mod_1.init.BlockInit;
+import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockInit;
 import com.google.common.collect.ImmutableList;
-import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
-import net.minecraft.world.gen.surfacebuilders.ValleySurfaceBuilder;
 
 public class SurfaceBuilder2 {
    private static final BlockState field_237161_a_ = BlockInit.GRITH_BLOCK.get().getDefaultState();
@@ -38,7 +36,7 @@ public class SurfaceBuilder2 {
    private static final BlockState field_237167_h_ = BlockInit.TRUGK_BLOCK.get().getDefaultState();
    private static final BlockState field_237167_i_ = BlockInit.ZUNK_BLOCK.get().getDefaultState();
    private static final BlockState field_237167_j_ = BlockInit.LEAT_BLOCK.get().getDefaultState();
-   private static final BlockState field_237168_h_ = BlockInit.TERAT_BLOCK.get().getDefaultState();
+   private static final BlockState field_237168_h_ = isBurnableBlockInit.TERAT_BLOCK.get().getDefaultState();
    private static final BlockState field_237168_i_ = BlockInit.ENDER_SRACK.get().getDefaultState();
    private static final BlockState field_237168_j_ = BlockInit.ENDER_TRASKCRAFTH.get().getDefaultState();
    private static final BlockState field_237168_k_ = BlockInit.ENDER_TRASKRACH.get().getDefaultState();

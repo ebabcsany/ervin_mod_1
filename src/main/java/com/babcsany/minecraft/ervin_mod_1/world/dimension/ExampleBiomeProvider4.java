@@ -1,16 +1,5 @@
 package com.babcsany.minecraft.ervin_mod_1.world.dimension;
 
-import com.babcsany.minecraft.ervin_mod_1.init.BiomeInit;
-import com.google.common.collect.ImmutableSet;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biomes;
-import net.minecraft.world.biome.provider.BiomeProvider;
-
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
-
 public class ExampleBiomeProvider4 /*extends BiomeProvider*/ {
 
 	/*private static final Set<Biome> biomeList = ImmutableSet.of(BiomeInit.EXAMPLE_BIOME.get(), Biomes.BEACH);

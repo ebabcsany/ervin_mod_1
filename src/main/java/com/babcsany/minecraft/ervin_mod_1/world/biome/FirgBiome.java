@@ -6,6 +6,7 @@ import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.DefaultBiomeFeatures;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraft.world.gen.feature.ProbabilityConfig;
@@ -46,6 +47,7 @@ public class FirgBiome extends Biome {
 
 		ModDefaultBiomeFeatures.addExtraDirt(this);
 		ModDefaultBiomeFeatures.addFirgs(this);
+		DefaultBiomeFeatures.addFreezeTopLayer(this);
 	}
 
 	private static <T extends Entity> EntityType<T> register(String key, EntityType.Builder<T> builder) {

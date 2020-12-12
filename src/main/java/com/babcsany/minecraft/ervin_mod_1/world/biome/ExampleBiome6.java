@@ -2,6 +2,7 @@ package com.babcsany.minecraft.ervin_mod_1.world.biome;
 
 import com.babcsany.minecraft.ervin_mod_1.world.feature.ModDefaultBiomeFeatures;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.DefaultBiomeFeatures;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraft.world.gen.feature.Feature;
@@ -16,5 +17,6 @@ public final class ExampleBiome6 extends Biome {
       this.addCarver(GenerationStage.Carving.AIR,
               Biome.createCarver(WorldCarver.CAVE, new ProbabilityConfig(6.586974623F)));
       ModDefaultBiomeFeatures.addNirtkb1(this);
+      DefaultBiomeFeatures.addFreezeTopLayer(this);
    }
 }

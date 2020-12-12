@@ -1,6 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.world.gen.surfacebuilders;
 
 import com.babcsany.minecraft.ervin_mod_1.init.BlockInit;
+import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockInit;
 import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
@@ -9,7 +10,7 @@ import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 import net.minecraft.world.gen.surfacebuilders.ValleySurfaceBuilder;
 
 public class SriunkBlockValleySurfaceBuilder extends ValleySurfaceBuilder {
-   private static final BlockState field_237180_a_ = BlockInit.SRIUNK_BLOCK.get().getDefaultState();
+   private static final BlockState field_237180_a_ = isBurnableBlockInit.SRIUNK_BLOCK.get().getDefaultState();
    private static final BlockState field_237181_b_ = BlockInit.AVTER_BLOCK.get().getDefaultState();
    private static final BlockState field_237182_c_ = BlockInit.NIRTKB.get().getDefaultState();
    private static final ImmutableList<BlockState> field_237183_d_ = ImmutableList.of(field_237180_a_, field_237181_b_);

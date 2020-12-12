@@ -95,6 +95,7 @@ public class ExampleBiome1 extends Biome {
 		ModBiomeFeatures.addExampleFeature(this, 1000);
 		ModDefaultBiomeFeatures.addStones(this);
 		ModDefaultBiomeFeatures.addKiomne(this);
+		DefaultBiomeFeatures.addFreezeTopLayer(this);
 	}
 
 	/*private static <T extends Entity> EntityType<T> register(String key, EntityType.Builder<T> builder) {

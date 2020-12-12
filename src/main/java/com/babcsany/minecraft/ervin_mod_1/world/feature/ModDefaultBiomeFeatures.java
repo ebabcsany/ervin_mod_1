@@ -1,6 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.world.feature;
 
 import com.babcsany.minecraft.ervin_mod_1.init.BlockInit;
+import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockInit;
 import com.babcsany.minecraft.ervin_mod_1.world.gen.treedecorator.FirgTreeDecorator;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
@@ -41,11 +42,21 @@ public class ModDefaultBiomeFeatures {
    private static final BlockState RED_GRASS_BLOCK = BlockInit.RED_GRASS_BLOCK.get().getDefaultState();
    private static final BlockState BARRIER = Blocks.BARRIER.getDefaultState();
    private static final BlockState END_STONE = Blocks.END_STONE.getDefaultState();
+   private static final BlockState END_SRACKT = BlockInit.END_SRACKT.get().getDefaultState();
+   private static final BlockState END_SRACT = BlockInit.END_SRACT.get().getDefaultState();
+   private static final BlockState END_STONE_CISK = BlockInit.END_STONE_CISK.get().getDefaultState();
+   private static final BlockState END_STONE_CRISK = BlockInit.END_STONE_CRISK.get().getDefaultState();
+   private static final BlockState ENDER_SACKT = BlockInit.ENDER_SACKT.get().getDefaultState();
+   private static final BlockState ENDER_SACT = BlockInit.ENDER_SACT.get().getDefaultState();
+   private static final BlockState ENDER_SRACK = BlockInit.ENDER_SRACK.get().getDefaultState();
+   private static final BlockState ENDER_SRACKH = BlockInit.ENDER_SRACKH.get().getDefaultState();
+   private static final BlockState ENDER_SRACT = BlockInit.ENDER_SRACT.get().getDefaultState();
    private static final BlockState BLACK_STONE = BlockInit.BLACK_STONE.get().getDefaultState();
    private static final BlockState BLUE_STONE = BlockInit.BLUE_STONE.get().getDefaultState();
    private static final BlockState BROWN_STONE = BlockInit.BROWN_STONE.get().getDefaultState();
    private static final BlockState CYAN_STONE = BlockInit.CYAN_STONE.get().getDefaultState();
    private static final BlockState GREEN_STONE = BlockInit.GREEN_STONE.get().getDefaultState();
+   private static final BlockState LIGHT_BLUE1_STONE = BlockInit.LIGHT_BLUE1_STONE.get().getDefaultState();
    private static final BlockState LIGHT_BLUE_STONE = BlockInit.LIGHT_BLUE_STONE.get().getDefaultState();
    private static final BlockState LIGHT_GRAY_STONE = BlockInit.LIGHT_GRAY_STONE.get().getDefaultState();
    private static final BlockState LIME_STONE = BlockInit.LIME_STONE.get().getDefaultState();
@@ -57,7 +68,7 @@ public class ModDefaultBiomeFeatures {
    private static final BlockState WHITE_STONE = BlockInit.WHITE_STONE.get().getDefaultState();
    private static final BlockState YELLOW_STONE = BlockInit.YELLOW_STONE.get().getDefaultState();
    private static final BlockState SRIUNK_ORE = BlockInit.SRIUNK_ORE.get().getDefaultState();
-   private static final BlockState SRIUNK_BLOCK = BlockInit.SRIUNK_BLOCK.get().getDefaultState();
+   private static final BlockState SRIUNK_BLOCK = isBurnableBlockInit.SRIUNK_BLOCK.get().getDefaultState();
    private static final BlockState KALT_BLOCK = BlockInit.KALT_BLOCK.get().getDefaultState();
    private static final BlockState VILKT_BLOCK = BlockInit.VILKT_BLOCK.get().getDefaultState();
    private static final BlockState FIRG_LOG = BlockInit.FIRG_LOG.get().getDefaultState();
@@ -328,6 +339,19 @@ public class ModDefaultBiomeFeatures {
       biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, ANDESITE, 33)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(10, 0, 0, 80))));
    }
 
+   public static void addEndStoneVariants(Biome biomeIn) {
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, END_STONE, 10)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(10, 0, 0, 64))));
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, END_SRACKT, 10)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(10, 0, 0, 64))));
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, END_SRACT, 10)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(10, 0, 0, 64))));
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, END_STONE_CISK, 10)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(10, 0, 0, 64))));
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, END_STONE_CRISK, 10)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(10, 0, 0, 64))));
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, ENDER_SACKT, 10)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(10, 0, 0, 64))));
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, ENDER_SACT, 10)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(10, 0, 0, 64))));
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, ENDER_SRACK, 10)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(10, 0, 0, 64))));
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, ENDER_SRACKH, 10)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(10, 0, 0, 64))));
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, ENDER_SRACT, 10)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(10, 0, 0, 64))));
+   }
+
    public static void addFirgs(Biome biomeIn) {
       biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, FIRG, 400)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(400, 0, 0, 2000))));
    }
@@ -355,6 +379,7 @@ public class ModDefaultBiomeFeatures {
       biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, BROWN_STONE, 40)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(50, 0, 0, 320))));
       biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, CYAN_STONE, 40)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(50, 0, 0, 320))));
       biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, GREEN_STONE, 40)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(50, 0, 0, 320))));
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, LIGHT_BLUE1_STONE, 40)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(50, 0, 0, 320))));
       biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, LIGHT_BLUE_STONE, 40)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(50, 0, 0, 320))));
       biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, LIGHT_GRAY_STONE, 40)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(50, 0, 0, 320))));
       biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, LIME_STONE, 40)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(50, 0, 0, 320))));

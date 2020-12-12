@@ -69,6 +69,7 @@ public class ExampleBiome5 extends Biome {
 		ModDefaultBiomeFeatures.addStoneVariants(this);
 		DefaultBiomeFeatures.addExtraEmeraldOre(this);
 		ModBiomeFeatures.addExampleFeature(this, 10);
+		DefaultBiomeFeatures.addFreezeTopLayer(this);
 	}
 	
 	@Override
