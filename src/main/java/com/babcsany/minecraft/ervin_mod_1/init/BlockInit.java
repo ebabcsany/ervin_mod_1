@@ -125,7 +125,7 @@ public class BlockInit {
                     .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(1.5F, 6.0F)
     ));
-    public static final RegistryObject<Block> RED_COBBLESTONE = BLOCKS.register("red_cobblestone", () -> new RedCobblestone(
+    public static final RegistryObject<Block> RED_COBBLESTONE = BLOCKS.register("cobblestones/red_cobblestone", () -> new RedCobblestone(
             Block.Properties.create(Material.ROCK)
                     .setRequiresTool()
                     .harvestLevel(0)
@@ -625,13 +625,6 @@ public class BlockInit {
                     .sound(SoundType.GROUND)
     ));
     public static final RegistryObject<Block> GNITH_BLOCK = BLOCKS.register("gnith_block", () -> new GnithBlock(
-            Block.Properties.create(Material.ROCK)
-                    .setRequiresTool()
-                    .harvestLevel(4)
-                    .harvestTool(ToolType.PICKAXE)
-                    .hardnessAndResistance(200.0F, 5000.0F)
-    ));
-    public static final RegistryObject<Block> SRIUNK_SLAB = BLOCKS.register("sriunk_slab", () -> new SriunkSlab(
             Block.Properties.create(Material.ROCK)
                     .setRequiresTool()
                     .harvestLevel(4)
@@ -2238,7 +2231,7 @@ public class BlockInit {
                     .hardnessAndResistance(3.0F, 3.0F)
                     .sound(SoundType.WOOD)
     ));
-    public static final RegistryObject<Block> REUTRIEN = BLOCKS.register("reutrien", () -> new Reutrien(
+    public static final RegistryObject<Block> REUTRIEN = BLOCKS.register("reutrien", () -> new SpawnerBlock(
             AbstractBlock.Properties.create(Material.ROCK)
                     .setRequiresTool()
                     .hardnessAndResistance(5000.0F)

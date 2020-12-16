@@ -27,6 +27,13 @@ public class isBurnableBlockInit {
                     .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(500.0f)
     ));
+    public static final RegistryObject<Block> SRIUNK_SLAB = BURNABLE_BLOCKS.register("sriunk_slab", () -> new SriunkSlab(
+            Block.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .harvestLevel(6)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(200.0F, 5000.0F)
+    ));
     public static final RegistryObject<Block> SRIUNK_STAIRS = BURNABLE_BLOCKS.register("sriunk_stairs", () -> new SriunkStairs(
             () -> SRIUNK_BLOCK.get().getDefaultState(), Block.Properties.from(SRIUNK_BLOCK.get())
     ));

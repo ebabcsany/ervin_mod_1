@@ -969,4 +969,7 @@ public class ItemInit {
     /*public static final RegistryObject<Item> GUBROV_BUCKET = ITEMS.register("gubrov_bucket", () -> new FishBucketItem(
             EntityInit.GUBROV_ENTITY.get(), Fluids.WATER, (new Item.Properties()).maxStackSize(1)
     ));*/
+    public static final RegistryObject<Item> HHIJ_SPAWN_EGG = ITEMS.register("wolf1_spawn_egg", () -> new ModSpawnEggItem(
+            EntityInit.HHIJ_ENTITY, 0x4040c0, 0x402080, new Item.Properties()
+    ));
 }

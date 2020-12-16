@@ -91,7 +91,6 @@ public class ExampleBiome extends Biome {
 		ModDefaultBiomeFeatures.addStones(this);
 		ModDefaultBiomeFeatures.addKiomne(this);
 		ModDefaultBiomeFeatures.addFirgTrees(this);
-		DefaultBiomeFeatures.addFreezeTopLayer(this);
 		this.func_235063_a_(DefaultBiomeFeatures.RUINED_PORTAL_STANDARD);
 	}
 	
@@ -100,10 +99,6 @@ public class ExampleBiome extends Biome {
 		return 0xFF0000;
 	}
 
-	@OnlyIn(Dist.CLIENT)
-	public int getSkyColor() {
-		return 10;
-	}
 }
 
 //update mappings post command:
