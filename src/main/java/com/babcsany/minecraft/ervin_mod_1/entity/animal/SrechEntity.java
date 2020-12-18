@@ -1,6 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.animal;
 
-import com.babcsany.minecraft.ervin_mod_1.init.BlockInit;
+import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.ItemInit;
 import net.minecraft.block.BlockState;
@@ -26,7 +26,7 @@ public class SrechEntity extends AnimalEntity {
       this.goalSelector.addGoal(0, new SwimGoal(this));
       this.goalSelector.addGoal(1, new PanicGoal(this, 10.0D));
       this.goalSelector.addGoal(2, new BreedGoal(this, 5.0D));
-      this.goalSelector.addGoal(3, new TemptGoal(this, 5.25D, Ingredient.fromItems(BlockInit.SURV.get()), false));
+      this.goalSelector.addGoal(3, new TemptGoal(this, 5.25D, Ingredient.fromItems(BlockItemInit.SURV.get()), false));
       this.goalSelector.addGoal(4, new FollowParentGoal(this, 6.25D));
       this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 5.0D));
       this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 30.0F));

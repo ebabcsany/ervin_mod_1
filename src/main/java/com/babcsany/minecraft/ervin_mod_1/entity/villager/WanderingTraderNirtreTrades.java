@@ -1,6 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.villager;
 
-import com.babcsany.minecraft.ervin_mod_1.init.BlockInit;
+import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.ItemInit;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
@@ -98,20 +98,20 @@ public class WanderingTraderNirtreTrades {
            new WanderingTraderNirtreTrades.ItemsForEmeraldsTrade(Items.BLUE_ICE, 6, 1, 6, 1),
            new WanderingTraderNirtreTrades.ItemsForEmeraldsTrade(Items.GUNPOWDER, 1, 1, 8, 1),
            new WanderingTraderNirtreTrades.ItemsForEmeraldsTrade(Items.PODZOL, 3, 3, 6, 1)}, 3, new WanderingTraderNirtreTrades.ITrade[]{
-           new WanderingTraderNirtreTrades.ItemsForRubiesTrade(BlockInit.FIRG_SAPLING.get(), 5, 1, 8, 1),
-           new WanderingTraderNirtreTrades.ItemsForRubiesTrade(BlockInit.FRIM_SAPLING.get(), 5, 1, 8, 1),
+           new WanderingTraderNirtreTrades.ItemsForRubiesTrade(BlockItemInit.FIRG_SAPLING.get(), 5, 1, 8, 1),
+           new WanderingTraderNirtreTrades.ItemsForRubiesTrade(BlockItemInit.FRIM_SAPLING.get(), 5, 1, 8, 1),
            new WanderingTraderNirtreTrades.ItemsForRubiesTrade(ItemInit.NARIN.get(), 20, 1, 4, 4),
            new WanderingTraderNirtreTrades.ItemsForRubiesTrade(ItemInit.SRIUNK.get(), 30, 1, 10, 2),
            new WanderingTraderNirtreTrades.ItemsForRubiesTrade(ItemInit.PACK.get(), 4, 1, 50, 1),
            new WanderingTraderNirtreTrades.ItemsForRubiesTrade(ItemInit.LEAT.get(), 40, 1, 20, 3),
            new WanderingTraderNirtreTrades.ItemsForRubiesTrade(ItemInit.FIRG.get(), 1, 5, 100, 1),
-           new WanderingTraderNirtreTrades.ItemsForRubiesTrade(BlockInit.EXAMPLE_BLOCK.get(), 3, 1, 7, 2),
+           new WanderingTraderNirtreTrades.ItemsForRubiesTrade(BlockItemInit.EXAMPLE_BLOCK.get(), 3, 1, 7, 2),
            new WanderingTraderNirtreTrades.ItemsForRubiesTrade(ItemInit.FIRT.get(), 1, 4, 14, 1),
            new WanderingTraderNirtreTrades.ItemsForRubiesTrade(ItemInit.VILKT.get(), 35, 1, 2, 6),
            new WanderingTraderNirtreTrades.ItemsForRubiesTrade(ItemInit.GRINT.get(), 25, 1, 22, 2),
            new WanderingTraderNirtreTrades.ItemsForRubiesTrade(ItemInit.TARG_SEEDS.get(), 2, 1, 5, 1),
-           new WanderingTraderNirtreTrades.ItemsForNautilusShellsTrade(BlockInit.DURT.get(), 5, 1, 20, 3),
-           new WanderingTraderNirtreTrades.ItemsForMlonksTrade(BlockInit.SHZ_BLOCK.get(), 4, 1, 10, 2),
+           new WanderingTraderNirtreTrades.ItemsForNautilusShellsTrade(BlockItemInit.DURT.get(), 5, 1, 20, 3),
+           new WanderingTraderNirtreTrades.ItemsForMlonksTrade(BlockItemInit.SHZ_BLOCK.get(), 4, 1, 10, 2),
            new WanderingTraderNirtreTrades.ItemsForGrassBlocksTrade(ItemInit.ZUR_ENTITY_SPAWN_EGG.get(), 4, 1, 9, 1),
            new WanderingTraderNirtreTrades.ItemsForDreinsTrade(ItemInit.$_TRADER_ENTITY_SPAWN_EGG.get(), 10, 1, 20, 3),
    }));

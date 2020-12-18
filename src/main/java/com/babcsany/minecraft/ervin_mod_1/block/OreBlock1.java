@@ -1,9 +1,8 @@
 package com.babcsany.minecraft.ervin_mod_1.block;
 
-import com.babcsany.minecraft.ervin_mod_1.init.BlockInit;
+import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -17,20 +16,20 @@ public class OreBlock1 extends Block {
    }
 
    protected int getExperience(Random rand) {
-      if (this == BlockInit.SRIUNK_ORE.get()) {
+      if (this == BlockItemInit.SRIUNK_ORE.get()) {
          return MathHelper.nextInt(rand, 1, 5);
       /*} else if (this == Blocks.DIAMOND_ORE) {
          return MathHelper.nextInt(rand, 3, 7);
       } else if (this == BlockInit.SRIUNK_ORE.get()) {
          return MathHelper.nextInt(rand, 4, 9);*/
-      } else if (this == BlockInit.RUBY_ORE.get()) {
+      } else if (this == BlockItemInit.RUBY_ORE.get()) {
          return MathHelper.nextInt(rand, 3, 7);
       /*} else if (this == Blocks.LAPIS_ORE) {
          return MathHelper.nextInt(rand, 2, 5);
       } else if (this == Blocks.NETHER_QUARTZ_ORE) {
          return MathHelper.nextInt(rand, 2, 5);*/
       } else {
-         return this == BlockInit.VILKT_BLOCK.get() ? MathHelper.nextInt(rand, 0, 10) : 0;
+         return this == BlockItemInit.VILKT_BLOCK.get() ? MathHelper.nextInt(rand, 0, 10) : 0;
       }
    }
 

@@ -10,7 +10,6 @@ import com.babcsany.minecraft.ervin_mod_1.entity.villager.ZombieTraderEntity;
 import com.babcsany.minecraft.ervin_mod_1.init.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
-import net.minecraft.client.*;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.entity.passive.fish.AbstractFishEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -79,7 +78,8 @@ public class Ervin_mod_1 {
 
         ItemInit.ITEMS.register(modEventBus);
         BlockInit.BLOCKS.register(modEventBus);
-        isBurnableBlockInit.BURNABLE_BLOCKS.register(modEventBus);
+        BlockItemInit.BLOCKS.register(modEventBus);
+        isBurnableBlockItemInit.BURNABLE_BLOCKS.register(modEventBus);
         ContainerInit.CONTAINER_TYPES.register(modEventBus);
         DecoratorInit.DECORATORS.register(modEventBus);
         EntityInit.ENTITY_TYPES.register(modEventBus);
@@ -157,28 +157,28 @@ public class Ervin_mod_1 {
         public static void onRegisterItems (final RegistryEvent.Register<Item> event) {
             final IForgeRegistry<Item> registry = event.getRegistry();
             Set<Block> cannotBePlacedBlocks = new HashSet<>(Arrays.asList(
-                    BlockInit.FIRG.get(),
-                    BlockInit.VIRK_BLOCK.get(),
-                    BlockInit.ENDER_SRACKHT.get(),
-                    BlockInit.ENDER_STAKRACH.get(),
-                    BlockInit.ENDER_SRAKTCAF.get(),
-                    BlockInit.ENDER_TRASKRACH.get(),
-                    BlockInit.ENDER_TRASKCRAFTH.get(),
-                    BlockInit.SCRAFTH.get()
+                    BlockItemInit.FIRG.get(),
+                    BlockItemInit.VIRK_BLOCK.get(),
+                    BlockItemInit.ENDER_SRACKHT.get(),
+                    BlockItemInit.ENDER_STAKRACH.get(),
+                    BlockItemInit.ENDER_SRAKTCAF.get(),
+                    BlockItemInit.ENDER_TRASKRACH.get(),
+                    BlockItemInit.ENDER_TRASKCRAFTH.get(),
+                    BlockItemInit.SCRAFTH.get()
             ));
-            BlockInit.BLOCKS.getEntries().stream().map(RegistryObject::get).forEach(block -> {
+            BlockItemInit.BLOCKS.getEntries().stream().map(RegistryObject::get).forEach(block -> {
                 if (!cannotBePlacedBlocks.contains(block)) {
-                        final Item.Properties properties = new Item.Properties();
-                        properties.group(ItemGroup.MATERIALS);
-                        final BlockItem blockItem = new BlockItem(block, properties);
-                        ResourceLocation registryName = block.getRegistryName();
-                        if (null != registryName) {
-                            blockItem.setRegistryName(registryName);
-                        }
-                        registry.register(blockItem);
+                    final Item.Properties properties = new Item.Properties();
+                    properties.group(ItemGroup.MATERIALS);
+                    final BlockItem blockItem = new BlockItem(block, properties);
+                    ResourceLocation registryName = block.getRegistryName();
+                    if (null != registryName) {
+                        blockItem.setRegistryName(registryName);
+                    }
+                    registry.register(blockItem);
                 }
             });
-            isBurnableBlockInit.BURNABLE_BLOCKS.getEntries().stream().map(RegistryObject::get).forEach(block -> {
+            isBurnableBlockItemInit.BURNABLE_BLOCKS.getEntries().stream().map(RegistryObject::get).forEach(block -> {
                 if (!cannotBePlacedBlocks.contains(block)) {
                     final Item.Properties properties = new Item.Properties().isBurnable();
                     properties.group(ItemGroup.MATERIALS);

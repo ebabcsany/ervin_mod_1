@@ -1,17 +1,9 @@
 package com.babcsany.minecraft.ervin_mod_1.world.gen.treedecorator;
 
 import com.babcsany.minecraft.ervin_mod_1.block.Firg;
-import com.babcsany.minecraft.ervin_mod_1.init.BlockInit;
-import com.babcsany.minecraft.ervin_mod_1.init.TreeDecoratorInit;
+import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.mojang.serialization.Codec;
-import mcp.MethodsReturnNonnullByDefault;
-import net.minecraft.block.BeehiveBlock;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.passive.BeeEntity;
-import net.minecraft.tileentity.BeehiveTileEntity;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MutableBoundingBox;
@@ -19,7 +11,6 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.treedecorator.TreeDecorator;
 import net.minecraft.world.gen.treedecorator.TreeDecoratorType;
-import net.minecraft.world.gen.treedecorator.TrunkVineTreeDecorator;
 
 import java.util.List;
 import java.util.Random;
@@ -52,7 +43,7 @@ public class FirgTreeDecorator extends TreeDecorator {
             BlockPos blockpos = list.get(p_225576_2_.nextInt(list.size()));
             BlockPos blockpos1 = blockpos.offset(direction);
             if (Feature.func_236297_b_(p_225576_1_, blockpos1) && Feature.func_236297_b_(p_225576_1_, blockpos1.offset(Direction.SOUTH))) {
-               BlockState blockstate = BlockInit.FIRG.get().getDefaultState().with(Firg.FACING, Direction.SOUTH);
+               BlockState blockstate = BlockItemInit.FIRG.get().getDefaultState().with(Firg.FACING, Direction.SOUTH);
                this.func_227423_a_(p_225576_1_, blockpos1, blockstate, p_225576_5_, p_225576_6_);
                /*TileEntity tileentity = p_225576_1_.getTileEntity(blockpos1);
                if (tileentity instanceof BeehiveTileEntity) {

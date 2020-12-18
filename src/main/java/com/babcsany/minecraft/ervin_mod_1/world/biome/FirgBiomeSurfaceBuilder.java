@@ -1,6 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.world.biome;
 
-import com.babcsany.minecraft.ervin_mod_1.init.BlockInit;
+import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
 import net.minecraft.world.biome.Biome;
@@ -24,16 +24,16 @@ public class FirgBiomeSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig
 		if (i == 0) {
 			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock,
 					defaultFluid, seaLevel, seed,
-					new SurfaceBuilderConfig(BlockInit.FIRG.get().getDefaultState(),
-							BlockInit.FIRG.get().getDefaultState(), BlockInit.FIRG.get().getDefaultState()
+					new SurfaceBuilderConfig(BlockItemInit.FIRG.get().getDefaultState(),
+							BlockItemInit.FIRG.get().getDefaultState(), BlockItemInit.FIRG.get().getDefaultState()
 					));
 		} else {
 			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock,
 					defaultFluid, seaLevel, seed,
 					new SurfaceBuilderConfig(
-							i == 1 ? BlockInit.FIRG.get().getDefaultState()
-									: BlockInit.FIRG.get().getDefaultState(),
-							BlockInit.FIRG.get().getDefaultState(), BlockInit.FIRG.get().getDefaultState()
+							i == 1 ? BlockItemInit.FIRG.get().getDefaultState()
+									: BlockItemInit.FIRG.get().getDefaultState(),
+							BlockItemInit.FIRG.get().getDefaultState(), BlockItemInit.FIRG.get().getDefaultState()
 					));
 		}
 	}

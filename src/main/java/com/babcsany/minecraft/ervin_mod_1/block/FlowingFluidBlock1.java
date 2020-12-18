@@ -1,7 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.block;
 
-import com.babcsany.minecraft.ervin_mod_1.init.BlockInit;
-import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockInit;
+import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.tags.FluidTag;
 import com.google.common.collect.Lists;
 import net.minecraft.block.*;
@@ -153,19 +153,19 @@ public class FlowingFluidBlock1 extends Block implements IBucketPickupHandler {
 
    private boolean reactWithNeighbors(World worldIn, BlockPos pos, BlockState state) {
       if (this.fluid.isIn(FluidTags.LAVA)) {
-         boolean flag = worldIn.getBlockState(pos.down()).isIn(isBurnableBlockInit.SRIUNK_BLOCK.get());
+         boolean flag = worldIn.getBlockState(pos.down()).isIn(isBurnableBlockItemInit.SRIUNK_BLOCK.get());
 
          for(Direction direction : Direction.values()) {
             if (direction != Direction.DOWN) {
                BlockPos blockpos = pos.offset(direction);
                if (worldIn.getFluidState(blockpos).isTagged(FluidTag.JURK)) {
-                  Block block = worldIn.getFluidState(pos).isSource() ? BlockInit.AVTER_BLOCK.get() : BlockInit.DURT.get();
+                  Block block = worldIn.getFluidState(pos).isSource() ? BlockItemInit.AVTER_BLOCK.get() : BlockItemInit.DURT.get();
                   worldIn.setBlockState(pos, net.minecraftforge.event.ForgeEventFactory.fireFluidPlaceBlockEvent(worldIn, pos, pos, block.getDefaultState()));
                   this.triggerMixEffects(worldIn, pos);
                   return false;
                }
-               if (flag && worldIn.getBlockState(blockpos).isIn(BlockInit.END_PORTAL.get())) {
-                  worldIn.setBlockState(pos, net.minecraftforge.event.ForgeEventFactory.fireFluidPlaceBlockEvent(worldIn, pos, pos, BlockInit.VILTDROP_BLOCK.get().getDefaultState()));
+               if (flag && worldIn.getBlockState(blockpos).isIn(BlockItemInit.END_PORTAL.get())) {
+                  worldIn.setBlockState(pos, net.minecraftforge.event.ForgeEventFactory.fireFluidPlaceBlockEvent(worldIn, pos, pos, isBurnableBlockItemInit.VILTDROP_BLOCK.get().getDefaultState()));
                   this.triggerMixEffects(worldIn, pos);
                   return false;
                }

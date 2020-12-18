@@ -1,9 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.world.feature;
 
-import com.babcsany.minecraft.ervin_mod_1.init.BlockInit;
-import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockInit;
+import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import com.mojang.serialization.Codec;
-import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.ISeedReader;
@@ -41,9 +39,9 @@ public class VoidStartPlatformFeature1 extends Feature<NoFeatureConfig> {
                if (distance(VOID_SPAWN_POS.getX(), VOID_SPAWN_POS.getZ(), j, i) <= 16) {
                   blockpos$mutable.setPos(j, VOID_SPAWN_POS.getY(), i);
                   if (blockpos$mutable.equals(VOID_SPAWN_POS)) {
-                     p_230362_1_.setBlockState(blockpos$mutable, BlockInit.VILTDROP_BLOCK.get().getDefaultState(), 2);
+                     p_230362_1_.setBlockState(blockpos$mutable, isBurnableBlockItemInit.VILTDROP_BLOCK.get().getDefaultState(), 2);
                   } else {
-                     p_230362_1_.setBlockState(blockpos$mutable, isBurnableBlockInit.SRIUNK_BLOCK.get().getDefaultState(), 2);
+                     p_230362_1_.setBlockState(blockpos$mutable, isBurnableBlockItemInit.SRIUNK_BLOCK.get().getDefaultState(), 2);
                   }
                }
             }

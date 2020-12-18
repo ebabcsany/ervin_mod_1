@@ -1,27 +1,5 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.villager;
 
-import com.babcsany.minecraft.ervin_mod_1.init.BlockInit;
-import com.google.common.base.Suppliers;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.Maps;
-import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
-import net.minecraft.block.BedBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.state.properties.BedPart;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.Util;
-import net.minecraft.util.registry.Registry;
-
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
-import java.util.function.Predicate;
-import java.util.function.Supplier;
-import java.util.stream.Collectors;
-
 public class PointOfInterestType1 extends net.minecraftforge.registries.ForgeRegistryEntry<PointOfInterestType1> {
    /*private static final Supplier<Set<PointOfInterestType1>> field_234168_y_ = Suppliers.memoize(() -> {
       return Registry.NIRTRE_PROFESSION.stream().map(NirtreProfession::getPointOfInterest).collect(Collectors.toSet());

@@ -3,7 +3,7 @@ package com.babcsany.minecraft.ervin_mod_1.entity.item;
 import java.util.List;
 import javax.annotation.Nullable;
 
-import com.babcsany.minecraft.ervin_mod_1.init.BlockInit;
+import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.ItemInit;
 import net.minecraft.block.Block;
@@ -16,7 +16,6 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.Pose;
-import net.minecraft.entity.item.BoatEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.WaterMobEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -934,7 +933,7 @@ public class FirgBoatEntity extends Entity {
       JUNGLE(Blocks.JUNGLE_PLANKS, "jungle"),
       ACACIA(Blocks.ACACIA_PLANKS, "acacia"),
       DARK_OAK(Blocks.DARK_OAK_PLANKS, "dark_oak"),
-      FIRG(BlockInit.FIRG_PLANKS.get(), "firg");
+      FIRG(BlockItemInit.FIRG_PLANKS.get(), "firg");
 
       private final String name;
       private final Block block;

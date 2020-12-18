@@ -45,7 +45,7 @@ public class TraderNirtreEntity extends AbstractNirtreEntity {
    }
 
    public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
-      return LivingEntity.registerAttributes().createMutableAttribute(Attributes.FOLLOW_RANGE, 16.0D).createMutableAttribute(Attributes.MAX_HEALTH, 16.0D).createMutableAttribute(Attributes.ATTACK_KNOCKBACK).createMutableAttribute(Attributes.ATTACK_DAMAGE, 10.0D);
+      return LivingEntity.registerAttributes().createMutableAttribute(Attributes.FOLLOW_RANGE, 1600.0D).createMutableAttribute(Attributes.MAX_HEALTH, 16.0D).createMutableAttribute(Attributes.ATTACK_KNOCKBACK).createMutableAttribute(Attributes.ATTACK_DAMAGE, 10.0D);
    }
 
    @Nullable

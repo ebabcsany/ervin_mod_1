@@ -20,7 +20,7 @@
 package com.babcsany.minecraft.ervin_mod_1.block;
 
 import com.babcsany.minecraft.ervin_mod_1.block.portal.IWorldReader1;
-import com.babcsany.minecraft.ervin_mod_1.init.BlockInit;
+import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.particle.ParticleManager;
@@ -510,7 +510,7 @@ public interface IForgeBlock1
 
     default boolean isExamplePortalFrame(BlockState state, IWorldReader1 world, BlockPos pos)
     {
-        return state.isIn(BlockInit.GRITK_BLOCK.get());
+        return state.isIn(BlockItemInit.GRITK_BLOCK.get());
     }
 
    /**

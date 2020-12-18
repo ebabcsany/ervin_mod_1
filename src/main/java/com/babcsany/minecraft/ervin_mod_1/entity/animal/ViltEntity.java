@@ -1,6 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.animal;
 
-import com.babcsany.minecraft.ervin_mod_1.init.BlockInit;
+import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.ItemInit;
 import com.babcsany.minecraft.ervin_mod_1.world.storage.loot.LootTables1;
@@ -46,7 +46,7 @@ import java.util.stream.Collectors;
 public class ViltEntity extends AnimalEntity implements IShearable, net.minecraftforge.common.IForgeShearable {
    private static final DataParameter<Byte> DYE_COLOR = EntityDataManager.createKey(ViltEntity.class, DataSerializers.BYTE);
    private static final Map<DyeColor, IItemProvider> WOOL_BY_COLOR = Util.make(Maps.newEnumMap(DyeColor.class), (p_203402_0_) -> {
-      p_203402_0_.put(DyeColor.RED, BlockInit.CRASK.get());
+      p_203402_0_.put(DyeColor.RED, BlockItemInit.CRASK.get());
       p_203402_0_.put(DyeColor.WHITE, Blocks.WHITE_WOOL);
       p_203402_0_.put(DyeColor.ORANGE, Blocks.ORANGE_WOOL);
       p_203402_0_.put(DyeColor.MAGENTA, Blocks.MAGENTA_WOOL);

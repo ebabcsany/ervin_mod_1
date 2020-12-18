@@ -1,6 +1,6 @@
 package net.minecraft.world.gen.feature;
 
-import com.babcsany.minecraft.ervin_mod_1.init.BlockInit;
+import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.block.BlockState;
@@ -45,7 +45,7 @@ public class OreFeatureConfig implements IFeatureConfig {
          if (p_214739_0_ == null) {
             return false;
          } else {
-            return p_214739_0_.isIn(Blocks.STONE) || p_214739_0_.isIn(BlockInit.BLACK_STONE.get()) || p_214739_0_.isIn(BlockInit.BLUE_STONE.get()) || p_214739_0_.isIn(BlockInit.BROWN_STONE.get()) || p_214739_0_.isIn(BlockInit.CYAN_STONE.get()) || p_214739_0_.isIn(BlockInit.GREEN_STONE.get()) || p_214739_0_.isIn(BlockInit.LIGHT_BLUE1_STONE.get()) || p_214739_0_.isIn(BlockInit.LIGHT_BLUE_STONE.get()) || p_214739_0_.isIn(BlockInit.LIGHT_GRAY_STONE.get()) || p_214739_0_.isIn(BlockInit.LIME_STONE.get()) || p_214739_0_.isIn(BlockInit.MAGENTA_STONE.get()) || p_214739_0_.isIn(BlockInit.ORANGE_STONE.get()) || p_214739_0_.isIn(BlockInit.PINK_STONE.get()) || p_214739_0_.isIn(BlockInit.PURPLE_STONE.get()) || p_214739_0_.isIn(BlockInit.RED_STONE.get()) || p_214739_0_.isIn(BlockInit.WHITE_STONE.get()) || p_214739_0_.isIn(BlockInit.YELLOW_STONE.get()) || p_214739_0_.isIn(Blocks.GRANITE) || p_214739_0_.isIn(Blocks.DIORITE) || p_214739_0_.isIn(Blocks.ANDESITE);
+            return p_214739_0_.isIn(Blocks.STONE) || p_214739_0_.isIn(BlockItemInit.BLACK_STONE.get()) || p_214739_0_.isIn(BlockItemInit.BLUE_STONE.get()) || p_214739_0_.isIn(BlockItemInit.BROWN_STONE.get()) || p_214739_0_.isIn(BlockItemInit.CYAN_STONE.get()) || p_214739_0_.isIn(BlockItemInit.GREEN_STONE.get()) || p_214739_0_.isIn(BlockItemInit.LIGHT_BLUE1_STONE.get()) || p_214739_0_.isIn(BlockItemInit.LIGHT_BLUE_STONE.get()) || p_214739_0_.isIn(BlockItemInit.LIGHT_GRAY_STONE.get()) || p_214739_0_.isIn(BlockItemInit.LIME_STONE.get()) || p_214739_0_.isIn(BlockItemInit.MAGENTA_STONE.get()) || p_214739_0_.isIn(BlockItemInit.ORANGE_STONE.get()) || p_214739_0_.isIn(BlockItemInit.PINK_STONE.get()) || p_214739_0_.isIn(BlockItemInit.PURPLE_STONE.get()) || p_214739_0_.isIn(BlockItemInit.RED_STONE.get()) || p_214739_0_.isIn(BlockItemInit.WHITE_STONE.get()) || p_214739_0_.isIn(BlockItemInit.YELLOW_STONE.get()) || p_214739_0_.isIn(Blocks.GRANITE) || p_214739_0_.isIn(Blocks.DIORITE) || p_214739_0_.isIn(Blocks.ANDESITE);
          }
       }),
       NETHERRACK("netherrack", new BlockMatcher(Blocks.NETHERRACK)),

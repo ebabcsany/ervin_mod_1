@@ -1,7 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.item;
 
-import com.babcsany.minecraft.ervin_mod_1.init.BlockInit;
-import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockInit;
+import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.ItemInit;
 import com.babcsany.minecraft.ervin_mod_1.util.KeyboardHelper;
 import net.minecraft.client.util.ITooltipFlag;
@@ -77,7 +77,7 @@ public class SpecialItem2 extends Item {
 
 	@Override
 	public boolean onEntityItemUpdate(ItemStack stack, ItemEntity entity) {
-		entity.getEntityWorld().setBlockState(entity.getPosition().down(), isBurnableBlockInit.NIRK_BLOCK.get().getDefaultState());
+		entity.getEntityWorld().setBlockState(entity.getPosition().down(), isBurnableBlockItemInit.NIRK_BLOCK.get().getDefaultState());
 		return super.onEntityItemUpdate(stack, entity);
 	}
 
@@ -102,7 +102,7 @@ public class SpecialItem2 extends Item {
 
 	@Override
 	public ActionResultType onItemUse(ItemUseContext context) {
-		if (context.getWorld().getBlockState(context.getPos()).getBlock() == BlockInit.VIRK_BLOCK.get()) {
+		if (context.getWorld().getBlockState(context.getPos()).getBlock() == BlockItemInit.VIRK_BLOCK.get()) {
 			for (ItemStack stack : context.getPlayer().inventory.mainInventory) {
 				if (stack.isEmpty()) {
 					context.getPlayer().addItemStackToInventory(new ItemStack(ItemInit.FIRK.get()));

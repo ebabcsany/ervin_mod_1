@@ -3,7 +3,6 @@ package com.babcsany.minecraft.ervin_mod_1.init;
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.item.*;
 import com.babcsany.minecraft.ervin_mod_1.item.ModSpawnEggItem;
-import com.babcsany.minecraft.ervin_mod_1.registries.ForgeRegistries1;
 import net.minecraft.entity.EntityType;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
@@ -11,8 +10,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-
-import static net.minecraft.item.Items.BUCKET;
 
 public class ItemInit {
 
@@ -386,25 +383,25 @@ public class ItemInit {
             ModItemTier.KIRT, 2, 2.0F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> DURG = ITEMS.register("durg", () -> new Item(
-            (new Item.Properties())
+            (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> DURG_SWORD = ITEMS.register("durg_sword", () -> new SwordItem(
-            ModItemTier.DURG, 72, 113.4F, (new Item.Properties())
+            ModItemTier.DURG, 72, 113.4F, (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> DURG_AXE = ITEMS.register("durg_axe", () -> new AxeItem1(
-            ModItemTier.DURG, 144, 189.0F, (new Item.Properties())
+            ModItemTier.DURG, 144, 189.0F, (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> DURG_SHOVEL = ITEMS.register("durg_shovel", () -> new ShovelItem(
-            ModItemTier.DURG, 108, 151.2F, (new Item.Properties())
+            ModItemTier.DURG, 108, 151.2F, (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> DURG_PICKAXE = ITEMS.register("durg_pickaxe", () -> new PickaxeItem(
-            ModItemTier.DURG, 36, 75.6F, (new Item.Properties())
+            ModItemTier.DURG, 36, 75.6F, (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> DURG_HOE = ITEMS.register("durg_hoe", () -> new HoeItem(
-            ModItemTier.DURG, 5, 10F, (new Item.Properties())
+            ModItemTier.DURG, 5, 10F, (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> TERAT_HORSE_ARMOR = ITEMS.register("terat_horse_armor", () -> new HorseArmorItem(
-            440, new ResourceLocation(Ervin_mod_1.MOD_ID, "textures/entity/horse/armor/terat_horse_armor.png"), (new Item.Properties()).maxStackSize(1).group(ItemGroup.MISC).isBurnable()
+            440, new ResourceLocation(Ervin_mod_1.MOD_ID, "textures/entity/horse/armor/terat_horse_armor.png"), (new Item.Properties()).maxStackSize(1).isBurnable().group(ItemGroup.MISC)
     ));
     public static final RegistryObject<Item> CHAK = ITEMS.register("chak", () -> new Item(
             (new Item.Properties())
@@ -416,16 +413,16 @@ public class ItemInit {
             (new Item.Properties())
     ));
     public static final RegistryObject<Item> DURG_CHESTPLATE = ITEMS.register("durg_chestplate", () -> new ArmorItem(
-            ModArmorMaterial.DURG, EquipmentSlotType.CHEST, (new Item.Properties())
+            ModArmorMaterial.DURG, EquipmentSlotType.CHEST, (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> DURG_LEGGINGS = ITEMS.register("durg_leggings", () -> new ArmorItem(
-            ModArmorMaterial.DURG, EquipmentSlotType.LEGS, (new Item.Properties())
+            ModArmorMaterial.DURG, EquipmentSlotType.LEGS, (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> DURG_BOOTS = ITEMS.register("durg_boots", () -> new ArmorItem(
-            ModArmorMaterial.DURG, EquipmentSlotType.FEET, (new Item.Properties())
+            ModArmorMaterial.DURG, EquipmentSlotType.FEET, (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> DURG_HORSE_ARMOR = ITEMS.register("durg_horse_armor", () -> new HorseArmorItem(
-            324, new ResourceLocation(Ervin_mod_1.MOD_ID, "textures/entity/horse/armor/durg_horse_armor.png"), (new Item.Properties()).maxStackSize(1).group(ItemGroup.MISC)
+            324, new ResourceLocation(Ervin_mod_1.MOD_ID, "textures/entity/horse/armor/durg_horse_armor.png"), (new Item.Properties()).maxStackSize(1).isBurnable().group(ItemGroup.MISC)
     ));
     public static final RegistryObject<Item> GURT = ITEMS.register("gurt", () -> new Item(
             (new Item.Properties())
@@ -603,7 +600,7 @@ public class ItemInit {
             EntityInit.VILT_ENTITY, 0xc02020, 0xc02020, new Item.Properties()
     ));
     public static final RegistryObject<Item> TARG_SEEDS = ITEMS.register("seeds/targ_seeds", () -> new BlockNamedItem(
-            BlockInit.TARG_STAGE.get(), (new Item.Properties())
+            BlockItemInit.TARG_STAGE.get(), (new Item.Properties())
     ));
     public static final RegistryObject<Item> TARG = ITEMS.register("targ", () -> new Item(
             (new Item.Properties())

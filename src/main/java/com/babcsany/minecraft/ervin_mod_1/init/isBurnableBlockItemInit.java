@@ -9,7 +9,7 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class isBurnableBlockInit {
+public class isBurnableBlockItemInit {
 
     public static final DeferredRegister<Block> BURNABLE_BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Ervin_mod_1.MOD_ID);
 
@@ -50,5 +50,46 @@ public class isBurnableBlockInit {
                     .harvestLevel(20)
                     .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(1562.0f)
+    ));
+    public static final RegistryObject<Block> GRINT_BLOCK = BURNABLE_BLOCKS.register("grint_block", () -> new GrintBlock(
+            Block.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .harvestLevel(4)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(100.0f)
+    ));
+    public static final RegistryObject<Block> GRINT_SLAB = BURNABLE_BLOCKS.register("grint_slab", () -> new GrintSlab(
+            Block.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .harvestLevel(4)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(120.0f)
+    ));
+    public static final RegistryObject<Block> GRITH_BLOCK = BURNABLE_BLOCKS.register("grith_block", () -> new GrithBlock(
+            Block.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .harvestLevel(30)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(1000000000.0F)
+                    .setLightLevel(Value -> 15)
+    ));
+    public static final RegistryObject<Block> VILTDROP_BLOCK = BURNABLE_BLOCKS.register("viltdrop_block", () -> new ViltdropBlock(
+            Block.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .harvestLevel(4)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(1000.0f)
+    ));
+    public static final RegistryObject<Block> GARK_BLOCK = BURNABLE_BLOCKS.register("gark_block", () -> new GarkBlock(
+            Block.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .harvestLevel(12)
+                    .hardnessAndResistance(2000.0f)
+    ));
+    public static final RegistryObject<Block> GARK_SLAB = BURNABLE_BLOCKS.register("gark_slab", () -> new GarkSlab(
+            Block.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .harvestLevel(12)
+                    .hardnessAndResistance(2000.0f, 2200.0f)
     ));
 }

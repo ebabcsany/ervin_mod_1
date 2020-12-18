@@ -1,6 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.animal;
 
-import com.babcsany.minecraft.ervin_mod_1.init.BlockInit;
+import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -11,8 +11,6 @@ import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraft.entity.passive.CowEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
@@ -56,7 +54,7 @@ public class ShertEntity extends SrachEntity implements IShearable, net.minecraf
    }
 
    public static boolean func_223318_c(EntityType<ShertEntity> p_223318_0_, IWorld p_223318_1_, SpawnReason p_223318_2_, BlockPos p_223318_3_, Random p_223318_4_) {
-      return p_223318_1_.getBlockState(p_223318_3_.down()).isIn(BlockInit.RED_GRASS_BLOCK.get()) && p_223318_1_.getLightSubtracted(p_223318_3_, 0) > 8;
+      return p_223318_1_.getBlockState(p_223318_3_.down()).isIn(BlockItemInit.RED_GRASS_BLOCK.get()) && p_223318_1_.getLightSubtracted(p_223318_3_, 0) > 8;
    }
 
    /**
@@ -286,7 +284,7 @@ public class ShertEntity extends SrachEntity implements IShearable, net.minecraf
    public static enum Type {
       RED("red", Blocks.RED_MUSHROOM.getDefaultState()),
       BROWN("brown", Blocks.BROWN_MUSHROOM.getDefaultState()),
-      GRINTH("grinth", BlockInit.GRINTH_MUSHROOM_BLOCK.get().getDefaultState());
+      GRINTH("grinth", BlockItemInit.GRINTH_MUSHROOM_BLOCK.get().getDefaultState());
 
       private final String name;
       private final BlockState renderState;

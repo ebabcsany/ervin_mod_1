@@ -19,11 +19,10 @@
 
 package net.minecraftforge.common.extensions;
 
-import com.babcsany.minecraft.ervin_mod_1.init.BlockInit;
+import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.particle.ParticleManager;
-import net.minecraft.client.renderer.ActiveRenderInfo;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.*;
 import net.minecraft.entity.boss.WitherEntity;
@@ -518,7 +517,7 @@ public interface IForgeBlock
      */
     default boolean isExamplePortalFrame(BlockState state, IWorldReader world, BlockPos pos)
     {
-        return state.isIn(BlockInit.EXAMPLE_BLOCK.get());
+        return state.isIn(BlockItemInit.EXAMPLE_BLOCK.get());
     }
 
    /**

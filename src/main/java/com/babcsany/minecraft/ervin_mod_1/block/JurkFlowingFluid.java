@@ -1,6 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.block;
 
-import com.babcsany.minecraft.ervin_mod_1.init.BlockInit;
+import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.tags.FluidTag;
 import com.google.common.collect.Lists;
 import net.minecraft.block.*;
@@ -14,7 +14,6 @@ import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -165,7 +164,7 @@ public class JurkFlowingFluid extends Block implements IBucketPickupHandler {
             }
 
             if (ifluidstate.getActualHeight(worldIn, pos) >= 0.44444445F) {
-               worldIn.setBlockState(pos, net.minecraftforge.event.ForgeEventFactory.fireFluidPlaceBlockEvent(worldIn, pos, pos, BlockInit.DURT.get().getDefaultState()));
+               worldIn.setBlockState(pos, net.minecraftforge.event.ForgeEventFactory.fireFluidPlaceBlockEvent(worldIn, pos, pos, BlockItemInit.DURT.get().getDefaultState()));
                this.triggerMixEffects(worldIn, pos);
                return false;
             }

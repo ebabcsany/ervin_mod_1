@@ -2,7 +2,6 @@ package com.babcsany.minecraft.ervin_mod_1.init;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.world.biome.*;
-import com.babcsany.minecraft.ervin_mod_1.world.gen.surfacebuilders.SriunkBlockValleySurfaceBuilder;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.registry.Registry;
@@ -51,9 +50,9 @@ public class BiomeInit {
 													register("sriunk_valley_surface",
 															new SriunkValleySurfaceBuilder(
 																	SurfaceBuilderConfig.field_237203_a_)),
-													new SurfaceBuilderConfig(BlockInit.END_PORTAL.get().getDefaultState(),
-															BlockInit.NETHER_PORTAL.get().getDefaultState(),
-															BlockInit.DURT.get().getDefaultState())))
+													new SurfaceBuilderConfig(BlockItemInit.END_PORTAL.get().getDefaultState(),
+															BlockItemInit.NETHER_PORTAL.get().getDefaultState(),
+															BlockItemInit.DURT.get().getDefaultState())))
 									.category(Category.PLAINS).downfall(12.4f).depth(6.5f).parent(null)
 					));
 	public static final RegistryObject<Biome> EXAMPLE_BIOME6 = BIOMES
@@ -66,9 +65,9 @@ public class BiomeInit {
 													register("example_surface6",
 															new ExampleBiomeSurfaceBuilder6(
 																	SurfaceBuilderConfig.field_237203_a_)),
-													new SurfaceBuilderConfig(BlockInit.KALT_BLOCK.get().getDefaultState(),
-															BlockInit.NIRTKB.get().getDefaultState(),
-															BlockInit.NIRTK.get().getDefaultState())))
+													new SurfaceBuilderConfig(BlockItemInit.KALT_BLOCK.get().getDefaultState(),
+															BlockItemInit.NIRTKB.get().getDefaultState(),
+															BlockItemInit.NIRTK.get().getDefaultState())))
 									.category(Category.PLAINS).downfall(12.4f).depth(6.5f).parent(null)
 					));
 	public static final RegistryObject<Biome> EXAMPLE_BIOME = BIOMES
@@ -186,9 +185,9 @@ public class BiomeInit {
 													register("firg_surface",
 															new FirgBiomeSurfaceBuilder(
 																	SurfaceBuilderConfig.field_237203_a_)),
-													new SurfaceBuilderConfig(BlockInit.FIRG.get().getDefaultState(),
-															BlockInit.FIRG.get().getDefaultState(),
-															BlockInit.FIRG.get().getDefaultState())))
+													new SurfaceBuilderConfig(BlockItemInit.FIRG.get().getDefaultState(),
+															BlockItemInit.FIRG.get().getDefaultState(),
+															BlockItemInit.FIRG.get().getDefaultState())))
 									.category(Category.THEEND).downfall(0.5f).depth(0.12f).parent(null)
 					));
 	public static final RegistryObject<Biome> SCRAFTH_BIOME = BIOMES
@@ -201,9 +200,9 @@ public class BiomeInit {
 													register("scrafth_surface",
 															new ScrafthBiomeSurfaceBuilder(
 																	SurfaceBuilderConfig.field_237203_a_)),
-													new SurfaceBuilderConfig(BlockInit.SCRAFTH.get().getDefaultState(),
-															BlockInit.SCRAFTH.get().getDefaultState(),
-															BlockInit.SCRAFTH.get().getDefaultState())))
+													new SurfaceBuilderConfig(BlockItemInit.SCRAFTH.get().getDefaultState(),
+															BlockItemInit.SCRAFTH.get().getDefaultState(),
+															BlockItemInit.SCRAFTH.get().getDefaultState())))
 									.category(Category.THEEND).downfall(0.5f).depth(0.12f).parent(null)
 					));
 

@@ -1,16 +1,11 @@
 package com.babcsany.minecraft.ervin_mod_1.init;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
-import com.babcsany.minecraft.ervin_mod_1.block.FlowingFluidBlock1;
-import com.babcsany.minecraft.ervin_mod_1.fluid.FlowingFluidBlock2;
-import com.babcsany.minecraft.ervin_mod_1.fluid.ForgeFlowingFluid1;
-import com.babcsany.minecraft.ervin_mod_1.fluid.JurkFluid;
 import net.minecraft.block.Block;
 import net.minecraft.block.FlowingFluidBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.fluid.FlowingFluid;
 import net.minecraft.fluid.Fluid;
-import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.WaterFluid;
 import net.minecraft.item.Rarity;
 import net.minecraft.util.ResourceLocation;
@@ -20,8 +15,6 @@ import net.minecraftforge.fluids.ForgeFlowingFluid;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-
-import static com.babcsany.minecraft.ervin_mod_1.init.BlockInit.BLOCKS;
 
 public class FluidInit {
 

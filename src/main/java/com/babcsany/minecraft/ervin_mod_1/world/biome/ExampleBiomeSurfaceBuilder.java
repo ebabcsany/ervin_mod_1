@@ -1,7 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.world.biome;
 
-import com.babcsany.minecraft.ervin_mod_1.init.BlockInit;
-import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockInit;
+import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -26,16 +26,16 @@ public class ExampleBiomeSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderCon
 		if (i == 0) {
 			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock,
 					defaultFluid, seaLevel, seed,
-					new SurfaceBuilderConfig(BlockInit.LEAT_BLOCK_CRAFTING_TABLE.get().getDefaultState(),
-							BlockInit.CRASK.get().getDefaultState(), BlockInit.GRITK_BLOCK.get().getDefaultState()
+					new SurfaceBuilderConfig(BlockItemInit.LEAT_BLOCK_CRAFTING_TABLE.get().getDefaultState(),
+							BlockItemInit.CRASK.get().getDefaultState(), BlockItemInit.GRITK_BLOCK.get().getDefaultState()
 					));
 		} else {
 			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock,
 					defaultFluid, seaLevel, seed,
 					new SurfaceBuilderConfig(
 							i == 1 ? Blocks.GRASS_BLOCK.getDefaultState()
-									: isBurnableBlockInit.SRIUNK_BLOCK.get().getDefaultState(),
-							isBurnableBlockInit.TRUGN.get().getDefaultState(), BlockInit.TRINKS.get().getDefaultState()
+									: isBurnableBlockItemInit.SRIUNK_BLOCK.get().getDefaultState(),
+							isBurnableBlockItemInit.TRUGN.get().getDefaultState(), BlockItemInit.TRINKS.get().getDefaultState()
 					));
 		}
 	}

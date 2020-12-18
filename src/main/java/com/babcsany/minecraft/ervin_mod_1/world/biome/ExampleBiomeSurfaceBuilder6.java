@@ -1,7 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.world.biome;
 
-import com.babcsany.minecraft.ervin_mod_1.init.BlockInit;
-import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockInit;
+import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -28,15 +28,15 @@ public class ExampleBiomeSurfaceBuilder6 extends SurfaceBuilder<SurfaceBuilderCo
 					defaultFluid, seaLevel, seed,
 					new SurfaceBuilderConfig(
 							Blocks.GRASS_BLOCK.getDefaultState(),
-							BlockInit.KALT_BLOCK.get().getDefaultState(),
+							BlockItemInit.KALT_BLOCK.get().getDefaultState(),
 							Blocks.WATER.getDefaultState()));
 		} else {
 			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock,
 					defaultFluid, seaLevel, seed,
 					new SurfaceBuilderConfig(
-							isBurnableBlockInit.SRIUNK_BLOCK.get().getDefaultState(),
-							isBurnableBlockInit.TRUGN.get().getDefaultState(),
-							BlockInit.TRINKS.get().getDefaultState()
+							isBurnableBlockItemInit.SRIUNK_BLOCK.get().getDefaultState(),
+							isBurnableBlockItemInit.TRUGN.get().getDefaultState(),
+							BlockItemInit.TRINKS.get().getDefaultState()
 					));
 		}
 	}

@@ -1,9 +1,8 @@
 package com.babcsany.minecraft.ervin_mod_1.container;
 
-import com.babcsany.minecraft.ervin_mod_1.init.BlockInit;
+import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.ContainerInit;
 import com.babcsany.minecraft.ervin_mod_1.inventory.CraintBlockCraftingTableInventory;
-import com.babcsany.minecraft.ervin_mod_1.inventory.LeatBlockCraftingTableInventory;
 import com.google.common.collect.Lists;
 import net.minecraft.client.util.RecipeBookCategories;
 import net.minecraft.entity.player.PlayerEntity;
@@ -136,7 +135,7 @@ public class CraintBlockCraftingTableContainer extends RecipeBookContainer<Craft
          * Determines whether supplied player can use this container
          */
         public boolean canInteractWith(PlayerEntity playerIn) {
-            return isWithinUsableDistance(this.field_217070_e, playerIn, BlockInit.CRAINT_BLOCK_CRAFTING_TABLE.get());
+            return isWithinUsableDistance(this.field_217070_e, playerIn, BlockItemInit.CRAINT_BLOCK_CRAFTING_TABLE.get());
         }
 
         /**

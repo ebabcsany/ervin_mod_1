@@ -1,23 +1,18 @@
 package com.babcsany.minecraft.ervin_mod_1.fluid;
 
 import com.babcsany.minecraft.ervin_mod_1.block.FlowingFluidBlock1;
-import com.babcsany.minecraft.ervin_mod_1.init.BlockInit;
+import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.FluidInit;
 import com.babcsany.minecraft.ervin_mod_1.init.ItemInit;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.FlowingFluidBlock;
 import net.minecraft.fluid.FlowingFluid;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
-import net.minecraft.fluid.Fluids;
 import net.minecraft.item.Item;
-import net.minecraft.item.Items;
 import net.minecraft.particles.IParticleData;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.StateContainer;
-import net.minecraft.tags.FluidTags;
 import com.babcsany.minecraft.ervin_mod_1.tags.FluidTag;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
@@ -79,7 +74,7 @@ public abstract class JurkFluid extends FlowingFluid {
    }
 
    public BlockState getBlockState(FluidState state) {
-      return BlockInit.JURK.get().getDefaultState().with(FlowingFluidBlock1.LEVEL, Integer.valueOf(getLevelFromState(state)));
+      return BlockItemInit.JURK.get().getDefaultState().with(FlowingFluidBlock1.LEVEL, Integer.valueOf(getLevelFromState(state)));
    }
 
    public boolean isEquivalentTo(Fluid fluidIn) {
