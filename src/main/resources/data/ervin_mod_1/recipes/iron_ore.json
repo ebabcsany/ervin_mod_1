@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "tag": "ervin_mod_1:iron_ore_ingredient"
+      "tag": "ervin_mod_1:ingredients/iron_ore"
     },
     {
       "item": "minecraft:water_bucket"

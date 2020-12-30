@@ -2,10 +2,10 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "tag": "ervin_mod_1:cobblestone_stairs_ingredient"
+      "tag": "ervin_mod_1:ingredients/cobblestone_stairs"
     },
     {
-      "item": "ervin_mod_1:chak"
+      "item": "minecraft:water_bucket"
     }
   ],
   "result": {

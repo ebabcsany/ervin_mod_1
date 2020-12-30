@@ -7,10 +7,10 @@
   ],
   "key": {
     "#": {
-      "tag": "ervin_mod_1:sriunk_ingredient_1"
+      "tag": "ervin_mod_1:ingredients/sriunk_1"
     },
     "M": {
-      "tag": "ervin_mod_1:sriunk_ingredient"
+      "tag": "ervin_mod_1:ingredients/sriunk"
     },
     "N": {
       "item": "minecraft:black_wool"
@@ -19,10 +19,10 @@
       "item": "minecraft:gunpowder"
     },
     "X": {
-      "tag": "ervin_mod_1:coal_ingredient"
+      "tag": "ervin_mod_1:ingredients/coal"
     },
     "L": {
-      "tag": "ervin_mod_1:sriunk_ingredient_2"
+      "tag": "ervin_mod_1:ingredients/sriunk_2"
     },
     "V": {
       "item": "minecraft:stone_pickaxe"

@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "tag": "ervin_mod_1:stone_ingredient"
+      "tag": "ervin_mod_1:ingredients/stone"
     },
     {
       "item": "ervin_mod_1:chak"

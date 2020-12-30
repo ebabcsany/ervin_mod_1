@@ -7,7 +7,7 @@
   ],
   "key": {
     "#": {
-      "tag": "ervin_mod_1:coal_ingredient"
+      "tag": "ervin_mod_1:ingredients/coal"
     },
     "X": {
       "item": "minecraft:cobblestone"

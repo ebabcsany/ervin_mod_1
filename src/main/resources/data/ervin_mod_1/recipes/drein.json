@@ -7,7 +7,7 @@
   ],
   "key": {
     "#": {
-      "tag": "ervin_mod_1:drein_ingredient_1"
+      "tag": "ervin_mod_1:ingredients/drein_1"
     },
     "C": {
       "item": "minecraft:blue_wool"
@@ -19,7 +19,7 @@
       "item": "ervin_mod_1:regdem_block"
     },
     "X": {
-      "tag": "ervin_mod_1:drein_ingredient"
+      "tag": "ervin_mod_1:ingredients/drein"
     }
   },
   "result": {

@@ -3,7 +3,7 @@
   "group": "planks",
   "ingredients": [
     {
-      "tag": "ervin_mod_1:firg_wood_ingredient"
+      "tag": "ervin_mod_1:ingredients/firg_wood"
     }
   ],
   "result": {
