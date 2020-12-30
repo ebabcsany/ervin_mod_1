@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "ervin_mod_1:stone/cobblestones/cyan_cobblestone"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:stone/cobblestone/slabs/cyan_cobblestone_slab",
+    "count": 6
+  }
+}

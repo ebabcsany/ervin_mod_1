@@ -34,11 +34,11 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:zur_entity_spawn_egg"
+          "name": "ervin_mod_1:spawn_eggs/zur_entity_spawn_egg"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:rovent_entity_spawn_egg"
+          "name": "ervin_mod_1:spawn_eggs/rovent_entity_spawn_egg"
         }
       ],
       "conditions": [

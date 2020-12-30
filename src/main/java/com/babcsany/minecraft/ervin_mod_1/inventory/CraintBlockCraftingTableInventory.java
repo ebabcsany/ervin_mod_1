@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 
 public class CraintBlockCraftingTableInventory implements IInventory {
-    private final NonNullList<ItemStack> inventory = NonNullList.withSize(10, ItemStack.EMPTY);
+    private final NonNullList<ItemStack> inventory = NonNullList.withSize(20, ItemStack.EMPTY);
 
     @Override
     public int getSizeInventory() {

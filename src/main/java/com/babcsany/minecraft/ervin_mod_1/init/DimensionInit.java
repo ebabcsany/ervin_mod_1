@@ -1,24 +1,20 @@
 package com.babcsany.minecraft.ervin_mod_1.init;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
+import com.babcsany.minecraft.ervin_mod_1.registries.ForgeRegistries1;
 import com.babcsany.minecraft.ervin_mod_1.world.dimension.*;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.Dimension;
+import net.minecraft.world.DimensionType;
+import net.minecraft.world.biome.ColumnFuzzedBiomeMagnifier;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.OptionalLong;
+
 public class DimensionInit {
-	
-	/*public static final DeferredRegister<ModDimension> MOD_DIMENSIONS = DeferredRegister.create(ForgeRegistries.MOD_DIMENSIONS, Ervin_mod_1.MOD_ID);
-	
-	public static final RegistryObject<ModDimension> EXAMPLE_DIM = MOD_DIMENSIONS.register("example_dim", () -> new ExampleModDimension());
-	public static final RegistryObject<ModDimension> EXAMPLE_DIM0 = MOD_DIMENSIONS.register("example_dim0", () -> new ExampleModDimension0());
-	public static final RegistryObject<ModDimension> EXAMPLE_DIM1 = MOD_DIMENSIONS.register("example_dim1", () -> new ExampleModDimension1());
-	public static final RegistryObject<ModDimension> EXAMPLE_DIM2 = MOD_DIMENSIONS.register("example_dim2", () -> new ExampleModDimension2());
-	public static final RegistryObject<ModDimension> EXAMPLE_DIM3 = MOD_DIMENSIONS.register("example_dim3", () -> new ExampleModDimension3());
-	public static final RegistryObject<ModDimension> EXAMPLE_DIM4 = MOD_DIMENSIONS.register("example_dim4", () -> new ExampleModDimension4());
-	public static final RegistryObject<ModDimension> EXAMPLE_DIM5 = MOD_DIMENSIONS.register("example_dim5", () -> new ExampleModDimension5());
-	public static final RegistryObject<ModDimension> FIRG_DIM = MOD_DIMENSIONS.register("firg_dim", () -> new FirgModDimension());
-	public static final RegistryObject<ModDimension> SCRAFTH_DIM = MOD_DIMENSIONS.register("scrafth_dim", () -> new ScrafthModDimension()
-	);*/
+
+    /*public static final float[] MOON_PHASE_FACTORS = new float[]{1.0F, 0.75F, 0.5F, 0.25F, 0.0F, 0.25F, 0.5F, 0.75F};
+    protected static final DimensionType OVERWORLD_TYPE = new DimensionType(OptionalLong.empty(), true, false, false, true, false, false, false, true, false, true, 256, ColumnFuzzedBiomeMagnifier.INSTANCE, BlockTags.INFINIBURN_OVERWORLD.getName(), 0.0F);*/
 }

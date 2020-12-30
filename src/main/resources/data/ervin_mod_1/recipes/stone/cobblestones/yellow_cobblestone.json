@@ -2,14 +2,14 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "tag": "ervin_mod_1:yellow_cobblestone_ingredient"
+      "tag": "ervin_mod_1:ingredients/yellow_cobblestone"
     },
     {
       "item": "minecraft:yellow_dye"
     }
   ],
   "result": {
-    "item": "ervin_mod_1:yellow_cobblestone",
+    "item": "ervin_mod_1:stone/cobblestones/yellow_cobblestone",
     "count": 1
   }
 }

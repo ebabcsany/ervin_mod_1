@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "tag": "ervin_mod_1:cobblestone_ingredient"
+      "tag": "ervin_mod_1:ingredients/cobblestone"
     },
     {
       "item": "minecraft:water_bucket"

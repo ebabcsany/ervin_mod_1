@@ -44,7 +44,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:iron_golem_spawn_egg"
+          "name": "ervin_mod_1:spawn_eggs/iron_golem_spawn_egg"
         }
       ],
       "conditions": [

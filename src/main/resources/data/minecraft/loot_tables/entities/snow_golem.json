@@ -25,7 +25,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:snow_golem_spawn_egg"
+          "name": "ervin_mod_1:spawn_eggs/snow_golem_spawn_egg"
         }
       ],
       "conditions": [

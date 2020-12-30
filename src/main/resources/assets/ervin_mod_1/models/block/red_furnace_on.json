@@ -1,8 +1,8 @@
 {
   "parent": "minecraft:block/orientable",
   "textures": {
-    "top": "ervin_mod_1:block/red_furnace_top",
-    "front": "ervin_mod_1:block/red_furnace_front_on",
-    "side": "evin_mod_1:block/red_furnace_side"
+    "top": "ervin_mod_1:block/furnace/top/red_furnace_top",
+    "front": "ervin_mod_1:block/furnace/front/on/red_furnace_front_on",
+    "side": "evin_mod_1:block/furnace/side/red_furnace_side"
   }
 }

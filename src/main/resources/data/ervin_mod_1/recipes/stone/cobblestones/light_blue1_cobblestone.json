@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "ervin_mod_1:ingredients/light_blue1_cobblestone"
+    },
+    {
+      "item": "ervin_mod_1:light_blue1_dye"
+    }
+  ],
+  "result": {
+    "item": "ervin_mod_1:stone/cobblestones/light_blue1_cobblestone",
+    "count": 1
+  }
+}

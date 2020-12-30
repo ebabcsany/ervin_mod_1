@@ -1,6 +1,7 @@
 package net.minecraft.entity;
 
 import com.babcsany.minecraft.ervin_mod_1.block.ExamplePortalBlock;
+import com.babcsany.minecraft.ervin_mod_1.block.NetherPortal;
 import com.babcsany.minecraft.ervin_mod_1.init.BlockInit;
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.google.common.collect.Iterables;
@@ -1928,6 +1929,24 @@ public abstract class Entity extends net.minecraftforge.common.capabilities.Capa
          if (!this.world.isRemote && !pos.equals(this.lastPortalPos)) {
             this.lastPortalPos = new BlockPos(pos);
             NetherPortalBlock netherportalblock = (NetherPortalBlock)Blocks.NETHER_PORTAL;
+            BlockPattern.PatternHelper blockpattern$patternhelper = NetherPortalBlock.createPatternHelper(this.world, this.lastPortalPos);
+            double d0 = blockpattern$patternhelper.getForwards().getAxis() == Direction.Axis.X ? (double)blockpattern$patternhelper.getFrontTopLeft().getZ() : (double)blockpattern$patternhelper.getFrontTopLeft().getX();
+            double d1 = MathHelper.clamp(Math.abs(MathHelper.func_233020_c_((blockpattern$patternhelper.getForwards().getAxis() == Direction.Axis.X ? this.getPosZ() : this.getPosX()) - (double)(blockpattern$patternhelper.getForwards().rotateY().getAxisDirection() == Direction.AxisDirection.NEGATIVE ? 1 : 0), d0, d0 - (double)blockpattern$patternhelper.getWidth())), 0.0D, 1.0D);
+            double d2 = MathHelper.clamp(MathHelper.func_233020_c_(this.getPosY() - 1.0D, (double)blockpattern$patternhelper.getFrontTopLeft().getY(), (double)(blockpattern$patternhelper.getFrontTopLeft().getY() - blockpattern$patternhelper.getHeight())), 0.0D, 1.0D);
+            this.lastPortalVec = new Vector3d(d1, d2, 0.0D);
+            this.teleportDirection = blockpattern$patternhelper.getForwards();
+         }
+
+         this.inPortal = true;
+      }
+   }
+   public void setNetherPortal(BlockPos pos) {
+      if (this.timeUntilPortal > 0) {
+         this.timeUntilPortal = this.getPortalCooldown();
+      } else {
+         if (!this.world.isRemote && !pos.equals(this.lastPortalPos)) {
+            this.lastPortalPos = new BlockPos(pos);
+            NetherPortal netherportalblock = (NetherPortal)BlockItemInit.NETHER_PORTAL.get();
             BlockPattern.PatternHelper blockpattern$patternhelper = NetherPortalBlock.createPatternHelper(this.world, this.lastPortalPos);
             double d0 = blockpattern$patternhelper.getForwards().getAxis() == Direction.Axis.X ? (double)blockpattern$patternhelper.getFrontTopLeft().getZ() : (double)blockpattern$patternhelper.getFrontTopLeft().getX();
             double d1 = MathHelper.clamp(Math.abs(MathHelper.func_233020_c_((blockpattern$patternhelper.getForwards().getAxis() == Direction.Axis.X ? this.getPosZ() : this.getPosX()) - (double)(blockpattern$patternhelper.getForwards().rotateY().getAxisDirection() == Direction.AxisDirection.NEGATIVE ? 1 : 0), d0, d0 - (double)blockpattern$patternhelper.getWidth())), 0.0D, 1.0D);

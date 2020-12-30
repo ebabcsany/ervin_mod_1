@@ -1,0 +1,204 @@
+---- Minecraft Crash Report ----
+// Hi. I'm Minecraft, and I'm a crashaholic.
+
+Time: 2020.12.25. 18:17
+Description: Feature placement
+
+java.lang.IllegalStateException: Tag minecraft:logs1 used before it was bound
+	at net.minecraft.tags.TagRegistry$NamedTag.func_232944_c_(TagRegistry.java:77) ~[?:?] {re:classloading}
+	at net.minecraft.tags.TagRegistry$NamedTag.contains(TagRegistry.java:88) ~[?:?] {re:classloading}
+	at com.babcsany.minecraft.ervin_mod_1.block.FirgLeaves.getDistance(FirgLeaves.java:97) ~[?:?] {re:classloading}
+	at com.babcsany.minecraft.ervin_mod_1.block.FirgLeaves.updatePostPlacement(FirgLeaves.java:73) ~[?:?] {re:classloading}
+	at net.minecraft.block.AbstractBlock$AbstractBlockState.updatePostPlacement(AbstractBlock.java:742) ~[?:?] {re:classloading}
+	at net.minecraft.world.gen.feature.template.Template.lambda$func_222857_a$4(Template.java:358) ~[?:?] {re:classloading}
+	at net.minecraft.world.gen.feature.template.Template$$Lambda$6051/1113954755.consume(Unknown Source) ~[?:?] {}
+	at net.minecraft.util.math.shapes.VoxelShapePart.forEachFaceOnAxis(VoxelShapePart.java:253) ~[?:?] {re:classloading}
+	at net.minecraft.util.math.shapes.VoxelShapePart.forEachFace(VoxelShapePart.java:232) ~[?:?] {re:classloading}
+	at net.minecraft.world.gen.feature.template.Template.func_222857_a(Template.java:353) ~[?:?] {re:classloading}
+	at net.minecraft.world.gen.feature.TreeFeature.func_230362_a_(TreeFeature.java:177) ~[?:?] {re:classloading}
+	at net.minecraft.world.gen.feature.TreeFeature.func_230362_a_(TreeFeature.java:34) ~[?:?] {re:classloading}
+	at net.minecraft.world.gen.feature.ConfiguredFeature.func_236265_a_(ConfiguredFeature.java:38) ~[?:?] {re:classloading}
+	at net.minecraft.world.gen.feature.ConfiguredRandomFeatureList.func_236431_a_(ConfiguredRandomFeatureList.java:28) ~[?:?] {re:classloading}
+	at net.minecraft.world.gen.feature.MultipleWithChanceRandomFeature.func_230362_a_(MultipleWithChanceRandomFeature.java:18) ~[?:?] {re:classloading}
+	at net.minecraft.world.gen.feature.MultipleWithChanceRandomFeature.func_230362_a_(MultipleWithChanceRandomFeature.java:10) ~[?:?] {re:classloading}
+	at net.minecraft.world.gen.feature.ConfiguredFeature.func_236265_a_(ConfiguredFeature.java:38) ~[?:?] {re:classloading}
+	at net.minecraft.world.gen.placement.Placement.lambda$func_236963_a_$2(Placement.java:81) ~[?:?] {re:classloading}
+	at net.minecraft.world.gen.placement.Placement$$Lambda$6033/1982512774.accept(Unknown Source) ~[?:?] {}
+	at java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184) ~[?:1.8.0_51] {}
+	at java.util.stream.IntPipeline$4$1.accept(IntPipeline.java:250) ~[?:1.8.0_51] {}
+	at java.util.stream.Streams$RangeIntSpliterator.forEachRemaining(Streams.java:110) ~[?:1.8.0_51] {}
+	at java.util.Spliterator$OfInt.forEachRemaining(Spliterator.java:693) ~[?:1.8.0_51] {}
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:512) ~[?:1.8.0_51] {}
+	at java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:502) ~[?:1.8.0_51] {}
+	at java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:151) ~[?:1.8.0_51] {}
+	at java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:174) ~[?:1.8.0_51] {}
+	at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234) ~[?:1.8.0_51] {}
+	at java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:418) ~[?:1.8.0_51] {}
+	at net.minecraft.world.gen.placement.Placement.func_236963_a_(Placement.java:80) ~[?:?] {re:classloading}
+	at net.minecraft.world.gen.placement.ConfiguredPlacement.func_236953_a_(ConfiguredPlacement.java:27) ~[?:?] {re:classloading}
+	at net.minecraft.world.gen.feature.DecoratedFeature.func_230362_a_(DecoratedFeature.java:17) ~[?:?] {re:classloading}
+	at net.minecraft.world.gen.feature.DecoratedFeature.func_230362_a_(DecoratedFeature.java:11) ~[?:?] {re:classloading}
+	at net.minecraft.world.gen.feature.ConfiguredFeature.func_236265_a_(ConfiguredFeature.java:38) ~[?:?] {re:classloading}
+	at net.minecraft.world.biome.Biome.func_235061_a_(Biome.java:409) ~[?:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.world.gen.ChunkGenerator.func_230351_a_(ChunkGenerator.java:186) ~[?:?] {re:classloading}
+	at net.minecraft.world.chunk.ChunkStatus.lambda$static$9(ChunkStatus.java:77) ~[?:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.world.chunk.ChunkStatus$$Lambda$2189/1601525739.doWork(Unknown Source) ~[?:?] {}
+	at net.minecraft.world.chunk.ChunkStatus.doGenerationWork(ChunkStatus.java:198) ~[?:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.world.server.ChunkManager.lambda$null$18(ChunkManager.java:547) ~[?:?] {re:classloading}
+	at net.minecraft.world.server.ChunkManager$$Lambda$6006/1487615928.apply(Unknown Source) ~[?:?] {}
+	at com.mojang.datafixers.util.Either$Left.map(Either.java:38) ~[datafixerupper-3.0.25.jar:?] {re:classloading,re:classloading}
+	at net.minecraft.world.server.ChunkManager.lambda$chunkGenerate$20(ChunkManager.java:545) ~[?:?] {re:classloading}
+	at net.minecraft.world.server.ChunkManager$$Lambda$5991/752453237.apply(Unknown Source) ~[?:?] {}
+	at java.util.concurrent.CompletableFuture.uniCompose(CompletableFuture.java:952) ~[?:1.8.0_51] {}
+	at java.util.concurrent.CompletableFuture$UniCompose.tryFire(CompletableFuture.java:926) ~[?:1.8.0_51] {}
+	at java.util.concurrent.CompletableFuture$Completion.run(CompletableFuture.java:442) ~[?:1.8.0_51] {}
+	at net.minecraft.world.chunk.ChunkTaskPriorityQueueSorter.lambda$null$1(ChunkTaskPriorityQueueSorter.java:44) ~[?:?] {re:classloading}
+	at net.minecraft.world.chunk.ChunkTaskPriorityQueueSorter$$Lambda$6004/555967741.run(Unknown Source) ~[?:?] {}
+	at net.minecraft.util.concurrent.DelegatedTaskExecutor.driveOne(DelegatedTaskExecutor.java:95) ~[?:?] {re:classloading}
+	at net.minecraft.util.concurrent.DelegatedTaskExecutor.driveWhile(DelegatedTaskExecutor.java:139) ~[?:?] {re:classloading}
+	at net.minecraft.util.concurrent.DelegatedTaskExecutor.run(DelegatedTaskExecutor.java:107) ~[?:?] {re:classloading}
+	at java.util.concurrent.ForkJoinTask$RunnableExecuteAction.exec(ForkJoinTask.java:1402) ~[?:1.8.0_51] {}
+	at java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:289) ~[?:1.8.0_51] {}
+	at java.util.concurrent.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1056) ~[?:1.8.0_51] {}
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1689) ~[?:1.8.0_51] {}
+	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:157) ~[?:1.8.0_51] {}
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Thread: Server thread
+Stacktrace:
+	at net.minecraft.tags.TagRegistry$NamedTag.func_232944_c_(TagRegistry.java:77)
+	at net.minecraft.tags.TagRegistry$NamedTag.contains(TagRegistry.java:88)
+	at com.babcsany.minecraft.ervin_mod_1.block.FirgLeaves.getDistance(FirgLeaves.java:97)
+	at com.babcsany.minecraft.ervin_mod_1.block.FirgLeaves.updatePostPlacement(FirgLeaves.java:73)
+	at net.minecraft.block.AbstractBlock$AbstractBlockState.updatePostPlacement(AbstractBlock.java:742)
+	at net.minecraft.world.gen.feature.template.Template.lambda$func_222857_a$4(Template.java:358)
+	at net.minecraft.world.gen.feature.template.Template$$Lambda$6051/1113954755.consume(Unknown Source)
+	at net.minecraft.util.math.shapes.VoxelShapePart.forEachFaceOnAxis(VoxelShapePart.java:253)
+	at net.minecraft.util.math.shapes.VoxelShapePart.forEachFace(VoxelShapePart.java:232)
+	at net.minecraft.world.gen.feature.template.Template.func_222857_a(Template.java:353)
+	at net.minecraft.world.gen.feature.TreeFeature.func_230362_a_(TreeFeature.java:177)
+	at net.minecraft.world.gen.feature.TreeFeature.func_230362_a_(TreeFeature.java:34)
+	at net.minecraft.world.gen.feature.ConfiguredFeature.func_236265_a_(ConfiguredFeature.java:38)
+	at net.minecraft.world.gen.feature.ConfiguredRandomFeatureList.func_236431_a_(ConfiguredRandomFeatureList.java:28)
+	at net.minecraft.world.gen.feature.MultipleWithChanceRandomFeature.func_230362_a_(MultipleWithChanceRandomFeature.java:18)
+	at net.minecraft.world.gen.feature.MultipleWithChanceRandomFeature.func_230362_a_(MultipleWithChanceRandomFeature.java:10)
+	at net.minecraft.world.gen.feature.ConfiguredFeature.func_236265_a_(ConfiguredFeature.java:38)
+	at net.minecraft.world.gen.placement.Placement.lambda$func_236963_a_$2(Placement.java:81)
+	at net.minecraft.world.gen.placement.Placement$$Lambda$6033/1982512774.accept(Unknown Source)
+	at java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
+	at java.util.stream.IntPipeline$4$1.accept(IntPipeline.java:250)
+	at java.util.stream.Streams$RangeIntSpliterator.forEachRemaining(Streams.java:110)
+	at java.util.Spliterator$OfInt.forEachRemaining(Spliterator.java:693)
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:512)
+	at java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:502)
+	at java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:151)
+	at java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:174)
+	at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:418)
+	at net.minecraft.world.gen.placement.Placement.func_236963_a_(Placement.java:80)
+	at net.minecraft.world.gen.placement.ConfiguredPlacement.func_236953_a_(ConfiguredPlacement.java:27)
+	at net.minecraft.world.gen.feature.DecoratedFeature.func_230362_a_(DecoratedFeature.java:17)
+	at net.minecraft.world.gen.feature.DecoratedFeature.func_230362_a_(DecoratedFeature.java:11)
+	at net.minecraft.world.gen.feature.ConfiguredFeature.func_236265_a_(ConfiguredFeature.java:38)
+
+-- Feature --
+Details:
+	Id: minecraft:decorated
+	Config: < DecoratedFeatureConfig [minecraft:random_selector | minecraft:count_extra_heightmap] >
+	Description: < DecoratedFeature [minecraft:decorated] >
+Stacktrace:
+	at net.minecraft.world.biome.Biome.func_235061_a_(Biome.java:409)
+
+-- Generation --
+Details:
+	CenterX: 0
+	CenterZ: 0
+	Step: VEGETAL_DECORATION
+	Seed: 6885600548750087675
+	Biome: ervin_mod_1:example_biome
+Stacktrace:
+	at net.minecraft.world.gen.ChunkGenerator.func_230351_a_(ChunkGenerator.java:186)
+	at net.minecraft.world.chunk.ChunkStatus.lambda$static$9(ChunkStatus.java:77)
+	at net.minecraft.world.chunk.ChunkStatus$$Lambda$2189/1601525739.doWork(Unknown Source)
+	at net.minecraft.world.chunk.ChunkStatus.doGenerationWork(ChunkStatus.java:198)
+
+-- Chunk to be generated --
+Details:
+	Location: 0,0
+	Position hash: 0
+	Generator: net.minecraft.world.gen.NoiseChunkGenerator@3a4c46a1
+Stacktrace:
+	at net.minecraft.world.server.ChunkManager.lambda$null$18(ChunkManager.java:547)
+	at net.minecraft.world.server.ChunkManager$$Lambda$6006/1487615928.apply(Unknown Source)
+	at com.mojang.datafixers.util.Either$Left.map(Either.java:38)
+	at net.minecraft.world.server.ChunkManager.lambda$chunkGenerate$20(ChunkManager.java:545)
+	at net.minecraft.world.server.ChunkManager$$Lambda$5991/752453237.apply(Unknown Source)
+	at java.util.concurrent.CompletableFuture.uniCompose(CompletableFuture.java:952)
+	at java.util.concurrent.CompletableFuture$UniCompose.tryFire(CompletableFuture.java:926)
+	at java.util.concurrent.CompletableFuture$Completion.run(CompletableFuture.java:442)
+	at net.minecraft.world.chunk.ChunkTaskPriorityQueueSorter.lambda$null$1(ChunkTaskPriorityQueueSorter.java:44)
+	at net.minecraft.world.chunk.ChunkTaskPriorityQueueSorter$$Lambda$6004/555967741.run(Unknown Source)
+	at net.minecraft.util.concurrent.DelegatedTaskExecutor.driveOne(DelegatedTaskExecutor.java:95)
+
+-- Affected level --
+Details:
+	All players: 0 total; []
+	Chunk stats: ServerChunkCache: 529
+	Level dimension: minecraft:overworld
+	Level spawn location: World: (8,64,8), Chunk: (at 8,4,8 in 0,0; contains blocks 0,0,0 to 15,255,15), Region: (0,0; contains chunks 0,0 to 31,31, blocks 0,0,0 to 511,255,511)
+	Level time: 0 game time, 0 day time
+	Level name: New World
+	Level game mode: Game mode: survival (ID 0). Hardcore: false. Cheats: false
+	Level weather: Rain time: 0 (now: false), thunder time: 0 (now: false)
+	Known server brands: forge
+	Level was modded: true
+	Level storage version: 0x04ABD - Anvil
+Stacktrace:
+	at net.minecraft.server.MinecraftServer.func_240787_a_(MinecraftServer.java:361)
+	at net.minecraft.server.MinecraftServer.func_240800_l__(MinecraftServer.java:313)
+	at net.minecraft.server.integrated.IntegratedServer.init(IntegratedServer.java:66)
+	at net.minecraft.server.MinecraftServer.func_240802_v_(MinecraftServer.java:644)
+	at net.minecraft.server.MinecraftServer.lambda$func_240784_a_$0(MinecraftServer.java:231)
+	at net.minecraft.server.MinecraftServer$$Lambda$5882/1438582949.run(Unknown Source)
+	at java.lang.Thread.run(Thread.java:745)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.16.1
+	Minecraft Version ID: 1.16.1
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 1.8.0_51, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 269534648 bytes (257 MB) / 1225785344 bytes (1169 MB) up to 1883242496 bytes (1796 MB)
+	CPUs: 4
+	JVM Flags: 1 total; -XX:HeapDumpPath=MojangTricksIntelDriversForPerformance_javaw.exe_minecraft.exe.heapdump
+	ModLauncher: 5.1.2+70+master.2845bb9
+	ModLauncher launch target: fmluserdevclient
+	ModLauncher naming: mcp
+	ModLauncher services: 
+		/mixin-0.8.jar mixin PLUGINSERVICE 
+		/eventbus-2.2.0-service.jar eventbus PLUGINSERVICE 
+		/forge-1.16.1-32.0.75_mapped_snapshot_20200723-1.16.1-launcher.jar object_holder_definalize PLUGINSERVICE 
+		/forge-1.16.1-32.0.75_mapped_snapshot_20200723-1.16.1-launcher.jar runtime_enum_extender PLUGINSERVICE 
+		/accesstransformers-2.1.3-shadowed.jar accesstransformer PLUGINSERVICE 
+		/forge-1.16.1-32.0.75_mapped_snapshot_20200723-1.16.1-launcher.jar capability_inject_definalize PLUGINSERVICE 
+		/forge-1.16.1-32.0.75_mapped_snapshot_20200723-1.16.1-launcher.jar runtimedistcleaner PLUGINSERVICE 
+		/mixin-0.8.jar mixin TRANSFORMATIONSERVICE 
+		/forge-1.16.1-32.0.75_mapped_snapshot_20200723-1.16.1-launcher.jar fml TRANSFORMATIONSERVICE 
+	FML: 32.0
+	Forge: net.minecraftforge:32.0.75
+	FML Language Providers: 
+		javafml@32.0
+		minecraft@1
+	Mod List: 
+		client-extra.jar Minecraft {minecraft@1.16.1 DONE}
+		main Ervin Mod 1 {ervin_mod_1@NONE DONE}
+		forge-1.16.1-32.0.75_mapped_snapshot_20200723-1.16.1-recomp.jar Forge {forge@32.0.75 DONE}
+	Player Count: 0 / 8; []
+	Data Packs: vanilla, mod:ervin_mod_1 (incompatible), mod:forge
+	Type: Integrated Server (map_client.txt)
+	Is Modded: Definitely; Client brand changed to 'forge'

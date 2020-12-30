@@ -202,7 +202,7 @@
               }
             }
           ],
-          "name": "ervin_mod_1:zur_entity_spawn_egg"
+          "name": "ervin_mod_1:spawn_eggs/zur_entity_spawn_egg"
         },
         {
           "type": "minecraft:item",

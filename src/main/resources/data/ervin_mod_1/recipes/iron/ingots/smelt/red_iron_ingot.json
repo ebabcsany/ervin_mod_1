@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "tag": "ervin_mod_1:ingredients/iron_ores/red_iron_ore"
+  },
+  "result": "ervin_mod_1:iron/ingots/red_iron_ingot",
+  "experience": 0.7,
+  "cookingtime": 200
+}

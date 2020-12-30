@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "ervin_mod_1:stone/stones/black_stone"
+  },
+  "result": "ervin_mod_1:stone/slabs/black_stone_slab",
+  "count": 2
+}

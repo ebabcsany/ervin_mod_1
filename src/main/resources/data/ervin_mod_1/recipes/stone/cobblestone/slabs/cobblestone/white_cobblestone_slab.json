@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "ervin_mod_1:stone/cobblestones/white_cobblestone"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:stone/cobblestone/slabs/white_cobblestone_slab",
+    "count": 6
+  }
+}

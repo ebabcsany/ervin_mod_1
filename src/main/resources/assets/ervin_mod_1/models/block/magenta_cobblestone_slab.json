@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "bottom": "ervin_mod_1:block/magenta_cobblestone",
-    "top": "ervin_mod_1:block/magenta_cobblestone",
-    "side": "ervin_mod_1:block/magenta_cobblestone"
-  }
-}

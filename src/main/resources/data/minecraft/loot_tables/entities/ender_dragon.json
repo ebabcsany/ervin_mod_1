@@ -32,7 +32,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:ender_dragon_spawn_egg"
+          "name": "ervin_mod_1:spawn_eggs/ender_dragon_spawn_egg"
         }
       ],
       "conditions": [

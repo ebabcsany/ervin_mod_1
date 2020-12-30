@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "ervin_mod_1:block/stone/cobblestone/slabs/cyan_cobblestone_slab"
+    },
+    "type=double": {
+      "model": "ervin_mod_1:block/stone/cobblestones/cyan_cobblestone"
+    },
+    "type=top": {
+      "model": "ervin_mod_1:block/stone/cobblestone/slab_top/cyan_cobblestone_slab_top"
+    }
+  }
+}

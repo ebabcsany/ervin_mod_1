@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "ervin_mod_1:block/stone/smooth_stone/slabs/cyan_smooth_stone_slab"
+    },
+    "type=double": {
+      "model": "ervin_mod_1:block/stone/smooth_stones/cyan_smooth_stone"
+    },
+    "type=top": {
+      "model": "ervin_mod_1:block/stone/smooth_stone/slab_top/cyan_smooth_stone_slab_top"
+    }
+  }
+}

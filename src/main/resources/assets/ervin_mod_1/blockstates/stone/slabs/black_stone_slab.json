@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "ervin_mod_1:block/stone/slabs/black_stone_slab"
+    },
+    "type=double": {
+      "model": "ervin_mod_1:block/stone/stones/black_stone"
+    },
+    "type=top": {
+      "model": "ervin_mod_1:block/stone/slab_top/black_stone_slab_top"
+    }
+  }
+}

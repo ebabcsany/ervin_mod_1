@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "ervin_mod_1:ingredients/yellow_smooth_stone_slab"
+    },
+    {
+      "item": "minecraft:yellow_dye"
+    }
+  ],
+  "result": {
+    "item": "ervin_mod_1:stone/smooth_stone/slabs/yellow_smooth_stone_slab",
+    "count": 1
+  }
+}

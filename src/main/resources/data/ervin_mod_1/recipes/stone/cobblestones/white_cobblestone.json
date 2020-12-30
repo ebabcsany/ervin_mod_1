@@ -2,14 +2,14 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "tag": "ervin_mod_1:white_cobblestone_ingredient"
+      "tag": "ervin_mod_1:ingredients/white_cobblestone"
     },
     {
       "item": "minecraft:white_dye"
     }
   ],
   "result": {
-    "item": "ervin_mod_1:white_cobblestone",
+    "item": "ervin_mod_1:stone/cobblestones/white_cobblestone",
     "count": 1
   }
 }

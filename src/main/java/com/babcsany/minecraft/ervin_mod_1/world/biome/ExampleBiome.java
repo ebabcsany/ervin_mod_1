@@ -2,6 +2,7 @@ package com.babcsany.minecraft.ervin_mod_1.world.biome;
 
 import com.babcsany.minecraft.ervin_mod_1.init.ModBiomeFeatures;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.FirgTree;
+import com.babcsany.minecraft.ervin_mod_1.world.feature.JazzTree;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.ModDefaultBiomeFeatures;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
@@ -18,8 +19,8 @@ public class ExampleBiome extends Biome {
 		super(biomeBuilder);
 		this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityType.ZOMBIE, 30, 1, 15));
 		this.addSpawn(EntityClassification.AMBIENT, new SpawnListEntry(EntityType.BAT, 40, 1, 20));
-		this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityType.SKELETON, 20, 1, 10));
-		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.BEE, 10, 1, 5));
+		//this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityType.SKELETON, 20, 1, 10));
+		//this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.BEE, 10, 1, 5));
 		//this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.VILT_ENTITY.get(), 30, 15, 40));
 		//this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.SRACH_ENTITY.get(), 8, 8, 16));
 		DefaultBiomeFeatures.func_235197_c_(this);
@@ -74,9 +75,9 @@ public class ExampleBiome extends Biome {
 		this.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES,
 				Feature.field_236291_c_.withConfiguration(ModDefaultBiomeFeatures.FANCY_TREE_WITH_MORE_BEEHIVES_CONFIG).withPlacement(
 						Placement.CHANCE_TOP_SOLID_HEIGHTMAP.configure(new ChanceConfig(250))));
-		//this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
-		//		Feature.NORMAL_TREE.withConfiguration(JazzTree.JAZZ_TREE_CONFIG).withPlacement(
-		//				Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(7, 0.1f, 1))));
+		/*this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
+				Feature.field_236291_c_.withConfiguration(JazzTree.JAZZ_TREE_CONFIG).withPlacement(
+						Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(7, 0.1f, 1))));*/
 		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
 				Feature.field_236291_c_.withConfiguration(FirgTree.FIRG_TREE_CONFIG).withPlacement(
 						Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(180, 48.0f, 100))));
@@ -91,7 +92,7 @@ public class ExampleBiome extends Biome {
 		ModDefaultBiomeFeatures.addStones(this);
 		ModDefaultBiomeFeatures.addKiomne(this);
 		ModDefaultBiomeFeatures.addFirgTrees(this);
-		this.func_235063_a_(DefaultBiomeFeatures.RUINED_PORTAL_STANDARD);
+		//this.func_235063_a_(DefaultBiomeFeatures.RUINED_PORTAL_STANDARD);
 	}
 	
 	@Override

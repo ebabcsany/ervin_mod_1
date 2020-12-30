@@ -30,7 +30,7 @@ public class CraintBlockCraftingTableScreen extends ContainerScreen<CraintBlockC
 
    protected void init() {
       super.init();
-      this.widthTooNarrow = this.width < 494;
+      this.widthTooNarrow = this.width < 594;
       this.recipeBookGui.init(this.width, this.height, this.minecraft, this.widthTooNarrow, this.container);
       this.guiLeft = this.recipeBookGui.updateScreenPosition(this.widthTooNarrow, this.width, this.xSize);
       this.children.add(this.recipeBookGui);

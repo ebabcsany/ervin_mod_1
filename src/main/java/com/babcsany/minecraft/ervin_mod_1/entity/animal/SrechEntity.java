@@ -26,7 +26,7 @@ public class SrechEntity extends AnimalEntity {
       this.goalSelector.addGoal(0, new SwimGoal(this));
       this.goalSelector.addGoal(1, new PanicGoal(this, 10.0D));
       this.goalSelector.addGoal(2, new BreedGoal(this, 5.0D));
-      this.goalSelector.addGoal(3, new TemptGoal(this, 5.25D, Ingredient.fromItems(BlockItemInit.SURV.get()), false));
+      this.goalSelector.addGoal(3, new TemptGoal(this, 5.25D, Ingredient.fromItems(ItemInit.JURK_BUCKET.get()), false));
       this.goalSelector.addGoal(4, new FollowParentGoal(this, 6.25D));
       this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 5.0D));
       this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 30.0F));
@@ -62,9 +62,9 @@ public class SrechEntity extends AnimalEntity {
 
    public ActionResultType func_230254_b_(PlayerEntity p_230254_1_, Hand p_230254_2_) {
       ItemStack itemstack = p_230254_1_.getHeldItem(p_230254_2_);
-      if (itemstack.getItem() == Items.BUCKET && !this.isChild()) {
+      if (itemstack.getItem() == ItemInit.JURK_BUCKET.get() && !this.isChild()) {
          p_230254_1_.playSound(SoundEvents.ENTITY_COW_MILK, 5.0F, 5.0F);
-         ItemStack itemstack1 = DrinkHelper.func_241445_a_(itemstack, p_230254_1_, ItemInit.JURK_BUCKET.get().getDefaultInstance());
+         ItemStack itemstack1 = DrinkHelper.func_241445_a_(itemstack, p_230254_1_, ItemInit.FIRK.get().getDefaultInstance());
          p_230254_1_.setHeldItem(p_230254_2_, itemstack1);
          return ActionResultType.func_233537_a_(this.world.isRemote);
       } else {

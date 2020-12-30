@@ -600,7 +600,7 @@ public class ItemInit {
             EntityInit.VILT_ENTITY, 0xc02020, 0xc02020, new Item.Properties()
     ));
     public static final RegistryObject<Item> TARG_SEEDS = ITEMS.register("seeds/targ_seeds", () -> new BlockNamedItem(
-            BlockItemInit.TARG_STAGE.get(), (new Item.Properties())
+            BlockInit.TARG_STAGE.get(), (new Item.Properties())
     ));
     public static final RegistryObject<Item> TARG = ITEMS.register("targ", () -> new Item(
             (new Item.Properties())
@@ -966,7 +966,10 @@ public class ItemInit {
     /*public static final RegistryObject<Item> GUBROV_BUCKET = ITEMS.register("gubrov_bucket", () -> new FishBucketItem(
             EntityInit.GUBROV_ENTITY.get(), Fluids.WATER, (new Item.Properties()).maxStackSize(1)
     ));*/
-    public static final RegistryObject<Item> HHIJ_SPAWN_EGG = ITEMS.register("wolf1_spawn_egg", () -> new ModSpawnEggItem(
+    public static final RegistryObject<Item> HHIJ_SPAWN_EGG = ITEMS.register("spawn_eggs/wolf1_spawn_egg", () -> new ModSpawnEggItem(
             EntityInit.HHIJ_ENTITY, 0x4040c0, 0x402080, new Item.Properties()
+    ));
+    public static final RegistryObject<Item> JAZZ_FRUIT = ITEMS.register("jazz_fruit", () -> new Item(
+            (new Item.Properties()).food(FoodInit.JAZZ_FRUIT)
     ));
 }

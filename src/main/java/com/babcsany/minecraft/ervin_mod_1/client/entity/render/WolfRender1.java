@@ -18,9 +18,9 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class WolfRender1 extends MobRenderer<WolfEntity1, WolfModel1<WolfEntity1>> {
-   private static final ResourceLocation WOLF_TEXTURES = new ResourceLocation(Ervin_mod_1.MOD_ID,"textures/entity/wolf/wolf.png");
-   private static final ResourceLocation TAMED_WOLF_TEXTURES = new ResourceLocation(Ervin_mod_1.MOD_ID,"textures/entity/wolf/wolf_tame.png");
-   private static final ResourceLocation ANGRY_WOLF_TEXTURES = new ResourceLocation(Ervin_mod_1.MOD_ID,"textures/entity/wolf/wolf_angry.png");
+   private static final ResourceLocation WOLF_TEXTURES = new ResourceLocation(Ervin_mod_1.MOD_ID,"textures/entity/wolf1/wolf1.png");
+   private static final ResourceLocation TAMED_WOLF_TEXTURES = new ResourceLocation(Ervin_mod_1.MOD_ID,"textures/entity/wolf1/wolf1_tame.png");
+   private static final ResourceLocation ANGRY_WOLF_TEXTURES = new ResourceLocation(Ervin_mod_1.MOD_ID,"textures/entity/wolf1/wolf1_angry.png");
 
    public WolfRender1(EntityRendererManager renderManagerIn) {
       super(renderManagerIn, new WolfModel1<>(), 0.5F);

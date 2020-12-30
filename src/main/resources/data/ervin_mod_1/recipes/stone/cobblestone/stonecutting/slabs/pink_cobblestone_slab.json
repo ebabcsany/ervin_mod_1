@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "ervin_mod_1:stone/cobblestones/pink_cobblestone"
+  },
+  "result": "ervin_mod_1:stone/cobblestone/slabs/pink_cobblestone_slab",
+  "count": 2
+}

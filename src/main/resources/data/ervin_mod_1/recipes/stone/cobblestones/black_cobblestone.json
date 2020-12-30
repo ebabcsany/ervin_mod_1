@@ -2,14 +2,14 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "tag": "ervin_mod_1:black_cobblestone_ingredient"
+      "tag": "ervin_mod_1:ingredients/black_cobblestone"
     },
     {
       "item": "minecraft:black_dye"
     }
   ],
   "result": {
-    "item": "ervin_mod_1:black_cobblestone",
+    "item": "ervin_mod_1:stone/cobblestones/black_cobblestone",
     "count": 1
   }
 }

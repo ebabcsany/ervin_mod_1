@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    "ervin_mod_1:black_stone_slab",
+    "ervin_mod_1:blue_stone_slab",
+    "ervin_mod_1:brown_stone_slab",
+    "minecraft:stone_slab",
+    "ervin_mod_1:cyan_stone_slab",
+    "ervin_mod_1:green_stone_slab",
+    "ervin_mod_1:light_blue_stone_slab",
+    "ervin_mod_1:light_blue1_stone_slab",
+    "ervin_mod_1:light_gray_stone_slab",
+    "ervin_mod_1:lime_stone_slab",
+    "ervin_mod_1:magenta_stone_slab",
+    "ervin_mod_1:pink_stone_slab",
+    "ervin_mod_1:purple_stone_slab",
+    "ervin_mod_1:red_stone_slab",
+    "ervin_mod_1:white_stone_slab",
+    "ervin_mod_1:yellow_stone_slab"
+  ]
+}

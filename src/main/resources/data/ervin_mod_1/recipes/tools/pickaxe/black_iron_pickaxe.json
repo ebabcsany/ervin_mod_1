@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    " S ",
+    " S "
+  ],
+  "key": {
+    "#": {
+      "item": "ervin_mod_1:iron/ingots/black_iron_ingot"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:iron/iron_pickaxe/black_iron_pickaxe",
+    "count": 1
+  }
+}

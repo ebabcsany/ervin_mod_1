@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "ervin_mod_1:block/stone/smooth_stone/slabs/purple_smooth_stone_slab"
+    },
+    "type=double": {
+      "model": "ervin_mod_1:block/stone/smooth_stones/purple_smooth_stone"
+    },
+    "type=top": {
+      "model": "ervin_mod_1:block/stone/smooth_stone/slab_top/purple_smooth_stone_slab_top"
+    }
+  }
+}

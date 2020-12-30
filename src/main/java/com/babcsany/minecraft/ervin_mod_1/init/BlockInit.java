@@ -2,6 +2,7 @@ package com.babcsany.minecraft.ervin_mod_1.init;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.block.ExamplePortalBlock;
+import com.babcsany.minecraft.ervin_mod_1.block.TargCropsBlock;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -21,5 +22,12 @@ public class BlockInit {
                     .hardnessAndResistance(-1.0F)
                     .sound(SoundType.GLASS)
                     .setLightLevel(LightValue -> 11)
+    ));
+    public static final RegistryObject<Block> TARG_STAGE = BLOCKS.register("crops/targ_stage", () -> new TargCropsBlock(
+            Block.Properties.create(Material.PLANTS)
+                    .zeroHardnessAndResistance()
+                    .doesNotBlockMovement()
+                    .tickRandomly()
+                    .sound(SoundType.CROP)
     ));
 }

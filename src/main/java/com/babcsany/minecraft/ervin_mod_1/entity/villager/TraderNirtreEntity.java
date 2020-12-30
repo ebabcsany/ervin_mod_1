@@ -2,6 +2,7 @@ package com.babcsany.minecraft.ervin_mod_1.entity.villager;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.LookAtCustomerGoal1;
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.WanderingTraderTradeWithPlayerGoal;
+import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.ItemInit;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
@@ -173,6 +174,10 @@ public class TraderNirtreEntity extends AbstractNirtreEntity {
          this.handleDespawn();
       }
 
+   }
+
+   public TraderNirtreEntity createChild(AbstractNirtreEntity ageable) {
+      return EntityInit.TRADER_NIRTRE_ENTITY.get().create(this.world);
    }
 
    private void handleDespawn() {

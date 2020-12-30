@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "ervin_mod_1:ingredients/red_smooth_stone"
+    },
+    {
+      "item": "minecraft:red_dye"
+    }
+  ],
+  "result": {
+    "item": "ervin_mod_1:stone/smooth_stones/red_smooth_stone",
+    "count": 1
+  }
+}

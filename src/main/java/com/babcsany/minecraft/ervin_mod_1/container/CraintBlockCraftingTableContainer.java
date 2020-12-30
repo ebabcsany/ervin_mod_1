@@ -212,7 +212,7 @@ public class CraintBlockCraftingTableContainer extends RecipeBookContainer<Craft
 
         @OnlyIn(Dist.CLIENT)
         public int getSize() {
-            return 20;
+            return 10;
         }
 
         @Override

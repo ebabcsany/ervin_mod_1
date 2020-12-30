@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "ervin_mod_1:stone/cobblestones/light_blue1_cobblestone"
+  },
+  "result": "ervin_mod_1:stone/cobblestone/stairs/light_blue1_cobblestone_stairs",
+  "count": 1
+}

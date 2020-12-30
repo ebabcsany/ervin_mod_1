@@ -2,14 +2,14 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "tag": "ervin_mod_1:red_cobblestone_ingredient"
+      "tag": "ervin_mod_1:ingredients/red_cobblestone"
     },
     {
       "item": "minecraft:red_dye"
     }
   ],
   "result": {
-    "item": "ervin_mod_1:red_cobblestone",
+    "item": "ervin_mod_1:stone/cobblestones/red_cobblestone",
     "count": 1
   }
 }

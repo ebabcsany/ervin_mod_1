@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "ervin_mod_1:block/stone/cobblestone/slabs/blue_cobblestone_slab"
+    },
+    "type=double": {
+      "model": "ervin_mod_1:block/stone/cobblestones/blue_cobblestone"
+    },
+    "type=top": {
+      "model": "ervin_mod_1:block/stone/cobblestone/slab_top/blue_cobblestone_slab_top"
+    }
+  }
+}

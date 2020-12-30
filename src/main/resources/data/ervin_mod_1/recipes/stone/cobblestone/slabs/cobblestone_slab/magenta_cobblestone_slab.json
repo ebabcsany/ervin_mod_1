@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "ervin_mod_1:ingredients/magenta_cobblestone_slab"
+    },
+    {
+      "item": "minecraft:magenta_dye"
+    }
+  ],
+  "result": {
+    "item": "ervin_mod_1:stone/cobblestone/slabs/magenta_cobblestone_slab",
+    "count": 1
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "ervin_mod_1:stone/stones/orange_stone"
+  },
+  "result": "ervin_mod_1:stone/stairs/orange_stone_stairs",
+  "count": 1
+}

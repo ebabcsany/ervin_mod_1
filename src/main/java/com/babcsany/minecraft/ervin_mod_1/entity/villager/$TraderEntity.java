@@ -2,6 +2,8 @@ package com.babcsany.minecraft.ervin_mod_1.entity.villager;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.$TraderLookAtCustomerGoal;
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.$TraderTradeWithPlayerGoal;
+import com.babcsany.minecraft.ervin_mod_1.entity.animal.SrachEntity;
+import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.ItemInit;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
@@ -173,6 +175,10 @@ public class $TraderEntity extends Abstract$TraderEntity {
          this.handleDespawn();
       }
 
+   }
+
+   public $TraderEntity createChild(Abstract$TraderEntity ageable) {
+      return EntityInit.$_TRADER_ENTITY.get().create(this.world);
    }
 
    private void handleDespawn() {

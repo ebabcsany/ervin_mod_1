@@ -124,7 +124,7 @@ public class EntityInit {
                             .build(new ResourceLocation("zombie/zombie").toString()
                             ));
     public static final RegistryObject<EntityType<SrechEntity>> SRECH_ENTITY = ENTITY_TYPES
-            .register("srech_entity",
+            .register("srerch_entity",
                     () -> EntityType.Builder.<SrechEntity>create(SrechEntity::new, EntityClassification.CREATURE)
                             .size(0.9f, 1.4f).func_233606_a_(10)
                             .build(new ResourceLocation(Ervin_mod_1.MOD_ID, "srach/srech").toString()

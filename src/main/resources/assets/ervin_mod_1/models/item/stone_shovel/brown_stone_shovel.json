@@ -1,6 +1,0 @@
-{
-  "parent": "item/handheld",
-  "textures": {
-    "layer0": "ervin_mod_1:item/stone_shovel/brown_stone_shovel"
-  }
-}

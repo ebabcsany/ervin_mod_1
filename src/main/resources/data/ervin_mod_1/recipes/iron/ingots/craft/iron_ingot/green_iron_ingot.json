@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "ervin_mod_1:ingredients/green_iron_ingot"
+    },
+    {
+      "item": "minecraft:green_dye"
+    }
+  ],
+  "result": {
+    "item": "ervin_mod_1:iron/ingots/green_iron_ingot",
+    "count": 1
+  }
+}

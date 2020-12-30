@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "ervin_mod_1:stone/cobblestone/slabs/light_gray_cobblestone_slab"
+  },
+  "result": "ervin_mod_1:stone/slabs/light_gray_stone_slab",
+  "experience": 0.05,
+  "cookingtime": 200
+}

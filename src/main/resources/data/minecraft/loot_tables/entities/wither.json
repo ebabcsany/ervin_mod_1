@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:wither_spawn_egg"
+          "name": "ervin_mod_1:spawn_eggs/wither_spawn_egg"
         }
       ],
       "conditions": [

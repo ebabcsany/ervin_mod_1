@@ -2,14 +2,14 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "tag": "ervin_mod_1:pink_cobblestone_ingredient"
+      "tag": "ervin_mod_1:ingredients/pink_cobblestone"
     },
     {
       "item": "minecraft:pink_dye"
     }
   ],
   "result": {
-    "item": "ervin_mod_1:pink_cobblestone",
+    "item": "ervin_mod_1:stone/cobblestones/pink_cobblestone",
     "count": 1
   }
 }

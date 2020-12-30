@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "ervin_mod_1:stone/smooth_stones/purple_smooth_stone"
+  },
+  "result": "ervin_mod_1:stone/smooth_stone/slabs/purple_smooth_stone_slab",
+  "count": 2
+}

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "ervin_mod_1:stone/smooth_stones/light_gray_smooth_stone"
+  },
+  "result": "ervin_mod_1:stone/smooth_stone/stairs/light_gray_smooth_stone_stairs",
+  "count": 1
+}
