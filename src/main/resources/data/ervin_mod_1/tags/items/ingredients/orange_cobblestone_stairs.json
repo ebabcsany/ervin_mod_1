@@ -1,21 +1,21 @@
 {
   "replace": false,
   "values": [
-    "ervin_mod_1:black_cobblestone_stairs",
-    "ervin_mod_1:blue_cobblestone_stairs",
-    "ervin_mod_1:brown_cobblestone_stairs",
+    "ervin_mod_1:stone/cobblestone/stairs/black_cobblestone_stairs",
+    "ervin_mod_1:stone/cobblestone/stairs/blue_cobblestone_stairs",
+    "ervin_mod_1:stone/cobblestone/stairs/brown_cobblestone_stairs",
     "minecraft:cobblestone_stairs",
-    "ervin_mod_1:cyan_cobblestone_stairs",
-    "ervin_mod_1:green_cobblestone_stairs",
-    "ervin_mod_1:light_blue_cobblestone_stairs",
-    "ervin_mod_1:light_blue1_cobblestone_stairs",
-    "ervin_mod_1:light_gray_cobblestone_stairs",
-    "ervin_mod_1:lime_cobblestone_stairs",
-    "ervin_mod_1:magenta_cobblestone_stairs",
-    "ervin_mod_1:pink_cobblestone_stairs",
-    "ervin_mod_1:purple_cobblestone_stairs",
-    "ervin_mod_1:red_cobblestone_stairs",
-    "ervin_mod_1:white_cobblestone_stairs",
-    "ervin_mod_1:yellow_cobblestone_stairs"
+    "ervin_mod_1:stone/cobblestone/stairs/cyan_cobblestone_stairs",
+    "ervin_mod_1:stone/cobblestone/stairs/green_cobblestone_stairs",
+    "ervin_mod_1:stone/cobblestone/stairs/light_blue_cobblestone_stairs",
+    "ervin_mod_1:stone/cobblestone/stairs/light_blue1_cobblestone_stairs",
+    "ervin_mod_1:stone/cobblestone/stairs/light_gray_cobblestone_stairs",
+    "ervin_mod_1:stone/cobblestone/stairs/lime_cobblestone_stairs",
+    "ervin_mod_1:stone/cobblestone/stairs/magenta_cobblestone_stairs",
+    "ervin_mod_1:stone/cobblestone/stairs/pink_cobblestone_stairs",
+    "ervin_mod_1:stone/cobblestone/stairs/purple_cobblestone_stairs",
+    "ervin_mod_1:stone/cobblestone/stairs/red_cobblestone_stairs",
+    "ervin_mod_1:stone/cobblestone/stairs/white_cobblestone_stairs",
+    "ervin_mod_1:stone/cobblestone/stairs/yellow_cobblestone_stairs"
   ]
 }

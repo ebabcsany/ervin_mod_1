@@ -1,21 +1,21 @@
 {
   "replace": false,
   "values": [
-    "ervin_mod_1:stones/black_stone",
-    "ervin_mod_1:stones/blue_stone",
-    "ervin_mod_1:stones/brown_stone",
+    "ervin_mod_1:stone/stones/black_stone",
+    "ervin_mod_1:stone/stones/blue_stone",
+    "ervin_mod_1:stone/stones/brown_stone",
     "minecraft:stone",
-    "ervin_mod_1:stones/cyan_stone",
-    "ervin_mod_1:stones/green_stone",
-    "ervin_mod_1:stones/light_blue_stone",
-    "ervin_mod_1:stones/light_blue1_stone",
-    "ervin_mod_1:stones/light_gray_stone",
-    "ervin_mod_1:stones/lime_stone",
-    "ervin_mod_1:stones/magenta_stone",
-    "ervin_mod_1:stones/pink_stone",
-    "ervin_mod_1:stones/purple_stone",
-    "ervin_mod_1:stones/red_stone",
-    "ervin_mod_1:stones/white_stone",
-    "ervin_mod_1:stones/yellow_stone"
+    "ervin_mod_1:stone/stones/cyan_stone",
+    "ervin_mod_1:stone/stones/green_stone",
+    "ervin_mod_1:stone/stones/light_blue_stone",
+    "ervin_mod_1:stone/stones/light_blue1_stone",
+    "ervin_mod_1:stone/stones/light_gray_stone",
+    "ervin_mod_1:stone/stones/lime_stone",
+    "ervin_mod_1:stone/stones/magenta_stone",
+    "ervin_mod_1:stone/stones/pink_stone",
+    "ervin_mod_1:stone/stones/purple_stone",
+    "ervin_mod_1:stone/stones/red_stone",
+    "ervin_mod_1:stone/stones/white_stone",
+    "ervin_mod_1:stone/stones/yellow_stone"
   ]
 }

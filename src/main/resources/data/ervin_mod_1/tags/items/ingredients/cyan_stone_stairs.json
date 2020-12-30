@@ -1,20 +1,20 @@
 {
   "replace": false,
   "values": [
-    "ervin_mod_1:black_stone_stairs",
-    "ervin_mod_1:blue_stone_stairs",
-    "ervin_mod_1:brown_stone_stairs",
+    "ervin_mod_1:stone/stairs/black_stone_stairs",
+    "ervin_mod_1:stone/stairs/blue_stone_stairs",
+    "ervin_mod_1:stone/stairs/brown_stone_stairs",
     "minecraft:stone_stairs",
-    "ervin_mod_1:green_stone_stairs",
-    "ervin_mod_1:light_blue_stone_stairs",
-    "ervin_mod_1:light_gray_stone_stairs",
-    "ervin_mod_1:lime_stone_stairs",
-    "ervin_mod_1:magenta_stone_stairs",
-    "ervin_mod_1:orange_stone_stairs",
-    "ervin_mod_1:pink_stone_stairs",
-    "ervin_mod_1:purple_stone_stairs",
-    "ervin_mod_1:red_stone_stairs",
-    "ervin_mod_1:white_stone_stairs",
-    "ervin_mod_1:yellow_stone_stairs"
+    "ervin_mod_1:stone/stairs/green_stone_stairs",
+    "ervin_mod_1:stone/stairs/light_blue_stone_stairs",
+    "ervin_mod_1:stone/stairs/light_gray_stone_stairs",
+    "ervin_mod_1:stone/stairs/lime_stone_stairs",
+    "ervin_mod_1:stone/stairs/magenta_stone_stairs",
+    "ervin_mod_1:stone/stairs/orange_stone_stairs",
+    "ervin_mod_1:stone/stairs/pink_stone_stairs",
+    "ervin_mod_1:stone/stairs/purple_stone_stairs",
+    "ervin_mod_1:stone/stairs/red_stone_stairs",
+    "ervin_mod_1:stone/stairs/white_stone_stairs",
+    "ervin_mod_1:stone/stairs/yellow_stone_stairs"
   ]
 }

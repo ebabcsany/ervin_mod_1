@@ -1,21 +1,21 @@
 {
   "replace": false,
   "values": [
-    "ervin_mod_1:iron_ingots/black_iron_ingot",
-    "ervin_mod_1:iron_ingots/blue_iron_ingot",
-    "ervin_mod_1:iron_ingots/brown_iron_ingot",
+    "ervin_mod_1:iron/ingots/black_iron_ingot",
+    "ervin_mod_1:iron/ingots/blue_iron_ingot",
+    "ervin_mod_1:iron/ingots/brown_iron_ingot",
     "minecraft:iron_ingot",
-    "ervin_mod_1:iron_ingots/cyan_iron_ingot",
-    "ervin_mod_1:iron_ingots/gray_iron_ingot",
-    "ervin_mod_1:iron_ingots/green_iron_ingot",
-    "ervin_mod_1:iron_ingots/light_blue_iron_ingot",
-    "ervin_mod_1:iron_ingots/light_gray_iron_ingot",
-    "ervin_mod_1:iron_ingots/lime_iron_ingot",
-    "ervin_mod_1:iron_ingots/magenta_iron_ingot",
-    "ervin_mod_1:iron_ingots/orange_iron_ingot",
-    "ervin_mod_1:iron_ingots/pink_iron_ingot",
-    "ervin_mod_1:iron_ingots/purple_iron_ingot",
-    "ervin_mod_1:iron_ingots/red_iron_ingot",
-    "ervin_mod_1:iron_ingots/yellow_iron_ingot"
+    "ervin_mod_1:iron/ingots/cyan_iron_ingot",
+    "ervin_mod_1:iron/ingots/gray_iron_ingot",
+    "ervin_mod_1:iron/ingots/green_iron_ingot",
+    "ervin_mod_1:iron/ingots/light_blue_iron_ingot",
+    "ervin_mod_1:iron/ingots/light_gray_iron_ingot",
+    "ervin_mod_1:iron/ingots/lime_iron_ingot",
+    "ervin_mod_1:iron/ingots/magenta_iron_ingot",
+    "ervin_mod_1:iron/ingots/orange_iron_ingot",
+    "ervin_mod_1:iron/ingots/pink_iron_ingot",
+    "ervin_mod_1:iron/ingots/purple_iron_ingot",
+    "ervin_mod_1:iron/ingots/red_iron_ingot",
+    "ervin_mod_1:iron/ingots/yellow_iron_ingot"
   ]
 }

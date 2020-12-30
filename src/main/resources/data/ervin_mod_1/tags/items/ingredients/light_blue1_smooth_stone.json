@@ -1,21 +1,21 @@
 {
   "replace": false,
   "values": [
-    "ervin_mod_1:black_smooth_stone",
-    "ervin_mod_1:blue_smooth_stone",
-    "ervin_mod_1:brown_smooth_stone",
+    "ervin_mod_1:stone/smooth_stones/black_smooth_stone",
+    "ervin_mod_1:stone/smooth_stones/blue_smooth_stone",
+    "ervin_mod_1:stone/smooth_stones/brown_smooth_stone",
     "minecraft:smooth_stone",
-    "ervin_mod_1:cyan_smooth_stone",
-    "ervin_mod_1:green_smooth_stone",
-    "ervin_mod_1:light_blue_smooth_stone",
-    "ervin_mod_1:light_gray_smooth_stone",
-    "ervin_mod_1:lime_smooth_stone",
-    "ervin_mod_1:magenta_smooth_stone",
-    "ervin_mod_1:orange_smooth_stone",
-    "ervin_mod_1:pink_smooth_stone",
-    "ervin_mod_1:purple_smooth_stone",
-    "ervin_mod_1:red_smooth_stone",
-    "ervin_mod_1:white_smooth_stone",
-    "ervin_mod_1:yellow_smooth_stone"
+    "ervin_mod_1:stone/smooth_stones/cyan_smooth_stone",
+    "ervin_mod_1:stone/smooth_stones/green_smooth_stone",
+    "ervin_mod_1:stone/smooth_stones/light_blue_smooth_stone",
+    "ervin_mod_1:stone/smooth_stones/light_gray_smooth_stone",
+    "ervin_mod_1:stone/smooth_stones/lime_smooth_stone",
+    "ervin_mod_1:stone/smooth_stones/magenta_smooth_stone",
+    "ervin_mod_1:stone/smooth_stones/orange_smooth_stone",
+    "ervin_mod_1:stone/smooth_stones/pink_smooth_stone",
+    "ervin_mod_1:stone/smooth_stones/purple_smooth_stone",
+    "ervin_mod_1:stone/smooth_stones/red_smooth_stone",
+    "ervin_mod_1:stone/smooth_stones/white_smooth_stone",
+    "ervin_mod_1:stone/smooth_stones/yellow_smooth_stone"
   ]
 }
