@@ -565,6 +565,18 @@
     {
       "rolls": {
         "min": 0,
+        "max": 2
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:spawn_eggs/wolf1_spawn_egg"
+        }
+      ]
+    },
+    {
+      "rolls": {
+        "min": 0,
         "max": 1
       },
       "entries": [

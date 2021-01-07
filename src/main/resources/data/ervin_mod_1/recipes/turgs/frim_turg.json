@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#S#",
+    "S#S",
+    "#S#"
+  ],
+  "key": {
+    "#": {
+      "item": "ervin_mod_1:frim_wood"
+    },
+    "S": {
+      "item": "ervin_mod_1:stripped_frim_wood"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:frim_turg",
+    "count": 1
+  }
+}

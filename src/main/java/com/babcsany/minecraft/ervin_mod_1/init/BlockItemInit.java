@@ -2,9 +2,44 @@ package com.babcsany.minecraft.ervin_mod_1.init;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.block.*;
+import com.babcsany.minecraft.ervin_mod_1.block.stone.cobblestones.BlackCobblestone;
+import com.babcsany.minecraft.ervin_mod_1.block.stone.cobblestones.BlueCobblestone;
+import com.babcsany.minecraft.ervin_mod_1.block.stone.cobblestones.BrownCobblestone;
+import com.babcsany.minecraft.ervin_mod_1.block.stone.cobblestones.CyanCobblestone;
+import com.babcsany.minecraft.ervin_mod_1.block.stone.cobblestones.GreenCobblestone;
+import com.babcsany.minecraft.ervin_mod_1.block.stone.cobblestones.LightBlue1Cobblestone;
+import com.babcsany.minecraft.ervin_mod_1.block.stone.cobblestones.LightBlueCobblestone;
+import com.babcsany.minecraft.ervin_mod_1.block.stone.cobblestones.LightGrayCobblestone;
+import com.babcsany.minecraft.ervin_mod_1.block.stone.cobblestones.LimeCobblestone;
+import com.babcsany.minecraft.ervin_mod_1.block.stone.cobblestones.MagentaCobblestone;
+import com.babcsany.minecraft.ervin_mod_1.block.stone.cobblestones.OrangeCobblestone;
+import com.babcsany.minecraft.ervin_mod_1.block.stone.cobblestones.PinkCobblestone;
+import com.babcsany.minecraft.ervin_mod_1.block.stone.cobblestones.PurpleCobblestone;
+import com.babcsany.minecraft.ervin_mod_1.block.stone.cobblestones.RedCobblestone;
+import com.babcsany.minecraft.ervin_mod_1.block.stone.cobblestones.WhiteCobblestone;
+import com.babcsany.minecraft.ervin_mod_1.block.stone.cobblestones.YellowCobblestone;
+import com.babcsany.minecraft.ervin_mod_1.block.stone.smooth_stones.CyanSmoothStone;
+import com.babcsany.minecraft.ervin_mod_1.block.stone.smooth_stones.GreenSmoothStone;
+import com.babcsany.minecraft.ervin_mod_1.block.stone.smooth_stones.RedSmoothStone;
+import com.babcsany.minecraft.ervin_mod_1.block.stone.stones.PurpleStone;
+import com.babcsany.minecraft.ervin_mod_1.block.stone.stones.RedStone;
 import com.babcsany.minecraft.ervin_mod_1.block.iron_ores.BlackIronOre;
 import com.babcsany.minecraft.ervin_mod_1.block.iron_ores.IronOre;
+import com.babcsany.minecraft.ervin_mod_1.block.iron_ores.*;
+import com.babcsany.minecraft.ervin_mod_1.block.iron_blocks.*;
 import com.babcsany.minecraft.ervin_mod_1.block.iron_ores.RedIronOre;
+import com.babcsany.minecraft.ervin_mod_1.block.blocks.*;
+import com.babcsany.minecraft.ervin_mod_1.block.furnaces.*;
+import com.babcsany.minecraft.ervin_mod_1.block.stone.cobblestones.*;
+import com.babcsany.minecraft.ervin_mod_1.block.stone.smooth_stones.*;
+import com.babcsany.minecraft.ervin_mod_1.block.stone.stone_bricks.*;
+import com.babcsany.minecraft.ervin_mod_1.block.stone.smooth_stone.slabs.*;
+import com.babcsany.minecraft.ervin_mod_1.block.stone.smooth_stone.stairs.*;
+import com.babcsany.minecraft.ervin_mod_1.block.stone.cobblestone.slabs.*;
+import com.babcsany.minecraft.ervin_mod_1.block.stone.cobblestone.stairs.*;
+import com.babcsany.minecraft.ervin_mod_1.block.stone.stones.*;
+import com.babcsany.minecraft.ervin_mod_1.block.stone.slabs.*;
+import com.babcsany.minecraft.ervin_mod_1.block.stone.stairs.*;
 import com.babcsany.minecraft.ervin_mod_1.block.tripwires.*;
 import com.babcsany.minecraft.ervin_mod_1.block.tripwires.tripwire_hooks.*;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.FirgTree;
@@ -25,41 +60,14 @@ public class BlockItemInit {
 
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Ervin_mod_1.MOD_ID);
 
-    public static final RegistryObject<Block> EXAMPLE_BLOCK = BLOCKS.register("example_block", () -> new Block(
-            Block.Properties.create(Material.SAND).hardnessAndResistance(0.5f, 15.0f).sound(SoundType.SAND)
-    ));
-    public static final RegistryObject<Block> DEF_BLOCK = BLOCKS.register("def_block", () -> new Block(
-            Block.Properties.create(Material.IRON)
-    ));
-    public static final RegistryObject<Block> JAZZ_LOG = BLOCKS.register("jazz_log", () -> new JazzLog(
-            MaterialColor.WOOD, Block.Properties.from(Blocks.OAK_LOG)
-    ));
-    public static final RegistryObject<Block> JAZZ_LEAVES = BLOCKS.register("jazz_leaves", () -> new LeavesBlock(
-            Block.Properties.from(Blocks.OAK_LEAVES)
-    ));
-    public static final RegistryObject<Block> FIRG_LEAVES = BLOCKS.register("firg_leaves", () -> new FirgLeaves(
-            Block.Properties.create(Material.LEAVES)
-                    .hardnessAndResistance(0.2F)
-                    .tickRandomly()
-                    .sound(SoundType.PLANT)
-                    .notSolid()
-    ));
-    public static final RegistryObject<Block> JAZZ_SAPLING = BLOCKS.register("jazz_sapling", () -> new ModSaplingBlock(
-            JazzTree::new, Block.Properties.from(OAK_SAPLING)
-    ));
-    public static final RegistryObject<Block> REGDEM_BLOCK = BLOCKS.register("regdem_block", () -> new RegdemBlock(
-            Block.Properties.create(Material.WOOD)
-                    .harvestLevel(0)
-                    .harvestTool(ToolType.AXE)
-                    .hardnessAndResistance(10.0f)
-    ));
-    public static final RegistryObject<Block> LEAT_BLOCK = BLOCKS.register("leat_block", () -> new LeatBlock(
-            Block.Properties.create(Material.ROCK)
-                    .setRequiresTool()
-                    .harvestLevel(2)
-                    .harvestTool(ToolType.AXE)
-                    .hardnessAndResistance(100.0f)
-    ));
+    public static final RegistryObject<Block> EXAMPLE_BLOCK = BLOCKS.register("example_block", () -> new Block(Block.Properties.create(Material.SAND).hardnessAndResistance(0.5f, 15.0f).sound(SoundType.SAND)));
+    public static final RegistryObject<Block> DEF_BLOCK = BLOCKS.register("def_block", () -> new Block(Block.Properties.create(Material.IRON)));
+    public static final RegistryObject<Block> JAZZ_LOG = BLOCKS.register("jazz_log", () -> new JazzLog(MaterialColor.WOOD, Block.Properties.from(Blocks.OAK_LOG)));
+    public static final RegistryObject<Block> JAZZ_LEAVES = BLOCKS.register("jazz_leaves", () -> new LeavesBlock(Block.Properties.from(Blocks.OAK_LEAVES)));
+    public static final RegistryObject<Block> FIRG_LEAVES = BLOCKS.register("firg_leaves", () -> new FirgLeaves(Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).tickRandomly().sound(SoundType.PLANT).notSolid()));
+    public static final RegistryObject<Block> JAZZ_SAPLING = BLOCKS.register("jazz_sapling", () -> new ModSaplingBlock(JazzTree::new, Block.Properties.from(OAK_SAPLING)));
+    public static final RegistryObject<Block> REGDEM_BLOCK = BLOCKS.register("regdem_block", () -> new RegdemBlock(Block.Properties.create(Material.WOOD).harvestLevel(0).harvestTool(ToolType.AXE).hardnessAndResistance(10.0f)));
+    public static final RegistryObject<Block> LEAT_BLOCK = BLOCKS.register("leat_block", () -> new LeatBlock(Block.Properties.create(Material.ROCK).setRequiresTool().harvestLevel(2).harvestTool(ToolType.AXE).hardnessAndResistance(100.0f)));
     public static final RegistryObject<Block> LEAT_BLOCK_CRAFTING_TABLE = BLOCKS.register("leat_block_crafting_table", () -> new LeatBlockCraftingTable(
             Block.Properties.create(Material.ROCK)
                     .setRequiresTool()
@@ -124,13 +132,6 @@ public class BlockItemInit {
                     .harvestLevel(0)
                     .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(1000000.0f)
-    ));
-    public static final RegistryObject<Block> RED_FURNACE = BLOCKS.register("red_furnace", () -> new FurnaceBlock(
-            Block.Properties.create(Material.ROCK)
-                    .setRequiresTool()
-                    .harvestLevel(0)
-                    .harvestTool(ToolType.PICKAXE)
-                    .hardnessAndResistance(10.0f)
     ));
     public static final RegistryObject<Block> AVTER_BLOCK = BLOCKS.register("avter_block", () -> new AvterBlock(
             Block.Properties.create(Material.ROCK)
@@ -455,7 +456,7 @@ public class BlockItemInit {
                     .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(20.0f)
     ));
-    public static final RegistryObject<Block> OAK_TURG = BLOCKS.register("oak_turg", () -> new EnderSrackth(
+    public static final RegistryObject<Block> OAK_TURG = BLOCKS.register("oak_turg", () -> new OakTurg(
             Block.Properties.create(Material.SPONGE)
                     .setRequiresTool()
                     .harvestLevel(1)
@@ -1393,7 +1394,7 @@ public class BlockItemInit {
     public static final RegistryObject<Block> MAGENTA_COBBLESTONE_STAIRS = BLOCKS.register("stone/cobblestone/stairs/magenta_cobblestone_stairs", () -> new MagentaCobblestoneStairs(
             () -> MAGENTA_COBBLESTONE.get().getDefaultState(), Block.Properties.from(MAGENTA_COBBLESTONE.get())
     ));
-    public static final RegistryObject<Block> MAGENTA_SMOOTH_STONE_STAIRS = BLOCKS.register("stone/smooth_stone/stairs/magenta_smooth_stone_stairs", () -> new MagentaCobblestoneStairs(
+    public static final RegistryObject<Block> MAGENTA_SMOOTH_STONE_STAIRS = BLOCKS.register("stone/smooth_stone/stairs/magenta_smooth_stone_stairs", () -> new MagentaSmoothStoneStairs(
             () -> MAGENTA_SMOOTH_STONE.get().getDefaultState(), Block.Properties.from(MAGENTA_SMOOTH_STONE.get())
     ));
     public static final RegistryObject<Block> MAGENTA_STONE_STAIRS = BLOCKS.register("stone/stairs/magenta_stone_stairs", () -> new MagentaStoneStairs(
@@ -1402,7 +1403,7 @@ public class BlockItemInit {
     public static final RegistryObject<Block> ORANGE_COBBLESTONE_STAIRS = BLOCKS.register("stone/cobblestone/stairs/orange_cobblestone_stairs", () -> new OrangeCobblestoneStairs(
             () -> ORANGE_COBBLESTONE.get().getDefaultState(), Block.Properties.from(ORANGE_COBBLESTONE.get())
     ));
-    public static final RegistryObject<Block> ORANGE_SMOOTH_STONE_STAIRS = BLOCKS.register("stone/smooth_stone/stairs/orange_smooth_stone_stairs", () -> new OrangeCobblestoneStairs(
+    public static final RegistryObject<Block> ORANGE_SMOOTH_STONE_STAIRS = BLOCKS.register("stone/smooth_stone/stairs/orange_smooth_stone_stairs", () -> new OrangeSmoothStoneStairs(
             () -> ORANGE_SMOOTH_STONE.get().getDefaultState(), Block.Properties.from(ORANGE_SMOOTH_STONE.get())
     ));
     public static final RegistryObject<Block> ORANGE_STONE_STAIRS = BLOCKS.register("stone/stairs/orange_stone_stairs", () -> new OrangeStoneStairs(
@@ -1411,7 +1412,7 @@ public class BlockItemInit {
     public static final RegistryObject<Block> PINK_COBBLESTONE_STAIRS = BLOCKS.register("stone/cobblestone/stairs/pink_cobblestone_stairs", () -> new PinkCobblestoneStairs(
             () -> PINK_COBBLESTONE.get().getDefaultState(), Block.Properties.from(PINK_COBBLESTONE.get())
     ));
-    public static final RegistryObject<Block> PINK_SMOOTH_STONE_STAIRS = BLOCKS.register("stone/smooth_stone/stairs/pink_smooth_stone_stairs", () -> new PinkCobblestoneStairs(
+    public static final RegistryObject<Block> PINK_SMOOTH_STONE_STAIRS = BLOCKS.register("stone/smooth_stone/stairs/pink_smooth_stone_stairs", () -> new PinkSmoothStoneStairs(
             () -> PINK_SMOOTH_STONE.get().getDefaultState(), Block.Properties.from(PINK_SMOOTH_STONE.get())
     ));
     public static final RegistryObject<Block> PINK_STONE_STAIRS = BLOCKS.register("stone/stairs/pink_stone_stairs", () -> new PinkStoneStairs(
@@ -1420,7 +1421,7 @@ public class BlockItemInit {
     public static final RegistryObject<Block> PURPLE_COBBLESTONE_STAIRS = BLOCKS.register("stone/cobblestone/stairs/purple_cobblestone_stairs", () -> new PurpleCobblestoneStairs(
             () -> PURPLE_COBBLESTONE.get().getDefaultState(), Block.Properties.from(PURPLE_COBBLESTONE.get())
     ));
-    public static final RegistryObject<Block> PURPLE_SMOOTH_STONE_STAIRS = BLOCKS.register("stone/smooth_stone/stairs/purple_smooth_stone_stairs", () -> new PurpleCobblestoneStairs(
+    public static final RegistryObject<Block> PURPLE_SMOOTH_STONE_STAIRS = BLOCKS.register("stone/smooth_stone/stairs/purple_smooth_stone_stairs", () -> new PurpleSmoothStoneStairs(
             () -> PURPLE_SMOOTH_STONE.get().getDefaultState(), Block.Properties.from(PURPLE_SMOOTH_STONE.get())
     ));
     public static final RegistryObject<Block> PURPLE_STONE_STAIRS = BLOCKS.register("stone/stairs/purple_stone_stairs", () -> new PurpleStoneStairs(
@@ -1429,7 +1430,7 @@ public class BlockItemInit {
     public static final RegistryObject<Block> RED_COBBLESTONE_STAIRS = BLOCKS.register("stone/cobblestone/stairs/red_cobblestone_stairs", () -> new RedCobblestoneStairs(
             () -> RED_COBBLESTONE.get().getDefaultState(), Block.Properties.from(RED_COBBLESTONE.get())
     ));
-    public static final RegistryObject<Block> RED_SMOOTH_STONE_STAIRS = BLOCKS.register("stone/smooth_stone/stairs/red_smooth_stone_stairs", () -> new RedCobblestoneStairs(
+    public static final RegistryObject<Block> RED_SMOOTH_STONE_STAIRS = BLOCKS.register("stone/smooth_stone/stairs/red_smooth_stone_stairs", () -> new RedSmoothStoneStairs(
             () -> RED_SMOOTH_STONE.get().getDefaultState(), Block.Properties.from(RED_SMOOTH_STONE.get())
     ));
     public static final RegistryObject<Block> RED_STONE_STAIRS = BLOCKS.register("stone/stairs/red_stone_stairs", () -> new RedStoneStairs(
@@ -1438,7 +1439,7 @@ public class BlockItemInit {
     public static final RegistryObject<Block> WHITE_COBBLESTONE_STAIRS = BLOCKS.register("stone/cobblestone/stairs/white_cobblestone_stairs", () -> new WhiteCobblestoneStairs(
             () -> WHITE_COBBLESTONE.get().getDefaultState(), Block.Properties.from(WHITE_COBBLESTONE.get())
     ));
-    public static final RegistryObject<Block> WHITE_SMOOTH_STONE_STAIRS = BLOCKS.register("stone/smooth_stone/stairs/white_smooth_stone_stairs", () -> new WhiteCobblestoneStairs(
+    public static final RegistryObject<Block> WHITE_SMOOTH_STONE_STAIRS = BLOCKS.register("stone/smooth_stone/stairs/white_smooth_stone_stairs", () -> new WhiteSmoothStoneStairs(
             () -> WHITE_SMOOTH_STONE.get().getDefaultState(), Block.Properties.from(WHITE_SMOOTH_STONE.get())
     ));
     public static final RegistryObject<Block> WHITE_STONE_STAIRS = BLOCKS.register("stone/stairs/white_stone_stairs", () -> new WhiteStoneStairs(
@@ -1447,7 +1448,7 @@ public class BlockItemInit {
     public static final RegistryObject<Block> YELLOW_COBBLESTONE_STAIRS = BLOCKS.register("stone/cobblestone/stairs/yellow_cobblestone_stairs", () -> new YellowCobblestoneStairs(
             () -> YELLOW_COBBLESTONE.get().getDefaultState(), Block.Properties.from(YELLOW_COBBLESTONE.get())
     ));
-    public static final RegistryObject<Block> YELLOW_SMOOTH_STONE_STAIRS = BLOCKS.register("stone/smooth_stone/stairs/yellow_smooth_stone_stairs", () -> new YellowCobblestoneStairs(
+    public static final RegistryObject<Block> YELLOW_SMOOTH_STONE_STAIRS = BLOCKS.register("stone/smooth_stone/stairs/yellow_smooth_stone_stairs", () -> new YellowSmoothStoneStairs(
             () -> YELLOW_SMOOTH_STONE.get().getDefaultState(), Block.Properties.from(YELLOW_SMOOTH_STONE.get())
     ));
     public static final RegistryObject<Block> YELLOW_STONE_STAIRS = BLOCKS.register("stone/stairs/yellow_stone_stairs", () -> new YellowStoneStairs(
@@ -1479,20 +1480,13 @@ public class BlockItemInit {
                     .hardnessAndResistance(990.0F)
     ));
     public static final RegistryObject<Block> FIRG_SAPLING = BLOCKS.register("firg_sapling", () -> new ModSaplingBlock(
-            () -> new FirgTree(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().sound(SoundType.PLANT)
+            FirgTree::new, Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().sound(SoundType.PLANT)
     ));
     public static final RegistryObject<Block> FIRG_LOG = BLOCKS.register("firg_log", () -> new FirgLog(
             MaterialColor.WOOD, AbstractBlock.Properties.create(Material.WOOD)
             .hardnessAndResistance(2.0F)
             .sound(SoundType.WOOD)
     ));
-    /*public static final RegistryObject<Block> FIRG_LEAVES = BLOCKS.register("firg_leaves", () -> new FirgLeaves(
-            Block.Properties.create(Material.LEAVES)
-                    .hardnessAndResistance(0.2F)
-                    .tickRandomly()
-                    .sound(SoundType.PLANT)
-                    .notSolid()
-    ));*/
     public static final RegistryObject<Block> FIRG_PLANKS = BLOCKS.register("firg_planks", () -> new FirgPlanks(
             AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD)
                     .hardnessAndResistance(2.0F, 3.0F)
@@ -1508,10 +1502,17 @@ public class BlockItemInit {
                     .sound(SoundType.WOOD)
     ));
     public static final RegistryObject<Block> FRIM_SLAB = BLOCKS.register("frim_slab", () -> new FrimSlab(
-            Block.Properties.create(Material.WOOD)
-                    .harvestLevel(0)
+            Block.Properties.create(Material.WOOD, MaterialColor.WOOD)
                     .hardnessAndResistance(2.0F, 3.0F)
                     .sound(SoundType.WOOD)
+    ));
+    public static final RegistryObject<Block> FRIM_PLANKS = BLOCKS.register("frim_planks", () -> new FrimPlanks(
+            AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD)
+                    .hardnessAndResistance(2.0F, 3.0F)
+                    .sound(SoundType.WOOD)
+    ));
+    public static final RegistryObject<Block> FRIM_STAIRS = BLOCKS.register("frim_stairs", () -> new FrimStairs(
+            () -> FRIM_PLANKS.get().getDefaultState(), Block.Properties.from(FRIM_PLANKS.get())
     ));
     public static final RegistryObject<Block> STRIPPED_FIRG_LOG = BLOCKS.register("stripped_firg_log", () -> new StrippedFirgLog(
             MaterialColor.WOOD, Block.Properties.create(Material.WOOD)
@@ -1542,12 +1543,6 @@ public class BlockItemInit {
                     .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(990.0F, 1000.0F)
     ));
-    /*public static final RegistryObject<Block> FIRG_DOOR = BLOCKS.register("firg_door", () -> new FirgDoor(
-            Block.Properties.create(Material.WOOD, MaterialColor.WOOD)
-            .hardnessAndResistance(3.0F)
-            .sound(SoundType.WOOD)
-            .notSolid()
-    ));*/
     public static final RegistryObject<Block> ENDER_TRASK_1 = BLOCKS.register("ender_trask_1", () -> new EnderTrask1(
             Block.Properties.create(Material.ORGANIC)
                     .setRequiresTool()
@@ -1561,12 +1556,6 @@ public class BlockItemInit {
                     .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(3590.0f)
     ));
-    /*public static final RegistryObject<Block> JURK = BLOCKS.register("jurk", () -> new JurkFlowingFluid(
-            () -> ModFluids.JURK, Block.Properties.create(Material.WATER)
-            .doesNotBlockMovement()
-            .hardnessAndResistance(100.0F)
-            .noDrops()
-    ));*/
     public static final RegistryObject<Block> DURT = BLOCKS.register("durt", () -> new Durt(
             Block.Properties.create(Material.ROCK)
                     .setRequiresTool()
@@ -1574,11 +1563,6 @@ public class BlockItemInit {
                     .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(30.0f, 400.0f)
     ));
-    /*public static final RegistryObject<Block> JURK = BLOCKS.register("jurk", () -> new Block(
-            Block.Properties.create(Material.ROCK)
-                    .harvestLevel(2)
-                    .hardnessAndResistance(30.0f, 400.0f)
-    ));*/
     public static final RegistryObject<Block> GRITK_BLOCK_1 = BLOCKS.register("gritk_block_1", () -> new GritkBlock1(
             Block.Properties.create(Material.IRON)
                     .setRequiresTool()
@@ -1593,7 +1577,7 @@ public class BlockItemInit {
             .sound(SoundType.WOOD)
     ));
     public static final RegistryObject<Block> FRIM_SAPLING = BLOCKS.register("frim_sapling", () -> new ModSaplingBlock(
-            () -> new FrimTree(), AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().sound(SoundType.PLANT)
+            FrimTree::new, AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().sound(SoundType.PLANT)
     ));
     public static final RegistryObject<Block> LEAVES = BLOCKS.register("leaves", () -> new Leaves(
             Block.Properties.create(Material.LEAVES)
@@ -1728,11 +1712,6 @@ public class BlockItemInit {
                     .sound(SoundType.PLANT)
                     .setLightLevel(Value -> 1)
     ));
-    public static final RegistryObject<Block> FRIM_PLANKS = BLOCKS.register("frim_planks", () -> new FrimPlanks(
-            Block.Properties.create(Material.WOOD, MaterialColor.WOOD)
-                    .hardnessAndResistance(2.0F, 3.0F)
-                    .sound(SoundType.WOOD)
-    ));
     public static final RegistryObject<Block> DIAMOND_BLOCK = BLOCKS.register("diamond_block", () -> new DiamondBlock(
             Block.Properties.create(Material.IRON, MaterialColor.DIAMOND)
                     .setRequiresTool()
@@ -1748,18 +1727,6 @@ public class BlockItemInit {
                     .harvestLevel(2)
                     .hardnessAndResistance(100.0f)
     ));
-    /*public static final Block1 RUGK_SLAB = BLOCKS.register("rugk_slab", () -> new Block1(
-   //         Block1.Properties.create(Material1.ROCK)
-   //                 .harvestLevel1(4)
-   //                 .harvestTool1(ToolType1.HOE)
-   //                 .hardnessAndResistance1(3590.0F, 3600.0F)
-    ));*/
-    /*public static final RegistryObject<Block> MILK = BLOCKS.register("milk", () -> new FlowingFluidBlock1(
-            () -> FluidInit.MILK_FLUID.get(), Block.Properties.create(Material.WATER)
-            .doesNotBlockMovement()
-            .hardnessAndResistance(100.0F)
-            .noDrops()
-    ));*/
     public static final RegistryObject<Block> TRUGK_BLOCK = BLOCKS.register("trugk_block", () -> new TrugkBlock(
             Block.Properties.create(Material.EARTH)
                     .setRequiresTool()
@@ -2159,11 +2126,6 @@ public class BlockItemInit {
                     .doesNotBlockMovement()
                     .sound(SoundType.WOOD)
     ));
-    /*public static final RegistryObject<Block> FIRG_PLANKS1 = BLOCKS.register("firg_planks1", () -> new FirgPlanks(
-            Block.Properties.create(Material.WOOD, MaterialColor.WOOD)
-                    .hardnessAndResistance(2.0F, 3.0F)
-                    .sound(SoundType.WOOD)
-    ));*/
     public static final RegistryObject<Block> JUNGLE_PLANKS1 = BLOCKS.register("jungle_planks1", () -> new JunglePlanks1(
             AbstractBlock.Properties.create(Material.WOOD, MaterialColor.DIRT)
                     .hardnessAndResistance(2.0F, 3.0F)
@@ -2182,6 +2144,18 @@ public class BlockItemInit {
                     .doesNotBlockMovement()
                     .sound(SoundType.WOOD)
     ));
+    public static final RegistryObject<Block> FIRG_PLANKS1 = BLOCKS.register("firg_planks1", () -> new FirgPlanks1(
+            AbstractBlock.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN)
+                    .hardnessAndResistance(2.0F, 3.0F)
+                    .doesNotBlockMovement()
+                    .sound(SoundType.WOOD)
+    ));
+    public static final RegistryObject<Block> FRIM_PLANKS1 = BLOCKS.register("frim_planks1", () -> new FrimPlanks1(
+            AbstractBlock.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN)
+                    .hardnessAndResistance(2.0F, 3.0F)
+                    .doesNotBlockMovement()
+                    .sound(SoundType.WOOD)
+    ));
     public static final RegistryObject<Block> RUBY_ORE = BLOCKS.register("ruby_ore", () -> new OreBlock1(
             AbstractBlock.Properties.create(Material.ROCK)
                     .harvestLevel(2)
@@ -2189,11 +2163,203 @@ public class BlockItemInit {
                     .hardnessAndResistance(3.0F, 3.0F)
                     .sound(SoundType.WOOD)
     ));
-    public static final RegistryObject<Block> REUTRIEN = BLOCKS.register("reutrien", () -> new SpawnerBlock(
+    public static final RegistryObject<Block> REUTRIEN = BLOCKS.register("reutrien", () -> new Reutrien(
             AbstractBlock.Properties.create(Material.ROCK)
-                    .setRequiresTool()
-                    .hardnessAndResistance(5000.0F)
+                    .setRequiresTool().
+                    hardnessAndResistance(5.0F)
                     .sound(SoundType.METAL)
                     .notSolid()
+    ));
+    public static final RegistryObject<Block> BLACK_STONE_BRICKS = BLOCKS.register("stone/stone_bricks/black_stone_bricks", () -> new BlackStoneBricks(
+            AbstractBlock.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(1.5F, 6.0F)
+    ));
+    public static final RegistryObject<Block> BLUE_STONE_BRICKS = BLOCKS.register("stone/stone_bricks/blue_stone_bricks", () -> new BlueStoneBricks(
+            AbstractBlock.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(1.5F, 6.0F)
+    ));
+    public static final RegistryObject<Block> BROWN_STONE_BRICKS = BLOCKS.register("stone/stone_bricks/brown_stone_bricks", () -> new BrownStoneBricks(
+            AbstractBlock.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(1.5F, 6.0F)
+    ));
+    public static final RegistryObject<Block> CYAN_STONE_BRICKS = BLOCKS.register("stone/stone_bricks/cyan_stone_bricks", () -> new CyanStoneBricks(
+            AbstractBlock.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(1.5F, 6.0F)
+    ));
+    public static final RegistryObject<Block> GREEN_STONE_BRICKS = BLOCKS.register("stone/stone_bricks/green_stone_bricks", () -> new GreenStoneBricks(
+            AbstractBlock.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(1.5F, 6.0F)
+    ));
+    public static final RegistryObject<Block> LIGHT_BLUE1_STONE_BRICKS = BLOCKS.register("stone/stone_bricks/light_blue1_stone_bricks", () -> new LightBlue1StoneBricks(
+            AbstractBlock.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(1.5F, 6.0F)
+    ));
+    public static final RegistryObject<Block> LIGHT_BLUE_STONE_BRICKS = BLOCKS.register("stone/stone_bricks/light_blue_stone_bricks", () -> new LightBlueStoneBricks(
+            AbstractBlock.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(1.5F, 6.0F)
+    ));
+    public static final RegistryObject<Block> LIGHT_GRAY_STONE_BRICKS = BLOCKS.register("stone/stone_bricks/light_gray_stone_bricks", () -> new LightGrayStoneBricks(
+            AbstractBlock.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(1.5F, 6.0F)
+    ));
+    public static final RegistryObject<Block> LIME_STONE_BRICKS = BLOCKS.register("stone/stone_bricks/lime_stone_bricks", () -> new LimeStoneBricks(
+            AbstractBlock.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(1.5F, 6.0F)
+    ));
+    public static final RegistryObject<Block> MAGENTA_STONE_BRICKS = BLOCKS.register("stone/stone_bricks/magenta_stone_bricks", () -> new MagentaStoneBricks(
+            AbstractBlock.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(1.5F, 6.0F)
+    ));
+    public static final RegistryObject<Block> ORANGE_STONE_BRICKS = BLOCKS.register("stone/stone_bricks/orange_stone_bricks", () -> new OrangeStoneBricks(
+            AbstractBlock.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(1.5F, 6.0F)
+    ));
+    public static final RegistryObject<Block> PINK_STONE_BRICKS = BLOCKS.register("stone/stone_bricks/pink_stone_bricks", () -> new PinkStoneBricks(
+            AbstractBlock.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(1.5F, 6.0F)
+    ));
+    public static final RegistryObject<Block> PURPLE_STONE_BRICKS = BLOCKS.register("stone/stone_bricks/purple_stone_bricks", () -> new PurpleStoneBricks(
+            AbstractBlock.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(1.5F, 6.0F)
+    ));
+    public static final RegistryObject<Block> RED_STONE_BRICKS = BLOCKS.register("stone/stone_bricks/red_stone_bricks", () -> new RedStoneBricks(
+            AbstractBlock.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(1.5F, 6.0F)
+    ));
+    public static final RegistryObject<Block> WHITE_STONE_BRICKS = BLOCKS.register("stone/stone_bricks/white_stone_bricks", () -> new WhiteStoneBricks(
+            AbstractBlock.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(1.5F, 6.0F)
+    ));
+    public static final RegistryObject<Block> YELLOW_STONE_BRICKS = BLOCKS.register("stone/stone_bricks/yellow_stone_bricks", () -> new YellowStoneBricks(
+            AbstractBlock.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(1.5F, 6.0F)
+    ));
+    public static final RegistryObject<Block> BLACK_FURNACE = BLOCKS.register("furnaces/black_furnace", () -> new BlackFurnace(
+            AbstractBlock.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .hardnessAndResistance(3.5F)
+                    .setLightLevel(Value -> 13)
+    ));
+    public static final RegistryObject<Block> BLUE_FURNACE = BLOCKS.register("furnaces/blue_furnace", () -> new BlueFurnace(
+            AbstractBlock.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .hardnessAndResistance(3.5F)
+                    .setLightLevel(Value -> 13)
+    ));
+    public static final RegistryObject<Block> BROWN_FURNACE = BLOCKS.register("furnaces/brown_furnace", () -> new BrownFurnace(
+            AbstractBlock.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .hardnessAndResistance(3.5F)
+                    .setLightLevel(Value -> 13)
+    ));
+    public static final RegistryObject<Block> CYAN_FURNACE = BLOCKS.register("furnaces/cyan_furnace", () -> new CyanFurnace(
+            AbstractBlock.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .hardnessAndResistance(3.5F)
+                    .setLightLevel(Value -> 13)
+    ));
+    public static final RegistryObject<Block> GREEN_FURNACE = BLOCKS.register("furnaces/green_furnace", () -> new GreenFurnace(
+            AbstractBlock.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .hardnessAndResistance(3.5F)
+                    .setLightLevel(Value -> 13)
+    ));
+    public static final RegistryObject<Block> LIGHT_BLUE_FURNACE = BLOCKS.register("furnaces/light_blue_furnace", () -> new LightBlueFurnace(
+            AbstractBlock.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .hardnessAndResistance(3.5F)
+                    .setLightLevel(Value -> 13)
+    ));
+    public static final RegistryObject<Block> LIGHT_BLUE1_FURNACE = BLOCKS.register("furnaces/light_blue1_furnace", () -> new LightBlue1Furnace(
+            AbstractBlock.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .hardnessAndResistance(3.5F)
+                    .setLightLevel(Value -> 13)
+    ));
+    public static final RegistryObject<Block> LIGHT_GRAY_FURNACE = BLOCKS.register("furnaces/light_gray_furnace", () -> new LightGrayFurnace(
+            AbstractBlock.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .hardnessAndResistance(3.5F)
+                    .setLightLevel(Value -> 13)
+    ));
+    public static final RegistryObject<Block> LIME_FURNACE = BLOCKS.register("furnaces/lime_furnace", () -> new LimeFurnace(
+            AbstractBlock.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .hardnessAndResistance(3.5F)
+                    .setLightLevel(Value -> 13)
+    ));
+    public static final RegistryObject<Block> MAGENTA_FURNACE = BLOCKS.register("furnaces/magenta_furnace", () -> new MagentaFurnace(
+            AbstractBlock.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .hardnessAndResistance(3.5F)
+                    .setLightLevel(Value -> 13)
+    ));
+    public static final RegistryObject<Block> ORANGE_FURNACE = BLOCKS.register("furnaces/orange_furnace", () -> new OrangeFurnace(
+            AbstractBlock.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .hardnessAndResistance(3.5F)
+                    .setLightLevel(Value -> 13)
+    ));
+    public static final RegistryObject<Block> PINK_FURNACE = BLOCKS.register("furnaces/pink_furnace", () -> new PinkFurnace(
+            AbstractBlock.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .hardnessAndResistance(3.5F)
+                    .setLightLevel(Value -> 13)
+    ));
+    public static final RegistryObject<Block> PURPLE_FURNACE = BLOCKS.register("furnaces/purple_furnace", () -> new PurpleFurnace(
+            AbstractBlock.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .hardnessAndResistance(3.5F)
+                    .setLightLevel(Value -> 13)
+    ));
+    public static final RegistryObject<Block> RED_FURNACE = BLOCKS.register("furnaces/red_furnace", () -> new RedFurnace(
+            Block.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .hardnessAndResistance(3.5F)
+                    .setLightLevel(Value -> 13)
+    ));
+    public static final RegistryObject<Block> WHITE_FURNACE = BLOCKS.register("furnaces/white_furnace", () -> new WhiteFurnace(
+            AbstractBlock.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .hardnessAndResistance(3.5F)
+                    .setLightLevel(Value -> 13)
+    ));
+    public static final RegistryObject<Block> YELLOW_FURNACE = BLOCKS.register("furnaces/yellow_furnace", () -> new YellowFurnace(
+            AbstractBlock.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .hardnessAndResistance(3.5F)
+                    .setLightLevel(Value -> 13)
     ));
 }

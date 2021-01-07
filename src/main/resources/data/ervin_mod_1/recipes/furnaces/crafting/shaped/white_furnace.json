@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "ervin_mod_1:stone/cobblestones/white_cobblestone"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:furnaces/white_furnace",
+    "count": 1
+  }
+}

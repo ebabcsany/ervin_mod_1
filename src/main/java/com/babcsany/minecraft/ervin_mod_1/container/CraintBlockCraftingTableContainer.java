@@ -32,7 +32,7 @@ import java.util.Optional;
 public class CraintBlockCraftingTableContainer extends RecipeBookContainer<CraftingInventory> {
         private static final int CRAFT_MATRIX_WIDTH = 5;
         private static final int CRAFT_MATRIX_HEIGHT = 5;
-        private static final int CRAFT_RESULT_X_POSITION = 169;
+        private static final int CRAFT_RESULT_X_POSITION = 172;
         private static final int CRAFT_RESULT_Y_POSITION = 53;
         private static final int CRAFT_RESULT_SLOT_INDEX = 0;
         private static final int CRAFT_MATRIX_TOP_LEFT_SLOT_X_POSITION = 47;
@@ -152,22 +152,22 @@ public class CraintBlockCraftingTableContainer extends RecipeBookContainer<Craft
                     this.field_217070_e.consume((p_217067_2_, p_217067_3_) -> {
                         itemstack1.getItem().onCreated(itemstack1, p_217067_2_, playerIn);
                     });
-                    if (!this.mergeItemStack(itemstack1, 10, 46, true)) {
+                    if (!this.mergeItemStack(itemstack1, 10, 36, true)) {
                         return ItemStack.EMPTY;
                     }
 
                     slot.onSlotChange(itemstack1, itemstack);
-                } else if (index >= 10 && index < 46) {
+                } else if (index >= 10 && index < 36) {
                     if (!this.mergeItemStack(itemstack1, 1, 10, false)) {
-                        if (index < 37) {
-                            if (!this.mergeItemStack(itemstack1, 37, 46, false)) {
+                        if (index < 27) {
+                            if (!this.mergeItemStack(itemstack1, 27, 36, false)) {
                                 return ItemStack.EMPTY;
                             }
-                        } else if (!this.mergeItemStack(itemstack1, 10, 37, false)) {
+                        } else if (!this.mergeItemStack(itemstack1, 10, 27, false)) {
                             return ItemStack.EMPTY;
                         }
                     }
-                } else if (!this.mergeItemStack(itemstack1, 10, 46, false)) {
+                } else if (!this.mergeItemStack(itemstack1, 10, 36, false)) {
                     return ItemStack.EMPTY;
                 }
 

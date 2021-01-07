@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "tag": "ervin_mod_1:black_wool_ingredient"
+      "tag": "ervin_mod_1:ingredients/black_wool"
     },
     {
       "item": "minecraft:black_dye"

@@ -99,7 +99,7 @@ public class DoublePlantBlock1 extends BushBlock {
       super.harvestBlock(worldIn, player, pos, Blocks.AIR.getDefaultState(), te, stack);
    }
 
-   protected static void func_241471_b_(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+   public static void func_241471_b_(World world, BlockPos pos, BlockState state, PlayerEntity player) {
       DoubleBlockHalf doubleblockhalf = state.get(HALF);
       if (doubleblockhalf == DoubleBlockHalf.UPPER) {
          BlockPos blockpos = pos.down();

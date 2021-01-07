@@ -91,7 +91,7 @@ public class Ervin_mod_1 {
         SurfaceBuilderInit.SURFACE_BUILDERS.register(modEventBus);
         TreeDecoratorInit.TREE_DECORATOR_TYPES.register(modEventBus);
         WorldCarverInit.CARVERS.register(modEventBus);
-        //DimensionInit.MOD_DIMENSIONS.register(modEventBus);
+        TileEntityInit.TILE_ENTITY_TYPES.register(modEventBus);
     }
 
     private void setup(final FMLCommonSetupEvent event) {

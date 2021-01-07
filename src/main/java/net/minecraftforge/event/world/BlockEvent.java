@@ -19,7 +19,7 @@
 
 package net.minecraftforge.event.world;
 
-import com.babcsany.minecraft.ervin_mod_1.block.NetherPortal;
+import com.babcsany.minecraft.ervin_mod_1.block.blocks.NetherPortal;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.NetherPortalBlock;

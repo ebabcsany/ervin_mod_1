@@ -19,7 +19,8 @@
 
 package net.minecraftforge.event;
 
-import com.babcsany.minecraft.ervin_mod_1.block.NetherPortal;
+import com.babcsany.minecraft.ervin_mod_1.block.blocks.NetherPortal;
+import com.babcsany.minecraft.ervin_mod_1.reutrien.AbstractReutrien;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.block.BlockState;
@@ -145,6 +146,15 @@ public class ForgeEventFactory
         return event.getResult();
     }
 
+    public static Result canEntityReutrienSpawn(MobEntity entity, IWorld world, double x, double y, double z, AbstractReutrien reutrien, SpawnReason spawnReason)
+    {
+        if (entity == null)
+            return Result.DEFAULT;
+        LivingSpawnEvent.CheckReutrienSpawn event = new LivingSpawnEvent.CheckReutrienSpawn(entity, world, x, y, z, reutrien, spawnReason);
+        MinecraftForge.EVENT_BUS.post(event);
+        return event.getResult();
+    }
+
     public static boolean canEntitySpawnSpawner(MobEntity entity, World world, float x, float y, float z, AbstractSpawner spawner)
     {
         Result result = canEntitySpawn(entity, world, x, y, z, spawner, SpawnReason.SPAWNER);
@@ -154,9 +164,23 @@ public class ForgeEventFactory
             return result == Result.ALLOW;
     }
 
+    public static boolean canEntitySpawnReutrien(MobEntity entity, World world, float x, float y, float z, AbstractReutrien reutrien)
+    {
+        Result result = canEntityReutrienSpawn(entity, world, x, y, z, reutrien, SpawnReason.SPAWNER);
+        if (result == Result.DEFAULT)
+            return entity.canSpawn(world, SpawnReason.SPAWNER) && entity.isNotColliding(world); // vanilla logic (inverted)
+        else
+            return result == Result.ALLOW;
+    }
+
     public static boolean doSpecialSpawn(MobEntity entity, World world, float x, float y, float z, AbstractSpawner spawner, SpawnReason spawnReason)
     {
         return MinecraftForge.EVENT_BUS.post(new LivingSpawnEvent.SpecialSpawn(entity, world, x, y, z, spawner, spawnReason));
+    }
+
+    public static boolean doSpecialReutrienSpawn(MobEntity entity, World world, float x, float y, float z, AbstractReutrien reutrien, SpawnReason spawnReason)
+    {
+        return MinecraftForge.EVENT_BUS.post(new LivingSpawnEvent.SpecialReutrienSpawn(entity, world, x, y, z, reutrien, spawnReason));
     }
 
     public static Result canEntityDespawn(MobEntity entity)

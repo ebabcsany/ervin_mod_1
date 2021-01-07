@@ -1,6 +1,0 @@
-{
-  "parent": "item/handheld",
-  "textures": {
-    "layer0": "ervin_mod_1:item/iron_pickaxe/red_iron_pickaxe"
-  }
-}

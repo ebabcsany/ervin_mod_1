@@ -6,11 +6,11 @@
   ],
   "key": {
     "#": {
-      "item": "ervin_mod_1:brown_cobblestone_slab"
+      "item": "ervin_mod_1:stone/cobblestone/slabs/brown_cobblestone_slab"
     }
   },
   "result": {
-    "item": "ervin_mod_1:cobblestones/brown_cobblestone",
+    "item": "ervin_mod_1:stone/cobblestones/brown_cobblestone",
     "count": 1
   }
 }

@@ -3,6 +3,6 @@
   "textures": {
     "bottom": "ervin_mod_1:block/stone/smooth_stones/black_smooth_stone",
     "top": "ervin_mod_1:block/stone/smooth_stones/black_smooth_stone",
-    "side": "ervin_mod_1:block/stone/smooth_stones/black_smooth_stone"
+    "side": "ervin_mod_1:block/stone/smooth_stone/slab/side/black_smooth_stone_slab_side"
   }
 }

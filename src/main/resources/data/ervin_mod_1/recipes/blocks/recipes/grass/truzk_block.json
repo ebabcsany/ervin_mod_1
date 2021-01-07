@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "####",
+    "####",
+    "####",
+    "####"
+  ],
+  "key": {
+    "#": {
+      "item": "ervin_mod_1:truzk"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:truzk_block",
+    "count": 1
+  }
+}

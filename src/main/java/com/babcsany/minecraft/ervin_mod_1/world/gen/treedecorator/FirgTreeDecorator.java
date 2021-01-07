@@ -1,6 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.world.gen.treedecorator;
 
-import com.babcsany.minecraft.ervin_mod_1.block.Firg;
+import com.babcsany.minecraft.ervin_mod_1.block.blocks.Firg;
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;

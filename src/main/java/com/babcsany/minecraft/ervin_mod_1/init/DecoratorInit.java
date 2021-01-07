@@ -1,8 +1,8 @@
 package com.babcsany.minecraft.ervin_mod_1.init;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
-import com.babcsany.minecraft.ervin_mod_1.block.Firg;
-import com.babcsany.minecraft.ervin_mod_1.block.FrimLeaves;
+import com.babcsany.minecraft.ervin_mod_1.block.blocks.Firg;
+import com.babcsany.minecraft.ervin_mod_1.block.blocks.FrimLeaves;
 import com.babcsany.minecraft.ervin_mod_1.container.CraintBlockCraftingTableContainer;
 import com.babcsany.minecraft.ervin_mod_1.entity.animal.ShertEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.animal.ZurEntity1;

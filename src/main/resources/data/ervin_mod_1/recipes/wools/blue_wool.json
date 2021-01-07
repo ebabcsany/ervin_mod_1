@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "tag": "ervin_mod_1:blue_wool_ingredient"
+      "tag": "ervin_mod_1:ingredients/blue_wool"
     },
     {
       "item": "minecraft:blue_dye"

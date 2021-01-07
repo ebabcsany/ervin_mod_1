@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "tag": "ervin_mod_1:orange_wool_ingredient"
+      "tag": "ervin_mod_1:ingredients/orange_wool"
     },
     {
       "item": "minecraft:orange_dye"

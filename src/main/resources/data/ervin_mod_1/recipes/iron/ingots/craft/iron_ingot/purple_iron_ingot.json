@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "tag": "ervin_mod_1:purple_iron_ingot"
+      "tag": "ervin_mod_1:ingredients/purple_iron_ingot"
     },
     {
       "item": "minecraft:purple_dye"

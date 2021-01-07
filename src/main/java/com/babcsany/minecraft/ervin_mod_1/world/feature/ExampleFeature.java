@@ -5,6 +5,7 @@ import java.util.function.Function;
 
 //import com.mojang.serialization.Dynamic;
 
+import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.mojang.serialization.Codec;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.ResourceLocation;
@@ -27,10 +28,10 @@ import net.minecraft.world.server.ServerWorld;
 
 public class ExampleFeature extends Feature<NoFeatureConfig> {
 
-    private static final ResourceLocation STRUCTURE_SPINE_01 = new ResourceLocation("fossil/spine_1");
-    private static final ResourceLocation STRUCTURE_SPINE_02 = new ResourceLocation("fossil/spine_2");
-    private static final ResourceLocation STRUCTURE_SPINE_03 = new ResourceLocation("fossil/spine_3");
-    private static final ResourceLocation STRUCTURE_SPINE_04 = new ResourceLocation("fossil/spine_4");
+    private static final ResourceLocation STRUCTURE_SPINE_01 = new ResourceLocation(Ervin_mod_1.MOD_ID,"fossil/spine_1");
+    private static final ResourceLocation STRUCTURE_SPINE_02 = new ResourceLocation(Ervin_mod_1.MOD_ID,"fossil/spine_2");
+    private static final ResourceLocation STRUCTURE_SPINE_03 = new ResourceLocation(Ervin_mod_1.MOD_ID,"fossil/spine_3");
+    private static final ResourceLocation STRUCTURE_SPINE_04 = new ResourceLocation(Ervin_mod_1.MOD_ID,"fossil/spine_4");
     private static final ResourceLocation[] FOSSILS = new ResourceLocation[] { STRUCTURE_SPINE_01, STRUCTURE_SPINE_02,
             STRUCTURE_SPINE_03, STRUCTURE_SPINE_04 };
 

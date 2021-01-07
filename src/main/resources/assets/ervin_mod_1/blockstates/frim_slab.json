@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "type=bottom": { "model": "ervin_mod_1:block/frim_slab" },
+    "type=top": { "model": "ervin_mod_1:block/frim_slab_top" },
+    "type=double": { "model": "ervin_mod_1:block/frim_planks" }
+  }
+}

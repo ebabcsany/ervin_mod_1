@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "ervin_mod_1:item/tools/iron/pickaxe/light_gray_iron_pickaxe"
+  }
+}

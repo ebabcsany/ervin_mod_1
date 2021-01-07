@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "top": "ervin_mod_1:block/furnace/top/light_blue_furnace_top",
+    "front": "ervin_mod_1:block/furnace/front/on/light_blue_furnace_front_on",
+    "side": "evin_mod_1:block/furnace/side/light_blue_furnace_side"
+  }
+}

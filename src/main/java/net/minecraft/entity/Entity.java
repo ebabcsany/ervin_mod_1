@@ -1,7 +1,7 @@
 package net.minecraft.entity;
 
 import com.babcsany.minecraft.ervin_mod_1.block.ExamplePortalBlock;
-import com.babcsany.minecraft.ervin_mod_1.block.NetherPortal;
+import com.babcsany.minecraft.ervin_mod_1.block.blocks.NetherPortal;
 import com.babcsany.minecraft.ervin_mod_1.init.BlockInit;
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.google.common.collect.Iterables;

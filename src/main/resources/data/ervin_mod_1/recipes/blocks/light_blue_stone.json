@@ -6,11 +6,11 @@
   ],
   "key": {
     "#": {
-      "item": "ervin_mod_1:light_blue_stone_slab"
+      "item": "ervin_mod_1:stone/slabs/light_blue_stone_slab"
     }
   },
   "result": {
-    "item": "ervin_mod_1:stones/light_blue_stone",
+    "item": "ervin_mod_1:stone/stones/light_blue_stone",
     "count": 1
   }
 }
