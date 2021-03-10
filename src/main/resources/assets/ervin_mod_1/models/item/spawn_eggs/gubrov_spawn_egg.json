@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "ervin_mod_1:item/spawn_eggs/gubrov_spawn_egg"
+  }
+}

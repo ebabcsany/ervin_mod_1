@@ -167,8 +167,13 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 3,
+          "weight": 5,
           "name": "ervin_mod_1:sriunk_horse_armor"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 3,
+          "name": "ervin_mod_1:durg_horse_armor"
         },
         {
           "type": "minecraft:item",
@@ -505,6 +510,19 @@
             }
           ],
           "name": "minecraft:iron_shovel"
+        }
+      ]
+    },
+    {
+      "rolls": {
+        "min": 0.0,
+        "max": 6.0,
+        "type": "minecraft:uniform"
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:sriunk_boots"
         }
       ]
     }

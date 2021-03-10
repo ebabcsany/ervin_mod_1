@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "top": "ervin_mod_1:block/hurvruj/hurvruj_top",
+    "bottom": "ervin_mod_1:block/hurvruj/hurvruj_bottom",
+    "side": "ervin_mod_1:block/hurvruj/hurvruj_side12"
+  }
+}

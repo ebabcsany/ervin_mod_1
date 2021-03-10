@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "ervin_mod_1:magenta_cobblestone_stairs"
-  },
-  "result": "ervin_mod_1:magenta_stone_stairs",
-  "experience": 0.75,
-  "cookingtime": 200
-}

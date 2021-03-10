@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "pattern": [
+    "###",
+    "## "
+  ],
+  "key": {
+    "#": {
+      "item": "ervin_mod_1:tirsk"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:uuuuuuuuuooooooooooiuhbbvccxde456zz",
+    "count": 1
+  }
+}

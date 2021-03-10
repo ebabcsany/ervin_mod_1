@@ -1,10 +1,9 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.fish;
 
-import com.babcsany.minecraft.ervin_mod_1.init.ItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.fish.AbstractGroupFishEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
@@ -16,7 +15,7 @@ public class GubrovEntity extends AbstractGroupFishEntity {
    }
 
    protected ItemStack getFishBucket() {
-      return new ItemStack(ItemInit.GUBROV_ENTITY_SPAWN_EGG.get());
+      return new ItemStack(ItemInit.GUBROV_SPAWN_EGG.get());
    }
 
    protected SoundEvent getAmbientSound() {

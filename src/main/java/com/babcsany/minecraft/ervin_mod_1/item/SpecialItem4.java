@@ -1,8 +1,9 @@
 package com.babcsany.minecraft.ervin_mod_1.item;
 
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.ItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
 import com.babcsany.minecraft.ervin_mod_1.util.KeyboardHelper;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.Enchantment;
@@ -102,7 +103,7 @@ public class SpecialItem4 extends Item {
 		if (context.getWorld().getBlockState(context.getPos()).getBlock() == BlockItemInit.EXAMPLE_BLOCK.get()) {
 			for (ItemStack stack : context.getPlayer().inventory.mainInventory) {
 				if (stack.isEmpty()) {
-					context.getPlayer().addItemStackToInventory(new ItemStack(ItemInit.DEF_ITEM.get()));
+					context.getPlayer().addItemStackToInventory(new ItemStack(isBurnableItemInit.DEF_ITEM.get()));
 					context.getItem().damageItem(1, context.getPlayer(), (playerIn) -> {
 						playerIn.sendBreakAnimation(context.getHand());
 					});
@@ -110,7 +111,7 @@ public class SpecialItem4 extends Item {
 				}
 			}
 			context.getWorld().addEntity(new ItemEntity(context.getWorld(), context.getPos().getX(),
-					context.getPos().getY(), context.getPos().getZ(), new ItemStack(ItemInit.DEF_ITEM.get())));
+					context.getPos().getY(), context.getPos().getZ(), new ItemStack(isBurnableItemInit.DEF_ITEM.get())));
 			return ActionResultType.SUCCESS;
 		}
 		return ActionResultType.FAIL;

@@ -23,7 +23,7 @@
               }
             }
           ],
-          "name": "ervin_mod_1:spawn_eggs/srach_entity_spawn_egg"
+          "name": "ervin_mod_1:spawn_eggs/srach_spawn_egg"
         }
       ]
     },
@@ -63,7 +63,7 @@
               }
             }
           ],
-          "name": "minecraft:beef"
+          "name": "ervin_mod_1:steef"
         }
       ]
     }

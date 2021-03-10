@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/stairs",
-  "textures": {
-    "bottom": "ervin_mod_1:block/stone/cobblestones/yellow_cobblestone",
-    "top": "ervin_mod_1:block/stone/cobblestones/yellow_cobblestone",
-    "side": "ervin_mod_1:block/stone/cobblestones/yellow_cobblestone"
-  }
-}

@@ -48,6 +48,7 @@ public class Stats {
    public static final ResourceLocation DEATHS = registerCustom("deaths", IStatFormatter.DEFAULT);
    public static final ResourceLocation MOB_KILLS = registerCustom("mob_kills", IStatFormatter.DEFAULT);
    public static final ResourceLocation ANIMALS_BRED = registerCustom("animals_bred", IStatFormatter.DEFAULT);
+   public static final ResourceLocation ZUR_BRED = registerCustom("zur_bred", IStatFormatter.DEFAULT);
    public static final ResourceLocation PLAYER_KILLS = registerCustom("player_kills", IStatFormatter.DEFAULT);
    public static final ResourceLocation FISH_CAUGHT = registerCustom("fish_caught", IStatFormatter.DEFAULT);
    public static final ResourceLocation TALKED_TO_VILLAGER = registerCustom("talked_to_villager", IStatFormatter.DEFAULT);

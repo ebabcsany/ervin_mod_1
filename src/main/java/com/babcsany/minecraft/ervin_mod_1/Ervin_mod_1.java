@@ -3,11 +3,11 @@ package com.babcsany.minecraft.ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.entity.animal.*;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.RoventEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.villager.$TraderEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.villager.TraderNirtreEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.villager.WanderingTraderNirtreEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.villager.ZombieTraderEntity;
+import com.babcsany.minecraft.ervin_mod_1.entity.villager.*;
 import com.babcsany.minecraft.ervin_mod_1.init.*;
+import com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.*;
+import com.babcsany.minecraft.ervin_mod_1.init.item.block.BlockNamedItemInit;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
@@ -40,9 +40,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -77,9 +75,11 @@ public class Ervin_mod_1 {
         MinecraftForge.EVENT_BUS.register(this);
 
         ItemInit.ITEMS.register(modEventBus);
+        isBurnableItemInit.BURNABLE_ITEMS.register(modEventBus);
         BlockInit.BLOCKS.register(modEventBus);
         BlockItemInit.BLOCKS.register(modEventBus);
         isBurnableBlockItemInit.BURNABLE_BLOCKS.register(modEventBus);
+        BlockNamedItemInit.ITEMS.register(modEventBus);
         ContainerInit.CONTAINER_TYPES.register(modEventBus);
         DecoratorInit.DECORATORS.register(modEventBus);
         EntityInit.ENTITY_TYPES.register(modEventBus);
@@ -92,6 +92,8 @@ public class Ervin_mod_1 {
         TreeDecoratorInit.TREE_DECORATOR_TYPES.register(modEventBus);
         WorldCarverInit.CARVERS.register(modEventBus);
         TileEntityInit.TILE_ENTITY_TYPES.register(modEventBus);
+        com.babcsany.minecraft.ervin_mod_1.init.block.animation.colors.BlockItemInit.ANIMATION_BLOCKS.register(modEventBus);
+        com.babcsany.minecraft.ervin_mod_1.init.minecraft.block.BlockItemInit.BLOCKS.register(modEventBus);
     }
 
     private void setup(final FMLCommonSetupEvent event) {
@@ -157,16 +159,35 @@ public class Ervin_mod_1 {
         public static void onRegisterItems (final RegistryEvent.Register<Item> event) {
             final IForgeRegistry<Item> registry = event.getRegistry();
             Set<Block> cannotBePlacedBlocks = new HashSet<>(Arrays.asList(
-                    BlockItemInit.FIRG.get(),
-                    BlockItemInit.VIRK_BLOCK.get(),
-                    BlockItemInit.ENDER_SRACKHT.get(),
-                    BlockItemInit.ENDER_STAKRACH.get(),
-                    BlockItemInit.ENDER_SRAKTCAF.get(),
-                    BlockItemInit.ENDER_TRASKRACH.get(),
-                    BlockItemInit.ENDER_TRASKCRAFTH.get(),
-                    BlockItemInit.SCRAFTH.get()
+                    BlockInit.ENDER_STAKRACH.get(),
+                    BlockInit.ENDER_SRAKTCAF.get(),
+                    BlockInit.ENDER_TRASKRACH.get(),
+                    BlockInit.ENDER_TRASKCRAFTH.get()
             ));
             BlockItemInit.BLOCKS.getEntries().stream().map(RegistryObject::get).forEach(block -> {
+                if (!cannotBePlacedBlocks.contains(block)) {
+                    final Item.Properties properties = new Item.Properties();
+                    properties.group(ItemGroup.MATERIALS);
+                    final BlockItem blockItem = new BlockItem(block, properties);
+                    ResourceLocation registryName = block.getRegistryName();
+                    if (null != registryName) {
+                        blockItem.setRegistryName(registryName);
+                    }
+                    registry.register(blockItem);
+                }
+            });
+            com.babcsany.minecraft.ervin_mod_1.init.block.animation.colors.BlockItemInit.ANIMATION_BLOCKS.getEntries().stream().map(RegistryObject::get).forEach(block -> {
+                if (!cannotBePlacedBlocks.contains(block)) {
+                    final Item.Properties properties = new Item.Properties();
+                    final BlockItem blockItem = new BlockItem(block, properties);
+                    ResourceLocation registryName = block.getRegistryName();
+                    if (null != registryName) {
+                        blockItem.setRegistryName(registryName);
+                    }
+                    registry.register(blockItem);
+                }
+            });
+            com.babcsany.minecraft.ervin_mod_1.init.minecraft.block.BlockItemInit.BLOCKS.getEntries().stream().map(RegistryObject::get).forEach(block -> {
                 if (!cannotBePlacedBlocks.contains(block)) {
                     final Item.Properties properties = new Item.Properties();
                     properties.group(ItemGroup.MATERIALS);

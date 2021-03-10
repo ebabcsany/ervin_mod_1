@@ -19,7 +19,8 @@
 
 package net.minecraftforge.event;
 
-import com.babcsany.minecraft.ervin_mod_1.block.blocks.NetherPortal;
+import com.babcsany.minecraft.ervin_mod_1.entity.living.ZurEvent;
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.reutrien.AbstractReutrien;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.brigadier.CommandDispatcher;
@@ -254,6 +255,13 @@ public class ForgeEventFactory
     public static SummonAidEvent fireZombieSummonAid(ZombieEntity zombie, World world, int x, int y, int z, LivingEntity attacker, double summonChance)
     {
         SummonAidEvent summonEvent = new SummonAidEvent(zombie, world, x, y, z, attacker, summonChance);
+        MinecraftForge.EVENT_BUS.post(summonEvent);
+        return summonEvent;
+    }
+
+    public static ZurEvent.SummonAidEvent1 fireZurSummonAid(ZurEntity zur, World world, int x, int y, int z, LivingEntity attacker, double summonChance)
+    {
+        ZurEvent.SummonAidEvent1 summonEvent = new ZurEvent.SummonAidEvent1(zur, world, x, y, z, attacker, summonChance);
         MinecraftForge.EVENT_BUS.post(summonEvent);
         return summonEvent;
     }

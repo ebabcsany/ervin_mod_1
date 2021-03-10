@@ -7,11 +7,11 @@
   ],
   "key": {
     "#": {
-      "item": "ervin_mod_1:firg_planks"
+      "item": "ervin_mod_1:firg"
     }
   },
   "result": {
     "item": "ervin_mod_1:firg_stairs",
-    "count": 1
+    "count": 4
   }
 }

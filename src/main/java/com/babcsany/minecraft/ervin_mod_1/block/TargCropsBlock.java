@@ -1,7 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.block;
 
-import com.babcsany.minecraft.ervin_mod_1.init.BlockInit;
-import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit;
 import com.babcsany.minecraft.ervin_mod_1.state.ModBlockStateProperties;
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
@@ -18,6 +17,8 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.Random;
 
@@ -207,6 +208,15 @@ public class TargCropsBlock extends BushBlock implements IGrowable {
 
    public void grow(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state) {
       this.grow(worldIn, pos, state);
+   }
+
+   public boolean propagatesSkylightDown(BlockState state, IBlockReader reader, BlockPos pos) {
+      return true;
+   }
+
+   @OnlyIn(Dist.CLIENT)
+   public float getAmbientOcclusionLightValue(BlockState state, IBlockReader worldIn, BlockPos pos) {
+      return 1.0F;
    }
 
    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {

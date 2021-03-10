@@ -2,6 +2,10 @@ package net.minecraft.world.gen.carver;
 
 import com.google.common.collect.ImmutableSet;
 import com.mojang.serialization.Codec;
+import java.util.BitSet;
+import java.util.Random;
+import java.util.Set;
+import java.util.function.Function;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -17,11 +21,6 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.gen.feature.ProbabilityConfig;
 import org.apache.commons.lang3.mutable.MutableBoolean;
-
-import java.util.BitSet;
-import java.util.Random;
-import java.util.Set;
-import java.util.function.Function;
 
 public abstract class WorldCarver<C extends ICarverConfig> extends net.minecraftforge.registries.ForgeRegistryEntry<WorldCarver<?>> {
    public static final WorldCarver<ProbabilityConfig> CAVE = register("cave", new CaveWorldCarver(ProbabilityConfig.field_236576_b_, 256));

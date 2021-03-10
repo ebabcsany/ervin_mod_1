@@ -2,6 +2,7 @@ package com.babcsany.minecraft.ervin_mod_1.container;
 
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.ContainerInit;
+import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.inventory.LeatBlockCraftingTableInventory;
 import com.google.common.collect.Lists;
 import net.minecraft.client.util.RecipeBookCategories;
@@ -80,7 +81,7 @@ public class LeatBlockCraftingTableContainer extends RecipeBookContainer<Craftin
         this(windowId, playerInventory, IWorldPosCallable.DUMMY);
     }
 
-    public static void func_217066_a(int p_217066_0_, World p_217066_1_, PlayerEntity p_217066_2_, CraftingInventory p_217066_3_, CraftResultInventory p_217066_4_) {
+    public static void updateCraftingResult(int p_217066_0_, World p_217066_1_, PlayerEntity p_217066_2_, CraftingInventory p_217066_3_, CraftResultInventory p_217066_4_) {
         if (!p_217066_1_.isRemote) {
             ServerPlayerEntity serverplayerentity = (ServerPlayerEntity)p_217066_2_;
             ItemStack itemstack = ItemStack.EMPTY;
@@ -102,7 +103,7 @@ public class LeatBlockCraftingTableContainer extends RecipeBookContainer<Craftin
      */
     public void onCraftMatrixChanged(IInventory inventoryIn) {
         this.field_217070_e.consume((p_217069_1_, p_217069_2_) -> {
-            func_217066_a(this.windowId, p_217069_1_, this.player, this.craftMatrix, this.craftResult);
+            updateCraftingResult(this.windowId, p_217069_1_, this.player, this.craftMatrix, this.craftResult);
         });
     }
 
@@ -133,7 +134,7 @@ public class LeatBlockCraftingTableContainer extends RecipeBookContainer<Craftin
      * Determines whether supplied player can use this container
      */
     public boolean canInteractWith(PlayerEntity playerIn) {
-        return isWithinUsableDistance(this.field_217070_e, playerIn, BlockItemInit.LEAT_BLOCK_CRAFTING_TABLE.get());
+        return isWithinUsableDistance(this.field_217070_e, playerIn, isBurnableBlockItemInit.LEAT_BLOCK_CRAFTING_TABLE.get());
     }
 
     /**

@@ -611,6 +611,11 @@ public interface IForgeBlockState
         return getBlockState().getBlock().isSlimeBlock(getBlockState());
     }
 
+    default boolean isFreinBlock()
+    {
+        return getBlockState().getBlock().isFreinBlock(getBlockState());
+    }
+
     /* *
      * @param state The state
      * @return true if the block is sticky block which used for pull or push adjacent blocks (use by piston)

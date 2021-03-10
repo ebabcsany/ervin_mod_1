@@ -1,7 +1,13 @@
 {
   "variants": {
-    "type=bottom": { "model": "ervin_mod_1:block/orange_cobblestone_slab" },
-    "type=top": { "model": "ervin_mod_1:block/orange_cobblestone_slab_top" },
-    "type=double": { "model": "minecraft:block/obsidian" }
+    "type=bottom": {
+      "model": "ervin_mod_1:block/obsidian_slab"
+    },
+    "type=double": {
+      "model": "minecraft:block/obsidian"
+    },
+    "type=top": {
+      "model": "ervin_mod_1:block/obsidian_slab_top"
+    }
   }
 }

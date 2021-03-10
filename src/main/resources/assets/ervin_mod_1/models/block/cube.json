@@ -2,7 +2,7 @@
     "parent": "ervin_mod_1:block/block",
     "elements": [
         {   "from": [ 0, 0, 0 ],
-            "to": [ 160, 160, 160 ],
+            "to": [ 16, 16, 16 ],
             "faces": {
                 "down":  { "texture": "#down", "cullface": "down" },
                 "up":    { "texture": "#up", "cullface": "up" },

@@ -1,10 +1,10 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.monster;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.ai.Attributes1;
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.EatPumpkinGoal;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.WanderingTraderNirtreEntity;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
-import com.babcsany.minecraft.ervin_mod_1.init.ItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
@@ -13,19 +13,13 @@ import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
-import net.minecraft.entity.merchant.villager.VillagerEntity;
 import net.minecraft.entity.monster.*;
-import net.minecraft.entity.passive.ChickenEntity;
-import net.minecraft.entity.passive.IronGolemEntity;
-import net.minecraft.entity.passive.TurtleEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.NBTDynamicOps;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -38,9 +32,6 @@ import net.minecraft.world.*;
 import net.minecraft.world.spawner.WorldEntitySpawner;
 
 import javax.annotation.Nullable;
-import java.time.LocalDate;
-import java.time.temporal.ChronoField;
-import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 import java.util.function.Predicate;
@@ -49,7 +40,6 @@ public class ZurEntity extends MonsterEntity {
    private static final UUID BABY_SPEED_BOOST_ID = UUID.fromString("B9766B59-9566-4402-BC1F-2EE2A276D836");
    private static final AttributeModifier BABY_SPEED_BOOST = new AttributeModifier(BABY_SPEED_BOOST_ID, "Baby speed boost", 0.5D, AttributeModifier.Operation.MULTIPLY_BASE);
    private static final DataParameter<Boolean> IS_CHILD = EntityDataManager.createKey(ZurEntity.class, DataSerializers.BOOLEAN);
-   //private static final DataParameter<Integer> VILLAGER_TYPE = EntityDataManager.createKey(ZurEntity.class, DataSerializers.VARINT);
    private static final DataParameter<Boolean> ROVENT = EntityDataManager.createKey(ZurEntity.class, DataSerializers.BOOLEAN);
    private static final Predicate<Difficulty> HARD_DIFFICULTY_PREDICATE = (p_213697_0_) -> {
       return p_213697_0_ == Difficulty.HARD;
@@ -71,6 +61,7 @@ public class ZurEntity extends MonsterEntity {
 
    protected void registerGoals() {
       this.goalSelector.addGoal(4, new ZurEntity.AttackGrassBlockGoal(this, 1.0D, 3));
+      this.goalSelector.addGoal(4, new ZurEntity.AttackPumpkinGoal(this, 1.0D, 3));
       this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 8.0F));
       this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
       this.applyEntityAI();
@@ -82,7 +73,7 @@ public class ZurEntity extends MonsterEntity {
       this.goalSelector.addGoal(2, new ZurAttackGoal(this, 1.0D, true));
       this.goalSelector.addGoal(4, new SwimGoal(this));
       this.goalSelector.addGoal(7, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
-         new TemptGoal(this, 5.1D, Ingredient.fromItems(ItemInit.LEAT.get()), false);
+      this.goalSelector.addGoal(3, new TemptGoal(this, 5.1D, Ingredient.fromItems(isBurnableItemInit.LEAT.get()), false));
       this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setCallsForHelp(ZombifiedPiglinEntity.class));
       this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
       this.goalSelector.addGoal(5, this.eatGrassGoal);
@@ -90,8 +81,14 @@ public class ZurEntity extends MonsterEntity {
    }
 
    public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
-      return MonsterEntity.func_234295_eP_().createMutableAttribute(Attributes.FOLLOW_RANGE, 100.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, (double)0.23F).createMutableAttribute(Attributes.ATTACK_DAMAGE, 40.0D).createMutableAttribute(Attributes.ARMOR, 20.0D).createMutableAttribute(Attributes.MAX_HEALTH, 160);
+      return MobEntity.func_233666_p_().createMutableAttribute(Attributes.FOLLOW_RANGE, 100.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, (double)0.23F).createMutableAttribute(Attributes.ATTACK_DAMAGE, 40.0D).createMutableAttribute(Attributes.ARMOR, 20.0D).createMutableAttribute(Attributes.MAX_HEALTH, 160);
    }
+
+   /*@Nullable
+   @Override
+   public AbstractZurEntity createChild(AbstractZurEntity ageable) {
+      return null;
+   }*/
 
    protected void registerData() {
       super.registerData();
@@ -145,7 +142,7 @@ public class ZurEntity extends MonsterEntity {
     */
    protected int getExperiencePoints(PlayerEntity player) {
       if (this.isChild()) {
-         this.experienceValue = (int)((float)this.experienceValue * 2.5F);
+         this.experienceValue = (int)((float)this.experienceValue * 10.0F);
       }
 
       return super.getExperiencePoints(player);
@@ -207,31 +204,6 @@ public class ZurEntity extends MonsterEntity {
     * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
     * use this to react to sunlight and start to burn.
     */
-   public void livingTick() {
-      if (this.isAlive()) {
-         boolean flag = this.shouldBurnInDay() && this.isInDaylight();
-         if (flag) {
-            ItemStack itemstack = this.getItemStackFromSlot(EquipmentSlotType.HEAD);
-            if (!itemstack.isEmpty()) {
-               if (itemstack.isDamageable()) {
-                  itemstack.setDamage(itemstack.getDamage() + this.rand.nextInt(2));
-                  if (itemstack.getDamage() >= itemstack.getMaxDamage()) {
-                     this.sendBreakAnimation(EquipmentSlotType.HEAD);
-                     this.setItemStackToSlot(EquipmentSlotType.HEAD, ItemStack.EMPTY);
-                  }
-               }
-
-               flag = false;
-            }
-
-            if (flag) {
-               this.setFire(8);
-            }
-         }
-      }
-
-      super.livingTick();
-   }
 
    private void startRovent(int p_204704_1_) {
       this.drownedConversionTime = p_204704_1_;
@@ -255,14 +227,10 @@ public class ZurEntity extends MonsterEntity {
 
    }
 
-   protected boolean shouldBurnInDay() {
-      return true;
-   }
-
    /**
     * Called when the entity is attacked.
     */
-   /*public boolean attackEntityFrom(DamageSource source, float amount) {
+   public boolean attackEntityFrom(DamageSource source, float amount) {
       if (super.attackEntityFrom(source, amount)) {
          LivingEntity livingentity = this.getAttackTarget();
          if (livingentity == null && source.getTrueSource() instanceof LivingEntity) {
@@ -273,7 +241,7 @@ public class ZurEntity extends MonsterEntity {
             int j = MathHelper.floor(this.getPosY());
             int k = MathHelper.floor(this.getPosZ());
 
-         com.babcsany.minecraft.ervin_mod_1.entity.living.ZurEvent.SummonAidEvent1 event = com.babcsany.minecraft.ervin_mod_1.entity.event.ForgeEventFactory1.fireZurSummonAid(this, world, i, j, k, livingentity, this.getAttribute(Attributes.ATTACK_DAMAGE).getValue());
+         com.babcsany.minecraft.ervin_mod_1.entity.living.ZurEvent.SummonAidEvent1 event = net.minecraftforge.event.ForgeEventFactory.fireZurSummonAid(this, world, i, j, k, livingentity, this.getAttribute(Attributes.ATTACK_DAMAGE).getValue());
          if (event.getResult() == net.minecraftforge.eventbus.api.Event.Result.DENY) return true;
          if (event.getResult() == net.minecraftforge.eventbus.api.Event.Result.ALLOW  ||
             livingentity != null && this.world.getDifficulty() == Difficulty.HARD && (double)this.rand.nextFloat() < this.getAttribute(Attributes.ATTACK_SPEED).getValue() && this.world.getGameRules().getBoolean(GameRules.DO_MOB_SPAWNING)) {
@@ -305,7 +273,7 @@ public class ZurEntity extends MonsterEntity {
       } else {
          return false;
       }
-   }*/
+   }
 
    public boolean attackEntityAsMob(Entity entityIn) {
       boolean flag = super.attackEntityAsMob(entityIn);
@@ -319,20 +287,16 @@ public class ZurEntity extends MonsterEntity {
       return flag;
    }
 
-   protected SoundEvent getAmbientSound() {
-      return SoundEvents.ENTITY_ZOMBIE_AMBIENT;
-   }
-
    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-      return SoundEvents.ENTITY_ZOMBIE_HURT;
+      return SoundEvents.ENTITY_GENERIC_HURT;
    }
 
    protected SoundEvent getDeathSound() {
-      return SoundEvents.ENTITY_ZOMBIE_DEATH;
+      return SoundEvents.ENTITY_GENERIC_DEATH;
    }
 
    protected SoundEvent getStepSound() {
-      return SoundEvents.ENTITY_ZOMBIE_STEP;
+      return SoundEvents.ENTITY_PLAYER_SPLASH;
    }
 
    protected void playStepSound(BlockPos pos, BlockState blockIn) {
@@ -351,9 +315,9 @@ public class ZurEntity extends MonsterEntity {
       if (this.rand.nextFloat() < (this.world.getDifficulty() == Difficulty.HARD ? 50.0F : 10.0F)) {
          int i = this.rand.nextInt(192);
          if (i == 0) {
-            this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(ItemInit.DURG_SWORD.get()));
+            this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.DURG_SWORD.get()));
          } else {
-            this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(ItemInit.DURG_SHOVEL.get()));
+            this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.DURG_SHOVEL.get()));
          }
       }
 
@@ -364,9 +328,9 @@ public class ZurEntity extends MonsterEntity {
       if (this.rand.nextFloat() < (this.world.getDifficulty() == Difficulty.NORMAL ? 5.0F : 1.0F)) {
          int i = this.rand.nextInt(48);
          if (i == 0) {
-            this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(ItemInit.NIRK_SWORD.get()));
+            this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.NIRK_SWORD.get()));
          } else {
-            this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(ItemInit.NIRK_SHOVEL.get()));
+            this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.NIRK_SHOVEL.get()));
          }
       }
    }
@@ -376,9 +340,9 @@ public class ZurEntity extends MonsterEntity {
       if (this.rand.nextFloat() < (this.world.getDifficulty() == Difficulty.EASY ? 0.5F : 0.1F)) {
          int i = this.rand.nextInt(12);
          if (i == 0) {
-            this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(ItemInit.SRIUNK_SWORD.get()));
+            this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.SRIUNK_SWORD.get()));
          } else {
-            this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(ItemInit.SRIUNK_SHOVEL.get()));
+            this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.SRIUNK_SHOVEL.get()));
          }
       }
    }
@@ -580,6 +544,24 @@ public class ZurEntity extends MonsterEntity {
    class AttackGrassBlockGoal extends BreakBlockGoal {
       AttackGrassBlockGoal(CreatureEntity creatureIn, double speed, int yMax) {
          super(Blocks.GRASS_BLOCK, creatureIn, speed, yMax);
+      }
+
+      public void playBreakingSound(IWorld worldIn, BlockPos pos) {
+         worldIn.playSound((PlayerEntity)null, pos, SoundEvents.BLOCK_WET_GRASS_STEP, SoundCategory.HOSTILE, 0.5F, 0.9F + ZurEntity.this.rand.nextFloat() * 0.2F);
+      }
+
+      public void playBrokenSound(World worldIn, BlockPos pos) {
+         worldIn.playSound((PlayerEntity)null, pos, SoundEvents.BLOCK_WET_GRASS_BREAK, SoundCategory.BLOCKS, 0.7F, 0.9F + worldIn.rand.nextFloat() * 0.2F);
+      }
+
+      public double getTargetDistanceSq() {
+         return 1.14D;
+      }
+   }
+
+   class AttackPumpkinGoal extends BreakBlockGoal {
+      AttackPumpkinGoal(CreatureEntity creatureIn, double speed, int yMax) {
+         super(Blocks.PUMPKIN, creatureIn, speed, yMax);
       }
 
       public void playBreakingSound(IWorld worldIn, BlockPos pos) {

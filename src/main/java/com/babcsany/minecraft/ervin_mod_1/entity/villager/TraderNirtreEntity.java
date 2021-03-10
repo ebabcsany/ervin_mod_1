@@ -2,12 +2,10 @@ package com.babcsany.minecraft.ervin_mod_1.entity.villager;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.LookAtCustomerGoal1;
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.WanderingTraderTradeWithPlayerGoal;
+import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.TraderNirtreTrades;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
-import com.babcsany.minecraft.ervin_mod_1.init.ItemInit;
-import net.minecraft.entity.AgeableEntity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.MobEntity;
+import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
@@ -84,6 +82,7 @@ public class TraderNirtreEntity extends AbstractNirtreEntity {
       TraderNirtreTrades.ITrade[] avillagernirtretrades$itrade = TraderNirtreTrades.field_221240_b.get(1);
       if (avillagernirtretrades$itrade != null) {
          MerchantOffers merchantoffers = this.getOffers();
+         this.addTraderNirtreTrades(merchantoffers, avillagernirtretrades$itrade, 10);
          int i = this.rand.nextInt(avillagernirtretrades$itrade.length);
          TraderNirtreTrades.ITrade villagertrades$itrade = avillagernirtretrades$itrade[i];
          MerchantOffer merchantoffer = villagertrades$itrade.getOffer(this, this.rand);
@@ -101,6 +100,18 @@ public class TraderNirtreEntity extends AbstractNirtreEntity {
          compound.put("WanderTarget", NBTUtil.writeBlockPos(this.wanderTarget));
       }
 
+   }
+
+   public boolean attackEntityAsMob(Entity entityIn) {
+      boolean flag = super.attackEntityAsMob(entityIn);
+      if (flag) {
+         float f = this.world.getDifficultyForLocation(this.getPosition()).getAdditionalDifficulty();
+         if (this.getHeldItemMainhand().isEmpty() && this.isBurning() && this.rand.nextFloat() < f * 0.3F) {
+            entityIn.setFire(2 * (int)f);
+         }
+      }
+
+      return flag;
    }
 
    /**
@@ -162,18 +173,6 @@ public class TraderNirtreEntity extends AbstractNirtreEntity {
 
    public int getDespawnDelay() {
       return this.despawnDelay;
-   }
-
-   /**
-    * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
-    * use this to react to sunlight and start to burn.
-    */
-   public void livingTick() {
-      super.livingTick();
-      if (!this.world.isRemote) {
-         this.handleDespawn();
-      }
-
    }
 
    public TraderNirtreEntity createChild(AbstractNirtreEntity ageable) {

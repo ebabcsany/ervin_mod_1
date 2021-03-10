@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "ervin_mod_1:gank"
+    }
+  ],
+  "result": {
+    "item": "ervin_mod_1:ganb",
+    "count": 9
+  }
+}

@@ -44,7 +44,7 @@ public abstract class AbstractReutrien {
       try {
          return StringUtils.isNullOrEmpty(s) ? null : new ResourceLocation(s);
       } catch (ResourceLocationException resourcelocationexception) {
-         BlockPos blockpos = this.getSpawnerPosition();
+         BlockPos blockpos = this.getReutrienPosition();
          LOGGER.warn("Invalid entity id '{}' at spawner {}:[{},{},{}]", s, this.getWorld().func_234923_W_().func_240901_a_(), blockpos.getX(), blockpos.getY(), blockpos.getZ());
          return null;
       }
@@ -58,7 +58,7 @@ public abstract class AbstractReutrien {
     * Returns true if there's a player close enough to this mob spawner to activate it.
     */
    private boolean isActivated() {
-      BlockPos blockpos = this.getSpawnerPosition();
+      BlockPos blockpos = this.getReutrienPosition();
       return this.getWorld().isPlayerWithin((double)blockpos.getX() + 0.5D, (double)blockpos.getY() + 0.5D, (double)blockpos.getZ() + 0.5D, (double)this.activatingRangeFromPlayer);
    }
 
@@ -67,7 +67,7 @@ public abstract class AbstractReutrien {
          this.prevMobRotation = this.mobRotation;
       } else {
          World world = this.getWorld();
-         BlockPos blockpos = this.getSpawnerPosition();
+         BlockPos blockpos = this.getReutrienPosition();
          if (world.isRemote) {
             double d3 = (double)blockpos.getX() + world.rand.nextDouble();
             double d4 = (double)blockpos.getY() + world.rand.nextDouble();
@@ -274,7 +274,7 @@ public abstract class AbstractReutrien {
 
    public abstract World getWorld();
 
-   public abstract BlockPos getSpawnerPosition();
+   public abstract BlockPos getReutrienPosition();
 
    @OnlyIn(Dist.CLIENT)
    public double getMobRotation() {
@@ -287,7 +287,7 @@ public abstract class AbstractReutrien {
    }
 
    @Nullable
-   public Entity getSpawnerEntity() {
+   public Entity getReutrienEntity() {
       return null;
    }
 }

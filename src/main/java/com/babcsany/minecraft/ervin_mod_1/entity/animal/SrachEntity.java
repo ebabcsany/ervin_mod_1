@@ -2,7 +2,8 @@ package com.babcsany.minecraft.ervin_mod_1.entity.animal;
 
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
-import com.babcsany.minecraft.ervin_mod_1.init.ItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.block.BlockNamedItemInit;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
@@ -18,6 +19,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class SrachEntity extends AnimalEntity {
+   private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(ItemInit.TARG.get(), BlockNamedItemInit.FIRG.get(), Items.BEETROOT);
+
    public SrachEntity(EntityType<? extends SrachEntity> type, World worldIn) {
       super(type, worldIn);
    }

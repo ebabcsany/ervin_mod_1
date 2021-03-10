@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.client.gui.IGuiEventListener;
 import net.minecraft.client.gui.IRenderable;
@@ -38,14 +39,14 @@ public class LeatBlockCraftingTableRecipeOverlayGui extends AbstractGui implemen
    private float time;
    private boolean field_201704_n;
 
-   public void func_201703_a(Minecraft p_201703_1_, RecipeList1 p_201703_2_, int p_201703_3_, int p_201703_4_, int p_201703_5_, int p_201703_6_, float p_201703_7_) {
+   public void func_201703_a(Minecraft p_201703_1_, ClientPlayerEntity playerEntity, RecipeList1 p_201703_2_, int p_201703_3_, int p_201703_4_, int p_201703_5_, int p_201703_6_, float p_201703_7_) {
       this.mc = p_201703_1_;
       this.recipeList = p_201703_2_;
       if (p_201703_1_.player.openContainer instanceof AbstractFurnaceContainer) {
          this.field_201704_n = true;
       }
 
-      boolean flag = p_201703_1_.player.getRecipeBook().isFilteringCraftable((RecipeBookContainer)p_201703_1_.player.openContainer);
+      boolean flag = playerEntity.getRecipeBook().isFilteringCraftable((RecipeBookContainer)p_201703_1_.player.openContainer);
       List<IRecipe<?>> list = p_201703_2_.getDisplayRecipes(true);
       List<IRecipe<?>> list1 = flag ? Collections.emptyList() : p_201703_2_.getDisplayRecipes(false);
       int i = list.size();

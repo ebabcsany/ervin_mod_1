@@ -10,11 +10,11 @@
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:bedrock"
+          "name": "ervin_mod_1:sriunk_block"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:barrier"
+          "name": "ervin_mod_1:nirtkb"
         },
         {
           "type": "minecraft:item",
@@ -26,7 +26,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:trugn"
+          "name": "ervin_mod_1:epkih"
         },
         {
           "type": "minecraft:item",
@@ -34,11 +34,11 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:spawn_eggs/zur_entity_spawn_egg"
+          "name": "ervin_mod_1:spawn_eggs/zur_spawn_egg"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:spawn_eggs/rovent_entity_spawn_egg"
+          "name": "ervin_mod_1:spawn_eggs/rovent_spawn_egg"
         }
       ],
       "conditions": [

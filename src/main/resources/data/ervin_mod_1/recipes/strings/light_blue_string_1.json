@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "tag": "ervin_mod_1:light_blue_string_ingredient"
+      "tag": "ervin_mod_1:ingredients/light_blue_string"
     },
     {
       "item": "minecraft:light_blue_dye"

@@ -1,11 +1,9 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.monster;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.CriteriaTriggers1;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.WanderingTraderNirtreEntity;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
-import com.babcsany.minecraft.ervin_mod_1.init.ItemInit;
-import com.mojang.serialization.DataResult;
-import com.mojang.serialization.Dynamic;
+import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
 import net.minecraft.block.BedBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -15,21 +13,13 @@ import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.merchant.IReputationType;
-import net.minecraft.entity.merchant.villager.VillagerData;
 import net.minecraft.entity.merchant.villager.VillagerEntity;
-import net.minecraft.entity.merchant.villager.VillagerProfession;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.entity.villager.IVillagerDataHolder;
-import net.minecraft.entity.villager.IVillagerType;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.MerchantOffers;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.INBT;
-import net.minecraft.nbt.NBTDynamicOps;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -37,9 +27,6 @@ import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
@@ -138,7 +125,7 @@ public class ZurNirtreEntity extends ZurEntity /*implements IVillagerDataHolder*
 
    public ActionResultType func_230254_b_(PlayerEntity p_230254_1_, Hand p_230254_2_) {
       ItemStack itemstack = p_230254_1_.getHeldItem(p_230254_2_);
-      if (itemstack.getItem() == ItemInit.GRINT.get()) {
+      if (itemstack.getItem() == isBurnableItemInit.GRINT.get()) {
          if (this.isPotionActive(Effects.WEAKNESS)) {
             if (!p_230254_1_.abilities.isCreativeMode) {
                itemstack.shrink(1);
@@ -201,7 +188,6 @@ public class ZurNirtreEntity extends ZurEntity /*implements IVillagerDataHolder*
 
    private void cureZombie(ServerWorld p_213791_1_) {
       WanderingTraderNirtreEntity wanderingtradernirtreentity = EntityInit.WANDERING_TRADER_NIRTRE_ENTITY.get().create(p_213791_1_);
-      VillagerEntity villagerentity = EntityType.VILLAGER.create(p_213791_1_);
 
       for(EquipmentSlotType equipmentslottype : EquipmentSlotType.values()) {
          ItemStack itemstack = this.getItemStackFromSlot(equipmentslottype);

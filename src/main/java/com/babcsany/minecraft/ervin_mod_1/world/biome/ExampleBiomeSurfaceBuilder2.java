@@ -20,18 +20,14 @@ public class ExampleBiomeSurfaceBuilder2 extends SurfaceBuilder<SurfaceBuilderCo
 	}
 
 	@Override
-	public void buildSurface(Random random, IChunk chunkIn, Biome biomeIn, int x, int z, int startHeight, double noise, BlockState defaultBlock, BlockState defaultFluid, int seaLevel, long seed, SurfaceBuilderConfig config) {
-
-	}
-
 	public void buildSurface(Random random, IChunk chunkIn, Biome biomeIn, int x, int z, int startHeight, double noise,
-			BlockState defaultBlock, BlockState defaultFluid, int seaLevel, long seed, SurfaceBuilderConfig1 config) {
+			BlockState defaultBlock, BlockState defaultFluid, int seaLevel, long seed, SurfaceBuilderConfig config) {
 		Random rd = new Random();
 		int i = rd.nextInt(14);
 		if (i == 0) {
 			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock,
 					defaultFluid, seaLevel, seed,
-					new SurfaceBuilderConfig(BlockItemInit.LEAT_BLOCK_CRAFTING_TABLE.get().getDefaultState(),
+					new SurfaceBuilderConfig(isBurnableBlockItemInit.LEAT_BLOCK_CRAFTING_TABLE.get().getDefaultState(),
 							BlockItemInit.CRASK.get().getDefaultState(), BlockItemInit.GRITK_BLOCK.get().getDefaultState()
 					));
 		} else {
@@ -42,6 +38,7 @@ public class ExampleBiomeSurfaceBuilder2 extends SurfaceBuilder<SurfaceBuilderCo
 									: isBurnableBlockItemInit.GRITH_BLOCK.get().getDefaultState(),
 							isBurnableBlockItemInit.TRUGN.get().getDefaultState(), BlockItemInit.TRINKS.get().getDefaultState()
 					));
+
 		}
 	}
 }

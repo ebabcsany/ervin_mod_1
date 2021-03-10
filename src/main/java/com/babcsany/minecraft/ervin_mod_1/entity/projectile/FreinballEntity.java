@@ -1,6 +1,5 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.projectile;
 
-import com.babcsany.minecraft.ervin_mod_1.init.ItemInit;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;

@@ -1,5 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.tags;
 
+import java.util.Set;
 import net.minecraft.block.Block;
 import net.minecraft.tags.ITag;
 import net.minecraft.tags.TagCollection;
@@ -8,10 +9,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-import java.util.Set;
-
 public class BlockTags1 {
    private static final TagRegistry<Block> collection = new TagRegistry<>();
+   public static final ITag.INamedTag<Block> STONE = makeWrapperTag("stone");
    public static final ITag.INamedTag<Block> WOOL = makeWrapperTag("wool");
    public static final ITag.INamedTag<Block> PLANKS = makeWrapperTag("planks");
    public static final ITag.INamedTag<Block> STONE_BRICKS = makeWrapperTag("stone_bricks");
@@ -32,8 +32,6 @@ public class BlockTags1 {
    public static final ITag.INamedTag<Block> LOGS = makeWrapperTag("logs");
    public static final ITag.INamedTag<Block> DARK_OAK_LOGS = makeWrapperTag("dark_oak_logs");
    public static final ITag.INamedTag<Block> OAK_LOGS = makeWrapperTag("oak_logs");
-   public static final ITag.INamedTag<Block> FIRG_LOGS = makeWrapperTag("firg_logs");
-   public static final ITag.INamedTag<Block> FRIM_LOGS = makeWrapperTag("frim_logs");
    public static final ITag.INamedTag<Block> BIRCH_LOGS = makeWrapperTag("birch_logs");
    public static final ITag.INamedTag<Block> ACACIA_LOGS = makeWrapperTag("acacia_logs");
    public static final ITag.INamedTag<Block> JUNGLE_LOGS = makeWrapperTag("jungle_logs");
@@ -95,7 +93,6 @@ public class BlockTags1 {
    public static final ITag.INamedTag<Block> FENCE_GATES = makeWrapperTag("fence_gates");
    public static final ITag.INamedTag<Block> UNSTABLE_BOTTOM_CENTER = makeWrapperTag("unstable_bottom_center");
    public static final ITag.INamedTag<Block> INFINIBURN_OVERWORLD = makeWrapperTag("infiniburn_overworld");
-   public static final ITag.INamedTag<Block> INFINIBURN_EXAMPLE_OVERWORLD = makeWrapperTag("infiniburn_example_overworld");
    public static final ITag.INamedTag<Block> INFINIBURN_NETHER = makeWrapperTag("infiniburn_nether");
    public static final ITag.INamedTag<Block> INFINIBURN_END = makeWrapperTag("infiniburn_end");
 

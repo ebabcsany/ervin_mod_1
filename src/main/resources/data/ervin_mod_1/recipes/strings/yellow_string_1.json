@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "tag": "ervin_mod_1:yellow_string_ingredient"
+      "tag": "ervin_mod_1:ingredients/yellow_string"
     },
     {
       "item": "minecraft:yellow_dye"

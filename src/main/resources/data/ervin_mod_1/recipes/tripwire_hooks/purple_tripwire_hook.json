@@ -7,13 +7,13 @@
   ],
   "key": {
     "#": {
-      "tag": "ervin_mod_1:planks_ingredient"
+      "tag": "ervin_mod_1:ingredients/planks"
     },
     "S": {
       "item": "minecraft:stick"
     },
     "I": {
-      "item": "ervin_mod_1:iron_ingots/purple_iron_ingot"
+      "item": "ervin_mod_1:iron/ingots/purple_iron_ingot"
     }
   },
   "result": {

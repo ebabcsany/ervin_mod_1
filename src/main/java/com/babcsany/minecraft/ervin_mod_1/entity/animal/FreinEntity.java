@@ -1,5 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.animal;
 
+import com.babcsany.minecraft.ervin_mod_1.world.storage.loot.LootTables1;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -9,7 +10,6 @@ import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.loot.LootTables;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -32,7 +32,7 @@ import java.util.EnumSet;
 import java.util.Random;
 
 public class FreinEntity extends MobEntity implements IMob {
-   private static final DataParameter<Integer> SLIME_SIZE = EntityDataManager.createKey(FreinEntity.class, DataSerializers.VARINT);
+   private static final DataParameter<Integer> FREIN_SIZE = EntityDataManager.createKey(FreinEntity.class, DataSerializers.VARINT);
    public float squishAmount;
    public float squishFactor;
    public float prevSquishFactor;
@@ -55,16 +55,16 @@ public class FreinEntity extends MobEntity implements IMob {
    }
 
    public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
-      return LivingEntity.registerAttributes().createMutableAttribute(Attributes.FOLLOW_RANGE, 16.0D).createMutableAttribute(Attributes.ATTACK_KNOCKBACK);
+      return MobEntity.func_233666_p_().createMutableAttribute(Attributes.ATTACK_DAMAGE);
    }
 
    protected void registerData() {
       super.registerData();
-      this.dataManager.register(SLIME_SIZE, 1);
+      this.dataManager.register(FREIN_SIZE, 1);
    }
 
    protected void setSlimeSize(int size, boolean resetHealth) {
-      this.dataManager.set(SLIME_SIZE, size);
+      this.dataManager.set(FREIN_SIZE, size);
       this.recenterBoundingBox();
       this.recalculateSize();
       this.getAttribute(Attributes.MAX_HEALTH).setBaseValue((double)(size * size));
@@ -81,7 +81,7 @@ public class FreinEntity extends MobEntity implements IMob {
     * Returns the size of the slime.
     */
    public int getSlimeSize() {
-      return this.dataManager.get(SLIME_SIZE);
+      return this.dataManager.get(FREIN_SIZE);
    }
 
    public void writeAdditional(CompoundNBT compound) {
@@ -165,7 +165,7 @@ public class FreinEntity extends MobEntity implements IMob {
    }
 
    public void notifyDataManagerChange(DataParameter<?> key) {
-      if (SLIME_SIZE.equals(key)) {
+      if (FREIN_SIZE.equals(key)) {
          this.recalculateSize();
          this.rotationYaw = this.rotationYawHead;
          this.renderYawOffset = this.rotationYawHead;
@@ -271,7 +271,7 @@ public class FreinEntity extends MobEntity implements IMob {
    }
 
    protected ResourceLocation getLootTable() {
-      return this.getSlimeSize() == 1 ? this.getType().getLootTable() : LootTables.EMPTY;
+      return this.getSlimeSize() == 1 ? this.getType().getLootTable() : LootTables1.EMPTY;
    }
 
    public static boolean func_223366_c(EntityType<FreinEntity> p_223366_0_, IWorld p_223366_1_, SpawnReason reason, BlockPos p_223366_3_, Random randomIn) {

@@ -1,6 +1,8 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.villager;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.CriteriaTriggers1;
+import com.babcsany.minecraft.ervin_mod_1.entity.villager.trigger.CriteriaTriggers1;
+import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.TraderNirtreTrades;
+import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.WanderingTraderNirtreTrades;
 import com.google.common.collect.Sets;
 import net.minecraft.entity.*;
 import net.minecraft.entity.merchant.IMerchant;
@@ -224,7 +226,7 @@ public abstract class AbstractNirtreEntity extends AgeableEntity implements INPC
    /**
     * add limites numbers of trades to the given MerchantOffers
     */
-   protected void addTrades(MerchantOffers givenMerchantOffers, WanderingTraderNirtreTrades.ITrade[] newTrades, int maxNumbers) {
+   protected void addWanderingTraderNirtreTrades(MerchantOffers givenMerchantOffers, WanderingTraderNirtreTrades.ITrade[] newTrades, int maxNumbers) {
       Set<Integer> set = Sets.newHashSet();
       if (newTrades.length > maxNumbers) {
          while(set.size() < maxNumbers) {
@@ -244,5 +246,46 @@ public abstract class AbstractNirtreEntity extends AgeableEntity implements INPC
          }
       }
 
+   }
+   protected void addTraderNirtreTrades(MerchantOffers givenMerchantOffers, TraderNirtreTrades.ITrade[] newTrades, int maxNumbers) {
+      Set<Integer> set = Sets.newHashSet();
+      if (newTrades.length > maxNumbers) {
+         while(set.size() < maxNumbers) {
+            set.add(this.rand.nextInt(newTrades.length));
+         }
+      } else {
+         for(int i = 0; i < newTrades.length; ++i) {
+            set.add(i);
+         }
+      }
+
+      for(Integer integer : set) {
+         TraderNirtreTrades.ITrade villagertrades$itrade = newTrades[integer];
+         MerchantOffer merchantoffer = villagertrades$itrade.getOffer(this, this.rand);
+         if (merchantoffer != null) {
+            givenMerchantOffers.add(merchantoffer);
+         }
+      }
+   }
+   protected void addThuvrujTrades(MerchantOffers givenMerchantOffers, TraderNirtreTrades.ITrade[] newTrades, int maxNumbers)
+   {
+      Set<Integer> set = Sets.newHashSet();
+      if (newTrades.length > maxNumbers) {
+         while (set.size() < maxNumbers) {
+            set.add(this.rand.nextInt(newTrades.length));
+         }
+      } else {
+         for (int i = 0; i < newTrades.length; ++i) {
+            set.add(i);
+         }
+      }
+
+      for (Integer integer : set) {
+         TraderNirtreTrades.ITrade villagertrades$itrade = newTrades[integer];
+         MerchantOffer merchantoffer = villagertrades$itrade.getOffer(this, this.rand);
+         if (merchantoffer != null) {
+            givenMerchantOffers.add(merchantoffer);
+         }
+      }
    }
 }

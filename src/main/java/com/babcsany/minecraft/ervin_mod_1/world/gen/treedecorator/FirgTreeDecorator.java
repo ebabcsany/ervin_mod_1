@@ -2,6 +2,7 @@ package com.babcsany.minecraft.ervin_mod_1.world.gen.treedecorator;
 
 import com.babcsany.minecraft.ervin_mod_1.block.blocks.Firg;
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit;
 import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.Direction;
@@ -21,7 +22,7 @@ public class FirgTreeDecorator extends TreeDecorator {
    public static final Codec<FirgTreeDecorator> field_236863_a_ = Codec.FLOAT.fieldOf("probability").xmap(FirgTreeDecorator::new, (p_236865_0_) -> {
       return p_236865_0_.probability;
    }).codec();
-   /** Probability to generate a beehive */
+   /** Probability to generate a firg */
    private final float probability;
 
    public FirgTreeDecorator(float probabilityIn) {
@@ -43,7 +44,7 @@ public class FirgTreeDecorator extends TreeDecorator {
             BlockPos blockpos = list.get(p_225576_2_.nextInt(list.size()));
             BlockPos blockpos1 = blockpos.offset(direction);
             if (Feature.func_236297_b_(p_225576_1_, blockpos1) && Feature.func_236297_b_(p_225576_1_, blockpos1.offset(Direction.SOUTH))) {
-               BlockState blockstate = BlockItemInit.FIRG.get().getDefaultState().with(Firg.FACING, Direction.SOUTH);
+               BlockState blockstate = BlockInit.FIRG.get().getDefaultState().with(Firg.FACING, Direction.SOUTH);
                this.func_227423_a_(p_225576_1_, blockpos1, blockstate, p_225576_5_, p_225576_6_);
                /*TileEntity tileentity = p_225576_1_.getTileEntity(blockpos1);
                if (tileentity instanceof BeehiveTileEntity) {

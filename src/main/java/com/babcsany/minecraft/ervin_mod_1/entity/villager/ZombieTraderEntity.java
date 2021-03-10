@@ -2,6 +2,7 @@ package com.babcsany.minecraft.ervin_mod_1.entity.villager;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.ZombieTraderLookAtCustomerGoal;
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.ZombieTraderTradeWithPlayerGoal;
+import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.ZombieTraderTrades;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -94,6 +95,7 @@ public class ZombieTraderEntity extends AbstractZombieTraderEntity {
       if (aZombietTraderTrades$itrade != null) {
          MerchantOffers merchantoffers = this.getOffers();
          int i = this.rand.nextInt(aZombietTraderTrades$itrade.length);
+         this.addTrades(merchantoffers, aZombietTraderTrades$itrade, 3);
          ZombieTraderTrades.ITrade zombieTraderTrades$itrade = aZombietTraderTrades$itrade[i];
          MerchantOffer merchantoffer = zombieTraderTrades$itrade.getOffer(this, this.rand);
          if (merchantoffer != null) {

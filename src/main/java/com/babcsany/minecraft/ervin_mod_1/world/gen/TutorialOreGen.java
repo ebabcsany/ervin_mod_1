@@ -25,7 +25,7 @@ public class TutorialOreGen {
 	}
 	public static void generateBlackStone() {
 		for (Biome biome : ForgeRegistries.BIOMES) {
-			if (biome == Biomes.PLAINS) {
+			if (biome == Biomes.DESERT) {
 				ConfiguredPlacement customConfig = Placement.COUNT_RANGE
 						.configure(new CountRangeConfig(10, 15, 15, 20));
 				biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.ORE

@@ -2,6 +2,7 @@ package com.babcsany.minecraft.ervin_mod_1.init;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.container.CraintBlockCraftingTableContainer;
+import com.babcsany.minecraft.ervin_mod_1.container.IrtrewContainer;
 import com.babcsany.minecraft.ervin_mod_1.container.LeatBlockCraftingTableContainer;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraftforge.common.extensions.IForgeContainerType;
@@ -17,4 +18,6 @@ public class ContainerInit {
             .register("leat_block_crafting_table", () -> IForgeContainerType.create(LeatBlockCraftingTableContainer::new));
     public static final RegistryObject<ContainerType<CraintBlockCraftingTableContainer>> CRAINT_BLOCK_CRAFTING_TABLE = CONTAINER_TYPES
             .register("craint_block_crafting_table", () -> IForgeContainerType.create(CraintBlockCraftingTableContainer::new));
+    public static final RegistryObject<ContainerType<IrtrewContainer>> IRTREW = CONTAINER_TYPES
+            .register("irtrew", () -> IForgeContainerType.create(IrtrewContainer::new));
 }

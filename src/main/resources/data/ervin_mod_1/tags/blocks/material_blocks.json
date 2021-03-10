@@ -2,7 +2,10 @@
   "replace": false,
   "values": [
     "ervin_mod_1:viltdrop_block",
+    "ervin_mod_1:grith_block",
     "ervin_mod_1:sriunk_block",
+    "ervin_mod_1:sriunk_slab",
+    "ervin_mod_1:sriunk_stairs",
     "minecraft:bedrock",
     "ervin_mod_1:shz_block",
     "minecraft:brown_mushroom",

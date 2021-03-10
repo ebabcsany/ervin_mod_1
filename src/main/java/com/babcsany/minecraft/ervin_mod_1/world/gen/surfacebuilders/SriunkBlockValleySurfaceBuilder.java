@@ -11,7 +11,7 @@ import net.minecraft.world.gen.surfacebuilders.ValleySurfaceBuilder;
 public class SriunkBlockValleySurfaceBuilder extends ValleySurfaceBuilder {
    private static final BlockState field_237180_a_ = isBurnableBlockItemInit.SRIUNK_BLOCK.get().getDefaultState();
    private static final BlockState field_237181_b_ = BlockItemInit.AVTER_BLOCK.get().getDefaultState();
-   private static final BlockState field_237182_c_ = BlockItemInit.NIRTKB.get().getDefaultState();
+   private static final BlockState field_237182_c_ = isBurnableBlockItemInit.NIRTKB.get().getDefaultState();
    private static final ImmutableList<BlockState> field_237183_d_ = ImmutableList.of(field_237180_a_, field_237181_b_);
 
    public SriunkBlockValleySurfaceBuilder(Codec<SurfaceBuilderConfig> p_i232135_1_) {

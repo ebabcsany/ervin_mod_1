@@ -1,10 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.block.blocks;
 
 import com.babcsany.minecraft.ervin_mod_1.block.trees.FirgTree;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.BushBlock;
-import net.minecraft.block.IGrowable;
+import net.minecraft.block.*;
 import net.minecraft.block.trees.Tree;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
@@ -15,6 +12,8 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.Random;
 
@@ -27,6 +26,19 @@ public class FirgSapling extends BushBlock implements IGrowable {
       super(properties);
       this.tree = treeIn;
       this.setDefaultState(this.stateContainer.getBaseState().with(STAGE, Integer.valueOf(0)));
+   }
+
+   public boolean propagatesSkylightDown(BlockState state, IBlockReader reader, BlockPos pos) {
+      return true;
+   }
+
+   public BlockRenderType getRenderType(BlockState state) {
+      return BlockRenderType.INVISIBLE;
+   }
+
+   @OnlyIn(Dist.CLIENT)
+   public float getAmbientOcclusionLightValue(BlockState state, IBlockReader worldIn, BlockPos pos) {
+      return 1.0F;
    }
 
    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {

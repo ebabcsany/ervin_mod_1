@@ -6,46 +6,6 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:$/1$"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:$/2$"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:$/3$"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:$/4$"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:$/5$"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:$/6$"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:$/7$"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:$/8$"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:$/9$"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:$/10$"
-        },
-        {
-          "type": "minecraft:item",
           "name": "ervin_mod_1:0"
         },
         {
@@ -86,6 +46,10 @@
         },
         {
           "type": "minecraft:item",
+          "name": "ervin_mod_1:acacia_planks1"
+        },
+        {
+          "type": "minecraft:item",
           "name": "ervin_mod_1:acacia_turg"
         },
         {
@@ -102,111 +66,15 @@
         },
         {
           "type": "minecraft:item",
+          "name": "ervin_mod_1:birch_planks1"
+        },
+        {
+          "type": "minecraft:item",
           "name": "ervin_mod_1:birch_turg"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:black_cobblestone"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:black_cobblestone_slab"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:black_cobblestone_stairs"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:black_smooth_stone"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:black_smooth_stone_slab"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:black_smooth_stone_stairs"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:black_stone_slab"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:black_stone_stairs"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:blue_cobblestone"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:blue_cobblestone_slab"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:blue_cobblestone_stairs"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:blue_smooth_stone"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:blue_smooth_stone_slab"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:blue_smooth_stone_stairs"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:blue_stone_slab"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:blue_stone_stairs"
-        },
-        {
-          "type": "minecraft:item",
           "name": "ervin_mod_1:brend"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:brown_cobblestone"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:brown_cobblestone_slab"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:brown_cobblestone_stairs"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:brown_mushroom"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:brown_smooth_stone"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:brown_smooth_stone_slab"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:brown_smooth_stone_stairs"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:brown_stone_slab"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:brown_stone_stairs"
         },
         {
           "type": "minecraft:item",
@@ -222,7 +90,23 @@
         },
         {
           "type": "minecraft:item",
+          "name": "ervin_mod_1:charcoal_stairs"
+        },
+        {
+          "type": "minecraft:item",
           "name": "ervin_mod_1:coal_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:coal_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:cooked_gubrov"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:cooked_steef"
         },
         {
           "type": "minecraft:item",
@@ -242,71 +126,19 @@
         },
         {
           "type": "minecraft:item",
+          "name": "ervin_mod_1:crask"
+        },
+        {
+          "type": "minecraft:item",
           "name": "ervin_mod_1:crast"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:cyan_cobblestone"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:cyan_cobblestone_slab"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:cyan_cobblestone_stairs"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:cyan_smooth_stone"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:cyan_smooth_stone_slab"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:cyan_smooth_stone_stairs"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:cyan_stone_slab"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:cyan_stone_stairs"
+          "name": "ervin_mod_1:dark_oak_planks1"
         },
         {
           "type": "minecraft:item",
           "name": "ervin_mod_1:dark_oak_turg"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:def_block"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:def_item"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:diamond_block"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:diamond_slab"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:diamond_stairs"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:dirt1"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:dirt_slab"
         },
         {
           "type": "minecraft:item",
@@ -387,6 +219,10 @@
         {
           "type": "minecraft:item",
           "name": "ervin_mod_1:emerald_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:emerald_stairs"
         },
         {
           "type": "minecraft:item",
@@ -522,6 +358,10 @@
         },
         {
           "type": "minecraft:item",
+          "name": "ervin_mod_1:firg_door"
+        },
+        {
+          "type": "minecraft:item",
           "name": "ervin_mod_1:firg_leaves"
         },
         {
@@ -543,6 +383,10 @@
         {
           "type": "minecraft:item",
           "name": "ervin_mod_1:firg_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:firg_turg"
         },
         {
           "type": "minecraft:item",
@@ -634,6 +478,18 @@
         },
         {
           "type": "minecraft:item",
+          "name": "ervin_mod_1:frim_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:frim_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:frim_turg"
+        },
+        {
+          "type": "minecraft:item",
           "name": "ervin_mod_1:frim_wood"
         },
         {
@@ -666,6 +522,18 @@
         },
         {
           "type": "minecraft:item",
+          "name": "ervin_mod_1:gank_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:gankt"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:gankth"
+        },
+        {
+          "type": "minecraft:item",
           "name": "ervin_mod_1:gant"
         },
         {
@@ -686,6 +554,18 @@
         },
         {
           "type": "minecraft:item",
+          "name": "ervin_mod_1:gark_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:garkt"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:garkth"
+        },
+        {
+          "type": "minecraft:item",
           "name": "ervin_mod_1:gart"
         },
         {
@@ -702,35 +582,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:green_cobblestone"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:green_cobblestone_slab"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:green_cobblestone_stairs"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:green_smooth_stone"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:green_smooth_stone_slab"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:green_smooth_stone_stairs"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:green_stone_slab"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:green_stone_stairs"
+          "name": "ervin_mod_1:gold_stairs"
         },
         {
           "type": "minecraft:item",
@@ -743,6 +595,14 @@
         {
           "type": "minecraft:item",
           "name": "ervin_mod_1:grint_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:grint_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:grinth_mushroom"
         },
         {
           "type": "minecraft:item",
@@ -786,6 +646,14 @@
         },
         {
           "type": "minecraft:item",
+          "name": "ervin_mod_1:gubrov"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:gubrov_bucket"
+        },
+        {
+          "type": "minecraft:item",
           "name": "ervin_mod_1:gurb"
         },
         {
@@ -803,6 +671,10 @@
         {
           "type": "minecraft:item",
           "name": "ervin_mod_1:gurk_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:gurk_stairs"
         },
         {
           "type": "minecraft:item",
@@ -826,7 +698,19 @@
         },
         {
           "type": "minecraft:item",
+          "name": "ervin_mod_1:hurvruj"
+        },
+        {
+          "type": "minecraft:item",
           "name": "ervin_mod_1:iron_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:iron_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:jazz_fruit"
         },
         {
           "type": "minecraft:item",
@@ -842,7 +726,15 @@
         },
         {
           "type": "minecraft:item",
+          "name": "ervin_mod_1:jungle_planks1"
+        },
+        {
+          "type": "minecraft:item",
           "name": "ervin_mod_1:jungle_turg"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:jurk"
         },
         {
           "type": "minecraft:item",
@@ -894,6 +786,10 @@
         },
         {
           "type": "minecraft:item",
+          "name": "ervin_mod_1:lapis_stairs"
+        },
+        {
+          "type": "minecraft:item",
           "name": "ervin_mod_1:leat"
         },
         {
@@ -907,134 +803,6 @@
         {
           "type": "minecraft:item",
           "name": "ervin_mod_1:leaves"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:light_blue_cobblestone"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:light_blue_cobblestone_slab"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:light_blue_cobblestone_stairs"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:light_blue_smooth_stone"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:light_blue_smooth_stone_slab"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:light_blue_smooth_stone_stairs"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:light_blue_stone_slab"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:light_blue_stone_stairs"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:light_gray_cobblestone"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:light_gray_cobblestone_slab"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:light_gray_cobblestone_stairs"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:light_gray_smooth_stone"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:light_gray_smooth_stone_slab"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:light_gray_smooth_stone_stairs"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:light_gray_stone_slab"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:light_gray_stone_stairs"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:lime_cobblestone"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:lime_cobblestone_slab"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:lime_cobblestone_stairs"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:lime_smooth_stone"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:lime_smooth_stone_slab"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:lime_smooth_stone_stairs"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:lime_stone_slab"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:lime_stone_stairs"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:magenta_cobblestone"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:magenta_cobblestone_slab"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:magenta_cobblestone_stairs"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:magenta_smooth_stone"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:magenta_smooth_stone_slab"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:magenta_smooth_stone_stairs"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:magenta_stone_slab"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:magenta_stone_stairs"
         },
         {
           "type": "minecraft:item",
@@ -1066,10 +834,6 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:nirk_block"
-        },
-        {
-          "type": "minecraft:item",
           "name": "ervin_mod_1:nirk_hoe"
         },
         {
@@ -1086,6 +850,18 @@
         },
         {
           "type": "minecraft:item",
+          "name": "ervin_mod_1:nirtk"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:nirtkb"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:oak_planks1"
+        },
+        {
+          "type": "minecraft:item",
           "name": "ervin_mod_1:oak_turg"
         },
         {
@@ -1094,35 +870,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:orange_cobblestone"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:orange_cobblestone_slab"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:orange_cobblestone_stairs"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:orange_smooth_stone"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:orange_smooth_stone_slab"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:orange_smooth_stone_stairs"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:orange_stone_slab"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:orange_stone_stairs"
+          "name": "ervin_mod_1:obsidian_slab"
         },
         {
           "type": "minecraft:item",
@@ -1131,70 +879,6 @@
         {
           "type": "minecraft:item",
           "name": "ervin_mod_1:pack_block"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:pink_cobblestone"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:pink_cobblestone_slab"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:pink_cobblestone_stairs"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:pink_smooth_stone"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:pink_smooth_stone_slab"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:pink_smooth_stone_stairs"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:pink_stone_slab"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:pink_stone_stairs"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:purple_cobblestone"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:purple_cobblestone_slab"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:purple_cobblestone_stairs"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:purple_smooth_stone"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:purple_smooth_stone_slab"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:purple_smooth_stone_stairs"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:purple_stone_slab"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:purple_stone_stairs"
         },
         {
           "type": "minecraft:item",
@@ -1222,43 +906,19 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:red_cobblestone"
+          "name": "ervin_mod_1:reat"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:red_cobblestone_slab"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:red_cobblestone_stairs"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:red_furnace"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:red_smooth_stone"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:red_smooth_stone_slab"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:red_smooth_stone_stairs"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:red_stone_slab"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:red_stone_stairs"
+          "name": "ervin_mod_1:red_grass_block"
         },
         {
           "type": "minecraft:item",
           "name": "ervin_mod_1:redstone_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:redstone_stairs"
         },
         {
           "type": "minecraft:item",
@@ -1270,6 +930,10 @@
         },
         {
           "type": "minecraft:item",
+          "name": "ervin_mod_1:retrug"
+        },
+        {
+          "type": "minecraft:item",
           "name": "ervin_mod_1:ruby"
         },
         {
@@ -1278,7 +942,15 @@
         },
         {
           "type": "minecraft:item",
+          "name": "ervin_mod_1:ruby_ore"
+        },
+        {
+          "type": "minecraft:item",
           "name": "ervin_mod_1:ruby_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:ruby_stairs"
         },
         {
           "type": "minecraft:item",
@@ -1295,6 +967,10 @@
         {
           "type": "minecraft:item",
           "name": "ervin_mod_1:rugk_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:rugk_stairs"
         },
         {
           "type": "minecraft:item",
@@ -1359,6 +1035,10 @@
         {
           "type": "minecraft:item",
           "name": "ervin_mod_1:smooth_stone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:spruce_planks1"
         },
         {
           "type": "minecraft:item",
@@ -1443,6 +1123,34 @@
         {
           "type": "minecraft:item",
           "name": "ervin_mod_1:sriunk_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:srurg"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:srurg_axe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:srurg_hoe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:srurg_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:srurg_shovel"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:srurg_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:steef"
         },
         {
           "type": "minecraft:item",
@@ -1570,6 +1278,58 @@
         },
         {
           "type": "minecraft:item",
+          "name": "ervin_mod_1:tnagh"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tnagk"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tnagt"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tragh"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tragk"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tragk_block"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tragn"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tragn_axe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tragn_hoe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tragn_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tragn_shovel"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tragn_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tragt"
+        },
+        {
+          "type": "minecraft:item",
           "name": "ervin_mod_1:tring"
         },
         {
@@ -1579,6 +1339,10 @@
         {
           "type": "minecraft:item",
           "name": "ervin_mod_1:trinks"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tririj"
         },
         {
           "type": "minecraft:item",
@@ -1598,11 +1362,71 @@
         },
         {
           "type": "minecraft:item",
+          "name": "ervin_mod_1:trugn_axe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:trugn_hoe"
+        },
+        {
+          "type": "minecraft:item",
           "name": "ervin_mod_1:trugn_pickaxe"
         },
         {
           "type": "minecraft:item",
+          "name": "ervin_mod_1:trugn_shovel"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:trugn_sword"
+        },
+        {
+          "type": "minecraft:item",
           "name": "ervin_mod_1:trugt"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:trurk"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:truzh"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:truzk"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:truzk_block"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:truzn"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:truzn_axe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:truzn_hoe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:truzn_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:truzn_shovel"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:truzn_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:truzt"
         },
         {
           "type": "minecraft:item",
@@ -1650,70 +1474,6 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:white_cobblestone"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:white_cobblestone_slab"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:white_cobblestone_stairs"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:white_smooth_stone"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:white_smooth_stone_slab"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:white_smooth_stone_stairs"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:white_stone_slab"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:white_stone_slab"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:yellow_cobblestone"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:yellow_cobblestone_slab"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:yellow_cobblestone_stairs"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:yellow_smooth_stone"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:yellow_smooth_stone_slab"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:yellow_smooth_stone_stairs"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:yellow_stone_slab"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:yellow_stone_stairs"
-        },
-        {
-          "type": "minecraft:item",
           "name": "ervin_mod_1:zribt"
         },
         {
@@ -1738,6 +1498,14 @@
         },
         {
           "type": "minecraft:item",
+          "name": "ervin_mod_1:zunk_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:zunkt"
+        },
+        {
+          "type": "minecraft:item",
           "name": "ervin_mod_1:zunt"
         },
         {
@@ -1758,11 +1526,327 @@
         },
         {
           "type": "minecraft:item",
+          "name": "ervin_mod_1:zurk_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:zurkt"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:zurkth"
+        },
+        {
+          "type": "minecraft:item",
           "name": "ervin_mod_1:zurt"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:seeds/targ_seeds"
+          "name": "ervin_mod_1:$/1$"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:$/2$"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:$/3$"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:$/4$"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:$/5$"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:$/6$"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:$/7$"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:$/8$"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:$/9$"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:$/10$"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:animation/colors/1/255/0"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:animation/colors/1/255/1"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:animation/colors/1/255/2"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:animation/colors/1/255/3"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:animation/colors/1/255/4"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:animation/colors/1/255/5"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:animation/colors/1/255/6"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:animation/colors/1/255/7"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:animation/colors/1/255/8"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:animation/colors/1/255/9"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:animation/colors/1/255/10"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:animation/colors/1/255/11"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:animation/colors/1/255/12"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:animation/colors/1/255/13"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:animation/colors/1/255/14"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:animation/colors/1/255/15"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:animation/colors/1/255/16"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:animation/colors/1/255/17"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:animation/colors/1/255/18"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:animation/colors/1/255/19"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:animation/colors/1/255/20"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:animation/colors/1/255/21"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:animation/colors/1/255/22"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:animation/colors/1/255/23"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:animation/colors/1/255/24"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:animation/colors/1/255/25"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:animation/colors/1/255/26"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:animation/colors/1/255/27"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:animation/colors/1/255/28"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:animation/colors/1/255/29"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:animation/colors/1/255/30"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:animation/colors/1/255/31"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:animation/colors/1/255/32"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:animation/colors/1/255/33"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:animation/colors/1/255/34"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:animation/colors/1/255/35"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:animation/colors/1/255/36"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:animation/colors/1/255/37"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:animation/colors/1/255/38"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:animation/colors/1/255/39"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:animation/colors/1/255/40"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:animation/colors/1/255/41"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:animation/colors/1/255/42"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:animation/colors/1/255/43"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:animation/colors/1/255/44"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:animation/colors/1/255/45"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:animation/colors/1/255/46"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:animation/colors/1/255/47"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:animation/colors/1/255/48"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:animation/colors/1/255/49"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:animation/colors/1/255/50"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:furnaces/black_furnace"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:furnaces/blue_furnace"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:furnaces/brown_furnace"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:furnaces/cyan_furnace"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:furnaces/green_furnace"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:furnaces/light_blue1_furnace"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:furnaces/light_blue_furnace"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:furnaces/light_gray_furnace"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:furnaces/lime_furnace"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:furnaces/magenta_furnace"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:furnaces/orange_furnace"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:furnaces/pink_furnace"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:furnaces/purple_furnace"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:furnaces/red_furnace"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:furnaces/white_furnace"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:furnaces/yellow_furnace"
         },
         {
           "type": "minecraft:item",
@@ -1894,67 +1978,23 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:iron_ores/blue_stone/black_iron_ore"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:iron_ores/brown_stone/black_iron_ore"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:iron_ores/cyan_stone/black_iron_ore"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:iron_ores/green_stone/black_iron_ore"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:iron_ores/light_blue1_stone/black_iron_ore"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:iron_ores/light_blue_stone/black_iron_ore"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:iron_ores/light_gray_stone/black_iron_ore"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:iron_ores/lime_stone/black_iron_ore"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:iron_ores/magenta_stone/black_iron_ore"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:iron_ores/orange_stone/black_iron_ore"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:iron_ores/pink_stone/black_iron_ore"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:iron_ores/purple_stone/black_iron_ore"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:iron_ores/red_stone/black_iron_ore"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:iron_ores/white_stone/black_iron_ore"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:iron_ores/yellow_stone/black_iron_ore"
-        },
-        {
-          "type": "minecraft:item",
           "name": "ervin_mod_1:iron_ores/black_stone/black_iron_ore"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:iron_ores/black_stone/blue_iron_ore"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:iron_ores/black_stone/brown_iron_ore"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:iron_ores/black_stone/cyan_iron_ore"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:iron_ores/black_stone/green_iron_ore"
         },
         {
           "type": "minecraft:item",
@@ -1962,63 +2002,35 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:iron_ores/blue_stone/iron_ore"
+          "name": "ervin_mod_1:iron_ores/black_stone/light_blue1_iron_ore"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:iron_ores/brown_stone/iron_ore"
+          "name": "ervin_mod_1:iron_ores/black_stone/light_blue_iron_ore"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:iron_ores/cyan_stone/iron_ore"
+          "name": "ervin_mod_1:iron_ores/black_stone/light_gray_iron_ore"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:iron_ores/green_stone/iron_ore"
+          "name": "ervin_mod_1:iron_ores/black_stone/lime_iron_ore"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:iron_ores/light_blue1_stone/iron_ore"
+          "name": "ervin_mod_1:iron_ores/black_stone/magenta_iron_ore"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:iron_ores/light_blue_stone/iron_ore"
+          "name": "ervin_mod_1:iron_ores/black_stone/orange_iron_ore"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:iron_ores/light_gray_stone/iron_ore"
+          "name": "ervin_mod_1:iron_ores/black_stone/pink_iron_ore"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:iron_ores/lime_stone/iron_ore"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:iron_ores/magenta_stone/iron_ore"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:iron_ores/orange_stone/iron_ore"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:iron_ores/pink_stone/iron_ore"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:iron_ores/purple_stone/iron_ore"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:iron_ores/red_stone/iron_ore"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:iron_ores/white_stone/iron_ore"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:iron_ores/yellow_stone/iron_ore"
+          "name": "ervin_mod_1:iron_ores/black_stone/purple_iron_ore"
         },
         {
           "type": "minecraft:item",
@@ -2026,323 +2038,1103 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_axe/black_stone_axe"
+          "name": "ervin_mod_1:iron_ores/black_stone/yellow_iron_ore"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_axe/blue_stone_axe"
+          "name": "ervin_mod_1:iron_ores/blue_stone/black_iron_ore"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_axe/brown_stone_axe"
+          "name": "ervin_mod_1:iron_ores/blue_stone/iron_ore"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_axe/cyan_stone_axe"
+          "name": "ervin_mod_1:iron_ores/brown_stone/black_iron_ore"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_axe/green_stone_axe"
+          "name": "ervin_mod_1:iron_ores/brown_stone/iron_ore"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_axe/light_blue1_stone_axe"
+          "name": "ervin_mod_1:iron_ores/cyan_stone/black_iron_ore"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_axe/light_blue_stone_axe"
+          "name": "ervin_mod_1:iron_ores/cyan_stone/iron_ore"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_axe/light_gray_stone_axe"
+          "name": "ervin_mod_1:iron_ores/green_stone/black_iron_ore"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_axe/lime_stone_axe"
+          "name": "ervin_mod_1:iron_ores/green_stone/iron_ore"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_axe/magenta_stone_axe"
+          "name": "ervin_mod_1:iron_ores/light_blue1_stone/black_iron_ore"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_axe/orange_stone_axe"
+          "name": "ervin_mod_1:iron_ores/light_blue1_stone/iron_ore"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_axe/pink_stone_axe"
+          "name": "ervin_mod_1:iron_ores/light_blue_stone/black_iron_ore"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_axe/purple_stone_axe"
+          "name": "ervin_mod_1:iron_ores/light_blue_stone/iron_ore"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_axe/red_stone_axe"
+          "name": "ervin_mod_1:iron_ores/light_gray_stone/black_iron_ore"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_axe/white_stone_axe"
+          "name": "ervin_mod_1:iron_ores/light_gray_stone/iron_ore"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_axe/yellow_stone_axe"
+          "name": "ervin_mod_1:iron_ores/lime_stone/black_iron_ore"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_hoe/black_stone_hoe"
+          "name": "ervin_mod_1:iron_ores/lime_stone/iron_ore"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_hoe/blue_stone_hoe"
+          "name": "ervin_mod_1:iron_ores/magenta_stone/black_iron_ore"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_hoe/brown_stone_hoe"
+          "name": "ervin_mod_1:iron_ores/magenta_stone/iron_ore"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_hoe/cyan_stone_hoe"
+          "name": "ervin_mod_1:iron_ores/orange_stone/black_iron_ore"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_hoe/green_stone_hoe"
+          "name": "ervin_mod_1:iron_ores/orange_stone/iron_ore"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_hoe/light_blue1_stone_hoe"
+          "name": "ervin_mod_1:iron_ores/pink_stone/black_iron_ore"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_hoe/light_blue_stone_hoe"
+          "name": "ervin_mod_1:iron_ores/pink_stone/iron_ore"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_hoe/light_gray_stone_hoe"
+          "name": "ervin_mod_1:iron_ores/purple_stone/black_iron_ore"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_hoe/lime_stone_hoe"
+          "name": "ervin_mod_1:iron_ores/purple_stone/iron_ore"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_hoe/magenta_stone_hoe"
+          "name": "ervin_mod_1:iron_ores/red_stone/black_iron_ore"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_hoe/orange_stone_hoe"
+          "name": "ervin_mod_1:iron_ores/red_stone/iron_ore"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_hoe/pink_stone_hoe"
+          "name": "ervin_mod_1:iron_ores/white_stone/black_iron_ore"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_hoe/purple_stone_hoe"
+          "name": "ervin_mod_1:iron_ores/white_stone/iron_ore"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_hoe/red_stone_hoe"
+          "name": "ervin_mod_1:iron_ores/yellow_stone/black_iron_ore"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_hoe/white_stone_hoe"
+          "name": "ervin_mod_1:iron_ores/yellow_stone/iron_ore"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_hoe/yellow_stone_hoe"
+          "name": "ervin_mod_1:seeds/targ_seeds"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_pickaxe/black_stone_pickaxe"
+          "name": "ervin_mod_1:spawn_eggs/$_trader_spawn_egg"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_pickaxe/blue_stone_pickaxe"
+          "name": "ervin_mod_1:spawn_eggs/ender_dragon_spawn_egg"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_pickaxe/brown_stone_pickaxe"
+          "name": "ervin_mod_1:spawn_eggs/frein_spawn_egg"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_pickaxe/cyan_stone_pickaxe"
+          "name": "ervin_mod_1:spawn_eggs/giant_spawn_egg"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_pickaxe/green_stone_pickaxe"
+          "name": "ervin_mod_1:spawn_eggs/gubrov_spawn_egg"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_pickaxe/light_blue1_stone_pickaxe"
+          "name": "ervin_mod_1:spawn_eggs/illusioner_spawn_egg"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_pickaxe/light_blue_stone_pickaxe"
+          "name": "ervin_mod_1:spawn_eggs/iron_golem_spawn_egg"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_pickaxe/light_gray_stone_pickaxe"
+          "name": "ervin_mod_1:spawn_eggs/rovent_spawn_egg"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_pickaxe/lime_stone_pickaxe"
+          "name": "ervin_mod_1:spawn_eggs/snow_golem_spawn_egg"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_pickaxe/magenta_stone_pickaxe"
+          "name": "ervin_mod_1:spawn_eggs/spawn_egg_1"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_pickaxe/orange_stone_pickaxe"
+          "name": "ervin_mod_1:spawn_eggs/srach_spawn_egg"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_pickaxe/pink_stone_pickaxe"
+          "name": "ervin_mod_1:spawn_eggs/trader_nirtre_spawn_egg"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_pickaxe/purple_stone_pickaxe"
+          "name": "ervin_mod_1:spawn_eggs/vilt_spawn_egg"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_pickaxe/red_stone_pickaxe"
+          "name": "ervin_mod_1:spawn_eggs/wandering_trader_nirtre_spawn_egg"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_pickaxe/white_stone_pickaxe"
+          "name": "ervin_mod_1:spawn_eggs/wither_spawn_egg"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_pickaxe/yellow_stone_pickaxe"
+          "name": "ervin_mod_1:spawn_eggs/wolf1_spawn_egg"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_shovel/black_stone_shovel"
+          "name": "ervin_mod_1:spawn_eggs/zombie_trader_spawn_egg"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_shovel/blue_stone_shovel"
+          "name": "ervin_mod_1:spawn_eggs/zur_spawn_egg"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_shovel/brown_stone_shovel"
+          "name": "ervin_mod_1:stone/bricks/black_stone_bricks"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_shovel/cyan_stone_shovel"
+          "name": "ervin_mod_1:stone/bricks/blue_stone_bricks"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_shovel/green_stone_shovel"
+          "name": "ervin_mod_1:stone/bricks/brown_stone_bricks"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_shovel/light_blue1_stone_shovel"
+          "name": "ervin_mod_1:stone/bricks/cyan_stone_bricks"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_shovel/light_blue_stone_shovel"
+          "name": "ervin_mod_1:stone/bricks/green_stone_bricks"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_shovel/light_gray_stone_shovel"
+          "name": "ervin_mod_1:stone/bricks/light_blue1_stone_bricks"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_shovel/lime_stone_shovel"
+          "name": "ervin_mod_1:stone/bricks/light_blue_stone_bricks"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_shovel/magenta_stone_shovel"
+          "name": "ervin_mod_1:stone/bricks/light_gray_stone_bricks"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_shovel/orange_stone_shovel"
+          "name": "ervin_mod_1:stone/bricks/lime_stone_bricks"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_shovel/pink_stone_shovel"
+          "name": "ervin_mod_1:stone/bricks/magenta_stone_bricks"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_shovel/purple_stone_shovel"
+          "name": "ervin_mod_1:stone/bricks/orange_stone_bricks"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_shovel/red_stone_shovel"
+          "name": "ervin_mod_1:stone/bricks/pink_stone_bricks"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_shovel/white_stone_shovel"
+          "name": "ervin_mod_1:stone/bricks/purple_stone_bricks"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_shovel/yellow_stone_shovel"
+          "name": "ervin_mod_1:stone/bricks/red_stone_bricks"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_sword/black_stone_sword"
+          "name": "ervin_mod_1:stone/bricks/white_stone_bricks"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_sword/blue_stone_sword"
+          "name": "ervin_mod_1:stone/bricks/yellow_stone_bricks"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_sword/brown_stone_sword"
+          "name": "ervin_mod_1:stone/cobblestone/slabs/black_cobblestone_slab"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_sword/cyan_stone_sword"
+          "name": "ervin_mod_1:stone/cobblestone/slabs/blue_cobblestone_slab"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_sword/green_stone_sword"
+          "name": "ervin_mod_1:stone/cobblestone/slabs/brown_cobblestone_slab"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_sword/light_blue1_stone_sword"
+          "name": "ervin_mod_1:stone/cobblestone/slabs/cyan_cobblestone_slab"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_sword/light_blue_stone_sword"
+          "name": "ervin_mod_1:stone/cobblestone/slabs/green_cobblestone_slab"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_sword/light_gray_stone_sword"
+          "name": "ervin_mod_1:stone/cobblestone/slabs/light_blue1_cobblestone_slab"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_sword/lime_stone_sword"
+          "name": "ervin_mod_1:stone/cobblestone/slabs/light_blue_cobblestone_slab"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_sword/magenta_stone_sword"
+          "name": "ervin_mod_1:stone/cobblestone/slabs/light_gray_cobblestone_slab"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_sword/orange_stone_sword"
+          "name": "ervin_mod_1:stone/cobblestone/slabs/lime_cobblestone_slab"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_sword/pink_stone_sword"
+          "name": "ervin_mod_1:stone/cobblestone/slabs/magenta_cobblestone_slab"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_sword/purple_stone_sword"
+          "name": "ervin_mod_1:stone/cobblestone/slabs/orange_cobblestone_slab"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_sword/red_stone_sword"
+          "name": "ervin_mod_1:stone/cobblestone/slabs/pink_cobblestone_slab"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_sword/white_stone_sword"
+          "name": "ervin_mod_1:stone/cobblestone/slabs/purple_cobblestone_slab"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_sword/yellow_stone_sword"
+          "name": "ervin_mod_1:stone/cobblestone/slabs/red_cobblestone_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/cobblestone/slabs/white_cobblestone_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/cobblestone/slabs/yellow_cobblestone_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/cobblestone/stairs/black_cobblestone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/cobblestone/stairs/blue_cobblestone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/cobblestone/stairs/brown_cobblestone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/cobblestone/stairs/cyan_cobblestone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/cobblestone/stairs/green_cobblestone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/cobblestone/stairs/light_blue1_cobblestone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/cobblestone/stairs/light_blue_cobblestone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/cobblestone/stairs/light_gray_cobblestone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/cobblestone/stairs/lime_cobblestone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/cobblestone/stairs/magenta_cobblestone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/cobblestone/stairs/orange_cobblestone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/cobblestone/stairs/pink_cobblestone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/cobblestone/stairs/purple_cobblestone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/cobblestone/stairs/red_cobblestone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/cobblestone/stairs/white_cobblestone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/cobblestone/stairs/yellow_cobblestone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/cobblestones/black_cobblestone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/cobblestones/blue_cobblestone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/cobblestones/brown_cobblestone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/cobblestones/cyan_cobblestone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/cobblestones/green_cobblestone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/cobblestones/light_blue1_cobblestone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/cobblestones/light_blue_cobblestone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/cobblestones/light_gray_cobblestone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/cobblestones/lime_cobblestone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/cobblestones/magenta_cobblestone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/cobblestones/orange_cobblestone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/cobblestones/pink_cobblestone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/cobblestones/purple_cobblestone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/cobblestones/red_cobblestone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/cobblestones/white_cobblestone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/cobblestones/yellow_cobblestone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/slabs/black_stone_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/slabs/blue_stone_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/slabs/brown_stone_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/slabs/cyan_stone_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/slabs/green_stone_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/slabs/light_blue1_stone_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/slabs/light_blue_stone_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/slabs/light_gray_stone_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/slabs/lime_stone_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/slabs/magenta_stone_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/slabs/orange_stone_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/slabs/pink_stone_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/slabs/purple_stone_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/slabs/red_stone_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/slabs/white_stone_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/slabs/yellow_stone_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/smooth_stone/slabs/black_smooth_stone_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/smooth_stone/slabs/blue_smooth_stone_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/smooth_stone/slabs/brown_smooth_stone_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/smooth_stone/slabs/cyan_smooth_stone_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/smooth_stone/slabs/green_smooth_stone_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/smooth_stone/slabs/light_blue1_smooth_stone_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/smooth_stone/slabs/light_blue_smooth_stone_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/smooth_stone/slabs/light_gray_smooth_stone_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/smooth_stone/slabs/lime_smooth_stone_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/smooth_stone/slabs/magenta_smooth_stone_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/smooth_stone/slabs/orange_smooth_stone_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/smooth_stone/slabs/pink_smooth_stone_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/smooth_stone/slabs/purple_smooth_stone_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/smooth_stone/slabs/red_smooth_stone_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/smooth_stone/slabs/white_smooth_stone_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/smooth_stone/slabs/yellow_smooth_stone_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/smooth_stone/stairs/black_smooth_stone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/smooth_stone/stairs/blue_smooth_stone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/smooth_stone/stairs/brown_smooth_stone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/smooth_stone/stairs/cyan_smooth_stone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/smooth_stone/stairs/green_smooth_stone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/smooth_stone/stairs/light_blue1_smooth_stone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/smooth_stone/stairs/light_blue_smooth_stone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/smooth_stone/stairs/light_gray_smooth_stone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/smooth_stone/stairs/lime_smooth_stone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/smooth_stone/stairs/magenta_smooth_stone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/smooth_stone/stairs/orange_smooth_stone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/smooth_stone/stairs/pink_smooth_stone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/smooth_stone/stairs/purple_smooth_stone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/smooth_stone/stairs/red_smooth_stone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/smooth_stone/stairs/white_smooth_stone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/smooth_stone/stairs/yellow_smooth_stone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/smooth_stones/black_smooth_stone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/smooth_stones/blue_smooth_stone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/smooth_stones/brown_smooth_stone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/smooth_stones/cyan_smooth_stone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/smooth_stones/green_smooth_stone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/smooth_stones/light_blue1_smooth_stone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/smooth_stones/light_blue_smooth_stone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/smooth_stones/light_gray_smooth_stone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/smooth_stones/lime_smooth_stone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/smooth_stones/magenta_smooth_stone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/smooth_stones/orange_smooth_stone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/smooth_stones/pink_smooth_stone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/smooth_stones/purple_smooth_stone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/smooth_stones/red_smooth_stone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/smooth_stones/white_smooth_stone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/smooth_stones/yellow_smooth_stone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/stairs/black_stone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/stairs/blue_stone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/stairs/brown_stone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/stairs/cyan_stone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/stairs/green_stone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/stairs/light_blue1_stone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/stairs/light_blue_stone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/stairs/light_gray_stone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/stairs/lime_stone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/stairs/magenta_stone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/stairs/orange_stone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/stairs/pink_stone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/stairs/purple_stone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/stairs/red_stone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/stairs/white_stone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/stairs/yellow_stone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/stairs/yellow_stone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/axe/black_stone_axe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/axe/blue_stone_axe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/axe/brown_stone_axe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/axe/cyan_stone_axe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/axe/green_stone_axe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/axe/light_blue1_stone_axe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/axe/light_blue_stone_axe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/axe/light_gray_stone_axe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/axe/lime_stone_axe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/axe/magenta_stone_axe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/axe/orange_stone_axe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/axe/pink_stone_axe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/axe/purple_stone_axe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/axe/red_stone_axe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/axe/white_stone_axe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/axe/yellow_stone_axe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/hoe/black_stone_hoe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/hoe/blue_stone_hoe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/hoe/brown_stone_hoe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/hoe/cyan_stone_hoe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/hoe/green_stone_hoe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/hoe/light_blue1_stone_hoe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/hoe/light_blue_stone_hoe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/hoe/light_gray_stone_hoe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/hoe/lime_stone_hoe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/hoe/magenta_stone_hoe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/hoe/orange_stone_hoe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/hoe/pink_stone_hoe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/hoe/purple_stone_hoe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/hoe/red_stone_hoe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/hoe/white_stone_hoe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/hoe/yellow_stone_hoe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/pickaxe/black_stone_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/pickaxe/blue_stone_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/pickaxe/brown_stone_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/pickaxe/cyan_stone_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/pickaxe/green_stone_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/pickaxe/light_blue1_stone_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/pickaxe/light_blue_stone_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/pickaxe/light_gray_stone_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/pickaxe/lime_stone_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/pickaxe/magenta_stone_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/pickaxe/orange_stone_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/pickaxe/pink_stone_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/pickaxe/purple_stone_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/pickaxe/red_stone_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/pickaxe/white_stone_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/pickaxe/yellow_stone_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/shovel/black_stone_shovel"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/shovel/blue_stone_shovel"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/shovel/brown_stone_shovel"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/shovel/cyan_stone_shovel"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/shovel/green_stone_shovel"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/shovel/light_blue1_stone_shovel"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/shovel/light_blue_stone_shovel"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/shovel/light_gray_stone_shovel"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/shovel/lime_stone_shovel"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/shovel/magenta_stone_shovel"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/shovel/orange_stone_shovel"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/shovel/pink_stone_shovel"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/shovel/purple_stone_shovel"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/shovel/red_stone_shovel"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/shovel/white_stone_shovel"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/shovel/yellow_stone_shovel"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/sword/black_stone_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/sword/blue_stone_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/sword/brown_stone_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/sword/cyan_stone_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/sword/green_stone_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/sword/light_blue1_stone_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/sword/light_blue_stone_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/sword/light_gray_stone_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/sword/lime_stone_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/sword/magenta_stone_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/sword/orange_stone_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/sword/pink_stone_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/sword/purple_stone_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/sword/red_stone_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/sword/white_stone_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/tools/sword/yellow_stone_sword"
         },
         {
           "type": "minecraft:item",

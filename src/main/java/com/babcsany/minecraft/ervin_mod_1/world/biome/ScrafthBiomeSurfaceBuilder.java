@@ -1,6 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.world.biome;
 
-import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit;
 import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
 import net.minecraft.world.biome.Biome;
@@ -24,16 +24,16 @@ public class ScrafthBiomeSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderCon
 		if (i == 0) {
 			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock,
 					defaultFluid, seaLevel, seed,
-					new SurfaceBuilderConfig(BlockItemInit.SCRAFTH.get().getDefaultState(),
-							BlockItemInit.SCRAFTH.get().getDefaultState(), BlockItemInit.SCRAFTH.get().getDefaultState()
+					new SurfaceBuilderConfig(BlockInit.SCRAFTH.get().getDefaultState(),
+							BlockInit.SCRAFTH.get().getDefaultState(), BlockInit.SCRAFTH.get().getDefaultState()
 					));
 		} else {
 			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock,
 					defaultFluid, seaLevel, seed,
 					new SurfaceBuilderConfig(
-							i == 1 ? BlockItemInit.SCRAFTH.get().getDefaultState()
-									: BlockItemInit.SCRAFTH.get().getDefaultState(),
-							BlockItemInit.SCRAFTH.get().getDefaultState(), BlockItemInit.SCRAFTH.get().getDefaultState()
+							i == 1 ? BlockInit.SCRAFTH.get().getDefaultState()
+									: BlockInit.SCRAFTH.get().getDefaultState(),
+							BlockInit.SCRAFTH.get().getDefaultState(), BlockInit.SCRAFTH.get().getDefaultState()
 					));
 		}
 	}

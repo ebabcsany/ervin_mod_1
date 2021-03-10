@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#####",
+    "#####",
+    "##S##",
+    "#####",
+    "#####"
+  ],
+  "key": {
+    "#": {
+      "item": "ervin_mod_1:frein_ball"
+    },
+    "S": {
+      "item": "ervin_mod_1:spawn_eggs/spawn_egg_1"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:spawn_eggs/frein_spawn_egg",
+    "count": 1
+  }
+}

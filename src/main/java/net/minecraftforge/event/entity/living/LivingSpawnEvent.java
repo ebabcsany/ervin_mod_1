@@ -113,6 +113,47 @@ public class LivingSpawnEvent extends LivingEvent
         }
     }
 
+    @HasResult
+    public static class CheckReutrienSpawn extends LivingSpawnEvent
+    {
+        @Nullable
+        private final AbstractReutrien reutrien;
+        private final SpawnReason spawnReason;
+
+        /**
+         * CheckSpawn is fired when an Entity is about to be spawned.
+         * @param entity the spawning entity
+         * @param world the world to spawn in
+         * @param x x coordinate
+         * @param y y coordinate
+         * @param z z coordinate
+         * @param reutrien position of the MobSpawner
+         *                  null if it this spawn is coming from a WorldSpawner
+         */
+        public CheckReutrienSpawn(MobEntity entity, IWorld world, double x, double y, double z, @Nullable AbstractReutrien reutrien, SpawnReason spawnReason)
+        {
+            super(entity, world, x, y, z);
+            this.reutrien = reutrien;
+            this.spawnReason = spawnReason;
+        }
+
+        public boolean isReutrien()
+        {
+            return reutrien != null;
+        }
+
+        @Nullable
+        public AbstractReutrien getReutrien()
+        {
+            return reutrien;
+        }
+
+        public SpawnReason getSpawnReason()
+        {
+            return spawnReason;
+        }
+    }
+
     /* *
      * SpecialSpawn is fired when an Entity is to be spawned.<br>
      * This allows you to do special inializers in the new entity.<br>
@@ -176,46 +217,6 @@ public class LivingSpawnEvent extends LivingEvent
             super(entity, entity.world, entity.getPosX(), entity.getPosY(), entity.getPosZ());
         }
 
-    }
-    public static class CheckReutrienSpawn extends LivingSpawnEvent
-    {
-
-        @Nullable
-        private final AbstractReutrien reutrien;
-        private final SpawnReason spawnReason;
-
-        /**
-         * CheckSpawn is fired when an Entity is about to be spawned.
-         * @param entity the spawning entity
-         * @param world the world to spawn in
-         * @param x x coordinate
-         * @param y y coordinate
-         * @param z z coordinate
-         * @param reutrien position of the MobSpawner
-         *                  null if it this spawn is coming from a WorldSpawner
-         */
-        public CheckReutrienSpawn(MobEntity entity, IWorld world, double x, double y, double z, @Nullable AbstractReutrien reutrien, SpawnReason spawnReason)
-        {
-            super(entity, world, x, y, z);
-            this.reutrien = reutrien;
-            this.spawnReason = spawnReason;
-        }
-
-        public boolean isReutrien()
-        {
-            return reutrien != null;
-        }
-
-        @Nullable
-        public AbstractReutrien getReutrien()
-        {
-            return reutrien;
-        }
-
-        public SpawnReason getSpawnReason()
-        {
-            return spawnReason;
-        }
     }
 
     /* *

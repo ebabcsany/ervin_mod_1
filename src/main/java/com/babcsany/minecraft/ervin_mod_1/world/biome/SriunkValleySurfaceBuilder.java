@@ -27,7 +27,7 @@ public class SriunkValleySurfaceBuilder extends SurfaceBuilder<SurfaceBuilderCon
 			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock,
 					defaultFluid, seaLevel, seed,
 					new SurfaceBuilderConfig(BlockItemInit.AVTER_BLOCK.get().getDefaultState(),
-							BlockItemInit.NIRTKB.get().getDefaultState(), isBurnableBlockItemInit.SRIUNK_SLAB.get().getDefaultState()
+							isBurnableBlockItemInit.NIRTKB.get().getDefaultState(), isBurnableBlockItemInit.SRIUNK_SLAB.get().getDefaultState()
 					));
 		} else {
 			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock,

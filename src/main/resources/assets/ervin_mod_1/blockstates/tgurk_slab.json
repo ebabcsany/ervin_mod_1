@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "ervin_mod_1:block/tgurk_slab"
+    },
+    "type=double": {
+      "model": "ervin_mod_1:block/tgurk_block"
+    },
+    "type=top": {
+      "model": "ervin_mod_1:block/tgurk_slab_top"
+    }
+  }
+}

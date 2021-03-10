@@ -1,8 +1,9 @@
 package net.minecraft.tileentity;
 
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.ItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import it.unimi.dsi.fastutil.objects.Object2IntMap.Entry;
@@ -93,17 +94,28 @@ public abstract class AbstractFurnaceTileEntity extends LockableTileEntity imple
    public static Map<Item, Integer> getBurnTimes() {
       Map<Item, Integer> map = Maps.newLinkedHashMap();
       addItemBurnTime(map, Items.LAVA_BUCKET, 20000);
-      addItemBurnTime(map, ItemInit.GART.get(), 180000);
-      addItemBurnTime(map, ItemInit.GARB.get(), 1620000);
-      addItemBurnTime(map, ItemInit.GARK.get(), 14580000);
-      addItemBurnTime(map, isBurnableBlockItemInit.GARK_BLOCK.get(), 131220000);
-      addItemBurnTime(map, isBurnableBlockItemInit.GARK_SLAB.get(), 65610000);
+      addItemBurnTime(map, isBurnableItemInit.GART.get(), 45000);
+      addItemBurnTime(map, isBurnableItemInit.GARB.get(), 101200);
+      addItemBurnTime(map, isBurnableItemInit.GARK.get(), 227700);
+      addItemBurnTime(map, isBurnableBlockItemInit.GARK_BLOCK.get(), 512300);
+      addItemBurnTime(map, isBurnableBlockItemInit.GARK_SLAB.get(), 256150);
+      addItemBurnTime(map, isBurnableItemInit.GARKT.get(), 1152600);
+      addItemBurnTime(map, isBurnableItemInit.GARKTH.get(), 4610400);
+      addItemBurnTime(map, isBurnableItemInit.TRAGH.get(), 10373400);
+      addItemBurnTime(map, isBurnableItemInit.TRAGK.get(), 23340100);
+      addItemBurnTime(map, isBurnableBlockItemInit.TRAGK_BLOCK.get(), 93360400);
+      addItemBurnTime(map, isBurnableItemInit.TRAGT.get(), 58502500);
+      addItemBurnTime(map, isBurnableBlockItemInit.TRAGN.get(), 365640600);
       addItemBurnTime(map, Blocks.COAL_BLOCK, 16000);
       addItemBurnTime(map, BlockItemInit.COAL_SLAB.get(), 8000);
       addItemBurnTime(map, BlockItemInit.CHARCOAL_BLOCK.get(), 16000);
       addItemBurnTime(map, BlockItemInit.CHARCOAL_SLAB.get(), 8000);
-      addItemBurnTime(map, ItemInit.FIRT.get(), 2400);
-      addItemBurnTime(map, BlockItemInit.FIRT_BLOCK.get(), 21600);
+      addItemBurnTime(map, ItemInit.FIRT.get(), 1200);
+      addItemBurnTime(map, ItemInit.FIRT_AXE.get(), 3800);
+      addItemBurnTime(map, ItemInit.FIRT_BOOTS.get(), 4800);
+      addItemBurnTime(map, ItemInit.FIRT_HELMET.get(), 6000);
+      addItemBurnTime(map, ItemInit.FIRT_HOE.get(), 2600);
+      addItemBurnTime(map, BlockItemInit.FIRT_BLOCK.get(), 10800);
       addItemBurnTime(map, Items.BLAZE_ROD, 2400);
       addItemBurnTime(map, Items.COAL, 1600);
       addItemBurnTime(map, Items.CHARCOAL, 1600);

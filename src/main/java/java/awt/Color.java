@@ -205,13 +205,13 @@ public class Color implements Paint, java.io.Serializable {
     /**
      * The color ffc08040.  In the default sRGB space.
      */
-    public final static Color ffc08040 = new Color(192, 128, 64);
+    public final static Color colorFFc08040 = new Color(192, 128, 64);
 
     /**
      * The color ffc08040.  In the default sRGB space.
      * @since 1.4
      */
-    public final static Color FFC08040 = ffc08040;
+    public final static Color FFC08040 = colorFFc08040;
 
     /**
      * The color blue.  In the default sRGB space.
@@ -224,6 +224,23 @@ public class Color implements Paint, java.io.Serializable {
      */
     public final static Color BLUE = blue;
 
+    /**
+     * The colors.  In the default sRGB space.
+     */
+    public final static Color color802000FF      = new Color(128, 32, 0, 255);
+    public final static Color colorC8C8C8FF      = new Color(200, 200, 200, 255);
+    public final static Color colorFF5060FF      = new Color(255, 80, 96, 255);
+    public final static Color color80146499      = new Color(128, 20, 100, 153);
+    public final static Color colorB40000FF      = new Color(180, 0, 0, 255);
+    public final static Color colorBE6464FF      = new Color(190, 100, 100, 255);
+    public final static Color colorFFFF80FF      = new Color(255, 255, 128, 255);
+    public final static Color colorFFC080FF      = new Color(255, 192, 128, 255);
+    public final static Color colorFFA080FF      = new Color(255, 160, 128, 255);
+    /**
+     * The colors.  In the default sRGB space.
+     * @since 1.4
+     */
+    public final static Color Color802000FF = color802000FF;
     /**
      * The color value.
      * @serial

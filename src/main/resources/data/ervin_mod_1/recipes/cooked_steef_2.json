@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smoking",
+  "ingredient": {
+    "item": "ervin_mod_1:steef"
+  },
+  "result": "ervin_mod_1:cooked_steef",
+  "experience": 0.35,
+  "cookingtime": 100
+}

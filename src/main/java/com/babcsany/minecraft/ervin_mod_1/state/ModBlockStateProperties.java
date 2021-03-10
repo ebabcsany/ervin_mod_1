@@ -93,6 +93,8 @@ public class ModBlockStateProperties {
    public static final IntegerProperty DELAY_1_4 = IntegerProperty.create("delay", 1, 4);
    public static final IntegerProperty DISTANCE_1_7 = IntegerProperty.create("distance", 1, 7);
    public static final IntegerProperty DISTANCE_1_32 = IntegerProperty.create("distance", 1, 32);
+   public static final IntegerProperty CHARGES = IntegerProperty.create("charges", 0, 4);
+   public static final IntegerProperty CHARGES_0_16 = IntegerProperty.create("charges", 0, 16);
    public static final IntegerProperty EGGS_1_4 = IntegerProperty.create("eggs", 1, 4);
    public static final IntegerProperty HATCH_0_2 = IntegerProperty.create("hatch", 0, 2);
    public static final IntegerProperty LAYERS_1_8 = IntegerProperty.create("layers", 1, 8);

@@ -1,0 +1,55 @@
+{
+  "variants": {
+    "charges=0": {
+      "model": "ervin_mod_1:block/hurvruj/hurvruj_0"
+    },
+    "charges=1": {
+      "model": "ervin_mod_1:block/hurvruj/hurvruj_1"
+    },
+    "charges=2": {
+      "model": "ervin_mod_1:block/hurvruj/hurvruj_2"
+    },
+    "charges=3": {
+      "model": "ervin_mod_1:block/hurvruj/hurvruj_3"
+    },
+    "charges=4": {
+      "model": "ervin_mod_1:block/hurvruj/hurvruj_4"
+    },
+    "charges=5": {
+      "model": "ervin_mod_1:block/hurvruj/hurvruj_5"
+    },
+    "charges=6": {
+      "model": "ervin_mod_1:block/hurvruj/hurvruj_6"
+    },
+    "charges=7": {
+      "model": "ervin_mod_1:block/hurvruj/hurvruj_7"
+    },
+    "charges=8": {
+      "model": "ervin_mod_1:block/hurvruj/hurvruj_8"
+    },
+    "charges=9": {
+      "model": "ervin_mod_1:block/hurvruj/hurvruj_9"
+    },
+    "charges=10": {
+      "model": "ervin_mod_1:block/hurvruj/hurvruj_10"
+    },
+    "charges=11": {
+      "model": "ervin_mod_1:block/hurvruj/hurvruj_11"
+    },
+    "charges=12": {
+      "model": "ervin_mod_1:block/hurvruj/hurvruj_12"
+    },
+    "charges=13": {
+      "model": "ervin_mod_1:block/hurvruj/hurvruj_13"
+    },
+    "charges=14": {
+      "model": "ervin_mod_1:block/hurvruj/hurvruj_14"
+    },
+    "charges=15": {
+      "model": "ervin_mod_1:block/hurvruj/hurvruj_15"
+    },
+    "charges=16": {
+      "model": "ervin_mod_1:block/hurvruj/hurvruj_16"
+    }
+  }
+}

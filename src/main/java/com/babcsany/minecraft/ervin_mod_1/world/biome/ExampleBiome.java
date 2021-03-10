@@ -2,7 +2,6 @@ package com.babcsany.minecraft.ervin_mod_1.world.biome;
 
 import com.babcsany.minecraft.ervin_mod_1.init.ModBiomeFeatures;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.FirgTree;
-import com.babcsany.minecraft.ervin_mod_1.world.feature.JazzTree;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.ModDefaultBiomeFeatures;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
@@ -11,8 +10,6 @@ import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.placement.*;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class ExampleBiome extends Biome {
 	public ExampleBiome(Builder biomeBuilder) {
@@ -28,19 +25,19 @@ public class ExampleBiome extends Biome {
 				Biome.createCarver(WorldCarver.CANYON, new ProbabilityConfig(0.7421563921F)));
 		this.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION,
 				Feature.FOSSIL.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG)
-						.withPlacement(Placement.CHANCE_PASSTHROUGH.configure(new ChanceConfig(128))));
+						.withPlacement(Placement.CHANCE_PASSTHROUGH.configure(new ChanceConfig(64))));
 		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
-				Feature.field_236291_c_.withConfiguration(ModDefaultBiomeFeatures.FIRG_TREE_CONFIG3)
-						.withPlacement(Placement.CHANCE_HEIGHTMAP_DOUBLE.configure(new ChanceConfig(240))));
+				Feature.field_236291_c_.withConfiguration(FirgTree.FIRG_TREE_CONFIG3)
+						.withPlacement(Placement.CHANCE_HEIGHTMAP_DOUBLE.configure(new ChanceConfig(120))));
 		this.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION,
-				Feature.field_236291_c_.withConfiguration(ModDefaultBiomeFeatures.FIRG_TREE_CONFIG2)
-						.withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(150))));
+				Feature.field_236291_c_.withConfiguration(FirgTree.FIRG_TREE_CONFIG2)
+						.withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(75))));
 		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
-				Feature.field_236291_c_.withConfiguration(ModDefaultBiomeFeatures.FIRG_TREE_CONFIG1)
-						.withPlacement(Placement.CHANCE_TOP_SOLID_HEIGHTMAP.configure(new ChanceConfig(200))));
+				Feature.field_236291_c_.withConfiguration(FirgTree.FIRG_TREE_CONFIG1)
+						.withPlacement(Placement.CHANCE_TOP_SOLID_HEIGHTMAP.configure(new ChanceConfig(100))));
 		this.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION,
-				Feature.field_236291_c_.withConfiguration(ModDefaultBiomeFeatures.FIRG_TREE_CONFIG)
-						.withPlacement(Placement.CHANCE_PASSTHROUGH.configure(new ChanceConfig(100))));
+				Feature.field_236291_c_.withConfiguration(FirgTree.FIRG_TREE_CONFIG)
+						.withPlacement(Placement.CHANCE_PASSTHROUGH.configure(new ChanceConfig(50))));
 		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
 				Feature.RANDOM_BOOLEAN_SELECTOR
 						.withConfiguration(new TwoFeatureChoiceConfig(
@@ -70,13 +67,13 @@ public class ExampleBiome extends Biome {
 						Placement.COUNT_CHANCE_HEIGHTMAP_DOUBLE.configure(new HeightWithChanceConfig(1, 0.125F))));
 		this.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES,
 				Feature.field_236291_c_.withConfiguration(ModDefaultBiomeFeatures.FANCY_TREE_WITH_MORE_BEEHIVES_CONFIG).withPlacement(
-						Placement.CHANCE_TOP_SOLID_HEIGHTMAP.configure(new ChanceConfig(50))));
+						Placement.CHANCE_TOP_SOLID_HEIGHTMAP.configure(new ChanceConfig(10))));
 		/*this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
 				Feature.field_236291_c_.withConfiguration(JazzTree.JAZZ_TREE_CONFIG).withPlacement(
 						Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(7, 0.1f, 1))));*/
 		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
 				Feature.field_236291_c_.withConfiguration(FirgTree.FIRG_TREE_CONFIG).withPlacement(
-						Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(180, 48.0f, 100))));
+						Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(45, 12.0f, 25))));
 
 		DefaultBiomeFeatures.addOres(this);
 		ModDefaultBiomeFeatures.addBlackIronOres(this);
@@ -85,10 +82,10 @@ public class ExampleBiome extends Biome {
 		DefaultBiomeFeatures.addExtraGoldOre(this);
 		ModDefaultBiomeFeatures.addExtraEmeraldOre(this);
 		ModBiomeFeatures.addExampleFeature(this, 1000);
+		ModBiomeFeatures.addExampleRuinedPortalFeature(this, 10000);
 		ModDefaultBiomeFeatures.addStones(this);
 		ModDefaultBiomeFeatures.addKiomne(this);
 		ModDefaultBiomeFeatures.addFirgTrees(this);
-		//this.func_235063_a_(DefaultBiomeFeatures.RUINED_PORTAL_STANDARD);
 	}
 	
 	@Override

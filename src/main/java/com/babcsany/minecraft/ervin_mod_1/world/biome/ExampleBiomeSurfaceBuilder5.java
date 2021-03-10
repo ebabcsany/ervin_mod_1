@@ -27,7 +27,7 @@ public class ExampleBiomeSurfaceBuilder5 extends SurfaceBuilder<SurfaceBuilderCo
 			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock,
 					defaultFluid, seaLevel, seed,
 					new SurfaceBuilderConfig(BlockItemInit.FIRT_BLOCK.get().getDefaultState(),
-							BlockItemInit.LEAT_BLOCK_CRAFTING_TABLE.get().getDefaultState(), isBurnableBlockItemInit.GRITH_BLOCK.get().getDefaultState()
+							isBurnableBlockItemInit.LEAT_BLOCK_CRAFTING_TABLE.get().getDefaultState(), isBurnableBlockItemInit.GRITH_BLOCK.get().getDefaultState()
 					));
 		} else {
 			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock,
@@ -35,7 +35,7 @@ public class ExampleBiomeSurfaceBuilder5 extends SurfaceBuilder<SurfaceBuilderCo
 					new SurfaceBuilderConfig(
 							i == 1 ? Blocks.DIRT.getDefaultState()
 									: BlockItemInit.DURT.get().getDefaultState(),
-							isBurnableBlockItemInit.VILTDROP_BLOCK.get().getDefaultState(), BlockItemInit.EPKIN.get().getDefaultState()
+							isBurnableBlockItemInit.VILTDROP_BLOCK.get().getDefaultState(), isBurnableBlockItemInit.EPKIN.get().getDefaultState()
 					));
 		}
 	}

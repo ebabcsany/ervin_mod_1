@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#X#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:bone_block"
+    },
+    "X": {
+      "tag": "ervin_mod_1:ingredients/firg_wood"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:firg_sapling",
+    "count": 1
+  }
+}

@@ -28,8 +28,8 @@ import javax.annotation.Nullable;
 public class SriunkSlab1 extends Block implements IWaterLoggable {
    public static final EnumProperty<SlabType> TYPE = BlockStateProperties.SLAB_TYPE;
    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-   protected static final VoxelShape BOTTOM_SHAPE = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 8.0D, 4.0D, 8.0D);
-   protected static final VoxelShape TOP_SHAPE = Block.makeCuboidShape(0.0D, 4.0D, 0.0D, 8.0D, 8.0D, 8.0D);
+   protected static final VoxelShape BOTTOM_SHAPE = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D);
+   protected static final VoxelShape TOP_SHAPE = Block.makeCuboidShape(0.0D, 4.0D, 0.0D, 16.0D, 16.0D, 16.0D);
 
    public SriunkSlab1(Properties properties) {
       super(properties);

@@ -1,7 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.init;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
-import com.babcsany.minecraft.ervin_mod_1.registries.ForgeRegistries1;
 import com.babcsany.minecraft.ervin_mod_1.world.dimension.*;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.Dimension;

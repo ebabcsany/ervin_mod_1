@@ -2,6 +2,7 @@ package com.babcsany.minecraft.ervin_mod_1.init;
 
 import com.babcsany.minecraft.ervin_mod_1.world.feature.ExampleFeature;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.ExampleFeature1;
+import com.babcsany.minecraft.ervin_mod_1.world.feature.ExampleRuinedPortalFeature;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.IFeatureConfig;
@@ -21,6 +22,13 @@ public class ModBiomeFeatures {
 	public static void addExampleFeature1(Biome biome, int chance) {
 		biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES,
 				new ExampleFeature1(NoFeatureConfig.field_236558_a_).withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG)
+						.withPlacement(Placement.CHANCE_PASSTHROUGH.configure(new ChanceConfig(chance))
+						));
+
+	}
+	public static void addExampleRuinedPortalFeature(Biome biome, int chance) {
+		biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES,
+				new ExampleRuinedPortalFeature(NoFeatureConfig.field_236558_a_).withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG)
 						.withPlacement(Placement.CHANCE_PASSTHROUGH.configure(new ChanceConfig(chance))
 						));
 

@@ -3,6 +3,6 @@
   "textures": {
     "top": "ervin_mod_1:block/furnace/top/lime_furnace_top",
     "front": "ervin_mod_1:block/furnace/front/on/lime_furnace_front_on",
-    "side": "evin_mod_1:block/furnace/side/lime_furnace_side"
+    "side": "ervin_mod_1:block/furnace/side/lime_furnace_side"
   }
 }

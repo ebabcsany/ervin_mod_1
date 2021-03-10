@@ -2,8 +2,14 @@ package com.babcsany.minecraft.ervin_mod_1.init;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.block.blocks.*;
+import com.babcsany.minecraft.ervin_mod_1.block.blocks.burnable.*;
+import com.babcsany.minecraft.ervin_mod_1.block.blocks.burnable.slabs.*;
+import com.babcsany.minecraft.ervin_mod_1.block.blocks.burnable.stairs.*;
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.FallingBlock;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.material.MaterialColor;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -19,6 +25,69 @@ public class isBurnableBlockItemInit {
                     .harvestLevel(18)
                     .harvestTool(ToolType.SHOVEL)
                     .hardnessAndResistance(10000000.0f)
+    ));
+    public static final RegistryObject<Block> TRUGK_BLOCK = BURNABLE_BLOCKS.register("trugk_block", () -> new TrugkBlock(
+            Block.Properties.create(Material.EARTH)
+                    .setRequiresTool()
+                    .harvestLevel(13)
+                    .harvestTool(ToolType.SHOVEL)
+                    .hardnessAndResistance(50000.0F)
+    ));
+    public static final RegistryObject<Block> TRAGN = BURNABLE_BLOCKS.register("tragn", () -> new Tragn(
+            Block.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .harvestLevel(36)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(1000000000.0f)
+    ));
+    public static final RegistryObject<Block> TRAGK_BLOCK = BURNABLE_BLOCKS.register("tragk_block", () -> new TragkBlock(
+            Block.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .harvestLevel(26)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(5000000.0f)
+    ));
+    public static final RegistryObject<Block> TRUZN = BURNABLE_BLOCKS.register("truzn", () -> new Truzn(
+            Block.Properties.create(Material.ROCK, MaterialColor.GRASS)
+                    .setRequiresTool()
+                    .harvestLevel(27)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(10000000.0f)
+    ));
+    public static final RegistryObject<Block> TRUZK_BLOCK = BURNABLE_BLOCKS.register("truzk_block", () -> new TruzkBlock(
+            Block.Properties.create(Material.ROCK, MaterialColor.GRASS)
+                    .setRequiresTool()
+                    .harvestLevel(20)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(500000.0F)
+    ));
+    public static final RegistryObject<Block> TNUZK_BLOCK = BURNABLE_BLOCKS.register("tnuzk_block", () -> new TnuzkBlock(
+            Block.Properties.create(Material.EARTH)
+                    .setRequiresTool()
+                    .harvestLevel(15)
+                    .harvestTool(ToolType.SHOVEL)
+                    .hardnessAndResistance(100000.0F)
+    ));
+    public static final RegistryObject<Block> TGURK_BLOCK = BURNABLE_BLOCKS.register("tgurk_block", () -> new TgurkBlock(
+            Block.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .harvestLevel(46)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(29500000000.0F)
+    ));
+    public static final RegistryObject<Block> TGURK_SLAB = BURNABLE_BLOCKS.register("tgurk_slab", () -> new TgurkBlock(
+            Block.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .harvestLevel(45)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(14950000000.0F)
+    ));
+    public static final RegistryObject<Block> TGURN = BURNABLE_BLOCKS.register("tgurn", () -> new Tgurn(
+            Block.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .harvestLevel(64)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(295000000000.0F)
     ));
     public static final RegistryObject<Block> SRIUNK_BLOCK = BURNABLE_BLOCKS.register("sriunk_block", () -> new SriunkBlock(
             Block.Properties.create(Material.ROCK)
@@ -36,6 +105,20 @@ public class isBurnableBlockItemInit {
     ));
     public static final RegistryObject<Block> SRIUNK_STAIRS = BURNABLE_BLOCKS.register("sriunk_stairs", () -> new SriunkStairs(
             () -> SRIUNK_BLOCK.get().getDefaultState(), Block.Properties.from(SRIUNK_BLOCK.get())
+    ));
+    public static final RegistryObject<Block> SRIUNK_SLAB1 = BURNABLE_BLOCKS.register("sriunk_slab1", () -> new SriunkSlab1(
+            Block.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .harvestLevel(5)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(100.0F, 2500.0F)
+    ));
+    public static final RegistryObject<Block> SRIUNK_SLAB2 = BURNABLE_BLOCKS.register("sriunk_slab2", () -> new SriunkSlab2(
+            Block.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .harvestLevel(4)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(60.0F, 1500.0F)
     ));
     public static final RegistryObject<Block> TERAT_BLOCK = BURNABLE_BLOCKS.register("terat_block", () -> new TeratBlock(
             Block.Properties.create(Material.ROCK)
@@ -65,13 +148,27 @@ public class isBurnableBlockItemInit {
                     .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(120.0f)
     ));
+    public static final RegistryObject<Block> GRINT_STAIRS = BURNABLE_BLOCKS.register("grint_stairs", () -> new GrintStairs(
+            () -> GRINT_BLOCK.get().getDefaultState(), Block.Properties.from(GRINT_BLOCK.get())
+    ));
     public static final RegistryObject<Block> GRITH_BLOCK = BURNABLE_BLOCKS.register("grith_block", () -> new GrithBlock(
-            Block.Properties.create(Material.ROCK)
+            Block.Properties.create(Material.SNOW)
                     .setRequiresTool()
-                    .harvestLevel(30)
+                    .harvestLevel(80)
                     .harvestTool(ToolType.PICKAXE)
-                    .hardnessAndResistance(1000000000.0F)
+                    .hardnessAndResistance(1000000000000.0F)
                     .setLightLevel(Value -> 15)
+    ));
+    public static final RegistryObject<Block> GRITH_SLAB = BURNABLE_BLOCKS.register("grith_slab", () -> new GrithSlab(
+            Block.Properties.create(Material.SNOW)
+                    .setRequiresTool()
+                    .harvestLevel(78)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(1000000000000.0F,500000000000.0F)
+                    .setLightLevel(Value -> 15)
+    ));
+    public static final RegistryObject<Block> GRITH_STAIRS = BURNABLE_BLOCKS.register("grith_stairs", () -> new GrithStairs(
+            () -> GRITH_BLOCK.get().getDefaultState(), Block.Properties.from(GRITH_BLOCK.get())
     ));
     public static final RegistryObject<Block> VILTDROP_BLOCK = BURNABLE_BLOCKS.register("viltdrop_block", () -> new ViltdropBlock(
             Block.Properties.create(Material.ROCK)
@@ -91,5 +188,141 @@ public class isBurnableBlockItemInit {
                     .setRequiresTool()
                     .harvestLevel(12)
                     .hardnessAndResistance(2000.0f, 2200.0f)
+    ));
+    public static final RegistryObject<Block> GARK_STAIRS = BURNABLE_BLOCKS.register("gark_stairs", () -> new GarkStairs(
+            () -> GARK_BLOCK.get().getDefaultState(), Block.Properties.from(GARK_BLOCK.get())
+    ));
+    public static final RegistryObject<Block> RETRUG = BURNABLE_BLOCKS.register("retrug", () -> new Retrug(
+            AbstractBlock.Properties.create(Material.SPONGE, MaterialColor.GRAY)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(600.0F)
+    ));
+    public static final RegistryObject<Block> TRURK = BURNABLE_BLOCKS.register("trurk", () -> new Trurk(
+            AbstractBlock.Properties.create(Material.SPONGE, MaterialColor.BROWN)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(600.0F)
+    ));
+    public static final RegistryObject<Block> SRURG = BURNABLE_BLOCKS.register("srurg", () -> new Srurg(
+            AbstractBlock.Properties.create(Material.ROCK)
+                    .harvestLevel(15)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(6450000.0F)
+    ));
+    public static final RegistryObject<Block> VILKT_BLOCK = BURNABLE_BLOCKS.register("vilkt_block", () -> new OreBlock2(
+            Block.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .harvestLevel(2)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(60.0f, 60)
+    ));
+    public static final RegistryObject<Block> NIRTK = BURNABLE_BLOCKS.register("nirtk", () -> new Nirtk(
+            Block.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .harvestLevel(0)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(1.0F, 1000000000000000.0F)
+    ));
+    public static final RegistryObject<Block> NIRTKB = BURNABLE_BLOCKS.register("nirtkb", () -> new Nirtkb(
+            14406560, AbstractBlock.Properties.create(Material.SAND)
+            .hardnessAndResistance(1000000000000000.0F)
+    ));
+    public static final RegistryObject<Block> TIRKS_BLOCK = BURNABLE_BLOCKS.register("tirks_block", () -> new TirksBlock(
+            Block.Properties.create(Material.ORGANIC)
+                    .setRequiresTool()
+                    .harvestLevel(1)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(80.0f)
+    ));
+    public static final RegistryObject<Block> TIRSK_BLOCK = BURNABLE_BLOCKS.register("tirsk_block", () -> new TirskBlock(
+            Block.Properties.create(Material.ORGANIC)
+                    .setRequiresTool()
+                    .harvestLevel(1)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(140.0f)
+    ));
+    public static final RegistryObject<Block> SHZ_BLOCK = BURNABLE_BLOCKS.register("shz_block", () -> new ShzBlock(
+            Block.Properties.create(Material.ORGANIC)
+                    .setRequiresTool()
+                    .harvestLevel(0)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(6000000.0f)
+                    .setLightLevel(Value -> 15)
+    ));
+    public static final RegistryObject<Block> RUGK_BLOCK = BURNABLE_BLOCKS.register("rugk_block", () -> new RugkBlock(
+            Block.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .harvestLevel(4)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(3590.0f)
+    ));
+    public static final RegistryObject<Block> RUGK_SLAB = BURNABLE_BLOCKS.register("rugk_slab", () -> new RugkSlab(
+            Block.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .harvestLevel(4)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(3590.0F, 3600.0F)
+    ));
+    public static final RegistryObject<Block> RUGK_STAIRS = BURNABLE_BLOCKS.register("rugk_stairs", () -> new RugkStairs(
+            () -> RUGK_BLOCK.get().getDefaultState(), Block.Properties.from(RUGK_BLOCK.get())
+    ));
+    public static final RegistryObject<Block> EPKIN = BURNABLE_BLOCKS.register("epkin", () -> new Epkin(
+            Block.Properties.create(Material.BARRIER)
+                    .setRequiresTool()
+                    .harvestLevel(0)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(1000000.0f)
+    ));
+    public static final RegistryObject<Block> EPKIH = BURNABLE_BLOCKS.register("epkih", () -> new Epkih(
+            Block.Properties.create(Material.BARRIER)
+                    .setRequiresTool()
+                    .harvestLevel(0)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(1000.0f)
+    ));
+    public static final RegistryObject<Block> DRIOP = BURNABLE_BLOCKS.register("driop", () -> new Driop(
+            Block.Properties.create(Material.BARRIER)
+                    .doesNotBlockMovement()
+                    .setRequiresTool()
+                    .harvestLevel(0)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(10.0f)
+    ));
+    public static final RegistryObject<Block> IRTREW = BURNABLE_BLOCKS.register("irtrew", () -> new Irtrew(
+            Block.Properties.create(Material.BARRIER)
+                    .doesNotBlockMovement()
+                    .harvestTool(ToolType.PICKAXE)
+                    .harvestTool(ToolType.AXE)
+                    .harvestTool(ToolType.SHOVEL)
+                    .harvestTool(ToolType.HOE)
+                    .hardnessAndResistance(20.0f)
+    ));
+    public static final RegistryObject<Block> LEAT_BLOCK = BURNABLE_BLOCKS.register("leat_block", () -> new LeatBlock(
+            Block.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .harvestLevel(2)
+                    .harvestTool(ToolType.AXE)
+                    .hardnessAndResistance(100.0f)
+    ));
+    public static final RegistryObject<Block> LEAT_BLOCK_CRAFTING_TABLE = BURNABLE_BLOCKS.register("leat_block_crafting_table", () -> new LeatBlockCraftingTable(
+            Block.Properties.create(Material.ROCK)
+                    .harvestTool(ToolType.AXE)
+                    .harvestTool(ToolType.PICKAXE)
+                    .harvestTool(ToolType.SHOVEL)
+                    .harvestTool(ToolType.HOE)
+                    .hardnessAndResistance(500.0f)
+    ));
+    public static final RegistryObject<Block> CRAINT_BLOCK = BURNABLE_BLOCKS.register("craint_block", () -> new CraintBlock(
+            Block.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .harvestLevel(4)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(1000.0f)
+    ));
+    public static final RegistryObject<Block> CRAINT_BLOCK_CRAFTING_TABLE = BURNABLE_BLOCKS.register("craint_block_crafting_table", () -> new CraintBlockCraftingTable(
+            Block.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .harvestLevel(4)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(10000.0f)
     ));
 }

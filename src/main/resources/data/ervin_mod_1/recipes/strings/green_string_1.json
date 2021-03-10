@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "tag": "ervin_mod_1:green_string_ingredient"
+      "tag": "ervin_mod_1:ingredients/green_string"
     },
     {
       "item": "minecraft:green_dye"

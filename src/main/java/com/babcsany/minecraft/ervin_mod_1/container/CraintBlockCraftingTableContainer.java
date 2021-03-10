@@ -2,6 +2,7 @@ package com.babcsany.minecraft.ervin_mod_1.container;
 
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.ContainerInit;
+import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.inventory.CraintBlockCraftingTableInventory;
 import com.google.common.collect.Lists;
 import net.minecraft.client.util.RecipeBookCategories;
@@ -32,8 +33,8 @@ import java.util.Optional;
 public class CraintBlockCraftingTableContainer extends RecipeBookContainer<CraftingInventory> {
         private static final int CRAFT_MATRIX_WIDTH = 5;
         private static final int CRAFT_MATRIX_HEIGHT = 5;
-        private static final int CRAFT_RESULT_X_POSITION = 172;
-        private static final int CRAFT_RESULT_Y_POSITION = 53;
+        private static final int CRAFT_RESULT_X_POSITION = 175;
+        private static final int CRAFT_RESULT_Y_POSITION = 50;
         private static final int CRAFT_RESULT_SLOT_INDEX = 0;
         private static final int CRAFT_MATRIX_TOP_LEFT_SLOT_X_POSITION = 47;
         private static final int CRAFT_MATRIX_TOP_LEFT_SLOT_Y_POSITION = 18;
@@ -68,7 +69,7 @@ public class CraintBlockCraftingTableContainer extends RecipeBookContainer<Craft
 
             for(int k = 0; k < 3; ++k) {
                 for(int i1 = 0; i1 < 9; ++i1) {
-                    this.addSlot(new Slot(playerInventory, i1 + k * 9 + 9, 47 + i1 * 18, 148 + k * 18));
+                    this.addSlot(new Slot(playerInventory, i1 + k * 9 + 9, 47 + i1 * 18, 147 + k * 18));
                 }
             }
 
@@ -82,7 +83,7 @@ public class CraintBlockCraftingTableContainer extends RecipeBookContainer<Craft
             this(windowId, playerInventory, IWorldPosCallable.DUMMY);
         }
 
-        protected static void func_217066_a(int p_217066_0_, World p_217066_1_, PlayerEntity p_217066_2_, CraftingInventory p_217066_3_, CraftResultInventory p_217066_4_) {
+        protected static void updateCraftingResult(int p_217066_0_, World p_217066_1_, PlayerEntity p_217066_2_, CraftingInventory p_217066_3_, CraftResultInventory p_217066_4_) {
             if (!p_217066_1_.isRemote) {
                 ServerPlayerEntity serverplayerentity = (ServerPlayerEntity)p_217066_2_;
                 ItemStack itemstack = ItemStack.EMPTY;
@@ -104,7 +105,7 @@ public class CraintBlockCraftingTableContainer extends RecipeBookContainer<Craft
          */
         public void onCraftMatrixChanged(IInventory inventoryIn) {
             this.field_217070_e.consume((p_217069_1_, p_217069_2_) -> {
-                func_217066_a(this.windowId, p_217069_1_, this.player, this.craftMatrix, this.craftResult);
+                updateCraftingResult(this.windowId, p_217069_1_, this.player, this.craftMatrix, this.craftResult);
             });
         }
 
@@ -135,7 +136,7 @@ public class CraintBlockCraftingTableContainer extends RecipeBookContainer<Craft
          * Determines whether supplied player can use this container
          */
         public boolean canInteractWith(PlayerEntity playerIn) {
-            return isWithinUsableDistance(this.field_217070_e, playerIn, BlockItemInit.CRAINT_BLOCK_CRAFTING_TABLE.get());
+            return isWithinUsableDistance(this.field_217070_e, playerIn, isBurnableBlockItemInit.CRAINT_BLOCK_CRAFTING_TABLE.get());
         }
 
         /**
@@ -219,5 +220,5 @@ public class CraintBlockCraftingTableContainer extends RecipeBookContainer<Craft
         public List<RecipeBookCategories> getRecipeBookCategories() {
             return Lists.newArrayList(RecipeBookCategories.SEARCH, RecipeBookCategories.CRAFTING_EQUIPMENT, RecipeBookCategories.CRAFTING_BUILDING_BLOCKS, RecipeBookCategories.CRAFTING_MISC, RecipeBookCategories.CRAFTING_REDSTONE);
         }
-    }
+}
 

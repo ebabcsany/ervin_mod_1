@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "ervin_mod_1:block/grinth_mushroom"
+  }
+}

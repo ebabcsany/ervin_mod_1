@@ -1,18 +1,13 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "###",
-    "#X#",
-    "###"
-  ],
-  "key": {
-    "#": {
-      "item": "minecraft:gold_block"
-    },
-    "X": {
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
       "item": "minecraft:golden_apple"
+    },
+    {
+      "item": "minecraft:enchanted_book"
     }
-  },
+  ],
   "result": {
     "item": "minecraft:enchanted_golden_apple",
     "count": 1

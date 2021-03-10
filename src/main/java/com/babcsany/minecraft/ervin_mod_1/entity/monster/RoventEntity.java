@@ -1,7 +1,8 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.monster;
 
 import com.babcsany.minecraft.ervin_mod_1.init.BiomeInit;
-import com.babcsany.minecraft.ervin_mod_1.init.ItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.RandomPositionGenerator;
@@ -139,7 +140,7 @@ public class RoventEntity extends ZurEntity implements IRangedAttackMob {
    }
 
    protected boolean shouldExchangeEquipment(ItemStack candidate, ItemStack existing) {
-      if (existing.getItem() == ItemInit.NIRK.get()) {
+      if (existing.getItem() == isBurnableItemInit.NIRK.get()) {
          return false;
       } else if (existing.getItem() == Items.TRIDENT) {
          if (candidate.getItem() == Items.TRIDENT) {
@@ -153,9 +154,9 @@ public class RoventEntity extends ZurEntity implements IRangedAttackMob {
    }
 
    protected boolean shouldExchangeEquipment1(ItemStack candidate, ItemStack existing) {
-      if (existing.getItem() == ItemInit.GRUGT.get()) {
+      if (existing.getItem() == isBurnableItemInit.GRUGT.get()) {
          return false;
-      } else if (existing.getItem() == ItemInit.NARIN.get()) {
+      } else if (existing.getItem() == isBurnableItemInit.NARIN.get()) {
          if (candidate.getItem() == Items.TRIDENT) {
             return candidate.getDamage() < existing.getDamage();
          } else {

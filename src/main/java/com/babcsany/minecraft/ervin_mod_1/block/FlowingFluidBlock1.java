@@ -152,7 +152,7 @@ public class FlowingFluidBlock1 extends Block implements IBucketPickupHandler {
    }
 
    private boolean reactWithNeighbors(World worldIn, BlockPos pos, BlockState state) {
-      if (this.fluid.isIn(FluidTags.LAVA)) {
+      if (this.fluid.isIn(FluidTag.LAVA)) {
          boolean flag = worldIn.getBlockState(pos.down()).isIn(isBurnableBlockItemInit.SRIUNK_BLOCK.get());
 
          for(Direction direction : Direction.values()) {

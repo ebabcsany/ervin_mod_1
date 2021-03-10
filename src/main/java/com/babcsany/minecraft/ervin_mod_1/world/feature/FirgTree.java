@@ -1,6 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.world.feature;
 
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.block.trees.Tree;
 import net.minecraft.world.gen.Heightmap;
@@ -43,14 +44,14 @@ public class FirgTree extends Tree {
             .setIgnoreVines().build();
     public static final BaseTreeFeatureConfig FIRG_TREE_CONFIG2 = (new BaseTreeFeatureConfig.Builder(
             new SimpleBlockStateProvider(BlockItemInit.FIRG_LOG.get().getDefaultState()),
-            new SimpleBlockStateProvider(BlockItemInit.FIRG.get().getDefaultState()),
+            new SimpleBlockStateProvider(BlockInit.FIRG.get().getDefaultState()),
             new BlobFoliagePlacer(2, 0, 0, 0, 2),
             new StraightTrunkPlacer(3, 4, 2),
             new TwoLayerFeature(4, 0, 3)))
             .setIgnoreVines().build();
     public static final BaseTreeFeatureConfig FIRG_TREE_CONFIG3 = (new BaseTreeFeatureConfig.Builder(
             new SimpleBlockStateProvider(BlockItemInit.FIRG_LOG.get().getDefaultState()),
-            new SimpleBlockStateProvider(BlockItemInit.FIRG.get().getDefaultState()),
+            new SimpleBlockStateProvider(BlockInit.FIRG.get().getDefaultState()),
             new BlobFoliagePlacer(5, 0, 0, 0, 3),
             new StraightTrunkPlacer(5, 3, 6),
             new TwoLayerFeature(2, 1, 3))).setIgnoreVines().build();
@@ -59,14 +60,14 @@ public class FirgTree extends Tree {
     private static final BeehiveTreeDecorator BEEHIVES = new BeehiveTreeDecorator(0.02F);
     public static final BaseTreeFeatureConfig FIRG_TREE_WITH_FEW_BEEHIVES_CONFIG = FIRG_TREE_CONFIG0
             .func_236685_a_(ImmutableList.of(BEEHIVES));
-    public static final BaseTreeFeatureConfig FIRG_TREE_WITH_MORE_BEEHIVES_CONFIG = FIRG_TREE_CONFIG0
+    public static final BaseTreeFeatureConfig FIRG_TREE_WITH_MORE_BEEHIVES_CONFIG = FIRG_TREE_CONFIG1
             .func_236685_a_(ImmutableList.of(BEEHIVES1));
-    public static final BaseTreeFeatureConfig FIRG_TREE_WITH_MORE_BEEHIVES_CONFIG1 = FIRG_TREE_CONFIG0
+    public static final BaseTreeFeatureConfig FIRG_TREE_WITH_MORE_BEEHIVES_CONFIG1 = FIRG_TREE_CONFIG2
             .func_236685_a_(ImmutableList.of(BEEHIVES1));
-    public static final BaseTreeFeatureConfig FIRG_TREE_WITH_MANY_BEEHIVES_CONFIG = FIRG_TREE_CONFIG0
+    public static final BaseTreeFeatureConfig FIRG_TREE_WITH_MANY_BEEHIVES_CONFIG = FIRG_TREE_CONFIG3
             .func_236685_a_(ImmutableList.of(BEEHIVES2));
 
-
+    @Override
     protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean b) {
         return Feature.field_236291_c_.withConfiguration(FIRG_TREE_CONFIG);
     }

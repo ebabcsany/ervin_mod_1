@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "ervin_mod_1:stone/stones/purple_stone"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:stone/stairs/purple_stone_stairs",
+    "count": 4
+  }
+}

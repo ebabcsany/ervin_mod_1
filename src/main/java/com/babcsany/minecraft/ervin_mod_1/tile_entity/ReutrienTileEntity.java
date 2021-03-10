@@ -18,13 +18,18 @@ import net.minecraft.world.spawner.AbstractSpawner;
 import javax.annotation.Nullable;
 
 public class ReutrienTileEntity extends TileEntity implements ITickableTileEntity {
-   private final AbstractReutrien spawnerLogic = new AbstractReutrien() {
+   private final AbstractReutrien reutrienLogic = new AbstractReutrien() {
       public void broadcastEvent(int id) {
          ReutrienTileEntity.this.world.addBlockEvent(ReutrienTileEntity.this.pos, BlockItemInit.REUTRIEN.get(), id, 0);
       }
 
       public World getWorld() {
          return ReutrienTileEntity.this.world;
+      }
+
+      @Override
+      public BlockPos getReutrienPosition() {
+         return null;
       }
 
       public BlockPos getSpawnerPosition() {
@@ -47,17 +52,17 @@ public class ReutrienTileEntity extends TileEntity implements ITickableTileEntit
 
    public void read(BlockState state, CompoundNBT nbt) {
       super.read(state, nbt);
-      this.spawnerLogic.read(nbt);
+      this.reutrienLogic.read(nbt);
    }
 
    public CompoundNBT write(CompoundNBT compound) {
       super.write(compound);
-      this.spawnerLogic.write(compound);
+      this.reutrienLogic.write(compound);
       return compound;
    }
 
    public void tick() {
-      this.spawnerLogic.tick();
+      this.reutrienLogic.tick();
    }
 
    /**
@@ -84,7 +89,7 @@ public class ReutrienTileEntity extends TileEntity implements ITickableTileEntit
     * clientside.
     */
    public boolean receiveClientEvent(int id, int type) {
-      return this.spawnerLogic.setDelayToMin(id) ? true : super.receiveClientEvent(id, type);
+      return this.reutrienLogic.setDelayToMin(id) ? true : super.receiveClientEvent(id, type);
    }
 
    /* *
@@ -99,7 +104,7 @@ public class ReutrienTileEntity extends TileEntity implements ITickableTileEntit
       return true;
    }
 
-   public AbstractReutrien getSpawnerBaseLogic() {
-      return this.spawnerLogic;
+   public AbstractReutrien getReutrienBaseLogic() {
+      return this.reutrienLogic;
    }
 }

@@ -1,10 +1,10 @@
 package com.babcsany.minecraft.ervin_mod_1.item;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
-import com.babcsany.minecraft.ervin_mod_1.init.ItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IArmorMaterial;
-import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.LazyValue;
 import net.minecraft.util.SoundEvent;
@@ -15,10 +15,10 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.function.Supplier;
 
 public enum ModArmorMaterial implements IArmorMaterial {
-    SRIUNK(Ervin_mod_1.MOD_ID + ":sriunk", 20, new int[]{28, 36, 44, 28}, 1680, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 20.7F, 0.2F, () -> { return Ingredient.fromItems(ItemInit.SRIUNK.get()); }),
-    TERAT(Ervin_mod_1.MOD_ID + ":terat", 320,new int[]{448, 576, 704, 448}, 13440,SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 347.2F, 4.8F, () -> { return Ingredient.fromItems(ItemInit.TERAT.get()); }),
-    FIRT(Ervin_mod_1.MOD_ID + ":firt", 12, new int[]{16, 24, 32, 16}, 1050, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 12.4F, 0.1F, () -> { return Ingredient.fromItems(ItemInit.FIRT.get()); }),
-    DURG(Ervin_mod_1.MOD_ID + ":durg", 108, new int[]{144, 216, 288, 144}, 9450, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 111.6F, 1.0F, () -> { return Ingredient.fromItems(ItemInit.DURG.get()); }),
+    SRIUNK(Ervin_mod_1.MOD_ID + ":sriunk", 40, new int[]{28, 36, 44, 28}, 1680, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 20.7F, 0.2F, () -> { return Ingredient.fromItems(isBurnableItemInit.SRIUNK.get()); }),
+    TERAT(Ervin_mod_1.MOD_ID + ":terat", 640,new int[]{448, 576, 704, 448}, 13440,SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 347.2F, 4.8F, () -> { return Ingredient.fromItems(isBurnableItemInit.TERAT.get()); }),
+    FIRT(Ervin_mod_1.MOD_ID + ":firt", 24, new int[]{16, 24, 32, 16}, 1050, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 12.4F, 0.1F, () -> { return Ingredient.fromItems(ItemInit.FIRT.get()); }),
+    DURG(Ervin_mod_1.MOD_ID + ":durg", 216, new int[]{144, 216, 288, 144}, 9450, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 111.6F, 1.0F, () -> { return Ingredient.fromItems(isBurnableItemInit.DURG.get()); }),
     BLACK_IRON(Ervin_mod_1.MOD_ID + ":black_iron", 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> { return Ingredient.fromItems(ItemInit.BLACK_IRON_INGOT.get()); }),
     BLUE_IRON(Ervin_mod_1.MOD_ID + ":blue_iron", 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> { return Ingredient.fromItems(ItemInit.BLUE_IRON_INGOT.get()); }),
     BROWN_IRON(Ervin_mod_1.MOD_ID + ":brown_iron", 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> { return Ingredient.fromItems(ItemInit.BROWN_IRON_INGOT.get()); }),

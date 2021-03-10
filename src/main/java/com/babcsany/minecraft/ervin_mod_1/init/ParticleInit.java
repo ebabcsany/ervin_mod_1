@@ -6,6 +6,7 @@ import com.babcsany.minecraft.ervin_mod_1.particles.ColouredParticle;
 import com.babcsany.minecraft.ervin_mod_1.particles.ParticleType1;
 import com.mojang.serialization.Codec;
 import net.minecraft.client.Minecraft;
+import net.minecraft.network.PacketBuffer;
 import net.minecraft.particles.BasicParticleType;
 import net.minecraft.particles.IParticleData;
 import net.minecraft.particles.ParticleType;
@@ -26,9 +27,25 @@ public class ParticleInit {
                 public Codec<ColouredParticle.ColouredParticleData> func_230522_e_() {
                     return null;
                 }
+            });*/
+    /*public static final RegistryObject<ParticleType<BasicParticleType>> JURK = PARTICLE_TYPES.register(
+            "jurk",
+            () -> new ParticleType<BasicParticleType>(false, BasicParticleType.DESERIALIZER) {
+                @Override
+                public Codec<BasicParticleType> func_230522_e_() {
+                    return null;
+                }
             });
+    public static final RegistryObject<ParticleType<BasicParticleType>> DRIPPING_JURK = PARTICLE_TYPES.register(
+            "dripping_jurk",
+            () -> new ParticleType<BasicParticleType>(false, BasicParticleType.DESERIALIZER) {
+                @Override
+                public Codec<BasicParticleType> func_230522_e_() {
+                    return null;
+                }
+            });*/
 
-    @SuppressWarnings("resource")
+    /*@SuppressWarnings("resource")
     @SubscribeEvent
     public static void registerParticleFactory(ParticleFactoryRegisterEvent event) {
         Minecraft.getInstance().particles.registerFactory(ParticleInit.COLOURED_PARTICLE.get(),

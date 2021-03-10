@@ -5,7 +5,8 @@ import javax.annotation.Nullable;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.LookAtCustomerGoal1;
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.WanderingTraderTradeWithPlayerGoal;
-import com.babcsany.minecraft.ervin_mod_1.init.ItemInit;
+import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.WanderingTraderNirtreTrades;
+import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -81,7 +82,7 @@ public class WanderingTraderNirtreEntity extends AbstractNirtreEntity {
 
    public ActionResultType func_230254_b_(PlayerEntity p_230254_1_, Hand p_230254_2_) {
       ItemStack itemstack = p_230254_1_.getHeldItem(p_230254_2_);
-      if (itemstack.getItem() != ItemInit.ZUR_ENTITY_SPAWN_EGG.get() && this.isAlive() && !this.hasCustomer() && !this.isChild()) {
+      if (itemstack.getItem() != ItemInit.WANDERING_TRADER_NIRTRE_SPAWN_EGG.get() && this.isAlive() && !this.hasCustomer() && !this.isChild()) {
          if (p_230254_2_ == Hand.MAIN_HAND) {
             p_230254_1_.addStat(Stats.TALKED_TO_VILLAGER);
          }
@@ -107,8 +108,8 @@ public class WanderingTraderNirtreEntity extends AbstractNirtreEntity {
       WanderingTraderNirtreTrades.ITrade[] avillagertrades$itrade2 = WanderingTraderNirtreTrades.field_221240_b.get(3);
       if (avillagertrades$itrade != null && avillagertrades$itrade1 != null && avillagertrades$itrade2 !=null) {
          MerchantOffers merchantoffers = this.getOffers();
-         this.addTrades(merchantoffers, avillagertrades$itrade, 5);
-         this.addTrades(merchantoffers, avillagertrades$itrade2, 10);
+         this.addWanderingTraderNirtreTrades(merchantoffers, avillagertrades$itrade, 5);
+         this.addWanderingTraderNirtreTrades(merchantoffers, avillagertrades$itrade2, 10);
          int i = this.rand.nextInt(avillagertrades$itrade1.length);
          WanderingTraderNirtreTrades.ITrade villagertrades$itrade = avillagertrades$itrade1[i];
          MerchantOffer merchantoffer = villagertrades$itrade.getOffer(this, this.rand);

@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "tag": "ervin_mod_1:brown_string_ingredient"
+      "tag": "ervin_mod_1:ingredients/brown_string"
     },
     {
       "item": "minecraft:brown_dye"

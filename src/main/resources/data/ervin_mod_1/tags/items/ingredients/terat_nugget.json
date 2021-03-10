@@ -1,9 +1,10 @@
 {
   "replace": false,
   "values": [
-    "ervin_mod_1:terat_helmet",
+    "ervin_mod_1:terat_boots",
     "ervin_mod_1:terat_chestplate",
+    "ervin_mod_1:terat_helmet",
+    "ervin_mod_1:terat_horse_armor",
     "ervin_mod_1:terat_leggings",
-    "ervin_mod_1:terat_boots"
   ]
 }

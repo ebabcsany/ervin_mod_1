@@ -46,7 +46,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:spawn_eggs/vilt_entity_spawn_egg"
+          "name": "ervin_mod_1:spawn_eggs/vilt_spawn_egg"
         }
       ],
       "conditions": [

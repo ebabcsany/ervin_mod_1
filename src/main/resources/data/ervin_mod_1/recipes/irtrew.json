@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#*#",
+    "###",
+  ],
+  "key": {
+    "#": {
+      "item": "ervin_mod_1:driop"
+    },
+    "*": {
+      "item": "ervin_mod_1:firg"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:irtrew",
+    "count": 1
+  }
+}
+

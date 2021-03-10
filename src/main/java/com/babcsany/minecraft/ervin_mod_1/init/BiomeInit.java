@@ -1,6 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.init;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
+import com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit;
 import com.babcsany.minecraft.ervin_mod_1.world.biome.*;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.block.Blocks;
@@ -55,6 +56,21 @@ public class BiomeInit {
 															BlockItemInit.DURT.get().getDefaultState())))
 									.category(Category.PLAINS).downfall(12.4f).depth(6.5f).parent(null)
 					));
+	public static final RegistryObject<Biome> EXAMPLE0_BIOME = BIOMES
+			.register("example0_biome",
+					() -> new Example0Biome(
+							new Biome.Builder().precipitation(RainType.SNOW).scale(121.2f).temperature(5.5f)
+									.func_235097_a_((new BiomeAmbience.Builder()).setWaterColor(46724639).setWaterFogColor(46769357).setFogColor(4253846).build())
+									.surfaceBuilder(
+											new ConfiguredSurfaceBuilder<SurfaceBuilderConfig>(
+													register("example0_surface",
+															new ExampleBiomeSurfaceBuilder(
+																	SurfaceBuilderConfig.field_237203_a_)),
+													new SurfaceBuilderConfig(isBurnableBlockItemInit.SRURG.get().getDefaultState(),
+															isBurnableBlockItemInit.EPKIH.get().getDefaultState(),
+															Blocks.DIRT.getDefaultState())))
+									.category(Category.PLAINS).downfall(5.5f).depth(12.12f).parent(null)
+					));
 	public static final RegistryObject<Biome> EXAMPLE_BIOME6 = BIOMES
 			.register("example_biome6",
 					() -> new ExampleBiome6(
@@ -66,8 +82,8 @@ public class BiomeInit {
 															new ExampleBiomeSurfaceBuilder6(
 																	SurfaceBuilderConfig.field_237203_a_)),
 													new SurfaceBuilderConfig(BlockItemInit.KALT_BLOCK.get().getDefaultState(),
-															BlockItemInit.NIRTKB.get().getDefaultState(),
-															BlockItemInit.NIRTK.get().getDefaultState())))
+															isBurnableBlockItemInit.NIRTKB.get().getDefaultState(),
+															isBurnableBlockItemInit.NIRTK.get().getDefaultState())))
 									.category(Category.PLAINS).downfall(12.4f).depth(6.5f).parent(null)
 					));
 	public static final RegistryObject<Biome> EXAMPLE_BIOME = BIOMES
@@ -185,9 +201,9 @@ public class BiomeInit {
 													register("firg_surface",
 															new FirgBiomeSurfaceBuilder(
 																	SurfaceBuilderConfig.field_237203_a_)),
-													new SurfaceBuilderConfig(BlockItemInit.FIRG.get().getDefaultState(),
-															BlockItemInit.FIRG.get().getDefaultState(),
-															BlockItemInit.FIRG.get().getDefaultState())))
+													new SurfaceBuilderConfig(BlockInit.FIRG.get().getDefaultState(),
+															BlockInit.FIRG.get().getDefaultState(),
+															BlockInit.FIRG.get().getDefaultState())))
 									.category(Category.THEEND).downfall(0.5f).depth(0.12f).parent(null)
 					));
 	public static final RegistryObject<Biome> SCRAFTH_BIOME = BIOMES
@@ -200,14 +216,16 @@ public class BiomeInit {
 													register("scrafth_surface",
 															new ScrafthBiomeSurfaceBuilder(
 																	SurfaceBuilderConfig.field_237203_a_)),
-													new SurfaceBuilderConfig(BlockItemInit.SCRAFTH.get().getDefaultState(),
-															BlockItemInit.SCRAFTH.get().getDefaultState(),
-															BlockItemInit.SCRAFTH.get().getDefaultState())))
+													new SurfaceBuilderConfig(BlockInit.SCRAFTH.get().getDefaultState(),
+															BlockInit.SCRAFTH.get().getDefaultState(),
+															BlockInit.SCRAFTH.get().getDefaultState())))
 									.category(Category.THEEND).downfall(0.5f).depth(0.12f).parent(null)
 					));
 
 	public static void registerBiomes() {
 		registerBiomeCool1(MIG_BIOME.get(), Type.PLAINS, Type.OVERWORLD);
+		registerBiomeCool1(SRIUNK_VALLEY_BIOME.get(), Type.DEAD, Type.OVERWORLD);
+		registerBiomeCool2(EXAMPLE0_BIOME.get(), Type.DEAD, Type.PLAINS);
 		registerBiomeCool2(EXAMPLE_BIOME.get(), Type.DEAD, Type.PLAINS);
 		registerBiomeDesert(EXAMPLE_BIOME1.get(), Type.PLAINS, Type.OVERWORLD);
 		registerBiomeIcy(EXAMPLE_BIOME0.get(), Type.PLAINS, Type.BEACH);

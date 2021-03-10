@@ -1,7 +1,8 @@
 package com.babcsany.minecraft.ervin_mod_1.block.blocks;
 
-import com.babcsany.minecraft.ervin_mod_1.tags.BlockTags1;
+import com.babcsany.minecraft.ervin_mod_1.state.ModBlockStateProperties;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.particles.ParticleTypes;
@@ -24,12 +25,21 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.Random;
 
 public class FirgLeaves extends Block implements net.minecraftforge.common.IForgeShearable {
-   public static final IntegerProperty DISTANCE = BlockStateProperties.DISTANCE_1_7;
+   public static final IntegerProperty DISTANCE = ModBlockStateProperties.DISTANCE_1_7;
    public static final BooleanProperty PERSISTENT = BlockStateProperties.PERSISTENT;
 
    public FirgLeaves(Properties properties) {
       super(properties);
       this.setDefaultState(this.stateContainer.getBaseState().with(DISTANCE, Integer.valueOf(7)).with(PERSISTENT, Boolean.valueOf(false)));
+   }
+
+   public boolean propagatesSkylightDown(BlockState state, IBlockReader reader, BlockPos pos) {
+      return true;
+   }
+
+   @OnlyIn(Dist.CLIENT)
+   public float getAmbientOcclusionLightValue(BlockState state, IBlockReader worldIn, BlockPos pos) {
+      return 1.0F;
    }
 
    public VoxelShape getCollisionShape(BlockState state, IBlockReader reader, BlockPos pos) {
@@ -94,7 +104,7 @@ public class FirgLeaves extends Block implements net.minecraftforge.common.IForg
    }
 
    private static int getDistance(BlockState neighbor) {
-      if (BlockTags1.LOGS.contains(neighbor.getBlock())) {
+      if (BlockTags.LOGS.contains(neighbor.getBlock())) {
          return 0;
       } else {
          return neighbor.getBlock() instanceof FirgLeaves ? neighbor.get(DISTANCE) : 7;

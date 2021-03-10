@@ -7,6 +7,7 @@ import net.minecraft.fluid.FlowingFluid;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootContext;
 import net.minecraft.pathfinding.PathType;
@@ -44,7 +45,7 @@ public class FlowingFluidBlock2 extends Block implements IBucketPickupHandler {
       this.field_212565_c = Lists.newArrayList();
       this.field_212565_c.add(fluidIn.getStillFluidState(false));
 
-      for(int i = 1; i < 8; ++i) {
+      for (int i = 1; i < 8; ++i) {
          this.field_212565_c.add(fluidIn.getFlowingFluidState(8 - i, false));
       }
 
@@ -152,7 +153,7 @@ public class FlowingFluidBlock2 extends Block implements IBucketPickupHandler {
       if (this.fluid.isIn(FluidTags.LAVA)) {
          boolean flag = worldIn.getBlockState(pos.down()).isIn(Blocks.SOUL_SOIL);
 
-         for(Direction direction : Direction.values()) {
+         for (Direction direction : Direction.values()) {
             if (direction != Direction.DOWN) {
                BlockPos blockpos = pos.offset(direction);
                if (worldIn.getFluidState(blockpos).isTagged(FluidTags.WATER)) {
@@ -193,9 +194,9 @@ public class FlowingFluidBlock2 extends Block implements IBucketPickupHandler {
 
    public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
       if (this.fluid.isIn(FluidTags.LAVA)) {
-         float f = (float)pos.getY() + state.getFluidState().getActualHeight(worldIn, pos);
+         float f = (float) pos.getY() + state.getFluidState().getActualHeight(worldIn, pos);
          AxisAlignedBB axisalignedbb = entityIn.getBoundingBox();
-         if (axisalignedbb.minY < (double)f || (double)f > axisalignedbb.maxY) {
+         if (axisalignedbb.minY < (double) f || (double) f > axisalignedbb.maxY) {
             entityIn.setInLava();
          }
       }
@@ -204,11 +205,13 @@ public class FlowingFluidBlock2 extends Block implements IBucketPickupHandler {
 
    // Forge start
    private final java.util.function.Supplier<? extends Fluid> supplier;
+
    public FlowingFluid getFluid() {
-      return (FlowingFluid)supplier.get();
+      return (FlowingFluid) supplier.get();
    }
 
    private boolean fluidStateCacheInitialized = false;
+
    protected synchronized void initFluidStateCache() {
       if (fluidStateCacheInitialized == false) {
          this.field_212565_c.add(getFluid().getStillFluidState(false));

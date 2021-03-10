@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "ervin_mod_1:tragk_block"
+    }
+  ],
+  "result": {
+    "item": "ervin_mod_1:tragk",
+    "count": 16
+  }
+}

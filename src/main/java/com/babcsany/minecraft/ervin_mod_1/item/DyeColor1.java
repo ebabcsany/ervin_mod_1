@@ -1,6 +1,5 @@
 package com.babcsany.minecraft.ervin_mod_1.item;
 
-import com.babcsany.minecraft.ervin_mod_1.block.material.MaterialColor1;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.item.DyeItem;
@@ -31,7 +30,7 @@ public enum DyeColor1 implements IStringSerializable {
    GREEN(13, "green", 6192150, MaterialColor1.GREEN, 3887386, 65280),
    RED(14, "red", 11546150, MaterialColor1.RED, 11743532, 16711680),
    BLACK(15, "black", 1908001, MaterialColor1.BLACK, 1973019, 0),
-   CRASK(16, "crask", 1002421, MaterialColor1.CRASK, 1007019, 255000);
+   CRASK(16, "crask", 1002421, MaterialColor1.ADOBE, 1007019, 255000);
 
    private static final DyeColor1[] VALUES = Arrays.stream(values()).sorted(Comparator.comparingInt(DyeColor1::getId)).toArray((p_199795_0_) -> {
       return new DyeColor1[p_199795_0_];

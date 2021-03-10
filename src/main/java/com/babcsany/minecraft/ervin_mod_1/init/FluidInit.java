@@ -1,6 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.init;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
+import com.babcsany.minecraft.ervin_mod_1.fluid.JurkFluid;
 import net.minecraft.block.Block;
 import net.minecraft.block.FlowingFluidBlock;
 import net.minecraft.block.material.Material;
@@ -33,6 +34,8 @@ public class FluidInit {
 	public static final DeferredRegister<Fluid> FLUIDS = DeferredRegister.create(ForgeRegistries.FLUIDS,
 			Ervin_mod_1.MOD_ID);
 
+	//public static final RegistryObject<FlowingFluid> FLOWING_JURK = FLUIDS.register("flowing_jurk", () -> new JurkFluid.Flowing());
+	//public static final RegistryObject<FlowingFluid> JURK = FLUIDS.register("jurk", () -> new JurkFluid.Source());
 	public static final RegistryObject<FlowingFluid> FLOWING_JURK = FLUIDS.register("flowing_jurk", () -> new WaterFluid.Flowing());
 	public static final RegistryObject<FlowingFluid> JURK = FLUIDS.register("jurk", () -> new WaterFluid.Source());
 

@@ -29,8 +29,8 @@ public class ExampleBiomeProvider extends BiomeProvider {
     });
     private final Layer genBiomes;
     private static final List<Biome> biomeList = ImmutableList.of(
-            BiomeInit.EXAMPLE_BIOME.get(),
-            BiomeInit.EXAMPLE_BIOME0.get(),
+            BiomeInit.EXAMPLE_BIOME.get()
+            /*BiomeInit.EXAMPLE_BIOME0.get(),
             BiomeInit.EXAMPLE_BIOME1.get(),
             BiomeInit.EXAMPLE_BIOME2.get(),
             BiomeInit.EXAMPLE_BIOME3.get(),
@@ -40,7 +40,7 @@ public class ExampleBiomeProvider extends BiomeProvider {
             BiomeInit.FIRG_BIOME.get(),
             BiomeInit.MIG_BIOME.get(),
             BiomeInit.SCRAFTH_BIOME.get(),
-            BiomeInit.SRIUNK_VALLEY_BIOME.get()
+            BiomeInit.SRIUNK_VALLEY_BIOME.get()*/
     );
     private final long field_235298_h_;
     private final boolean field_235299_i_;

@@ -1,13 +1,13 @@
 {
   "variants": {
     "type=bottom": {
-      "model": "minecraft:block/redstone_slab"
+      "model": "ervin_mod_1:block/redstone_slab"
     },
     "type=double": {
       "model": "minecraft:block/redstone_block"
     },
     "type=top": {
-      "model": "minecraft:block/redstone_slab_top"
+      "model": "ervin_mod_1:block/redstone_slab_top"
     }
   }
 }

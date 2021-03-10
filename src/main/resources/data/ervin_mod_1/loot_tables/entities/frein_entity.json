@@ -26,6 +26,25 @@
           "name": "ervin_mod_1:frein_ball"
         }
       ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:spawn_eggs/frein_spawn_egg"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:killed_by_player"
+        },
+        {
+          "condition": "minecraft:random_chance_with_looting",
+          "chance": 0.0025,
+          "looting_multiplier": 0.001
+        }
+      ]
     }
   ]
 }

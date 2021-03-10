@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#####",
+    "#####",
+    "##S##",
+    "#####",
+    "#####"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:magma_cream"
+    },
+    "S": {
+      "item": "ervin_mod_1:spawn_eggs/spawn_egg_1"
+    }
+  },
+  "result": {
+    "item": "minecraft:magma_cube_spawn_egg",
+    "count": 1
+  }
+}

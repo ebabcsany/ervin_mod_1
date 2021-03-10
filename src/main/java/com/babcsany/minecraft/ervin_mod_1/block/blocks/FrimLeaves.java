@@ -2,6 +2,7 @@ package com.babcsany.minecraft.ervin_mod_1.block.blocks;
 
 import com.babcsany.minecraft.ervin_mod_1.state.ModBlockStateProperties;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.particles.ParticleTypes;
@@ -32,6 +33,11 @@ public class FrimLeaves extends Block implements net.minecraftforge.common.IForg
       this.setDefaultState(this.stateContainer.getBaseState().with(DISTANCE, Integer.valueOf(32)).with(PERSISTENT, Boolean.valueOf(false)));
    }
 
+   @OnlyIn(Dist.CLIENT)
+   public float getAmbientOcclusionLightValue(BlockState state, IBlockReader worldIn, BlockPos pos) {
+      return 1.0F;
+   }
+
    public VoxelShape getCollisionShape(BlockState state, IBlockReader reader, BlockPos pos) {
       return VoxelShapes.empty();
    }
@@ -56,11 +62,11 @@ public class FrimLeaves extends Block implements net.minecraftforge.common.IForg
    }
 
    public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
-      worldIn.setBlockState(pos, updateDistance(state, worldIn, pos), 6);
+      worldIn.setBlockState(pos, updateDistance(state, worldIn, pos), 16);
    }
 
    public int getOpacity(BlockState state, IBlockReader worldIn, BlockPos pos) {
-      return 2;
+      return 4;
    }
 
    /**
@@ -70,9 +76,9 @@ public class FrimLeaves extends Block implements net.minecraftforge.common.IForg
     * Note that this method should ideally consider only the specific face passed in.
     */
    public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-      int i = getDistance(facingState) + 2;
+      int i = getDistance(facingState) + 10;
       if (i != 1 || stateIn.get(DISTANCE) != i) {
-         worldIn.getPendingBlockTicks().scheduleTick(currentPos, this, 2);
+         worldIn.getPendingBlockTicks().scheduleTick(currentPos, this, 10);
       }
 
       return stateIn;
@@ -84,7 +90,7 @@ public class FrimLeaves extends Block implements net.minecraftforge.common.IForg
 
       for(Direction direction : Direction.values()) {
          blockpos$mutable.func_239622_a_(pos, direction);
-         i = Math.min(i, getDistance(worldIn.getBlockState(blockpos$mutable)) + 2);
+         i = Math.min(i, getDistance(worldIn.getBlockState(blockpos$mutable)) + 10);
          if (i == 1) {
             break;
          }

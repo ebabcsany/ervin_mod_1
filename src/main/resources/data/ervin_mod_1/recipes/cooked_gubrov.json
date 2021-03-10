@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "ervin_mod_1:gubrov"
+  },
+  "result": "ervin_mod_1:cooked_gubrov",
+  "experience": 0.35,
+  "cookingtime": 200
+}

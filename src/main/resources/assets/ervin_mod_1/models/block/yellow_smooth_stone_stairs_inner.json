@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/inner_stairs",
-  "textures": {
-    "bottom": "ervin_mod_1:block/yellow_smooth_stone",
-    "top": "ervin_mod_1:block/yellow_smooth_stone",
-    "side": "ervin_mod_1:block/yellow_smooth_stone"
-  }
-}

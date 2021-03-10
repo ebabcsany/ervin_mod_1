@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "####",
+    "####",
+    "####",
+    "####"
+  ],
+  "key": {
+    "#": {
+      "item": "ervin_mod_1:gankt"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:gankth",
+    "count": 1
+  }
+}

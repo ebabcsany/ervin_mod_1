@@ -170,6 +170,19 @@
         },
         {
           "type": "minecraft:item",
+          "name": "ervin_mod_1:firt_horse_armor"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:sriunk_horse_armor"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "ervin_mod_1:durg_horse_armor"
+        },
+        {
+          "type": "minecraft:item",
           "functions": [
             {
               "function": "minecraft:enchant_with_levels",

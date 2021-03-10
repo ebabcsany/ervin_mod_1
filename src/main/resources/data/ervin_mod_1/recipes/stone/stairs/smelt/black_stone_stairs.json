@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "ervin_mod_1:stone/cobblestone/stairs/black_cobblestone_stairs"
+  },
+  "result": "ervin_mod_1:stone/stairs/black_stone_stairs",
+  "experience": 0.75,
+  "cookingtime": 200
+}

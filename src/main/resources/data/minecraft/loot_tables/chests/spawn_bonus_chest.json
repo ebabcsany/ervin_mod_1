@@ -10,67 +10,67 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_axe/black_stone_axe"
+          "name": "ervin_mod_1:stone/tools/axe/black_stone_axe"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_axe/blue_stone_axe"
+          "name": "ervin_mod_1:stone/tools/axe/blue_stone_axe"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_axe/brown_stone_axe"
+          "name": "ervin_mod_1:stone/tools/axe/brown_stone_axe"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_axe/cyan_stone_axe"
+          "name": "ervin_mod_1:stone/tools/axe/cyan_stone_axe"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_axe/green_stone_axe"
+          "name": "ervin_mod_1:stone/tools/axe/green_stone_axe"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_axe/light_blue1_stone_axe"
+          "name": "ervin_mod_1:stone/tools/axe/light_blue1_stone_axe"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_axe/light_blue_stone_axe"
+          "name": "ervin_mod_1:stone/tools/axe/light_blue_stone_axe"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_axe/light_gray_stone_axe"
+          "name": "ervin_mod_1:stone/tools/axe/light_gray_stone_axe"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_axe/lime_stone_axe"
+          "name": "ervin_mod_1:stone/tools/axe/lime_stone_axe"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_axe/magenta_stone_axe"
+          "name": "ervin_mod_1:stone/tools/axe/magenta_stone_axe"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_axe/orange_stone_axe"
+          "name": "ervin_mod_1:stone/tools/axe/orange_stone_axe"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_axe/pink_stone_axe"
+          "name": "ervin_mod_1:stone/tools/axe/pink_stone_axe"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_axe/purple_stone_axe"
+          "name": "ervin_mod_1:stone/tools/axe/purple_stone_axe"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_axe/red_stone_axe"
+          "name": "ervin_mod_1:stone/tools/axe/red_stone_axe"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_axe/white_stone_axe"
+          "name": "ervin_mod_1:stone/tools/axe/white_stone_axe"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_axe/yellow_stone_axe"
+          "name": "ervin_mod_1:stone/tools/axe/yellow_stone_axe"
         },
         {
           "type": "minecraft:item",
@@ -111,67 +111,67 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_pickaxe/black_stone_pickaxe"
+          "name": "ervin_mod_1:stone/tools/pickaxe/black_stone_pickaxe"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_pickaxe/blue_stone_pickaxe"
+          "name": "ervin_mod_1:stone/tools/pickaxe/blue_stone_pickaxe"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_pickaxe/brown_stone_pickaxe"
+          "name": "ervin_mod_1:stone/tools/pickaxe/brown_stone_pickaxe"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_pickaxe/cyan_stone_pickaxe"
+          "name": "ervin_mod_1:stone/tools/pickaxe/cyan_stone_pickaxe"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_pickaxe/green_stone_pickaxe"
+          "name": "ervin_mod_1:stone/tools/pickaxe/green_stone_pickaxe"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_pickaxe/light_blue_stone_pickaxe"
+          "name": "ervin_mod_1:stone/tools/pickaxe/light_blue_stone_pickaxe"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_pickaxe/light_blue1_stone_pickaxe"
+          "name": "ervin_mod_1:stone/tools/pickaxe/light_blue1_stone_pickaxe"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_pickaxe/light_gray_stone_pickaxe"
+          "name": "ervin_mod_1:stone/tools/pickaxe/light_gray_stone_pickaxe"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_pickaxe/lime_stone_pickaxe"
+          "name": "ervin_mod_1:stone/tools/pickaxe/lime_stone_pickaxe"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_pickaxe/magenta_stone_pickaxe"
+          "name": "ervin_mod_1:stone/tools/pickaxe/magenta_stone_pickaxe"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_pickaxe/orange_stone_pickaxe"
+          "name": "ervin_mod_1:stone/tools/pickaxe/orange_stone_pickaxe"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_pickaxe/pink_stone_pickaxe"
+          "name": "ervin_mod_1:stone/tools/pickaxe/pink_stone_pickaxe"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_pickaxe/purple_stone_pickaxe"
+          "name": "ervin_mod_1:stone/tools/pickaxe/purple_stone_pickaxe"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_pickaxe/red_stone_pickaxe"
+          "name": "ervin_mod_1:stone/tools/pickaxe/red_stone_pickaxe"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_pickaxe/white_stone_pickaxe"
+          "name": "ervin_mod_1:stone/tools/pickaxe/white_stone_pickaxe"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone_pickaxe/yellow_stone_pickaxe"
+          "name": "ervin_mod_1:stone/tools/pickaxe/yellow_stone_pickaxe"
         },
         {
           "type": "minecraft:item",
@@ -554,11 +554,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:spawn_eggs/srach_entity_spawn_egg"
+          "name": "ervin_mod_1:spawn_eggs/srach_spawn_egg"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:spawn_eggs/vilt_entity_spawn_egg"
+          "name": "ervin_mod_1:spawn_eggs/vilt_spawn_egg"
         }
       ]
     },

@@ -1,6 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.block;
 
-import com.babcsany.minecraft.ervin_mod_1.init.BlockInit;
+import com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.google.common.cache.LoadingCache;
 import net.minecraft.block.Block;

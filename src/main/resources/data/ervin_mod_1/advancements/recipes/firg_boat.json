@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "ervin_mod_1:firg_boat"
+      "ervin_mod_1:boats/firg_boat"
     ]
   },
   "criteria": {
@@ -15,7 +15,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "ervin_mod_1:firg_boat"
+        "recipe": "ervin_mod_1:boats/firg_boat"
       }
     }
   },

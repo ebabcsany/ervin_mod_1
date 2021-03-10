@@ -35,7 +35,7 @@ public class ExampleBiomeSurfaceBuilder1 extends SurfaceBuilder<SurfaceBuilderCo
 					new SurfaceBuilderConfig(
 							i == 1 ? Blocks.LAVA.getDefaultState()
 									: BlockItemInit.TRING.get().getDefaultState(),
-							BlockItemInit.LEAT_BLOCK.get().getDefaultState(), BlockItemInit.EPKIN.get().getDefaultState()
+							isBurnableBlockItemInit.LEAT_BLOCK.get().getDefaultState(), isBurnableBlockItemInit.EPKIN.get().getDefaultState()
 					));
 
 		}

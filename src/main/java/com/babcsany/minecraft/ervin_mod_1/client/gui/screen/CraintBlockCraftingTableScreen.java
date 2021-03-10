@@ -20,7 +20,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 public class CraintBlockCraftingTableScreen extends ContainerScreen<CraintBlockCraftingTableContainer> implements IRecipeShownListener {
    private static final ResourceLocation CRAFTING_TABLE_GUI_TEXTURES = new ResourceLocation(Ervin_mod_1.MOD_ID,"textures/gui/container/craint_block_crafting_table_gui_container.png");
-   private static final ResourceLocation RECIPE_BUTTON_TEXTURE = new ResourceLocation(Ervin_mod_1.MOD_ID,"textures/gui/craint_block_crafting_table_gui_container_button.png");
+   private static final ResourceLocation RECIPE_BUTTON_TEXTURE = new ResourceLocation(Ervin_mod_1.MOD_ID,"textures/gui/container/recipe_button.png");
    private final RecipeBookGui recipeBookGui = new RecipeBookGui();
    private boolean widthTooNarrow;
 
@@ -41,7 +41,7 @@ public class CraintBlockCraftingTableScreen extends ContainerScreen<CraintBlockC
          this.guiLeft = this.recipeBookGui.updateScreenPosition(this.widthTooNarrow, this.width, this.xSize);
          ((ImageButton)p_214076_1_).setPosition(this.guiLeft + 7, this.height / 7 - 49);
       }));
-      this.titleX = 29;
+      this.titleX = 10;
    }
 
    public void tick() {

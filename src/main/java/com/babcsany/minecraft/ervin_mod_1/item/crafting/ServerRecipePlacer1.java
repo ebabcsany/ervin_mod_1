@@ -1,7 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.item.crafting;
 
+import com.babcsany.minecraft.ervin_mod_1.container.CraintBlockCraftingTableContainer;
 import com.babcsany.minecraft.ervin_mod_1.container.LeatBlockCraftingTableContainer;
-import com.babcsany.minecraft.ervin_mod_1.inventory.container.PlayerContainer1;
 import com.google.common.collect.Lists;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntList;
@@ -55,7 +55,7 @@ public class ServerRecipePlacer1<C extends IInventory> implements IRecipePlacer<
 
    protected void clear() {
       for(int i = 0; i < this.recipeBookContainer.getWidth() * this.recipeBookContainer.getHeight() + 1; ++i) {
-         if (i != this.recipeBookContainer.getOutputSlot() || !(this.recipeBookContainer instanceof LeatBlockCraftingTableContainer) && !(this.recipeBookContainer instanceof PlayerContainer)) {
+         if (i != this.recipeBookContainer.getOutputSlot() || !(this.recipeBookContainer instanceof WorkbenchContainer) && !(this.recipeBookContainer instanceof PlayerContainer)) {
             this.giveToPlayer(i);
          }
       }

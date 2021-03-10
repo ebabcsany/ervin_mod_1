@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "ervin_mod_1:firg_planks"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:firg_planks_stairs",
+    "count": 4
+  }
+}

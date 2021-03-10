@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "ervin_mod_1:zunkth"
+    }
+  ],
+  "result": {
+    "item": "ervin_mod_1:zunkt",
+    "count": 16
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "ervin_mod_1:tgurk"
+    }
+  ],
+  "result": {
+    "item": "ervin_mod_1:tgurh",
+    "count": 9
+  }
+}

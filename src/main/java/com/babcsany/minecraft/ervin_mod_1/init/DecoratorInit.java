@@ -36,16 +36,6 @@ public class DecoratorInit {
 
     public static final DeferredRegister<Placement<?>> DECORATORS = DeferredRegister.create(ForgeRegistries.DECORATORS, Ervin_mod_1.MOD_ID);
 
-    //public static final RegistryObject<Placement<?>> FIRG = DECORATORS.register("firg", () -> new FirgTreeDecorator(0.5f));
-    //public static final RegistryObject<Placement<NoPlacementConfig>> FIRG = DECORATORS.register("firg", );
-    //public static final RegistryObject<Placement<?>> FIRG = DECORATORS.register("sriunk", () -> new TreeDecoratorType<FirgTreeDecorator>(
-      //      (new Decorator.Properties())));
-    //public static final RegistryObject<Placement<?>> FIRG = DECORATORS.register("example_block", () -> new TreeDecorator()
-    /*public static final RegistryObject<Placement<ChanceConfig>> FIRG = DECORATORS.register(
-            "coloured_particle",
-            () -> new TreeDecoratorType<FirgTreeDecorator>(false, new FirgTreeDecorator()));*/
-   //public static final RegistryObject<Placement<FrequencyConfig>> NOPE = DECORATORS.register("nope", new AtSurface(FrequencyConfig::deserialize));
-    //public static final RegistryObject<Placement<NoPlacementConfig>> EMERALD_ORE = DECORATORS.register("emerald_ore", new Height4To32(NoPlacementConfig::deserialize,));
-
+    public static final RegistryObject<Placement<NoPlacementConfig>> NOPE = DECORATORS.register("nope", () -> new Passthrough(NoPlacementConfig.field_236555_a_));
 
 }
