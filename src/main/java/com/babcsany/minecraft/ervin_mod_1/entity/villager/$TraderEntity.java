@@ -4,7 +4,7 @@ import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.$TraderLookAtCustomerGo
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.$TraderTradeWithPlayerGoal;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.$TraderTrades;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.spawn_egg.ModSpawnEggItemInit;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -60,7 +60,7 @@ public class $TraderEntity extends Abstract$TraderEntity {
 
    public ActionResultType func_230254_b_(PlayerEntity p_230254_1_, Hand p_230254_2_) {
       ItemStack itemstack = p_230254_1_.getHeldItem(p_230254_2_);
-      if (itemstack.getItem() != ItemInit.ZUR_ENTITY_SPAWN_EGG.get() && this.isAlive() && !this.hasCustomer() && !this.isChild()) {
+      if (itemstack.getItem() != ModSpawnEggItemInit.ZUR_ENTITY_SPAWN_EGG.get() && this.isAlive() && !this.hasCustomer() && !this.isChild()) {
          if (p_230254_2_ == Hand.MAIN_HAND) {
             p_230254_1_.addStat(Stats.TALKED_TO_VILLAGER);
          }

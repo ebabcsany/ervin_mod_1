@@ -1,5 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.projectile;
 
+import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -36,7 +37,7 @@ public class ScrakthsPearlEntity extends ProjectileItemEntity {
    }
 
    protected Item getDefaultItem() {
-      return Items.ENDER_PEARL;
+      return ItemInit.SCRAKTHS_PEARL.get();
    }
 
    /**
@@ -107,7 +108,7 @@ public class ScrakthsPearlEntity extends ProjectileItemEntity {
    public Entity changeDimension(ServerWorld server, net.minecraftforge.common.util.ITeleporter teleporter) {
       Entity entity = this.func_234616_v_();
       if (entity != null && entity.world.func_234923_W_() != server.func_234923_W_()) {
-         this.setShooter((Entity)null);
+         this.setShooter(null);
       }
 
       return super.changeDimension(server, teleporter);

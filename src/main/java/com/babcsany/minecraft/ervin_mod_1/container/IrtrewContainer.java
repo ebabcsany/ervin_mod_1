@@ -37,11 +37,11 @@ import java.util.Optional;
 public class IrtrewContainer extends RecipeBookContainer<CraftingInventory> {
    private static final int CRAFT_MATRIX_WIDTH = 3;
    private static final int CRAFT_MATRIX_HEIGHT = 3;
-   private static final int CRAFT_RESULT_X_POSITION = 124;
-   private static final int CRAFT_RESULT_Y_POSITION = 35;
+   private static final int CRAFT_RESULT_X_POSITION = 127;
+   private static final int CRAFT_RESULT_Y_POSITION = 33;
    private static final int CRAFT_RESULT_SLOT_INDEX = 0;
-   private static final int CRAFT_MATRIX_TOP_LEFT_SLOT_X_POSITION = 28;
-   private static final int CRAFT_MATRIX_TOP_LEFT_SLOT_Y_POSITION = 18;
+   private static final int CRAFT_MATRIX_TOP_LEFT_SLOT_X_POSITION = 32;
+   private static final int CRAFT_MATRIX_TOP_LEFT_SLOT_Y_POSITION = 14;
    private static final int SLOT_WIDTH = 18;
    private static final int SLOT_HEIGHT = 18;
    private final CraftingInventory craftMatrix = new CraftingInventory(this, CRAFT_MATRIX_WIDTH, CRAFT_MATRIX_HEIGHT);
@@ -58,7 +58,6 @@ public class IrtrewContainer extends RecipeBookContainer<CraftingInventory> {
       this.worldPosCallable = p_i50090_3_;
       this.player = playerInventory.player;
       this.addSlot(new CraftingResultSlot(playerInventory.player, this.craftMatrix, this.craftResult, CRAFT_RESULT_SLOT_INDEX, CRAFT_RESULT_X_POSITION, CRAFT_RESULT_Y_POSITION));
-      //this.destroyItemSlot = new Slot(TMP_INVENTORY, 0, 173, 112);
 
       for(int i = 0; i < CRAFT_MATRIX_HEIGHT; ++i) {
          for(int j = 0; j < CRAFT_MATRIX_WIDTH; ++j) {
@@ -66,14 +65,14 @@ public class IrtrewContainer extends RecipeBookContainer<CraftingInventory> {
          }
       }
 
-      for(int k = 0; k < CRAFT_MATRIX_HEIGHT; ++k) {
+      for(int k = 0; k < 3; ++k) {
          for(int i1 = 0; i1 < 9; ++i1) {
-            this.addSlot(new Slot(playerInventory, i1 + k * 9 + 9, 8 + i1 * CRAFT_MATRIX_WIDTH, 84 + k * CRAFT_MATRIX_HEIGHT));
+            this.addSlot(new Slot(playerInventory, i1 + k * 9 + 9, 8 + i1 * 18, 84 + k * 18));
          }
       }
 
       for(int l = 0; l < 9; ++l) {
-         this.addSlot(new Slot(playerInventory, l, 8 + l * SLOT_HEIGHT, 142));
+         this.addSlot(new Slot(playerInventory, l, 8 + l * 18, 142));
       }
 
    }

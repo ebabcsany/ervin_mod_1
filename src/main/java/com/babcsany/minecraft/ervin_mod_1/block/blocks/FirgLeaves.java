@@ -42,8 +42,14 @@ public class FirgLeaves extends Block implements net.minecraftforge.common.IForg
       return 1.0F;
    }
 
+   @Override
    public VoxelShape getCollisionShape(BlockState state, IBlockReader reader, BlockPos pos) {
       return VoxelShapes.empty();
+   }
+
+   @OnlyIn(Dist.CLIENT)
+   public boolean isSideInvisible(BlockState state, BlockState adjacentBlockState, Direction side) {
+      return adjacentBlockState.isIn(this) || super.isSideInvisible(state, adjacentBlockState, side);
    }
 
    /**
@@ -57,6 +63,7 @@ public class FirgLeaves extends Block implements net.minecraftforge.common.IForg
    /**
     * Performs a random tick on a block.
     */
+   @Override
    public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
       if (!state.get(PERSISTENT) && state.get(DISTANCE) == 7) {
          spawnDrops(state, worldIn, pos);
@@ -65,10 +72,12 @@ public class FirgLeaves extends Block implements net.minecraftforge.common.IForg
 
    }
 
+   @Override
    public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
       worldIn.setBlockState(pos, updateDistance(state, worldIn, pos), 3);
    }
 
+   @Override
    public int getOpacity(BlockState state, IBlockReader worldIn, BlockPos pos) {
       return 1;
    }
@@ -79,6 +88,7 @@ public class FirgLeaves extends Block implements net.minecraftforge.common.IForg
     * returns its solidified counterpart.
     * Note that this method should ideally consider only the specific face passed in.
     */
+   @Override
    public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
       int i = getDistance(facingState) + 1;
       if (i != 1 || stateIn.get(DISTANCE) != i) {

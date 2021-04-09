@@ -1,13 +1,15 @@
 package com.babcsany.minecraft.ervin_mod_1;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.animal.*;
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.Dgrurb;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.RoventEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurNirtreEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.*;
 import com.babcsany.minecraft.ervin_mod_1.init.*;
 import com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.*;
-import com.babcsany.minecraft.ervin_mod_1.init.item.block.BlockNamedItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.food.brefk.BrefkStageItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.food.FoodItemInit;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
@@ -74,26 +76,33 @@ public class Ervin_mod_1 {
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
 
-        ItemInit.ITEMS.register(modEventBus);
-        isBurnableItemInit.BURNABLE_ITEMS.register(modEventBus);
-        BlockInit.BLOCKS.register(modEventBus);
-        BlockItemInit.BLOCKS.register(modEventBus);
-        isBurnableBlockItemInit.BURNABLE_BLOCKS.register(modEventBus);
-        BlockNamedItemInit.ITEMS.register(modEventBus);
-        ContainerInit.CONTAINER_TYPES.register(modEventBus);
-        DecoratorInit.DECORATORS.register(modEventBus);
-        EntityInit.ENTITY_TYPES.register(modEventBus);
-        BiomeInit.BIOMES.register(modEventBus);
-        SoundInit.SOUNDS.register(modEventBus);
-        FluidInit.FLUIDS.register(modEventBus);
-        FeatureInit.FEATURES.register(modEventBus);
-        ParticleInit.PARTICLE_TYPES.register(modEventBus);
-        SurfaceBuilderInit.SURFACE_BUILDERS.register(modEventBus);
-        TreeDecoratorInit.TREE_DECORATOR_TYPES.register(modEventBus);
-        WorldCarverInit.CARVERS.register(modEventBus);
-        TileEntityInit.TILE_ENTITY_TYPES.register(modEventBus);
+        com.babcsany.minecraft.ervin_mod_1.init.BiomeInit.BIOMES.register(modEventBus);
+        BrefkStageItemInit.ITEMS.register(modEventBus);
+        FoodItemInit.FOOD_ITEMS.register(modEventBus);
+        com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.BLOCKS.register(modEventBus);
+        com.babcsany.minecraft.ervin_mod_1.init.ContainerInit.CONTAINER_TYPES.register(modEventBus);
+        com.babcsany.minecraft.ervin_mod_1.init.DecoratorInit.DECORATORS.register(modEventBus);
+        com.babcsany.minecraft.ervin_mod_1.init.EntityInit.ENTITY_TYPES.register(modEventBus);
+        com.babcsany.minecraft.ervin_mod_1.init.FeatureInit.FEATURES.register(modEventBus);
+        com.babcsany.minecraft.ervin_mod_1.init.FluidInit.FLUIDS.register(modEventBus);
+        com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit.ITEMS.register(modEventBus);
+        com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit.BURNABLE_ITEMS.register(modEventBus);
+        com.babcsany.minecraft.ervin_mod_1.init.item.tool.isBurnableItemInit.BURNABLE_ITEMS.register(modEventBus);
+        com.babcsany.minecraft.ervin_mod_1.init.item.spawn_egg.ModSpawnEggItemInit.MOD_SPAWN_EGGS.register(modEventBus);
+        com.babcsany.minecraft.ervin_mod_1.init.minecraft.item.spawn_egg.SpawnEggItemInit.SPAWN_EGGS.register(modEventBus);
+        com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit.BLOCKS.register(modEventBus);
+        com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit.BURNABLE_BLOCKS.register(modEventBus);
+        com.babcsany.minecraft.ervin_mod_1.init.item.block.BlockNamedItemInit.ITEMS.register(modEventBus);
+        com.babcsany.minecraft.ervin_mod_1.init.SoundInit.SOUNDS.register(modEventBus);
+        com.babcsany.minecraft.ervin_mod_1.init.ParticleInit.PARTICLE_TYPES.register(modEventBus);
+        com.babcsany.minecraft.ervin_mod_1.init.SurfaceBuilderInit.SURFACE_BUILDERS.register(modEventBus);
+        com.babcsany.minecraft.ervin_mod_1.init.TreeDecoratorInit.TREE_DECORATOR_TYPES.register(modEventBus);
+        com.babcsany.minecraft.ervin_mod_1.init.WorldCarverInit.CARVERS.register(modEventBus);
+        com.babcsany.minecraft.ervin_mod_1.init.TileEntityInit.TILE_ENTITY_TYPES.register(modEventBus);
         com.babcsany.minecraft.ervin_mod_1.init.block.animation.colors.BlockItemInit.ANIMATION_BLOCKS.register(modEventBus);
         com.babcsany.minecraft.ervin_mod_1.init.minecraft.block.BlockItemInit.BLOCKS.register(modEventBus);
+        com.babcsany.minecraft.ervin_mod_1.init.minecraft.block.item.BlockNamedItemInit.BLOCK_ITEMS.register(modEventBus);
+        com.babcsany.minecraft.ervin_mod_1.init.item.block.isBurnableBlockNamedItemInit.BLOCK_ITEMS.register(modEventBus);
     }
 
     private void setup(final FMLCommonSetupEvent event) {
@@ -101,22 +110,42 @@ public class Ervin_mod_1 {
         LOGGER.info("HELLO FROM PREINIT");
         LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
         DeferredWorkQueue.runLater(() -> {
-            GlobalEntityTypeAttributes.put(EntityInit.ZUR_ENTITY1.get(), ZurEntity1.setCustomAttributes().create());
+            GlobalEntityTypeAttributes.put(EntityInit.LIWRAY.get(), Liwray.setCustomAttributes().create());
+            GlobalEntityTypeAttributes.put(EntityInit.GWURST.get(), GwurstEntity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(EntityInit.ZUR_ENTITY.get(), ZurEntity.setCustomAttributes().create());
+            GlobalEntityTypeAttributes.put(EntityInit.DGRURB_ENTITY.get(), Dgrurb.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(EntityInit.ROVENT_ENTITY.get(), RoventEntity.setCustomAttributes().create());
-            //GlobalEntityTypeAttributes.put(EntityInit.ZUR_NIRTRE_ENTITY.get(), ZurNirtreEntity.setCustomAttributes().create());
+            GlobalEntityTypeAttributes.put(EntityInit.ZUR_NIRTRE_ENTITY.get(), ZurNirtreEntity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(EntityInit.FREIN_ENTITY.get(), FreinEntity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(EntityInit.VILT_ENTITY.get(), ViltEntity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(EntityInit.SRACH_ENTITY.get(), SrachEntity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(EntityInit.SHERT_ENTITY.get(), ShertEntity.setCustomAttributes().create());
-            GlobalEntityTypeAttributes.put(EntityInit.HHIJ_ENTITY.get(), WolfEntity1.setCustomAttributes().create());
+            GlobalEntityTypeAttributes.put(EntityInit.HHIJ_ENTITY.get(), Wolf1Entity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(EntityInit.WANDERING_TRADER_NIRTRE_ENTITY.get(), WanderingTraderNirtreEntity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(EntityInit.TRADER_NIRTRE_ENTITY.get(), TraderNirtreEntity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(EntityInit.$_TRADER_ENTITY.get(), $TraderEntity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(EntityInit.ZOMBIE_TRADER_ENTITY.get(), ZombieTraderEntity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(EntityInit.GUBROV_ENTITY.get(), AbstractFishEntity.func_234176_m_().create());
+            /*EntitySpawnPlacementRegistry.register(EntityInit.$_TRADER_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, Abstract$TraderEntity::canSpawnOn);
+            EntitySpawnPlacementRegistry.register(EntityInit.DGRURB_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canSpawnOn);
+            EntitySpawnPlacementRegistry.register(EntityInit.FREIN_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, FreinEntity::func_223366_c);
+            EntitySpawnPlacementRegistry.register(EntityInit.GUBROV_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AbstractFishEntity::func_223363_b);
+            EntitySpawnPlacementRegistry.register(EntityInit.HHIJ_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::canAnimalSpawn);
+            EntitySpawnPlacementRegistry.register(EntityInit.ROVENT_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, RoventEntity::func_223332_b);
+            EntitySpawnPlacementRegistry.register(EntityInit.SHERT_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ShertEntity::func_223318_c);
+            EntitySpawnPlacementRegistry.register(EntityInit.SRACH_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::canAnimalSpawn);
+            EntitySpawnPlacementRegistry.register(EntityInit.TRADER_NIRTRE_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canSpawnOn);
+            EntitySpawnPlacementRegistry.register(EntityInit.VILT_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::canAnimalSpawn);
+            EntitySpawnPlacementRegistry.register(EntityInit.WANDERING_TRADER_NIRTRE_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canSpawnOn);
+            EntitySpawnPlacementRegistry.register(EntityInit.ZOMBIE_TRADER_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canSpawnOn);
+            EntitySpawnPlacementRegistry.register(EntityInit.ZUR_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canSpawnOn);
+            EntitySpawnPlacementRegistry.register(EntityInit.ZUR_ENTITY1.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canSpawnOn);*/
         });
     }
+
+    /*private int getInventoryStackLimit() {
+        return 2048;
+    }*/
 
     private void doClientStuff(final FMLClientSetupEvent event) {
         // do something that can only be done on the client
@@ -238,6 +267,16 @@ public class Ervin_mod_1 {
                 event.setCanceled(true);
             }
         }
-
+        @SubscribeEvent
+        public static void onLeftClick1Block(final PlayerInteractEvent.LeftClickBlock event) {
+            ResourceLocation Material1BlocksTagId = new ResourceLocation(Ervin_mod_1.MOD_ID, "material_blocks1");
+            ITag<Block> Material1Blocks = BlockTags.getCollection().get(Material1BlocksTagId);
+            if (event.getWorld().hasBlockState(event.getPos(), blockState -> {
+                assert Material1Blocks != null;
+                return blockState.isIn(Material1Blocks);
+            })) {
+                event.setCanceled(true);
+            }
+        }
     }
 }

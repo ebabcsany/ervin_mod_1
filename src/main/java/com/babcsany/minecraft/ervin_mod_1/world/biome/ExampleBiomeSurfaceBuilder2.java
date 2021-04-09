@@ -1,6 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.world.biome;
 
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.world.gen.surfacebuilders.SurfaceBuilderConfig1;
 import com.mojang.serialization.Codec;
@@ -35,7 +36,7 @@ public class ExampleBiomeSurfaceBuilder2 extends SurfaceBuilder<SurfaceBuilderCo
 					defaultFluid, seaLevel, seed,
 					new SurfaceBuilderConfig(
 							i == 1 ? Blocks.GRASS_BLOCK.getDefaultState()
-									: isBurnableBlockItemInit.GRITH_BLOCK.get().getDefaultState(),
+									: BlockInit.GRITH_BLOCK.get().getDefaultState(),
 							isBurnableBlockItemInit.TRUGN.get().getDefaultState(), BlockItemInit.TRINKS.get().getDefaultState()
 					));
 

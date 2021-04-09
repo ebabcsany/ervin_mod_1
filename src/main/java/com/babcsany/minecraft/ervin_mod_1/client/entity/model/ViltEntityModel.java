@@ -1,15 +1,8 @@
 package com.babcsany.minecraft.ervin_mod_1.client.entity.model;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.animal.ViltEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.animal.ZurEntity1;
-import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
-import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.entity.model.QuadrupedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.passive.SheepEntity;
-import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 

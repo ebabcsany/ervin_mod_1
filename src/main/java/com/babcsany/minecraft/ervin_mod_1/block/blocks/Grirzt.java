@@ -36,9 +36,10 @@ public class Grirzt extends Block {
 
    protected void tryAbsorb(World worldIn, BlockPos pos) {
       if (this.absorb(worldIn, pos)) {
-         worldIn.setBlockState(pos, BlockItemInit.GRIRZT.get().getDefaultState(), 2);
+         worldIn.setBlockState(pos, BlockItemInit.GRIRZT.get().getDefaultState(), 4);
          worldIn.playEvent(2001, pos, Block.getStateId(Blocks.LAVA.getDefaultState()));
       }
+
    }
 
    private boolean absorb(World worldIn, BlockPos pos) {
@@ -53,16 +54,16 @@ public class Grirzt extends Block {
 
          for(Direction direction : Direction.values()) {
             BlockPos blockpos1 = blockpos.offset(direction);
-            BlockState blockState = worldIn.getBlockState(blockpos1);
-            FluidState fluidState = worldIn.getFluidState(blockpos1);
-            Material material = blockState.getMaterial();
-            if (fluidState.isTagged(FluidTags.LAVA)) {
-               if (fluidState.getFluid() != Fluids.EMPTY) {
+            BlockState blockstate = worldIn.getBlockState(blockpos1);
+            FluidState fluidstate = worldIn.getFluidState(blockpos1);
+            Material material = blockstate.getMaterial();
+            if (fluidstate.isTagged(FluidTags.LAVA)) {
+               if (blockstate.getBlock() instanceof IBucketPickupHandler && ((IBucketPickupHandler)blockstate.getBlock()).pickupFluid(worldIn, blockpos1, blockstate) != Fluids.EMPTY) {
                   ++i;
                   if (j < 60) {
                      queue.add(new Tuple<>(blockpos1, j + 10));
                   }
-               } else if (blockState.getBlock() instanceof FlowingFluidBlock) {
+               } else if (blockstate.getBlock() instanceof FlowingFluidBlock) {
                   worldIn.setBlockState(blockpos1, Blocks.AIR.getDefaultState(), 3);
                   ++i;
                   if (j < 60) {

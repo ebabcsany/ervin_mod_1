@@ -1,0 +1,20 @@
+{
+  "replace": false,
+  "values": [
+    "ervin_mod_1:sriunk_ore",
+    "ervin_mod_1:sriunk_block",
+    //"ervin_mod_1:light_weighted_pressure_plate",
+    "ervin_mod_1:sriunk",
+    //"ervin_mod_1:clock",
+    "ervin_mod_1:sriunk_helmet",
+    "ervin_mod_1:sriunk_chestplate",
+    "ervin_mod_1:sriunk_leggings",
+    "ervin_mod_1:sriunk_boots",
+    "ervin_mod_1:sriunk_horse_armor",
+    "ervin_mod_1:sriunk_sword",
+    "ervin_mod_1:sriunk_pickaxe",
+    "ervin_mod_1:sriunk_shovel",
+    "ervin_mod_1:sriunk_axe",
+    "ervin_mod_1:sriunk_hoe"
+  ]
+}

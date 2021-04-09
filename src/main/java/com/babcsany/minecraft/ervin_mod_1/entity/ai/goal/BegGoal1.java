@@ -1,9 +1,8 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.ai.goal;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.animal.WolfEntity1;
+import com.babcsany.minecraft.ervin_mod_1.entity.animal.Wolf1Entity;
 import net.minecraft.entity.EntityPredicate;
 import net.minecraft.entity.ai.goal.Goal;
-import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -13,14 +12,14 @@ import net.minecraft.world.World;
 import java.util.EnumSet;
 
 public class BegGoal1 extends Goal {
-   private final WolfEntity1 wolf;
+   private final Wolf1Entity wolf;
    private PlayerEntity player;
    private final World world;
    private final float minPlayerDistance;
    private int timeoutCounter;
    private final EntityPredicate field_220688_f;
 
-   public BegGoal1(WolfEntity1 wolf, float minDistance) {
+   public BegGoal1(Wolf1Entity wolf, float minDistance) {
       this.wolf = wolf;
       this.world = wolf.world;
       this.minPlayerDistance = minDistance;

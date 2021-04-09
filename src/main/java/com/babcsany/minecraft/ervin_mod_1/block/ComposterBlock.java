@@ -3,6 +3,8 @@ package com.babcsany.minecraft.ervin_mod_1.block;
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.block.BlockNamedItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.block.isBurnableBlockNamedItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.food.FoodItemInit;
 import it.unimi.dsi.fastutil.objects.Object2FloatMap;
 import it.unimi.dsi.fastutil.objects.Object2FloatOpenHashMap;
 import net.minecraft.block.Block;
@@ -143,9 +145,9 @@ public class ComposterBlock extends Block implements ISidedInventoryProvider {
       registerCompostable(0.85F, Items.COOKIE);
       registerCompostable(1.0F, Items.CAKE);
       registerCompostable(1.0F, Items.PUMPKIN_PIE);
-      registerCompostable(1.0F, BlockNamedItemInit.FIRG.get());
-      registerCompostable(1.0F, ItemInit.FRIM.get());
-      registerCompostable(1.25F, ItemInit.REAT.get());
+      registerCompostable(1.0F, FoodItemInit.FIRG.get());
+      registerCompostable(1.0F, FoodItemInit.FRIM.get());
+      registerCompostable(1.25F, FoodItemInit.REAT.get());
    }
 
    private static void registerCompostable(float chance, IItemProvider itemIn) {

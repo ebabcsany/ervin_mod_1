@@ -1,0 +1,76 @@
+package com.babcsany.minecraft.ervin_mod_1.init.item.food.brefk;
+
+import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
+import com.babcsany.minecraft.ervin_mod_1.item.brefk.*;
+import com.babcsany.minecraft.ervin_mod_1.item.food.Foods;
+import net.minecraft.item.Item;
+import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+
+public class BrefkStageItemInit {
+
+    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Ervin_mod_1.MOD_ID);
+
+    public static final RegistryObject<Item> BREFK_STAGE0 = ITEMS.register("brefk/brefk_stage0", () -> new Item((new Item.Properties()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE1 = ITEMS.register("brefk/brefk_stage1", () -> new BrefkStage1((new Item.Properties()).containerItem(BREFK_STAGE0.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE2 = ITEMS.register("brefk/brefk_stage2", () -> new BrefkStage2((new Item.Properties()).containerItem(BREFK_STAGE1.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE3 = ITEMS.register("brefk/brefk_stage3", () -> new BrefkStage3((new Item.Properties()).containerItem(BREFK_STAGE2.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE4 = ITEMS.register("brefk/brefk_stage4", () -> new BrefkStage4((new Item.Properties()).containerItem(BREFK_STAGE3.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE5 = ITEMS.register("brefk/brefk_stage5", () -> new BrefkStage5((new Item.Properties()).containerItem(BREFK_STAGE4.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE6 = ITEMS.register("brefk/brefk_stage6", () -> new BrefkStage6((new Item.Properties()).containerItem(BREFK_STAGE5.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE7 = ITEMS.register("brefk/brefk_stage7", () -> new BrefkStage7((new Item.Properties()).containerItem(BREFK_STAGE6.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE8 = ITEMS.register("brefk/brefk_stage8", () -> new BrefkStage8((new Item.Properties()).containerItem(BREFK_STAGE7.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE9 = ITEMS.register("brefk/brefk_stage9", () -> new BrefkStage9((new Item.Properties()).containerItem(BREFK_STAGE8.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE10 = ITEMS.register("brefk/brefk_stage10", () -> new BrefkStage10((new Item.Properties()).containerItem(BREFK_STAGE9.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE11 = ITEMS.register("brefk/brefk_stage11", () -> new BrefkStage11((new Item.Properties()).containerItem(BREFK_STAGE10.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE12 = ITEMS.register("brefk/brefk_stage12", () -> new BrefkStage12((new Item.Properties()).containerItem(BREFK_STAGE11.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE13 = ITEMS.register("brefk/brefk_stage13", () -> new BrefkStage13((new Item.Properties()).containerItem(BREFK_STAGE12.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE14 = ITEMS.register("brefk/brefk_stage14", () -> new BrefkStage14((new Item.Properties()).containerItem(BREFK_STAGE13.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE15 = ITEMS.register("brefk/brefk_stage15", () -> new BrefkStage15((new Item.Properties()).containerItem(BREFK_STAGE14.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE16 = ITEMS.register("brefk/brefk_stage16", () -> new BrefkStage16((new Item.Properties()).containerItem(BREFK_STAGE15.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE17 = ITEMS.register("brefk/brefk_stage17", () -> new BrefkStage17((new Item.Properties()).containerItem(BREFK_STAGE16.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE18 = ITEMS.register("brefk/brefk_stage18", () -> new BrefkStage18((new Item.Properties()).containerItem(BREFK_STAGE17.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE19 = ITEMS.register("brefk/brefk_stage19", () -> new BrefkStage19((new Item.Properties()).containerItem(BREFK_STAGE18.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE20 = ITEMS.register("brefk/brefk_stage20", () -> new BrefkStage20((new Item.Properties()).containerItem(BREFK_STAGE19.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE21 = ITEMS.register("brefk/brefk_stage21", () -> new BrefkStage21((new Item.Properties()).containerItem(BREFK_STAGE20.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE22 = ITEMS.register("brefk/brefk_stage22", () -> new BrefkStage22((new Item.Properties()).containerItem(BREFK_STAGE21.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE23 = ITEMS.register("brefk/brefk_stage23", () -> new BrefkStage23((new Item.Properties()).containerItem(BREFK_STAGE22.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE24 = ITEMS.register("brefk/brefk_stage24", () -> new BrefkStage24((new Item.Properties()).containerItem(BREFK_STAGE23.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE25 = ITEMS.register("brefk/brefk_stage25", () -> new BrefkStage25((new Item.Properties()).containerItem(BREFK_STAGE24.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE26 = ITEMS.register("brefk/brefk_stage26", () -> new BrefkStage26((new Item.Properties()).containerItem(BREFK_STAGE25.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE27 = ITEMS.register("brefk/brefk_stage27", () -> new BrefkStage27((new Item.Properties()).containerItem(BREFK_STAGE26.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE28 = ITEMS.register("brefk/brefk_stage28", () -> new BrefkStage28((new Item.Properties()).containerItem(BREFK_STAGE27.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE29 = ITEMS.register("brefk/brefk_stage29", () -> new BrefkStage29((new Item.Properties()).containerItem(BREFK_STAGE28.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE30 = ITEMS.register("brefk/brefk_stage30", () -> new BrefkStage30((new Item.Properties()).containerItem(BREFK_STAGE29.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE31 = ITEMS.register("brefk/brefk_stage31", () -> new BrefkStage31((new Item.Properties()).containerItem(BREFK_STAGE30.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE32 = ITEMS.register("brefk/brefk_stage32", () -> new BrefkStage32((new Item.Properties()).containerItem(BREFK_STAGE31.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE33 = ITEMS.register("brefk/brefk_stage33", () -> new BrefkStage33((new Item.Properties()).containerItem(BREFK_STAGE32.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE34 = ITEMS.register("brefk/brefk_stage34", () -> new BrefkStage34((new Item.Properties()).containerItem(BREFK_STAGE33.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE35 = ITEMS.register("brefk/brefk_stage35", () -> new BrefkStage35((new Item.Properties()).containerItem(BREFK_STAGE34.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE36 = ITEMS.register("brefk/brefk_stage36", () -> new BrefkStage36((new Item.Properties()).containerItem(BREFK_STAGE35.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE37 = ITEMS.register("brefk/brefk_stage37", () -> new BrefkStage37((new Item.Properties()).containerItem(BREFK_STAGE36.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE38 = ITEMS.register("brefk/brefk_stage38", () -> new BrefkStage38((new Item.Properties()).containerItem(BREFK_STAGE37.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE39 = ITEMS.register("brefk/brefk_stage39", () -> new BrefkStage39((new Item.Properties()).containerItem(BREFK_STAGE38.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE40 = ITEMS.register("brefk/brefk_stage40", () -> new BrefkStage40((new Item.Properties()).containerItem(BREFK_STAGE39.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE41 = ITEMS.register("brefk/brefk_stage41", () -> new BrefkStage41((new Item.Properties()).containerItem(BREFK_STAGE40.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE42 = ITEMS.register("brefk/brefk_stage42", () -> new BrefkStage42((new Item.Properties()).containerItem(BREFK_STAGE41.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE43 = ITEMS.register("brefk/brefk_stage43", () -> new BrefkStage43((new Item.Properties()).containerItem(BREFK_STAGE42.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE44 = ITEMS.register("brefk/brefk_stage44", () -> new BrefkStage44((new Item.Properties()).containerItem(BREFK_STAGE43.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE45 = ITEMS.register("brefk/brefk_stage45", () -> new BrefkStage45((new Item.Properties()).containerItem(BREFK_STAGE44.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE46 = ITEMS.register("brefk/brefk_stage46", () -> new BrefkStage46((new Item.Properties()).containerItem(BREFK_STAGE45.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE47 = ITEMS.register("brefk/brefk_stage47", () -> new BrefkStage47((new Item.Properties()).containerItem(BREFK_STAGE46.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE48 = ITEMS.register("brefk/brefk_stage48", () -> new BrefkStage48((new Item.Properties()).containerItem(BREFK_STAGE47.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE49 = ITEMS.register("brefk/brefk_stage49", () -> new BrefkStage49((new Item.Properties()).containerItem(BREFK_STAGE48.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE50 = ITEMS.register("brefk/brefk_stage50", () -> new BrefkStage50((new Item.Properties()).containerItem(BREFK_STAGE49.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE51 = ITEMS.register("brefk/brefk_stage51", () -> new BrefkStage51((new Item.Properties()).containerItem(BREFK_STAGE50.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE52 = ITEMS.register("brefk/brefk_stage52", () -> new BrefkStage52((new Item.Properties()).containerItem(BREFK_STAGE51.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE53 = ITEMS.register("brefk/brefk_stage53", () -> new BrefkStage53((new Item.Properties()).containerItem(BREFK_STAGE52.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE54 = ITEMS.register("brefk/brefk_stage54", () -> new BrefkStage54((new Item.Properties()).containerItem(BREFK_STAGE53.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE55 = ITEMS.register("brefk/brefk_stage55", () -> new BrefkStage55((new Item.Properties()).containerItem(BREFK_STAGE54.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE56 = ITEMS.register("brefk/brefk_stage56", () -> new BrefkStage56((new Item.Properties()).containerItem(BREFK_STAGE55.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE57 = ITEMS.register("brefk/brefk_stage57", () -> new BrefkStage57((new Item.Properties()).containerItem(BREFK_STAGE56.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE58 = ITEMS.register("brefk/brefk_stage58", () -> new BrefkStage58((new Item.Properties()).containerItem(BREFK_STAGE57.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE59 = ITEMS.register("brefk/brefk_stage59", () -> new BrefkStage59((new Item.Properties()).containerItem(BREFK_STAGE58.get()).food(Foods.BREFK)));
+    public static final RegistryObject<Item> BREFK_STAGE60 = ITEMS.register("brefk/brefk_stage60", () -> new BrefkStage60((new Item.Properties()).containerItem(BREFK_STAGE59.get()).food(Foods.BREFK)));
+}

@@ -8,7 +8,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 
 public class SurfaceBuilder2 {
-   private static final BlockState GRITH_BLOCK = isBurnableBlockItemInit.GRITH_BLOCK.get().getDefaultState();
+   private static final BlockState GRITH_BLOCK = BlockInit.GRITH_BLOCK.get().getDefaultState();
    private static final BlockState RED_GRASS_BLOCK = BlockItemInit.RED_GRASS_BLOCK.get().getDefaultState();
    private static final BlockState VIRK_BLOCK = BlockInit.VIRK_BLOCK.get().getDefaultState();
    private static final BlockState VILKT_BLOCK = isBurnableBlockItemInit.VILKT_BLOCK.get().getDefaultState();
@@ -37,7 +37,7 @@ public class SurfaceBuilder2 {
    private static final BlockState field_237167_h_ = isBurnableBlockItemInit.TRUGK_BLOCK.get().getDefaultState();
    private static final BlockState field_237167_i_ = BlockItemInit.ZUNK_BLOCK.get().getDefaultState();
    private static final BlockState field_237167_j_ = isBurnableBlockItemInit.LEAT_BLOCK.get().getDefaultState();
-   private static final BlockState field_237168_h_ = isBurnableBlockItemInit.TERAT_BLOCK.get().getDefaultState();
+   private static final BlockState field_237168_h_ = BlockInit.TERAT_BLOCK.get().getDefaultState();
    private static final BlockState field_237168_i_ = BlockItemInit.ENDER_SRACK.get().getDefaultState();
    private static final BlockState field_237168_j_ = BlockInit.ENDER_TRASKCRAFTH.get().getDefaultState();
    private static final BlockState field_237168_k_ = BlockInit.ENDER_TRASKRACH.get().getDefaultState();

@@ -4,6 +4,7 @@ import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.spawn_egg.ModSpawnEggItemInit;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
@@ -40,12 +41,14 @@ import java.util.stream.Collectors;
 
 public class ZombieTraderTrades {
    public static final Int2ObjectMap<ZombieTraderTrades.ITrade[]> field_221240_b = gatAsIntMap(ImmutableMap.of(1, new ZombieTraderTrades.ITrade[]{
-           new ZombieTraderTrades.ItemsForEmeraldsTrade(ItemInit.ZUR_ENTITY_SPAWN_EGG.get(), 5, 1, 50, 2),
-           new ZombieTraderTrades.ItemsForDurgsTrade(ItemInit.ZUR_ENTITY_SPAWN_EGG.get(), 20, 1, 5000, 5),
+           new ZombieTraderTrades.ItemsForEmeraldsTrade(ModSpawnEggItemInit.ZUR_ENTITY_SPAWN_EGG.get(), 5, 1, 5000, 2),
+           new ZombieTraderTrades.ItemsForDurgsTrade(ModSpawnEggItemInit.ZUR_ENTITY_SPAWN_EGG.get(), 5, 1, 5000, 5),
+           new ZombieTraderTrades.ItemsForKirtsTrade(Items.EMERALD, 5, 1, 500, 5),
            new ZombieTraderTrades.ItemsForBedrocksTrade(Items.ZOMBIE_SPAWN_EGG, 64, 1, 1, 2),
            new ZombieTraderTrades.ItemsForRugtsTrade(isBurnableItemInit.ZRIBT.get(), 20, 1, 50, 10),
            new ZombieTraderTrades.ItemsForRugtsTrade(isBurnableItemInit.ZRIPT.get(), 20, 1, 50, 10),
            new ZombieTraderTrades.ItemsFor64FirtBlocksAndItemsTrade(isBurnableBlockItemInit.EPKIH.get(), 1, isBurnableItemInit.DEF_ITEM.get(), 1, 16, 1),
+           new ZombieTraderTrades.ItemWithPotionForEmeraldsAndItemsTrade(isBurnableItemInit.DURG.get(), 1, isBurnableItemInit.DEF_ITEM.get(), 1, 1, 16, 1, 1),
    }));
 
    private static Int2ObjectMap<ZombieTraderTrades.ITrade[]> gatAsIntMap(ImmutableMap<Integer, ZombieTraderTrades.ITrade[]> p_221238_0_) {

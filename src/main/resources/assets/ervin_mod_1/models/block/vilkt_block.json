@@ -1,5 +1,5 @@
 {
-  "parent": "ervin_mod_1:block/template_vilkt_block",
+  "parent": "minecraft:block/cube",
   "textures": {
     "up": "ervin_mod_1:block/vilkt_block_top",
     "down": "ervin_mod_1:block/vilkt_block_bottom",

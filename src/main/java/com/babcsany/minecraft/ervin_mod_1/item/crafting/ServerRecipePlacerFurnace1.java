@@ -12,7 +12,7 @@ import net.minecraft.item.crafting.ServerRecipePlacer;
 
 import java.util.Iterator;
 
-public class ServerRecipePlacerFurnace1<C extends IInventory> extends ServerRecipePlacer1<C> {
+public class ServerRecipePlacerFurnace1<C extends IInventory> extends ServerRecipePlacer<C> {
    private boolean matches;
 
    public ServerRecipePlacerFurnace1(RecipeBookContainer<C> p_i50751_1_) {

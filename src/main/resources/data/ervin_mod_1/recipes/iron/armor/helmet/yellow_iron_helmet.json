@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "item": "ervin_mod_1:iron/ingots/yellow_iron_ingot"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:iron/armor/helmet/yellow_iron_helmet"
+  }
+}

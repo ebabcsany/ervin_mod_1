@@ -1,8 +1,6 @@
 {
-  "parent": "ervin_mod_1:block/slab1",
+  "parent": "ervin_mod_1:block/slab_1",
   "textures": {
-    "bottom": "ervin_mod_1:block/sriunk_block",
-    "top": "ervin_mod_1:block/sriunk_block",
-    "side": "ervin_mod_1:block/sriunk_slab"
+    "wool": "ervin_mod_1:block/sriunk_block"
   }
 }

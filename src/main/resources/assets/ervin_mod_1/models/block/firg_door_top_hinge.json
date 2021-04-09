@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:block/door_top_rh",
+  "parent": "minecraft:block/oak_door_top_hinge",
   "textures": {
     "bottom": "ervin_mod_1:block/firg_door_bottom",
     "top": "ervin_mod_1:block/firg_door_top"

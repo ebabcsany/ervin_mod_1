@@ -1,0 +1,24 @@
+{
+  "type": "ervin_mod_1:$_crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "ervin_mod_1:$/1$"
+    },
+    {
+      "item": "ervin_mod_1:$/1$"
+    },
+    {
+      "item": "ervin_mod_1:$/1$"
+    },
+    {
+      "item": "ervin_mod_1:$/1$"
+    },
+    {
+      "item": "ervin_mod_1:$/1$"
+    }
+  ],
+  "result": {
+    "item": "ervin_mod_1:$/5$",
+    "count": 1
+  }
+}

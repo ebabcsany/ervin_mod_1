@@ -65,7 +65,7 @@ public class Firn extends Item {
 		return true;
 	}
 
-	@Override
+	/*@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
 		playerIn.addPotionEffect(new EffectInstance(Effects.WATER_BREATHING, 10000, 10000));
 		playerIn.addPotionEffect(new EffectInstance(Effects.REGENERATION, 10000, 10000));
@@ -74,7 +74,7 @@ public class Firn extends Item {
 		worldIn.setRainStrength(2000.0f);
 
 		return super.onItemRightClick(worldIn, playerIn, handIn);
-	}
+	}*/
 
 	@Override
 	public boolean onEntityItemUpdate(ItemStack stack, ItemEntity entity) {

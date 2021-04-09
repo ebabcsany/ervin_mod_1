@@ -1,16 +1,15 @@
 package com.babcsany.minecraft.ervin_mod_1.client.entity.model;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.animal.WolfEntity1;
+import com.babcsany.minecraft.ervin_mod_1.entity.animal.Wolf1Entity;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.client.renderer.entity.model.TintedAgeableModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
-import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class WolfModel1<T extends WolfEntity1> extends TintedAgeableModel<T> {
+public class WolfModel1<T extends Wolf1Entity> extends TintedAgeableModel<T> {
    private final ModelRenderer head;
    /** Added as a result/workaround for the loss of renderWithRotation */
    private final ModelRenderer headChild;

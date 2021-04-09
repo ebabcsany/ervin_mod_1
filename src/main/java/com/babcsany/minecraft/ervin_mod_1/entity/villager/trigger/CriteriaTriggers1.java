@@ -37,6 +37,8 @@ public class CriteriaTriggers1 {
    public static final NirtreTradeTrigger NIRTRE_TRADE = register(new NirtreTradeTrigger());
    public static final $TraderTrigger $_TRADER_TRADE = register(new $TraderTrigger());
    public static final ZombieTraderTrigger ZOMBIE_TRADER_TRADE = register(new ZombieTraderTrigger());
+   public static final ZurTrigger ZUR_TRADE = register(new ZurTrigger());
+   //public static final ZurTrigger_1 ZUR1_TRADE = register(new ZurTrigger_1());
    public static final TraderNirtreTradeTrigger TRADER_NIRTRE_TRADE = register(new TraderNirtreTradeTrigger());
    public static final ItemDurabilityTrigger ITEM_DURABILITY_CHANGED = register(new ItemDurabilityTrigger());
    public static final LevitationTrigger LEVITATION = register(new LevitationTrigger());

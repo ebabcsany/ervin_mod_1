@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:oak_stairs",
+    "minecraft:spruce_stairs",
+    "minecraft:birch_stairs",
+    "minecraft:jungle_stairs",
+    "minecraft:acacia_stairs",
+    "minecraft:dark_oak_stairs",
+    "minecraft:crimson_stairs",
+    "minecraft:warped_stairs",
+    "ervin_mod_1:firg_planks_stairs",
+    "ervin_mod_1:frim_planks_stairs"
+  ]
+}

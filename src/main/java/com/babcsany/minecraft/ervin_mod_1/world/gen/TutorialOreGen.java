@@ -1,6 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.world.gen;
 
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
+import net.minecraft.block.Blocks;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.gen.GenerationStage;
@@ -74,6 +75,17 @@ public class TutorialOreGen {
 						.configure(new CountRangeConfig(10, 15, 15, 20));
 				biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.ORE
 						.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NETHERRACK, BlockItemInit.GREEN_STONE.get().getDefaultState(), 24))
+						.withPlacement(customConfig));
+			}
+		}
+	}
+	public static void generateRubyOre() {
+		for (Biome biome : ForgeRegistries.BIOMES) {
+			if (biome == Biomes.BEACH) {
+				ConfiguredPlacement customConfig = Placement.COUNT_RANGE
+						.configure(new CountRangeConfig(10, 15, 15, 20));
+				biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.ORE
+						.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NETHERRACK, Blocks.STONE.getDefaultState(), 12))
 						.withPlacement(customConfig));
 			}
 		}

@@ -1,5 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.client.entity.model;
 
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.AbstractZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
 import net.minecraft.client.renderer.entity.model.AbstractZombieModel;
 

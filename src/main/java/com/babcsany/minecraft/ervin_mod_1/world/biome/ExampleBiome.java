@@ -1,8 +1,10 @@
 package com.babcsany.minecraft.ervin_mod_1.world.biome;
 
+import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.ModBiomeFeatures;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.FirgTree;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.ModDefaultBiomeFeatures;
+import com.babcsany.minecraft.ervin_mod_1.world.gen.TutorialOreGen;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.world.biome.*;
@@ -14,9 +16,14 @@ import net.minecraft.world.gen.placement.*;
 public class ExampleBiome extends Biome {
 	public ExampleBiome(Builder biomeBuilder) {
 		super(biomeBuilder);
-		this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityType.ZOMBIE, 30, 1, 15));
+		this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityType.ZOMBIE, 30, 1, 20));
+		//this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.ROVENT_ENTITY.get(), 1, 1, 3));
+		//this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.ZUR_ENTITY.get(), 1, 1, 5));
+		//this.addSpawn(EntityClassification.WATER_CREATURE, new SpawnListEntry(EntityInit.GUBROV_ENTITY.get(), 1, 1, 4));
+		//this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityInit.FREIN_ENTITY.get(), 1, 0, 2));
 		this.addSpawn(EntityClassification.AMBIENT, new SpawnListEntry(EntityType.BAT, 40, 1, 20));
-		DefaultBiomeFeatures.func_235197_c_(this);
+		//this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.VILT_ENTITY.get(), 2, 0, 2));
+		ModDefaultBiomeFeatures.func_235197_c_(this);
 		this.addCarver(GenerationStage.Carving.AIR,
 				Biome.createCarver(WorldCarver.CAVE, new ProbabilityConfig(0.14285715F)));
 		this.addCarver(GenerationStage.Carving.AIR,
@@ -86,6 +93,7 @@ public class ExampleBiome extends Biome {
 		ModDefaultBiomeFeatures.addStones(this);
 		ModDefaultBiomeFeatures.addKiomne(this);
 		ModDefaultBiomeFeatures.addFirgTrees(this);
+		TutorialOreGen.generateRubyOre();
 	}
 	
 	@Override

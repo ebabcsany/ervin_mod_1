@@ -52,7 +52,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:volmint"
+          "name": "minecraft:stick"
         }
       ],
       "conditions": [
@@ -71,7 +71,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:bat_spawn_egg"
+          "name": "minecraft:smooth_stone_slab"
         }
       ],
       "conditions": [
@@ -80,8 +80,8 @@
         },
         {
           "condition": "minecraft:random_chance_with_looting",
-          "chance": 0.0025,
-          "looting_multiplier": 0.001
+          "chance": 0.02,
+          "looting_multiplier": 0.008
         }
       ]
     }

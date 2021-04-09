@@ -1,0 +1,12 @@
+{
+  "parent": "ervin_mod_1:block/template_end_portal",
+  "textures": {
+    "up": "ervin_mod_1:block/minecraft/end_portal",
+    "down": "ervin_mod_1:block/minecraft/end_portal_side_&_bottom",
+    "north": "ervin_mod_1:block/minecraft/end_portal_side_&_bottom",
+    "east": "ervin_mod_1:block/minecraft/end_portal_side_&_bottom",
+    "west": "ervin_mod_1:block/minecraft/end_portal_side_&_bottom",
+    "south": "ervin_mod_1:block/minecraft/end_portal_side_&_bottom",
+    "particle": "ervin_mod_1:block/minecraft/end_portal"
+  }
+}

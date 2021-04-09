@@ -16,7 +16,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class WanderingTraderNirtreRender extends MobRenderer<WanderingTraderNirtreEntity, NirtreModel<WanderingTraderNirtreEntity>> {
-   private static final ResourceLocation field_217780_a = new ResourceLocation(Ervin_mod_1.MOD_ID,"textures/entity/wandering_trader_nirtre_entity.png");
+   private static final ResourceLocation field_217780_a = new ResourceLocation(Ervin_mod_1.MOD_ID,"textures/entity/traders/wandering_trader_nirtre.png");
 
    public WanderingTraderNirtreRender(EntityRendererManager renderManagerIn) {
       super(renderManagerIn, new NirtreModel<>(0.0F), 0.5F);

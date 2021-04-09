@@ -4,10 +4,14 @@ import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.block.ExamplePortalBlock;
 import com.babcsany.minecraft.ervin_mod_1.block.TargCropsBlock;
 import com.babcsany.minecraft.ervin_mod_1.block.blocks.*;
+import com.babcsany.minecraft.ervin_mod_1.block.blocks.burnable.TeratBlock;
 import com.babcsany.minecraft.ervin_mod_1.block.blocks.burnable.VirkBlock;
 import com.babcsany.minecraft.ervin_mod_1.fluid.JurkFlowingFluid;
+import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.material.MaterialColor;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -94,11 +98,37 @@ public class BlockInit {
                     .hardnessAndResistance(650.0f)
     ));
     /*public static final RegistryObject<Block> JURK = BLOCKS.register("fluid/jurk", () -> new JurkFlowingFluid(
-            FluidInit.JURK, AbstractBlock.Properties.create(Material.WATER)
+            isBurnableBlockItemInit.NARIN_BLOCK.get(), AbstractBlock.Properties.create(Material.ROCK)
             .doesNotBlockMovement()
             .tickRandomly()
             .hardnessAndResistance(100.0F)
             .setLightLevel(Value -> 4)
             .noDrops()
     ));*/
+    public static final RegistryObject<Block> TERAT_BLOCK = BLOCKS.register("terat_block", () -> new TeratBlock(
+            Block.Properties.create(Material.ROCK)
+                    .setRequiresTool()
+                    .harvestLevel(32)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(1000000.0f)
+    ));
+    public static final RegistryObject<Block> GRITH_BLOCK = BLOCKS.register("grith_block", () -> new GrithBlock(
+            Block.Properties.create(Material.ROCK, MaterialColor.SNOW)
+                    .setRequiresTool()
+                    .harvestLevel(80)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(1000000000000000.0F)
+                    .setLightLevel(Value -> 15)
+    ));
+    public static final RegistryObject<Block> GRITH_SLAB = BLOCKS.register("grith_slab", () -> new GrithSlab(
+            Block.Properties.create(Material.ROCK, MaterialColor.SNOW)
+                    .setRequiresTool()
+                    .harvestLevel(78)
+                    .harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(1000000000000000.0F,500000000000000.0F)
+                    .setLightLevel(Value -> 15)
+    ));
+    public static final RegistryObject<Block> GRITH_STAIRS = BLOCKS.register("grith_stairs", () -> new GrithStairs(
+            () -> GRITH_BLOCK.get().getDefaultState(), Block.Properties.from(GRITH_BLOCK.get())
+    ));
 }

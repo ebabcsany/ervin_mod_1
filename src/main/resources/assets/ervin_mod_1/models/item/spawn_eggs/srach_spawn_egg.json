@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "ervin_mod_1:item/spawn_eggs/srach_entity_spawn_egg"
+    "layer0": "ervin_mod_1:item/spawn_eggs/srach_spawn_egg"
   }
 }

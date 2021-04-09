@@ -1,11 +1,8 @@
 package com.babcsany.minecraft.ervin_mod_1.block.blocks;
 
-import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.block.isBurnableBlockNamedItemInit;
 import com.babcsany.minecraft.ervin_mod_1.state.ModBlockStateProperties;
-import net.minecraft.block.BedBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
+import net.minecraft.block.*;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -22,6 +19,7 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.*;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -72,7 +70,7 @@ public class Hurvruj extends Block {
    }
 
    private static boolean isValidFuel(ItemStack stack) {
-      return stack.getBlock() == isBurnableBlockItemInit.TERAT_BLOCK.get();
+      return stack.getItem() == isBurnableBlockNamedItemInit.TERAT_BLOCK.get();
    }
 
    private static boolean func_235568_h_(BlockState state) {
@@ -141,6 +139,27 @@ public class Hurvruj extends Block {
       }
    }
 
+   public static Optional<Vector3d> func_234567_a_(ServerWorld p_234567_0_, BlockPos p_234567_1_, boolean p_234567_2_, boolean p_234567_3_) {
+      BlockState blockstate = p_234567_0_.getBlockState(p_234567_1_);
+      Block block = blockstate.getBlock();
+      if (block instanceof Hurvruj && blockstate.get(Hurvruj.CHARGES) > 0 && Hurvruj.doesHurvrujWork(p_234567_0_)) {
+         Optional<Vector3d> optional = Hurvruj.func_235560_a_(EntityType.PLAYER, p_234567_0_, p_234567_1_);
+         if (!p_234567_3_ && optional.isPresent()) {
+            p_234567_0_.setBlockState(p_234567_1_, blockstate.with(Hurvruj.CHARGES, blockstate.get(Hurvruj.CHARGES) - 1), 15);
+         }
+
+         return optional;
+      } else if (blockstate.isBed(p_234567_0_, p_234567_1_, null) && BedBlock.func_235330_a_(p_234567_0_)) {
+         return blockstate.getBedSpawnPosition(EntityType.PLAYER, p_234567_0_, p_234567_1_, null);
+      } else if (!p_234567_2_) {
+         return Optional.empty();
+      } else {
+         boolean flag = block.canSpawnInBlock();
+         boolean flag1 = p_234567_0_.getBlockState(p_234567_1_.up()).getBlock().canSpawnInBlock();
+         return flag && flag1 ? Optional.of(new Vector3d((double)p_234567_1_.getX() + 0.5D, (double)p_234567_1_.getY() + 0.1D, (double)p_234567_1_.getZ() + 0.5D)) : Optional.empty();
+      }
+   }
+
    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
       builder.add(CHARGES);
    }
@@ -149,6 +168,7 @@ public class Hurvruj extends Block {
     * @deprecated call via {@link BlockState#hasComparatorInputOverride()} whenever possible. Implementing/overriding
     * is fine.
     */
+   @Override
    public boolean hasComparatorInputOverride(BlockState state) {
       return true;
    }
@@ -161,6 +181,7 @@ public class Hurvruj extends Block {
     * @deprecated call via {@link BlockState#getComparatorInputOverride(World,BlockPos)} whenever possible.
     * Implementing/overriding is fine.
     */
+   @Override
    public int getComparatorInputOverride(BlockState blockState, World worldIn, BlockPos pos) {
       return func_235565_a_(blockState, 15);
    }
@@ -176,6 +197,7 @@ public class Hurvruj extends Block {
       return Optional.empty();
    }
 
+   @Override
    public boolean allowsMovement(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type) {
       return false;
    }

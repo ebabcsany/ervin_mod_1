@@ -1,9 +1,12 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.animal;
 
-import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
+import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.block.BlockNamedItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.block.isBurnableBlockNamedItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.food.FoodItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
@@ -19,7 +22,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class SrachEntity extends AnimalEntity {
-   private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(ItemInit.TARG.get(), BlockNamedItemInit.FIRG.get(), Items.BEETROOT);
+   private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(ItemInit.TARG.get(), FoodItemInit.FIRG.get(), FoodItemInit.FIRG_SLAB.get(), FoodItemInit.FIRG_STAIRS.get(), isBurnableItemInit.GRINT.get(), isBurnableBlockItemInit.GRINT_BLOCK.get(), isBurnableBlockItemInit.GRINT_SLAB.get(),isBurnableBlockItemInit.GRINT_STAIRS.get(), isBurnableItemInit.DURG.get(), FoodItemInit.SCRAFTH.get());
 
    public SrachEntity(EntityType<? extends SrachEntity> type, World worldIn) {
       super(type, worldIn);
@@ -29,7 +32,8 @@ public class SrachEntity extends AnimalEntity {
       this.goalSelector.addGoal(0, new SwimGoal(this));
       this.goalSelector.addGoal(1, new PanicGoal(this, 2.0D));
       this.goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
-      this.goalSelector.addGoal(3, new TemptGoal(this, 1.25D, Ingredient.fromItems(BlockItemInit.SURV.get()), false));
+      this.goalSelector.addGoal(3, new TemptGoal(this, 1.25D, Ingredient.fromItems(ItemInit.TARG.get(), FoodItemInit.FIRG.get(), FoodItemInit.FIRG_SLAB.get(), FoodItemInit.FIRG_STAIRS.get(), isBurnableItemInit.GRINT.get(), isBurnableBlockItemInit.GRINT_BLOCK.get(), isBurnableBlockItemInit.GRINT_SLAB.get(),isBurnableBlockItemInit.GRINT_STAIRS.get(), isBurnableItemInit.DURG.get(), FoodItemInit.SCRAFTH.get()), false));
+      this.goalSelector.addGoal(4, new TemptGoal(this, 1.25D, false, TEMPTATION_ITEMS));
       this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.25D));
       this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
       this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 6.0F));
@@ -37,7 +41,7 @@ public class SrachEntity extends AnimalEntity {
    }
 
    public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
-      return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 10.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, (double)0.2F);
+      return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 10.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.2F);
    }
 
    protected SoundEvent getAmbientSound() {
@@ -77,6 +81,10 @@ public class SrachEntity extends AnimalEntity {
 
    public SrachEntity createChild(AgeableEntity ageable) {
       return EntityInit.SRACH_ENTITY.get().create(this.world);
+   }
+
+   public boolean isBreedingItem(ItemStack stack) {
+      return TEMPTATION_ITEMS.test(stack);
    }
 
    protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {

@@ -1,6 +1,8 @@
 package com.babcsany.minecraft.ervin_mod_1.entity;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurNirtreEntity;
+import com.babcsany.minecraft.ervin_mod_1.entity.villager.TraderNirtreEntity;
 import com.google.gson.JsonObject;
 import net.minecraft.advancements.criterion.AbstractCriterionTrigger;
 import net.minecraft.advancements.criterion.CriterionInstance;
@@ -14,7 +16,7 @@ import net.minecraft.loot.LootContext;
 import net.minecraft.util.ResourceLocation;
 
 public class CuredZurNirtreTrigger extends AbstractCriterionTrigger<CuredZurNirtreTrigger.Instance> {
-   public static final ResourceLocation ID = new ResourceLocation("cured_zombie_nirtre");
+   public static final ResourceLocation ID = new ResourceLocation("cured_zur_nirtre");
 
    public ResourceLocation getId() {
       return ID;
@@ -26,9 +28,9 @@ public class CuredZurNirtreTrigger extends AbstractCriterionTrigger<CuredZurNirt
       return new CuredZurNirtreTrigger.Instance(entityPredicate, entitypredicate$andpredicate, entitypredicate$andpredicate1);
    }
 
-   public void trigger1(ServerPlayerEntity player, ZurEntity zur1, VillagerEntity nirtre1) {
-      LootContext lootcontext = EntityPredicate.getLootContext(player, zur1);
-      LootContext lootcontext1 = EntityPredicate.getLootContext(player, nirtre1);
+   public void trigger(ServerPlayerEntity player, ZurNirtreEntity zur, TraderNirtreEntity nirtre) {
+      LootContext lootcontext = EntityPredicate.getLootContext(player, zur);
+      LootContext lootcontext1 = EntityPredicate.getLootContext(player, nirtre);
       this.triggerListeners(player, (p_233969_2_) -> {
          return p_233969_2_.test(lootcontext, lootcontext1);
       });

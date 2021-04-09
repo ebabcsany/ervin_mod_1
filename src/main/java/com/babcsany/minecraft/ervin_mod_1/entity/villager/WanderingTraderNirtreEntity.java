@@ -7,6 +7,8 @@ import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.LookAtCustomerGoal1;
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.WanderingTraderTradeWithPlayerGoal;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.WanderingTraderNirtreTrades;
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.spawn_egg.ModSpawnEggItemInit;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -39,6 +41,11 @@ public class WanderingTraderNirtreEntity extends AbstractNirtreEntity {
    @Nullable
    private BlockPos wanderTarget;
    private int despawnDelay;
+   public float wingRotation;
+   public float destPos;
+   public float wingRotDelta = 1.0F;
+   public int timeUntilNextItem = this.rand.nextInt(6000) + 6000;
+   public boolean wanderingTraderNirtreJockey;
 
    public WanderingTraderNirtreEntity(EntityType<? extends WanderingTraderNirtreEntity> type, World worldIn) {
       super(type, worldIn);
@@ -47,15 +54,9 @@ public class WanderingTraderNirtreEntity extends AbstractNirtreEntity {
 
    protected void registerGoals() {
       this.goalSelector.addGoal(0, new SwimGoal(this));
-      this.goalSelector.addGoal(0, new UseItemGoal<>(this, PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.LONG_INVISIBILITY), SoundEvents.ENTITY_WANDERING_TRADER_DISAPPEARED, (trader) -> {
-         return !this.world.isDaytime() && !trader.isInvisible();
-      }));
-      this.goalSelector.addGoal(0, new UseItemGoal<>(this, PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.LONG_NIGHT_VISION), SoundEvents.ENTITY_WANDERING_TRADER_DISAPPEARED, (trader) -> {
-         return !this.world.isRaining() && !trader.isInvisible();
-      }));
-      this.goalSelector.addGoal(0, new UseItemGoal<>(this, PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.LONG_FIRE_RESISTANCE), SoundEvents.ENTITY_WANDERING_TRADER_DISAPPEARED, (trader) -> {
-         return !this.world.isNightTime() && !trader.isInvisible();
-      }));
+      this.goalSelector.addGoal(0, new UseItemGoal<>(this, PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.LONG_INVISIBILITY), SoundEvents.ENTITY_WANDERING_TRADER_DISAPPEARED, (trader) -> !this.world.isDaytime() && !trader.isInvisible()));
+      this.goalSelector.addGoal(0, new UseItemGoal<>(this, PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.LONG_NIGHT_VISION), SoundEvents.ENTITY_WANDERING_TRADER_DISAPPEARED, (trader) -> !this.world.isRaining() && !trader.isInvisible()));
+      this.goalSelector.addGoal(0, new UseItemGoal<>(this, PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.LONG_FIRE_RESISTANCE), SoundEvents.ENTITY_WANDERING_TRADER_DISAPPEARED, (trader) -> !this.world.isNightTime() && !trader.isInvisible()));
       this.goalSelector.addGoal(1, new WanderingTraderTradeWithPlayerGoal(this));
       this.goalSelector.addGoal(1, new PanicGoal(this, 0.5D));
       this.goalSelector.addGoal(1, new LookAtCustomerGoal1(this));
@@ -68,7 +69,7 @@ public class WanderingTraderNirtreEntity extends AbstractNirtreEntity {
    }
 
    public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
-      return LivingEntity.registerAttributes().createMutableAttribute(Attributes.FOLLOW_RANGE, 16.0D).createMutableAttribute(Attributes.MAX_HEALTH, 16.0D).createMutableAttribute(Attributes.ATTACK_KNOCKBACK).createMutableAttribute(Attributes.ATTACK_DAMAGE, 2.0D);
+      return LivingEntity.registerAttributes().createMutableAttribute(Attributes.FOLLOW_RANGE, 160.0D).createMutableAttribute(Attributes.MAX_HEALTH, 400.0D).createMutableAttribute(Attributes.ATTACK_KNOCKBACK).createMutableAttribute(Attributes.ATTACK_DAMAGE, 2.0D);
    }
 
    @Nullable
@@ -82,7 +83,7 @@ public class WanderingTraderNirtreEntity extends AbstractNirtreEntity {
 
    public ActionResultType func_230254_b_(PlayerEntity p_230254_1_, Hand p_230254_2_) {
       ItemStack itemstack = p_230254_1_.getHeldItem(p_230254_2_);
-      if (itemstack.getItem() != ItemInit.WANDERING_TRADER_NIRTRE_SPAWN_EGG.get() && this.isAlive() && !this.hasCustomer() && !this.isChild()) {
+      if (itemstack.getItem() != ModSpawnEggItemInit.WANDERING_TRADER_NIRTRE_SPAWN_EGG.get() && this.isAlive() && !this.hasCustomer() && !this.isChild()) {
          if (p_230254_2_ == Hand.MAIN_HAND) {
             p_230254_1_.addStat(Stats.TALKED_TO_VILLAGER);
          }
@@ -103,15 +104,15 @@ public class WanderingTraderNirtreEntity extends AbstractNirtreEntity {
    }
 
    protected void populateTradeData() {
-      WanderingTraderNirtreTrades.ITrade[] avillagertrades$itrade = WanderingTraderNirtreTrades.field_221240_b.get(1);
-      WanderingTraderNirtreTrades.ITrade[] avillagertrades$itrade1 = WanderingTraderNirtreTrades.field_221240_b.get(2);
-      WanderingTraderNirtreTrades.ITrade[] avillagertrades$itrade2 = WanderingTraderNirtreTrades.field_221240_b.get(3);
-      if (avillagertrades$itrade != null && avillagertrades$itrade1 != null && avillagertrades$itrade2 !=null) {
+      WanderingTraderNirtreTrades.ITrade[] aWanderingTraderNirtreTrades$itrade = WanderingTraderNirtreTrades.field_221240_b.get(1);
+      WanderingTraderNirtreTrades.ITrade[] aWanderingTraderNirtreTrades$itrade1 = WanderingTraderNirtreTrades.field_221240_b.get(2);
+      WanderingTraderNirtreTrades.ITrade[] aWanderingTraderNirtreTrades$itrade2 = WanderingTraderNirtreTrades.field_221240_b.get(3);
+      if (aWanderingTraderNirtreTrades$itrade != null && aWanderingTraderNirtreTrades$itrade1 != null && aWanderingTraderNirtreTrades$itrade2 !=null) {
          MerchantOffers merchantoffers = this.getOffers();
-         this.addWanderingTraderNirtreTrades(merchantoffers, avillagertrades$itrade, 5);
-         this.addWanderingTraderNirtreTrades(merchantoffers, avillagertrades$itrade2, 10);
-         int i = this.rand.nextInt(avillagertrades$itrade1.length);
-         WanderingTraderNirtreTrades.ITrade villagertrades$itrade = avillagertrades$itrade1[i];
+         this.addWanderingTraderNirtreTrades(merchantoffers, aWanderingTraderNirtreTrades$itrade, 5);
+         this.addWanderingTraderNirtreTrades(merchantoffers, aWanderingTraderNirtreTrades$itrade2, 10);
+         int i = this.rand.nextInt(aWanderingTraderNirtreTrades$itrade1.length);
+         WanderingTraderNirtreTrades.ITrade villagertrades$itrade = aWanderingTraderNirtreTrades$itrade1[i];
          MerchantOffer merchantoffer = villagertrades$itrade.getOffer(this, this.rand);
          if (merchantoffer != null) {
             merchantoffers.add(merchantoffer);
@@ -138,8 +139,8 @@ public class WanderingTraderNirtreEntity extends AbstractNirtreEntity {
          this.despawnDelay = compound.getInt("DespawnDelay");
       }
 
-      if (compound.contains("WanderTarget")) {
-         this.wanderTarget = NBTUtil.readBlockPos(compound.getCompound("WanderTarget"));
+      if (compound.contains("ZombieTraderTarget")) {
+         this.wanderTarget = NBTUtil.readBlockPos(compound.getCompound("ZombieTraderTarget"));
       }
 
       this.setGrowingAge(Math.max(0, this.getGrowingAge()));
@@ -149,7 +150,7 @@ public class WanderingTraderNirtreEntity extends AbstractNirtreEntity {
       return false;
    }
 
-   protected void onVillagerTrade(MerchantOffer offer) {
+   protected void onNirtreTrade(MerchantOffer offer) {
       if (offer.getDoesRewardExp()) {
          int i = 3 + this.rand.nextInt(4);
          this.world.addEntity(new ExperienceOrbEntity(this.world, this.getPosX(), this.getPosY() + 0.5D, this.getPosZ(), i));
@@ -199,7 +200,16 @@ public class WanderingTraderNirtreEntity extends AbstractNirtreEntity {
       if (!this.world.isRemote) {
          this.handleDespawn();
       }
+      this.wingRotation += this.wingRotDelta * 2.0F;
+      if (!this.world.isRemote && this.isAlive() && !this.isChild() && !this.isWanderingTraderNirtreJockey() && --this.timeUntilNextItem <= 0) {
+         this.entityDropItem(ItemInit.FIRK.get());
+         this.entityDropItem(ItemInit.Bj_PICKAXE.get());
+         this.timeUntilNextItem = this.rand.nextInt(12000) + 12000;
+      }
+   }
 
+   public boolean isWanderingTraderNirtreJockey() {
+      return this.wanderingTraderNirtreJockey;
    }
 
    private void handleDespawn() {
@@ -234,7 +244,7 @@ public class WanderingTraderNirtreEntity extends AbstractNirtreEntity {
        * Reset the task's internal state. Called when this task is interrupted by another one
        */
       public void resetTask() {
-         this.traderEntity.setWanderTarget((BlockPos)null);
+         this.traderEntity.setWanderTarget(null);
          WanderingTraderNirtreEntity.this.navigator.clearPath();
       }
 
@@ -258,7 +268,7 @@ public class WanderingTraderNirtreEntity extends AbstractNirtreEntity {
                Vector3d vector3d1 = vector3d.scale(10.0D).add(this.traderEntity.getPosX(), this.traderEntity.getPosY(), this.traderEntity.getPosZ());
                WanderingTraderNirtreEntity.this.navigator.tryMoveToXYZ(vector3d1.x, vector3d1.y, vector3d1.z, this.speed);
             } else {
-               WanderingTraderNirtreEntity.this.navigator.tryMoveToXYZ((double)blockpos.getX(), (double)blockpos.getY(), (double)blockpos.getZ(), this.speed);
+               WanderingTraderNirtreEntity.this.navigator.tryMoveToXYZ(blockpos.getX(), blockpos.getY(), blockpos.getZ(), this.speed);
             }
          }
 

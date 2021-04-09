@@ -32,12 +32,12 @@ import javax.annotation.Nullable;
 import java.util.Set;
 
 public abstract class AbstractNirtreEntity extends AgeableEntity implements INPC, IMerchant {
-   private static final DataParameter<Integer> SHAKE_HEAD_TICKS = EntityDataManager.createKey(AbstractNirtreEntity.class, DataSerializers.VARINT);
+   private static final DataParameter<Integer> SHAKE_HEAD_TICKS = EntityDataManager.createKey(AbstractZombieTraderEntity.class, DataSerializers.VARINT);
    @Nullable
    private PlayerEntity customer;
    @Nullable
    protected MerchantOffers offers;
-   private final Inventory villagerInventory = new Inventory(8);
+   private final Inventory nirtreInventory = new Inventory(8);
 
    public AbstractNirtreEntity(EntityType<? extends AbstractNirtreEntity> type, World worldIn) {
       super(type, worldIn);
@@ -107,14 +107,14 @@ public abstract class AbstractNirtreEntity extends AgeableEntity implements INPC
    public void onTrade(MerchantOffer offer) {
       offer.increaseUses();
       this.livingSoundTime = -this.getTalkInterval();
-      this.onVillagerTrade(offer);
+      this.onNirtreTrade(offer);
       if (this.customer instanceof ServerPlayerEntity) {
          CriteriaTriggers1.NIRTRE_TRADE.test((ServerPlayerEntity)this.customer, this, offer.getSellingStack());
       }
 
    }
 
-   protected abstract void onVillagerTrade(MerchantOffer offer);
+   protected abstract void onNirtreTrade(MerchantOffer offer);
 
    public boolean func_213705_dZ() {
       return true;
@@ -127,21 +127,21 @@ public abstract class AbstractNirtreEntity extends AgeableEntity implements INPC
    public void verifySellingItem(ItemStack stack) {
       if (!this.world.isRemote && this.livingSoundTime > -this.getTalkInterval() + 20) {
          this.livingSoundTime = -this.getTalkInterval();
-         this.playSound(this.getVillagerYesNoSound(!stack.isEmpty()), this.getSoundVolume(), this.getSoundPitch());
+         this.playSound(this.getZombieTraderYesNoSound(!stack.isEmpty()), this.getSoundVolume(), this.getSoundPitch());
       }
 
    }
 
    public SoundEvent getYesSound() {
-      return SoundEvents.ENTITY_VILLAGER_YES;
+      return SoundEvents.AMBIENT_CAVE;
    }
 
-   protected SoundEvent getVillagerYesNoSound(boolean getYesSound) {
-      return getYesSound ? SoundEvents.ENTITY_VILLAGER_YES : SoundEvents.ENTITY_VILLAGER_NO;
+   protected SoundEvent getZombieTraderYesNoSound(boolean getYesSound) {
+      return getYesSound ? SoundEvents.AMBIENT_CAVE : SoundEvents.AMBIENT_BASALT_DELTAS_ADDITIONS;
    }
 
    public void playCelebrateSound() {
-      this.playSound(SoundEvents.ENTITY_VILLAGER_CELEBRATE, this.getSoundVolume(), this.getSoundPitch());
+      this.playSound(SoundEvents.AMBIENT_BASALT_DELTAS_LOOP, this.getSoundVolume(), this.getSoundPitch());
    }
 
    public void writeAdditional(CompoundNBT compound) {
@@ -151,7 +151,7 @@ public abstract class AbstractNirtreEntity extends AgeableEntity implements INPC
          compound.put("Offers", merchantoffers.write());
       }
 
-      compound.put("Inventory", this.villagerInventory.write());
+      compound.put("Inventory", this.nirtreInventory.write());
    }
 
    /**
@@ -163,7 +163,7 @@ public abstract class AbstractNirtreEntity extends AgeableEntity implements INPC
          this.offers = new MerchantOffers(compound.getCompound("Offers"));
       }
 
-      this.villagerInventory.read(compound.getList("Inventory", 10));
+      this.nirtreInventory.read(compound.getList("Inventory", 10));
    }
 
    @Nullable
@@ -173,7 +173,7 @@ public abstract class AbstractNirtreEntity extends AgeableEntity implements INPC
    }
 
    protected void resetCustomer() {
-      this.setCustomer((PlayerEntity)null);
+      this.setCustomer(null);
    }
 
    /**
@@ -199,8 +199,8 @@ public abstract class AbstractNirtreEntity extends AgeableEntity implements INPC
       return false;
    }
 
-   public Inventory getVillagerInventory() {
-      return this.villagerInventory;
+   public Inventory getNirtreInventory() {
+      return this.nirtreInventory;
    }
 
    public boolean replaceItemInInventory(int inventorySlot, ItemStack itemStackIn) {
@@ -208,8 +208,8 @@ public abstract class AbstractNirtreEntity extends AgeableEntity implements INPC
          return true;
       } else {
          int i = inventorySlot - 300;
-         if (i >= 0 && i < this.villagerInventory.getSizeInventory()) {
-            this.villagerInventory.setInventorySlotContents(i, itemStackIn);
+         if (i >= 0 && i < this.nirtreInventory.getSizeInventory()) {
+            this.nirtreInventory.setInventorySlotContents(i, itemStackIn);
             return true;
          } else {
             return false;

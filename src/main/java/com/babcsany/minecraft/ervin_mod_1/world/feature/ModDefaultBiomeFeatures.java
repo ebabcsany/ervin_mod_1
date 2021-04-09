@@ -38,7 +38,7 @@ public class ModDefaultBiomeFeatures {
    private static final BlockState FIRG = BlockInit.FIRG.get().getDefaultState();
    private static final BlockState NIRTKB = isBurnableBlockItemInit.NIRTKB.get().getDefaultState();
    private static final BlockState SCRAFTH = BlockInit.SCRAFTH.get().getDefaultState();
-   private static final BlockState GRITH_BLOCK = isBurnableBlockItemInit.GRITH_BLOCK.get().getDefaultState();
+   private static final BlockState GRITH_BLOCK = BlockInit.GRITH_BLOCK.get().getDefaultState();
    private static final BlockState GRINT_BLOCK = isBurnableBlockItemInit.GRINT_BLOCK.get().getDefaultState();
    private static final BlockState RED_GRASS_BLOCK = BlockItemInit.RED_GRASS_BLOCK.get().getDefaultState();
    private static final BlockState BARRIER = Blocks.BARRIER.getDefaultState();
@@ -145,6 +145,7 @@ public class ModDefaultBiomeFeatures {
    private static final BlockState PINK_STONE_BLACK_IRON_ORE = BlockItemInit.PINK_STONE_BLACK_IRON_ORE.get().getDefaultState();
    private static final BlockState PURPLE_STONE_BLACK_IRON_ORE = BlockItemInit.PURPLE_STONE_BLACK_IRON_ORE.get().getDefaultState();
    private static final BlockState RED_STONE_BLACK_IRON_ORE = BlockItemInit.RED_STONE_BLACK_IRON_ORE.get().getDefaultState();
+   private static final BlockState STONE_BLACK_IRON_ORE = BlockItemInit.STONE_BLACK_IRON_ORE.get().getDefaultState();
    private static final BlockState WHITE_STONE_BLACK_IRON_ORE = BlockItemInit.WHITE_STONE_BLACK_IRON_ORE.get().getDefaultState();
    private static final BlockState YELLOW_STONE_BLACK_IRON_ORE = BlockItemInit.YELLOW_STONE_BLACK_IRON_ORE.get().getDefaultState();
    private static final BlockState GOLD_ORE = Blocks.GOLD_ORE.getDefaultState();
@@ -188,6 +189,7 @@ public class ModDefaultBiomeFeatures {
    public static final StructureFeature<MineshaftConfig, ? extends Structure<MineshaftConfig>> MINESHAFT_NORMAL = Structure.field_236367_c_.func_236391_a_(new MineshaftConfig((double)0.004F, MineshaftStructure.Type.NORMAL));
    public static final StructureFeature<MineshaftConfig, ? extends Structure<MineshaftConfig>> MINESHAFT_MESA = Structure.field_236367_c_.func_236391_a_(new MineshaftConfig(0.004D, MineshaftStructure.Type.MESA));
    public static final StructureFeature<ShipwreckConfig, ? extends Structure<ShipwreckConfig>> RUINED_PORTAL = Structure.field_236373_i_.func_236391_a_(new ShipwreckConfig(false));
+   public static final StructureFeature<RuinedPortalFeature, ? extends Structure<RuinedPortalFeature>> RUINED_PORTAL1 = Structure.field_236372_h_.func_236391_a_(new RuinedPortalFeature(RuinedPortalStructure.Location.DESERT));
    public static final StructureFeature<NoFeatureConfig, ? extends Structure<NoFeatureConfig>> STRONGHOLD = Structure.field_236375_k_.func_236391_a_(NoFeatureConfig.field_236559_b_);
    private static final BlockState RED_MUSHROOM_BLOCK = Blocks.RED_MUSHROOM_BLOCK.getDefaultState().with(HugeMushroomBlock.DOWN, Boolean.valueOf(false));
    private static final BlockState GRINTH_MUSHROOM_BLOCK = BlockItemInit.GRINTH_MUSHROOM_BLOCK.get().getDefaultState().with(HugeMushroomBlock.DOWN, Boolean.valueOf(false));
@@ -286,6 +288,7 @@ public class ModDefaultBiomeFeatures {
    public static final BigMushroomFeatureConfig BIG_RED_MUSHROOM = new BigMushroomFeatureConfig(new SimpleBlockStateProvider(RED_MUSHROOM_BLOCK), new SimpleBlockStateProvider(MUSHROOM_STEM), 2);
    public static final BigMushroomFeatureConfig BIG_GRINTH_MUSHROOM = new BigMushroomFeatureConfig(new SimpleBlockStateProvider(GRINTH_MUSHROOM_BLOCK), new SimpleBlockStateProvider(MUSHROOM_STEM), 2);
    public static final BigMushroomFeatureConfig BIG_SCRAFTH_MUSHROOM = new BigMushroomFeatureConfig(new SimpleBlockStateProvider(SCRAFTH), new SimpleBlockStateProvider(GRINT_BLOCK), 4);
+   public static final BigMushroomFeatureConfig BIG_FIRG_MUSHROOM = new BigMushroomFeatureConfig(new SimpleBlockStateProvider(FIRG), new SimpleBlockStateProvider(GRINT_BLOCK), 16);
    public static final BigMushroomFeatureConfig BIG_BROWN_MUSHROOM = new BigMushroomFeatureConfig(new SimpleBlockStateProvider(BROWN_MUSHROOM_BLOCK), new SimpleBlockStateProvider(MUSHROOM_STEM), 3);
 
    public static void addCarvers(Biome biomeIn) {
@@ -370,11 +373,11 @@ public class ModDefaultBiomeFeatures {
    }
 
    public static void addFirgs(Biome biomeIn) {
-      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, FIRG, 400)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(400, 0, 0, 2000))));
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, FIRG, 400)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(50, 0, 0, 2000))));
    }
 
    public static void addNirtkb(Biome biomeIn) {
-      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, NIRTKB, 400)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(400, 0, 0, 2000))));
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, NIRTKB, 400)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(50, 0, 0, 2000))));
    }
 
    public static void addNirtkb1(Biome biomeIn) {
@@ -382,11 +385,11 @@ public class ModDefaultBiomeFeatures {
    }
 
    public static void addScrafth(Biome biomeIn) {
-      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, SCRAFTH, 400)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(400, 0, 0, 2000))));
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, SCRAFTH, 400)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(50, 0, 0, 2000))));
    }
 
    public static void addOrangeStone(Biome biomeIn) {
-      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, ORANGE_STONE, 400)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(400, 0, 0, 2000))));
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, ORANGE_STONE, 400)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(50, 0, 0, 2000))));
    }
 
    public static void addStones(Biome biomeIn) {
@@ -433,6 +436,7 @@ public class ModDefaultBiomeFeatures {
       biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, PINK_STONE_BLACK_IRON_ORE, 9)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(20, 0, 0, 64))));
       biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, PURPLE_STONE_BLACK_IRON_ORE, 9)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(20, 0, 0, 64))));
       biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, RED_STONE_BLACK_IRON_ORE, 9)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(20, 0, 0, 64))));
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, STONE_BLACK_IRON_ORE, 9)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(20, 0, 0, 64))));
       biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, WHITE_STONE_BLACK_IRON_ORE, 9)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(20, 0, 0, 64))));
       biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, YELLOW_STONE_BLACK_IRON_ORE, 9)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(20, 0, 0, 64))));
    }

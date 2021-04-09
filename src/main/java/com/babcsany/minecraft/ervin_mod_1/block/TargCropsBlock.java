@@ -73,9 +73,10 @@ public class TargCropsBlock extends BushBlock implements IGrowable {
 
    public TargCropsBlock(Properties builder) {
       super(builder);
-      this.setDefaultState(this.stateContainer.getBaseState().with(this.getAgeProperty(), Integer.valueOf(0)));
+      this.setDefaultState(this.stateContainer.getBaseState().with(this.getAgeProperty(), 0));
    }
 
+   @Override
    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
       return SHAPE_BY_AGE[state.get(this.getAgeProperty())];
    }
@@ -97,13 +98,14 @@ public class TargCropsBlock extends BushBlock implements IGrowable {
    }
 
    public BlockState withAge(int age) {
-      return this.getDefaultState().with(this.getAgeProperty(), Integer.valueOf(age));
+      return this.getDefaultState().with(this.getAgeProperty(), age);
    }
 
    public boolean isMaxAge(BlockState state) {
       return state.get(this.getAgeProperty()) >= this.getMaxAge();
    }
 
+   @Override
    public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
       super.tick(state, worldIn, pos, rand);
       if (!worldIn.isAreaLoaded(pos, 1)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light
@@ -179,6 +181,7 @@ public class TargCropsBlock extends BushBlock implements IGrowable {
       return (worldIn.getLightSubtracted(pos, 0) >= 8 || worldIn.canSeeSky(pos)) && super.isValidPosition(state, worldIn, pos);
    }
 
+   @Override
    public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
       if (entityIn instanceof RavagerEntity && net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(worldIn, entityIn)) {
          worldIn.destroyBlock(pos, true, entityIn);
@@ -191,6 +194,7 @@ public class TargCropsBlock extends BushBlock implements IGrowable {
       return BlockInit.TARG_STAGE.get();
    }
 
+   @Override
    public ItemStack getItem(IBlockReader worldIn, BlockPos pos, BlockState state) {
       return new ItemStack(this.getSeedsItem());
    }
@@ -214,6 +218,7 @@ public class TargCropsBlock extends BushBlock implements IGrowable {
       return true;
    }
 
+   @Override
    @OnlyIn(Dist.CLIENT)
    public float getAmbientOcclusionLightValue(BlockState state, IBlockReader worldIn, BlockPos pos) {
       return 1.0F;

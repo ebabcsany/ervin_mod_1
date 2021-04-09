@@ -15,6 +15,11 @@ public class KeyboardHelper
 	{
 		return InputMappings.isKeyDown(WINDOW, GLFW.GLFW_KEY_LEFT_SHIFT) || InputMappings.isKeyDown(WINDOW, GLFW.GLFW_KEY_RIGHT_SHIFT);
 	}
+
+	public static boolean isHoldingB()
+	{
+		return InputMappings.isKeyDown(WINDOW, GLFW.GLFW_KEY_B) || InputMappings.isKeyDown(WINDOW, GLFW.GLFW_KEY_B);
+	}
 	
 	@OnlyIn(Dist.CLIENT)
 	public static boolean isHoldingCtrl() 

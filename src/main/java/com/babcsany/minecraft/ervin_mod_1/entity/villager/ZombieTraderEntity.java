@@ -3,6 +3,7 @@ package com.babcsany.minecraft.ervin_mod_1.entity.villager;
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.ZombieTraderLookAtCustomerGoal;
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.ZombieTraderTradeWithPlayerGoal;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.ZombieTraderTrades;
+import com.babcsany.minecraft.ervin_mod_1.init.item.spawn_egg.ModSpawnEggItemInit;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -13,7 +14,6 @@ import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.item.MerchantOffer;
 import net.minecraft.item.MerchantOffers;
 import net.minecraft.nbt.CompoundNBT;
@@ -43,15 +43,15 @@ public class ZombieTraderEntity extends AbstractZombieTraderEntity {
       this.goalSelector.addGoal(1, new ZombieTraderTradeWithPlayerGoal(this));
       this.goalSelector.addGoal(1, new PanicGoal(this, 0.5D));
       this.goalSelector.addGoal(1, new ZombieTraderLookAtCustomerGoal(this));
-      this.goalSelector.addGoal(4, new MoveTowardsRestrictionGoal(this, 0.035D));
-      this.goalSelector.addGoal(8, new WaterAvoidingRandomWalkingGoal(this, 0.035D));
+      this.goalSelector.addGoal(4, new MoveTowardsRestrictionGoal(this, 0.35D));
+      this.goalSelector.addGoal(8, new WaterAvoidingRandomWalkingGoal(this, 0.35D));
       this.goalSelector.addGoal(9, new LookAtWithoutMovingGoal(this, PlayerEntity.class, 3.0F, 1.0F));
       this.targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, false));
       this.goalSelector.addGoal(10, new LookAtGoal(this, MobEntity.class, 8.0F));
    }
 
    public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
-      return LivingEntity.registerAttributes().createMutableAttribute(Attributes.FOLLOW_RANGE, 16.0D).createMutableAttribute(Attributes.MAX_HEALTH, 16.0D).createMutableAttribute(Attributes.ATTACK_KNOCKBACK);
+      return LivingEntity.registerAttributes().createMutableAttribute(Attributes.FOLLOW_RANGE, 35.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23F).createMutableAttribute(Attributes.MAX_HEALTH, 20.0D).createMutableAttribute(Attributes.ARMOR, 2).createMutableAttribute(Attributes.ZOMBIE_SPAWN_REINFORCEMENTS);
    }
 
    @Nullable
@@ -70,7 +70,7 @@ public class ZombieTraderEntity extends AbstractZombieTraderEntity {
 
    public ActionResultType func_230254_b_(PlayerEntity p_230254_1_, Hand p_230254_2_) {
       ItemStack itemstack = p_230254_1_.getHeldItem(p_230254_2_);
-      if (itemstack.getItem() != Items.ZOMBIE_SPAWN_EGG && this.isAlive() && !this.hasCustomer() && !this.isChild()) {
+      if (itemstack.getItem() != ModSpawnEggItemInit.ZOMBIE_TRADER_SPAWN_EGG.get() && this.isAlive() && !this.hasCustomer() && !this.isChild()) {
          if (p_230254_2_ == Hand.MAIN_HAND) {
             p_230254_1_.addStat(Stats.TALKED_TO_VILLAGER);
          }
@@ -95,7 +95,7 @@ public class ZombieTraderEntity extends AbstractZombieTraderEntity {
       if (aZombietTraderTrades$itrade != null) {
          MerchantOffers merchantoffers = this.getOffers();
          int i = this.rand.nextInt(aZombietTraderTrades$itrade.length);
-         this.addTrades(merchantoffers, aZombietTraderTrades$itrade, 3);
+         this.addTrades(merchantoffers, aZombietTraderTrades$itrade, 4);
          ZombieTraderTrades.ITrade zombieTraderTrades$itrade = aZombietTraderTrades$itrade[i];
          MerchantOffer merchantoffer = zombieTraderTrades$itrade.getOffer(this, this.rand);
          if (merchantoffer != null) {

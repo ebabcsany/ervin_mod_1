@@ -43,7 +43,8 @@ public class CraintBlockCraftingTableContainer extends RecipeBookContainer<Craft
         private final CraftingInventory craftMatrix = new CraftingInventory(this, CRAFT_MATRIX_WIDTH, CRAFT_MATRIX_HEIGHT);
         private final CraftResultInventory craftResult = new CraftResultInventory();
         private final CraintBlockCraftingTableInventory craftingTableInventory = new CraintBlockCraftingTableInventory();
-        private final IWorldPosCallable field_217070_e;
+        private final CraintBlockCraftingTableInventory craftingTableInventory1 = new CraintBlockCraftingTableInventory();
+        private final IWorldPosCallable worldPosCallable;
         private final PlayerEntity player;
 
         public CraintBlockCraftingTableContainer(int windowId, PlayerInventory playerInventory) {
@@ -52,10 +53,10 @@ public class CraintBlockCraftingTableContainer extends RecipeBookContainer<Craft
 
         public CraintBlockCraftingTableContainer(int windowId, PlayerInventory playerInventory, IWorldPosCallable p_i50090_3_) {
             super(ContainerInit.CRAINT_BLOCK_CRAFTING_TABLE.get(), windowId);
-            this.field_217070_e = p_i50090_3_;
+            this.worldPosCallable = p_i50090_3_;
             this.player = playerInventory.player;
             this.addSlot(new CraftingResultSlot(playerInventory.player, this.craftMatrix, this.craftResult, CRAFT_RESULT_SLOT_INDEX, CRAFT_RESULT_X_POSITION, CRAFT_RESULT_Y_POSITION));
-            this.addSlot(new Slot(craftingTableInventory, 9, 212, 55));
+            this.addSlot(new Slot(craftingTableInventory1, 9, 212, 55));
 
             for(int i = 0; i < CRAFT_MATRIX_HEIGHT; ++i) {
                 for(int j = 0; j < CRAFT_MATRIX_WIDTH; ++j) {
@@ -104,7 +105,7 @@ public class CraintBlockCraftingTableContainer extends RecipeBookContainer<Craft
          * Callback for when the crafting matrix is changed.
          */
         public void onCraftMatrixChanged(IInventory inventoryIn) {
-            this.field_217070_e.consume((p_217069_1_, p_217069_2_) -> {
+            this.worldPosCallable.consume((p_217069_1_, p_217069_2_) -> {
                 updateCraftingResult(this.windowId, p_217069_1_, this.player, this.craftMatrix, this.craftResult);
             });
         }
@@ -116,6 +117,7 @@ public class CraintBlockCraftingTableContainer extends RecipeBookContainer<Craft
         public void clear() {
             this.craftMatrix.clear();
             this.craftResult.clear();
+            this.craftingTableInventory1.clear();
         }
 
         public boolean matches(IRecipe<? super CraftingInventory> recipeIn) {
@@ -127,7 +129,7 @@ public class CraintBlockCraftingTableContainer extends RecipeBookContainer<Craft
          */
         public void onContainerClosed(PlayerEntity playerIn) {
             super.onContainerClosed(playerIn);
-            this.field_217070_e.consume((p_217068_2_, p_217068_3_) -> {
+            this.worldPosCallable.consume((p_217068_2_, p_217068_3_) -> {
                 this.clearContainer(playerIn, p_217068_2_, this.craftMatrix);
             });
         }
@@ -136,7 +138,7 @@ public class CraintBlockCraftingTableContainer extends RecipeBookContainer<Craft
          * Determines whether supplied player can use this container
          */
         public boolean canInteractWith(PlayerEntity playerIn) {
-            return isWithinUsableDistance(this.field_217070_e, playerIn, isBurnableBlockItemInit.CRAINT_BLOCK_CRAFTING_TABLE.get());
+            return isWithinUsableDistance(this.worldPosCallable, playerIn, isBurnableBlockItemInit.CRAINT_BLOCK_CRAFTING_TABLE.get());
         }
 
         /**
@@ -150,7 +152,7 @@ public class CraintBlockCraftingTableContainer extends RecipeBookContainer<Craft
                 ItemStack itemstack1 = slot.getStack();
                 itemstack = itemstack1.copy();
                 if (index == 0) {
-                    this.field_217070_e.consume((p_217067_2_, p_217067_3_) -> {
+                    this.worldPosCallable.consume((p_217067_2_, p_217067_3_) -> {
                         itemstack1.getItem().onCreated(itemstack1, p_217067_2_, playerIn);
                     });
                     if (!this.mergeItemStack(itemstack1, 10, 36, true)) {

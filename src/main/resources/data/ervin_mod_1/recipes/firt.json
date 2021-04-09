@@ -2,12 +2,15 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "###",
-    "###",
+    "#&#",
     "###"
   ],
   "key": {
     "#": {
       "item": "ervin_mod_1:nirg"
+    },
+    "&": {
+      "item": "ervin_mod_1:dguchsr"
     }
   },
   "result": {

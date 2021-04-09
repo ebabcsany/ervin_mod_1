@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "ervin_mod_1:item/iron_ingots/pink_iron_ingot"
+    "layer0": "ervin_mod_1:item/iron/ingots/pink_iron_ingot"
   }
 }

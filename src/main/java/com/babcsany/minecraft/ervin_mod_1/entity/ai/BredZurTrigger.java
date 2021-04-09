@@ -7,8 +7,6 @@ import javax.annotation.Nullable;
 import net.minecraft.advancements.criterion.AbstractCriterionTrigger;
 import net.minecraft.advancements.criterion.CriterionInstance;
 import net.minecraft.advancements.criterion.EntityPredicate;
-import net.minecraft.entity.AgeableEntity;
-import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.loot.ConditionArrayParser;
 import net.minecraft.loot.ConditionArraySerializer;
@@ -29,7 +27,7 @@ public class BredZurTrigger extends AbstractCriterionTrigger<BredZurTrigger.Inst
       return new BredZurTrigger.Instance(entityPredicate, entitypredicate$andpredicate, entitypredicate$andpredicate1, entitypredicate$andpredicate2);
    }
 
-   public void trigger(ServerPlayerEntity player, AnimalEntity parent1, AnimalEntity parent2, @Nullable AnimalEntity child) {
+   public void trigger(ServerPlayerEntity player, AbstractZurEntity parent1, AbstractZurEntity parent2, @Nullable AbstractZurEntity child) {
       LootContext lootcontext = EntityPredicate.getLootContext(player, parent1);
       LootContext lootcontext1 = EntityPredicate.getLootContext(player, parent2);
       LootContext lootcontext2 = child != null ? EntityPredicate.getLootContext(player, child) : null;

@@ -1,12 +1,11 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
+  "type": "minecraft:smelting",
+  "ingredient": [
     {
-      "tag": "ervin_mod_1:ingredients/nirg"
+      "tag": "ervin_mod_1:ingredients/recipes/smelt/nirg"
     }
   ],
-  "result": {
-    "item": "ervin_mod_1:nirg",
-    "count": 9
-  }
+  "result": "ervin_mod_1:nirg",
+  "experience": 3.0,
+  "cookingtime": 600
 }

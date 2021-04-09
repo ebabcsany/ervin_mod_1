@@ -30,7 +30,7 @@ public class Tririj extends Block {
     * Called when the given entity walks on this Block
     */
    public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
-      if (!entityIn.isImmuneToFire() && entityIn instanceof LivingEntity && !EnchantmentHelper.hasFrostWalker((LivingEntity)entityIn)) {
+      if (entityIn instanceof LivingEntity && !EnchantmentHelper.hasFrostWalker((LivingEntity)entityIn)) {
          entityIn.attackEntityFrom(DamageSource.GENERIC, 1000000000000000000000000000000.0F);
       }
 

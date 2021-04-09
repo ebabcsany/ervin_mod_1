@@ -1,15 +1,11 @@
 package com.babcsany.minecraft.ervin_mod_1.init.item;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
-import com.babcsany.minecraft.ervin_mod_1.entity.item.FirgBoatEntity;
-import com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit;
-import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
-import com.babcsany.minecraft.ervin_mod_1.init.FoodInit;
 import com.babcsany.minecraft.ervin_mod_1.item.*;
-import com.babcsany.minecraft.ervin_mod_1.item.ModSpawnEggItem;
-import net.minecraft.entity.EntityType;
+import com.babcsany.minecraft.ervin_mod_1.item.food.Foods;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
+import net.minecraft.item.AxeItem;
 import net.minecraft.item.PickaxeItem;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.RegistryObject;
@@ -62,33 +58,27 @@ public class isBurnableItemInit {
     public static final RegistryObject<Item> LEAT = BURNABLE_ITEMS.register("leat", () -> new Item(
             (new Item.Properties()).isBurnable()
     ));
-    public static final RegistryObject<Item> CRAINT = BURNABLE_ITEMS.register("craint", () -> new Item(
-            (new Item.Properties()).isBurnable()
-    ));
     public static final RegistryObject<Item> NARIN = BURNABLE_ITEMS.register("narin", () -> new Item(
             (new Item.Properties()).isBurnable()
     ));
-    public static final RegistryObject<Item> TERAT = BURNABLE_ITEMS.register("terat", () -> new GItem(
-            (new Item.Properties()).isBurnable()
-    ));
     public static final RegistryObject<Item> TERAT_PICKAXE = BURNABLE_ITEMS.register("terat_pickaxe", () -> new PickaxeItem(
-            ModItemTier.TERAT, 200,200.0F, (new Item.Properties()).isBurnable()
+            ModItemTier.TERAT, 250,100.0F, (new Item.Properties()).isBurnable()
     ));
-    public static final RegistryObject<Item> TERAT_AXE = BURNABLE_ITEMS.register("terat_axe", () -> new AxeItem1(
-            ModItemTier.TERAT, 400,400.0F, (new Item.Properties()).isBurnable()
+    public static final RegistryObject<Item> TERAT_AXE = BURNABLE_ITEMS.register("terat_axe", () -> new AxeItem(
+            ModItemTier.TERAT, 450,200.0F, (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> TERAT_SHOVEL = BURNABLE_ITEMS.register("terat_shovel", () -> new ShovelItem(
-            ModItemTier.TERAT, 300,150.0F, (new Item.Properties()).isBurnable()
+            ModItemTier.TERAT, 350,150.0F, (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> TERAT_HOE = BURNABLE_ITEMS.register("terat_hoe", () -> new HoeItem(
-            ModItemTier.TERAT, 100, 50.0F, (new Item.Properties()).isBurnable()
+            ModItemTier.TERAT, 150, 50.0F, (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> SRIUNK_HORSE_ARMOR = BURNABLE_ITEMS.register("sriunk_horse_armor", () -> new HorseArmorItem(
             44, new ResourceLocation(Ervin_mod_1.MOD_ID, "textures/entity/horse/armor/sriunk_horse_armor.png"),
             (new Item.Properties()).maxStackSize(1).group(ItemGroup.MISC).isBurnable()
     ));
     public static final RegistryObject<Item> TERAT_SWORD = BURNABLE_ITEMS.register("terat_sword", () -> new SwordItem(
-            ModItemTier.TERAT, 250, 60.0F, (new Item.Properties()).isBurnable()
+            ModItemTier.TERAT, 300, 60.0F, (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> TERAT_HELMET = BURNABLE_ITEMS.register("terat_helmet", () -> new ArmorItem(
             ModArmorMaterial.TERAT, EquipmentSlotType.HEAD, (new Item.Properties()).isBurnable()
@@ -126,9 +116,6 @@ public class isBurnableItemInit {
     public static final RegistryObject<Item> SRIUNK_GRET = BURNABLE_ITEMS.register("sriunk_gret", () -> new Item(
             (new Item.Properties()).isBurnable()
     ));
-    public static final RegistryObject<Item> VIRK = BURNABLE_ITEMS.register("virk", () -> new Item(
-            (new Item.Properties()).food(FoodInit.VIRK).isBurnable()
-    ));
     public static final RegistryObject<Item> ZRIPT = BURNABLE_ITEMS.register("zript", () -> new Item(
             (new Item.Properties()).isBurnable()
     ));
@@ -136,7 +123,7 @@ public class isBurnableItemInit {
             (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> TIRKS = BURNABLE_ITEMS.register("tirks", () -> new Item(
-            (new Item.Properties()).food(FoodInit.TIRKS).isBurnable()
+            (new Item.Properties()).food(Foods.TIRKS).isBurnable()
     ));
     public static final RegistryObject<Item> SHZ = BURNABLE_ITEMS.register("shz", () -> new Item(
             (new Item.Properties()).isBurnable()
@@ -150,7 +137,7 @@ public class isBurnableItemInit {
     public static final RegistryObject<Item> TERAT_NUGGET = BURNABLE_ITEMS.register("terat_nugget", () -> new Item(
             (new Item.Properties()).isBurnable()
     ));
-    public static final RegistryObject<Item> NIRK_AXE = BURNABLE_ITEMS.register("nirk_axe", () -> new AxeItem1(
+    public static final RegistryObject<Item> NIRK_AXE = BURNABLE_ITEMS.register("nirk_axe", () -> new AxeItem(
             ModItemTier.NIRK, 160, 320.0F, (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> NIRK_HOE = BURNABLE_ITEMS.register("nirk_hoe", () -> new HoeItem(
@@ -171,7 +158,7 @@ public class isBurnableItemInit {
     public static final RegistryObject<Item> DURG_SWORD = BURNABLE_ITEMS.register("durg_sword", () -> new SwordItem(
             ModItemTier.DURG, 72, 113.4F, (new Item.Properties()).isBurnable()
     ));
-    public static final RegistryObject<Item> DURG_AXE = BURNABLE_ITEMS.register("durg_axe", () -> new AxeItem1(
+    public static final RegistryObject<Item> DURG_AXE = BURNABLE_ITEMS.register("durg_axe", () -> new AxeItem(
             ModItemTier.DURG, 144, 189.0F, (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> DURG_SHOVEL = BURNABLE_ITEMS.register("durg_shovel", () -> new ShovelItem(
@@ -208,6 +195,12 @@ public class isBurnableItemInit {
             (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Grith> GRITH = BURNABLE_ITEMS.register("grith", () -> new Grith(
+            (new Item.Properties()).isBurnable()
+    ));
+    public static final RegistryObject<Grithvsr> GRITHVSR = BURNABLE_ITEMS.register("grithvsr", () -> new Grithvsr(
+            (new Item.Properties()).isBurnable()
+    ));
+    public static final RegistryObject<Grithvsg> GRITHVSG = BURNABLE_ITEMS.register("grithvsg", () -> new Grithvsg(
             (new Item.Properties()).isBurnable()
     ));
     public static final RegistryObject<Item> TRUGH = BURNABLE_ITEMS.register("trugh", () -> new Item(

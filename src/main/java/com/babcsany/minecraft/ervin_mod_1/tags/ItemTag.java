@@ -12,6 +12,22 @@ import java.util.Set;
 
 public class ItemTag {
    private static final TagRegistry<Item> collection = new TagRegistry<>();
+   public static final ITag.INamedTag<Item> BurnTimeIn8000 = makeWrapperTag("burn_time_in_8000");
+   public static final ITag.INamedTag<Item> BurnTimeIn12000 = makeWrapperTag("burn_time_in_12000");
+   public static final ITag.INamedTag<Item> BurnTimeIn16000 = makeWrapperTag("burn_time_in_16000");
+   public static final ITag.INamedTag<Item> GART = makeWrapperTag("gart");
+   public static final ITag.INamedTag<Item> GARB = makeWrapperTag("garb");
+   public static final ITag.INamedTag<Item> GARK = makeWrapperTag("gark");
+   public static final ITag.INamedTag<Item> GARK_BLOCK = makeWrapperTag("gark_block");
+   public static final ITag.INamedTag<Item> GARK_SLAB = makeWrapperTag("gark_slab");
+   public static final ITag.INamedTag<Item> GARK_STAIRS = makeWrapperTag("gark_stairs");
+   public static final ITag.INamedTag<Item> GARKT = makeWrapperTag("garkt");
+   public static final ITag.INamedTag<Item> GARKTH = makeWrapperTag("garkth");
+   public static final ITag.INamedTag<Item> TRAGH = makeWrapperTag("tragh");
+   public static final ITag.INamedTag<Item> TRAGK = makeWrapperTag("tragk");
+   public static final ITag.INamedTag<Item> TRAGK_BLOCK = makeWrapperTag("tragk_block");
+   public static final ITag.INamedTag<Item> TRAGT = makeWrapperTag("tragt");
+   public static final ITag.INamedTag<Item> TRAGN = makeWrapperTag("tragn");
    public static final ITag.INamedTag<Item> WOOL = makeWrapperTag("wool");
    public static final ITag.INamedTag<Item> PLANKS = makeWrapperTag("planks");
    public static final ITag.INamedTag<Item> STONE_BRICKS = makeWrapperTag("stone_bricks");
@@ -54,6 +70,7 @@ public class ItemTag {
    public static final ITag.INamedTag<Item> FLOWERS = makeWrapperTag("flowers");
    public static final ITag.INamedTag<Item> field_232902_M_ = makeWrapperTag("piglin_repellents");
    public static final ITag.INamedTag<Item> field_232903_N_ = makeWrapperTag("piglin_loved");
+   public static final ITag.INamedTag<Item> ZUR_LOVED = makeWrapperTag("zur_loved");
    public static final ITag.INamedTag<Item> field_232904_O_ = makeWrapperTag("gold_ores");
    public static final ITag.INamedTag<Item> field_232905_P_ = makeWrapperTag("non_flammable_wood");
    public static final ITag.INamedTag<Item> field_232906_Q_ = makeWrapperTag("soul_fire_base_blocks");

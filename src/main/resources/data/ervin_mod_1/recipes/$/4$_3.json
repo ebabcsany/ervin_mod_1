@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "ervin_mod_1:$/1$"
+    },
+    {
+      "item": "ervin_mod_1:$/1$"
+    },
+    {
+      "item": "ervin_mod_1:$/1$"
+    },
+    {
+      "item": "ervin_mod_1:$/1$"
+    }
+  ],
+  "result": {
+    "item": "ervin_mod_1:$/4$",
+    "count": 1
+  }
+}

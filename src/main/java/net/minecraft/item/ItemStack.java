@@ -172,10 +172,6 @@ public final class ItemStack extends net.minecraftforge.common.capabilities.Capa
       return this.isEmpty || this.delegate == null ? Items.AIR : this.delegate.get();
    }
 
-   public Block getBlock() {
-      return this.isEmpty || this.delegate == null ? Blocks.AIR : this.delegate1.get();
-   }
-
    public ActionResultType onItemUse(ItemUseContext context) {
       if (!context.world.isRemote) return net.minecraftforge.common.ForgeHooks.onPlaceItemIntoWorld(context);
       return onItemUse(context, (c) -> getItem().onItemUse(context));

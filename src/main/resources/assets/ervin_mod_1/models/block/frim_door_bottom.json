@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/oak_door_bottom",
+  "textures": {
+    "bottom": "ervin_mod_1:block/frim_door_bottom",
+    "top": "ervin_mod_1:block/frim_door_top"
+  }
+}

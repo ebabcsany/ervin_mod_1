@@ -45,6 +45,25 @@
           "looting_multiplier": 1.25
         }
       ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:spawn_eggs/vilt_spawn_egg"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:killed_by_player"
+        },
+        {
+          "condition": "minecraft:random_chance_with_looting",
+          "chance": 3.125,
+          "looting_multiplier": 1.25
+        }
+      ]
     }
   ]
 }

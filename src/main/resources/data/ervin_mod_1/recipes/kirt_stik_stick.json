@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "--",
+    "--",
+    "--",
+    "--"
+  ],
+  "key": {
+    "-": {
+      "item": "ervin_mod_1:kirt_stik"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:kirt_stik_stick",
+    "count": 1
+  }
+}

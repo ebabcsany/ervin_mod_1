@@ -1,25 +1,26 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.monster;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.villager.WanderingTraderNirtreEntity;
+import com.babcsany.minecraft.ervin_mod_1.entity.villager.TraderNirtreEntity;
+import com.babcsany.minecraft.ervin_mod_1.entity.villager.trigger.CriteriaTriggers1;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
 import net.minecraft.block.BedBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.merchant.villager.VillagerEntity;
+import net.minecraft.entity.merchant.IReputationTracking;
+import net.minecraft.entity.merchant.IReputationType;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.MerchantOffers;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.INBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -35,41 +36,30 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.UUID;
 
-public class ZurNirtreEntity extends ZurEntity /*implements IVillagerDataHolder*/ {
+public class ZurNirtreEntity extends ZurEntity {
    private static final DataParameter<Boolean> CONVERTING = EntityDataManager.createKey(ZurNirtreEntity.class, DataSerializers.BOOLEAN);
-   //private static final DataParameter<VillagerData> VILLAGER_DATA = EntityDataManager.createKey(ZurNirtreEntity.class, DataSerializers.VILLAGER_DATA);
    private int conversionTime;
    private UUID converstionStarter;
-   private INBT gossips;
    private CompoundNBT offers;
    private int xp;
 
    public ZurNirtreEntity(EntityType<? extends ZurNirtreEntity> p_i50186_1_, World p_i50186_2_) {
       super(p_i50186_1_, p_i50186_2_);
-      //this.setVillagerData(this.getVillagerData().withProfession(Registry.VILLAGER_PROFESSION.getRandom(this.rand)));
    }
 
    public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
-      return MonsterEntity.func_234295_eP_().createMutableAttribute(Attributes.FOLLOW_RANGE, 100.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, (double)0.23F).createMutableAttribute(Attributes.ATTACK_DAMAGE, 40.0D).createMutableAttribute(Attributes.ARMOR, 4.0D).createMutableAttribute(Attributes.ZOMBIE_SPAWN_REINFORCEMENTS);
+      return MonsterEntity.func_234295_eP_().createMutableAttribute(Attributes.FOLLOW_RANGE, 100.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23F).createMutableAttribute(Attributes.ATTACK_DAMAGE, 40.0D).createMutableAttribute(Attributes.ARMOR, 4.0D);
    }
 
-   /*protected void registerData() {
+   protected void registerData() {
       super.registerData();
       this.dataManager.register(CONVERTING, false);
-      this.dataManager.register(VILLAGER_DATA, new VillagerData(IVillagerType.PLAINS, VillagerProfession.NONE, 1));
    }
 
    public void writeAdditional(CompoundNBT compound) {
       super.writeAdditional(compound);
-      VillagerData.VILLAGER_DATA_CODEC.encodeStart(NBTDynamicOps.INSTANCE, this.getVillagerData()).resultOrPartial(LOGGER::error).ifPresent((p_234343_1_) -> {
-         compound.put("VillagerData", p_234343_1_);
-      });
       if (this.offers != null) {
          compound.put("Offers", this.offers);
-      }
-
-      if (this.gossips != null) {
-         compound.put("Gossips", this.gossips);
       }
 
       compound.putInt("ConversionTime", this.isConverting() ? this.conversionTime : -1);
@@ -78,24 +68,16 @@ public class ZurNirtreEntity extends ZurEntity /*implements IVillagerDataHolder*
       }
 
       compound.putInt("Xp", this.xp);
-   }*/
+   }
 
    /**
     * (abstract) Protected helper method to read subclass entity data from NBT.
     */
-   /*public void readAdditional(CompoundNBT compound) {
+   public void readAdditional(CompoundNBT compound) {
       super.readAdditional(compound);
-      if (compound.contains("VillagerData", 10)) {
-         DataResult<VillagerData> dataresult = VillagerData.VILLAGER_DATA_CODEC.parse(new Dynamic<>(NBTDynamicOps.INSTANCE, compound.get("VillagerData")));
-         dataresult.resultOrPartial(LOGGER::error).ifPresent(this::setVillagerData);
-      }
 
       if (compound.contains("Offers", 10)) {
          this.offers = compound.getCompound("Offers");
-      }
-
-      if (compound.contains("Gossips", 10)) {
-         this.gossips = compound.getList("Gossips", 10);
       }
 
       if (compound.contains("ConversionTime", 99) && compound.getInt("ConversionTime") > -1) {
@@ -106,7 +88,7 @@ public class ZurNirtreEntity extends ZurEntity /*implements IVillagerDataHolder*
          this.xp = compound.getInt("Xp");
       }
 
-   }*/
+   }
 
    /**
     * Called to update the entity's position/logic.
@@ -116,13 +98,14 @@ public class ZurNirtreEntity extends ZurEntity /*implements IVillagerDataHolder*
          int i = this.getConversionProgress();
          this.conversionTime -= i;
          if (this.conversionTime <= 0) {
-            this.cureZombie((ServerWorld)this.world);
+            this.cureZur((ServerWorld)this.world);
          }
       }
 
       super.tick();
    }
 
+   @Override
    public ActionResultType func_230254_b_(PlayerEntity p_230254_1_, Hand p_230254_2_) {
       ItemStack itemstack = p_230254_1_.getHeldItem(p_230254_2_);
       if (itemstack.getItem() == isBurnableItemInit.GRINT.get()) {
@@ -186,16 +169,16 @@ public class ZurNirtreEntity extends ZurEntity /*implements IVillagerDataHolder*
       }
    }
 
-   private void cureZombie(ServerWorld p_213791_1_) {
-      WanderingTraderNirtreEntity wanderingtradernirtreentity = EntityInit.WANDERING_TRADER_NIRTRE_ENTITY.get().create(p_213791_1_);
+   private void cureZur(ServerWorld p_213791_1_) {
+      TraderNirtreEntity traderNirtreEntity = EntityInit.TRADER_NIRTRE_ENTITY.get().create(p_213791_1_);
 
       for(EquipmentSlotType equipmentslottype : EquipmentSlotType.values()) {
          ItemStack itemstack = this.getItemStackFromSlot(equipmentslottype);
          if (!itemstack.isEmpty()) {
             if (EnchantmentHelper.hasBindingCurse(itemstack)) {
-               wanderingtradernirtreentity.replaceItemInInventory(equipmentslottype.getIndex() + 300, itemstack);
+               traderNirtreEntity.replaceItemInInventory(equipmentslottype.getIndex() + 300, itemstack);
             } else {
-               double d0 = (double)this.getDropChance(equipmentslottype);
+               double d0 = this.getDropChance(equipmentslottype);
                if (d0 > 1.0D) {
                   this.entityDropItem(itemstack);
                }
@@ -203,46 +186,40 @@ public class ZurNirtreEntity extends ZurEntity /*implements IVillagerDataHolder*
          }
       }
 
-      /*villagerentity.copyLocationAndAnglesFrom(this);
-      villagerentity.setVillagerData(this.getVillagerData());
-      if (this.gossips != null) {
-         villagerentity.func_223716_a(this.gossips);
-      }*/
+      if (this.offers != null) {
+         traderNirtreEntity.setOffers(new MerchantOffers(this.offers));
+      }
 
-      /*if (this.offers != null) {
-         villagerentity.setOffers(new MerchantOffers(this.offers));
-      }*/
-
-      //villagerentity.setXp(this.xp);
-      wanderingtradernirtreentity.onInitialSpawn(p_213791_1_, p_213791_1_.getDifficultyForLocation(wanderingtradernirtreentity.getPosition()), SpawnReason.CONVERSION, (ILivingEntityData)null, (CompoundNBT)null);
+      traderNirtreEntity.setXp(this.xp);
+      traderNirtreEntity.onInitialSpawn(p_213791_1_, p_213791_1_.getDifficultyForLocation(traderNirtreEntity.getPosition()), SpawnReason.CONVERSION, null, null);
       if (this.isChild()) {
-         wanderingtradernirtreentity.setGrowingAge(-24000);
+         traderNirtreEntity.setGrowingAge(-24000);
       }
 
       this.remove();
-      wanderingtradernirtreentity.setNoAI(this.isAIDisabled());
+      traderNirtreEntity.setNoAI(this.isAIDisabled());
       if (this.hasCustomName()) {
-         wanderingtradernirtreentity.setCustomName(this.getCustomName());
-         wanderingtradernirtreentity.setCustomNameVisible(this.isCustomNameVisible());
+         traderNirtreEntity.setCustomName(this.getCustomName());
+         traderNirtreEntity.setCustomNameVisible(this.isCustomNameVisible());
       }
 
       if (this.isNoDespawnRequired()) {
-         wanderingtradernirtreentity.enablePersistence();
+         traderNirtreEntity.enablePersistence();
       }
 
-      wanderingtradernirtreentity.setInvulnerable(this.isInvulnerable());
-      p_213791_1_.addEntity(wanderingtradernirtreentity);
+      traderNirtreEntity.setInvulnerable(this.isInvulnerable());
+      p_213791_1_.addEntity(traderNirtreEntity);
       if (this.converstionStarter != null) {
          PlayerEntity playerentity = p_213791_1_.getPlayerByUuid(this.converstionStarter);
-         /*if (playerentity instanceof ServerPlayerEntity) {
-            CriteriaTriggers1.CURED_ZUR_NIRTRE.trigger1((ServerPlayerEntity)playerentity, this, villagerentity);
-            p_213791_1_.updateReputation(IReputationType.ZOMBIE_VILLAGER_CURED, playerentity, villagerentity);
-         }*/
+         if (playerentity instanceof ServerPlayerEntity) {
+            CriteriaTriggers1.CURED_ZUR_NIRTRE.trigger((ServerPlayerEntity)playerentity, this, traderNirtreEntity);
+            p_213791_1_.updateReputation(IReputationType.ZOMBIE_VILLAGER_CURED, playerentity, (IReputationTracking) traderNirtreEntity);
+         }
       }
 
-      wanderingtradernirtreentity.addPotionEffect(new EffectInstance(Effects.NAUSEA, 200, 0));
+      traderNirtreEntity.addPotionEffect(new EffectInstance(Effects.NAUSEA, 200, 0));
       if (!this.isSilent()) {
-         p_213791_1_.playEvent((PlayerEntity)null, 1027, this.getPosition(), 0);
+         p_213791_1_.playEvent(null, 1027, this.getPosition(), 0);
       }
 
    }
@@ -301,10 +278,6 @@ public class ZurNirtreEntity extends ZurEntity /*implements IVillagerDataHolder*
 
    public void setOffers(CompoundNBT p_213790_1_) {
       this.offers = p_213790_1_;
-   }
-
-   public void setGossips(INBT p_223727_1_) {
-      this.gossips = p_223727_1_;
    }
 
    /*@Nullable

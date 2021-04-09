@@ -1,5 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.item;
 
+import com.babcsany.minecraft.ervin_mod_1.entity.projectile.FreinballEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.SnowballEntity;
 import net.minecraft.item.Item;
@@ -24,7 +25,7 @@ public class FreinballItem extends Item {
       ItemStack itemstack = playerIn.getHeldItem(handIn);
       worldIn.playSound((PlayerEntity)null, playerIn.getPosX(), playerIn.getPosY(), playerIn.getPosZ(), SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
       if (!worldIn.isRemote) {
-         SnowballEntity snowballentity = new SnowballEntity(worldIn, playerIn);
+         FreinballEntity snowballentity = new FreinballEntity(worldIn, playerIn);
          snowballentity.setItem(itemstack);
          snowballentity.func_234612_a_(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
          worldIn.addEntity(snowballentity);

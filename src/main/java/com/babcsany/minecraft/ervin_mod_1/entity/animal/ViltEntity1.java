@@ -20,6 +20,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.ContainerType;
+import net.minecraft.item.DyeColor;
 import net.minecraft.item.DyeItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -224,14 +225,14 @@ public class ViltEntity1 extends AnimalEntity implements IShearable, net.minecra
    }
 
    public void shear(SoundCategory category) {
-      this.world.playMovingSound((PlayerEntity)null, this, SoundEvents.ENTITY_SHEEP_SHEAR, category, 1.0F, 1.0F);
+      this.world.playMovingSound(null, this, SoundEvents.ENTITY_SHEEP_SHEAR, category, 1.0F, 1.0F);
       this.setSheared(true);
       int i = 1 + this.rand.nextInt(3);
 
       for(int j = 0; j < i; ++j) {
          ItemEntity itementity = this.entityDropItem(WOOL_BY_COLOR.get(this.getFleeceColor()), 1);
          if (itementity != null) {
-            itementity.setMotion(itementity.getMotion().add((double)((this.rand.nextFloat() - this.rand.nextFloat()) * 0.1F), (double)(this.rand.nextFloat() * 0.05F), (double)((this.rand.nextFloat() - this.rand.nextFloat()) * 0.1F)));
+            itementity.setMotion(itementity.getMotion().add((this.rand.nextFloat() - this.rand.nextFloat()) * 0.1F, (double)(this.rand.nextFloat() * 0.05F), (double)((this.rand.nextFloat() - this.rand.nextFloat()) * 0.1F)));
          }
       }
 
@@ -277,6 +278,10 @@ public class ViltEntity1 extends AnimalEntity implements IShearable, net.minecra
     */
    public DyeColorInit getFleeceColor() {
       return DyeColorInit.byId(this.dataManager.get(DYE_COLOR) & 15);
+   }
+
+   public DyeColor getFleece1Color() {
+      return DyeColor.byId(this.dataManager.get(DYE_COLOR) & 15);
    }
 
    /**
@@ -325,11 +330,11 @@ public class ViltEntity1 extends AnimalEntity implements IShearable, net.minecra
       }
    }
 
-   public ViltEntity1 createChild(AgeableEntity ageable) {
-      ViltEntity1 sheepentity = (ViltEntity1)ageable;
-      ViltEntity1 sheepentity1 = EntityInit.VILT_ENTITY1.get().create(this.world);
-      sheepentity1.setFleeceColor(this.getDyeColorMixFromParents(this, sheepentity));
-      return sheepentity1;
+   public ViltEntity createChild(AgeableEntity ageable) {
+      ViltEntity viltEntity = (ViltEntity)ageable;
+      ViltEntity viltEntity1 = EntityInit.VILT_ENTITY.get().create(this.world);
+      viltEntity1.setFleeceColor(this.getDyeColorMixFromParents(this, viltEntity));
+      return viltEntity1;
    }
 
    /**
@@ -353,10 +358,10 @@ public class ViltEntity1 extends AnimalEntity implements IShearable, net.minecra
    /**
     * Attempts to mix both parent sheep to come up with a mixed dye color.
     */
-   private DyeColorInit getDyeColorMixFromParents(AnimalEntity father, AnimalEntity mother) {
+   private DyeColorInit getDyeColorInitMixFromParents(AnimalEntity father, AnimalEntity mother) {
       DyeColorInit dyecolor = ((ViltEntity1)father).getFleeceColor();
       DyeColorInit dyecolor1 = ((ViltEntity1)mother).getFleeceColor();
-      CraftingInventory craftinginventory = createDyeColorCraftingInventory(dyecolor, dyecolor1);
+      CraftingInventory craftinginventory = createDyeColorInitCraftingInventory(dyecolor, dyecolor1);
       return this.world.getRecipeManager().getRecipe(IRecipeType.CRAFTING, craftinginventory, this.world).map((p_213614_1_) -> {
          return p_213614_1_.getCraftingResult(craftinginventory);
       }).map(ItemStack::getItem).filter(DyeItem.class::isInstance).map(DyeItemInit.class::cast).map(DyeItemInit::getDyeColor).orElseGet(() -> {
@@ -364,7 +369,18 @@ public class ViltEntity1 extends AnimalEntity implements IShearable, net.minecra
       });
    }
 
-   private static CraftingInventory createDyeColorCraftingInventory(DyeColorInit color, DyeColorInit color1) {
+   private DyeColor getDyeColorMixFromParents(AnimalEntity father, AnimalEntity mother) {
+      DyeColor dyecolor = ((ViltEntity1)father).getFleece1Color();
+      DyeColor dyecolor1 = ((ViltEntity1)mother).getFleece1Color();
+      CraftingInventory craftinginventory = createDyeColorCraftingInventory(dyecolor, dyecolor1);
+      return this.world.getRecipeManager().getRecipe(IRecipeType.CRAFTING, craftinginventory, this.world).map((p_213614_1_) -> {
+         return p_213614_1_.getCraftingResult(craftinginventory);
+      }).map(ItemStack::getItem).filter(DyeItem.class::isInstance).map(DyeItem.class::cast).map(DyeItem::getDyeColor).orElseGet(() -> {
+         return this.world.rand.nextBoolean() ? dyecolor : dyecolor1;
+      });
+   }
+
+   private static CraftingInventory createDyeColorInitCraftingInventory(DyeColorInit color, DyeColorInit color1) {
       CraftingInventory craftinginventory = new CraftingInventory(new Container((ContainerType)null, -1) {
          /**
           * Determines whether supplied player can use this container
@@ -375,6 +391,20 @@ public class ViltEntity1 extends AnimalEntity implements IShearable, net.minecra
       }, 2, 1);
       craftinginventory.setInventorySlotContents(0, new ItemStack(DyeItemInit.getItem(color)));
       craftinginventory.setInventorySlotContents(1, new ItemStack(DyeItemInit.getItem(color1)));
+      return craftinginventory;
+   }
+
+   private static CraftingInventory createDyeColorCraftingInventory(DyeColor color, DyeColor color1) {
+      CraftingInventory craftinginventory = new CraftingInventory(new Container((ContainerType)null, -1) {
+         /**
+          * Determines whether supplied player can use this container
+          */
+         public boolean canInteractWith(PlayerEntity playerIn) {
+            return false;
+         }
+      }, 2, 1);
+      craftinginventory.setInventorySlotContents(0, new ItemStack(DyeItem.getItem(color)));
+      craftinginventory.setInventorySlotContents(1, new ItemStack(DyeItem.getItem(color1)));
       return craftinginventory;
    }
 

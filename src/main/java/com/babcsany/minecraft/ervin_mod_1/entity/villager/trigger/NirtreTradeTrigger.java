@@ -1,5 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.villager.trigger;
 
+import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.AbstractNirtreEntity;
 import com.google.gson.JsonObject;
 import net.minecraft.advancements.criterion.AbstractCriterionTrigger;
@@ -14,7 +15,7 @@ import net.minecraft.loot.LootContext;
 import net.minecraft.util.ResourceLocation;
 
 public class NirtreTradeTrigger extends AbstractCriterionTrigger<NirtreTradeTrigger.Instance> {
-   private static final ResourceLocation ID = new ResourceLocation("nirtre_trade");
+   private static final ResourceLocation ID = new ResourceLocation(Ervin_mod_1.MOD_ID,"nirtre_trade");
 
    public ResourceLocation getId() {
       return ID;
@@ -28,9 +29,7 @@ public class NirtreTradeTrigger extends AbstractCriterionTrigger<NirtreTradeTrig
 
    public void test(ServerPlayerEntity player, AbstractNirtreEntity nirtre, ItemStack stack) {
       LootContext lootcontext = EntityPredicate.getLootContext(player, nirtre);
-      this.triggerListeners(player, (p_227267_2_) -> {
-         return p_227267_2_.test(lootcontext, stack);
-      });
+      this.triggerListeners(player, (p_227267_2_) -> p_227267_2_.test(lootcontext, stack));
    }
 
    public static class Instance extends CriterionInstance {

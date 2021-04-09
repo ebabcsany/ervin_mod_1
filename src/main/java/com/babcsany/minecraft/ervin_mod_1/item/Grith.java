@@ -1,60 +1,24 @@
 package com.babcsany.minecraft.ervin_mod_1.item;
 
-import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
-import com.babcsany.minecraft.ervin_mod_1.util.KeyboardHelper;
 import net.minecraft.block.Blocks;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUseContext;
-import net.minecraft.item.Rarity;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-import net.minecraftforge.common.IExtensibleEnum;
-
-import java.util.List;
 
 public class Grith extends Item {
-
 	public Grith(Properties properties) {
 		super(properties);
 	}
 
 	@Override
-	public void addInformation(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-		if (KeyboardHelper.isHoldingShift()) {
-			tooltip.add(new StringTextComponent("Test Information"));
-		} else {
-			tooltip.add(new StringTextComponent("Hold" + "\u00A7e" + " Shift " + "\u00A77" + "for more information!"));
-		}
-		super.addInformation(stack, worldIn, tooltip, flagIn);
-	}
-
-	@Override
 	public Item asItem() {
 		return super.asItem();
-	}
-
-	@Override
-	public Rarity getRarity(ItemStack stack) {
-		return Rarity.create("test", TextFormatting.DARK_BLUE);
-	}
-
-	@Override
-	public boolean hasEffect(ItemStack stack) {
-		return true;
 	}
 
 	@Override
@@ -70,29 +34,35 @@ public class Grith extends Item {
 	@Override
 	public boolean onEntityItemUpdate(ItemStack stack, ItemEntity entity) {
 		entity.getEntityWorld().setBlockState(entity.getPosition().down(), Blocks.AIR.getDefaultState());
+		entity.getEntityWorld().setBlockState(entity.getPosition().down().east(), Blocks.AIR.getDefaultState());
+		entity.getEntityWorld().setBlockState(entity.getPosition().down().east().north(), Blocks.AIR.getDefaultState());
+		entity.getEntityWorld().setBlockState(entity.getPosition().down().west(), Blocks.AIR.getDefaultState());
+		entity.getEntityWorld().setBlockState(entity.getPosition().down().west().south(), Blocks.AIR.getDefaultState());
+		entity.getEntityWorld().setBlockState(entity.getPosition().down().north(), Blocks.AIR.getDefaultState());
+		entity.getEntityWorld().setBlockState(entity.getPosition().down().north().west(), Blocks.AIR.getDefaultState());
+		entity.getEntityWorld().setBlockState(entity.getPosition().down().south(), Blocks.AIR.getDefaultState());
+		entity.getEntityWorld().setBlockState(entity.getPosition().down().south().east(), Blocks.AIR.getDefaultState());
+		entity.getEntityWorld().setBlockState(entity.getPosition().up(), Blocks.AIR.getDefaultState());
+		entity.getEntityWorld().setBlockState(entity.getPosition().up().east(), Blocks.AIR.getDefaultState());
+		entity.getEntityWorld().setBlockState(entity.getPosition().up().east().north(), Blocks.AIR.getDefaultState());
+		entity.getEntityWorld().setBlockState(entity.getPosition().up().west(), Blocks.AIR.getDefaultState());
+		entity.getEntityWorld().setBlockState(entity.getPosition().up().west().south(), Blocks.AIR.getDefaultState());
+		entity.getEntityWorld().setBlockState(entity.getPosition().up().north(), Blocks.AIR.getDefaultState());
+		entity.getEntityWorld().setBlockState(entity.getPosition().up().north().west(), Blocks.AIR.getDefaultState());
+		entity.getEntityWorld().setBlockState(entity.getPosition().up().south(), Blocks.AIR.getDefaultState());
+		entity.getEntityWorld().setBlockState(entity.getPosition().up().south().east(), Blocks.AIR.getDefaultState());
+		entity.getEntityWorld().setBlockState(entity.getPosition().east(), Blocks.AIR.getDefaultState());
+		entity.getEntityWorld().setBlockState(entity.getPosition().east().north(), Blocks.AIR.getDefaultState());
+		entity.getEntityWorld().setBlockState(entity.getPosition().west(), Blocks.AIR.getDefaultState());
+		entity.getEntityWorld().setBlockState(entity.getPosition().west().south(), Blocks.AIR.getDefaultState());
+		entity.getEntityWorld().setBlockState(entity.getPosition().north(), Blocks.AIR.getDefaultState());
+		entity.getEntityWorld().setBlockState(entity.getPosition().north().west(), Blocks.AIR.getDefaultState());
+		entity.getEntityWorld().setBlockState(entity.getPosition().south(), Blocks.AIR.getDefaultState());
+		entity.getEntityWorld().setBlockState(entity.getPosition().south().east(), Blocks.AIR.getDefaultState());
 		return super.onEntityItemUpdate(stack, entity);
 	}
 
-	@Override
-	public int getBurnTime(ItemStack itemStack) {
-		return 1200;
-	}
-
-	public enum ModRarity implements IExtensibleEnum {
-		TEST(TextFormatting.DARK_BLUE);
-
-		public final TextFormatting color;
-
-		private ModRarity(TextFormatting format) {
-			this.color = format;
-		}
-
-		public static ModRarity create(String name, TextFormatting format) {
-			throw new IllegalStateException("Enum not extended");
-		}
-	}
-
-	@Override
+	/**@Override
 	public ActionResultType onItemUse(ItemUseContext context) {
 		if (context.getWorld().getBlockState(context.getPos()).getBlock() == isBurnableBlockItemInit.GRITH_BLOCK.get()) {
 			for (ItemStack stack : context.getPlayer().inventory.mainInventory) {
@@ -109,5 +79,5 @@ public class Grith extends Item {
 			return ActionResultType.SUCCESS;
 		}
 		return ActionResultType.FAIL;
-	}
+	}*/
 }

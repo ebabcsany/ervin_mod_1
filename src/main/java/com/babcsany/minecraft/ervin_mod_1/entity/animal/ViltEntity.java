@@ -3,6 +3,8 @@ package com.babcsany.minecraft.ervin_mod_1.entity.animal;
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.block.BlockNamedItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.food.FoodItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
 import com.babcsany.minecraft.ervin_mod_1.world.storage.loot.LootTables1;
 import com.google.common.collect.Maps;
@@ -46,6 +48,7 @@ import java.util.stream.Collectors;
 
 public class ViltEntity extends AnimalEntity implements IShearable, net.minecraftforge.common.IForgeShearable {
    private static final DataParameter<Byte> DYE_COLOR = EntityDataManager.createKey(ViltEntity.class, DataSerializers.BYTE);
+   private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(FoodItemInit.FRIM.get());
    private static final Map<DyeColor, IItemProvider> WOOL_BY_COLOR = Util.make(Maps.newEnumMap(DyeColor.class), (p_203402_0_) -> {
       p_203402_0_.put(DyeColor.RED, BlockItemInit.CRASK.get());
       p_203402_0_.put(DyeColor.WHITE, Blocks.WHITE_WOOL);
@@ -95,7 +98,8 @@ public class ViltEntity extends AnimalEntity implements IShearable, net.minecraf
       this.goalSelector.addGoal(0, new SwimGoal(this));
       this.goalSelector.addGoal(1, new PanicGoal(this, 1.25D));
       this.goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
-      this.goalSelector.addGoal(3, new TemptGoal(this, 10.0D, Ingredient.fromItems(isBurnableItemInit.VILTDROP.get()), false));
+      this.goalSelector.addGoal(3, new TemptGoal(this, 10.0D, Ingredient.fromItems(FoodItemInit.FRIM.get()), false));
+      this.goalSelector.addGoal(4, new TemptGoal(this, 1.25D, false, TEMPTATION_ITEMS));
       this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.1D));
       this.goalSelector.addGoal(5, this.eatGrassGoal);
       this.goalSelector.addGoal(6, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
@@ -329,6 +333,10 @@ public class ViltEntity extends AnimalEntity implements IShearable, net.minecraf
       ViltEntity sheepentity1 = EntityInit.VILT_ENTITY.get().create(this.world);
       sheepentity1.setFleeceColor(this.getDyeColorMixFromParents(this, sheepentity));
       return sheepentity1;
+   }
+
+   public boolean isBreedingItem(ItemStack stack) {
+      return TEMPTATION_ITEMS.test(stack);
    }
 
    /**

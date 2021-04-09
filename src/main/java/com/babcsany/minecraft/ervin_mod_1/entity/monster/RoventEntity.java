@@ -140,7 +140,7 @@ public class RoventEntity extends ZurEntity implements IRangedAttackMob {
    }
 
    protected boolean shouldExchangeEquipment(ItemStack candidate, ItemStack existing) {
-      if (existing.getItem() == isBurnableItemInit.NIRK.get()) {
+      if (existing.getItem() == com.babcsany.minecraft.ervin_mod_1.init.item.tool.isBurnableItemInit.CRAINT.get()) {
          return false;
       } else if (existing.getItem() == Items.TRIDENT) {
          if (candidate.getItem() == Items.TRIDENT) {
@@ -154,9 +154,9 @@ public class RoventEntity extends ZurEntity implements IRangedAttackMob {
    }
 
    protected boolean shouldExchangeEquipment1(ItemStack candidate, ItemStack existing) {
-      if (existing.getItem() == isBurnableItemInit.GRUGT.get()) {
+      if (existing.getItem() == isBurnableItemInit.TIRKS.get()) {
          return false;
-      } else if (existing.getItem() == isBurnableItemInit.NARIN.get()) {
+      } else if (existing.getItem() == Items.TRIDENT) {
          if (candidate.getItem() == Items.TRIDENT) {
             return candidate.getDamage() < existing.getDamage();
          } else {

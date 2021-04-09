@@ -2,12 +2,15 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "#B#",
-    "###",
+    "#K#",
     "#M#"
   ],
   "key": {
     "#": {
       "item": "ervin_mod_1:leat_block"
+    },
+    "K": {
+      "item": "ervin_mod_1:frin"
     },
     "M": {
       "item": "ervin_mod_1:leat"

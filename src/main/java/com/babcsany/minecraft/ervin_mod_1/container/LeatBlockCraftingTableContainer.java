@@ -1,9 +1,9 @@
 package com.babcsany.minecraft.ervin_mod_1.container;
 
-import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.ContainerInit;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.inventory.LeatBlockCraftingTableInventory;
+import com.babcsany.minecraft.ervin_mod_1.inventory.container.ModCraftingResultSlot;
 import com.google.common.collect.Lists;
 import net.minecraft.client.util.RecipeBookCategories;
 import net.minecraft.entity.player.PlayerEntity;
@@ -41,7 +41,8 @@ public class LeatBlockCraftingTableContainer extends RecipeBookContainer<Craftin
     private final CraftingInventory craftMatrix = new CraftingInventory(this, CRAFT_MATRIX_WIDTH, CRAFT_MATRIX_HEIGHT);
     private final CraftResultInventory craftResult = new CraftResultInventory();
     private final LeatBlockCraftingTableInventory craftingTableInventory = new LeatBlockCraftingTableInventory();
-    private final IWorldPosCallable field_217070_e;
+    private final LeatBlockCraftingTableInventory craftingTableInventory1 = new LeatBlockCraftingTableInventory();
+    private final IWorldPosCallable worldPosCallable;
     private final PlayerEntity player;
 
     public LeatBlockCraftingTableContainer(int windowId, PlayerInventory playerInventory) {
@@ -50,9 +51,9 @@ public class LeatBlockCraftingTableContainer extends RecipeBookContainer<Craftin
 
     public LeatBlockCraftingTableContainer(int windowId, PlayerInventory playerInventory, IWorldPosCallable p_i50090_3_) {
         super(ContainerInit.LEAT_BLOCK_CRAFTING_TABLE.get(), windowId);
-        this.field_217070_e = p_i50090_3_;
+        this.worldPosCallable = p_i50090_3_;
         this.player = playerInventory.player;
-        this.addSlot(new CraftingResultSlot(playerInventory.player, this.craftMatrix, this.craftResult, CRAFT_RESULT_SLOT_INDEX, CRAFT_RESULT_X_POSITION, CRAFT_RESULT_Y_POSITION));
+        this.addSlot(new ModCraftingResultSlot(playerInventory.player, this.craftMatrix, this.craftResult, CRAFT_RESULT_SLOT_INDEX, CRAFT_RESULT_X_POSITION, CRAFT_RESULT_Y_POSITION));
         this.addSlot(new Slot(craftingTableInventory, 9, 209, 45));
 
         for(int i = 0; i < CRAFT_MATRIX_HEIGHT; ++i) {
@@ -62,7 +63,7 @@ public class LeatBlockCraftingTableContainer extends RecipeBookContainer<Craftin
         }
 
         for(int l = 0; l < 9; ++l) {
-            this.addSlot(new Slot(craftingTableInventory, l, 47 + l * 18, 98));
+            this.addSlot(new Slot(craftingTableInventory1, l, 47 + l * 18, 98));
         }
 
         for(int k = 0; k < 3; ++k) {
@@ -102,7 +103,7 @@ public class LeatBlockCraftingTableContainer extends RecipeBookContainer<Craftin
      * Callback for when the crafting matrix is changed.
      */
     public void onCraftMatrixChanged(IInventory inventoryIn) {
-        this.field_217070_e.consume((p_217069_1_, p_217069_2_) -> {
+        this.worldPosCallable.consume((p_217069_1_, p_217069_2_) -> {
             updateCraftingResult(this.windowId, p_217069_1_, this.player, this.craftMatrix, this.craftResult);
         });
     }
@@ -114,6 +115,7 @@ public class LeatBlockCraftingTableContainer extends RecipeBookContainer<Craftin
     public void clear() {
         this.craftMatrix.clear();
         this.craftResult.clear();
+        this.craftingTableInventory1.clear();
     }
 
     public boolean matches(IRecipe<? super CraftingInventory> recipeIn) {
@@ -125,7 +127,7 @@ public class LeatBlockCraftingTableContainer extends RecipeBookContainer<Craftin
      */
     public void onContainerClosed(PlayerEntity playerIn) {
         super.onContainerClosed(playerIn);
-        this.field_217070_e.consume((p_217068_2_, p_217068_3_) -> {
+        this.worldPosCallable.consume((p_217068_2_, p_217068_3_) -> {
             this.clearContainer(playerIn, p_217068_2_, this.craftMatrix);
         });
     }
@@ -134,7 +136,7 @@ public class LeatBlockCraftingTableContainer extends RecipeBookContainer<Craftin
      * Determines whether supplied player can use this container
      */
     public boolean canInteractWith(PlayerEntity playerIn) {
-        return isWithinUsableDistance(this.field_217070_e, playerIn, isBurnableBlockItemInit.LEAT_BLOCK_CRAFTING_TABLE.get());
+        return isWithinUsableDistance(this.worldPosCallable, playerIn, isBurnableBlockItemInit.LEAT_BLOCK_CRAFTING_TABLE.get());
     }
 
     /**
@@ -148,7 +150,7 @@ public class LeatBlockCraftingTableContainer extends RecipeBookContainer<Craftin
             ItemStack itemstack1 = slot.getStack();
             itemstack = itemstack1.copy();
             if (index == 0) {
-                this.field_217070_e.consume((p_217067_2_, p_217067_3_) -> {
+                this.worldPosCallable.consume((p_217067_2_, p_217067_3_) -> {
                     itemstack1.getItem().onCreated(itemstack1, p_217067_2_, playerIn);
                 });
                 if (!this.mergeItemStack(itemstack1, 10, 46, true)) {

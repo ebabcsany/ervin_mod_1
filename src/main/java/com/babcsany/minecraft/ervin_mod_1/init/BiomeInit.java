@@ -25,6 +25,22 @@ public class BiomeInit {
 	public static final DeferredRegister<Biome> BIOMES = DeferredRegister.create(ForgeRegistries.BIOMES,
 			Ervin_mod_1.MOD_ID);
 
+	public static final RegistryObject<Biome> MIGV_BIOME = BIOMES
+			.register("migv_biome",
+					()-> new MigBiome(
+							new Biome.Builder().precipitation(RainType.SNOW).scale(1.2f).temperature(0.5f)
+									.func_235097_a_((new BiomeAmbience.Builder()).setWaterColor(10456252).setWaterFogColor(26762304).setFogColor(12538462).build())
+									.surfaceBuilder(
+											new ConfiguredSurfaceBuilder<SurfaceBuilderConfig>(
+													register("migv_surface",
+															new MigBiomeSurfaceBuilder(
+																	SurfaceBuilderConfig.field_237203_a_)),
+													new SurfaceBuilderConfig(Blocks.WATER.getDefaultState(),
+															Blocks.GRASS.getDefaultState(),
+															Blocks.CARVED_PUMPKIN.getDefaultState())))
+									.category(Category.PLAINS).downfall(12.4f).depth(6.5f).parent(null)
+									.func_235098_a_(ImmutableList.of(new Biome.Attributes(10.25F, -6.5F, 13.5F, 9.2F, 3.0F)))
+					));
 	public static final RegistryObject<Biome> MIG_BIOME = BIOMES
 			.register("mig_biome",
 					() -> new MigBiome(

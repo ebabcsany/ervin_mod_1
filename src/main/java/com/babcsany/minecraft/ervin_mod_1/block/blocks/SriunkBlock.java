@@ -1,7 +1,20 @@
 package com.babcsany.minecraft.ervin_mod_1.block.blocks;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class SriunkBlock extends Block {
-    public SriunkBlock(Properties properties) { super(properties); }
+    private final int dustColor;
+
+    public SriunkBlock(int dustColorIn, Properties properties) {
+        super(properties);
+        this.dustColor = dustColorIn;
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public int getDustColor(BlockState state) {
+        return this.dustColor;
+    }
 }

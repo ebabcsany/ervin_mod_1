@@ -28,6 +28,9 @@ public class VilktBlock extends HorizontalBlock {
    /**
     * @deprecated call via {@link BlockState#getProperties()} whenever possible. Implementing/overriding is fine.
     */
+   @Override
    public PushReaction getPushReaction(BlockState state) {
       return PushReaction.PUSH_ONLY;
-   }}
+   }
+
+}

@@ -2,6 +2,7 @@ package com.babcsany.minecraft.ervin_mod_1.client.entity.render;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.client.entity.model.ZurEntityModel;
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.Dgrurb;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
 import net.minecraft.client.renderer.entity.BipedRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
@@ -28,7 +29,7 @@ public abstract class AbstractZurEntityRender<T extends ZurEntity, M extends Zur
       return field_217771_a;
    }
 
-   /*protected boolean func_230495_a_(T p_230495_1_) {
+   protected boolean func_230495_a_(T p_230495_1_) {
       return p_230495_1_.isDrowning();
-   }*/
+   }
 }

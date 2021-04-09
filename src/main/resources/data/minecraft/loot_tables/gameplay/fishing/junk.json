@@ -25,6 +25,31 @@
         },
         {
           "type": "minecraft:item",
+          "weight": 4,
+          "name": "ervin_mod_1:water_bucket"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 3,
+          "name": "ervin_mod_1:gurt"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 2,
+          "name": "ervin_mod_1:gurb"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "ervin_mod_1:gurk"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 0.5,
+          "name": "ervin_mod_1:gurk_block"
+        },
+        {
+          "type": "minecraft:item",
           "weight": 10,
           "name": "ervin_mod_1:turg"
         },
@@ -95,18 +120,23 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 1,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 10
+            }
+          ],
           "name": "ervin_mod_1:kirt"
         },
         {
           "type": "minecraft:item",
-          "weight": 0.1,
+          "weight": 0.6,
           "functions": [
             {
               "function": "minecraft:set_damage",
               "damage": {
                 "min": 0.0,
-                "max": 0.01
+                "max": 10
               }
             }
           ],
@@ -114,23 +144,28 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 1,
-          "name": "minecraft:iron_ingot"
+          "weight": 3,
+          "name": "ervin_mod_1:kirt_stick"
         },
         {
           "type": "minecraft:item",
-          "weight": 10,
-          "name": "minecraft:kelp"
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 3
+            }
+          ],
+          "name": "ervin_mod_1:kirt_stik"
         },
         {
           "type": "minecraft:item",
-          "weight": 0.1,
+          "weight": 0.6,
           "functions": [
             {
               "function": "minecraft:set_damage",
               "damage": {
                 "min": 0.0,
-                "max": 0.01
+                "max": 10
               }
             }
           ],
@@ -148,13 +183,13 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 0.1,
+          "weight": 0.6,
           "functions": [
             {
               "function": "minecraft:set_damage",
               "damage": {
                 "min": 0.0,
-                "max": 0.01
+                "max": 10
               }
             }
           ],
@@ -172,13 +207,13 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 0.1,
+          "weight": 0.6,
           "functions": [
             {
               "function": "minecraft:set_damage",
               "damage": {
                 "min": 0.0,
-                "max": 0.01
+                "max": 10
               }
             }
           ],
@@ -191,18 +226,18 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 0.1,
+          "weight": 0.4,
           "name": "minecraft:obsidian"
         },
         {
           "type": "minecraft:item",
-          "weight": 0.1,
+          "weight": 0.6,
           "functions": [
             {
               "function": "minecraft:set_damage",
               "damage": {
                 "min": 0.0,
-                "max": 0.01
+                "max": 10
               }
             }
           ],
@@ -210,7 +245,7 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 1,
+          "weight": 3.6,
           "name": "minecraft:shears"
         },
         {
@@ -220,13 +255,13 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 0.1,
+          "weight": 0.6,
           "functions": [
             {
               "function": "minecraft:set_damage",
               "damage": {
                 "min": 0.0,
-                "max": 0.01
+                "max": 10
               }
             }
           ],
@@ -244,13 +279,13 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 0.1,
+          "weight": 0.6,
           "functions": [
             {
               "function": "minecraft:set_damage",
               "damage": {
                 "min": 0.0,
-                "max": 0.01
+                "max": 10
               }
             }
           ],
@@ -258,7 +293,7 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 1,
+          "weight": 2,
           "name": "ervin_mod_1:charcoal_block"
         },
         {
@@ -293,13 +328,13 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 0.1,
+          "weight": 0.6,
           "functions": [
             {
               "function": "minecraft:set_damage",
               "damage": {
                 "min": 0.0,
-                "max": 0.01
+                "max": 10
               }
             }
           ],
@@ -307,23 +342,23 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 1,
+          "weight": 4.8,
           "name": "minecraft:iron_ingot"
         },
         {
           "type": "minecraft:item",
-          "weight": 10,
-          "name": "minecraft:kelp"
+          "weight": 15,
+          "name": "ervin_mod_1:leat"
         },
         {
           "type": "minecraft:item",
-          "weight": 0.1,
+          "weight": 0.6,
           "functions": [
             {
               "function": "minecraft:set_damage",
               "damage": {
                 "min": 0.0,
-                "max": 0.01
+                "max": 10
               }
             }
           ],
@@ -336,27 +371,32 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 10,
-          "name": "minecraft:kelp"
+          "weight": 4,
+          "name": "ervin_mod_1:firg"
         },
         {
           "type": "minecraft:item",
-          "weight": 0.4,
-          "functions": [
-            {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.0,
-                "max": 0.01
-              }
-            }
-          ],
+          "weight": 4,
+          "name": "ervin_mod_1:firg_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 4,
+          "name": "ervin_mod_1:firg_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 0.9,
           "name": "ervin_mod_1:firt"
         },
         {
           "type": "minecraft:item",
-          "weight": 1,
-          "name": "minecraft:iron_ingot"
+          "name": "ervin_mod_1:spawn_eggs/zur_spawn_egg"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 0.2,
+          "name": "ervin_mod_1:sriunk"
         },
         {
           "type": "minecraft:item",
@@ -493,7 +533,7 @@
           "type": "minecraft:item",
           "weight": 10,
           "name": "minecraft:oak_sapling"
-        },
+        }
       ]
     }
   ]

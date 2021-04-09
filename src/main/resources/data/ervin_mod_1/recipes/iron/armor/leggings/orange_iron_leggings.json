@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "X X",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "item": "ervin_mod_1:iron/ingots/orange_iron_ingot"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:iron/armor/leggings/orange_iron_leggings"
+  }
+}

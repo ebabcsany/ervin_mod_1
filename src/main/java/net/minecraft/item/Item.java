@@ -50,7 +50,7 @@ public class Item extends net.minecraftforge.registries.ForgeRegistryEntry<Item>
    private final Food food;
 
    public static int getIdFromItem(Item itemIn) {
-      return itemIn == null ? 0 : Registry.ITEM.getId(itemIn);
+      return Registry.ITEM.getId(itemIn);
    }
 
    public static Item getItemById(int id) {
@@ -471,6 +471,7 @@ public class Item extends net.minecraftforge.registries.ForgeRegistryEntry<Item>
       private Rarity rarity = Rarity.COMMON;
       /** Sets food information to this item */
       private Food food;
+      private com.babcsany.minecraft.ervin_mod_1.init.item.food.Food modFood;
       private boolean burnable;
       private boolean canRepair = true;
       private Map<net.minecraftforge.common.ToolType, Integer> toolClasses = Maps.newHashMap();
@@ -478,6 +479,11 @@ public class Item extends net.minecraftforge.registries.ForgeRegistryEntry<Item>
 
       public Properties food(Food foodIn) {
          this.food = foodIn;
+         return this;
+      }
+
+      public Properties modFood(com.babcsany.minecraft.ervin_mod_1.init.item.food.Food foodIn) {
+         this.modFood = foodIn;
          return this;
       }
 

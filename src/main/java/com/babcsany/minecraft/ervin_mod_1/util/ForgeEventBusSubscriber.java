@@ -1,7 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.util;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
-import com.babcsany.minecraft.ervin_mod_1.init.DimensionInit;
 import net.minecraft.world.DimensionType;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;

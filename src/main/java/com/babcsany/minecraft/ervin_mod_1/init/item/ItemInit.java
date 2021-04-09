@@ -1,14 +1,11 @@
 package com.babcsany.minecraft.ervin_mod_1.init.item;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
-import com.babcsany.minecraft.ervin_mod_1.entity.item.FirgBoatEntity;
-import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
-import com.babcsany.minecraft.ervin_mod_1.init.FoodInit;
+import com.babcsany.minecraft.ervin_mod_1.entity.item.ModBoatEntity;
 import com.babcsany.minecraft.ervin_mod_1.item.*;
-import com.babcsany.minecraft.ervin_mod_1.item.ModSpawnEggItem;
-import net.minecraft.entity.EntityType;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
+import net.minecraft.item.AxeItem;
 import net.minecraft.item.PickaxeItem;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.RegistryObject;
@@ -36,9 +33,6 @@ public class ItemInit {
     ));
     public static final RegistryObject<Item> RUBY = ITEMS.register("ruby", () -> new Item(
             (new Item.Properties())
-    ));
-    public static final RegistryObject<Item> FRIM = ITEMS.register("frim", () -> new Item(
-            (new Item.Properties()).food(FoodInit.FRIM)
     ));
     public static final RegistryObject<Item> FRIN = ITEMS.register("frin", () -> new Item(
             (new Item.Properties())
@@ -127,14 +121,14 @@ public class ItemInit {
     public static final RegistryObject<Item> FIRT_PICKAXE = ITEMS.register("firt_pickaxe", () -> new PickaxeItem(
             ModItemTier.FIRT, 4, 8.4F, (new Item.Properties())
     ));
+    public static final RegistryObject<Item> Bj_PICKAXE = ITEMS.register("bj_pickaxe", () -> new com.babcsany.minecraft.ervin_mod_1.item.PickaxeItem(
+            ModItemTier.Bj, 2, 6.2F, (new Item.Properties())
+    ));
     public static final RegistryObject<Item> PACK = ITEMS.register("pack", () -> new Item(
             (new Item.Properties())
     ));
     public static final RegistryObject<Item> TIRSK = ITEMS.register("tirsk", () -> new Item(
             (new Item.Properties())
-    ));
-    public static final RegistryObject<ModSpawnEggItem> ZUR_ENTITY_SPAWN_EGG = ITEMS.register("spawn_eggs/zur_spawn_egg", () -> new ModSpawnEggItem(
-            EntityInit.ZUR_ENTITY, 0x6ea587, 0x446648, new Item.Properties()
     ));
     public static final RegistryObject<Item> KALT = ITEMS.register("kalt", () -> new Item(
             (new Item.Properties())
@@ -175,9 +169,6 @@ public class ItemInit {
     public static final RegistryObject<Item> FIRT_BOOTS = ITEMS.register("firt_boots", () -> new ArmorItem(
             ModArmorMaterial.FIRT, EquipmentSlotType.FEET, (new Item.Properties())
     ));
-    public static final RegistryObject<Item> VOLMINT = ITEMS.register("volmint", () -> new Item(
-            (new Item.Properties()).food(FoodInit.VOLMINT)
-    ));
     public static final RegistryObject<Item> SURV_PICKAXE = ITEMS.register("surv_pickaxe", () -> new PickaxeItem(
             ModItemTier.SURV, 10, 3.0F, (new Item.Properties())
     ));
@@ -206,22 +197,22 @@ public class ItemInit {
             (new Item.Properties())
     ));
     public static final RegistryObject<Item> KIRT_PICKAXE = ITEMS.register("kirt_pickaxe", () -> new PickaxeItem(
-            ModItemTier.KIRT, 0, 1.0F, (new Item.Properties())
+            ModItemTier.KIRT, (int)0.1, 1.0F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> GRITK = ITEMS.register("gritk", () -> new Item(
             (new Item.Properties())
     ));
-    public static final RegistryObject<Item> KIRT_AXE = ITEMS.register("kirt_axe", () -> new AxeItem1(
-            ModItemTier.KIRT, 3, 2.0F, (new Item.Properties())
+    public static final RegistryObject<Item> KIRT_AXE = ITEMS.register("kirt_axe", () -> new AxeItem(
+            ModItemTier.KIRT, 0.4F, 2.5F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> KIRT_HOE = ITEMS.register("kirt_hoe", () -> new HoeItem(
-            ModItemTier.KIRT, 0, 0.0F, (new Item.Properties())
+            ModItemTier.KIRT, 0, 0.5F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> KIRT_SHOVEL = ITEMS.register("kirt_shovel", () -> new ShovelItem(
-            ModItemTier.KIRT, 1, 1.0F, (new Item.Properties())
+            ModItemTier.KIRT, 0.3F, 2.0F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> KIRT_SWORD = ITEMS.register("kirt_sword", () -> new SwordItem(
-            ModItemTier.KIRT, 2, 2.0F, (new Item.Properties())
+            ModItemTier.KIRT, (int)0.2, 1.5F, (new Item.Properties())
     ));
     public static final RegistryObject<Item> CHAK = ITEMS.register("chak", () -> new Item(
             (new Item.Properties())
@@ -246,9 +237,6 @@ public class ItemInit {
     ));
     public static final RegistryObject<Item> ZUNK = ITEMS.register("zunk", () -> new Item(
             (new Item.Properties())
-    ));
-    public static final RegistryObject<Item> ZUNT = ITEMS.register("zunt", () -> new Item(
-            (new Item.Properties()).food(FoodInit.ZUNT)
     ));
     public static final RegistryObject<Item> ZUNKT = ITEMS.register("zunkt", () -> new Item(
             (new Item.Properties())
@@ -284,17 +272,17 @@ public class ItemInit {
     public static final RegistryObject<Item> ENDER_CRAKTHS = ITEMS.register("ender_crakths", () -> new Item(
             (new Item.Properties())
     ));
-    public static final RegistryObject<Item> FIRG_BOAT = ITEMS.register("firg_boat", () -> new FirgBoatItem(
-            FirgBoatEntity.Type.FIRG, (new Item.Properties()).maxStackSize(1)
+    public static final RegistryObject<ModBoatItem> FIRG_BOAT = ITEMS.register("firg_boat", () -> new ModBoatItem(
+            ModBoatEntity.Type.FIRG, (new Item.Properties()).maxStackSize(1)
+    ));
+    public static final RegistryObject<ModBoatItem> FRIM_BOAT = ITEMS.register("frim_boat", () -> new ModBoatItem(
+            ModBoatEntity.Type.FRIM, (new Item.Properties()).maxStackSize(1)
     ));
     public static final RegistryObject<Item> JURK_BUCKET = ITEMS.register("jurk_bucket", () -> new JurkBucketItem(
             (new Item.Properties())
     ));
     public static final RegistryObject<Item> CRAKH = ITEMS.register("crakh", () -> new Item(
             (new Item.Properties())
-    ));
-    public static final RegistryObject<Item> REAT = ITEMS.register("reat", () -> new Item(
-            (new Item.Properties()).food(FoodInit.REAT)
     ));
     public static final RegistryObject<Item> DURT_PICKAXE = ITEMS.register("durt_pickaxe", () -> new PickaxeItem(
             ModItemTier.DURT, 4, 1.0F, (new Item.Properties())
@@ -356,17 +344,14 @@ public class ItemInit {
     public static final RegistryObject<Item> RED_IRON_INGOT = ITEMS.register("iron/ingots/red_iron_ingot", () -> new Item(
             (new Item.Properties())
     ));
+    public static final RegistryObject<Item> WHITE_IRON_INGOT = ITEMS.register("iron/ingots/white_iron_ingot", () -> new Item(
+            (new Item.Properties())
+    ));
     public static final RegistryObject<Item> YELLOW_IRON_INGOT = ITEMS.register("iron/ingots/yellow_iron_ingot", () -> new Item(
             (new Item.Properties())
     ));
-    public static final RegistryObject<ModSpawnEggItem> VILT_ENTITY_SPAWN_EGG = ITEMS.register("spawn_eggs/vilt_spawn_egg", () -> new ModSpawnEggItem(
-            EntityInit.VILT_ENTITY, 0xc02020, 0xc02020, new Item.Properties()
-    ));
     public static final RegistryObject<Item> TARG = ITEMS.register("targ", () -> new Item(
             (new Item.Properties())
-    ));
-    public static final RegistryObject<ModSpawnEggItem> SRACH_ENTITY_SPAWN_EGG = ITEMS.register("spawn_eggs/srach_spawn_egg", () -> new ModSpawnEggItem(
-            EntityInit.SRACH_ENTITY, 0x8000ff, 0x8000ff, new Item.Properties()
     ));
     public static final RegistryObject<Item> OBSIDIAN_PICKAXE = ITEMS.register("obsidian_pickaxe", () -> new PickaxeItem(
             ModItemTier.OBSIDIAN, 2, -2.0F, (new Item.Properties())
@@ -404,32 +389,8 @@ public class ItemInit {
     public static final RegistryObject<Item> ZURK = ITEMS.register("zurk", () -> new Item(
             (new Item.Properties())
     ));
-    public static final RegistryObject<Item> GIANT_SPAWN_EGG = ITEMS.register("spawn_eggs/giant_spawn_egg", () -> new SpawnEggItem(
-            EntityType.GIANT, 7425368, 3462945, new Item.Properties()
-    ));
-    public static final RegistryObject<Item> ILLUSIONER_SPAWN_EGG = ITEMS.register("spawn_eggs/illusioner_spawn_egg", () -> new SpawnEggItem(
-            EntityType.ILLUSIONER, 10574382, 10893626, new Item.Properties()
-    ));
-    public static final RegistryObject<Item> IRON_GOLEM_SPAWN_EGG = ITEMS.register("spawn_eggs/iron_golem_spawn_egg", () -> new SpawnEggItem(
-            EntityType.IRON_GOLEM, 16777215, 5000268, new Item.Properties()
-    ));
-    public static final RegistryObject<Item> SNOW_GOLEM_SPAWN_EGG = ITEMS.register("spawn_eggs/snow_golem_spawn_egg", () -> new SpawnEggItem(
-            EntityType.SNOW_GOLEM, 27649, 146359, new Item.Properties()
-    ));
-    public static final RegistryObject<Item> WITHER_SPAWN_EGG = ITEMS.register("spawn_eggs/wither_spawn_egg", () -> new SpawnEggItem(
-            EntityType.WITHER, 1644825, 2468825, new Item.Properties()
-    ));
-    public static final RegistryObject<Item> ENDER_DRAGON_SPAWN_EGG = ITEMS.register("spawn_eggs/ender_dragon_spawn_egg", () -> new SpawnEggItem(
-            EntityType.ENDER_DRAGON, 6741, 55263, new Item.Properties()
-    ));
     public static final RegistryObject<Item> MLONK = ITEMS.register("mlonk", () -> new Item(
             (new Item.Properties())
-    ));
-    public static final RegistryObject<Item> TRADER_NIRTRE_SPAWN_EGG = ITEMS.register("spawn_eggs/trader_nirtre_spawn_egg", () -> new ModSpawnEggItem(
-            EntityInit.TRADER_NIRTRE_ENTITY, 0x3c7828, 0x3c2850, new Item.Properties()
-    ));
-    public static final RegistryObject<Item> WANDERING_TRADER_NIRTRE_SPAWN_EGG = ITEMS.register("spawn_eggs/wandering_trader_nirtre_spawn_egg", () -> new ModSpawnEggItem(
-            EntityInit.WANDERING_TRADER_NIRTRE_ENTITY, 0x503c28, 0x283c50, new Item.Properties()
     ));
     public static final RegistryObject<Item> BLACK_STONE_AXE = ITEMS.register("stone/tools/axe/black_stone_axe", () -> new AxeItem(
             ModItemTier.BLACK_COBBLESTONE, 7.0F, -3.2F, (new Item.Properties())
@@ -701,44 +662,221 @@ public class ItemInit {
     public static final RegistryObject<Item> RED_IRON_SWORD = ITEMS.register("tools/iron/sword/red_iron_sword", () -> new SwordItem(
             ModItemTier.RED_IRON_INGOT, 3, -2.4F, (new Item.Properties())
     ));
-    public static final RegistryObject<ModSpawnEggItem> $_TRADER_SPAWN_EGG = ITEMS.register("spawn_eggs/$_trader_spawn_egg", () -> new ModSpawnEggItem(
-            EntityInit.$_TRADER_ENTITY, 0x204080, 0x402080, new Item.Properties()
-    ));
-    public static final RegistryObject<ModSpawnEggItem> ZOMBIE_TRADER_SPAWN_EGG = ITEMS.register("spawn_eggs/zombie_trader_spawn_egg", () -> new ModSpawnEggItem(
-            EntityInit.ZOMBIE_TRADER_ENTITY, 0x40c080, 0x20a0c0, new Item.Properties()
-    ));
-    public static final RegistryObject<ModSpawnEggItem> ROVENT_SPAWN_EGG = ITEMS.register("spawn_eggs/rovent_spawn_egg", () -> new ModSpawnEggItem(
-            EntityInit.ROVENT_ENTITY, 0x244830, 0x28384e, new Item.Properties()
-    ));
     //public static final RegistryObject<Item> COD_BUCKET = ITEMS.register("cod_bucket", new FishBucketItem(EntityInit.GUBROV_ENTITY.get(), Fluids.WATER, (new Item.Properties()).maxStackSize(1).group(ItemGroup.MISC)));
-    public static final RegistryObject<ModSpawnEggItem> GUBROV_SPAWN_EGG = ITEMS.register("spawn_eggs/gubrov_spawn_egg", () -> new ModSpawnEggItem(
-            EntityInit.GUBROV_ENTITY, 0x244830, 0x28384e, new Item.Properties()
-    ));
-    public static final RegistryObject<Item> GUBROV = ITEMS.register("gubrov", () -> new Gubrov(
-            (new Item.Properties()).food(FoodInit.GUBROV)
-    ));
-    public static final RegistryObject<Item> COOKED_GUBROV = ITEMS.register("cooked_gubrov", () -> new Gubrov(
-            (new Item.Properties()).food(FoodInit.COOKED_GUBROV)
-    ));
-    public static final RegistryObject<ModSpawnEggItem> HHIJ_SPAWN_EGG = ITEMS.register("spawn_eggs/wolf1_spawn_egg", () -> new ModSpawnEggItem(
-            EntityInit.HHIJ_ENTITY, 0x4040c0, 0x402080, new Item.Properties()
-    ));
-    public static final RegistryObject<Item> JAZZ_FRUIT = ITEMS.register("jazz_fruit", () -> new Item(
-            (new Item.Properties()).food(FoodInit.JAZZ_FRUIT)
-    ));
     public static final RegistryObject<Item> SPAWN_EGG_1 = ITEMS.register("spawn_eggs/spawn_egg_1", () -> new Item(
             (new Item.Properties())
     ));
     public static final RegistryObject<Item> LIGHT_BLUE1_DYE = ITEMS.register("light_blue1_dye", () -> new Item(
             (new Item.Properties())
     ));
-    public static final RegistryObject<Item> STEEF = ITEMS.register("steef", () -> new Item(
-            (new Item.Properties()).food(FoodInit.STEEF)
+    public static final RegistryObject<Item> BLACK_IRON_HELMET = ITEMS.register("iron/armor/helmet/black_iron_helmet", () -> new ArmorItem(
+            ModArmorMaterial.BLACK_IRON, EquipmentSlotType.HEAD, (new Item.Properties())
     ));
-    public static final RegistryObject<Item> COOKED_STEEF = ITEMS.register("cooked_steef", () -> new Item(
-            (new Item.Properties()).food(FoodInit.COOKED_STEEF)
+    public static final RegistryObject<Item> BLACK_IRON_CHESTPLATE = ITEMS.register("iron/armor/chestplate/black_iron_chestplate", () -> new ArmorItem(
+            ModArmorMaterial.BLACK_IRON, EquipmentSlotType.CHEST, (new Item.Properties())
     ));
-    public static final RegistryObject<ModSpawnEggItem> FREIN_SPAWN_EGG = ITEMS.register("spawn_eggs/frein_spawn_egg", () -> new ModSpawnEggItem(
-            EntityInit.FREIN_ENTITY, 0x000025, 0x00000050, new Item.Properties()
+    public static final RegistryObject<Item> BLACK_IRON_LEGGINGS = ITEMS.register("iron/armor/leggings/black_iron_leggings", () -> new ArmorItem(
+            ModArmorMaterial.BLACK_IRON, EquipmentSlotType.LEGS, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> BLACK_IRON_BOOTS = ITEMS.register("iron/armor/boots/black_iron_boots", () -> new ArmorItem(
+            ModArmorMaterial.BLACK_IRON, EquipmentSlotType.FEET, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> BLUE_IRON_HELMET = ITEMS.register("iron/armor/helmet/blue_iron_helmet", () -> new ArmorItem(
+            ModArmorMaterial.BLUE_IRON, EquipmentSlotType.HEAD, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> BLUE_IRON_CHESTPLATE = ITEMS.register("iron/armor/chestplate/blue_iron_chestplate", () -> new ArmorItem(
+            ModArmorMaterial.BLUE_IRON, EquipmentSlotType.CHEST, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> BLUE_IRON_LEGGINGS = ITEMS.register("iron/armor/leggings/blue_iron_leggings", () -> new ArmorItem(
+            ModArmorMaterial.BLUE_IRON, EquipmentSlotType.LEGS, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> BLUE_IRON_BOOTS = ITEMS.register("iron/armor/boots/blue_iron_boots", () -> new ArmorItem(
+            ModArmorMaterial.BLUE_IRON, EquipmentSlotType.FEET, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> BROWN_IRON_HELMET = ITEMS.register("iron/armor/helmet/brown_iron_helmet", () -> new ArmorItem(
+            ModArmorMaterial.BROWN_IRON, EquipmentSlotType.HEAD, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> BROWN_IRON_CHESTPLATE = ITEMS.register("iron/armor/chestplate/brown_iron_chestplate", () -> new ArmorItem(
+            ModArmorMaterial.BROWN_IRON, EquipmentSlotType.CHEST, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> BROWN_IRON_LEGGINGS = ITEMS.register("iron/armor/leggings/brown_iron_leggings", () -> new ArmorItem(
+            ModArmorMaterial.BROWN_IRON, EquipmentSlotType.LEGS, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> BROWN_IRON_BOOTS = ITEMS.register("iron/armor/boots/brown_iron_boots", () -> new ArmorItem(
+            ModArmorMaterial.BROWN_IRON, EquipmentSlotType.FEET, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> CYAN_IRON_HELMET = ITEMS.register("iron/armor/helmet/cyan_iron_helmet", () -> new ArmorItem(
+            ModArmorMaterial.CYAN_IRON, EquipmentSlotType.HEAD, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> CYAN_IRON_CHESTPLATE = ITEMS.register("iron/armor/chestplate/cyan_iron_chestplate", () -> new ArmorItem(
+            ModArmorMaterial.CYAN_IRON, EquipmentSlotType.CHEST, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> CYAN_IRON_LEGGINGS = ITEMS.register("iron/armor/leggings/cyan_iron_leggings", () -> new ArmorItem(
+            ModArmorMaterial.CYAN_IRON, EquipmentSlotType.LEGS, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> CYAN_IRON_BOOTS = ITEMS.register("iron/armor/boots/cyan_iron_boots", () -> new ArmorItem(
+            ModArmorMaterial.CYAN_IRON, EquipmentSlotType.FEET, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> GRAY_IRON_HELMET = ITEMS.register("iron/armor/helmet/gray_iron_helmet", () -> new ArmorItem(
+            ModArmorMaterial.GRAY_IRON, EquipmentSlotType.HEAD, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> GRAY_IRON_CHESTPLATE = ITEMS.register("iron/armor/chestplate/gray_iron_chestplate", () -> new ArmorItem(
+            ModArmorMaterial.GRAY_IRON, EquipmentSlotType.CHEST, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> GRAY_IRON_LEGGINGS = ITEMS.register("iron/armor/leggings/gray_iron_leggings", () -> new ArmorItem(
+            ModArmorMaterial.GRAY_IRON, EquipmentSlotType.LEGS, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> GRAY_IRON_BOOTS = ITEMS.register("iron/armor/boots/gray_iron_boots", () -> new ArmorItem(
+            ModArmorMaterial.GRAY_IRON, EquipmentSlotType.FEET, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> GREEN_IRON_HELMET = ITEMS.register("iron/armor/helmet/green_iron_helmet", () -> new ArmorItem(
+            ModArmorMaterial.GREEN_IRON, EquipmentSlotType.HEAD, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> GREEN_IRON_CHESTPLATE = ITEMS.register("iron/armor/chestplate/green_iron_chestplate", () -> new ArmorItem(
+            ModArmorMaterial.GREEN_IRON, EquipmentSlotType.CHEST, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> GREEN_IRON_LEGGINGS = ITEMS.register("iron/armor/leggings/green_iron_leggings", () -> new ArmorItem(
+            ModArmorMaterial.GREEN_IRON, EquipmentSlotType.LEGS, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> GREEN_IRON_BOOTS = ITEMS.register("iron/armor/boots/green_iron_boots", () -> new ArmorItem(
+            ModArmorMaterial.GREEN_IRON, EquipmentSlotType.FEET, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> LIGHT_BLUE_IRON_HELMET = ITEMS.register("iron/armor/helmet/light_blue_iron_helmet", () -> new ArmorItem(
+            ModArmorMaterial.LIGHT_BLUE_IRON, EquipmentSlotType.HEAD, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> LIGHT_BLUE_IRON_CHESTPLATE = ITEMS.register("iron/armor/chestplate/light_blue_iron_chestplate", () -> new ArmorItem(
+            ModArmorMaterial.LIGHT_BLUE_IRON, EquipmentSlotType.CHEST, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> LIGHT_BLUE_IRON_LEGGINGS = ITEMS.register("iron/armor/leggings/light_blue_iron_leggings", () -> new ArmorItem(
+            ModArmorMaterial.LIGHT_BLUE_IRON, EquipmentSlotType.LEGS, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> LIGHT_BLUE_IRON_BOOTS = ITEMS.register("iron/armor/boots/light_blue_iron_boots", () -> new ArmorItem(
+            ModArmorMaterial.LIGHT_BLUE_IRON, EquipmentSlotType.FEET, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> LIGHT_BLUE1_IRON_HELMET = ITEMS.register("iron/armor/helmet/light_blue1_iron_helmet", () -> new ArmorItem(
+            ModArmorMaterial.LIGHT_BLUE1_IRON, EquipmentSlotType.HEAD, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> LIGHT_BLUE1_IRON_CHESTPLATE = ITEMS.register("iron/armor/chestplate/light_blue1_iron_chestplate", () -> new ArmorItem(
+            ModArmorMaterial.LIGHT_BLUE1_IRON, EquipmentSlotType.CHEST, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> LIGHT_BLUE1_IRON_LEGGINGS = ITEMS.register("iron/armor/leggings/light_blue1_iron_leggings", () -> new ArmorItem(
+            ModArmorMaterial.LIGHT_BLUE1_IRON, EquipmentSlotType.LEGS, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> LIGHT_BLUE1_IRON_BOOTS = ITEMS.register("iron/armor/boots/light_blue1_iron_boots", () -> new ArmorItem(
+            ModArmorMaterial.LIGHT_BLUE1_IRON, EquipmentSlotType.FEET, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> LIGHT_GRAY_IRON_HELMET = ITEMS.register("iron/armor/helmet/light_gray_iron_helmet", () -> new ArmorItem(
+            ModArmorMaterial.LIGHT_GRAY_IRON, EquipmentSlotType.HEAD, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> LIGHT_GRAY_IRON_CHESTPLATE = ITEMS.register("iron/armor/chestplate/light_gray_iron_chestplate", () -> new ArmorItem(
+            ModArmorMaterial.LIGHT_GRAY_IRON, EquipmentSlotType.CHEST, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> LIGHT_GRAY_IRON_LEGGINGS = ITEMS.register("iron/armor/leggings/light_gray_iron_leggings", () -> new ArmorItem(
+            ModArmorMaterial.LIGHT_GRAY_IRON, EquipmentSlotType.LEGS, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> LIGHT_GRAY_IRON_BOOTS = ITEMS.register("iron/armor/boots/light_gray_iron_boots", () -> new ArmorItem(
+            ModArmorMaterial.LIGHT_GRAY_IRON, EquipmentSlotType.FEET, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> LIME_IRON_HELMET = ITEMS.register("iron/armor/helmet/lime_iron_helmet", () -> new ArmorItem(
+            ModArmorMaterial.LIME_IRON, EquipmentSlotType.HEAD, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> LIME_IRON_CHESTPLATE = ITEMS.register("iron/armor/chestplate/lime_iron_chestplate", () -> new ArmorItem(
+            ModArmorMaterial.LIME_IRON, EquipmentSlotType.CHEST, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> LIME_IRON_LEGGINGS = ITEMS.register("iron/armor/leggings/lime_iron_leggings", () -> new ArmorItem(
+            ModArmorMaterial.LIME_IRON, EquipmentSlotType.LEGS, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> LIME_IRON_BOOTS = ITEMS.register("iron/armor/boots/lime_iron_boots", () -> new ArmorItem(
+            ModArmorMaterial.LIME_IRON, EquipmentSlotType.FEET, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> MAGENTA_IRON_HELMET = ITEMS.register("iron/armor/helmet/magenta_iron_helmet", () -> new ArmorItem(
+            ModArmorMaterial.MAGENTA_IRON, EquipmentSlotType.HEAD, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> MAGENTA_IRON_CHESTPLATE = ITEMS.register("iron/armor/chestplate/magenta_iron_chestplate", () -> new ArmorItem(
+            ModArmorMaterial.MAGENTA_IRON, EquipmentSlotType.CHEST, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> MAGENTA_IRON_LEGGINGS = ITEMS.register("iron/armor/leggings/magenta_iron_leggings", () -> new ArmorItem(
+            ModArmorMaterial.MAGENTA_IRON, EquipmentSlotType.LEGS, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> MAGENTA_IRON_BOOTS = ITEMS.register("iron/armor/boots/magenta_iron_boots", () -> new ArmorItem(
+            ModArmorMaterial.MAGENTA_IRON, EquipmentSlotType.FEET, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> ORANGE_IRON_HELMET = ITEMS.register("iron/armor/helmet/orange_iron_helmet", () -> new ArmorItem(
+            ModArmorMaterial.ORANGE_IRON, EquipmentSlotType.HEAD, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> ORANGE_IRON_CHESTPLATE = ITEMS.register("iron/armor/chestplate/orange_iron_chestplate", () -> new ArmorItem(
+            ModArmorMaterial.ORANGE_IRON, EquipmentSlotType.CHEST, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> ORANGE_IRON_LEGGINGS = ITEMS.register("iron/armor/leggings/orange_iron_leggings", () -> new ArmorItem(
+            ModArmorMaterial.ORANGE_IRON, EquipmentSlotType.LEGS, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> ORANGE_IRON_BOOTS = ITEMS.register("iron/armor/boots/orange_iron_boots", () -> new ArmorItem(
+            ModArmorMaterial.ORANGE_IRON, EquipmentSlotType.FEET, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> PINK_IRON_HELMET = ITEMS.register("iron/armor/helmet/pink_iron_helmet", () -> new ArmorItem(
+            ModArmorMaterial.PINK_IRON, EquipmentSlotType.HEAD, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> PINK_IRON_CHESTPLATE = ITEMS.register("iron/armor/chestplate/pink_iron_chestplate", () -> new ArmorItem(
+            ModArmorMaterial.PINK_IRON, EquipmentSlotType.CHEST, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> PINK_IRON_LEGGINGS = ITEMS.register("iron/armor/leggings/pink_iron_leggings", () -> new ArmorItem(
+            ModArmorMaterial.PINK_IRON, EquipmentSlotType.LEGS, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> PINK_IRON_BOOTS = ITEMS.register("iron/armor/boots/pink_iron_boots", () -> new ArmorItem(
+            ModArmorMaterial.PINK_IRON, EquipmentSlotType.FEET, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> PURPLE_IRON_HELMET = ITEMS.register("iron/armor/helmet/purple_iron_helmet", () -> new ArmorItem(
+            ModArmorMaterial.PURPLE_IRON, EquipmentSlotType.HEAD, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> PURPLE_IRON_CHESTPLATE = ITEMS.register("iron/armor/chestplate/purple_iron_chestplate", () -> new ArmorItem(
+            ModArmorMaterial.PURPLE_IRON, EquipmentSlotType.CHEST, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> PURPLE_IRON_LEGGINGS = ITEMS.register("iron/armor/leggings/purple_iron_leggings", () -> new ArmorItem(
+            ModArmorMaterial.PURPLE_IRON, EquipmentSlotType.LEGS, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> PURPLE_IRON_BOOTS = ITEMS.register("iron/armor/boots/purple_iron_boots", () -> new ArmorItem(
+            ModArmorMaterial.PURPLE_IRON, EquipmentSlotType.FEET, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> RED_IRON_HELMET = ITEMS.register("iron/armor/helmet/red_iron_helmet", () -> new ArmorItem(
+            ModArmorMaterial.RED_IRON, EquipmentSlotType.HEAD, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> RED_IRON_CHESTPLATE = ITEMS.register("iron/armor/chestplate/red_iron_chestplate", () -> new ArmorItem(
+            ModArmorMaterial.RED_IRON, EquipmentSlotType.CHEST, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> RED_IRON_LEGGINGS = ITEMS.register("iron/armor/leggings/red_iron_leggings", () -> new ArmorItem(
+            ModArmorMaterial.RED_IRON, EquipmentSlotType.LEGS, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> RED_IRON_BOOTS = ITEMS.register("iron/armor/boots/red_iron_boots", () -> new ArmorItem(
+            ModArmorMaterial.RED_IRON, EquipmentSlotType.FEET, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> WHITE_IRON_HELMET = ITEMS.register("iron/armor/helmet/white_iron_helmet", () -> new ArmorItem(
+            ModArmorMaterial.WHITE_IRON, EquipmentSlotType.HEAD, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> WHITE_IRON_CHESTPLATE = ITEMS.register("iron/armor/chestplate/white_iron_chestplate", () -> new ArmorItem(
+            ModArmorMaterial.WHITE_IRON, EquipmentSlotType.CHEST, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> WHITE_IRON_LEGGINGS = ITEMS.register("iron/armor/leggings/white_iron_leggings", () -> new ArmorItem(
+            ModArmorMaterial.WHITE_IRON, EquipmentSlotType.LEGS, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> WHITE_IRON_BOOTS = ITEMS.register("iron/armor/boots/white_iron_boots", () -> new ArmorItem(
+            ModArmorMaterial.WHITE_IRON, EquipmentSlotType.FEET, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> YELLOW_IRON_HELMET = ITEMS.register("iron/armor/helmet/yellow_iron_helmet", () -> new ArmorItem(
+            ModArmorMaterial.YELLOW_IRON, EquipmentSlotType.HEAD, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> YELLOW_IRON_CHESTPLATE = ITEMS.register("iron/armor/chestplate/yellow_iron_chestplate", () -> new ArmorItem(
+            ModArmorMaterial.YELLOW_IRON, EquipmentSlotType.CHEST, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> YELLOW_IRON_LEGGINGS = ITEMS.register("iron/armor/leggings/yellow_iron_leggings", () -> new ArmorItem(
+            ModArmorMaterial.YELLOW_IRON, EquipmentSlotType.LEGS, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> YELLOW_IRON_BOOTS = ITEMS.register("iron/armor/boots/yellow_iron_boots", () -> new ArmorItem(
+            ModArmorMaterial.YELLOW_IRON, EquipmentSlotType.FEET, (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> DGUCHSR = ITEMS.register("dguchsr", () -> new Item(
+            (new Item.Properties())
+    ));
+    public static final RegistryObject<Item> TAWROL = ITEMS.register("tawrol", () -> new TawrolItem(
+            (new Item.Properties())
     ));
 }

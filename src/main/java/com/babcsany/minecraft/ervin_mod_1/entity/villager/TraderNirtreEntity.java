@@ -2,9 +2,10 @@ package com.babcsany.minecraft.ervin_mod_1.entity.villager;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.LookAtCustomerGoal1;
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.WanderingTraderTradeWithPlayerGoal;
+import com.babcsany.minecraft.ervin_mod_1.entity.animal.Liwray;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.TraderNirtreTrades;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.spawn_egg.ModSpawnEggItemInit;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -17,14 +18,16 @@ import net.minecraft.nbt.NBTUtil;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
 public class TraderNirtreEntity extends AbstractNirtreEntity {
    @Nullable
-   private BlockPos wanderTarget;
+   private BlockPos traderNirtreTarget;
    private int despawnDelay;
+   private int xp;
 
    public TraderNirtreEntity(EntityType<? extends TraderNirtreEntity> type, World worldIn) {
       super(type, worldIn);
@@ -44,12 +47,24 @@ public class TraderNirtreEntity extends AbstractNirtreEntity {
    }
 
    public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
-      return LivingEntity.registerAttributes().createMutableAttribute(Attributes.FOLLOW_RANGE, 1600.0D).createMutableAttribute(Attributes.MAX_HEALTH, 16.0D).createMutableAttribute(Attributes.ATTACK_KNOCKBACK).createMutableAttribute(Attributes.ATTACK_DAMAGE, 10.0D);
+      return LivingEntity.registerAttributes().createMutableAttribute(Attributes.FOLLOW_RANGE, 1600.0D).createMutableAttribute(Attributes.MAX_HEALTH, 400.0D).createMutableAttribute(Attributes.ATTACK_KNOCKBACK).createMutableAttribute(Attributes.ATTACK_DAMAGE, 10.0D);
    }
 
+   /*public TraderNirtreEntity createChild(AgeableEntity ageable) {
+      return EntityInit.TRADER_NIRTRE_ENTITY.get().create(this.world);
+   }*/
    @Nullable
    public AgeableEntity createChild(AgeableEntity ageable) {
       return null;
+   }
+
+   @Override
+   public void onTrade(MerchantOffer offer) {
+   }
+
+   @Override
+   protected void onNirtreTrade(MerchantOffer offer) {
+
    }
 
    public boolean func_213705_dZ() {
@@ -58,7 +73,7 @@ public class TraderNirtreEntity extends AbstractNirtreEntity {
 
    public ActionResultType func_230254_b_(PlayerEntity p_230254_1_, Hand p_230254_2_) {
       ItemStack itemstack = p_230254_1_.getHeldItem(p_230254_2_);
-      if (itemstack.getItem() != ItemInit.ZUR_ENTITY_SPAWN_EGG.get() && this.isAlive() && !this.hasCustomer() && !this.isChild()) {
+      if (itemstack.getItem() != ModSpawnEggItemInit.ZUR_ENTITY_SPAWN_EGG.get() && this.isAlive() && !this.hasCustomer() && !this.isChild()) {
          if (p_230254_2_ == Hand.MAIN_HAND) {
             p_230254_1_.addStat(Stats.TALKED_TO_VILLAGER);
          }
@@ -93,25 +108,21 @@ public class TraderNirtreEntity extends AbstractNirtreEntity {
       }
    }
 
+   public void setOffers(MerchantOffers offersIn) {
+      this.offers = offersIn;
+   }
+
+   public void setXp(int xpIn) {
+      this.xp = xpIn;
+   }
+
    public void writeAdditional(CompoundNBT compound) {
       super.writeAdditional(compound);
       compound.putInt("DespawnDelay", this.despawnDelay);
-      if (this.wanderTarget != null) {
-         compound.put("WanderTarget", NBTUtil.writeBlockPos(this.wanderTarget));
+      if (this.traderNirtreTarget != null) {
+         compound.put("TraderNirtreTarget", NBTUtil.writeBlockPos(this.traderNirtreTarget));
       }
 
-   }
-
-   public boolean attackEntityAsMob(Entity entityIn) {
-      boolean flag = super.attackEntityAsMob(entityIn);
-      if (flag) {
-         float f = this.world.getDifficultyForLocation(this.getPosition()).getAdditionalDifficulty();
-         if (this.getHeldItemMainhand().isEmpty() && this.isBurning() && this.rand.nextFloat() < f * 0.3F) {
-            entityIn.setFire(2 * (int)f);
-         }
-      }
-
-      return flag;
    }
 
    /**
@@ -123,8 +134,8 @@ public class TraderNirtreEntity extends AbstractNirtreEntity {
          this.despawnDelay = compound.getInt("DespawnDelay");
       }
 
-      if (compound.contains("WanderTarget")) {
-         this.wanderTarget = NBTUtil.readBlockPos(compound.getCompound("WanderTarget"));
+      if (compound.contains("TraderNirtreTarget")) {
+         this.traderNirtreTarget = NBTUtil.readBlockPos(compound.getCompound("TraderNirtreTarget"));
       }
 
       this.setGrowingAge(Math.max(0, this.getGrowingAge()));
@@ -142,19 +153,19 @@ public class TraderNirtreEntity extends AbstractNirtreEntity {
 
    }
 
-   protected SoundEvent getAmbientSound() {
+   /*protected SoundEvent getAmbientSound() {
       return this.hasCustomer() ? SoundEvents.ENTITY_WANDERING_TRADER_TRADE : SoundEvents.ENTITY_WANDERING_TRADER_AMBIENT;
    }
 
    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
       return SoundEvents.ENTITY_WANDERING_TRADER_HURT;
-   }
+   }*/
 
    protected SoundEvent getDeathSound() {
       return SoundEvents.ENTITY_WANDERING_TRADER_DEATH;
    }
 
-   protected SoundEvent getDrinkSound(ItemStack stack) {
+   /*protected SoundEvent getDrinkSound(ItemStack stack) {
       Item item = stack.getItem();
       return item == Items.MILK_BUCKET ? SoundEvents.ENTITY_WANDERING_TRADER_DRINK_MILK : SoundEvents.ENTITY_WANDERING_TRADER_DRINK_POTION;
    }
@@ -165,7 +176,7 @@ public class TraderNirtreEntity extends AbstractNirtreEntity {
 
    public SoundEvent getYesSound() {
       return SoundEvents.ENTITY_WANDERING_TRADER_YES;
-   }
+   }*/
 
    public void setDespawnDelay(int delay) {
       this.despawnDelay = delay;
@@ -175,8 +186,16 @@ public class TraderNirtreEntity extends AbstractNirtreEntity {
       return this.despawnDelay;
    }
 
-   public TraderNirtreEntity createChild(AbstractNirtreEntity ageable) {
-      return EntityInit.TRADER_NIRTRE_ENTITY.get().create(this.world);
+   /**
+    * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
+    * use this to react to sunlight and start to burn.
+    */
+   public void livingTick() {
+      super.livingTick();
+      if (!this.world.isRemote) {
+         this.handleDespawn();
+      }
+
    }
 
    private void handleDespawn() {
@@ -187,12 +206,12 @@ public class TraderNirtreEntity extends AbstractNirtreEntity {
    }
 
    public void setWanderTarget(@Nullable BlockPos pos) {
-      this.wanderTarget = pos;
+      this.traderNirtreTarget = pos;
    }
 
    @Nullable
    private BlockPos getWanderTarget() {
-      return this.wanderTarget;
+      return this.traderNirtreTarget;
    }
 
 }

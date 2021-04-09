@@ -2,7 +2,9 @@ package com.babcsany.minecraft.ervin_mod_1.entity.villager.trades;
 
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.food.FoodItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
+import com.babcsany.minecraft.ervin_mod_1.item.food.Foods;
 import com.google.common.collect.ImmutableMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
@@ -28,18 +30,19 @@ public class $TraderTrades {
            new $TraderTrades.ItemsForFirtsTrade(isBurnableItemInit.$_8$.get(), 48, 1, 1000, 1),
            new $TraderTrades.ItemsForFirtsTrade(isBurnableItemInit.$_9$.get(), 54, 1, 1000, 1),
            new $TraderTrades.ItemsForFirtsTrade(isBurnableItemInit.$_10$.get(), 60, 1, 1000, 1),
-           new $TraderTrades.ItemsFor$_1$sTrade(ItemInit.RUBY.get(), 1, 4, 100, 1),
-           new $TraderTrades.ItemsFor$_1$sTrade(ItemInit.SRACH.get(), 4, 1, 100, 1),
-           new $TraderTrades.ItemsFor$_2$sTrade(isBurnableItemInit.LEAT.get(), 1, 4, 100, 1),
-           new $TraderTrades.ItemsFor$_3$sTrade(isBurnableItemInit.SRIUNK.get(), 18, 1, 100, 1),
-           new $TraderTrades.ItemsFor$_4$sTrade(ItemInit.MLONK.get(), 12, 1, 100, 1),
-           new $TraderTrades.ItemsFor$_5$sTrade(isBurnableItemInit.DURG.get(), 24, 1, 100, 1),
-           new $TraderTrades.ItemsFor$_6$sTrade(isBurnableItemInit.CRAINT.get(), 30, 1, 100, 1),
-           new $TraderTrades.ItemsForTgurkBlocksAndItemsTrade(isBurnableItemInit.$_6$.get(), 30, isBurnableItemInit.CRAINT.get(), 30, 1000, 5),
-           new $TraderTrades.ItemsFor$_7$sTrade(isBurnableItemInit.NIRK.get(), 15, 1, 100, 1),
-           new $TraderTrades.ItemsFor$_8$sTrade(ItemInit.REAT.get(), 9, 1, 100, 1),
-           new $TraderTrades.ItemsFor$_9$sTrade(ItemInit.GNITH.get(), 1, 27, 100, 1),
-           new $TraderTrades.ItemsFor$_10$sTrade(isBurnableItemInit.RUGK.get(), 10, 1, 100, 1),
+           new $TraderTrades.ItemsFor$_1$sTrade(ItemInit.RUBY.get(), 1, 4, 1000, 1),
+           new $TraderTrades.ItemsFor$_1$sTrade(ItemInit.SRACH.get(), 4, 1, 1000, 1),
+           new $TraderTrades.ItemsFor$_2$sTrade(isBurnableItemInit.LEAT.get(), 1, 4, 1000, 1),
+           new $TraderTrades.ItemsFor$_3$sTrade(ItemInit.CHAK.get(), 18, 1, 1000, 1),
+           new $TraderTrades.ItemsFor$_4$sTrade(ItemInit.MLONK.get(), 12, 1, 1000, 1),
+           new $TraderTrades.ItemsFor$_5$sTrade(isBurnableItemInit.GART.get(), 24, 1, 1000, 1),
+           new $TraderTrades.ItemsFor$_6$sTrade(isBurnableItemInit.TERAT_NUGGET.get(), 60, 1, 1000, 1),
+           new $TraderTrades.ItemsFor30$_10$sAndItemsTrade(ItemInit.FIRK.get(), 30, isBurnableBlockItemInit.CRAINT_BLOCK.get(), 12, 1000, 5),
+           new $TraderTrades.ItemsForTgurkBlocksAndItemsTrade(isBurnableItemInit.$_6$.get(), 30, com.babcsany.minecraft.ervin_mod_1.init.item.tool.isBurnableItemInit.CRAINT.get(), 30, 1000, 5),
+           new $TraderTrades.ItemsFor$_7$sTrade(isBurnableItemInit.NIRK.get(), 15, 1, 1000, 1),
+           new $TraderTrades.ItemsFor$_8$sTrade(FoodItemInit.REAT.get(), 9, 1, 1000, 1),
+           new $TraderTrades.ItemsFor$_9$sTrade(ItemInit.GNITH.get(), 10, 27, 1000, 1),
+           new $TraderTrades.ItemsFor$_10$sTrade(isBurnableItemInit.RUGK.get(), 10, 1, 1000, 1),
    }));
 
    private static Int2ObjectMap<$TraderTrades.ITrade[]> gatAsIntMap(ImmutableMap<Integer, $TraderTrades.ITrade[]> p_221238_0_) {
@@ -86,6 +89,44 @@ public class $TraderTrades {
 
       public MerchantOffer getOffer(Entity trader, Random rand) {
          return new MerchantOffer(new ItemStack(ItemInit.FIRT.get(), this.firtCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+      }
+   }
+
+   static class ItemsForDurgsTrade implements $TraderTrades.ITrade {
+      private final ItemStack sellingItem;
+      private final int durgCount;
+      private final int sellingItemCount;
+      private final int maxUses;
+      private final int xpValue;
+      private final float priceMultiplier;
+
+      public ItemsForDurgsTrade(Block sellingItem, int durgCount, int sellingItemCount, int maxUses, int xpValue) {
+         this(new ItemStack(sellingItem), durgCount, sellingItemCount, maxUses, xpValue);
+      }
+
+      public ItemsForDurgsTrade(Item sellingItem, int durgCount, int sellingItemCount, int xpValue) {
+         this(new ItemStack(sellingItem), durgCount, sellingItemCount, 12, xpValue);
+      }
+
+      public ItemsForDurgsTrade(Item sellingItem, int durgCount, int sellingItemCount, int maxUses, int xpValue) {
+         this(new ItemStack(sellingItem), durgCount, sellingItemCount, maxUses, xpValue);
+      }
+
+      public ItemsForDurgsTrade(ItemStack sellingItem, int durgCount, int sellingItemCount, int maxUses, int xpValue) {
+         this(sellingItem, durgCount, sellingItemCount, maxUses, xpValue, 0.05F);
+      }
+
+      public ItemsForDurgsTrade(ItemStack sellingItem, int durgCount, int sellingItemCount, int maxUses, int xpValue, float priceMultiplier) {
+         this.sellingItem = sellingItem;
+         this.durgCount = durgCount;
+         this.sellingItemCount = sellingItemCount;
+         this.maxUses = maxUses;
+         this.xpValue = xpValue;
+         this.priceMultiplier = priceMultiplier;
+      }
+
+      public MerchantOffer getOffer(Entity trader, Random rand) {
+         return new MerchantOffer(new ItemStack(isBurnableItemInit.DURG.get(), this.durgCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 
@@ -497,6 +538,37 @@ public class $TraderTrades {
       @Nullable
       public MerchantOffer getOffer(Entity trader, Random rand) {
          return new MerchantOffer(new ItemStack(isBurnableBlockItemInit.TGURK_BLOCK.get(), this.tgurkBlockCount), new ItemStack(this.buyingItem.getItem(), this.buyingItemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+      }
+   }
+
+   static class ItemsFor30$_10$sAndItemsTrade implements $TraderTrades.ITrade {
+      private final ItemStack buyingItem;
+      private final int buyingItemCount;
+      private final int $_10$Count;
+      private final ItemStack sellingItem;
+      private final int sellingItemCount;
+      private final int maxUses;
+      private final int xpValue;
+      private final float priceMultiplier;
+
+      public ItemsFor30$_10$sAndItemsTrade(IItemProvider buyingItem, int buyingItemCount, Block sellingItem, int sellingItemCount, int maxUses, int xpValue) {
+         this(buyingItem, buyingItemCount, 30, sellingItem, sellingItemCount, maxUses, xpValue);
+      }
+
+      public ItemsFor30$_10$sAndItemsTrade(IItemProvider buyingItem, int buyingItemCount, int $_10$Count, Block sellingItem, int sellingItemCount, int maxUses, int xpValue) {
+         this.buyingItem = new ItemStack(buyingItem);
+         this.buyingItemCount = buyingItemCount;
+         this.$_10$Count = $_10$Count;
+         this.sellingItem = new ItemStack(sellingItem);
+         this.sellingItemCount = sellingItemCount;
+         this.maxUses = maxUses;
+         this.xpValue = xpValue;
+         this.priceMultiplier = 0.05F;
+      }
+
+      @Nullable
+      public MerchantOffer getOffer(Entity trader, Random rand) {
+         return new MerchantOffer(new ItemStack(isBurnableItemInit.$_10$.get(), this.$_10$Count), new ItemStack(this.buyingItem.getItem(), this.buyingItemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 
