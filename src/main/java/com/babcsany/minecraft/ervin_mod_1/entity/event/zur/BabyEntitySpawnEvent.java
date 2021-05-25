@@ -19,7 +19,7 @@
 
 package com.babcsany.minecraft.ervin_mod_1.entity.event.zur;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.AbstractZurEntity;
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.AbstractkZurEntity;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -52,9 +52,9 @@ public class BabyEntitySpawnEvent extends net.minecraftforge.eventbus.api.Event
     private final MobEntity parentA;
     private final MobEntity parentB;
     private final PlayerEntity causedByPlayer;
-    private AbstractZurEntity child;
+    private AbstractkZurEntity child;
 
-    public BabyEntitySpawnEvent(MobEntity parentA, MobEntity parentB, @Nullable AbstractZurEntity proposedChild)
+    public BabyEntitySpawnEvent(MobEntity parentA, MobEntity parentB, @Nullable AbstractkZurEntity proposedChild)
     {
         //causedByPlayer calculated here to simplify the patch.
         PlayerEntity causedByPlayer = null;
@@ -90,12 +90,12 @@ public class BabyEntitySpawnEvent extends net.minecraftforge.eventbus.api.Event
     }
 
     @Nullable
-    public AbstractZurEntity getChild()
+    public AbstractkZurEntity getChild()
     {
         return child;
     }
 
-    public void setChild(AbstractZurEntity proposedChild)
+    public void setChild(AbstractkZurEntity proposedChild)
     {
         child = proposedChild;
     }

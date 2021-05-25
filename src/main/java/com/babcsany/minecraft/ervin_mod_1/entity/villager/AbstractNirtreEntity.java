@@ -1,11 +1,13 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.villager;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.villager.trigger.CriteriaTriggers1;
+import com.babcsany.minecraft.ervin_mod_1.entity.trigger.CriteriaTriggers1;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.TraderNirtreTrades;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.WanderingTraderNirtreTrades;
+import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.ZombieTraderTrades;
 import com.google.common.collect.Sets;
 import net.minecraft.entity.*;
 import net.minecraft.entity.merchant.IMerchant;
+import net.minecraft.entity.merchant.villager.VillagerData;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.Inventory;
@@ -127,7 +129,7 @@ public abstract class AbstractNirtreEntity extends AgeableEntity implements INPC
    public void verifySellingItem(ItemStack stack) {
       if (!this.world.isRemote && this.livingSoundTime > -this.getTalkInterval() + 20) {
          this.livingSoundTime = -this.getTalkInterval();
-         this.playSound(this.getZombieTraderYesNoSound(!stack.isEmpty()), this.getSoundVolume(), this.getSoundPitch());
+         this.playSound(this.getNirtreYesNoSound(!stack.isEmpty()), this.getSoundVolume(), this.getSoundPitch());
       }
 
    }
@@ -136,7 +138,7 @@ public abstract class AbstractNirtreEntity extends AgeableEntity implements INPC
       return SoundEvents.AMBIENT_CAVE;
    }
 
-   protected SoundEvent getZombieTraderYesNoSound(boolean getYesSound) {
+   protected SoundEvent getNirtreYesNoSound(boolean getYesSound) {
       return getYesSound ? SoundEvents.AMBIENT_CAVE : SoundEvents.AMBIENT_BASALT_DELTAS_ADDITIONS;
    }
 
@@ -239,14 +241,15 @@ public abstract class AbstractNirtreEntity extends AgeableEntity implements INPC
       }
 
       for(Integer integer : set) {
-         WanderingTraderNirtreTrades.ITrade villagertrades$itrade = newTrades[integer];
-         MerchantOffer merchantoffer = villagertrades$itrade.getOffer(this, this.rand);
+         WanderingTraderNirtreTrades.ITrade wanderingTraderNirtreTrades$iTrade = newTrades[integer];
+         MerchantOffer merchantoffer = wanderingTraderNirtreTrades$iTrade.getOffer(this, this.rand);
          if (merchantoffer != null) {
             givenMerchantOffers.add(merchantoffer);
          }
       }
 
    }
+
    protected void addTraderNirtreTrades(MerchantOffers givenMerchantOffers, TraderNirtreTrades.ITrade[] newTrades, int maxNumbers) {
       Set<Integer> set = Sets.newHashSet();
       if (newTrades.length > maxNumbers) {

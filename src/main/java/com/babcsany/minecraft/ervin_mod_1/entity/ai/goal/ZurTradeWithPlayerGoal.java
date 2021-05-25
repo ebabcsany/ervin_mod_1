@@ -2,7 +2,6 @@ package com.babcsany.minecraft.ervin_mod_1.entity.ai.goal;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.AbstractZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.villager.Abstract$TraderEntity;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.player.PlayerEntity;
 

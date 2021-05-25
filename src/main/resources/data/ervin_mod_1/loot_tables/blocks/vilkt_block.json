@@ -387,10 +387,6 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:firg_door"
-        },
-        {
-          "type": "minecraft:item",
           "name": "ervin_mod_1:firg_leaves"
         },
         {
@@ -400,6 +396,10 @@
         {
           "type": "minecraft:item",
           "name": "ervin_mod_1:firg_planks"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:firg_planks_door"
         },
         {
           "type": "minecraft:item",
@@ -1491,6 +1491,10 @@
         },
         {
           "type": "minecraft:item",
+          "name": "ervin_mod_1:vilkt_block"
+        },
+        {
+          "type": "minecraft:item",
           "name": "ervin_mod_1:viltdrop"
         },
         {
@@ -1751,67 +1755,71 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:iron_ingots/black_iron_ingot"
+          "name": "ervin_mod_1:iron/ingots/black_iron_ingot"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:iron_ingots/blue_iron_ingot"
+          "name": "ervin_mod_1:iron/ingots/blue_iron_ingot"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:iron_ingots/brown_iron_ingot"
+          "name": "ervin_mod_1:iron/ingots/brown_iron_ingot"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:iron_ingots/cyan_iron_ingot"
+          "name": "ervin_mod_1:iron/ingots/cyan_iron_ingot"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:iron_ingots/gray_iron_ingot"
+          "name": "ervin_mod_1:iron/ingots/gray_iron_ingot"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:iron_ingots/green_iron_ingot"
+          "name": "ervin_mod_1:iron/ingots/green_iron_ingot"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:iron_ingots/light_blue1_iron_ingot"
+          "name": "ervin_mod_1:iron/ingots/light_blue1_iron_ingot"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:iron_ingots/light_blue_iron_ingot"
+          "name": "ervin_mod_1:iron/ingots/light_blue_iron_ingot"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:iron_ingots/light_gray_iron_ingot"
+          "name": "ervin_mod_1:iron/ingots/light_gray_iron_ingot"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:iron_ingots/lime_iron_ingot"
+          "name": "ervin_mod_1:iron/ingots/lime_iron_ingot"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:iron_ingots/magenta_iron_ingot"
+          "name": "ervin_mod_1:iron/ingots/magenta_iron_ingot"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:iron_ingots/orange_iron_ingot"
+          "name": "ervin_mod_1:iron/ingots/orange_iron_ingot"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:iron_ingots/pink_iron_ingot"
+          "name": "ervin_mod_1:iron/ingots/pink_iron_ingot"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:iron_ingots/purple_iron_ingot"
+          "name": "ervin_mod_1:iron/ingots/purple_iron_ingot"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:iron_ingots/red_iron_ingot"
+          "name": "ervin_mod_1:iron/ingots/red_iron_ingot"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:iron_ingots/yellow_iron_ingot"
+          "name": "ervin_mod_1:iron/ingots/white_iron_ingot"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:iron/ingots/yellow_iron_ingot"
         },
         {
           "type": "minecraft:item",
@@ -2579,326 +2587,6 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/axe/black_stone_axe"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/axe/blue_stone_axe"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/axe/brown_stone_axe"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/axe/cyan_stone_axe"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/axe/green_stone_axe"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/axe/light_blue1_stone_axe"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/axe/light_blue_stone_axe"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/axe/light_gray_stone_axe"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/axe/lime_stone_axe"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/axe/magenta_stone_axe"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/axe/orange_stone_axe"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/axe/pink_stone_axe"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/axe/purple_stone_axe"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/axe/red_stone_axe"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/axe/white_stone_axe"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/axe/yellow_stone_axe"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/hoe/black_stone_hoe"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/hoe/blue_stone_hoe"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/hoe/brown_stone_hoe"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/hoe/cyan_stone_hoe"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/hoe/green_stone_hoe"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/hoe/light_blue1_stone_hoe"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/hoe/light_blue_stone_hoe"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/hoe/light_gray_stone_hoe"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/hoe/lime_stone_hoe"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/hoe/magenta_stone_hoe"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/hoe/orange_stone_hoe"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/hoe/pink_stone_hoe"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/hoe/purple_stone_hoe"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/hoe/red_stone_hoe"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/hoe/white_stone_hoe"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/hoe/yellow_stone_hoe"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/pickaxe/black_stone_pickaxe"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/pickaxe/blue_stone_pickaxe"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/pickaxe/brown_stone_pickaxe"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/pickaxe/cyan_stone_pickaxe"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/pickaxe/green_stone_pickaxe"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/pickaxe/light_blue1_stone_pickaxe"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/pickaxe/light_blue_stone_pickaxe"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/pickaxe/light_gray_stone_pickaxe"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/pickaxe/lime_stone_pickaxe"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/pickaxe/magenta_stone_pickaxe"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/pickaxe/orange_stone_pickaxe"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/pickaxe/pink_stone_pickaxe"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/pickaxe/purple_stone_pickaxe"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/pickaxe/red_stone_pickaxe"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/pickaxe/white_stone_pickaxe"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/pickaxe/yellow_stone_pickaxe"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/shovel/black_stone_shovel"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/shovel/blue_stone_shovel"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/shovel/brown_stone_shovel"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/shovel/cyan_stone_shovel"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/shovel/green_stone_shovel"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/shovel/light_blue1_stone_shovel"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/shovel/light_blue_stone_shovel"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/shovel/light_gray_stone_shovel"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/shovel/lime_stone_shovel"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/shovel/magenta_stone_shovel"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/shovel/orange_stone_shovel"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/shovel/pink_stone_shovel"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/shovel/purple_stone_shovel"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/shovel/red_stone_shovel"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/shovel/white_stone_shovel"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/shovel/yellow_stone_shovel"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/sword/black_stone_sword"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/sword/blue_stone_sword"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/sword/brown_stone_sword"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/sword/cyan_stone_sword"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/sword/green_stone_sword"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/sword/light_blue1_stone_sword"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/sword/light_blue_stone_sword"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/sword/light_gray_stone_sword"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/sword/lime_stone_sword"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/sword/magenta_stone_sword"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/sword/orange_stone_sword"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/sword/pink_stone_sword"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/sword/purple_stone_sword"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/sword/red_stone_sword"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/sword/white_stone_sword"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/tools/sword/yellow_stone_sword"
-        },
-        {
-          "type": "minecraft:item",
           "name": "ervin_mod_1:stone/stones/black_stone"
         },
         {
@@ -2983,6 +2671,10 @@
         },
         {
           "type": "minecraft:item",
+          "name": "ervin_mod_1:spawn_eggs/hhij_spawn_egg"
+        },
+        {
+          "type": "minecraft:item",
           "name": "ervin_mod_1:spawn_eggs/illusioner_spawn_egg"
         },
         {
@@ -3023,15 +2715,331 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:spawn_eggs/wolf1_spawn_egg"
-        },
-        {
-          "type": "minecraft:item",
           "name": "ervin_mod_1:spawn_eggs/zombie_trader_spawn_egg"
         },
         {
           "type": "minecraft:item",
           "name": "ervin_mod_1:spawn_eggs/zur_spawn_egg"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/axe/black_stone_axe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/axe/blue_stone_axe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/axe/brown_stone_axe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/axe/cyan_stone_axe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/axe/green_stone_axe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/axe/light_blue1_stone_axe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/axe/light_blue_stone_axe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/axe/light_gray_stone_axe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/axe/lime_stone_axe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/axe/magenta_stone_axe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/axe/orange_stone_axe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/axe/pink_stone_axe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/axe/purple_stone_axe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/axe/red_stone_axe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/axe/white_stone_axe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/axe/yellow_stone_axe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/hoe/black_stone_hoe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/hoe/blue_stone_hoe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/hoe/brown_stone_hoe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/hoe/cyan_stone_hoe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/hoe/green_stone_hoe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/hoe/light_blue1_stone_hoe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/hoe/light_blue_stone_hoe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/hoe/light_gray_stone_hoe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/hoe/lime_stone_hoe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/hoe/magenta_stone_hoe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/hoe/orange_stone_hoe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/hoe/pink_stone_hoe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/hoe/purple_stone_hoe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/hoe/red_stone_hoe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/hoe/white_stone_hoe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/hoe/yellow_stone_hoe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/pickaxe/black_stone_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/pickaxe/blue_stone_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/pickaxe/brown_stone_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/pickaxe/cyan_stone_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/pickaxe/green_stone_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/pickaxe/light_blue1_stone_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/pickaxe/light_blue_stone_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/pickaxe/light_gray_stone_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/pickaxe/lime_stone_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/pickaxe/magenta_stone_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/pickaxe/orange_stone_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/pickaxe/pink_stone_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/pickaxe/purple_stone_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/pickaxe/red_stone_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/pickaxe/white_stone_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/pickaxe/yellow_stone_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/shovel/black_stone_shovel"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/shovel/blue_stone_shovel"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/shovel/brown_stone_shovel"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/shovel/cyan_stone_shovel"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/shovel/green_stone_shovel"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/shovel/light_blue1_stone_shovel"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/shovel/light_blue_stone_shovel"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/shovel/light_gray_stone_shovel"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/shovel/lime_stone_shovel"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/shovel/magenta_stone_shovel"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/shovel/orange_stone_shovel"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:stone/stone/shovel/pink_stone_shovel"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/shovel/purple_stone_shovel"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/shovel/red_stone_shovel"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/shovel/white_stone_shovel"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/shovel/yellow_stone_shovel"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/sword/black_stone_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/sword/blue_stone_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/sword/brown_stone_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/sword/cyan_stone_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/sword/green_stone_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/sword/light_blue1_stone_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/sword/light_blue_stone_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/sword/light_gray_stone_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/sword/lime_stone_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/sword/magenta_stone_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/sword/orange_stone_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/sword/pink_stone_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/sword/purple_stone_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/sword/red_stone_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/sword/white_stone_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:tools/stone/sword/yellow_stone_sword"
         },
         {
           "type": "minecraft:item",

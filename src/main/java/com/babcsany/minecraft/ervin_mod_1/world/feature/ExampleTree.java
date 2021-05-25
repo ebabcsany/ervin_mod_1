@@ -2,6 +2,7 @@ package com.babcsany.minecraft.ervin_mod_1.world.feature;
 
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit;
+import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.block.trees.Tree;
 import net.minecraft.world.gen.Heightmap;
@@ -22,23 +23,23 @@ import java.util.Random;
 public class ExampleTree extends Tree {
 
     public static final BaseTreeFeatureConfig EXAMPLE_TREE_CONFIG0 = (new BaseTreeFeatureConfig.Builder(
-            new SimpleBlockStateProvider(BlockItemInit.FIRG_LOG.get().getDefaultState()),
-            new SimpleBlockStateProvider(BlockItemInit.FIRG_LEAVES.get().getDefaultState()),
-            new FancyFoliagePlacer(4, 3, 1, 5, 2),
-            new FancyTrunkPlacer(8, 2, 6),
+            new SimpleBlockStateProvider(BlockItemInit.EXAMPLE_BLOCK.get().getDefaultState()),
+            new SimpleBlockStateProvider(isBurnableBlockItemInit.TRIRIJ.getDefaultState()),
+            new FancyFoliagePlacer(8, 14, 11, 5, 2),
+            new FancyTrunkPlacer(8, 6, 6),
             new TwoLayerFeature(13, 11, 5, OptionalInt.of(2))))
             .setIgnoreVines().func_236702_a_(Heightmap.Type.MOTION_BLOCKING).build();
     public static final BaseTreeFeatureConfig EXAMPLE_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
             new SimpleBlockStateProvider(BlockItemInit.FIRG_LOG.get().getDefaultState()),
-            new SimpleBlockStateProvider(BlockItemInit.FIRG_LEAVES.get().getDefaultState()),
-            new BlobFoliagePlacer(6, 0, 0, 0, 2),
+            new SimpleBlockStateProvider(isBurnableBlockItemInit.FIRG_LEAVES.get().getDefaultState()),
+            new BlobFoliagePlacer(12, 7, 9, 0, 2),
             new StraightTrunkPlacer(1, 6, 3),
             new TwoLayerFeature(4, 5, 3)))
             .setIgnoreVines().build();
     public static final BaseTreeFeatureConfig EXAMPLE_TREE_CONFIG1 = (new BaseTreeFeatureConfig.Builder(
             new SimpleBlockStateProvider(BlockItemInit.FIRG_LOG.get().getDefaultState()),
-            new SimpleBlockStateProvider(BlockItemInit.FIRG_LEAVES.get().getDefaultState()),
-            new BlobFoliagePlacer(4, 0, 0, 0, 2),
+            new SimpleBlockStateProvider(isBurnableBlockItemInit.FIRG_LEAVES.get().getDefaultState()),
+            new BlobFoliagePlacer(4, 15, 12, -10, 2),
             new StraightTrunkPlacer(3, 5, 2),
             new TwoLayerFeature(6, 2, 4)))
             .setIgnoreVines().build();
@@ -58,18 +59,10 @@ public class ExampleTree extends Tree {
 
     @Override
     protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean b) {
-        return Feature.field_236291_c_.withConfiguration(EXAMPLE_TREE_CONFIG);
-    }
-    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature1(Random randomIn, boolean b){
-        return Feature.field_236291_c_.withConfiguration(EXAMPLE_TREE_CONFIG0);
-    }
-    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature2(Random randomIn, boolean b) {
-        return Feature.field_236291_c_.withConfiguration(EXAMPLE_TREE_CONFIG1);
-    }
-    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature3(Random randomIn, boolean b) {
-        return Feature.field_236291_c_.withConfiguration(EXAMPLE_TREE_CONFIG2);
-    }
-    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature4(Random randomIn, boolean b) {
-        return Feature.field_236291_c_.withConfiguration(EXAMPLE_TREE_CONFIG3);
+        return Feature.field_236291_c_.withConfiguration(EXAMPLE_TREE_CONFIG)
+                .feature.withConfiguration(EXAMPLE_TREE_CONFIG0)
+                .feature.withConfiguration(EXAMPLE_TREE_CONFIG1)
+                .feature.withConfiguration(EXAMPLE_TREE_CONFIG2)
+                .feature.withConfiguration(EXAMPLE_TREE_CONFIG3);
     }
 }

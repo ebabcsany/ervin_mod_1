@@ -1,0 +1,7 @@
+{
+    "parent": "ervin_mod_1:item/generated",
+    "textures": {
+        "layer0": "ervin_mod_1:item/spawn_eggs/template/dragon_fireball_spawn_egg",
+        "layer1": "ervin_mod_1:item/spawn_eggs/template/dragon_fireball_spawn_egg_overlay"
+    }
+}

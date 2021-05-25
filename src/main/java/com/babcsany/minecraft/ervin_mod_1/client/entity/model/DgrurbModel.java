@@ -4,7 +4,7 @@ import com.babcsany.minecraft.ervin_mod_1.entity.monster.Dgrurb;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
 import net.minecraft.client.renderer.entity.model.AbstractZombieModel;
 
-public class DgrurbModel<T extends Dgrurb> extends AbstractZombieModel<T> {
+public class DgrurbModel<T extends Dgrurb> extends AbstractDgrurbModel<T> {
     public DgrurbModel(float modelSize, boolean p_i1168_2_) {
         this(modelSize, 0.0F, 64, p_i1168_2_ ? 32 : 64);
     }

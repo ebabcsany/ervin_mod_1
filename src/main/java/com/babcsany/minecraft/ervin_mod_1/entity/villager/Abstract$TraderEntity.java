@@ -1,6 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.villager;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.villager.trigger.CriteriaTriggers1;
+import com.babcsany.minecraft.ervin_mod_1.entity.trigger.CriteriaTriggers1;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.$TraderTrades;
 import com.google.common.collect.Sets;
 import net.minecraft.entity.*;
@@ -172,7 +172,7 @@ public abstract class Abstract$TraderEntity extends AgeableEntity implements INP
    }
 
    protected void resetCustomer() {
-      this.setCustomer((PlayerEntity)null);
+      this.setCustomer(null);
    }
 
    /**

@@ -1,0 +1,92 @@
+---- Minecraft Crash Report ----
+// Hi. I'm Minecraft, and I'm a crashaholic.
+
+Time: 2021.04.20. 10:36
+Description: Exception in server tick loop
+
+java.lang.ExceptionInInitializerError: null
+	at com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity.createBrain(ZurEntity.java:569) ~[?:?] {re:classloading}
+	at net.minecraft.entity.LivingEntity.<init>(LivingEntity.java:217) ~[?:?] {re:classloading}
+	at net.minecraft.entity.MobEntity.<init>(MobEntity.java:107) ~[?:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.entity.CreatureEntity.<init>(CreatureEntity.java:13) ~[?:?] {re:classloading}
+	at net.minecraft.entity.monster.MonsterEntity.<init>(MonsterEntity.java:28) ~[?:?] {re:classloading}
+	at com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity.<init>(ZurEntity.java:105) ~[?:?] {re:classloading}
+	at com.babcsany.minecraft.ervin_mod_1.init.EntityInit$$Lambda$4607/1319217746.create(Unknown Source) ~[?:?] {}
+	at net.minecraft.entity.EntityType.create(EntityType.java:442) ~[?:?] {re:classloading}
+	at net.minecraft.entity.EntityType.create(EntityType.java:326) ~[?:?] {re:classloading}
+	at net.minecraft.entity.EntityType.spawn(EntityType.java:318) ~[?:?] {re:classloading}
+	at net.minecraft.entity.EntityType.spawn(EntityType.java:313) ~[?:?] {re:classloading}
+	at net.minecraft.item.SpawnEggItem.onItemUse(SpawnEggItem.java:82) ~[?:?] {re:classloading}
+	at net.minecraftforge.common.ForgeHooks.onPlaceItemIntoWorld(ForgeHooks.java:597) ~[?:?] {re:classloading}
+	at net.minecraft.item.ItemStack.onItemUse(ItemStack.java:176) ~[?:?] {re:classloading}
+	at net.minecraft.server.management.PlayerInteractionManager.func_219441_a(PlayerInteractionManager.java:359) ~[?:?] {re:classloading}
+	at net.minecraft.network.play.ServerPlayNetHandler.processTryUseItemOnBlock(ServerPlayNetHandler.java:923) ~[?:?] {re:classloading}
+	at net.minecraft.network.play.client.CPlayerTryUseItemOnBlockPacket.processPacket(CPlayerTryUseItemOnBlockPacket.java:45) ~[?:?] {re:classloading}
+	at net.minecraft.network.play.client.CPlayerTryUseItemOnBlockPacket.processPacket(CPlayerTryUseItemOnBlockPacket.java:12) ~[?:?] {re:classloading}
+	at net.minecraft.network.PacketThreadUtil.lambda$checkThreadAndEnqueue$0(PacketThreadUtil.java:19) ~[?:?] {re:classloading}
+	at net.minecraft.network.PacketThreadUtil$$Lambda$7250/260072633.run(Unknown Source) ~[?:?] {}
+	at net.minecraft.util.concurrent.TickDelayedTask.run(TickDelayedTask.java:20) ~[?:?] {re:classloading}
+	at net.minecraft.util.concurrent.ThreadTaskExecutor.run(ThreadTaskExecutor.java:139) ~[?:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.util.concurrent.RecursiveEventLoop.run(RecursiveEventLoop.java:22) ~[?:?] {re:classloading}
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:760) ~[?:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:157) ~[?:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.util.concurrent.ThreadTaskExecutor.driveOne(ThreadTaskExecutor.java:109) ~[?:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.server.MinecraftServer.driveOneInternal(MinecraftServer.java:743) ~[?:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.server.MinecraftServer.driveOne(MinecraftServer.java:737) ~[?:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.util.concurrent.ThreadTaskExecutor.drainTasks(ThreadTaskExecutor.java:97) ~[?:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.server.MinecraftServer.runScheduledTasks(MinecraftServer.java:722) ~[?:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.server.MinecraftServer.func_240802_v_(MinecraftServer.java:669) [?:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.server.MinecraftServer.lambda$func_240784_a_$0(MinecraftServer.java:231) [?:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.server.MinecraftServer$$Lambda$6558/782498053.run(Unknown Source) [?:?] {}
+	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_51] {}
+Caused by: java.lang.IllegalStateException: The object minecraft:dummy (name minecraft:nearest_adult_zurs) is being added too late.
+	at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:348) ~[?:?] {re:classloading}
+	at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:308) ~[?:?] {re:classloading}
+	at net.minecraftforge.registries.NamespacedDefaultedWrapper.register(NamespacedDefaultedWrapper.java:62) ~[?:?] {re:classloading}
+	at net.minecraftforge.registries.NamespacedDefaultedWrapper.register(NamespacedDefaultedWrapper.java:72) ~[?:?] {re:classloading}
+	at net.minecraftforge.registries.NamespacedDefaultedWrapper.register(NamespacedDefaultedWrapper.java:40) ~[?:?] {re:classloading}
+	at net.minecraft.util.registry.Registry.register(Registry.java:419) ~[?:?] {re:classloading}
+	at com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurTasks.register(ZurTasks.java:723) ~[?:?] {re:classloading}
+	at com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurTasks.<clinit>(ZurTasks.java:720) ~[?:?] {re:classloading}
+	... 34 more
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- System Details --
+Details:
+	Minecraft Version: 1.16.1
+	Minecraft Version ID: 1.16.1
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 1.8.0_51, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 325381888 bytes (310 MB) / 1141899264 bytes (1089 MB) up to 1883242496 bytes (1796 MB)
+	CPUs: 4
+	JVM Flags: 1 total; -XX:HeapDumpPath=MojangTricksIntelDriversForPerformance_javaw.exe_minecraft.exe.heapdump
+	ModLauncher: 5.1.2+70+master.2845bb9
+	ModLauncher launch target: fmluserdevclient
+	ModLauncher naming: mcp
+	ModLauncher services: 
+		/mixin-0.8.jar mixin PLUGINSERVICE 
+		/eventbus-2.2.0-service.jar eventbus PLUGINSERVICE 
+		/forge-1.16.1-32.0.75_mapped_snapshot_20200723-1.16.1-launcher.jar object_holder_definalize PLUGINSERVICE 
+		/forge-1.16.1-32.0.75_mapped_snapshot_20200723-1.16.1-launcher.jar runtime_enum_extender PLUGINSERVICE 
+		/accesstransformers-2.1.3-shadowed.jar accesstransformer PLUGINSERVICE 
+		/forge-1.16.1-32.0.75_mapped_snapshot_20200723-1.16.1-launcher.jar capability_inject_definalize PLUGINSERVICE 
+		/forge-1.16.1-32.0.75_mapped_snapshot_20200723-1.16.1-launcher.jar runtimedistcleaner PLUGINSERVICE 
+		/mixin-0.8.jar mixin TRANSFORMATIONSERVICE 
+		/forge-1.16.1-32.0.75_mapped_snapshot_20200723-1.16.1-launcher.jar fml TRANSFORMATIONSERVICE 
+	FML: 32.0
+	Forge: net.minecraftforge:32.0.75
+	FML Language Providers: 
+		javafml@32.0
+		minecraft@1
+	Mod List: 
+		client-extra.jar Minecraft {minecraft@1.16.1 DONE}
+		main Ervin Mod 1 {ervin_mod_1@NONE DONE}
+		forge-1.16.1-32.0.75_mapped_snapshot_20200723-1.16.1-recomp.jar Forge {forge@32.0.75 DONE}
+	Player Count: 1 / 8; [ServerPlayerEntity['Dev'/82, l='ServerLevel[Új világ]', x=-1.65, y=73.23, z=37.61]]
+	Data Packs: vanilla, mod:ervin_mod_1 (incompatible), mod:forge
+	Type: Integrated Server (map_client.txt)
+	Is Modded: Definitely; Client brand changed to 'forge'

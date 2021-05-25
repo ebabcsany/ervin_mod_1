@@ -1,6 +1,8 @@
 package net.minecraft.entity.player;
 
+import com.babcsany.minecraft.ervin_mod_1.block.FriszernTileEntity;
 import com.babcsany.minecraft.ervin_mod_1.block.blocks.Hurvruj;
+import com.babcsany.minecraft.ervin_mod_1.entity.projectile.HuihkEntity;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
@@ -1637,7 +1639,7 @@ public abstract class PlayerEntity extends LivingEntity {
 
       if (levels > 0 && this.experienceLevel % 5 == 0 && (float)this.lastXPSound < (float)this.ticksExisted - 100.0F) {
          float f = this.experienceLevel > 30 ? 1.0F : (float)this.experienceLevel / 30.0F;
-         this.world.playSound((PlayerEntity)null, this.getPosX(), this.getPosY(), this.getPosZ(), SoundEvents.ENTITY_PLAYER_LEVELUP, this.getSoundCategory(), f * 0.75F, 1.0F);
+         this.world.playSound(null, this.getPosX(), this.getPosY(), this.getPosZ(), SoundEvents.ENTITY_PLAYER_LEVELUP, this.getSoundCategory(), f * 0.75F, 1.0F);
          this.lastXPSound = this.ticksExisted;
       }
 

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "ervin_mod_1:terat",
+  "pattern": [
+    "####",
+    "####",
+    "####",
+    "####"
+  ],
+  "key": {
+    "#": {
+      "item": "ervin_mod_1:terat_nugget"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:terat",
+    "count": 1
+  }
+}

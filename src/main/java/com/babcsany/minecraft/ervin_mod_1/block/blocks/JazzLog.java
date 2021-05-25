@@ -8,10 +8,12 @@ import net.minecraft.world.IBlockReader;
 
 public class JazzLog extends FirgWood {
    private final MaterialColor verticalColor;
+   //private final MaterialColor materialColor;
 
-   public JazzLog(MaterialColor verticalColorIn, Properties properties) {
+   public JazzLog(MaterialColor verticalColorIn, /*MaterialColor materialColorIn,*/ Properties properties) {
       super(properties);
       this.verticalColor = verticalColorIn;
+      //this.materialColor = materialColorIn;
    }
 
    /* *

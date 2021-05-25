@@ -4,8 +4,8 @@ import net.minecraft.block.SoundType;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 
-public class SoundInit {
-   public static final SoundInit AMBIENT_BASALT_NETHER_ADDITIONS = new SoundInit(1.0F, 1.0F, SoundEvents.AMBIENT_BASALT_DELTAS_ADDITIONS, SoundEvents.AMBIENT_CRIMSON_FOREST_ADDITIONS, SoundEvents.AMBIENT_NETHER_WASTES_ADDITIONS, SoundEvents.AMBIENT_SOUL_SAND_VALLEY_ADDITIONS, SoundEvents.AMBIENT_WARPED_FOREST_ADDITIONS);
+public class SoundInit extends SoundType {
+   public static final SoundType AMBIENT_BASALT_NETHER_ADDITIONS = new SoundType(1.0F, 1.0F, SoundEvents.AMBIENT_BASALT_DELTAS_ADDITIONS, SoundEvents.AMBIENT_CRIMSON_FOREST_ADDITIONS, SoundEvents.AMBIENT_NETHER_WASTES_ADDITIONS, SoundEvents.AMBIENT_SOUL_SAND_VALLEY_ADDITIONS, SoundEvents.AMBIENT_WARPED_FOREST_ADDITIONS);
    public static final SoundInit WOOD = new SoundInit(1.0F, 1.0F, SoundEvents.BLOCK_WOOD_BREAK, SoundEvents.BLOCK_WOOD_STEP, SoundEvents.BLOCK_WOOD_PLACE, SoundEvents.BLOCK_WOOD_HIT, SoundEvents.BLOCK_WOOD_FALL);
    public final float volume;
    public final float pitch;
@@ -16,6 +16,7 @@ public class SoundInit {
    private final SoundEvent fallSound;
 
    public SoundInit(float volumeIn, float pitchIn, SoundEvent breakSoundIn, SoundEvent stepSoundIn, SoundEvent placeSoundIn, SoundEvent hitSoundIn, SoundEvent fallSoundIn) {
+      super(volumeIn, pitchIn, breakSoundIn, stepSoundIn, placeSoundIn, hitSoundIn, fallSoundIn);
       this.volume = volumeIn;
       this.pitch = pitchIn;
       this.breakSound = breakSoundIn;

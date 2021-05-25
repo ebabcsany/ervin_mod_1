@@ -4,7 +4,7 @@ import net.minecraft.block.material.MaterialColor;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class MaterialColorInit {
+public class MaterialColorInit extends MaterialColor {
     /** Holds all the 16 colors used on maps, very similar of a pallete system. */
     public static final MaterialColorInit[] COLORS = new MaterialColorInit[64];
     public static final MaterialColorInit AIR = new MaterialColorInit(0, 0);
@@ -37,6 +37,7 @@ public class MaterialColorInit {
     public final int colorIndex;
 
     private MaterialColorInit(int index, int color) {
+        super(index, color);
         if (index >= 0 && index <= 63) {
             this.colorIndex = index;
             this.colorValue = color;

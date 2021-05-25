@@ -2,8 +2,8 @@ package com.babcsany.minecraft.ervin_mod_1.block.blocks;
 
 import com.babcsany.minecraft.ervin_mod_1.state.ModBlockStateProperties;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.LeavesBlock;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.BooleanProperty;
@@ -30,12 +30,7 @@ public class FrimLeaves extends Block implements net.minecraftforge.common.IForg
 
    public FrimLeaves(Properties properties) {
       super(properties);
-      this.setDefaultState(this.stateContainer.getBaseState().with(DISTANCE, Integer.valueOf(32)).with(PERSISTENT, Boolean.valueOf(false)));
-   }
-
-   @OnlyIn(Dist.CLIENT)
-   public float getAmbientOcclusionLightValue(BlockState state, IBlockReader worldIn, BlockPos pos) {
-      return 1.0F;
+      this.setDefaultState(this.stateContainer.getBaseState().with(DISTANCE, 32).with(PERSISTENT, Boolean.FALSE));
    }
 
    public VoxelShape getCollisionShape(BlockState state, IBlockReader reader, BlockPos pos) {
@@ -96,7 +91,7 @@ public class FrimLeaves extends Block implements net.minecraftforge.common.IForg
          }
       }
 
-      return state.with(DISTANCE, Integer.valueOf(i));
+      return state.with(DISTANCE, i);
    }
 
    private static int getDistance(BlockState neighbor) {
@@ -133,6 +128,6 @@ public class FrimLeaves extends Block implements net.minecraftforge.common.IForg
    }
 
    public BlockState getStateForPlacement(BlockItemUseContext context) {
-      return updateDistance(this.getDefaultState().with(PERSISTENT, Boolean.valueOf(true)), context.getWorld(), context.getPos());
+      return updateDistance(this.getDefaultState().with(PERSISTENT, Boolean.TRUE), context.getWorld(), context.getPos());
    }
 }

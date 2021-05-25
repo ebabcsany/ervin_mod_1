@@ -11,6 +11,7 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.container.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.*;
+import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.AbstractFurnaceTileEntity;
 import net.minecraft.util.IIntArray;
 import net.minecraft.util.IntArray;
@@ -51,6 +52,10 @@ public abstract class AbstractBlackFurnaceContainer extends RecipeBookContainer<
       }
 
       this.trackIntArray(furnaceDataIn);
+   }
+
+   protected AbstractBlackFurnaceContainer(ContainerType<?> containerTypeIn, IRecipeType<? extends AbstractCookingRecipe> recipeTypeIn, int id, PlayerInventory playerInventoryIn, PacketBuffer packetBuffer) {
+      this(containerTypeIn, recipeTypeIn, id, playerInventoryIn, new Inventory(3), new IntArray(4));
    }
 
    public void fillStackedContents(RecipeItemHelper itemHelperIn) {

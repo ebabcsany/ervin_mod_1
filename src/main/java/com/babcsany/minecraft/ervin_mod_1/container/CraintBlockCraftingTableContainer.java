@@ -1,7 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.container;
 
-import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.ContainerInit;
+import com.babcsany.minecraft.ervin_mod_1.init.container.ContainerInit;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.inventory.CraintBlockCraftingTableInventory;
 import com.google.common.collect.Lists;

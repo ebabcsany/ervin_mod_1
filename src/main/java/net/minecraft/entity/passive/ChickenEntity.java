@@ -29,6 +29,7 @@ public class ChickenEntity extends AnimalEntity {
    public float oFlap;
    public float wingRotDelta = 1.0F;
    public int timeUntilNextEgg = this.rand.nextInt(6000) + 6000;
+   public int timeUntilNextItem = this.rand.nextInt(12000) + 18000;
    public boolean chickenJockey;
 
    public ChickenEntity(EntityType<? extends ChickenEntity> type, World worldIn) {
@@ -88,7 +89,10 @@ public class ChickenEntity extends AnimalEntity {
          this.entityDropItem(ItemInit.TAWROL.get());
          this.timeUntilNextEgg = this.rand.nextInt(12000) + 12000;
       }
-
+      if (!this.world.isRemote && this.isAlive() && !this.isChild() && !this.isChickenJockey() && --this.timeUntilNextItem <= 0) {
+         this.entityDropItem(Items.FEATHER);
+         this.timeUntilNextItem = this.rand.nextInt(18000) + 24000;
+      }
    }
 
    public boolean onLivingFall(float distance, float damageMultiplier) {

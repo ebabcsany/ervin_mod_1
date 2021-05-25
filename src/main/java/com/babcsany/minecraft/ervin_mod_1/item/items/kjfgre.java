@@ -1,13 +1,10 @@
 package com.babcsany.minecraft.ervin_mod_1.item.items;
 
-import com.babcsany.minecraft.ervin_mod_1.item.TieredCraintItem;
 import com.babcsany.minecraft.ervin_mod_1.item.TieredItem2;
-import com.babcsany.minecraft.ervin_mod_1.item.tool.IItemTier1;
 import com.babcsany.minecraft.ervin_mod_1.item.tool.IItemTier2;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.ImmutableMultimap.Builder;
 import com.google.common.collect.Multimap;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.IVanishable;
 import net.minecraft.entity.LivingEntity;
@@ -18,8 +15,6 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-
-import java.util.Set;
 
 public class kjfgre extends TieredItem2 implements IVanishable {
    private final float attackDamage;
@@ -66,6 +61,7 @@ public class kjfgre extends TieredItem2 implements IVanishable {
 
    /**
     * Gets a map of item attribute modifiers, used by ItemSword to increase hit damage.
+    * @return
     */
    public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlotType equipmentSlot) {
       return equipmentSlot == EquipmentSlotType.MAINHAND ? this.attributeModifiers : super.getAttributeModifiers(equipmentSlot);

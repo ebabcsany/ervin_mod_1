@@ -2,7 +2,6 @@ package com.babcsany.minecraft.ervin_mod_1.entity.animal;
 
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.block.BlockNamedItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.spawn_egg.ModSpawnEggItemInit;
 import net.minecraft.block.BlockState;
@@ -13,7 +12,6 @@ import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.pathfinding.PathNodeType;
@@ -33,6 +31,7 @@ public class GwurstEntity extends AnimalEntity {
    public float oFlap;
    public float wingRotDelta = 1.0F;
    public int timeUntilNextEgg = this.rand.nextInt(6000) + 6000;
+   public int timeUntilNextItem = this.rand.nextInt(14000) + 22000;
    public boolean gwurstJockey;
 
    public GwurstEntity(EntityType<? extends GwurstEntity> type, World worldIn) {
@@ -97,14 +96,14 @@ public class GwurstEntity extends AnimalEntity {
       if (!this.world.isRemote && this.isAlive() && !this.isChild() && !this.isGwurstJockey() && --this.timeUntilNextEgg <= 0) {
          this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
          this.entityDropItem(ItemInit.CHAK.get());
-         this.timeUntilNextEgg = this.rand.nextInt(48000) + 48000;
+         this.timeUntilNextItem = this.rand.nextInt(48000) + 48000;
       }
 
       this.wingRotation += this.wingRotDelta * 2.0F;
       if (!this.world.isRemote && this.isAlive() && !this.isChild() && !this.isGwurstJockey() && --this.timeUntilNextEgg <= 0) {
          this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
          this.entityDropItem(ItemInit.DGUCHSR.get());
-         this.timeUntilNextEgg = this.rand.nextInt(72000) + 72000;
+         this.timeUntilNextItem = this.rand.nextInt(72000) + 72000;
       }
 
    }

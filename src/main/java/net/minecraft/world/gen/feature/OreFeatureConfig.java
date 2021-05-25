@@ -41,6 +41,27 @@ public class OreFeatureConfig implements IFeatureConfig {
             return p_214739_0_.isIn(Blocks.STONE) || p_214739_0_.isIn(Blocks.GRANITE) || p_214739_0_.isIn(Blocks.DIORITE) || p_214739_0_.isIn(Blocks.ANDESITE);
          }
       }),
+      END_STONE("end_stone", (end_stone) -> {
+         if (end_stone == null) {
+            return false;
+         } else {
+            return end_stone.isIn(Blocks.END_STONE);
+         }
+      }),
+      NATURAL_END_STONE("natural_end_stone", (natural_end_stone) -> {
+         if (natural_end_stone == null) {
+            return false;
+         } else {
+            return natural_end_stone.isIn(Blocks.END_STONE) || natural_end_stone.isIn(BlockItemInit.END_SRACKT.get()) || natural_end_stone.isIn(BlockItemInit.END_SRACT.get()) || natural_end_stone.isIn(BlockItemInit.END_STONE_CISK.get()) || natural_end_stone.isIn(BlockItemInit.END_STONE_CRISK.get());
+         }
+      }),
+      END_STONE_VARIANTS("end_stone_variants", (end_stone_variants) -> {
+         if (end_stone_variants == null) {
+            return false;
+         } else {
+            return end_stone_variants.isIn(Blocks.END_STONE) || end_stone_variants.isIn(BlockItemInit.END_SRACKT.get()) || end_stone_variants.isIn(BlockItemInit.ENDER_SACKT.get()) || end_stone_variants.isIn(BlockItemInit.ENDER_SRACT.get()) || end_stone_variants.isIn(BlockItemInit.ENDER_SRACK.get()) || end_stone_variants.isIn(BlockItemInit.ENDER_SACT.get()) || end_stone_variants.isIn(BlockItemInit.ENDER_SRACKH.get());
+         }
+      }),
       NATURAL_STONE1("natural_stone1", (p_214739_0_) -> {
          if (p_214739_0_ == null) {
             return false;

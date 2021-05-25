@@ -19,13 +19,12 @@ import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.world.GameRules;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
+import net.minecraft.world.*;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -37,6 +36,13 @@ public class ExamplePortalBlock extends Block {
    public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.HORIZONTAL_AXIS;
    protected static final VoxelShape X_AABB = Block.makeCuboidShape(0.0D, 0.0D, 6.0D, 16.0D, 16.0D, 10.0D);
    protected static final VoxelShape Z_AABB = Block.makeCuboidShape(6.0D, 0.0D, 0.0D, 10.0D, 16.0D, 16.0D);
+   public int timeUntilExamplePortal;
+   protected boolean inExamplePortal;
+   protected BlockPos lastExamplePortalPos;
+   protected Vector3d lastExamplePortalVec;
+   private Vector3d positionVec;
+   protected Direction teleportDirection;
+   public World world;
 
    public ExamplePortalBlock(Properties properties) {
       super(properties);
@@ -44,7 +50,7 @@ public class ExamplePortalBlock extends Block {
    }
 
    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-      switch((Direction.Axis)state.get(AXIS)) {
+      switch(state.get(AXIS)) {
       case Z:
          return Z_AABB;
       case X:
@@ -62,8 +68,8 @@ public class ExamplePortalBlock extends Block {
             pos = pos.down();
          }
 
-         if (worldIn.getBlockState(pos).canEntitySpawn(worldIn, pos, EntityInit.ZUR_ENTITY.get())) {
-            Entity entity = EntityInit.ZUR_ENTITY.get().spawn(worldIn, (CompoundNBT)null, (ITextComponent)null, (PlayerEntity)null, pos.up(), SpawnReason.STRUCTURE, false, false);
+         if (worldIn.getBlockState(pos).canEntitySpawn(worldIn, pos, EntityInit.ZUR_ENTITY)) {
+            Entity entity = EntityInit.ZUR_ENTITY.spawn(worldIn, null, null, null, pos.up(), SpawnReason.STRUCTURE, false, false);
             if (entity != null) {
                entity.timeUntilPortal = entity.getPortalCooldown();
             }
@@ -108,9 +114,44 @@ public class ExamplePortalBlock extends Block {
 
    public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
       if (!entityIn.isPassenger() && !entityIn.isBeingRidden() && entityIn.isNonBoss()) {
-         entityIn.setExamplePortal(pos);
+         setExamplePortal(pos);
       }
 
+   }
+
+   public int getPortalCooldown() {
+      return 300;
+   }
+
+   public void setExamplePortal(BlockPos pos) {
+      if (this.timeUntilExamplePortal > 0) {
+         this.timeUntilExamplePortal = this.getPortalCooldown();
+      } else {
+         if (!this.world.isRemote && !pos.equals(this.lastExamplePortalPos)) {
+            this.lastExamplePortalPos = new BlockPos(pos);
+            ExamplePortalBlock examplePortalBlock = (ExamplePortalBlock) BlockInit.EXAMPLE_PORTAL_BLOCK.get();
+            BlockPattern.PatternHelper blockpattern$patternhelper = ExamplePortalBlock.createPatternHelper(this.world, this.lastExamplePortalPos);
+            double d0 = blockpattern$patternhelper.getForwards().getAxis() == Direction.Axis.X ? (double)blockpattern$patternhelper.getFrontTopLeft().getZ() : (double)blockpattern$patternhelper.getFrontTopLeft().getX();
+            double d1 = MathHelper.clamp(Math.abs(MathHelper.func_233020_c_((blockpattern$patternhelper.getForwards().getAxis() == Direction.Axis.X ? this.getPosZ() : this.getPosX()) - (double)(blockpattern$patternhelper.getForwards().rotateY().getAxisDirection() == Direction.AxisDirection.NEGATIVE ? 1 : 0), d0, d0 - (double)blockpattern$patternhelper.getWidth())), 0.0D, 1.0D);
+            double d2 = MathHelper.clamp(MathHelper.func_233020_c_(this.getPosY() - 1.0D, blockpattern$patternhelper.getFrontTopLeft().getY(), blockpattern$patternhelper.getFrontTopLeft().getY() - blockpattern$patternhelper.getHeight()), 0.0D, 1.0D);
+            this.lastExamplePortalVec = new Vector3d(d1, d2, 0.0D);
+            this.teleportDirection = blockpattern$patternhelper.getForwards();
+         }
+
+         this.inExamplePortal = true;
+      }
+   }
+
+   public final double getPosX() {
+      return this.positionVec.x;
+   }
+
+   public final double getPosY() {
+      return this.positionVec.y;
+   }
+
+   public final double getPosZ() {
+      return this.positionVec.z;
    }
 
    /* *
@@ -134,10 +175,10 @@ public class ExamplePortalBlock extends Block {
          int j = rand.nextInt(2) * 2 - 1;
          if (!worldIn.getBlockState(pos.west()).isIn(this) && !worldIn.getBlockState(pos.east()).isIn(this)) {
             d0 = (double)pos.getX() + 0.5D + 0.25D * (double)j;
-            d3 = (double)(rand.nextFloat() * 2.0F * (float)j);
+            d3 = rand.nextFloat() * 2.0F * (float)j;
          } else {
             d2 = (double)pos.getZ() + 0.5D + 0.25D * (double)j;
-            d5 = (double)(rand.nextFloat() * 2.0F * (float)j);
+            d5 = rand.nextFloat() * 2.0F * (float)j;
          }
 
          worldIn.addParticle(ParticleTypes.PORTAL, d0, d1, d2, d3, d4, d5);
@@ -262,12 +303,12 @@ public class ExamplePortalBlock extends Block {
          int i;
          for(i = 0; i < 22; ++i) {
             BlockPos blockpos = pos.offset(directionIn, i);
-            if (!this.canConnect(this.world.getBlockState(blockpos)) || !this.world.getBlockState(blockpos.down()).isExamplePortalFrame(world, blockpos.down())) {
+            if (!this.canConnect(this.world.getBlockState(blockpos)) || !this.world.getBlockState(blockpos.down()).isPortalFrame(world, blockpos.down())) {
                break;
             }
          }
 
-         return this.world.getBlockState(pos.offset(directionIn, i)).isExamplePortalFrame(world, pos.offset(directionIn, i)) ? i : 0;
+         return this.world.getBlockState(pos.offset(directionIn, i)).isPortalFrame(world, pos.offset(directionIn, i)) ? i : 0;
       }
 
       public int getHeight() {
@@ -293,17 +334,17 @@ public class ExamplePortalBlock extends Block {
                }
 
                if (i == 0) {
-                  if (!this.world.getBlockState(blockpos.offset(this.leftDir)).isExamplePortalFrame(world, blockpos.offset(this.leftDir))) {
+                  if (!this.world.getBlockState(blockpos.offset(this.leftDir)).isPortalFrame(world, blockpos.offset(this.leftDir))) {
                      break label56;
                   }
-               } else if (i == this.width - 1 && !this.world.getBlockState(blockpos.offset(this.rightDir)).isExamplePortalFrame(world, blockpos.offset(this.rightDir))) {
+               } else if (i == this.width - 1 && !this.world.getBlockState(blockpos.offset(this.rightDir)).isPortalFrame(world, blockpos.offset(this.rightDir))) {
                   break label56;
                }
             }
          }
 
          for(int j = 0; j < this.width; ++j) {
-            if (!this.world.getBlockState(this.bottomLeft.offset(this.rightDir, j).up(this.height)).isExamplePortalFrame(world, this.bottomLeft.offset(this.rightDir, j).up(this.height))) {
+            if (!this.world.getBlockState(this.bottomLeft.offset(this.rightDir, j).up(this.height)).isPortalFrame(world, this.bottomLeft.offset(this.rightDir, j).up(this.height))) {
                this.height = 0;
                break;
             }

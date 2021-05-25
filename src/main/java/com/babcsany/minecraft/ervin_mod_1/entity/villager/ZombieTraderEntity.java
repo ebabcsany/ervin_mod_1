@@ -19,10 +19,7 @@ import net.minecraft.item.MerchantOffers;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraft.stats.Stats;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -91,12 +88,12 @@ public class ZombieTraderEntity extends AbstractZombieTraderEntity {
    }
 
    protected void populateTradeData() {
-      ZombieTraderTrades.ITrade[] aZombietTraderTrades$itrade = ZombieTraderTrades.field_221240_b.get(1);
-      if (aZombietTraderTrades$itrade != null) {
+      ZombieTraderTrades.ITrade[] aZombieTraderTrades$itrade = ZombieTraderTrades.field_221240_b.get(1);
+      if (aZombieTraderTrades$itrade != null) {
          MerchantOffers merchantoffers = this.getOffers();
-         int i = this.rand.nextInt(aZombietTraderTrades$itrade.length);
-         this.addTrades(merchantoffers, aZombietTraderTrades$itrade, 4);
-         ZombieTraderTrades.ITrade zombieTraderTrades$itrade = aZombietTraderTrades$itrade[i];
+         int i = this.rand.nextInt(aZombieTraderTrades$itrade.length);
+         this.addTrades(merchantoffers, aZombieTraderTrades$itrade, 4);
+         ZombieTraderTrades.ITrade zombieTraderTrades$itrade = aZombieTraderTrades$itrade[i];
          MerchantOffer merchantoffer = zombieTraderTrades$itrade.getOffer(this, this.rand);
          if (merchantoffer != null) {
             merchantoffers.add(merchantoffer);
@@ -144,14 +141,14 @@ public class ZombieTraderEntity extends AbstractZombieTraderEntity {
 
    /*protected SoundEvent getAmbientSound() {
       return this.hasCustomer() ? SoundEvents.ENTITY_WANDERING_TRADER_TRADE : SoundEvents.ENTITY_WANDERING_TRADER_AMBIENT;
-   }
-
-   protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-      return SoundEvents.ENTITY_WANDERING_TRADER_HURT;
    }*/
 
+   protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
+      return SoundEvents.ENTITY_ZOMBIE_HURT;
+   }
+
    protected SoundEvent getDeathSound() {
-      return SoundEvents.ENTITY_WANDERING_TRADER_DEATH;
+      return SoundEvents.ENTITY_ZOMBIE_DEATH;
    }
 
    /*protected SoundEvent getDrinkSound(ItemStack stack) {

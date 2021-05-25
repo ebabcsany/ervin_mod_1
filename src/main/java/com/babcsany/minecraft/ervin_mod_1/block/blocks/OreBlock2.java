@@ -1,6 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.block.blocks;
 
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;
@@ -17,7 +18,7 @@ public class OreBlock2 extends HorizontalBlock {
    }
 
    protected int getExperience(Random rand) {
-      if (this == BlockItemInit.gnrthirj.get()) {
+      if (this == BlockInit.GNRTHIRJ.get()) {
          return MathHelper.nextInt(rand, 3, 7);
       /*} else if (this == BlockItemInit.GNITH_BLOCK.get()) {
          return MathHelper.nextInt(rand, 2, 9);

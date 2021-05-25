@@ -514,15 +514,11 @@
       ]
     },
     {
-      "rolls": {
-        "min": 0.0,
-        "max": 6.0,
-        "type": "minecraft:uniform"
-      },
+      "rolls": 1,
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:sriunk_boots"
+          "name": "ervin_mod_1:sriunk_debug_stick"
         }
       ]
     }

@@ -1,11 +1,13 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.monster;
 
+import com.babcsany.minecraft.ervin_mod_1.entity.villager.TraderNirtre1Entity;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -14,27 +16,33 @@ import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.MerchantOffer;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.UUID;
 
+import static com.babcsany.minecraft.ervin_mod_1.entity.monster.AbstractZurEntity.BABY_SPEED_BOOST;
+
 public class Dgrurb extends MonsterEntity {
     /**
      * The attribute which determines the chance that this mob will spawn reinforcements
      */
-    private static final UUID BABY_SPEED_BOOST_ID = UUID.fromString("B9766B59-9566-4402-BC1F-2EE2A276D836");
-    private static final AttributeModifier BABY_SPEED_BOOST = new AttributeModifier(BABY_SPEED_BOOST_ID, "Baby speed boost", 0.5D, AttributeModifier.Operation.MULTIPLY_BASE);
+    //private static final UUID BABY_SPEED_BOOST_ID = UUID.fromString("B9766B59-9566-4402-BC1F-2EE2A276D836");
+    //private static final AttributeModifier BABY_SPEED_BOOST = new AttributeModifier(BABY_SPEED_BOOST_ID, "Baby speed boost", 0.5D, AttributeModifier.Operation.MULTIPLY_BASE);
     private static final DataParameter<Boolean> IS_CHILD = EntityDataManager.createKey(Dgrurb.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Boolean> BABY = EntityDataManager.createKey(Dgrurb.class, DataSerializers.BOOLEAN);
 
     private EatGrassGoal eatGrassGoal;
     private int eatingGrassTimer;
+    protected int growingAge;
 
     public Dgrurb(EntityType<? extends Dgrurb> type, World worldIn) {
         super(type, worldIn);
@@ -42,6 +50,10 @@ public class Dgrurb extends MonsterEntity {
 
     public Dgrurb(World world) {
         super(EntityInit.DGRURB_ENTITY.get(), world);
+    }
+
+    public void applyWaveBonus(int p_213660_1_, boolean p_213660_2_) {
+
     }
 
     public void setChild(boolean childDgrurb) {
@@ -54,6 +66,14 @@ public class Dgrurb extends MonsterEntity {
             }
         }
 
+    }
+
+    protected void onZurTrade(MerchantOffer offer) {
+
+    }
+
+    protected boolean populateTradeData() {
+        return false;
     }
 
     @Override
@@ -84,8 +104,8 @@ public class Dgrurb extends MonsterEntity {
         super.livingTick();
     }
 
-    public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
-        return Dgrurb.func_234295_eP_().createMutableAttribute(Attributes.MAX_HEALTH, 10000000000000.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23F).createMutableAttribute(Attributes.ATTACK_DAMAGE, 20000000.0D);
+    public static AttributeModifierMap.MutableAttribute registerAttributes() {
+        return Dgrurb.func_234295_eP_().createMutableAttribute(Attributes.MAX_HEALTH, 10000000000.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 1.0F).createMutableAttribute(Attributes.ATTACK_DAMAGE, 20000000.0D);
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -104,8 +124,8 @@ public class Dgrurb extends MonsterEntity {
     }
 
     public boolean onEntityLivingUpdate(Dgrurb entity) {
-        entity.getEntityWorld().setBlockState(entity.getPosition().down(), isBurnableBlockItemInit.NIRTK.get().getDefaultState());
-        return onEntityLivingUpdate(entity);
+        entity.getEntityWorld().setBlockState(entity.getPosition().down(1), isBurnableBlockItemInit.NIRTK.get().getDefaultState());
+        return entityLivingUpdate(entity);
     }
 
     public Dgrurb createChild(AgeableEntity ageable) {
@@ -134,15 +154,51 @@ public class Dgrurb extends MonsterEntity {
         }
     }
 
-    @Override
-    public void onStruckByLightning(LightningBoltEntity lightningBolt) {
-        this.setGlowing(true);
+    public void setGrowingAge(int age) {
+        int i = this.growingAge;
+        this.growingAge = age;
+        if (i < 0 && age >= 0 || i >= 0 && age < 0) {
+            this.dataManager.set(BABY, age < 0);
+            this.onGrowingAdult();
+        }
+
     }
 
+    protected void onGrowingAdult() {
+    }
+
+    public int getGrowingAge() {
+        if (this.world.isRemote) {
+            return this.dataManager.get(BABY) ? -1 : 1;
+        } else {
+            return this.growingAge;
+        }
+    }
 
 
     //   @Override
     // protected SoundEvent getAmbientSound() {
     //   return SoundInit.AMBIENT.get();
+
+    public void onStruckByLightning(LightningBoltEntity lightningBolt) {
+        if (this.world.getDifficulty() != Difficulty.PEACEFUL) {
+            LOGGER.info("Trader Nirtre {} was struck by lightning {}.", this, lightningBolt);
+            Dgrurbk dgrurbk = EntityInit.DGRURBK_ENTITY.get().create(this.world);
+            dgrurbk.setLocationAndAngles(this.getPosX(), this.getPosY(), this.getPosZ(), this.rotationYaw, this.rotationPitch);
+            dgrurbk.onInitialSpawn(this.world, this.world.getDifficultyForLocation(dgrurbk.getPosition()), SpawnReason.CONVERSION, null, null);
+            dgrurbk.setNoAI(this.isAIDisabled());
+            if (this.hasCustomName()) {
+                dgrurbk.setCustomName(this.getCustomName());
+                dgrurbk.setCustomNameVisible(this.isCustomNameVisible());
+            }
+
+            dgrurbk.enablePersistence();
+            this.world.addEntity(dgrurbk);
+            this.remove();
+        } else {
+            super.onStruckByLightning(lightningBolt);
+        }
+
+    }
 }
 

@@ -70,8 +70,8 @@ public class SrechEntity extends AnimalEntity {
       }
    }
 
-   public SrechEntity createChild(AgeableEntity ageable) {
-      return EntityInit.SRECH_ENTITY.get().create(this.world);
+   public SrachEntity createChild(AgeableEntity ageable) {
+      return EntityInit.SRACH_ENTITY.get().create(this.world);
    }
 
    protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {

@@ -6,6 +6,7 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.DataResult;
+import net.minecraft.nbt.INBT;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -37,7 +38,7 @@ public class ResourceLocation implements Comparable<ResourceLocation> {
       this(new String[]{namespaceIn, pathIn});
    }
 
-   /**
+    /**
     * Constructs a ResourceLocation by splitting a String representation of a valid location on a specified character.
     */
    public static ResourceLocation create(String resourceName, char splitOn) {

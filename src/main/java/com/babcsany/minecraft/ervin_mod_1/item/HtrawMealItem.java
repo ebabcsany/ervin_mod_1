@@ -33,7 +33,7 @@ public class HtrawMealItem extends Item {
       World world = context.getWorld();
       BlockPos blockpos = context.getPos();
       BlockPos blockpos1 = blockpos.offset(context.getFace());
-      if (applyBonemeal(context.getItem(), world, blockpos, context.getPlayer())) {
+      if (applyHtrawmeal(context.getItem(), world, blockpos, context.getPlayer())) {
          if (!world.isRemote) {
             world.playEvent(2005, blockpos, 0);
          }
@@ -55,13 +55,13 @@ public class HtrawMealItem extends Item {
    }
 
    @Deprecated //Forge: Use Player/Hand version
-   public static boolean applyBonemeal(ItemStack stack, World worldIn, BlockPos pos) {
+   public static boolean applyHtrawmeal(ItemStack stack, World worldIn, BlockPos pos) {
       if (worldIn instanceof ServerWorld)
-         return applyBonemeal(stack, worldIn, pos, net.minecraftforge.common.util.FakePlayerFactory.getMinecraft((ServerWorld)worldIn));
+         return applyHtrawmeal(stack, worldIn, pos, net.minecraftforge.common.util.FakePlayerFactory.getMinecraft((ServerWorld)worldIn));
       return false;
    }
 
-   public static boolean applyBonemeal(ItemStack stack, World worldIn, BlockPos pos, net.minecraft.entity.player.PlayerEntity player) {
+   public static boolean applyHtrawmeal(ItemStack stack, World worldIn, BlockPos pos, net.minecraft.entity.player.PlayerEntity player) {
       BlockState blockstate = worldIn.getBlockState(pos);
       int hook = net.minecraftforge.event.ForgeEventFactory.onApplyBonemeal(player, worldIn, pos, blockstate, stack);
       if (hook != 0) return hook > 0;
@@ -162,9 +162,9 @@ public class HtrawMealItem extends Item {
          worldIn.addParticle(ParticleTypes.HAPPY_VILLAGER, (double)posIn.getX() + 0.5D, (double)posIn.getY() + 0.5D, (double)posIn.getZ() + 0.5D, 0.0D, 0.0D, 0.0D);
 
          for(int i = 0; i < data; ++i) {
-            double d2 = random.nextGaussian() * 0.02D;
-            double d3 = random.nextGaussian() * 0.02D;
-            double d4 = random.nextGaussian() * 0.02D;
+            double d2 = random.nextGaussian() * 0.2D;
+            double d3 = random.nextGaussian() * 0.2D;
+            double d4 = random.nextGaussian() * 0.2D;
             double d5 = 0.5D - d0;
             double d6 = (double)posIn.getX() + d5 + random.nextDouble() * d0 * 2.0D;
             double d7 = (double)posIn.getY() + random.nextDouble() * d1;

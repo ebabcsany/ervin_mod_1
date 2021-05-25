@@ -35,7 +35,7 @@ public class SurfaceBuilder2 {
    private static final BlockState field_237166_i_ = BlockItemInit.ZURK_BLOCK.get().getDefaultState();
    private static final BlockState field_237167_g_ = Blocks.DIAMOND_BLOCK.getDefaultState();
    private static final BlockState field_237167_h_ = isBurnableBlockItemInit.TRUGK_BLOCK.get().getDefaultState();
-   private static final BlockState field_237167_i_ = BlockItemInit.ZUNK_BLOCK.get().getDefaultState();
+   private static final BlockState field_237167_i_ = BlockInit.ZUNK_BLOCK.get().getDefaultState();
    private static final BlockState field_237167_j_ = isBurnableBlockItemInit.LEAT_BLOCK.get().getDefaultState();
    private static final BlockState field_237168_h_ = BlockInit.TERAT_BLOCK.get().getDefaultState();
    private static final BlockState field_237168_i_ = BlockItemInit.ENDER_SRACK.get().getDefaultState();

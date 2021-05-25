@@ -68,6 +68,7 @@ public class LootTables1 {
    public static final ResourceLocation GAMEPLAY_FISHING_TREASURE = register("gameplay/fishing/treasure");
    public static final ResourceLocation GAMEPLAY_FISHING_FISH = register("gameplay/fishing/fish");
    public static final ResourceLocation GAMEPLAY_CAT_MORNING_GIFT = register("gameplay/cat_morning_gift");
+   public static final ResourceLocation GAMEPLAY_ZUR_MORNING_GIFT = register("gameplay/zur_morning_gift");
    public static final ResourceLocation GAMEPLAY_HERO_OF_THE_VILLAGE_ARMORER_GIFT = register("gameplay/hero_of_the_village/armorer_gift");
    public static final ResourceLocation GAMEPLAY_HERO_OF_THE_VILLAGE_BUTCHER_GIFT = register("gameplay/hero_of_the_village/butcher_gift");
    public static final ResourceLocation GAMEPLAY_HERO_OF_THE_VILLAGE_CARTOGRAPHER_GIFT = register("gameplay/hero_of_the_village/cartographer_gift");

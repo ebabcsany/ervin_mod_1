@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "ervin_mod_1:nirk",
+  "ingredients": [
+    {
+      "item": "ervin_mod_1:nirk_block"
+    }
+  ],
+  "result": {
+    "item": "ervin_mod_1:nirk",
+    "count": 9
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": [
+    {
+      "item": "ervin_mod_1:dguchsr"
+    }
+  ],
+  "result": "ervin_mod_1:firt",
+  "experience": 12.0,
+  "cookingtime": 2400
+}

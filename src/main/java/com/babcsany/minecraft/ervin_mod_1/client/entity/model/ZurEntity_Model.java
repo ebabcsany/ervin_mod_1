@@ -4,7 +4,7 @@ import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity_;
 import net.minecraft.client.renderer.entity.model.AbstractZombieModel;
 
-public class ZurEntity_Model<T extends ZurEntity> extends AbstractZombieModel<T> {
+public class ZurEntity_Model<T extends ZurEntity> extends AbstractZurModel_1<T> {
     public ZurEntity_Model(float modelSize, boolean p_i1168_2_) {
         this(modelSize, 0.0F, 64, p_i1168_2_ ? 32 : 64);
     }

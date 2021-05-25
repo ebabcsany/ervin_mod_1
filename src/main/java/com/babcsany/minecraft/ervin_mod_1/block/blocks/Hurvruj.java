@@ -1,6 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.block.blocks;
 
-import com.babcsany.minecraft.ervin_mod_1.init.item.block.isBurnableBlockNamedItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.block.isBurnableBlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.state.ModBlockStateProperties;
 import net.minecraft.block.*;
 import net.minecraft.entity.EntityType;
@@ -70,7 +70,7 @@ public class Hurvruj extends Block {
    }
 
    private static boolean isValidFuel(ItemStack stack) {
-      return stack.getItem() == isBurnableBlockNamedItemInit.TERAT_BLOCK.get();
+      return stack.getItem() == isBurnableBlockItemInit.TERAT_BLOCK.get();
    }
 
    private static boolean func_235568_h_(BlockState state) {
@@ -173,8 +173,8 @@ public class Hurvruj extends Block {
       return true;
    }
 
-   public static int func_235565_a_(BlockState state, int p_235565_1_) {
-      return MathHelper.floor((float)(state.get(CHARGES)) / 16.0F * (float)p_235565_1_);
+   public static int func_235565_a_(BlockState state, int charges) {
+      return MathHelper.floor((float)(state.get(CHARGES)) / 16.0F * (float)charges);
    }
 
    /**

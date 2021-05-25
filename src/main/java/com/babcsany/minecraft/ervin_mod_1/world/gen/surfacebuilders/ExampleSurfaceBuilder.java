@@ -11,7 +11,7 @@ import net.minecraft.world.gen.surfacebuilders.ValleySurfaceBuilder;
 
 public class ExampleSurfaceBuilder extends ValleySurfaceBuilder {
    private static final BlockState LEAT_BLOCK_CRAFTING_TABLE = isBurnableBlockItemInit.LEAT_BLOCK_CRAFTING_TABLE.get().getDefaultState();
-   private static final BlockState CRASK = BlockItemInit.CRASK.get().getDefaultState();
+   private static final BlockState CRASK = isBurnableBlockItemInit.CRASK.get().getDefaultState();
    private static final BlockState GRITK_BLOCK = BlockItemInit.GRITK_BLOCK.get().getDefaultState();
    private static final BlockState GRASS_BLOCK = Blocks.GRASS_BLOCK.getDefaultState();
    private static final BlockState SRIUNK_BLOCK = isBurnableBlockItemInit.SRIUNK_BLOCK.get().getDefaultState();

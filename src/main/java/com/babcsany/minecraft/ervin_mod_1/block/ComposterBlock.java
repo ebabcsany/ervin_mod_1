@@ -1,10 +1,9 @@
 package com.babcsany.minecraft.ervin_mod_1.block;
 
-import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.block.BlockNamedItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.block.isBurnableBlockNamedItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.food.FoodItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.food.SpecialBlockFoodItemInit;
 import it.unimi.dsi.fastutil.objects.Object2FloatMap;
 import it.unimi.dsi.fastutil.objects.Object2FloatOpenHashMap;
 import net.minecraft.block.Block;
@@ -82,10 +81,10 @@ public class ComposterBlock extends Block implements ISidedInventoryProvider {
       registerCompostable(0.3F, Items.SWEET_BERRIES);
       registerCompostable(0.3F, Items.WHEAT_SEEDS);
       registerCompostable(0.3F, BlockNamedItemInit.TARG_SEEDS.get());
-      registerCompostable(0.35F, BlockItemInit.FRIM_LEAVES.get());
-      registerCompostable(0.35F, BlockItemInit.FRIM_SAPLING.get());
-      registerCompostable(0.4F, BlockItemInit.FIRG_LEAVES.get());
-      registerCompostable(0.4F, BlockItemInit.FIRG_SAPLING.get());
+      registerCompostable(0.35F, com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.FRIM_LEAVES.get());
+      registerCompostable(0.35F, com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.FRIM_SAPLING.get());
+      registerCompostable(0.4F, com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit.FIRG_LEAVES.get());
+      registerCompostable(0.4F, com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit.FIRG_SAPLING.get());
       registerCompostable(0.5F, Items.DRIED_KELP_BLOCK);
       registerCompostable(0.5F, Items.TALL_GRASS);
       registerCompostable(0.5F, Items.CACTUS);
@@ -145,7 +144,7 @@ public class ComposterBlock extends Block implements ISidedInventoryProvider {
       registerCompostable(0.85F, Items.COOKIE);
       registerCompostable(1.0F, Items.CAKE);
       registerCompostable(1.0F, Items.PUMPKIN_PIE);
-      registerCompostable(1.0F, FoodItemInit.FIRG.get());
+      registerCompostable(1.0F, SpecialBlockFoodItemInit.FIRG.get());
       registerCompostable(1.0F, FoodItemInit.FRIM.get());
       registerCompostable(1.25F, FoodItemInit.REAT.get());
    }

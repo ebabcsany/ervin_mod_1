@@ -332,6 +332,11 @@ public interface IForgeItem
         return java.util.Collections.singletonList(getItem().getGroup());
     }
 
+    default java.util.Collection<com.babcsany.minecraft.ervin_mod_1.item.group.ItemGroup> getCreativeTabs1()
+    {
+        return java.util.Collections.singletonList(getItem().getGroup1());
+    }
+
     /**
      * Determines the base experience for a player when they remove this item from a
      * furnace slot. This number must be between 0 and 1 for it to be valid. This

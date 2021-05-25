@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:crafting_table",
+    "ervin_mod_1:craint_block_crafting_table",
+    "ervin_mod_1:leat_block_crafting_table"
+  ]
+}

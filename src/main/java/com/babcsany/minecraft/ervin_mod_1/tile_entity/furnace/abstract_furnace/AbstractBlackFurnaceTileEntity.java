@@ -1,11 +1,12 @@
 package com.babcsany.minecraft.ervin_mod_1.tile_entity.furnace.abstract_furnace;
 
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.block.isBurnableBlockNamedItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.food.FoodItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.armor.ArmorItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.food.SpecialBlockFoodItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.food.isBurnableFoodItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.tool.ToolItemInit;
+import com.babcsany.minecraft.ervin_mod_1.tags.ItemTag;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import it.unimi.dsi.fastutil.objects.Object2IntMap.Entry;
@@ -95,41 +96,40 @@ public abstract class AbstractBlackFurnaceTileEntity extends LockableTileEntity 
       this.recipeType = recipeTypeIn;
    }
 
-   @Deprecated //Forge - get burn times by calling ForgeHooks#getBurnTime(ItemStack)
    public static Map<Item, Integer> getBurnTimes() {
       Map<Item, Integer> map = Maps.newLinkedHashMap();
-      /*addItemTagBurnTime(map, ItemTags.BurnTimeIn8000, 8000);
-      addItemTagBurnTime(map, ItemTags.BurnTimeIn12000, 12000);
-      addItemTagBurnTime(map, ItemTags.BurnTimeIn16000, 16000);
-      addItemTagBurnTime(map, ItemTags.GART, 45000);
-      addItemTagBurnTime(map, ItemTags.GARB, 101200);
-      addItemTagBurnTime(map, ItemTags.GARK, 227700);
-      addItemTagBurnTime(map, ItemTags.GARK_BLOCK, 512300);
-      addItemTagBurnTime(map, ItemTags.GARK_SLAB, 256150);
-      addItemTagBurnTime(map, ItemTags.GARK_STAIRS, 384225);
-      addItemTagBurnTime(map, ItemTags.GARKT, 1152600);
-      addItemTagBurnTime(map, ItemTags.GARKTH, 4610400);
-      addItemTagBurnTime(map, ItemTags.TRAGH, 10373400);
-      addItemTagBurnTime(map, ItemTags.TRAGK, 23340100);
-      addItemTagBurnTime(map, ItemTags.TRAGK_BLOCK, 58350200);
-      addItemTagBurnTime(map, ItemTags.TRAGT, 145875500);
-      addItemTagBurnTime(map, ItemTags.TRAGN, 364688750);*/
+      addItemTagBurnTime(map, ItemTag.BurnTimeIn8000, 8000);
+      addItemTagBurnTime(map, ItemTag.BurnTimeIn12000, 12000);
+      addItemTagBurnTime(map, ItemTag.BurnTimeIn16000, 16000);
+      addItemTagBurnTime(map, ItemTag.GART, 45000);
+      addItemTagBurnTime(map, ItemTag.GARB, 101200);
+      addItemTagBurnTime(map, ItemTag.GARK, 227700);
+      addItemTagBurnTime(map, ItemTag.GARK_BLOCK, 512300);
+      addItemTagBurnTime(map, ItemTag.GARK_SLAB, 256150);
+      addItemTagBurnTime(map, ItemTag.GARK_STAIRS, 384225);
+      addItemTagBurnTime(map, ItemTag.GARKT, 1152600);
+      addItemTagBurnTime(map, ItemTag.GARKTH, 4610400);
+      addItemTagBurnTime(map, ItemTag.TRAGH, 10373400);
+      addItemTagBurnTime(map, ItemTag.TRAGK, 23340100);
+      addItemTagBurnTime(map, ItemTag.TRAGK_BLOCK, 58350200);
+      addItemTagBurnTime(map, ItemTag.TRAGT, 145875500);
+      addItemTagBurnTime(map, ItemTag.TRAGN, 364688750);
       addItemBurnTime(map, Items.LAVA_BUCKET, 20000);
       addItemBurnTime(map, Blocks.COAL_BLOCK, 16000);
       addItemBurnTime(map, BlockItemInit.CHARCOAL_BLOCK.get(), 16000);
       addItemBurnTime(map, ItemInit.FIRT.get(), 1200);
-      addItemBurnTime(map, FoodItemInit.FIRG.get(), 600);
-      addItemBurnTime(map, isBurnableItemInit.GRINT.get(), 5400);
-      addItemBurnTime(map, isBurnableBlockItemInit.GRINT_BLOCK.get(), 48600);
-      addItemBurnTime(map, isBurnableItemInit.DURG.get(), 437400);
-      addItemBurnTime(map, isBurnableBlockItemInit.GRINT_SLAB.get(), 24300);
-      addItemBurnTime(map, isBurnableBlockItemInit.GRINT_STAIRS.get(), 37350);
-      addItemBurnTime(map, FoodItemInit.FIRG_SLAB.get(), 300);
-      addItemBurnTime(map, FoodItemInit.FIRG_STAIRS.get(), 450);
-      addItemBurnTime(map, ItemInit.FIRT_AXE.get(), 3800);
-      addItemBurnTime(map, ItemInit.FIRT_BOOTS.get(), 4800);
-      addItemBurnTime(map, ItemInit.FIRT_HELMET.get(), 6000);
-      addItemBurnTime(map, ItemInit.FIRT_HOE.get(), 2600);
+      addItemBurnTime(map, SpecialBlockFoodItemInit.FIRG.get(), 600);
+      addItemBurnTime(map, isBurnableFoodItemInit.GRINT.get(), 5400);
+      addItemBurnTime(map, SpecialBlockFoodItemInit.GRINT_BLOCK.get(), 48600);
+      addItemBurnTime(map, isBurnableFoodItemInit.DURG.get(), 437400);
+      addItemBurnTime(map, SpecialBlockFoodItemInit.GRINT_SLAB.get(), 24300);
+      addItemBurnTime(map, SpecialBlockFoodItemInit.GRINT_STAIRS.get(), 37350);
+      addItemBurnTime(map, SpecialBlockFoodItemInit.FIRG_SLAB.get(), 300);
+      addItemBurnTime(map, SpecialBlockFoodItemInit.FIRG_STAIRS.get(), 450);
+      addItemBurnTime(map, ToolItemInit.FIRT_AXE.get(), 3800);
+      addItemBurnTime(map, ArmorItemInit.FIRT_BOOTS.get(), 4800);
+      addItemBurnTime(map, ArmorItemInit.FIRT_HELMET.get(), 6000);
+      addItemBurnTime(map, ToolItemInit.FIRT_HOE.get(), 2600);
       addItemBurnTime(map, BlockItemInit.FIRT_BLOCK.get(), 12000);
       addItemBurnTime(map, Items.BLAZE_ROD, 2400);
       addItemBurnTime(map, Items.COAL, 1600);
@@ -199,7 +199,7 @@ public abstract class AbstractBlackFurnaceTileEntity extends LockableTileEntity 
       Item item = itemProvider.asItem();
       if (func_235644_b_(item)) {
          if (SharedConstants.developmentMode) {
-            throw (IllegalStateException)Util.pauseDevMode(new IllegalStateException("A developer tried to explicitly make fire resistant item " + item.getDisplayName((ItemStack)null).getString() + " a furnace fuel. That will not work!"));
+            throw Util.pauseDevMode(new IllegalStateException("A developer tried to explicitly make fire resistant item " + item.getDisplayName(null).getString() + " a black-furnace fuel. That will not work!"));
          }
       } else {
          map.put(item, burnTimeIn);

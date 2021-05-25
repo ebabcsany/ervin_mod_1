@@ -1,0 +1,113 @@
+---- Minecraft Crash Report ----
+// Surprise! Haha. Well, this is awkward.
+
+Time: 2021.04.24. 15:14
+Description: Exception in server tick loop
+
+java.lang.NoClassDefFoundError: com/babcsany/minecraft/ervin_mod_1/entity/monster/ZurTasks
+	at com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity.onInitialSpawn(ZurEntity.java:814) ~[?:?] {re:classloading}
+	at net.minecraft.entity.EntityType.create(EntityType.java:343) ~[?:?] {re:classloading}
+	at net.minecraft.entity.EntityType.spawn(EntityType.java:318) ~[?:?] {re:classloading}
+	at net.minecraft.entity.EntityType.spawn(EntityType.java:313) ~[?:?] {re:classloading}
+	at net.minecraft.item.SpawnEggItem.onItemUse(SpawnEggItem.java:82) ~[?:?] {re:classloading}
+	at net.minecraftforge.common.ForgeHooks.onPlaceItemIntoWorld(ForgeHooks.java:597) ~[?:?] {re:classloading}
+	at net.minecraft.item.ItemStack.onItemUse(ItemStack.java:176) ~[?:?] {re:classloading}
+	at net.minecraft.server.management.PlayerInteractionManager.func_219441_a(PlayerInteractionManager.java:359) ~[?:?] {re:classloading}
+	at net.minecraft.network.play.ServerPlayNetHandler.processTryUseItemOnBlock(ServerPlayNetHandler.java:923) ~[?:?] {re:classloading}
+	at net.minecraft.network.play.client.CPlayerTryUseItemOnBlockPacket.processPacket(CPlayerTryUseItemOnBlockPacket.java:45) ~[?:?] {re:classloading}
+	at net.minecraft.network.play.client.CPlayerTryUseItemOnBlockPacket.processPacket(CPlayerTryUseItemOnBlockPacket.java:12) ~[?:?] {re:classloading}
+	at net.minecraft.network.PacketThreadUtil.lambda$checkThreadAndEnqueue$0(PacketThreadUtil.java:19) ~[?:?] {re:classloading}
+	at net.minecraft.network.PacketThreadUtil$$Lambda$7255/1990701081.run(Unknown Source) ~[?:?] {}
+	at net.minecraft.util.concurrent.TickDelayedTask.run(TickDelayedTask.java:20) ~[?:?] {re:classloading}
+	at net.minecraft.util.concurrent.ThreadTaskExecutor.run(ThreadTaskExecutor.java:139) ~[?:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.util.concurrent.RecursiveEventLoop.run(RecursiveEventLoop.java:22) ~[?:?] {re:classloading}
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:760) ~[?:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:157) ~[?:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.util.concurrent.ThreadTaskExecutor.driveOne(ThreadTaskExecutor.java:109) ~[?:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.server.MinecraftServer.driveOneInternal(MinecraftServer.java:743) ~[?:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.server.MinecraftServer.driveOne(MinecraftServer.java:737) ~[?:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.util.concurrent.ThreadTaskExecutor.drainTasks(ThreadTaskExecutor.java:97) ~[?:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.server.MinecraftServer.runScheduledTasks(MinecraftServer.java:722) ~[?:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.server.MinecraftServer.func_240802_v_(MinecraftServer.java:669) [?:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.server.MinecraftServer.lambda$func_240784_a_$0(MinecraftServer.java:231) [?:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.server.MinecraftServer$$Lambda$6580/766596964.run(Unknown Source) [?:?] {}
+	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_51] {}
+Caused by: java.lang.ClassNotFoundException: com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurTasks
+	at java.lang.ClassLoader.findClass(ClassLoader.java:530) ~[?:1.8.0_51] {}
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:424) ~[?:1.8.0_51] {}
+	at cpw.mods.modlauncher.TransformingClassLoader.loadClass(TransformingClassLoader.java:104) ~[modlauncher-5.1.2.jar:?] {re:classloading}
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357) ~[?:1.8.0_51] {}
+	... 27 more
+	Suppressed: java.lang.ClassNotFoundException
+		at cpw.mods.modlauncher.TransformingClassLoader$DelegatedClassLoader.findClass(TransformingClassLoader.java:263) ~[modlauncher-5.1.2.jar:?] {}
+		at cpw.mods.modlauncher.TransformingClassLoader.loadClass(TransformingClassLoader.java:134) ~[modlauncher-5.1.2.jar:?] {re:classloading}
+		at cpw.mods.modlauncher.TransformingClassLoader.loadClass(TransformingClassLoader.java:96) ~[modlauncher-5.1.2.jar:?] {re:classloading}
+		at java.lang.ClassLoader.loadClass(ClassLoader.java:357) ~[?:1.8.0_51] {}
+		at com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity.onInitialSpawn(ZurEntity.java:814) ~[?:?] {re:classloading}
+		at net.minecraft.entity.EntityType.create(EntityType.java:343) ~[?:?] {re:classloading}
+		at net.minecraft.entity.EntityType.spawn(EntityType.java:318) ~[?:?] {re:classloading}
+		at net.minecraft.entity.EntityType.spawn(EntityType.java:313) ~[?:?] {re:classloading}
+		at net.minecraft.item.SpawnEggItem.onItemUse(SpawnEggItem.java:82) ~[?:?] {re:classloading}
+		at net.minecraftforge.common.ForgeHooks.onPlaceItemIntoWorld(ForgeHooks.java:597) ~[?:?] {re:classloading}
+		at net.minecraft.item.ItemStack.onItemUse(ItemStack.java:176) ~[?:?] {re:classloading}
+		at net.minecraft.server.management.PlayerInteractionManager.func_219441_a(PlayerInteractionManager.java:359) ~[?:?] {re:classloading}
+		at net.minecraft.network.play.ServerPlayNetHandler.processTryUseItemOnBlock(ServerPlayNetHandler.java:923) ~[?:?] {re:classloading}
+		at net.minecraft.network.play.client.CPlayerTryUseItemOnBlockPacket.processPacket(CPlayerTryUseItemOnBlockPacket.java:45) ~[?:?] {re:classloading}
+		at net.minecraft.network.play.client.CPlayerTryUseItemOnBlockPacket.processPacket(CPlayerTryUseItemOnBlockPacket.java:12) ~[?:?] {re:classloading}
+		at net.minecraft.network.PacketThreadUtil.lambda$checkThreadAndEnqueue$0(PacketThreadUtil.java:19) ~[?:?] {re:classloading}
+		at net.minecraft.network.PacketThreadUtil$$Lambda$7255/1990701081.run(Unknown Source) ~[?:?] {}
+		at net.minecraft.util.concurrent.TickDelayedTask.run(TickDelayedTask.java:20) ~[?:?] {re:classloading}
+		at net.minecraft.util.concurrent.ThreadTaskExecutor.run(ThreadTaskExecutor.java:139) ~[?:?] {re:classloading,pl:accesstransformer:B}
+		at net.minecraft.util.concurrent.RecursiveEventLoop.run(RecursiveEventLoop.java:22) ~[?:?] {re:classloading}
+		at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:760) ~[?:?] {re:classloading,pl:accesstransformer:B}
+		at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:157) ~[?:?] {re:classloading,pl:accesstransformer:B}
+		at net.minecraft.util.concurrent.ThreadTaskExecutor.driveOne(ThreadTaskExecutor.java:109) ~[?:?] {re:classloading,pl:accesstransformer:B}
+		at net.minecraft.server.MinecraftServer.driveOneInternal(MinecraftServer.java:743) ~[?:?] {re:classloading,pl:accesstransformer:B}
+		at net.minecraft.server.MinecraftServer.driveOne(MinecraftServer.java:737) ~[?:?] {re:classloading,pl:accesstransformer:B}
+		at net.minecraft.util.concurrent.ThreadTaskExecutor.drainTasks(ThreadTaskExecutor.java:97) ~[?:?] {re:classloading,pl:accesstransformer:B}
+		at net.minecraft.server.MinecraftServer.runScheduledTasks(MinecraftServer.java:722) ~[?:?] {re:classloading,pl:accesstransformer:B}
+		at net.minecraft.server.MinecraftServer.func_240802_v_(MinecraftServer.java:669) [?:?] {re:classloading,pl:accesstransformer:B}
+		at net.minecraft.server.MinecraftServer.lambda$func_240784_a_$0(MinecraftServer.java:231) [?:?] {re:classloading,pl:accesstransformer:B}
+		at net.minecraft.server.MinecraftServer$$Lambda$6580/766596964.run(Unknown Source) [?:?] {}
+		at java.lang.Thread.run(Thread.java:745) [?:1.8.0_51] {}
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- System Details --
+Details:
+	Minecraft Version: 1.16.1
+	Minecraft Version ID: 1.16.1
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 1.8.0_51, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 293992328 bytes (280 MB) / 936902656 bytes (893 MB) up to 1883242496 bytes (1796 MB)
+	CPUs: 4
+	JVM Flags: 1 total; -XX:HeapDumpPath=MojangTricksIntelDriversForPerformance_javaw.exe_minecraft.exe.heapdump
+	ModLauncher: 5.1.2+70+master.2845bb9
+	ModLauncher launch target: fmluserdevclient
+	ModLauncher naming: mcp
+	ModLauncher services: 
+		/mixin-0.8.jar mixin PLUGINSERVICE 
+		/eventbus-2.2.0-service.jar eventbus PLUGINSERVICE 
+		/forge-1.16.1-32.0.75_mapped_snapshot_20200723-1.16.1-launcher.jar object_holder_definalize PLUGINSERVICE 
+		/forge-1.16.1-32.0.75_mapped_snapshot_20200723-1.16.1-launcher.jar runtime_enum_extender PLUGINSERVICE 
+		/accesstransformers-2.1.3-shadowed.jar accesstransformer PLUGINSERVICE 
+		/forge-1.16.1-32.0.75_mapped_snapshot_20200723-1.16.1-launcher.jar capability_inject_definalize PLUGINSERVICE 
+		/forge-1.16.1-32.0.75_mapped_snapshot_20200723-1.16.1-launcher.jar runtimedistcleaner PLUGINSERVICE 
+		/mixin-0.8.jar mixin TRANSFORMATIONSERVICE 
+		/forge-1.16.1-32.0.75_mapped_snapshot_20200723-1.16.1-launcher.jar fml TRANSFORMATIONSERVICE 
+	FML: 32.0
+	Forge: net.minecraftforge:32.0.75
+	FML Language Providers: 
+		javafml@32.0
+		minecraft@1
+	Mod List: 
+		client-extra.jar Minecraft {minecraft@1.16.1 DONE}
+		main Ervin Mod 1 {ervin_mod_1@NONE DONE}
+		forge-1.16.1-32.0.75_mapped_snapshot_20200723-1.16.1-recomp.jar Forge {forge@32.0.75 DONE}
+	Player Count: 1 / 8; [ServerPlayerEntity['Dev'/152, l='ServerLevel[Új világ]', x=-2.61, y=71.00, z=29.30]]
+	Data Packs: vanilla, mod:ervin_mod_1 (incompatible), mod:forge
+	Type: Integrated Server (map_client.txt)
+	Is Modded: Definitely; Client brand changed to 'forge'

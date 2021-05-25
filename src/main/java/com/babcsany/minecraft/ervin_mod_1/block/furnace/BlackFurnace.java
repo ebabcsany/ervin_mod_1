@@ -1,6 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.block.furnace;
 
 import com.babcsany.minecraft.ervin_mod_1.block.furnace.abstract_furnace.AbstractBlackFurnace;
+import com.babcsany.minecraft.ervin_mod_1.tile_entity.furnace.BlackFurnaceTileEntity;
 import net.minecraft.block.AbstractFurnaceBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -27,7 +28,7 @@ public class BlackFurnace extends AbstractBlackFurnace {
    }
 
    public TileEntity createNewTileEntity(IBlockReader worldIn) {
-      return new FurnaceTileEntity();
+      return new BlackFurnaceTileEntity();
    }
 
    /**

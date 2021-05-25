@@ -20,6 +20,7 @@ public class BrefkStage41 extends Item {
    /**
     * Called when the player finishes using this Item (E.g. finishes eating.). Not called when the player stops using
     * the Item before the action is complete.
+    * @return
     */
    public ItemStack onItemUseFinish(ItemStack stack, World worldIn, LivingEntity entityLiving) {
       super.onItemUseFinish(stack, worldIn, entityLiving);
@@ -29,37 +30,21 @@ public class BrefkStage41 extends Item {
          serverplayerentity.addStat(Stats.ITEM_USED.get(this));
       }
 
-      if (stack.isEmpty()) {
-         return new ItemStack(BrefkStageItemInit.BREFK_STAGE40.get());
-      } else {
-         if (entityLiving instanceof PlayerEntity) {
-            ItemStack itemstack = new ItemStack(BrefkStageItemInit.BREFK_STAGE40.get());
-            PlayerEntity playerentity = (PlayerEntity)entityLiving;
-            if (!playerentity.inventory.addItemStackToInventory(itemstack)) {
-               playerentity.dropItem(itemstack, false);
-            }
-         }
-
-         return stack;
-      }
+      return stack.isEmpty() ? new ItemStack(BrefkStageItemInit.BREFK_STAGE40.get()) : stack;
    }
 
    /**
     * How long it takes to use or consume an item
     */
    public int getUseDuration(ItemStack stack) {
-      return 40;
+      return 20;
    }
 
    /**
     * returns the action that specifies what animation to play when the items is being used
     */
    public UseAction getUseAction(ItemStack stack) {
-      return UseAction.DRINK;
-   }
-
-   public SoundEvent getDrinkSound() {
-      return SoundEvents.ENTITY_GENERIC_EAT;
+      return UseAction.EAT;
    }
 
    public SoundEvent getEatSound() {

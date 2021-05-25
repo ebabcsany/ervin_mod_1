@@ -10,6 +10,7 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.particles.BasicParticleType;
 import net.minecraft.particles.IParticleData;
 import net.minecraft.particles.ParticleType;
+import net.minecraft.util.registry.Registry;
 import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.RegistryObject;
@@ -20,14 +21,7 @@ public class ParticleInit {
 
     public static final DeferredRegister<ParticleType<?>> PARTICLE_TYPES = DeferredRegister.create(ForgeRegistries.PARTICLE_TYPES, Ervin_mod_1.MOD_ID);
 
-    /*public static final RegistryObject<ParticleType<ColouredParticle.ColouredParticleData>> COLOURED_PARTICLE = PARTICLE_TYPES.register(
-            "coloured_particle",
-            () -> new ParticleType<ColouredParticle.ColouredParticleData>(false, ColouredParticle.ColouredParticleData.DESERIALIZER) {
-                @Override
-                public Codec<ColouredParticle.ColouredParticleData> func_230522_e_() {
-                    return null;
-                }
-            });*/
+    //public static final BasicParticleType HAPPY_VILLAGER = register("ervin_mod_1:jurk", false);
     /*public static final RegistryObject<ParticleType<BasicParticleType>> JURK = PARTICLE_TYPES.register(
             "jurk",
             () -> new ParticleType<BasicParticleType>(false, BasicParticleType.DESERIALIZER) {
@@ -51,4 +45,8 @@ public class ParticleInit {
         Minecraft.getInstance().particles.registerFactory(ParticleInit.COLOURED_PARTICLE.get(),
                 ColouredParticle.Factory::new);
     }*/
+
+    private static BasicParticleType register(String key, boolean alwaysShow) {
+        return Registry.register(Registry.PARTICLE_TYPE, key, new BasicParticleType(alwaysShow));
+    }
 }

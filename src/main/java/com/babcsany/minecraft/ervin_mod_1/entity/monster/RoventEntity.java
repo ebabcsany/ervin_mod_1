@@ -1,30 +1,32 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.monster;
 
 import com.babcsany.minecraft.ervin_mod_1.init.BiomeInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.food.isBurnableFoodItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.tool.SpecialToolItemInit;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.RandomPositionGenerator;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.ai.controller.MovementController;
 import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.monster.ZombifiedPiglinEntity;
-import net.minecraft.entity.passive.IronGolemEntity;
-import net.minecraft.entity.passive.TurtleEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.TridentEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.item.MerchantOffers;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.NBTUtil;
 import net.minecraft.pathfinding.GroundPathNavigator;
 import net.minecraft.pathfinding.Path;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.pathfinding.SwimmerPathNavigator;
+import net.minecraft.potion.*;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
@@ -38,7 +40,10 @@ import net.minecraft.world.biome.Biome;
 
 import javax.annotation.Nullable;
 import java.util.EnumSet;
+import java.util.List;
 import java.util.Random;
+
+import static net.minecraft.entity.monster.MonsterEntity.isValidLightLevel;
 
 public class RoventEntity extends ZurEntity implements IRangedAttackMob {
    private boolean swimmingUp;
@@ -49,7 +54,7 @@ public class RoventEntity extends ZurEntity implements IRangedAttackMob {
       super(type, worldIn);
       this.stepHeight = 1.0F;
       this.moveController = new RoventEntity.MoveHelperController(this);
-      this.setPathPriority(PathNodeType.LAVA, 0.0F);
+      this.setPathPriority(PathNodeType.LAVA, 1.0F);
       this.waterNavigator = new SwimmerPathNavigator(this, worldIn);
       this.groundNavigator = new GroundPathNavigator(this, worldIn);
    }
@@ -63,13 +68,10 @@ public class RoventEntity extends ZurEntity implements IRangedAttackMob {
       this.goalSelector.addGoal(7, new RandomWalkingGoal(this, 1.0D));
       this.targetSelector.addGoal(1, (new HurtByTargetGoal(this, RoventEntity.class)).setCallsForHelp(ZombifiedPiglinEntity.class));
       this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, 10, true, false, this::shouldAttack));
-      this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillagerEntity.class, false));
-      this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
-      this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, TurtleEntity.class, 10, true, false, TurtleEntity.TARGET_DRY_BABY));
    }
 
    public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
-      return MonsterEntity.func_234295_eP_().createMutableAttribute(Attributes.FOLLOW_RANGE, 100.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, (double)0.23F).createMutableAttribute(Attributes.ATTACK_DAMAGE, 40.0D).createMutableAttribute(Attributes.ARMOR, 4.0D).createMutableAttribute(Attributes.ZOMBIE_SPAWN_REINFORCEMENTS);
+      return MobEntity.func_233666_p_().createMutableAttribute(Attributes.FOLLOW_RANGE, 100.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.3F).createMutableAttribute(Attributes.ATTACK_DAMAGE, 40.0D).createMutableAttribute(Attributes.ARMOR, 20.0D).createMutableAttribute(Attributes.MAX_HEALTH, 260).createMutableAttribute(Attributes.KNOCKBACK_RESISTANCE, 5.0D).createMutableAttribute(Attributes.ATTACK_KNOCKBACK, 15.0D);
    }
 
    public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
@@ -82,7 +84,7 @@ public class RoventEntity extends ZurEntity implements IRangedAttackMob {
       return spawnDataIn;
    }
 
-   public static boolean func_223332_b(EntityType<RoventEntity> p_223332_0_, IWorld p_223332_1_, SpawnReason reason, BlockPos p_223332_3_, Random p_223332_4_) {
+   public static boolean canRoventSpawn(EntityType<RoventEntity> p_223332_0_, IWorld p_223332_1_, SpawnReason reason, BlockPos p_223332_3_, Random p_223332_4_) {
       Biome biome = p_223332_1_.getBiome(p_223332_3_);
       boolean flag = p_223332_1_.getDifficulty() != Difficulty.PEACEFUL && isValidLightLevel(p_223332_1_, p_223332_3_, p_223332_4_) && (reason == SpawnReason.SPAWNER || p_223332_1_.getFluidState(p_223332_3_).isTagged(FluidTags.WATER));
       if (biome != BiomeInit.EXAMPLE_BIOME.get() && biome != BiomeInit.EXAMPLE_BIOME2.get()) {
@@ -90,6 +92,99 @@ public class RoventEntity extends ZurEntity implements IRangedAttackMob {
       } else {
          return p_223332_4_.nextInt(15) == 0 && flag;
       }
+   }
+
+   /**
+    * Called frequently so the entity can update its state every tick as required. For example, zurs and skeletons
+    * use this to react to sunlight and start to burn.
+    */
+   public void livingTick(ZurEntity zur) {
+      super.livingTick();
+      boolean flag = this.isInDaylight();
+      this.updateArmSwingProgress();
+      this.wingRotation += this.wingRotDelta * 2.0F;
+      if (!this.world.isRemote) {
+         zur.handleDespawn();
+      }
+      if (!this.world.isRemote && this.isAlive()) {
+         if (this.isDrinkingPotion()) {
+            if (zur.potionUseTimer-- <= 0) {
+               this.setDrinkingPotion(false);
+               ItemStack itemstack = this.getHeldItemMainhand();
+               this.setItemStackToSlot(EquipmentSlotType.MAINHAND, ItemStack.EMPTY);
+               if (itemstack.getItem() == Items.POTION) {
+                  List<EffectInstance> list = PotionUtils.getEffectsFromStack(itemstack);
+                  for(EffectInstance effectinstance : list) {
+                     this.addPotionEffect(new EffectInstance(effectinstance));
+                  }
+               }
+
+               this.getAttribute(Attributes.MOVEMENT_SPEED).removeModifier(MODIFIER);
+            }
+         } else {
+            Potion potion = null;
+            if (this.rand.nextFloat() < 0.15F && this.areEyesInFluid(FluidTags.WATER) && !this.isPotionActive(Effects.WATER_BREATHING)) {
+               potion = Potions.WATER_BREATHING;
+            } else if (this.rand.nextFloat() < 0.15F && (this.isBurning() || this.getLastDamageSource() != null && this.getLastDamageSource().isFireDamage()) && !this.isPotionActive(Effects.FIRE_RESISTANCE)) {
+               potion = Potions.FIRE_RESISTANCE;
+            } else if (this.rand.nextFloat() < 0.05F && this.getHealth() < this.getMaxHealth()) {
+               potion = Potions.HEALING;
+            } else if (this.rand.nextFloat() < 0.5F && this.getAttackTarget() != null && !this.isPotionActive(Effects.SPEED) && !this.isPotionActive(Effects.JUMP_BOOST) && !this.isPotionActive(Effects.STRENGTH) && this.getAttackTarget().getDistanceSq(this) > 121.0D) {
+               potion = Potions.SWIFTNESS;
+            }
+
+            if (potion != null) {
+               this.setItemStackToSlot(EquipmentSlotType.MAINHAND, PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), potion));
+               this.potionUseTimer = this.getHeldItemMainhand().getUseDuration();
+               this.setDrinkingPotion(true);
+               if (!this.isSilent()) {
+                  this.world.playSound(null, this.getPosX(), this.getPosY(), this.getPosZ(), SoundEvents.ENTITY_WITCH_DRINK, this.getSoundCategory(), 1.0F, 0.8F + this.rand.nextFloat() * 0.4F);
+               }
+
+               ModifiableAttributeInstance modifiableattributeinstance = this.getAttribute(Attributes.MOVEMENT_SPEED);
+               modifiableattributeinstance.removeModifier(MODIFIER);
+               modifiableattributeinstance.applyNonPersistentModifier(MODIFIER);
+            }
+         }
+
+         if (this.rand.nextFloat() < 7.5E-4F) {
+            this.world.setEntityState(this, (byte)15);
+         }
+      }
+      if (flag) {
+         ItemStack itemstack = this.getItemStackFromSlot(EquipmentSlotType.HEAD);
+         if (!itemstack.isEmpty()) {
+            if (itemstack.isDamageable()) {
+               itemstack.setDamage(itemstack.getDamage() + this.rand.nextInt(2));
+               if (itemstack.getDamage() >= itemstack.getMaxDamage()) {
+                  this.sendBreakAnimation(EquipmentSlotType.HEAD);
+                  this.setItemStackToSlot(EquipmentSlotType.HEAD, ItemStack.EMPTY);
+               }
+            }
+         }
+      }
+      if (!this.world.isRemote && this.isAlive() && !this.isChild() && !this.isZurDropItem() && --this.timeUntilNextItem <= 0) {
+         this.entityDropItem(isBurnableItemInit.LEAT.get());
+         this.timeUntilNextItem = this.rand.nextInt(12000) + 12000;
+      }
+   }
+
+   public void writeAdditional(CompoundNBT compound) {
+      super.writeAdditional(compound);
+      MerchantOffers merchantoffers = this.getOffers();
+      if (this.zurTarget != null) {
+         compound.put("ZurTarget", NBTUtil.writeBlockPos(this.zurTarget));
+      }
+
+      if (this.isChild()) {
+         compound.putBoolean("IsBaby", true);
+      }
+
+      if (!merchantoffers.isEmpty()) {
+         compound.put("Offers", merchantoffers.write());
+      }
+
+      compound.put("Inventory", this.zurInventory.write());
    }
 
    private static boolean func_223333_a(IWorld p_223333_0_, BlockPos p_223333_1_) {
@@ -140,7 +235,7 @@ public class RoventEntity extends ZurEntity implements IRangedAttackMob {
    }
 
    protected boolean shouldExchangeEquipment(ItemStack candidate, ItemStack existing) {
-      if (existing.getItem() == com.babcsany.minecraft.ervin_mod_1.init.item.tool.isBurnableItemInit.CRAINT.get()) {
+      if (existing.getItem() == SpecialToolItemInit.CRAINT.get()) {
          return false;
       } else if (existing.getItem() == Items.TRIDENT) {
          if (candidate.getItem() == Items.TRIDENT) {
@@ -154,7 +249,7 @@ public class RoventEntity extends ZurEntity implements IRangedAttackMob {
    }
 
    protected boolean shouldExchangeEquipment1(ItemStack candidate, ItemStack existing) {
-      if (existing.getItem() == isBurnableItemInit.TIRKS.get()) {
+      if (existing.getItem() == isBurnableFoodItemInit.TIRKS.get()) {
          return false;
       } else if (existing.getItem() == Items.TRIDENT) {
          if (candidate.getItem() == Items.TRIDENT) {
@@ -415,7 +510,7 @@ public class RoventEntity extends ZurEntity implements IRangedAttackMob {
             double d0 = this.posX - this.drowned.getPosX();
             double d1 = this.posY - this.drowned.getPosY();
             double d2 = this.posZ - this.drowned.getPosZ();
-            double d3 = (double)MathHelper.sqrt(d0 * d0 + d1 * d1 + d2 * d2);
+            double d3 = MathHelper.sqrt(d0 * d0 + d1 * d1 + d2 * d2);
             d1 = d1 / d3;
             float f = (float)(MathHelper.atan2(d2, d0) * (double)(180F / (float)Math.PI)) - 90.0F;
             this.drowned.rotationYaw = this.limitAngle(this.drowned.rotationYaw, f, 90.0F);

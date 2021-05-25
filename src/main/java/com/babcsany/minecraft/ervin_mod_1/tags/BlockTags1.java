@@ -57,6 +57,7 @@ public class BlockTags1 {
    public static final ITag.INamedTag<Block> NON_FLAMMABLE_WOOD = makeWrapperTag("non_flammable_wood");
    public static final ITag.INamedTag<Block> FLOWER_POTS = makeWrapperTag("flower_pots");
    public static final ITag.INamedTag<Block> ENDERMAN_HOLDABLE = makeWrapperTag("enderman_holdable");
+   public static final ITag.INamedTag<Block> ZUR_HOLDABLE = makeWrapperTag("zur_holdable");
    public static final ITag.INamedTag<Block> ICE = makeWrapperTag("ice");
    public static final ITag.INamedTag<Block> VALID_SPAWN = makeWrapperTag("valid_spawn");
    public static final ITag.INamedTag<Block> IMPERMEABLE = makeWrapperTag("impermeable");

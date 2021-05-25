@@ -1,8 +1,11 @@
 package com.babcsany.minecraft.ervin_mod_1.item;
 
+import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.entity.item.ModBoatEntity;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.BoatEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.BoatItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.Stats;
@@ -15,61 +18,61 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.function.Predicate;
 
 public class ModBoatItem extends Item {
-    private static final Predicate<Entity> field_219989_a = EntityPredicates.NOT_SPECTATING.and(Entity::canBeCollidedWith);
-    private final ModBoatEntity.Type type;
+    private static final Predicate<Entity> RIDERS = EntityPredicates.NOT_SPECTATING.and(Entity::canBeCollidedWith);
+    private final ModBoatEntity.ModBoatType type;
 
-    public ModBoatItem(ModBoatEntity.Type typeIn, Properties properties) {
+    public ModBoatItem(ModBoatEntity.ModBoatType type, Item.Properties properties) {
         super(properties);
-        this.type = typeIn;
+        this.type = type;
     }
 
-    /**
-     * Called to trigger the item's "innate" right click behavior. To handle when this item is used on a Block, see
-     * {@link #onItemUse}.
-     */
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
-        ItemStack itemstack = playerIn.getHeldItem(handIn);
-        RayTraceResult raytraceresult = rayTrace(worldIn, playerIn, RayTraceContext.FluidMode.ANY);
-        if (raytraceresult.getType() == RayTraceResult.Type.MISS) {
-            return ActionResult.resultPass(itemstack);
+    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
+        ItemStack itemStack = player.getHeldItem(hand);
+        RayTraceResult rayTraceResult = rayTrace(world, player, RayTraceContext.FluidMode.ANY);
+        if (rayTraceResult.getType() == RayTraceResult.Type.MISS) {
+            return ActionResult.resultPass(itemStack);
         } else {
-            Vector3d vector3d = playerIn.getLook(1.0F);
-            double d0 = 5.0D;
-            List<Entity> list = worldIn.getEntitiesInAABBexcluding(playerIn, playerIn.getBoundingBox().expand(vector3d.scale(5.0D)).grow(1.0D), field_219989_a);
+            Vector3d vec3d = player.getLook(1.0F);
+            double d = 5.0D;
+            List<Entity> list = world.getEntitiesInAABBexcluding(player, player.getBoundingBox().expand(vec3d.scale(5.0D)).grow(1.0D), RIDERS);
             if (!list.isEmpty()) {
-                Vector3d vector3d1 = playerIn.getEyePosition(1.0F);
+                Vector3d vec3d2 = player.getEyePosition(1.0F);
+                Iterator var11 = list.iterator();
 
-                for(Entity entity : list) {
-                    AxisAlignedBB axisalignedbb = entity.getBoundingBox().grow((double)entity.getCollisionBorderSize());
-                    if (axisalignedbb.contains(vector3d1)) {
-                        return ActionResult.resultPass(itemstack);
+                while(var11.hasNext()) {
+                    Entity entity = (Entity) var11.next();
+                    AxisAlignedBB box = entity.getBoundingBox().grow(entity.getCollisionBorderSize());
+                    if (box.contains(vec3d2)) {
+                        return ActionResult.resultPass(itemStack);
                     }
                 }
             }
 
-            if (raytraceresult.getType() == RayTraceResult.Type.BLOCK) {
-                ModBoatEntity boatentity = new ModBoatEntity(worldIn, raytraceresult.getHitVec().x, raytraceresult.getHitVec().y, raytraceresult.getHitVec().z);
-                boatentity.setBoatType(this.type);
-                boatentity.rotationYaw = playerIn.rotationYaw;
-                if (!worldIn.hasNoCollisions(boatentity, boatentity.getBoundingBox().grow(-0.1D))) {
-                    return ActionResult.resultFail(itemstack);
+            if (rayTraceResult.getType() == RayTraceResult.Type.BLOCK) {
+                ModBoatEntity boat = new ModBoatEntity(world, rayTraceResult.getHitVec().x, rayTraceResult.getHitVec().y, rayTraceResult.getHitVec().z);
+                Ervin_mod_1.LOGGER.info("BOAT ENTITY: " + boat);
+                boat.setModBoatType(this.type);
+                boat.rotationYaw = player.rotationYaw;
+                if (!world.hasNoCollisions(boat, boat.getBoundingBox().grow(-0.1D))) {
+                    return ActionResult.resultFail(itemStack);
                 } else {
-                    if (!worldIn.isRemote) {
-                        worldIn.addEntity(boatentity);
-                        if (!playerIn.abilities.isCreativeMode) {
-                            itemstack.shrink(1);
+                    if (!world.isRemote) {
+                        world.addEntity(boat);
+                        if (!player.abilities.isCreativeMode) {
+                            itemStack.shrink(1);
                         }
                     }
 
-                    playerIn.addStat(Stats.ITEM_USED.get(this));
-                    return ActionResult.func_233538_a_(itemstack, worldIn.isRemote());
+                    player.addStat(Stats.ITEM_USED.get(this));
+                    return ActionResult.func_233538_a_(itemStack, world.isRemote());
                 }
             } else {
-                return ActionResult.resultPass(itemstack);
+                return ActionResult.resultPass(itemStack);
             }
         }
     }

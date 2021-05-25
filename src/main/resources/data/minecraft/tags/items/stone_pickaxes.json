@@ -1,0 +1,23 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:stone_pickaxe",
+    "ervin_mod_1:tools/stone/pickaxe/black_stone_pickaxe",
+    "ervin_mod_1:tools/stone/pickaxe/blue_stone_pickaxe",
+    "ervin_mod_1:tools/stone/pickaxe/brown_stone_pickaxe",
+    "ervin_mod_1:tools/stone/pickaxe/cyan_stone_pickaxe",
+    "ervin_mod_1:tools/stone/pickaxe/gray_stone_pickaxe",
+    "ervin_mod_1:tools/stone/pickaxe/green_stone_pickaxe",
+    "ervin_mod_1:tools/stone/pickaxe/light_blue_stone_pickaxe",
+    "ervin_mod_1:tools/stone/pickaxe/light_blue1_stone_pickaxe",
+    "ervin_mod_1:tools/stone/pickaxe/light_gray_stone_pickaxe",
+    "ervin_mod_1:tools/stone/pickaxe/lime_stone_pickaxe",
+    "ervin_mod_1:tools/stone/pickaxe/magenta_stone_pickaxe",
+    "ervin_mod_1:tools/stone/pickaxe/orange_stone_pickaxe",
+    "ervin_mod_1:tools/stone/pickaxe/pink_stone_pickaxe",
+    "ervin_mod_1:tools/stone/pickaxe/purple_stone_pickaxe",
+    "ervin_mod_1:tools/stone/pickaxe/red_stone_pickaxe",
+    "ervin_mod_1:tools/stone/pickaxe/white_stone_pickaxe",
+    "ervin_mod_1:tools/stone/pickaxe/yellow_stone_pickaxe",
+  ]
+}

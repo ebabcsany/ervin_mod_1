@@ -1,8 +1,8 @@
 package com.babcsany.minecraft.ervin_mod_1.block.blocks;
 
 import com.babcsany.minecraft.ervin_mod_1.state.ModBlockStateProperties;
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.particles.ParticleTypes;
@@ -13,6 +13,7 @@ import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
@@ -25,31 +26,29 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.Random;
 
 public class FirgLeaves extends Block implements net.minecraftforge.common.IForgeShearable {
-   public static final IntegerProperty DISTANCE = ModBlockStateProperties.DISTANCE_1_7;
+   public static final IntegerProperty DISTANCE = ModBlockStateProperties.DISTANCE_1_12;
    public static final BooleanProperty PERSISTENT = BlockStateProperties.PERSISTENT;
 
-   public FirgLeaves(Properties properties) {
+   public FirgLeaves(AbstractBlock.Properties properties) {
       super(properties);
-      this.setDefaultState(this.stateContainer.getBaseState().with(DISTANCE, Integer.valueOf(7)).with(PERSISTENT, Boolean.valueOf(false)));
+      this.setDefaultState(this.stateContainer.getBaseState().with(DISTANCE, 12).with(PERSISTENT, Boolean.FALSE));
    }
 
-   public boolean propagatesSkylightDown(BlockState state, IBlockReader reader, BlockPos pos) {
-      return true;
-   }
-
-   @OnlyIn(Dist.CLIENT)
-   public float getAmbientOcclusionLightValue(BlockState state, IBlockReader worldIn, BlockPos pos) {
-      return 1.0F;
-   }
-
-   @Override
    public VoxelShape getCollisionShape(BlockState state, IBlockReader reader, BlockPos pos) {
       return VoxelShapes.empty();
    }
 
-   @OnlyIn(Dist.CLIENT)
-   public boolean isSideInvisible(BlockState state, BlockState adjacentBlockState, Direction side) {
-      return adjacentBlockState.isIn(this) || super.isSideInvisible(state, adjacentBlockState, side);
+   /*public VoxelShape getCollisionShape(IBlockReader worldIn, BlockPos pos) {
+      return this.cache != null ? this.cache.collisionShape : this.getCollisionShape(worldIn, pos, ISelectionContext.dummy());
+   }
+
+   public VoxelShape getCollisionShape(IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+      return this.getCollisionShape(this.getSelf(), worldIn, pos, context);
+   }*/
+
+   @Deprecated
+   public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+      return this.canCollide ? state.getShape(worldIn, pos) : VoxelShapes.empty();
    }
 
    /**
@@ -57,27 +56,24 @@ public class FirgLeaves extends Block implements net.minecraftforge.common.IForg
     * ExtendedBlockStorage in order to broadly cull a chunk from the random chunk update list for efficiency's sake.
     */
    public boolean ticksRandomly(BlockState state) {
-      return state.get(DISTANCE) == 7 && !state.get(PERSISTENT);
+      return state.get(DISTANCE) == 12 && !state.get(PERSISTENT);
    }
 
    /**
     * Performs a random tick on a block.
     */
-   @Override
    public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
-      if (!state.get(PERSISTENT) && state.get(DISTANCE) == 7) {
+      if (!state.get(PERSISTENT) && state.get(DISTANCE) == 12) {
          spawnDrops(state, worldIn, pos);
          worldIn.removeBlock(pos, false);
       }
 
    }
 
-   @Override
    public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
       worldIn.setBlockState(pos, updateDistance(state, worldIn, pos), 3);
    }
 
-   @Override
    public int getOpacity(BlockState state, IBlockReader worldIn, BlockPos pos) {
       return 1;
    }
@@ -88,7 +84,6 @@ public class FirgLeaves extends Block implements net.minecraftforge.common.IForg
     * returns its solidified counterpart.
     * Note that this method should ideally consider only the specific face passed in.
     */
-   @Override
    public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
       int i = getDistance(facingState) + 1;
       if (i != 1 || stateIn.get(DISTANCE) != i) {
@@ -100,30 +95,30 @@ public class FirgLeaves extends Block implements net.minecraftforge.common.IForg
 
    private static BlockState updateDistance(BlockState state, IWorld worldIn, BlockPos pos) {
       int i = 7;
-      BlockPos.Mutable blockpos$mutable = new BlockPos.Mutable();
+      BlockPos.Mutable blockPos$mutable = new BlockPos.Mutable();
 
       for(Direction direction : Direction.values()) {
-         blockpos$mutable.func_239622_a_(pos, direction);
-         i = Math.min(i, getDistance(worldIn.getBlockState(blockpos$mutable)) + 1);
+         blockPos$mutable.func_239622_a_(pos, direction);
+         i = Math.min(i, getDistance(worldIn.getBlockState(blockPos$mutable)) + 1);
          if (i == 1) {
             break;
          }
       }
 
-      return state.with(DISTANCE, Integer.valueOf(i));
+      return state.with(DISTANCE, i);
    }
 
    private static int getDistance(BlockState neighbor) {
       if (BlockTags.LOGS.contains(neighbor.getBlock())) {
          return 0;
       } else {
-         return neighbor.getBlock() instanceof FirgLeaves ? neighbor.get(DISTANCE) : 7;
+         return neighbor.getBlock() instanceof FirgLeaves ? neighbor.get(DISTANCE) : 12;
       }
    }
 
-   /* *
+   /**
     * Called periodically clientside on blocks near the player to show effects (like furnace fire particles). Note that
-    * this method is unrelated to {@link randomTick} and {@link #needsRandomTick}, and will always be called regardless
+    * this method is unrelated to {@link #randomTick} and will always be called regardless
     * of whether the block can receive random update ticks
     */
    @OnlyIn(Dist.CLIENT)
@@ -147,6 +142,6 @@ public class FirgLeaves extends Block implements net.minecraftforge.common.IForg
    }
 
    public BlockState getStateForPlacement(BlockItemUseContext context) {
-      return updateDistance(this.getDefaultState().with(PERSISTENT, Boolean.valueOf(true)), context.getWorld(), context.getPos());
+      return updateDistance(this.getDefaultState().with(PERSISTENT, Boolean.TRUE), context.getWorld(), context.getPos());
    }
 }

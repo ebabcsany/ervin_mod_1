@@ -4,6 +4,7 @@ import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.init.DyeColorInit;
 import com.babcsany.minecraft.ervin_mod_1.init.init.DyeItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
+import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
 import com.babcsany.minecraft.ervin_mod_1.world.storage.loot.LootTables1;
@@ -49,7 +50,7 @@ import java.util.stream.Collectors;
 public class ViltEntity1 extends AnimalEntity implements IShearable, net.minecraftforge.common.IForgeShearable {
    private static final DataParameter<Byte> DYE_COLOR = EntityDataManager.createKey(ViltEntity1.class, DataSerializers.BYTE);
    private static final Map<DyeColorInit, IItemProvider> WOOL_BY_COLOR = Util.make(Maps.newEnumMap(DyeColorInit.class), (p_203402_0_) -> {
-      p_203402_0_.put(DyeColorInit.RED, BlockItemInit.CRASK.get());
+      p_203402_0_.put(DyeColorInit.RED, isBurnableBlockItemInit.CRASK.get());
       p_203402_0_.put(DyeColorInit.WHITE, Blocks.WHITE_WOOL);
       p_203402_0_.put(DyeColorInit.ORANGE, Blocks.ORANGE_WOOL);
       p_203402_0_.put(DyeColorInit.MAGENTA, Blocks.MAGENTA_WOOL);

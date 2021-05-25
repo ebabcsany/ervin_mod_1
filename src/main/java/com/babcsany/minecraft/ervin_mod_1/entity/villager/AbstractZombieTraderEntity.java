@@ -1,7 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.villager;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.ZombieTraderTrades;
-import com.babcsany.minecraft.ervin_mod_1.entity.villager.trigger.CriteriaTriggers1;
+import com.babcsany.minecraft.ervin_mod_1.entity.trigger.CriteriaTriggers1;
 import com.google.common.collect.Sets;
 import net.minecraft.entity.*;
 import net.minecraft.entity.merchant.IMerchant;

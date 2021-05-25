@@ -15,4 +15,5 @@ public class BlockNamedItemInit {
     public static final RegistryObject<Item> NETHER_PORTAL = BLOCK_ITEMS.register("minecraft/nether_portal", () -> new BlockNamedItem(Blocks.NETHER_PORTAL, (new Item.Properties())));
     public static final RegistryObject<Item> END_PORTAL = BLOCK_ITEMS.register("minecraft/end_portal", () -> new BlockNamedItem(Blocks.END_PORTAL, (new Item.Properties())));
     public static final RegistryObject<Item> END_GATEWAY = BLOCK_ITEMS.register("minecraft/end_gateway", () -> new BlockNamedItem(Blocks.END_GATEWAY, (new Item.Properties())));
+    public static final RegistryObject<Item> WATER = BLOCK_ITEMS.register("minecraft/water", () -> new BlockNamedItem(Blocks.WATER, (new Item.Properties())));
 }

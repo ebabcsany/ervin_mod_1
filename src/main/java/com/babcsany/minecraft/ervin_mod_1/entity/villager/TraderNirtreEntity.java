@@ -1,8 +1,8 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.villager;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.LookAtCustomerGoal1;
-import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.WanderingTraderTradeWithPlayerGoal;
-import com.babcsany.minecraft.ervin_mod_1.entity.animal.Liwray;
+import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.NirtreLookAtCustomerGoal;
+import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.NirtreTradeWithPlayerGoal;
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.TraderNirtreTrades;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.spawn_egg.ModSpawnEggItemInit;
@@ -10,15 +10,18 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.NBTUtil;
+import net.minecraft.potion.PotionUtils;
+import net.minecraft.potion.Potions;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
@@ -26,6 +29,7 @@ import javax.annotation.Nullable;
 public class TraderNirtreEntity extends AbstractNirtreEntity {
    @Nullable
    private BlockPos traderNirtreTarget;
+   private int fire = -this.getFireImmuneTicks();
    private int despawnDelay;
    private int xp;
 
@@ -36,9 +40,15 @@ public class TraderNirtreEntity extends AbstractNirtreEntity {
 
    protected void registerGoals() {
       this.goalSelector.addGoal(0, new SwimGoal(this));
-      this.goalSelector.addGoal(1, new WanderingTraderTradeWithPlayerGoal(this));
+      this.goalSelector.addGoal(-1, new UseItemGoal<>(this, PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.LONG_INVISIBILITY), SoundEvents.ENTITY_WANDERING_TRADER_DISAPPEARED, (trader) -> !this.world.isDaytime() && !trader.isInvisible()));
+      this.goalSelector.addGoal(0, new UseItemGoal<>(this, new ItemStack(Items.MILK_BUCKET), SoundEvents.ENTITY_WANDERING_TRADER_REAPPEARED, (trader) -> this.world.isDaytime() && trader.isInvisible()));
+      this.goalSelector.addGoal(-1, new UseItemGoal<>(this, PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.LONG_NIGHT_VISION), SoundEvents.ENTITY_WANDERING_TRADER_DISAPPEARED, (trader) -> !this.world.isRaining() && !trader.isInvisible()));
+      this.goalSelector.addGoal(0, new UseItemGoal<>(this, new ItemStack(Items.MILK_BUCKET), SoundEvents.ENTITY_WANDERING_TRADER_REAPPEARED, (trader) -> this.world.isRaining() && trader.isInvisible()));
+      this.goalSelector.addGoal(-1, new UseItemGoal<>(this, PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.LONG_FIRE_RESISTANCE), SoundEvents.ENTITY_WANDERING_TRADER_DISAPPEARED, (trader) -> !this.world.isNightTime() && !trader.isInvisible()));
+      this.goalSelector.addGoal(0, new UseItemGoal<>(this, new ItemStack(Items.MILK_BUCKET), SoundEvents.ENTITY_WANDERING_TRADER_REAPPEARED, (trader) -> this.world.isNightTime() && trader.isInvisible()));
+      this.goalSelector.addGoal(1, new NirtreTradeWithPlayerGoal(this));
       this.goalSelector.addGoal(1, new PanicGoal(this, 0.5D));
-      this.goalSelector.addGoal(1, new LookAtCustomerGoal1(this));
+      this.goalSelector.addGoal(1, new NirtreLookAtCustomerGoal(this));
       this.goalSelector.addGoal(4, new MoveTowardsRestrictionGoal(this, 0.35D));
       this.goalSelector.addGoal(8, new WaterAvoidingRandomWalkingGoal(this, 0.35D));
       this.goalSelector.addGoal(9, new LookAtWithoutMovingGoal(this, PlayerEntity.class, 3.0F, 1.0F));
@@ -50,9 +60,6 @@ public class TraderNirtreEntity extends AbstractNirtreEntity {
       return LivingEntity.registerAttributes().createMutableAttribute(Attributes.FOLLOW_RANGE, 1600.0D).createMutableAttribute(Attributes.MAX_HEALTH, 400.0D).createMutableAttribute(Attributes.ATTACK_KNOCKBACK).createMutableAttribute(Attributes.ATTACK_DAMAGE, 10.0D);
    }
 
-   /*public TraderNirtreEntity createChild(AgeableEntity ageable) {
-      return EntityInit.TRADER_NIRTRE_ENTITY.get().create(this.world);
-   }*/
    @Nullable
    public AgeableEntity createChild(AgeableEntity ageable) {
       return null;
@@ -73,7 +80,7 @@ public class TraderNirtreEntity extends AbstractNirtreEntity {
 
    public ActionResultType func_230254_b_(PlayerEntity p_230254_1_, Hand p_230254_2_) {
       ItemStack itemstack = p_230254_1_.getHeldItem(p_230254_2_);
-      if (itemstack.getItem() != ModSpawnEggItemInit.ZUR_ENTITY_SPAWN_EGG.get() && this.isAlive() && !this.hasCustomer() && !this.isChild()) {
+      if (itemstack.getItem() != ModSpawnEggItemInit.TRADER_NIRTRE_SPAWN_EGG.get() && this.isAlive() && !this.hasCustomer() && !this.isChild()) {
          if (p_230254_2_ == Hand.MAIN_HAND) {
             p_230254_1_.addStat(Stats.TALKED_TO_VILLAGER);
          }
@@ -214,4 +221,24 @@ public class TraderNirtreEntity extends AbstractNirtreEntity {
       return this.traderNirtreTarget;
    }
 
+   public void onStruckByLightning(LightningBoltEntity lightningBolt) {
+      if (this.world.getDifficulty() != Difficulty.HARD) {
+         LOGGER.info("Trader Nirtre {} was struck by lightning {}.", this, lightningBolt);
+         TraderNirtre1Entity traderNirtre1Entity = EntityInit.TRADER_NIRTREP_ENTITY.get().create(this.world);
+         traderNirtre1Entity.setLocationAndAngles(this.getPosX(), this.getPosY(), this.getPosZ(), this.rotationYaw, this.rotationPitch);
+         traderNirtre1Entity.onInitialSpawn(this.world, this.world.getDifficultyForLocation(traderNirtre1Entity.getPosition()), SpawnReason.CONVERSION, null, null);
+         traderNirtre1Entity.setNoAI(this.isAIDisabled());
+         if (this.hasCustomName()) {
+            traderNirtre1Entity.setCustomName(this.getCustomName());
+            traderNirtre1Entity.setCustomNameVisible(this.isCustomNameVisible());
+         }
+
+         traderNirtre1Entity.enablePersistence();
+         this.world.addEntity(traderNirtre1Entity);
+         this.remove();
+      } else {
+         super.onStruckByLightning(lightningBolt);
+      }
+
+   }
 }

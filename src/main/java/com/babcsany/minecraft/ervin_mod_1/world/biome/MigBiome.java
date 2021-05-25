@@ -48,11 +48,12 @@ public class MigBiome extends Biome {
         DefaultBiomeFeatures.addExtraEmeraldOre(this);
         ModDefaultBiomeFeatures.addOrangeStone(this);
         ModBiomeFeatures.addExampleFeature(this, 10);
+        ModBiomeFeatures.addExampleRuinedPortalFeature(this, 10);
     }
 
     @Override
     public int getGrassColor(double posX, double posZ) {
-        return 0x802000;
+        return 0xd4f2a6;
     }
 }
 

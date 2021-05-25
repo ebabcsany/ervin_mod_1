@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/rail_flat",
+  "textures": {
+    "rail": "ervin_mod_1:block/thuirth_rail/thuirth_rail_on"
+  }
+}

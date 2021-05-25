@@ -1,6 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.ai;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.AbstractZurEntity;
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.AbstractkZurEntity;
 import com.google.gson.JsonObject;
 import javax.annotation.Nullable;
 
@@ -27,7 +27,7 @@ public class BredZurTrigger extends AbstractCriterionTrigger<BredZurTrigger.Inst
       return new BredZurTrigger.Instance(entityPredicate, entitypredicate$andpredicate, entitypredicate$andpredicate1, entitypredicate$andpredicate2);
    }
 
-   public void trigger(ServerPlayerEntity player, AbstractZurEntity parent1, AbstractZurEntity parent2, @Nullable AbstractZurEntity child) {
+   public void trigger(ServerPlayerEntity player, AbstractkZurEntity parent1, AbstractkZurEntity parent2, @Nullable AbstractkZurEntity child) {
       LootContext lootcontext = EntityPredicate.getLootContext(player, parent1);
       LootContext lootcontext1 = EntityPredicate.getLootContext(player, parent2);
       LootContext lootcontext2 = child != null ? EntityPredicate.getLootContext(player, child) : null;

@@ -15,13 +15,5 @@
       "model": "ervin_mod_1:block/vilkt_block",
       "y": 90
     }
-    /*"facing=up": {
-      "model": "ervin_mod_1:block/vilkt_block",
-      "x": 90
-    },
-    "facing=down": {
-      "model": "ervin_mod_1:block/vilkt_block",
-      "z": 270
-    }*/
   }
 }

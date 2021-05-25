@@ -51,18 +51,10 @@ public class FrimTree extends Tree {
 
     @Override
     protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean b) {
-        return Feature.field_236291_c_.withConfiguration(FRIM_TREE_CONFIG);
-    }
-    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature1(Random randomIn, boolean b){
-        return Feature.field_236291_c_.withConfiguration(FRIM_TREE_CONFIG0);
-    }
-    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature2(Random randomIn, boolean b) {
-        return Feature.field_236291_c_.withConfiguration(FRIM_TREE_CONFIG1);
-    }
-    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature3(Random randomIn, boolean b) {
-        return Feature.field_236291_c_.withConfiguration(FRIM_TREE_WITH_FEW_BEEHIVES_CONFIG);
-    }
-    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature4(Random randomIn, boolean b) {
-        return Feature.field_236291_c_.withConfiguration(FRIM_TREE_WITH_MANY_BEEHIVES_CONFIG);
+        return Feature.field_236291_c_.withConfiguration(FRIM_TREE_CONFIG)
+                .feature.withConfiguration(FRIM_TREE_CONFIG0)
+                .feature.withConfiguration(FRIM_TREE_CONFIG1)
+                .feature.withConfiguration(FRIM_TREE_WITH_FEW_BEEHIVES_CONFIG)
+                .feature.withConfiguration(FRIM_TREE_WITH_MANY_BEEHIVES_CONFIG);
     }
 }

@@ -37,6 +37,12 @@ public class BlomujnBiome extends Biome {
                                 Feature.HUGE_BROWN_MUSHROOM.withConfiguration(DefaultBiomeFeatures.BIG_BROWN_MUSHROOM)))
                         .withPlacement(Placement.COUNT_HEIGHTMAP.configure(new FrequencyConfig(1))));
         this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
+                Feature.RANDOM_BOOLEAN_SELECTOR
+                        .withConfiguration(new TwoFeatureChoiceConfig(
+                                Feature.HUGE_RED_MUSHROOM.withConfiguration(ModDefaultBiomeFeatures.BIG_SCRAFTH_MUSHROOM1),
+                                Feature.HUGE_BROWN_MUSHROOM.withConfiguration(ModDefaultBiomeFeatures.BIG_FIRG_MUSHROOM)))
+                        .withPlacement(Placement.COUNT_HEIGHTMAP.configure(new FrequencyConfig(1))));
+        this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
                 Feature.RANDOM_PATCH.withConfiguration(DefaultBiomeFeatures.BROWN_MUSHROOM_CONFIG).withPlacement(
                         Placement.COUNT_CHANCE_HEIGHTMAP.configure(new HeightWithChanceConfig(1, 0.25F))));
         this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,

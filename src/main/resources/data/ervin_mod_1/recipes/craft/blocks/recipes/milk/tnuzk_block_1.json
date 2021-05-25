@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "ervin_mod_1:tnuzt"
+    }
+  ],
+  "result": {
+    "item": "ervin_mod_1:tnuzk_block",
+    "count": 25
+  }
+}

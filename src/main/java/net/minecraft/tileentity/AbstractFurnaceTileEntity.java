@@ -1,11 +1,5 @@
 package net.minecraft.tileentity;
 
-import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.block.BlockNamedItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.block.isBurnableBlockNamedItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
 import com.babcsany.minecraft.ervin_mod_1.tags.ItemTag;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -96,39 +90,8 @@ public abstract class AbstractFurnaceTileEntity extends LockableTileEntity imple
    @Deprecated //Forge - get burn times by calling ForgeHooks#getBurnTime(ItemStack)
    public static Map<Item, Integer> getBurnTimes() {
       Map<Item, Integer> map = Maps.newLinkedHashMap();
-      /*addItemTag1BurnTime(map, ItemTag.BurnTimeIn8000, 8000);
-      addItemTag1BurnTime(map, ItemTag.BurnTimeIn12000, 12000);
-      addItemTag1BurnTime(map, ItemTag.BurnTimeIn16000, 16000);
-      addItemTag1BurnTime(map, ItemTag.GART, 45000);
-      addItemTag1BurnTime(map, ItemTag.GARB, 101200);
-      addItemTag1BurnTime(map, ItemTag.GARK, 227700);
-      addItemTag1BurnTime(map, ItemTag.GARK_BLOCK, 512300);
-      addItemTag1BurnTime(map, ItemTag.GARK_SLAB, 256150);
-      addItemTag1BurnTime(map, ItemTag.GARK_STAIRS, 384225);
-      addItemTag1BurnTime(map, ItemTag.GARKT, 1152600);
-      addItemTag1BurnTime(map, ItemTag.GARKTH, 4610400);
-      addItemTag1BurnTime(map, ItemTag.TRAGH, 10373400);
-      addItemTag1BurnTime(map, ItemTag.TRAGK, 23340100);
-      addItemTag1BurnTime(map, ItemTag.TRAGK_BLOCK, 58350200);
-      addItemTag1BurnTime(map, ItemTag.TRAGT, 145875500);
-      addItemTag1BurnTime(map, ItemTag.TRAGN, 364688750);*/
       addItemBurnTime(map, Items.LAVA_BUCKET, 20000);
       addItemBurnTime(map, Blocks.COAL_BLOCK, 16000);
-      addItemBurnTime(map, BlockItemInit.CHARCOAL_BLOCK.get(), 16000);
-      /*addItemBurn1Time(map, ItemInit.FIRT.get(), 1200);
-      addItemBurn1Time(map, isBurnableBlockNamedItemInit.FIRG.get(), 600);
-      addItemBurn1Time(map, isBurnableItemInit.GRINT.get(), 5400);
-      addItemBurn1Time(map, isBurnableBlockItemInit.GRINT_BLOCK.get(), 48600);
-      addItemBurn1Time(map, isBurnableItemInit.DURG.get(), 437400);
-      addItemBurn1Time(map, isBurnableBlockItemInit.GRINT_SLAB.get(), 24300);
-      addItemBurn1Time(map, isBurnableBlockItemInit.GRINT_STAIRS.get(), 37350);
-      addItemBurn1Time(map, isBurnableBlockNamedItemInit.FIRG_SLAB.get(), 300);
-      addItemBurn1Time(map, isBurnableBlockNamedItemInit.FIRG_STAIRS.get(), 450);
-      addItemBurn1Time(map, ItemInit.FIRT_AXE.get(), 3800);
-      addItemBurn1Time(map, ItemInit.FIRT_BOOTS.get(), 4800);
-      addItemBurn1Time(map, ItemInit.FIRT_HELMET.get(), 6000);
-      addItemBurn1Time(map, ItemInit.FIRT_HOE.get(), 2600);
-      addItemBurn1Time(map, BlockItemInit.FIRT_BLOCK.get(), 12000);*/
       addItemBurnTime(map, Items.BLAZE_ROD, 2400);
       addItemBurnTime(map, Items.COAL, 1600);
       addItemBurnTime(map, Items.CHARCOAL, 1600);
@@ -184,7 +147,7 @@ public abstract class AbstractFurnaceTileEntity extends LockableTileEntity imple
       return ItemTags.field_232905_P_.contains(p_235644_0_);
    }
 
-   private static void addItemTagBurnTime(Map<Item, Integer> map, ITag<Item> itemTag, int burnTimeIn) {
+   public static void addItemTagBurnTime(Map<Item, Integer> map, ITag<Item> itemTag, int burnTimeIn) {
       for(Item item : itemTag.getAllElements()) {
          if (!func_235644_b_(item)) {
             map.put(item, burnTimeIn);
@@ -217,7 +180,7 @@ public abstract class AbstractFurnaceTileEntity extends LockableTileEntity imple
       }
    }
 
-   private static void addItemBurnTime(Map<Item, Integer> map, IItemProvider itemProvider, int burnTimeIn) {
+   public static void addItemBurnTime(Map<Item, Integer> map, IItemProvider itemProvider, int burnTimeIn) {
       Item item = itemProvider.asItem();
       if (func_235644_b_(item)) {
          if (SharedConstants.developmentMode) {

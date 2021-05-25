@@ -4,6 +4,7 @@ import com.babcsany.minecraft.ervin_mod_1.block.ExamplePortalBlock;
 import com.babcsany.minecraft.ervin_mod_1.block.blocks.NetherPortal;
 import com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit;
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
@@ -1940,47 +1941,11 @@ public abstract class Entity extends net.minecraftforge.common.capabilities.Capa
          this.inPortal = true;
       }
    }
-   public void setNetherPortal(BlockPos pos) {
-      if (this.timeUntilPortal > 0) {
-         this.timeUntilPortal = this.getPortalCooldown();
-      } else {
-         if (!this.world.isRemote && !pos.equals(this.lastPortalPos)) {
-            this.lastPortalPos = new BlockPos(pos);
-            NetherPortal netherportalblock = (NetherPortal)BlockItemInit.NETHER_PORTAL.get();
-            BlockPattern.PatternHelper blockpattern$patternhelper = NetherPortalBlock.createPatternHelper(this.world, this.lastPortalPos);
-            double d0 = blockpattern$patternhelper.getForwards().getAxis() == Direction.Axis.X ? (double)blockpattern$patternhelper.getFrontTopLeft().getZ() : (double)blockpattern$patternhelper.getFrontTopLeft().getX();
-            double d1 = MathHelper.clamp(Math.abs(MathHelper.func_233020_c_((blockpattern$patternhelper.getForwards().getAxis() == Direction.Axis.X ? this.getPosZ() : this.getPosX()) - (double)(blockpattern$patternhelper.getForwards().rotateY().getAxisDirection() == Direction.AxisDirection.NEGATIVE ? 1 : 0), d0, d0 - (double)blockpattern$patternhelper.getWidth())), 0.0D, 1.0D);
-            double d2 = MathHelper.clamp(MathHelper.func_233020_c_(this.getPosY() - 1.0D, (double)blockpattern$patternhelper.getFrontTopLeft().getY(), (double)(blockpattern$patternhelper.getFrontTopLeft().getY() - blockpattern$patternhelper.getHeight())), 0.0D, 1.0D);
-            this.lastPortalVec = new Vector3d(d1, d2, 0.0D);
-            this.teleportDirection = blockpattern$patternhelper.getForwards();
-         }
-
-         this.inPortal = true;
-      }
-   }
 
    /**
     * Marks the entity as being inside a portal, activating teleportation logic in onEntityUpdate() in the following
     * tick(s).
     */
-   public void setExamplePortal(BlockPos pos) {
-      if (this.timeUntilExamplePortal > 0) {
-         this.timeUntilExamplePortal = this.getPortalCooldown();
-      } else {
-         if (!this.world.isRemote && !pos.equals(this.lastExamplePortalPos)) {
-            this.lastExamplePortalPos = new BlockPos(pos);
-            ExamplePortalBlock examplePortalBlock = (ExamplePortalBlock) BlockInit.EXAMPLE_PORTAL_BLOCK.get();
-            BlockPattern.PatternHelper blockpattern$patternhelper = ExamplePortalBlock.createPatternHelper(this.world, this.lastExamplePortalPos);
-            double d0 = blockpattern$patternhelper.getForwards().getAxis() == Direction.Axis.X ? (double)blockpattern$patternhelper.getFrontTopLeft().getZ() : (double)blockpattern$patternhelper.getFrontTopLeft().getX();
-            double d1 = MathHelper.clamp(Math.abs(MathHelper.func_233020_c_((blockpattern$patternhelper.getForwards().getAxis() == Direction.Axis.X ? this.getPosZ() : this.getPosX()) - (double)(blockpattern$patternhelper.getForwards().rotateY().getAxisDirection() == Direction.AxisDirection.NEGATIVE ? 1 : 0), d0, d0 - (double)blockpattern$patternhelper.getWidth())), 0.0D, 1.0D);
-            double d2 = MathHelper.clamp(MathHelper.func_233020_c_(this.getPosY() - 1.0D, (double)blockpattern$patternhelper.getFrontTopLeft().getY(), (double)(blockpattern$patternhelper.getFrontTopLeft().getY() - blockpattern$patternhelper.getHeight())), 0.0D, 1.0D);
-            this.lastExamplePortalVec = new Vector3d(d1, d2, 0.0D);
-            this.teleportDirection = blockpattern$patternhelper.getForwards();
-         }
-
-         this.inExamplePortal = true;
-      }
-   }
 
    protected void updatePortal() {
       if (this.world instanceof ServerWorld) {
@@ -2414,6 +2379,7 @@ public abstract class Entity extends net.minecraftforge.common.capabilities.Capa
    public Entity changeDimension(ServerWorld server) {
       return this.changeDimension(server, server.getDefaultTeleporter());
    }
+
    @Nullable
    public Entity changeDimension(ServerWorld server, net.minecraftforge.common.util.ITeleporter teleporter) {
       if (this.world instanceof ServerWorld && !this.removed) {
@@ -3219,7 +3185,7 @@ public abstract class Entity extends net.minecraftforge.common.capabilities.Capa
    public void checkDespawn() {
    }
 
-   @FunctionalInterface
+    @FunctionalInterface
    public interface IMoveCallback {
       void accept(Entity p_accept_1_, double p_accept_2_, double p_accept_4_, double p_accept_6_);
    }

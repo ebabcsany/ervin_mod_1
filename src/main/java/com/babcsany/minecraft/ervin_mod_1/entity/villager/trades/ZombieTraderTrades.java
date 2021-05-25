@@ -3,8 +3,10 @@ package com.babcsany.minecraft.ervin_mod_1.entity.villager.trades;
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.food.isBurnableFoodItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.spawn_egg.ModSpawnEggItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.special.isBurnableSpecialItemInit;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
@@ -41,14 +43,14 @@ import java.util.stream.Collectors;
 
 public class ZombieTraderTrades {
    public static final Int2ObjectMap<ZombieTraderTrades.ITrade[]> field_221240_b = gatAsIntMap(ImmutableMap.of(1, new ZombieTraderTrades.ITrade[]{
-           new ZombieTraderTrades.ItemsForEmeraldsTrade(ModSpawnEggItemInit.ZUR_ENTITY_SPAWN_EGG.get(), 5, 1, 5000, 2),
-           new ZombieTraderTrades.ItemsForDurgsTrade(ModSpawnEggItemInit.ZUR_ENTITY_SPAWN_EGG.get(), 5, 1, 5000, 5),
+           new ZombieTraderTrades.ItemsForEmeraldsTrade(ModSpawnEggItemInit.ZUR_SPAWN_EGG.get(), 5, 1, 5000, 2),
+           new ZombieTraderTrades.ItemsForDurgsTrade(ModSpawnEggItemInit.ZUR_SPAWN_EGG.get(), 5, 1, 5000, 5),
            new ZombieTraderTrades.ItemsForKirtsTrade(Items.EMERALD, 5, 1, 500, 5),
            new ZombieTraderTrades.ItemsForBedrocksTrade(Items.ZOMBIE_SPAWN_EGG, 64, 1, 1, 2),
            new ZombieTraderTrades.ItemsForRugtsTrade(isBurnableItemInit.ZRIBT.get(), 20, 1, 50, 10),
            new ZombieTraderTrades.ItemsForRugtsTrade(isBurnableItemInit.ZRIPT.get(), 20, 1, 50, 10),
-           new ZombieTraderTrades.ItemsFor64FirtBlocksAndItemsTrade(isBurnableBlockItemInit.EPKIH.get(), 1, isBurnableItemInit.DEF_ITEM.get(), 1, 16, 1),
-           new ZombieTraderTrades.ItemWithPotionForEmeraldsAndItemsTrade(isBurnableItemInit.DURG.get(), 1, isBurnableItemInit.DEF_ITEM.get(), 1, 1, 16, 1, 1),
+           new ZombieTraderTrades.ItemsFor64FirtBlocksAndItemsTrade(isBurnableBlockItemInit.EPKIN.get(), 1, isBurnableSpecialItemInit.DEF_ITEM.get(), 1, 16, 1),
+           new ZombieTraderTrades.ItemWithPotionForEmeraldsAndItemsTrade(isBurnableFoodItemInit.DURG.get(), 1, isBurnableSpecialItemInit.DEF_ITEM.get(), 1, 1, 16, 1, 1),
    }));
 
    private static Int2ObjectMap<ZombieTraderTrades.ITrade[]> gatAsIntMap(ImmutableMap<Integer, ZombieTraderTrades.ITrade[]> p_221238_0_) {
@@ -437,15 +439,15 @@ public class ZombieTraderTrades {
       private final int buyingItemCount;
       private final float priceMultiplier;
 
-      public ItemWithPotionForEmeraldsAndItemsTrade(Item buyingItem, int buyingItemCount, Item p_i50526_3_, int p_i50526_4_, int emeralds, int rubies, int maxUses, int xpValue) {
-         this.potionStack = new ItemStack(p_i50526_3_);
+      public ItemWithPotionForEmeraldsAndItemsTrade(Item buyingItem, int buyingItemCount, Item potionStack, int potionCount, int emeralds, int rubies, int maxUses, int xpValue) {
+         this.potionStack = new ItemStack(potionStack);
          this.emeraldCount = emeralds;
          this.rubyCount = rubies;
          this.maxUses = maxUses;
          this.xpValue = xpValue;
          this.buyingItem = buyingItem;
          this.buyingItemCount = buyingItemCount;
-         this.potionCount = p_i50526_4_;
+         this.potionCount = potionCount;
          this.priceMultiplier = 0.05F;
       }
 
@@ -595,7 +597,7 @@ public class ZombieTraderTrades {
       }
 
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         return new MerchantOffer(new ItemStack(isBurnableItemInit.DURG.get(), this.durgCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack(isBurnableFoodItemInit.DURG.get(), this.durgCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 

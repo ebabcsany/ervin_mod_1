@@ -1,5 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.world.feature;
 
+import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import com.mojang.serialization.Codec;
 import net.minecraft.util.math.BlockPos;
@@ -27,7 +28,7 @@ public class VoidStartPlatformFeature1 extends Feature<NoFeatureConfig> {
       return Math.max(Math.abs(firstX - secondX), Math.abs(firstZ - secondZ));
    }
 
-   public boolean func_230362_a_(ISeedReader p_230362_1_, StructureManager p_230362_2_, ChunkGenerator p_230362_3_, Random p_230362_4_, BlockPos p_230362_5_, NoFeatureConfig p_230362_6_) {
+   public boolean func_230362_a_(ISeedReader iSeedReader, StructureManager p_230362_2_, ChunkGenerator p_230362_3_, Random p_230362_4_, BlockPos p_230362_5_, NoFeatureConfig p_230362_6_) {
       ChunkPos chunkpos = new ChunkPos(p_230362_5_);
       if (distance(chunkpos.x, chunkpos.z, VOID_SPAWN_CHUNK_POS.x, VOID_SPAWN_CHUNK_POS.z) > 1) {
          return true;
@@ -39,9 +40,9 @@ public class VoidStartPlatformFeature1 extends Feature<NoFeatureConfig> {
                if (distance(VOID_SPAWN_POS.getX(), VOID_SPAWN_POS.getZ(), j, i) <= 16) {
                   blockpos$mutable.setPos(j, VOID_SPAWN_POS.getY(), i);
                   if (blockpos$mutable.equals(VOID_SPAWN_POS)) {
-                     p_230362_1_.setBlockState(blockpos$mutable, isBurnableBlockItemInit.VILTDROP_BLOCK.get().getDefaultState(), 2);
+                     iSeedReader.setBlockState(blockpos$mutable, isBurnableBlockItemInit.VILTDROP_BLOCK.get().getDefaultState(), 2);
                   } else {
-                     p_230362_1_.setBlockState(blockpos$mutable, isBurnableBlockItemInit.SRIUNK_BLOCK.get().getDefaultState(), 2);
+                     iSeedReader.setBlockState(blockpos$mutable, isBurnableBlockItemInit.CRASK.get().getDefaultState(), 2);
                   }
                }
             }

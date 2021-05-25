@@ -3,6 +3,7 @@ package com.babcsany.minecraft.ervin_mod_1.entity.projectile;
 import com.babcsany.minecraft.ervin_mod_1.entity.animal.GwurstEntity;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.ProjectileItemEntity;
@@ -20,15 +21,15 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class TawrolEntity extends ProjectileItemEntity {
-   public TawrolEntity(EntityType<? extends TawrolEntity> p_i50154_1_, World p_i50154_2_) {
-      super(p_i50154_1_, p_i50154_2_);
+   public TawrolEntity(EntityType<? extends TawrolEntity> type, World world) {
+      super(type, world);
    }
 
    public TawrolEntity(World worldIn, LivingEntity throwerIn) {
       super(EntityType.EGG, throwerIn, worldIn);
    }
 
-   /*@OnlyIn(Dist.CLIENT)
+   @OnlyIn(Dist.CLIENT)
    public TawrolEntity(World worldIn, double x, double y, double z) {
       super(EntityType.EGG, x, y, z, worldIn);
    }
@@ -36,11 +37,17 @@ public class TawrolEntity extends ProjectileItemEntity {
    /**
     * Handler for {@link World#setEntityState}
     */
-   /*@OnlyIn(Dist.CLIENT)
-   private IParticleData makeParticle() {
-      ItemStack itemstack = this.func_213882_k();
-      return itemstack.isEmpty() ? ParticleTypes.ITEM_SNOWBALL : new ItemParticleData(ParticleTypes.ITEM, itemstack);
-   }*/
+   @OnlyIn(Dist.CLIENT)
+   public void handleStatusUpdate(byte id) {
+      if (id == 3) {
+         double d0 = 0.08D;
+
+         for(int i = 0; i < 8; ++i) {
+            this.world.addParticle(new ItemParticleData(ParticleTypes.ITEM, this.getItem()), this.getPosX(), this.getPosY(), this.getPosZ(), ((double)this.rand.nextFloat() - 0.5D) * 0.08D, ((double)this.rand.nextFloat() - 0.5D) * 0.08D, ((double)this.rand.nextFloat() - 0.5D) * 0.08D);
+         }
+      }
+
+   }
 
    /**
     * Called when the arrow hits an entity

@@ -1,15 +1,16 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.villager.trades;
 
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.$ItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.food.FoodItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.food.isBurnableFoodItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
-import com.babcsany.minecraft.ervin_mod_1.item.food.Foods;
+import com.babcsany.minecraft.ervin_mod_1.init.item.tool.SpecialToolItemInit;
 import com.google.common.collect.ImmutableMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.*;
 import net.minecraft.potion.*;
@@ -20,16 +21,16 @@ import java.util.Random;
 
 public class $TraderTrades {
    public static final Int2ObjectMap<$TraderTrades.ITrade[]> field_221240_b = gatAsIntMap(ImmutableMap.of(1, new $TraderTrades.ITrade[]{
-           new $TraderTrades.ItemsForFirtsTrade(isBurnableItemInit.$_1$.get(), 6, 1, 1000, 1),
-           new $TraderTrades.ItemsForFirtsTrade(isBurnableItemInit.$_2$.get(), 12, 1, 1000, 1),
-           new $TraderTrades.ItemsForFirtsTrade(isBurnableItemInit.$_3$.get(), 18, 1, 1000, 1),
-           new $TraderTrades.ItemsForFirtsTrade(isBurnableItemInit.$_4$.get(), 24, 1, 1000, 1),
-           new $TraderTrades.ItemsForFirtsTrade(isBurnableItemInit.$_5$.get(), 30, 1, 1000, 1),
-           new $TraderTrades.ItemsForFirtsTrade(isBurnableItemInit.$_6$.get(), 36, 1, 1000, 1),
-           new $TraderTrades.ItemsForFirtsTrade(isBurnableItemInit.$_7$.get(), 42, 1, 1000, 1),
-           new $TraderTrades.ItemsForFirtsTrade(isBurnableItemInit.$_8$.get(), 48, 1, 1000, 1),
-           new $TraderTrades.ItemsForFirtsTrade(isBurnableItemInit.$_9$.get(), 54, 1, 1000, 1),
-           new $TraderTrades.ItemsForFirtsTrade(isBurnableItemInit.$_10$.get(), 60, 1, 1000, 1),
+           new $TraderTrades.ItemsForFirtsTrade($ItemInit.$_1$.get(), 6, 1, 1000, 1),
+           new $TraderTrades.ItemsForFirtsTrade($ItemInit.$_2$.get(), 12, 1, 1000, 1),
+           new $TraderTrades.ItemsForFirtsTrade($ItemInit.$_3$.get(), 18, 1, 1000, 1),
+           new $TraderTrades.ItemsForFirtsTrade($ItemInit.$_4$.get(), 24, 1, 1000, 1),
+           new $TraderTrades.ItemsForFirtsTrade($ItemInit.$_5$.get(), 30, 1, 1000, 1),
+           new $TraderTrades.ItemsForFirtsTrade($ItemInit.$_6$.get(), 36, 1, 1000, 1),
+           new $TraderTrades.ItemsForFirtsTrade($ItemInit.$_7$.get(), 42, 1, 1000, 1),
+           new $TraderTrades.ItemsForFirtsTrade($ItemInit.$_8$.get(), 48, 1, 1000, 1),
+           new $TraderTrades.ItemsForFirtsTrade($ItemInit.$_9$.get(), 54, 1, 1000, 1),
+           new $TraderTrades.ItemsForFirtsTrade($ItemInit.$_10$.get(), 60, 1, 1000, 1),
            new $TraderTrades.ItemsFor$_1$sTrade(ItemInit.RUBY.get(), 1, 4, 1000, 1),
            new $TraderTrades.ItemsFor$_1$sTrade(ItemInit.SRACH.get(), 4, 1, 1000, 1),
            new $TraderTrades.ItemsFor$_2$sTrade(isBurnableItemInit.LEAT.get(), 1, 4, 1000, 1),
@@ -38,7 +39,7 @@ public class $TraderTrades {
            new $TraderTrades.ItemsFor$_5$sTrade(isBurnableItemInit.GART.get(), 24, 1, 1000, 1),
            new $TraderTrades.ItemsFor$_6$sTrade(isBurnableItemInit.TERAT_NUGGET.get(), 60, 1, 1000, 1),
            new $TraderTrades.ItemsFor30$_10$sAndItemsTrade(ItemInit.FIRK.get(), 30, isBurnableBlockItemInit.CRAINT_BLOCK.get(), 12, 1000, 5),
-           new $TraderTrades.ItemsForTgurkBlocksAndItemsTrade(isBurnableItemInit.$_6$.get(), 30, com.babcsany.minecraft.ervin_mod_1.init.item.tool.isBurnableItemInit.CRAINT.get(), 30, 1000, 5),
+           new $TraderTrades.ItemsForTgurkBlocksAndItemsTrade($ItemInit.$_6$.get(), 30, SpecialToolItemInit.CRAINT.get(), 30, 1000, 5),
            new $TraderTrades.ItemsFor$_7$sTrade(isBurnableItemInit.NIRK.get(), 15, 1, 1000, 1),
            new $TraderTrades.ItemsFor$_8$sTrade(FoodItemInit.REAT.get(), 9, 1, 1000, 1),
            new $TraderTrades.ItemsFor$_9$sTrade(ItemInit.GNITH.get(), 10, 27, 1000, 1),
@@ -126,7 +127,7 @@ public class $TraderTrades {
       }
 
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         return new MerchantOffer(new ItemStack(isBurnableItemInit.DURG.get(), this.durgCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack(isBurnableFoodItemInit.DURG.get(), this.durgCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 
@@ -164,7 +165,7 @@ public class $TraderTrades {
       }
 
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         return new MerchantOffer(new ItemStack(isBurnableItemInit.$_1$.get(), this.$_1$Count), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack($ItemInit.$_1$.get(), this.$_1$Count), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 
@@ -202,7 +203,7 @@ public class $TraderTrades {
       }
 
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         return new MerchantOffer(new ItemStack(isBurnableItemInit.$_2$.get(), this.$_2$Count), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack($ItemInit.$_2$.get(), this.$_2$Count), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 
@@ -240,7 +241,7 @@ public class $TraderTrades {
       }
 
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         return new MerchantOffer(new ItemStack(isBurnableItemInit.$_3$.get(), this.$_3$Count), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack($ItemInit.$_3$.get(), this.$_3$Count), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 
@@ -278,7 +279,7 @@ public class $TraderTrades {
       }
 
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         return new MerchantOffer(new ItemStack(isBurnableItemInit.$_4$.get(), this.$_4$Count), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack($ItemInit.$_4$.get(), this.$_4$Count), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 
@@ -316,7 +317,7 @@ public class $TraderTrades {
       }
 
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         return new MerchantOffer(new ItemStack(isBurnableItemInit.$_5$.get(), this.$_5$Count), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack($ItemInit.$_5$.get(), this.$_5$Count), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 
@@ -354,7 +355,7 @@ public class $TraderTrades {
       }
 
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         return new MerchantOffer(new ItemStack(isBurnableItemInit.$_6$.get(), this.$_6$Count), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack($ItemInit.$_6$.get(), this.$_6$Count), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 
@@ -392,7 +393,7 @@ public class $TraderTrades {
       }
 
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         return new MerchantOffer(new ItemStack(isBurnableItemInit.$_7$.get(), this.$_7$Count), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack($ItemInit.$_7$.get(), this.$_7$Count), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 
@@ -430,7 +431,7 @@ public class $TraderTrades {
       }
 
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         return new MerchantOffer(new ItemStack(isBurnableItemInit.$_8$.get(), this.$_8$Count), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack($ItemInit.$_8$.get(), this.$_8$Count), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 
@@ -468,7 +469,7 @@ public class $TraderTrades {
       }
 
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         return new MerchantOffer(new ItemStack(isBurnableItemInit.$_9$.get(), this.$_9$Count), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack($ItemInit.$_9$.get(), this.$_9$Count), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 
@@ -506,7 +507,7 @@ public class $TraderTrades {
       }
 
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         return new MerchantOffer(new ItemStack(isBurnableItemInit.$_10$.get(), this.$_10$Count), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack($ItemInit.$_10$.get(), this.$_10$Count), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 
@@ -568,7 +569,7 @@ public class $TraderTrades {
 
       @Nullable
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         return new MerchantOffer(new ItemStack(isBurnableItemInit.$_10$.get(), this.$_10$Count), new ItemStack(this.buyingItem.getItem(), this.buyingItemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack($ItemInit.$_10$.get(), this.$_10$Count), new ItemStack(this.buyingItem.getItem(), this.buyingItemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 

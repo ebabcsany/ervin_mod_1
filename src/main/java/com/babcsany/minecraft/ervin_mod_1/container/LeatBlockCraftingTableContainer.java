@@ -1,6 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.container;
 
-import com.babcsany.minecraft.ervin_mod_1.init.ContainerInit;
+import com.babcsany.minecraft.ervin_mod_1.init.container.ContainerInit;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.inventory.LeatBlockCraftingTableInventory;
 import com.babcsany.minecraft.ervin_mod_1.inventory.container.ModCraftingResultSlot;

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "ervin_mod_1:kirt",
+  "ingredients": [
+    {
+      "item": "ervin_mod_1:kirt_stik"
+    }
+  ],
+  "result": {
+    "item": "ervin_mod_1:kirt",
+    "count": 9
+  }
+}

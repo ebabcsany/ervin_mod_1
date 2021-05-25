@@ -14,7 +14,7 @@ public interface Portal2 {
         return state.getMaterial() == Material.AIR;
     }
 
-    default boolean isExamplePortalFrame(BlockState state, IWorldReader world, BlockPos pos)
+    static boolean isExamplePortalFrame(BlockState state, IWorldReader world, BlockPos pos)
     {
         return state.getBlock() == BlockInit.EXAMPLE_PORTAL_BLOCK.get();
     }

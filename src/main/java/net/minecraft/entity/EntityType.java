@@ -123,6 +123,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ITag;
 import net.minecraft.util.Direction;
+import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Util;
 import net.minecraft.util.datafix.TypeReferences;
@@ -329,7 +330,7 @@ public class EntityType<T extends Entity> extends net.minecraftforge.registries.
       } else {
          double d0;
          if (p_220349_7_) {
-            t.setPosition((double)pos.getX() + 0.5D, (double)(pos.getY() + 1), (double)pos.getZ() + 0.5D);
+            t.setPosition((double)pos.getX() + 0.5D, pos.getY() + 1, (double)pos.getZ() + 0.5D);
             d0 = func_208051_a(worldIn, pos, p_220349_8_, t.getBoundingBox());
          } else {
             d0 = 0.0D;
@@ -555,7 +556,7 @@ public class EntityType<T extends Entity> extends net.minecraftforge.registries.
        return reverseTags.getTagNames();
    }
 
-   public static class Builder<T extends Entity> {
+    public static class Builder<T extends Entity> {
       private final IFactory<T> factory;
       private final EntityClassification classification;
       private ImmutableSet<Block> field_233603_c_ = ImmutableSet.of();

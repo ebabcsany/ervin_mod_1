@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "ervin_mod_1:pack",
+  "ingredients": [
+    {
+      "item": "ervin_mod_1:pack_block"
+    }
+  ],
+  "result": {
+    "item": "ervin_mod_1:pack",
+    "count": 9
+  }
+}

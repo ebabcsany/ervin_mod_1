@@ -1,5 +1,6 @@
 {
-  "type": "ervin_mod_1:$_crafting_shapeless",
+  "type": "minecraft:crafting_shapeless",
+  "group": "$",
   "ingredients": [
     {
       "item": "ervin_mod_1:$/1$"
@@ -17,10 +18,7 @@
       "item": "ervin_mod_1:$/1$"
     },
     {
-      "item": "ervin_mod_1:$/1$"
-    },
-    {
-      "item": "ervin_mod_1:$/1$"
+      "item": "ervin_mod_1:$/2$"
     }
   ],
   "result": {

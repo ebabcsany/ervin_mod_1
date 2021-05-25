@@ -1,15 +1,12 @@
 package com.babcsany.minecraft.ervin_mod_1.world.biome.provider;
 
 import com.babcsany.minecraft.ervin_mod_1.init.BiomeInit;
-import com.babcsany.minecraft.ervin_mod_1.world.dimension.VoronoiGenerator;
 import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.Lifecycle;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.biome.provider.BiomeProvider;
-import net.minecraft.world.biome.provider.OverworldBiomeProvider;
 import net.minecraft.world.gen.layer.Layer;
 import net.minecraft.world.gen.layer.LayerUtil;
 import net.minecraftforge.api.distmarker.Dist;

@@ -1,20 +1,20 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.monster;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.TraderNirtreEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.villager.trigger.CriteriaTriggers1;
+import com.babcsany.minecraft.ervin_mod_1.entity.trigger.CriteriaTriggers1;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.food.isBurnableFoodItemInit;
 import net.minecraft.block.BedBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.merchant.IReputationTracking;
 import net.minecraft.entity.merchant.IReputationType;
-import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -28,6 +28,8 @@ import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
@@ -48,7 +50,7 @@ public class ZurNirtreEntity extends ZurEntity {
    }
 
    public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
-      return MonsterEntity.func_234295_eP_().createMutableAttribute(Attributes.FOLLOW_RANGE, 100.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23F).createMutableAttribute(Attributes.ATTACK_DAMAGE, 40.0D).createMutableAttribute(Attributes.ARMOR, 4.0D);
+      return AbstractZurEntity.func_234295_eP_().createMutableAttribute(Attributes.FOLLOW_RANGE, 100.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23F).createMutableAttribute(Attributes.ATTACK_DAMAGE, 40.0D).createMutableAttribute(Attributes.ARMOR, 4.0D);
    }
 
    protected void registerData() {
@@ -106,16 +108,16 @@ public class ZurNirtreEntity extends ZurEntity {
    }
 
    @Override
-   public ActionResultType func_230254_b_(PlayerEntity p_230254_1_, Hand p_230254_2_) {
-      ItemStack itemstack = p_230254_1_.getHeldItem(p_230254_2_);
-      if (itemstack.getItem() == isBurnableItemInit.GRINT.get()) {
+   public ActionResultType func_230254_b_(PlayerEntity player, Hand hand) {
+      ItemStack itemstack = player.getHeldItem(hand);
+      if (itemstack.getItem() == isBurnableFoodItemInit.GRINT.get()) {
          if (this.isPotionActive(Effects.WEAKNESS)) {
-            if (!p_230254_1_.abilities.isCreativeMode) {
+            if (!player.abilities.isCreativeMode) {
                itemstack.shrink(1);
             }
 
             if (!this.world.isRemote) {
-               this.startConverting(p_230254_1_.getUniqueID(), this.rand.nextInt(2401) + 3600);
+               this.startConverting(player.getUniqueID(), this.rand.nextInt(2401) + 3600);
             }
 
             return ActionResultType.SUCCESS;
@@ -123,7 +125,7 @@ public class ZurNirtreEntity extends ZurEntity {
             return ActionResultType.CONSUME;
          }
       } else {
-         return super.func_230254_b_(p_230254_1_, p_230254_2_);
+         return super.func_230254_b_(player, hand);
       }
    }
 
@@ -256,7 +258,7 @@ public class ZurNirtreEntity extends ZurEntity {
       return this.isChild() ? (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 2.0F : (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F;
    }
 
-   public SoundEvent getAmbientSound() {
+   /*public SoundEvent getAmbientSound() {
       return SoundEvents.ENTITY_ZOMBIE_VILLAGER_AMBIENT;
    }
 
@@ -270,7 +272,7 @@ public class ZurNirtreEntity extends ZurEntity {
 
    public SoundEvent getStepSound() {
       return SoundEvents.ENTITY_ZOMBIE_VILLAGER_STEP;
-   }
+   }*/
 
    protected ItemStack getSkullDrop() {
       return ItemStack.EMPTY;
@@ -280,11 +282,11 @@ public class ZurNirtreEntity extends ZurEntity {
       this.offers = p_213790_1_;
    }
 
-   /*@Nullable
+   @Nullable
    public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
-      this.setVillagerData(this.getVillagerData().withType(IVillagerType.byBiome(worldIn.getBiome(this.getPosition()))));
+      //this.setVillagerData(this.getVillagerData().withType(IVillagerType.byBiome(worldIn.getBiome(this.getPosition()))));
       return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
-   }*/
+   }
 
    /*public void setVillagerData(VillagerData p_213792_1_) {
       VillagerData villagerdata = this.getVillagerData();

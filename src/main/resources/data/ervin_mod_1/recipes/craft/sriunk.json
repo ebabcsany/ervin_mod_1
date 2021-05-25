@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "ervin_mod_1:sriunk",
+  "ingredients": [
+    {
+      "item": "ervin_mod_1:sriunk_block"
+    }
+  ],
+  "result": {
+    "item": "ervin_mod_1:sriunk",
+    "count": 9
+  }
+}

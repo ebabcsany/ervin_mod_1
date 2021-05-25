@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "saplings",
+  "pattern": [
+    "###",
+    "#X#",
+    " X "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:dark_oak_leaves"
+    },
+    "X": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "minecraft:dark_oak_sapling",
+    "count": 1
+  }
+}

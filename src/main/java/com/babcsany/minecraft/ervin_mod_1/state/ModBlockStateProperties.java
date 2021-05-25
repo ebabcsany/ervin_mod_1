@@ -7,7 +7,7 @@ import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.properties.*;
 import net.minecraft.util.Direction;
 
-public class ModBlockStateProperties {
+public class ModBlockStateProperties extends BlockStateProperties {
    public static final BooleanProperty ATTACHED = BooleanProperty.create("attached");
    public static final BooleanProperty BOTTOM = BooleanProperty.create("bottom");
    public static final BooleanProperty CONDITIONAL = BooleanProperty.create("conditional");
@@ -92,6 +92,7 @@ public class ModBlockStateProperties {
    public static final IntegerProperty BITES_0_6 = IntegerProperty.create("bites", 0, 6);
    public static final IntegerProperty DELAY_1_4 = IntegerProperty.create("delay", 1, 4);
    public static final IntegerProperty DISTANCE_1_7 = IntegerProperty.create("distance", 1, 7);
+   public static final IntegerProperty DISTANCE_1_12 = IntegerProperty.create("distance", 1, 12);
    public static final IntegerProperty DISTANCE_1_32 = IntegerProperty.create("distance", 1, 32);
    public static final IntegerProperty CHARGES = IntegerProperty.create("charges", 0, 4);
    public static final IntegerProperty CHARGES_0_16 = IntegerProperty.create("charges", 0, 16);

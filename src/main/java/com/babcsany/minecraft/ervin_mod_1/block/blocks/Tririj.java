@@ -37,10 +37,6 @@ public class Tririj extends Block {
       super.onEntityWalk(worldIn, pos, entityIn);
    }
 
-   public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
-      BubbleColumn.placeBubbleColumn(worldIn, pos.up(), true);
-   }
-
    /**
     * Update the provided state given the provided neighbor facing and neighbor state, returning a new state.
     * For example, fences make their connections to the passed in state if possible, and wet concrete powder immediately
@@ -49,6 +45,21 @@ public class Tririj extends Block {
     */
    public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
       if (facing == Direction.UP && facingState.isIn(Blocks.WATER)) {
+         worldIn.getPendingBlockTicks().scheduleTick(currentPos, this, 20);
+      }
+      if (facing == Direction.DOWN && facingState.isIn(Blocks.WATER)) {
+         worldIn.getPendingBlockTicks().scheduleTick(currentPos, this, 20);
+      }
+      if (facing == Direction.EAST && facingState.isIn(Blocks.WATER)) {
+         worldIn.getPendingBlockTicks().scheduleTick(currentPos, this, 20);
+      }
+      if (facing == Direction.NORTH && facingState.isIn(Blocks.WATER)) {
+         worldIn.getPendingBlockTicks().scheduleTick(currentPos, this, 20);
+      }
+      if (facing == Direction.SOUTH && facingState.isIn(Blocks.WATER)) {
+         worldIn.getPendingBlockTicks().scheduleTick(currentPos, this, 20);
+      }
+      if (facing == Direction.WEST && facingState.isIn(Blocks.WATER)) {
          worldIn.getPendingBlockTicks().scheduleTick(currentPos, this, 20);
       }
 

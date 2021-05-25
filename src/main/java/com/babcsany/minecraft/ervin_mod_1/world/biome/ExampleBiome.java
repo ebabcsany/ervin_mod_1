@@ -4,7 +4,7 @@ import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.ModBiomeFeatures;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.FirgTree;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.ModDefaultBiomeFeatures;
-import com.babcsany.minecraft.ervin_mod_1.world.gen.TutorialOreGen;
+import com.babcsany.minecraft.ervin_mod_1.world.gen.FeatureGen;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.world.biome.*;
@@ -12,13 +12,16 @@ import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.placement.*;
+import net.minecraftforge.fml.RegistryObject;
 
 public class ExampleBiome extends Biome {
+
 	public ExampleBiome(Builder biomeBuilder) {
 		super(biomeBuilder);
 		this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityType.ZOMBIE, 30, 1, 20));
+		//this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.LIWRAY.get(), 1, 1, 3));
 		//this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.ROVENT_ENTITY.get(), 1, 1, 3));
-		//this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.ZUR_ENTITY.get(), 1, 1, 5));
+		this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityInit.ZUR_ENTITY, 20, 1, 10));
 		//this.addSpawn(EntityClassification.WATER_CREATURE, new SpawnListEntry(EntityInit.GUBROV_ENTITY.get(), 1, 1, 4));
 		//this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityInit.FREIN_ENTITY.get(), 1, 0, 2));
 		this.addSpawn(EntityClassification.AMBIENT, new SpawnListEntry(EntityType.BAT, 40, 1, 20));
@@ -82,7 +85,7 @@ public class ExampleBiome extends Biome {
 				Feature.field_236291_c_.withConfiguration(FirgTree.FIRG_TREE_CONFIG).withPlacement(
 						Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(45, 12.0f, 25))));
 
-		DefaultBiomeFeatures.addOres(this);
+		ModDefaultBiomeFeatures.addOres(this);
 		ModDefaultBiomeFeatures.addBlackIronOres(this);
 		ModDefaultBiomeFeatures.addIronOres(this);
 		ModDefaultBiomeFeatures.addRedIronOres(this);
@@ -93,7 +96,6 @@ public class ExampleBiome extends Biome {
 		ModDefaultBiomeFeatures.addStones(this);
 		ModDefaultBiomeFeatures.addKiomne(this);
 		ModDefaultBiomeFeatures.addFirgTrees(this);
-		TutorialOreGen.generateRubyOre();
 	}
 	
 	@Override

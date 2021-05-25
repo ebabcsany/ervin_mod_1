@@ -1,7 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.client.entity.model;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.AbstractZurEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.AbstractZurEntity_1;
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.AbstractkZurEntity;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.model.ModelHelper;
 import net.minecraftforge.api.distmarker.Dist;

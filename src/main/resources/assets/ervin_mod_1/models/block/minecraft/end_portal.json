@@ -1,5 +1,5 @@
 {
-  "parent": "ervin_mod_1:block/template_end_portal",
+  "parent": "ervin_mod_1:block/minecraft/template_end_portal",
   "textures": {
     "up": "ervin_mod_1:block/minecraft/end_portal",
     "down": "ervin_mod_1:block/minecraft/end_portal_side_&_bottom",

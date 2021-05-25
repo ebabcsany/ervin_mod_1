@@ -3,10 +3,11 @@ package com.babcsany.minecraft.ervin_mod_1.entity.villager.trades;
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.food.isBurnableFoodItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.spawn_egg.ModSpawnEggItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.special.isBurnableSpecialItemInit;
 import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Lists;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import net.minecraft.block.Block;
@@ -15,34 +16,25 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentData;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.villager.IVillagerDataHolder;
-import net.minecraft.entity.villager.IVillagerType;
 import net.minecraft.item.*;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionBrewing;
 import net.minecraft.potion.PotionUtils;
 import net.minecraft.util.IItemProvider;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.gen.feature.structure.Structure;
-import net.minecraft.world.server.ServerWorld;
-import net.minecraft.world.storage.MapData;
-import net.minecraft.world.storage.MapDecoration;
 
 import javax.annotation.Nullable;
 import java.util.List;
-import java.util.Locale;
-import java.util.Map;
 import java.util.Random;
 import java.util.stream.Collectors;
 
 public class TraderNirtreTrades {
    public static final Int2ObjectMap<TraderNirtreTrades.ITrade[]> field_221240_b = gatAsIntMap(ImmutableMap.of(1, new TraderNirtreTrades.ITrade[]{
            new TraderNirtreTrades.ItemsForRegdemBlocksTrade(ItemInit.DGUCHSR.get(), 1, 1, 1000, 2),
-           new TraderNirtreTrades.ItemsForAncientDebrisAndItemsTrade(Items.GOLD_BLOCK, 1, Items.NETHERITE_INGOT, 1, 1000, 4),
+           new TraderNirtreTrades.ItemsForAncientDebrisAndItemsTrade(Items.GOLD_BLOCK, 1, Items.NETHERITE_INGOT, 1, 100, 4),
+           new TraderNirtreTrades.ItemsForNetheriteIngotsAndItemsTrade(BlockItemInit.PACK_BLOCK.get(), 1, Items.ANCIENT_DEBRIS, 2, 100, 4),
            new TraderNirtreTrades.ItemsForChaksTrade(Items.EMERALD, 25, 1, 22, 2),
            new TraderNirtreTrades.ItemsForRegdemsTrade(ItemInit.RUBY.get(), 1, 1, 1000, 1),
            new TraderNirtreTrades.ItemsForChaksTrade(Items.NAUTILUS_SHELL, 5, 1, 20, 3),
@@ -50,11 +42,12 @@ public class TraderNirtreTrades {
            new TraderNirtreTrades.ItemsForChaksTrade(Items.GRASS_BLOCK, 4, 1, 9, 1),
            new TraderNirtreTrades.ItemsForKirtsTrade(ModSpawnEggItemInit.$_TRADER_SPAWN_EGG.get(), 64, 1, 20, 1),
            new TraderNirtreTrades.ItemsForEmeraldBlocksTrade(ModSpawnEggItemInit.WANDERING_TRADER_NIRTRE_SPAWN_EGG.get(), 50, 1, 20, 1),
-           new TraderNirtreTrades.ItemsForEmeraldBlocksTrade(ModSpawnEggItemInit.SRACH_ENTITY_SPAWN_EGG.get(), 1, 1, 20, 1),
+           new TraderNirtreTrades.ItemsForEmeraldBlocksTrade(ModSpawnEggItemInit.SRACH_SPAWN_EGG.get(), 1, 1, 20, 1),
            new TraderNirtreTrades.ItemsForRegdemBlocksAndItemsTrade(BlockItemInit.FREIN_BLOCK.get(), 10, ModSpawnEggItemInit.HHIJ_SPAWN_EGG.get(), 1, 16, 4),
-           new TraderNirtreTrades.ItemsForEmeraldsAndItemsTrade(ItemInit.SPAWN_EGG_1.get(), 1, isBurnableItemInit.FIRN.get(), 1, 16, 1),
+           new TraderNirtreTrades.ItemsForEmeraldsAndItemsTrade(ModSpawnEggItemInit.SPAWN_EGG_1.get(), 1, isBurnableSpecialItemInit.FIRN.get(), 1, 16, 1),
+           new TraderNirtreTrades.ItemsForEmeraldsAndItemsTrade(ItemInit.CRAKH.get(), 1, isBurnableSpecialItemInit.FIRN.get(), 1, 16, 1),
            new TraderNirtreTrades.ItemsForFirnsTrade(ItemInit.FREIN_BALL.get(), 10, 16, 50),
-           new TraderNirtreTrades.ItemsForGrutsTrade(isBurnableItemInit.TIRKS.get(), 30, 4, 50),
+           new TraderNirtreTrades.ItemsForGrutsTrade(isBurnableFoodItemInit.TIRKS.get(), 30, 4, 50),
            new TraderNirtreTrades.ItemsForLeatsTrade(ItemInit.TAWROL.get(), 26, 1, 10),
    }));
 
@@ -308,7 +301,7 @@ public class TraderNirtreTrades {
             j = 2048;
          }
 
-         return new MerchantOffer(new ItemStack(isBurnableItemInit.FIRN.get(), j), new ItemStack(Items.BOOK), itemstack, 120, this.xpValue, 2.4F);
+         return new MerchantOffer(new ItemStack(isBurnableSpecialItemInit.FIRN.get(), j), new ItemStack(Items.BOOK), itemstack, 120, this.xpValue, 2.4F);
       }
    }
 
@@ -817,7 +810,7 @@ public class TraderNirtreTrades {
       }
 
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         return new MerchantOffer(new ItemStack(isBurnableItemInit.FIRN.get(), this.firnCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack(isBurnableSpecialItemInit.FIRN.get(), this.firnCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 
@@ -994,6 +987,37 @@ public class TraderNirtreTrades {
       @Nullable
       public MerchantOffer getOffer(Entity trader, Random rand) {
          return new MerchantOffer(new ItemStack(Items.ANCIENT_DEBRIS, this.ancientDebrisCount), new ItemStack(this.buyingItem.getItem(), this.buyingItemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+      }
+   }
+
+   static class ItemsForNetheriteIngotsAndItemsTrade implements TraderNirtreTrades.ITrade {
+      private final ItemStack buyingItem;
+      private final int buyingItemCount;
+      private final int netheriteIngotCount;
+      private final ItemStack sellingItem;
+      private final int sellingItemCount;
+      private final int maxUses;
+      private final int xpValue;
+      private final float priceMultiplier;
+
+      public ItemsForNetheriteIngotsAndItemsTrade(IItemProvider buyingItem, int buyingItemCount, Item sellingItem, int sellingItemCount, int maxUses, int xpValue) {
+         this(buyingItem, buyingItemCount, 1, sellingItem, sellingItemCount, maxUses, xpValue);
+      }
+
+      public ItemsForNetheriteIngotsAndItemsTrade(IItemProvider buyingItem, int buyingItemCount, int netheriteIngotCount, Item sellingItem, int sellingItemCount, int maxUses, int xpValue) {
+         this.buyingItem = new ItemStack(buyingItem);
+         this.buyingItemCount = buyingItemCount;
+         this.netheriteIngotCount = netheriteIngotCount;
+         this.sellingItem = new ItemStack(sellingItem);
+         this.sellingItemCount = sellingItemCount;
+         this.maxUses = maxUses;
+         this.xpValue = xpValue;
+         this.priceMultiplier = 0.05F;
+      }
+
+      @Nullable
+      public MerchantOffer getOffer(Entity trader, Random rand) {
+         return new MerchantOffer(new ItemStack(Items.NETHERITE_INGOT, this.netheriteIngotCount), new ItemStack(this.buyingItem.getItem(), this.buyingItemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 

@@ -1,19 +1,30 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.monster;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.villager.Abstract$TraderEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.$TraderTrades;
-import com.babcsany.minecraft.ervin_mod_1.entity.villager.trigger.CriteriaTriggers1;
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.goal.BowAttackGoal;
+import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.ZurTrades;
+import com.babcsany.minecraft.ervin_mod_1.entity.trigger.CriteriaTriggers1;
+import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.special.isBurnableSpecialItemInit;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Sets;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.item.ExperienceOrbEntity;
+import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
+import net.minecraft.entity.ai.goal.BreakDoorGoal;
+import net.minecraft.entity.ai.goal.Goal;
+import net.minecraft.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
 import net.minecraft.entity.merchant.IMerchant;
-import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.entity.projectile.ProjectileHelper;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
@@ -21,558 +32,372 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.particles.IParticleData;
-import net.minecraft.particles.ParticleTypes;
+import net.minecraft.pathfinding.GroundPathNavigator;
+import net.minecraft.pathfinding.Path;
 import net.minecraft.pathfinding.PathNodeType;
-import net.minecraft.stats.Stats;
+import net.minecraft.pathfinding.SwimmerPathNavigator;
+import net.minecraft.potion.*;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.*;
+import net.minecraft.world.raid.Raid;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
-import java.util.Random;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 import java.util.function.Predicate;
 
-public abstract class AbstractZurEntity extends CreatureEntity implements IMob, INPC, IMerchant {
-   private static final DataParameter<Boolean> BABY = EntityDataManager.createKey(AgeableEntity.class, DataSerializers.BOOLEAN);
-   protected int growingAge;
-   protected int forcedAge;
-   protected int forcedAgeTimer;
+public abstract class AbstractZurEntity extends AgeableEntity implements INPC, IMerchant {
+   public final NonNullList<ItemStack> inventory = NonNullList.withSize(1000000, ItemStack.EMPTY);
+   private final BowAttackGoal<AbstractZurEntity> aiArrowAttack = new BowAttackGoal<>(this, 1.0D, 20, 15.0F);
+   private static final UUID MODIFIER_UUID = UUID.fromString("5CD17E52-A79A-43D3-A529-90FDE04B181E");
+   public static final AttributeModifier MODIFIER = new AttributeModifier(MODIFIER_UUID, "Drinking speed penalty", -1.6D, AttributeModifier.Operation.ADDITION);
+   private static final DataParameter<Integer> SHAKE_HEAD_TICKS = EntityDataManager.createKey(AbstractZurEntity.class, DataSerializers.VARINT);
+   private static final DataParameter<Boolean> IS_DRINKING = EntityDataManager.createKey(AbstractZurEntity.class, DataSerializers.BOOLEAN);
+   private static final UUID BABY_SPEED_BOOST_ID = UUID.fromString("B9766B59-9566-4402-BC1F-2EE2A276D836");
+   public static final AttributeModifier BABY_SPEED_BOOST = new AttributeModifier(BABY_SPEED_BOOST_ID, "Baby speed boost", 0.5D, AttributeModifier.Operation.MULTIPLY_BASE);
+   private static final DataParameter<Boolean> IS_CHILD = EntityDataManager.createKey(AbstractZurEntity.class, DataSerializers.BOOLEAN);
+   private static final DataParameter<Integer> TRADER_TYPE = EntityDataManager.createKey(AbstractZurEntity.class, DataSerializers.VARINT);
+   public static final DataParameter<Boolean> ROVENT = EntityDataManager.createKey(AbstractZurEntity.class, DataSerializers.BOOLEAN);
+   private static final DataParameter<Byte> CLIMBING = EntityDataManager.createKey(AbstractZurEntity.class, DataSerializers.BYTE);
+   private final List<NonNullList<ItemStack>> allInventories = ImmutableList.of(this.inventory);
+   private final BreakDoorGoal breakDoor = new BreakDoorGoal(this, HARD_DIFFICULTY_PREDICATE);
+   private static final Predicate<Difficulty> HARD_DIFFICULTY_PREDICATE = (p_213697_0_) -> p_213697_0_ == Difficulty.HARD;
+   @Nullable
+   private PlayerEntity customer;
+   private boolean swimmingUp;
+   protected final SwimmerPathNavigator waterNavigator;
+   protected final GroundPathNavigator groundNavigator;
+   public int potionUseTimer;
+   public float wingRotation;
+   private int inWaterTime;
+   @Nullable
+   protected Raid raid;
+   private int wave;
+   private boolean canJoinRaid;
+   private int field_213664_bB;
+   private boolean patrolLeader;
+   private boolean patrolling;
+   private int despawnDelay;
+   public boolean zurDropItem;
+   public float wingRotDelta = 1.0F;
+   private boolean isBreakDoorsTaskSet;
+   private int eatingGrassTimer;
+   private int drownedConversionTime;
+   private final MeleeAttackGoal aiAttackOnCollide = new MeleeAttackGoal(this, 1.2D, true) {
+      /**
+       * Reset the task's internal state. Called when this task is interrupted by another one
+       */
+      public void resetTask() {
+         super.resetTask();
+         AbstractZurEntity.this.setAggroed(false);
+      }
 
-   protected AbstractZurEntity(EntityType<? extends AbstractZurEntity> type, World worldIn) {
+      /**
+       * Execute a one shot task or start executing a continuous task
+       */
+      public void startExecuting() {
+         super.startExecuting();
+         AbstractZurEntity.this.setAggroed(true);
+      }
+   };
+   @Nullable
+   protected MerchantOffers offers;
+   public int currentItem;
+   public int timeUntilNextItem = this.rand.nextInt(6000) + 6000;
+   private final Inventory zurInventory = new Inventory(1000000);
+
+   public AbstractZurEntity(EntityType<? extends AbstractZurEntity> type, World worldIn) {
       super(type, worldIn);
+      this.experienceValue = 5;
       this.setPathPriority(PathNodeType.DANGER_FIRE, 16.0F);
       this.setPathPriority(PathNodeType.DAMAGE_FIRE, -1.0F);
-      this.experienceValue = 5;
+      this.waterNavigator = new SwimmerPathNavigator(this, worldIn);
+      this.groundNavigator = new GroundPathNavigator(this, worldIn);
    }
 
    public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
       if (spawnDataIn == null) {
-         spawnDataIn = new AgeableEntity.AgeableData();
-         ((AgeableEntity.AgeableData)spawnDataIn).setCanBabySpawn(false);
+         spawnDataIn = new AgeableData();
+         ((AgeableData)spawnDataIn).setCanBabySpawn(true);
       }
 
-      AgeableEntity.AgeableData ageableentity$ageabledata = (AgeableEntity.AgeableData)spawnDataIn;
-      if (ageableentity$ageabledata.canBabySpawn() && ageableentity$ageabledata.getIndexInGroup() > 0 && this.rand.nextFloat() <= ageableentity$ageabledata.getBabySpawnProbability()) {
-         this.setGrowingAge(-24000);
-      }
-
-      ageableentity$ageabledata.incrementIndexInGroup();
       return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
    }
 
-   @Nullable
-   public abstract AbstractZurEntity createChild(AbstractZurEntity ageable);
+   public boolean isPushedByWater() {
+      return !this.isSwimming();
+   }
 
-   /**
-    * The age value may be negative or positive or zero. If it's negative, it get's incremented on each tick, if it's
-    * positive, it get's decremented each tick. Don't confuse this with EntityLiving.getAge. With a negative value the
-    * Entity is considered a child.
-    */
-   public int getGrowingAge() {
-      if (this.world.isRemote) {
-         return this.dataManager.get(BABY) ? -1 : 1;
+   private boolean func_204715_dF() {
+      if (this.swimmingUp) {
+         return true;
       } else {
-         return this.growingAge;
+         LivingEntity livingentity = this.getAttackTarget();
+         return livingentity != null && livingentity.isInWater();
       }
    }
 
-   /**
-    * Increases this entity's age, optionally updating {@link #forcedAge}. If the entity is an adult (if the entity's
-    * age is greater than or equal to 0) then the entity's age will be set to {@link #forcedAge}.
-    */
-   public void ageUp(int growthSeconds, boolean updateForcedAge) {
-      int i = this.getGrowingAge();
-      i = i + growthSeconds * 20;
-      if (i > 0) {
-         i = 0;
+   public void travel(Vector3d travelVector) {
+      if (this.isServerWorld() && this.isInWater() && this.func_204715_dF()) {
+         this.moveRelative(0.01F, travelVector);
+         this.move(MoverType.SELF, this.getMotion());
+         this.setMotion(this.getMotion().scale(0.9D));
+      } else {
+         super.travel(travelVector);
       }
 
-      int j = i - i;
-      this.setGrowingAge(i);
-      if (updateForcedAge) {
-         this.forcedAge += j;
-         if (this.forcedAgeTimer == 0) {
-            this.forcedAgeTimer = 40;
+   }
+
+   public void updateSwimming() {
+      if (!this.world.isRemote) {
+         if (this.isServerWorld() && this.isInWater() && this.func_204715_dF()) {
+            this.navigator = this.waterNavigator;
+            this.setSwimming(true);
+         } else {
+            this.navigator = this.groundNavigator;
+            this.setSwimming(false);
          }
       }
 
-      if (this.getGrowingAge() == 0) {
-         this.setGrowingAge(this.forcedAge);
-      }
-
    }
 
-   /**
-    * Increases this entity's age. If the entity is an adult (if the entity's age is greater than or equal to 0) then
-    * the entity's age will be set to {@link #forcedAge}. This method does not update {@link #forcedAge}.
-    */
-   public void addGrowth(int growth) {
-      this.ageUp(growth, false);
-   }
-
-   /**
-    * The age value may be negative or positive or zero. If it's negative, it get's incremented on each tick, if it's
-    * positive, it get's decremented each tick. With a negative value the Entity is considered a child.
-    */
-   public void setGrowingAge(int age) {
-      int i = this.growingAge;
-      this.growingAge = age;
-      if (i < 0 && age >= 0 || i >= 0 && age < 0) {
-         this.dataManager.set(BABY, age < 0);
-         this.onGrowingAdult();
-      }
-
-   }
-
-   public void writeAdditional(CompoundNBT compound) {
-      super.writeAdditional(compound);
-      MerchantOffers merchantoffers = this.getOffers();
-      compound.putInt("Age", this.getGrowingAge());
-      compound.putInt("ForcedAge", this.forcedAge);
-      compound.putInt("InLove", this.inLove);
-      compound.put("Inventory", this.zurInventory.write());
-      if (this.playerInLove != null) {
-         compound.putUniqueId("LoveCause", this.playerInLove);
-      }
-      if (!merchantoffers.isEmpty()) {
-         compound.put("Offers", merchantoffers.write());
-      }
-   }
-
-   /**
-    * (abstract) Protected helper method to read subclass entity data from NBT.
-    */
-   public void readAdditional(CompoundNBT compound) {
-      super.readAdditional(compound);
-      this.setGrowingAge(compound.getInt("Age"));
-      this.forcedAge = compound.getInt("ForcedAge");
-      this.inLove = compound.getInt("InLove");
-      this.playerInLove = compound.hasUniqueId("LoveCause") ? compound.getUniqueId("LoveCause") : null;
-      if (compound.contains("Offers", 10)) {
-         this.offers = new MerchantOffers(compound.getCompound("Offers"));
-      }
-
-      this.zurInventory.read(compound.getList("Inventory", 10));
-   }
-
-   public void notifyDataManagerChange(DataParameter<?> key) {
-      if (BABY.equals(key)) {
-         this.recalculateSize();
-      }
-
-      super.notifyDataManagerChange(key);
-   }
-
-   /**
-    * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
-    * use this to react to sunlight and start to burn.
-    */
-   public void livingTick() {
-      super.livingTick();
-      this.updateArmSwingProgress();
-      this.func_213623_ec();
-      if (this.getGrowingAge() != 0) {
-         this.inLove = 0;
-      }
-
-      if (this.inLove > 0) {
-         --this.inLove;
-         if (this.inLove % 10 == 0) {
-            double d0 = this.rand.nextGaussian() * 0.02D;
-            double d1 = this.rand.nextGaussian() * 0.02D;
-            double d2 = this.rand.nextGaussian() * 0.02D;
-            this.world.addParticle(ParticleTypes.HEART, this.getPosXRandom(1.0D), this.getPosYRandom() + 0.5D, this.getPosZRandom(1.0D), d0, d1, d2);
+   protected boolean isCloseToPathTarget() {
+      Path path = this.getNavigator().getPath();
+      if (path != null) {
+         BlockPos blockpos = path.getTarget();
+         if (blockpos != null) {
+            double d0 = this.getDistanceSq((double)blockpos.getX(), (double)blockpos.getY(), (double)blockpos.getZ());
+            if (d0 < 4.0D) {
+               return true;
+            }
          }
       }
-      if (this.world.isRemote) {
-         if (this.forcedAgeTimer > 0) {
-            if (this.forcedAgeTimer % 4 == 0) {
-               this.world.addParticle(ParticleTypes.HAPPY_VILLAGER, this.getPosXRandom(1.0D), this.getPosYRandom() + 0.5D, this.getPosZRandom(1.0D), 0.0D, 0.0D, 0.0D);
+
+      return false;
+   }
+
+   /*public void breakBlockGoals() {
+      this.goalSelector.addGoal(5, new AttackDirtGoal(this, 4, 6));
+      this.goalSelector.addGoal(5, new AttackGrassBlockGoal(this, 4, 6));
+   }*/
+
+   /**
+    * sets this entity's combat AI.
+    */
+   public void setCombatTask() {
+      if (this.world != null && !this.world.isRemote) {
+         this.goalSelector.removeGoal(this.aiAttackOnCollide);
+         this.goalSelector.removeGoal(this.aiArrowAttack);
+         ItemStack itemstack = this.getHeldItem(ProjectileHelper.getHandWith(this, isBurnableItemInit.TRITHK.get()));
+         if (itemstack.getItem() instanceof net.minecraft.item.BowItem) {
+            int i = 20;
+            if (this.world.getDifficulty() != Difficulty.HARD) {
+               i = 40;
             }
 
-            --this.forcedAgeTimer;
+            this.aiArrowAttack.setAttackCooldown(i);
+            this.goalSelector.addGoal(4, this.aiArrowAttack);
+         } else {
+            this.goalSelector.addGoal(4, this.aiAttackOnCollide);
          }
-      } else if (this.isAlive()) {
-         int i = this.getGrowingAge();
-         if (i < 0) {
-            ++i;
-            this.setGrowingAge(i);
-         } else if (i > 0) {
-            --i;
-            this.setGrowingAge(i);
+
+      }
+   }
+
+   protected void registerData() {
+      super.registerData();
+      this.dataManager.register(CLIMBING, (byte)1);
+      this.dataManager.register(SHAKE_HEAD_TICKS, 0);
+      this.getDataManager().register(IS_CHILD, false);
+      this.getDataManager().register(IS_DRINKING, false);
+      this.getDataManager().register(TRADER_TYPE, 0);
+      this.getDataManager().register(ROVENT, false);
+   }
+
+   protected boolean shouldDrown() {
+      return true;
+   }
+
+   public boolean isDrowning() {
+      return this.getDataManager().get(ROVENT);
+   }
+
+   public boolean Child() {
+      return !this.isChild();
+   }
+
+   /**
+    * Called to update the entity's position/logic.
+    */
+   public void tick() {
+      if (!this.world.isRemote) {
+         this.setBesideClimbableBlock(this.collidedHorizontally);
+      }
+      if (!this.world.isRemote && this.isAlive() && !this.isAIDisabled()) {
+         if (this.isDrowning()) {
+            --this.drownedConversionTime;
+            if (this.drownedConversionTime < 0) {
+               this.onRovent();
+            }
+         } else if (this.shouldDrown()) {
+            if (this.areEyesInFluid(FluidTags.WATER)) {
+               ++this.inWaterTime;
+               if (this.inWaterTime >= 7200) {
+                  this.startRovent();
+               }
+            } else {
+               this.inWaterTime = 1000;
+            }
+         }
+      }
+
+      super.tick();
+   }
+
+   public boolean canBeLeader() {
+      return true;
+   }
+
+   public void setLeader(boolean isLeader) {
+      this.patrolLeader = isLeader;
+      this.patrolling = true;
+   }
+
+   protected boolean canBreakDoors() {
+      return true;
+   }
+
+   public void setRaid(@Nullable Raid p_213652_1_) {
+      this.raid = p_213652_1_;
+   }
+
+   public void func_213644_t(boolean p_213644_1_) {
+      this.canJoinRaid = p_213644_1_;
+   }
+
+   public abstract void applyWaveBonus(int p_213660_1_, boolean p_213660_2_);
+
+   public void func_213653_b(int p_213653_1_) {
+      this.field_213664_bB = p_213653_1_;
+   }
+
+   public void setWave(int p_213651_1_) {
+      this.wave = p_213651_1_;
+   }
+
+   /**
+    * Sets or removes EntityAIBreakDoor task
+    */
+   public void setBreakDoorsAItask(boolean enabled) {
+      if (this.canBreakDoors()) {
+         if (this.isBreakDoorsTaskSet != enabled) {
+            this.isBreakDoorsTaskSet = enabled;
+            ((GroundPathNavigator)this.getNavigator()).setBreakDoors(enabled);
+            if (enabled) {
+               this.goalSelector.addGoal(1, this.breakDoor);
+            } else {
+               this.goalSelector.removeGoal(this.breakDoor);
+            }
+         }
+      } else if (this.isBreakDoorsTaskSet) {
+         this.goalSelector.removeGoal(this.breakDoor);
+         this.isBreakDoorsTaskSet = false;
+      }
+
+   }
+
+   private void startRovent() {
+      this.drownedConversionTime = 600;
+      this.getDataManager().set(ROVENT, true);
+   }
+
+   protected void onRovent() {
+      this.func_234341_c_(EntityInit.ROVENT_ENTITY.get());
+      if (!this.isSilent()) {
+         this.world.playEvent(null, 1040, this.getPosition(), 0);
+      }
+   }
+
+   protected void func_234341_c_(EntityType<? extends ZurEntity> zur) {
+      ZurEntity zurEntity = this.func_233656_b_(zur);
+      if (zurEntity != null) {
+         zurEntity.applyAttributeBonuses(zurEntity.world.getDifficultyForLocation(zurEntity.getPosition()).getClampedAdditionalDifficulty());
+         zurEntity.setBreakDoorsAItask(zurEntity.canBreakDoors() && this.isBreakDoorsTaskSet());
+      }
+   }
+
+   public boolean isBreakDoorsTaskSet() {
+      return this.isBreakDoorsTaskSet;
+   }
+
+   @Nullable
+   public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag, ZurEntity zur) {
+      if (reason != SpawnReason.SPAWN_EGG) {
+         if (worldIn.getRandom().nextFloat() < 0.2F) {
+            this.setChild(true);
+         } else if (this.Child()) {
+            this.setItemStackToSlot(EquipmentSlotType.MAINHAND, this.func_234432_eW_());
+            this.setItemStackToSlot(EquipmentSlotType.OFFHAND, this.func_234432_eW1_());
+         }
+      }
+
+      ZurTasks.func_234466_a_(this);
+      if (this.isDrowning()) {
+         zur.setEquipmentBasedOnDifficulty(difficultyIn);
+      }
+      zur.setEquipmentBasedOnDifficulty1(difficultyIn);
+      this.setEnchantmentBasedOnDifficulty(difficultyIn);
+      return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+   }
+
+   ItemStack func_234432_eW_() { return this.rand.nextFloat() < 0.5D ? new ItemStack(isBurnableItemInit.SRIUNK_STICK.get()) : new ItemStack(isBurnableSpecialItemInit.DEBUG_SRIUNK_STICK.get()); }
+
+   ItemStack func_234432_eW1_() { return this.rand.nextFloat() < 0.5D ? new ItemStack(isBurnableItemInit.VIRKT.get()) : new ItemStack(isBurnableBlockItemInit.NETHER_PORTAL.get()); }
+
+   /**
+    * Set whether this zur is a child.
+    */
+   public void setChild(boolean childZur) {
+      this.getDataManager().set(IS_CHILD, childZur);
+      if (this.world != null && !this.world.isRemote) {
+         ModifiableAttributeInstance modifiableattributeinstance = this.getAttribute(Attributes.MOVEMENT_SPEED);
+         Objects.requireNonNull(modifiableattributeinstance).removeModifier(BABY_SPEED_BOOST);
+         if (childZur) {
+            modifiableattributeinstance.applyNonPersistentModifier(BABY_SPEED_BOOST);
          }
       }
 
    }
 
    /**
-    * This is called when Entity's growing age timer reaches 0 (negative values are considered as a child, positive as
-    * an adult)
-    */
-   protected void onGrowingAdult() {
-   }
-
-   /**
-    * If Animal, checks if the age timer is negative
+    * If Zur, checks if the age timer is negative
     */
    public boolean isChild() {
-      return this.getGrowingAge() < 0;
-   }
-
-   /**
-    * Set whether this zombie is a child.
-    */
-   public void setChild(boolean childZombie) {
-      this.setGrowingAge(childZombie ? -24000 : 0);
-   }
-
-   public static class AgeableData implements ILivingEntityData {
-      private int indexInGroup;
-      private boolean canBabySpawn = true;
-      private float babySpawnProbability = 0.05F;
-
-      public int getIndexInGroup() {
-         return this.indexInGroup;
-      }
-
-      public void incrementIndexInGroup() {
-         ++this.indexInGroup;
-      }
-
-      public boolean canBabySpawn() {
-         return this.canBabySpawn;
-      }
-
-      public void setCanBabySpawn(boolean canBabySpawn) {
-         this.canBabySpawn = canBabySpawn;
-      }
-
-      public float getBabySpawnProbability() {
-         return this.babySpawnProbability;
-      }
-
-      public void setBabySpawnProbability(float babySpawnProbability) {
-         this.babySpawnProbability = babySpawnProbability;
-      }
-   }
-   private int inLove;
-   private UUID playerInLove;
-
-   protected void updateAITasks() {
-      if (this.getGrowingAge() != 0) {
-         this.inLove = 0;
-      }
-
-      super.updateAITasks();
-   }
-
-   /**
-    * Called when the entity is attacked.
-    */
-   public boolean attackEntityFrom(DamageSource source, float amount) {
-      //return this.isInvulnerableTo(source) ? false : super.attackEntityFrom(source, amount);
-      if (this.isInvulnerableTo(source)) {
-         return false;
-      } else {
-         this.inLove = 0;
-         return super.attackEntityFrom(source, amount);
-      }
-   }
-
-   public float getBlockPathWeight(BlockPos pos, IWorldReader worldIn) {
-      return worldIn.getBlockState(pos.down()).isIn(isBurnableBlockItemInit.SRIUNK_BLOCK.get()) ? 10.0F : worldIn.getBrightness(pos) - 0.5F;
-   }
-
-   /**
-    * Returns the Y Offset of this entity.
-    */
-   public double getYOffset() {
-      return 0.14D;
-   }
-
-   /**
-    * Static predicate for determining whether or not an animal can spawn at the provided location.
-    *
-    * @param animal The animal entity to be spawned
-    */
-   public static boolean canZurSpawn(EntityType<? extends AbstractZurEntity> animal, IWorld worldIn, SpawnReason reason, BlockPos pos, Random random) {
-      return worldIn.getBlockState(pos.down()).isIn(Blocks.GRASS_BLOCK) && worldIn.getLightSubtracted(pos, 0) > 8;
-   }
-
-   /**
-    * Get number of ticks, at least during which the living entity will be silent.
-    */
-   public int getTalkInterval() {
-      return 120;
-   }
-
-   public boolean canDespawn(double distanceToClosestPlayer) {
-      return false;
+      return this.getDataManager().get(IS_CHILD);
    }
 
    /**
     * Get the experience points the entity currently has.
     */
    protected int getExperiencePoints(PlayerEntity player) {
-      return 1 + this.world.rand.nextInt(3);
-   }
-
-   /**
-    * Checks if the parameter is an item which this animal can be fed to breed it (wheat, carrots or seeds depending on
-    * the animal type)
-    */
-   public boolean isBreedingItem(ItemStack stack) {
-      return stack.getItem() == Items.WHEAT;
-   }
-
-   public ActionResultType func_230254_b_(PlayerEntity p_230254_1_, Hand p_230254_2_) {
-      ItemStack itemstack = p_230254_1_.getHeldItem(p_230254_2_);
-      if (this.isBreedingItem(itemstack)) {
-         int i = this.getGrowingAge();
-         if (!this.world.isRemote && i == 0 && this.canBreed()) {
-            this.consumeItemFromStack(p_230254_1_, itemstack);
-            this.setInLove(p_230254_1_);
-            return ActionResultType.SUCCESS;
-         }
-
-         if (this.isChild()) {
-            this.consumeItemFromStack(p_230254_1_, itemstack);
-            this.ageUp((int)((float)(-i / 20) * 0.1F), true);
-            return ActionResultType.func_233537_a_(this.world.isRemote);
-         }
-
-         if (this.world.isRemote) {
-            return ActionResultType.CONSUME;
-         }
+      if (this.isChild()) {
+         this.experienceValue = (int)((float)this.experienceValue * 10.0F);
       }
 
-      return super.func_230254_b_(p_230254_1_, p_230254_2_);
+      return super.getExperiencePoints(player);
    }
 
-   /**
-    * Decreases ItemStack size by one
-    */
-   protected void consumeItemFromStack(PlayerEntity player, ItemStack stack) {
-      if (!player.abilities.isCreativeMode) {
-         stack.shrink(1);
+   public void notifyDataManagerChange(DataParameter<?> key) {
+      if (IS_CHILD.equals(key)) {
+         this.recalculateSize();
       }
 
-   }
-
-   public boolean canBreed() {
-      return this.inLove <= 0;
-   }
-
-   public void setInLove(@Nullable PlayerEntity player) {
-      this.inLove = 600;
-      if (player != null) {
-         this.playerInLove = player.getUniqueID();
-      }
-
-      this.world.setEntityState(this, (byte)18);
-   }
-
-   public void setInLove(int ticks) {
-      this.inLove = ticks;
-   }
-
-   public int func_234178_eO_() {
-      return this.inLove;
-   }
-
-   @Nullable
-   public ServerPlayerEntity getLoveCause() {
-      if (this.playerInLove == null) {
-         return null;
-      } else {
-         PlayerEntity playerentity = this.world.getPlayerByUuid(this.playerInLove);
-         return playerentity instanceof ServerPlayerEntity ? (ServerPlayerEntity)playerentity : null;
-      }
-   }
-
-   /**
-    * Returns if the entity is currently in 'love mode'.
-    */
-   public boolean isInLove() {
-      return this.inLove > 0;
-   }
-
-   public void resetInLove() {
-      this.inLove = 0;
-   }
-
-   /**
-    * Returns true if the mob is currently able to mate with the specified mob.
-    */
-   public boolean canMateWith(AbstractZurEntity otherAnimal) {
-      if (otherAnimal == this) {
-         return false;
-      } else if (otherAnimal.getClass() != this.getClass()) {
-         return false;
-      } else {
-         return this.isInLove() && otherAnimal.isInLove();
-      }
-   }
-
-   public void func_234177_a_(World p_234177_1_, AbstractZurEntity p_234177_2_) {
-      AbstractZurEntity ageableentity = this.createChild(p_234177_2_);
-      final com.babcsany.minecraft.ervin_mod_1.entity.event.zur.BabyEntitySpawnEvent event = new com.babcsany.minecraft.ervin_mod_1.entity.event.zur.BabyEntitySpawnEvent(this, p_234177_2_, ageableentity);
-      final boolean cancelled = net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(event);
-      ageableentity = event.getChild();
-      if (cancelled) {
-         //Reset the "inLove" state for the animals
-         this.setGrowingAge(6000);
-         p_234177_2_.setGrowingAge(6000);
-         this.resetInLove();
-         p_234177_2_.resetInLove();
-         return;
-      }
-      if (ageableentity != null) {
-         ServerPlayerEntity serverplayerentity = this.getLoveCause();
-         if (serverplayerentity == null && p_234177_2_.getLoveCause() != null) {
-            serverplayerentity = p_234177_2_.getLoveCause();
-         }
-
-         /*if (serverplayerentity != null) {
-            serverplayerentity.addStat(Stats.ANIMALS_BRED);
-            CriteriaTriggers1.BRED_ZUR_ENTITY.trigger(serverplayerentity, this, p_234177_2_, ageableentity);
-         }*/
-
-         this.setGrowingAge(6000);
-         p_234177_2_.setGrowingAge(6000);
-         this.resetInLove();
-         p_234177_2_.resetInLove();
-         ageableentity.setChild(true);
-         ageableentity.setLocationAndAngles(this.getPosX(), this.getPosY(), this.getPosZ(), 0.0F, 0.0F);
-         p_234177_1_.addEntity(ageableentity);
-         p_234177_1_.setEntityState(this, (byte)18);
-         if (p_234177_1_.getGameRules().getBoolean(GameRules.DO_MOB_LOOT)) {
-            p_234177_1_.addEntity(new ExperienceOrbEntity(p_234177_1_, this.getPosX(), this.getPosY(), this.getPosZ(), this.getRNG().nextInt(7) + 1));
-         }
-
-      }
-   }
-
-   /**
-    * Handler for {@link World#setEntityState}
-    */
-   @OnlyIn(Dist.CLIENT)
-   public void handleStatusUpdate(byte id) {
-      if (id == 18) {
-         for(int i = 0; i < 7; ++i) {
-            double d0 = this.rand.nextGaussian() * 0.02D;
-            double d1 = this.rand.nextGaussian() * 0.02D;
-            double d2 = this.rand.nextGaussian() * 0.02D;
-            this.world.addParticle(ParticleTypes.HEART, this.getPosXRandom(1.0D), this.getPosYRandom() + 0.5D, this.getPosZRandom(1.0D), d0, d1, d2);
-         }
-      } else {
-         super.handleStatusUpdate(id);
-      }
-
-   }
-
-   public SoundCategory getSoundCategory() {
-      return SoundCategory.HOSTILE;
-   }
-
-   protected void func_213623_ec() {
-      float f = this.getBrightness();
-      if (f > 0.5F) {
-         this.idleTime += 2;
-      }
-
-   }
-
-   protected boolean isDespawnPeaceful() {
-      return true;
-   }
-
-   protected SoundEvent getSwimSound() {
-      return SoundEvents.ENTITY_HOSTILE_SWIM;
-   }
-
-   protected SoundEvent getSplashSound() {
-      return SoundEvents.ENTITY_HOSTILE_SPLASH;
-   }
-
-   /**
-    * Called when the entity is attacked.
-    */
-   /*public boolean attackEntityFrom(DamageSource source, float amount) {
-      return this.isInvulnerableTo(source) ? false : super.attackEntityFrom(source, amount);
-   }*/
-
-   protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-      return SoundEvents.ENTITY_HOSTILE_HURT;
-   }
-
-   protected SoundEvent getDeathSound() {
-      return SoundEvents.ENTITY_HOSTILE_DEATH;
-   }
-
-   protected SoundEvent getFallSound(int heightIn) {
-      return heightIn > 4 ? SoundEvents.ENTITY_HOSTILE_BIG_FALL : SoundEvents.ENTITY_HOSTILE_SMALL_FALL;
-   }
-
-   /**
-    * Static predicate for determining if the current light level and environmental conditions allow for a monster to
-    * spawn.
-    */
-   public static boolean isValidLightLevel(IWorld worldIn, BlockPos pos, Random randomIn) {
-      if (worldIn.getLightFor(LightType.SKY, pos) > randomIn.nextInt(32)) {
-         return false;
-      } else {
-         int i = worldIn.getWorld().isThundering() ? worldIn.getNeighborAwareLightSubtracted(pos, 10) : worldIn.getLight(pos);
-         return i <= randomIn.nextInt(8);
-      }
-   }
-
-   public static AttributeModifierMap.MutableAttribute func_234295_eP_() {
-      return MobEntity.func_233666_p_().createMutableAttribute(Attributes.ATTACK_DAMAGE);
-   }
-
-   /**
-    * Entity won't drop items or experience points if this returns false
-    */
-   protected boolean canDropLoot() {
-      return true;
-   }
-
-   protected boolean func_230282_cS_() {
-      return true;
-   }
-
-   public boolean func_230292_f_(PlayerEntity p_230292_1_) {
-      return true;
-   }
-
-   public ItemStack findAmmo(ItemStack shootable) {
-      if (shootable.getItem() instanceof ShootableItem) {
-         Predicate<ItemStack> predicate = ((ShootableItem)shootable.getItem()).getAmmoPredicate();
-         ItemStack itemstack = ShootableItem.getHeldAmmo(this, predicate);
-         return itemstack.isEmpty() ? new ItemStack(Items.ARROW) : itemstack;
-      } else {
-         return ItemStack.EMPTY;
-      }
-   }
-   private static final DataParameter<Integer> SHAKE_HEAD_TICKS = EntityDataManager.createKey(Abstract$TraderEntity.class, DataSerializers.VARINT);
-   @Nullable
-   private PlayerEntity customer;
-   @Nullable
-   protected MerchantOffers offers;
-   private final Inventory zurInventory = new Inventory(8);
-
-   public int getShakeHeadTicks() {
-      return this.dataManager.get(SHAKE_HEAD_TICKS);
-   }
-
-   public void setShakeHeadTicks(int ticks) {
-      this.dataManager.set(SHAKE_HEAD_TICKS, ticks);
+      super.notifyDataManagerChange(key);
    }
 
    public int getXp() {
@@ -580,13 +405,7 @@ public abstract class AbstractZurEntity extends CreatureEntity implements IMob, 
    }
 
    protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
-      return this.isChild() ? 0.81F : 1.62F;
-   }
-
-   protected void registerData() {
-      super.registerData();
-      this.dataManager.register(SHAKE_HEAD_TICKS, 0);
-      this.dataManager.register(BABY, false);
+      return this.isChild() ? 0.93F : 1.74F;
    }
 
    public void setCustomer(@Nullable PlayerEntity player) {
@@ -618,17 +437,17 @@ public abstract class AbstractZurEntity extends CreatureEntity implements IMob, 
    public void setXP(int xpIn) {
    }
 
-   public void onZurTrade(MerchantOffer offer) {
+   public void onTrade(MerchantOffer offer) {
       offer.increaseUses();
       this.livingSoundTime = -this.getTalkInterval();
-      this.zurTrade(offer);
+      this.onZurTrade(offer);
       if (this.customer instanceof ServerPlayerEntity) {
          CriteriaTriggers1.ZUR_TRADE.test((ServerPlayerEntity)this.customer, this, offer.getSellingStack());
       }
 
    }
 
-   protected abstract void zurTrade(MerchantOffer offer);
+   protected abstract void onZurTrade(MerchantOffer offer);
 
    public boolean func_213705_dZ() {
       return true;
@@ -641,7 +460,7 @@ public abstract class AbstractZurEntity extends CreatureEntity implements IMob, 
    public void verifySellingItem(ItemStack stack) {
       if (!this.world.isRemote && this.livingSoundTime > -this.getTalkInterval() + 20) {
          this.livingSoundTime = -this.getTalkInterval();
-         this.playSound(this.get$TraderYesNoSound(!stack.isEmpty()), this.getSoundVolume(), this.getSoundPitch());
+         this.playSound(this.getZurYesNoSound(!stack.isEmpty()), this.getSoundVolume(), this.getSoundPitch());
       }
 
    }
@@ -650,12 +469,34 @@ public abstract class AbstractZurEntity extends CreatureEntity implements IMob, 
       return SoundEvents.AMBIENT_CAVE;
    }
 
-   protected SoundEvent get$TraderYesNoSound(boolean getYesSound) {
+   protected SoundEvent getZurYesNoSound(boolean getYesSound) {
       return getYesSound ? SoundEvents.AMBIENT_CAVE : SoundEvents.AMBIENT_BASALT_DELTAS_ADDITIONS;
    }
 
    public void playCelebrateSound() {
       this.playSound(SoundEvents.AMBIENT_BASALT_DELTAS_LOOP, this.getSoundVolume(), this.getSoundPitch());
+   }
+
+   public void writeAdditional(CompoundNBT compound) {
+      super.writeAdditional(compound);
+      MerchantOffers merchantoffers = this.getOffers();
+      if (!merchantoffers.isEmpty()) {
+         compound.put("Offers", merchantoffers.write());
+      }
+
+      compound.put("Inventory", this.zurInventory.write());
+   }
+
+   /**
+    * (abstract) Protected helper method to read subclass entity data from NBT.
+    */
+   public void readAdditional(CompoundNBT compound) {
+      super.readAdditional(compound);
+      if (compound.contains("Offers", 10)) {
+         this.offers = new MerchantOffers(compound.getCompound("Offers"));
+      }
+
+      this.zurInventory.read(compound.getList("Inventory", 10));
    }
 
    @Nullable
@@ -665,7 +506,7 @@ public abstract class AbstractZurEntity extends CreatureEntity implements IMob, 
    }
 
    protected void resetCustomer() {
-      this.setCustomer((PlayerEntity)null);
+      this.setCustomer(null);
    }
 
    /**
@@ -691,7 +532,7 @@ public abstract class AbstractZurEntity extends CreatureEntity implements IMob, 
       return false;
    }
 
-   public Inventory get$TraderInventory() {
+   public Inventory getZurInventory() {
       return this.zurInventory;
    }
 
@@ -713,12 +554,12 @@ public abstract class AbstractZurEntity extends CreatureEntity implements IMob, 
       return this.world;
    }
 
-   protected abstract void populateTradeData();
+   protected abstract boolean populateTradeData();
 
    /**
     * add limites numbers of trades to the given MerchantOffers
     */
-   protected void addTrades(MerchantOffers givenMerchantOffers, $TraderTrades.ITrade[] newTrades, int maxNumbers) {
+   protected void addTrades(MerchantOffers givenMerchantOffers, ZurTrades.ITrade[] newTrades, int maxNumbers) {
       Set<Integer> set = Sets.newHashSet();
       if (newTrades.length > maxNumbers) {
          while(set.size() < maxNumbers) {
@@ -731,7 +572,7 @@ public abstract class AbstractZurEntity extends CreatureEntity implements IMob, 
       }
 
       for(Integer integer : set) {
-         $TraderTrades.ITrade $tradertrades$itrade = newTrades[integer];
+         ZurTrades.ITrade $tradertrades$itrade = newTrades[integer];
          MerchantOffer merchantoffer = $tradertrades$itrade.getOffer(this, this.rand);
          if (merchantoffer != null) {
             givenMerchantOffers.add(merchantoffer);
@@ -739,4 +580,441 @@ public abstract class AbstractZurEntity extends CreatureEntity implements IMob, 
       }
 
    }
+
+   public SoundCategory getSoundCategory() {
+      return SoundCategory.HOSTILE;
+   }
+
+   /**
+    * Set whether this witch is aggressive at an entity.
+    */
+   public void setDrinkingPotion(boolean drinkingPotion) {
+      this.getDataManager().set(IS_DRINKING, drinkingPotion);
+   }
+
+   public boolean isDrinkingPotion() {
+      return this.getDataManager().get(IS_DRINKING);
+   }
+
+   /**
+    * Called frequently so the entity can update its state every tick as required. For example, zurs and skeletons
+    * use this to react to sunlight and start to burn.
+    */
+   public void livingTick() {
+      super.livingTick();
+      boolean flag = this.isInDaylight();
+      this.updateArmSwingProgress();
+      this.wingRotation += this.wingRotDelta * 2.0F;
+      if (this.world.isRemote) {
+         this.eatingGrassTimer = Math.max(0, this.eatingGrassTimer - 1);
+      }
+      if (!this.world.isRemote) {
+         this.handleDespawn();
+      }
+      if (!this.world.isRemote && this.isAlive()) {
+         if (this.isDrinkingPotion()) {
+            if (this.potionUseTimer-- <= 0) {
+               this.setDrinkingPotion(false);
+               ItemStack itemstack = this.getHeldItemMainhand();
+               this.setItemStackToSlot(EquipmentSlotType.MAINHAND, ItemStack.EMPTY);
+               if (itemstack.getItem() == Items.POTION) {
+                  List<EffectInstance> list = PotionUtils.getEffectsFromStack(itemstack);
+                  for(EffectInstance effectinstance : list) {
+                     this.addPotionEffect(new EffectInstance(effectinstance));
+                  }
+               }
+
+               this.getAttribute(Attributes.MOVEMENT_SPEED).removeModifier(MODIFIER);
+            }
+         } else {
+            Potion potion = null;
+            if (this.rand.nextFloat() < 0.15F && this.areEyesInFluid(FluidTags.WATER) && !this.isPotionActive(Effects.WATER_BREATHING)) {
+               potion = Potions.WATER_BREATHING;
+            } else if (this.rand.nextFloat() < 0.15F && (this.isBurning() || this.getLastDamageSource() != null && this.getLastDamageSource().isFireDamage()) && !this.isPotionActive(Effects.FIRE_RESISTANCE)) {
+               potion = Potions.FIRE_RESISTANCE;
+            } else if (this.rand.nextFloat() < 0.05F && this.getHealth() < this.getMaxHealth()) {
+               potion = Potions.HEALING;
+            } else if (this.rand.nextFloat() < 0.5F && this.getAttackTarget() != null && !this.isPotionActive(Effects.SPEED) && !this.isPotionActive(Effects.JUMP_BOOST) && !this.isPotionActive(Effects.STRENGTH) && this.getAttackTarget().getDistanceSq(this) > 121.0D) {
+               potion = Potions.SWIFTNESS;
+            }
+
+            if (potion != null) {
+               this.setItemStackToSlot(EquipmentSlotType.MAINHAND, PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), potion));
+               this.potionUseTimer = this.getHeldItemMainhand().getUseDuration();
+               this.setDrinkingPotion(true);
+               if (!this.isSilent()) {
+                  this.world.playSound(null, this.getPosX(), this.getPosY(), this.getPosZ(), SoundEvents.ENTITY_WITCH_DRINK, this.getSoundCategory(), 1.0F, 0.8F + this.rand.nextFloat() * 0.4F);
+               }
+
+               ModifiableAttributeInstance modifiableattributeinstance = this.getAttribute(Attributes.MOVEMENT_SPEED);
+               modifiableattributeinstance.removeModifier(MODIFIER);
+               modifiableattributeinstance.applyNonPersistentModifier(MODIFIER);
+            }
+         }
+
+         if (this.rand.nextFloat() < 7.5E-4F) {
+            this.world.setEntityState(this, (byte)15);
+         }
+      }
+      if (flag) {
+         ItemStack itemstack = this.getItemStackFromSlot(EquipmentSlotType.HEAD);
+         if (!itemstack.isEmpty()) {
+            if (itemstack.isDamageable()) {
+               itemstack.setDamage(itemstack.getDamage() + this.rand.nextInt(2));
+               if (itemstack.getDamage() >= itemstack.getMaxDamage()) {
+                  this.sendBreakAnimation(EquipmentSlotType.HEAD);
+                  this.setItemStackToSlot(EquipmentSlotType.HEAD, ItemStack.EMPTY);
+               }
+            }
+         }
+      }
+      if (!this.world.isRemote && this.isAlive() && !this.isChild() && !this.isZurDropItem() && --this.timeUntilNextItem <= 0) {
+         this.entityDropItem(isBurnableItemInit.LEAT.get());
+         this.timeUntilNextItem = this.rand.nextInt(12000) + 12000;
+      }
+   }
+
+   public boolean isZurDropItem() {
+      return this.zurDropItem;
+   }
+
+   public void handleDespawn() {
+      if (this.despawnDelay > 0 && !this.hasCustomer() && --this.despawnDelay == 0) {
+         this.remove();
+      }
+
+   }
+
+   protected void func_213623_ec() {
+      float f = this.getBrightness();
+      if (f > 0.5F) {
+         this.idleTime += 2;
+      }
+
+   }
+
+   protected SoundEvent getSwimSound() {
+      return SoundEvents.ENTITY_HOSTILE_SWIM;
+   }
+
+   protected SoundEvent getSplashSound() {
+      return SoundEvents.ENTITY_HOSTILE_SPLASH;
+   }
+
+   private boolean stackEqualExact(ItemStack stack1, ItemStack stack2) {
+      return stack1.getItem() == stack2.getItem() && ItemStack.areItemStackTagsEqual(stack1, stack2);
+   }
+
+   private boolean canMergeStacks(ItemStack stack1, ItemStack stack2) {
+      return !stack1.isEmpty() && this.stackEqualExact(stack1, stack2) && stack1.isStackable() && stack1.getCount() < stack1.getMaxStackSize() && stack1.getCount() < this.getInventoryStackLimit();
+   }
+
+   int getInventoryStackLimit() {
+      return 1000000000;
+   }
+
+   public int storeItemStack(ItemStack itemStackIn) {
+      if (this.canMergeStacks(this.getStackInSlot(this.currentItem), itemStackIn)) {
+         return this.currentItem;
+      } else if (this.canMergeStacks(this.getStackInSlot(40), itemStackIn)) {
+         return 40;
+      } else {
+         for(int i = 0; i < this.inventory.size(); ++i) {
+            if (this.canMergeStacks(this.inventory.get(i), itemStackIn)) {
+               return i;
+            }
+         }
+
+         return -1;
+      }
+   }
+
+   public ItemStack getStackInSlot(int index) {
+      List<ItemStack> list = null;
+
+      for(NonNullList<ItemStack> nonnulllist : this.allInventories) {
+         if (index < nonnulllist.size()) {
+            list = nonnulllist;
+            break;
+         }
+
+         index -= nonnulllist.size();
+      }
+
+      return list == null ? ItemStack.EMPTY : list.get(index);
+   }
+
+   public int getFirstEmptyStack() {
+      for(int i = 0; i < this.inventory.size(); ++i) {
+         if (this.inventory.get(i).isEmpty()) {
+            return i;
+         }
+      }
+
+      return -1;
+   }
+
+   public void placeItemBackInInventory(World worldIn, ItemStack stack) {
+      if (!worldIn.isRemote) {
+         while(!stack.isEmpty()) {
+            int i = this.storeItemStack(stack);
+            if (i == -1) {
+               i = this.getFirstEmptyStack();
+            }
+         }
+
+      }
+   }
+
+   protected SoundEvent getFallSound(int heightIn) {
+      return heightIn > 4 ? SoundEvents.ENTITY_HOSTILE_BIG_FALL : SoundEvents.ENTITY_HOSTILE_SMALL_FALL;
+   }
+
+   public float getBlockPathWeight(BlockPos pos, IWorldReader worldIn) {
+      return 0.5F - worldIn.getBrightness(pos);
+   }
+
+   /**
+    * Static predicate for determining if the current light level and environmental conditions allow for a monster to
+    * spawn.
+    * /
+   public static boolean isValidLightLevel(IWorld worldIn, BlockPos pos, Random randomIn) {
+      if (worldIn.getLightFor(LightType.SKY, pos) > randomIn.nextInt(32)) {
+         return false;
+      } else {
+         int i = worldIn.getWorld().isThundering() ? worldIn.getNeighborAwareLightSubtracted(pos, 10) : worldIn.getLight(pos);
+         return i <= randomIn.nextInt(8);
+      }
+   }*/
+
+   public static boolean canSpawnOn(EntityType<? extends MobEntity> typeIn, IWorld worldIn, SpawnReason reason, BlockPos pos, Random randomIn) {
+      BlockPos blockpos = pos.add(1,1,1);
+      return reason == SpawnReason.SPAWNER || worldIn.getBlockState(blockpos).canEntitySpawn(worldIn, blockpos, typeIn);
+   }
+
+    /**
+    * Static predicate for determining whether or not a monster can spawn at the provided location.
+    */
+    /*public static boolean canMonsterSpawn(EntityType<? extends MonsterEntity> type, IWorld worldIn, SpawnReason reason, BlockPos pos, Random randomIn) {
+    return worldIn.getDifficulty() != Difficulty.PEACEFUL && canSpawnOn(type, worldIn, reason, pos, randomIn);
+    }*/
+
+   public static AttributeModifierMap.MutableAttribute func_234295_eP_() {
+      return MobEntity.func_233666_p_().createMutableAttribute(Attributes.ATTACK_DAMAGE);
+   }
+
+   /**
+    * Entity won't drop items or experience points if this returns false
+    */
+   protected boolean canDropLoot() {
+      return true;
+   }
+
+   protected boolean func_230282_cS_() {
+      return true;
+   }
+
+   public boolean func_230292_f_(PlayerEntity p_230292_1_) {
+      return true;
+   }
+
+   public ItemStack findAmmo(ItemStack shootable) {
+      if (shootable.getItem() instanceof ShootableItem) {
+         Predicate<ItemStack> predicate = ((ShootableItem)shootable.getItem()).getAmmoPredicate();
+         ItemStack itemstack = ShootableItem.getHeldAmmo(this, predicate);
+         return itemstack.isEmpty() ? new ItemStack(Items.ARROW) : itemstack;
+      } else {
+         return ItemStack.EMPTY;
+      }
+   }
+   public static class LeapAtTargetGoal extends Goal {
+      private final MobEntity leaper;
+      private LivingEntity leapTarget;
+      private final float leapMotionY;
+
+      public LeapAtTargetGoal(MobEntity leapingEntity, float leapMotionYIn) {
+         this.leaper = leapingEntity;
+         this.leapMotionY = leapMotionYIn;
+         this.setMutexFlags(EnumSet.of(Flag.JUMP, Flag.MOVE));
+      }
+
+      /**
+       * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
+       * method as well.
+       */
+      public boolean shouldExecute() {
+         if (this.leaper.isBeingRidden()) {
+            return false;
+         } else {
+            this.leapTarget = this.leaper.getAttackTarget();
+            if (this.leapTarget == null) {
+               return false;
+            } else {
+               double d0 = this.leaper.getDistanceSq(this.leapTarget);
+               if (!(d0 < 4.0D) && !(d0 > 16.0D)) {
+                  if (!this.leaper.isOnGround()) {
+                     return false;
+                  } else {
+                     return this.leaper.getRNG().nextInt(5) == 0;
+                  }
+               } else {
+                  return false;
+               }
+            }
+         }
+      }
+
+      /**
+       * Returns whether an in-progress EntityAIBase should continue executing
+       */
+      public boolean shouldContinueExecuting() {
+         return !this.leaper.isOnGround();
+      }
+
+      /**
+       * Execute a one shot task or start executing a continuous task
+       */
+      public void startExecuting() {
+         Vector3d vector3d = this.leaper.getMotion();
+         Vector3d vector3d1 = new Vector3d(this.leapTarget.getPosX() - this.leaper.getPosX(), 0.0D, this.leapTarget.getPosZ() - this.leaper.getPosZ());
+         if (vector3d1.lengthSquared() > 1.0E-7D) {
+            vector3d1 = vector3d1.normalize().scale(0.4D).add(vector3d.scale(0.2D));
+         }
+
+         this.leaper.setMotion(vector3d1.x, this.leapMotionY, vector3d1.z);
+      }
+   }
+
+   static class AttackGoal extends MeleeAttackGoal {
+      public AttackGoal(ZurEntity zur) {
+         super(zur, 1.0D, true);
+      }
+
+      /**
+       * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
+       * method as well.
+       */
+      public boolean shouldExecute() {
+         return super.shouldExecute() && !this.attacker.isBeingRidden();
+      }
+
+      /**
+       * Returns whether an in-progress EntityAIBase should continue executing
+       */
+      public boolean shouldContinueExecuting() {
+         float f = this.attacker.getBrightness();
+         if (f >= 0.5F && this.attacker.getRNG().nextInt(100) == 0) {
+            this.attacker.setAttackTarget(null);
+            return false;
+         } else {
+            return super.shouldContinueExecuting();
+         }
+      }
+
+      protected double getAttackReachSqr(LivingEntity attackTarget) {
+         return 4.0F + attackTarget.getWidth();
+      }
+   }
+
+   static class TargetGoal<T extends LivingEntity> extends NearestAttackableTargetGoal<T> {
+      public TargetGoal(ZurEntity zur, Class<T> classTarget) {
+         super(zur, classTarget, true);
+      }
+
+      /**
+       * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
+       * method as well.
+       */
+      public boolean shouldExecute() {
+         float f = this.goalOwner.getBrightness();
+         return !(f >= 0.5F) && super.shouldExecute();
+      }
+   }
+
+   /**
+    * Returns true if this entity should move as if it were on a ladder (either because it's actually on a ladder, or
+    * for AI reasons)
+    */
+   public boolean isOnLadder() {
+      return this.isBesideClimbableBlock();
+   }
+
+   public void setMotionMultiplier(BlockState state, Vector3d motionMultiplierIn) {
+      if (!state.isIn(Blocks.COBWEB)) {
+         super.setMotionMultiplier(state, motionMultiplierIn);
+      }
+
+   }
+
+   public CreatureAttribute getCreatureAttribute() {
+      return CreatureAttribute.ARTHROPOD;
+   }
+
+   public boolean isPotionApplicable(EffectInstance potioneffectIn) {
+      if (potioneffectIn.getPotion() == Effects.POISON) {
+         net.minecraftforge.event.entity.living.PotionEvent.PotionApplicableEvent event = new net.minecraftforge.event.entity.living.PotionEvent.PotionApplicableEvent(this, potioneffectIn);
+         net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(event);
+         return event.getResult() == net.minecraftforge.eventbus.api.Event.Result.ALLOW;
+      }
+      return super.isPotionApplicable(potioneffectIn);
+   }
+
+   /**
+    * Returns true if the WatchableObject (Byte) is 0x01 otherwise returns false. The WatchableObject is updated using
+    * setBesideClimableBlock.
+    */
+   public boolean isBesideClimbableBlock() {
+      return (this.dataManager.get(CLIMBING) & 1) != 0;
+   }
+
+   /**
+    * Updates the WatchableObject (Byte) created in entityInit(), setting it to 0x01 if par1 is true or 0x00 if it is
+    * false.
+    */
+   public void setBesideClimbableBlock(boolean climbing) {
+      byte b0 = this.dataManager.get(CLIMBING);
+      if (climbing) {
+         b0 = (byte)(b0 | 1);
+      } else {
+         b0 = (byte)(b0 & -2);
+      }
+
+      this.dataManager.set(CLIMBING, b0);
+   }
+
+   /*class AttackDirtGoal extends net.minecraft.entity.ai.goal.BreakBlockGoal {
+      public AttackDirtGoal(CreatureEntity creatureIn, double speed, int yMax) {
+         super(Blocks.DIRT, creatureIn, speed, yMax);
+      }
+
+      public void playBreakingSound(IWorld worldIn, BlockPos pos) {
+         worldIn.playSound(null, pos, SoundEvents.BLOCK_WET_GRASS_STEP, SoundCategory.HOSTILE, 0.5F, 0.9F + AbstractZurEntity.this.rand.nextFloat() * 0.2F);
+      }
+
+      public void playBrokenSound(World worldIn, BlockPos pos) {
+         worldIn.playSound(null, pos, SoundEvents.BLOCK_WET_GRASS_BREAK, SoundCategory.BLOCKS, 0.7F, 0.9F + worldIn.rand.nextFloat() * 0.2F);
+      }
+
+      public double getTargetDistanceSq() {
+         return 1.14D;
+      }
+   }
+
+   class AttackGrassBlockGoal extends net.minecraft.entity.ai.goal.BreakBlockGoal {
+      public AttackGrassBlockGoal(CreatureEntity creatureIn, double speed, int yMax) {
+         super(Blocks.GRASS_BLOCK, creatureIn, speed, yMax);
+      }
+
+      public void playBreakingSound(IWorld worldIn, BlockPos pos) {
+         worldIn.playSound(null, pos, SoundEvents.BLOCK_WET_GRASS_STEP, SoundCategory.HOSTILE, 0.5F, 0.9F + AbstractZurEntity.this.rand.nextFloat() * 0.2F);
+      }
+
+      public void playBrokenSound(World worldIn, BlockPos pos) {
+         worldIn.playSound(null, pos, SoundEvents.BLOCK_WET_GRASS_BREAK, SoundCategory.BLOCKS, 0.7F, 0.9F + worldIn.rand.nextFloat() * 0.2F);
+      }
+
+      public double getTargetDistanceSq() {
+         return 1.14D;
+      }
+   }*/
 }

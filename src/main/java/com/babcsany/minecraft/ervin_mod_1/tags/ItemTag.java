@@ -2,6 +2,7 @@ package com.babcsany.minecraft.ervin_mod_1.tags;
 
 import net.minecraft.item.Item;
 import net.minecraft.tags.ITag;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagCollection;
 import net.minecraft.tags.TagRegistry;
 import net.minecraft.util.ResourceLocation;
@@ -10,7 +11,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.Set;
 
-public class ItemTag {
+public class ItemTag extends ItemTags {
    private static final TagRegistry<Item> collection = new TagRegistry<>();
    public static final ITag.INamedTag<Item> BurnTimeIn8000 = makeWrapperTag("burn_time_in_8000");
    public static final ITag.INamedTag<Item> BurnTimeIn12000 = makeWrapperTag("burn_time_in_12000");

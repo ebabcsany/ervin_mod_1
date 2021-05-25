@@ -1,10 +1,9 @@
 package com.babcsany.minecraft.ervin_mod_1.client.entity.model;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.AbstractZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
 import net.minecraft.client.renderer.entity.model.AbstractZombieModel;
 
-public class ZurEntityModel<T extends ZurEntity> extends AbstractZombieModel<T> {
+public class ZurEntityModel<T extends ZurEntity> extends AbstractZurModel_1<T> {
     public ZurEntityModel(float modelSize, boolean p_i1168_2_) {
         this(modelSize, 0.0F, 64, p_i1168_2_ ? 32 : 64);
     }

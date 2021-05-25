@@ -127,12 +127,12 @@
         {
           "type": "minecraft:item",
           "weight": 4,
-          "name": "ervin_mod_1:spawn_eggs/zur_entity_spawn_egg"
+          "name": "ervin_mod_1:spawn_eggs/zur_spawn_egg"
         },
         {
           "type": "minecraft:item",
           "weight": 10,
-          "name": "ervin_mod_1:spawn_eggs/vilt_entity_spawn_egg"
+          "name": "ervin_mod_1:spawn_eggs/vilt_spawn_egg"
         },
         {
           "type": "minecraft:item",

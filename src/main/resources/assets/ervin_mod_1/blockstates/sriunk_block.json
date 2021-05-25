@@ -1,7 +1,20 @@
 {
   "variants": {
-    "": {
-      "model": "ervin_mod_1:block/sriunk_block"
-    }
+    "": [
+      {
+        "model": "ervin_mod_1:block/sriunk_block"
+      },
+      {
+        "model": "ervin_mod_1:block/mirrored/sriunk_block"
+      },
+      {
+        "model": "ervin_mod_1:block/sriunk_block",
+        "y": 180
+      },
+      {
+        "model": "ervin_mod_1:block/mirrored/sriunk_block",
+        "y": 180
+      }
+    ]
   }
 }

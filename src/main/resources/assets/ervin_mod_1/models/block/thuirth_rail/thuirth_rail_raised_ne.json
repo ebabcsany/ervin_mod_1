@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/template_rail_raised_ne",
+  "textures": {
+    "rail": "ervin_mod_1:block/thuirth_rail/thuirth_rail"
+  }
+}

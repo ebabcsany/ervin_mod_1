@@ -1,51 +1,63 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.villager;
 
-import java.util.EnumSet;
-import javax.annotation.Nullable;
-
-import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.LookAtCustomerGoal1;
-import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.WanderingTraderTradeWithPlayerGoal;
+import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.NirtreLookAtCustomerGoal;
+import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.NirtreTradeWithPlayerGoal;
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.AbstractZurEntity;
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurNirtreEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.WanderingTraderNirtreTrades;
+import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.block.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.spawn_egg.ModSpawnEggItemInit;
-import net.minecraft.entity.AgeableEntity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.MobEntity;
+import com.babcsany.minecraft.ervin_mod_1.init.item.tool.isBurnableToolItemInit;
+import net.minecraft.entity.*;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.entity.item.ExperienceOrbEntity;
+import net.minecraft.entity.merchant.villager.VillagerData;
+import net.minecraft.entity.merchant.villager.VillagerTrades;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.MerchantOffer;
-import net.minecraft.item.MerchantOffers;
+import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.NBTUtil;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.potion.PotionUtils;
 import net.minecraft.potion.Potions;
 import net.minecraft.stats.Stats;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.tags.FluidTags;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
+import java.util.EnumSet;
+
 public class WanderingTraderNirtreEntity extends AbstractNirtreEntity {
+   private static final int[] LEVEL_EXPERIENCE_AMOUNTS = new int[]{0, 50, 350, 750, 1250};
    @Nullable
    private BlockPos wanderTarget;
    private int despawnDelay;
    public float wingRotation;
    public float destPos;
+   private int inWaterTime;
+   private int timeUntilReset;
+   private boolean leveledUp;
+   @Nullable
+   private PlayerEntity previousCustomer;
+   private int xp;
    public float wingRotDelta = 1.0F;
+   private int level;
+   private int traderNirtreConversionTime;
    public int timeUntilNextItem = this.rand.nextInt(6000) + 6000;
-   public boolean wanderingTraderNirtreJockey;
+   public boolean dropItem;
 
    public WanderingTraderNirtreEntity(EntityType<? extends WanderingTraderNirtreEntity> type, World worldIn) {
       super(type, worldIn);
@@ -54,22 +66,20 @@ public class WanderingTraderNirtreEntity extends AbstractNirtreEntity {
 
    protected void registerGoals() {
       this.goalSelector.addGoal(0, new SwimGoal(this));
-      this.goalSelector.addGoal(0, new UseItemGoal<>(this, PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.LONG_INVISIBILITY), SoundEvents.ENTITY_WANDERING_TRADER_DISAPPEARED, (trader) -> !this.world.isDaytime() && !trader.isInvisible()));
-      this.goalSelector.addGoal(0, new UseItemGoal<>(this, PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.LONG_NIGHT_VISION), SoundEvents.ENTITY_WANDERING_TRADER_DISAPPEARED, (trader) -> !this.world.isRaining() && !trader.isInvisible()));
-      this.goalSelector.addGoal(0, new UseItemGoal<>(this, PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.LONG_FIRE_RESISTANCE), SoundEvents.ENTITY_WANDERING_TRADER_DISAPPEARED, (trader) -> !this.world.isNightTime() && !trader.isInvisible()));
-      this.goalSelector.addGoal(1, new WanderingTraderTradeWithPlayerGoal(this));
+      this.goalSelector.addGoal(0, new UseItemGoal<>(this, PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.INVISIBILITY), SoundEvents.ENTITY_WANDERING_TRADER_DISAPPEARED, (trader) -> !this.world.isDaytime() && !trader.isInvisible()));
+      this.goalSelector.addGoal(0, new UseItemGoal<>(this, new ItemStack(Items.MILK_BUCKET), SoundEvents.ENTITY_WANDERING_TRADER_REAPPEARED, (trader) -> this.world.isDaytime() && trader.isInvisible()));
+      this.goalSelector.addGoal(1, new NirtreTradeWithPlayerGoal(this));
       this.goalSelector.addGoal(1, new PanicGoal(this, 0.5D));
-      this.goalSelector.addGoal(1, new LookAtCustomerGoal1(this));
+      this.goalSelector.addGoal(1, new NirtreLookAtCustomerGoal(this));
       this.goalSelector.addGoal(2, new WanderingTraderNirtreEntity.MoveToGoal(this, 2.0D, 0.35D));
       this.goalSelector.addGoal(4, new MoveTowardsRestrictionGoal(this, 0.35D));
       this.goalSelector.addGoal(8, new WaterAvoidingRandomWalkingGoal(this, 0.35D));
       this.goalSelector.addGoal(9, new LookAtWithoutMovingGoal(this, PlayerEntity.class, 3.0F, 1.0F));
-      this.targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, false));
       this.goalSelector.addGoal(10, new LookAtGoal(this, MobEntity.class, 8.0F));
    }
 
    public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
-      return LivingEntity.registerAttributes().createMutableAttribute(Attributes.FOLLOW_RANGE, 160.0D).createMutableAttribute(Attributes.MAX_HEALTH, 400.0D).createMutableAttribute(Attributes.ATTACK_KNOCKBACK).createMutableAttribute(Attributes.ATTACK_DAMAGE, 2.0D);
+      return LivingEntity.registerAttributes().createMutableAttribute(Attributes.FOLLOW_RANGE, 16.0D).createMutableAttribute(Attributes.ATTACK_KNOCKBACK);
    }
 
    @Nullable
@@ -78,7 +88,7 @@ public class WanderingTraderNirtreEntity extends AbstractNirtreEntity {
    }
 
    public boolean func_213705_dZ() {
-      return false;
+      return true;
    }
 
    public ActionResultType func_230254_b_(PlayerEntity p_230254_1_, Hand p_230254_2_) {
@@ -104,16 +114,13 @@ public class WanderingTraderNirtreEntity extends AbstractNirtreEntity {
    }
 
    protected void populateTradeData() {
-      WanderingTraderNirtreTrades.ITrade[] aWanderingTraderNirtreTrades$itrade = WanderingTraderNirtreTrades.field_221240_b.get(1);
-      WanderingTraderNirtreTrades.ITrade[] aWanderingTraderNirtreTrades$itrade1 = WanderingTraderNirtreTrades.field_221240_b.get(2);
-      WanderingTraderNirtreTrades.ITrade[] aWanderingTraderNirtreTrades$itrade2 = WanderingTraderNirtreTrades.field_221240_b.get(3);
-      if (aWanderingTraderNirtreTrades$itrade != null && aWanderingTraderNirtreTrades$itrade1 != null && aWanderingTraderNirtreTrades$itrade2 !=null) {
+      WanderingTraderNirtreTrades.ITrade[] aWanderingTraderNirtreTrades$iTrade = WanderingTraderNirtreTrades.trade1.get(1);
+      if (aWanderingTraderNirtreTrades$iTrade != null) {
          MerchantOffers merchantoffers = this.getOffers();
-         this.addWanderingTraderNirtreTrades(merchantoffers, aWanderingTraderNirtreTrades$itrade, 5);
-         this.addWanderingTraderNirtreTrades(merchantoffers, aWanderingTraderNirtreTrades$itrade2, 10);
-         int i = this.rand.nextInt(aWanderingTraderNirtreTrades$itrade1.length);
-         WanderingTraderNirtreTrades.ITrade villagertrades$itrade = aWanderingTraderNirtreTrades$itrade1[i];
-         MerchantOffer merchantoffer = villagertrades$itrade.getOffer(this, this.rand);
+         this.addWanderingTraderNirtreTrades(merchantoffers, aWanderingTraderNirtreTrades$iTrade, 10);
+         int i = this.rand.nextInt(aWanderingTraderNirtreTrades$iTrade.length);
+         WanderingTraderNirtreTrades.ITrade wanderingTraderNirtreTrades$iTrade = aWanderingTraderNirtreTrades$iTrade[i];
+         MerchantOffer merchantoffer = wanderingTraderNirtreTrades$iTrade.getOffer(this, this.rand);
          if (merchantoffer != null) {
             merchantoffers.add(merchantoffer);
          }
@@ -139,8 +146,8 @@ public class WanderingTraderNirtreEntity extends AbstractNirtreEntity {
          this.despawnDelay = compound.getInt("DespawnDelay");
       }
 
-      if (compound.contains("ZombieTraderTarget")) {
-         this.wanderTarget = NBTUtil.readBlockPos(compound.getCompound("ZombieTraderTarget"));
+      if (compound.contains("WanderTarget")) {
+         this.wanderTarget = NBTUtil.readBlockPos(compound.getCompound("WanderTarget"));
       }
 
       this.setGrowingAge(Math.max(0, this.getGrowingAge()));
@@ -151,11 +158,36 @@ public class WanderingTraderNirtreEntity extends AbstractNirtreEntity {
    }
 
    protected void onNirtreTrade(MerchantOffer offer) {
+      int f = 3 + this.rand.nextInt(4);
+      this.xp += offer.getGivenExp();
+      this.previousCustomer = this.getCustomer();
+      if (this.canLevelUp()) {
+         this.timeUntilReset = 40;
+         this.leveledUp = true;
+         f += 5;
+      }
       if (offer.getDoesRewardExp()) {
          int i = 3 + this.rand.nextInt(4);
          this.world.addEntity(new ExperienceOrbEntity(this.world, this.getPosX(), this.getPosY() + 0.5D, this.getPosZ(), i));
       }
 
+   }
+
+   public int getLevel() {
+      return this.level;
+   }
+
+   private boolean canLevelUp() {
+      int i = this.getLevel();
+      return canLevelUp(i) && this.xp >= VillagerData.func_221127_c(i);
+   }
+
+   public static int func_221127_c(int p_221127_0_) {
+      return canLevelUp(p_221127_0_) ? LEVEL_EXPERIENCE_AMOUNTS[p_221127_0_] : 0;
+   }
+
+   public static boolean canLevelUp(int level) {
+      return level >= 1 && level < 5;
    }
 
    protected SoundEvent getAmbientSound() {
@@ -175,7 +207,7 @@ public class WanderingTraderNirtreEntity extends AbstractNirtreEntity {
       return item == Items.MILK_BUCKET ? SoundEvents.ENTITY_WANDERING_TRADER_DRINK_MILK : SoundEvents.ENTITY_WANDERING_TRADER_DRINK_POTION;
    }
 
-   protected SoundEvent getVillagerYesNoSound(boolean getYesSound) {
+   protected SoundEvent getNirtreYesNoSound(boolean getYesSound) {
       return getYesSound ? SoundEvents.ENTITY_WANDERING_TRADER_YES : SoundEvents.ENTITY_WANDERING_TRADER_NO;
    }
 
@@ -189,27 +221,6 @@ public class WanderingTraderNirtreEntity extends AbstractNirtreEntity {
 
    public int getDespawnDelay() {
       return this.despawnDelay;
-   }
-
-   /**
-    * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
-    * use this to react to sunlight and start to burn.
-    */
-   public void livingTick() {
-      super.livingTick();
-      if (!this.world.isRemote) {
-         this.handleDespawn();
-      }
-      this.wingRotation += this.wingRotDelta * 2.0F;
-      if (!this.world.isRemote && this.isAlive() && !this.isChild() && !this.isWanderingTraderNirtreJockey() && --this.timeUntilNextItem <= 0) {
-         this.entityDropItem(ItemInit.FIRK.get());
-         this.entityDropItem(ItemInit.Bj_PICKAXE.get());
-         this.timeUntilNextItem = this.rand.nextInt(12000) + 12000;
-      }
-   }
-
-   public boolean isWanderingTraderNirtreJockey() {
-      return this.wanderingTraderNirtreJockey;
    }
 
    private void handleDespawn() {
@@ -278,4 +289,26 @@ public class WanderingTraderNirtreEntity extends AbstractNirtreEntity {
          return !pos.withinDistance(this.traderEntity.getPositionVec(), distance);
       }
    }
+
+   /**
+    * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
+    * use this to react to sunlight and start to burn.
+    */
+   public void livingTick() {
+      super.livingTick();
+      if (!this.world.isRemote) {
+         this.handleDespawn();
+      }
+      this.wingRotation += this.wingRotDelta * 2.0F;
+      if (!this.world.isRemote && this.isAlive() && !this.isChild() && !this.isDropItem() && --this.timeUntilNextItem <= 0) {
+         this.entityDropItem(isBurnableToolItemInit.Bj_PICKAXE.get());
+         this.entityDropItem(BlockItemInit.FIGHIV.get());
+         this.timeUntilNextItem = this.rand.nextInt(12000) + 12000;
+      }
+   }
+
+   public boolean isDropItem() {
+      return this.dropItem;
+   }
+
 }

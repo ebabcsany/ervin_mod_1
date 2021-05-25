@@ -17,7 +17,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 
-public class CraintBlockCraftingTable extends Block{
+public class CraintBlockCraftingTable extends Block {
     private static final ITextComponent field_220271_a = new TranslationTextComponent("container.crafting");
 
     public CraintBlockCraftingTable(Block.Properties properties) { super(properties); }

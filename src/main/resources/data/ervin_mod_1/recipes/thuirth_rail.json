@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "G G",
+    "X#X",
+    "GRG"
+  ],
+  "key": {
+    "R": {
+      "item": "ervin_mod_1:thuirth_dust"
+    },
+    "#": {
+      "item": "ervin_mod_1:sriunk_stick"
+    },
+    "X": {
+      "item": "ervin_mod_1:terat"
+    },
+    "G": {
+      "item": "ervin_mod_1:trithk"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:thuirth_rail",
+    "count": 3
+  }
+}

@@ -1,6 +1,5 @@
 package com.babcsany.minecraft.ervin_mod_1.item;
 
-import com.babcsany.minecraft.ervin_mod_1.item.tool.IItemTier1;
 import com.babcsany.minecraft.ervin_mod_1.item.tool.IItemTier2;
 import net.minecraft.item.Item;
 

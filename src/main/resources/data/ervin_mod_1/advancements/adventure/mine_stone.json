@@ -22,7 +22,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "minrceaft:stone_tool_materials"
+            "tag": "minecraft:stone_tool_materials"
           }
         ]
       }

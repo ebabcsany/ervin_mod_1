@@ -1,0 +1,14 @@
+{
+  "parent": "minecraft:item/handheld_rod",
+  "textures": {
+    "layer0": "ervin_mod_1:item/huihk_rod"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "cast": 1
+      },
+      "model": "ervin_mod_1:item/huihk_rod_cast"
+    }
+  ]
+}

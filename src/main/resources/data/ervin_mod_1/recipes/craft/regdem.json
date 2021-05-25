@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "ervin_mod_1:regdem",
+  "ingredients": [
+    {
+      "item": "ervin_mod_1:regdem_block"
+    }
+  ],
+  "result": {
+    "item": "ervin_mod_1:regdem",
+    "count": 9
+  }
+}
