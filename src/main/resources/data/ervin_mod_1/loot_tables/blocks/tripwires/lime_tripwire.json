@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:tripwires/red_string"
+          "name": "ervin_mod_1:strings/lime_string"
         }
       ],
       "conditions": [

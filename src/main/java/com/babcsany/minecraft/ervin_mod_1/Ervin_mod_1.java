@@ -13,6 +13,12 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.fish.AbstractFishEntity;
+import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IWorld;
@@ -233,7 +239,7 @@ public class Ervin_mod_1 {
         });
 
         DeferredWorkQueue.runLater(FeatureGen::GenerateFeature);
-        //DeferredWorkQueue.runLater(FeatureGen::generateBlackStone);
+        //DeferredWorkQueue.runLater(FeatureGen::getSpawns);
 
         OverworldBiomeProvider.BIOMES_TO_SPAWN_IN.add(BiomeInit.MIG_BIOME.get());
         OverworldBiomeProvider.BIOMES_TO_SPAWN_IN.add(BiomeInit.MIGV_BIOME.get());
@@ -390,24 +396,24 @@ public class Ervin_mod_1 {
         }
     }
 
-    public static Optional<Vector3d> func_234567_a_(ServerWorld serverWorld, BlockPos p_234567_1_, boolean p_234567_2_, boolean p_234567_3_) {
-        BlockState blockstate = serverWorld.getBlockState(p_234567_1_);
+    public static Optional<Vector3d> func_234567_a_(ServerWorld serverWorld, BlockPos pos, boolean p_234567_2_, boolean p_234567_3_) {
+        BlockState blockstate = serverWorld.getBlockState(pos);
         Block block = blockstate.getBlock();
         if (block instanceof Hurvruj && blockstate.get(Hurvruj.CHARGES) > 0 && Hurvruj.doesHurvrujWork(serverWorld)) {
-            Optional<Vector3d> optional = Hurvruj.func_235560_a_(EntityType.PLAYER, serverWorld, p_234567_1_);
+            Optional<Vector3d> optional = Hurvruj.func_235560_a_(EntityType.PLAYER, serverWorld, pos);
             if (!p_234567_3_ && optional.isPresent()) {
-                serverWorld.setBlockState(p_234567_1_, blockstate.with(Hurvruj.CHARGES, blockstate.get(Hurvruj.CHARGES) - 1), 15);
+                serverWorld.setBlockState(pos, blockstate.with(Hurvruj.CHARGES, blockstate.get(Hurvruj.CHARGES) - 1), 15);
             }
 
             return optional;
-        } else if (blockstate.isBed(serverWorld, p_234567_1_, null) && BedBlock.func_235330_a_(serverWorld)) {
-            return blockstate.getBedSpawnPosition(EntityType.PLAYER, serverWorld, p_234567_1_, null);
+        } else if (blockstate.isBed(serverWorld, pos, null) && BedBlock.func_235330_a_(serverWorld)) {
+            return blockstate.getBedSpawnPosition(EntityType.PLAYER, serverWorld, pos, null);
         } else if (!p_234567_2_) {
             return Optional.empty();
         } else {
-            boolean flag = block.canSpawnInBlock();
-            boolean flag1 = serverWorld.getBlockState(p_234567_1_.up()).getBlock().canSpawnInBlock();
-            return flag && flag1 ? Optional.of(new Vector3d((double)p_234567_1_.getX() + 0.5D, (double)p_234567_1_.getY() + 0.1D, (double)p_234567_1_.getZ() + 0.5D)) : Optional.empty();
+            boolean canSpawnInBlock = block.canSpawnInBlock();
+            boolean spawnInBlock = serverWorld.getBlockState(pos.up()).getBlock().canSpawnInBlock();
+            return canSpawnInBlock && spawnInBlock ? Optional.of(new Vector3d((double)pos.getX() + 0.5D, (double)pos.getY() + 0.1D, (double)pos.getZ() + 0.5D)) : Optional.empty();
         }
     }
 
@@ -436,6 +442,19 @@ public class Ervin_mod_1 {
                 event.setCanceled(true);
             }
         }
+    }
+
+    public void tick(PlayerEntity player) {
+        player.tick();
+        updateTurtleHelmet(player);
+    }
+
+    private void updateTurtleHelmet(PlayerEntity player) {
+        ItemStack itemstack = player.getItemStackFromSlot(EquipmentSlotType.HEAD);
+        if (itemstack.getItem() == Items.TURTLE_HELMET && !player.areEyesInFluid(FluidTags.WATER)) {
+            player.addPotionEffect(new EffectInstance(Effects.WATER_BREATHING, 200, 0, false, false, true));
+        }
+
     }
 
     /*@Nullable

@@ -22,7 +22,7 @@ public class ExampleBiomeSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderCon
 	public void buildSurface(Random random, IChunk chunkIn, Biome biomeIn, int x, int z, int startHeight, double noise,
 			BlockState defaultBlock, BlockState defaultFluid, int seaLevel, long seed, SurfaceBuilderConfig config) {
 		Random rd = new Random();
-		int i = rd.nextInt(14);
+		int i = rd.nextInt(34);
 		if (i == 0) {
 			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock,
 					defaultFluid, seaLevel, seed,

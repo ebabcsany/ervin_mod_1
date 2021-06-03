@@ -1,17 +1,40 @@
 package com.babcsany.minecraft.ervin_mod_1.item.special;
 
+import com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.special.isBurnableSpecialBlockItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.special.isBurnableSpecialItemInit;
+import com.google.common.collect.Maps;
 import net.minecraft.block.Blocks;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.ai.attributes.AttributeModifierManager;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUseContext;
+import net.minecraft.item.Items;
+import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 
+import java.util.Map;
+
 public class Grith extends Item {
+	private boolean potionsNeedUpdate = true;
+	private final Map<Effect, EffectInstance> activePotionsMap = Maps.newHashMap();
+	public PlayerEntity player;
+	public final PlayerInventory inventory = new PlayerInventory(player);
+	public World world;
+	private AttributeModifierManager attributes;
 	public Grith(Properties properties) {
 		super(properties);
 	}
@@ -31,7 +54,10 @@ public class Grith extends Item {
 		return super.onItemRightClick(worldIn, playerIn, handIn);
 	}
 
-	@Override
+	public void tick(LivingEntity living) {
+		this.updateTurtleHelmet(living);
+	}
+
 	public boolean onEntityItemUpdate(ItemStack stack, ItemEntity entity) {
 		entity.getEntityWorld().setBlockState(entity.getPosition().down(), Blocks.AIR.getDefaultState());
 		entity.getEntityWorld().setBlockState(entity.getPosition().down().east(), Blocks.AIR.getDefaultState());
@@ -62,12 +88,71 @@ public class Grith extends Item {
 		return super.onEntityItemUpdate(stack, entity);
 	}
 
-	/**@Override
+	private void updateTurtleHelmet(LivingEntity living) {
+		ItemStack itemstack = this.getItemStackFromSlot(EquipmentSlotType.MAINHAND);
+		if (itemstack.getItem() == isBurnableSpecialItemInit.GRITH.get()) {
+			this.addPotionEffect(new EffectInstance(Effects.HEALTH_BOOST, 1000, 50, false, false, true), living);
+		}
+
+	}
+
+	public boolean addPotionEffect(EffectInstance effectInstanceIn, LivingEntity living) {
+		if (!living.isPotionApplicable(effectInstanceIn)) {
+			return false;
+		} else {
+			EffectInstance effectinstance = this.activePotionsMap.get(effectInstanceIn.getPotion());
+			net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(new net.minecraftforge.event.entity.living.PotionEvent.PotionAddedEvent(living, effectinstance, effectInstanceIn));
+			if (effectinstance == null) {
+				this.activePotionsMap.put(effectInstanceIn.getPotion(), effectInstanceIn);
+				this.onNewPotionEffect(effectInstanceIn, living);
+				return true;
+			} else if (effectinstance.combine(effectInstanceIn)) {
+				this.onChangedPotionEffect(effectinstance, true, living);
+				return true;
+			} else {
+				return false;
+			}
+		}
+	}
+
+	public AttributeModifierManager getAttributeManager() {
+		return this.attributes;
+	}
+
+	protected void onNewPotionEffect(EffectInstance id, LivingEntity living) {
+		this.potionsNeedUpdate = true;
+		if (!this.world.isRemote) {
+			id.getPotion().applyAttributesModifiersToEntity(living, this.getAttributeManager(), id.getAmplifier());
+		}
+
+	}
+
+	protected void onChangedPotionEffect(EffectInstance id, boolean reapply, LivingEntity living) {
+		this.potionsNeedUpdate = true;
+		if (reapply && !this.world.isRemote) {
+			Effect effect = id.getPotion();
+			effect.removeAttributesModifiersFromEntity(living, this.getAttributeManager(), id.getAmplifier());
+			effect.applyAttributesModifiersToEntity(living, this.getAttributeManager(), id.getAmplifier());
+		}
+
+	}
+
+	public ItemStack getItemStackFromSlot(EquipmentSlotType slotIn) {
+		if (slotIn == EquipmentSlotType.MAINHAND) {
+			return player.inventory.getCurrentItem();
+		} else if (slotIn == EquipmentSlotType.OFFHAND) {
+			return player.inventory.offHandInventory.get(0);
+		} else {
+			return slotIn.getSlotType() == EquipmentSlotType.Group.ARMOR ? player.inventory.armorInventory.get(slotIn.getIndex()) : ItemStack.EMPTY;
+		}
+	}
+
+	@Override
 	public ActionResultType onItemUse(ItemUseContext context) {
-		if (context.getWorld().getBlockState(context.getPos()).getBlock() == isBurnableBlockItemInit.GRITH_BLOCK.get()) {
+		if (context.getWorld().getBlockState(context.getPos()).getBlock() == BlockInit.GRITH_BLOCK.get()) {
 			for (ItemStack stack : context.getPlayer().inventory.mainInventory) {
 				if (stack.isEmpty()) {
-					context.getPlayer().addItemStackToInventory(new ItemStack(isBurnableItemInit.GRITH.get()));
+					context.getPlayer().addItemStackToInventory(new ItemStack(isBurnableSpecialItemInit.GRITH.get()));
 					context.getItem().damageItem(1, context.getPlayer(), (playerIn) -> {
 						playerIn.sendBreakAnimation(context.getHand());
 					});
@@ -75,9 +160,9 @@ public class Grith extends Item {
 				}
 			}
 			context.getWorld().addEntity(new ItemEntity(context.getWorld(), context.getPos().getX(),
-					context.getPos().getY(), context.getPos().getZ(), new ItemStack(isBurnableItemInit.GRITH.get())));
+					context.getPos().getY(), context.getPos().getZ(), new ItemStack(isBurnableSpecialItemInit.GRITH.get())));
 			return ActionResultType.SUCCESS;
 		}
 		return ActionResultType.FAIL;
-	}*/
+	}
 }

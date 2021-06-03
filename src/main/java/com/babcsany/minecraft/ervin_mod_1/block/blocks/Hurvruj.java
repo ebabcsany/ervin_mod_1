@@ -84,8 +84,8 @@ public class Hurvruj extends Block {
       } else if (fluidstate.isSource()) {
          return true;
       } else {
-         float f = (float)fluidstate.getLevel();
-         if (f < 2.0F) {
+         float fluidstateLevel = (float)fluidstate.getLevel();
+         if (fluidstateLevel < 2.0F) {
             return false;
          } else {
             FluidState fluidstate1 = world.getFluidState(pos.down());

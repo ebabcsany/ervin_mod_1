@@ -10,18 +10,16 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class GenerationStage1 {
-   public static enum Carving implements IStringSerializable {
+   public enum Carving implements IStringSerializable {
       AIR("air"),
       AIR1("air1"),
       LIQUID("liquid");
 
       public static final Codec<com.babcsany.minecraft.ervin_mod_1.world.gen.GenerationStage1.Carving> field_236074_c_ = IStringSerializable.createEnumCodec(com.babcsany.minecraft.ervin_mod_1.world.gen.GenerationStage1.Carving::values, com.babcsany.minecraft.ervin_mod_1.world.gen.GenerationStage1.Carving::func_236075_a_);
-      private static final Map<String, com.babcsany.minecraft.ervin_mod_1.world.gen.GenerationStage1.Carving> BY_NAME = Arrays.stream(values()).collect(Collectors.toMap(com.babcsany.minecraft.ervin_mod_1.world.gen.GenerationStage1.Carving::getName, (p_222672_0_) -> {
-         return p_222672_0_;
-      }));
+      private static final Map<String, com.babcsany.minecraft.ervin_mod_1.world.gen.GenerationStage1.Carving> BY_NAME = Arrays.stream(values()).collect(Collectors.toMap(com.babcsany.minecraft.ervin_mod_1.world.gen.GenerationStage1.Carving::getName, (p_222672_0_) -> p_222672_0_));
       private final String name;
 
-      private Carving(String name) {
+      Carving(String name) {
          this.name = name;
       }
 

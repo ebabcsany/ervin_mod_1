@@ -71,6 +71,8 @@ public class GenOreFeatureConfig implements IFeatureConfig {
          }
       }),
       TRIRIJ("tririj", new BlockMatcher(isBurnableBlockItemInit.TRIRIJ)),
+      DIRT("dirt", new BlockMatcher(Blocks.DIRT)),
+      WATER("water", new BlockMatcher(Blocks.WATER)),
       MAGMA_BLOCK("magma_block", new BlockMatcher(Blocks.MAGMA_BLOCK)),
       END_STONE("end_stone", new BlockMatcher(Blocks.END_STONE)),
       NETHER_ORE_REPLACEABLES("nether_ore_replaceables", (p_236572_0_) -> {
