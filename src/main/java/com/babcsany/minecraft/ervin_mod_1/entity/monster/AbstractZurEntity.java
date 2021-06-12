@@ -9,6 +9,7 @@ import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.special.isBurnableSpecialItemInit;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Sets;
+import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
@@ -16,16 +17,20 @@ import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
+import net.minecraft.entity.ai.brain.memory.MemoryModuleType;
 import net.minecraft.entity.ai.goal.BreakDoorGoal;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
 import net.minecraft.entity.merchant.IMerchant;
+import net.minecraft.entity.merchant.villager.VillagerTrades;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.entity.projectile.ProjectileHelper;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.inventory.container.MerchantContainer;
+import net.minecraft.inventory.container.SimpleNamedContainerProvider;
 import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
@@ -37,10 +42,14 @@ import net.minecraft.pathfinding.Path;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.pathfinding.SwimmerPathNavigator;
 import net.minecraft.potion.*;
+import net.minecraft.stats.Stats;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.village.GossipManager;
 import net.minecraft.world.*;
 import net.minecraft.world.raid.Raid;
 import net.minecraft.world.server.ServerWorld;
@@ -74,14 +83,25 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
    protected final GroundPathNavigator groundNavigator;
    public int potionUseTimer;
    public float wingRotation;
+   public int experienceLevel;
+   public int experienceTotal;
+   public float experience;
+   protected int xpSeed;
    private int inWaterTime;
    @Nullable
    protected Raid raid;
+   private int sleepTimer;
+   public int xpCooldown;
+   private final GossipManager gossip = new GossipManager();
    private int wave;
    private boolean canJoinRaid;
    private int field_213664_bB;
    private boolean patrolLeader;
    private boolean patrolling;
+   private boolean field_234542_bL_;
+   private int level;
+   private int timeUntilReset;
+   private boolean leveledUp;
    private int despawnDelay;
    public boolean zurDropItem;
    public float wingRotDelta = 1.0F;
@@ -170,21 +190,61 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
       Path path = this.getNavigator().getPath();
       if (path != null) {
          BlockPos blockpos = path.getTarget();
-         if (blockpos != null) {
-            double d0 = this.getDistanceSq((double)blockpos.getX(), (double)blockpos.getY(), (double)blockpos.getZ());
-            if (d0 < 4.0D) {
-               return true;
-            }
-         }
+         double d0 = this.getDistanceSq(blockpos.getX(), blockpos.getY(), blockpos.getZ());
+         return d0 < 4.0D;
       }
 
       return false;
    }
 
-   /*public void breakBlockGoals() {
-      this.goalSelector.addGoal(5, new AttackDirtGoal(this, 4, 6));
-      this.goalSelector.addGoal(5, new AttackGrassBlockGoal(this, 4, 6));
-   }*/
+   protected void updateAITasks() {
+      this.world.getProfiler().startSection("villagerBrain");
+      //this.getBrain().tick((ServerWorld)this.world, this);
+      this.world.getProfiler().endSection();
+      if (this.field_234542_bL_) {
+         this.field_234542_bL_ = false;
+      }
+
+      if (!this.hasCustomer() && this.timeUntilReset > 0) {
+         --this.timeUntilReset;
+         if (this.timeUntilReset <= 0) {
+            if (this.leveledUp) {
+               this.levelUp();
+               this.leveledUp = false;
+            }
+
+            this.addPotionEffect(new EffectInstance(Effects.REGENERATION, 200, 0));
+         }
+      }
+
+      if (this.customer != null && this.world instanceof ServerWorld) {
+         //((ServerWorld)this.world).updateReputation(IReputationType.TRADE, this.customer, this);
+         this.world.setEntityState(this, (byte)14);
+         this.customer = null;
+      }
+
+      if (!this.isAIDisabled() && this.rand.nextInt(100) == 0) {
+         Raid raid = ((ServerWorld)this.world).findRaid(this.getPosition());
+         if (raid != null && raid.isActive() && !raid.isOver()) {
+            this.world.setEntityState(this, (byte)42);
+         }
+      }
+
+      if (this.hasCustomer()) {
+         this.resetCustomer();
+      }
+
+      super.updateAITasks();
+   }
+
+   private void levelUp() {
+      //this.getLevel();
+      this.populateTradeData();
+   }
+
+   public int getLevel() {
+      return this.level;
+   }
 
    /**
     * sets this entity's combat AI.
@@ -238,6 +298,22 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
       if (!this.world.isRemote) {
          this.setBesideClimbableBlock(this.collidedHorizontally);
       }
+      if (this.xpCooldown > 0) {
+         --this.xpCooldown;
+      }
+
+      if (this.isSleeping()) {
+         ++this.sleepTimer;
+         if (this.sleepTimer > 100) {
+            this.sleepTimer = 100;
+         }
+
+      } else if (this.sleepTimer > 0) {
+         ++this.sleepTimer;
+         if (this.sleepTimer >= 110) {
+            this.sleepTimer = 0;
+         }
+      }
       if (!this.world.isRemote && this.isAlive() && !this.isAIDisabled()) {
          if (this.isDrowning()) {
             --this.drownedConversionTime;
@@ -257,6 +333,106 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
       }
 
       super.tick();
+   }
+
+   public ActionResultType func_230254_b_(PlayerEntity p_230254_1_, Hand p_230254_2_) {
+      ItemStack itemstack = p_230254_1_.getHeldItem(p_230254_2_);
+      if (itemstack.getItem() != Items.VILLAGER_SPAWN_EGG && this.isAlive() && !this.hasCustomer() && !this.isSleeping() && !p_230254_1_.isSecondaryUseActive()) {
+         if (this.isChild()) {
+            this.shakeHead();
+            return ActionResultType.func_233537_a_(this.world.isRemote);
+         } else {
+            boolean flag = this.getOffers().isEmpty();
+            if (p_230254_2_ == Hand.MAIN_HAND) {
+               if (flag && !this.world.isRemote) {
+                  this.shakeHead();
+               }
+
+               p_230254_1_.addStat(Stats.TALKED_TO_VILLAGER);
+            }
+
+            if (flag) {
+               return ActionResultType.func_233537_a_(this.world.isRemote);
+            } else {
+               if (!this.world.isRemote && !this.offers.isEmpty()) {
+                  this.displayMerchantGui(p_230254_1_);
+               }
+
+               return ActionResultType.func_233537_a_(this.world.isRemote);
+            }
+         }
+      } else {
+         return super.func_230254_b_(p_230254_1_, p_230254_2_);
+      }
+   }
+
+   public void setShakeHeadTicks(int ticks) {
+      this.dataManager.set(SHAKE_HEAD_TICKS, ticks);
+   }
+
+   private void shakeHead() {
+      this.setShakeHeadTicks(40);
+      if (!this.world.isRemote()) {
+         this.playSound(SoundEvents.ENTITY_VILLAGER_NO, this.getSoundVolume(), this.getSoundPitch());
+      }
+
+   }
+
+   private void displayMerchantGui(PlayerEntity player) {
+      this.recalculateSpecialPricesFor(player);
+      this.setCustomer(player);
+      this.openMerchantContainer(player, this.getDisplayName());
+   }
+
+   public void openMerchantContainer(PlayerEntity player, ITextComponent displayName) {
+      OptionalInt optionalint = player.openContainer(new SimpleNamedContainerProvider((p_213701_1_, p_213701_2_, p_213701_3_) -> new MerchantContainer(p_213701_1_, p_213701_2_, this), displayName));
+      if (optionalint.isPresent()) {
+         MerchantOffers merchantoffers = this.getOffers();
+         if (!merchantoffers.isEmpty()) {
+            this.openMerchantContainer(optionalint.getAsInt(), merchantoffers, this.getXp(), this.func_213705_dZ(), this.func_223340_ej());
+         }
+      }
+
+   }
+
+   public void openMerchantContainer(int containerId, MerchantOffers offers, int xp, boolean p_213818_5_, boolean p_213818_6_) {
+   }
+
+   public void startSleeping(BlockPos pos) {
+      super.startSleeping(pos);
+      this.brain.setMemory(MemoryModuleType.LAST_SLEPT, this.world.getGameTime());
+      this.brain.removeMemory(MemoryModuleType.WALK_TARGET);
+      this.brain.removeMemory(MemoryModuleType.CANT_REACH_WALK_TARGET_SINCE);
+   }
+
+   public void wakeUp() {
+      super.wakeUp();
+      this.brain.setMemory(MemoryModuleType.LAST_WOKEN, this.world.getGameTime());
+   }
+
+   public int getPlayerReputation(PlayerEntity player) {
+      return this.gossip.getReputation(player.getUniqueID(), (p_223103_0_) -> true);
+   }
+
+   private void recalculateSpecialPricesFor(PlayerEntity playerIn) {
+      int i = this.getPlayerReputation(playerIn);
+      if (i != 0) {
+         for(MerchantOffer merchantoffer : this.getOffers()) {
+            merchantoffer.increaseSpecialPrice(-MathHelper.floor((float)i * merchantoffer.getPriceMultiplier()));
+         }
+      }
+
+      if (playerIn.isPotionActive(Effects.HERO_OF_THE_VILLAGE)) {
+         EffectInstance effectinstance = playerIn.getActivePotionEffect(Effects.HERO_OF_THE_VILLAGE);
+         int k = effectinstance.getAmplifier();
+
+         for(MerchantOffer merchantoffer1 : this.getOffers()) {
+            double d0 = 0.3D + 0.0625D * (double)k;
+            int j = (int)Math.floor(d0 * (double)merchantoffer1.getBuyingStackFirst().getCount());
+            merchantoffer1.increaseSpecialPrice(-Math.max(j, 1));
+         }
+      }
+
    }
 
    public boolean canBeLeader() {
@@ -485,6 +661,11 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
       }
 
       compound.put("Inventory", this.zurInventory.write());
+      compound.putShort("SleepTimer", (short)this.sleepTimer);
+      compound.putFloat("XpP", this.experience);
+      compound.putInt("XpLevel", this.experienceLevel);
+      compound.putInt("XpTotal", this.experienceTotal);
+      compound.putInt("XpSeed", this.xpSeed);
    }
 
    /**
@@ -497,6 +678,14 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
       }
 
       this.zurInventory.read(compound.getList("Inventory", 10));
+      this.sleepTimer = compound.getShort("SleepTimer");
+      this.experience = compound.getFloat("XpP");
+      this.experienceLevel = compound.getInt("XpLevel");
+      this.experienceTotal = compound.getInt("XpTotal");
+      this.xpSeed = compound.getInt("XpSeed");
+      if (this.xpSeed == 0) {
+         this.xpSeed = this.rand.nextInt();
+      }
    }
 
    @Nullable
@@ -554,7 +743,15 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
       return this.world;
    }
 
-   protected abstract boolean populateTradeData();
+   protected abstract boolean populateTradeZurData();
+
+   protected void populateTradeData() {
+      ZurTrades.ITrade[] avillagertrades$itrade = ZurTrades.field_221240_b.get(1);
+      if (avillagertrades$itrade != null) {
+         MerchantOffers merchantoffers = this.getOffers();
+         this.addTrades(merchantoffers, avillagertrades$itrade, 2);
+      }
+   }
 
    /**
     * add limites numbers of trades to the given MerchantOffers

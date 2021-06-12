@@ -22,7 +22,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "minecraft:stone_pickaxes"
+            "item": "minecraft:stone_pickaxe"
           }
         ]
       }

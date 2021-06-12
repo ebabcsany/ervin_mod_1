@@ -2,17 +2,12 @@ package com.babcsany.minecraft.ervin_mod_1.entity.villager;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.TraderNirtre1LookAtCustomerGoal;
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.TraderNirtre1TradeWithPlayerGoal;
-import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.WanderingTraderNirtreLookAtCustomerGoal;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.AgeableZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.TraderNirtreTrades;
-import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.spawn_egg.ModSpawnEggItemInit;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -26,7 +21,6 @@ import net.minecraft.potion.Potions;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;

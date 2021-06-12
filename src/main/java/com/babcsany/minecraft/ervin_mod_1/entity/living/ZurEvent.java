@@ -21,13 +21,9 @@ package com.babcsany.minecraft.ervin_mod_1.entity.living;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.monster.ZombieEntity;
-import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.event.entity.EntityEvent;
-import net.minecraftforge.eventbus.api.Cancelable;
 import net.minecraftforge.eventbus.api.Event;
 
 /**

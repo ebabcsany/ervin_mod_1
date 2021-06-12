@@ -1,6 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.ai.brain.task.thuvruj;
 
-import com.mojang.datafixers.util.Pair;
+import com.ibm.icu.impl.Pair;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.brain.memory.MemoryModuleStatus;
 import net.minecraft.entity.ai.brain.memory.MemoryModuleType;
@@ -25,9 +25,9 @@ public class MultiTask1<E extends LivingEntity> extends Task<E> {
       this.field_220416_b = p_i51503_2_;
       this.field_220417_c = p_i51503_3_;
       this.field_220418_d = p_i51503_4_;
-      p_i51503_5_.forEach((p_220411_1_) -> {
+      /*p_i51503_5_.forEach((p_220411_1_) -> {
          this.field_220419_e.func_226313_a_(p_220411_1_.getFirst(), p_220411_1_.getSecond());
-      });
+      });*/
    }
 
    public boolean isTimedOut(long gameTime) {

@@ -84,7 +84,6 @@ public class FirgPlanksStairs extends Block implements IWaterLoggable {
       return voxelshape;
    }
 
-   @Deprecated // Forge: Use the other constructor that takes a Supplier
    public FirgPlanksStairs(BlockState state, Properties properties) {
       super(properties);
       this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH).with(HALF, Half.BOTTOM).with(SHAPE, StairsShape.STRAIGHT).with(WATERLOGGED, Boolean.valueOf(false)));

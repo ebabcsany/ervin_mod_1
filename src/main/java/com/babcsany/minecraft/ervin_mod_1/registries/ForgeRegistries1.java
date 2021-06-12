@@ -55,7 +55,6 @@ import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraft.world.gen.treedecorator.TreeDecoratorType;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.DataSerializerEntry;
 import net.minecraftforge.registries.GameData;
@@ -77,7 +76,7 @@ public class ForgeRegistries1
     public static final IForgeRegistry<Item> ITEMS = RegistryManager.ACTIVE.getRegistry(Item.class);
     public static final IForgeRegistry<Effect> POTIONS = RegistryManager.ACTIVE.getRegistry(Effect.class);
     public static final IForgeRegistry<Biome> BIOMES = RegistryManager.ACTIVE.getRegistry(Biome.class);
-    //public static final IForgeRegistry<ModBiome> MOD_BIOMES = RegistryManager.ACTIVE.getRegistry(ModBiome.class);
+    public static final IForgeRegistry<ModBiome<?>> MOD_BIOMES = RegistryManager.ACTIVE.getRegistry(ModBiome.class);
     public static final IForgeRegistry<SoundEvent> SOUND_EVENTS = RegistryManager.ACTIVE.getRegistry(SoundEvent.class);
     public static final IForgeRegistry<Potion> POTION_TYPES = RegistryManager.ACTIVE.getRegistry(Potion.class);
     public static final IForgeRegistry<Enchantment> ENCHANTMENTS = RegistryManager.ACTIVE.getRegistry(Enchantment.class);

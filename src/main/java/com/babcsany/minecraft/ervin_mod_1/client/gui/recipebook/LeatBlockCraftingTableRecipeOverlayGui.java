@@ -8,7 +8,6 @@ import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.client.gui.IGuiEventListener;
 import net.minecraft.client.gui.IRenderable;
-import net.minecraft.client.gui.recipebook.RecipeList;
 import net.minecraft.client.gui.widget.Widget;
 import net.minecraft.inventory.container.AbstractFurnaceContainer;
 import net.minecraft.inventory.container.RecipeBookContainer;

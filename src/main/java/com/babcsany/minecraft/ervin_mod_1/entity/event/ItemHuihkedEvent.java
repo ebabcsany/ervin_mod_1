@@ -21,7 +21,6 @@ package com.babcsany.minecraft.ervin_mod_1.entity.event;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.projectile.HuihkEntity;
 import com.google.common.base.Preconditions;
-import net.minecraft.entity.projectile.FishingBobberEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.event.entity.player.PlayerEvent;

@@ -1,7 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.container.furnace;
 
 import com.babcsany.minecraft.ervin_mod_1.container.furnace.abstract_furnace.AbstractBlackFurnaceContainer;
-import com.babcsany.minecraft.ervin_mod_1.init.container.ContainerInit;
 import com.babcsany.minecraft.ervin_mod_1.init.container.FurnaceContainerInit;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;

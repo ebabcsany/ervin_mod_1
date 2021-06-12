@@ -24,6 +24,7 @@ import com.google.common.collect.ImmutableList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biomes;
+import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -33,80 +34,82 @@ import javax.annotation.Nullable;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static com.babcsany.minecraft.ervin_mod_1.world.minecraft.ModBiomeDictionary.Type.*;
+import static com.babcsany.minecraft.ervin_mod_1.world.minecraft.ModBiomeDictionary.ModType.*;
 
 public class ModBiomeDictionary
 {
     private static final boolean DEBUG = false;
     private static final Logger LOGGER = LogManager.getLogger();
 
-    public static final class Type
+    public static final class ModType extends BiomeDictionary.Type
     {
 
-        private static final Map<String, Type> byName = new HashMap<String, Type>();
-        private static Collection<Type> allTypes = Collections.unmodifiableCollection(byName.values());
+        private static final Map<String, ModType> byName = new HashMap<String, ModType>();
+        private static Collection<ModType> allTypes = Collections.unmodifiableCollection(byName.values());
+        private static Collection<BiomeDictionary.Type> allTypes1 = Collections.unmodifiableCollection(byName.values());
 
         /*Temperature-based tags. Specifying neither implies a biome is temperate*/
-        public static final Type HOT = new Type("HOT");
-        public static final Type COLD = new Type("COLD");
+        public static final ModType HOT = new ModType("HOT");
+        public static final ModType COLD = new ModType("COLD");
 
         /*Tags specifying the amount of vegetation a biome has. Specifying neither implies a biome to have moderate amounts*/
-        public static final Type SPARSE = new Type("SPARSE");
-        public static final Type DENSE = new Type("DENSE");
+        public static final ModType SPARSE = new ModType("SPARSE");
+        public static final ModType DENSE = new ModType("DENSE");
 
         /*Tags specifying how moist a biome is. Specifying neither implies the biome as having moderate humidity*/
-        public static final Type WET = new Type("WET");
-        public static final Type DRY = new Type("DRY");
+        public static final ModType WET = new ModType("WET");
+        public static final ModType DRY = new ModType("DRY");
 
         /*Tree-based tags, SAVANNA refers to dry, desert-like trees (Such as Acacia), CONIFEROUS refers to snowy trees (Such as Spruce) and JUNGLE refers to jungle trees.
          * Specifying no tag implies a biome has temperate trees (Such as Oak)*/
-        public static final Type SAVANNA = new Type("SAVANNA");
-        public static final Type CONIFEROUS = new Type("CONIFEROUS");
-        public static final Type JUNGLE = new Type("JUNGLE");
+        public static final ModType SAVANNA = new ModType("SAVANNA");
+        public static final ModType CONIFEROUS = new ModType("CONIFEROUS");
+        public static final ModType JUNGLE = new ModType("JUNGLE");
 
         /*Tags specifying the nature of a biome*/
-        public static final Type SPOOKY = new Type("SPOOKY");
-        public static final Type DEAD = new Type("DEAD");
-        public static final Type LUSH = new Type("LUSH");
-        public static final Type MUSHROOM = new Type("MUSHROOM");
-        public static final Type MAGICAL = new Type("MAGICAL");
-        public static final Type RARE = new Type("RARE");
-        public static final Type PLATEAU = new Type("PLATEAU");
-        public static final Type MODIFIED = new Type("MODIFIED");
-        public static final Type MIG = new Type("MIG");
+        public static final ModType SPOOKY = new ModType("SPOOKY");
+        public static final ModType DEAD = new ModType("DEAD");
+        public static final ModType LUSH = new ModType("LUSH");
+        public static final ModType MUSHROOM = new ModType("MUSHROOM");
+        public static final ModType MAGICAL = new ModType("MAGICAL");
+        public static final ModType RARE = new ModType("RARE");
+        public static final ModType PLATEAU = new ModType("PLATEAU");
+        public static final ModType MODIFIED = new ModType("MODIFIED");
+        public static final ModType MIG = new ModType("MIG");
 
-        public static final Type OCEAN = new Type("OCEAN");
-        public static final Type RIVER = new Type("RIVER");
+        public static final ModType OCEAN = new ModType("OCEAN");
+        public static final ModType RIVER = new ModType("RIVER");
         /**
          * A general tag for all water-based biomes. Shown as present if OCEAN or RIVER are.
          **/
-        public static final Type WATER = new Type("WATER", OCEAN, RIVER);
+        public static final ModType WATER = new ModType("WATER", OCEAN, RIVER);
 
         /*Generic types which a biome can be*/
-        public static final Type MESA = new Type("MESA");
-        public static final Type FOREST = new Type("FOREST");
-        public static final Type PLAINS = new Type("PLAINS");
-        public static final Type MOUNTAIN = new Type("MOUNTAIN");
-        public static final Type HILLS = new Type("HILLS");
-        public static final Type SWAMP = new Type("SWAMP");
-        public static final Type SANDY = new Type("SANDY");
-        public static final Type SNOWY = new Type("SNOWY");
-        public static final Type WASTELAND = new Type("WASTELAND");
-        public static final Type BEACH = new Type("BEACH");
-        public static final Type VOID = new Type("VOID");
+        public static final ModType MESA = new ModType("MESA");
+        public static final ModType FOREST = new ModType("FOREST");
+        public static final ModType PLAINS = new ModType("PLAINS");
+        public static final ModType MOUNTAIN = new ModType("MOUNTAIN");
+        public static final ModType HILLS = new ModType("HILLS");
+        public static final ModType SWAMP = new ModType("SWAMP");
+        public static final ModType SANDY = new ModType("SANDY");
+        public static final ModType SNOWY = new ModType("SNOWY");
+        public static final ModType WASTELAND = new ModType("WASTELAND");
+        public static final ModType BEACH = new ModType("BEACH");
+        public static final ModType VOID = new ModType("VOID");
 
         /*Tags specifying the dimension a biome generates in. Specifying none implies a biome that generates in a modded dimension*/
-        public static final Type OVERWORLD = new Type("OVERWORLD");
-        public static final Type NETHER = new Type("NETHER");
-        public static final Type END = new Type("END");
+        public static final ModType OVERWORLD = new ModType("OVERWORLD");
+        public static final ModType NETHER = new ModType("NETHER");
+        public static final ModType END = new ModType("END");
 
         private final String name;
-        private final List<Type> subTypes;
+        private final List<ModType> subTypes;
         private final Set<Biome> biomes = new HashSet<Biome>();
         private final Set<Biome> biomesUn = Collections.unmodifiableSet(biomes);
 
-        private Type(String name, Type... subTypes)
+        private ModType(String name, ModType... subTypes)
         {
+            super(name, subTypes);
             this.name = name;
             this.subTypes = ImmutableList.copyOf(subTypes);
 
@@ -143,13 +146,13 @@ public class ModBiomeDictionary
          * @param name The name of this Type
          * @return An instance of Type for this name.
          */
-        public static Type getType(String name, Type... subTypes)
+        public static ModType getType(String name, ModType... subTypes)
         {
             name = name.toUpperCase();
-            Type t = byName.get(name);
+            ModType t = byName.get(name);
             if (t == null)
             {
-                t = new Type(name, subTypes);
+                t = new ModType(name, subTypes);
             }
             return t;
         }
@@ -157,13 +160,13 @@ public class ModBiomeDictionary
         /**
          * @return An unmodifiable collection of all current biome types.
          */
-        public static Collection<Type> getAll()
+        public static Collection<BiomeDictionary.Type> getAll()
         {
-            return allTypes;
+            return allTypes1;
         }
 
         @Nullable
-        public static Type fromVanilla(Biome.Category category)
+        public static ModType fromVanilla(Biome.Category category)
         {
             if (category == Biome.Category.NONE)
                 return null;
@@ -178,8 +181,8 @@ public class ModBiomeDictionary
     private static class BiomeInfo
     {
 
-        private final Set<Type> types = new HashSet<Type>();
-        private final Set<Type> typesUn = Collections.unmodifiableSet(this.types);
+        private final Set<ModType> types = new HashSet<ModType>();
+        private final Set<ModType> typesUn = Collections.unmodifiableSet(this.types);
 
     }
 
@@ -192,14 +195,14 @@ public class ModBiomeDictionary
      * Adds the given types to the biome.
      *
      */
-    public static void addTypes(Biome biome, Type... types)
+    public static void addTypes(Biome biome, ModType... types)
     {
         Preconditions.checkArgument(ForgeRegistries.BIOMES.containsValue(biome), "Cannot add types to unregistered biome %s", biome);
 
-        Collection<Type> supertypes = listSupertypes(types);
+        Collection<ModType> supertypes = listSupertypes(types);
         Collections.addAll(supertypes, types);
 
-        for (Type type : supertypes)
+        for (ModType type : supertypes)
         {
             type.biomes.add(biome);
         }
@@ -214,7 +217,7 @@ public class ModBiomeDictionary
      *
      */
     @Nonnull
-    public static Set<Biome> getBiomes(Type type)
+    public static Set<Biome> getBiomes(ModType type)
     {
         return type.biomesUn;
     }
@@ -222,9 +225,10 @@ public class ModBiomeDictionary
     /**
      * Gets the set of types that have been added to the given biome.
      *
+     * @return
      */
     @Nonnull
-    public static Set<Type> getTypes(Biome biome)
+    public static Set<ModType> getTypes(Biome biome)
     {
         ensureHasTypes(biome);
         return getBiomeInfo(biome).typesUn;
@@ -237,7 +241,7 @@ public class ModBiomeDictionary
      */
     public static boolean areSimilar(Biome biomeA, Biome biomeB)
     {
-        for (Type type : getTypes(biomeA))
+        for (ModType type : getTypes(biomeA))
         {
             if (getTypes(biomeB).contains(type))
             {
@@ -252,7 +256,7 @@ public class ModBiomeDictionary
      * Checks if the given type has been added to the given biome.
      *
      */
-    public static boolean hasType(Biome biome, Type type)
+    public static boolean hasType(Biome biome, ModType type)
     {
         return getTypes(biome).contains(type);
     }
@@ -274,7 +278,7 @@ public class ModBiomeDictionary
      */
     public static void makeBestGuess(Biome biome)
     {
-        Type type = Type.fromVanilla(biome.getCategory());
+        ModType type = ModType.fromVanilla(biome.getCategory());
         if (type != null)
         {
             ModBiomeDictionary.addTypes(biome, type);
@@ -346,17 +350,17 @@ public class ModBiomeDictionary
         }
     }
 
-    private static Collection<Type> listSupertypes(Type... types)
+    private static Collection<ModType> listSupertypes(ModType... types)
     {
-        Set<Type> supertypes = new HashSet<Type>();
-        Deque<Type> next = new ArrayDeque<Type>();
+        Set<ModType> supertypes = new HashSet<ModType>();
+        Deque<ModType> next = new ArrayDeque<ModType>();
         Collections.addAll(next, types);
 
         while (!next.isEmpty())
         {
-            Type type = next.remove();
+            ModType type = next.remove();
 
-            for (Type sType : Type.byName.values())
+            for (ModType sType : ModType.byName.values())
             {
                 if (sType.subTypes.contains(type) && supertypes.add(sType))
                     next.add(sType);
@@ -446,7 +450,7 @@ public class ModBiomeDictionary
         {
             StringBuilder buf = new StringBuilder();
             buf.append("BiomeDictionary:\n");
-            Type.byName.forEach((name, type) -> buf.append("    ").append(type.name).append(": ").append(type.biomes.stream().map(b -> b.getRegistryName().toString()).collect(Collectors.joining(", "))).append('\n'));
+            ModType.byName.forEach((name, type) -> buf.append("    ").append(type.name).append(": ").append(type.biomes.stream().map(b -> b.getRegistryName().toString()).collect(Collectors.joining(", "))).append('\n'));
             LOGGER.debug(buf.toString());
         }
     }

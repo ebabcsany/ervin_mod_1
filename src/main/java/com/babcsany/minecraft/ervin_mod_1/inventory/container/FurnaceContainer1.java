@@ -2,7 +2,6 @@ package com.babcsany.minecraft.ervin_mod_1.inventory.container;
 
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.container.AbstractFurnaceContainer;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.util.IIntArray;

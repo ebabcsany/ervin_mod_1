@@ -72,10 +72,7 @@ public class isBurnableBlockItemInit {
     public static final RegistryObject<Block> NETHER_PORTAL = BURNABLE_BLOCKS.register("nether_portal", () -> new NetherPortalBlock(Block.Properties.create(Material.ROCK).setRequiresTool().harvestLevel(0).doesNotBlockMovement().harvestTool(ToolType.PICKAXE).hardnessAndResistance(120000000.0F).setLightLevel(Value -> 15)));
     public static final RegistryObject<Block> HURVRUJ = BURNABLE_BLOCKS.register("hurvruj", () -> new Hurvruj(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.BLACK).setRequiresTool().hardnessAndResistance(500000.0F, 12000000.0F).setLightLevel((blockState) -> Hurvruj.func_235565_a_(blockState, 15))));
     public static final RegistryObject<Block> CRASK = BURNABLE_BLOCKS.register("crask", () -> new Crask(Block.Properties.create(Material.WOOL, MaterialColorInit.CRASK).setRequiresTool().hardnessAndResistance(100.0f)));
-    public static final Block TRIRIJ = register("ervin_mod_1:tririj", new Tririj(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.NETHERRACK).setRequiresTool().tickRandomly().hardnessAndResistance(5000000.0F)));
-    public static final Block UUUUUUUUUUUUUUUUUUUUUUUU = register("uuuuuuuuuuuuuuuuuuuuuuuu", new Tririj(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.NETHERRACK).setRequiresTool().tickRandomly().hardnessAndResistance(5000000.0F)));
+    public static final Block TRIRIJ = Ervin_mod_1.blockRegister("ervin_mod_1:tririj", new Tririj(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.NETHERRACK).setRequiresTool().tickRandomly().hardnessAndResistance(5000000.0F)));
+    public static final Block UUUUUUUUUUUUUUUUUUUUUUUU = Ervin_mod_1.blockRegister("uuuuuuuuuuuuuuuuuuuuuuuu", new Tririj(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.NETHERRACK).setRequiresTool().tickRandomly().hardnessAndResistance(5000000.0F)));
 
-    private static Block register(String key, Block blockIn) {
-        return Registry.register(Registry.BLOCK, key, blockIn);
-    }
 }

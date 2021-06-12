@@ -2,13 +2,10 @@ package com.babcsany.minecraft.ervin_mod_1.client.entity.render;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.client.entity.model.ZurEntityModel;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.Dgrurb;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
 import net.minecraft.client.renderer.entity.BipedRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.layers.BipedArmorLayer;
-import net.minecraft.client.renderer.entity.model.ZombieModel;
-import net.minecraft.entity.monster.ZombieEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;

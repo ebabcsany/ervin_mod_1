@@ -5,15 +5,13 @@ import com.babcsany.minecraft.ervin_mod_1.entity.animal.*;
 import com.babcsany.minecraft.ervin_mod_1.entity.animal.hhij.HhijAnimalEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.animal.hhij.HhijEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.fish.GubrovEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.item.ModBoatEntity;
+import com.babcsany.minecraft.ervin_mod_1.entity.item.ModBoatEntityhj;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.*;
-import com.babcsany.minecraft.ervin_mod_1.entity.projectile.HuihkEntity;
+import com.babcsany.minecraft.ervin_mod_1.entity.player.PlayerEntity1;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.*;
 import net.minecraft.entity.*;
-import net.minecraft.entity.monster.SkeletonEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.fish.AbstractFishEntity;
-import net.minecraft.entity.projectile.FishingBobberEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
@@ -27,9 +25,10 @@ import java.util.function.BiFunction;
 
 public class EntityInit {
 
-    public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITIES,
-            Ervin_mod_1.MOD_ID);
+    public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITIES, Ervin_mod_1.MOD_ID);
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES1;
+
+    //public static final EntityType<PlayerEntity1> PLAYER1 = register("ervin_mod_1:player", EntityType.Builder.<PlayerEntity1>create(EntityClassification.MISC).disableSerialization().disableSummoning().size(0.6F, 1.8F).func_233606_a_(32).func_233608_b_(2));
 
     public static final RegistryObject<EntityType<Liwray>> LIWRAY = ENTITY_TYPES.register("liwray", () -> EntityType.Builder.create(Liwray::new, EntityClassification.CREATURE).size(0.9f, 1.3f).func_233606_a_(10).build(new ResourceLocation(Ervin_mod_1.MOD_ID, "textures/entity/zur_entity_1.png").toString()));
     //public static final EntityType<Liwray> LIWRAY = register("ervin_mod_1:liwray", EntityType.Builder.create(Liwray::new, EntityClassification.CREATURE).size(0.9f, 1.3f).func_233606_a_(10).immuneToFire());
@@ -53,9 +52,9 @@ public class EntityInit {
     public static final RegistryObject<EntityType<SrachEntity>> SRACH_ENTITY = ENTITY_TYPES.register("srach_entity", () -> EntityType.Builder.create(SrachEntity::new, EntityClassification.CREATURE).size(0.9f, 1.4f).func_233606_a_(12).build(new ResourceLocation(Ervin_mod_1.MOD_ID, "entity/srach/srach").toString()));
     public static final RegistryObject<EntityType<ShertEntity>> SHERT_ENTITY = ENTITY_TYPES.register("shert_entity", () -> EntityType.Builder.create(ShertEntity::new, EntityClassification.CREATURE).size(0.9f, 1.4f).func_233606_a_(13).build(new ResourceLocation(Ervin_mod_1.MOD_ID, "entity/srach/shert").toString()));
     public static final RegistryObject<EntityType<HhijEntity>> HHIJ_ENTITY = ENTITY_TYPES.register("hhij", () -> EntityType.Builder.create(HhijEntity::new, EntityClassification.CREATURE).size(0.6f, 0.85f).func_233606_a_(20).immuneToFire().build(new ResourceLocation(Ervin_mod_1.MOD_ID, "entity/srach/shert").toString()));
-    public static final RegistryObject<EntityType<ModBoatEntity>> MOD_BOAT_ENTITY = ENTITY_TYPES
+    public static final RegistryObject<EntityType<ModBoatEntityhj>> MOD_BOAT_ENTITY = ENTITY_TYPES
             .register("boat",
-                    () -> EntityType.Builder.<ModBoatEntity>create(ModBoatEntity::new, EntityClassification.MISC)
+                    () -> EntityType.Builder.<ModBoatEntityhj>create(ModBoatEntityhj::new, EntityClassification.MISC)
                             .size(1.375F, 0.5625F).func_233606_a_(6)
                             .build(new ResourceLocation(Ervin_mod_1.MOD_ID, "entity/boat/firg").toString()
                             ));

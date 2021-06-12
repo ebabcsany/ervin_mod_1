@@ -1,49 +1,5 @@
 package com.babcsany.minecraft.ervin_mod_1.fluid;
 
-import com.google.common.collect.ImmutableMap;
-import com.mojang.datafixers.util.Pair;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockRenderType;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.material.MaterialColor;
-import net.minecraft.block.material.PushReaction;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.pathfinding.PathType;
-import net.minecraft.state.Property;
-import net.minecraft.state.StateHolder;
-import net.minecraft.state.StateContainer;
-import net.minecraft.state.StateHolder;
-import net.minecraft.tags.Tag;
-import net.minecraft.util.*;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.shapes.VoxelShapes;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.*;
-import net.minecraft.world.server.ServerWorld;
-import net.minecraft.loot.LootContext;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-
-import javax.annotation.Nullable;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Random;
-import java.util.stream.Collectors;
-
 public class BlockState1 /*extends StateHolder<Block, BlockState1> implements IStateHolder<BlockState1>, net.minecraftforge.common.extensions.IForgeBlockState*/ {
    /*@Nullable
    private BlockState1.Cache cache;

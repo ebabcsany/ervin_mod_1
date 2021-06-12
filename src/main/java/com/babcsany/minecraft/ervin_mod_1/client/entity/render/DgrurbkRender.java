@@ -1,8 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.client.entity.render;
 
-import com.babcsany.minecraft.ervin_mod_1.client.entity.model.DgrurbModel;
 import com.babcsany.minecraft.ervin_mod_1.client.entity.model.DgrurbkModel;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.Dgrurb;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.Dgrurbk;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraftforge.api.distmarker.Dist;

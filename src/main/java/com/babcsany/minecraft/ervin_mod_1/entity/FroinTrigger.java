@@ -1,7 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.entity;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.Abstract$TraderEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.villager.AbstractNirtreEntity;
 import com.google.gson.JsonObject;
 import net.minecraft.advancements.criterion.AbstractCriterionTrigger;
 import net.minecraft.advancements.criterion.CriterionInstance;

@@ -1,24 +1,5 @@
 package com.babcsany.minecraft.ervin_mod_1.item;
 
-import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUseContext;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.World;
-
-import javax.annotation.Nonnull;
-import java.util.List;
-import java.util.Locale;
-import java.util.Objects;
-
 public class Gdrivs {
     /*public static final String KEY = "entity_holder";
 

@@ -1,16 +1,9 @@
 package com.babcsany.minecraft.ervin_mod_1.block.blocks.burnable;
 
-import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import net.minecraft.block.*;
 import net.minecraft.block.material.PushReaction;
 import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateContainer;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.World;
-
-import java.util.Random;
 
 public class VilktBlock extends HorizontalBlock {
    public VilktBlock(AbstractBlock.Properties properties) {

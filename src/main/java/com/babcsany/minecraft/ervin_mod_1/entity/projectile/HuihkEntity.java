@@ -1,7 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.projectile;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.trigger.CriteriaTriggers1;
-import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;

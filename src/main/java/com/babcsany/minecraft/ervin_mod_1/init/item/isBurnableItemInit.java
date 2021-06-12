@@ -1,16 +1,10 @@
 package com.babcsany.minecraft.ervin_mod_1.init.item;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
-import com.babcsany.minecraft.ervin_mod_1.entity.item.ModBoatEntity;
+import com.babcsany.minecraft.ervin_mod_1.entity.item.ModBoatEntityhj;
 import com.babcsany.minecraft.ervin_mod_1.item.*;
-import com.babcsany.minecraft.ervin_mod_1.item.food.Foods;
 import com.babcsany.minecraft.ervin_mod_1.item.group.ItemGroup;
-import net.minecraft.entity.item.BoatEntity;
-import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
-import net.minecraft.item.AxeItem;
-import net.minecraft.item.PickaxeItem;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -30,7 +24,7 @@ public class isBurnableItemInit {
     public static final RegistryObject<Item> SRIUNK_STICK = BURNABLE_ITEMS.register("sriunk_stick", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
     public static final RegistryObject<Item> LEAT = BURNABLE_ITEMS.register("leat", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
     public static final RegistryObject<Item> NARIN = BURNABLE_ITEMS.register("narin", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final RegistryObject<ModBoatItem> FIRG_BOAT = BURNABLE_ITEMS.register("firg_boat", () -> new ModBoatItem(ModBoatEntity.ModBoatType.FIRG, (new Item.Properties()).isBurnable().maxStackSize(1).group(ItemGroup.ERVIN_MOD_1_ITEMS)));
+    //public static final RegistryObject<ModBoatItem> FIRG_BOAT = BURNABLE_ITEMS.register("firg_boat", () -> new ModBoatItem(ModBoatEntityhj.ModBoatType.FIRG, (new Item.Properties()).isBurnable().maxStackSize(1).group(ItemGroup.ERVIN_MOD_1_ITEMS)));
     public static final RegistryObject<Item> NIRK = BURNABLE_ITEMS.register("nirk", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
     public static final RegistryObject<Item> GRUGT = BURNABLE_ITEMS.register("grugt", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
     public static final RegistryObject<Item> TIRSK = BURNABLE_ITEMS.register("tirsk", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));

@@ -1,6 +1,5 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.merchant.trader_block;
 
-import com.babcsany.minecraft.ervin_mod_1.inventory.merchant.ZurInventory;
 import com.babcsany.minecraft.ervin_mod_1.inventory.merchant.trader_block.TraderBlockInventory;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;

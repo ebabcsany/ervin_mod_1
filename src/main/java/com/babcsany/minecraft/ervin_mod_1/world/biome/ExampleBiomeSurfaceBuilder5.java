@@ -21,7 +21,7 @@ public class ExampleBiomeSurfaceBuilder5 extends SurfaceBuilder<SurfaceBuilderCo
 
 	@Override
 	public void buildSurface(Random random, IChunk chunkIn, Biome biomeIn, int x, int z, int startHeight, double noise,
-			BlockState defaultBlock, BlockState defaultFluid, int seaLevel, long seed, SurfaceBuilderConfig config) {
+							 BlockState defaultBlock, BlockState defaultFluid, int seaLevel, long seed, SurfaceBuilderConfig config) {
 		Random rd = new Random();
 		int i = rd.nextInt(14);
 		if (i == 0) {

@@ -12,7 +12,6 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.ai.controller.MovementController;
 import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.monster.ZombifiedPiglinEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.TridentEntity;
@@ -319,12 +318,8 @@ public class RoventEntity extends ZurEntity implements IRangedAttackMob {
       Path path = this.getNavigator().getPath();
       if (path != null) {
          BlockPos blockpos = path.getTarget();
-         if (blockpos != null) {
-            double d0 = this.getDistanceSq((double)blockpos.getX(), (double)blockpos.getY(), (double)blockpos.getZ());
-            if (d0 < 4.0D) {
-               return true;
-            }
-         }
+         double d0 = this.getDistanceSq(blockpos.getX(), blockpos.getY(), blockpos.getZ());
+         return d0 < 4.0D;
       }
 
       return false;
@@ -338,7 +333,7 @@ public class RoventEntity extends ZurEntity implements IRangedAttackMob {
       double d0 = target.getPosX() - this.getPosX();
       double d1 = target.getPosYHeight(0.3333333333333333D) - tridententity.getPosY();
       double d2 = target.getPosZ() - this.getPosZ();
-      double d3 = (double)MathHelper.sqrt(d0 * d0 + d2 * d2);
+      double d3 = MathHelper.sqrt(d0 * d0 + d2 * d2);
       tridententity.shoot(d0, d1 + d3 * (double)0.2F, d2, 1.6F, (float)(14 - this.world.getDifficulty().getId() * 4));
       this.playSound(SoundEvents.ENTITY_DROWNED_SHOOT, 1.0F, 1.0F / (this.getRNG().nextFloat() * 0.4F + 0.8F));
       this.world.addEntity(tridententity);

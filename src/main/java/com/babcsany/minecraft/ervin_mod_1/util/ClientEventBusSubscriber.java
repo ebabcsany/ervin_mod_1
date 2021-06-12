@@ -5,45 +5,19 @@ import com.babcsany.minecraft.ervin_mod_1.client.entity.render.*;
 import com.babcsany.minecraft.ervin_mod_1.client.gui.screen.*;
 import com.babcsany.minecraft.ervin_mod_1.client.gui.screen.merchant.ZurScreen;
 import com.babcsany.minecraft.ervin_mod_1.client.renderer.entity.ModBoatRender;
-import com.babcsany.minecraft.ervin_mod_1.entity.animal.*;
-import com.babcsany.minecraft.ervin_mod_1.entity.animal.hhij.HhijEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.RoventEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.villager.$TraderEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.villager.Abstract$TraderEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.villager.WanderingTraderNirtreEntity;
 import com.babcsany.minecraft.ervin_mod_1.init.*;
 import com.babcsany.minecraft.ervin_mod_1.init.container.ContainerInit;
-import com.babcsany.minecraft.ervin_mod_1.world.feature.ModDefaultBiomeFeatures;
-import io.netty.buffer.ByteBuf;
-import net.minecraft.block.BlockState;
+import com.babcsany.minecraft.renderer.entity.ModBoatRenderer;
 import net.minecraft.client.gui.ScreenManager;
-import net.minecraft.entity.*;
-import net.minecraft.entity.passive.AnimalEntity;
-import net.minecraft.entity.passive.fish.AbstractFishEntity;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.RegistryKey;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.*;
-import net.minecraft.world.gen.GenerationStage;
-import net.minecraft.world.gen.Heightmap;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.OreFeatureConfig;
-import net.minecraft.world.gen.placement.CountRangeConfig;
-import net.minecraft.world.gen.placement.DepthAverageConfig;
-import net.minecraft.world.gen.placement.Placement;
+import net.minecraft.client.renderer.entity.*;
+import net.minecraft.entity.EntityType;
+import net.minecraft.resources.IReloadableResourceManager;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DeferredWorkQueue;
-import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.network.FMLPlayMessages;
-
-import java.util.Random;
 
 @Mod.EventBusSubscriber(modid = Ervin_mod_1.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ClientEventBusSubscriber {
@@ -70,6 +44,7 @@ public class ClientEventBusSubscriber {
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.$_TRADER_ENTITY.get(), $TraderRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.ZOMBIE_TRADER_ENTITY.get(), ZombieTraderRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.GUBROV_ENTITY.get(), GubrovRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(com.babcsany.minecraft.init.EntityInit.MOD_BOAT, ModBoatRenderer::new);
         //RenderingRegistry.registerEntityRenderingHandler(EntityInit.HUIHK, HuihkRender::new);
 
         //EntitySpawnPlacementRegistry.canSpawnEntity(EntityInit.$_TRADER_ENTITY.get(), World.field_234917_f_.comapFlatMap(), SpawnReason.NATURAL);
@@ -98,10 +73,4 @@ public class ClientEventBusSubscriber {
             ScreenManager.registerFactory(ContainerInit.ZUR.get(), ZurScreen::new);
         });
     }
-
-    /*private static final BlockState RUBY_ORE = BlockItemInit.RUBY_ORE.get().getDefaultState();
-    public static void addOres(PlainsBiome plainsBiome, DesertBiome desertBiome) {
-        plainsBiome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, RUBY_ORE, 6)).withPlacement(Placement.COUNT_DEPTH_AVERAGE.configure(new DepthAverageConfig(2, 32, 32))));
-        desertBiome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, RUBY_ORE, 6)).withPlacement(Placement.COUNT_DEPTH_AVERAGE.configure(new DepthAverageConfig(2, 32, 32))));
-    }*/
 }

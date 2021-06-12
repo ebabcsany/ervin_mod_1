@@ -36,8 +36,8 @@ public class FluidInit {
 
 	//public static final RegistryObject<FlowingFluid> FLOWING_JURK = FLUIDS.register("flowing_jurk", () -> new JurkFluid.Flowing());
 	//public static final RegistryObject<FlowingFluid> JURK = FLUIDS.register("jurk", () -> new JurkFluid.Source());
-	public static final RegistryObject<FlowingFluid> FLOWING_JURK = FLUIDS.register("flowing_jurk", () -> new WaterFluid.Flowing());
-	public static final RegistryObject<FlowingFluid> JURK = FLUIDS.register("jurk", () -> new WaterFluid.Source());
+	public static final RegistryObject<FlowingFluid> FLOWING_JURK = FLUIDS.register("flowing_jurkt", WaterFluid.Flowing::new);
+	public static final RegistryObject<FlowingFluid> JURK = FLUIDS.register("jurkt", WaterFluid.Source::new);
 
 	public static final RegistryObject<FlowingFluid> MILK_FLUID = FLUIDS.register("milk_fluid",
 			() -> new ForgeFlowingFluid.Source(FluidInit.MILK_PROPERTIES));

@@ -64,7 +64,7 @@ public class ChakTraderEntity extends AnimalEntity {
       ItemStack itemstack = p_230254_1_.getHeldItem(p_230254_2_);
       if (itemstack.getItem() == Items.BUCKET && !this.isChild()) {
          p_230254_1_.playSound(SoundEvents.ENTITY_COW_MILK, 1.0F, 1.0F);
-         ItemStack itemstack1 = DrinkHelper.func_241445_a_(itemstack, p_230254_1_, ItemInit.JURK_BUCKET.get().getDefaultInstance());
+         ItemStack itemstack1 = DrinkHelper.func_241445_a_(itemstack, p_230254_1_, ItemInit.JURK_BUCKETI.get().getDefaultInstance());
          p_230254_1_.setHeldItem(p_230254_2_, itemstack1);
          return ActionResultType.func_233537_a_(this.world.isRemote);
       } else {

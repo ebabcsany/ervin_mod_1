@@ -1,13 +1,16 @@
 package com.babcsany.minecraft.ervin_mod_1;
 
+import com.babcsany.minecraft.forge.DeferredWorkQueue;
 import com.babcsany.minecraft.ervin_mod_1.block.blocks.Hurvruj;
 import com.babcsany.minecraft.ervin_mod_1.entity.animal.hhij.HhijAnimalEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.*;
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.minecraft.block.MinecraftBlocks;
 import com.babcsany.minecraft.ervin_mod_1.world.gen.FeatureGen;
-import com.babcsany.minecraft.ervin_mod_1.world.minecraft.ModBiomeDictionary;
 import net.minecraft.block.*;
+import net.minecraft.client.renderer.model.RenderMaterial;
+import net.minecraft.client.renderer.texture.AtlasTexture;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
@@ -21,9 +24,8 @@ import net.minecraft.potion.Effects;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.IWorld;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.provider.OverworldBiomeProvider;
 import net.minecraft.world.gen.Heightmap;
 import com.babcsany.minecraft.ervin_mod_1.entity.animal.*;
 import com.babcsany.minecraft.ervin_mod_1.entity.animal.hhij.HhijEntity;
@@ -63,13 +65,11 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ITag;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
@@ -90,9 +90,9 @@ import java.util.stream.Collectors;
 @Mod(Ervin_mod_1.MOD_ID)
 public class Ervin_mod_1 {
 
+    public static final RenderMaterial LOCATION_WATER_FLOW = new RenderMaterial(AtlasTexture.LOCATION_BLOCKS_TEXTURE, new ResourceLocation("block/water_flow"));
+    public static final RenderMaterial LOCATION_WATER_OVERLAY = new RenderMaterial(AtlasTexture.LOCATION_BLOCKS_TEXTURE, new ResourceLocation("block/water_overlay"));
     public static final String MOD_ID = "ervin_mod_1";
-    IWorld iWorld;
-    //final ResourceLocation name;
     //public static final ITag<EntityType<?>> blacklisted = EntityTypeTags.func_232896_a_((new ResourceLocation("ervin_mod_1", "blacklisted")).toString());
     // Directly reference a log4j logger.
     public static final Logger LOGGER = LogManager.getLogger();
@@ -171,6 +171,12 @@ public class Ervin_mod_1 {
         MinecraftBlocks.BLOCKS.register(modEventBus);
         com.babcsany.minecraft.ervin_mod_1.init.minecraft.block.item.BlockNamedItemInit.BLOCK_ITEMS.register(modEventBus);
         com.babcsany.minecraft.ervin_mod_1.init.item.block.isBurnableBlockItemInit.BLOCK_ITEMS.register(modEventBus);
+
+        com.babcsany.minecraft.init.BlockInit.BLOCKS.register(modEventBus);
+        com.babcsany.minecraft.init.BlockItemInit.BLOCK_ITEMS.register(modEventBus);
+        com.babcsany.minecraft.init.EntityInit.ENTITIES.register(modEventBus);
+        //com.babcsany.minecraft.init.FluidInit.FLUIDS.register(modEventBus);
+        com.babcsany.minecraft.init.ItemInit.ITEMS.register(modEventBus);
     }
 
     private void setup(final FMLCommonSetupEvent event) {
@@ -216,6 +222,15 @@ public class Ervin_mod_1 {
             EntitySpawnPlacementRegistry.getPlacementType(EntityInit.LIWRAY.get());
             EntitySpawnPlacementRegistry.getPlacementType(EntityInit.ZUR_ENTITY);
 
+            float f_0_3F = 0.3F;
+            float f_0_35F = 0.35F;
+            float f_0_4F = 0.4F;
+            float f_0_45F = 0.45F;
+            float f_0_5F = 0.5F;
+            float f_0_65F = 0.65F;
+            float f_0_7F = 0.7F;
+            float f3 = 0.85F;
+            float f4 = 1.0F;
             ComposterBlock.registerCompostable(0.3F, BlockNamedItemInit.TARG_SEEDS.get());
             ComposterBlock.registerCompostable(0.35F, BlockItemInit.FRIM_LEAVES.get());
             ComposterBlock.registerCompostable(0.35F, BlockItemInit.FRIM_SAPLING.get());
@@ -236,16 +251,12 @@ public class Ervin_mod_1 {
             ComposterBlock.registerCompostable(64.0F, isBurnableFoodItemInit.DURG.get());
             ComposterBlock.registerCompostable(210.0F, SpecialBlockFoodItemInit.VIRK_BLOCK.get());
 
+            //BiomeInit.registerBiomes();
         });
 
         DeferredWorkQueue.runLater(FeatureGen::GenerateFeature);
-        //DeferredWorkQueue.runLater(FeatureGen::getSpawns);
-
-        OverworldBiomeProvider.BIOMES_TO_SPAWN_IN.add(BiomeInit.MIG_BIOME.get());
-        OverworldBiomeProvider.BIOMES_TO_SPAWN_IN.add(BiomeInit.MIGV_BIOME.get());
-
-        ModBiomeDictionary.addTypes(BiomeInit.MIG_BIOME.get(), ModBiomeDictionary.Type.OCEAN, ModBiomeDictionary.Type.MIG, ModBiomeDictionary.Type.OVERWORLD);
-        ModBiomeDictionary.addTypes(BiomeInit.MIGV_BIOME.get(), ModBiomeDictionary.Type.OCEAN, ModBiomeDictionary.Type.MIG, ModBiomeDictionary.Type.HOT, ModBiomeDictionary.Type.OVERWORLD);
+        DeferredWorkQueue.runLater(FeatureGen::getSpawns);
+        //DeferredWorkQueue.runLater(BiomeInit::registerBiomes);
 
         /*Map<Item, Integer> map = Maps.newLinkedHashMap();
         AbstractFurnaceTileEntity.addItemBurnTime(map, BlockItemInit.COAL_SLAB.get(), 8000);
@@ -283,7 +294,37 @@ public class Ervin_mod_1 {
         AbstractFurnaceTileEntity.addItemBurnTime(map, BlockItemInit.FIRT_BLOCK.get(), 12000);*/
     }
 
-    /**private int getInventoryStackLimit() {
+    /**protected static final Set<RenderMaterial> LOCATIONS_BUILTIN_TEXTURES = Util.make(Sets.newHashSet(), (p_229337_0_) -> {
+        p_229337_0_.add(LOCATION_WATER_FLOW);
+        //p_229337_0_.add(LOCATION_LAVA_FLOW);
+        p_229337_0_.add(LOCATION_WATER_OVERLAY);
+        //p_229337_0_.add(LOCATION_FIRE_0);
+        //p_229337_0_.add(LOCATION_FIRE_1);
+        p_229337_0_.add(BellTileEntityRenderer.BELL_BODY_TEXTURE);
+        p_229337_0_.add(ConduitTileEntityRenderer.BASE_TEXTURE);
+        p_229337_0_.add(ConduitTileEntityRenderer.CAGE_TEXTURE);
+        p_229337_0_.add(ConduitTileEntityRenderer.WIND_TEXTURE);
+        p_229337_0_.add(ConduitTileEntityRenderer.VERTICAL_WIND_TEXTURE);
+        p_229337_0_.add(ConduitTileEntityRenderer.OPEN_EYE_TEXTURE);
+        p_229337_0_.add(ConduitTileEntityRenderer.CLOSED_EYE_TEXTURE);
+        p_229337_0_.add(EnchantmentTableTileEntityRenderer.TEXTURE_BOOK);
+        //p_229337_0_.add(LOCATION_BANNER_BASE);
+        //p_229337_0_.add(LOCATION_SHIELD_BASE);
+        //p_229337_0_.add(LOCATION_SHIELD_NO_PATTERN);
+
+        for(ResourceLocation resourcelocation : DESTROY_STAGES) {
+            p_229337_0_.add(new RenderMaterial(AtlasTexture.LOCATION_BLOCKS_TEXTURE, resourcelocation));
+        }
+
+        p_229337_0_.add(new RenderMaterial(AtlasTexture.LOCATION_BLOCKS_TEXTURE, PlayerContainer1.EMPTY_ARMOR_SLOT_HELMET));
+        p_229337_0_.add(new RenderMaterial(AtlasTexture.LOCATION_BLOCKS_TEXTURE, PlayerContainer1.EMPTY_ARMOR_SLOT_CHESTPLATE));
+        p_229337_0_.add(new RenderMaterial(AtlasTexture.LOCATION_BLOCKS_TEXTURE, PlayerContainer1.EMPTY_ARMOR_SLOT_LEGGINGS));
+        p_229337_0_.add(new RenderMaterial(AtlasTexture.LOCATION_BLOCKS_TEXTURE, PlayerContainer1.EMPTY_ARMOR_SLOT_BOOTS));
+        p_229337_0_.add(new RenderMaterial(AtlasTexture.LOCATION_BLOCKS_TEXTURE, PlayerContainer1.EMPTY_ARMOR_SLOT_SHIELD));
+        Atlases.collectAllMaterials(p_229337_0_::add);
+    });* /
+
+    /*private int getInventoryStackLimit() {
         return 2048;
     }*/
 
@@ -326,7 +367,6 @@ public class Ervin_mod_1 {
 
         @SubscribeEvent
         public static void onRegisterBiomes(final RegistryEvent.Register<Biome> event) {
-            final IForgeRegistry<Biome> registry = event.getRegistry();
             BiomeInit.registerBiomes();
         }
 
@@ -455,6 +495,22 @@ public class Ervin_mod_1 {
             player.addPotionEffect(new EffectInstance(Effects.WATER_BREATHING, 200, 0, false, false, true));
         }
 
+    }
+
+    public static Block blockRegister(String key, Block blockIn) {
+        return Registry.register(Registry.BLOCK, key, blockIn);
+    }
+
+    public static Item itemRegister(ResourceLocation key, Item itemIn) {
+        if (itemIn instanceof BlockItem) {
+            ((BlockItem)itemIn).addToBlockToItemMap(Item.BLOCK_TO_ITEM, itemIn);
+        }
+
+        return Registry.register(Registry.ITEM, key, itemIn);
+    }
+
+    public static <T extends Entity> EntityType<T> entityRegister(String key, EntityType.Builder<T> builder) {
+        return Registry.register(Registry.ENTITY_TYPE, key, builder.build(key));
     }
 
     /*@Nullable
@@ -601,7 +657,7 @@ public class Ervin_mod_1 {
         }
 
         private static String createConfigName(String name) {
-            return "pandoras_creatures-" + name + ".toml";
+            return "ervin_mod_1-" + name + ".toml";
         }
     }*/
 }

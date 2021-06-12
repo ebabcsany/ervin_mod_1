@@ -39,7 +39,6 @@ public class Item extends net.minecraftforge.registries.ForgeRegistryEntry<Item>
    protected static final UUID ATTACK_SPEED_MODIFIER = UUID.fromString("FA233E1C-4180-4865-B01B-BCCE9785ACA3");
    protected static final Random random = new Random();
    protected final ItemGroup group;
-   protected final com.babcsany.minecraft.ervin_mod_1.item.group.ItemGroup group1;
    private final Rarity rarity;
    private final int maxStackSize;
    private final int maxDamage;
@@ -51,7 +50,7 @@ public class Item extends net.minecraftforge.registries.ForgeRegistryEntry<Item>
    private final Food food;
 
    public static int getIdFromItem(Item itemIn) {
-      return Registry.ITEM.getId(itemIn);
+      return itemIn == null ? 0 : Registry.ITEM.getId(itemIn);
    }
 
    public static Item getItemById(int id) {
@@ -65,7 +64,6 @@ public class Item extends net.minecraftforge.registries.ForgeRegistryEntry<Item>
 
    public Item(Properties properties) {
       this.group = properties.group;
-      this.group1 = properties.group1;
       this.rarity = properties.rarity;
       this.containerItem = properties.containerItem;
       this.maxDamage = properties.maxDamage;
@@ -131,7 +129,6 @@ public class Item extends net.minecraftforge.registries.ForgeRegistryEntry<Item>
    /**
     * Called when the player finishes using this Item (E.g. finishes eating.). Not called when the player stops using
     * the Item before the action is complete.
-    * @return
     */
    public ItemStack onItemUseFinish(ItemStack stack, World worldIn, LivingEntity entityLiving) {
       return this.isFood() ? entityLiving.onFoodEaten(worldIn, stack) : stack;
@@ -364,26 +361,10 @@ public class Item extends net.minecraftforge.registries.ForgeRegistryEntry<Item>
 
    }
 
-   /**
-    * returns a list of items with the same ID, but different meta (eg: dye returns 16 items)
-    */
-   public void fillItemGroup1(com.babcsany.minecraft.ervin_mod_1.item.group.ItemGroup group, NonNullList<ItemStack> items) {
-      if (this.isInGroup1(group)) {
-         items.add(new ItemStack(this));
-      }
-
-   }
-
    protected boolean isInGroup(ItemGroup group) {
       if (getCreativeTabs().stream().anyMatch(tab -> tab == group)) return true;
       ItemGroup itemgroup = this.getGroup();
       return itemgroup != null && (group == ItemGroup.SEARCH || group == itemgroup);
-   }
-
-   protected boolean isInGroup1(com.babcsany.minecraft.ervin_mod_1.item.group.ItemGroup group) {
-      if (getCreativeTabs1().stream().anyMatch(tab -> tab == group1)) return true;
-      com.babcsany.minecraft.ervin_mod_1.item.group.ItemGroup itemgroup = this.getGroup1();
-      return itemgroup != null;
    }
 
    /**
@@ -392,11 +373,6 @@ public class Item extends net.minecraftforge.registries.ForgeRegistryEntry<Item>
    @Nullable
    public final ItemGroup getGroup() {
       return this.group;
-   }
-
-   @Nullable
-   public final com.babcsany.minecraft.ervin_mod_1.item.group.ItemGroup getGroup1() {
-      return this.group1;
    }
 
    /**
@@ -408,7 +384,6 @@ public class Item extends net.minecraftforge.registries.ForgeRegistryEntry<Item>
 
    /**
     * Gets a map of item attribute modifiers, used by ItemSword to increase hit damage.
-    * @return
     */
    @Deprecated // Use ItemStack sensitive version.
    public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlotType equipmentSlot) {
@@ -493,11 +468,9 @@ public class Item extends net.minecraftforge.registries.ForgeRegistryEntry<Item>
       private int maxDamage;
       private Item containerItem;
       private ItemGroup group;
-      private com.babcsany.minecraft.ervin_mod_1.item.group.ItemGroup group1;
       private Rarity rarity = Rarity.COMMON;
       /** Sets food information to this item */
       private Food food;
-      private com.babcsany.minecraft.ervin_mod_1.init.item.food.Food modFood;
       private boolean burnable;
       private boolean canRepair = true;
       private Map<net.minecraftforge.common.ToolType, Integer> toolClasses = Maps.newHashMap();
@@ -505,11 +478,6 @@ public class Item extends net.minecraftforge.registries.ForgeRegistryEntry<Item>
 
       public Properties food(Food foodIn) {
          this.food = foodIn;
-         return this;
-      }
-
-      public Properties modFood(com.babcsany.minecraft.ervin_mod_1.init.item.food.Food foodIn) {
-         this.modFood = foodIn;
          return this;
       }
 
@@ -539,11 +507,6 @@ public class Item extends net.minecraftforge.registries.ForgeRegistryEntry<Item>
 
       public Properties group(ItemGroup groupIn) {
          this.group = groupIn;
-         return this;
-      }
-
-      public Properties group1(com.babcsany.minecraft.ervin_mod_1.item.group.ItemGroup groupIn) {
-         this.group1 = groupIn;
          return this;
       }
 

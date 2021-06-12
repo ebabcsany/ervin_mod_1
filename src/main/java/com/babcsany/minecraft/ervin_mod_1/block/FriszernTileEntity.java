@@ -12,6 +12,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.CommandBlockLogic;
+import net.minecraft.tileentity.CommandBlockTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.math.BlockPos;
@@ -61,7 +62,7 @@ public class FriszernTileEntity extends TileEntity {
    }
 
    public FriszernTileEntity() {
-      super(TileEntityInit.FRISZERN.get());
+      super(TileEntityInit.FRISZERN);
    }
 
    public CompoundNBT write(CompoundNBT compound) {
@@ -179,12 +180,12 @@ public class FriszernTileEntity extends TileEntity {
 
    public FriszernTileEntity.Mode getMode() {
       BlockState blockState = this.getBlockState();
-      if (blockState.isIn(BlockInit.FRISZERN.get())) {
+      if (blockState.isIn(BlockInit.FRISZERN)) {
          return FriszernTileEntity.Mode.REDSTONE;
-      } else if (blockState.isIn(BlockInit.REPEATER_FRISZERN.get())) {
+      } else if (blockState.isIn(BlockInit.REPEATING_FRISZERN)) {
          return FriszernTileEntity.Mode.AUTO;
       } else {
-         return blockState.isIn(BlockInit.CHAIN_FRISZERN.get()) ? FriszernTileEntity.Mode.SEQUENCE : FriszernTileEntity.Mode.REDSTONE;
+         return blockState.isIn(BlockInit.CHAIN_FRISZERN) ? FriszernTileEntity.Mode.SEQUENCE : FriszernTileEntity.Mode.REDSTONE;
       }
    }
 

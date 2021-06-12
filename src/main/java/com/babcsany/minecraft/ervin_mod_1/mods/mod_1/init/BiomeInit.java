@@ -1,10 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.mods.mod_1.init;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
-import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit;
-import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
-import com.babcsany.minecraft.ervin_mod_1.mods.mod_1.Mod_1;
 import com.babcsany.minecraft.ervin_mod_1.world.biome.*;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.block.Blocks;

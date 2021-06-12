@@ -70,8 +70,16 @@ public class GenOreFeatureConfig implements IFeatureConfig {
             return natural_dirts.isIn(Blocks.DIRT) || natural_dirts.isIn(Blocks.GRASS_BLOCK) || natural_dirts.isIn(Blocks.COARSE_DIRT) || natural_dirts.isIn(Blocks.GRASS_PATH) || natural_dirts.isIn(Blocks.PODZOL);
          }
       }),
+      TERRACOTTA_VARIANTS("terracotta_variants", (terracotta_variants) -> {
+         if (terracotta_variants == null) {
+            return false;
+         } else {
+            return terracotta_variants.isIn(Blocks.TERRACOTTA) || terracotta_variants.isIn(Blocks.BLACK_TERRACOTTA) || terracotta_variants.isIn(Blocks.BLUE_TERRACOTTA) || terracotta_variants.isIn(Blocks.BROWN_TERRACOTTA) || terracotta_variants.isIn(Blocks.CYAN_TERRACOTTA) || terracotta_variants.isIn(Blocks.GRAY_TERRACOTTA) || terracotta_variants.isIn(Blocks.GREEN_TERRACOTTA) || terracotta_variants.isIn(Blocks.LIGHT_BLUE_TERRACOTTA) || terracotta_variants.isIn(Blocks.LIGHT_GRAY_TERRACOTTA) || terracotta_variants.isIn(Blocks.LIME_TERRACOTTA) || terracotta_variants.isIn(Blocks.MAGENTA_TERRACOTTA) || terracotta_variants.isIn(Blocks.ORANGE_TERRACOTTA) || terracotta_variants.isIn(Blocks.PINK_TERRACOTTA) || terracotta_variants.isIn(Blocks.PURPLE_TERRACOTTA) || terracotta_variants.isIn(Blocks.RED_TERRACOTTA) || terracotta_variants.isIn(Blocks.WHITE_TERRACOTTA) || terracotta_variants.isIn(Blocks.YELLOW_TERRACOTTA);
+         }
+      }),
       TRIRIJ("tririj", new BlockMatcher(isBurnableBlockItemInit.TRIRIJ)),
       DIRT("dirt", new BlockMatcher(Blocks.DIRT)),
+      RED_SAND("red_sand", new BlockMatcher(Blocks.RED_SAND)),
       WATER("water", new BlockMatcher(Blocks.WATER)),
       MAGMA_BLOCK("magma_block", new BlockMatcher(Blocks.MAGMA_BLOCK)),
       END_STONE("end_stone", new BlockMatcher(Blocks.END_STONE)),

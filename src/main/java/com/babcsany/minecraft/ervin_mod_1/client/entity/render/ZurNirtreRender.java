@@ -1,8 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.client.entity.render;
 
 import com.babcsany.minecraft.ervin_mod_1.client.entity.model.ZurEntityModel;
-import com.babcsany.minecraft.ervin_mod_1.client.entity.model.ZurNirtreModel;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurNirtreEntity;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraftforge.api.distmarker.Dist;

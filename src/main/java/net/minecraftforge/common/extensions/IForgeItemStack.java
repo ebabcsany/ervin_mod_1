@@ -26,6 +26,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.monster.EndermanEntity;
+import net.minecraft.entity.monster.piglin.PiglinTasks;
 import net.minecraft.entity.passive.horse.HorseEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -451,9 +452,14 @@ public interface IForgeItemStack extends ICapabilitySerializable<CompoundNBT>
         return getStack().getItem().isPiglinCurrency(getStack());
     }
 
-    default boolean isZurCurrency()
+    default boolean isZurCurrency(ItemStack stack)
     {
-        return getStack().getItem().isZurCurrency(getStack());
+        return getStack().isZurCurrency(getStack());
+    }
+
+    default boolean isPiglinCurrency(ItemStack stack)
+    {
+        return stack.getItem() == PiglinTasks.field_234444_a_;
     }
 
     /**
@@ -467,11 +473,6 @@ public interface IForgeItemStack extends ICapabilitySerializable<CompoundNBT>
     default boolean makesPiglinsNeutral(LivingEntity wearer)
     {
         return getStack().getItem().makesPiglinsNeutral(getStack(), wearer);
-    }
-
-    default boolean makesZursNeutral(LivingEntity wearer)
-    {
-        return getStack().getItem().makesZursNeutral(getStack(), wearer);
     }
 
     /**

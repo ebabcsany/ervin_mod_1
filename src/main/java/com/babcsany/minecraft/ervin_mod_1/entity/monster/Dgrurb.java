@@ -1,6 +1,5 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.monster;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.villager.TraderNirtre1Entity;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
@@ -8,7 +7,6 @@ import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
@@ -26,8 +24,6 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import java.util.UUID;
 
 import static com.babcsany.minecraft.ervin_mod_1.entity.monster.AbstractZurEntity.BABY_SPEED_BOOST;
 

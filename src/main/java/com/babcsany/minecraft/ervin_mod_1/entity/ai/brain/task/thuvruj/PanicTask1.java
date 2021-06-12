@@ -1,15 +1,5 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.ai.brain.task.thuvruj;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.villager.ThuvrujEntity;
-import com.google.common.collect.ImmutableMap;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.brain.Brain;
-import net.minecraft.entity.ai.brain.memory.MemoryModuleType;
-import net.minecraft.entity.ai.brain.schedule.Activity;
-import net.minecraft.entity.ai.brain.task.Task;
-import net.minecraft.entity.merchant.villager.VillagerEntity;
-import net.minecraft.world.server.ServerWorld;
-
 /*public class PanicTask1 extends Task<ThuvrujEntity> {
    public PanicTask1() {
       super(ImmutableMap.of());

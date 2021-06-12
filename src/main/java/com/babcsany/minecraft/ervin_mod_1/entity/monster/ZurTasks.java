@@ -1,7 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.monster;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.task.*;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.task.SupplementedTask;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.task.Task;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.task.WalkToTargetTask;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
@@ -21,7 +20,6 @@ import net.minecraft.entity.ai.brain.memory.MemoryModuleType;
 import net.minecraft.entity.ai.brain.schedule.Activity;
 import net.minecraft.entity.ai.brain.task.*;
 import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.merchant.villager.VillagerEntity;
 import net.minecraft.entity.monster.HoglinEntity;
 import net.minecraft.entity.monster.piglin.*;
 import net.minecraft.entity.player.PlayerEntity;
@@ -29,17 +27,13 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.loot.*;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.server.ServerWorld;
 
 import java.util.*;
-
-import static com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity.Action.DANCING;
 
 public class ZurTasks<E extends LivingEntity> {
    public static final Item field_234444_a_ = isBurnableItemInit.SRIUNK.get();
@@ -208,7 +202,7 @@ public class ZurTasks<E extends LivingEntity> {
 
       Item item = itemstack.getItem();
       if (func_234480_a_(item)) {
-         func_241427_c_(zur, itemstack);
+         //func_241427_c_(zur, itemstack);
          func_234501_d_(zur);
       } else if (func_234499_c_(item) && !func_234538_z_(zur)) {
          func_234536_x_(zur);
@@ -220,13 +214,13 @@ public class ZurTasks<E extends LivingEntity> {
       }
    }
 
-   private static void func_241427_c_(ZurEntity zur, ItemStack stack) {
+   /*private static void func_241427_c_(ZurEntity zur, ItemStack stack) {
       if (func_234454_D_(zur)) {
          zur.entityDropItem(zur.getHeldItem(Hand.OFF_HAND));
       }
 
       zur.func_234439_n_(stack);
-   }
+   }*/
 
    private static ItemStack func_234465_a_(ItemEntity entity) {
       ItemStack itemstack = entity.getItem();
@@ -420,7 +414,7 @@ public class ZurTasks<E extends LivingEntity> {
       ItemStack itemstack = p_234471_1_.getHeldItem(p_234471_2_);
       if (func_234489_b_(p_234471_0_, itemstack)) {
          ItemStack itemstack1 = itemstack.split(1);
-         func_241427_c_(p_234471_0_, itemstack1);
+         //func_241427_c_(p_234471_0_, itemstack1);
          func_234501_d_(p_234471_0_);
          func_234531_r_(p_234471_0_);
          return ActionResultType.CONSUME;
@@ -512,7 +506,7 @@ public class ZurTasks<E extends LivingEntity> {
       }
    }
 
-   public static boolean func_234460_a_(LivingEntity entity) {
+   /*public static boolean func_234460_a_(LivingEntity entity) {
       for(ItemStack itemstack : entity.getArmorInventoryList()) {
          Item item = itemstack.getItem();
          if (itemstack.makesZursNeutral(entity)) {
@@ -521,7 +515,7 @@ public class ZurTasks<E extends LivingEntity> {
       }
 
       return false;
-   }
+   }*/
 
    private static void walkTarget(ZurEntity zur) {
       zur.getBrain().removeMemory(MemoryModuleType.WALK_TARGET);

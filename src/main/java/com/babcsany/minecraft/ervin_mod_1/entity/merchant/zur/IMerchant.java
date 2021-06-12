@@ -2,7 +2,6 @@ package com.babcsany.minecraft.ervin_mod_1.entity.merchant.zur;
 
 import com.babcsany.minecraft.ervin_mod_1.container.merchant.ZurContainer;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.container.MerchantContainer;
 import net.minecraft.inventory.container.SimpleNamedContainerProvider;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.MerchantOffer;

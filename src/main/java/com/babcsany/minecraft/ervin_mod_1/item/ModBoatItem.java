@@ -1,11 +1,9 @@
 package com.babcsany.minecraft.ervin_mod_1.item;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
-import com.babcsany.minecraft.ervin_mod_1.entity.item.ModBoatEntity;
+import com.babcsany.minecraft.ervin_mod_1.entity.item.ModBoatEntityhj;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.BoatEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BoatItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.Stats;
@@ -24,9 +22,9 @@ import java.util.function.Predicate;
 
 public class ModBoatItem extends Item {
     private static final Predicate<Entity> RIDERS = EntityPredicates.NOT_SPECTATING.and(Entity::canBeCollidedWith);
-    private final ModBoatEntity.ModBoatType type;
+    private final ModBoatEntityhj.ModBoatType type;
 
-    public ModBoatItem(ModBoatEntity.ModBoatType type, Item.Properties properties) {
+    public ModBoatItem(ModBoatEntityhj.ModBoatType type, Item.Properties properties) {
         super(properties);
         this.type = type;
     }
@@ -54,7 +52,7 @@ public class ModBoatItem extends Item {
             }
 
             if (rayTraceResult.getType() == RayTraceResult.Type.BLOCK) {
-                ModBoatEntity boat = new ModBoatEntity(world, rayTraceResult.getHitVec().x, rayTraceResult.getHitVec().y, rayTraceResult.getHitVec().z);
+                ModBoatEntityhj boat = new ModBoatEntityhj(world, rayTraceResult.getHitVec().x, rayTraceResult.getHitVec().y, rayTraceResult.getHitVec().z);
                 Ervin_mod_1.LOGGER.info("BOAT ENTITY: " + boat);
                 boat.setModBoatType(this.type);
                 boat.rotationYaw = player.rotationYaw;

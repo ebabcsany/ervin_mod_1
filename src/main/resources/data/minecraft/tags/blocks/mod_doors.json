@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "ervin_mod_1:firg_door",
-    "ervin_mod_1:frim_door"
+    "ervin_mod_1:firg_planks_door",
+    "ervin_mod_1:frim_planks_door"
   ]
 }
