@@ -1,17 +1,5 @@
 package com.babcsany.minecraft.ervin_mod_1.world.dimension;
 
-import net.minecraft.entity.EntityClassification;
-import net.minecraft.util.Util;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.provider.BiomeProvider;
-import net.minecraft.world.gen.NoiseChunkGenerator;
-import net.minecraft.world.gen.OctavesNoiseGenerator;
-
-import java.util.List;
-
 public class ExampleChunkGenerator /*extends NoiseChunkGenerator<ExampleGenSettings>*/ {
 	/*private static final float[] field_222576_h = Util.make(new float[205], (p_222575_0_) -> {
 		for (int i = -2; i <= 2; ++i) {

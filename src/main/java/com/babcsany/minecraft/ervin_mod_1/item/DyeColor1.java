@@ -1,7 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.item;
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
-import net.minecraft.block.material.MaterialColor;
 import net.minecraft.item.DyeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

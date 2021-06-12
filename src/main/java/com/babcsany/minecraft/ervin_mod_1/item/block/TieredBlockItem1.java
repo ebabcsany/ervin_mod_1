@@ -1,10 +1,8 @@
 package com.babcsany.minecraft.ervin_mod_1.item.block;
 
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.IItemTier;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class TieredBlockItem1 extends BlockItem {

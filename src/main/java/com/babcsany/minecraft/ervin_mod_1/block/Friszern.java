@@ -1,7 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.block;
 
 import com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit;
-import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import net.minecraft.block.*;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -24,7 +23,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Random;
 
-public class Friszern extends ContainerBlock {
+public class Friszern extends ModContainerBlock {
    private static final Logger LOGGER = LogManager.getLogger();
    public static final DirectionProperty FACING = DirectionalBlock.FACING;
    public static final BooleanProperty CONDITIONAL = BlockStateProperties.CONDITIONAL;
@@ -36,7 +35,7 @@ public class Friszern extends ContainerBlock {
 
    public TileEntity createNewTileEntity(IBlockReader worldIn) {
       FriszernTileEntity friszernTileEntity = new FriszernTileEntity();
-      friszernTileEntity.setAuto(this == BlockInit.CHAIN_FRISZERN.get());
+      friszernTileEntity.setAuto(this == BlockInit.CHAIN_FRISZERN);
       return friszernTileEntity;
    }
 
@@ -104,14 +103,11 @@ public class Friszern extends ContainerBlock {
    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
       TileEntity tileEntity = worldIn.getTileEntity(pos);
       if (tileEntity instanceof FriszernTileEntity) {
-         this.openFriszern((FriszernTileEntity)tileEntity);
+         //player.container.openFriszern((FriszernTileEntity)tileEntity);
          return ActionResultType.func_233537_a_(worldIn.isRemote);
       } else {
          return ActionResultType.PASS;
       }
-   }
-
-   public void openFriszern(FriszernTileEntity friszern) {
    }
 
    /**
@@ -146,7 +142,7 @@ public class Friszern extends ContainerBlock {
          if (!worldIn.isRemote) {
             if (stack.getChildTag("BlockEntityTag") == null) {
                friszernLogic.setTrackOutput(worldIn.getGameRules().getBoolean(GameRules.SEND_COMMAND_FEEDBACK));
-               friszernTileEntity.setAuto(this == BlockInit.CHAIN_FRISZERN.get());
+               friszernTileEntity.setAuto(this == BlockInit.CHAIN_FRISZERN);
             }
 
             if (friszernTileEntity.getMode() == FriszernTileEntity.Mode.SEQUENCE) {
@@ -204,7 +200,7 @@ public class Friszern extends ContainerBlock {
          blockpos$mutable.move(direction);
          blockstate = world.getBlockState(blockpos$mutable);
          Block block = blockstate.getBlock();
-         if (!blockstate.isIn(BlockInit.CHAIN_FRISZERN.get())) {
+         if (!blockstate.isIn(BlockInit.CHAIN_FRISZERN)) {
             break;
          }
 

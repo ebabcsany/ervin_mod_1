@@ -1,20 +1,19 @@
 package com.babcsany.minecraft.ervin_mod_1.item.item;
 
-import com.babcsany.minecraft.ervin_mod_1.item.group.ItemGroup;
 import com.google.common.collect.Maps;
 import net.minecraft.item.*;
+import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
 import javax.annotation.Nullable;
-import java.util.List;
 import java.util.Map;
-import java.util.Random;
-import java.util.UUID;
 
-public class Item extends net.minecraft.item.Item.Properties implements IForgeRegistryEntry<Item> {
+public class Item extends net.minecraft.item.Item implements IItemProvider, net.minecraftforge.common.extensions.IForgeItem {
    private int maxStackSize = 2048;
    private int maxDamage;
+   @Nullable
+   public com.babcsany.minecraft.ervin_mod_1.init.item.food.Food modfood;
    private net.minecraft.item.Item containerItem;
    private net.minecraft.item.ItemGroup group;
    private com.babcsany.minecraft.ervin_mod_1.item.group.ItemGroup group1;
@@ -27,20 +26,31 @@ public class Item extends net.minecraft.item.Item.Properties implements IForgeRe
    private Map<net.minecraftforge.common.ToolType, Integer> toolClasses = Maps.newHashMap();
    private java.util.function.Supplier<java.util.concurrent.Callable<net.minecraft.client.renderer.tileentity.ItemStackTileEntityRenderer>> ister;
 
-   public Item(net.minecraft.item.Item.Properties group1) {
-
+   public Item(net.minecraft.item.Item.Properties properties) {
+      super(properties);
    }
 
-   public Item() {
+   public static class Properties extends net.minecraft.item.Item.Properties {
 
+      public com.babcsany.minecraft.ervin_mod_1.init.item.food.Food modfood;
+
+      public Properties modFood(com.babcsany.minecraft.ervin_mod_1.init.item.food.Food foodIn) {
+         this.modfood = foodIn;
+         return this;
+      }
    }
 
-   public net.minecraft.item.Item.Properties food(Food foodIn) {
+   /*public Item(Item item) {
+
+      this.modfood = item.modfood;
+   }*/
+
+   /*public net.minecraft.item.Item.Properties food(Food foodIn) {
       this.food = foodIn;
       return this;
    }
 
-   public net.minecraft.item.Item.Properties modFood(com.babcsany.minecraft.ervin_mod_1.init.item.food.Food foodIn) {
+   public Item modFood(com.babcsany.minecraft.ervin_mod_1.init.item.food.Food foodIn) {
       this.modFood = foodIn;
       return this;
    }
@@ -118,5 +128,5 @@ public class Item extends net.minecraft.item.Item.Properties implements IForgeRe
    @Override
    public Class<Item> getRegistryType() {
       return null;
-   }
+   }*/
 }

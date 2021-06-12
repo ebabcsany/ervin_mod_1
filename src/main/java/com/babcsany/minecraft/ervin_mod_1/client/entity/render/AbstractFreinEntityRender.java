@@ -1,18 +1,11 @@
 package com.babcsany.minecraft.ervin_mod_1.client.entity.render;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
-import com.babcsany.minecraft.ervin_mod_1.client.entity.layers.FreinGelLayer;
 import com.babcsany.minecraft.ervin_mod_1.client.entity.model.FreinEntityModel;
-import com.babcsany.minecraft.ervin_mod_1.client.entity.model.ZurEntityModel;
 import com.babcsany.minecraft.ervin_mod_1.entity.animal.FreinEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
-import net.minecraft.client.renderer.entity.BipedRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.client.renderer.entity.layers.BipedArmorLayer;
-import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.util.ResourceLocation;
 
 public abstract class AbstractFreinEntityRender<T extends FreinEntity, M extends FreinEntityModel<T>> extends MobRenderer<T, M> {

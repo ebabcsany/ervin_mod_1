@@ -1,22 +1,5 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.ai.brain.task.thuvruj;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.villager.ThuvrujEntity;
-import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.ImmutableSet;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.brain.BrainUtil;
-import net.minecraft.entity.ai.brain.memory.MemoryModuleStatus;
-import net.minecraft.entity.ai.brain.memory.MemoryModuleType;
-import net.minecraft.entity.ai.brain.task.Task;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.server.ServerWorld;
-
-import java.util.Set;
-import java.util.stream.Collectors;
-
 /*public class ShareItemsTask1 extends Task<ThuvrujEntity> {
    private Set<Item> field_220588_a = ImmutableSet.of();
 

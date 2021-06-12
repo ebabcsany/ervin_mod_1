@@ -1,6 +1,5 @@
 package com.babcsany.minecraft.ervin_mod_1.block.blocks;
 
-import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import net.minecraft.block.BlockState;

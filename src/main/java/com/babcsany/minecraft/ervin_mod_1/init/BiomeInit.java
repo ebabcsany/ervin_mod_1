@@ -10,7 +10,6 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.Category;
 import net.minecraft.world.biome.Biome.RainType;
 import net.minecraft.world.biome.BiomeAmbience;
-import net.minecraft.world.biome.MoodSoundAmbience;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.ISurfaceBuilderConfig;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
@@ -256,7 +255,9 @@ public class BiomeInit {
 					));
 
 	public static void registerBiomes() {
-		registerBiomeCool1(MIG_BIOME.get(), Type.MODIFIED, Type.MODIFIED, Type.OVERWORLD);
+		registerBiomeWarm(THE_BHJUIG_BIOME.get(), Type.VOID, Type.RARE);
+		registerBiomeCool(MIG_BIOME.get(), Type.OCEAN, Type.MIG, Type.OVERWORLD);
+		registerBiomeCool1(MIGV_BIOME.get(), Type.OCEAN, Type.MIG, Type.HOT, Type.OVERWORLD);
 		registerBiomeCool1(SRIUNK_VALLEY_BIOME.get(), Type.DEAD, Type.OVERWORLD);
 		registerBiomeCool2(EXAMPLE0_BIOME.get(), Type.DEAD, Type.PLAINS);
 		registerBiomeCool2(EXAMPLE_BIOME.get(), Type.DEAD, Type.PLAINS);
@@ -264,10 +265,11 @@ public class BiomeInit {
 		registerBiomeIcy(EXAMPLE_BIOME0.get(), Type.PLAINS, Type.BEACH);
 		registerBiomeWarm(EXAMPLE_BIOME2.get(), Type.PLAINS, Type.OVERWORLD);
 		registerBiomeWarm(EXAMPLE_BIOME3.get(), Type.PLAINS, Type.OVERWORLD);
-		registerBiomeDesert(EXAMPLE_BIOME4.get(), Type.BEACH, Type.RARE);
-		registerBiomeCool(EXAMPLE_BIOME5.get(), Type.DEAD, Type.RARE);
-		registerBiomeCool2(FIRG_BIOME.get(), Type.END, Type.END);
-		registerBiomeCool1(SCRAFTH_BIOME.get(), Type.END, Type.END);
+		registerBiomeDesert(EXAMPLE_BIOME4.get(), Type.BEACH, Type.RARE, Type.OVERWORLD);
+		registerBiomeCool(EXAMPLE_BIOME5.get(), Type.DEAD, Type.RARE, Type.OVERWORLD);
+		registerBiomeCool(EXAMPLE_BIOME6.get(), Type.RARE, Type.VOID, Type.MODIFIED);
+		registerBiomeCool2(FIRG_BIOME.get(), Type.getType("FIRG"), Type.HILLS, Type.END);
+		registerBiomeCool1(SCRAFTH_BIOME.get(), Type.getType("SCRAFTH"), Type.HILLS, Type.END);
 	}
 
 	private static void registerBiomeCool(Biome biome, Type... types) {

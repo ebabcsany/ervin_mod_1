@@ -21,6 +21,8 @@ public class ParticleInit {
 
     public static final DeferredRegister<ParticleType<?>> PARTICLE_TYPES = DeferredRegister.create(ForgeRegistries.PARTICLE_TYPES, Ervin_mod_1.MOD_ID);
 
+    //public static final BasicParticleType DRIPPING_JURK = register("ervin_mod_1:dripping_jurk", false);
+    //public static final BasicParticleType UNDERJURK = register("ervin_mod_1:underjurk", false);
     //public static final BasicParticleType HAPPY_VILLAGER = register("ervin_mod_1:jurk", false);
     /*public static final RegistryObject<ParticleType<BasicParticleType>> JURK = PARTICLE_TYPES.register(
             "jurk",

@@ -21,7 +21,7 @@ public class RecipeItemHelper {
    }
 
    public void accountStack(ItemStack stack) {
-      this.func_221264_a(stack, 2048);
+      this.func_221264_a(stack, 64);
    }
 
    public void func_221264_a(ItemStack stack, int minCount) {
@@ -57,14 +57,6 @@ public class RecipeItemHelper {
 
    public boolean canCraft(IRecipe<?> recipe, @Nullable IntList packedItemList) {
       return this.canCraft(recipe, packedItemList, 1);
-   }
-
-   public boolean canCraftingTableCraft(IRecipe<?> recipe, @Nullable IntList packedItemList) {
-      return this.canCraft(recipe, packedItemList, 1);
-   }
-
-   public boolean canCraftingTableCraft(IRecipe<?> recipe, @Nullable IntList packedItemList, int maxAmount) {
-      return (new RecipePicker(recipe)).tryPick(maxAmount, packedItemList);
    }
 
    public boolean canCraft(IRecipe<?> recipe, @Nullable IntList packedItemList, int maxAmount) {

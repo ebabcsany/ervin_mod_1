@@ -1,11 +1,8 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.goal;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.AbstractZurEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
-import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.Goal;
-import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.projectile.ProjectileHelper;
 import net.minecraft.item.BowItem;
 import net.minecraft.item.Items;

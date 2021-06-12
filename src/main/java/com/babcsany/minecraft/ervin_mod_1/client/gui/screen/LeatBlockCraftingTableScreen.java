@@ -16,8 +16,6 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-import javax.annotation.Nullable;
-
 @OnlyIn(Dist.CLIENT)
 public class LeatBlockCraftingTableScreen extends ContainerScreen<LeatBlockCraftingTableContainer> implements IRecipeShownListener {
    private static final ResourceLocation CRAFTING_TABLE_GUI_TEXTURES = new ResourceLocation(Ervin_mod_1.MOD_ID,"textures/gui/container/leat_block_crafting_table_gui_container.png");

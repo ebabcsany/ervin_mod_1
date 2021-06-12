@@ -1,12 +1,13 @@
 package com.babcsany.minecraft.ervin_mod_1.init.item;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
-import com.babcsany.minecraft.ervin_mod_1.entity.item.ModBoatEntity;
+import com.babcsany.minecraft.ervin_mod_1.entity.item.ModBoatEntityhj;
+import com.babcsany.minecraft.ervin_mod_1.init.init.DyeColorInit;
+import com.babcsany.minecraft.ervin_mod_1.init.init.DyeItemInit;
 import com.babcsany.minecraft.ervin_mod_1.item.*;
 import com.babcsany.minecraft.ervin_mod_1.item.group.ItemGroup;
-import net.minecraft.entity.item.BoatEntity;
-import net.minecraft.item.BoatItem;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -66,8 +67,8 @@ public class ItemInit {
     public static final RegistryObject<Item> ENDER_CRAKTH = ITEMS.register("ender_crakth", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
     public static final RegistryObject<Item> SCRAKTHS_PEARL = ITEMS.register("scrakths_pearl", () -> new ScrakthsPearlItem((new Item.Properties()).maxStackSize(16).group(ItemGroup.ERVIN_MOD_1_ITEMS)));
     public static final RegistryObject<Item> ENDER_CRAKTHS = ITEMS.register("ender_crakths", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
-    public static final RegistryObject<ModBoatItem> FRIM_BOAT = ITEMS.register("frim_boat", () -> new ModBoatItem(ModBoatEntity.ModBoatType.FRIM, (new Item.Properties()).maxStackSize(1).group(ItemGroup.ERVIN_MOD_1_ITEMS)));
-    public static final RegistryObject<Item> JURK_BUCKET = ITEMS.register("jurk_bucket", () -> new JurkBucketItem((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
+    public static final RegistryObject<Item> FRIM_BOAT = ITEMS.register("frim_boat", () -> new Item((new Item.Properties()).maxStackSize(1).group(ItemGroup.ERVIN_MOD_1_ITEMS)));
+    public static final RegistryObject<Item> JURK_BUCKETI = ITEMS.register("jurk_buckett", () -> new JurkBucketItem((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
     public static final RegistryObject<Item> CRAKH = ITEMS.register("crakh", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
     public static final RegistryObject<Item> BLACK_IRON_INGOT = ITEMS.register("iron/ingots/black_iron_ingot", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
     public static final RegistryObject<Item> BLUE_IRON_INGOT = ITEMS.register("iron/ingots/blue_iron_ingot", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
@@ -106,4 +107,9 @@ public class ItemInit {
     public static final RegistryObject<Item> GWURST_FEATHER = ITEMS.register("gwurst_feather", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
     public static final RegistryObject<Item> HTRAW = ITEMS.register("htraw", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
     public static final RegistryObject<Item> HTRAW_MEAL = ITEMS.register("htraw_meal", () -> new HtrawMealItem((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
+    public static final Item LIGHT_BLUE1_DYEM = itemRegister("ervin_mod_1:light_blue1_dyel", new DyeItemInit(DyeColorInit.LIGHT_BLUE, (new Item.Properties()).group(net.minecraft.item.ItemGroup.MATERIALS)));
+
+    private static Item itemRegister(String key, Item itemIn) {
+        return Ervin_mod_1.itemRegister(new ResourceLocation(key), itemIn);
+    }
 }

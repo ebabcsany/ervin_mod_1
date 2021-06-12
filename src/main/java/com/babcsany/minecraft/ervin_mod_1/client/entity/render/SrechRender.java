@@ -1,14 +1,10 @@
 package com.babcsany.minecraft.ervin_mod_1.client.entity.render;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
-import com.babcsany.minecraft.ervin_mod_1.client.entity.model.SrachModel;
 import com.babcsany.minecraft.ervin_mod_1.client.entity.model.SrechModel;
-import com.babcsany.minecraft.ervin_mod_1.entity.animal.SrachEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.animal.SrechEntity;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.client.renderer.entity.model.CowModel;
-import net.minecraft.entity.passive.CowEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;

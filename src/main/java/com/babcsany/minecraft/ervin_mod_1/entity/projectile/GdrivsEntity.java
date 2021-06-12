@@ -1,24 +1,5 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.projectile;
 
-import com.babcsany.minecraft.ervin_mod_1.item.Gdrivs;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.ProjectileItemEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.EntityRayTraceResult;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.world.World;
-
-import javax.annotation.Nonnull;
-import java.lang.reflect.Type;
-
 public class GdrivsEntity /*extends ProjectileItemEntity*/ {
     /*public ItemStack stack;
     public static Item net_item;

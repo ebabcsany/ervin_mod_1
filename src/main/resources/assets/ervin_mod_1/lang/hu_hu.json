@@ -1,4 +1,5 @@
 {
+  "biome.ervin_mod_1.example_biome": "Example Biome",
   "biome.ervin_mod_1.example_biome0": "Example Biome0",
   "biome.ervin_mod_1.example_biome1": "Example Biome1",
   "biome.ervin_mod_1.example_biome2": "Example Biome2",
@@ -370,7 +371,6 @@
   "item.ervin_mod_1.spawn_eggs.giant_spawn_egg": "Óriásidéző Tojás",
   "item.ervin_mod_1.spawn_eggs.gubrov_spawn_egg": "Gubrov Idéző Tojás",
   "item.ervin_mod_1.spawn_eggs.illusioner_spawn_egg": "Illusioner Spawn Egg",
-  "item.ervin_mod_1.spawn_eggs.iron_golem_spawn_egg": "Vasgólemidéző Tojás",
   "item.ervin_mod_1.spawn_eggs.iron_golem_spawn_egg": "Vasgólemidéző Tojás",
   "item.ervin_mod_1.spawn_eggs.rovent_spawn_egg": "Rovent Idéző Tojás",
   "item.ervin_mod_1.spawn_eggs.snow_golem_spawn_egg": "Snow Golem Spawn Egg",

@@ -1,10 +1,11 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.player;
 
-import com.babcsany.minecraft.ervin_mod_1.init.item.special.SpecialItemInit;
+import com.babcsany.minecraft.ervin_mod_1.block.FriszernTileEntity;
 import com.babcsany.minecraft.ervin_mod_1.init.item.special.isBurnableSpecialItemInit;
 import com.mojang.authlib.GameProfile;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.potion.EffectInstance;
@@ -16,6 +17,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
+import java.util.OptionalInt;
+
 public abstract class PlayerEntity1 extends PlayerEntity {
     private final CooldownTracker cooldownTracker = this.createCooldownTracker();
     private ItemStack itemStackMainHand = ItemStack.EMPTY;
@@ -23,6 +27,13 @@ public abstract class PlayerEntity1 extends PlayerEntity {
 
     public PlayerEntity1(World world, BlockPos pos, GameProfile gameProfile) {
         super(world, pos, gameProfile);
+    }
+
+    public void openFriszern(FriszernTileEntity friszern) {
+    }
+
+    public OptionalInt openContainer(@Nullable INamedContainerProvider p_213829_1_) {
+        return OptionalInt.empty();
     }
 
     /**

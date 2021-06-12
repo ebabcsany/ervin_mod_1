@@ -139,24 +139,24 @@ public class Hurvruj extends Block {
       }
    }
 
-   public static Optional<Vector3d> func_234567_a_(ServerWorld p_234567_0_, BlockPos p_234567_1_, boolean p_234567_2_, boolean p_234567_3_) {
-      BlockState blockstate = p_234567_0_.getBlockState(p_234567_1_);
+   public static Optional<Vector3d> canSpawnInBlock(ServerWorld serverWorld, BlockPos pos, boolean p_234567_2_, boolean p_234567_3_) {
+      BlockState blockstate = serverWorld.getBlockState(pos);
       Block block = blockstate.getBlock();
-      if (block instanceof Hurvruj && blockstate.get(Hurvruj.CHARGES) > 0 && Hurvruj.doesHurvrujWork(p_234567_0_)) {
-         Optional<Vector3d> optional = Hurvruj.func_235560_a_(EntityType.PLAYER, p_234567_0_, p_234567_1_);
+      if (block instanceof Hurvruj && blockstate.get(Hurvruj.CHARGES) > 0 && Hurvruj.doesHurvrujWork(serverWorld)) {
+         Optional<Vector3d> optional = Hurvruj.func_235560_a_(EntityType.PLAYER, serverWorld, pos);
          if (!p_234567_3_ && optional.isPresent()) {
-            p_234567_0_.setBlockState(p_234567_1_, blockstate.with(Hurvruj.CHARGES, blockstate.get(Hurvruj.CHARGES) - 1), 15);
+            serverWorld.setBlockState(pos, blockstate.with(Hurvruj.CHARGES, blockstate.get(Hurvruj.CHARGES) - 1), 15);
          }
 
          return optional;
-      } else if (blockstate.isBed(p_234567_0_, p_234567_1_, null) && BedBlock.func_235330_a_(p_234567_0_)) {
-         return blockstate.getBedSpawnPosition(EntityType.PLAYER, p_234567_0_, p_234567_1_, null);
+      } else if (blockstate.isBed(serverWorld, pos, null) && BedBlock.func_235330_a_(serverWorld)) {
+         return blockstate.getBedSpawnPosition(EntityType.PLAYER, serverWorld, pos, null);
       } else if (!p_234567_2_) {
          return Optional.empty();
       } else {
          boolean flag = block.canSpawnInBlock();
-         boolean flag1 = p_234567_0_.getBlockState(p_234567_1_.up()).getBlock().canSpawnInBlock();
-         return flag && flag1 ? Optional.of(new Vector3d((double)p_234567_1_.getX() + 0.5D, (double)p_234567_1_.getY() + 0.1D, (double)p_234567_1_.getZ() + 0.5D)) : Optional.empty();
+         boolean flag1 = serverWorld.getBlockState(pos.up()).getBlock().canSpawnInBlock();
+         return flag && flag1 ? Optional.of(new Vector3d((double)pos.getX() + 0.5D, (double)pos.getY() + 0.1D, (double)pos.getZ() + 0.5D)) : Optional.empty();
       }
    }
 

@@ -6,7 +6,6 @@ import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.spawn_egg.ModSpawnEggItemInit;
 import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IItemProvider;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -16,7 +15,7 @@ import java.util.function.Supplier;
 
 public abstract class ItemGroup {
    public static ItemGroup[] GROUPS = new ItemGroup[5];
-   public static final ItemGroup MOD_ITEM_GROUP = new ModTabGroup("simpleores", () -> new ItemStack(com.babcsany.minecraft.ervin_mod_1.init.item.item.ItemInit.REGDEMP.get()));
+   //public static final ItemGroup MOD_ITEM_GROUP = new ModTabGroup("simpleores", () -> new ItemStack(com.babcsany.minecraft.ervin_mod_1.init.item.item.ItemInit.REGDEMP.get()));
    public static final net.minecraft.item.ItemGroup ERVIN_MOD_1_SEARCH = (new net.minecraft.item.ItemGroup(14, "ervin_mod_1_search") {
       @OnlyIn(Dist.CLIENT)
       public ItemStack createIcon() {

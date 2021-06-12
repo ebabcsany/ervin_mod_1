@@ -4,7 +4,6 @@ import com.babcsany.minecraft.ervin_mod_1.block.trader_block.trades.TraderBlockT
 import com.babcsany.minecraft.ervin_mod_1.entity.merchant.result_slot.trader_block.TraderBlockResultSlot;
 import com.babcsany.minecraft.ervin_mod_1.entity.merchant.trader_block.IMerchant;
 import com.babcsany.minecraft.ervin_mod_1.entity.merchant.trader_block.NPCMerchant;
-import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.$TraderTrades;
 import com.babcsany.minecraft.ervin_mod_1.init.container.ContainerInit;
 import com.babcsany.minecraft.ervin_mod_1.inventory.merchant.trader_block.TraderBlockInventory;
 import com.google.common.collect.Sets;

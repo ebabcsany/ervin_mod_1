@@ -2,14 +2,12 @@ package net.minecraft.block;
 
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
-import com.babcsany.minecraft.ervin_mod_1.tags.FluidTag;
 import com.google.common.collect.Lists;
 import net.minecraft.entity.Entity;
 import net.minecraft.fluid.FlowingFluid;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
-import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootContext;
 import net.minecraft.pathfinding.PathType;
@@ -165,15 +163,30 @@ public class FlowingFluidBlock extends Block implements IBucketPickupHandler {
                   return false;
                }
 
-               /*if (worldIn.getFluidState(blockpos).isTagged(FluidTag.JURK)) {
-                  Block block = worldIn.getFluidState(pos).isSource() ? isBurnableBlockItemInit.SRURG.get() : BlockItemInit.DURT.get();
+               if (flag && worldIn.getBlockState(blockpos).isIn(Blocks.BLUE_ICE)) {
+                  worldIn.setBlockState(pos, net.minecraftforge.event.ForgeEventFactory.fireFluidPlaceBlockEvent(worldIn, pos, pos, Blocks.BASALT.getDefaultState()));
+                  this.triggerMixEffects(worldIn, pos);
+                  return false;
+               }
+            }
+         }
+      }
+
+      if (this.fluid.isIn(FluidTags.LAVA)) {
+         boolean flag = worldIn.getBlockState(pos.down()).isIn(isBurnableBlockItemInit.TRIRIJ);
+
+         for(Direction direction : Direction.values()) {
+            if (direction != Direction.DOWN) {
+               BlockPos blockpos = pos.offset(direction);
+               if (worldIn.getFluidState(blockpos).isTagged(com.babcsany.minecraft.tags.FluidTags.JURK)) {
+                  Block block = worldIn.getFluidState(pos).isSource() ? BlockItemInit.DURT.get() : BlockItemInit.ORANGE_COBBLESTONE.get();
                   worldIn.setBlockState(pos, net.minecraftforge.event.ForgeEventFactory.fireFluidPlaceBlockEvent(worldIn, pos, pos, block.getDefaultState()));
                   this.triggerMixEffects(worldIn, pos);
                   return false;
-               }*/
+               }
 
-               if (flag && worldIn.getBlockState(blockpos).isIn(Blocks.BLUE_ICE)) {
-                  worldIn.setBlockState(pos, net.minecraftforge.event.ForgeEventFactory.fireFluidPlaceBlockEvent(worldIn, pos, pos, Blocks.BASALT.getDefaultState()));
+               if (flag && worldIn.getBlockState(blockpos).isIn(BlockItemInit.KALT_BLOCK.get())) {
+                  worldIn.setBlockState(pos, net.minecraftforge.event.ForgeEventFactory.fireFluidPlaceBlockEvent(worldIn, pos, pos, BlockItemInit.EXAMPLE_BLOCK.get().getDefaultState()));
                   this.triggerMixEffects(worldIn, pos);
                   return false;
                }

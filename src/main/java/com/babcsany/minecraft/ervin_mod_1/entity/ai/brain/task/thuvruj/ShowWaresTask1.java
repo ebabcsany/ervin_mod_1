@@ -1,24 +1,5 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.ai.brain.task.thuvruj;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.villager.ThuvrujEntity;
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Lists;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.brain.Brain;
-import net.minecraft.entity.ai.brain.memory.MemoryModuleStatus;
-import net.minecraft.entity.ai.brain.memory.MemoryModuleType;
-import net.minecraft.entity.ai.brain.task.Task;
-import net.minecraft.entity.merchant.villager.VillagerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.MerchantOffer;
-import net.minecraft.util.math.EntityPosWrapper;
-import net.minecraft.world.server.ServerWorld;
-
-import javax.annotation.Nullable;
-import java.util.List;
-
 /*public class ShowWaresTask1 extends Task<ThuvrujEntity> {
    @Nullable
    private ItemStack field_220559_a;

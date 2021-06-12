@@ -1,22 +1,5 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.ai.brain.task;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.ai.brain.task.thuvruj.*;
-import com.babcsany.minecraft.ervin_mod_1.entity.villager.ThuvrujEntity;
-import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.ImmutableSet;
-import com.mojang.datafixers.util.Pair;
-import net.minecraft.entity.AgeableEntity;
-import net.minecraft.entity.EntityClassification;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.brain.memory.MemoryModuleStatus;
-import net.minecraft.entity.ai.brain.memory.MemoryModuleType;
-import net.minecraft.entity.ai.brain.task.*;
-import net.minecraft.entity.merchant.villager.VillagerProfession;
-import net.minecraft.village.PointOfInterestType;
-
 public class ThuvrujTasks {
    /*public static ImmutableList<Pair<Integer, ? extends Task<? super ThuvrujEntity>>> core(float p_220638_1_) {
       return ImmutableList.of(Pair.of(0, new SwimTask(0.8F)), Pair.of(0, new InteractWithDoorTask()), Pair.of(0, new LookTask(45, 90)), Pair.of(0, new PanicTask1()), Pair.of(0, new WakeUpTask()), Pair.of(0, new HideFromRaidOnBellRingTask()), Pair.of(0, new BeginRaidTask()), Pair.of(1, new WalkToTargetTask(200)), Pair.of(3, new TradeTask1(p_220638_1_)), Pair.of(5, new PickupWantedItemTask<>(p_220638_1_, false, 4)), Pair.of(7, new FindPotentialJobTask1(p_220638_1_)), Pair.of(8, new FindJobTask(p_220638_1_)), Pair.of(10, new GatherPOITask(PointOfInterestType.HOME, MemoryModuleType.HOME, false)), Pair.of(10, new GatherPOITask(PointOfInterestType.MEETING, MemoryModuleType.MEETING_POINT, true)), Pair.of(10, new AssignProfessionTask()), Pair.of(10, new ChangeJobTask()));

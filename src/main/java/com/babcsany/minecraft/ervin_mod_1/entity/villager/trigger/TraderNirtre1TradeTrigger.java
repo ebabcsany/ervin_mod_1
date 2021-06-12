@@ -2,7 +2,6 @@ package com.babcsany.minecraft.ervin_mod_1.entity.villager.trigger;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.AbstractTraderNirtre1Entity;
-import com.babcsany.minecraft.ervin_mod_1.entity.villager.AbstractTraderNirtreEntity;
 import com.google.gson.JsonObject;
 import net.minecraft.advancements.criterion.AbstractCriterionTrigger;
 import net.minecraft.advancements.criterion.CriterionInstance;

@@ -9,33 +9,23 @@ import com.babcsany.minecraft.ervin_mod_1.world.biome.ModBiome;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.FirgTree;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.FrimTree;
 import com.babcsany.minecraft.ervin_mod_1.world.gen.feature.GenOreFeatureConfig;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.trees.Tree;
 import net.minecraft.entity.EntityClassification;
-import net.minecraft.entity.EntityType;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
-import net.minecraft.world.gen.feature.BlockPileFeature;
 import net.minecraft.world.gen.feature.BlockStateProvidingFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.OreFeatureConfig;
 import net.minecraft.world.gen.placement.*;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.List;
-import java.util.Map;
-import java.util.function.Supplier;
-
 public class FeatureGen {
-	public static ModBiome modBiomeIn;
 	private static final BlockState RUBY_ORE = BlockItemInit.RUBY_ORE.get().getDefaultState();
 	private static final BlockState AIR = BlockItemInit.AIR.get().getDefaultState();
+	private static final BlockState KALT_BLOCK = BlockItemInit.KALT_BLOCK.get().getDefaultState();
 	private static final BlockState SURVI = BlockItemInit.SURVI.get().getDefaultState();
 	private static final BlockState TRIRIJ = isBurnableBlockItemInit.TRIRIJ.getDefaultState();
 	private static final BlockState TRUGN = isBurnableBlockItemInit.TRUGN.get().getDefaultState();
@@ -500,244 +490,288 @@ public class FeatureGen {
 	public static void getSpawns() {
 		for (Biome biomeIn : ForgeRegistries.BIOMES) {
 			if (biomeIn == Biomes.OCEAN) {
-				addSpawnZur.addSpawnZur_weight_4.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 4, 1, 1));
 			}
 			if (biomeIn == Biomes.DEFAULT) {
-				addSpawnZur.addSpawnZur_weight_4.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 4, 1, 1));
 			}
 			if (biomeIn == Biomes.PLAINS) {
-				addSpawnZur.addSpawnZur_weight_8.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 8, 1, 1));
 			}
 			if (biomeIn == Biomes.DESERT) {
-				addSpawnZur.addSpawnZur_weight_16.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 16, 1, 1));
 			}
 			if (biomeIn == Biomes.MOUNTAINS) {
-				addSpawnZur.addSpawnZur_weight_4.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 4, 1, 1));
 			}
 			if (biomeIn == Biomes.FOREST) {
-				addSpawnZur.addSpawnZur_weight_16.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 16, 1, 1));
 			}
 			if (biomeIn == Biomes.TAIGA) {
-				addSpawnZur.addSpawnZur_weight_4.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 4, 1, 1));
 			}
 			if (biomeIn == Biomes.SWAMP) {
-				addSpawnZur.addSpawnZur_weight_4.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 4, 1, 1));
 			}
 			if (biomeIn == Biomes.RIVER) {
-				addSpawnZur.addSpawnZur_weight_16.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 16, 1, 1));
 			}
 			if (biomeIn == Biomes.NETHER_WASTES) {
-				addNetherBlocks(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 4, 1, 1));
 			}
 			if (biomeIn == Biomes.THE_END) {
-           		addEndStoneVariants(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 1, 1, 1));
 			}
 			if (biomeIn == Biomes.FROZEN_OCEAN) {
-				addSpawnZur.addSpawnZur_weight_20.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 4, 1, 1));
 			}
 			if (biomeIn == Biomes.FROZEN_RIVER) {
-				addSpawnZur.addSpawnZur_weight_20.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 12, 1, 1));
 			}
 			if (biomeIn == Biomes.SNOWY_TUNDRA) {
-				addSpawnZur.addSpawnZur_weight_20.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 8, 1, 1));
 			}
 			if (biomeIn == Biomes.SNOWY_MOUNTAINS) {
-				addSpawnZur.addSpawnZur_weight_4.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 4, 1, 1));
+				biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 4)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(16))));
 			}
 			if (biomeIn == Biomes.MUSHROOM_FIELDS) {
-				addSpawnZur.addSpawnZur_weight_20.addSpawnZur_count_1(biomeIn);
+				biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 4)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(8))));
 			}
 			if (biomeIn == Biomes.MUSHROOM_FIELD_SHORE) {
-				addSpawnZur.addSpawnZur_weight_20.addSpawnZur_count_1(biomeIn);
+				biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 4)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(8))));
 			}
 			if (biomeIn == Biomes.BEACH) {
-				addSpawnZur.addSpawnZur_weight_12.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 8, 1, 1));
+				biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 4)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(16))));
 			}
 			if (biomeIn == Biomes.DESERT_HILLS) {
-				addSpawnZur.addSpawnZur_weight_20.addSpawnZur_count_1(biomeIn);
+				//biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 1, 1, 1));
+				biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 4)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(8))));
 			}
 			if (biomeIn == Biomes.WOODED_HILLS) {
-				addSpawnZur.addSpawnZur_weight_20.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 8, 1, 1));
 			}
 			if (biomeIn == Biomes.TAIGA_HILLS) {
-				addSpawnZur.addSpawnZur_weight_20.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 12, 1, 1));
 			}
 			if (biomeIn == Biomes.MOUNTAIN_EDGE) {
-				addSpawnZur.addSpawnZur_weight_4.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 4, 1, 1));
+				biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 4)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(24))));
 			}
 			if (biomeIn == Biomes.JUNGLE) {
-				addSpawnZur.addSpawnZur_weight_16.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 8, 1, 1));
+				biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 4)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(8))));
 			}
 			if (biomeIn == Biomes.JUNGLE_HILLS) {
-				addSpawnZur.addSpawnZur_weight_16.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 12, 1, 1));
+				biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 4)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(8))));
 			}
 			if (biomeIn == Biomes.JUNGLE_EDGE) {
-				addSpawnZur.addSpawnZur_weight_16.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 8, 1, 1));
+				biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 4)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(8))));
 			}
 			if (biomeIn == Biomes.DEEP_OCEAN) {
-				addSpawnZur.addSpawnZur_weight_4.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 4, 1, 1));
 			}
 			if (biomeIn == Biomes.STONE_SHORE) {
-				addSpawnZur.addSpawnZur_weight_8.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 8, 1, 1));
+				biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 8)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(32))));
 			}
 			if (biomeIn == Biomes.SNOWY_BEACH) {
-				addSpawnZur.addSpawnZur_weight_8.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 8, 1, 1));
+				biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 4)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(16))));
 			}
 			if (biomeIn == Biomes.BIRCH_FOREST) {
-				addSpawnZur.addSpawnZur_weight_4.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 4, 1, 1));
+				biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 4)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(8))));
 			}
 			if (biomeIn == Biomes.BIRCH_FOREST_HILLS) {
-				addSpawnZur.addSpawnZur_weight_4.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 4, 1, 1));
+				biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 4)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(8))));
 			}
 			if (biomeIn == Biomes.DARK_FOREST) {
-				addSpawnZur.addSpawnZur_weight_8.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 8, 1, 1));
+				biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 4)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(16))));
 			}
 			if (biomeIn == Biomes.SNOWY_TAIGA) {
-				addSpawnZur.addSpawnZur_weight_8.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 8, 1, 1));
+				biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 4)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(16))));
 			}
 			if (biomeIn == Biomes.SNOWY_TAIGA_HILLS) {
-				addSpawnZur.addSpawnZur_weight_8.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 8, 1, 1));
+				biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 4)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(16))));
 			}
 			if (biomeIn == Biomes.GIANT_TREE_TAIGA) {
-				addSpawnZur.addSpawnZur_weight_12.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 12, 1, 1));
+				biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 12)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(8))));
 			}
 			if (biomeIn == Biomes.GIANT_TREE_TAIGA_HILLS) {
-				addSpawnZur.addSpawnZur_weight_12.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 12, 1, 1));
+				biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 12)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(8))));
 			}
 			if (biomeIn == Biomes.WOODED_MOUNTAINS) {
-				addSpawnZur.addSpawnZur_weight_8.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 8, 1, 1));
+				biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 8)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(12))));
 			}
 			if (biomeIn == Biomes.SAVANNA) {
-				addSpawnZur.addSpawnZur_weight_8.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 8, 1, 1));
+				biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 10)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(16))));
 			}
 			if (biomeIn == Biomes.SAVANNA_PLATEAU) {
-				addSpawnZur.addSpawnZur_weight_8.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 8, 1, 1));
+				biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 12)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(18))));
 			}
 			if (biomeIn == Biomes.BADLANDS) {
-				addSpawnZur.addSpawnZur_weight_12.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 3, 1, 1));
+				biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.TERRACOTTA_VARIANTS, KALT_BLOCK, 6)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(14))));
 			}
 			if (biomeIn == Biomes.WOODED_BADLANDS_PLATEAU) {
-				addSpawnZur.addSpawnZur_weight_16.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 5, 1, 1));
+				biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.TERRACOTTA_VARIANTS, KALT_BLOCK, 9)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(15))));
 			}
 			if (biomeIn == Biomes.BADLANDS_PLATEAU) {
-				addSpawnZur.addSpawnZur_weight_12.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 4, 1, 1));
+				biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.TERRACOTTA_VARIANTS, KALT_BLOCK, 13)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(20))));
 			}
 			if (biomeIn == Biomes.SMALL_END_ISLANDS) {
-				addEndStoneVariants(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 1, 1, 1));
 			}
 			if (biomeIn == Biomes.END_MIDLANDS) {
-				addEndStoneVariants(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 1, 1, 1));
 			}
 			if (biomeIn == Biomes.END_HIGHLANDS) {
-				addEndStoneVariants(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 1, 1, 1));
 			}
 			if (biomeIn == Biomes.END_BARRENS) {
-				addEndStoneVariants(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 1, 1, 1));
 			}
 			if (biomeIn == Biomes.WARM_OCEAN) {
-				addSpawnZur.addSpawnZur_weight_4.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 4, 1, 1));
 			}
 			if (biomeIn == Biomes.LUKEWARM_OCEAN) {
-				addSpawnZur.addSpawnZur_weight_4.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 4, 1, 1));
 			}
 			if (biomeIn == Biomes.COLD_OCEAN) {
-				addSpawnZur.addSpawnZur_weight_4.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 4, 1, 1));
 			}
 			if (biomeIn == Biomes.DEEP_WARM_OCEAN) {
-				addSpawnZur.addSpawnZur_weight_4.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 4, 1, 1));
 			}
 			if (biomeIn == Biomes.DEEP_LUKEWARM_OCEAN) {
-				addSpawnZur.addSpawnZur_weight_4.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 4, 1, 1));
 			}
 			if (biomeIn == Biomes.DEEP_COLD_OCEAN) {
-				addSpawnZur.addSpawnZur_weight_4.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 4, 1, 1));
 			}
 			if (biomeIn == Biomes.DEEP_FROZEN_OCEAN) {
-				addSpawnZur.addSpawnZur_weight_4.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 4, 1, 1));
 			}
 			if (biomeIn == Biomes.THE_VOID) {
-
+				biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 4)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(8))));
 			}
 			if (biomeIn == Biomes.SUNFLOWER_PLAINS) {
-				addSpawnZur.addSpawnZur_weight_4.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 4, 1, 1));
+				biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 15)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(6))));
 			}
 			if (biomeIn == Biomes.DESERT_LAKES) {
-				addSpawnZur.addSpawnZur_weight_8.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 8, 1, 1));
+				biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 11)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(11))));
 			}
 			if (biomeIn == Biomes.GRAVELLY_MOUNTAINS) {
-				addSpawnZur.addSpawnZur_weight_4.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 4, 1, 1));
+				biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 7)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(10))));
 			}
 			if (biomeIn == Biomes.FLOWER_FOREST) {
-				addSpawnZur.addSpawnZur_weight_4.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 4, 1, 1));
+				biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 10)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(13))));
 			}
 			if (biomeIn == Biomes.TAIGA_MOUNTAINS) {
-				addSpawnZur.addSpawnZur_weight_4.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 4, 1, 1));
+				biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 5)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(9))));
 			}
 			if (biomeIn == Biomes.SWAMP_HILLS) {
-				addSpawnZur.addSpawnZur_weight_8.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 8, 1, 1));
+				biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 6)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(17))));
 			}
-			if (biomeIn == Biomes.ICE_SPIKES) {
-
-			}
+			/*if (biomeIn == Biomes.ICE_SPIKES) {
+				biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 4)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(8))));
+			}*/
 			if (biomeIn == Biomes.MODIFIED_JUNGLE) {
-				addSpawnZur.addSpawnZur_weight_8.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 8, 1, 1));
+				biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 17)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(7))));
 			}
 			if (biomeIn == Biomes.MODIFIED_JUNGLE_EDGE) {
-				addSpawnZur.addSpawnZur_weight_8.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 8, 1, 1));
+				biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 20)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(6))));
 			}
 			if (biomeIn == Biomes.TALL_BIRCH_FOREST) {
-				addSpawnZur.addSpawnZur_weight_4.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 4, 1, 1));
+				biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 8)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(8))));
 			}
 			if (biomeIn == Biomes.TALL_BIRCH_HILLS) {
-				addSpawnZur.addSpawnZur_weight_4.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 4, 1, 1));
+				biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 8)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(9))));
 			}
 			if (biomeIn == Biomes.DARK_FOREST_HILLS) {
-				addSpawnZur.addSpawnZur_weight_8.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 8, 1, 1));
+				biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 10)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(13))));
 			}
 			if (biomeIn == Biomes.SNOWY_TAIGA_MOUNTAINS) {
-				addSpawnZur.addSpawnZur_weight_4.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 4, 1, 1));
+				biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 7)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(19))));
 			}
 			if (biomeIn == Biomes.GIANT_SPRUCE_TAIGA) {
-				addSpawnZur.addSpawnZur_weight_8.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 8, 1, 1));
+				biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 14)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(15))));
 			}
 			if (biomeIn == Biomes.GIANT_SPRUCE_TAIGA_HILLS) {
-				addSpawnZur.addSpawnZur_weight_4.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 4, 1, 1));
+				biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 21)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(12))));
 			}
 			if (biomeIn == Biomes.MODIFIED_GRAVELLY_MOUNTAINS) {
-				addSpawnZur.addSpawnZur_weight_4.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 4, 1, 1));
+				biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 16)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(8))));
 			}
 			if (biomeIn == Biomes.SHATTERED_SAVANNA) {
-				addSpawnZur.addSpawnZur_weight_8.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 8, 1, 1));
+				biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 13)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(15))));
 			}
 			if (biomeIn == Biomes.SHATTERED_SAVANNA_PLATEAU) {
-				addSpawnZur.addSpawnZur_weight_8.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 12, 1, 1));
+				biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 11)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(17))));
 			}
 			if (biomeIn == Biomes.ERODED_BADLANDS) {
-				addSpawnZur.addSpawnZur_weight_8.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 3, 1, 1));
+				biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.TERRACOTTA_VARIANTS, KALT_BLOCK, 11)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(15))));
 			}
 			if (biomeIn == Biomes.MODIFIED_WOODED_BADLANDS_PLATEAU) {
-				addSpawnZur.addSpawnZur_weight_8.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 12, 1, 1));
+				biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.TERRACOTTA_VARIANTS, KALT_BLOCK, 8)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(10))));
 			}
 			if (biomeIn == Biomes.MODIFIED_BADLANDS_PLATEAU) {
-				addSpawnZur.addSpawnZur_weight_8.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 8, 1, 1));
+				biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.TERRACOTTA_VARIANTS, KALT_BLOCK, 9)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(13))));
 			}
 			if (biomeIn == Biomes.BAMBOO_JUNGLE) {
-				addSpawnZur.addSpawnZur_weight_4.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 8, 1, 1));
+				biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 7)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(14))));
 			}
 			if (biomeIn == Biomes.BAMBOO_JUNGLE_HILLS) {
-				addSpawnZur.addSpawnZur_weight_4.addSpawnZur_count_1(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 8, 1, 1));
+				biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 14)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(9))));
 			}
 			if (biomeIn == Biomes.SOUL_SAND_VALLEY) {
-				addNetherBlocks(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 4, 1, 1));
 			}
 			if (biomeIn == Biomes.CRIMSON_FOREST) {
-				addNetherBlocks(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 4, 1, 1));
 			}
 			if (biomeIn == Biomes.WARPED_FOREST) {
-				addNetherBlocks(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 4, 1, 1));
 			}
 			if (biomeIn == Biomes.BASALT_DELTAS) {
-				addNetherBlocks(biomeIn);
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 4, 1, 1));
 			}
 		}
 	}
@@ -853,7 +887,7 @@ public class FeatureGen {
 
 	public static void addOres(Biome biomeIn) {
 		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, SURVI, 45)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(20, 0, 0, 25))));
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, RUBY_ORE, 12)).withPlacement(Placement.COUNT_DEPTH_AVERAGE.configure(new DepthAverageConfig(8, 16, 32))));
+		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, RUBY_ORE, 12)).withPlacement(Placement.COUNT_DEPTH_AVERAGE.configure(new DepthAverageConfig(8, 16, 64))));
 		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, AIR, 8)).withPlacement(Placement.COUNT_DEPTH_AVERAGE.configure(new DepthAverageConfig(20, 24, 36))));
 	}
 
@@ -863,10 +897,10 @@ public class FeatureGen {
 
 	public static void addNaturalEndStone(Biome biomeIn) {
 		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_END_STONE, END_STONE, 20)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(80, 0, 0, 256))));
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_END_STONE, END_SRACKT, 16)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(80, 0, 0, 256))));
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_END_STONE, END_SRACT, 12)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(80, 0, 0, 256))));
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_END_STONE, END_STONE_CISK, 4)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(80, 0, 0, 256))));
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_END_STONE, END_STONE_CRISK, 2)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(80, 0, 0, 256))));
+		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_END_STONE, END_SRACKT, 16)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(64, 0, 0, 256))));
+		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_END_STONE, END_SRACT, 12)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(48, 0, 0, 256))));
+		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_END_STONE, END_STONE_CISK, 4)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(16, 0, 0, 256))));
+		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_END_STONE, END_STONE_CRISK, 2)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(8, 0, 0, 256))));
 	}
 
 	public static void addNetherBlocks(Biome biomeIn) {
@@ -945,16 +979,16 @@ public class FeatureGen {
 
 	private static void addSpawnZur_weight_32(Biome biomeIn) {
 		biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 16)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(32))));
-		modBiomeIn.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 32, 1, 16));
+		biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 32, 1, 16));
 	}
 
 	private static void addSpawnZur_weight_24(Biome biomeIn) {
 		biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 12)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(24))));
-		modBiomeIn.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 24, 1, 12));
+		biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 24, 1, 12));
 	}
 
 	private static void addSpawnZur_weight_16(Biome biomeIn) {
 		biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 8)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(16))));
-		modBiomeIn.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 16, 1, 8));
+		biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 16, 1, 8));
 	}
 }

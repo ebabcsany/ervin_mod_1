@@ -35,7 +35,7 @@ public abstract class JurkFluid extends FlowingFluid {
    }
 
    public Item getFilledBucket() {
-      return ItemInit.JURK_BUCKET.get();
+      return ItemInit.JURK_BUCKETI.get();
    }
 
    @OnlyIn(Dist.CLIENT)
@@ -51,7 +51,7 @@ public abstract class JurkFluid extends FlowingFluid {
          }
 
          if (random.nextInt(200) == 0) {
-            worldIn.playSound((double)pos.getX(), (double)pos.getY(), (double)pos.getZ(), SoundEvents.BLOCK_LAVA_AMBIENT, SoundCategory.BLOCKS, 0.2F + random.nextFloat() * 0.2F, 0.9F + random.nextFloat() * 0.15F, false);
+            worldIn.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_LAVA_AMBIENT, SoundCategory.BLOCKS, 0.2F + random.nextFloat() * 0.2F, 0.9F + random.nextFloat() * 0.15F, false);
          }
       }
 

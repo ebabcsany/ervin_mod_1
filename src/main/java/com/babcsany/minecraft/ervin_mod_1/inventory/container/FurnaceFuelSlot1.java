@@ -1,7 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.inventory.container;
 
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.container.AbstractFurnaceContainer;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;

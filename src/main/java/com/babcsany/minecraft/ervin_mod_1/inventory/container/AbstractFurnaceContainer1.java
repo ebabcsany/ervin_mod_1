@@ -1,6 +1,5 @@
 package com.babcsany.minecraft.ervin_mod_1.inventory.container;
 
-import com.babcsany.minecraft.ervin_mod_1.item.crafting.ServerRecipePlacerFurnace1;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.entity.player.ServerPlayerEntity;

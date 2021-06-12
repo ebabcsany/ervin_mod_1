@@ -23,11 +23,8 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.util.Lazy;
-import net.minecraftforge.common.util.NonNullSupplier;
 
 import javax.annotation.Nullable;
-import java.awt.*;
 import java.util.List;
 
 public class FishBucketItem extends BucketItem {

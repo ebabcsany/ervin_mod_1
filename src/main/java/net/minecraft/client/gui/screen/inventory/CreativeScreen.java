@@ -251,7 +251,7 @@ public class CreativeScreen extends DisplayEffectsScreen<CreativeScreen.Creative
             maxPages = (int) Math.ceil((tabCount - 12) / 10D);
          }
          this.minecraft.keyboardListener.enableRepeatEvents(true);
-         this.searchField = new TextFieldWidget(this.font, this.guiLeft + 82, this.guiTop + 6, 80, 9, new TranslationTextComponent("itemGroup.search1"));
+         this.searchField = new TextFieldWidget(this.font, this.guiLeft + 82, this.guiTop + 6, 80, 9, new TranslationTextComponent("itemGroup.search"));
          this.searchField.setMaxStringLength(50);
          this.searchField.setEnableBackgroundDrawing(false);
          this.searchField.setVisible(false);
@@ -312,7 +312,7 @@ public class CreativeScreen extends DisplayEffectsScreen<CreativeScreen.Creative
       if (!ItemGroup.GROUPS[selectedTabIndex].hasSearchBar()) {
          if (this.minecraft.gameSettings.keyBindChat.matchesKey(keyCode, scanCode)) {
             this.field_195377_F = true;
-            this.setCurrentCreativeTab(com.babcsany.minecraft.ervin_mod_1.item.group.ItemGroup.SEARCH);
+            this.setCurrentCreativeTab(ItemGroup.SEARCH);
             return true;
          } else {
             return super.keyPressed(keyCode, scanCode, modifiers);
@@ -348,7 +348,7 @@ public class CreativeScreen extends DisplayEffectsScreen<CreativeScreen.Creative
       this.tagSearchResults.clear();
 
       ItemGroup tab = ItemGroup.GROUPS[selectedTabIndex];
-      if (tab.hasSearchBar() && tab != com.babcsany.minecraft.ervin_mod_1.item.group.ItemGroup.SEARCH) {
+      if (tab.hasSearchBar() && tab != ItemGroup.SEARCH) {
          tab.fill(container.itemList);
          if (!this.searchField.getText().isEmpty()) {
             //TODO: Make this a SearchTree not a manual search
@@ -375,7 +375,7 @@ public class CreativeScreen extends DisplayEffectsScreen<CreativeScreen.Creative
       String s = this.searchField.getText();
       if (s.isEmpty()) {
          for(Item item : Registry.ITEM) {
-            item.fillItemGroup(com.babcsany.minecraft.ervin_mod_1.item.group.ItemGroup.SEARCH, (this.container).itemList);
+            item.fillItemGroup(ItemGroup.SEARCH, (this.container).itemList);
          }
       } else {
          ISearchTree<ItemStack> isearchtree;
@@ -501,7 +501,7 @@ public class CreativeScreen extends DisplayEffectsScreen<CreativeScreen.Creative
                (this.container).itemList.addAll(hotbarsnapshot);
             }
          }
-      } else if (tab != com.babcsany.minecraft.ervin_mod_1.item.group.ItemGroup.SEARCH) {
+      } else if (tab != ItemGroup.SEARCH) {
          tab.fill((this.container).itemList);
       }
 
@@ -633,7 +633,7 @@ public class CreativeScreen extends DisplayEffectsScreen<CreativeScreen.Creative
             break;
          }
       }
-      if (!rendered && !func_238809_a_(matrixStack, com.babcsany.minecraft.ervin_mod_1.item.group.ItemGroup.SEARCH, mouseX, mouseY))
+      if (!rendered && !func_238809_a_(matrixStack, ItemGroup.SEARCH, mouseX, mouseY))
           func_238809_a_(matrixStack, ItemGroup.INVENTORY, mouseX, mouseY);
 
       if (this.destroyItemSlot != null && selectedTabIndex == ItemGroup.INVENTORY.getIndex() && this.isPointInRegion(this.destroyItemSlot.xPos, this.destroyItemSlot.yPos, 16, 16, (double)mouseX, (double)mouseY)) {
@@ -655,7 +655,7 @@ public class CreativeScreen extends DisplayEffectsScreen<CreativeScreen.Creative
    }
 
    protected void renderTooltip(MatrixStack matrixStack, ItemStack itemStack, int mouseX, int mouseY) {
-      if (selectedTabIndex == com.babcsany.minecraft.ervin_mod_1.item.group.ItemGroup.SEARCH.getIndex()) {
+      if (selectedTabIndex == ItemGroup.SEARCH.getIndex()) {
          List<ITextComponent> list = itemStack.getTooltip(this.minecraft.player, this.minecraft.gameSettings.advancedItemTooltips ? ITooltipFlag.TooltipFlags.ADVANCED : ITooltipFlag.TooltipFlags.NORMAL);
          List<ITextComponent> list1 = Lists.newArrayList(list);
          Item item = itemStack.getItem();
@@ -711,9 +711,9 @@ public class CreativeScreen extends DisplayEffectsScreen<CreativeScreen.Creative
       }
 
       if (tabPage != 0) {
-         if (itemgroup != com.babcsany.minecraft.ervin_mod_1.item.group.ItemGroup.SEARCH) {
-            this.minecraft.getTextureManager().bindTexture(com.babcsany.minecraft.ervin_mod_1.item.group.ItemGroup.SEARCH.getTabsImage());
-            func_238808_a_(matrixStack, com.babcsany.minecraft.ervin_mod_1.item.group.ItemGroup.SEARCH);
+         if (itemgroup != ItemGroup.SEARCH) {
+            this.minecraft.getTextureManager().bindTexture(ItemGroup.SEARCH.getTabsImage());
+            func_238808_a_(matrixStack, ItemGroup.SEARCH);
          }
          if (itemgroup != ItemGroup.INVENTORY) {
             this.minecraft.getTextureManager().bindTexture(ItemGroup.INVENTORY.getTabsImage());
@@ -733,7 +733,7 @@ public class CreativeScreen extends DisplayEffectsScreen<CreativeScreen.Creative
          this.blit(matrixStack, i, j + (int)((float)(k - j - 17) * this.currentScroll), 232 + (this.needsScrollBars() ? 0 : 12), 0, 12, 15);
       }
 
-      if ((itemgroup == null || itemgroup.getTabPage() != tabPage) && (itemgroup != com.babcsany.minecraft.ervin_mod_1.item.group.ItemGroup.SEARCH && itemgroup != ItemGroup.INVENTORY))
+      if ((itemgroup == null || itemgroup.getTabPage() != tabPage) && (itemgroup != ItemGroup.SEARCH && itemgroup != ItemGroup.INVENTORY))
          return;
 
       this.func_238808_a_(matrixStack, itemgroup);
@@ -744,7 +744,7 @@ public class CreativeScreen extends DisplayEffectsScreen<CreativeScreen.Creative
    }
 
    protected boolean isMouseOverGroup(ItemGroup p_195375_1_, double p_195375_2_, double p_195375_4_) {
-      if (p_195375_1_.getTabPage() != tabPage && p_195375_1_ != com.babcsany.minecraft.ervin_mod_1.item.group.ItemGroup.SEARCH && p_195375_1_ != ItemGroup.INVENTORY) return false;
+      if (p_195375_1_.getTabPage() != tabPage && p_195375_1_ != ItemGroup.SEARCH && p_195375_1_ != ItemGroup.INVENTORY) return false;
       int i = p_195375_1_.getColumn();
       int j = 28 * i;
       int k = 0;
@@ -864,7 +864,7 @@ public class CreativeScreen extends DisplayEffectsScreen<CreativeScreen.Creative
       public final NonNullList<ItemStack> itemList = NonNullList.create();
 
       public CreativeContainer(PlayerEntity player) {
-         super(null, 0);
+         super((ContainerType<?>)null, 0);
          PlayerInventory playerinventory = player.inventory;
 
          for(int i = 0; i < 5; ++i) {

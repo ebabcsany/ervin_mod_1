@@ -1,39 +1,28 @@
 package com.babcsany.minecraft.ervin_mod_1.block.blocks;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
-import com.babcsany.minecraft.ervin_mod_1.block.trader_block.trades.TraderBlockTrades;
-import com.babcsany.minecraft.ervin_mod_1.container.CraintBlockCraftingTableContainer;
-import com.babcsany.minecraft.ervin_mod_1.container.merchant.ZurContainer;
+import com.babcsany.minecraft.ervin_mod_1.block.ModBlock;
 import com.babcsany.minecraft.ervin_mod_1.container.trader.TraderBlockContainer;
-import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.$TraderTrades;
-import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
-import com.google.common.collect.Sets;
-import net.minecraft.block.Block;
+import com.babcsany.minecraft.ervin_mod_1.entity.player.PlayerEntity1;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.item.ExperienceOrbEntity;
-import net.minecraft.entity.merchant.IMerchant;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.inventory.container.MerchantContainer;
 import net.minecraft.inventory.container.SimpleNamedContainerProvider;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.MerchantOffer;
-import net.minecraft.item.MerchantOffers;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
-import java.util.Random;
-import java.util.Set;
+import java.util.OptionalInt;
 
-public class TraderBlock extends Block {
-    public TraderBlock(Properties properties) { super(properties); }
+public class TraderBlock extends ModBlock {
+    public TraderBlock(Properties properties) {
+        super(properties);
+    }
 
     private static final ITextComponent field_220271_a = new TranslationTextComponent(Ervin_mod_1.MOD_ID,"block.ervin_mod_1.trader_block");
 
@@ -45,6 +34,10 @@ public class TraderBlock extends Block {
             player.addStat(Stats.INTERACT_WITH_CRAFTING_TABLE);
             return ActionResultType.SUCCESS;
         }
+    }
+
+    public OptionalInt openContainer(@Nullable INamedContainerProvider p_213829_1_) {
+        return OptionalInt.empty();
     }
 
     /*public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {

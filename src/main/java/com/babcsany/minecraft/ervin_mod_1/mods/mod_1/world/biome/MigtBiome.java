@@ -1,6 +1,5 @@
 package com.babcsany.minecraft.ervin_mod_1.mods.mod_1.world.biome;
 
-import com.babcsany.minecraft.ervin_mod_1.init.ModBiomeFeatures;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.ModDefaultBiomeFeatures;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;

@@ -13,7 +13,7 @@ public class BlockItemInit {
 
     public static final RegistryObject<Item> ZUNK_SLAB = BLOCK_ITEMS.register("zunk_slab", () -> new BlockItem(BlockInit.ZUNK_SLAB.get(), (new Item.Properties())));
     public static final RegistryObject<Item> ZUNK_STAIRS = BLOCK_ITEMS.register("zunk_stairs", () -> new BlockItem(BlockInit.ZUNK_STAIRS.get(), (new Item.Properties())));
-    public static final RegistryObject<Item> JURK = BLOCK_ITEMS.register("jurk", () -> new BlockItem(BlockInit.JURK.get(), (new Item.Properties())));
+    public static final RegistryObject<Item> JURK = BLOCK_ITEMS.register("jurk", () -> new BlockItem(com.babcsany.minecraft.init.BlockInit.FIRG_PLANKS, (new Item.Properties())));
     public static final RegistryObject<Item> FIGHIV = BLOCK_ITEMS.register("fighiv", () -> new BlockItem(BlockInit.FIGHIV.get(), (new Item.Properties())));
     public static final RegistryObject<Item> BLACK_STRING = BLOCK_ITEMS.register("strings/black_string", () -> new BlockItem(BlockInit.BLACK_TRIPWIRE.get(), (new Item.Properties())));
     public static final RegistryObject<Item> BLUE_STRING = BLOCK_ITEMS.register("strings/blue_string", () -> new BlockItem(BlockInit.BLUE_TRIPWIRE.get(), (new Item.Properties())));

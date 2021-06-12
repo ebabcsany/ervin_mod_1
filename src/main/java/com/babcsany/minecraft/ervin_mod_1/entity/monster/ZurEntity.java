@@ -145,7 +145,7 @@ public class ZurEntity extends AbstractZurEntity {
       this.goalSelector.addGoal(4, new LookAtGoal(this, PlayerEntity.class, 8.0F));
       this.goalSelector.addGoal(6, new LeapAtTargetGoal(this, 1.0F));
       this.goalSelector.addGoal(4, new AttackGoal(this));
-      this.goalSelector.addGoal(0, new TakeBlockGoal(this));
+      this.goalSelector.addGoal(1, new TakeBlockGoal(this));
       this.goalSelector.addGoal(2, new ZurAttackGoal(this, 1.0D, true));
       this.goalSelector.addGoal(3, new OpenDoorGoal(this, false));
       this.goalSelector.addGoal(4, new SwimGoal(this));
@@ -265,6 +265,11 @@ public class ZurEntity extends AbstractZurEntity {
 
       this.zurInventory.read(compound.getList("Inventory", 10));
       this.setGrowingAge(Math.max(0, this.getGrowingAge()));
+   }
+
+   @Override
+   protected boolean populateTradeZurData() {
+      return false;
    }
 
    public void setGrowingAge(int age) {
@@ -410,6 +415,11 @@ public class ZurEntity extends AbstractZurEntity {
       return true;
    }
 
+   @Override
+   public boolean func_223340_ej() {
+      return super.func_223340_ej();
+   }
+
    public class PounceGoal extends net.minecraft.entity.ai.goal.JumpGoal {
       public PounceGoal(ZurEntity zurEntity) {
          super();
@@ -545,7 +555,7 @@ public class ZurEntity extends AbstractZurEntity {
       }
    }
 
-   protected boolean populateTradeData() {
+   protected void populateTradeData() {
       ZurTrades.ITrade[] aZurTrades$itrade = ZurTrades.field_221240_b.get(1);
       if (aZurTrades$itrade != null) {
          MerchantOffers merchantoffers = this.getOffers();
@@ -558,8 +568,6 @@ public class ZurEntity extends AbstractZurEntity {
          }
 
       }
-
-      return true;
    }
 
    @Nullable
@@ -800,8 +808,8 @@ public class ZurEntity extends AbstractZurEntity {
       this.dataManager.set(field_234409_bv_, isCharging);
    }
 
-   protected void func_234439_n_(ItemStack p_234439_1_) {
-      if (p_234439_1_.isZurCurrency()) {
+   /*protected void func_234439_n_(ItemStack p_234439_1_) {
+      if (p_234439_1_.isZurCurrency(getStack())) {
          this.setItemStackToSlot(EquipmentSlotType.OFFHAND, p_234439_1_);
          this.setIdleTime(1000);
          this.func_233663_d_(EquipmentSlotType.OFFHAND);
@@ -809,7 +817,7 @@ public class ZurEntity extends AbstractZurEntity {
          this.func_233657_b_(EquipmentSlotType.OFFHAND, p_234439_1_);
       }
 
-   }
+   }*/
 
    protected ItemStack func_234436_k_(ItemStack itemStack) {
       return this.zurInventory.addItem(itemStack);
@@ -934,7 +942,7 @@ public class ZurEntity extends AbstractZurEntity {
     * Gives armor or weapon for entity based on given DifficultyInstance
     */
    protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty) {
-      if (this.populateTradeData()) {
+      if (this.isRemote) {
          if (this.Child()) {
             this.equipmentSlotType(EquipmentSlotType.HEAD, new ItemStack(isBurnableArmorItemInit.SRIUNK_HELMET.get()));
             this.equipmentSlotType(EquipmentSlotType.CHEST, new ItemStack(isBurnableArmorItemInit.SRIUNK_CHESTPLATE.get()));

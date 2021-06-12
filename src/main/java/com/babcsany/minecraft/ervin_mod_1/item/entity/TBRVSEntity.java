@@ -1,7 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.item.entity;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.$TraderEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.villager.Abstract$TraderEntity;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;

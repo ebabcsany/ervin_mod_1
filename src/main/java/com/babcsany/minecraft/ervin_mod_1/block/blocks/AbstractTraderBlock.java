@@ -1,9 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.block.blocks;
 
-import com.babcsany.minecraft.ervin_mod_1.block.trader_block.trades.TraderBlockTrades;
 import com.babcsany.minecraft.ervin_mod_1.entity.merchant.trader_block.IMerchant;
 import com.babcsany.minecraft.ervin_mod_1.entity.trigger.CriteriaTriggers1;
-import com.google.common.collect.Sets;
 import net.minecraft.block.Block;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.PlayerEntity;
@@ -22,7 +20,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 import java.util.Random;
-import java.util.Set;
 
 public abstract class AbstractTraderBlock extends Block implements INPC, IMerchant {
    @Nullable

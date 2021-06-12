@@ -1,7 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.client.renderer.entity;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
-import com.babcsany.minecraft.ervin_mod_1.entity.item.ModBoatEntity;
+import com.babcsany.minecraft.ervin_mod_1.entity.item.ModBoatEntityhj;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
@@ -15,7 +15,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Quaternion;
 import net.minecraft.util.math.vector.Vector3f;
 
-public class ModBoatRender extends EntityRenderer<ModBoatEntity> {
+public class ModBoatRender extends EntityRenderer<ModBoatEntityhj> {
     private static final ResourceLocation[] MOD_BOAT_TEXTURES = new ResourceLocation[]{
             new ResourceLocation(Ervin_mod_1.MOD_ID,"textures/entity/boat/firg.png"),
             new ResourceLocation(Ervin_mod_1.MOD_ID,"textures/entity/boat/frim.png"),
@@ -28,7 +28,7 @@ public class ModBoatRender extends EntityRenderer<ModBoatEntity> {
         Ervin_mod_1.LOGGER.info("ACCESSING");
     }
 
-    public void render(ModBoatEntity boat, float f, float g, MatrixStack matrixStack, IRenderTypeBuffer buffer, int i) {
+    public void render(ModBoatEntityhj boat, float f, float g, MatrixStack matrixStack, IRenderTypeBuffer buffer, int i) {
         Ervin_mod_1.LOGGER.info("RENDERED");
         matrixStack.push();
         matrixStack.translate(0.0D, 0.375D, 0.0D);
@@ -63,7 +63,7 @@ public class ModBoatRender extends EntityRenderer<ModBoatEntity> {
         super.render(boat, f, g, matrixStack, buffer, i);
     }
 
-    public ResourceLocation getEntityTexture(ModBoatEntity boatEntity) {
+    public ResourceLocation getEntityTexture(ModBoatEntityhj boatEntity) {
         return MOD_BOAT_TEXTURES[boatEntity.getModBoatType().ordinal()];
     }
 }

@@ -20,7 +20,7 @@ public class ModFoodInit {
     public static final Food REAT = (new Food.Builder()).hunger(24).saturation(30).effect(new EffectInstance(Effects.INSTANT_HEALTH, 300, 10000), 10000.0F).setAlwaysEdible().build();
     public static final Food REAT1 = (new Food.Builder()).hunger(24).saturation(30).effect(new EffectInstance(Effects.REGENERATION, 300, 10000), 10000.0F).setAlwaysEdible().fastToEat().build();
     public static final Food REAT2 = (new Food.Builder()).hunger(24).saturation(30).effect(new EffectInstance(Effects.REGENERATION, 300, 10000), 10000.0F).setAlwaysEdible().fastToEat().build();
-    public static final Food BEETROOT_SOUP = buildShek(10);
+    public static final Food REGDEMP = buildShek(10);
     public static final Food GUBROV = (new Food.Builder()).hunger(4).saturation(0.8F).build();
     public static final Food COOKED_GUBROV = (new Food.Builder()).hunger(8).saturation(1.6F).build();
     public static final Food STEEF = (new Food.Builder()).hunger(5).saturation(1.0F).build();

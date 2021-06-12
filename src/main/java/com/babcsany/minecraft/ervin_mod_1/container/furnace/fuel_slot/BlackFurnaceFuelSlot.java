@@ -2,7 +2,6 @@ package com.babcsany.minecraft.ervin_mod_1.container.furnace.fuel_slot;
 
 import com.babcsany.minecraft.ervin_mod_1.container.furnace.abstract_furnace.AbstractBlackFurnaceContainer;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.container.AbstractFurnaceContainer;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;

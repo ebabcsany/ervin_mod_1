@@ -2,9 +2,7 @@ package com.babcsany.minecraft.ervin_mod_1.client.entity.render;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.client.entity.model.TraderNirtre1Model;
-import com.babcsany.minecraft.ervin_mod_1.client.entity.model.TraderNirtreModel;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.TraderNirtre1Entity;
-import com.babcsany.minecraft.ervin_mod_1.entity.villager.TraderNirtreEntity;
 import net.minecraft.client.renderer.entity.BipedRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.layers.BipedArmorLayer;

@@ -8,7 +8,6 @@ import net.minecraft.util.registry.Registry;
 
 public class BlockState extends AbstractBlock.AbstractBlockState implements net.minecraftforge.common.extensions.IForgeBlockState {
    public static final Codec<BlockState> BLOCKSTATE_CODEC = func_235897_a_(Registry.BLOCK, Block::getDefaultState).stable();
-   public static final Codec<BlockState> BLOCKSTATE_CODEC1 = func_235897_a_(Registry.BLOCK, Block::getDefaultState).stable();
 
    public BlockState(Block block, ImmutableMap<Property<?>, Comparable<?>> propertiesToValueMap, MapCodec<BlockState> codec) {
       super(block, propertiesToValueMap, codec);
