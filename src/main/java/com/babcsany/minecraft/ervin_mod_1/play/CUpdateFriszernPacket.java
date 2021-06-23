@@ -3,8 +3,6 @@ package com.babcsany.minecraft.ervin_mod_1.play;
 import com.babcsany.minecraft.ervin_mod_1.block.FriszernTileEntity;
 import net.minecraft.network.IPacket;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.network.play.IServerPlayNetHandler;
-import net.minecraft.tileentity.CommandBlockTileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;

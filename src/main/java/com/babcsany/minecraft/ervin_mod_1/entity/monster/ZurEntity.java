@@ -2,6 +2,7 @@ package com.babcsany.minecraft.ervin_mod_1.entity.monster;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.EatPumpkinGoal;
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.ZurTradeWithPlayerGoal;
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.Dgrurb;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.goal.PlaceBlockGoal;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.goal.TakeBlockGoal;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.TraderNirtreEntity;
@@ -77,7 +78,7 @@ public class ZurEntity extends AbstractZurEntity {
    private static final DataParameter<Boolean> field_234408_bu_ = EntityDataManager.createKey(ZurEntity.class, DataSerializers.BOOLEAN);
    private static final DataParameter<Optional<BlockState>> CARRIED_BLOCK = EntityDataManager.createKey(ZurEntity.class, DataSerializers.OPTIONAL_BLOCK_STATE);
    private static final DataParameter<Boolean> BABY = EntityDataManager.createKey(ZurEntity.class, DataSerializers.BOOLEAN);
-   private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(isBurnableFoodItemInit.TIRKS.get());
+   //private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(isBurnableFoodItemInit.TIRKS.get());
    private static final DataParameter<Boolean> field_213428_bH = EntityDataManager.createKey(ZurEntity.class, DataSerializers.BOOLEAN);
    private static final DataParameter<Boolean> field_213428_bG = EntityDataManager.createKey(ZurEntity.class, DataSerializers.BOOLEAN);
    private static final DataParameter<Boolean> field_213429_bH = EntityDataManager.createKey(ZurEntity.class, DataSerializers.BOOLEAN);
@@ -122,7 +123,7 @@ public class ZurEntity extends AbstractZurEntity {
    }
 
    public ZurEntity(World worldIn) {
-      this(EntityInit.ZUR_ENTITY, worldIn);
+      this(com.babcsany.minecraft.init.EntityInit.ZUR_ENTITY, worldIn);
    }
 
    protected void registerGoals() {
@@ -227,7 +228,7 @@ public class ZurEntity extends AbstractZurEntity {
 
    @Nullable
    public ZurEntity createChild(AgeableEntity ageable) {
-      return EntityInit.ZUR_ENTITY.create(this.world);
+      return com.babcsany.minecraft.init.EntityInit.ZUR_ENTITY.create(this.world);
    }
 
    public boolean canDespawn(double distanceToClosestPlayer) {
@@ -265,11 +266,6 @@ public class ZurEntity extends AbstractZurEntity {
 
       this.zurInventory.read(compound.getList("Inventory", 10));
       this.setGrowingAge(Math.max(0, this.getGrowingAge()));
-   }
-
-   @Override
-   protected boolean populateTradeZurData() {
-      return false;
    }
 
    public void setGrowingAge(int age) {
@@ -536,7 +532,7 @@ public class ZurEntity extends AbstractZurEntity {
    public ActionResultType func_230254_b_(PlayerEntity p_230254_1_, Hand p_230254_2_) {
       ItemStack itemstack = p_230254_1_.getHeldItem(p_230254_2_);
       ActionResultType actionresulttype = super.func_230254_b_(p_230254_1_, p_230254_2_);
-      if (itemstack.getItem() != ModSpawnEggItemInit.ZUR_SPAWN_EGG.get() && this.isAlive() && !this.hasCustomer() && !this.isChild()) {
+      if (itemstack.getItem() != ModSpawnEggItemInit.ZUR_SPAWN_EGG && this.isAlive() && !this.hasCustomer() && !this.isChild()) {
          if (p_230254_2_ == Hand.MAIN_HAND) {
             p_230254_1_.addStat(Stats.TALKED_TO_VILLAGER);
          }
@@ -555,7 +551,8 @@ public class ZurEntity extends AbstractZurEntity {
       }
    }
 
-   protected void populateTradeData() {
+   @Override
+   protected void populateTradeZurData() {
       ZurTrades.ITrade[] aZurTrades$itrade = ZurTrades.field_221240_b.get(1);
       if (aZurTrades$itrade != null) {
          MerchantOffers merchantoffers = this.getOffers();
@@ -1163,7 +1160,7 @@ public class ZurEntity extends AbstractZurEntity {
          }
 
          TraderNirtreEntity traderNirtreEntity = (TraderNirtreEntity) entityLivingIn;
-         ZurEntity zurNirtreEntity = EntityInit.ZUR_ENTITY.create(this.world);
+         ZurEntity zurNirtreEntity = com.babcsany.minecraft.init.EntityInit.ZUR_ENTITY.create(this.world);
          zurNirtreEntity.copyLocationAndAnglesFrom(traderNirtreEntity);
          traderNirtreEntity.remove();
          zurNirtreEntity.onInitialSpawn(this.world, this.world.getDifficultyForLocation(zurNirtreEntity.getPosition()), SpawnReason.CONVERSION, new ZurEntity.GroupData(false, true), (CompoundNBT)null);

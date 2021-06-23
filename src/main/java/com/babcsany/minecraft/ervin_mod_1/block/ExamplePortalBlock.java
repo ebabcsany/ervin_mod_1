@@ -1,7 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.block;
 
 import com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit;
-import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
+import com.babcsany.minecraft.init.EntityInit;
 import com.google.common.cache.LoadingCache;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -66,7 +66,7 @@ public class ExamplePortalBlock extends Block {
          }
 
          if (worldIn.getBlockState(pos).canEntitySpawn(worldIn, pos, EntityInit.ZUR_ENTITY)) {
-            Entity entity = EntityInit.ZUR_ENTITY.spawn(worldIn, null, null, null, pos.up(), SpawnReason.STRUCTURE, false, false);
+            Entity entity = com.babcsany.minecraft.init.EntityInit.ZUR_ENTITY.spawn(worldIn, null, null, null, pos.up(), SpawnReason.STRUCTURE, false, false);
             if (entity != null) {
                entity.timeUntilPortal = entity.getPortalCooldown();
             }

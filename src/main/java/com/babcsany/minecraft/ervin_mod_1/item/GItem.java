@@ -1,5 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.item;
 
+import com.babcsany.minecraft.ervin_mod_1.text.TextFormatting;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.item.*;
 import net.minecraft.entity.*;
@@ -7,17 +8,19 @@ import net.minecraft.entity.player.*;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+
+import java.awt.*;
 
 public class GItem extends Item {
    public GItem(Properties builder) {
       super(builder);
    }
 
-   public Rarity getRarity(ItemStack stack) {
-      return Rarity.create("test", TextFormatting.BLACK);
+   public Rarity getModRarity(ItemStack stack) {
+      return Rarity.create("test", Color.BLACK);
    }
+
    /**
     * Called when the player finishes using this Item (E.g. finishes eating.). Not called when the player stops using
     * the Item before the action is complete.

@@ -1,7 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.init;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
-import com.babcsany.minecraft.ervin_mod_1.block.Friszern;
 import com.babcsany.minecraft.ervin_mod_1.block.blocks.*;
 import com.babcsany.minecraft.ervin_mod_1.block.blocks.burnable.*;
 import com.babcsany.minecraft.ervin_mod_1.block.blocks.burnable.slabs.*;
@@ -13,7 +12,6 @@ import com.babcsany.minecraft.ervin_mod_1.world.feature.ModSaplingBlock;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
-import net.minecraft.util.registry.Registry;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;

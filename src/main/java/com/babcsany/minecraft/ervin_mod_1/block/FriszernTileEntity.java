@@ -1,18 +1,11 @@
 package com.babcsany.minecraft.ervin_mod_1.block;
 
-import com.babcsany.minecraft.ervin_mod_1.init.TileEntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit;
-import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.CommandBlockBlock;
 import net.minecraft.command.CommandSource;
-import net.minecraft.entity.Entity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
-import net.minecraft.tileentity.CommandBlockLogic;
-import net.minecraft.tileentity.CommandBlockTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.math.BlockPos;
@@ -57,15 +50,11 @@ public class FriszernTileEntity extends TileEntity {
       }
    };
 
-   protected FriszernTileEntity(TileEntityType<?> typeIn) {
-      super(typeIn);
+   public FriszernTileEntity(TileEntityType<?> tileEntityTypeIn) {
+      super(tileEntityTypeIn);
    }
 
-   public FriszernTileEntity() {
-      super(TileEntityInit.FRISZERN);
-   }
-
-   public CompoundNBT write(CompoundNBT compound) {
+   public CompoundNBT write1(CompoundNBT compound) {
       super.write(compound);
       this.friszernLogic.write(compound);
       compound.putBoolean("powered", this.isPowered());
@@ -74,7 +63,7 @@ public class FriszernTileEntity extends TileEntity {
       return compound;
    }
 
-   public void read(BlockState state, CompoundNBT nbt) {
+   public void read1(BlockState state, CompoundNBT nbt) {
       super.read(state, nbt);
       this.friszernLogic.read(nbt);
       this.powered = nbt.getBoolean("powered");
@@ -109,7 +98,7 @@ public class FriszernTileEntity extends TileEntity {
       return true;
    }
 
-   public FriszernLogic getFriszernLogic() {
+   public FriszernLogic getLogic() {
       return this.friszernLogic;
    }
 
@@ -128,14 +117,14 @@ public class FriszernTileEntity extends TileEntity {
    public void setAuto(boolean autoIn) {
       boolean flag = this.auto;
       this.auto = autoIn;
-      if (!flag && autoIn && !this.powered && this.world != null && this.getMode() != FriszernTileEntity.Mode.SEQUENCE) {
+      if (!flag && autoIn && !this.powered && this.world != null && this.getFriszernMode() != FriszernTileEntity.Mode.SEQUENCE) {
          this.func_226988_y_();
       }
 
    }
 
-   public void func_226987_h_() {
-      FriszernTileEntity.Mode friszernTileEntity$mode = this.getMode();
+   public void func_226987_i_() {
+      FriszernTileEntity.Mode friszernTileEntity$mode = this.getFriszernMode();
       if (friszernTileEntity$mode == FriszernTileEntity.Mode.AUTO && (this.powered || this.auto) && this.world != null) {
          this.func_226988_y_();
       }
@@ -144,7 +133,7 @@ public class FriszernTileEntity extends TileEntity {
 
    private void func_226988_y_() {
       Block block = this.getBlockState().getBlock();
-      if (block instanceof Friszern) {
+      if (block instanceof Friszernk) {
          this.setConditionMet();
          this.world.getPendingBlockTicks().scheduleTick(this.pos, block, 1);
       }
@@ -157,11 +146,11 @@ public class FriszernTileEntity extends TileEntity {
 
    public boolean setConditionMet() {
       this.conditionMet = true;
-      if (this.isConditional()) {
-         BlockPos blockPos = this.pos.offset(this.world.getBlockState(this.pos).get(Friszern.FACING).getOpposite());
-         if (this.world.getBlockState(blockPos).getBlock() instanceof Friszern) {
+      if (this.isConditional1()) {
+         BlockPos blockPos = this.pos.offset(this.world.getBlockState(this.pos).get(Friszernk.FACING).getOpposite());
+         if (this.world.getBlockState(blockPos).getBlock() instanceof Friszernk) {
             TileEntity tileEntity = this.world.getTileEntity(blockPos);
-            this.conditionMet = tileEntity instanceof FriszernTileEntity && ((FriszernTileEntity)tileEntity).getFriszernLogic().getSuccessCount() > 0;
+            this.conditionMet = tileEntity instanceof FriszernTileEntity && ((FriszernTileEntity)tileEntity).getLogic().getSuccessCount() > 0;
          } else {
             this.conditionMet = false;
          }
@@ -178,7 +167,7 @@ public class FriszernTileEntity extends TileEntity {
       this.sendToClient = p_184252_1_;
    }
 
-   public FriszernTileEntity.Mode getMode() {
+   public FriszernTileEntity.Mode getFriszernMode() {
       BlockState blockState = this.getBlockState();
       if (blockState.isIn(BlockInit.FRISZERN)) {
          return FriszernTileEntity.Mode.REDSTONE;
@@ -189,15 +178,15 @@ public class FriszernTileEntity extends TileEntity {
       }
    }
 
-   public boolean isConditional() {
+   public boolean isConditional1() {
       BlockState blockstate = this.world.getBlockState(this.getPos());
-      return blockstate.getBlock() instanceof Friszern ? blockstate.get(Friszern.CONDITIONAL) : false;
+      return blockstate.getBlock() instanceof Friszernk ? blockstate.get(Friszernk.CONDITIONAL) : false;
    }
 
    /**
     * validates a tile entity
     */
-   public void validate() {
+   public void validate1() {
       this.updateContainingBlockInfo();
       super.validate();
    }

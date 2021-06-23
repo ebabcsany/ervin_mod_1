@@ -43,8 +43,8 @@ import java.util.stream.Collectors;
 
 public class ZombieTraderTrades {
    public static final Int2ObjectMap<ZombieTraderTrades.ITrade[]> field_221240_b = gatAsIntMap(ImmutableMap.of(1, new ZombieTraderTrades.ITrade[]{
-           new ZombieTraderTrades.ItemsForEmeraldsTrade(ModSpawnEggItemInit.ZUR_SPAWN_EGG.get(), 5, 1, 5000, 2),
-           new ZombieTraderTrades.ItemsForDurgsTrade(ModSpawnEggItemInit.ZUR_SPAWN_EGG.get(), 5, 1, 5000, 5),
+           new ZombieTraderTrades.ItemsForEmeraldsTrade(ModSpawnEggItemInit.ZUR_SPAWN_EGG, 5, 1, 5000, 2),
+           new ZombieTraderTrades.ItemsForDurgsTrade(ModSpawnEggItemInit.ZUR_SPAWN_EGG, 5, 1, 5000, 5),
            new ZombieTraderTrades.ItemsForKirtsTrade(Items.EMERALD, 5, 1, 500, 5),
            new ZombieTraderTrades.ItemsForBedrocksTrade(Items.ZOMBIE_SPAWN_EGG, 64, 1, 1, 2),
            new ZombieTraderTrades.ItemsForRugtsTrade(isBurnableItemInit.ZRIBT.get(), 20, 1, 50, 10),

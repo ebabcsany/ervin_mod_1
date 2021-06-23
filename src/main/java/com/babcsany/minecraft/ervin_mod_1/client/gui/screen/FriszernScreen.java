@@ -12,7 +12,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class FriszernScreen extends AbstractFriszernScreen {
-   private final FriszernTileEntity commandBlock;
+   private final FriszernTileEntity friszern;
    private Button modeBtn;
    private Button conditionalBtn;
    private Button autoExecBtn;
@@ -21,11 +21,11 @@ public class FriszernScreen extends AbstractFriszernScreen {
    private boolean automatic;
 
    public FriszernScreen(FriszernTileEntity commandBlockIn) {
-      this.commandBlock = commandBlockIn;
+      this.friszern = commandBlockIn;
    }
 
    FriszernLogic getLogic() {
-      return this.commandBlock.getFriszernLogic();
+      return this.friszern.getLogic();
    }
 
    int func_195236_i() {
@@ -54,12 +54,12 @@ public class FriszernScreen extends AbstractFriszernScreen {
    }
 
    public void updateGui() {
-      FriszernLogic friszernLogic = this.commandBlock.getFriszernLogic();
+      FriszernLogic friszernLogic = this.friszern.getLogic();
       this.commandTextField.setText(friszernLogic.getCommand());
       this.trackOutput = friszernLogic.shouldTrackOutput();
-      this.commandBlockMode = this.commandBlock.getMode();
-      this.conditional = this.commandBlock.isConditional();
-      this.automatic = this.commandBlock.isAuto();
+      this.commandBlockMode = this.friszern.getFriszernMode();
+      this.conditional = this.friszern.isConditional1();
+      this.automatic = this.friszern.isAuto();
       this.updateTrackOutput();
       this.updateMode();
       this.updateConditional();

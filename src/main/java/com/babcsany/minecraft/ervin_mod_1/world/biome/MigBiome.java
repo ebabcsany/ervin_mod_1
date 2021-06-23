@@ -53,7 +53,7 @@ public class MigBiome extends Biome {
 
     @Override
     public int getGrassColor(double posX, double posZ) {
-        return 0xd4f2a6;
+        return 0x802000;
     }
 }
 

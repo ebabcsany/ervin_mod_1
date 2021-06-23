@@ -1,18 +1,17 @@
 package com.babcsany.minecraft.ervin_mod_1.client.entity.model;
 
-/*@OnlyIn(Dist.CLIENT)
-public abstract class AbstractZurEntityModel<T extends AbstractZurEntity> extends BipedModel<T> {
-   protected AbstractZurEntityModel(float modelSize, float yOffsetIn, int textureWidthIn, int textureHeightIn) {
-      super(modelSize, yOffsetIn, textureWidthIn, textureHeightIn);
-   }
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
 
-   /**
-    * Sets this entity's model rotation angles
-    * /
-   public void setRotationAngles(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-      super.setRotationAngles(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-      ModelHelper.func_239105_a_(this.bipedLeftArm, this.bipedRightArm, this.isAggressive(entityIn), this.swingProgress, ageInTicks);
-   }
+public class AbstractZurEntityModel<T extends ZurEntity> extends AbstractZurModel_1<T> {
+    public AbstractZurEntityModel(float modelSize, boolean p_i1168_2_) {
+        this(modelSize, 0.0F, 64, p_i1168_2_ ? 32 : 64);
+    }
 
-   public abstract boolean isAggressive(T entityIn);
-}*/
+    protected AbstractZurEntityModel(float p_i48914_1_, float p_i48914_2_, int p_i48914_3_, int p_i48914_4_) {
+        super(p_i48914_1_, p_i48914_2_, p_i48914_3_, p_i48914_4_);
+    }
+
+    public boolean isAggressive(T entityIn) {
+        return entityIn.isAggressive();
+    }
+}

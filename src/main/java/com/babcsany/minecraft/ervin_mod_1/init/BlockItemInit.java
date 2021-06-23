@@ -1,6 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.init;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
+import com.babcsany.minecraft.ervin_mod_1.block.FallingZurBlock;
 import com.babcsany.minecraft.ervin_mod_1.block.blocks.burnable.*;
 import com.babcsany.minecraft.ervin_mod_1.block.blocks.burnable.slabs.*;
 import com.babcsany.minecraft.ervin_mod_1.block.blocks.burnable.stairs.*;
@@ -23,7 +24,6 @@ import com.babcsany.minecraft.ervin_mod_1.block.stone.cobblestone.stairs.*;
 import com.babcsany.minecraft.ervin_mod_1.block.stone.stones.*;
 import com.babcsany.minecraft.ervin_mod_1.block.stone.slabs.*;
 import com.babcsany.minecraft.ervin_mod_1.block.stone.stairs.*;
-import com.babcsany.minecraft.ervin_mod_1.init.init.MaterialColorInit;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.*;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
@@ -41,8 +41,9 @@ public class BlockItemInit {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Ervin_mod_1.MOD_ID);
 
     public static final RegistryObject<Block> EXAMPLE_BLOCK = BLOCKS.register("example_block", () -> new Block(Block.Properties.create(Material.SAND).hardnessAndResistance(0.5f, 15.0f).sound(SoundType.SAND)));
+    public static final RegistryObject<Block> ZUR_BLOCK = BLOCKS.register("zur_block", () -> new FallingZurBlock(Block.Properties.create(Material.SAND).hardnessAndResistance(1.5f, 45.0f).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> TRADER_BLOCK = BLOCKS.register("trader_block", () -> new TraderBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(0.5f, 15.0f).sound(SoundType.SAND)));
-    public static final RegistryObject<Block> DEF_BLOCK = BLOCKS.register("def_block", () -> new Block(Block.Properties.create(Material.IRON)));
+    public static final RegistryObject<Block> DEF_BLOCK = BLOCKS.register("def_block", () -> new Block(Block.Properties.create(Material.AIR)));
     public static final RegistryObject<Block> JAZZ_LOG = BLOCKS.register("jazz_log", () -> new JazzLog(MaterialColor.WOOD, Block.Properties.from(Blocks.OAK_LOG)));
     public static final RegistryObject<Block> JAZZ_LEAVES = BLOCKS.register("jazz_leaves", () -> new LeavesBlock(Block.Properties.from(Blocks.OAK_LEAVES)));
     public static final RegistryObject<Block> JAZZ_SAPLING = BLOCKS.register("jazz_sapling", () -> new ModSaplingBlock(JazzTree::new, Block.Properties.from(OAK_SAPLING)));
@@ -717,7 +718,7 @@ public class BlockItemInit {
     public static final RegistryObject<Block> FIRG_LOG = BLOCKS.register("firg_log", () -> new FirgLog(MaterialColor.WOOD, AbstractBlock.Properties.create(Material.ORGANIC).harvestTool(ToolType.AXE).hardnessAndResistance(2.0F).sound(SoundType.WOOD)));
     //public static final RegistryObject<Block> FIRG_PLANKS = BLOCKS.register("firg_planks", () -> new FirgPlanks(AbstractBlock.Properties.create(Material.ORGANIC, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
     //public static final RegistryObject<Block> FIRG_PLANKS_STAIRS = BLOCKS.register("firg_planks_stairs", () -> new FirgPlanksStairs(() -> FIRG_PLANKS.get().getDefaultState(), Block.Properties.from(FIRG_PLANKS.get())));
-    public static final RegistryObject<Block> FIRG_PLANKS_DOOR = BLOCKS.register("firg_planks_door", FirgPlanksDoor::new);
+    //public static final RegistryObject<Block> FIRG_PLANKS_DOOR = BLOCKS.register("firg_planks_door", FirgPlanksDoor::new);
     public static final RegistryObject<Block> FIRG_PRESSURE_PLATE = BLOCKS.register("firg_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, AbstractBlock.Properties.from(OAK_PRESSURE_PLATE).doesNotBlockMovement().harvestTool(ToolType.AXE).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> FIRG_PLANKS_SLAB = BLOCKS.register("firg_planks_slab", () -> new FirgPlanksSlab(Block.Properties.create(Material.ORGANIC).harvestTool(ToolType.AXE).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> FRIM_SLAB = BLOCKS.register("frim_planks_slab", () -> new FrimSlab(Block.Properties.create(Material.ORGANIC, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).harvestTool(ToolType.AXE).sound(SoundType.WOOD)));

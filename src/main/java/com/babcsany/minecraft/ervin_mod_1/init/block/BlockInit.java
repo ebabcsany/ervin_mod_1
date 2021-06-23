@@ -1,7 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.init.block;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
-import com.babcsany.minecraft.ervin_mod_1.block.ExamplePortalBlock;
 import com.babcsany.minecraft.ervin_mod_1.block.Friszern;
 import com.babcsany.minecraft.ervin_mod_1.block.PoweredRailBlock;
 import com.babcsany.minecraft.ervin_mod_1.block.TargCropsBlock;
@@ -13,7 +12,6 @@ import com.babcsany.minecraft.ervin_mod_1.block.blocks.slabs.ZunkSlab;
 import com.babcsany.minecraft.ervin_mod_1.block.blocks.stairs.ZunkStairs;
 import com.babcsany.minecraft.ervin_mod_1.block.tripwires.*;
 import com.babcsany.minecraft.ervin_mod_1.block.tripwires.tripwire_hooks.*;
-import com.babcsany.minecraft.ervin_mod_1.init.init.MaterialInit;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -30,9 +28,9 @@ public class BlockInit {
     public static final Block CHAIN_FRISZERN = Ervin_mod_1.blockRegister("ervin_mod_1:chain_friszern", new Friszern(AbstractBlock.Properties.create(Material.IRON, MaterialColor.BLACK_TERRACOTTA).setRequiresTool().hardnessAndResistance(3600000.0F)));
     public static final Block REPEATING_FRISZERN = Ervin_mod_1.blockRegister("ervin_mod_1:repeating_friszern", new Friszern(AbstractBlock.Properties.create(Material.IRON, MaterialColor.BLACK_TERRACOTTA).setRequiresTool().hardnessAndResistance(3600000.0F)));
 
-    //public static final RegistryObject<Block> FRISZERN = BLOCKS.register("friszern", () -> new Friszern(AbstractBlock.Properties.create(Material.IRON, MaterialColor.BROWN).setRequiresTool().hardnessAndResistance(3600000.0F)));
-    //public static final RegistryObject<Block> REPEATING_FRISZERN = BLOCKS.register("repeater_friszern", () -> new Friszern(AbstractBlock.Properties.create(Material.IRON, MaterialColor.BROWN).setRequiresTool().hardnessAndResistance(3600000.0F)));
-    //public static final RegistryObject<Block> CHAIN_FRISZERN = BLOCKS.register("chain_friszern", () -> new Friszern(AbstractBlock.Properties.create(Material.IRON, MaterialColor.BROWN).setRequiresTool().hardnessAndResistance(3600000.0F)));
+    //public static final RegistryObject<Block> FRISZERN = BLOCKS.register("friszern", () -> new Friszern(AbstractBlock.Properties.create(Material.IRON, MaterialColor.BLACK_TERRACOTTA).setRequiresTool().hardnessAndResistance(3600000.0F)));
+    //public static final RegistryObject<Block> CHAIN_FRISZERN = BLOCKS.register("chain_friszern", () -> new Friszern(AbstractBlock.Properties.create(Material.IRON, MaterialColor.BLACK_TERRACOTTA).setRequiresTool().hardnessAndResistance(3600000.0F)));
+    //public static final RegistryObject<Block> REPEATING_FRISZERN = BLOCKS.register("repeater_friszern", () -> new Friszern(AbstractBlock.Properties.create(Material.IRON, MaterialColor.BLACK_TERRACOTTA).setRequiresTool().hardnessAndResistance(3600000.0F)));
     public static final RegistryObject<Block> EXAMPLE_PORTAL_BLOCK = BLOCKS.register("example_portal_block", () -> new Block(AbstractBlock.Properties.from(Blocks.BEDROCK)/*create(Material.PORTAL).doesNotBlockMovement().tickRandomly().hardnessAndResistance(-1.0F).sound(SoundType.GLASS).setLightLevel(LightValue -> 11)*/));
     public static final RegistryObject<Block> TARG_STAGE = BLOCKS.register("crops/targ_stage", () -> new TargCropsBlock(Block.Properties.create(Material.PLANTS).zeroHardnessAndResistance().doesNotBlockMovement().tickRandomly().sound(SoundType.CROP)));
     public static final RegistryObject<Block> FIRG = BLOCKS.register("firg", () -> new Firg(Block.Properties.create(Material.ROCK).harvestLevel(0).harvestTool(ToolType.PICKAXE).hardnessAndResistance(10.0f)));

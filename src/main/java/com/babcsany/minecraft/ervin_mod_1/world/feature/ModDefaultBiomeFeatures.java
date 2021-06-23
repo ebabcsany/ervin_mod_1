@@ -192,6 +192,7 @@ public class ModDefaultBiomeFeatures {
    public static final StructureFeature<ShipwreckConfig, ? extends Structure<ShipwreckConfig>> RUINED_PORTAL = Structure.field_236373_i_.func_236391_a_(new ShipwreckConfig(false));
    public static final StructureFeature<RuinedPortalFeature, ? extends Structure<RuinedPortalFeature>> RUINED_PORTAL1 = Structure.field_236372_h_.func_236391_a_(new RuinedPortalFeature(RuinedPortalStructure.Location.DESERT));
    public static final StructureFeature<NoFeatureConfig, ? extends Structure<NoFeatureConfig>> STRONGHOLD = Structure.field_236375_k_.func_236391_a_(NoFeatureConfig.field_236559_b_);
+   public static final StructureFeature<BuriedTreasureConfig, ? extends Structure<BuriedTreasureConfig>> BURIED_TREASURE = Structure.field_236380_p_.func_236391_a_(new BuriedTreasureConfig(0.01F));
    private static final BlockState RED_MUSHROOM_BLOCK = Blocks.RED_MUSHROOM_BLOCK.getDefaultState().with(HugeMushroomBlock.DOWN, Boolean.valueOf(false));
    private static final BlockState GRINTH_MUSHROOM_BLOCK = BlockItemInit.GRINTH_MUSHROOM_BLOCK.get().getDefaultState().with(HugeMushroomBlock.DOWN, Boolean.valueOf(false));
    private static final BlockState BROWN_MUSHROOM_BLOCK = Blocks.BROWN_MUSHROOM_BLOCK.getDefaultState().with(HugeMushroomBlock.UP, Boolean.valueOf(true)).with(HugeMushroomBlock.DOWN, Boolean.valueOf(false));

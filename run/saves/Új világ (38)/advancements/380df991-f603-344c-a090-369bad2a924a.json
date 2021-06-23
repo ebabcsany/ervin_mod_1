@@ -4539,12 +4539,6 @@
     },
     "done": true
   },
-  "ervin_mod_1:recipes/firg_boat": {
-    "criteria": {
-      "has_the_recipe": "2021-02-18 12:24:01 +0100"
-    },
-    "done": true
-  },
   "minecraft:recipes/tools/diamond_axe": {
     "criteria": {
       "has_the_recipe": "2021-02-18 12:24:02 +0100"

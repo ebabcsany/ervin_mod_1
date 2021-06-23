@@ -46,7 +46,7 @@ public class ShertEntity extends SrachEntity implements IShearable, net.minecraf
    }
 
    public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
-      return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 10.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, (double)0.2F);
+      return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 10.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.2F);
    }
 
    public float getBlockPathWeight(BlockPos pos, IWorldReader worldIn) {

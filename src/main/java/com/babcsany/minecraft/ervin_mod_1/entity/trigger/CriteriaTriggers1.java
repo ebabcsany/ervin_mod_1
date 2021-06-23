@@ -9,6 +9,7 @@ import com.google.common.collect.Maps;
 import net.minecraft.advancements.ICriterionInstance;
 import net.minecraft.advancements.ICriterionTrigger;
 import net.minecraft.advancements.criterion.*;
+
 import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nullable;
@@ -17,8 +18,8 @@ import java.util.Map;
 public class CriteriaTriggers1 {
    private static final Map<ResourceLocation, ICriterionTrigger<?>> REGISTRY = Maps.newHashMap();
    public static final ImpossibleTrigger IMPOSSIBLE = register(new ImpossibleTrigger());
-   public static final KilledTrigger PLAYER_KILLED_ENTITY = register(new KilledTrigger(new ResourceLocation("player_killed_entity")));
-   public static final KilledTrigger ENTITY_KILLED_PLAYER = register(new KilledTrigger(new ResourceLocation("entity_killed_player")));
+   public static final KilledTrigger PLAYER1_KILLED_ENTITY = register(new KilledTrigger(new ResourceLocation("player_killed_entity")));
+   public static final KilledTrigger ENTITY_KILLED_PLAYER1 = register(new KilledTrigger(new ResourceLocation("entity_killed_player")));
    public static final EnterBlockTrigger ENTER_BLOCK = register(new EnterBlockTrigger());
    public static final InventoryChangeTrigger INVENTORY_CHANGED = register(new InventoryChangeTrigger());
    public static final RecipeUnlockedTrigger RECIPE_UNLOCKED = register(new RecipeUnlockedTrigger());

@@ -16,7 +16,7 @@ public class isBurnableBlockItemInit {
     public static final RegistryObject<Item> TRIRIJ = BLOCK_ITEMS.register("tririj", () -> new BlockItem(com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit.TRIRIJ, (new Item.Properties()).isBurnable().group(ItemGroup.MATERIALS)));
     public static final RegistryObject<Item> THUIRTH_RAIL = BLOCK_ITEMS.register("thuirth_rail", () -> new BlockItem(BlockInit.THUIRTH_RAIL.get(), (new Item.Properties()).isBurnable().group(ItemGroup.MATERIALS)));
     public static final RegistryObject<Item> GNRTHIRJ = BLOCK_ITEMS.register("gnrthirj", () -> new BlockItem(BlockInit.GNRTHIRJ.get(), (new Item.Properties()).isBurnable().group(ItemGroup.MATERIALS)));
-    public static final RegistryObject<Item> FRISZERN = BLOCK_ITEMS.register("friszern", () -> new ModOperatorOnlyItem(BlockInit.FRISZERN, (new Item.Properties()).isBurnable().rarity(Rarity.EPIC)));
-    public static final RegistryObject<Item> REPEATER_FRISZERN = BLOCK_ITEMS.register("repeater_friszern", () -> new ModOperatorOnlyItem(BlockInit.REPEATING_FRISZERN, (new Item.Properties()).isBurnable().rarity(Rarity.EPIC)));
-    public static final RegistryObject<Item> CHAIN_FRISZERN = BLOCK_ITEMS.register("chain_friszern", () -> new ModOperatorOnlyItem(BlockInit.CHAIN_FRISZERN, (new Item.Properties()).isBurnable().rarity(Rarity.EPIC)));
+    public static final RegistryObject<Item> FRISZERN = BLOCK_ITEMS.register("friszern", () -> new BlockItem(BlockInit.FRISZERN, (new Item.Properties()).isBurnable().rarity(Rarity.EPIC)));
+    public static final RegistryObject<Item> REPEATER_FRISZERN = BLOCK_ITEMS.register("repeater_friszern", () -> new BlockItem(BlockInit.REPEATING_FRISZERN, (new Item.Properties()).isBurnable().rarity(Rarity.EPIC)));
+    public static final RegistryObject<Item> CHAIN_FRISZERN = BLOCK_ITEMS.register("chain_friszern", () -> new BlockItem(BlockInit.CHAIN_FRISZERN, (new Item.Properties()).isBurnable().rarity(Rarity.EPIC)));
 }

@@ -19,6 +19,7 @@
 
 package net.minecraftforge.event;
 
+import com.babcsany.minecraft.ervin_mod_1.entity.player.PlayerEntity1;
 import com.babcsany.minecraft.ervin_mod_1.reutrien.AbstractReutrien;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.brigadier.CommandDispatcher;
@@ -579,6 +580,18 @@ public class ForgeEventFactory
         MinecraftForge.EVENT_BUS.post(evt);
 
         Result canContinueSleep = evt.getResult();
+        if (canContinueSleep == Result.DEFAULT)
+            return !player.world.isDaytime();
+        else
+            return canContinueSleep == Result.ALLOW;
+    }
+
+    public static boolean fireSleepingTimeCheck(PlayerEntity1 player, Optional<BlockPos> sleepingLocation)
+    {
+        SleepingTimeCheckEvent event = new SleepingTimeCheckEvent(player, sleepingLocation);
+        MinecraftForge.EVENT_BUS.post(event);
+
+        Result canContinueSleep = event.getResult();
         if (canContinueSleep == Result.DEFAULT)
             return !player.world.isDaytime();
         else

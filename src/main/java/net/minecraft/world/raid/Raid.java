@@ -32,10 +32,7 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.BossInfo;
-import net.minecraft.world.Difficulty;
-import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.World;
+import net.minecraft.world.*;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.server.ServerBossInfo;
 import net.minecraft.world.server.ServerWorld;
@@ -508,7 +505,7 @@ public class Raid {
             }
 
             this.joinRaidd(i, abstractraiderentity, p_221294_1_, false);
-            if (raid$wavemember.type == EntityInit.ZUR_ENTITY) {
+            if (raid$wavemember.type == EntityInit.DGRURB_ENTITY.get()) {
                AbstractZurEntity abstractraiderentity1 = null;
                if (i == this.getWaves(Difficulty.NORMAL)) {
                   abstractraiderentity1 = EntityInit.ROVENT_ENTITY.get().create(this.world);
@@ -516,7 +513,7 @@ public class Raid {
                   if (k == 0) {
                      abstractraiderentity1 = EntityInit.ZUR_NIRTRE_ENTITY.get().create(this.world);
                   } else {
-                     abstractraiderentity1 = EntityInit.ZUR_ENTITY.create(this.world);
+                     abstractraiderentity1 = com.babcsany.minecraft.init.EntityInit.ZUR_ENTITY.create(this.world);
                   }
                }
 
@@ -932,11 +929,12 @@ public class Raid {
          VALUES = values();
       }
    }
+
    public static enum WaveMemberr implements net.minecraftforge.common.IExtensibleEnum {
-      DGRURB(EntityInit.ZUR_ENTITY, new int[]{0, 0, 1, 1, 2, 3, 5, 4, 6}),
+      DGRURB(EntityInit.DGRURB_ENTITY.get(), new int[]{0, 0, 1, 1, 2, 3, 5, 4, 6}),
       ROVENT(EntityInit.ROVENT_ENTITY.get(), new int[]{0, 6, 3, 5, 4, 9, 2, 1, 11}),
       ZUR_NIRTRE(EntityInit.ZUR_NIRTRE_ENTITY.get(), new int[]{0, 4, 3, 6, 2, 5, 1, 0, 8}),
-      ZUR(EntityInit.ZUR_ENTITY, new int[]{0, 1, 2, 3, 6, 2, 5, 7, 10});
+      ZUR(com.babcsany.minecraft.init.EntityInit.ZUR_ENTITY, new int[]{0, 1, 2, 3, 6, 2, 5, 7, 10});
 
       private static WaveMemberr[] VALUES = values();
       private final EntityType<? extends AbstractZurEntity> type;

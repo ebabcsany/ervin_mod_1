@@ -66,7 +66,7 @@ public class WanderingTraderNirtreTrades {
            new WanderingTraderNirtreTrades.ItemsForMlonksTrade(isBurnableBlockItemInit.SHZ_BLOCK.get(), 4, 1, 10, 2),
            new WanderingTraderNirtreTrades.ItemsForMlonksTrade(ModSpawnEggItemInit.SPAWN_EGG_1.get(), 20, 1, 10, 2),
            new WanderingTraderNirtreTrades.ItemsForObsidiansTrade(com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit.TRIRIJ, 10, 1, 1000, 2),
-           new WanderingTraderNirtreTrades.ItemsForGrassBlocksTrade(ModSpawnEggItemInit.ZUR_SPAWN_EGG.get(), 4, 1, 9, 1),
+           new WanderingTraderNirtreTrades.ItemsForGrassBlocksTrade(ModSpawnEggItemInit.ZUR_SPAWN_EGG, 4, 1, 9, 1),
            new WanderingTraderNirtreTrades.ItemsForDreinsTrade(ModSpawnEggItemInit.$_TRADER_SPAWN_EGG.get(), 10, 1, 40, 3),
            new WanderingTraderNirtreTrades.ItemsForDreinsTrade(SpawnEggItemInit.LIGHTING_BOLT_SPAWN_EGG.get(), 1, 1, 40000, 8),
            new WanderingTraderNirtreTrades.ItemsForSriunkBlocksTrade(isBurnableBlockItemInit.RETRUG.get(), 1, 4, 4, 10),

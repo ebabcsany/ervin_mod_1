@@ -68,7 +68,7 @@ public class DebugSriunkStick extends Item {
       Collection<Property<?>> collection = stateContainer.getProperties();
       String s = Registry.BLOCK.getKey(block).toString();
       if (collection.isEmpty()) {
-         sendMessage(player, new TranslationTextComponent(this.getTranslationKey() + " Empty", s));
+         sendMessage(player, new TranslationTextComponent(this.getTranslationKey() + ".empty", s));
       } else {
          CompoundNBT compoundnbt = stack.getOrCreateChildTag("DebugProperty");
          String s1 = compoundnbt.getString(s);
@@ -80,12 +80,12 @@ public class DebugSriunkStick extends Item {
 
             BlockState blockstate = cycleProperty(state, property, player.isSecondaryUseActive());
             worldIn.setBlockState(pos, blockstate, 18);
-            sendMessage(player, new TranslationTextComponent(this.getTranslationKey() + " Update", property.getName(), func_195957_a(blockstate, property)));
+            sendMessage(player, new TranslationTextComponent(this.getTranslationKey() + ".update", property.getName(), func_195957_a(blockstate, property)));
          } else {
             property = getAdjacentValue(collection, property, player.isSecondaryUseActive());
             String s2 = property.getName();
             compoundnbt.putString(s, s2);
-            sendMessage(player, new TranslationTextComponent(this.getTranslationKey() + " Select", s2, func_195957_a(state, property)));
+            sendMessage(player, new TranslationTextComponent(this.getTranslationKey() + ".select", s2, func_195957_a(state, property)));
          }
 
       }

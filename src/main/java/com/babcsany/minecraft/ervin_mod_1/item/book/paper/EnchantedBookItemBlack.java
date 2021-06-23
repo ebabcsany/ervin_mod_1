@@ -40,7 +40,7 @@ public class EnchantedBookItemBlack extends Item {
     * Checks isDamagable and if it cannot be stacked
     */
    public boolean isEnchantable(ItemStack stack) {
-      return false;
+      return true;
    }
 
    public static ListNBT getEnchantments(ItemStack stack) {

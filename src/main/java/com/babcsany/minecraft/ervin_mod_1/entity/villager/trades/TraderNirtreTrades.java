@@ -40,6 +40,7 @@ public class TraderNirtreTrades {
            new TraderNirtreTrades.ItemsForChaksTrade(Items.NAUTILUS_SHELL, 5, 1, 20, 3),
            new TraderNirtreTrades.ItemsForChaksTrade(ItemInit.MLONK.get(), 4, 1, 10, 2),
            new TraderNirtreTrades.ItemsForChaksTrade(Items.GRASS_BLOCK, 4, 1, 9, 1),
+           new TraderNirtreTrades.ItemsForLavaBucketsAndItemsTrade(Items.NETHERRACK, 64, Items.MAGMA_BLOCK, 64, 100000, 0),
            new TraderNirtreTrades.ItemsForKirtsTrade(ModSpawnEggItemInit.$_TRADER_SPAWN_EGG.get(), 64, 1, 20, 1),
            new TraderNirtreTrades.ItemsForEmeraldBlocksTrade(ModSpawnEggItemInit.WANDERING_TRADER_NIRTRE_SPAWN_EGG.get(), 50, 1, 20, 1),
            new TraderNirtreTrades.ItemsForEmeraldBlocksTrade(ModSpawnEggItemInit.SRACH_SPAWN_EGG.get(), 1, 1, 20, 1),
@@ -1018,6 +1019,37 @@ public class TraderNirtreTrades {
       @Nullable
       public MerchantOffer getOffer(Entity trader, Random rand) {
          return new MerchantOffer(new ItemStack(Items.NETHERITE_INGOT, this.netheriteIngotCount), new ItemStack(this.buyingItem.getItem(), this.buyingItemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+      }
+   }
+
+   static class ItemsForLavaBucketsAndItemsTrade implements TraderNirtreTrades.ITrade {
+      private final ItemStack buyingItem;
+      private final int buyingItemCount;
+      private final int netheriteIngotCount;
+      private final ItemStack sellingItem;
+      private final int sellingItemCount;
+      private final int maxUses;
+      private final int xpValue;
+      private final float priceMultiplier;
+
+      public ItemsForLavaBucketsAndItemsTrade(IItemProvider buyingItem, int buyingItemCount, Item sellingItem, int sellingItemCount, int maxUses, int xpValue) {
+         this(buyingItem, buyingItemCount, 1, sellingItem, sellingItemCount, maxUses, xpValue);
+      }
+
+      public ItemsForLavaBucketsAndItemsTrade(IItemProvider buyingItem, int buyingItemCount, int netheriteIngotCount, Item sellingItem, int sellingItemCount, int maxUses, int xpValue) {
+         this.buyingItem = new ItemStack(buyingItem);
+         this.buyingItemCount = buyingItemCount;
+         this.netheriteIngotCount = netheriteIngotCount;
+         this.sellingItem = new ItemStack(sellingItem);
+         this.sellingItemCount = sellingItemCount;
+         this.maxUses = maxUses;
+         this.xpValue = xpValue;
+         this.priceMultiplier = 0.05F;
+      }
+
+      @Nullable
+      public MerchantOffer getOffer(Entity trader, Random rand) {
+         return new MerchantOffer(new ItemStack(Items.LAVA_BUCKET, this.netheriteIngotCount), new ItemStack(this.buyingItem.getItem(), this.buyingItemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 

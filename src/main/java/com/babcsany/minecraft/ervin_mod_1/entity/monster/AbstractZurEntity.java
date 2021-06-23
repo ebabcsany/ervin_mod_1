@@ -1,6 +1,8 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.monster;
 
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.Dgrurb;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.goal.BowAttackGoal;
+import com.babcsany.minecraft.ervin_mod_1.entity.player.PlayerEntity1;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.ZurTrades;
 import com.babcsany.minecraft.ervin_mod_1.entity.trigger.CriteriaTriggers1;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
@@ -9,7 +11,6 @@ import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.special.isBurnableSpecialItemInit;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Sets;
-import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
@@ -23,7 +24,6 @@ import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
 import net.minecraft.entity.merchant.IMerchant;
-import net.minecraft.entity.merchant.villager.VillagerTrades;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.entity.projectile.ProjectileHelper;
@@ -238,8 +238,8 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
    }
 
    private void levelUp() {
-      //this.getLevel();
-      this.populateTradeData();
+      this.getLevel();
+      this.populateTradeZurData();
    }
 
    public int getLevel() {
@@ -600,7 +600,7 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
    public MerchantOffers getOffers() {
       if (this.offers == null) {
          this.offers = new MerchantOffers();
-         this.populateTradeData();
+         this.populateTradeZurData();
       }
 
       return this.offers;
@@ -743,15 +743,7 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
       return this.world;
    }
 
-   protected abstract boolean populateTradeZurData();
-
-   protected void populateTradeData() {
-      ZurTrades.ITrade[] avillagertrades$itrade = ZurTrades.field_221240_b.get(1);
-      if (avillagertrades$itrade != null) {
-         MerchantOffers merchantoffers = this.getOffers();
-         this.addTrades(merchantoffers, avillagertrades$itrade, 2);
-      }
-   }
+   protected abstract void populateTradeZurData();
 
    /**
     * add limites numbers of trades to the given MerchantOffers
@@ -1011,7 +1003,11 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
       return true;
    }
 
-   public boolean func_230292_f_(PlayerEntity p_230292_1_) {
+   public boolean func_230292_f_(PlayerEntity player) {
+      return true;
+   }
+
+   public boolean func_230292_f_(PlayerEntity1 player) {
       return true;
    }
 
@@ -1179,39 +1175,8 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
       this.dataManager.set(CLIMBING, b0);
    }
 
-   /*class AttackDirtGoal extends net.minecraft.entity.ai.goal.BreakBlockGoal {
-      public AttackDirtGoal(CreatureEntity creatureIn, double speed, int yMax) {
-         super(Blocks.DIRT, creatureIn, speed, yMax);
-      }
-
-      public void playBreakingSound(IWorld worldIn, BlockPos pos) {
-         worldIn.playSound(null, pos, SoundEvents.BLOCK_WET_GRASS_STEP, SoundCategory.HOSTILE, 0.5F, 0.9F + AbstractZurEntity.this.rand.nextFloat() * 0.2F);
-      }
-
-      public void playBrokenSound(World worldIn, BlockPos pos) {
-         worldIn.playSound(null, pos, SoundEvents.BLOCK_WET_GRASS_BREAK, SoundCategory.BLOCKS, 0.7F, 0.9F + worldIn.rand.nextFloat() * 0.2F);
-      }
-
-      public double getTargetDistanceSq() {
-         return 1.14D;
-      }
+   public boolean entityLivingUpdate(Dgrurb entity)
+   {
+      return false;
    }
-
-   class AttackGrassBlockGoal extends net.minecraft.entity.ai.goal.BreakBlockGoal {
-      public AttackGrassBlockGoal(CreatureEntity creatureIn, double speed, int yMax) {
-         super(Blocks.GRASS_BLOCK, creatureIn, speed, yMax);
-      }
-
-      public void playBreakingSound(IWorld worldIn, BlockPos pos) {
-         worldIn.playSound(null, pos, SoundEvents.BLOCK_WET_GRASS_STEP, SoundCategory.HOSTILE, 0.5F, 0.9F + AbstractZurEntity.this.rand.nextFloat() * 0.2F);
-      }
-
-      public void playBrokenSound(World worldIn, BlockPos pos) {
-         worldIn.playSound(null, pos, SoundEvents.BLOCK_WET_GRASS_BREAK, SoundCategory.BLOCKS, 0.7F, 0.9F + worldIn.rand.nextFloat() * 0.2F);
-      }
-
-      public double getTargetDistanceSq() {
-         return 1.14D;
-      }
-   }*/
 }

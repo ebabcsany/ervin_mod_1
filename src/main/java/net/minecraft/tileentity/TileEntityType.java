@@ -1,5 +1,6 @@
 package net.minecraft.tileentity;
 
+import com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit;
 import com.google.common.collect.ImmutableSet;
 import com.mojang.datafixers.types.Type;
 import net.minecraft.block.Block;

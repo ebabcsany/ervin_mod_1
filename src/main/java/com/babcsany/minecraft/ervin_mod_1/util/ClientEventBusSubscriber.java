@@ -5,6 +5,7 @@ import com.babcsany.minecraft.ervin_mod_1.client.entity.render.*;
 import com.babcsany.minecraft.ervin_mod_1.client.gui.screen.*;
 import com.babcsany.minecraft.ervin_mod_1.client.gui.screen.merchant.ZurScreen;
 import com.babcsany.minecraft.ervin_mod_1.client.renderer.entity.ModBoatRender;
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.dgrurbk.Dgrurbk;
 import com.babcsany.minecraft.ervin_mod_1.init.*;
 import com.babcsany.minecraft.ervin_mod_1.init.container.ContainerInit;
 import com.babcsany.minecraft.renderer.entity.ModBoatRenderer;
@@ -15,6 +16,7 @@ import net.minecraft.resources.IReloadableResourceManager;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DeferredWorkQueue;
+import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -27,9 +29,9 @@ public class ClientEventBusSubscriber {
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.LIWRAY.get(), LiwrayRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.MOD_BOAT_ENTITY.get(), ModBoatRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.GWURST.get(), GwurstRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityInit.ZUR_ENTITY, ZurEntityRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(com.babcsany.minecraft.init.EntityInit.ZUR_ENTITY, ZurEntityRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.DGRURB_ENTITY.get(), DgrurbRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityInit.DGRURBK_ENTITY.get(), DgrurbkRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityInit.DGRURBK_ENTITY.get(), (IRenderFactory<? super Dgrurbk>) DgrurbkRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.ZUR_NIRTRE_ENTITY.get(), ZurNirtreRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.ROVENT_ENTITY.get(), RoventRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.VILT_ENTITY.get(), ViltEntityRender::new);
@@ -43,7 +45,7 @@ public class ClientEventBusSubscriber {
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.TRADER_NIRTREP_ENTITY.get(), TraderNirtre1Render::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.$_TRADER_ENTITY.get(), $TraderRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.ZOMBIE_TRADER_ENTITY.get(), ZombieTraderRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityInit.GUBROV_ENTITY.get(), GubrovRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(com.babcsany.minecraft.init.EntityInit.GUBROV_ENTITY, GubrovRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(com.babcsany.minecraft.init.EntityInit.MOD_BOAT, ModBoatRenderer::new);
         //RenderingRegistry.registerEntityRenderingHandler(EntityInit.HUIHK, HuihkRender::new);
 

@@ -319,9 +319,9 @@ public class BiomeDictionary
             }
         }
 
-        if (biome.getDepth() <= -1.5F)
+        if (biome.getDepth() <= -0.5F)
         {
-            if (biome.getScale() == 3.5F)
+            if (biome.getScale() == 1.5F)
             {
                 BiomeDictionary.addTypes(biome, WATER);
             }

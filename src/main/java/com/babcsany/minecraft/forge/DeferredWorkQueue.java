@@ -87,7 +87,7 @@ public class DeferredWorkQueue
     private static <T> Function<Throwable, T> handleException() {
         final ModContainer owner = currentOwner.get();
         return t -> {
-            LogManager.getLogger(net.minecraftforge.fml.DeferredWorkQueue.class).error("Encountered exception executing deferred work", t);
+            LogManager.getLogger(DeferredWorkQueue.class).error("Encountered exception executing deferred work", t);
             raisedExceptions.add(new ModLoadingException(owner.getModInfo(), owner.getCurrentState(), "fml.modloading.failedtoprocesswork", t));
             return null;
         };

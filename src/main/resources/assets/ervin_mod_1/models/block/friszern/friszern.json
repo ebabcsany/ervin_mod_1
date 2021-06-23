@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/template_command_block",
+  "textures": {
+    "front": "ervin_mod_1:block/friszern/friszern_front",
+    "back": "ervin_mod_1:block/friszern/friszern_back",
+    "side": "ervin_mod_1:block/friszern/friszern_side"
+  }
+}

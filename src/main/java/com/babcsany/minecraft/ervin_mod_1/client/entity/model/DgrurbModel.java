@@ -1,8 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.client.entity.model;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.Dgrurb;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
-import net.minecraft.client.renderer.entity.model.AbstractZombieModel;
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.Dgrurb;
 
 public class DgrurbModel<T extends Dgrurb> extends AbstractDgrurbModel<T> {
     public DgrurbModel(float modelSize, boolean p_i1168_2_) {

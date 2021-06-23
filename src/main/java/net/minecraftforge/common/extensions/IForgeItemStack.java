@@ -19,6 +19,8 @@
 
 package net.minecraftforge.common.extensions;
 
+import com.babcsany.minecraft.ervin_mod_1.block.FriszernTileEntity;
+import com.babcsany.minecraft.ervin_mod_1.entity.player.PlayerEntity1;
 import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
@@ -26,8 +28,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.monster.EndermanEntity;
-import net.minecraft.entity.monster.piglin.PiglinTasks;
-import net.minecraft.entity.passive.horse.HorseEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
@@ -292,8 +292,13 @@ public interface IForgeItemStack extends ICapabilitySerializable<CompoundNBT>
         getStack().getItem().onArmorTick(getStack(), world, player);
     }
 
+    default void onArmorTick(World world, PlayerEntity1 player)
+    {
+        getStack().getItem().onArmorTick(getStack(), world, player);
+    }
+
     /**
-     * Called every tick from {@link HorseEntity#canUpdate()} on the item in the
+     * Called every tick from {@link net.minecraft.entity.passive.horse.HorseEntity#canUpdate()} on the item in the
      * armor slot.
      *
      * @param world the world the horse is in
@@ -452,16 +457,6 @@ public interface IForgeItemStack extends ICapabilitySerializable<CompoundNBT>
         return getStack().getItem().isPiglinCurrency(getStack());
     }
 
-    default boolean isZurCurrency(ItemStack stack)
-    {
-        return getStack().isZurCurrency(getStack());
-    }
-
-    default boolean isPiglinCurrency(ItemStack stack)
-    {
-        return stack.getItem() == PiglinTasks.field_234444_a_;
-    }
-
     /**
      * Called by Piglins to check if a given item prevents hostility on sight. If this is true the Piglins will be neutral to the entity wearing this item, and will not
      * attack on sight. Note: This does not prevent Piglins from becoming hostile due to other actions, nor does it make Piglins that are already hostile stop being so.
@@ -485,5 +480,36 @@ public interface IForgeItemStack extends ICapabilitySerializable<CompoundNBT>
     default boolean isEnderMask(PlayerEntity player, EndermanEntity endermanEntity)
     {
         return getStack().getItem().isEnderMask(getStack(), player, endermanEntity);
+    }
+
+    /**
+     * Used to determine if the player can use Elytra flight.
+     * This is called Client and Server side.
+     *
+     * @param entity The entity trying to fly.
+     * @return True if the entity can use Elytra flight.
+     */
+    default boolean canElytraFly(LivingEntity entity)
+    {
+        return getStack().getItem().canElytraFly(getStack(), entity);
+    }
+
+    /**
+     * Used to determine if the player can continue Elytra flight,
+     * this is called each tick, and can be used to apply ItemStack damage,
+     * consume Energy, or what have you.
+     * For example the Vanilla implementation of this, applies damage to the
+     * ItemStack every 20 ticks.
+     *
+     * @param entity      The entity currently in Elytra flight.
+     * @param flightTicks The number of ticks the entity has been Elytra flying for.
+     * @return True if the entity should continue Elytra flight or False to stop.
+     */
+    default boolean elytraFlightTick(LivingEntity entity, int flightTicks)
+    {
+        return getStack().getItem().elytraFlightTick(getStack(), entity, flightTicks);
+    }
+
+    default void openFriszern(FriszernTileEntity friszern) {
     }
 }

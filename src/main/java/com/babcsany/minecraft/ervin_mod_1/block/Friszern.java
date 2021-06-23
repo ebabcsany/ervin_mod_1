@@ -1,19 +1,27 @@
 package com.babcsany.minecraft.ervin_mod_1.block;
 
-import com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit;
 import net.minecraft.block.*;
+import net.minecraft.command.CommandSource;
+import net.minecraft.crash.CrashReport;
+import net.minecraft.crash.CrashReportCategory;
+import net.minecraft.crash.ReportedException;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.tileentity.CommandBlockLogic;
+import net.minecraft.tileentity.CommandBlockTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
@@ -21,35 +29,44 @@ import net.minecraft.world.server.ServerWorld;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.annotation.Nullable;
 import java.util.Random;
 
-public class Friszern extends ModContainerBlock {
+public class Friszern extends ContainerBlock {
    private static final Logger LOGGER = LogManager.getLogger();
    public static final DirectionProperty FACING = DirectionalBlock.FACING;
    public static final BooleanProperty CONDITIONAL = BlockStateProperties.CONDITIONAL;
+   private static final ITextComponent field_226655_c_ = new StringTextComponent("@");
+   int successCount;
+   ITextComponent lastOutput;
+   String commandStored = "";
+   CommandSource source;
+   ServerWorld serverWorld;
+   public static CommandBlockTileEntity commandBlockTileEntity;
+   private final ITextComponent customName = field_226655_c_;
 
    public Friszern(Properties properties) {
       super(properties);
-      this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH).with(CONDITIONAL, Boolean.FALSE));
+      this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH).with(CONDITIONAL, Boolean.valueOf(false)));
    }
 
    public TileEntity createNewTileEntity(IBlockReader worldIn) {
-      FriszernTileEntity friszernTileEntity = new FriszernTileEntity();
-      friszernTileEntity.setAuto(this == BlockInit.CHAIN_FRISZERN);
-      return friszernTileEntity;
+      CommandBlockTileEntity commandblocktileentity = new CommandBlockTileEntity();
+      commandblocktileentity.setAuto(this == Blocks.CHAIN_COMMAND_BLOCK);
+      return commandblocktileentity;
    }
 
    public void neighborChanged(BlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
       if (!worldIn.isRemote) {
          TileEntity tileentity = worldIn.getTileEntity(pos);
-         if (tileentity instanceof FriszernTileEntity) {
-            FriszernTileEntity friszernTileEntity = (FriszernTileEntity)tileentity;
+         if (tileentity instanceof CommandBlockTileEntity) {
+            CommandBlockTileEntity commandblocktileentity = (CommandBlockTileEntity)tileentity;
             boolean flag = worldIn.isBlockPowered(pos);
-            boolean flag1 = friszernTileEntity.isPowered();
-            friszernTileEntity.setPowered(flag);
-            if (!flag1 && !friszernTileEntity.isAuto() && friszernTileEntity.getMode() != FriszernTileEntity.Mode.SEQUENCE) {
+            boolean flag1 = commandblocktileentity.isPowered();
+            commandblocktileentity.setPowered(flag);
+            if (!flag1 && !commandblocktileentity.isAuto() && commandblocktileentity.getMode() != CommandBlockTileEntity.Mode.SEQUENCE) {
                if (flag) {
-                  friszernTileEntity.setConditionMet();
+                  this.setConditionMet(commandblocktileentity);
                   worldIn.getPendingBlockTicks().scheduleTick(pos, this, 1);
                }
 
@@ -59,29 +76,15 @@ public class Friszern extends ModContainerBlock {
    }
 
    public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
-      TileEntity tileEntity = worldIn.getTileEntity(pos);
-      if (tileEntity instanceof FriszernTileEntity) {
-         FriszernTileEntity friszernTileEntity = (FriszernTileEntity)tileEntity;
-         FriszernLogic friszernLogic = friszernTileEntity.getFriszernLogic();
-         boolean flag = !StringUtils.isNullOrEmpty(friszernLogic.getCommand());
-         FriszernTileEntity.Mode friszernTileEntity$mode = friszernTileEntity.getMode();
-         boolean flag1 = friszernTileEntity.isConditionMet();
-         if (friszernTileEntity$mode == FriszernTileEntity.Mode.AUTO) {
-            friszernTileEntity.setConditionMet();
-            if (flag1) {
-               this.execute(state, worldIn, pos, friszernLogic, flag);
-            } else if (friszernTileEntity.isConditional()) {
-               friszernLogic.setSuccessCount(0);
-            }
+      TileEntity tileentity = worldIn.getTileEntity(pos);
+      if (tileentity instanceof CommandBlockTileEntity) {
+         CommandBlockTileEntity commandblocktileentity = (CommandBlockTileEntity)tileentity;
+         CommandBlockTileEntity.Mode commandblocktileentity$mode = commandblocktileentity.getMode();
+         if (commandblocktileentity$mode == CommandBlockTileEntity.Mode.AUTO) {
+            this.setConditionMet(commandblocktileentity);
 
-            if (friszernTileEntity.isPowered() || friszernTileEntity.isAuto()) {
+            if (commandblocktileentity.isPowered() || commandblocktileentity.isAuto()) {
                worldIn.getPendingBlockTicks().scheduleTick(pos, this, 1);
-            }
-         } else if (friszernTileEntity$mode == FriszernTileEntity.Mode.REDSTONE) {
-            if (flag1) {
-               this.execute(state, worldIn, pos, friszernLogic, flag);
-            } else if (friszernTileEntity.isConditional()) {
-               friszernLogic.setSuccessCount(0);
             }
          }
 
@@ -90,20 +93,10 @@ public class Friszern extends ModContainerBlock {
 
    }
 
-   private void execute(BlockState state, World world, BlockPos pos, FriszernLogic logic, boolean canTrigger) {
-      if (canTrigger) {
-         logic.trigger(world);
-      } else {
-         logic.setSuccessCount(0);
-      }
-
-      executeChain(world, pos, state.get(FACING));
-   }
-
    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-      TileEntity tileEntity = worldIn.getTileEntity(pos);
-      if (tileEntity instanceof FriszernTileEntity) {
-         //player.container.openFriszern((FriszernTileEntity)tileEntity);
+      TileEntity tileentity = worldIn.getTileEntity(pos);
+      if (tileentity instanceof CommandBlockTileEntity) {
+         player.openCommandBlock((CommandBlockTileEntity)tileentity);
          return ActionResultType.func_233537_a_(worldIn.isRemote);
       } else {
          return ActionResultType.PASS;
@@ -123,31 +116,31 @@ public class Friszern extends ModContainerBlock {
     * Implementing/overriding is fine.
     */
    public int getComparatorInputOverride(BlockState blockState, World worldIn, BlockPos pos) {
-      TileEntity tileEntity = worldIn.getTileEntity(pos);
-      return tileEntity instanceof FriszernTileEntity ? ((FriszernTileEntity)tileEntity).getFriszernLogic().getSuccessCount() : 0;
+      TileEntity tileentity = worldIn.getTileEntity(pos);
+      return tileentity instanceof CommandBlockTileEntity ? ((CommandBlockTileEntity)tileentity).getCommandBlockLogic().getSuccessCount() : 0;
    }
 
    /**
     * Called by ItemBlocks after a block is set in the world, to allow post-place logic
     */
-   public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, LivingEntity entity, ItemStack stack) {
-      TileEntity tileEntity = worldIn.getTileEntity(pos);
-      if (tileEntity instanceof FriszernTileEntity) {
-         FriszernTileEntity friszernTileEntity = (FriszernTileEntity)tileEntity;
-         FriszernLogic friszernLogic = friszernTileEntity.getFriszernLogic();
+   public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
+      TileEntity tileentity = worldIn.getTileEntity(pos);
+      if (tileentity instanceof CommandBlockTileEntity) {
+         CommandBlockTileEntity commandblocktileentity = (CommandBlockTileEntity)tileentity;
+         CommandBlockLogic commandblocklogic = commandblocktileentity.getCommandBlockLogic();
          if (stack.hasDisplayName()) {
-            friszernLogic.setName(stack.getDisplayName());
+            commandblocklogic.setName(stack.getDisplayName());
          }
 
          if (!worldIn.isRemote) {
             if (stack.getChildTag("BlockEntityTag") == null) {
-               friszernLogic.setTrackOutput(worldIn.getGameRules().getBoolean(GameRules.SEND_COMMAND_FEEDBACK));
-               friszernTileEntity.setAuto(this == BlockInit.CHAIN_FRISZERN);
+               commandblocklogic.setTrackOutput(worldIn.getGameRules().getBoolean(GameRules.SEND_COMMAND_FEEDBACK));
+               commandblocktileentity.setAuto(this == Blocks.CHAIN_COMMAND_BLOCK);
             }
 
-            if (friszernTileEntity.getMode() == FriszernTileEntity.Mode.SEQUENCE) {
+            if (commandblocktileentity.getMode() == CommandBlockTileEntity.Mode.SEQUENCE) {
                boolean flag = worldIn.isBlockPowered(pos);
-               friszernTileEntity.setPowered(flag);
+               commandblocktileentity.setPowered(flag);
             }
          }
 
@@ -190,7 +183,7 @@ public class Friszern extends ModContainerBlock {
       return this.getDefaultState().with(FACING, context.getNearestLookingDirection().getOpposite());
    }
 
-   private static void executeChain(World world, BlockPos pos, Direction direction) {
+   /*private void executeChain(World world, BlockPos pos, Direction direction) {
       BlockPos.Mutable blockpos$mutable = pos.toMutable();
       GameRules gamerules = world.getGameRules();
 
@@ -200,38 +193,94 @@ public class Friszern extends ModContainerBlock {
          blockpos$mutable.move(direction);
          blockstate = world.getBlockState(blockpos$mutable);
          Block block = blockstate.getBlock();
-         if (!blockstate.isIn(BlockInit.CHAIN_FRISZERN)) {
+         if (!blockstate.isIn(Blocks.CHAIN_COMMAND_BLOCK)) {
             break;
          }
 
          TileEntity tileentity = world.getTileEntity(blockpos$mutable);
-         if (!(tileentity instanceof FriszernTileEntity)) {
+         if (!(tileentity instanceof CommandBlockTileEntity)) {
             break;
          }
 
-         FriszernTileEntity friszernTileEntity = (FriszernTileEntity)tileentity;
-         if (friszernTileEntity.getMode() != FriszernTileEntity.Mode.SEQUENCE) {
+         CommandBlockTileEntity commandblocktileentity = (CommandBlockTileEntity)tileentity;
+         if (commandblocktileentity.getMode() != CommandBlockTileEntity.Mode.SEQUENCE) {
             break;
          }
 
-         if (friszernTileEntity.isPowered() || friszernTileEntity.isAuto()) {
-            FriszernLogic friszernLogic = friszernTileEntity.getFriszernLogic();
-            if (friszernTileEntity.setConditionMet()) {
-               if (!friszernLogic.trigger(world)) {
+         if (commandblocktileentity.isPowered() || commandblocktileentity.isAuto()) {
+            CommandBlockLogic commandblocklogic = commandblocktileentity.getCommandBlockLogic();
+            if (commandblocktileentity.setConditionMet()) {
+               if (!this.trigger(world)) {
                   break;
                }
 
                world.updateComparatorOutputLevel(blockpos$mutable, block);
-            } else if (friszernTileEntity.isConditional()) {
-               friszernLogic.setSuccessCount(0);
+            } else if (commandblocktileentity.isConditional()) {
+               commandblocklogic.setSuccessCount(0);
             }
          }
       }
 
       if (i <= 0) {
          int j = Math.max(gamerules.getInt(GameRules.MAX_COMMAND_CHAIN_LENGTH), 0);
-         LOGGER.warn("Friszern chain tried to execute more than {} steps!", j);
+         LOGGER.warn("Command Block chain tried to execute more than {} steps!", j);
       }
 
    }
+
+   public boolean trigger(World worldIn) {
+      this.lastOutput = new StringTextComponent("#itzlipofutzli");
+      this.successCount = 1;
+      this.successCount = 0;
+      MinecraftServer minecraftserver = this.getWorld().getServer();
+      try {
+         this.lastOutput = null;
+         CommandSource commandsource = this.getCommandSource().withResultConsumer((p_209527_1_, p_209527_2_, p_209527_3_) -> {
+            if (p_209527_2_) {
+               ++this.successCount;
+            }
+
+         });
+         minecraftserver.getCommandManager().handleCommand(commandsource, this.commandStored);
+      } catch (Throwable throwable) {
+         CrashReport crashreport = CrashReport.makeCrashReport(throwable, "Executing command block");
+         CrashReportCategory crashreportcategory = crashreport.makeCategory("Command to be executed");
+         crashreportcategory.addDetail("Command", this::getCommand);
+         crashreportcategory.addDetail("Name", () -> this.getName().getString());
+         throw new ReportedException(crashreport);
+      }
+      return true;
+   }
+
+   public CommandSource getCommandSource() {
+      return this.source;
+   }
+
+   public ITextComponent getName() {
+      return this.customName;
+   }
+
+   public String getCommand() {
+      return this.commandStored;
+   }
+
+   public ServerWorld getWorld() {
+      return this.serverWorld;
+   }*/
+
+   public boolean setConditionMet(CommandBlockTileEntity tileEntity) {
+      tileEntity.conditionMet = true;
+      if (tileEntity.isConditional()) {
+         BlockPos blockpos = tileEntity.pos.offset(tileEntity.world.getBlockState(tileEntity.pos).get(Friszern.FACING).getOpposite());
+         if (tileEntity.world.getBlockState(blockpos).getBlock() instanceof Friszern) {
+            TileEntity tileentity = tileEntity.world.getTileEntity(blockpos);
+            tileEntity.conditionMet = tileentity instanceof CommandBlockTileEntity;
+         } else {
+            tileEntity.conditionMet = false;
+         }
+      }
+
+      return tileEntity.conditionMet;
+   }
+
 }

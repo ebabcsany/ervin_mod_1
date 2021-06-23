@@ -18,6 +18,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.*;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
@@ -139,27 +140,6 @@ public class Hurvruj extends Block {
       }
    }
 
-   public static Optional<Vector3d> canSpawnInBlock(ServerWorld serverWorld, BlockPos pos, boolean p_234567_2_, boolean p_234567_3_) {
-      BlockState blockstate = serverWorld.getBlockState(pos);
-      Block block = blockstate.getBlock();
-      if (block instanceof Hurvruj && blockstate.get(Hurvruj.CHARGES) > 0 && Hurvruj.doesHurvrujWork(serverWorld)) {
-         Optional<Vector3d> optional = Hurvruj.func_235560_a_(EntityType.PLAYER, serverWorld, pos);
-         if (!p_234567_3_ && optional.isPresent()) {
-            serverWorld.setBlockState(pos, blockstate.with(Hurvruj.CHARGES, blockstate.get(Hurvruj.CHARGES) - 1), 15);
-         }
-
-         return optional;
-      } else if (blockstate.isBed(serverWorld, pos, null) && BedBlock.func_235330_a_(serverWorld)) {
-         return blockstate.getBedSpawnPosition(EntityType.PLAYER, serverWorld, pos, null);
-      } else if (!p_234567_2_) {
-         return Optional.empty();
-      } else {
-         boolean flag = block.canSpawnInBlock();
-         boolean flag1 = serverWorld.getBlockState(pos.up()).getBlock().canSpawnInBlock();
-         return flag && flag1 ? Optional.of(new Vector3d((double)pos.getX() + 0.5D, (double)pos.getY() + 0.1D, (double)pos.getZ() + 0.5D)) : Optional.empty();
-      }
-   }
-
    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
       builder.add(CHARGES);
    }
@@ -186,7 +166,7 @@ public class Hurvruj extends Block {
       return func_235565_a_(blockState, 15);
    }
 
-   public static Optional<Vector3d> func_235560_a_(EntityType<?> entity, IWorldReader reader, BlockPos pos) {
+   public static Optional<Vector3d> getSpawn(EntityType<?> entity, IWorldReader reader, BlockPos pos) {
       for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-1, -1, -1), pos.add(1, 1, 1))) {
          Optional<Vector3d> optional = BedBlock.getWakeUpDisplacement(entity, reader, blockpos);
          if (optional.isPresent()) {

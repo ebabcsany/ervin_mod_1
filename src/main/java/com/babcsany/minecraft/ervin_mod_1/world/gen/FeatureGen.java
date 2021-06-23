@@ -1,11 +1,9 @@
 package com.babcsany.minecraft.ervin_mod_1.world.gen;
 
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
+import com.babcsany.minecraft.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.FeatureInit;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
-import com.babcsany.minecraft.ervin_mod_1.registries.ForgeRegistries1;
-import com.babcsany.minecraft.ervin_mod_1.world.biome.ModBiome;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.FirgTree;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.FrimTree;
 import com.babcsany.minecraft.ervin_mod_1.world.gen.feature.GenOreFeatureConfig;
@@ -502,22 +500,22 @@ public class FeatureGen {
 				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 16, 1, 1));
 			}
 			if (biomeIn == Biomes.MOUNTAINS) {
-				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 4, 1, 1));
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 12, 1, 1));
 			}
 			if (biomeIn == Biomes.FOREST) {
 				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 16, 1, 1));
 			}
 			if (biomeIn == Biomes.TAIGA) {
-				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 4, 1, 1));
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 8, 1, 1));
 			}
 			if (biomeIn == Biomes.SWAMP) {
-				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 4, 1, 1));
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 8, 1, 1));
 			}
 			if (biomeIn == Biomes.RIVER) {
 				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 16, 1, 1));
 			}
 			if (biomeIn == Biomes.NETHER_WASTES) {
-				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 4, 1, 1));
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 8, 1, 1));
 			}
 			if (biomeIn == Biomes.THE_END) {
 				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 1, 1, 1));
@@ -583,11 +581,11 @@ public class FeatureGen {
 				biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 4)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(16))));
 			}
 			if (biomeIn == Biomes.BIRCH_FOREST) {
-				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 4, 1, 1));
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 8, 1, 1));
 				biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 4)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(8))));
 			}
 			if (biomeIn == Biomes.BIRCH_FOREST_HILLS) {
-				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 4, 1, 1));
+				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 8, 1, 1));
 				biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 4)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(8))));
 			}
 			if (biomeIn == Biomes.DARK_FOREST) {
@@ -694,9 +692,9 @@ public class FeatureGen {
 				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 8, 1, 1));
 				biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 6)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(17))));
 			}
-			/*if (biomeIn == Biomes.ICE_SPIKES) {
+			if (biomeIn == Biomes.ICE_SPIKES) {
 				biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 4)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(8))));
-			}*/
+			}
 			if (biomeIn == Biomes.MODIFIED_JUNGLE) {
 				biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 8, 1, 1));
 				biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 17)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(7))));

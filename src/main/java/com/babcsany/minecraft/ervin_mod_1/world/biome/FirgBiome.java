@@ -1,6 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.world.biome;
 
 import com.babcsany.minecraft.ervin_mod_1.world.feature.ModDefaultBiomeFeatures;
+import com.babcsany.minecraft.init.EntityInit;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
@@ -34,9 +35,10 @@ public class FirgBiome extends Biome {
 		this.addSpawn(EntityClassification.WATER_CREATURE, new SpawnListEntry(EntityType.PUFFERFISH, 10, 2, 5));
 		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.SHEEP, 10, 2, 5));
 		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.RABBIT, 10, 2, 5));
-		this.addSpawn(EntityClassification.MISC, new SpawnListEntry(EntityType.PLAYER, 10, 2, 5));
 		this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityType.HUSK, 10, 2, 5));
 		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.BEE, 20, 2, 10));
+		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.ZUR_ENTITY, 20, 2, 10));
+		//this.addSpawn(EntityClassification.CREATURE, () -> new SpawnListEntry(com.babcsany.minecraft.ervin_mod_1.init.EntityInit.SRACH_ENTITY.get(), 20, 2, 10));
 		this.addCarver(GenerationStage.Carving.AIR,
 				Biome.createCarver(WorldCarver.CAVE, new ProbabilityConfig(0.14285715F)));
 		this.addCarver(GenerationStage.Carving.AIR,

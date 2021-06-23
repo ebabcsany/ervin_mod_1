@@ -1,12 +1,16 @@
 package com.babcsany.minecraft.ervin_mod_1;
 
-import com.babcsany.minecraft.forge.DeferredWorkQueue;
-import com.babcsany.minecraft.ervin_mod_1.block.blocks.Hurvruj;
-import com.babcsany.minecraft.ervin_mod_1.entity.animal.hhij.HhijAnimalEntity;
+import com.babcsany.minecraft.ervin_mod_1.entity.animal.hhij.*;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.*;
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.Dgrurb;
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.dgrurbk.Dgrurbk;
+import com.babcsany.minecraft.ervin_mod_1.entity.villager.WanderingTraderNirtreEntity;
+import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.Ervin_mod_1_;
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.minecraft.block.MinecraftBlocks;
 import com.babcsany.minecraft.ervin_mod_1.world.gen.FeatureGen;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraft.block.*;
 import net.minecraft.client.renderer.model.RenderMaterial;
 import net.minecraft.client.renderer.texture.AtlasTexture;
@@ -22,14 +26,11 @@ import net.minecraft.item.Items;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.Heightmap;
 import com.babcsany.minecraft.ervin_mod_1.entity.animal.*;
-import com.babcsany.minecraft.ervin_mod_1.entity.animal.hhij.HhijEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.fish.GubrovEntity;
+import com.babcsany.minecraft.ervin_mod_1.entity.fish.*;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.*;
 import com.babcsany.minecraft.ervin_mod_1.init.*;
 import com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit;
@@ -64,7 +65,6 @@ import net.minecraft.item.crafting.ShapedRecipe;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ITag;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -96,15 +96,7 @@ public class Ervin_mod_1 {
     //public static final ITag<EntityType<?>> blacklisted = EntityTypeTags.func_232896_a_((new ResourceLocation("ervin_mod_1", "blacklisted")).toString());
     // Directly reference a log4j logger.
     public static final Logger LOGGER = LogManager.getLogger();
-    /*public static final ResourceLocation EXAMPLE_DIM_TYPE = new ResourceLocation(Ervin_mod_1.MOD_ID, "example");
-    public static final ResourceLocation EXAMPLE_DIM_TYPE0 = new ResourceLocation(Ervin_mod_1.MOD_ID, "example0");
-    public static final ResourceLocation EXAMPLE_DIM_TYPE1 = new ResourceLocation(Ervin_mod_1.MOD_ID, "example1");
-    public static final ResourceLocation EXAMPLE_DIM_TYPE2 = new ResourceLocation(Ervin_mod_1.MOD_ID, "example2");
-    public static final ResourceLocation EXAMPLE_DIM_TYPE3 = new ResourceLocation(Ervin_mod_1.MOD_ID, "example3");
-    public static final ResourceLocation EXAMPLE_DIM_TYPE4 = new ResourceLocation(Ervin_mod_1.MOD_ID, "example4");
-    public static final ResourceLocation EXAMPLE_DIM_TYPE5 = new ResourceLocation(Ervin_mod_1.MOD_ID, "example5");
-    public static final ResourceLocation FIRG_DIM_TYPE = new ResourceLocation(Ervin_mod_1.MOD_ID, "firg");
-    public static final ResourceLocation SCRAFTH_DIM_TYPE = new ResourceLocation(Ervin_mod_1.MOD_ID, "scrafth");*/
+    public PlayerEntity player;
 
     public Ervin_mod_1() {
         // Register the setup method for modloading
@@ -172,11 +164,7 @@ public class Ervin_mod_1 {
         com.babcsany.minecraft.ervin_mod_1.init.minecraft.block.item.BlockNamedItemInit.BLOCK_ITEMS.register(modEventBus);
         com.babcsany.minecraft.ervin_mod_1.init.item.block.isBurnableBlockItemInit.BLOCK_ITEMS.register(modEventBus);
 
-        com.babcsany.minecraft.init.BlockInit.BLOCKS.register(modEventBus);
-        com.babcsany.minecraft.init.BlockItemInit.BLOCK_ITEMS.register(modEventBus);
-        com.babcsany.minecraft.init.EntityInit.ENTITIES.register(modEventBus);
-        //com.babcsany.minecraft.init.FluidInit.FLUIDS.register(modEventBus);
-        com.babcsany.minecraft.init.ItemInit.ITEMS.register(modEventBus);
+        Ervin_mod_1_.ervin_mod_1();
     }
 
     private void setup(final FMLCommonSetupEvent event) {
@@ -186,7 +174,8 @@ public class Ervin_mod_1 {
         DeferredWorkQueue.runLater(() -> {
             GlobalEntityTypeAttributes.put(EntityInit.LIWRAY.get(), Liwray.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(EntityInit.GWURST.get(), GwurstEntity.setCustomAttributes().create());
-            GlobalEntityTypeAttributes.put(EntityInit.ZUR_ENTITY, ZurEntity.setCustomAttributes().create());
+            //GlobalEntityTypeAttributes.put(EntityInit.PLAYER1, PlayerEntity.registerAttributes().create());
+            GlobalEntityTypeAttributes.put(com.babcsany.minecraft.init.EntityInit.ZUR_ENTITY, ZurEntity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(EntityInit.DGRURB_ENTITY.get(), Dgrurb.registerAttributes().create());
             GlobalEntityTypeAttributes.put(EntityInit.DGRURBK_ENTITY.get(), Dgrurbk.registerAttributes().create());
             GlobalEntityTypeAttributes.put(EntityInit.ROVENT_ENTITY.get(), RoventEntity.setCustomAttributes().create());
@@ -201,11 +190,11 @@ public class Ervin_mod_1 {
             GlobalEntityTypeAttributes.put(EntityInit.TRADER_NIRTREP_ENTITY.get(), TraderNirtre1Entity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(EntityInit.$_TRADER_ENTITY.get(), $TraderEntity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(EntityInit.ZOMBIE_TRADER_ENTITY.get(), ZombieTraderEntity.setCustomAttributes().create());
-            GlobalEntityTypeAttributes.put(EntityInit.GUBROV_ENTITY.get(), GubrovEntity.setCustomAttributes().create());
+            GlobalEntityTypeAttributes.put(com.babcsany.minecraft.init.EntityInit.GUBROV_ENTITY, GubrovEntity.setCustomAttributes().create());
             EntitySpawnPlacementRegistry.register(EntityInit.$_TRADER_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, Abstract$TraderEntity::canSpawnOn);
             EntitySpawnPlacementRegistry.register(EntityInit.DGRURB_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canSpawnOn);
             EntitySpawnPlacementRegistry.register(EntityInit.FREIN_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, FreinEntity::func_223366_c);
-            EntitySpawnPlacementRegistry.register(EntityInit.GUBROV_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AbstractFishEntity::func_223363_b);
+            EntitySpawnPlacementRegistry.register(com.babcsany.minecraft.init.EntityInit.GUBROV_ENTITY, EntitySpawnPlacementRegistry.PlacementType.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AbstractFishEntity::func_223363_b);
             EntitySpawnPlacementRegistry.register(EntityInit.HHIJ_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, HhijAnimalEntity::canAnimalSpawn);
             EntitySpawnPlacementRegistry.register(EntityInit.ROVENT_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, RoventEntity::canRoventSpawn);
             EntitySpawnPlacementRegistry.register(EntityInit.SHERT_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ShertEntity::func_223318_c);
@@ -214,15 +203,15 @@ public class Ervin_mod_1 {
             EntitySpawnPlacementRegistry.register(EntityInit.VILT_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::canAnimalSpawn);
             EntitySpawnPlacementRegistry.register(EntityInit.WANDERING_TRADER_NIRTRE_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canSpawnOn);
             EntitySpawnPlacementRegistry.register(EntityInit.ZOMBIE_TRADER_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canSpawnOn);
-            EntitySpawnPlacementRegistry.register(EntityInit.ZUR_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canSpawnOn);
+            EntitySpawnPlacementRegistry.register(com.babcsany.minecraft.init.EntityInit.ZUR_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canSpawnOn);
             EntitySpawnPlacementRegistry.register(EntityInit.LIWRAY.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canSpawnOn);
             EntitySpawnPlacementRegistry.func_209342_b(EntityInit.LIWRAY.get());
-            EntitySpawnPlacementRegistry.func_209342_b(EntityInit.ZUR_ENTITY);
+            EntitySpawnPlacementRegistry.func_209342_b(com.babcsany.minecraft.init.EntityInit.ZUR_ENTITY);
             //EntitySpawnPlacementRegistry.canSpawnEntity(EntityInit.LIWRAY, iWorld, SpawnReason.SPAWN_EGG, BlockPos.ZERO, new Random());
             EntitySpawnPlacementRegistry.getPlacementType(EntityInit.LIWRAY.get());
-            EntitySpawnPlacementRegistry.getPlacementType(EntityInit.ZUR_ENTITY);
+            EntitySpawnPlacementRegistry.getPlacementType(com.babcsany.minecraft.init.EntityInit.ZUR_ENTITY);
 
-            float f_0_3F = 0.3F;
+            /*float f_0_3F = 0.3F;
             float f_0_35F = 0.35F;
             float f_0_4F = 0.4F;
             float f_0_45F = 0.45F;
@@ -230,7 +219,7 @@ public class Ervin_mod_1 {
             float f_0_65F = 0.65F;
             float f_0_7F = 0.7F;
             float f3 = 0.85F;
-            float f4 = 1.0F;
+            float f4 = 1.0F;*/
             ComposterBlock.registerCompostable(0.3F, BlockNamedItemInit.TARG_SEEDS.get());
             ComposterBlock.registerCompostable(0.35F, BlockItemInit.FRIM_LEAVES.get());
             ComposterBlock.registerCompostable(0.35F, BlockItemInit.FRIM_SAPLING.get());
@@ -251,7 +240,7 @@ public class Ervin_mod_1 {
             ComposterBlock.registerCompostable(64.0F, isBurnableFoodItemInit.DURG.get());
             ComposterBlock.registerCompostable(210.0F, SpecialBlockFoodItemInit.VIRK_BLOCK.get());
 
-            //BiomeInit.registerBiomes();
+            World.isYOutOfBounds(1024);
         });
 
         DeferredWorkQueue.runLater(FeatureGen::GenerateFeature);
@@ -436,33 +425,12 @@ public class Ervin_mod_1 {
         }
     }
 
-    public static Optional<Vector3d> func_234567_a_(ServerWorld serverWorld, BlockPos pos, boolean p_234567_2_, boolean p_234567_3_) {
-        BlockState blockstate = serverWorld.getBlockState(pos);
-        Block block = blockstate.getBlock();
-        if (block instanceof Hurvruj && blockstate.get(Hurvruj.CHARGES) > 0 && Hurvruj.doesHurvrujWork(serverWorld)) {
-            Optional<Vector3d> optional = Hurvruj.func_235560_a_(EntityType.PLAYER, serverWorld, pos);
-            if (!p_234567_3_ && optional.isPresent()) {
-                serverWorld.setBlockState(pos, blockstate.with(Hurvruj.CHARGES, blockstate.get(Hurvruj.CHARGES) - 1), 15);
-            }
-
-            return optional;
-        } else if (blockstate.isBed(serverWorld, pos, null) && BedBlock.func_235330_a_(serverWorld)) {
-            return blockstate.getBedSpawnPosition(EntityType.PLAYER, serverWorld, pos, null);
-        } else if (!p_234567_2_) {
-            return Optional.empty();
-        } else {
-            boolean canSpawnInBlock = block.canSpawnInBlock();
-            boolean spawnInBlock = serverWorld.getBlockState(pos.up()).getBlock().canSpawnInBlock();
-            return canSpawnInBlock && spawnInBlock ? Optional.of(new Vector3d((double)pos.getX() + 0.5D, (double)pos.getY() + 0.1D, (double)pos.getZ() + 0.5D)) : Optional.empty();
-        }
-    }
-
     @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
     public static class ForgeEvents {
         @SubscribeEvent
         public static void onLeftClickBlock(final PlayerInteractEvent.LeftClickBlock event) {
             PlayerEntity player = event.getPlayer();
-            ResourceLocation MaterialBlocksTagId = new ResourceLocation(Ervin_mod_1.MOD_ID, "material_blocks");
+            ResourceLocation MaterialBlocksTagId = new ResourceLocation(com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1.MOD_ID, "material_blocks");
             ITag<Block> MaterialBlocks = BlockTags.getCollection().get(MaterialBlocksTagId);
             if (event.getWorld().hasBlockState(event.getPos(), blockState -> {
                 assert MaterialBlocks != null;
@@ -473,7 +441,7 @@ public class Ervin_mod_1 {
         }
         @SubscribeEvent
         public static void onLeftClick1Block(final PlayerInteractEvent.LeftClickBlock event) {
-            ResourceLocation Material1BlocksTagId = new ResourceLocation(Ervin_mod_1.MOD_ID, "material_blocks1");
+            ResourceLocation Material1BlocksTagId = new ResourceLocation(com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1.MOD_ID, "material_blocks1");
             ITag<Block> Material1Blocks = BlockTags.getCollection().get(Material1BlocksTagId);
             if (event.getWorld().hasBlockState(event.getPos(), blockState -> {
                 assert Material1Blocks != null;
@@ -513,151 +481,15 @@ public class Ervin_mod_1 {
         return Registry.register(Registry.ENTITY_TYPE, key, builder.build(key));
     }
 
-    /*@Nullable
-    public ResourceLocation getName() {
-        return this.name;
+    public void isYOutOfBounds(World world) {
+        world.isYOutOfBounds(1024);
     }
 
-    private static void addEntitiesToBiomes(Ervin_mod_1 event) {
-        String arachnonSpawnBiomes = Configs.PCEntitySpawningConfig.arachnonSpawnBiomes.get();
-        String arachnonSpawnTags = Configs.PCEntitySpawningConfig.arachnonDictionaryTags.get();
-        String arachnonDictionaryBiomeBlacklist = Configs.PCEntitySpawningConfig.arachnonDictionaryBiomeBlacklist.get();
-        int arachnonWeight = Configs.PCEntitySpawningConfig.arachnonDictionaryWeight.get();
-        int arachnonMinSpawns = Configs.PCEntitySpawningConfig.arachnonDictionaryMinSpawns.get();
-        int arachnonMaxSpawns = Configs.PCEntitySpawningConfig.arachnonDictionaryMaxSpawns.get();
-        addEntitySpawnsToBiomes(event, EntityInit.GUBROV_ENTITY.get(), EntityClassification.MONSTER, arachnonSpawnBiomes, arachnonSpawnTags, arachnonDictionaryBiomeBlacklist, arachnonWeight, arachnonMinSpawns, arachnonMaxSpawns);
-        String hellhoundSpawnBiomes = Configs.PCEntitySpawningConfig.hellhoundSpawnBiomes.get();
-        String hellhoundSpawnTags = Configs.PCEntitySpawningConfig.hellhoundDictionaryTags.get();
-        String hellhoundDictionaryBiomeBlacklist = Configs.PCEntitySpawningConfig.hellhoundDictionaryBiomeBlacklist.get();
-        int hellhoundWeight = Configs.PCEntitySpawningConfig.hellhoundDictionaryWeight.get();
-        int hellhoundMinSpawns = Configs.PCEntitySpawningConfig.hellhoundDictionaryMinSpawns.get();
-        int hellhoundMaxSpawns = Configs.PCEntitySpawningConfig.hellhoundDictionaryMaxSpawns.get();
-        addEntitySpawnsToBiomes(event, EntityInit.HHIJ_ENTITY.get(), EntityClassification.MONSTER, hellhoundSpawnBiomes, hellhoundSpawnTags, hellhoundDictionaryBiomeBlacklist, hellhoundWeight, hellhoundMinSpawns, hellhoundMaxSpawns);
-        String crabSpawnBiomes = Configs.PCEntitySpawningConfig.crabSpawnBiomes.get();
-        String crabSpawnTags = Configs.PCEntitySpawningConfig.crabDictionaryTags.get();
-        String crabDictionaryBiomeBlacklist = Configs.PCEntitySpawningConfig.crabDictionaryBiomeBlacklist.get();
-        int crabWeight = (Integer)Configs.PCEntitySpawningConfig.crabDictionaryWeight.get();
-        int crabMinSpawns = (Integer)Configs.PCEntitySpawningConfig.crabDictionaryMinSpawns.get();
-        int crabMaxSpawns = (Integer)Configs.PCEntitySpawningConfig.crabDictionaryMaxSpawns.get();
-        addEntitySpawnsToBiomes(event, EntityInit.ROVENT_ENTITY.get(), EntityClassification.AMBIENT, crabSpawnBiomes, crabSpawnTags, crabDictionaryBiomeBlacklist, crabWeight, crabMinSpawns, crabMaxSpawns);
-        String seahorseSpawnBiomes = (String)Configs.PCEntitySpawningConfig.seahorseSpawnBiomes.get();
-        String seahorseSpawnTags = (String)Configs.PCEntitySpawningConfig.seahorseDictionaryTags.get();
-        String seahorseDictionaryBiomeBlacklist = (String)Configs.PCEntitySpawningConfig.seahorseDictionaryBiomeBlacklist.get();
-        int seahorseWeight = (Integer)Configs.PCEntitySpawningConfig.seahorseDictionaryWeight.get();
-        int seahorseMinSpawns = (Integer)Configs.PCEntitySpawningConfig.seahorseDictionaryMinSpawns.get();
-        int seahorseMaxSpawns = (Integer)Configs.PCEntitySpawningConfig.seahorseDictionaryMaxSpawns.get();
-        addEntitySpawnsToBiomes(event, EntityInit.SRACH_ENTITY.get(), EntityClassification.AMBIENT, seahorseSpawnBiomes, seahorseSpawnTags, seahorseDictionaryBiomeBlacklist, seahorseWeight, seahorseMinSpawns, seahorseMaxSpawns);
-        String acidicArchvineSpawnBiomes = (String)Configs.PCEntitySpawningConfig.acidicArchvineSpawnBiomes.get();
-        String acidicArchvineSpawnTags = (String)Configs.PCEntitySpawningConfig.acidicArchvineDictionaryTags.get();
-        String acidicArchvineDictionaryBiomeBlacklist = (String)Configs.PCEntitySpawningConfig.acidicArchvineDictionaryBiomeBlacklist.get();
-        int acidicArchvineWeight = (Integer)Configs.PCEntitySpawningConfig.acidicArchvineDictionaryWeight.get();
-        int acidicArchvineMinSpawns = (Integer)Configs.PCEntitySpawningConfig.acidicArchvineDictionaryMinSpawns.get();
-        int acidicArchvineMaxSpawns = (Integer)Configs.PCEntitySpawningConfig.acidicArchvineDictionaryMaxSpawns.get();
-        addEntitySpawnsToBiomes(event, EntityInit.ZUR_ENTITY.get(), EntityClassification.MONSTER, acidicArchvineSpawnBiomes, acidicArchvineSpawnTags, acidicArchvineDictionaryBiomeBlacklist, acidicArchvineWeight, acidicArchvineMinSpawns, acidicArchvineMaxSpawns);
-        String bufflonSpawnBiomes = (String)Configs.PCEntitySpawningConfig.bufflonSpawnBiomes.get();
-        String bufflonSpawnTags = (String)Configs.PCEntitySpawningConfig.bufflonDictionaryTags.get();
-        String bufflonDictionaryBiomeBlacklist = (String)Configs.PCEntitySpawningConfig.bufflonDictionaryBiomeBlacklist.get();
-        int bufflonWeight = (Integer)Configs.PCEntitySpawningConfig.bufflonDictionaryWeight.get();
-        int bufflonMinSpawns = (Integer)Configs.PCEntitySpawningConfig.bufflonDictionaryMinSpawns.get();
-        int bufflonMaxSpawns = (Integer)Configs.PCEntitySpawningConfig.bufflonDictionaryMaxSpawns.get();
-        addEntitySpawnsToBiomes(event, EntityInit.WANDERING_TRADER_NIRTRE_ENTITY.get(), EntityClassification.CREATURE, bufflonSpawnBiomes, bufflonSpawnTags, bufflonDictionaryBiomeBlacklist, bufflonWeight, bufflonMinSpawns, bufflonMaxSpawns);
-    }
-
-    private static void addEntitySpawnsToBiomes(Ervin_mod_1 event, EntityType<?> entity, EntityClassification entityClassification, String entitySpawnBiomes, String entitySpawnTags, String entityDictionaryBiomeBlacklist, int entitySpawnWeight, int entityMinSpawns, int entityMaxSpawns) {
-        List<String> foundBiomes = Arrays.asList(entitySpawnBiomes.replaceAll(" ", "").split(","));
-
-        for(int i = 0; i < foundBiomes.size(); ++i) {
-            List<String> entityBiomeSpawnValues = Arrays.asList(foundBiomes.get(i).replaceAll(" ", "").split("/"));
-            if (((String)entityBiomeSpawnValues.get(0)).equals(event.getName().toString())) {
-                Integer weight = null;
-                Integer minSpawns = null;
-                Integer maxSpawns = null;
-
-                try {
-                    if (entityBiomeSpawnValues.get(1) != null && entityBiomeSpawnValues.get(2) != null && entityBiomeSpawnValues.get(3) != null) {
-                        try {
-                            weight = Integer.parseInt((String)entityBiomeSpawnValues.get(1));
-                            minSpawns = Integer.parseInt((String)entityBiomeSpawnValues.get(2));
-                            maxSpawns = Integer.parseInt((String)entityBiomeSpawnValues.get(3));
-                        } catch (NumberFormatException var18) {
-                            System.out.println();
-                            System.out.println("Pandoras Creatures has detected a problem in the entity-spawning config");
-                            System.out.println("The Entity with the problem is: " + entity/*.func_212546_e().getString()* /);
-                            System.out.println("One of the 3 Values for Biome: " + (String)entityBiomeSpawnValues.get(0) + " was invalid");
-                            System.out.println(var18.toString());
-                        }
-                    }
-                } catch (IndexOutOfBoundsException var19) {
-                    System.out.println();
-                    System.out.println("Pandoras Creatures has detected a problem in the entity-spawning config");
-                    System.out.println("The Entity with the problem is: " + entity/*.func_212546_e().getString()* /);
-                    System.out.println("One (or more), of the 3 Values for Biome: " + entityBiomeSpawnValues.get(0) + " was not found");
-                }
-
-                if (weight != null && minSpawns != null && maxSpawns != null) {
-                    //event.getSpawns().func_242575_a(entityClassification, new Spawners(entity, MathHelper.func_76125_a(weight, 1, 1000), MathHelper.func_76125_a(minSpawns, 1, 100), MathHelper.func_76125_a(maxSpawns, 1, 100)));
-                    if ((Boolean)Configs.PCEntitySpawningConfig.isDebugModeEnabled.get()) {
-                        System.out.println("Added " + entity/*.func_212546_e().getString()* / + " to: " + (String)entityBiomeSpawnValues.get(0) + " weight: " + weight + " min: " + minSpawns + " max: " + maxSpawns);
-                    }
-                }
-            }
-        }
-
-        List<String> foundTags = Arrays.asList(entitySpawnTags.replaceAll(" ", "").toUpperCase().split(","));
-
-        label77:
-        for(int i = 0; i < foundTags.size(); ++i) {
-            Iterator var22 = BiomeDictionary.getBiomes(BiomeDictionary.Type.getType((String)foundTags.get(i), new BiomeDictionary.Type[]{}[0])).iterator();
-
-            while(true) {
-                RegistryKey biome;
-                List blackListedBiomes;
-                do {
-                    do {
-                        if (!var22.hasNext()) {
-                            continue label77;
-                        }
-
-                        biome = (RegistryKey)var22.next();
-                    } while(!biome.func_240901_a_().toString().equals(event.getName().toString()));
-
-                    blackListedBiomes = Arrays.asList(entityDictionaryBiomeBlacklist.replaceAll(" ", "").split(","));
-                } while(blackListedBiomes.contains(biome.func_240901_a_().toString()));
-
-                List<String> biomesNames = new ArrayList();
-
-                for(int j = 0; j < foundBiomes.size(); ++j) {
-                    List<String> biomesInfo = Arrays.asList(((String)foundBiomes.get(j)).replaceAll(" ", "").split("/"));
-                    biomesNames.add(biomesInfo.get(0));
-                }
-
-                if (!biomesNames.contains(biome.func_240901_a_().toString())) {
-                    //event.getSpawns().func_242575_a(entityClassification, new Spawners(entity, entitySpawnWeight, entityMinSpawns, entityMaxSpawns));
-                    if ((Boolean)Configs.PCEntitySpawningConfig.isDebugModeEnabled.get()) {
-                        System.out.println("Added " + entity/*.func_212546_e().getString()* / + " to: " + biome.func_240901_a_().toString() + " weight: " + entitySpawnWeight + " min: " + entityMinSpawns + " max: " + entityMaxSpawns);
-                    }
-                }
-            }
-        }
-
-    }
-
-    public static class Configs {
-        public static ClientConfig.ClientConfigValues PCClientConfig = null;
-        public static CommonConfig.CommonConfigValues PCCommonConfig = null;
-        public static EntitySpawningConfig.EntitySpawningConfigValues PCEntitySpawningConfig = null;
-
-        public Configs() {
-        }
-
-        public static void registerConfigs() {
-            PCClientConfig = ConfigHelper.register(Type.CLIENT, ClientConfig.ClientConfigValues::new, createConfigName("client"));
-            PCCommonConfig = ConfigHelper.register(Type.COMMON, CommonConfig.CommonConfigValues::new, createConfigName("common"));
-            PCEntitySpawningConfig = ConfigHelper.register(Type.COMMON, EntitySpawningConfig.EntitySpawningConfigValues::new, createConfigName("entity-spawning"));
-        }
-
-        private static String createConfigName(String name) {
-            return "ervin_mod_1-" + name + ".toml";
+    /*public boolean isUsableByPlayer(PlayerEntity player) {
+        if (this.player.removed) {
+            return false;
+        } else {
+            return !(player.getDistanceSq(this.player) > 2048.0D);
         }
     }*/
 }

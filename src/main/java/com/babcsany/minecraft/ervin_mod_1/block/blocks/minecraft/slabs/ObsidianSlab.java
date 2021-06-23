@@ -1,6 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.block.blocks.minecraft.slabs;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.IWaterLoggable;
 import net.minecraft.fluid.Fluid;
@@ -127,5 +128,9 @@ public class ObsidianSlab extends Block implements IWaterLoggable {
       default:
          return false;
       }
+   }
+
+   public BlockRenderType getRenderType(BlockState state) {
+      return BlockRenderType.INVISIBLE;
    }
 }

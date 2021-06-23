@@ -34,6 +34,7 @@ public class ModBlockStateProperties extends BlockStateProperties {
    public static final BooleanProperty SHORT = BooleanProperty.create("short");
    public static final BooleanProperty SIGNAL_FIRE = BooleanProperty.create("signal_fire");
    public static final BooleanProperty SNOWY = BooleanProperty.create("snowy");
+   public static final BooleanProperty DEF = BooleanProperty.create("def");
    public static final BooleanProperty TRIGGERED = BooleanProperty.create("triggered");
    public static final BooleanProperty UNSTABLE = BooleanProperty.create("unstable");
    public static final BooleanProperty WATERLOGGED = BooleanProperty.create("waterlogged");

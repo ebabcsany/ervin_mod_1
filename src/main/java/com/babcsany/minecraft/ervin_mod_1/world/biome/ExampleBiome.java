@@ -1,9 +1,9 @@
 package com.babcsany.minecraft.ervin_mod_1.world.biome;
 
-import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.ModBiomeFeatures;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.FirgTree;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.ModDefaultBiomeFeatures;
+import com.babcsany.minecraft.init.EntityInit;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.world.biome.*;

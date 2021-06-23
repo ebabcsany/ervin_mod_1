@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "top": "ervin_mod_1:block/air_def/air_def_top",
+    "bottom": "ervin_mod_1:block/air_def/air_def_bottom",
+    "side": "ervin_mod_1:block/air_def/air_def_side",
+    "particle": "ervin_mod_1:block/air"
+  }
+}

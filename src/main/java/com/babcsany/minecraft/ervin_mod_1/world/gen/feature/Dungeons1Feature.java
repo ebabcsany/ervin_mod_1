@@ -25,7 +25,7 @@ import java.util.Random;
 
 public class Dungeons1Feature extends Feature<NoFeatureConfig> {
    private static final Logger LOGGER = LogManager.getLogger();
-   private static final EntityType<?>[] SPAWNERTYPES = new EntityType[]{EntityInit.ZUR_ENTITY, EntityInit.TRADER_NIRTRE_ENTITY.get(), EntityInit.WANDERING_TRADER_NIRTRE_ENTITY.get(), EntityType.ZOMBIE, EntityType.CREEPER, EntityType.CAVE_SPIDER, EntityType.VILLAGER, EntityType.ENDERMAN, EntityType.SPIDER};
+   private static final EntityType<?>[] SPAWNERTYPES = new EntityType[]{com.babcsany.minecraft.init.EntityInit.ZUR_ENTITY, EntityInit.TRADER_NIRTRE_ENTITY.get(), EntityInit.WANDERING_TRADER_NIRTRE_ENTITY.get(), EntityType.ZOMBIE, EntityType.CREEPER, EntityType.CAVE_SPIDER, EntityType.VILLAGER, EntityType.ENDERMAN, EntityType.SPIDER};
    private static final BlockState CAVE_AIR = Blocks.CAVE_AIR.getDefaultState();
 
    public Dungeons1Feature(Codec<NoFeatureConfig> p_i231970_1_) {

@@ -59,7 +59,7 @@ public class ModBiome<T extends Biome> extends net.minecraftforge.registries.For
     protected final float downfall;
     private final int skyColor;
     @Nullable
-    protected final String parent;
+    public final String parent;
     protected final ConfiguredSurfaceBuilder<?> surfaceBuilder;
     protected final Category category;
     protected final RainType precipitation;

@@ -1,12 +1,13 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.monster;
 
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.DgrurbMonsterEntity;
 import net.minecraft.entity.*;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraft.world.World;
 
-public abstract class AbstractDgrurbkEntity extends MonsterEntity1 {
+public abstract class AbstractDgrurbkEntity extends DgrurbMonsterEntity {
    public boolean dgrurbksAttack;
 
    public AbstractDgrurbkEntity(EntityType<? extends AbstractDgrurbkEntity> type, World worldIn) {

@@ -1,5 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.item;
 
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.DgrurbAgeableEntity;
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.DgrurbMobEntity;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Maps;
 import java.util.Map;
@@ -152,6 +154,40 @@ public class SpawnEggItem1 extends Item {
          MobEntity mobentity;
          if (p_234809_2_ instanceof AgeableEntity) {
             mobentity = ((AgeableEntity)p_234809_2_).createChild((AgeableEntity)p_234809_2_);
+         } else {
+            mobentity = p_234809_3_.create(p_234809_4_);
+         }
+
+         if (mobentity == null) {
+            return Optional.empty();
+         } else {
+            mobentity.setChild(true);
+            if (!mobentity.isChild()) {
+               return Optional.empty();
+            } else {
+               mobentity.setLocationAndAngles(p_234809_5_.getX(), p_234809_5_.getY(), p_234809_5_.getZ(), 0.0F, 0.0F);
+               p_234809_4_.addEntity(mobentity);
+               if (p_234809_6_.hasDisplayName()) {
+                  mobentity.setCustomName(p_234809_6_.getDisplayName());
+               }
+
+               if (!p_234809_1_.abilities.isCreativeMode) {
+                  p_234809_6_.shrink(1);
+               }
+
+               return Optional.of(mobentity);
+            }
+         }
+      }
+   }
+
+   public Optional<DgrurbMobEntity> dgrurbMobEntity(PlayerEntity p_234809_1_, DgrurbMobEntity p_234809_2_, EntityType<? extends DgrurbMobEntity> p_234809_3_, World p_234809_4_, Vector3d p_234809_5_, ItemStack p_234809_6_) {
+      if (!this.hasType(p_234809_6_.getTag(), p_234809_3_)) {
+         return Optional.empty();
+      } else {
+         DgrurbMobEntity mobentity;
+         if (p_234809_2_ instanceof DgrurbAgeableEntity) {
+            mobentity = ((DgrurbAgeableEntity)p_234809_2_).createChild((DgrurbAgeableEntity)p_234809_2_);
          } else {
             mobentity = p_234809_3_.create(p_234809_4_);
          }

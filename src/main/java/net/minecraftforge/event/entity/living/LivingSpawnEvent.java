@@ -19,6 +19,7 @@
 
 package net.minecraftforge.event.entity.living;
 
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.DgrurbMobEntity;
 import com.babcsany.minecraft.ervin_mod_1.reutrien.AbstractReutrien;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.SpawnReason;
@@ -51,6 +52,15 @@ public class LivingSpawnEvent extends LivingEvent
     private final double z;
 
     public LivingSpawnEvent(MobEntity entity, IWorld world, double x, double y, double z)
+    {
+        super(entity);
+        this.world = world;
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
+    public LivingSpawnEvent(DgrurbMobEntity entity, IWorld world, double x, double y, double z)
     {
         super(entity);
         this.world = world;
@@ -213,6 +223,16 @@ public class LivingSpawnEvent extends LivingEvent
     public static class AllowDespawn extends LivingSpawnEvent
     {
         public AllowDespawn(MobEntity entity)
+        {
+            super(entity, entity.world, entity.getPosX(), entity.getPosY(), entity.getPosZ());
+        }
+
+    }
+
+    @HasResult
+    public static class AllowDgrurbDespawn extends LivingSpawnEvent
+    {
+        public AllowDgrurbDespawn(DgrurbMobEntity entity)
         {
             super(entity, entity.world, entity.getPosX(), entity.getPosY(), entity.getPosZ());
         }

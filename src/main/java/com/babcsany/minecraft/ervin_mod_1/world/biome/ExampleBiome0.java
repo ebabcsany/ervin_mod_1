@@ -16,6 +16,8 @@ import net.minecraft.world.gen.placement.ChanceConfig;
 import net.minecraft.world.gen.placement.FrequencyConfig;
 import net.minecraft.world.gen.placement.HeightWithChanceConfig;
 import net.minecraft.world.gen.placement.Placement;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class ExampleBiome0 extends Biome {
 
@@ -54,15 +56,10 @@ public class ExampleBiome0 extends Biome {
 		ModBiomeFeatures.addExampleFeature(this, 10);
 		DefaultBiomeFeatures.addFreezeTopLayer(this);
 	}
-	
-	@Override
-	public int getGrassColor(double posX, double posZ) {
-		return 0xFF5060;
-	}
-	
-	@Override
-	public int getFoliageColor() {
-		return 0xFF5060;
+
+	@OnlyIn(Dist.CLIENT)
+	public int getSkyColor() {
+		return 0;
 	}
 }
 

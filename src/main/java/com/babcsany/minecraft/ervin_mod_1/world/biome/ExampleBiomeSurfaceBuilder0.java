@@ -26,14 +26,14 @@ public class ExampleBiomeSurfaceBuilder0 extends SurfaceBuilder<SurfaceBuilderCo
 			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock,
 					defaultFluid, seaLevel, seed,
 					new SurfaceBuilderConfig(BlockItemInit.EXAMPLE_BLOCK.get().getDefaultState(),
-							BlockItemInit.DEF_BLOCK.get().getDefaultState(), Blocks.ACACIA_PLANKS.getDefaultState()));
+							BlockItemInit.DEF_BLOCK.get().getDefaultState(), Blocks.END_STONE.getDefaultState()));
 		} else {
 			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock,
 					defaultFluid, seaLevel, seed,
 					new SurfaceBuilderConfig(
-							i == 1 ? Blocks.GRASS_BLOCK.getDefaultState()
+							i == 1 ? Blocks.END_STONE.getDefaultState()
 									: BlockItemInit.EXAMPLE_BLOCK.get().getDefaultState(),
-							BlockItemInit.DEF_BLOCK.get().getDefaultState(), Blocks.ACACIA_PLANKS.getDefaultState()));
+							BlockItemInit.DEF_BLOCK.get().getDefaultState(), Blocks.END_STONE.getDefaultState()));
 		}
 	}
 }

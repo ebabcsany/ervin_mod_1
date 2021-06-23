@@ -11,7 +11,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class RoventModel<T extends ZurEntity> extends ZurEntityModel<T> {
+public class RoventModel<T extends ZurEntity> extends AbstractZurEntityModel<T> {
    public RoventModel(float p_i48915_1_, float p_i48915_2_, int p_i48915_3_, int p_i48915_4_) {
       super(p_i48915_1_, p_i48915_2_, p_i48915_3_, p_i48915_4_);
       this.bipedRightArm = new ModelRenderer(this, 32, 48);

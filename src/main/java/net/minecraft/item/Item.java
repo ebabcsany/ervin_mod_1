@@ -1,5 +1,6 @@
 package net.minecraft.item;
 
+import com.babcsany.minecraft.ervin_mod_1.entity.player.PlayerEntity1;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Multimap;
@@ -247,6 +248,9 @@ public class Item extends net.minecraftforge.registries.ForgeRegistryEntry<Item>
     * Called when item is crafted/smelted. Used only by maps so far.
     */
    public void onCreated(ItemStack stack, World worldIn, PlayerEntity playerIn) {
+   }
+
+   public void onCreated(ItemStack stack, World worldIn, PlayerEntity1 playerIn) {
    }
 
    /**

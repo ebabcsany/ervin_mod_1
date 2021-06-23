@@ -22,7 +22,7 @@ public class GubrovEntity extends AbstractGroupFishEntity {
    }
 
    protected ItemStack getFishBucket() {
-      return new ItemStack(ModSpawnEggItemInit.GUBROV_SPAWN_EGG.get());
+      return new ItemStack(ModSpawnEggItemInit.GUBROV_SPAWN_EGG);
    }
 
    protected SoundEvent getAmbientSound() {

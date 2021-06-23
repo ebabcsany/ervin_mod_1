@@ -22,8 +22,8 @@ public abstract class TileEntity extends net.minecraftforge.common.capabilities.
    private final TileEntityType<?> type;
    /** the instance of the world the tile entity is in. */
    @Nullable
-   protected World world;
-   protected BlockPos pos = BlockPos.ZERO;
+   public World world;
+   public BlockPos pos = BlockPos.ZERO;
    protected boolean removed;
    @Nullable
    private BlockState cachedBlockState;
@@ -205,7 +205,7 @@ public abstract class TileEntity extends net.minecraftforge.common.capabilities.
     * indirectly, such as give or setblock. A similar method exists for entities at {@link
     * net.minecraft.entity.Entity#ignoreItemEntityData()}.<p>For example, {@link
     * net.minecraft.tileentity.SignTileEntity#onlyOpsCanSetNbt() signs} (player right-clicking) and {@link
-    * net.minecraft.tileentity.CommandBlockTileEntity#onlyOpsCanSetNbt() command blocks} are considered
+    * CommandBlockTileEntity1#onlyOpsCanSetNbt() command blocks} are considered
     * accessible.</p>@return true if this block entity offers ways for unauthorized players to use restricted commands
     */
    public boolean onlyOpsCanSetNbt() {

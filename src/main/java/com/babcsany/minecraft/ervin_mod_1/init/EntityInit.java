@@ -4,10 +4,10 @@ import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.entity.animal.*;
 import com.babcsany.minecraft.ervin_mod_1.entity.animal.hhij.HhijAnimalEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.animal.hhij.HhijEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.fish.GubrovEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.item.ModBoatEntityhj;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.*;
-import com.babcsany.minecraft.ervin_mod_1.entity.player.PlayerEntity1;
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.Dgrurb;
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.dgrurbk.Dgrurbk;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.passive.AnimalEntity;
@@ -28,17 +28,17 @@ public class EntityInit {
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITIES, Ervin_mod_1.MOD_ID);
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES1;
 
-    //public static final EntityType<PlayerEntity1> PLAYER1 = register("ervin_mod_1:player", EntityType.Builder.<PlayerEntity1>create(EntityClassification.MISC).disableSerialization().disableSummoning().size(0.6F, 1.8F).func_233606_a_(32).func_233608_b_(2));
+    //public static final EntityType<PlayerEntity1> PLAYER1 = register("player", EntityType.Builder.<PlayerEntity1>create(EntityClassification.MISC).disableSerialization().disableSummoning().size(0.6F, 1.8F).func_233606_a_(32).func_233608_b_(2));
 
     public static final RegistryObject<EntityType<Liwray>> LIWRAY = ENTITY_TYPES.register("liwray", () -> EntityType.Builder.create(Liwray::new, EntityClassification.CREATURE).size(0.9f, 1.3f).func_233606_a_(10).build(new ResourceLocation(Ervin_mod_1.MOD_ID, "textures/entity/zur_entity_1.png").toString()));
     //public static final EntityType<Liwray> LIWRAY = register("ervin_mod_1:liwray", EntityType.Builder.create(Liwray::new, EntityClassification.CREATURE).size(0.9f, 1.3f).func_233606_a_(10).immuneToFire());
     //public static final RegistryObject<EntityType<BlackLightningBoltEntity>> BLACK_LIGHTNING_BOLT = ENTITY_TYPES.register("black_lightning_bolt", () -> EntityType.Builder.create(BlackLightningBoltEntity::new, EntityClassification.MISC).size(0.0f, 0.0f).func_233606_a_(16).func_233608_b_(Integer.MAX_VALUE).build(new ResourceLocation(Ervin_mod_1.MOD_ID, "textures/entity/zur_entity_1.png").toString()));
     //public static final RegistryObject<EntityType<HuihkEntity>> HUIHK = ENTITY_TYPES.register("huihk", EntityType.Builder.<HuihkEntity>create(EntityClassification.MISC).disableSerialization().disableSummoning().size(0.3F, 0.3F).func_233606_a_(4).func_233608_b_(5));
-    public static final RegistryObject<EntityType<GwurstEntity>> GWURST = ENTITY_TYPES.register("gwurst", () -> EntityType.Builder.create(GwurstEntity::new, EntityClassification.CREATURE).size(0.4F, 0.7F).func_233606_a_(10).build(new ResourceLocation(Ervin_mod_1.MOD_ID, "textures/entity/zur_entity_1.png").toString()));
+    public static final RegistryObject<EntityType<GwurstEntity>> GWURST = ENTITY_TYPES.register("gwurst", () -> EntityType.Builder.create(GwurstEntity::new, EntityClassification.CREATURE).size(0.4F, 0.7F).func_233606_a_(10).immuneToFire().build(new ResourceLocation(Ervin_mod_1.MOD_ID, "textures/entity/zur_entity_1.png").toString()));
     //public static final RegistryObject<EntityType<ZurEntity>> ZUR_ENTITY = ENTITY_TYPES.register("zur_entity", () -> createImmuneFireMobEntity(ZurEntity::new, EntityClassification.MONSTER, "zur_entity", 0.6f, 1.80f));
     public static final RegistryObject<EntityType<TraderNirtre1Entity>> TRADER_NIRTREP_ENTITY = ENTITY_TYPES.register("trader_nirtre1_entity", () -> EntityType.Builder.create(TraderNirtre1Entity::new, EntityClassification.CREATURE).size(0.6f, 1.95f).func_233606_a_(8).immuneToFire().build(new ResourceLocation(Ervin_mod_1.MOD_ID, "textures/entity/zur_entity").toString()));
     public static final RegistryObject<EntityType<Dgrurb>> DGRURB_ENTITY = ENTITY_TYPES.register("dgrurb", () -> EntityType.Builder.<Dgrurb>create(Dgrurb::new, EntityClassification.CREATURE).size(0.6f, 1.95f).func_233606_a_(8).immuneToFire().build(new ResourceLocation(Ervin_mod_1.MOD_ID, "textures/entity/dgrurb").toString()));
-    public static final RegistryObject<EntityType<Dgrurbk>> DGRURBK_ENTITY = ENTITY_TYPES.register("dgrurbk", () -> EntityType.Builder.<Dgrurbk>create(Dgrurbk::new, EntityClassification.MONSTER).size(1.2f, 3.9f).func_233606_a_(16).immuneToFire().build(new ResourceLocation(Ervin_mod_1.MOD_ID, "textures/entity/dgrurbk").toString()));
+    public static final RegistryObject<EntityType<Dgrurbk>> DGRURBK_ENTITY = ENTITY_TYPES.register("dgrurbk", () -> EntityType.Builder.<Dgrurbk>create(Dgrurbk::new, EntityClassification.MONSTER).size(2.0F, 5.0F).func_233606_a_(16).immuneToFire().build(new ResourceLocation(Ervin_mod_1.MOD_ID, "textures/entity/dgrurbk").toString()));
     public static final RegistryObject<EntityType<RoventEntity>> ROVENT_ENTITY = ENTITY_TYPES.register("rovent_entity", () -> EntityType.Builder.create((RoventEntity::new), EntityClassification.CREATURE).size(0.6f, 1.95f).func_233606_a_(10).immuneToFire().build(new ResourceLocation(Ervin_mod_1.MOD_ID, "textures/entity/zur_entity").toString()));
     public static final RegistryObject<EntityType<ZurNirtreEntity>> ZUR_NIRTRE_ENTITY = ENTITY_TYPES.register("zur_nirtre_entity", () -> EntityType.Builder.create(ZurNirtreEntity::new, EntityClassification.CREATURE).size(0.6f, 1.95f).func_233606_a_(10).immuneToFire().build(new ResourceLocation(Ervin_mod_1.MOD_ID, "entity/zur_entity").toString()));
     public static final RegistryObject<EntityType<FreinEntity>> FREIN_ENTITY = ENTITY_TYPES.register("frein_entity", () -> EntityType.Builder.create(FreinEntity::new, EntityClassification.CREATURE).size(1.0f, 3.0f).func_233606_a_(10).build(new ResourceLocation(Ervin_mod_1.MOD_ID, "entity/frein_entity").toString()));
@@ -58,12 +58,10 @@ public class EntityInit {
                             .size(1.375F, 0.5625F).func_233606_a_(6)
                             .build(new ResourceLocation(Ervin_mod_1.MOD_ID, "entity/boat/firg").toString()
                             ));
-    public static final EntityType<ZurEntity> ZUR_ENTITY = register("ervin_mod_1:zur_entity", EntityType.Builder.<ZurEntity>create(/*(type, worldIn) -> new ZurEntity(type, worldIn)*/ZurEntity::new, EntityClassification.CREATURE).size(0.6F, 1.90F).func_233606_a_(8).immuneToFire());
     public static final RegistryObject<EntityType<WanderingTraderNirtreEntity>> WANDERING_TRADER_NIRTRE_ENTITY = ENTITY_TYPES.register("wandering_trader_nirtre_entity", () -> EntityType.Builder.create(WanderingTraderNirtreEntity::new, EntityClassification.CREATURE).size(0.6F, 1.95F).func_233606_a_(12).immuneToFire().build(new ResourceLocation(Ervin_mod_1.MOD_ID, "entity/wandering_trader_nirtre_entity").toString()));
     public static final RegistryObject<EntityType<TraderNirtreEntity>> TRADER_NIRTRE_ENTITY = ENTITY_TYPES.register("trader_nirtre_entity", () -> EntityType.Builder.create(TraderNirtreEntity::new, EntityClassification.CREATURE).size(0.6f, 1.95f).func_233606_a_(12).immuneToFire().build(new ResourceLocation(Ervin_mod_1.MOD_ID, "entity/zur_entity").toString()));
     public static final RegistryObject<EntityType<$TraderEntity>> $_TRADER_ENTITY = ENTITY_TYPES.register("$_trader_entity", () -> EntityType.Builder.create($TraderEntity::new, EntityClassification.CREATURE).size(0.6f, 1.95f).func_233606_a_(10).build(new ResourceLocation(Ervin_mod_1.MOD_ID, "entity/traders/$_trader").toString()));
     public static final RegistryObject<EntityType<ZombieTraderEntity>> ZOMBIE_TRADER_ENTITY = ENTITY_TYPES.register("zombie_trader_entity", () -> EntityType.Builder.create(ZombieTraderEntity::new, EntityClassification.CREATURE).size(0.6f, 1.95f).func_233606_a_(10).build(new ResourceLocation("entity/zombie/zombie").toString()));
-    public static final RegistryObject<EntityType<GubrovEntity>> GUBROV_ENTITY = ENTITY_TYPES.register("gubrov_entity", () -> EntityType.Builder.create(GubrovEntity::new, EntityClassification.WATER_CREATURE).size(0.6f, 1.95f).func_233606_a_(10).build(new ResourceLocation(Ervin_mod_1.MOD_ID, "entity/fish/gubrov").toString()));
     //public static final RegistryObject<EntityType<SrechEntity>> SRECH_ENTITY = ENTITY_TYPES1.register("srerch_entity", () -> EntityType.Builder.create(SrechEntity::new, EntityClassification.CREATURE).size(0.9f, 1.4f).func_233606_a_(10).build(new ResourceLocation(Ervin_mod_1.MOD_ID, "entity/srach/srech").toString()));
     /*public static final RegistryObject<EntityType<TawrolEntity>> TAWROL_ENTITY = ENTITY_TYPES
             .register("tawrol",
@@ -89,12 +87,12 @@ public class EntityInit {
     public static void registerEntityPlacementLogics() {
         EntitySpawnPlacementRegistry.register(LIWRAY.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canSpawnOn);
         EntitySpawnPlacementRegistry.register(GWURST.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::canAnimalSpawn);
-        EntitySpawnPlacementRegistry.register(GUBROV_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AbstractFishEntity::func_223363_b);
+        EntitySpawnPlacementRegistry.register(com.babcsany.minecraft.init.EntityInit.GUBROV_ENTITY, EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AbstractFishEntity::func_223363_b);
         EntitySpawnPlacementRegistry.register(HHIJ_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, HhijAnimalEntity::canAnimalSpawn);
         EntitySpawnPlacementRegistry.register(ROVENT_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, RoventEntity::canRoventSpawn);
         EntitySpawnPlacementRegistry.register(SHERT_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::canAnimalSpawn);
         EntitySpawnPlacementRegistry.register(SRACH_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::canAnimalSpawn);
-        EntitySpawnPlacementRegistry.register(ZUR_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AbstractZurEntity::canSpawnOn);
+        EntitySpawnPlacementRegistry.register(com.babcsany.minecraft.init.EntityInit.ZUR_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AbstractZurEntity::canSpawnOn);
         EntitySpawnPlacementRegistry.register(WANDERING_TRADER_NIRTRE_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canSpawnOn);
     }
 

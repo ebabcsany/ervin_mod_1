@@ -1,6 +1,6 @@
 package net.minecraft.tileentity;
 
-import com.babcsany.minecraft.ervin_mod_1.block.FriszernTileEntity;
+import com.babcsany.minecraft.ervin_mod_1.block.Friszern;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -21,9 +21,8 @@ import javax.annotation.Nullable;
 public class CommandBlockTileEntity extends TileEntity {
    private boolean powered;
    private boolean auto;
-   private boolean conditionMet;
+   public boolean conditionMet;
    private boolean sendToClient;
-   public FriszernTileEntity friszernTileEntity;
    private final CommandBlockLogic commandBlockLogic = new CommandBlockLogic() {
       /**
        * Sets the command.
@@ -48,7 +47,7 @@ public class CommandBlockTileEntity extends TileEntity {
       }
 
       public CommandSource getCommandSource() {
-         return new CommandSource(this, Vector3d.copyCentered(CommandBlockTileEntity.this.pos), Vector2f.ZERO, this.getWorld(), 2, this.getName().getString(), this.getName(), this.getWorld().getServer(), (Entity)null);
+         return new CommandSource(this, Vector3d.copyCentered(CommandBlockTileEntity.this.pos), Vector2f.ZERO, this.getWorld(), 2, this.getName().getString(), this.getName(), this.getWorld().getServer(), null);
       }
    };
 
@@ -80,7 +79,7 @@ public class CommandBlockTileEntity extends TileEntity {
    @Nullable
    public SUpdateTileEntityPacket getUpdatePacket() {
       if (this.isSendToClient()) {
-         this.setSendToClient(false);
+         this.setSendToClient(true);
          CompoundNBT compoundnbt = this.write(new CompoundNBT());
          return new SUpdateTileEntityPacket(this.pos, 2, compoundnbt);
       } else {
@@ -127,7 +126,7 @@ public class CommandBlockTileEntity extends TileEntity {
 
    public void func_226987_h_() {
       Mode commandblocktileentity$mode = this.getMode();
-      if (commandblocktileentity$mode == Mode.AUTO && (this.powered || this.auto) && this.world != null) {
+      if (commandblocktileentity$mode == Mode.AUTO && (this.powered || this.auto)) {
          this.func_226988_y_();
       }
 
@@ -135,7 +134,16 @@ public class CommandBlockTileEntity extends TileEntity {
 
    private void func_226988_y_() {
       Block block = this.getBlockState().getBlock();
-      if (block instanceof CommandBlockBlock) {
+      if (block instanceof Friszern) {
+         this.setConditionMet();
+         this.world.getPendingBlockTicks().scheduleTick(this.pos, block, 1);
+      }
+
+   }
+
+   private void func_226988_z_() {
+      Block block = this.getBlockState().getBlock();
+      if (block instanceof Friszern) {
          this.setConditionMet();
          this.world.getPendingBlockTicks().scheduleTick(this.pos, block, 1);
       }
@@ -152,7 +160,7 @@ public class CommandBlockTileEntity extends TileEntity {
          BlockPos blockpos = this.pos.offset(this.world.getBlockState(this.pos).get(CommandBlockBlock.FACING).getOpposite());
          if (this.world.getBlockState(blockpos).getBlock() instanceof CommandBlockBlock) {
             TileEntity tileentity = this.world.getTileEntity(blockpos);
-            this.conditionMet = tileentity instanceof CommandBlockTileEntity && ((CommandBlockTileEntity)tileentity).getCommandBlockLogic().getSuccessCount() > 0;
+            this.conditionMet = tileentity instanceof CommandBlockTileEntity;
          } else {
             this.conditionMet = false;
          }

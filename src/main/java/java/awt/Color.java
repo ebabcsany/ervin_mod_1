@@ -236,6 +236,7 @@ public class Color implements Paint, java.io.Serializable {
     public final static Color getColor_FFFF80FF      = new Color(255, 255, 128, 255);
     public final static Color getColor_FFC080FF      = new Color(255, 192, 128, 255);
     public final static Color getColor_FFA080FF      = new Color(255, 160, 128, 255);
+    public final static Color getColor_804000FF      = new Color(128, 64, 0, 255);
     /**
      * The color.  In the default sRGB space.
      * @since 1.4
@@ -832,8 +833,8 @@ public class Color implements Paint, java.io.Serializable {
      * If the specified property is not found or could not be parsed as
      * an integer then the integer value <code>v</code> is used instead,
      * and is converted to a <code>Color</code> object.
-     * @param    nm  the name of the color property
-     * @param    v   the default color value, as an integer
+     * @param    name  the name of the color property
+     * @param    value   the default color value, as an integer
      * @return   the <code>Color</code> converted from the system
      *          property or the <code>Color</code> converted from
      *          the specified integer.
@@ -842,9 +843,9 @@ public class Color implements Paint, java.io.Serializable {
      * @see      Color#Color(int)
      * @since    JDK1.0
      */
-    public static Color getColor(String nm, int v) {
-        Integer intval = Integer.getInteger(nm);
-        int i = (intval != null) ? intval.intValue() : v;
+    public static Color getColor(String name, int value) {
+        Integer intval = Integer.getInteger(name);
+        int i = (intval != null) ? intval.intValue() : value;
         return new Color((i >> 16) & 0xFF, (i >> 8) & 0xFF, (i >> 0) & 0xFF);
     }
 

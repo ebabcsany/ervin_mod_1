@@ -1,7 +1,12 @@
 {
   "variants": {
-    "": {
-      "model": "ervin_mod_1:block/air"
+    "def=false": [
+      {
+        "model": "ervin_mod_1:block/air"
+      }
+    ],
+    "def=true": {
+      "model": "ervin_mod_1:block/air_def"
     }
   }
 }

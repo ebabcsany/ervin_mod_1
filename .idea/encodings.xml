@@ -10,9 +10,10 @@
     <file url="file://$PROJECT_DIR$/src/main/java/com/babcsany/minecraft/ervin_mod_1/block/blocks/FirgPlanksDoor.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/babcsany/minecraft/ervin_mod_1/block/blocks/FrimPlanksDoor.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/babcsany/minecraft/ervin_mod_1/entity/monster/AbstractDgrurbkEntity.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/babcsany/minecraft/ervin_mod_1/entity/monster/Dgrurb.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/babcsany/minecraft/ervin_mod_1/entity/monster/Dgrurbk.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/babcsany/minecraft/ervin_mod_1/entity/monster/ZurEntity_.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/babcsany/minecraft/ervin_mod_1/entity/monster/dgrurb/Dgrurb.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/babcsany/minecraft/ervin_mod_1/entity/monster/dgrurb/dgrurbk/Dgrurbk.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/babcsany/minecraft/ervin_mod_1/entity/monster/dgrurb/dgrurbk/Dgrurbk.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/babcsany/minecraft/ervin_mod_1/entity/villager/AbstractZombieTrader.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/babcsany/minecraft/ervin_mod_1/entity/villager/AbstractZombieTraderEntity.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/babcsany/minecraft/ervin_mod_1/entity/villager/ZombieTraderEntity.java" charset="UTF-8" />

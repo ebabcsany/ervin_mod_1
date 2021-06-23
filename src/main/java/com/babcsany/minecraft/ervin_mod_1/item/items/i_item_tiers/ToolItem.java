@@ -1,5 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.item.items.i_item_tiers;
 
+import com.babcsany.minecraft.ervin_mod_1.item.Rarity;
 import com.babcsany.minecraft.ervin_mod_1.item.tool.TieredItem;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;

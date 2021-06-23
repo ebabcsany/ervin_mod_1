@@ -41,7 +41,7 @@ public class LootTables1 {
    public static final ResourceLocation CHESTS_WOODLAND_MANSION = register("chests/woodland_mansion");
    public static final ResourceLocation CHESTS_UNDERWATER_RUIN_SMALL = register("chests/underwater_ruin_small");
    public static final ResourceLocation CHESTS_UNDERWATER_RUIN_BIG = register("chests/underwater_ruin_big");
-   public static final ResourceLocation CHESTS_BURIED_TREASURE = register("chests/buried_treasure");
+   public static final ResourceLocation CHESTS_BURIED_TREASURE = register("ervin_mod_1:chests/buried_treasure");
    public static final ResourceLocation CHESTS_SHIPWRECK_MAP = register("chests/shipwreck_map");
    public static final ResourceLocation CHESTS_SHIPWRECK_SUPPLY = register("chests/shipwreck_supply");
    public static final ResourceLocation CHESTS_SHIPWRECK_TREASURE = register("chests/shipwreck_treasure");

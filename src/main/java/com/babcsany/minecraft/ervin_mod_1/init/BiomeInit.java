@@ -10,6 +10,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.Category;
 import net.minecraft.world.biome.Biome.RainType;
 import net.minecraft.world.biome.BiomeAmbience;
+import net.minecraft.world.biome.MoodSoundAmbience;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.ISurfaceBuilderConfig;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
@@ -21,13 +22,16 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BiomeInit {
 	public static final DeferredRegister<Biome> BIOMES = DeferredRegister.create(ForgeRegistries.BIOMES,
 			Ervin_mod_1.MOD_ID);
 
 	public static final RegistryObject<Biome> MIGV_BIOME = BIOMES
 			.register("migv_biome",
-					()-> new MigBiome(
+					()-> new MigvBiome(
 							new Biome.Builder().precipitation(RainType.SNOW).scale(1.2f).temperature(0.5f)
 									.func_235097_a_((new BiomeAmbience.Builder()).setWaterColor(10456252).setWaterFogColor(26762304).setFogColor(12538462).build())
 									.surfaceBuilder(
@@ -136,17 +140,17 @@ public class BiomeInit {
 	public static final RegistryObject<Biome> EXAMPLE_BIOME0 = BIOMES
 			.register("example_biome0",
 					() -> new ExampleBiome0(
-							new Biome.Builder().precipitation(RainType.SNOW).scale(1.2f).temperature(0.5f)
-									.func_235097_a_((new BiomeAmbience.Builder()).setWaterColor(16724639).setWaterFogColor(16762304).setFogColor(1253846).build())
+							new Biome.Builder().precipitation(RainType.NONE).scale(0.2F).temperature(0.5F)
+									.func_235097_a_((new BiomeAmbience.Builder()).setWaterColor(4159204).setWaterFogColor(329011).setFogColor(10518688).setMoodSound(MoodSoundAmbience.field_235027_b_).build())
 									.surfaceBuilder(
 											new ConfiguredSurfaceBuilder<>(
 													register("example_surface0",
 															new ExampleBiomeSurfaceBuilder0(
 																	SurfaceBuilderConfig.field_237203_a_)),
-													new SurfaceBuilderConfig(Blocks.COARSE_DIRT.getDefaultState(),
-															Blocks.DIRT.getDefaultState(),
-															Blocks.DIRT.getDefaultState())))
-									.category(Category.PLAINS).downfall(0.5f).depth(0.12f).parent(null)
+													new SurfaceBuilderConfig(Blocks.END_STONE.getDefaultState(),
+															Blocks.END_STONE.getDefaultState(),
+															Blocks.END_STONE.getDefaultState())))
+									.category(Category.THEEND).downfall(0.5F).depth(0.1F).parent(null)
 					));
 	public static final RegistryObject<Biome> EXAMPLE_BIOME1 = BIOMES
 			.register("example_biome1",
@@ -255,67 +259,140 @@ public class BiomeInit {
 					));
 
 	public static void registerBiomes() {
-		registerBiomeWarm(THE_BHJUIG_BIOME.get(), Type.VOID, Type.RARE);
-		registerBiomeCool(MIG_BIOME.get(), Type.OCEAN, Type.MIG, Type.OVERWORLD);
-		registerBiomeCool1(MIGV_BIOME.get(), Type.OCEAN, Type.MIG, Type.HOT, Type.OVERWORLD);
-		registerBiomeCool1(SRIUNK_VALLEY_BIOME.get(), Type.DEAD, Type.OVERWORLD);
-		registerBiomeCool2(EXAMPLE0_BIOME.get(), Type.DEAD, Type.PLAINS);
-		registerBiomeCool2(EXAMPLE_BIOME.get(), Type.DEAD, Type.PLAINS);
-		registerBiomeDesert(EXAMPLE_BIOME1.get(), Type.PLAINS, Type.OVERWORLD);
-		registerBiomeIcy(EXAMPLE_BIOME0.get(), Type.PLAINS, Type.BEACH);
-		registerBiomeWarm(EXAMPLE_BIOME2.get(), Type.PLAINS, Type.OVERWORLD);
-		registerBiomeWarm(EXAMPLE_BIOME3.get(), Type.PLAINS, Type.OVERWORLD);
-		registerBiomeDesert(EXAMPLE_BIOME4.get(), Type.BEACH, Type.RARE, Type.OVERWORLD);
-		registerBiomeCool(EXAMPLE_BIOME5.get(), Type.DEAD, Type.RARE, Type.OVERWORLD);
-		registerBiomeCool(EXAMPLE_BIOME6.get(), Type.RARE, Type.VOID, Type.MODIFIED);
-		registerBiomeCool2(FIRG_BIOME.get(), Type.getType("FIRG"), Type.HILLS, Type.END);
-		registerBiomeCool1(SCRAFTH_BIOME.get(), Type.getType("SCRAFTH"), Type.HILLS, Type.END);
+		List<BiomeManager.BiomeEntry> list = new ArrayList<>();
+
+		list.add(new BiomeManager.BiomeEntry(BiomeInit.MIG_BIOME.get(), 10));
+		registerBiomeWarm_weight_10(THE_BHJUIG_BIOME.get(), Type.RARE, Type.VOID);
+		registerBiomeWarm_weight_10(MIG_BIOME.get(), Type.MIG, Type.RARE, Type.OVERWORLD);
+		registerBiomeWarm_weight_10(MIGV_BIOME.get(), Type.MIG, Type.RARE, Type.HOT, Type.OVERWORLD);
+		registerBiomeCool_weight_10(SRIUNK_VALLEY_BIOME.get(), Type.DEAD, Type.OVERWORLD);
+		registerBiomeCool_weight_10(EXAMPLE0_BIOME.get(), Type.COLD, Type.PLAINS);
+		registerBiomeWarm_weight_10(EXAMPLE_BIOME.get(), Type.LUSH, Type.PLAINS);
+		registerBiomeDesert_weight_10(EXAMPLE_BIOME1.get(), Type.PLAINS, Type.OVERWORLD);
+		registerBiomeIcy_weight_10(EXAMPLE_BIOME0.get(), Type.MODIFIED, Type.END);
+		BiomeDictionary.makeBestGuess(EXAMPLE_BIOME0.get());
+		registerBiomeWarm_weight_10(EXAMPLE_BIOME2.get(), Type.PLAINS, Type.HOT, Type.OVERWORLD, Type.DRY);
+		registerBiomeWarm_weight_10(EXAMPLE_BIOME3.get(), Type.DENSE, Type.HOT, Type.OVERWORLD, Type.DENSE);
+		registerBiomeDesert_weight_10(EXAMPLE_BIOME4.get(), Type.BEACH, Type.RARE, Type.OVERWORLD);
+		registerBiomeCool_weight_10(EXAMPLE_BIOME5.get(), Type.DEAD, Type.RARE, Type.OVERWORLD);
+		registerBiomeCool_weight_10(EXAMPLE_BIOME6.get(), Type.RARE, Type.VOID, Type.MODIFIED);
+		registerBiomeCool_weight_10(FIRG_BIOME.get(), Type.getType("FIRG"), Type.HILLS, Type.END);
+		registerBiomeCool_weight_10(SCRAFTH_BIOME.get(), Type.getType("SCRAFTH"), Type.HILLS, Type.END);
 	}
 
-	private static void registerBiomeCool(Biome biome, Type... types) {
+	private static void registerBiomeCool_weight_10(Biome biome, Type... types) {
+		// the line below will make it spawn in the overworld
+		BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(biome, 10));
+		BiomeDictionary.addTypes(biome, types);
+		BiomeManager.addSpawnBiome(biome);
+	}
+
+	private static void registerBiomeCool_weight_100(Biome biome, Type... types) {
+		// the line below will make it spawn in the overworld
+		BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(biome, 100));
+		BiomeDictionary.addTypes(biome, types);
+		BiomeManager.addSpawnBiome(biome);
+	}
+
+	private static void registerBiomeCool_weight_1000(Biome biome, Type... types) {
+		// the line below will make it spawn in the overworld
+		BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(biome, 1000));
+		BiomeDictionary.addTypes(biome, types);
+		BiomeManager.addSpawnBiome(biome);
+	}
+
+	private static void registerBiomeCool_weight_10000(Biome biome, Type... types) {
 		// the line below will make it spawn in the overworld
 		BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(biome, 10000));
 		BiomeDictionary.addTypes(biome, types);
 		BiomeManager.addSpawnBiome(biome);
 	}
 
-	private static void registerBiomeCool1(Biome biome, Type... types) {
+	private static void registerBiomeDesert_weight_10(Biome biome, Type... types) {
 		// the line below will make it spawn in the overworld
-		BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(biome, 100000));
+		BiomeManager.addBiome(BiomeManager.BiomeType.DESERT, new BiomeManager.BiomeEntry(biome, 10));
 		BiomeDictionary.addTypes(biome, types);
 		BiomeManager.addSpawnBiome(biome);
 	}
 
-	private static void registerBiomeCool2(Biome biome, Type... types) {
+	private static void registerBiomeDesert_weight_100(Biome biome, Type... types) {
 		// the line below will make it spawn in the overworld
-		BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(biome, 1000000));
+		BiomeManager.addBiome(BiomeManager.BiomeType.DESERT, new BiomeManager.BiomeEntry(biome, 100));
 		BiomeDictionary.addTypes(biome, types);
 		BiomeManager.addSpawnBiome(biome);
 	}
 
-	private static void registerBiomeDesert(Biome biome, Type... types) {
+	private static void registerBiomeDesert_weight_1000(Biome biome, Type... types) {
 		// the line below will make it spawn in the overworld
-		BiomeManager.addBiome(BiomeManager.BiomeType.DESERT, new BiomeManager.BiomeEntry(biome, 1000000));
+		BiomeManager.addBiome(BiomeManager.BiomeType.DESERT, new BiomeManager.BiomeEntry(biome, 1000));
 		BiomeDictionary.addTypes(biome, types);
 		BiomeManager.addSpawnBiome(biome);
 	}
 
-	private static void registerBiomeIcy(Biome biome, Type... types) {
+	private static void registerBiomeDesert_weight_10000(Biome biome, Type... types) {
 		// the line below will make it spawn in the overworld
-		BiomeManager.addBiome(BiomeManager.BiomeType.ICY, new BiomeManager.BiomeEntry(biome, 1000000));
+		BiomeManager.addBiome(BiomeManager.BiomeType.DESERT, new BiomeManager.BiomeEntry(biome, 10000));
 		BiomeDictionary.addTypes(biome, types);
 		BiomeManager.addSpawnBiome(biome);
 	}
 
-	private static void registerBiomeWarm(Biome biome, Type... types) {
+	private static void registerBiomeIcy_weight_10(Biome biome, Type... types) {
 		// the line below will make it spawn in the overworld
-		BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(biome, 1000000));
+		BiomeManager.addBiome(BiomeManager.BiomeType.ICY, new BiomeManager.BiomeEntry(biome, 10));
 		BiomeDictionary.addTypes(biome, types);
 		BiomeManager.addSpawnBiome(biome);
 	}
 
-	@SuppressWarnings("deprecation")
+	private static void registerBiomeIcy_weight_100(Biome biome, Type... types) {
+		// the line below will make it spawn in the overworld
+		BiomeManager.addBiome(BiomeManager.BiomeType.ICY, new BiomeManager.BiomeEntry(biome, 100));
+		BiomeDictionary.addTypes(biome, types);
+		BiomeManager.addSpawnBiome(biome);
+	}
+
+	private static void registerBiomeIcy_weight_1000(Biome biome, Type... types) {
+		// the line below will make it spawn in the overworld
+		BiomeManager.addBiome(BiomeManager.BiomeType.ICY, new BiomeManager.BiomeEntry(biome, 1000));
+		BiomeDictionary.addTypes(biome, types);
+		BiomeManager.addSpawnBiome(biome);
+	}
+
+	private static void registerBiomeIcy_weight_10000(Biome biome, Type... types) {
+		// the line below will make it spawn in the overworld
+		BiomeManager.addBiome(BiomeManager.BiomeType.ICY, new BiomeManager.BiomeEntry(biome, 10000));
+		BiomeDictionary.addTypes(biome, types);
+		BiomeManager.addSpawnBiome(biome);
+	}
+
+	private static void registerBiomeWarm_weight_10(Biome biome, Type... types) {
+		// the line below will make it spawn in the overworld
+		BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(biome, 10));
+		BiomeDictionary.addTypes(biome, types);
+		BiomeManager.addSpawnBiome(biome);
+	}
+
+	private static void registerBiomeWarm_weight_100(Biome biome, Type... types) {
+		// the line below will make it spawn in the overworld
+		BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(biome, 100));
+		BiomeDictionary.addTypes(biome, types);
+		BiomeManager.addSpawnBiome(biome);
+	}
+
+	private static void registerBiomeWarm_weight_1000(Biome biome, Type... types) {
+		// the line below will make it spawn in the overworld
+		BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(biome, 1000));
+		BiomeDictionary.addTypes(biome, types);
+		BiomeManager.addSpawnBiome(biome);
+	}
+
+	private static void registerBiomeWarm_weight_10000(Biome biome, Type... types) {
+		// the line below will make it spawn in the overworld
+		BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(biome, 10000));
+		BiomeDictionary.addTypes(biome, types);
+		BiomeManager.addSpawnBiome(biome);
+	}
+
 	private static <C extends ISurfaceBuilderConfig, F extends SurfaceBuilder<C>> F register(String key, F builderIn) {
-		return (F) (Registry.<SurfaceBuilder<?>>register(Registry.SURFACE_BUILDER, key, builderIn));
+		return Registry.register(Registry.SURFACE_BUILDER, key, builderIn);
 	}
 }

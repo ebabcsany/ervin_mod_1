@@ -1,8 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.client.entity.model;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.AbstractDgrurbkEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.AbstractZurEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.Dgrurbk;
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.dgrurbk.Dgrurbk;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.model.ModelHelper;
 import net.minecraftforge.api.distmarker.Dist;

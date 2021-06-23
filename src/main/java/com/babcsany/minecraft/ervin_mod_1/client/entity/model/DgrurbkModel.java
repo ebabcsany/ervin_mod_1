@@ -1,7 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.client.entity.model;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.Dgrurb;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.Dgrurbk;
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.dgrurbk.Dgrurbk;
 
 public class DgrurbkModel<T extends Dgrurbk> extends AbstractDgrurbkModel<T> {
     public DgrurbkModel(float modelSize, boolean p_i1168_2_) {
@@ -15,4 +14,5 @@ public class DgrurbkModel<T extends Dgrurbk> extends AbstractDgrurbkModel<T> {
     public boolean isAggressive(T entityIn) {
         return entityIn.isAggressive();
     }
+
 }
