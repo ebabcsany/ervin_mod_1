@@ -14,4 +14,9 @@ public class Durg extends Item {
    public int getUseDuration(ItemStack stack) {
       return 2048;
    }
+
+   @Override
+   public int getBurnTime(ItemStack itemStack) {
+      return 640000;
+   }
 }

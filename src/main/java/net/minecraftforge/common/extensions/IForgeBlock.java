@@ -19,10 +19,10 @@
 
 package net.minecraftforge.common.extensions;
 
-import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.particle.ParticleManager;
+import net.minecraft.client.renderer.ActiveRenderInfo;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.*;
 import net.minecraft.entity.boss.WitherEntity;
@@ -30,7 +30,10 @@ import net.minecraft.entity.boss.dragon.EnderDragonEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.WitherSkullEntity;
 import net.minecraft.fluid.FluidState;
+import net.minecraft.item.AxeItem;
+import net.minecraft.item.HoeItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ShovelItem;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.potion.Effects;
 import net.minecraft.tags.BlockTags;
@@ -62,14 +65,14 @@ public interface IForgeBlock
         return (Block) this;
     }
 
-    /* *
+    /**
      * Gets the slipperiness at the given location at the given state. Normally
      * between 0 and 1.
      * <p>
      * Note that entities may reduce slipperiness by a certain factor of their own;
-     * for {@link net.minecraft.entity.EntityLivingBase}, this is {@code .91}.
-     * {@link net.minecraft.entity.item.EntityItem} uses {@code .98}, and
-     * {@link net.minecraft.entity.projectile.EntityFishHook} uses {@code .92}.
+     * for {//@link net.minecraft.entity.EntityLivingBase}, this is {@code .91}.
+     * {@link net.minecraft.entity.item.ItemEntity} uses {@code .98}, and
+     * {@link net.minecraft.entity.projectile.FishingBobberEntity} uses {@code .92}.
      *
      * @param state state of the block
      * @param world the world
@@ -369,9 +372,9 @@ public interface IForgeBlock
         return false;
     }
 
-   /* *
+   /**
     * Allows a block to override the standard vanilla running particles.
-    * This is called from {@link Entity#spawnRunningParticles} and is called both,
+    * This is called from {//@link Entity#spawnRunningParticles} and is called both,
     * Client and server side, it's up to the implementor to client check / server check.
     * By default vanilla spawns particles only on the client and the server methods no-op.
     *
@@ -386,14 +389,14 @@ public interface IForgeBlock
         return false;
     }
 
-    /* *
+    /**
      * Spawn a digging particle effect in the world, this is a wrapper
      * around EffectRenderer.addBlockHitEffects to allow the block more
      * control over the particles. Useful when you have entirely different
      * texture sheets for different sides/locations in the world.
      *
      * @param state The current state
-     * @param world The current world
+     * @param worldObj The current world
      * @param target The target the player is looking at {x/y/z/side/sub}
      * @param manager A reference to the current particle manager.
      * @return True to prevent vanilla digging particles form spawning.
@@ -505,19 +508,6 @@ public interface IForgeBlock
     default boolean isPortalFrame(BlockState state, IWorldReader world, BlockPos pos)
     {
         return state.isIn(Blocks.OBSIDIAN);
-    }
-
-    /**
-     * Determines if this block can be used as part of a frame of a nether portal.
-     *
-     * @param state The current state
-     * @param world The current world
-     * @param pos Block position in world
-     * @return True, to support being part of a nether portal frame, false otherwise.
-     */
-    default boolean isExamplePortalFrame(BlockState state, IWorldReader world, BlockPos pos)
-    {
-        return state.isIn(BlockItemInit.EXAMPLE_BLOCK.get());
     }
 
    /**
@@ -685,9 +675,9 @@ public interface IForgeBlock
         return originalColor;
     }
 
-    /* *
+    /**
      * Used to determine the state 'viewed' by an entity (see
-     * {@link ActiveRenderInfo#getBlockStateAtEntityViewpoint(World, Entity, float)}).
+     * {@link ActiveRenderInfo#setDirection(float, float)}).
      * Can be used by fluid blocks to determine if the viewpoint is within the fluid or not.
      *
      * @param state     the state
@@ -719,11 +709,6 @@ public interface IForgeBlock
     default boolean isSlimeBlock(BlockState state)
     {
         return state.getBlock() == Blocks.SLIME_BLOCK;
-    }
-
-    default boolean isFreinBlock(BlockState state)
-    {
-        return state.getBlock() == BlockItemInit.FREIN_BLOCK.get();
     }
 
     /**
@@ -893,5 +878,25 @@ public interface IForgeBlock
     default boolean shouldDisplayFluidOverlay(BlockState state, IBlockDisplayReader world, BlockPos pos, FluidState fluidState)
     {
         return state.getBlock() instanceof BreakableBlock || state.getBlock() instanceof LeavesBlock;
+    }
+    
+    /**
+     * Returns the state that this block should transform into when right clicked by a tool.
+     * For example: Used to determine if an axe can strip, a shovel can path, or a hoe can till.
+     * Return null if vanilla behavior should be disabled.
+     *
+     * @param state The current state
+     * @param world The world
+     * @param pos The block position in world
+     * @param player The player clicking the block
+     * @param stack The stack being used by the player
+     * @return The resulting state after the action has been performed
+     */
+    @Nullable
+    default BlockState getToolModifiedState(BlockState state, World world, BlockPos pos, PlayerEntity player, ItemStack stack, ToolType toolType)
+    {
+        if (toolType == ToolType.AXE) return AxeItem.getAxeStrippingState(state);
+        else if(toolType == ToolType.HOE) return HoeItem.getHoeTillingState(state);
+        else return toolType == ToolType.SHOVEL ? ShovelItem.getShovelPathingState(state) : null;
     }
 }

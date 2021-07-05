@@ -9,11 +9,11 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import com.babcsany.minecraft.ervin_mod_1.item.Rarity;
+import net.minecraft.item.Rarity;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.common.IExtensibleEnum;
 import net.minecraftforge.common.ToolType;
 
-import java.awt.*;
 import java.util.Set;
 
 public class Terat extends ToolItem {
@@ -41,20 +41,20 @@ public class Terat extends ToolItem {
    }
 
    @Override
-   public Rarity getModRarity(ItemStack stack) {
-      return Rarity.create("firn", Color1.COLORFFC08040);
+   public Rarity getRarity(ItemStack stack) {
+      return Rarity.create("firn", TextFormatting.BOLD);
    }
 
    public enum ModRarity implements IExtensibleEnum {
-      TEST(Color1.COLORFFC08040);
+      TEST(TextFormatting.BOLD);
 
-      public final Color color;
+      public final TextFormatting text;
 
-      ModRarity(Color format) {
-         this.color = format;
+      ModRarity(TextFormatting format) {
+         this.text = format;
       }
 
-      public static ModRarity create(String name, Color format) {
+      public static ModRarity create(String name, TextFormatting format) {
          throw new IllegalStateException("Enum not extended");
       }
    }

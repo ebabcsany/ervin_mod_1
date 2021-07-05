@@ -1,7 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.animal;
 
-import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
+import com.babcsany.minecraft.init.EntityInit;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
@@ -71,7 +71,7 @@ public class SrechEntity extends AnimalEntity {
    }
 
    public SrachEntity createChild(AgeableEntity ageable) {
-      return EntityInit.SRACH_ENTITY.get().create(this.world);
+      return EntityInit.SRACH_ENTITY.create(this.world);
    }
 
    protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {

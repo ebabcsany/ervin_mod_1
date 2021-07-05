@@ -43,7 +43,7 @@ public class TraderNirtreTrades {
            new TraderNirtreTrades.ItemsForLavaBucketsAndItemsTrade(Items.NETHERRACK, 64, Items.MAGMA_BLOCK, 64, 100000, 0),
            new TraderNirtreTrades.ItemsForKirtsTrade(ModSpawnEggItemInit.$_TRADER_SPAWN_EGG.get(), 64, 1, 20, 1),
            new TraderNirtreTrades.ItemsForEmeraldBlocksTrade(ModSpawnEggItemInit.WANDERING_TRADER_NIRTRE_SPAWN_EGG.get(), 50, 1, 20, 1),
-           new TraderNirtreTrades.ItemsForEmeraldBlocksTrade(ModSpawnEggItemInit.SRACH_SPAWN_EGG.get(), 1, 1, 20, 1),
+           //new TraderNirtreTrades.ItemsForEmeraldBlocksTrade(ModSpawnEggItemInit.SRACH_SPAWN_EGG, 1, 1, 20, 1),
            new TraderNirtreTrades.ItemsForRegdemBlocksAndItemsTrade(BlockItemInit.FREIN_BLOCK.get(), 10, ModSpawnEggItemInit.HHIJ_SPAWN_EGG.get(), 1, 16, 4),
            new TraderNirtreTrades.ItemsForEmeraldsAndItemsTrade(ModSpawnEggItemInit.SPAWN_EGG_1.get(), 1, isBurnableSpecialItemInit.FIRN.get(), 1, 16, 1),
            new TraderNirtreTrades.ItemsForEmeraldsAndItemsTrade(ItemInit.CRAKH.get(), 1, isBurnableSpecialItemInit.FIRN.get(), 1, 16, 1),

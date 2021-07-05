@@ -1,0 +1,98 @@
+---- Minecraft Crash Report ----
+// There are four lights!
+
+Time: 2021.06.29. 12:23
+Description: Initializing game
+
+java.lang.NoClassDefFoundError: Could not initialize class net.minecraft.item.Items
+	at net.minecraft.client.renderer.ItemRenderer.<clinit>(ItemRenderer.java:54) ~[?:?] {re:classloading,pl:accesstransformer:B,pl:runtimedistcleaner:A}
+	at net.minecraft.client.renderer.RenderType.<clinit>(RenderType.java:28) ~[?:?] {re:classloading,pl:runtimedistcleaner:A}
+	at net.minecraftforge.client.model.MultiLayerModel$Loader.<clinit>(MultiLayerModel.java:244) ~[?:?] {re:classloading}
+	at net.minecraftforge.client.model.ModelLoaderRegistry.init(ModelLoaderRegistry.java:71) ~[?:?] {re:classloading}
+	at net.minecraftforge.fml.client.ClientModLoader.begin(ClientModLoader.java:97) ~[?:?] {re:classloading,pl:runtimedistcleaner:A}
+	at net.minecraft.client.Minecraft.<init>(Minecraft.java:430) [?:?] {re:classloading,pl:accesstransformer:B,pl:runtimedistcleaner:A}
+	at net.minecraft.client.main.Main.main(Main.java:149) [?:?] {re:classloading,pl:runtimedistcleaner:A}
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_51] {}
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_51] {}
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_51] {}
+	at java.lang.reflect.Method.invoke(Method.java:497) ~[?:1.8.0_51] {}
+	at net.minecraftforge.userdev.FMLUserdevClientLaunchProvider.lambda$launchService$0(FMLUserdevClientLaunchProvider.java:55) [forge-1.16.1-32.0.108_mapped_snapshot_20200723-1.16.1-recomp.jar:?] {}
+	at net.minecraftforge.userdev.FMLUserdevClientLaunchProvider$$Lambda$434/1208670252.call(Unknown Source) [forge-1.16.1-32.0.108_mapped_snapshot_20200723-1.16.1-recomp.jar:?] {}
+	at cpw.mods.modlauncher.LaunchServiceHandlerDecorator.launch(LaunchServiceHandlerDecorator.java:37) [modlauncher-6.1.3.jar:?] {}
+	at cpw.mods.modlauncher.LaunchServiceHandler.launch(LaunchServiceHandler.java:54) [modlauncher-6.1.3.jar:?] {}
+	at cpw.mods.modlauncher.LaunchServiceHandler.launch(LaunchServiceHandler.java:72) [modlauncher-6.1.3.jar:?] {}
+	at cpw.mods.modlauncher.Launcher.run(Launcher.java:81) [modlauncher-6.1.3.jar:?] {}
+	at cpw.mods.modlauncher.Launcher.main(Launcher.java:65) [modlauncher-6.1.3.jar:?] {}
+	at net.minecraftforge.userdev.LaunchTesting.main(LaunchTesting.java:105) [forge-1.16.1-32.0.108_mapped_snapshot_20200723-1.16.1-recomp.jar:?] {}
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Thread: Render thread
+Stacktrace:
+	at net.minecraft.client.renderer.ItemRenderer.<clinit>(ItemRenderer.java:54)
+	at net.minecraft.client.renderer.RenderType.<clinit>(RenderType.java:28)
+	at net.minecraftforge.client.model.MultiLayerModel$Loader.<clinit>(MultiLayerModel.java:244)
+	at net.minecraftforge.client.model.ModelLoaderRegistry.init(ModelLoaderRegistry.java:71)
+	at net.minecraftforge.fml.client.ClientModLoader.begin(ClientModLoader.java:97)
+	at net.minecraft.client.Minecraft.<init>(Minecraft.java:430)
+
+-- Initialization --
+Details:
+Stacktrace:
+	at net.minecraft.client.main.Main.main(Main.java:149)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at net.minecraftforge.userdev.FMLUserdevClientLaunchProvider.lambda$launchService$0(FMLUserdevClientLaunchProvider.java:55)
+	at net.minecraftforge.userdev.FMLUserdevClientLaunchProvider$$Lambda$434/1208670252.call(Unknown Source)
+	at cpw.mods.modlauncher.LaunchServiceHandlerDecorator.launch(LaunchServiceHandlerDecorator.java:37)
+	at cpw.mods.modlauncher.LaunchServiceHandler.launch(LaunchServiceHandler.java:54)
+	at cpw.mods.modlauncher.LaunchServiceHandler.launch(LaunchServiceHandler.java:72)
+	at cpw.mods.modlauncher.Launcher.run(Launcher.java:81)
+	at cpw.mods.modlauncher.Launcher.main(Launcher.java:65)
+	at net.minecraftforge.userdev.LaunchTesting.main(LaunchTesting.java:105)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.16.1
+	Minecraft Version ID: 1.16.1
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 1.8.0_51, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 423496464 bytes (403 MB) / 937951232 bytes (894 MB) up to 1883242496 bytes (1796 MB)
+	CPUs: 4
+	JVM Flags: 1 total; -XX:HeapDumpPath=MojangTricksIntelDriversForPerformance_javaw.exe_minecraft.exe.heapdump
+	ModLauncher: 6.1.3+75+master.851120a
+	ModLauncher launch target: fmluserdevclient
+	ModLauncher naming: mcp
+	ModLauncher services: 
+		/mixin-0.8.jar mixin PLUGINSERVICE 
+		/eventbus-3.0.3-service.jar eventbus PLUGINSERVICE 
+		/forge-1.16.1-32.0.108_mapped_snapshot_20200723-1.16.1-launcher.jar object_holder_definalize PLUGINSERVICE 
+		/forge-1.16.1-32.0.108_mapped_snapshot_20200723-1.16.1-launcher.jar runtime_enum_extender PLUGINSERVICE 
+		/accesstransformers-2.2.0-shadowed.jar accesstransformer PLUGINSERVICE 
+		/forge-1.16.1-32.0.108_mapped_snapshot_20200723-1.16.1-launcher.jar capability_inject_definalize PLUGINSERVICE 
+		/forge-1.16.1-32.0.108_mapped_snapshot_20200723-1.16.1-launcher.jar runtimedistcleaner PLUGINSERVICE 
+		/mixin-0.8.jar mixin TRANSFORMATIONSERVICE 
+		/forge-1.16.1-32.0.108_mapped_snapshot_20200723-1.16.1-launcher.jar fml TRANSFORMATIONSERVICE 
+	FML: 32.0
+	Forge: net.minecraftforge:32.0.108
+	FML Language Providers: 
+		javafml@32.0
+		minecraft@1
+	Mod List: 
+		client-extra.jar Minecraft {minecraft@1.16.1 CREATE_REGISTRIES}
+		main Ervin Mod 1 {ervin_mod_1@NONE ERROR}
+		forge-1.16.1-32.0.108_mapped_snapshot_20200723-1.16.1-recomp.jar Forge {forge@32.0.75 ERROR}
+	Launched Version: MOD_DEV
+	Backend library: LWJGL version 3.2.2 build 10
+	Backend API: Intel(R) HD Graphics 3000 GL version 3.1.0 - Build 9.17.10.4459, Intel
+	GL Caps: Using framebuffer using OpenGL 3.0
+	Using VBOs: Yes
+	Is Modded: Definitely; Client brand changed to 'forge'
+	Type: Client (map_client.txt)
+	CPU: 4x Intel(R) Core(TM) i5-2520M CPU @ 2.50GHz

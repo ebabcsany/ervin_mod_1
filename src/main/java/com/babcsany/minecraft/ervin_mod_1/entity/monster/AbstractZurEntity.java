@@ -24,6 +24,8 @@ import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
 import net.minecraft.entity.merchant.IMerchant;
+import net.minecraft.entity.merchant.villager.VillagerData;
+import net.minecraft.entity.merchant.villager.VillagerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.entity.projectile.ProjectileHelper;
@@ -33,6 +35,7 @@ import net.minecraft.inventory.container.MerchantContainer;
 import net.minecraft.inventory.container.SimpleNamedContainerProvider;
 import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.NBTDynamicOps;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -64,6 +67,7 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
    public final NonNullList<ItemStack> inventory = NonNullList.withSize(1000000, ItemStack.EMPTY);
    private final BowAttackGoal<AbstractZurEntity> aiArrowAttack = new BowAttackGoal<>(this, 1.0D, 20, 15.0F);
    private static final UUID MODIFIER_UUID = UUID.fromString("5CD17E52-A79A-43D3-A529-90FDE04B181E");
+   private static final DataParameter<VillagerData> VILLAGER_DATA = EntityDataManager.createKey(ZurEntity.class, DataSerializers.VILLAGER_DATA);
    public static final AttributeModifier MODIFIER = new AttributeModifier(MODIFIER_UUID, "Drinking speed penalty", -1.6D, AttributeModifier.Operation.ADDITION);
    private static final DataParameter<Integer> SHAKE_HEAD_TICKS = EntityDataManager.createKey(AbstractZurEntity.class, DataSerializers.VARINT);
    private static final DataParameter<Boolean> IS_DRINKING = EntityDataManager.createKey(AbstractZurEntity.class, DataSerializers.BOOLEAN);
@@ -92,6 +96,8 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
    protected Raid raid;
    private int sleepTimer;
    public int xpCooldown;
+   private byte foodLevel;
+   private int xp;
    private final GossipManager gossip = new GossipManager();
    private int wave;
    private boolean canJoinRaid;
@@ -238,12 +244,21 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
    }
 
    private void levelUp() {
-      this.getLevel();
+      this.setVillagerData(this.getVillagerData().withLevel(this.getVillagerData().getLevel() + 1));
       this.populateTradeZurData();
    }
 
-   public int getLevel() {
-      return this.level;
+   public VillagerData getVillagerData() {
+      return this.dataManager.get(VILLAGER_DATA);
+   }
+
+   public void setVillagerData(VillagerData p_213753_1_) {
+      VillagerData villagerdata = this.getVillagerData();
+      if (villagerdata.getProfession() != p_213753_1_.getProfession()) {
+         this.offers = null;
+      }
+
+      this.dataManager.set(VILLAGER_DATA, p_213753_1_);
    }
 
    /**
@@ -298,6 +313,7 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
       if (!this.world.isRemote) {
          this.setBesideClimbableBlock(this.collidedHorizontally);
       }
+
       if (this.xpCooldown > 0) {
          --this.xpCooldown;
       }
@@ -660,6 +676,17 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
          compound.put("Offers", merchantoffers.write());
       }
 
+      VillagerData.VILLAGER_DATA_CODEC.encodeStart(NBTDynamicOps.INSTANCE, this.getVillagerData()).resultOrPartial(LOGGER::error).ifPresent((p_234547_1_) -> {
+         compound.put("VillagerData", p_234547_1_);
+      });
+      compound.putByte("FoodLevel", this.foodLevel);
+      compound.put("Gossips", this.gossip.func_234058_a_(NBTDynamicOps.INSTANCE).getValue());
+      compound.putInt("Xp", this.xp);
+
+      if (this.isChild()) {
+         compound.putBoolean("IsBaby", true);
+      }
+
       compound.put("Inventory", this.zurInventory.write());
       compound.putShort("SleepTimer", (short)this.sleepTimer);
       compound.putFloat("XpP", this.experience);
@@ -823,7 +850,7 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
                potion = Potions.FIRE_RESISTANCE;
             } else if (this.rand.nextFloat() < 0.05F && this.getHealth() < this.getMaxHealth()) {
                potion = Potions.HEALING;
-            } else if (this.rand.nextFloat() < 0.5F && this.getAttackTarget() != null && !this.isPotionActive(Effects.SPEED) && !this.isPotionActive(Effects.JUMP_BOOST) && !this.isPotionActive(Effects.STRENGTH) && this.getAttackTarget().getDistanceSq(this) > 121.0D) {
+            } else if (this.rand.nextFloat() < 0.5F && this.getAttackTarget() != null && !this.isPotionActive(Effects.STRENGTH) && this.getAttackTarget().getDistanceSq(this) > 121.0D || !this.isPotionActive(Effects.SPEED) && !this.isPotionActive(Effects.JUMP_BOOST)) {
                potion = Potions.SWIFTNESS;
             }
 

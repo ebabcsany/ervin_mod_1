@@ -16,4 +16,9 @@ public class FirgSlab extends BlockItem {
    public int getUseDuration(ItemStack stack) {
       return 16;
    }
+
+   @Override
+   public int getBurnTime(ItemStack itemStack) {
+      return 5000;
+   }
 }

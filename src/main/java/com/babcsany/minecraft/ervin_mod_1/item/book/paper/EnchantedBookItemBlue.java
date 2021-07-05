@@ -1,6 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.item.book.paper;
 
-import com.babcsany.minecraft.init.ItemInit;
+import com.babcsany.minecraft.init.item.ItemInit;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentData;

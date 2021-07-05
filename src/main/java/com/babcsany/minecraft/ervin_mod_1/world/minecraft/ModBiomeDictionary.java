@@ -41,12 +41,12 @@ public class ModBiomeDictionary
     private static final boolean DEBUG = false;
     private static final Logger LOGGER = LogManager.getLogger();
 
-    public static final class ModType extends BiomeDictionary.Type
+    public static final class ModType
     {
 
         private static final Map<String, ModType> byName = new HashMap<String, ModType>();
         private static Collection<ModType> allTypes = Collections.unmodifiableCollection(byName.values());
-        private static Collection<BiomeDictionary.Type> allTypes1 = Collections.unmodifiableCollection(byName.values());
+        private static Collection<ModType> allTypes1 = Collections.unmodifiableCollection(byName.values());
 
         /*Temperature-based tags. Specifying neither implies a biome is temperate*/
         public static final ModType HOT = new ModType("HOT");
@@ -109,7 +109,6 @@ public class ModBiomeDictionary
 
         private ModType(String name, ModType... subTypes)
         {
-            super(name, subTypes);
             this.name = name;
             this.subTypes = ImmutableList.copyOf(subTypes);
 
@@ -160,7 +159,7 @@ public class ModBiomeDictionary
         /**
          * @return An unmodifiable collection of all current biome types.
          */
-        public static Collection<BiomeDictionary.Type> getAll()
+        public static Collection<ModType> getAll()
         {
             return allTypes1;
         }

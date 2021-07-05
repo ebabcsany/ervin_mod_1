@@ -2,7 +2,6 @@ package com.babcsany.minecraft.ervin_mod_1.entity.monster;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.EatPumpkinGoal;
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.ZurTradeWithPlayerGoal;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.Dgrurb;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.goal.PlaceBlockGoal;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.goal.TakeBlockGoal;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.TraderNirtreEntity;
@@ -48,7 +47,6 @@ import net.minecraft.entity.projectile.ProjectileHelper;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.*;
-import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.loot.*;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.NBTUtil;
@@ -79,6 +77,7 @@ public class ZurEntity extends AbstractZurEntity {
    private static final DataParameter<Optional<BlockState>> CARRIED_BLOCK = EntityDataManager.createKey(ZurEntity.class, DataSerializers.OPTIONAL_BLOCK_STATE);
    private static final DataParameter<Boolean> BABY = EntityDataManager.createKey(ZurEntity.class, DataSerializers.BOOLEAN);
    //private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(isBurnableFoodItemInit.TIRKS.get());
+   private static final DataParameter<Boolean> INVULNERABLE = EntityDataManager.createKey(ZurEntity.class, DataSerializers.BOOLEAN);
    private static final DataParameter<Boolean> field_213428_bH = EntityDataManager.createKey(ZurEntity.class, DataSerializers.BOOLEAN);
    private static final DataParameter<Boolean> field_213428_bG = EntityDataManager.createKey(ZurEntity.class, DataSerializers.BOOLEAN);
    private static final DataParameter<Boolean> field_213429_bH = EntityDataManager.createKey(ZurEntity.class, DataSerializers.BOOLEAN);
@@ -93,6 +92,8 @@ public class ZurEntity extends AbstractZurEntity {
    private long field_213783_bN;
    private boolean field_233683_bw_;
    private PhaseManager phaseManager;
+   private UUID field_234609_b_;
+   private int field_234610_c_;
    private final GossipManager gossip = new GossipManager();
    protected int growingAge;
    @Nullable
@@ -129,8 +130,8 @@ public class ZurEntity extends AbstractZurEntity {
    protected void registerGoals() {
       this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 8.0F));
       this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
-      this.goalSelector.addGoal(3, new UseItemGoal<>(this, new ItemStack(SpecialBlockFoodItemInit.FIRG.get()), SoundEvents.AMBIENT_UNDERWATER_LOOP, (zur) -> this.world.isDaytime() && zur.isInvisible()));
-      this.goalSelector.addGoal(3, new UseItemGoal<>(this, new ItemStack(isBurnableFoodItemInit.TIRKS.get()), SoundEvents.AMBIENT_UNDERWATER_LOOP, (zur) -> this.world.isDaytime() && zur.isInvisible()));
+      this.goalSelector.addGoal(15, new UseItemGoal<>(this, new ItemStack(SpecialBlockFoodItemInit.FIRG.get()), SoundEvents.AMBIENT_UNDERWATER_LOOP, (zur) -> this.world.isDaytime() && zur.isInvisible()));
+      this.goalSelector.addGoal(15, new UseItemGoal<>(this, new ItemStack(isBurnableFoodItemInit.TIRKS.get()), SoundEvents.AMBIENT_UNDERWATER_LOOP, (zur) -> this.world.isDaytime() && zur.isInvisible()));
       this.goalSelector.addGoal(6, new ZurTradeWithPlayerGoal(this));
       this.goalSelector.addGoal(7, new ZurEntity.SitGoal());
       this.applyEntityAI();
@@ -146,8 +147,8 @@ public class ZurEntity extends AbstractZurEntity {
       this.goalSelector.addGoal(4, new LookAtGoal(this, PlayerEntity.class, 8.0F));
       this.goalSelector.addGoal(6, new LeapAtTargetGoal(this, 1.0F));
       this.goalSelector.addGoal(4, new AttackGoal(this));
-      this.goalSelector.addGoal(1, new TakeBlockGoal(this));
-      this.goalSelector.addGoal(2, new ZurAttackGoal(this, 1.0D, true));
+      this.goalSelector.addGoal(2, new TakeBlockGoal(this));
+      this.goalSelector.addGoal(0, new ZurAttackGoal(this, 1.0D, true));
       this.goalSelector.addGoal(3, new OpenDoorGoal(this, false));
       this.goalSelector.addGoal(4, new SwimGoal(this));
       this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setCallsForHelp(TraderNirtreEntity.class));
@@ -246,6 +247,18 @@ public class ZurEntity extends AbstractZurEntity {
       return ProjectileHelper.fireArrow(this, arrowStack, distanceFactor);
    }
 
+   public void setZurInvulnerable(boolean invulnerable) {
+      this.dataManager.set(INVULNERABLE, invulnerable);
+   }
+
+   public void setShooter(@Nullable Entity entityIn) {
+      if (entityIn != null) {
+         this.field_234609_b_ = entityIn.getUniqueID();
+         this.field_234610_c_ = entityIn.getEntityId();
+      }
+
+   }
+
    public PhaseManager getPhaseManager() {
       return this.phaseManager;
    }
@@ -266,27 +279,6 @@ public class ZurEntity extends AbstractZurEntity {
 
       this.zurInventory.read(compound.getList("Inventory", 10));
       this.setGrowingAge(Math.max(0, this.getGrowingAge()));
-   }
-
-   public void setGrowingAge(int age) {
-      int i = this.growingAge;
-      this.growingAge = age;
-      if (i < 0 && age >= 0 || i >= 0 && age < 0) {
-         this.dataManager.set(BABY, age < 0);
-         this.onGrowingAdult();
-      }
-
-   }
-
-   protected void onGrowingAdult() {
-   }
-
-   public int getGrowingAge() {
-      if (this.world.isRemote) {
-         return this.dataManager.get(BABY) ? -1 : 1;
-      } else {
-         return this.growingAge;
-      }
    }
 
    protected void onZurTrade(MerchantOffer offer) {
@@ -854,26 +846,6 @@ public class ZurEntity extends AbstractZurEntity {
 
    }
 
-   @Nullable
-   public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag, ZurEntity zur) {
-      if (reason != SpawnReason.SPAWN_EGG) {
-         if (worldIn.getRandom().nextFloat() < 0.2F) {
-            this.setChild(true);
-         } else if (this.Child()) {
-            this.setItemStackToSlot(EquipmentSlotType.MAINHAND, this.func_234432_eW_());
-            this.setItemStackToSlot(EquipmentSlotType.OFFHAND, this.func_234432_eW1_());
-         }
-      }
-
-      ZurTasks.func_234466_a_(this);
-      if (this.isDrowning()) {
-         zur.setEquipmentBasedOnDifficulty(difficultyIn);
-      }
-      zur.setEquipmentBasedOnDifficulty1(difficultyIn);
-      this.setEnchantmentBasedOnDifficulty(difficultyIn);
-      return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
-   }
-
    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
       return SoundEvents.ENTITY_GENERIC_HURT;
    }
@@ -890,10 +862,6 @@ public class ZurEntity extends AbstractZurEntity {
       this.playSound(this.getStepSound(), 0.15F, 1.0F);
    }
 
-   public CreatureAttribute getCreatureAttribute() {
-      return CreatureAttribute.ARTHROPOD;
-   }
-
    private boolean func_234431_eV_() {
       return this.getDataManager().get(field_234408_bu_);
    }
@@ -905,24 +873,6 @@ public class ZurEntity extends AbstractZurEntity {
    public void func_234442_u_(boolean p_234442_1_) {
       this.dataManager.set(field_213428_bH, p_234442_1_);
    }
-
-   /*protected void updateAITasks() {
-      //this.world.getProfiler().startSection("zurBrain");
-      //this.getBrain().tick((ServerWorld)this.world, this);
-      this.world.getProfiler().endSection();
-      //ZurTasks.func_234486_b_(this);
-      /*if (this.func_234423_eL_()) {
-         ++this.timeInOverworld;
-      } else {
-         this.timeInOverworld = 0;
-      }
-
-      if (this.timeInOverworld > 300) {
-         this.func_241417_a_(SoundEvents.ENTITY_GENERIC_HURT);
-         this.func_234416_a_((ServerWorld)this.world);
-      }
-
-   }*/
 
    protected void func_241417_a_(SoundEvent p_241417_1_) {
       this.playSound(p_241417_1_, this.getSoundVolume(), this.getSoundPitch());
@@ -1137,14 +1087,6 @@ public class ZurEntity extends AbstractZurEntity {
       MerchantOffers merchantoffers = this.getOffers();
       if (this.zurTarget != null) {
          compound.put("ZurTarget", NBTUtil.writeBlockPos(this.zurTarget));
-      }
-
-      if (this.isChild()) {
-         compound.putBoolean("IsBaby", true);
-      }
-
-      if (!merchantoffers.isEmpty()) {
-         compound.put("Offers", merchantoffers.write());
       }
 
       compound.put("Inventory", this.zurInventory.write());

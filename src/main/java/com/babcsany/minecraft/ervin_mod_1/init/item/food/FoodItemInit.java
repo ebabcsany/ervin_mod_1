@@ -12,7 +12,8 @@ public class FoodItemInit {
 
     public static final DeferredRegister<Item> FOODS = DeferredRegister.create(ForgeRegistries.ITEMS, Ervin_mod_1.MOD_ID);
 
-    public static final RegistryObject<Item> STEEF = FOODS.register("steef", () -> new Item((new Item.Properties()).food(Foods.STEEF).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
+    public static final RegistryObject<Item> STEEF = FOODS.register("meat/steef", () -> new Item((new Item.Properties()).food(Foods.STEEF).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
+    public static final RegistryObject<Item> MRONT = FOODS.register("meat/mront", () -> new Item((new Item.Properties()).food(Foods.MRONT).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
     public static final RegistryObject<Item> COOKED_STEEF = FOODS.register("cooked_steef", () -> new Item((new Item.Properties()).food(Foods.COOKED_STEEF).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
     public static final RegistryObject<Item> FRIM = FOODS.register("frim", () -> new Item((new Item.Properties()).food(Foods.FRIM).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
     public static final RegistryObject<Item> VOLMINT = FOODS.register("volmint", () -> new Item((new Item.Properties()).food(Foods.VOLMINT).group(ItemGroup.ERVIN_MOD_1_SEARCH)));

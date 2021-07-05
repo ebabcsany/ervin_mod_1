@@ -1,6 +1,7 @@
 package net.minecraft.entity.player;
 
 import com.babcsany.minecraft.ervin_mod_1.block.FriszernTileEntity;
+import com.babcsany.minecraft.init.item.ItemInit;
 import com.google.common.collect.Lists;
 import com.mojang.authlib.GameProfile;
 import com.mojang.datafixers.util.Either;
@@ -44,7 +45,6 @@ import net.minecraft.stats.ServerStatisticsManager;
 import net.minecraft.stats.Stat;
 import net.minecraft.stats.Stats;
 import net.minecraft.tileentity.CommandBlockTileEntity;
-import net.minecraft.tileentity.CommandBlockTileEntity1;
 import net.minecraft.tileentity.SignTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
@@ -684,16 +684,14 @@ public class ServerPlayerEntity extends PlayerEntity implements IContainerListen
       if (player.isSpectator()) {
          return this.getSpectatingEntity() == this;
       } else {
-         return this.isSpectator() ? false : super.isSpectatedByPlayer(player);
+         return !this.isSpectator() && super.isSpectatedByPlayer(player);
       }
    }
 
-   private void sendTileEntityUpdate(TileEntity p_147097_1_) {
-      if (p_147097_1_ != null) {
-         SUpdateTileEntityPacket supdatetileentitypacket = p_147097_1_.getUpdatePacket();
-         if (supdatetileentitypacket != null) {
-            this.connection.sendPacket(supdatetileentitypacket);
-         }
+   private void sendTileEntityUpdate(TileEntity tileEntity) {
+      SUpdateTileEntityPacket supdatetileentitypacket = tileEntity.getUpdatePacket();
+      if (supdatetileentitypacket != null) {
+         this.connection.sendPacket(supdatetileentitypacket);
       }
 
    }
@@ -888,9 +886,17 @@ public class ServerPlayerEntity extends PlayerEntity implements IContainerListen
       net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(new net.minecraftforge.event.entity.player.PlayerContainerEvent.Open(this, this.openContainer));
    }
 
+   @Override
    public void openBook(ItemStack stack, Hand hand) {
       Item item = stack.getItem();
       if (item == Items.WRITTEN_BOOK) {
+         if (WrittenBookItem.resolveContents(stack, this.getCommandSource(), this)) {
+            this.openContainer.detectAndSendChanges();
+         }
+
+         this.connection.sendPacket(new SOpenBookWindowPacket(hand));
+      }
+      if (item == ItemInit.WRITTEN_BOOK_BLACK) {
          if (WrittenBookItem.resolveContents(stack, this.getCommandSource(), this)) {
             this.openContainer.detectAndSendChanges();
          }

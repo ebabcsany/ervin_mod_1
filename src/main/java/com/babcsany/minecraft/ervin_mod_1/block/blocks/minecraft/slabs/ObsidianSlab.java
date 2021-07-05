@@ -130,7 +130,4 @@ public class ObsidianSlab extends Block implements IWaterLoggable {
       }
    }
 
-   public BlockRenderType getRenderType(BlockState state) {
-      return BlockRenderType.INVISIBLE;
-   }
 }

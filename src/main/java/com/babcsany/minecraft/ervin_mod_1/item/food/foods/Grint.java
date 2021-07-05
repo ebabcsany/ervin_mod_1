@@ -16,4 +16,9 @@ public class Grint extends Item {
    public int getUseDuration(ItemStack stack) {
       return 128;
    }
+
+   @Override
+   public int getBurnTime(ItemStack itemStack) {
+      return 40000;
+   }
 }

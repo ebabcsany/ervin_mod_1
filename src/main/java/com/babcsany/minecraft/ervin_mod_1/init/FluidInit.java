@@ -46,14 +46,14 @@ public class FluidInit {
 			() -> new ForgeFlowingFluid.Flowing(FluidInit.MILK_PROPERTIES));
 
 	public static final RegistryObject<FlowingFluidBlock> MILK_BLOCK = BLOCKS.register("milk",
-			() -> new FlowingFluidBlock(() -> FluidInit.MILK_FLUID.get(), Block.Properties.create(Material.WATER)
+			() -> new FlowingFluidBlock(FluidInit.MILK_FLUID, Block.Properties.create(Material.WATER)
 					.doesNotBlockMovement().hardnessAndResistance(100.0f).noDrops()));
 
 	public static final ForgeFlowingFluid.Properties MILK_PROPERTIES = new ForgeFlowingFluid.Properties(
-			() -> MILK_FLUID.get(), () -> MILK_FLOWING.get(),
+			MILK_FLUID, MILK_FLOWING,
 			FluidAttributes.builder(MILK_STILL_RL, MILK_FLOWING_RL).density(5).luminosity(10).rarity(Rarity.RARE)
 					.sound(SoundEvents.ITEM_HONEY_BOTTLE_DRINK).overlay(MILK_OVERLAY_RL))
-							.block(() -> FluidInit.MILK_BLOCK.get());
+							.block(FluidInit.MILK_BLOCK);
 
 	/*public static final RegistryObject<FlowingFluid> JURK_FLUID = FLUIDS.register("jurk_fluid",
 			() -> new ForgeFlowingFluid.Source(FluidInit.JURK_PROPERTIES));

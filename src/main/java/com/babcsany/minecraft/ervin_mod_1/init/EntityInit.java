@@ -49,7 +49,6 @@ public class EntityInit {
                             .size(1.0f, 2.0f).func_233606_a_(10)
                             .build(new ResourceLocation(Ervin_mod_1.MOD_ID, "entity/crask").toString()
                             ));*/
-    public static final RegistryObject<EntityType<SrachEntity>> SRACH_ENTITY = ENTITY_TYPES.register("srach_entity", () -> EntityType.Builder.create(SrachEntity::new, EntityClassification.CREATURE).size(0.9f, 1.4f).func_233606_a_(12).build(new ResourceLocation(Ervin_mod_1.MOD_ID, "entity/srach/srach").toString()));
     public static final RegistryObject<EntityType<ShertEntity>> SHERT_ENTITY = ENTITY_TYPES.register("shert_entity", () -> EntityType.Builder.create(ShertEntity::new, EntityClassification.CREATURE).size(0.9f, 1.4f).func_233606_a_(13).build(new ResourceLocation(Ervin_mod_1.MOD_ID, "entity/srach/shert").toString()));
     public static final RegistryObject<EntityType<HhijEntity>> HHIJ_ENTITY = ENTITY_TYPES.register("hhij", () -> EntityType.Builder.create(HhijEntity::new, EntityClassification.CREATURE).size(0.6f, 0.85f).func_233606_a_(20).immuneToFire().build(new ResourceLocation(Ervin_mod_1.MOD_ID, "entity/srach/shert").toString()));
     public static final RegistryObject<EntityType<ModBoatEntityhj>> MOD_BOAT_ENTITY = ENTITY_TYPES
@@ -87,11 +86,11 @@ public class EntityInit {
     public static void registerEntityPlacementLogics() {
         EntitySpawnPlacementRegistry.register(LIWRAY.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canSpawnOn);
         EntitySpawnPlacementRegistry.register(GWURST.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::canAnimalSpawn);
-        EntitySpawnPlacementRegistry.register(com.babcsany.minecraft.init.EntityInit.GUBROV_ENTITY, EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AbstractFishEntity::func_223363_b);
+        EntitySpawnPlacementRegistry.register(com.babcsany.minecraft.init.EntityInit.GUBROV, EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AbstractFishEntity::func_223363_b);
         EntitySpawnPlacementRegistry.register(HHIJ_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, HhijAnimalEntity::canAnimalSpawn);
         EntitySpawnPlacementRegistry.register(ROVENT_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, RoventEntity::canRoventSpawn);
         EntitySpawnPlacementRegistry.register(SHERT_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::canAnimalSpawn);
-        EntitySpawnPlacementRegistry.register(SRACH_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::canAnimalSpawn);
+        EntitySpawnPlacementRegistry.register(com.babcsany.minecraft.init.EntityInit.SRACH_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::canAnimalSpawn);
         EntitySpawnPlacementRegistry.register(com.babcsany.minecraft.init.EntityInit.ZUR_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AbstractZurEntity::canSpawnOn);
         EntitySpawnPlacementRegistry.register(WANDERING_TRADER_NIRTRE_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canSpawnOn);
     }

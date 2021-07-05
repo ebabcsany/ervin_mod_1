@@ -1,5 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.player;
 
+import com.babcsany.minecraft.init.item.ItemInit;
 import com.google.common.collect.Lists;
 import com.mojang.authlib.GameProfile;
 import com.mojang.datafixers.util.Either;
@@ -46,7 +47,7 @@ import net.minecraft.stats.ServerStatisticsManager;
 import net.minecraft.stats.Stat;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.tileentity.CommandBlockTileEntity1;
+import net.minecraft.tileentity.CommandBlockTileEntity;
 import net.minecraft.tileentity.SignTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
@@ -939,9 +940,17 @@ public class ServerPlayerEntity1 extends ServerPlayerEntity implements IContaine
          this.connection.sendPacket(new SOpenBookWindowPacket(hand));
       }
 
+      if (item == ItemInit.WRITTEN_BOOK_BLACK) {
+         if (WrittenBookItem.resolveContents(stack, this.getCommandSource(), this)) {
+            this.openContainer.detectAndSendChanges();
+         }
+
+         this.connection.sendPacket(new SOpenBookWindowPacket(hand));
+      }
+
    }
 
-   public void openCommandBlock(CommandBlockTileEntity1 commandBlock) {
+   public void openCommandBlock(CommandBlockTileEntity commandBlock) {
       commandBlock.setSendToClient(true);
       this.sendTileEntityUpdate(commandBlock);
    }

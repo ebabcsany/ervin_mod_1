@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "ervin_mod_1:item/htraw/htraw"
+    "layer0": "ervin_mod_1:item/htraw/htraw_0l"
   }
 }

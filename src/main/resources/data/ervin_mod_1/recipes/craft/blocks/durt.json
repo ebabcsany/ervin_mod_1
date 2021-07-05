@@ -2,14 +2,14 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "ervin_mod_1:durt"
+      "item": "ervin_mod_1:durt/durt"
     },
     {
       "tag": "ervin_mod_1:ingredients/dye"
     }
   ],
   "result": {
-    "item": "ervin_mod_1:durt",
+    "item": "ervin_mod_1:durt/durt",
     "count": 1
   }
 }

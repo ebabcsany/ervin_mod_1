@@ -68,10 +68,10 @@ public abstract class CommandBlockLogic implements ICommandSource {
          compound.putString("LastOutput", ITextComponent.Serializer.toJson(this.lastOutput));
       }
 
-      /*compound.putBoolean("UpdateLastExecution", this.updateLastExecution);
+      compound.putBoolean("UpdateLastExecution", this.updateLastExecution);
       if (this.updateLastExecution && this.lastExecution > 0L) {
          compound.putLong("LastExecution", this.lastExecution);
-      }*/
+      }
 
       return compound;
    }
@@ -100,7 +100,7 @@ public abstract class CommandBlockLogic implements ICommandSource {
          this.lastOutput = null;
       }
 
-      /*if (nbt.contains("UpdateLastExecution")) {
+      if (nbt.contains("UpdateLastExecution")) {
          this.updateLastExecution = nbt.getBoolean("UpdateLastExecution");
       }
 
@@ -108,7 +108,7 @@ public abstract class CommandBlockLogic implements ICommandSource {
          this.lastExecution = nbt.getLong("LastExecution");
       } else {
          this.lastExecution = -1L;
-      }*/
+      }
 
    }
 
@@ -132,25 +132,27 @@ public abstract class CommandBlockLogic implements ICommandSource {
          if ("Searge".equalsIgnoreCase(this.commandStored)) {
             this.lastOutput = new StringTextComponent("#itzlipofutzli");
             this.successCount = 1;
-            return false;
+            return true;
          } else {
             this.successCount = 0;
             MinecraftServer minecraftserver = this.getWorld().getServer();
-            try {
-               this.lastOutput = null;
-               CommandSource commandsource = this.getCommandSource().withResultConsumer((p_209527_1_, p_209527_2_, p_209527_3_) -> {
-                  if (p_209527_2_) {
-                     ++this.successCount;
-                  }
+            if (minecraftserver.isCommandBlockEnabled() && !StringUtils.isNullOrEmpty(this.commandStored)) {
+               try {
+                  this.lastOutput = null;
+                  CommandSource commandSource = this.getCommandSource().withResultConsumer((p_209527_1_, p_209527_2_, p_209527_3_) -> {
+                     if (p_209527_2_) {
+                        ++this.successCount;
+                     }
 
-               });
-               minecraftserver.getCommandManager().handleCommand(commandsource, this.commandStored);
-            } catch (Throwable throwable) {
-               //CrashReport crashreport = CrashReport.makeCrashReport(throwable, "Executing command block");
-               //CrashReportCategory crashreportcategory = crashreport.makeCategory("Command to be executed");
-               //crashreportcategory.addDetail("Command", this::getCommand);
-               //crashreportcategory.addDetail("Name", () -> this.getName().getString());
-               //throw new ReportedException(crashreport);
+                  });
+                  minecraftserver.getCommandManager().handleCommand(commandSource, this.commandStored);
+               } catch (Throwable throwable) {
+                  CrashReport crashreport = CrashReport.makeCrashReport(throwable, "Executing command block");
+                  CrashReportCategory crashreportcategory = crashreport.makeCategory("Command to be executed");
+                  crashreportcategory.addDetail("Command", this::getCommand);
+                  crashreportcategory.addDetail("Name", () -> this.getName().getString());
+                  throw new ReportedException(crashreport);
+               }
             }
 
             if (this.updateLastExecution) {
@@ -162,7 +164,7 @@ public abstract class CommandBlockLogic implements ICommandSource {
             return true;
          }
       } else {
-         return false;
+         return true;
       }
    }
 

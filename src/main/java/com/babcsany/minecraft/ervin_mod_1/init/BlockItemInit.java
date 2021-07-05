@@ -44,6 +44,7 @@ public class BlockItemInit {
     public static final RegistryObject<Block> ZUR_BLOCK = BLOCKS.register("zur_block", () -> new FallingZurBlock(Block.Properties.create(Material.SAND).hardnessAndResistance(1.5f, 45.0f).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> TRADER_BLOCK = BLOCKS.register("trader_block", () -> new TraderBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(0.5f, 15.0f).sound(SoundType.SAND)));
     public static final RegistryObject<Block> DEF_BLOCK = BLOCKS.register("def_block", () -> new Block(Block.Properties.create(Material.AIR)));
+    public static final RegistryObject<Block> GTRZIUZHIZJKJ = BLOCKS.register("special_block/gtrziuzhizjkj", () -> new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(500000.0F, 15000000.0F).sound(SoundType.ROOT)));
     public static final RegistryObject<Block> JAZZ_LOG = BLOCKS.register("jazz_log", () -> new JazzLog(MaterialColor.WOOD, Block.Properties.from(Blocks.OAK_LOG)));
     public static final RegistryObject<Block> JAZZ_LEAVES = BLOCKS.register("jazz_leaves", () -> new LeavesBlock(Block.Properties.from(Blocks.OAK_LEAVES)));
     public static final RegistryObject<Block> JAZZ_SAPLING = BLOCKS.register("jazz_sapling", () -> new ModSaplingBlock(JazzTree::new, Block.Properties.from(OAK_SAPLING)));
@@ -158,13 +159,7 @@ public class BlockItemInit {
                     .harvestTool(ToolType.PICKAXE)
                     .hardnessAndResistance(1.5F, 6.0F)
     ));
-    public static final RegistryObject<Block> BLACK_COBBLESTONE_SLAB = BLOCKS.register("stone/cobblestone/slabs/black_cobblestone_slab", () -> new BlackCobblestoneSlab(
-            Block.Properties.create(Material.ROCK)
-                    .setRequiresTool()
-                    .harvestLevel(0)
-                    .harvestTool(ToolType.PICKAXE)
-                    .hardnessAndResistance(2.0F, 6.0F)
-    ));
+    public static final RegistryObject<Block> BLACK_COBBLESTONE_SLAB = BLOCKS.register("stone/cobblestone/slabs/black_cobblestone_slab", () -> new BlackCobblestoneSlab(Block.Properties.create(Material.ROCK).setRequiresTool().harvestLevel(0).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F, 6.0F)));
     public static final RegistryObject<Block> BLUE_COBBLESTONE_SLAB = BLOCKS.register("stone/cobblestone/slabs/blue_cobblestone_slab", () -> new BlueCobblestoneSlab(
             Block.Properties.create(Material.ROCK)
                     .setRequiresTool()
@@ -734,7 +729,8 @@ public class BlockItemInit {
     public static final RegistryObject<Block> GANK_SLAB = BLOCKS.register("gank_slab", () -> new GankSlab(Block.Properties.create(Material.ROCK).setRequiresTool().harvestLevel(0).harvestTool(ToolType.PICKAXE).hardnessAndResistance(990.0F, 1000.0F)));
     public static final RegistryObject<Block> ENDER_TRASK_1 = BLOCKS.register("ender_trask_1", () -> new EnderTrask1(Block.Properties.create(Material.ORGANIC).setRequiresTool().harvestLevel(6).hardnessAndResistance(160.0f)));
     public static final RegistryObject<Block> ENDER_TRASKCRAFTH_1 = BLOCKS.register("ender_traskcrafth_1", () -> new EnderTraskcrafth(Block.Properties.create(Material.ORGANIC).setRequiresTool().harvestLevel(5).hardnessAndResistance(100.0f)));
-    public static final RegistryObject<Block> DURT = BLOCKS.register("durt", () -> new Durt(Block.Properties.create(Material.ROCK).setRequiresTool().harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(30.0f, 400.0f)));
+    public static final RegistryObject<Block> DURT = BLOCKS.register("durt/durt", () -> new Durt(Block.Properties.create(Material.ROCK).setRequiresTool().harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(30.0f, 440.0f)));
+    public static final RegistryObject<Block> DURTGURBF = BLOCKS.register("durt/gurbf", () -> new Durt(Block.Properties.create(Material.ROCK).setRequiresTool().harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(22.0f, 400.0f)));
     public static final RegistryObject<Block> GRITK_BLOCK_1 = BLOCKS.register("gritk_block_1", () -> new GritkBlock1(Block.Properties.create(Material.IRON).setRequiresTool().harvestLevel(0).setLightLevel(Value -> 15).harvestTool(ToolType.PICKAXE).hardnessAndResistance(500000.0F, 1200000.0F)));
     public static final RegistryObject<Block> FRIM_LOG = BLOCKS.register("frim_log", () -> new FrimLog(MaterialColor.WOOD, Block.Properties.create(Material.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> FRIM_SAPLING = BLOCKS.register("frim_sapling", () -> new ModSaplingBlock(FrimTree::new, AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().sound(SoundType.PLANT)));

@@ -267,6 +267,11 @@ public class Color1 extends Color implements Paint, java.io.Serializable {
     public final static Color getColor_FFA080FF      = new Color(255, 160, 128, 255);
     public final static Color getColor_804000FF      = new Color(128, 64, 0, 255);
     public final static Color getColor_C08040FF      = new Color(192, 128, 64, 255);
+    public final static Color getColor_FF3F76E4      = new Color(255, 63, 118, 228);
+    public final static Color getColor_A000FFE3      = new Color(160, 0, 255, 227);
+    public final static Color getColor_FF000000      = new Color(255, 0, 0, 0);
+    public final static Color getColor_A000FF00      = new Color(160, 0, 255, 0);
+    public final static Color getColor_A000FFFF      = new Color(160, 0, 255, 255);
     /**
      * The color.  In the default sRGB space.
      * @since 1.4

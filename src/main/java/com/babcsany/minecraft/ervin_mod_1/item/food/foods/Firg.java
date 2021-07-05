@@ -28,7 +28,7 @@ public class Firg extends BlockItem {
 
    @Override
    public int getBurnTime(ItemStack itemStack) {
-      return 80;
+      return 10000;
    }
 
 }

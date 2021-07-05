@@ -90,7 +90,7 @@ public class FlowingFluidBlockg extends Block implements IBucketPickupHandler {
    }
 
    public boolean allowsMovement(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type) {
-      return !this.fluid.isIn(net.minecraft.tags.FluidTags.LAVA);
+      return !this.fluid.isIn(net.minecraft.tags.FluidTags.LAVA) && !this.fluid.isIn(FluidTags.JURK);
    }
 
    public FluidState getFluidState(BlockState state) {

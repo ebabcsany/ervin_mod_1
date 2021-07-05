@@ -1,44 +1,42 @@
 package com.babcsany.minecraft.fluid;
 
-import com.babcsany.minecraft.block.FlowingFluidBlockg;
+import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
+import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
+import com.babcsany.minecraft.forge.hooks.ForgeHooks;
 import com.babcsany.minecraft.init.BlockInit;
 import com.babcsany.minecraft.init.FluidInit;
-import com.babcsany.minecraft.init.ItemInit;
+import com.babcsany.minecraft.init.item.ItemInit;
 import com.babcsany.minecraft.tags.FluidTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.FlowingFluidBlock;
-import net.minecraft.fluid.FlowingFluid;
+import com.babcsany.minecraft.fluid.block.FlowingFluidBlock;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
-import net.minecraft.fluid.Fluids;
 import net.minecraft.item.Item;
 import net.minecraft.particles.IParticleData;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
+import net.minecraft.world.*;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fluids.FluidAttributes;
 
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public abstract class JurkFluid extends FlowingFluid {
+public abstract class JurkFluid extends net.minecraft.fluid.FlowingFluid {
    public Fluid getFlowingFluid() {
-      return Fluids.FLOWING_LAVA;
+      return FluidInit.FLOWING_JURK;
    }
 
    public Fluid getStillFluid() {
-      return Fluids.LAVA;
+      return FluidInit.JURK;
    }
 
    public Item getFilledBucket() {
@@ -57,10 +55,38 @@ public abstract class JurkFluid extends FlowingFluid {
 
    }
 
+   public void randomTick(World p_207186_1_, BlockPos pos, FluidState state, Random random) {
+      if (p_207186_1_.getGameRules().getBoolean(GameRules.KEEP_INVENTORY)) {
+         int i = random.nextInt(3);
+         if (i > 0) {
+            BlockPos blockpos = pos;
+
+            for(int j = 0; j < i; ++j) {
+               blockpos = blockpos.add(random.nextInt(3) - 1, 1, random.nextInt(3) - 1);
+               if (!p_207186_1_.isBlockPresent(blockpos)) {
+                  return;
+               }
+            }
+         } else {
+            for(int k = 0; k < 3; ++k) {
+               BlockPos blockpos1 = pos.add(random.nextInt(3) - 1, 0, random.nextInt(3) - 1);
+               if (!p_207186_1_.isBlockPresent(blockpos1)) {
+                  return;
+               }
+            }
+         }
+
+      }
+   }
+
    @Nullable
    @OnlyIn(Dist.CLIENT)
    public IParticleData getDripParticleData() {
-      return ParticleTypes.DRIPPING_WATER;
+      return ParticleTypes.DRIPPING_LAVA;
+   }
+
+   public int getSlopeFindDistance(IWorldReader worldIn) {
+      return worldIn.func_230315_m_().func_236040_e_() ? 4 : 2;
    }
 
    protected boolean canSourcesMultiply() {
@@ -72,16 +98,18 @@ public abstract class JurkFluid extends FlowingFluid {
       Block.spawnDrops(state, worldIn.getWorld(), pos, tileentity);
    }
 
-   public int getSlopeFindDistance(IWorldReader worldIn) {
-      return 4;
-   }
+   /*@Override
+   protected FluidAttributes createAttributes()
+   {
+      return ForgeHooks.createVanillaFluidAttributes(this);
+   }*/
 
    public BlockState getBlockState(FluidState state) {
-      return Blocks.GRASS_BLOCK.getDefaultState().with(FlowingFluidBlockg.LEVEL, getLevelFromState(state));
+      return BlockInit.JURK.getDefaultState().with(FlowingFluidBlock.LEVEL, getLevelFromState(state));
    }
 
    public boolean isEquivalentTo(Fluid fluidIn) {
-      return fluidIn == Fluids.WATER || fluidIn == Fluids.FLOWING_WATER;
+      return fluidIn == FluidInit.JURK || fluidIn == FluidInit.FLOWING_JURK;
    }
 
    public int getLevelDecreasePerBlock(IWorldReader worldIn) {
@@ -93,7 +121,60 @@ public abstract class JurkFluid extends FlowingFluid {
    }
 
    public boolean canDisplace(FluidState fluidState, IBlockReader blockReader, BlockPos pos, Fluid fluid, Direction direction) {
-      return direction == Direction.DOWN && !fluid.isIn(FluidTags.JURK);
+      return fluidState.getActualHeight(blockReader, pos) >= 0.44444445F && !fluid.isIn(net.minecraft.tags.FluidTags.LAVA) && !fluid.isIn(net.minecraft.tags.FluidTags.WATER);
+   }
+
+   private void triggerEffects(IWorld p_205581_1_, BlockPos p_205581_2_) {
+      p_205581_1_.playEvent(1501, p_205581_2_, 0);
+   }
+
+   protected void flowInto(IWorld worldIn, BlockPos pos, BlockState blockStateIn, Direction direction, FluidState fluidStateIn) {
+      if (direction == Direction.DOWN) {
+         FluidState fluidstate = worldIn.getFluidState(pos);
+         if (this.isIn(FluidTags.JURK) && fluidstate.isTagged(net.minecraft.tags.FluidTags.WATER)) {
+            if (blockStateIn.getBlock() instanceof FlowingFluidBlock) {
+               worldIn.setBlockState(pos, net.minecraftforge.event.ForgeEventFactory.fireFluidPlaceBlockEvent(worldIn, pos, pos, BlockItemInit.DURTGURBF.get().getDefaultState()), 3);
+            }
+
+            this.triggerEffects(worldIn, pos);
+            return;
+         }
+      }
+      if (direction == Direction.DOWN) {
+         FluidState fluidstate = worldIn.getFluidState(pos);
+         if (this.isIn(FluidTags.JURK) && fluidstate.isTagged(net.minecraft.tags.FluidTags.LAVA)) {
+            if (blockStateIn.getBlock() instanceof FlowingFluidBlock) {
+               worldIn.setBlockState(pos, net.minecraftforge.event.ForgeEventFactory.fireFluidPlaceBlockEvent(worldIn, pos, pos, BlockItemInit.DURTGURBF.get().getDefaultState()), 3);
+            }
+
+            this.triggerEffects(worldIn, pos);
+            return;
+         }
+      }
+      if (direction == Direction.DOWN) {
+         FluidState fluidstate = worldIn.getFluidState(pos);
+         if (this.isIn(net.minecraft.tags.FluidTags.LAVA) && fluidstate.isTagged(FluidTags.JURK)) {
+            if (blockStateIn.getBlock() instanceof FlowingFluidBlock) {
+               worldIn.setBlockState(pos, net.minecraftforge.event.ForgeEventFactory.fireFluidPlaceBlockEvent(worldIn, pos, pos, BlockItemInit.DURTGURBF.get().getDefaultState()), 3);
+            }
+
+            this.triggerEffects(worldIn, pos);
+            return;
+         }
+      }
+      if (direction == Direction.DOWN) {
+         FluidState fluidstate = worldIn.getFluidState(pos);
+         if (this.isIn(net.minecraft.tags.FluidTags.WATER) && fluidstate.isTagged(FluidTags.JURK)) {
+            if (blockStateIn.getBlock() instanceof FlowingFluidBlock) {
+               worldIn.setBlockState(pos, net.minecraftforge.event.ForgeEventFactory.fireFluidPlaceBlockEvent(worldIn, pos, pos, BlockItemInit.DURTGURBF.get().getDefaultState()), 3);
+            }
+
+            this.triggerEffects(worldIn, pos);
+            return;
+         }
+      }
+
+      super.flowInto(worldIn, pos, blockStateIn, direction, fluidStateIn);
    }
 
    protected float getExplosionResistance() {

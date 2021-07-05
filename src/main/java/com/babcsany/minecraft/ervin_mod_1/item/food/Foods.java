@@ -30,6 +30,7 @@ public class Foods {
     public static final Food COOKED_GUBROV = (new Food.Builder()).hunger(8).saturation(1.6F).build();
     public static final Food STEEF = (new Food.Builder()).hunger(5).saturation(1.0F).build();
     public static final Food COOKED_STEEF = (new Food.Builder()).hunger(9).saturation(1.8F).build();
+    public static final Food MRONT = (new Food.Builder()).hunger(3).saturation(0.5F).meat().build();
     public static final Food JAZZ_FRUIT = (new Food.Builder()).hunger(12).saturation(4.8F).effect(new EffectInstance(Effects.REGENERATION, 20, 4), 4.0F).build();
     public static final Food BREFK = (new Food.Builder()).hunger(4).saturation(10.0F).effect(new EffectInstance(Effects.REGENERATION, 200, 50), 50.0F).build();
 

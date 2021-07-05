@@ -32,49 +32,50 @@ public class UnderlavaCaveWorldCarver extends CaveWorldCarver {
       return func_222728_a(this, p_230358_1_, p_230358_3_, p_230358_4_, p_230358_5_, p_230358_8_, p_230358_9_, p_230358_10_, p_230358_11_, p_230358_12_, p_230358_13_, p_230358_14_, p_230358_15_);
    }
 
-   protected static boolean func_222728_a(WorldCarver<?> p_222728_0_, IChunk p_222728_1_, BitSet p_222728_2_, Random p_222728_3_, BlockPos.Mutable p_222728_4_, int p_222728_5_, int p_222728_6_, int p_222728_7_, int p_222728_8_, int p_222728_9_, int p_222728_10_, int p_222728_11_, int p_222728_12_) {
-      if (p_222728_11_ >= p_222728_5_) {
+   static UnderlavaCaveWorldCarver underlavaCaveWorldCarver;
+   protected static boolean func_222728_a(WorldCarver<?> carver, IChunk iChunk, BitSet bitSet, Random random, BlockPos.Mutable mutable, int i3, int i4, int i5, int pos1, int pos3, int i1, int pos2, int i2) {
+      if (pos2 >= i3) {
          return false;
       } else {
-         int i = p_222728_10_ | p_222728_12_ << 4 | p_222728_11_ << 8;
-         if (p_222728_2_.get(i)) {
+         int i = i1 | i2 << 4 | pos2 << 8;
+         if (bitSet.get(i)) {
             return false;
          } else {
-            p_222728_2_.set(i);
-            p_222728_4_.setPos(p_222728_8_, p_222728_11_, p_222728_9_);
-            BlockState blockstate = p_222728_1_.getBlockState(p_222728_4_);
-            if (!p_222728_0_.isCarvable(blockstate)) {
+            bitSet.set(i);
+            mutable.setPos(pos1, pos2, pos3);
+            BlockState blockstate = iChunk.getBlockState(mutable);
+            if (!underlavaCaveWorldCarver.isCarvables(blockstate)) {
                return false;
-            } else if (p_222728_11_ == 10) {
-               float f = p_222728_3_.nextFloat();
+            } else if (pos2 == 10) {
+               float f = random.nextFloat();
                if ((double)f < 0.25D) {
-                  p_222728_1_.setBlockState(p_222728_4_, Blocks.MAGMA_BLOCK.getDefaultState(), false);
-                  p_222728_1_.getBlocksToBeTicked().scheduleTick(p_222728_4_, Blocks.MAGMA_BLOCK, 0);
+                  iChunk.setBlockState(mutable, Blocks.MAGMA_BLOCK.getDefaultState(), false);
+                  iChunk.getBlocksToBeTicked().scheduleTick(mutable, Blocks.MAGMA_BLOCK, 0);
                } else {
-                  p_222728_1_.setBlockState(p_222728_4_, BlockItemInit.DURT.get().getDefaultState(), false);
+                  iChunk.setBlockState(mutable, BlockItemInit.DURT.get().getDefaultState(), false);
                }
 
                return true;
-            } else if (p_222728_11_ < 10) {
-               p_222728_1_.setBlockState(p_222728_4_, Blocks.LAVA.getDefaultState(), false);
+            } else if (pos2 < 10) {
+               iChunk.setBlockState(mutable, Blocks.LAVA.getDefaultState(), false);
                return false;
             } else {
                boolean flag = false;
 
                for(Direction direction : Direction.Plane.HORIZONTAL) {
-                  int j = p_222728_8_ + direction.getXOffset();
-                  int k = p_222728_9_ + direction.getZOffset();
-                  if (j >> 4 != p_222728_6_ || k >> 4 != p_222728_7_ || p_222728_1_.getBlockState(p_222728_4_.setPos(j, p_222728_11_, k)).isAir()) {
-                     p_222728_1_.setBlockState(p_222728_4_, LAVA.getBlockState(), false);
-                     p_222728_1_.getFluidsToBeTicked().scheduleTick(p_222728_4_, LAVA.getFluid(), 0);
+                  int j = pos1 + direction.getXOffset();
+                  int k = pos3 + direction.getZOffset();
+                  if (j >> 4 != i4 || k >> 4 != i5 || iChunk.getBlockState(mutable.setPos(j, pos2, k)).isAir()) {
+                     iChunk.setBlockState(mutable, LAVA.getBlockState(), false);
+                     iChunk.getFluidsToBeTicked().scheduleTick(mutable, LAVA.getFluid(), 0);
                      flag = true;
                      break;
                   }
                }
 
-               p_222728_4_.setPos(p_222728_8_, p_222728_11_, p_222728_9_);
+               mutable.setPos(pos1, pos2, pos3);
                if (!flag) {
-                  p_222728_1_.setBlockState(p_222728_4_, LAVA.getBlockState(), false);
+                  iChunk.setBlockState(mutable, LAVA.getBlockState(), false);
                   return true;
                } else {
                   return true;
@@ -82,5 +83,9 @@ public class UnderlavaCaveWorldCarver extends CaveWorldCarver {
             }
          }
       }
+   }
+
+   public boolean isCarvables(BlockState p_222706_1_) {
+      return carvableBlocks.contains(p_222706_1_.getBlock());
    }
 }

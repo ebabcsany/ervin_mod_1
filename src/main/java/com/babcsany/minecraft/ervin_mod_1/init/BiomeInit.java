@@ -263,20 +263,19 @@ public class BiomeInit {
 
 		list.add(new BiomeManager.BiomeEntry(BiomeInit.MIG_BIOME.get(), 10));
 		registerBiomeWarm_weight_10(THE_BHJUIG_BIOME.get(), Type.RARE, Type.VOID);
-		registerBiomeWarm_weight_10(MIG_BIOME.get(), Type.MIG, Type.RARE, Type.OVERWORLD);
-		registerBiomeWarm_weight_10(MIGV_BIOME.get(), Type.MIG, Type.RARE, Type.HOT, Type.OVERWORLD);
+		registerBiomeWarm_weight_10(MIG_BIOME.get(), Type.OCEAN, Type.RARE, Type.OVERWORLD);
+		registerBiomeWarm_weight_10(MIGV_BIOME.get(), Type.OCEAN, Type.RARE, Type.HOT, Type.OVERWORLD);
 		registerBiomeCool_weight_10(SRIUNK_VALLEY_BIOME.get(), Type.DEAD, Type.OVERWORLD);
 		registerBiomeCool_weight_10(EXAMPLE0_BIOME.get(), Type.COLD, Type.PLAINS);
 		registerBiomeWarm_weight_10(EXAMPLE_BIOME.get(), Type.LUSH, Type.PLAINS);
 		registerBiomeDesert_weight_10(EXAMPLE_BIOME1.get(), Type.PLAINS, Type.OVERWORLD);
-		registerBiomeIcy_weight_10(EXAMPLE_BIOME0.get(), Type.MODIFIED, Type.END);
-		BiomeDictionary.makeBestGuess(EXAMPLE_BIOME0.get());
+		registerBiomeIcy_weight_10(EXAMPLE_BIOME0.get(), Type.END, Type.getType("EXAMPLE_BIOME0", Type.fromVanilla(Category.THEEND)));
 		registerBiomeWarm_weight_10(EXAMPLE_BIOME2.get(), Type.PLAINS, Type.HOT, Type.OVERWORLD, Type.DRY);
 		registerBiomeWarm_weight_10(EXAMPLE_BIOME3.get(), Type.DENSE, Type.HOT, Type.OVERWORLD, Type.DENSE);
 		registerBiomeDesert_weight_10(EXAMPLE_BIOME4.get(), Type.BEACH, Type.RARE, Type.OVERWORLD);
 		registerBiomeCool_weight_10(EXAMPLE_BIOME5.get(), Type.DEAD, Type.RARE, Type.OVERWORLD);
 		registerBiomeCool_weight_10(EXAMPLE_BIOME6.get(), Type.RARE, Type.VOID, Type.MODIFIED);
-		registerBiomeCool_weight_10(FIRG_BIOME.get(), Type.getType("FIRG"), Type.HILLS, Type.END);
+		registerBiomeCool_weight_10(FIRG_BIOME.get(), Type.getType("FIRG", Type.fromVanilla(Category.THEEND)), Type.HILLS, Type.END);
 		registerBiomeCool_weight_10(SCRAFTH_BIOME.get(), Type.getType("SCRAFTH"), Type.HILLS, Type.END);
 	}
 

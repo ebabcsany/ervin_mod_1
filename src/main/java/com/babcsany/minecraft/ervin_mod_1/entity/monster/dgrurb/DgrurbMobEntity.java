@@ -210,7 +210,7 @@ public abstract class DgrurbMobEntity extends LivingEntity {
     */
    public void setAttackTarget(@Nullable Entity entitylivingbaseIn) {
       this.attackTarget = entitylivingbaseIn;
-      net.minecraftforge.common.ForgeHooks.onLivingSetAttackTarget(this, entitylivingbaseIn);
+      net.minecraftforge.common.ForgeHooks.onLivingSetAttackTarget(this, (LivingEntity) entitylivingbaseIn);
    }
 
    public boolean canAttack(EntityType<?> typeIn) {

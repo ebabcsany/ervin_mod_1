@@ -25,4 +25,9 @@ public class FirgStairs extends BlockItem {
    public int getUseDuration(ItemStack stack) {
       return 24;
    }
+
+   @Override
+   public int getBurnTime(ItemStack itemStack) {
+      return 7500;
+   }
 }

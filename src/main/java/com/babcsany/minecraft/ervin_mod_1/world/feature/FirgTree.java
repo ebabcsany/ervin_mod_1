@@ -22,6 +22,7 @@ import java.util.Random;
 
 public class FirgTree extends Tree {
 
+    public static BaseTreeFeatureConfig FIRG_TREE_CONFIG;
     public static final BaseTreeFeatureConfig FIRG_TREE_CONFIG0 = (new BaseTreeFeatureConfig.Builder(
             new SimpleBlockStateProvider(BlockItemInit.FIRG_LOG.get().getDefaultState()),
             new SimpleBlockStateProvider(isBurnableBlockItemInit.FIRG_LEAVES.get().getDefaultState()),
@@ -29,28 +30,28 @@ public class FirgTree extends Tree {
             new FancyTrunkPlacer(8, 2, 6),
             new TwoLayerFeature(13, 11, 5, OptionalInt.of(2))))
             .setIgnoreVines().func_236702_a_(Heightmap.Type.MOTION_BLOCKING).build();
-    public static final BaseTreeFeatureConfig FIRG_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
+    public static final BaseTreeFeatureConfig FIRG_TREE_CONFIG1 = (new BaseTreeFeatureConfig.Builder(
             new SimpleBlockStateProvider(BlockItemInit.FIRG_LOG.get().getDefaultState()),
             new SimpleBlockStateProvider(isBurnableBlockItemInit.FIRG_LEAVES.get().getDefaultState()),
             new BlobFoliagePlacer(6, 0, 0, 0, 2),
             new StraightTrunkPlacer(1, 6, 3),
             new TwoLayerFeature(4, 5, 3)))
             .setIgnoreVines().build();
-    public static final BaseTreeFeatureConfig FIRG_TREE_CONFIG1 = (new BaseTreeFeatureConfig.Builder(
+    public static final BaseTreeFeatureConfig FIRG_TREE_CONFIG2 = (new BaseTreeFeatureConfig.Builder(
             new SimpleBlockStateProvider(BlockItemInit.FIRG_LOG.get().getDefaultState()),
             new SimpleBlockStateProvider(isBurnableBlockItemInit.FIRG_LEAVES.get().getDefaultState()),
             new BlobFoliagePlacer(4, 0, 0, 0, 2),
             new StraightTrunkPlacer(3, 5, 2),
             new TwoLayerFeature(6, 2, 4)))
             .setIgnoreVines().build();
-    public static final BaseTreeFeatureConfig FIRG_TREE_CONFIG2 = (new BaseTreeFeatureConfig.Builder(
+    public static final BaseTreeFeatureConfig FIRG_TREE_CONFIG3 = (new BaseTreeFeatureConfig.Builder(
             new SimpleBlockStateProvider(BlockItemInit.FIRG_LOG.get().getDefaultState()),
             new SimpleBlockStateProvider(BlockInit.FIRG.get().getDefaultState()),
             new BlobFoliagePlacer(2, 0, 0, 0, 2),
             new StraightTrunkPlacer(3, 4, 2),
             new TwoLayerFeature(4, 0, 3)))
             .setIgnoreVines().build();
-    public static final BaseTreeFeatureConfig FIRG_TREE_CONFIG3 = (new BaseTreeFeatureConfig.Builder(
+    public static final BaseTreeFeatureConfig FIRG_TREE_CONFIG4 = (new BaseTreeFeatureConfig.Builder(
             new SimpleBlockStateProvider(BlockItemInit.FIRG_LOG.get().getDefaultState()),
             new SimpleBlockStateProvider(BlockInit.FIRG.get().getDefaultState()),
             new BlobFoliagePlacer(5, 0, 0, 0, 3),
@@ -61,19 +62,35 @@ public class FirgTree extends Tree {
     private static final BeehiveTreeDecorator BEEHIVES = new BeehiveTreeDecorator(0.02F);
     public static final BaseTreeFeatureConfig FIRG_TREE_WITH_FEW_BEEHIVES_CONFIG = FIRG_TREE_CONFIG0
             .func_236685_a_(ImmutableList.of(BEEHIVES));
-    public static final BaseTreeFeatureConfig FIRG_TREE_WITH_MORE_BEEHIVES_CONFIG = FIRG_TREE_CONFIG1
+    public static final BaseTreeFeatureConfig FIRG_TREE_WITH_FEW_BEEHIVES_CONFIG1 = FIRG_TREE_CONFIG1
+            .func_236685_a_(ImmutableList.of(BEEHIVES));
+    public static final BaseTreeFeatureConfig FIRG_TREE_WITH_MORE_BEEHIVES_CONFIG = FIRG_TREE_CONFIG2
             .func_236685_a_(ImmutableList.of(BEEHIVES1));
-    public static final BaseTreeFeatureConfig FIRG_TREE_WITH_MORE_BEEHIVES_CONFIG1 = FIRG_TREE_CONFIG2
+    public static final BaseTreeFeatureConfig FIRG_TREE_WITH_MORE_BEEHIVES_CONFIG1 = FIRG_TREE_CONFIG3
             .func_236685_a_(ImmutableList.of(BEEHIVES1));
-    public static final BaseTreeFeatureConfig FIRG_TREE_WITH_MANY_BEEHIVES_CONFIG = FIRG_TREE_CONFIG3
+    public static final BaseTreeFeatureConfig FIRG_TREE_WITH_MANY_BEEHIVES_CONFIG = FIRG_TREE_CONFIG4
             .func_236685_a_(ImmutableList.of(BEEHIVES2));
 
     @Override
     protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean b) {
-        return Feature.field_236291_c_.withConfiguration(FIRG_TREE_CONFIG)
-                .feature.withConfiguration(FIRG_TREE_CONFIG0)
-                .feature.withConfiguration(FIRG_TREE_CONFIG1)
-                .feature.withConfiguration(FIRG_TREE_CONFIG2)
-                .feature.withConfiguration(FIRG_TREE_CONFIG3);
+        return Feature.field_236291_c_.withConfiguration(FIRG_TREE_CONFIG);
+    }
+
+    public static BaseTreeFeatureConfig setFirgTreeConfig() {
+        BaseTreeFeatureConfig featureConfig0 = FIRG_TREE_CONFIG0;
+        BaseTreeFeatureConfig featureConfig1 = FIRG_TREE_CONFIG1;
+        BaseTreeFeatureConfig featureConfig2 = FIRG_TREE_CONFIG2;
+        BaseTreeFeatureConfig featureConfig3 = FIRG_TREE_CONFIG3;
+        BaseTreeFeatureConfig featureConfig4 = FIRG_TREE_CONFIG4;
+        BaseTreeFeatureConfig featureConfig5 = FIRG_TREE_WITH_FEW_BEEHIVES_CONFIG;
+        BaseTreeFeatureConfig featureConfig6 = FIRG_TREE_WITH_FEW_BEEHIVES_CONFIG1;
+        BaseTreeFeatureConfig featureConfig7 = FIRG_TREE_WITH_MORE_BEEHIVES_CONFIG;
+        BaseTreeFeatureConfig featureConfig8 = FIRG_TREE_WITH_MORE_BEEHIVES_CONFIG1;
+        BaseTreeFeatureConfig featureConfig9 = FIRG_TREE_WITH_MANY_BEEHIVES_CONFIG;
+        return FIRG_TREE_CONFIG;
+    }
+
+    static {
+        FIRG_TREE_CONFIG = setFirgTreeConfig();
     }
 }

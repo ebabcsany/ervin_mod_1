@@ -31,6 +31,7 @@ public class Grith extends Item {
 	public final PlayerInventory inventory = new PlayerInventory(player);
 	public World world;
 	private AttributeModifierManager attributes;
+	Grith_Block grith_block;
 	public Grith(Properties properties) {
 		super(properties);
 	}
@@ -55,7 +56,7 @@ public class Grith extends Item {
 	}
 
 	public boolean onEntityItemUpdate(ItemStack stack, ItemEntity entity) {
-		if (Grith_Block.Grith_Block(stack, entity)) {
+		if (grith_block.onEntityItemUpdateDown(stack, entity)) {
 			entity.getEntityWorld().setBlockState(entity.getPosition().down(), Blocks.AIR.getDefaultState());
 			entity.getEntityWorld().setBlockState(entity.getPosition().down().east(), Blocks.AIR.getDefaultState());
 			entity.getEntityWorld().setBlockState(entity.getPosition().down().east().north(), Blocks.AIR.getDefaultState());

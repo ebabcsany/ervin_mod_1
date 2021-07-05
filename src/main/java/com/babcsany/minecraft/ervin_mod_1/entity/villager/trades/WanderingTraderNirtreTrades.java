@@ -84,7 +84,7 @@ public class WanderingTraderNirtreTrades {
            new WanderingTraderNirtreTrades.ItemsFor20ShzBlocksAndItemsTrade(isBurnableBlockItemInit.TBRUHV.get(), 23, com.babcsany.minecraft.ervin_mod_1.init.item.block.isBurnableBlockItemInit.GNRTHIRJ.get(), 1, 1000, 30),
            new WanderingTraderNirtreTrades.ItemsForShzsAndBlocksTrade(com.babcsany.minecraft.ervin_mod_1.init.item.block.isBurnableBlockItemInit.GNRTHIRJ.get(), 7, isBurnableBlockItemInit.NETHER_PORTAL.get(), 1, 1000, 4),
            new WanderingTraderNirtreTrades.ItemsFor64NirtksAndBlocksTrade(isBurnableBlockItemInit.NIRTKB.get(), 64, isBurnableBlockItemInit.EPKIN.get(), 1, 1000, 1),
-           new WanderingTraderNirtreTrades.ItemsFor40EpkinsAndItemsTrade(isBurnableBlockItemInit.NETHER_PORTAL.get(), 10, isBurnableSpecialItemInit.TROIF.get(), 1, 1, 1),
+           new WanderingTraderNirtreTrades.ItemsFor40EpkinsAndItemsTrade(isBurnableBlockItemInit.NETHER_PORTAL.get(), 10, isBurnableSpecialItemInit.TROIF.get(), 1, 100, 1),
            new WanderingTraderNirtreTrades.ItemsForNirtksAndBlocksTrade(com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.AIR.get(), 1, isBurnableBlockItemInit.NIRTKB.get(), 1, 1000, 1),
            new WanderingTraderNirtreTrades.EnchantedBookForFirnsTrade(10),
            new WanderingTraderNirtreTrades.ItemsForFirtBlocksTrade(ModSpawnEggItemInit.DGRURB_SPAWN_EGG.get(), 20, 1, 20, 3),

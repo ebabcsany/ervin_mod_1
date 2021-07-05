@@ -50,7 +50,7 @@ public class ModBoatEntityhj extends BoatEntity {
    public Item getItemBoat() {
       switch(this.getModBoatType()) {
          default:
-            return com.babcsany.minecraft.init.ItemInit.FIRG_BOAT;
+            return com.babcsany.minecraft.init.item.ItemInit.FIRG_BOAT;
          case FRIM:
             return ItemInit.FRIM_BOAT.get();
       }

@@ -216,10 +216,6 @@ public abstract class ItemGroup {
       return index < 13 ? 0 : ((index - 13) / 10) + 1;
    }
 
-   public boolean hasSearchBar() {
-      return index == ERVIN_MOD_1.index;
-   }
-
    /**
     * Gets the width of the search bar of the creative tab, use this if your
     * creative tab name overflows together with a custom texture.

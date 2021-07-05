@@ -15,4 +15,9 @@ public class GrintBlock extends BlockItem {
    public int getUseDuration(ItemStack stack) {
       return 512;
    }
+
+   @Override
+   public int getBurnTime(ItemStack itemStack) {
+      return 160000;
+   }
 }

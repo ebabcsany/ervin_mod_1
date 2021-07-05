@@ -19,8 +19,6 @@
 
 package net.minecraftforge.common;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.player.PlayerEntity1;
-import com.babcsany.minecraft.ervin_mod_1.event.entity.living.EntitySetAttackTargetEvent;
 import com.google.common.base.Throwables;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Queues;
@@ -105,7 +103,7 @@ import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ForgeHooks
+public class ForgeHooks extends com.babcsany.minecraft.forge.hooks.ForgeHooks
 {
     private static final Logger LOGGER = LogManager.getLogger();
     private static final Marker FORGEHOOKS = MarkerManager.getMarker("FORGEHOOKS");
@@ -253,11 +251,6 @@ public class ForgeHooks
     public static void onLivingSetAttackTarget(LivingEntity entity, LivingEntity target)
     {
         MinecraftForge.EVENT_BUS.post(new LivingSetAttackTargetEvent(entity, target));
-    }
-
-    public static void onLivingSetAttackTarget(Entity entity, Entity target)
-    {
-        MinecraftForge.EVENT_BUS.post(new EntitySetAttackTargetEvent(entity, target));
     }
 
     public static boolean onLivingUpdate(LivingEntity entity)
@@ -647,15 +640,9 @@ public class ForgeHooks
     }
 
     private static ThreadLocal<PlayerEntity> craftingPlayer = new ThreadLocal<PlayerEntity>();
-    private static ThreadLocal<PlayerEntity1> craftingPlayer1 = new ThreadLocal<PlayerEntity1>();
     public static void setCraftingPlayer(PlayerEntity player)
     {
         craftingPlayer.set(player);
-    }
-
-    public static void setCraftingPlayer1(PlayerEntity1 player)
-    {
-        craftingPlayer1.set(player);
     }
     public static PlayerEntity getCraftingPlayer()
     {
@@ -791,28 +778,6 @@ public class ForgeHooks
            ret.freeze();
 
         return ret;
-    }
-
-    public static FluidAttributes createVanillaFluidAttributes(Fluid fluid)
-    {
-        if (fluid instanceof EmptyFluid)
-            return FluidAttributes.builder(null, null)
-                    .translationKey("block.minecraft.air")
-                    .color(0).density(0).temperature(0).luminosity(0).viscosity(0).build(fluid);
-        if (fluid instanceof WaterFluid)
-            return FluidAttributes.Water.builder(
-                    new ResourceLocation("block/water_still"),
-                    new ResourceLocation("block/water_flow"))
-                    .overlay(new ResourceLocation("block/water_overlay"))
-                    .translationKey("block.minecraft.water")
-                    .color(0xFF3F76E4).build(fluid);
-        if (fluid instanceof LavaFluid)
-            return FluidAttributes.builder(
-                    new ResourceLocation("block/lava_still"),
-                    new ResourceLocation("block/lava_flow"))
-                    .translationKey("block.minecraft.lava")
-                    .luminosity(15).density(3000).viscosity(6000).temperature(1300).build(fluid);
-        throw new RuntimeException("Mod fluids must override createAttributes.");
     }
 
     private static class LootTableContext

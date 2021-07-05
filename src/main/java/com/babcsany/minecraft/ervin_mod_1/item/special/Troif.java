@@ -21,7 +21,7 @@ public class Troif extends Item {
 
 	@Override
 	public Rarity getRarity(ItemStack stack) {
-		return Rarity.create("test", TextFormatting.fromColorIndex(102134634));
+		return Rarity.create("test", TextFormatting.AQUA);
 	}
 
 	@Override
@@ -31,7 +31,7 @@ public class Troif extends Item {
 	}
 
 	public enum ModRarity implements IExtensibleEnum {
-		TEST(TextFormatting.fromColorIndex(32456));
+		TEST(TextFormatting.AQUA);
 
 		public final TextFormatting color;
 

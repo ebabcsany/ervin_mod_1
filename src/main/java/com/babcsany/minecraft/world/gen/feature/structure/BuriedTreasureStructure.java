@@ -30,13 +30,13 @@ public class BuriedTreasureStructure extends Structure<BuriedTreasureConfig> {
    }
 
    public static class Start extends StructureStart<BuriedTreasureConfig> {
-      public Start(Structure<BuriedTreasureConfig> p_i225799_1_, int p_i225799_2_, int p_i225799_3_, MutableBoundingBox p_i225799_4_, int p_i225799_5_, long p_i225799_6_) {
-         super(p_i225799_1_, p_i225799_2_, p_i225799_3_, p_i225799_4_, p_i225799_5_, p_i225799_6_);
+      public Start(Structure<BuriedTreasureConfig> structure, int chunkPosX, int chunkPosZ, MutableBoundingBox bounds, int references, long rand) {
+         super(structure, chunkPosX, chunkPosZ, bounds, references, rand);
       }
 
-      public void func_230364_a_(ChunkGenerator p_230364_1_, TemplateManager p_230364_2_, int p_230364_3_, int p_230364_4_, Biome p_230364_5_, BuriedTreasureConfig p_230364_6_) {
-         int i = p_230364_3_ * 16;
-         int j = p_230364_4_ * 16;
+      public void func_230364_a_(ChunkGenerator chunkGenerator, TemplateManager templateManager, int i1, int i2, Biome biome, BuriedTreasureConfig config) {
+         int i = i1 * 16;
+         int j = i2 * 16;
          BlockPos blockpos = new BlockPos(i + 9, 90, j + 9);
          this.components.add(new BuriedTreasure.Piece(blockpos));
          this.recalculateStructureSize();

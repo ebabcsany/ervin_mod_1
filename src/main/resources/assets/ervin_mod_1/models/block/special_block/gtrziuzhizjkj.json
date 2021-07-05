@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "up": "ervin_mod_1:block/special_block/gtrziuzhizjkj/_y_",
+    "down": "ervin_mod_1:block/special_block/gtrziuzhizjkj/_y_",
+    "north": "ervin_mod_1:block/special_block/gtrziuzhizjkj/_z_",
+    "east": "ervin_mod_1:block/special_block/gtrziuzhizjkj/_x_",
+    "west": "ervin_mod_1:block/special_block/gtrziuzhizjkj/_x_",
+    "south": "ervin_mod_1:block/special_block/gtrziuzhizjkj/_z_",
+    "particle": "ervin_mod_1:block/special_block/gtrziuzhizjkj/_z_",
+  }
+}

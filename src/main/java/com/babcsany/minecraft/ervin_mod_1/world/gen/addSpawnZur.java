@@ -1,8 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.world.gen;
 
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
-import com.babcsany.minecraft.init.EntityInit;
-import com.babcsany.minecraft.ervin_mod_1.init.FeatureInit;
+import com.babcsany.minecraft.init.*;
 import com.babcsany.minecraft.ervin_mod_1.world.gen.feature.GenOreFeatureConfig;
 import com.google.common.collect.Lists;
 import net.minecraft.block.BlockState;

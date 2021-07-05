@@ -107,9 +107,4 @@ public class ItemInit {
     public static final RegistryObject<Item> GWURST_FEATHER = ITEMS.register("gwurst_feather", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
     public static final RegistryObject<Item> HTRAW = ITEMS.register("htraw", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
     public static final RegistryObject<Item> HTRAW_MEAL = ITEMS.register("htraw_meal", () -> new HtrawMealItem((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
-    public static final Item LIGHT_BLUE1_DYEM = register("ervin_mod_1:light_blue1_dyel", new DyeItemInit(DyeColorInit.LIGHT_BLUE, (new Item.Properties()).group(net.minecraft.item.ItemGroup.MATERIALS)));
-
-    private static Item register(String key, Item itemIn) {
-        return Ervin_mod_1.itemRegister(new ResourceLocation(key), itemIn);
-    }
 }

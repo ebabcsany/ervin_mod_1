@@ -93,7 +93,7 @@
     },
     {
       "rolls": {
-        "min": 1.0,
+        "min": 0.0,
         "max": 3.0,
         "type": "minecraft:uniform"
       },
@@ -111,7 +111,7 @@
               }
             }
           ],
-          "name": "minecraft:emerald"
+          "name": "ervin_mod_1:sriunk"
         },
         {
           "type": "minecraft:item",
@@ -126,7 +126,7 @@
               }
             }
           ],
-          "name": "minecraft:diamond"
+          "name": "ervin_mod_1:viltdrop"
         },
         {
           "type": "minecraft:item",
@@ -135,13 +135,13 @@
             {
               "function": "minecraft:set_count",
               "count": {
-                "min": 1.0,
-                "max": 5.0,
+                "min": -40.0,
+                "max": 160.0,
                 "type": "minecraft:uniform"
               }
             }
           ],
-          "name": "minecraft:prismarine_crystals"
+          "name": "ervin_mod_1:srurg"
         }
       ]
     },
@@ -154,16 +154,19 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:leather_chestplate"
+          "name": "ervin_mod_1:firt_chestplate"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:iron_sword"
+          "name": "ervin_mod_1:firt_sword"
         }
       ]
     },
     {
-      "rolls": 2,
+      "rolls": {
+        "min": 0,
+        "max": 2
+      },
       "entries": [
         {
           "type": "minecraft:item",
@@ -177,7 +180,7 @@
               }
             }
           ],
-          "name": "minecraft:cooked_cod"
+          "name": "ervin_mod_1:cooked_gubrov"
         },
         {
           "type": "minecraft:item",

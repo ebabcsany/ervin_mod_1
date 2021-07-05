@@ -1,6 +1,8 @@
 package com.babcsany.minecraft.world.gen.feature;
 
+import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.world.storage.loot.LootTables1;
+import com.babcsany.minecraft.ervin_mod_1.world.storage.loot.ModLootTables;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.nbt.CompoundNBT;
@@ -42,7 +44,7 @@ public class BuriedTreasure {
          while(blockpos$mutable.getY() > 0) {
             BlockState blockstate = p_230383_1_.getBlockState(blockpos$mutable);
             BlockState blockstate1 = p_230383_1_.getBlockState(blockpos$mutable.down());
-            if (blockstate1 == Blocks.SANDSTONE.getDefaultState() || blockstate1 == Blocks.STONE.getDefaultState() || blockstate1 == Blocks.ANDESITE.getDefaultState() || blockstate1 == Blocks.GRANITE.getDefaultState() || blockstate1 == Blocks.DIORITE.getDefaultState()) {
+            if (blockstate1 == Blocks.SANDSTONE.getDefaultState() || blockstate1 == Blocks.STONE.getDefaultState() || blockstate1 == BlockItemInit.BLACK_STONE.get().getDefaultState() || blockstate1 == BlockItemInit.BLUE_STONE.get().getDefaultState() || blockstate1 == BlockItemInit.BROWN_STONE.get().getDefaultState() || blockstate1 == BlockItemInit.CYAN_STONE.get().getDefaultState() || blockstate1 == BlockItemInit.GREEN_STONE.get().getDefaultState() || blockstate1 == BlockItemInit.LIGHT_BLUE1_STONE.get().getDefaultState() || blockstate1 == BlockItemInit.LIGHT_BLUE_STONE.get().getDefaultState() || blockstate1 == BlockItemInit.LIGHT_GRAY_STONE.get().getDefaultState() || blockstate1 == BlockItemInit.LIME_STONE.get().getDefaultState() || blockstate1 == BlockItemInit.MAGENTA_STONE.get().getDefaultState() || blockstate1 == BlockItemInit.ORANGE_STONE.get().getDefaultState() || blockstate1 == BlockItemInit.PINK_STONE.get().getDefaultState() || blockstate1 == BlockItemInit.PURPLE_STONE.get().getDefaultState() || blockstate1 == BlockItemInit.RED_STONE.get().getDefaultState() || blockstate1 == BlockItemInit.WHITE_STONE.get().getDefaultState() || blockstate1 == BlockItemInit.YELLOW_STONE.get().getDefaultState() || blockstate1 == Blocks.ANDESITE.getDefaultState() || blockstate1 == Blocks.GRANITE.getDefaultState() || blockstate1 == Blocks.DIORITE.getDefaultState()) {
                BlockState blockstate2 = !blockstate.isAir() && !this.func_204295_a(blockstate) ? blockstate : Blocks.SAND.getDefaultState();
 
                for(Direction direction : Direction.values()) {
@@ -60,7 +62,7 @@ public class BuriedTreasure {
                }
 
                this.boundingBox = new MutableBoundingBox(blockpos$mutable.getX(), blockpos$mutable.getY(), blockpos$mutable.getZ(), blockpos$mutable.getX(), blockpos$mutable.getY(), blockpos$mutable.getZ());
-               return this.generateChest(p_230383_1_, p_230383_5_, p_230383_4_, blockpos$mutable, LootTables1.CHESTS_BURIED_TREASURE, null);
+               return this.generateChest(p_230383_1_, p_230383_5_, p_230383_4_, blockpos$mutable, ModLootTables.CHESTS_BURIED_TREASURE, null);
             }
 
             blockpos$mutable.move(0, -1, 0);

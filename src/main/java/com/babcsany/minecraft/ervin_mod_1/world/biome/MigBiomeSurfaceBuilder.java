@@ -35,9 +35,9 @@ public class MigBiomeSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig>
 			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock,
 					defaultFluid, seaLevel, seed,
 					new SurfaceBuilderConfig(
-							isBurnableBlockItemInit.SRIUNK_BLOCK.get().getDefaultState(),
-							isBurnableBlockItemInit.TRUGN.get().getDefaultState(),
-							BlockItemInit.TRINKS.get().getDefaultState()
+							Blocks.GRASS_BLOCK.getDefaultState(),
+							isBurnableBlockItemInit.SRURG.get().getDefaultState(),
+							BlockItemInit.GNITH_BLOCK.get().getDefaultState()
 					));
 		}
 	}

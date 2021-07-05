@@ -98,7 +98,7 @@
         {
           "type": "minecraft:item",
           "weight": 4,
-          "name": "ervin_mod_1:durt"
+          "name": "ervin_mod_1:durt/durt"
         }
       ]
     },
@@ -543,34 +543,6 @@
           "type": "minecraft:item",
           "weight": 2,
           "name": "ervin_mod_1:leaves"
-        }
-      ]
-    },
-    {
-      "rolls": {
-        "min": 0,
-        "max": 4
-      },
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:spawn_eggs/srach_spawn_egg"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:spawn_eggs/vilt_spawn_egg"
-        }
-      ]
-    },
-    {
-      "rolls": {
-        "min": 0,
-        "max": 2
-      },
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "name": "ervin_mod_1:spawn_eggs/hhij_spawn_egg"
         }
       ]
     },

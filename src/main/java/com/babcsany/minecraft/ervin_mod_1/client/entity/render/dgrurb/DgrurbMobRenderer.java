@@ -136,5 +136,5 @@ public abstract class DgrurbMobRenderer<T extends DgrurbMobEntity, M extends Ent
 
    }
 
-   protected abstract void addLayer(DgrurbkAuraLayer dgrurbkAuraLayer);
+   //protected abstract void addLayer(DgrurbkAuraLayer dgrurbkAuraLayer);
 }

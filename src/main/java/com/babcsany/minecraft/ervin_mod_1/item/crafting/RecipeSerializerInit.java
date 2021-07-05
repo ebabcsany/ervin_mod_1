@@ -1,16 +1,10 @@
 package com.babcsany.minecraft.ervin_mod_1.item.crafting;
 
-import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.item.crafting.book.BlackBookCloningRecipe;
-import com.babcsany.minecraft.init.ItemInit;
-import net.minecraft.item.Item;
-import net.minecraft.item.crafting.BookCloningRecipe;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.SpecialRecipeSerializer;
 import net.minecraft.util.registry.Registry;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
 
 public class RecipeSerializerInit<T extends IRecipe<?>> {
 

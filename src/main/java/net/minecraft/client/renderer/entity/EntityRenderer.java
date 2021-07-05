@@ -21,8 +21,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 public abstract class EntityRenderer<T extends Entity> {
    protected final EntityRendererManager renderManager;
-   protected float shadowSize;
-   protected float shadowOpaque = 1.0F;
+   public float shadowSize;
+   public float shadowOpaque = 1.0F;
 
    protected EntityRenderer(EntityRendererManager renderManager) {
       this.renderManager = renderManager;

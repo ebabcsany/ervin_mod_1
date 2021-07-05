@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:block",
+          "name": "ervin_mod_1:special_block/gtrziuzhizjkj"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:special_block/gtrziuzhizjkj"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ]
+    }
+  ]
+}

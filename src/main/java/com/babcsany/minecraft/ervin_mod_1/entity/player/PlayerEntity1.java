@@ -252,7 +252,7 @@ public abstract class PlayerEntity1 extends PlayerEntity {
       return this.eyesInWaterPlayer;
    }
 
-   private void updateTurtleHelmet() {
+   public void updateTurtleHelmet() {
       ItemStack itemstack = this.getItemStackFromSlot(EquipmentSlotType.HEAD);
       if (itemstack.getItem() == Items.TURTLE_HELMET && !this.areEyesInFluid(FluidTags.WATER)) {
          this.addPotionEffect(new EffectInstance(Effects.WATER_BREATHING, 200, 0, false, false, true));

@@ -1,10 +1,10 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.animal;
 
-import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.food.BlockFoodItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.food.SpecialBlockFoodItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.food.isBurnableFoodItemInit;
+import com.babcsany.minecraft.init.EntityInit;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
@@ -69,7 +69,7 @@ public class SrachEntity extends AnimalEntity {
       ItemStack itemstack = p_230254_1_.getHeldItem(p_230254_2_);
       if (itemstack.getItem() == Items.BUCKET && !this.isChild()) {
          p_230254_1_.playSound(SoundEvents.ENTITY_COW_MILK, 1.0F, 1.0F);
-         ItemStack itemstack1 = DrinkHelper.func_241445_a_(itemstack, p_230254_1_, ItemInit.JURK_BUCKETI.get().getDefaultInstance());
+         ItemStack itemstack1 = DrinkHelper.func_241445_a_(itemstack, p_230254_1_, com.babcsany.minecraft.init.item.ItemInit.JURK_BUCKET.getDefaultInstance());
          p_230254_1_.setHeldItem(p_230254_2_, itemstack1);
          return ActionResultType.func_233537_a_(this.world.isRemote);
       } else {
@@ -78,7 +78,7 @@ public class SrachEntity extends AnimalEntity {
    }
 
    public SrachEntity createChild(AgeableEntity ageable) {
-      return EntityInit.SRACH_ENTITY.get().create(this.world);
+      return EntityInit.SRACH_ENTITY.create(this.world);
    }
 
    public boolean isBreedingItem(ItemStack stack) {

@@ -2,6 +2,9 @@ package com.babcsany.minecraft.ervin_mod_1.item;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.DgrurbAgeableEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.DgrurbMobEntity;
+import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
+import com.babcsany.minecraft.ervin_mod_1.reutrien.AbstractReutrien;
+import com.babcsany.minecraft.ervin_mod_1.tile_entity.ReutrienTileEntity;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Maps;
 import java.util.Map;
@@ -63,6 +66,19 @@ public class SpawnEggItem1 extends Item {
             TileEntity tileentity = world.getTileEntity(blockpos);
             if (tileentity instanceof MobSpawnerTileEntity) {
                AbstractSpawner abstractspawner = ((MobSpawnerTileEntity)tileentity).getSpawnerBaseLogic();
+               EntityType<?> entitytype1 = this.getType(itemstack.getTag());
+               abstractspawner.setEntityType(entitytype1);
+               tileentity.markDirty();
+               world.notifyBlockUpdate(blockpos, blockstate, blockstate, 3);
+               itemstack.shrink(1);
+               return ActionResultType.CONSUME;
+            }
+         }
+
+         if (blockstate.isIn(BlockItemInit.REUTRIEN.get())) {
+            TileEntity tileentity = world.getTileEntity(blockpos);
+            if (tileentity instanceof ReutrienTileEntity) {
+               AbstractReutrien abstractspawner = ((ReutrienTileEntity)tileentity).getReutrienBaseLogic();
                EntityType<?> entitytype1 = this.getType(itemstack.getTag());
                abstractspawner.setEntityType(entitytype1);
                tileentity.markDirty();

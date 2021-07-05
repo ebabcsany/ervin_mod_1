@@ -309,6 +309,11 @@ public interface IForgeItem
         return false;
     }
 
+    default boolean onEntityItemUpdateDown(ItemStack stack, ItemEntity entity)
+    {
+        return false;
+    }
+
     /**
      * Gets a list of tabs that items belonging to this class can display on,
      * combined properly with getSubItems allows for a single item to span many

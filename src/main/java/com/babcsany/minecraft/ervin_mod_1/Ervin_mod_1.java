@@ -7,9 +7,21 @@ import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.dgrurbk.Dgrurbk;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.WanderingTraderNirtreEntity;
 import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.Ervin_mod_1_;
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.minecraft.block.MinecraftBlocks;
 import com.babcsany.minecraft.ervin_mod_1.world.gen.FeatureGen;
+import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
+import net.minecraft.client.renderer.Atlases;
+import net.minecraft.fluid.Fluid;
+import net.minecraft.inventory.container.PlayerContainer;
+import net.minecraft.item.crafting.RecipeManager;
+import net.minecraft.tileentity.AbstractFurnaceTileEntity;
+import net.minecraft.util.RegistryKey;
+import net.minecraft.util.Util;
+import net.minecraft.util.registry.MutableRegistry;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraft.block.*;
 import net.minecraft.client.renderer.model.RenderMaterial;
@@ -86,17 +98,21 @@ import org.apache.logging.log4j.Logger;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static com.babcsany.minecraft.forge.DeferredWorkQueue.runLater;
+import static net.minecraft.client.renderer.model.ModelBakery.DESTROY_STAGES;
+
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(Ervin_mod_1.MOD_ID)
 public class Ervin_mod_1 {
 
-    public static final RenderMaterial LOCATION_WATER_FLOW = new RenderMaterial(AtlasTexture.LOCATION_BLOCKS_TEXTURE, new ResourceLocation("block/water_flow"));
-    public static final RenderMaterial LOCATION_WATER_OVERLAY = new RenderMaterial(AtlasTexture.LOCATION_BLOCKS_TEXTURE, new ResourceLocation("block/water_overlay"));
+    public static final RenderMaterial LOCATION_JURK_FLOW = new RenderMaterial(AtlasTexture.LOCATION_BLOCKS_TEXTURE, new ResourceLocation(Ervin_mod_1.MOD_ID,"block/fluid/jurk_flow"));
+    public static final RenderMaterial LOCATION_JURK_OVERLAY = new RenderMaterial(AtlasTexture.LOCATION_BLOCKS_TEXTURE, new ResourceLocation(Ervin_mod_1.MOD_ID,"block/fluid/jurk_overlay"));
     public static final String MOD_ID = "ervin_mod_1";
     //public static final ITag<EntityType<?>> blacklisted = EntityTypeTags.func_232896_a_((new ResourceLocation("ervin_mod_1", "blacklisted")).toString());
     // Directly reference a log4j logger.
     public static final Logger LOGGER = LogManager.getLogger();
-    public PlayerEntity player;
+    //public PlayerEntity player;
+    //public Fluid fluid;
 
     public Ervin_mod_1() {
         // Register the setup method for modloading
@@ -164,7 +180,7 @@ public class Ervin_mod_1 {
         com.babcsany.minecraft.ervin_mod_1.init.minecraft.block.item.BlockNamedItemInit.BLOCK_ITEMS.register(modEventBus);
         com.babcsany.minecraft.ervin_mod_1.init.item.block.isBurnableBlockItemInit.BLOCK_ITEMS.register(modEventBus);
 
-        Ervin_mod_1_.ervin_mod_1();
+        Ervin_mod_1_.init();
     }
 
     private void setup(final FMLCommonSetupEvent event) {
@@ -182,7 +198,7 @@ public class Ervin_mod_1 {
             GlobalEntityTypeAttributes.put(EntityInit.ZUR_NIRTRE_ENTITY.get(), ZurNirtreEntity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(EntityInit.FREIN_ENTITY.get(), FreinEntity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(EntityInit.VILT_ENTITY.get(), ViltEntity.setCustomAttributes().create());
-            GlobalEntityTypeAttributes.put(EntityInit.SRACH_ENTITY.get(), SrachEntity.setCustomAttributes().create());
+            GlobalEntityTypeAttributes.put(com.babcsany.minecraft.init.EntityInit.SRACH_ENTITY, SrachEntity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(EntityInit.SHERT_ENTITY.get(), ShertEntity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(EntityInit.HHIJ_ENTITY.get(), HhijEntity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(EntityInit.WANDERING_TRADER_NIRTRE_ENTITY.get(), WanderingTraderNirtreEntity.setCustomAttributes().create());
@@ -190,15 +206,15 @@ public class Ervin_mod_1 {
             GlobalEntityTypeAttributes.put(EntityInit.TRADER_NIRTREP_ENTITY.get(), TraderNirtre1Entity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(EntityInit.$_TRADER_ENTITY.get(), $TraderEntity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(EntityInit.ZOMBIE_TRADER_ENTITY.get(), ZombieTraderEntity.setCustomAttributes().create());
-            GlobalEntityTypeAttributes.put(com.babcsany.minecraft.init.EntityInit.GUBROV_ENTITY, GubrovEntity.setCustomAttributes().create());
+            GlobalEntityTypeAttributes.put(com.babcsany.minecraft.init.EntityInit.GUBROV, GubrovEntity.setCustomAttributes().create());
             EntitySpawnPlacementRegistry.register(EntityInit.$_TRADER_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, Abstract$TraderEntity::canSpawnOn);
             EntitySpawnPlacementRegistry.register(EntityInit.DGRURB_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canSpawnOn);
             EntitySpawnPlacementRegistry.register(EntityInit.FREIN_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, FreinEntity::func_223366_c);
-            EntitySpawnPlacementRegistry.register(com.babcsany.minecraft.init.EntityInit.GUBROV_ENTITY, EntitySpawnPlacementRegistry.PlacementType.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AbstractFishEntity::func_223363_b);
+            EntitySpawnPlacementRegistry.register(com.babcsany.minecraft.init.EntityInit.GUBROV, EntitySpawnPlacementRegistry.PlacementType.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AbstractFishEntity::func_223363_b);
             EntitySpawnPlacementRegistry.register(EntityInit.HHIJ_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, HhijAnimalEntity::canAnimalSpawn);
             EntitySpawnPlacementRegistry.register(EntityInit.ROVENT_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, RoventEntity::canRoventSpawn);
             EntitySpawnPlacementRegistry.register(EntityInit.SHERT_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ShertEntity::func_223318_c);
-            EntitySpawnPlacementRegistry.register(EntityInit.SRACH_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::canAnimalSpawn);
+            EntitySpawnPlacementRegistry.register(com.babcsany.minecraft.init.EntityInit.SRACH_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::canAnimalSpawn);
             EntitySpawnPlacementRegistry.register(EntityInit.TRADER_NIRTRE_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canSpawnOn);
             EntitySpawnPlacementRegistry.register(EntityInit.VILT_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::canAnimalSpawn);
             EntitySpawnPlacementRegistry.register(EntityInit.WANDERING_TRADER_NIRTRE_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canSpawnOn);
@@ -211,15 +227,10 @@ public class Ervin_mod_1 {
             EntitySpawnPlacementRegistry.getPlacementType(EntityInit.LIWRAY.get());
             EntitySpawnPlacementRegistry.getPlacementType(com.babcsany.minecraft.init.EntityInit.ZUR_ENTITY);
 
-            /*float f_0_3F = 0.3F;
-            float f_0_35F = 0.35F;
-            float f_0_4F = 0.4F;
-            float f_0_45F = 0.45F;
-            float f_0_5F = 0.5F;
-            float f_0_65F = 0.65F;
-            float f_0_7F = 0.7F;
-            float f3 = 0.85F;
-            float f4 = 1.0F;*/
+            FireBlock fireblock = (FireBlock)Blocks.FIRE;
+            //fireblock.setFireInfo(com.babcsany.minecraft.init.BlockInit.FIRG_PLANKS, 5, 20);
+            //fireblock.setFireInfo(BlockItemInit.FRIM_PLANKS.get(), 5, 20);
+
             ComposterBlock.registerCompostable(0.3F, BlockNamedItemInit.TARG_SEEDS.get());
             ComposterBlock.registerCompostable(0.35F, BlockItemInit.FRIM_LEAVES.get());
             ComposterBlock.registerCompostable(0.35F, BlockItemInit.FRIM_SAPLING.get());
@@ -250,7 +261,7 @@ public class Ervin_mod_1 {
         /*Map<Item, Integer> map = Maps.newLinkedHashMap();
         AbstractFurnaceTileEntity.addItemBurnTime(map, BlockItemInit.COAL_SLAB.get(), 8000);
         AbstractFurnaceTileEntity.addItemBurnTime(map, BlockItemInit.CHARCOAL_SLAB.get(), 8000);
-        AbstractFurnaceTileEntity.addItemBurnTime(map, com.babcsany.minecraft.ervin_mod_1.init.minecraft.block.BlockItemInit.COAL_STAIRS.get(), 12000);
+        AbstractFurnaceTileEntity.addItemBurnTime(map, com.babcsany.minecraft.ervin_mod_1.init.minecraft.block.MinecraftBlocks.COAL_STAIRS.get(), 12000);
         AbstractFurnaceTileEntity.addItemBurnTime(map, BlockItemInit.CHARCOAL_STAIRS.get(), 12000);
         AbstractFurnaceTileEntity.addItemBurnTime(map, BlockItemInit.CHARCOAL_BLOCK.get(), 16000);
         AbstractFurnaceTileEntity.addItemBurnTime(map, isBurnableItemInit.GART.get(), 45000);
@@ -268,50 +279,20 @@ public class Ervin_mod_1 {
         AbstractFurnaceTileEntity.addItemBurnTime(map, isBurnableBlockItemInit.TRAGN.get(), 364688750);
         AbstractFurnaceTileEntity.addItemBurnTime(map, BlockItemInit.CHARCOAL_BLOCK.get(), 16000);
         AbstractFurnaceTileEntity.addItemBurnTime(map, ItemInit.FIRT.get(), 1200);
-        AbstractFurnaceTileEntity.addItemBurnTime(map, isBurnableBlockFoodItemInit.FIRG.get(), 600);
+        AbstractFurnaceTileEntity.addItemBurnTime(map, SpecialBlockFoodItemInit.FIRG.get(), 600);
         AbstractFurnaceTileEntity.addItemBurnTime(map, isBurnableFoodItemInit.GRINT.get(), 5400);
-        AbstractFurnaceTileEntity.addItemBurnTime(map, isBurnableBlockItemInit.GRINT_BLOCK.get(), 48600);
+        AbstractFurnaceTileEntity.addItemBurnTime(map, SpecialBlockFoodItemInit.GRINT_BLOCK.get(), 48600);
         AbstractFurnaceTileEntity.addItemBurnTime(map, isBurnableFoodItemInit.DURG.get(), 437400);
-        AbstractFurnaceTileEntity.addItemBurnTime(map, isBurnableBlockItemInit.GRINT_SLAB.get(), 24300);
-        AbstractFurnaceTileEntity.addItemBurnTime(map, isBurnableBlockItemInit.GRINT_STAIRS.get(), 37350);
-        AbstractFurnaceTileEntity.addItemBurnTime(map, isBurnableBlockFoodItemInit.FIRG_SLAB.get(), 300);
-        AbstractFurnaceTileEntity.addItemBurnTime(map, isBurnableBlockFoodItemInit.FIRG_STAIRS.get(), 450);
+        AbstractFurnaceTileEntity.addItemBurnTime(map, SpecialBlockFoodItemInit.GRINT_SLAB.get(), 24300);
+        AbstractFurnaceTileEntity.addItemBurnTime(map, SpecialBlockFoodItemInit.GRINT_STAIRS.get(), 37350);
+        AbstractFurnaceTileEntity.addItemBurnTime(map, SpecialBlockFoodItemInit.FIRG_SLAB.get(), 300);
+        AbstractFurnaceTileEntity.addItemBurnTime(map, SpecialBlockFoodItemInit.FIRG_STAIRS.get(), 450);
         AbstractFurnaceTileEntity.addItemBurnTime(map, com.babcsany.minecraft.ervin_mod_1.init.item.tool.ToolItemInit.FIRT_AXE.get(), 3800);
         AbstractFurnaceTileEntity.addItemBurnTime(map, com.babcsany.minecraft.ervin_mod_1.init.item.tool.ToolItemInit.FIRT_HOE.get(), 2600);
         AbstractFurnaceTileEntity.addItemBurnTime(map, ArmorItemInit.FIRT_BOOTS.get(), 4800);
         AbstractFurnaceTileEntity.addItemBurnTime(map, ArmorItemInit.FIRT_HELMET.get(), 6000);
         AbstractFurnaceTileEntity.addItemBurnTime(map, BlockItemInit.FIRT_BLOCK.get(), 12000);*/
     }
-
-    /**protected static final Set<RenderMaterial> LOCATIONS_BUILTIN_TEXTURES = Util.make(Sets.newHashSet(), (p_229337_0_) -> {
-        p_229337_0_.add(LOCATION_WATER_FLOW);
-        //p_229337_0_.add(LOCATION_LAVA_FLOW);
-        p_229337_0_.add(LOCATION_WATER_OVERLAY);
-        //p_229337_0_.add(LOCATION_FIRE_0);
-        //p_229337_0_.add(LOCATION_FIRE_1);
-        p_229337_0_.add(BellTileEntityRenderer.BELL_BODY_TEXTURE);
-        p_229337_0_.add(ConduitTileEntityRenderer.BASE_TEXTURE);
-        p_229337_0_.add(ConduitTileEntityRenderer.CAGE_TEXTURE);
-        p_229337_0_.add(ConduitTileEntityRenderer.WIND_TEXTURE);
-        p_229337_0_.add(ConduitTileEntityRenderer.VERTICAL_WIND_TEXTURE);
-        p_229337_0_.add(ConduitTileEntityRenderer.OPEN_EYE_TEXTURE);
-        p_229337_0_.add(ConduitTileEntityRenderer.CLOSED_EYE_TEXTURE);
-        p_229337_0_.add(EnchantmentTableTileEntityRenderer.TEXTURE_BOOK);
-        //p_229337_0_.add(LOCATION_BANNER_BASE);
-        //p_229337_0_.add(LOCATION_SHIELD_BASE);
-        //p_229337_0_.add(LOCATION_SHIELD_NO_PATTERN);
-
-        for(ResourceLocation resourcelocation : DESTROY_STAGES) {
-            p_229337_0_.add(new RenderMaterial(AtlasTexture.LOCATION_BLOCKS_TEXTURE, resourcelocation));
-        }
-
-        p_229337_0_.add(new RenderMaterial(AtlasTexture.LOCATION_BLOCKS_TEXTURE, PlayerContainer1.EMPTY_ARMOR_SLOT_HELMET));
-        p_229337_0_.add(new RenderMaterial(AtlasTexture.LOCATION_BLOCKS_TEXTURE, PlayerContainer1.EMPTY_ARMOR_SLOT_CHESTPLATE));
-        p_229337_0_.add(new RenderMaterial(AtlasTexture.LOCATION_BLOCKS_TEXTURE, PlayerContainer1.EMPTY_ARMOR_SLOT_LEGGINGS));
-        p_229337_0_.add(new RenderMaterial(AtlasTexture.LOCATION_BLOCKS_TEXTURE, PlayerContainer1.EMPTY_ARMOR_SLOT_BOOTS));
-        p_229337_0_.add(new RenderMaterial(AtlasTexture.LOCATION_BLOCKS_TEXTURE, PlayerContainer1.EMPTY_ARMOR_SLOT_SHIELD));
-        Atlases.collectAllMaterials(p_229337_0_::add);
-    });* /
 
     /*private int getInventoryStackLimit() {
         return 2048;
@@ -371,8 +352,7 @@ public class Ervin_mod_1 {
             BlockItemInit.BLOCKS.getEntries().stream().map(RegistryObject::get).forEach(block -> {
                 if (!Blocks.contains(block)) {
                     final Item.Properties properties = new Item.Properties();
-                    properties.group(ItemGroup.ERVIN_MOD_1);
-                    //properties.group(ItemGroup.ERVIN_MOD_1_SEARCH);
+                    properties.group(ItemGroup.ERVIN_MOD_1).group(ItemGroup.ERVIN_MOD_1_SEARCH);
                     final BlockItem blockItem = new BlockItem(block, properties);
                     ResourceLocation registryName = block.getRegistryName();
                     if (null != registryName) {
@@ -480,16 +460,4 @@ public class Ervin_mod_1 {
     public static <T extends Entity> EntityType<T> entityRegister(String key, EntityType.Builder<T> builder) {
         return Registry.register(Registry.ENTITY_TYPE, key, builder.build(key));
     }
-
-    public void isYOutOfBounds(World world) {
-        world.isYOutOfBounds(1024);
-    }
-
-    /*public boolean isUsableByPlayer(PlayerEntity player) {
-        if (this.player.removed) {
-            return false;
-        } else {
-            return !(player.getDistanceSq(this.player) > 2048.0D);
-        }
-    }*/
 }

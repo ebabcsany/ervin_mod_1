@@ -1,7 +1,5 @@
 package net.minecraft.block;
 
-import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import com.google.common.collect.Lists;
 import net.minecraft.entity.Entity;
 import net.minecraft.fluid.FlowingFluid;
@@ -104,10 +102,10 @@ public class FlowingFluidBlock extends Block implements IBucketPickupHandler {
       return adjacentBlockState.getFluidState().getFluid().isEquivalentTo(this.fluid);
    }
 
-   /* *
+   /**
     * The type of render function called. MODEL for mixed tesr and static model, MODELBLOCK_ANIMATED for TESR-only,
     * LIQUID for vanilla liquids, INVISIBLE to skip all rendering
-    * @deprecated call via {@link IBlockState#getRenderType()} whenever possible. Implementing/overriding is fine.
+    * @deprecated call via {@link BlockState#getRenderType()} whenever possible. Implementing/overriding is fine.
     */
    public BlockRenderType getRenderType(BlockState state) {
       return BlockRenderType.INVISIBLE;
@@ -149,7 +147,7 @@ public class FlowingFluidBlock extends Block implements IBucketPickupHandler {
 
    }
 
-   private boolean reactWithNeighbors(World worldIn, BlockPos pos, BlockState state) {
+   protected boolean reactWithNeighbors(World worldIn, BlockPos pos, BlockState state) {
       if (this.fluid.isIn(FluidTags.LAVA)) {
          boolean flag = worldIn.getBlockState(pos.down()).isIn(Blocks.SOUL_SOIL);
 
@@ -165,28 +163,6 @@ public class FlowingFluidBlock extends Block implements IBucketPickupHandler {
 
                if (flag && worldIn.getBlockState(blockpos).isIn(Blocks.BLUE_ICE)) {
                   worldIn.setBlockState(pos, net.minecraftforge.event.ForgeEventFactory.fireFluidPlaceBlockEvent(worldIn, pos, pos, Blocks.BASALT.getDefaultState()));
-                  this.triggerMixEffects(worldIn, pos);
-                  return false;
-               }
-            }
-         }
-      }
-
-      if (this.fluid.isIn(FluidTags.LAVA)) {
-         boolean flag = worldIn.getBlockState(pos.down()).isIn(isBurnableBlockItemInit.TRIRIJ);
-
-         for(Direction direction : Direction.values()) {
-            if (direction != Direction.DOWN) {
-               BlockPos blockpos = pos.offset(direction);
-               if (worldIn.getFluidState(blockpos).isTagged(com.babcsany.minecraft.tags.FluidTags.JURK)) {
-                  Block block = worldIn.getFluidState(pos).isSource() ? BlockItemInit.DURT.get() : BlockItemInit.ORANGE_COBBLESTONE.get();
-                  worldIn.setBlockState(pos, net.minecraftforge.event.ForgeEventFactory.fireFluidPlaceBlockEvent(worldIn, pos, pos, block.getDefaultState()));
-                  this.triggerMixEffects(worldIn, pos);
-                  return false;
-               }
-
-               if (flag && worldIn.getBlockState(blockpos).isIn(BlockItemInit.KALT_BLOCK.get())) {
-                  worldIn.setBlockState(pos, net.minecraftforge.event.ForgeEventFactory.fireFluidPlaceBlockEvent(worldIn, pos, pos, BlockItemInit.EXAMPLE_BLOCK.get().getDefaultState()));
                   this.triggerMixEffects(worldIn, pos);
                   return false;
                }

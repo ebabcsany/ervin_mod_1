@@ -142,11 +142,11 @@ public class ShertEntity extends SrachEntity implements IShearable, net.minecraf
    }
 
    public void shear(SoundCategory category) {
-      this.world.playMovingSound((PlayerEntity)null, this, SoundEvents.ENTITY_MOOSHROOM_SHEAR, category, 1.0F, 1.0F);
+      this.world.playMovingSound(null, this, SoundEvents.ENTITY_MOOSHROOM_SHEAR, category, 1.0F, 1.0F);
       if (!this.world.isRemote()) {
          ((ServerWorld)this.world).spawnParticle(ParticleTypes.EXPLOSION, this.getPosX(), this.getPosYHeight(0.5D), this.getPosZ(), 1, 0.0D, 0.0D, 0.0D, 0.0D);
          this.remove();
-         SrachEntity srachentity = EntityInit.SRACH_ENTITY.get().create(this.world);
+         SrachEntity srachentity = com.babcsany.minecraft.init.EntityInit.SRACH_ENTITY.create(this.world);
          srachentity.setLocationAndAngles(this.getPosX(), this.getPosY(), this.getPosZ(), this.rotationYaw, this.rotationPitch);
          srachentity.setHealth(this.getHealth());
          srachentity.renderYawOffset = this.renderYawOffset;
@@ -254,7 +254,7 @@ public class ShertEntity extends SrachEntity implements IShearable, net.minecraf
       if (!world.isRemote()) {
          ((ServerWorld)this.world).spawnParticle(ParticleTypes.EXPLOSION, this.getPosX(), this.getPosYHeight(0.5D), this.getPosZ(), 1, 0.0D, 0.0D, 0.0D, 0.0D);
          this.remove();
-         SrachEntity srachentity = EntityInit.SRACH_ENTITY.get().create(this.world);
+         SrachEntity srachentity = com.babcsany.minecraft.init.EntityInit.SRACH_ENTITY.create(this.world);
          srachentity.setLocationAndAngles(this.getPosX(), this.getPosY(), this.getPosZ(), this.rotationYaw, this.rotationPitch);
          srachentity.setHealth(this.getHealth());
          srachentity.renderYawOffset = this.renderYawOffset;
