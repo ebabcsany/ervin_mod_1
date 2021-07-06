@@ -1,6 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.animal;
 
 import com.babcsany.minecraft.ervin_mod_1.world.storage.loot.LootTables1;
+import com.babcsany.minecraft.init.ParticleInit;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -15,7 +16,6 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.particles.IParticleData;
-import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
@@ -29,6 +29,7 @@ import net.minecraft.world.biome.Biomes;
 
 import javax.annotation.Nullable;
 import java.util.EnumSet;
+import java.util.Objects;
 import java.util.Random;
 
 public class FreinEntity extends MobEntity implements IMob {
@@ -48,9 +49,7 @@ public class FreinEntity extends MobEntity implements IMob {
       this.goalSelector.addGoal(2, new FreinEntity.AttackGoal(this));
       this.goalSelector.addGoal(3, new FreinEntity.FaceRandomGoal(this));
       this.goalSelector.addGoal(5, new FreinEntity.HopGoal(this));
-      this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, 10, true, false, (p_213811_1_) -> {
-         return Math.abs(p_213811_1_.getPosY() - this.getPosY()) <= 4.0D;
-      }));
+      this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, 10, true, false, (p_213811_1_) -> Math.abs(p_213811_1_.getPosY() - this.getPosY()) <= 4.0D));
       this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
    }
 
@@ -67,9 +66,9 @@ public class FreinEntity extends MobEntity implements IMob {
       this.dataManager.set(FREIN_SIZE, size);
       this.recenterBoundingBox();
       this.recalculateSize();
-      this.getAttribute(Attributes.MAX_HEALTH).setBaseValue((double)(size * size));
-      this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue((double)(0.2F + 0.1F * (float)size));
-      this.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue((double)size);
+      Objects.requireNonNull(this.getAttribute(Attributes.MAX_HEALTH)).setBaseValue(size * size);
+      Objects.requireNonNull(this.getAttribute(Attributes.MOVEMENT_SPEED)).setBaseValue(0.2F + 0.1F * (float)size);
+      Objects.requireNonNull(this.getAttribute(Attributes.ATTACK_DAMAGE)).setBaseValue(size);
       if (resetHealth) {
          this.setHealth(this.getMaxHealth());
       }
@@ -109,7 +108,7 @@ public class FreinEntity extends MobEntity implements IMob {
    }
 
    protected IParticleData getSquishParticle() {
-      return ParticleTypes.ITEM_SLIME;
+      return ParticleInit.ITEM_FREIN;
    }
 
    protected boolean isDespawnPeaceful() {
@@ -194,17 +193,17 @@ public class FreinEntity extends MobEntity implements IMob {
          for(int l = 0; l < k; ++l) {
             float f1 = ((float)(l % 2) - 0.5F) * f;
             float f2 = ((float)(l / 2) - 0.5F) * f;
-            FreinEntity slimeentity = this.getType().create(this.world);
+            FreinEntity freinEntity = this.getType().create(this.world);
             if (this.isNoDespawnRequired()) {
-               slimeentity.enablePersistence();
+               freinEntity.enablePersistence();
             }
 
-            slimeentity.setCustomName(itextcomponent);
-            slimeentity.setNoAI(flag);
-            slimeentity.setInvulnerable(this.isInvulnerable());
-            slimeentity.setSlimeSize(j, true);
-            slimeentity.setLocationAndAngles(this.getPosX() + (double)f1, this.getPosY() + 0.5D, this.getPosZ() + (double)f2, this.rand.nextFloat() * 360.0F, 0.0F);
-            this.world.addEntity(slimeentity);
+            freinEntity.setCustomName(itextcomponent);
+            freinEntity.setNoAI(flag);
+            freinEntity.setInvulnerable(this.isInvulnerable());
+            freinEntity.setSlimeSize(j, true);
+            freinEntity.setLocationAndAngles(this.getPosX() + (double)f1, this.getPosY() + 0.5D, this.getPosZ() + (double)f2, this.rand.nextFloat() * 360.0F, 0.0F);
+            this.world.addEntity(freinEntity);
          }
       }
 
@@ -377,7 +376,7 @@ public class FreinEntity extends MobEntity implements IMob {
          } else if (!livingentity.isAlive()) {
             return false;
          } else {
-            return livingentity instanceof PlayerEntity && ((PlayerEntity)livingentity).abilities.disableDamage ? false : this.slime.getMoveHelper() instanceof FreinEntity.MoveHelperController;
+            return (!(livingentity instanceof PlayerEntity) || !((PlayerEntity) livingentity).abilities.disableDamage) && this.slime.getMoveHelper() instanceof MoveHelperController;
          }
       }
 

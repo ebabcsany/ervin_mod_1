@@ -91,6 +91,7 @@ public class ModBlockStateProperties extends BlockStateProperties {
    public static final IntegerProperty AGE_0_43 = IntegerProperty.create("age", 0, 43);
    public static final IntegerProperty AGE_0_44 = IntegerProperty.create("age", 0, 44);
    public static final IntegerProperty BITES_0_6 = IntegerProperty.create("bites", 0, 6);
+   public static final IntegerProperty BITES_0_7 = IntegerProperty.create("bites", 0, 7);
    public static final IntegerProperty DELAY_1_4 = IntegerProperty.create("delay", 1, 4);
    public static final IntegerProperty DISTANCE_1_7 = IntegerProperty.create("distance", 1, 7);
    public static final IntegerProperty DISTANCE_1_12 = IntegerProperty.create("distance", 1, 12);

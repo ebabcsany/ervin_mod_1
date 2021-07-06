@@ -1,25 +1,25 @@
 {
   "variants": {
-    "conditional=false,facing=down": {
+    "facing=down": {
       "model": "ervin_mod_1:block/vilkt_block",
       "x": 90
     },
-    "conditional=false,facing=east": {
+    "facing=east": {
       "model": "ervin_mod_1:block/vilkt_block",
       "y": 90
     },
-    "conditional=false,facing=north": {
+    "facing=north": {
       "model": "ervin_mod_1:block/vilkt_block"
     },
-    "conditional=false,facing=south": {
+    "facing=south": {
       "model": "ervin_mod_1:block/vilkt_block",
       "y": 180
     },
-    "conditional=false,facing=up": {
+    "facing=up": {
       "model": "ervin_mod_1:block/vilkt_block",
       "x": 270
     },
-    "conditional=false,facing=west": {
+    "facing=west": {
       "model": "ervin_mod_1:block/vilkt_block",
       "y": 270
     }

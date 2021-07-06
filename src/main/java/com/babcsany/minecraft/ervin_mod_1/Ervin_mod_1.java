@@ -292,6 +292,8 @@ public class Ervin_mod_1 {
         AbstractFurnaceTileEntity.addItemBurnTime(map, ArmorItemInit.FIRT_BOOTS.get(), 4800);
         AbstractFurnaceTileEntity.addItemBurnTime(map, ArmorItemInit.FIRT_HELMET.get(), 6000);
         AbstractFurnaceTileEntity.addItemBurnTime(map, BlockItemInit.FIRT_BLOCK.get(), 12000);*/
+
+        Ervin_mod_1_.setup();
     }
 
     /*private int getInventoryStackLimit() {

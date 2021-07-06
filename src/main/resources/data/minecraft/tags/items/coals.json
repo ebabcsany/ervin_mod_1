@@ -1,8 +1,8 @@
 {
   "replace": false,
   "values": [
-    "minecraft:charcoal",
     "minecraft:coal",
+    "minecraft:charcoal",
     "ervin_mod_1:dguchsr"
   ]
 }

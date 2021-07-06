@@ -1,5 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.villager.trades;
 
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
@@ -9,8 +10,15 @@ import com.babcsany.minecraft.ervin_mod_1.init.item.spawn_egg.ModSpawnEggItemIni
 import com.babcsany.minecraft.ervin_mod_1.init.item.special.SpecialItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.tool.SpecialToolItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.tool.isBurnableSpecialToolItemInit;
+import com.babcsany.minecraft.ervin_mod_1.tags.ItemTag;
+import com.babcsany.minecraft.init.EntityInit;
+import com.babcsany.minecraft.item.IEntityProvider;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.mojang.serialization.DataResult;
+import com.mojang.serialization.Dynamic;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import net.minecraft.block.Block;
@@ -19,34 +27,45 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentData;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.Pose;
+import net.minecraft.entity.ai.brain.Brain;
 import net.minecraft.entity.villager.IVillagerDataHolder;
 import net.minecraft.entity.villager.IVillagerType;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
-import net.minecraft.potion.Effect;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionBrewing;
-import net.minecraft.potion.PotionUtils;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.INBT;
+import net.minecraft.nbt.ListNBT;
+import net.minecraft.nbt.NBTDynamicOps;
+import net.minecraft.network.IPacket;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.network.play.server.SSpawnMobPacket;
+import net.minecraft.potion.*;
+import net.minecraft.scoreboard.ScorePlayerTeam;
+import net.minecraft.util.HandSide;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.storage.MapData;
 import net.minecraft.world.storage.MapDecoration;
 
 import javax.annotation.Nullable;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class ZurTrades {
    public static final Int2ObjectMap<ZurTrades.ITrade[]> field_221240_b = gatAsIntMap(ImmutableMap.of(1, new ZurTrades.ITrade[]{
            new ZurTrades.ItemsForEmeraldsTrade(ModSpawnEggItemInit.DGRURB_SPAWN_EGG.get(), 5, 1, 50, 2),
            new ZurTrades.ItemsForTirskBlocksAndItemsTrade(SpecialItemInit.GRITHK.get(), 1, isBurnableSpecialToolItemInit.TERAT.get(), 4, 30, 30),
+           new ZurTrades.ItemsForTirskBlocksAndItemsTrade((IItemProvider) ItemTag.GARK_BLOCK, 1, isBurnableSpecialToolItemInit.TERAT.get(), 4, 30, 30),
    }));
 
    private static Int2ObjectMap<ZurTrades.ITrade[]> gatAsIntMap(ImmutableMap<Integer, ZurTrades.ITrade[]> p_221238_0_) {
@@ -520,6 +539,37 @@ public class ZurTrades {
          return new MerchantOffer(new ItemStack(isBurnableBlockItemInit.TIRSK_BLOCK.get(), this.tirskBlockCount), new ItemStack(this.buyingItem.getItem(), this.buyingItemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
+
+   /*static class ItemsForTirskBlocksAndEntitiesTrade implements ZurTrades.ITrade {
+      private final ItemStack buyingItem;
+      private final int buyingItemCount;
+      private final int zurEntityCount;
+      private final ItemStack sellingItem;
+      private final int sellingItemCount;
+      private final int maxUses;
+      private final int xpValue;
+      private final float priceMultiplier;
+
+      public ItemsForTirskBlocksAndEntitiesTrade(IEntityProvider buyingItem, int buyingItemCount, Item sellingItem, int sellingItemCount, int maxUses, int xpValue) {
+         this(buyingItem, buyingItemCount, 1, sellingItem, sellingItemCount, maxUses, xpValue);
+      }
+
+      public ItemsForTirskBlocksAndEntitiesTrade(IEntityProvider buyingItem, int buyingItemCount, int tirskBlockCount, Item sellingItem, int sellingItemCount, int maxUses, int xpValue) {
+         this.buyingItem = new ItemStack(buyingItem);
+         this.buyingItemCount = buyingItemCount;
+         this.zurEntityCount = tirskBlockCount;
+         this.sellingItem = new ItemStack(sellingItem);
+         this.sellingItemCount = sellingItemCount;
+         this.maxUses = maxUses;
+         this.xpValue = xpValue;
+         this.priceMultiplier = 0.05F;
+      }
+
+      @Nullable
+      public MerchantOffer getOffer(Entity trader, Random rand) {
+         return new MerchantOffer(new ItemStack(isBurnableBlockItemInit.TIRSK_BLOCK.get(), this.zurEntityCount), new ItemStack(this.buyingItem.getItem(), this.buyingItemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+      }
+   }*/
 
    static class ItemsForEmeraldsTrade implements ZurTrades.ITrade {
       private final ItemStack sellingItem;

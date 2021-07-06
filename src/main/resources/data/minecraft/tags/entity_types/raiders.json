@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:evoker",
+    "minecraft:pillager",
+    "minecraft:ravager",
+    "minecraft:vindicator",
+    "minecraft:illusioner",
+    "minecraft:witch",
+    "ervin_mod_1:zur_entity"
+  ]
+}

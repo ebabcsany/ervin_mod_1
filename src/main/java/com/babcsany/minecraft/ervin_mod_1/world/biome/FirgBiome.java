@@ -15,8 +15,8 @@ public class FirgBiome extends Biome {
 
 	public FirgBiome(Builder biomeBuilder) {
 		super(biomeBuilder);
-		this.addSpawn(EntityClassification.MISC, new SpawnListEntry(EntityType.VILLAGER, 10, 2, 5));
-		this.addSpawn(EntityClassification.MISC, new SpawnListEntry(EntityType.IRON_GOLEM, 10, 2, 5));
+		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.VILLAGER, 10, 2, 5));
+		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.IRON_GOLEM, 10, 2, 5));
 		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.WANDERING_TRADER, 10, 2, 5));
 		this.addSpawn(EntityClassification.AMBIENT, new SpawnListEntry(EntityType.BAT, 10, 2, 5));
 		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.CAT, 10, 2, 5));
@@ -30,7 +30,7 @@ public class FirgBiome extends Biome {
 		this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityType.ZOMBIE, 10, 2, 5));
 		this.addSpawn(EntityClassification.WATER_CREATURE, new SpawnListEntry(EntityType.SALMON, 10, 2, 5));
 		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.HORSE, 10, 2, 5));
-		this.addSpawn(EntityClassification.WATER_CREATURE, new SpawnListEntry(EntityType.MOOSHROOM, 10, 2, 5));
+		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.MOOSHROOM, 10, 2, 5));
 		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.MOOSHROOM, 10, 2, 5));
 		this.addSpawn(EntityClassification.WATER_CREATURE, new SpawnListEntry(EntityType.PUFFERFISH, 10, 2, 5));
 		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.SHEEP, 10, 2, 5));

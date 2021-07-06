@@ -1,5 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.ervin_mod_1;
 
+import com.babcsany.minecraft.client.particle.ParticleManager;
 import com.babcsany.minecraft.ervin_mod_1.client.renderer.entity.EntityRendererManager;
 import com.babcsany.minecraft.ervin_mod_1.item.crafting.RecipeSerializerInit;
 import com.babcsany.minecraft.init.*;
@@ -14,12 +15,15 @@ public class Ervin_mod_1_ {
         EntityInit ENTITIES = EntityInit.ENTITIES;
         ItemInit ITEMS = ItemInit.ITEMS;
         FeatureInit FEATURES = FeatureInit.FEATURES;
-        //StructureInit<?> STRUCTURES = StructureInit.STRUCTURES;
+        //StructureInit STRUCTURES = StructureInit.STRUCTURES;
         FluidInit FLUIDS = FluidInit.FLUIDS;
+        EffectInit EFFECTS = EffectInit.EFFECTS;
+        ParticleInit PARTICLES = ParticleInit.PARTICLES;
         RecipeSerializerInit<?> RECIPE_SERIALIZERS = RecipeSerializerInit.RECIPE_SERIALIZERS;
     }
 
-    /*public static void setup() {
+    public static void setup() {
         EntityRendererManager ENTITY_RENDERER_MANAGER = EntityRendererManager.ENTITY_RENDERER_MANAGER;
-    }*/
+        ParticleManager PARTICLE_MANAGER = ParticleManager.PARTICLE_MANAGER;
+    }
 }

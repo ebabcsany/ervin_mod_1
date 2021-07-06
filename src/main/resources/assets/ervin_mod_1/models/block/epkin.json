@@ -1,6 +1,5 @@
 {
-  "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "ervin_mod_1:block/epkin"
+    "particle": "ervin_mod_1:block/epkin"
   }
 }
