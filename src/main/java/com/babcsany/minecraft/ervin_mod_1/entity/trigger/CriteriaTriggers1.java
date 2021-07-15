@@ -44,7 +44,7 @@ public class CriteriaTriggers1 {
    public static final TraderNirtre1TradeTrigger TRADER_NIRTRE1_TRADE = register(new TraderNirtre1TradeTrigger());
    public static final TraderBlockTrigger TRADER_BLOCK_TRADE = register(new TraderBlockTrigger());
    public static final ZombieTraderTrigger ZOMBIE_TRADER_TRADE = register(new ZombieTraderTrigger());
-   public static final ZurTrigger ZUR_TRADE = register(new ZurTrigger());
+   public static final ZurTradeTrigger ZUR_TRADE = register(new ZurTradeTrigger());
    //public static final ZurTrigger_1 ZUR1_TRADE = register(new ZurTrigger_1());
    public static final TraderNirtreTradeTrigger TRADER_NIRTRE_TRADE = register(new TraderNirtreTradeTrigger());
    public static final ItemDurabilityTrigger ITEM_DURABILITY_CHANGED = register(new ItemDurabilityTrigger());

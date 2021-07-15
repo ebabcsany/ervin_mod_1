@@ -128,7 +128,7 @@ public class RoventEntity extends ZurEntity implements IRangedAttackMob {
                potion = Potions.FIRE_RESISTANCE;
             } else if (this.rand.nextFloat() < 0.05F && this.getHealth() < this.getMaxHealth()) {
                potion = Potions.HEALING;
-            } else if (this.rand.nextFloat() < 0.5F && this.getAttackTarget() != null && !this.isPotionActive(Effects.SPEED) && !this.isPotionActive(Effects.JUMP_BOOST) && !this.isPotionActive(Effects.STRENGTH) && this.getAttackTarget().getDistanceSq(this) > 121.0D) {
+            } else if (this.rand.nextFloat() < 0.5F && this.getAttackTarget() != null && !this.isPotionActive(Effects.SPEED) && !this.isPotionActive(Effects.JUMP_BOOST) && !this.isPotionActive(Effects.STRENGTH) && this.getAttackTarget().getDistanceSq(this) > 4.0D) {
                potion = Potions.SWIFTNESS;
             }
 
@@ -162,7 +162,7 @@ public class RoventEntity extends ZurEntity implements IRangedAttackMob {
             }
          }
       }
-      if (!this.world.isRemote && this.isAlive() && !this.isChild() && !this.isZurDropItem() && --this.timeUntilNextItem <= 0) {
+      if (!this.world.isRemote && this.isAlive() && !this.isChild() && this.isZurDropItem() && --this.timeUntilNextItem <= 0) {
          this.entityDropItem(isBurnableItemInit.LEAT.get());
          this.timeUntilNextItem = this.rand.nextInt(12000) + 12000;
       }

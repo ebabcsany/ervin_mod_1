@@ -1,6 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.init.init;
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
+import net.minecraft.item.DyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
@@ -28,14 +29,8 @@ public enum DyeColorInit implements IStringSerializable {
    RED(15, "red", 11546150, MaterialColorInit.RED, 11743532, 16711680),
    BLACK(16, "black", 1908001, MaterialColorInit.BLACK, 1973019, 0);
 
-   private static final DyeColorInit[] VALUES = Arrays.stream(values()).sorted(Comparator.comparingInt(DyeColorInit::getId)).toArray((p_199795_0_) -> {
-      return new DyeColorInit[p_199795_0_];
-   });
-   private static final Int2ObjectOpenHashMap<DyeColorInit> BY_FIREWORK_COLOR = new Int2ObjectOpenHashMap<>(Arrays.stream(values()).collect(Collectors.toMap((p_199793_0_) -> {
-      return p_199793_0_.fireworkColor;
-   }, (p_199794_0_) -> {
-      return p_199794_0_;
-   })));
+   private static final DyeColorInit[] VALUES = Arrays.stream(values()).sorted(Comparator.comparingInt(DyeColorInit::getId)).toArray((p_199795_0_) -> new DyeColorInit[p_199795_0_]);
+   private static final Int2ObjectOpenHashMap<DyeColorInit> BY_FIREWORK_COLOR = new Int2ObjectOpenHashMap<>(Arrays.stream(values()).collect(Collectors.toMap((p_199793_0_) -> p_199793_0_.fireworkColor, (p_199794_0_) -> p_199794_0_)));
    private final int id;
    private final String translationKey;
    private final MaterialColorInit mapColor;
@@ -46,7 +41,7 @@ public enum DyeColorInit implements IStringSerializable {
    private final net.minecraft.tags.ITag<Item> tag;
    private final int textColor;
 
-   private DyeColorInit(int idIn, String translationKeyIn, int colorValueIn, MaterialColorInit mapColorIn, int fireworkColorIn, int textColorIn) {
+   DyeColorInit(int idIn, String translationKeyIn, int colorValueIn, MaterialColorInit mapColorIn, int fireworkColorIn, int textColorIn) {
       this.id = idIn;
       this.translationKey = translationKeyIn;
       this.colorValue = colorValueIn;

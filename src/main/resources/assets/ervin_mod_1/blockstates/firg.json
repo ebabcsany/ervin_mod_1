@@ -1,11 +1,5 @@
 {
   "variants": {
-    "facing=down,bites=0": { "model": "ervin_mod_1:block/firg", "x": 90 },
-    "facing=east,bites=0": { "model": "ervin_mod_1:block/firg", "y": 90 },
-    "facing=north,bites=0": { "model": "ervin_mod_1:block/firg" },
-    "facing=south,bites=0": { "model": "ervin_mod_1:block/firg", "y": 180 },
-    "facing=up,bites=0": { "model": "ervin_mod_1:block/firg", "x": 270 },
-    "facing=west,bites=0": { "model": "ervin_mod_1:block/firg", "y": 270 },
     "bites=0": {
       "model": "ervin_mod_1:block/firg"
     },
@@ -28,7 +22,7 @@
       "model": "ervin_mod_1:block/firg_slice6"
     },
     "bites=7": {
-      "model": "ervin_mod_1:block/firg_slice6"
+      "model": "ervin_mod_1:block/firg_slice7"
     }
   }
 }

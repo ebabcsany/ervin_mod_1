@@ -223,7 +223,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:durt"
+          "name": "ervin_mod_1:durt/durt"
         },
         {
           "type": "minecraft:item",
@@ -1075,10 +1075,6 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:smooth_stone"
-        },
-        {
-          "type": "minecraft:item",
           "name": "ervin_mod_1:smooth_stone_stairs"
         },
         {
@@ -1195,7 +1191,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:steef"
+          "name": "ervin_mod_1:meat/steef"
         },
         {
           "type": "minecraft:item",
@@ -3043,63 +3039,63 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:tripwires/black_string"
+          "name": "ervin_mod_1:strings/black_string"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:tripwires/blue_string"
+          "name": "ervin_mod_1:strings/blue_string"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:tripwires/brown_string"
+          "name": "ervin_mod_1:strings/brown_string"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:tripwires/cyan_string"
+          "name": "ervin_mod_1:strings/cyan_string"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:tripwires/gray_string"
+          "name": "ervin_mod_1:strings/gray_string"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:tripwires/green_string"
+          "name": "ervin_mod_1:strings/green_string"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:tripwires/light_blue_string"
+          "name": "ervin_mod_1:strings/light_blue_string"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:tripwires/light_gray_string"
+          "name": "ervin_mod_1:strings/light_gray_string"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:tripwires/lime_string"
+          "name": "ervin_mod_1:strings/lime_string"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:tripwires/magenta_string"
+          "name": "ervin_mod_1:strings/magenta_string"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:tripwires/orange_string"
+          "name": "ervin_mod_1:strings/orange_string"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:tripwires/pink_string"
+          "name": "ervin_mod_1:strings/pink_string"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:tripwires/purple_string"
+          "name": "ervin_mod_1:strings/purple_string"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:tripwires/red_string"
+          "name": "ervin_mod_1:strings/red_string"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:tripwires/yellow_string"
+          "name": "ervin_mod_1:strings/yellow_string"
         },
         {
           "type": "minecraft:item",

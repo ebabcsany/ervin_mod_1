@@ -27,7 +27,7 @@ public class ExampleBiomeSurfaceBuilder3 extends SurfaceBuilder<SurfaceBuilderCo
 		if (i == 0) {
 			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock,
 					defaultFluid, seaLevel, seed,
-					new SurfaceBuilderConfig(BlockItemInit.FIRT_BLOCK.get().getDefaultState(),
+					new SurfaceBuilderConfig(com.babcsany.minecraft.init.BlockInit.FIRT_BLOCK.getDefaultState(),
 							isBurnableBlockItemInit.LEAT_BLOCK_CRAFTING_TABLE.get().getDefaultState(), BlockInit.GRITH_BLOCK.get().getDefaultState()
 					));
 		} else {

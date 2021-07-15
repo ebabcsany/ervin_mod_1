@@ -69,11 +69,6 @@
           "type": "minecraft:item",
           "name": "ervin_mod_1:spawn_eggs/rovent_spawn_egg"
         }
-      ],
-      "conditions": [
-        {
-          "condition": "minecraft:survives_explosion"
-        }
       ]
     }
   ]

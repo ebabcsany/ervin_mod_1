@@ -1,29 +1,44 @@
 package com.babcsany.minecraft.ervin_mod_1.ervin_mod_1;
 
 import com.babcsany.minecraft.client.particle.ParticleManager;
+import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.client.renderer.entity.EntityRendererManager;
+import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.classes.Ervin_mod_1_classes;
+import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.registries.ComposterBlock;
 import com.babcsany.minecraft.ervin_mod_1.item.crafting.RecipeSerializerInit;
 import com.babcsany.minecraft.init.*;
 import com.babcsany.minecraft.init.item.ItemInit;
-import net.minecraftforge.fml.DeferredWorkQueue;
+import com.babcsany.minecraft.init.villager.VillagerProfessionInit;
 
 public class Ervin_mod_1_ {
 
     public static void init() {
-        BlockInit BLOCKS = BlockInit.BLOCKS;
-        BlockItemInit BLOCK_ITEMS = BlockItemInit.BLOCK_ITEMS;
-        EntityInit ENTITIES = EntityInit.ENTITIES;
-        ItemInit ITEMS = ItemInit.ITEMS;
-        FeatureInit FEATURES = FeatureInit.FEATURES;
-        //StructureInit STRUCTURES = StructureInit.STRUCTURES;
-        FluidInit FLUIDS = FluidInit.FLUIDS;
-        EffectInit EFFECTS = EffectInit.EFFECTS;
-        ParticleInit PARTICLES = ParticleInit.PARTICLES;
-        RecipeSerializerInit<?> RECIPE_SERIALIZERS = RecipeSerializerInit.RECIPE_SERIALIZERS;
+        Ervin_mod_1.function(BlockInit.class);
+        Ervin_mod_1.function(BlockItemInit.class);
+        Ervin_mod_1.function(EntityInit.class);
+        Ervin_mod_1.function(ItemInit.class);
+        Ervin_mod_1.function(FeatureInit.class);
+        //Ervin_mod_1.function(StructureInit.class);
+        Ervin_mod_1.function(FluidInit.class);
+        Ervin_mod_1.function(EffectInit.class);
+        Ervin_mod_1.function(ParticleInit.class);
+        Ervin_mod_1.function(RecipeSerializerInit.class);
+        Ervin_mod_1.function(VillagerProfessionInit.class);
+        //Ervin_mod_1.function(DimensionInit.class);
+        //Ervin_mod_1.function(DimensionTypeInit.class);
+        //Ervin_mod_1.function(World.class);
     }
 
     public static void setup() {
-        EntityRendererManager ENTITY_RENDERER_MANAGER = EntityRendererManager.ENTITY_RENDERER_MANAGER;
-        ParticleManager PARTICLE_MANAGER = ParticleManager.PARTICLE_MANAGER;
+        Ervin_mod_1.function(EntityRendererManager.class);
+        Ervin_mod_1.function(ParticleManager.class);
+    }
+
+    public static void registries() {
+        ComposterBlock.init();
+    }
+
+    public static void ervin_mod_1() {
+        Ervin_mod_1_classes.inventory();
     }
 }

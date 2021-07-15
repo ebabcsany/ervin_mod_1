@@ -22,7 +22,7 @@ import java.util.Random;
 
 public class FirgTree extends Tree {
 
-    public static BaseTreeFeatureConfig FIRG_TREE_CONFIG;
+    //public static BaseTreeFeatureConfig FIRG_TREE_CONFIG;
     public static final BaseTreeFeatureConfig FIRG_TREE_CONFIG0 = (new BaseTreeFeatureConfig.Builder(
             new SimpleBlockStateProvider(BlockItemInit.FIRG_LOG.get().getDefaultState()),
             new SimpleBlockStateProvider(isBurnableBlockItemInit.FIRG_LEAVES.get().getDefaultState()),
@@ -73,24 +73,14 @@ public class FirgTree extends Tree {
 
     @Override
     protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean b) {
-        return Feature.field_236291_c_.withConfiguration(FIRG_TREE_CONFIG);
+        return Feature.field_236291_c_.withConfiguration(FIRG_TREE_CONFIG0);
     }
 
-    public static BaseTreeFeatureConfig setFirgTreeConfig() {
-        BaseTreeFeatureConfig featureConfig0 = FIRG_TREE_CONFIG0;
-        BaseTreeFeatureConfig featureConfig1 = FIRG_TREE_CONFIG1;
-        BaseTreeFeatureConfig featureConfig2 = FIRG_TREE_CONFIG2;
-        BaseTreeFeatureConfig featureConfig3 = FIRG_TREE_CONFIG3;
-        BaseTreeFeatureConfig featureConfig4 = FIRG_TREE_CONFIG4;
-        BaseTreeFeatureConfig featureConfig5 = FIRG_TREE_WITH_FEW_BEEHIVES_CONFIG;
-        BaseTreeFeatureConfig featureConfig6 = FIRG_TREE_WITH_FEW_BEEHIVES_CONFIG1;
-        BaseTreeFeatureConfig featureConfig7 = FIRG_TREE_WITH_MORE_BEEHIVES_CONFIG;
-        BaseTreeFeatureConfig featureConfig8 = FIRG_TREE_WITH_MORE_BEEHIVES_CONFIG1;
-        BaseTreeFeatureConfig featureConfig9 = FIRG_TREE_WITH_MANY_BEEHIVES_CONFIG;
+    /*public static BaseTreeFeatureConfig setFirgTreeConfig(BaseTreeFeatureConfig... baseTreeFeatureConfigs) {
         return FIRG_TREE_CONFIG;
     }
 
     static {
-        FIRG_TREE_CONFIG = setFirgTreeConfig();
-    }
+        FIRG_TREE_CONFIG = setFirgTreeConfig(FIRG_TREE_CONFIG0, FIRG_TREE_CONFIG1, FIRG_TREE_CONFIG2, FIRG_TREE_CONFIG3, FIRG_TREE_CONFIG4, FIRG_TREE_WITH_FEW_BEEHIVES_CONFIG, FIRG_TREE_WITH_FEW_BEEHIVES_CONFIG1, FIRG_TREE_WITH_MORE_BEEHIVES_CONFIG, FIRG_TREE_WITH_MORE_BEEHIVES_CONFIG1, FIRG_TREE_WITH_MANY_BEEHIVES_CONFIG);
+    }*/
 }

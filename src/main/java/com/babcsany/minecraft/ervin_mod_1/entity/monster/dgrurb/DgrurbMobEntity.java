@@ -86,6 +86,7 @@ public abstract class DgrurbMobEntity extends LivingEntity {
    public final GoalSelector goalSelector;
    public final GoalSelector targetSelector;
    private Entity attackTarget;
+   private LivingEntity attackLivingTarget;
    private final DgrurbEntitySenses senses;
    private final NonNullList<ItemStack> inventoryHands = NonNullList.withSize(2, ItemStack.EMPTY);
    protected final float[] inventoryHandsDropChances = new float[2];
@@ -203,6 +204,11 @@ public abstract class DgrurbMobEntity extends LivingEntity {
    @Nullable
    public Entity getAttackTarget() {
       return this.attackTarget;
+   }
+
+   @Nullable
+   public LivingEntity getAttackLivingTarget() {
+      return this.attackLivingTarget;
    }
 
    /**
@@ -793,7 +799,7 @@ public abstract class DgrurbMobEntity extends LivingEntity {
          d1 = (entityIn.getBoundingBox().minY + entityIn.getBoundingBox().maxY) / 2.0D - this.getPosYEye();
       }
 
-      double d3 = (double)MathHelper.sqrt(d0 * d0 + d2 * d2);
+      double d3 = MathHelper.sqrt(d0 * d0 + d2 * d2);
       float f = (float)(MathHelper.atan2(d2, d0) * (double)(180F / (float)Math.PI)) - 90.0F;
       float f1 = (float)(-(MathHelper.atan2(d1, d3) * (double)(180F / (float)Math.PI)));
       this.rotationPitch = this.updateRotation(this.rotationPitch, f1, maxPitchIncrease);

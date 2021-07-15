@@ -1,6 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.animal;
 
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
+import com.babcsany.minecraft.ervin_mod_1.init.init.DyeColorInit;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.food.FoodItemInit;
 import com.babcsany.minecraft.ervin_mod_1.world.storage.loot.LootTables1;
@@ -46,32 +47,30 @@ import java.util.stream.Collectors;
 public class ViltEntity extends AnimalEntity implements IShearable, net.minecraftforge.common.IForgeShearable {
    private static final DataParameter<Byte> DYE_COLOR = EntityDataManager.createKey(ViltEntity.class, DataSerializers.BYTE);
    private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(FoodItemInit.FRIM.get());
-   private static final Map<DyeColor, IItemProvider> WOOL_BY_COLOR = Util.make(Maps.newEnumMap(DyeColor.class), (p_203402_0_) -> {
-      p_203402_0_.put(DyeColor.RED, isBurnableBlockItemInit.CRASK.get());
-      p_203402_0_.put(DyeColor.WHITE, Blocks.WHITE_WOOL);
-      p_203402_0_.put(DyeColor.ORANGE, Blocks.ORANGE_WOOL);
-      p_203402_0_.put(DyeColor.MAGENTA, Blocks.MAGENTA_WOOL);
-      p_203402_0_.put(DyeColor.LIGHT_BLUE, Blocks.LIGHT_BLUE_WOOL);
-      p_203402_0_.put(DyeColor.YELLOW, Blocks.YELLOW_WOOL);
-      p_203402_0_.put(DyeColor.LIME, Blocks.LIME_WOOL);
-      p_203402_0_.put(DyeColor.PINK, Blocks.PINK_WOOL);
-      p_203402_0_.put(DyeColor.GRAY, Blocks.GRAY_WOOL);
-      p_203402_0_.put(DyeColor.LIGHT_GRAY, Blocks.LIGHT_GRAY_WOOL);
-      p_203402_0_.put(DyeColor.CYAN, Blocks.CYAN_WOOL);
-      p_203402_0_.put(DyeColor.PURPLE, Blocks.PURPLE_WOOL);
-      p_203402_0_.put(DyeColor.BLUE, Blocks.BLUE_WOOL);
-      p_203402_0_.put(DyeColor.BROWN, Blocks.BROWN_WOOL);
-      p_203402_0_.put(DyeColor.GREEN, Blocks.GREEN_WOOL);
-      p_203402_0_.put(DyeColor.BLACK, Blocks.BLACK_WOOL);
+   private static final Map<DyeColor, IItemProvider> WOOL_BY_COLOR = Util.make(Maps.newEnumMap(DyeColor.class), (dyeColorIItemProviderEnumMap) -> {
+      dyeColorIItemProviderEnumMap.put(DyeColor.RED, isBurnableBlockItemInit.CRASK.get());
+      dyeColorIItemProviderEnumMap.put(DyeColor.WHITE, Blocks.WHITE_WOOL);
+      dyeColorIItemProviderEnumMap.put(DyeColor.ORANGE, Blocks.ORANGE_WOOL);
+      dyeColorIItemProviderEnumMap.put(DyeColor.MAGENTA, Blocks.MAGENTA_WOOL);
+      dyeColorIItemProviderEnumMap.put(DyeColor.LIGHT_BLUE, Blocks.LIGHT_BLUE_WOOL);
+      dyeColorIItemProviderEnumMap.put(DyeColor.YELLOW, Blocks.YELLOW_WOOL);
+      dyeColorIItemProviderEnumMap.put(DyeColor.LIME, Blocks.LIME_WOOL);
+      dyeColorIItemProviderEnumMap.put(DyeColor.PINK, Blocks.PINK_WOOL);
+      dyeColorIItemProviderEnumMap.put(DyeColor.GRAY, Blocks.GRAY_WOOL);
+      dyeColorIItemProviderEnumMap.put(DyeColor.LIGHT_GRAY, Blocks.LIGHT_GRAY_WOOL);
+      dyeColorIItemProviderEnumMap.put(DyeColor.CYAN, Blocks.CYAN_WOOL);
+      dyeColorIItemProviderEnumMap.put(DyeColor.PURPLE, Blocks.PURPLE_WOOL);
+      dyeColorIItemProviderEnumMap.put(DyeColor.BLUE, Blocks.BLUE_WOOL);
+      dyeColorIItemProviderEnumMap.put(DyeColor.BROWN, Blocks.BROWN_WOOL);
+      dyeColorIItemProviderEnumMap.put(DyeColor.GREEN, Blocks.GREEN_WOOL);
+      dyeColorIItemProviderEnumMap.put(DyeColor.BLACK, Blocks.BLACK_WOOL);
    });
    /** Map from EnumDyeColor to RGB values for passage to GlStateManager.color() */
-   private static final Map<DyeColor, float[]> DYE_TO_RGB = Maps.newEnumMap(Arrays.stream(DyeColor.values()).collect(Collectors.toMap((DyeColor p_200204_0_) -> {
-      return p_200204_0_;
-   }, ViltEntity::createSheepColor)));
+   private static final Map<DyeColor, float[]> DYE_TO_RGB = Maps.newEnumMap(Arrays.stream(DyeColor.values()).collect(Collectors.toMap((DyeColor p_200204_0_) -> p_200204_0_, ViltEntity::createViltColor)));
    private int sheepTimer;
    private EatGrassGoal eatGrassGoal;
 
-   private static float[] createSheepColor(DyeColor dyeColorIn) {
+   private static float[] createViltColor(DyeColor dyeColorIn) {
       if (dyeColorIn == DyeColor.RED) {
          return new float[]{0.9019608F, 0.9019608F, 0.9019608F};
       } else {
@@ -208,7 +207,7 @@ public class ViltEntity extends AnimalEntity implements IShearable, net.minecraf
 
    public ActionResultType func_230254_b_(PlayerEntity p_230254_1_, Hand p_230254_2_) {
       ItemStack itemstack = p_230254_1_.getHeldItem(p_230254_2_);
-      if (false && itemstack.getItem() == Items.SHEARS) { //Forge: Moved to onSheared
+      if (itemstack.getItem() == Items.SHEARS) { //Forge: Moved to onSheared
          if (!this.world.isRemote && this.isShearable()) {
             this.shear(SoundCategory.PLAYERS);
             itemstack.damageItem(1, p_230254_1_, (p_213613_1_) -> {
@@ -224,14 +223,14 @@ public class ViltEntity extends AnimalEntity implements IShearable, net.minecraf
    }
 
    public void shear(SoundCategory category) {
-      this.world.playMovingSound((PlayerEntity)null, this, SoundEvents.ENTITY_SHEEP_SHEAR, category, 1.0F, 1.0F);
+      this.world.playMovingSound(null, this, SoundEvents.ENTITY_SHEEP_SHEAR, category, 1.0F, 1.0F);
       this.setSheared(true);
       int i = 1 + this.rand.nextInt(3);
 
       for(int j = 0; j < i; ++j) {
          ItemEntity itementity = this.entityDropItem(WOOL_BY_COLOR.get(this.getFleeceColor()), 1);
          if (itementity != null) {
-            itementity.setMotion(itementity.getMotion().add((double)((this.rand.nextFloat() - this.rand.nextFloat()) * 0.1F), (double)(this.rand.nextFloat() * 0.05F), (double)((this.rand.nextFloat() - this.rand.nextFloat()) * 0.1F)));
+            itementity.setMotion(itementity.getMotion().add((this.rand.nextFloat() - this.rand.nextFloat()) * 0.1F, this.rand.nextFloat() * 0.05F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.1F));
          }
       }
 
@@ -361,11 +360,7 @@ public class ViltEntity extends AnimalEntity implements IShearable, net.minecraf
       DyeColor dyecolor = ((ViltEntity)father).getFleeceColor();
       DyeColor dyecolor1 = ((ViltEntity)mother).getFleeceColor();
       CraftingInventory craftinginventory = createDyeColorCraftingInventory(dyecolor, dyecolor1);
-      return this.world.getRecipeManager().getRecipe(IRecipeType.CRAFTING, craftinginventory, this.world).map((p_213614_1_) -> {
-         return p_213614_1_.getCraftingResult(craftinginventory);
-      }).map(ItemStack::getItem).filter(DyeItem.class::isInstance).map(DyeItem.class::cast).map(DyeItem::getDyeColor).orElseGet(() -> {
-         return this.world.rand.nextBoolean() ? dyecolor : dyecolor1;
-      });
+      return this.world.getRecipeManager().getRecipe(IRecipeType.CRAFTING, craftinginventory, this.world).map((p_213614_1_) -> p_213614_1_.getCraftingResult(craftinginventory)).map(ItemStack::getItem).filter(DyeItem.class::isInstance).map(DyeItem.class::cast).map(DyeItem::getDyeColor).orElseGet(() -> this.world.rand.nextBoolean() ? dyecolor : dyecolor1);
    }
 
    private static CraftingInventory createDyeColorCraftingInventory(DyeColor color, DyeColor color1) {

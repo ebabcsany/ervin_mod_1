@@ -1,5 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.world.dimension.biome_provider;
 
+import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.init.BiomeInit;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Maps;
@@ -25,26 +26,8 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class ExampleBiomeProvider extends ModBiomeProvider {
-   public static final MapCodec<ExampleBiomeProvider> field_235262_e_ = RecordCodecBuilder.mapCodec((p_235279_0_) -> {
-      return p_235279_0_.group(Codec.LONG.fieldOf("seed").forGetter((p_235286_0_) -> {
-         return p_235286_0_.field_235270_m_;
-      }), RecordCodecBuilder.<Pair<Biome.Attributes, Biome>>create((p_235282_0_) -> {
-         return p_235282_0_.group(Biome.Attributes.field_235104_a_.fieldOf("parameters").forGetter(Pair::getFirst), Registry.BIOME.fieldOf("biome").forGetter(Pair::getSecond)).apply(p_235282_0_, Pair::of);
-      }).listOf().fieldOf("biomes").forGetter((p_235284_0_) -> {
-         return p_235284_0_.field_235268_k_;
-      })).apply(p_235279_0_, ExampleBiomeProvider::new);
-   });
-   public static final Codec<ExampleBiomeProvider> field_235263_f_ = Codec.mapEither(ExampleBiomeProvider.Preset.field_235287_a_, field_235262_e_).xmap((p_235277_0_) -> {
-      return p_235277_0_.map((p_235278_0_) -> {
-         return p_235278_0_.getFirst().func_235292_a_(p_235278_0_.getSecond());
-      }, Function.identity());
-   }, (p_235275_0_) -> {
-      return p_235275_0_.field_235271_n_.<Either<Pair<Preset, Long>, ExampleBiomeProvider>>map((p_235276_1_) -> {
-         return Either.left(Pair.of(p_235276_1_, p_235275_0_.field_235270_m_));
-      }).orElseGet(() -> {
-         return Either.right(p_235275_0_);
-      });
-   }).codec();
+   public static final MapCodec<ExampleBiomeProvider> field_235262_e_ = RecordCodecBuilder.mapCodec((p_235279_0_) -> p_235279_0_.group(Codec.LONG.fieldOf("seed").forGetter((p_235286_0_) -> p_235286_0_.field_235270_m_), RecordCodecBuilder.<Pair<Biome.Attributes, Biome>>create((p_235282_0_) -> p_235282_0_.group(Biome.Attributes.field_235104_a_.fieldOf("parameters").forGetter(Pair::getFirst), Registry.BIOME.fieldOf("biome").forGetter(Pair::getSecond)).apply(p_235282_0_, Pair::of)).listOf().fieldOf("biomes").forGetter((p_235284_0_) -> p_235284_0_.field_235268_k_)).apply(p_235279_0_, ExampleBiomeProvider::new));
+   public static final Codec<ExampleBiomeProvider> field_235263_f_ = Codec.mapEither(ExampleBiomeProvider.Preset.field_235287_a_, field_235262_e_).xmap((p_235277_0_) -> p_235277_0_.map((p_235278_0_) -> p_235278_0_.getFirst().func_235292_a_(p_235278_0_.getSecond()), Function.identity()), (p_235275_0_) -> p_235275_0_.field_235271_n_.<Either<Pair<Preset, Long>, ExampleBiomeProvider>>map((p_235276_1_) -> Either.left(Pair.of(p_235276_1_, p_235275_0_.field_235270_m_))).orElseGet(() -> Either.right(p_235275_0_))).codec();
    private final MaxMinNoiseMixer field_235264_g_;
    private final MaxMinNoiseMixer field_235265_h_;
    private final MaxMinNoiseMixer field_235266_i_;
@@ -91,9 +74,7 @@ public class ExampleBiomeProvider extends ModBiomeProvider {
    public Biome getNoiseBiome(int x, int y, int z) {
       int i = this.field_235269_l_ ? y : 0;
       Biome.Attributes biome$attributes = new Biome.Attributes((float)this.field_235264_g_.func_237211_a_((double)x, (double)i, (double)z), (float)this.field_235265_h_.func_237211_a_((double)x, (double)i, (double)z), (float)this.field_235266_i_.func_237211_a_((double)x, (double)i, (double)z), (float)this.field_235267_j_.func_237211_a_((double)x, (double)i, (double)z), 0.0F);
-      return this.field_235268_k_.stream().min(Comparator.comparing((p_235272_1_) -> {
-         return p_235272_1_.getFirst().func_235110_a_(biome$attributes);
-      })).map(Pair::getSecond).orElse(Biomes.THE_VOID);
+      return this.field_235268_k_.stream().min(Comparator.comparing((p_235272_1_) -> p_235272_1_.getFirst().func_235110_a_(biome$attributes))).map(Pair::getSecond).orElse(Biomes.THE_VOID);
    }
 
    public boolean func_235280_b_(long p_235280_1_) {
@@ -102,16 +83,8 @@ public class ExampleBiomeProvider extends ModBiomeProvider {
 
    public static class Preset {
       private static final Map<ResourceLocation, ExampleBiomeProvider.Preset> field_235289_c_ = Maps.newHashMap();
-      public static final MapCodec<Pair<ExampleBiomeProvider.Preset, Long>> field_235287_a_ = Codec.mapPair(ResourceLocation.RESOURCE_LOCATION_CODEC.flatXmap((p_235294_0_) -> {
-         return Optional.ofNullable(field_235289_c_.get(p_235294_0_)).map(DataResult::success).orElseGet(() -> {
-            return DataResult.error("Unknown preset: " + p_235294_0_);
-         });
-      }, (p_235293_0_) -> {
-         return DataResult.success(p_235293_0_.field_235290_d_);
-      }).fieldOf("preset"), Codec.LONG.fieldOf("seed")).stable();
-      public static final ExampleBiomeProvider.Preset field_235288_b_ = new ExampleBiomeProvider.Preset(new ResourceLocation("example"), (p_235295_0_) -> {
-         return ExampleBiomeProvider.func_235285_d_(p_235295_0_);
-      });
+      public static final MapCodec<Pair<ExampleBiomeProvider.Preset, Long>> field_235287_a_ = Codec.mapPair(ResourceLocation.RESOURCE_LOCATION_CODEC.flatXmap((p_235294_0_) -> Optional.ofNullable(field_235289_c_.get(p_235294_0_)).map(DataResult::success).orElseGet(() -> DataResult.error("Unknown preset: " + p_235294_0_)), (p_235293_0_) -> DataResult.success(p_235293_0_.field_235290_d_)).fieldOf("preset"), Codec.LONG.fieldOf("seed")).stable();
+      public static final ExampleBiomeProvider.Preset field_235288_b_ = new ExampleBiomeProvider.Preset(new ResourceLocation(Ervin_mod_1.MOD_ID,"example"), ExampleBiomeProvider::func_235285_d_);
       private final ResourceLocation field_235290_d_;
       private final LongFunction<ExampleBiomeProvider> field_235291_e_;
 

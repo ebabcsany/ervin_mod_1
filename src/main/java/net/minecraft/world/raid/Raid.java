@@ -43,7 +43,7 @@ import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
-public class Raid {
+/*public class Raid {
    private static final TranslationTextComponent RAID = new TranslationTextComponent("event.minecraft.raid");
    private static final TranslationTextComponent VICTORY = new TranslationTextComponent("event.minecraft.raid.victory");
    private static final TranslationTextComponent DEFEAT = new TranslationTextComponent("event.minecraft.raid.defeat");
@@ -918,7 +918,7 @@ public class Raid {
       /**
        * The waveCountsIn integer decides how many entities of the EntityType defined in typeIn will spawn in each wave.
        * For example, one ravager will always spawn in wave 3.
-       */
+       * /
       public static WaveMember create(String name, EntityType<? extends AbstractRaiderEntity> typeIn, int[] waveCountsIn) {
          throw new IllegalStateException("Enum not extended");
       }
@@ -948,7 +948,7 @@ public class Raid {
       /**
        * The waveCountsIn integer decides how many entities of the EntityType defined in typeIn will spawn in each wave.
        * For example, one ravager will always spawn in wave 3.
-       */
+       * /
       public static WaveMemberr create(String name, EntityType<? extends AbstractZurEntity> typeIn, int[] waveCountsIn) {
          throw new IllegalStateException("Enum not extended");
       }
@@ -959,4 +959,4 @@ public class Raid {
          VALUES = values();
       }
    }
-}
+}*/

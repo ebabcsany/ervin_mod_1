@@ -59,6 +59,7 @@ public class HhijEntity extends HhijTameableEntity implements IAngerable {
    private static final DataParameter<Boolean> field_234409_bv_ = EntityDataManager.createKey(ZurEntity.class, DataSerializers.BOOLEAN);
    private float headRotationCourse;
    private float headRotationCourseOld;
+   public int currentItem;
    private byte foodLevel;
    private boolean isWet;
    private boolean isShaking;
@@ -91,50 +92,6 @@ public class HhijEntity extends HhijTameableEntity implements IAngerable {
       this.targetSelector.addGoal(2, new HhijOwnerHurtTargetGoal(this));
       this.targetSelector.addGoal(3, (new HhijHurtByTargetGoal(this)).setCallsForHelp());
       this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, 10, true, false, this::func_233680_b_));
-      //this.targetSelector.addGoal(5, new NonTamedTargetGoal<>(this, AnimalEntity.class, false, TARGET_ENTITIES));
-      //this.targetSelector.addGoal(6, new NonTamedTargetGoal<>(this, TurtleEntity.class, false, TurtleEntity.TARGET_DRY_BABY));
-      /*this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, ViltEntity.class, false));
-      this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, SrachEntity.class, false));
-      this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, ShertEntity.class, false));
-      this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, SheepEntity.class, false));
-      this.targetSelector.addGoal(8, new NearestAttackableTargetGoal<>(this, CowEntity.class, false));
-      this.targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, RabbitEntity.class, false));
-      this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, RavagerEntity.class, false));
-      this.targetSelector.addGoal(9, new NearestAttackableTargetGoal<>(this, EnderDragonEntity.class, false));
-      this.targetSelector.addGoal(8, new NearestAttackableTargetGoal<>(this, EndermanEntity.class, false));
-      this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, FoxEntity.class, false));
-      this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, MooshroomEntity.class, false));
-      this.targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, OcelotEntity.class, false));
-      this.targetSelector.addGoal(11, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, false));
-      this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, LlamaEntity.class, false));
-      this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, BatEntity.class, false));
-      this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, ChickenEntity.class, false));
-      this.targetSelector.addGoal(6, new NearestAttackableTargetGoal<>(this, IllusionerEntity.class, false));
-      this.targetSelector.addGoal(10, new NearestAttackableTargetGoal<>(this, WitherEntity.class, false));
-      this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, WolfEntity.class, false));
-      this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, SquidEntity.class, false));
-      this.targetSelector.addGoal(8, new NearestAttackableTargetGoal<>(this, CodEntity.class, false));
-      this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PufferfishEntity.class, false));
-      this.targetSelector.addGoal(6, new NearestAttackableTargetGoal<>(this, PigEntity.class, false));
-      this.targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, StriderEntity.class, false));
-      this.targetSelector.addGoal(9, new NearestAttackableTargetGoal<>(this, TraderLlamaEntity.class, false));
-      this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, SalmonEntity.class, false));
-      this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, PolarBearEntity.class, false));
-      this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, SnowGolemEntity.class, false));
-      this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, ParrotEntity.class, false));
-      this.targetSelector.addGoal(6, new NearestAttackableTargetGoal<>(this, PandaEntity.class, false));
-      this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, HorseEntity.class, false));
-      this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, DolphinEntity.class, false));
-      this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, DonkeyEntity.class, false));
-      this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, CatEntity.class, false));
-      this.targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, BeeEntity.class, false));
-      this.targetSelector.addGoal(12, new NearestAttackableTargetGoal<>(this, SkeletonHorseEntity.class, false));
-      this.targetSelector.addGoal(10, new NearestAttackableTargetGoal<>(this, ZombieHorseEntity.class, false));
-      this.targetSelector.addGoal(6, new NearestAttackableTargetGoal<>(this, TropicalFishEntity.class, false));
-      this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, VillagerEntity.class, false));
-      this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, WanderingTraderEntity.class, false));
-      this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, ZombieVillagerEntity.class, false));
-      this.targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, PiglinEntity.class, false));*/
       this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, WaterMobEntity.class, false));
       this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, CreatureEntity.class, true));
       this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, MonsterEntity.class, true));
@@ -221,31 +178,6 @@ public class HhijEntity extends HhijTameableEntity implements IAngerable {
          }
 
       }
-   }
-
-   public ItemStack getStackInSlot(int index) {
-      List<ItemStack> list = null;
-
-      for(NonNullList<ItemStack> nonnulllist : this.allInventories) {
-         if (index < nonnulllist.size()) {
-            list = nonnulllist;
-            break;
-         }
-
-         index -= nonnulllist.size();
-      }
-
-      return list == null ? ItemStack.EMPTY : list.get(index);
-   }
-
-   public int getFirstEmptyStack() {
-      for(int i = 0; i < this.inventory.size(); ++i) {
-         if (this.inventory.get(i).isEmpty()) {
-            return i;
-         }
-      }
-
-      return -1;
    }
 
    /**
@@ -361,6 +293,71 @@ public class HhijEntity extends HhijTameableEntity implements IAngerable {
          this.moveForward = 0.0F;
       }
 
+   }
+
+   private boolean stackEqualExact(ItemStack stack1, ItemStack stack2) {
+      return stack1.getItem() == stack2.getItem() && ItemStack.areItemStackTagsEqual(stack1, stack2);
+   }
+
+   private boolean canMergeStacks(ItemStack stack1, ItemStack stack2) {
+      return !stack1.isEmpty() && this.stackEqualExact(stack1, stack2) && stack1.isStackable() && stack1.getCount() < stack1.getMaxStackSize() && stack1.getCount() < this.getInventoryStackLimit();
+   }
+
+   int getInventoryStackLimit() {
+      return 1000000;
+   }
+
+   public int storeItemStack(ItemStack itemStackIn) {
+      if (this.canMergeStacks(this.getStackInSlot(this.currentItem), itemStackIn)) {
+         return this.currentItem;
+      } else if (this.canMergeStacks(this.getStackInSlot(40), itemStackIn)) {
+         return 40;
+      } else {
+         for(int i = 0; i < this.inventory.size(); ++i) {
+            if (this.canMergeStacks(this.inventory.get(i), itemStackIn)) {
+               return i;
+            }
+         }
+
+         return -1;
+      }
+   }
+
+   public void placeItemBackInInventory(World worldIn, ItemStack stack) {
+      if (!worldIn.isRemote) {
+         while(!stack.isEmpty()) {
+            int i = this.storeItemStack(stack);
+            if (i == -1) {
+               i = this.getFirstEmptyStack();
+            }
+         }
+
+      }
+   }
+
+   public ItemStack getStackInSlot(int index) {
+      List<ItemStack> list = null;
+
+      for(NonNullList<ItemStack> nonNullList : this.allInventories) {
+         if (index < nonNullList.size()) {
+            list = nonNullList;
+            break;
+         }
+
+         index -= nonNullList.size();
+      }
+
+      return list == null ? ItemStack.EMPTY : list.get(index);
+   }
+
+   public int getFirstEmptyStack() {
+      for(int i = 0; i < this.inventory.size(); ++i) {
+         if (this.inventory.get(i).isEmpty()) {
+            return i;
+         }
+      }
+
+      return -1;
    }
 
    protected void spawnDrops(DamageSource damageSourceIn) {

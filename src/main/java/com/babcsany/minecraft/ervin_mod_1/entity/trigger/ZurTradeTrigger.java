@@ -14,7 +14,7 @@ import net.minecraft.loot.ConditionArraySerializer;
 import net.minecraft.loot.LootContext;
 import net.minecraft.util.ResourceLocation;
 
-public class ZurTrigger extends AbstractCriterionTrigger<ZurTrigger.Instance> {
+public class ZurTradeTrigger extends AbstractCriterionTrigger<ZurTradeTrigger.Instance> {
    private static final ResourceLocation ID = new ResourceLocation(Ervin_mod_1.MOD_ID,"zur_trade");
 
    public ResourceLocation getId() {
@@ -37,7 +37,7 @@ public class ZurTrigger extends AbstractCriterionTrigger<ZurTrigger.Instance> {
       private final ItemPredicate item;
 
       public Instance(EntityPredicate.AndPredicate player, EntityPredicate.AndPredicate zur, ItemPredicate stack) {
-         super(ZurTrigger.ID, player);
+         super(ZurTradeTrigger.ID, player);
          this.zur = zur;
          this.item = stack;
       }

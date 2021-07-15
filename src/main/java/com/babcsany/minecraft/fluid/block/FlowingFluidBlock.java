@@ -89,7 +89,7 @@ public class FlowingFluidBlock extends net.minecraft.block.FlowingFluidBlock imp
    }
 
    public boolean allowsMovement(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type) {
-      return !this.fluid.isIn(FluidTags.LAVA);
+      return !this.fluid.isIn(FluidTags.JURK);
    }
 
    public FluidState getFluidState(BlockState state) {

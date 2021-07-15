@@ -35,6 +35,13 @@ public class GenOreFeatureConfig implements IFeatureConfig {
             return p_214739_0_.isIn(Blocks.STONE) || p_214739_0_.isIn(Blocks.GRANITE) || p_214739_0_.isIn(Blocks.DIORITE) || p_214739_0_.isIn(Blocks.ANDESITE);
          }
       }),
+      NATURAL_ORANGE_STONE("natural_orange_stone", (p_214739_0_) -> {
+         if (p_214739_0_ == null) {
+            return false;
+         } else {
+            return p_214739_0_.isIn(BlockItemInit.ORANGE_STONE.get()) || p_214739_0_.isIn(Blocks.GRANITE) || p_214739_0_.isIn(Blocks.DIORITE) || p_214739_0_.isIn(Blocks.ANDESITE);
+         }
+      }),
       NATURAL_END_STONE("natural_end_stone", (natural_end_stone) -> {
          if (natural_end_stone == null) {
             return false;

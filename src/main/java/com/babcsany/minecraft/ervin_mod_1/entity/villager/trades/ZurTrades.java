@@ -1,7 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.villager.trades;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
-import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.food.isBurnableFoodItemInit;
@@ -11,6 +10,7 @@ import com.babcsany.minecraft.ervin_mod_1.init.item.special.SpecialItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.tool.SpecialToolItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.tool.isBurnableSpecialToolItemInit;
 import com.babcsany.minecraft.ervin_mod_1.tags.ItemTag;
+import com.babcsany.minecraft.init.BlockItemInit;
 import com.babcsany.minecraft.init.EntityInit;
 import com.babcsany.minecraft.item.IEntityProvider;
 import com.google.common.collect.ImmutableList;
@@ -64,8 +64,9 @@ import java.util.stream.Collectors;
 public class ZurTrades {
    public static final Int2ObjectMap<ZurTrades.ITrade[]> field_221240_b = gatAsIntMap(ImmutableMap.of(1, new ZurTrades.ITrade[]{
            new ZurTrades.ItemsForEmeraldsTrade(ModSpawnEggItemInit.DGRURB_SPAWN_EGG.get(), 5, 1, 50, 2),
+           new ZurTrades.ItemsForBedrocksTrade(SpecialItemInit.GRITHK.get(), 5, 1, 50, 10),
            new ZurTrades.ItemsForTirskBlocksAndItemsTrade(SpecialItemInit.GRITHK.get(), 1, isBurnableSpecialToolItemInit.TERAT.get(), 4, 30, 30),
-           new ZurTrades.ItemsForTirskBlocksAndItemsTrade((IItemProvider) ItemTag.GARK_BLOCK, 1, isBurnableSpecialToolItemInit.TERAT.get(), 4, 30, 30),
+           //new ZurTrades.ItemsForTirskBlocksAndItemsTrade((IItemProvider) ItemTag.GARK_BLOCK, 1, isBurnableSpecialToolItemInit.TERAT.get(), 4, 30, 30),
    }));
 
    private static Int2ObjectMap<ZurTrades.ITrade[]> gatAsIntMap(ImmutableMap<Integer, ZurTrades.ITrade[]> p_221238_0_) {
@@ -505,7 +506,7 @@ public class ZurTrades {
 
       @Nullable
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         return new MerchantOffer(new ItemStack(BlockItemInit.FIRT_BLOCK.get(), this.firtCount), new ItemStack(this.buyingItem.getItem(), this.buyingItemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack(BlockItemInit.FIRT_BLOCK, this.firtCount), new ItemStack(this.buyingItem.getItem(), this.buyingItemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 

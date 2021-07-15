@@ -23,14 +23,14 @@ import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 
 import java.util.Map;
+import java.util.Objects;
 
 public class Grith extends Item {
-	private boolean potionsNeedUpdate = true;
 	private final Map<Effect, EffectInstance> activePotionsMap = Maps.newHashMap();
 	public PlayerEntity player;
 	public final PlayerInventory inventory = new PlayerInventory(player);
 	public World world;
-	private AttributeModifierManager attributes;
+	static AttributeModifierManager attributes;
 	Grith_Block grith_block;
 	public Grith(Properties properties) {
 		super(properties);
@@ -56,36 +56,32 @@ public class Grith extends Item {
 	}
 
 	public boolean onEntityItemUpdate(ItemStack stack, ItemEntity entity) {
-		if (grith_block.onEntityItemUpdateDown(stack, entity)) {
-			entity.getEntityWorld().setBlockState(entity.getPosition().down(), Blocks.AIR.getDefaultState());
-			entity.getEntityWorld().setBlockState(entity.getPosition().down().east(), Blocks.AIR.getDefaultState());
-			entity.getEntityWorld().setBlockState(entity.getPosition().down().east().north(), Blocks.AIR.getDefaultState());
-			entity.getEntityWorld().setBlockState(entity.getPosition().down().west(), Blocks.AIR.getDefaultState());
-			entity.getEntityWorld().setBlockState(entity.getPosition().down().west().south(), Blocks.AIR.getDefaultState());
-			entity.getEntityWorld().setBlockState(entity.getPosition().down().north(), Blocks.AIR.getDefaultState());
-			entity.getEntityWorld().setBlockState(entity.getPosition().down().north().west(), Blocks.AIR.getDefaultState());
-			entity.getEntityWorld().setBlockState(entity.getPosition().down().south(), Blocks.AIR.getDefaultState());
-			entity.getEntityWorld().setBlockState(entity.getPosition().down().south().east(), Blocks.AIR.getDefaultState());
-			entity.getEntityWorld().setBlockState(entity.getPosition().up(), Blocks.AIR.getDefaultState());
-			entity.getEntityWorld().setBlockState(entity.getPosition().up().east(), Blocks.AIR.getDefaultState());
-			entity.getEntityWorld().setBlockState(entity.getPosition().up().east().north(), Blocks.AIR.getDefaultState());
-			entity.getEntityWorld().setBlockState(entity.getPosition().up().west(), Blocks.AIR.getDefaultState());
-			entity.getEntityWorld().setBlockState(entity.getPosition().up().west().south(), Blocks.AIR.getDefaultState());
-			entity.getEntityWorld().setBlockState(entity.getPosition().up().north(), Blocks.AIR.getDefaultState());
-			entity.getEntityWorld().setBlockState(entity.getPosition().up().north().west(), Blocks.AIR.getDefaultState());
-			entity.getEntityWorld().setBlockState(entity.getPosition().up().south(), Blocks.AIR.getDefaultState());
-			entity.getEntityWorld().setBlockState(entity.getPosition().up().south().east(), Blocks.AIR.getDefaultState());
-			entity.getEntityWorld().setBlockState(entity.getPosition().east(), Blocks.AIR.getDefaultState());
-			entity.getEntityWorld().setBlockState(entity.getPosition().east().north(), Blocks.AIR.getDefaultState());
-			entity.getEntityWorld().setBlockState(entity.getPosition().west(), Blocks.AIR.getDefaultState());
-			entity.getEntityWorld().setBlockState(entity.getPosition().west().south(), Blocks.AIR.getDefaultState());
-			entity.getEntityWorld().setBlockState(entity.getPosition().north(), Blocks.AIR.getDefaultState());
-			entity.getEntityWorld().setBlockState(entity.getPosition().north().west(), Blocks.AIR.getDefaultState());
-			entity.getEntityWorld().setBlockState(entity.getPosition().south(), Blocks.AIR.getDefaultState());
-			entity.getEntityWorld().setBlockState(entity.getPosition().south().east(), Blocks.AIR.getDefaultState());
-		} else {
-			return false;
-		}
+		entity.getEntityWorld().setBlockState(entity.getPosition().down(), Blocks.AIR.getDefaultState());
+		entity.getEntityWorld().setBlockState(entity.getPosition().down().east(), Blocks.AIR.getDefaultState());
+		entity.getEntityWorld().setBlockState(entity.getPosition().down().east().north(), Blocks.AIR.getDefaultState());
+		entity.getEntityWorld().setBlockState(entity.getPosition().down().west(), Blocks.AIR.getDefaultState());
+		entity.getEntityWorld().setBlockState(entity.getPosition().down().west().south(), Blocks.AIR.getDefaultState());
+		entity.getEntityWorld().setBlockState(entity.getPosition().down().north(), Blocks.AIR.getDefaultState());
+		entity.getEntityWorld().setBlockState(entity.getPosition().down().north().west(), Blocks.AIR.getDefaultState());
+		entity.getEntityWorld().setBlockState(entity.getPosition().down().south(), Blocks.AIR.getDefaultState());
+		entity.getEntityWorld().setBlockState(entity.getPosition().down().south().east(), Blocks.AIR.getDefaultState());
+		entity.getEntityWorld().setBlockState(entity.getPosition().up(), Blocks.AIR.getDefaultState());
+		entity.getEntityWorld().setBlockState(entity.getPosition().up().east(), Blocks.AIR.getDefaultState());
+		entity.getEntityWorld().setBlockState(entity.getPosition().up().east().north(), Blocks.AIR.getDefaultState());
+		entity.getEntityWorld().setBlockState(entity.getPosition().up().west(), Blocks.AIR.getDefaultState());
+		entity.getEntityWorld().setBlockState(entity.getPosition().up().west().south(), Blocks.AIR.getDefaultState());
+		entity.getEntityWorld().setBlockState(entity.getPosition().up().north(), Blocks.AIR.getDefaultState());
+		entity.getEntityWorld().setBlockState(entity.getPosition().up().north().west(), Blocks.AIR.getDefaultState());
+		entity.getEntityWorld().setBlockState(entity.getPosition().up().south(), Blocks.AIR.getDefaultState());
+		entity.getEntityWorld().setBlockState(entity.getPosition().up().south().east(), Blocks.AIR.getDefaultState());
+		entity.getEntityWorld().setBlockState(entity.getPosition().east(), Blocks.AIR.getDefaultState());
+		entity.getEntityWorld().setBlockState(entity.getPosition().east().north(), Blocks.AIR.getDefaultState());
+		entity.getEntityWorld().setBlockState(entity.getPosition().west(), Blocks.AIR.getDefaultState());
+		entity.getEntityWorld().setBlockState(entity.getPosition().west().south(), Blocks.AIR.getDefaultState());
+		entity.getEntityWorld().setBlockState(entity.getPosition().north(), Blocks.AIR.getDefaultState());
+		entity.getEntityWorld().setBlockState(entity.getPosition().north().west(), Blocks.AIR.getDefaultState());
+		entity.getEntityWorld().setBlockState(entity.getPosition().south(), Blocks.AIR.getDefaultState());
+		entity.getEntityWorld().setBlockState(entity.getPosition().south().east(), Blocks.AIR.getDefaultState());
 
 		return super.onEntityItemUpdate(stack, entity);
 	}
@@ -122,7 +118,6 @@ public class Grith extends Item {
 	}
 
 	protected void onNewPotionEffect(EffectInstance id, LivingEntity living) {
-		this.potionsNeedUpdate = true;
 		if (!this.world.isRemote) {
 			id.getPotion().applyAttributesModifiersToEntity(living, this.getAttributeManager(), id.getAmplifier());
 		}
@@ -130,7 +125,6 @@ public class Grith extends Item {
 	}
 
 	protected void onChangedPotionEffect(EffectInstance id, boolean reapply, LivingEntity living) {
-		this.potionsNeedUpdate = true;
 		if (reapply && !this.world.isRemote) {
 			Effect effect = id.getPotion();
 			effect.removeAttributesModifiersFromEntity(living, this.getAttributeManager(), id.getAmplifier());
@@ -152,12 +146,10 @@ public class Grith extends Item {
 	@Override
 	public ActionResultType onItemUse(ItemUseContext context) {
 		if (context.getWorld().getBlockState(context.getPos()).getBlock() == BlockInit.GRITH_BLOCK.get()) {
-			for (ItemStack stack : context.getPlayer().inventory.mainInventory) {
+			for (ItemStack stack : Objects.requireNonNull(context.getPlayer()).inventory.mainInventory) {
 				if (stack.isEmpty()) {
 					context.getPlayer().addItemStackToInventory(new ItemStack(isBurnableSpecialItemInit.GRITH.get()));
-					context.getItem().damageItem(1, context.getPlayer(), (playerIn) -> {
-						playerIn.sendBreakAnimation(context.getHand());
-					});
+					context.getItem().damageItem(1, context.getPlayer(), (playerIn) -> playerIn.sendBreakAnimation(context.getHand()));
 					return ActionResultType.SUCCESS;
 				}
 			}

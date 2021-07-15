@@ -42,9 +42,8 @@ public class FallingZurBlock extends Block {
    public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
       if (worldIn.isAirBlock(pos.down()) || canFallThrough(worldIn.getBlockState(pos.down())) && pos.getY() >= 0) {
          FallingBlockEntity fallingblockentity = new FallingBlockEntity(worldIn, (double)pos.getX() + 0.5D, (double)pos.getY(), (double)pos.getZ() + 0.5D, worldIn.getBlockState(pos));
-         ZurEntity zurEntity = new ZurEntity(worldIn);
          this.onStartFalling(fallingblockentity);
-         worldIn.addEntity(zurEntity);
+         worldIn.addEntity(fallingblockentity);
       }
    }
 
@@ -60,7 +59,7 @@ public class FallingZurBlock extends Block {
       return state.isAir() || state.isIn(BlockTags.FIRE) || material.isLiquid() || material.isReplaceable();
    }
 
-   public void onEndFalling(World worldIn, BlockPos pos, BlockState fallingState, BlockState hitState, FallingBlockEntity fallingBlock) {
+   public void onEndFalling(World worldIn, BlockPos pos, BlockState fallingState, BlockState hitState, ZurEntity fallingBlock) {
    }
 
    public void onBroken(World worldIn, BlockPos pos, FallingBlockEntity fallingBlock) {

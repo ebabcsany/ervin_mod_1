@@ -8,8 +8,6 @@ import net.minecraft.util.registry.Registry;
 
 public class RecipeSerializerInit<T extends IRecipe<?>> {
 
-    public static RecipeSerializerInit<?> RECIPE_SERIALIZERS;
-
     public static SpecialRecipeSerializer<BlackBookCloningRecipe> CRAFTING_SPECIAL_BOOKCLONING = register("ervin_mod_1:crafting_special_black_book_cloning", new SpecialRecipeSerializer<>(BlackBookCloningRecipe::new));
 
     static <S extends IRecipeSerializer<T>, T extends IRecipe<?>> S register(String key, S recipeSerializer) {

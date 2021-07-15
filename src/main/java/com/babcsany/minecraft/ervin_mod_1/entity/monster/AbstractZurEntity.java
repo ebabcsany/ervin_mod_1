@@ -10,7 +10,9 @@ import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.special.isBurnableSpecialItemInit;
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Sets;
+import com.mojang.serialization.Dynamic;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
@@ -18,23 +20,27 @@ import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
+import net.minecraft.entity.ai.brain.Brain;
 import net.minecraft.entity.ai.brain.memory.MemoryModuleType;
 import net.minecraft.entity.ai.goal.BreakDoorGoal;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
 import net.minecraft.entity.merchant.IMerchant;
+import net.minecraft.entity.merchant.IReputationTracking;
+import net.minecraft.entity.merchant.IReputationType;
 import net.minecraft.entity.merchant.villager.VillagerData;
-import net.minecraft.entity.merchant.villager.VillagerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.entity.projectile.ProjectileHelper;
+import net.minecraft.entity.villager.IVillagerType;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.container.MerchantContainer;
 import net.minecraft.inventory.container.SimpleNamedContainerProvider;
 import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.ListNBT;
 import net.minecraft.nbt.NBTDynamicOps;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -80,6 +86,8 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
    private final List<NonNullList<ItemStack>> allInventories = ImmutableList.of(this.inventory);
    private final BreakDoorGoal breakDoor = new BreakDoorGoal(this, HARD_DIFFICULTY_PREDICATE);
    private static final Predicate<Difficulty> HARD_DIFFICULTY_PREDICATE = (p_213697_0_) -> p_213697_0_ == Difficulty.HARD;
+   protected static final DataParameter<Optional<BlockState>> CARRIED_BLOCK = EntityDataManager.createKey(ZurEntity.class, DataSerializers.OPTIONAL_BLOCK_STATE);
+   public static final Map<Item, Integer> FOOD_VALUES = ImmutableMap.of(Items.BREAD, 4, Items.POTATO, 1, Items.CARROT, 1, Items.BEETROOT, 1);
    @Nullable
    private PlayerEntity customer;
    private boolean swimmingUp;
@@ -99,12 +107,8 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
    private byte foodLevel;
    private int xp;
    private final GossipManager gossip = new GossipManager();
-   private int wave;
-   private boolean canJoinRaid;
-   private int field_213664_bB;
-   private boolean patrolLeader;
-   private boolean patrolling;
    private boolean field_234542_bL_;
+   private long lastGossipDecay;
    private int level;
    private int timeUntilReset;
    private boolean leveledUp;
@@ -133,9 +137,10 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
    };
    @Nullable
    protected MerchantOffers offers;
+   IVillagerType villagerType;
    public int currentItem;
    public int timeUntilNextItem = this.rand.nextInt(6000) + 6000;
-   private final Inventory zurInventory = new Inventory(1000000);
+   protected final Inventory zurInventory = new Inventory(1000000);
 
    public AbstractZurEntity(EntityType<? extends AbstractZurEntity> type, World worldIn) {
       super(type, worldIn);
@@ -144,6 +149,7 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
       this.setPathPriority(PathNodeType.DAMAGE_FIRE, -1.0F);
       this.waterNavigator = new SwimmerPathNavigator(this, worldIn);
       this.groundNavigator = new GroundPathNavigator(this, worldIn);
+      this.setCanPickUpLoot(true);
    }
 
    public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
@@ -204,9 +210,6 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
    }
 
    protected void updateAITasks() {
-      this.world.getProfiler().startSection("villagerBrain");
-      //this.getBrain().tick((ServerWorld)this.world, this);
-      this.world.getProfiler().endSection();
       if (this.field_234542_bL_) {
          this.field_234542_bL_ = false;
       }
@@ -224,7 +227,7 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
       }
 
       if (this.customer != null && this.world instanceof ServerWorld) {
-         //((ServerWorld)this.world).updateReputation(IReputationType.TRADE, this.customer, this);
+         ((ServerWorld)this.world).updateReputation(IReputationType.TRADE, this.customer, (IReputationTracking) this);
          this.world.setEntityState(this, (byte)14);
          this.customer = null;
       }
@@ -244,21 +247,7 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
    }
 
    private void levelUp() {
-      this.setVillagerData(this.getVillagerData().withLevel(this.getVillagerData().getLevel() + 1));
       this.populateTradeZurData();
-   }
-
-   public VillagerData getVillagerData() {
-      return this.dataManager.get(VILLAGER_DATA);
-   }
-
-   public void setVillagerData(VillagerData p_213753_1_) {
-      VillagerData villagerdata = this.getVillagerData();
-      if (villagerdata.getProfession() != p_213753_1_.getProfession()) {
-         this.offers = null;
-      }
-
-      this.dataManager.set(VILLAGER_DATA, p_213753_1_);
    }
 
    /**
@@ -286,12 +275,21 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
 
    protected void registerData() {
       super.registerData();
+      this.dataManager.register(CARRIED_BLOCK, Optional.empty());
       this.dataManager.register(CLIMBING, (byte)1);
       this.dataManager.register(SHAKE_HEAD_TICKS, 0);
       this.getDataManager().register(IS_CHILD, false);
       this.getDataManager().register(IS_DRINKING, false);
       this.getDataManager().register(TRADER_TYPE, 0);
       this.getDataManager().register(ROVENT, false);
+   }
+
+   protected ItemStack func_234436_k_(ItemStack itemStack) {
+      return this.zurInventory.addItem(itemStack);
+   }
+
+   protected boolean func_234437_l_(ItemStack itemStack) {
+      return this.zurInventory.func_233541_b_(itemStack);
    }
 
    protected boolean shouldDrown() {
@@ -310,6 +308,7 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
     * Called to update the entity's position/logic.
     */
    public void tick() {
+      super.tick();
       if (!this.world.isRemote) {
          this.setBesideClimbableBlock(this.collidedHorizontally);
       }
@@ -348,7 +347,17 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
          }
       }
 
-      super.tick();
+      this.tickGossip();
+   }
+
+   private void tickGossip() {
+      long i = this.world.getGameTime();
+      if (this.lastGossipDecay == 0L) {
+         this.lastGossipDecay = i;
+      } else if (i >= this.lastGossipDecay + 24000L) {
+         this.gossip.tick();
+         this.lastGossipDecay = i;
+      }
    }
 
    public ActionResultType func_230254_b_(PlayerEntity p_230254_1_, Hand p_230254_2_) {
@@ -356,7 +365,6 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
       if (itemstack.getItem() != Items.VILLAGER_SPAWN_EGG && this.isAlive() && !this.hasCustomer() && !this.isSleeping() && !p_230254_1_.isSecondaryUseActive()) {
          if (this.isChild()) {
             this.shakeHead();
-            return ActionResultType.func_233537_a_(this.world.isRemote);
          } else {
             boolean flag = this.getOffers().isEmpty();
             if (p_230254_2_ == Hand.MAIN_HAND) {
@@ -367,16 +375,14 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
                p_230254_1_.addStat(Stats.TALKED_TO_VILLAGER);
             }
 
-            if (flag) {
-               return ActionResultType.func_233537_a_(this.world.isRemote);
-            } else {
+            if (!flag) {
                if (!this.world.isRemote && !this.offers.isEmpty()) {
                   this.displayMerchantGui(p_230254_1_);
                }
 
-               return ActionResultType.func_233537_a_(this.world.isRemote);
             }
          }
+         return ActionResultType.func_233537_a_(this.world.isRemote);
       } else {
          return super.func_230254_b_(p_230254_1_, p_230254_2_);
       }
@@ -442,10 +448,10 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
          EffectInstance effectinstance = playerIn.getActivePotionEffect(Effects.HERO_OF_THE_VILLAGE);
          int k = effectinstance.getAmplifier();
 
-         for(MerchantOffer merchantoffer1 : this.getOffers()) {
+         for(MerchantOffer merchantOffer1 : this.getOffers()) {
             double d0 = 0.3D + 0.0625D * (double)k;
-            int j = (int)Math.floor(d0 * (double)merchantoffer1.getBuyingStackFirst().getCount());
-            merchantoffer1.increaseSpecialPrice(-Math.max(j, 1));
+            int j = (int)Math.floor(d0 * (double)merchantOffer1.getBuyingStackFirst().getCount());
+            merchantOffer1.increaseSpecialPrice(-Math.max(j, 1));
          }
       }
 
@@ -456,8 +462,7 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
    }
 
    public void setLeader(boolean isLeader) {
-      this.patrolLeader = isLeader;
-      this.patrolling = true;
+      boolean patrolling = true;
    }
 
    protected boolean canBreakDoors() {
@@ -469,17 +474,14 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
    }
 
    public void func_213644_t(boolean p_213644_1_) {
-      this.canJoinRaid = p_213644_1_;
    }
 
    public abstract void applyWaveBonus(int p_213660_1_, boolean p_213660_2_);
 
    public void func_213653_b(int p_213653_1_) {
-      this.field_213664_bB = p_213653_1_;
    }
 
    public void setWave(int p_213651_1_) {
-      this.wave = p_213651_1_;
    }
 
    /**
@@ -646,8 +648,8 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
    }
 
    /**
-    * Notifies the merchant of a possible merchantrecipe being fulfilled or not. Usually, this is just a sound byte
-    * being played depending if the suggested itemstack is not null.
+    * Notifies the merchant of a possible merchantRecipe being fulfilled or not. Usually, this is just a sound byte
+    * being played depending if the suggested itemStack is not null.
     */
    public void verifySellingItem(ItemStack stack) {
       if (!this.world.isRemote && this.livingSoundTime > -this.getTalkInterval() + 20) {
@@ -676,9 +678,6 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
          compound.put("Offers", merchantoffers.write());
       }
 
-      VillagerData.VILLAGER_DATA_CODEC.encodeStart(NBTDynamicOps.INSTANCE, this.getVillagerData()).resultOrPartial(LOGGER::error).ifPresent((p_234547_1_) -> {
-         compound.put("VillagerData", p_234547_1_);
-      });
       compound.putByte("FoodLevel", this.foodLevel);
       compound.put("Gossips", this.gossip.func_234058_a_(NBTDynamicOps.INSTANCE).getValue());
       compound.putInt("Xp", this.xp);
@@ -695,6 +694,15 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
       compound.putInt("XpSeed", this.xpSeed);
    }
 
+   private int getFoodValueFromInventory() {
+      Inventory inventory = this.getZurInventory();
+      return FOOD_VALUES.entrySet().stream().mapToInt((p_226553_1_) -> inventory.count(p_226553_1_.getKey()) * p_226553_1_.getValue()).sum();
+   }
+
+   public boolean canBreed() {
+      return this.foodLevel + this.getFoodValueFromInventory() >= 12 && this.getGrowingAge() == 0;
+   }
+
    /**
     * (abstract) Protected helper method to read subclass entity data from NBT.
     */
@@ -704,8 +712,29 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
          this.offers = new MerchantOffers(compound.getCompound("Offers"));
       }
 
+      if (compound.contains("FoodLevel", 1)) {
+         this.foodLevel = compound.getByte("FoodLevel");
+      }
+
+      ListNBT listnbt = compound.getList("Gossips", 10);
+      this.gossip.func_234057_a_(new Dynamic<>(NBTDynamicOps.INSTANCE, listnbt));
+      if (compound.contains("Xp", 3)) {
+         this.xp = compound.getInt("Xp");
+      }
+
+      long lastRestock = compound.getLong("LastRestock");
+      this.lastGossipDecay = compound.getLong("LastGossipDecay");
+      this.setCanPickUpLoot(true);
+      if (this.world instanceof ServerWorld) {
+         this.resetBrain((ServerWorld)this.world);
+      }
+
+      int field_223725_bO = compound.getInt("RestocksToday");
+      if (compound.contains("AssignProfessionWhenSpawned")) {
+         this.field_234542_bL_ = compound.getBoolean("AssignProfessionWhenSpawned");
+      }
+
       this.zurInventory.read(compound.getList("Inventory", 10));
-      this.sleepTimer = compound.getShort("SleepTimer");
       this.experience = compound.getFloat("XpP");
       this.experienceLevel = compound.getInt("XpLevel");
       this.experienceTotal = compound.getInt("XpTotal");
@@ -713,6 +742,12 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
       if (this.xpSeed == 0) {
          this.xpSeed = this.rand.nextInt();
       }
+   }
+
+   public void resetBrain(ServerWorld serverWorldIn) {
+      Brain<AbstractZurEntity> brain = (Brain<AbstractZurEntity>) this.getBrain();
+      brain.stopAllTasks(serverWorldIn, this);
+      this.brain = brain.copy();
    }
 
    @Nullable
@@ -788,8 +823,8 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
       }
 
       for(Integer integer : set) {
-         ZurTrades.ITrade $tradertrades$itrade = newTrades[integer];
-         MerchantOffer merchantoffer = $tradertrades$itrade.getOffer(this, this.rand);
+         ZurTrades.ITrade zurTrades$ITrade = newTrades[integer];
+         MerchantOffer merchantoffer = zurTrades$ITrade.getOffer(this, this.rand);
          if (merchantoffer != null) {
             givenMerchantOffers.add(merchantoffer);
          }
@@ -884,14 +919,14 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
             }
          }
       }
-      if (!this.world.isRemote && this.isAlive() && !this.isChild() && !this.isZurDropItem() && --this.timeUntilNextItem <= 0) {
+      if (!this.world.isRemote && this.isAlive() && !this.isChild() && this.isZurDropItem() && --this.timeUntilNextItem <= 0) {
          this.entityDropItem(isBurnableItemInit.LEAT.get());
          this.timeUntilNextItem = this.rand.nextInt(12000) + 12000;
       }
    }
 
    public boolean isZurDropItem() {
-      return this.zurDropItem;
+      return !this.zurDropItem;
    }
 
    public void handleDespawn() {
@@ -945,16 +980,28 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
       }
    }
 
+   public void placeItemBackInInventory(World worldIn, ItemStack stack) {
+      if (!worldIn.isRemote) {
+         while(!stack.isEmpty()) {
+            int i = this.storeItemStack(stack);
+            if (i == -1) {
+               i = this.getFirstEmptyStack();
+            }
+         }
+
+      }
+   }
+
    public ItemStack getStackInSlot(int index) {
       List<ItemStack> list = null;
 
-      for(NonNullList<ItemStack> nonnulllist : this.allInventories) {
-         if (index < nonnulllist.size()) {
-            list = nonnulllist;
+      for(NonNullList<ItemStack> nonNullList : this.allInventories) {
+         if (index < nonNullList.size()) {
+            list = nonNullList;
             break;
          }
 
-         index -= nonnulllist.size();
+         index -= nonNullList.size();
       }
 
       return list == null ? ItemStack.EMPTY : list.get(index);
@@ -970,18 +1017,6 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
       return -1;
    }
 
-   public void placeItemBackInInventory(World worldIn, ItemStack stack) {
-      if (!worldIn.isRemote) {
-         while(!stack.isEmpty()) {
-            int i = this.storeItemStack(stack);
-            if (i == -1) {
-               i = this.getFirstEmptyStack();
-            }
-         }
-
-      }
-   }
-
    protected SoundEvent getFallSound(int heightIn) {
       return heightIn > 4 ? SoundEvents.ENTITY_HOSTILE_BIG_FALL : SoundEvents.ENTITY_HOSTILE_SMALL_FALL;
    }
@@ -990,32 +1025,12 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
       return 0.5F - worldIn.getBrightness(pos);
    }
 
-   /**
-    * Static predicate for determining if the current light level and environmental conditions allow for a monster to
-    * spawn.
-    * /
-   public static boolean isValidLightLevel(IWorld worldIn, BlockPos pos, Random randomIn) {
-      if (worldIn.getLightFor(LightType.SKY, pos) > randomIn.nextInt(32)) {
-         return false;
-      } else {
-         int i = worldIn.getWorld().isThundering() ? worldIn.getNeighborAwareLightSubtracted(pos, 10) : worldIn.getLight(pos);
-         return i <= randomIn.nextInt(8);
-      }
-   }*/
-
    public static boolean canSpawnOn(EntityType<? extends MobEntity> typeIn, IWorld worldIn, SpawnReason reason, BlockPos pos, Random randomIn) {
       BlockPos blockpos = pos.add(1,1,1);
       return reason == SpawnReason.SPAWNER || worldIn.getBlockState(blockpos).canEntitySpawn(worldIn, blockpos, typeIn);
    }
 
-    /**
-    * Static predicate for determining whether or not a monster can spawn at the provided location.
-    */
-    /*public static boolean canMonsterSpawn(EntityType<? extends MonsterEntity> type, IWorld worldIn, SpawnReason reason, BlockPos pos, Random randomIn) {
-    return worldIn.getDifficulty() != Difficulty.PEACEFUL && canSpawnOn(type, worldIn, reason, pos, randomIn);
-    }*/
-
-   public static AttributeModifierMap.MutableAttribute func_234295_eP_() {
+    public static AttributeModifierMap.MutableAttribute func_234295_eP_() {
       return MobEntity.func_233666_p_().createMutableAttribute(Attributes.ATTACK_DAMAGE);
    }
 
@@ -1181,7 +1196,7 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
 
    /**
     * Returns true if the WatchableObject (Byte) is 0x01 otherwise returns false. The WatchableObject is updated using
-    * setBesideClimableBlock.
+    * setBesideClimbableBlock.
     */
    public boolean isBesideClimbableBlock() {
       return (this.dataManager.get(CLIMBING) & 1) != 0;

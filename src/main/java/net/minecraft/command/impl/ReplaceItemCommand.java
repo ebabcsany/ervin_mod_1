@@ -38,11 +38,11 @@ public class ReplaceItemCommand {
          return p_198607_0_.hasPermissionLevel(2);
       }).then(Commands.literal("block").then(Commands.argument("pos", BlockPosArgument.blockPos()).then(Commands.argument("slot", SlotArgument.slot()).then(Commands.argument("item", ItemArgument.item()).executes((p_198601_0_) -> {
          return replaceItemBlock(p_198601_0_.getSource(), BlockPosArgument.getLoadedBlockPos(p_198601_0_, "pos"), SlotArgument.getSlot(p_198601_0_, "slot"), ItemArgument.getItem(p_198601_0_, "item").createStack(1, false));
-      }).then(Commands.argument("count", IntegerArgumentType.integer(1, 2048)).executes((p_198605_0_) -> {
+      }).then(Commands.argument("count", IntegerArgumentType.integer(1, 536870912)).executes((p_198605_0_) -> {
          return replaceItemBlock(p_198605_0_.getSource(), BlockPosArgument.getLoadedBlockPos(p_198605_0_, "pos"), SlotArgument.getSlot(p_198605_0_, "slot"), ItemArgument.getItem(p_198605_0_, "item").createStack(IntegerArgumentType.getInteger(p_198605_0_, "count"), true));
       })))))).then(Commands.literal("entity").then(Commands.argument("targets", EntityArgument.entities()).then(Commands.argument("slot", SlotArgument.slot()).then(Commands.argument("item", ItemArgument.item()).executes((p_198600_0_) -> {
          return replaceItemEntities(p_198600_0_.getSource(), EntityArgument.getEntities(p_198600_0_, "targets"), SlotArgument.getSlot(p_198600_0_, "slot"), ItemArgument.getItem(p_198600_0_, "item").createStack(1, false));
-      }).then(Commands.argument("count", IntegerArgumentType.integer(1, 2048)).executes((p_198606_0_) -> {
+      }).then(Commands.argument("count", IntegerArgumentType.integer(1, 536870912)).executes((p_198606_0_) -> {
          return replaceItemEntities(p_198606_0_.getSource(), EntityArgument.getEntities(p_198606_0_, "targets"), SlotArgument.getSlot(p_198606_0_, "slot"), ItemArgument.getItem(p_198606_0_, "item").createStack(IntegerArgumentType.getInteger(p_198606_0_, "count"), true));
       })))))));
    }

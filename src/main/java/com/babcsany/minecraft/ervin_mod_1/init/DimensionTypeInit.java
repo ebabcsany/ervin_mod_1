@@ -3,6 +3,7 @@ package com.babcsany.minecraft.ervin_mod_1.init;
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.init.dimension.settings.ModDimensionSettings;
 import com.babcsany.minecraft.ervin_mod_1.world.dimension.biome_provider.ExampleBiomeProvider;
+import com.babcsany.minecraft.init.BlockInit;
 import com.google.common.collect.Maps;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -27,7 +28,6 @@ import java.util.OptionalLong;
 
 public class DimensionTypeInit extends DimensionType {
 
-
     //public static final RegistryKey<Dimension> OVERWORLD = RegistryKey.func_240903_a_(Registry.DIMENSION_KEY, new ResourceLocation(Ervin_mod_1.MOD_ID,"example_world"));
     public static final RegistryKey<DimensionType> EXAMPLE_WORLD = RegistryKey.func_240903_a_(Registry.DIMENSION_TYPE_KEY, new ResourceLocation(Ervin_mod_1.MOD_ID,"example_world"));
     protected static final DimensionType EXAMPLE_WORLD_TYPE = new DimensionTypeInit(OptionalLong.empty(), true, false, false, true, false, false, false, true, false, true, 1000, ColumnFuzzedBiomeMagnifier.INSTANCE, BlockTags.INFINIBURN_OVERWORLD.getName(), 0.0F);
@@ -45,11 +45,11 @@ public class DimensionTypeInit extends DimensionType {
         return p_236027_0_;
     }
 
-    /*private static ChunkGenerator func_236041_e_(long p_236041_0_) {
-        return new NoiseChunkGenerator(ExampleBiomeProvider.Preset.field_235288_b_.func_235292_a_(p_236041_0_), p_236041_0_, ModDimensionSettings.Preset.EXAMPLE.getSettings());
-    }*/
+    private static ChunkGenerator func_236041_e_(long p_236041_0_) {
+        return new NoiseChunkGenerator(ExampleBiomeProvider.Preset.field_235288_b_.func_235292_a_(p_236041_0_), p_236041_0_, ModDimensionSettings.Preset.EXAMPLE.getDimensionSettings());
+    }
 
-    public static final ModDimensionSettings.Preset EXAMPLE = new ModDimensionSettings.Preset("example", (p_236141_0_) -> createSettings(new DimensionStructuresSettings(false), BlockItemInit.FIRT_BLOCK.get().getDefaultState(), Blocks.LAVA.getDefaultState(), p_236141_0_));
+    public static final ModDimensionSettings.Preset EXAMPLE = new ModDimensionSettings.Preset("example", (p_236141_0_) -> createSettings(new DimensionStructuresSettings(false), BlockInit.FIRT_BLOCK.getDefaultState(), BlockInit.JURK.getDefaultState(), p_236141_0_));
 
     private static ModDimensionSettings createSettings(DimensionStructuresSettings structures, BlockState defaultBlock, BlockState defaultFluid, ModDimensionSettings.Preset preset) {
         Map<Structure<?>, StructureSeparationSettings> map = Maps.newHashMap(DimensionStructuresSettings.field_236191_b_);

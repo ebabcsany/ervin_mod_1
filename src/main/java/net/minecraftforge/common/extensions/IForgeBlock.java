@@ -58,7 +58,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @SuppressWarnings("deprecation")
-public interface IForgeBlock
+public interface IForgeBlock extends com.babcsany.minecraft.ervin_mod_1.forge.common.extensions.IForgeBlock
 {
     default Block getBlock()
     {

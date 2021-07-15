@@ -1,6 +1,5 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.villager.trades;
 
-import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.block.BlockNamedItemInit;
@@ -73,7 +72,7 @@ public class WanderingTraderNirtreTrades {
            new WanderingTraderNirtreTrades.ItemsForTrurksAndItemsTrade(SpecialToolItemInit.CRAINT.get(), 1, isBurnableBlockItemInit.RETRUG.get(), 1, 16, 1),
            new WanderingTraderNirtreTrades.ItemsForTrurksAndItemsTrade(isBurnableFoodItemInit.DURG.get(), 1, isBurnableBlockItemInit.CRASK.get(), 1, 16, 1),
            new WanderingTraderNirtreTrades.ItemsForTrurksAndItemsTrade(isBurnableBlockItemInit.SRIUNK_BLOCK.get(), 1, isBurnableBlockItemInit.SRURG.get(), 1, 16, 1),
-           new WanderingTraderNirtreTrades.ItemsForSrurgsAndBlocksTrade(SpecialBlockFoodItemInit.GRINT_BLOCK.get(), 4, com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.DEF_BLOCK.get(), 1, 16, 1),
+           new WanderingTraderNirtreTrades.ItemsForSrurgsAndBlocksTrade(SpecialBlockFoodItemInit.GRINT_BLOCK.get(), 4, com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.DEFERRED_BLOCK.get(), 1, 16, 1),
            new WanderingTraderNirtreTrades.ItemsForSrurgsAndItemsTrade(com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.KALT_BLOCK.get(), 30, isBurnableSpecialItemInit.GRITH.get(), 1, 16, 10),
            new WanderingTraderNirtreTrades.ItemsForSrurgsAndItemsTrade(isBurnableItemInit.SRIUNK.get(), 1, ItemInit.FRIN.get(), 1, 16, 1),
            new WanderingTraderNirtreTrades.ItemsFor60SrurgsAndItemsTrade(isBurnableFoodItemInit.TIRKS.get(), 60, isBurnableSpecialToolItemInit.TERAT.get(), 1, 16, 1),
@@ -1375,7 +1374,7 @@ public class WanderingTraderNirtreTrades {
       }
 
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         return new MerchantOffer(new ItemStack(BlockItemInit.FIRT_BLOCK.get(), this.firtBlockCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack(com.babcsany.minecraft.init.BlockItemInit.FIRT_BLOCK, this.firtBlockCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 

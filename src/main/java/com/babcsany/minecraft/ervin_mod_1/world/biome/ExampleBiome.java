@@ -20,7 +20,7 @@ public class ExampleBiome extends Biome {
 		this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityType.ZOMBIE, 30, 1, 20));
 		//this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.LIWRAY.get(), 1, 1, 3));
 		//this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.ROVENT_ENTITY.get(), 1, 1, 3));
-		this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityInit.ZUR_ENTITY, 20, 1, 10));
+		this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityInit.ZUR_ENTITY, 20, 1, 1));
 		//this.addSpawn(EntityClassification.WATER_CREATURE, new SpawnListEntry(EntityInit.GUBROV_ENTITY.get(), 1, 1, 4));
 		//this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityInit.FREIN_ENTITY.get(), 1, 0, 2));
 		this.addSpawn(EntityClassification.AMBIENT, new SpawnListEntry(EntityType.BAT, 40, 1, 20));
@@ -36,16 +36,16 @@ public class ExampleBiome extends Biome {
 				Feature.FOSSIL.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG)
 						.withPlacement(Placement.CHANCE_PASSTHROUGH.configure(new ChanceConfig(64))));
 		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
-				Feature.field_236291_c_.withConfiguration(FirgTree.FIRG_TREE_CONFIG3)
+				Feature.field_236291_c_.withConfiguration(FirgTree.FIRG_TREE_CONFIG4)
 						.withPlacement(Placement.CHANCE_HEIGHTMAP_DOUBLE.configure(new ChanceConfig(120))));
 		this.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION,
-				Feature.field_236291_c_.withConfiguration(FirgTree.FIRG_TREE_CONFIG2)
+				Feature.field_236291_c_.withConfiguration(FirgTree.FIRG_TREE_CONFIG3)
 						.withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(75))));
 		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
-				Feature.field_236291_c_.withConfiguration(FirgTree.FIRG_TREE_CONFIG1)
+				Feature.field_236291_c_.withConfiguration(FirgTree.FIRG_TREE_CONFIG2)
 						.withPlacement(Placement.CHANCE_TOP_SOLID_HEIGHTMAP.configure(new ChanceConfig(100))));
 		this.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION,
-				Feature.field_236291_c_.withConfiguration(FirgTree.FIRG_TREE_CONFIG)
+				Feature.field_236291_c_.withConfiguration(FirgTree.FIRG_TREE_CONFIG1)
 						.withPlacement(Placement.CHANCE_PASSTHROUGH.configure(new ChanceConfig(50))));
 		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
 				Feature.RANDOM_BOOLEAN_SELECTOR
@@ -81,7 +81,7 @@ public class ExampleBiome extends Biome {
 				Feature.field_236291_c_.withConfiguration(JazzTree.JAZZ_TREE_CONFIG).withPlacement(
 						Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(7, 0.1f, 1))));*/
 		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
-				Feature.field_236291_c_.withConfiguration(FirgTree.FIRG_TREE_CONFIG).withPlacement(
+				Feature.field_236291_c_.withConfiguration(FirgTree.FIRG_TREE_CONFIG0).withPlacement(
 						Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(45, 12.0f, 25))));
 
 		ModDefaultBiomeFeatures.addOres(this);

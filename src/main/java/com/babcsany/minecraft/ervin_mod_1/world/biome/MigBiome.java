@@ -10,6 +10,7 @@ import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.placement.*;
+import net.minecraftforge.fml.common.Mod;
 
 public class MigBiome extends Biome {
     public MigBiome(Builder biomeBuilder) {
@@ -43,9 +44,9 @@ public class MigBiome extends Biome {
                 Feature.field_236291_c_.withConfiguration(ModDefaultBiomeFeatures.FIRG_TREE_CONFIG).withPlacement(
                         Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(9, 4.7f, 15))));
 
-        DefaultBiomeFeatures.addOres(this);
-        DefaultBiomeFeatures.addExtraGoldOre(this);
-        DefaultBiomeFeatures.addExtraEmeraldOre(this);
+        ModDefaultBiomeFeatures.addOrangeStoneOres(this);
+        ModDefaultBiomeFeatures.addExtraGoldOre(this);
+        ModDefaultBiomeFeatures.addExtraEmeraldOre(this);
         ModDefaultBiomeFeatures.addOrangeStone(this);
         ModBiomeFeatures.addExampleFeature(this, 10);
         ModBiomeFeatures.addExampleRuinedPortalFeature(this, 10);

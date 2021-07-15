@@ -56,7 +56,7 @@ public class BiomeInit {
 															new MigBiomeSurfaceBuilder(
 																	SurfaceBuilderConfig.field_237203_a_)),
 													new SurfaceBuilderConfig(BlockItemInit.KALT_BLOCK.get().getDefaultState(),
-															BlockItemInit.FIRT_BLOCK.get().getDefaultState(),
+															com.babcsany.minecraft.init.BlockInit.FIRT_BLOCK.getDefaultState(),
 															BlockItemInit.EXAMPLE_BLOCK.get().getDefaultState())))
 									.category(Category.PLAINS).downfall(4.0f).depth(2.5f).parent(null)
 									.func_235098_a_(ImmutableList.of(new Biome.Attributes(10.25F, -6.5F, 13.5F, 9.2F, 3.0F)))
@@ -257,6 +257,21 @@ public class BiomeInit {
 															BlockInit.SCRAFTH.get().getDefaultState())))
 									.category(Category.THEEND).downfall(0.5f).depth(0.12f).parent(null)
 					));
+	public static final RegistryObject<Biome> TWUST = BIOMES
+			.register("twust",
+					() -> new ScrafthBiome(
+							new Biome.Builder().precipitation(RainType.SNOW).scale(1.2f).temperature(0.5f)
+									.func_235097_a_((new BiomeAmbience.Builder()).setWaterColor(16777215).setWaterFogColor(16777210).setFogColor(1677241).build())
+									.surfaceBuilder(
+											new ConfiguredSurfaceBuilder<>(
+													register("twust_surface",
+															new ScrafthBiomeSurfaceBuilder(
+																	SurfaceBuilderConfig.field_237203_a_)),
+													new SurfaceBuilderConfig(BlockInit.SCRAFTH.get().getDefaultState(),
+															BlockItemInit.GTRZIUZHIZJKJ.get().getDefaultState(),
+															BlockInit.SCRAFTH.get().getDefaultState())))
+									.category(Category.THEEND).downfall(0.5f).depth(0.12f).parent(null)
+					));
 
 	public static void registerBiomes() {
 		List<BiomeManager.BiomeEntry> list = new ArrayList<>();
@@ -269,7 +284,7 @@ public class BiomeInit {
 		registerBiomeCool_weight_10(EXAMPLE0_BIOME.get(), Type.COLD, Type.PLAINS);
 		registerBiomeWarm_weight_10(EXAMPLE_BIOME.get(), Type.LUSH, Type.PLAINS);
 		registerBiomeDesert_weight_10(EXAMPLE_BIOME1.get(), Type.PLAINS, Type.OVERWORLD);
-		registerBiomeIcy_weight_10(EXAMPLE_BIOME0.get(), Type.END, Type.getType("EXAMPLE_BIOME0", Type.fromVanilla(Category.THEEND)));
+		addBiome(EXAMPLE_BIOME0.get(), BiomeManager.BiomeType.create("END"), 10, Type.END, Type.getType("EXAMPLE_BIOME0", Type.fromVanilla(Category.THEEND)));
 		registerBiomeWarm_weight_10(EXAMPLE_BIOME2.get(), Type.PLAINS, Type.HOT, Type.OVERWORLD, Type.DRY);
 		registerBiomeWarm_weight_10(EXAMPLE_BIOME3.get(), Type.DENSE, Type.HOT, Type.OVERWORLD, Type.DENSE);
 		registerBiomeDesert_weight_10(EXAMPLE_BIOME4.get(), Type.BEACH, Type.RARE, Type.OVERWORLD);
@@ -338,6 +353,13 @@ public class BiomeInit {
 	private static void registerBiomeIcy_weight_10(Biome biome, Type... types) {
 		// the line below will make it spawn in the overworld
 		BiomeManager.addBiome(BiomeManager.BiomeType.ICY, new BiomeManager.BiomeEntry(biome, 10));
+		BiomeDictionary.addTypes(biome, types);
+		BiomeManager.addSpawnBiome(biome);
+	}
+
+	private static void addBiome(Biome biome, BiomeManager.BiomeType biomeType, int weight, Type... types) {
+		// the line below will make it spawn in the overworld
+		BiomeManager.addBiome(biomeType, new BiomeManager.BiomeEntry(biome, weight));
 		BiomeDictionary.addTypes(biome, types);
 		BiomeManager.addSpawnBiome(biome);
 	}

@@ -300,12 +300,12 @@ public class ExamplePortalBlock extends Block {
          int i;
          for(i = 0; i < 22; ++i) {
             BlockPos blockpos = pos.offset(directionIn, i);
-            if (!this.canConnect(this.world.getBlockState(blockpos)) || !this.world.getBlockState(blockpos.down()).isPortalFrame(world, blockpos.down())) {
+            if (!this.canConnect(this.world.getBlockState(blockpos)) || !this.world.getBlockState(blockpos.down()).isExamplePortalFrame(world, blockpos.down())) {
                break;
             }
          }
 
-         return this.world.getBlockState(pos.offset(directionIn, i)).isPortalFrame(world, pos.offset(directionIn, i)) ? i : 0;
+         return this.world.getBlockState(pos.offset(directionIn, i)).isExamplePortalFrame(world, pos.offset(directionIn, i)) ? i : 0;
       }
 
       public int getHeight() {
@@ -331,23 +331,23 @@ public class ExamplePortalBlock extends Block {
                }
 
                if (i == 0) {
-                  if (!this.world.getBlockState(blockpos.offset(this.leftDir)).isPortalFrame(world, blockpos.offset(this.leftDir))) {
+                  if (!this.world.getBlockState(blockpos.offset(this.leftDir)).isExamplePortalFrame(world, blockpos.offset(this.leftDir))) {
                      break label56;
                   }
-               } else if (i == this.width - 1 && !this.world.getBlockState(blockpos.offset(this.rightDir)).isPortalFrame(world, blockpos.offset(this.rightDir))) {
+               } else if (i == this.width - 1 && !this.world.getBlockState(blockpos.offset(this.rightDir)).isExamplePortalFrame(world, blockpos.offset(this.rightDir))) {
                   break label56;
                }
             }
          }
 
          for(int j = 0; j < this.width; ++j) {
-            if (!this.world.getBlockState(this.bottomLeft.offset(this.rightDir, j).up(this.height)).isPortalFrame(world, this.bottomLeft.offset(this.rightDir, j).up(this.height))) {
+            if (!this.world.getBlockState(this.bottomLeft.offset(this.rightDir, j).up(this.height)).isExamplePortalFrame(world, this.bottomLeft.offset(this.rightDir, j).up(this.height))) {
                this.height = 0;
                break;
             }
          }
 
-         if (this.height <= 21 && this.height >= 3) {
+         if (this.height <= 34 && this.height >= 5) {
             return this.height;
          } else {
             this.bottomLeft = null;

@@ -15,9 +15,9 @@ import java.util.List;
 import java.util.Map;
 
 public class addSpawnZur {
-    public static com.babcsany.minecraft.ervin_mod_1.world.biome.ModBiome modBiomeIn;
+    public static com.babcsany.minecraft.ervin_mod_1.world.biome.ModBiome<?> modBiomeIn;
     public Map<EntityClassification, List<Biome.SpawnListEntry>> spawns;
-    public static final BlockState FIRT_BLOCK = BlockItemInit.FIRT_BLOCK.get().getDefaultState();
+    public static final BlockState FIRT_BLOCK = BlockInit.FIRT_BLOCK.getDefaultState();
 
     /*public addSpawnZur(Biome.Builder biomeBuilder) {
         super(biomeBuilder);

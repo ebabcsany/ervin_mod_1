@@ -1,5 +1,8 @@
 package com.babcsany.minecraft.ervin_mod_1.init.dimension.settings;
 
+import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
+import com.babcsany.minecraft.init.BlockInit;
+import com.babcsany.minecraft.init.FluidInit;
 import com.google.common.collect.Maps;
 import com.mojang.datafixers.util.Either;
 import com.mojang.serialization.Codec;
@@ -11,6 +14,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.datafix.codec.RangeCodec;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.gen.DimensionSettings;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.settings.*;
 
@@ -95,32 +99,25 @@ public final class ModDimensionSettings {
 
    public static class Preset {
       private static final Map<ResourceLocation, Preset> PRESET_MAP = Maps.newHashMap();
-      public static final Codec<Preset> PRESET_CODEC = ResourceLocation.RESOURCE_LOCATION_CODEC.flatXmap((p_236136_0_) -> {
-         return Optional.ofNullable(PRESET_MAP.get(p_236136_0_)).map(DataResult::success).orElseGet(() -> {
-            return DataResult.error("Unknown preset: " + p_236136_0_);
-         });
-      }, (p_236144_0_) -> {
-         return DataResult.success(p_236144_0_.presetName);
-      }).stable();
-      /*public static final Preset OVERWORLD = new Preset("overworld", (p_236143_0_) -> {
-         return createSettings(new DimensionStructuresSettings(true), false, p_236143_0_);
-      });*/
-      public static final Preset EXAMPLE = new Preset("nether", (p_236141_0_) -> {
-         return createSettings(new DimensionStructuresSettings(false), Blocks.NETHERRACK.getDefaultState(), Blocks.LAVA.getDefaultState(), p_236141_0_);
-      });
-      private final ITextComponent presetNameComponent;
+      public static final Codec<Preset> PRESET_CODEC = ResourceLocation.RESOURCE_LOCATION_CODEC.flatXmap((p_236136_0_) -> Optional.ofNullable(PRESET_MAP.get(p_236136_0_)).map(DataResult::success).orElseGet(() -> DataResult.error("Unknown preset: " + p_236136_0_)), (p_236144_0_) -> DataResult.success(p_236144_0_.presetName)).stable();
+      public static final Preset EXAMPLE = new Preset("example_world", (p_236141_0_) -> createSettings(new DimensionStructuresSettings(false), BlockInit.FIRT_BLOCK.getDefaultState(), BlockInit.JURK.getDefaultState(), p_236141_0_));
       private final ResourceLocation presetName;
       private final ModDimensionSettings settings;
+      private DimensionSettings dimensionSettings;
 
       public Preset(String name, Function<Preset, ModDimensionSettings> presetSettings) {
          this.presetName = new ResourceLocation(name);
-         this.presetNameComponent = new TranslationTextComponent("generator.noise." + name);
+         ITextComponent presetNameComponent = new TranslationTextComponent("generator.noise." + name);
          this.settings = presetSettings.apply(this);
          PRESET_MAP.put(this.presetName, this);
       }
 
       public ModDimensionSettings getSettings() {
          return this.settings;
+      }
+
+      public DimensionSettings getDimensionSettings() {
+         return this.dimensionSettings;
       }
 
       private static ModDimensionSettings createSettings(DimensionStructuresSettings structures, BlockState defaultBlock, BlockState defaultFluid, Preset preset, boolean disabledMobGeneration, boolean islandNoiseOverride) {

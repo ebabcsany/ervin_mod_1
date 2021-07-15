@@ -1,4 +1,4 @@
-package com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.classes;
+package com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.classes.world;
 
 import net.minecraft.profiler.IProfiler;
 import net.minecraft.util.RegistryKey;

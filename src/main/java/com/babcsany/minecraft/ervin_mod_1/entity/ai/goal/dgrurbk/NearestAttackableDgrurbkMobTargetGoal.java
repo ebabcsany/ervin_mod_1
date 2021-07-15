@@ -1,7 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.dgrurbk;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.DgrurbMobEntity;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityPredicate;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -12,7 +11,7 @@ import javax.annotation.Nullable;
 import java.util.EnumSet;
 import java.util.function.Predicate;
 
-public class NearestAttackableDgrurbkMobTargetGoal<T extends LivingEntity> extends DgrurbkTargetGoal {
+public class NearestAttackableDgrurbkMobTargetGoal<T extends LivingEntity> extends DgrurbkMobTargetGoal {
    protected final Class<T> targetClass;
    protected final int targetChance;
    protected LivingEntity nearestTarget;

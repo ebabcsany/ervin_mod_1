@@ -7,6 +7,7 @@ import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.Food;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.potion.EffectInstance;
@@ -34,6 +35,7 @@ public class Firg extends Block {
     public static final IntegerProperty BITES = ModBlockStateProperties.BITES_0_7;
     public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
     private static final Direction[] GENERATE_DIRECTIONS = new Direction[]{Direction.WEST};
+
     protected static final VoxelShape[] SHAPES = new VoxelShape[]{
             Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D),
             Block.makeCuboidShape(2.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D),
@@ -62,10 +64,10 @@ public class Firg extends Block {
         return Util.getRandomObject(GENERATE_DIRECTIONS, rand);
     }
 
-    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit, Food.Builder builder, Food food) {
         if (worldIn.isRemote) {
             ItemStack itemstack = player.getHeldItem(handIn);
-            if (this.eatSlice(worldIn, pos, state, player).isSuccessOrConsume()) {
+            if (this.eatSlice(worldIn, pos, state, player, builder, food).isSuccessOrConsume()) {
                 return ActionResultType.SUCCESS;
             }
 
@@ -74,16 +76,16 @@ public class Firg extends Block {
             }
         }
 
-        return this.eatSlice(worldIn, pos, state, player);
+        return this.eatSlice(worldIn, pos, state, player, builder, food);
     }
 
-    private ActionResultType eatSlice(IWorld world, BlockPos pos, BlockState state, PlayerEntity player) {
-        if (!player.canEat(false)) {
+    private ActionResultType eatSlice(IWorld world, BlockPos pos, BlockState state, PlayerEntity player, Food.Builder builder, Food food) {
+        if (!player.canEat(true)) {
             return ActionResultType.PASS;
         } else {
             player.addStat(Stats.EAT_CAKE_SLICE);
             player.getFoodStats().addStats( 1, 0.2F);
-            player.addPotionEffect(new EffectInstance(Effects.HEALTH_BOOST, 50, (int) 1.25));
+            player.addPotionEffect(new EffectInstance(Effects.REGENERATION, 50, (int) 1.25));
             int i = state.get(BITES);
             if (i < 6) {
                 world.setBlockState(pos, state.with(BITES, i + 1), 3);
@@ -93,6 +95,16 @@ public class Firg extends Block {
 
             return ActionResultType.SUCCESS;
         }
+    }
+
+    public Firg food(Food foodIn) {
+        return this;
+    }
+
+    public Food.Builder builder(Food.Builder builder, PlayerEntity player, Food food) {
+        player.getActiveItemStack().getItem().isFood();
+        final Firg food1 = this.food(food);
+        return builder;
     }
 
     /**

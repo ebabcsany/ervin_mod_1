@@ -20,7 +20,7 @@ public class Air1 extends Air2 {
     private static boolean isDefConditions(BlockState state, IWorldReader worldReader, BlockPos pos) {
         BlockPos blockpos = pos.up();
         BlockState blockstate = worldReader.getBlockState(blockpos);
-        if (blockstate.isIn(BlockItemInit.DEF_BLOCK.get())) {
+        if (blockstate.isIn(BlockItemInit.DEFERRED_BLOCK.get())) {
             return true;
         } else if (blockstate.getFluidState().getLevel() == 8) {
             return false;
@@ -49,7 +49,7 @@ public class Air1 extends Air2 {
                 for(int i = 0; i < 4; ++i) {
                     BlockPos blockpos = pos.add(random.nextInt(3) - 1, random.nextInt(5) - 3, random.nextInt(3) - 1);
                     if (worldIn.getBlockState(blockpos).isIn(BlockInit.SCRAFTH.get()) && isDefAndNotUnderwater(blockstate, worldIn, blockpos)) {
-                        worldIn.setBlockState(blockpos, blockstate.with(DEF, worldIn.getBlockState(blockpos.up()).isIn(BlockItemInit.DEF_BLOCK.get())));
+                        worldIn.setBlockState(blockpos, blockstate.with(DEF, worldIn.getBlockState(blockpos.up()).isIn(BlockItemInit.DEFERRED_BLOCK.get())));
                     }
                 }
             }

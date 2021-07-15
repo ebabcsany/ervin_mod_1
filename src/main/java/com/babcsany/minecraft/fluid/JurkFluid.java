@@ -1,36 +1,35 @@
 package com.babcsany.minecraft.fluid;
 
-import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
-import com.babcsany.minecraft.forge.hooks.ForgeHooks;
+import com.babcsany.minecraft.fluid.block.FlowingFluidBlock;
 import com.babcsany.minecraft.init.BlockInit;
 import com.babcsany.minecraft.init.FluidInit;
+import com.babcsany.minecraft.init.ParticleInit;
 import com.babcsany.minecraft.init.item.ItemInit;
 import com.babcsany.minecraft.tags.FluidTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import com.babcsany.minecraft.fluid.block.FlowingFluidBlock;
+import net.minecraft.fluid.FlowingFluid;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
+import net.minecraft.fluid.WaterFluid;
 import net.minecraft.item.Item;
 import net.minecraft.particles.IParticleData;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.*;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fluids.FluidAttributes;
 
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public abstract class JurkFluid extends net.minecraft.fluid.FlowingFluid {
+public abstract class JurkFluid extends FlowingFluid {
    public Fluid getFlowingFluid() {
       return FluidInit.FLOWING_JURK;
    }
@@ -82,7 +81,7 @@ public abstract class JurkFluid extends net.minecraft.fluid.FlowingFluid {
    @Nullable
    @OnlyIn(Dist.CLIENT)
    public IParticleData getDripParticleData() {
-      return ParticleTypes.DRIPPING_LAVA;
+      return ParticleTypes.DRIPPING_WATER;
    }
 
    public int getSlopeFindDistance(IWorldReader worldIn) {
@@ -121,7 +120,7 @@ public abstract class JurkFluid extends net.minecraft.fluid.FlowingFluid {
    }
 
    public boolean canDisplace(FluidState fluidState, IBlockReader blockReader, BlockPos pos, Fluid fluid, Direction direction) {
-      return fluidState.getActualHeight(blockReader, pos) >= 0.44444445F && !fluid.isIn(net.minecraft.tags.FluidTags.LAVA) && !fluid.isIn(net.minecraft.tags.FluidTags.WATER);
+      return fluidState.getActualHeight(blockReader, pos) >= 0.44444445F && !fluid.isIn(FluidTags.JURK);
    }
 
    private void triggerEffects(IWorld p_205581_1_, BlockPos p_205581_2_) {

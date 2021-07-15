@@ -44,16 +44,15 @@ import java.util.List;
 import java.util.function.Predicate;
 
 public class Dgrurbk extends AbstractDgrurbkEntity implements IRangedAttackMob {
-    private static final DataParameter<Integer> FIRST_HEAD_TARGET = EntityDataManager.createKey(Dgrurbk.class, DataSerializers.VARINT);
-    private static final DataParameter<Integer> SECOND_HEAD_TARGET = EntityDataManager.createKey(Dgrurbk.class, DataSerializers.VARINT);
-    private static final DataParameter<Integer> THIRD_HEAD_TARGET = EntityDataManager.createKey(Dgrurbk.class, DataSerializers.VARINT);
-    private static final List<DataParameter<Integer>> HEAD_TARGETS = ImmutableList.of(SECOND_HEAD_TARGET);
-    private final ServerBossInfo setbossInfo = (ServerBossInfo)(new ServerBossInfo(this.getDisplayName(), BossInfo.Color.RED, BossInfo.Overlay.PROGRESS)).setDarkenSky(true);
+    private static final DataParameter<Integer> HEAD_TARGET = EntityDataManager.createKey(Dgrurbk.class, DataSerializers.VARINT);
+    private static final List<DataParameter<Integer>> HEAD_TARGETS = ImmutableList.of(HEAD_TARGET);
+    private final ServerBossInfo setBossInfo = (ServerBossInfo)(new ServerBossInfo(this.getDisplayName(), BossInfo.Color.RED, BossInfo.Overlay.PROGRESS)).setDarkenSky(true);
     private static final EntityPredicate PLAYER_INVADER_CONDITION = (new EntityPredicate()).setDistance(64.0D);
     private static final DataParameter<Boolean> IS_CHILD = EntityDataManager.createKey(Dgrurbk.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Boolean> BABY = EntityDataManager.createKey(Dgrurbk.class, DataSerializers.BOOLEAN);
     private static final Predicate<LivingEntity> NOT_UNDEAD = (livingEntity) -> livingEntity.getCreatureAttribute() != CreatureAttribute.UNDEAD && livingEntity.attackable();
     private static final EntityPredicate ENEMY_CONDITION = (new EntityPredicate()).setDistance(20.0D).setCustomPredicate(NOT_UNDEAD);
+    private static final DataParameter<Boolean> INVULNERABLE = EntityDataManager.createKey(Dgrurbk.class, DataSerializers.BOOLEAN);
     private DgrurbkEatGrassGoal eatGrassGoal;
     private static BossInfon.Color color;
     private int eatingGrassTimer;
@@ -97,7 +96,6 @@ public class Dgrurbk extends AbstractDgrurbkEntity implements IRangedAttackMob {
         this.goalSelector.addGoal(7, new DgrurbkLookAtGoal(this, EnderDragonEntity.class, 6.0F));
         this.goalSelector.addGoal(5, eatGrassGoal);
         this.goalSelector.addGoal(2, new DgrurbkAttackGoal(this, 1.0D, true));
-        this.goalSelector.addGoal(3, new DgrurbkAttackGoal1(this, 1.0D, true));
         this.targetSelector.addGoal(2, new NearestAttackableDgrurbkMobTargetGoal<>(this, LivingEntity.class, true));
         //this.targetSelector.addGoal(3, new NearestAttackableDgrurbkMobTargetGoal<>(this, PlayerEntity.class, true));
     }
@@ -148,7 +146,7 @@ public class Dgrurbk extends AbstractDgrurbkEntity implements IRangedAttackMob {
                 this.heal(1.0F);
             }
 
-            this.setbossInfo.setPercent(this.getHealth() / this.getMaxHealth());
+            this.setBossInfo.setPercent(this.getHealth() / this.getMaxHealth());
         }
     }
 
@@ -162,14 +160,14 @@ public class Dgrurbk extends AbstractDgrurbkEntity implements IRangedAttackMob {
     public void readAdditional(CompoundNBT compound) {
         super.readAdditional(compound);
         if (this.hasCustomName()) {
-            this.setbossInfo.setName(this.getDisplayName());
+            this.setBossInfo.setName(this.getDisplayName());
         }
 
     }
 
     public void setCustomName(@Nullable ITextComponent name) {
         super.setCustomName(name);
-        this.setbossInfo.setName(this.getDisplayName());
+        this.setBossInfo.setName(this.getDisplayName());
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -254,13 +252,6 @@ public class Dgrurbk extends AbstractDgrurbkEntity implements IRangedAttackMob {
         return !blockIn.isAir() && !BlockTags.WITHER_IMMUNE.contains(blockIn.getBlock());
     }
 
-    /**
-     * Initializes this Wither's explosion sequence and makes it invulnerable. Called immediately after spawning.
-     */
-    public void ignite() {
-        this.setHealth(this.getMaxHealth());
-    }
-
     public void setMotionMultiplier(BlockState state, Vector3d motionMultiplierIn) {
     }
 
@@ -270,7 +261,7 @@ public class Dgrurbk extends AbstractDgrurbkEntity implements IRangedAttackMob {
      */
     public void addTrackingPlayer(ServerPlayerEntity player) {
         super.addTrackingPlayer(player);
-        this.setbossInfo.addPlayer(player);
+        this.setBossInfo.addPlayer(player);
     }
 
     /**
@@ -279,7 +270,7 @@ public class Dgrurbk extends AbstractDgrurbkEntity implements IRangedAttackMob {
      */
     public void removeTrackingPlayer(ServerPlayerEntity player) {
         super.removeTrackingPlayer(player);
-        this.setbossInfo.removePlayer(player);
+        this.setBossInfo.removePlayer(player);
     }
 
     @Override
@@ -311,19 +302,6 @@ public class Dgrurbk extends AbstractDgrurbkEntity implements IRangedAttackMob {
         }
     }
 
-    private float rotlerp(float p_82204_1_, float p_82204_2_, float p_82204_3_) {
-        float f = MathHelper.wrapDegrees(p_82204_2_ - p_82204_1_);
-        if (f > p_82204_3_) {
-            f = p_82204_3_;
-        }
-
-        if (f < -p_82204_3_) {
-            f = -p_82204_3_;
-        }
-
-        return p_82204_1_ + f;
-    }
-
     private void launchWitherSkullToEntity(int head, Entity target) {
         this.launchDgrurbkSkullToCoords(head, target.getPosX(), target.getPosY() + (double)target.getEyeHeight() * 0.5D, target.getPosZ(), head == 0 && this.rand.nextFloat() < 0.001F);
     }
@@ -348,13 +326,17 @@ public class Dgrurbk extends AbstractDgrurbkEntity implements IRangedAttackMob {
         zur.setShooter(this);
         if (invulnerable) {
             dgrurbSkullEntity.setSkullInvulnerable(true);
-            zur.setZurInvulnerable(true);
+            setZurInvulnerable(true);
         }
 
         dgrurbSkullEntity.setRawPosition(d0, d1, d2);
         zur.setRawPosition(d0, d1, d2);
         this.world.addEntity(dgrurbSkullEntity);
         this.world.addEntity(zur);
+    }
+
+    public void setZurInvulnerable(boolean invulnerable) {
+        this.dataManager.set(INVULNERABLE, invulnerable);
     }
 
     /**
@@ -367,11 +349,12 @@ public class Dgrurbk extends AbstractDgrurbkEntity implements IRangedAttackMob {
     /**
      * Called when the entity is attacked.
      */
+    @Override
     public boolean attackEntityFrom(DamageSource source, float amount) {
         if (this.isInvulnerableTo(source)) {
             return false;
         } else if (source != DamageSource.DROWN && !(source.getTrueSource() instanceof Dgrurbk)) {
-            if (source != DamageSource.OUT_OF_WORLD) {
+            if (source != DamageSource.GENERIC) {
                 return false;
             } else {
                 if (this.isCharged()) {
@@ -407,26 +390,8 @@ public class Dgrurbk extends AbstractDgrurbkEntity implements IRangedAttackMob {
 
     }
 
-    /*public void setInvulTime(int time) {
-        this.dataManager.set(INVULNERABILITY_TIME, time);
-    }*/
-
-    /**
-     * Returns the target entity ID if present, or -1 if not @param par1 The target offset, should be from 0-2
-     */
-    /*public int getWatchedTargetId(int head) {
-        return this.dataManager.get(HEAD_TARGETS.get(head));
-    }*/
-
-    /**
-     * Updates the target entity ID
-     */
-    /*public void updateWatchedTargetId(int targetOffset, int newId) {
-        this.dataManager.set(HEAD_TARGETS.get(targetOffset), newId);
-    }*/
-
     public boolean isNonBoss() {
-        return true;
+        return false;
     }
 }
 

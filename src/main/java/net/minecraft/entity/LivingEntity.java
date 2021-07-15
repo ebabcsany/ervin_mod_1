@@ -3298,7 +3298,7 @@ public abstract class LivingEntity extends Entity {
 
    public ItemStack onFoodEaten(World p_213357_1_, ItemStack p_213357_2_) {
       if (p_213357_2_.isFood()) {
-         p_213357_1_.playSound((PlayerEntity)null, this.getPosX(), this.getPosY(), this.getPosZ(), this.getEatSound(p_213357_2_), SoundCategory.NEUTRAL, 1.0F, 1.0F + (p_213357_1_.rand.nextFloat() - p_213357_1_.rand.nextFloat()) * 0.4F);
+         p_213357_1_.playSound(null, this.getPosX(), this.getPosY(), this.getPosZ(), this.getEatSound(p_213357_2_), SoundCategory.NEUTRAL, 1.0F, 1.0F + (p_213357_1_.rand.nextFloat() - p_213357_1_.rand.nextFloat()) * 0.4F);
          this.applyFoodEffects(p_213357_2_, p_213357_1_, this);
          if (!(this instanceof PlayerEntity) || !((PlayerEntity)this).abilities.isCreativeMode) {
             p_213357_2_.shrink(1);

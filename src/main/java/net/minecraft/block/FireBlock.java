@@ -1,5 +1,8 @@
 package net.minecraft.block;
 
+import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
+import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
+import com.babcsany.minecraft.init.BlockInit;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.item.BlockItemUseContext;
@@ -27,9 +30,7 @@ public class FireBlock extends AbstractFireBlock {
    public static final BooleanProperty SOUTH = SixWayBlock.SOUTH;
    public static final BooleanProperty WEST = SixWayBlock.WEST;
    public static final BooleanProperty UP = SixWayBlock.UP;
-   private static final Map<Direction, BooleanProperty> FACING_TO_PROPERTY_MAP = SixWayBlock.FACING_TO_PROPERTY_MAP.entrySet().stream().filter((p_199776_0_) -> {
-      return p_199776_0_.getKey() != Direction.DOWN;
-   }).collect(Util.toMapCollector());
+   private static final Map<Direction, BooleanProperty> FACING_TO_PROPERTY_MAP = SixWayBlock.FACING_TO_PROPERTY_MAP.entrySet().stream().filter((p_199776_0_) -> p_199776_0_.getKey() != Direction.DOWN).collect(Util.toMapCollector());
    private final Object2IntMap<Block> encouragements = new Object2IntOpenHashMap<>();
    private final Object2IntMap<Block> flammabilities = new Object2IntOpenHashMap<>();
 
@@ -404,5 +405,7 @@ public class FireBlock extends AbstractFireBlock {
       fireblock.setFireInfo(Blocks.SWEET_BERRY_BUSH, 60, 100);
       fireblock.setFireInfo(Blocks.BEEHIVE, 5, 20);
       fireblock.setFireInfo(Blocks.BEE_NEST, 30, 20);
+      fireblock.setFireInfo(BlockInit.FIRG_PLANKS, 2, 10);
+      fireblock.setFireInfo(BlockItemInit.FRIM_PLANKS.get(), 4, 15);
    }
 }

@@ -16,8 +16,6 @@ import static net.minecraft.item.Items.BUCKET;
 
 public class ItemInit {
 
-    public static ItemInit ITEMS;
-
     public static final Item JURK_BUCKET = register("ervin_mod_1:jurk_bucket", new JurkBucketItem(FluidInit.JURK, (new Item.Properties()).containerItem(BUCKET).maxStackSize(1).group(ItemGroup.MISC)));
     public static final Item FIRG_BOAT = register("ervin_mod_1:firg_boat", new ModBoatItem(ModBoatEntity.Type.FIRG_PLANKS, (new Item.Properties()).maxStackSize(1).group(ItemGroup.TRANSPORTATION)));
     public static final Item ENCHANTED_BOOK_BLACK = register("ervin_mod_1:book/enchanted/paper/black", new EnchantedBookItemBlack((new Item.Properties()).maxStackSize(1).rarity(Rarity.UNCOMMON)));

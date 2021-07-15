@@ -6,10 +6,7 @@ import com.babcsany.minecraft.ervin_mod_1.tags.FluidTag;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.FlowingFluidBlock;
-import net.minecraft.fluid.FlowingFluid;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.fluid.Fluids;
+import net.minecraft.fluid.*;
 import net.minecraft.item.Item;
 import net.minecraft.particles.IParticleData;
 import net.minecraft.particles.ParticleTypes;
@@ -19,13 +16,14 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.*;
+import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public abstract class JurkFluid extends FlowingFluid {
+public abstract class JurkFluid extends WaterFluid {
    public Fluid getFlowingFluid() {
       return FluidInit.FLOWING_JURK.get();
    }
@@ -68,16 +66,6 @@ public abstract class JurkFluid extends FlowingFluid {
                if (!p_207186_1_.isBlockPresent(blockpos)) {
                   return;
                }
-
-               BlockState blockstate = p_207186_1_.getBlockState(blockpos);
-               if (blockstate.isAir()) {
-                  if (this.isSurroundingBlockFlammable(p_207186_1_, blockpos)) {
-                     p_207186_1_.setBlockState(blockpos, net.minecraftforge.event.ForgeEventFactory.fireFluidPlaceBlockEvent(p_207186_1_, blockpos, pos, Blocks.FIRE.getDefaultState()));
-                     return;
-                  }
-               } else if (blockstate.getMaterial().blocksMovement()) {
-                  return;
-               }
             }
          } else {
             for(int k = 0; k < 3; ++k) {
@@ -85,34 +73,16 @@ public abstract class JurkFluid extends FlowingFluid {
                if (!p_207186_1_.isBlockPresent(blockpos1)) {
                   return;
                }
-
-               if (p_207186_1_.isAirBlock(blockpos1.up()) && this.getCanBlockBurn(p_207186_1_, blockpos1)) {
-                  p_207186_1_.setBlockState(blockpos1.up(), net.minecraftforge.event.ForgeEventFactory.fireFluidPlaceBlockEvent(p_207186_1_, blockpos1.up(), pos, Blocks.FIRE.getDefaultState()));
-               }
             }
          }
 
       }
    }
 
-   private boolean isSurroundingBlockFlammable(IWorldReader worldIn, BlockPos pos) {
-      for(Direction direction : Direction.values()) {
-         if (this.getCanBlockBurn(worldIn, pos.offset(direction))) {
-            return true;
-         }
-      }
-
-      return false;
-   }
-
-   private boolean getCanBlockBurn(IWorldReader worldIn, BlockPos pos) {
-      return pos.getY() >= 0 && pos.getY() < 256 && !worldIn.isBlockLoaded(pos) ? false : worldIn.getBlockState(pos).getMaterial().isFlammable();
-   }
-
    @Nullable
    @OnlyIn(Dist.CLIENT)
    public IParticleData getDripParticleData() {
-      return (IParticleData) ParticleTypes.DRIPPING_LAVA;
+      return ParticleTypes.DRIPPING_WATER;
    }
 
    protected void beforeReplacingBlock(IWorld worldIn, BlockPos pos, BlockState state) {
@@ -124,7 +94,7 @@ public abstract class JurkFluid extends FlowingFluid {
    }
 
    public BlockState getBlockState(FluidState state) {
-      return Blocks.LAVA.getDefaultState().with(FlowingFluidBlock.LEVEL, Integer.valueOf(getLevelFromState(state)));
+      return Blocks.LAVA.getDefaultState().with(FlowingFluidBlock.LEVEL, getLevelFromState(state));
    }
 
    public boolean isEquivalentTo(Fluid fluidIn) {

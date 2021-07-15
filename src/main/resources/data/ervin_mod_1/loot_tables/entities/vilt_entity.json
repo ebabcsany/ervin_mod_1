@@ -16,6 +16,20 @@
               }
             },
             {
+              "function": "minecraft:furnace_smelt",
+              "conditions": [
+                {
+                  "condition": "minecraft:entity_properties",
+                  "predicate": {
+                    "flags": {
+                      "is_on_fire": true
+                    }
+                  },
+                  "entity": "this"
+                }
+              ]
+            },
+            {
               "function": "minecraft:looting_enchant",
               "count": {
                 "min": 0.0,
@@ -33,16 +47,6 @@
         {
           "type": "minecraft:item",
           "name": "ervin_mod_1:meat/mront"
-        }
-      ],
-      "conditions": [
-        {
-          "condition": "minecraft:killed_by_player"
-        },
-        {
-          "condition": "minecraft:random_chance_with_looting",
-          "chance": 3.125,
-          "looting_multiplier": 1.25
         }
       ]
     },

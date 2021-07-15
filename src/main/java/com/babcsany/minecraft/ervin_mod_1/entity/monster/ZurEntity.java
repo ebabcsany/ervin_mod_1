@@ -4,6 +4,7 @@ import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.EatPumpkinGoal;
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.ZurTradeWithPlayerGoal;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.goal.PlaceBlockGoal;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.goal.TakeBlockGoal;
+import com.babcsany.minecraft.ervin_mod_1.entity.villager.TraderNirtre1Entity;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.TraderNirtreEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.ZurTrades;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
@@ -74,10 +75,7 @@ import java.util.stream.Collectors;
 
 public class ZurEntity extends AbstractZurEntity {
    private static final DataParameter<Boolean> field_234408_bu_ = EntityDataManager.createKey(ZurEntity.class, DataSerializers.BOOLEAN);
-   private static final DataParameter<Optional<BlockState>> CARRIED_BLOCK = EntityDataManager.createKey(ZurEntity.class, DataSerializers.OPTIONAL_BLOCK_STATE);
-   private static final DataParameter<Boolean> BABY = EntityDataManager.createKey(ZurEntity.class, DataSerializers.BOOLEAN);
    //private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(isBurnableFoodItemInit.TIRKS.get());
-   private static final DataParameter<Boolean> INVULNERABLE = EntityDataManager.createKey(ZurEntity.class, DataSerializers.BOOLEAN);
    private static final DataParameter<Boolean> field_213428_bH = EntityDataManager.createKey(ZurEntity.class, DataSerializers.BOOLEAN);
    private static final DataParameter<Boolean> field_213428_bG = EntityDataManager.createKey(ZurEntity.class, DataSerializers.BOOLEAN);
    private static final DataParameter<Boolean> field_213429_bH = EntityDataManager.createKey(ZurEntity.class, DataSerializers.BOOLEAN);
@@ -99,9 +97,6 @@ public class ZurEntity extends AbstractZurEntity {
    @Nullable
    public BlockPos zurTarget;
    public float destPos;
-   @Nullable
-   protected MerchantOffers offers;
-   public final Inventory zurInventory = new Inventory(10000);
    private static final Predicate<ItemEntity> ITEMS = (p_213575_0_) -> {
       Item item = p_213575_0_.getItem().getItem();
       return (item == com.babcsany.minecraft.ervin_mod_1.init.item.block.BlockItemInit.JURK.get().asItem() || item == Blocks.CAKE.asItem()) && p_213575_0_.isAlive() && !p_213575_0_.cannotPickup();
@@ -212,7 +207,6 @@ public class ZurEntity extends AbstractZurEntity {
 
    protected void registerData() {
       super.registerData();
-      this.dataManager.register(CARRIED_BLOCK, Optional.empty());
       //this.getDataManager().register(PHASE, PhaseType.CHARGING_PLAYER.getId());
    }
 
@@ -247,10 +241,6 @@ public class ZurEntity extends AbstractZurEntity {
       return ProjectileHelper.fireArrow(this, arrowStack, distanceFactor);
    }
 
-   public void setZurInvulnerable(boolean invulnerable) {
-      this.dataManager.set(INVULNERABLE, invulnerable);
-   }
-
    public void setShooter(@Nullable Entity entityIn) {
       if (entityIn != null) {
          this.field_234609_b_ = entityIn.getUniqueID();
@@ -273,11 +263,6 @@ public class ZurEntity extends AbstractZurEntity {
          this.zurTarget = NBTUtil.readBlockPos(compound.getCompound("ZurTarget"));
       }
 
-      if (compound.contains("Offers", 10)) {
-         this.offers = new MerchantOffers(compound.getCompound("Offers"));
-      }
-
-      this.zurInventory.read(compound.getList("Inventory", 10));
       this.setGrowingAge(Math.max(0, this.getGrowingAge()));
    }
 
@@ -808,14 +793,6 @@ public class ZurEntity extends AbstractZurEntity {
 
    }*/
 
-   protected ItemStack func_234436_k_(ItemStack itemStack) {
-      return this.zurInventory.addItem(itemStack);
-   }
-
-   protected boolean func_234437_l_(ItemStack itemStack) {
-      return this.zurInventory.func_233541_b_(itemStack);
-   }
-
    private void equipmentSlotType(EquipmentSlotType type, ItemStack stack) {
       if (this.world.rand.nextFloat() < 0.1F) {
          this.setItemStackToSlot(type, stack);
@@ -881,8 +858,8 @@ public class ZurEntity extends AbstractZurEntity {
    private void func_234416_a_(ServerWorld p_234416_1_) {
       ZurTasks.func_234496_c_(this);
       this.zurInventory.func_233543_f_().forEach(this::entityDropItem);
-      ZurNirtreEntity zombifiedpiglinentity = this.func_233656_b_(EntityInit.ZUR_NIRTRE_ENTITY.get());
-      zombifiedpiglinentity.addPotionEffect(new EffectInstance(Effects.NAUSEA, 200, 0));
+      ZurNirtreEntity zurNirtreEntity = this.func_233656_b_(EntityInit.ZUR_NIRTRE_ENTITY.get());
+      zurNirtreEntity.addPotionEffect(new EffectInstance(Effects.NAUSEA, 200, 0));
    }
 
    /**
@@ -1096,7 +1073,7 @@ public class ZurEntity extends AbstractZurEntity {
 
    public void onKillEntity(LivingEntity entityLivingIn) {
       super.onKillEntity(entityLivingIn);
-      if ((this.world.getDifficulty() == Difficulty.NORMAL || this.world.getDifficulty() == Difficulty.HARD) && entityLivingIn instanceof VillagerEntity) {
+      if ((this.world.getDifficulty() == Difficulty.NORMAL || this.world.getDifficulty() == Difficulty.HARD) && entityLivingIn instanceof TraderNirtreEntity) {
          if (this.world.getDifficulty() != Difficulty.HARD && this.rand.nextBoolean()) {
             return;
          }
@@ -1132,7 +1109,7 @@ public class ZurEntity extends AbstractZurEntity {
    }*/
 
    public boolean canEquipItem(ItemStack stack) {
-      return stack.getItem() == Items.EGG && this.isChild() && this.isPassenger() ? false : super.canEquipItem(stack);
+      return (stack.getItem() != Items.EGG || !this.isChild() || !this.isPassenger()) && super.canEquipItem(stack);
    }
 
    public static boolean func_241399_a_(Random p_241399_0_) {
@@ -1162,10 +1139,6 @@ public class ZurEntity extends AbstractZurEntity {
    protected ItemStack getSkullDrop() {
       return new ItemStack(Items.ZOMBIE_HEAD);
    }
-
-   /*public boolean isBreedingItem(ItemStack stack) {
-      return TEMPTATION_ITEMS.test(stack);
-   }*/
 
    public static class GroupData implements ILivingEntityData {
       public final boolean isChild;

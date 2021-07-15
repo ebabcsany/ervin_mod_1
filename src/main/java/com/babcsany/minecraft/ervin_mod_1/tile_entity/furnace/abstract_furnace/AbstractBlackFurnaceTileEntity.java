@@ -7,6 +7,7 @@ import com.babcsany.minecraft.ervin_mod_1.init.item.food.SpecialBlockFoodItemIni
 import com.babcsany.minecraft.ervin_mod_1.init.item.food.isBurnableFoodItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.tool.ToolItemInit;
 import com.babcsany.minecraft.ervin_mod_1.tags.ItemTag;
+import com.babcsany.minecraft.init.BlockInit;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import it.unimi.dsi.fastutil.objects.Object2IntMap.Entry;
@@ -130,7 +131,7 @@ public abstract class AbstractBlackFurnaceTileEntity extends LockableTileEntity 
       addItemBurnTime(map, ArmorItemInit.FIRT_BOOTS.get(), 4800);
       addItemBurnTime(map, ArmorItemInit.FIRT_HELMET.get(), 6000);
       addItemBurnTime(map, ToolItemInit.FIRT_HOE.get(), 2600);
-      addItemBurnTime(map, BlockItemInit.FIRT_BLOCK.get(), 12000);
+      addItemBurnTime(map, com.babcsany.minecraft.init.BlockItemInit.FIRT_BLOCK, 12000);
       addItemBurnTime(map, Items.BLAZE_ROD, 2400);
       addItemBurnTime(map, Items.COAL, 1600);
       addItemBurnTime(map, Items.CHARCOAL, 1600);

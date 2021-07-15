@@ -14,8 +14,6 @@ import java.util.Map;
 
 public abstract class StructureInit {
 
-    public static StructureInit STRUCTURES;
-
     private static final Map<Structure<?>, GenerationStage.Decoration> field_236385_u_ = Maps.newHashMap();
 
     public static final Structure<BuriedTreasureConfig> BURIED_TREASURE_STRUCTURE = register("ervin_mod_1:Buried_Treasure", new BuriedTreasureStructure(BuriedTreasureConfig.buriedTreasureConfigCodec), GenerationStage.Decoration.UNDERGROUND_STRUCTURES);

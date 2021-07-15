@@ -1,8 +1,11 @@
 package com.babcsany.minecraft.ervin_mod_1.world.biome;
 
+import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.ModBiomeFeatures;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.FirgTree;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.ModDefaultBiomeFeatures;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.world.biome.Biome;
@@ -63,7 +66,7 @@ public class ExampleBiome4 extends Biome {
 		//		Feature.NORMAL_TREE.withConfiguration(JazzTree.JAZZ_TREE_CONFIG).withPlacement(
 		//				Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(7, 0.1f, 1))));
 		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
-				Feature.field_236291_c_.withConfiguration(FirgTree.FIRG_TREE_CONFIG).withPlacement(
+				Feature.field_236291_c_.withConfiguration(FirgTree.FIRG_TREE_CONFIG0).withPlacement(
 						Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(18, 4.8f, 10))));
 
 		DefaultBiomeFeatures.addOres(this);
@@ -100,6 +103,7 @@ public class ExampleBiome4 extends Biome {
 		ModDefaultBiomeFeatures.addExtraVilktBlock13(this);
 		ModDefaultBiomeFeatures.addExtraVilktBlock14(this);
 		ModDefaultBiomeFeatures.addExtraVilktBlock15(this);
+		ModDefaultBiomeFeatures.addEmeraldOreFeature(this, GenerationStage.Decoration.UNDERGROUND_ORES, Blocks.STONE.getDefaultState(), BlockItemInit.KALT_BLOCK.get().getDefaultState(), Placement.COUNT_BIASED_RANGE.configure(new CountRangeConfig(10, 0, 0, 30)));
 		ModBiomeFeatures.addExampleFeature(this, 10000);
 		ModDefaultBiomeFeatures.addKiomne(this);
 		ModDefaultBiomeFeatures.addStones(this);

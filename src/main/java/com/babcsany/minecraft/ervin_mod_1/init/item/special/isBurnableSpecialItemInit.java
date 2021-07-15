@@ -3,6 +3,7 @@ package com.babcsany.minecraft.ervin_mod_1.init.item.special;
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.item.DebugSriunkStick;
 import com.babcsany.minecraft.ervin_mod_1.item.special.*;
+import net.minecraft.entity.ai.attributes.AttributeModifierManager;
 import net.minecraft.item.*;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;

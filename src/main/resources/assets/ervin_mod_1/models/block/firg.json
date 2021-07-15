@@ -1,13 +1,14 @@
 {
+  "parent": "minecraft:block/block",
   "textures": {
-    "particle": "block/cake_side",
-    "bottom": "block/cake_bottom",
-    "top": "block/cake_top",
-    "side": "block/cake_side"
+    "particle": "ervin_mod_1:block/firg",
+    "bottom": "ervin_mod_1:block/firg",
+    "top": "ervin_mod_1:block/firg",
+    "side": "ervin_mod_1:block/firg"
   },
   "elements": [
-    {   "from": [ 1, 0, 1 ],
-      "to": [ 15, 8, 15 ],
+    {   "from": [ 0, 0, 0 ],
+      "to": [ 16, 16, 16 ],
       "faces": {
         "down":  { "texture": "#bottom", "cullface": "down" },
         "up":    { "texture": "#top" },

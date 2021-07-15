@@ -1,0 +1,22 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "ervin_mod_1:block/firg",
+    "bottom": "ervin_mod_1:block/firg",
+    "top": "ervin_mod_1:block/firg",
+    "side": "ervin_mod_1:block/firg"
+  },
+  "elements": [
+    {   "from": [ 8, 0, 0 ],
+      "to": [ 16, 16, 16 ],
+      "faces": {
+        "down":  { "texture": "#bottom", "cullface": "down" },
+        "up":    { "texture": "#top" },
+        "north": { "texture": "#side" },
+        "south": { "texture": "#side" },
+        "west":  { "texture": "#side" },
+        "east":  { "texture": "#side" }
+      }
+    }
+  ]
+}

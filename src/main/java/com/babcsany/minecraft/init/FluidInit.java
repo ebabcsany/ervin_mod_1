@@ -31,7 +31,6 @@ import static net.minecraftforge.common.ForgeHooks.createVanillaFluidAttributes;
 public class FluidInit extends Fluids {
 
     static Fluid fluid;
-    public static FluidInit FLUIDS;
     //public static FluidAttributes FLUID_ATTRIBUTES = createVanillaFluidAttributes(null);
 
     public static final ResourceLocation JURK_STILL = new ResourceLocation(Ervin_mod_1.MOD_ID, "block/fluid/jurk_still");

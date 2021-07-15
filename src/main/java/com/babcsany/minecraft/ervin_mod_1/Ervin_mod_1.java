@@ -6,22 +6,9 @@ import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.Dgrurb;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.dgrurbk.Dgrurbk;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.WanderingTraderNirtreEntity;
 import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.Ervin_mod_1_;
-import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
+import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.Init;
 import com.babcsany.minecraft.ervin_mod_1.init.minecraft.block.MinecraftBlocks;
 import com.babcsany.minecraft.ervin_mod_1.world.gen.FeatureGen;
-import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
-import net.minecraft.client.renderer.Atlases;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.inventory.container.PlayerContainer;
-import net.minecraft.item.crafting.RecipeManager;
-import net.minecraft.tileentity.AbstractFurnaceTileEntity;
-import net.minecraft.util.RegistryKey;
-import net.minecraft.util.Util;
-import net.minecraft.util.registry.MutableRegistry;
-import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraft.block.*;
 import net.minecraft.client.renderer.model.RenderMaterial;
@@ -46,27 +33,6 @@ import com.babcsany.minecraft.ervin_mod_1.entity.fish.*;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.*;
 import com.babcsany.minecraft.ervin_mod_1.init.*;
 import com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit;
-import com.babcsany.minecraft.ervin_mod_1.init.container.ContainerInit;
-import com.babcsany.minecraft.ervin_mod_1.init.container.FurnaceContainerInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.$ItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.armor.ArmorItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.armor.HorseArmorItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.armor.isBurnableArmorItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.armor.isBurnableHorseArmorItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.spawn_egg.ModSpawnEggItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.special.isBurnableSpecialBlockItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.special.SpecialItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.special.isBurnableSpecialItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.block.BlockNamedItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.block.tool.ToolItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.food.BlockFoodItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.food.SpecialBlockFoodItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.food.isBurnableFoodItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.food.brefk.BrefkStageItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.food.FoodItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.tool.SpecialToolItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.tool.isBurnableSpecialToolItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.tool.isBurnableToolItemInit;
 import com.babcsany.minecraft.ervin_mod_1.item.group.ItemGroup;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.entity.player.PlayerEntity;
@@ -98,9 +64,6 @@ import org.apache.logging.log4j.Logger;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static com.babcsany.minecraft.forge.DeferredWorkQueue.runLater;
-import static net.minecraft.client.renderer.model.ModelBakery.DESTROY_STAGES;
-
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(Ervin_mod_1.MOD_ID)
 public class Ervin_mod_1 {
@@ -109,78 +72,32 @@ public class Ervin_mod_1 {
     public static final RenderMaterial LOCATION_JURK_OVERLAY = new RenderMaterial(AtlasTexture.LOCATION_BLOCKS_TEXTURE, new ResourceLocation(Ervin_mod_1.MOD_ID,"block/fluid/jurk_overlay"));
     public static final String MOD_ID = "ervin_mod_1";
     //public static final ITag<EntityType<?>> blacklisted = EntityTypeTags.func_232896_a_((new ResourceLocation("ervin_mod_1", "blacklisted")).toString());
-    // Directly reference a log4j logger.
+    /** Directly reference a log4j logger.*/
     public static final Logger LOGGER = LogManager.getLogger();
-    //public PlayerEntity player;
-    //public Fluid fluid;
 
     public Ervin_mod_1() {
-        // Register the setup method for modloading
+        // Register the setup method for modLoading
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::setup);
-        // Register the enqueueIMC method for modloading
+        // Register the enqueueIMC method for modLoading
         modEventBus.addListener(this::enqueueIMC);
-        // Register the processIMC method for modloading
+        // Register the processIMC method for modLoading
         modEventBus.addListener(this::processIMC);
-        // Register the doClientStuff method for modloading
+        // Register the doClientStuff method for modLoading
         modEventBus.addListener(this::doClientStuff);
+
+        Ervin_mod_1_.ervin_mod_1();
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
 
-        BiomeInit.BIOMES.register(modEventBus);
-        BrefkStageItemInit.BREFK.register(modEventBus);
-        FoodItemInit.FOODS.register(modEventBus);
-        IMolaBlocks.BLOCKS.register(modEventBus);
-        com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.BLOCKS.register(modEventBus);
-        ContainerInit.CONTAINER_TYPES.register(modEventBus);
-        FurnaceContainerInit.CONTAINER_TYPES.register(modEventBus);
-        com.babcsany.minecraft.ervin_mod_1.init.DecoratorInit.DECORATORS.register(modEventBus);
-        com.babcsany.minecraft.ervin_mod_1.init.EntityInit.ENTITY_TYPES.register(modEventBus);
-        com.babcsany.minecraft.ervin_mod_1.init.FeatureInit.FEATURES.register(modEventBus);
-        com.babcsany.minecraft.ervin_mod_1.init.FluidInit.FLUIDS.register(modEventBus);
-        com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit.ITEMS.register(modEventBus);
-        com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit.BURNABLE_ITEMS.register(modEventBus);
-        SpecialToolItemInit.BURNABLE_ITEMS.register(modEventBus);
-        com.babcsany.minecraft.ervin_mod_1.init.item.tool.ToolItemInit.TOOLS.register(modEventBus);
-        isBurnableToolItemInit.BURNABLE_TOOLS.register(modEventBus);
-        isBurnableSpecialToolItemInit.BURNABLE_ITEMS.register(modEventBus);
-        ArmorItemInit.ARMOR.register(modEventBus);
-        HorseArmorItemInit.HORSE_ARMOR.register(modEventBus);
-        isBurnableArmorItemInit.BURNABLE_ARMOR.register(modEventBus);
-        isBurnableHorseArmorItemInit.BURNABLE_HORSE_ARMOR.register(modEventBus);
-        com.babcsany.minecraft.ervin_mod_1.init.item.armor.iron.ArmorItemInit.ARMOR.register(modEventBus);
-        com.babcsany.minecraft.ervin_mod_1.init.item.tool.iron.ToolItemInit.TOOLS.register(modEventBus);
-        com.babcsany.minecraft.ervin_mod_1.init.item.tool.stone.ToolItemInit.TOOL_ITEMS.register(modEventBus);
-        ModSpawnEggItemInit.SPAWN_EGGS.register(modEventBus);
-        com.babcsany.minecraft.ervin_mod_1.init.minecraft.item.spawn_egg.SpawnEggItemInit.SPAWN_EGGS.register(modEventBus);
-        com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit.BLOCKS.register(modEventBus);
-        com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit.BURNABLE_BLOCKS.register(modEventBus);
-        com.babcsany.minecraft.ervin_mod_1.init.item.block.BlockItemInit.BLOCK_ITEMS.register(modEventBus);
-        BlockNamedItemInit.ITEMS.register(modEventBus);
-        SpecialBlockFoodItemInit.BURNABLE_FOOD_BLOCK_ITEMS.register(modEventBus);
-        isBurnableFoodItemInit.BURNABLE_FOODS.register(modEventBus);
-        BlockFoodItemInit.FOOD_ITEMS.register(modEventBus);
-        isBurnableSpecialBlockItemInit.SPECIAL_ITEMS.register(modEventBus);
-        isBurnableSpecialItemInit.SPECIAL_ITEMS.register(modEventBus);
-        SpecialItemInit.SPECIAL_ITEMS.register(modEventBus);
-        ToolItemInit.TOOLS.register(modEventBus);
-        $ItemInit.$.register(modEventBus);
-        com.babcsany.minecraft.ervin_mod_1.init.item.item.ItemInit.ITEMS.register(modEventBus);
-        com.babcsany.minecraft.ervin_mod_1.init.item.food.milk.BlockFoodItemInit.FOOD_ITEMS.register(modEventBus);
-        com.babcsany.minecraft.ervin_mod_1.init.item.food.milk.FoodItemInit.FOOD_ITEMS.register(modEventBus);
-        com.babcsany.minecraft.ervin_mod_1.init.SoundInit.SOUNDS.register(modEventBus);
-        com.babcsany.minecraft.ervin_mod_1.init.ParticleInit.PARTICLE_TYPES.register(modEventBus);
-        com.babcsany.minecraft.ervin_mod_1.init.SurfaceBuilderInit.SURFACE_BUILDERS.register(modEventBus);
-        com.babcsany.minecraft.ervin_mod_1.init.TreeDecoratorInit.TREE_DECORATOR_TYPES.register(modEventBus);
-        com.babcsany.minecraft.ervin_mod_1.init.WorldCarverInit.CARVERS.register(modEventBus);
-        com.babcsany.minecraft.ervin_mod_1.init.TileEntityInit.TILE_ENTITY_TYPES.register(modEventBus);
-        com.babcsany.minecraft.ervin_mod_1.init.block.animation.colors.BlockItemInit.ANIMATION_BLOCKS.register(modEventBus);
-        MinecraftBlocks.BLOCKS.register(modEventBus);
-        com.babcsany.minecraft.ervin_mod_1.init.minecraft.block.item.BlockNamedItemInit.BLOCK_ITEMS.register(modEventBus);
-        com.babcsany.minecraft.ervin_mod_1.init.item.block.isBurnableBlockItemInit.BLOCK_ITEMS.register(modEventBus);
+        new Init();
 
         Ervin_mod_1_.init();
+    }
+
+    public static void function(Class<?>... class$) {
+        class$.clone();
     }
 
     private void setup(final FMLCommonSetupEvent event) {
@@ -227,78 +144,16 @@ public class Ervin_mod_1 {
             EntitySpawnPlacementRegistry.getPlacementType(EntityInit.LIWRAY.get());
             EntitySpawnPlacementRegistry.getPlacementType(com.babcsany.minecraft.init.EntityInit.ZUR_ENTITY);
 
-            FireBlock fireblock = (FireBlock)Blocks.FIRE;
-            //fireblock.setFireInfo(com.babcsany.minecraft.init.BlockInit.FIRG_PLANKS, 5, 20);
-            //fireblock.setFireInfo(BlockItemInit.FRIM_PLANKS.get(), 5, 20);
+            Ervin_mod_1_.registries();
 
-            ComposterBlock.registerCompostable(0.3F, BlockNamedItemInit.TARG_SEEDS.get());
-            ComposterBlock.registerCompostable(0.35F, BlockItemInit.FRIM_LEAVES.get());
-            ComposterBlock.registerCompostable(0.35F, BlockItemInit.FRIM_SAPLING.get());
-            ComposterBlock.registerCompostable(0.4F, isBurnableBlockItemInit.FIRG_LEAVES.get());
-            ComposterBlock.registerCompostable(0.4F, isBurnableBlockItemInit.FIRG_SAPLING.get());
-            ComposterBlock.registerCompostable(0.45F, BlockFoodItemInit.SCRAFTH.get());
-            ComposterBlock.registerCompostable(0.5F, SpecialBlockFoodItemInit.FIRG_SLAB.get());
-            ComposterBlock.registerCompostable(0.65F, FoodItemInit.JAZZ_FRUIT.get());
-            ComposterBlock.registerCompostable(0.7F, ItemInit.CHAK.get());
-            ComposterBlock.registerCompostable(0.75F, SpecialBlockFoodItemInit.FIRG_STAIRS.get());
-            ComposterBlock.registerCompostable(0.85F, FoodItemInit.FRIM.get());
-            ComposterBlock.registerCompostable(1.0F, SpecialBlockFoodItemInit.FIRG.get());
-            ComposterBlock.registerCompostable(1.25F, FoodItemInit.REAT.get());
-            ComposterBlock.registerCompostable(4.0F, isBurnableFoodItemInit.GRINT.get());
-            ComposterBlock.registerCompostable(8.0F, SpecialBlockFoodItemInit.GRINT_SLAB.get());
-            ComposterBlock.registerCompostable(12.0F, SpecialBlockFoodItemInit.GRINT_STAIRS.get());
-            ComposterBlock.registerCompostable(16.0F, SpecialBlockFoodItemInit.GRINT_BLOCK.get());
-            ComposterBlock.registerCompostable(64.0F, isBurnableFoodItemInit.DURG.get());
-            ComposterBlock.registerCompostable(210.0F, SpecialBlockFoodItemInit.VIRK_BLOCK.get());
-
-            World.isYOutOfBounds(1024);
         });
 
         DeferredWorkQueue.runLater(FeatureGen::GenerateFeature);
         DeferredWorkQueue.runLater(FeatureGen::getSpawns);
-        //DeferredWorkQueue.runLater(BiomeInit::registerBiomes);
-
-        /*Map<Item, Integer> map = Maps.newLinkedHashMap();
-        AbstractFurnaceTileEntity.addItemBurnTime(map, BlockItemInit.COAL_SLAB.get(), 8000);
-        AbstractFurnaceTileEntity.addItemBurnTime(map, BlockItemInit.CHARCOAL_SLAB.get(), 8000);
-        AbstractFurnaceTileEntity.addItemBurnTime(map, com.babcsany.minecraft.ervin_mod_1.init.minecraft.block.MinecraftBlocks.COAL_STAIRS.get(), 12000);
-        AbstractFurnaceTileEntity.addItemBurnTime(map, BlockItemInit.CHARCOAL_STAIRS.get(), 12000);
-        AbstractFurnaceTileEntity.addItemBurnTime(map, BlockItemInit.CHARCOAL_BLOCK.get(), 16000);
-        AbstractFurnaceTileEntity.addItemBurnTime(map, isBurnableItemInit.GART.get(), 45000);
-        AbstractFurnaceTileEntity.addItemBurnTime(map, isBurnableItemInit.GARB.get(), 101200);
-        AbstractFurnaceTileEntity.addItemBurnTime(map, isBurnableItemInit.GARK.get(), 227700);
-        AbstractFurnaceTileEntity.addItemBurnTime(map, isBurnableBlockItemInit.GARK_BLOCK.get(), 512300);
-        AbstractFurnaceTileEntity.addItemBurnTime(map, isBurnableBlockItemInit.GARK_SLAB.get(), 256150);
-        AbstractFurnaceTileEntity.addItemBurnTime(map, isBurnableBlockItemInit.GARK_STAIRS.get(), 384225);
-        AbstractFurnaceTileEntity.addItemBurnTime(map, isBurnableItemInit.GARKT.get(), 1152600);
-        AbstractFurnaceTileEntity.addItemBurnTime(map, isBurnableItemInit.GARKTH.get(), 4610400);
-        AbstractFurnaceTileEntity.addItemBurnTime(map, isBurnableItemInit.TRAGH.get(), 10373400);
-        AbstractFurnaceTileEntity.addItemBurnTime(map, isBurnableItemInit.TRAGK.get(), 23340100);
-        AbstractFurnaceTileEntity.addItemBurnTime(map, isBurnableBlockItemInit.TRAGK_BLOCK.get(), 58350200);
-        AbstractFurnaceTileEntity.addItemBurnTime(map, isBurnableItemInit.TRAGT.get(), 145875500);
-        AbstractFurnaceTileEntity.addItemBurnTime(map, isBurnableBlockItemInit.TRAGN.get(), 364688750);
-        AbstractFurnaceTileEntity.addItemBurnTime(map, BlockItemInit.CHARCOAL_BLOCK.get(), 16000);
-        AbstractFurnaceTileEntity.addItemBurnTime(map, ItemInit.FIRT.get(), 1200);
-        AbstractFurnaceTileEntity.addItemBurnTime(map, SpecialBlockFoodItemInit.FIRG.get(), 600);
-        AbstractFurnaceTileEntity.addItemBurnTime(map, isBurnableFoodItemInit.GRINT.get(), 5400);
-        AbstractFurnaceTileEntity.addItemBurnTime(map, SpecialBlockFoodItemInit.GRINT_BLOCK.get(), 48600);
-        AbstractFurnaceTileEntity.addItemBurnTime(map, isBurnableFoodItemInit.DURG.get(), 437400);
-        AbstractFurnaceTileEntity.addItemBurnTime(map, SpecialBlockFoodItemInit.GRINT_SLAB.get(), 24300);
-        AbstractFurnaceTileEntity.addItemBurnTime(map, SpecialBlockFoodItemInit.GRINT_STAIRS.get(), 37350);
-        AbstractFurnaceTileEntity.addItemBurnTime(map, SpecialBlockFoodItemInit.FIRG_SLAB.get(), 300);
-        AbstractFurnaceTileEntity.addItemBurnTime(map, SpecialBlockFoodItemInit.FIRG_STAIRS.get(), 450);
-        AbstractFurnaceTileEntity.addItemBurnTime(map, com.babcsany.minecraft.ervin_mod_1.init.item.tool.ToolItemInit.FIRT_AXE.get(), 3800);
-        AbstractFurnaceTileEntity.addItemBurnTime(map, com.babcsany.minecraft.ervin_mod_1.init.item.tool.ToolItemInit.FIRT_HOE.get(), 2600);
-        AbstractFurnaceTileEntity.addItemBurnTime(map, ArmorItemInit.FIRT_BOOTS.get(), 4800);
-        AbstractFurnaceTileEntity.addItemBurnTime(map, ArmorItemInit.FIRT_HELMET.get(), 6000);
-        AbstractFurnaceTileEntity.addItemBurnTime(map, BlockItemInit.FIRT_BLOCK.get(), 12000);*/
 
         Ervin_mod_1_.setup();
+        //Ervin_mod_1_.ervin_mod_1();
     }
-
-    /*private int getInventoryStackLimit() {
-        return 2048;
-    }*/
 
     private void doClientStuff(final FMLClientSetupEvent event) {
         // do something that can only be done on the client

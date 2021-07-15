@@ -1021,7 +1021,7 @@ public abstract class Entity extends net.minecraftforge.common.capabilities.Capa
       }
    }
 
-   void func_233567_aH_() {
+   protected void func_233567_aH_() {
       if (this.getRidingEntity() instanceof BoatEntity) {
          this.inWater = false;
       } else if (this.handleFluidAcceleration(FluidTags.WATER, 0.014D)) {
