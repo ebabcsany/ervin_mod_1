@@ -12,6 +12,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.Set;
 
 public class ItemTag extends ItemTags {
+   private static final TagRegistry<com.babcsany.minecraft.ervin_mod_1.item.item.Item> collection1 = new TagRegistry<>();
    private static final TagRegistry<Item> collection = new TagRegistry<>();
    public static final ITag.INamedTag<Item> BurnTimeIn8000 = makeWrapperTag("burn_time_in_8000");
    public static final ITag.INamedTag<Item> BurnTimeIn12000 = makeWrapperTag("burn_time_in_12000");
@@ -102,6 +103,10 @@ public class ItemTag extends ItemTags {
 
    public static TagCollection<Item> getCollection() {
       return collection.func_232939_b_();
+   }
+
+   public static TagCollection<com.babcsany.minecraft.ervin_mod_1.item.item.Item> getCollection1() {
+      return collection1.func_232939_b_();
    }
 
    public static Set<ResourceLocation> func_232917_b_(TagCollection<Item> p_232917_0_) {

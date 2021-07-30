@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "tag": "ervin_mod_1:ingredients/lime_stone"
+      "tag": "ervin_mod_1:ingredients/stone/stones/lime_stone"
     },
     {
       "item": "minecraft:lime_dye"

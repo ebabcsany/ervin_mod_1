@@ -5,10 +5,10 @@ import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.init.init.DyeColorInit;
 import com.babcsany.minecraft.ervin_mod_1.init.init.DyeItemInit;
 import com.babcsany.minecraft.ervin_mod_1.item.book.paper.*;
-import com.babcsany.minecraft.init.FluidInit;
-import com.babcsany.minecraft.item.BucketItem;
+import com.babcsany.minecraft.init.FluidInit_;
 import com.babcsany.minecraft.item.JurkBucketItem;
 import com.babcsany.minecraft.item.ModBoatItem;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.item.*;
 import net.minecraft.util.ResourceLocation;
 
@@ -16,7 +16,10 @@ import static net.minecraft.item.Items.BUCKET;
 
 public class ItemInit {
 
-    public static final Item JURK_BUCKET = register("ervin_mod_1:jurk_bucket", new JurkBucketItem(FluidInit.JURK, (new Item.Properties()).containerItem(BUCKET).maxStackSize(1).group(ItemGroup.MISC)));
+    public static ItemInit ITEMS;
+
+    public static final Item JURK_BUCKET = register("ervin_mod_1:jurk_bucket", new JurkBucketItem(FluidInit_.JURK, (new Item.Properties()).containerItem(BUCKET).maxStackSize(1).group(ItemGroup.MISC)));
+    //public static final Item JURK_BUCKET = register("ervin_mod_1:jurk_bucket", new JurkBucketItem((new Item.Properties()).containerItem(BUCKET).maxStackSize(1).group(net.minecraft.item.ItemGroup.MISC)));
     public static final Item FIRG_BOAT = register("ervin_mod_1:firg_boat", new ModBoatItem(ModBoatEntity.Type.FIRG_PLANKS, (new Item.Properties()).maxStackSize(1).group(ItemGroup.TRANSPORTATION)));
     public static final Item ENCHANTED_BOOK_BLACK = register("ervin_mod_1:book/enchanted/paper/black", new EnchantedBookItemBlack((new Item.Properties()).maxStackSize(1).rarity(Rarity.UNCOMMON)));
     public static final Item ENCHANTED_BOOK_BLUE = register("ervin_mod_1:book/enchanted/paper/blue", new EnchantedBookItemBlue((new Item.Properties()).maxStackSize(1).rarity(Rarity.UNCOMMON)));

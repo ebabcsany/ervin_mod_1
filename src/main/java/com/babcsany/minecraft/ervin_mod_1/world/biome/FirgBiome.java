@@ -15,8 +15,8 @@ public class FirgBiome extends Biome {
 
 	public FirgBiome(Builder biomeBuilder) {
 		super(biomeBuilder);
-		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.VILLAGER, 10, 2, 5));
-		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.IRON_GOLEM, 10, 2, 5));
+		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.SRACH_ENTITY, 10, 2, 5));
+		/*this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.IRON_GOLEM, 10, 2, 5));
 		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.WANDERING_TRADER, 10, 2, 5));
 		this.addSpawn(EntityClassification.AMBIENT, new SpawnListEntry(EntityType.BAT, 10, 2, 5));
 		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.CAT, 10, 2, 5));
@@ -37,8 +37,8 @@ public class FirgBiome extends Biome {
 		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.RABBIT, 10, 2, 5));
 		this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityType.HUSK, 10, 2, 5));
 		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.BEE, 20, 2, 10));
-		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.ZUR_ENTITY, 20, 1, 1));
-		//this.addSpawn(EntityClassification.CREATURE, () -> new SpawnListEntry(com.babcsany.minecraft.ervin_mod_1.init.EntityInit.SRACH_ENTITY.get(), 20, 2, 10));
+		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.ZUR_ENTITY, 20, 1, 1));*/
+		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(com.babcsany.minecraft.init.EntityInit.SRACH_ENTITY, 20, 2, 10));
 		this.addCarver(GenerationStage.Carving.AIR,
 				Biome.createCarver(WorldCarver.CAVE, new ProbabilityConfig(0.14285715F)));
 		this.addCarver(GenerationStage.Carving.AIR,

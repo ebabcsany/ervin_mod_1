@@ -16,7 +16,6 @@ public class FluidTag {
    public static final ITag.INamedTag<Fluid> WATER = makeWrapperTag("water");
    public static final ITag.INamedTag<Fluid> LAVA = makeWrapperTag("lava");
    public static final ITag.INamedTag<Fluid> MILK = makeWrapperTag("milk");
-   public static final ITag.INamedTag<Fluid> JURK = makeWrapperTag("jurk");
 
    public static ITag.INamedTag<Fluid> makeWrapperTag(String id) {
       return collection.func_232937_a_(id);

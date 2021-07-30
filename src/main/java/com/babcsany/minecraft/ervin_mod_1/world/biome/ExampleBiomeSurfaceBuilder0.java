@@ -1,6 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.world.biome;
 
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
+import com.babcsany.minecraft.init.BlockInit;
 import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;

@@ -1,5 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.animal;
 
+import com.babcsany.minecraft.ervin_mod_1.init.item.FluidBucketInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.food.BlockFoodItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.food.SpecialBlockFoodItemInit;

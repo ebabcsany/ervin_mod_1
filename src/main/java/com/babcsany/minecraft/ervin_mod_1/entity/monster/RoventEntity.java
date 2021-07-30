@@ -85,7 +85,7 @@ public class RoventEntity extends ZurEntity implements IRangedAttackMob {
 
    public static boolean canRoventSpawn(EntityType<RoventEntity> p_223332_0_, IWorld p_223332_1_, SpawnReason reason, BlockPos p_223332_3_, Random p_223332_4_) {
       Biome biome = p_223332_1_.getBiome(p_223332_3_);
-      boolean flag = p_223332_1_.getDifficulty() != Difficulty.PEACEFUL && isValidLightLevel(p_223332_1_, p_223332_3_, p_223332_4_) && (reason == SpawnReason.SPAWNER || p_223332_1_.getFluidState(p_223332_3_).isTagged(FluidTags.WATER));
+      boolean flag = p_223332_1_.getDifficulty() != Difficulty.HARD && isValidLightLevel(p_223332_1_, p_223332_3_, p_223332_4_) && (reason == SpawnReason.SPAWNER || p_223332_1_.getFluidState(p_223332_3_).isTagged(FluidTags.WATER));
       if (biome != BiomeInit.EXAMPLE_BIOME.get() && biome != BiomeInit.EXAMPLE_BIOME2.get()) {
          return p_223332_4_.nextInt(40) == 0 && func_223333_a(p_223332_1_, p_223332_3_) && flag;
       } else {

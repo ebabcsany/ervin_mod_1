@@ -1,11 +1,12 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.monster.zur;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.animal.hhij.HhijCreatureEntity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ILivingEntityData;
-import net.minecraft.entity.SpawnReason;
-import net.minecraft.entity.monster.AbstractRaiderEntity;
-import net.minecraft.entity.monster.MonsterEntity;
+import com.babcsany.minecraft.ervin_mod_1.entity.trigger.CriteriaTriggers1;
+import net.minecraft.entity.*;
+import net.minecraft.entity.merchant.IMerchant;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.item.MerchantOffer;
+import net.minecraft.item.MerchantOffers;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -17,11 +18,13 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public abstract class AgeableZurEntity extends AbstractRaiderEntity {
+public abstract class AgeableZurEntity extends CreatureEntity implements INPC, IMerchant {
    private static final DataParameter<Boolean> BABY = EntityDataManager.createKey(AgeableZurEntity.class, DataSerializers.BOOLEAN);
    protected int growingAge;
    protected int forcedAge;
    protected int forcedAgeTimer;
+   @Nullable private PlayerEntity customer;
+   @Nullable protected MerchantOffers offers;
 
    protected AgeableZurEntity(EntityType<? extends AgeableZurEntity> type, World worldIn) {
       super(type, worldIn);
@@ -114,11 +117,47 @@ public abstract class AgeableZurEntity extends AbstractRaiderEntity {
 
    }
 
+   public MerchantOffers getOffers() {
+      if (this.offers == null) {
+         this.offers = new MerchantOffers();
+         this.populateTradeZurData();
+      }
+
+      return this.offers;
+   }
+
+   public void setCustomer(@Nullable PlayerEntity player) {
+      this.customer = player;
+   }
+
+   @Nullable
+   public PlayerEntity getCustomer() {
+      return this.customer;
+   }
+
+   public boolean hasCustomer() {
+      return this.customer != null;
+   }
+
+   protected abstract void populateTradeZurData();
+
    public void writeAdditional(CompoundNBT compound) {
       super.writeAdditional(compound);
       compound.putInt("Age", this.getGrowingAge());
       compound.putInt("ForcedAge", this.forcedAge);
    }
+
+   public void onTrade(MerchantOffer offer) {
+      offer.increaseUses();
+      this.livingSoundTime = -this.getTalkInterval();
+      this.onZurTrade(offer);
+      if (this.customer instanceof ServerPlayerEntity) {
+         CriteriaTriggers1.ZUR_TRADE.test((ServerPlayerEntity)this.customer, this, offer.getSellingStack());
+      }
+
+   }
+
+   protected abstract void onZurTrade(MerchantOffer offer);
 
    /**
     * (abstract) Protected helper method to read subclass entity data from NBT.

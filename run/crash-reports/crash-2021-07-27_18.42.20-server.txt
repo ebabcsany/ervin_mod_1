@@ -1,0 +1,199 @@
+---- Minecraft Crash Report ----
+// Don't be sad, have a hug! <3
+
+Time: 2021.07.27. 18:42
+Description: Ticking entity
+
+java.lang.IllegalStateException: Tag minecraft:jurk used before it was bound
+	at net.minecraft.tags.TagRegistry$NamedTag.func_232944_c_(TagRegistry.java:77) ~[?:?] {re:classloading}
+	at net.minecraft.tags.TagRegistry$NamedTag.contains(TagRegistry.java:88) ~[?:?] {re:classloading}
+	at net.minecraft.fluid.Fluid.isIn(Fluid.java:97) ~[?:?] {re:classloading}
+	at com.babcsany.minecraft.fluid.block.ModFlowingFluidBlock.allowsMovement(ModFlowingFluidBlock.java:92) ~[?:?] {re:classloading}
+	at net.minecraft.block.AbstractBlock$AbstractBlockState.allowsMovement(AbstractBlock.java:746) ~[?:?] {re:classloading}
+	at net.minecraft.pathfinding.WalkNodeProcessor.func_237238_b_(WalkNodeProcessor.java:517) ~[?:?] {re:classloading}
+	at net.minecraft.pathfinding.WalkNodeProcessor.func_237231_a_(WalkNodeProcessor.java:420) ~[?:?] {re:classloading}
+	at net.minecraft.pathfinding.WalkNodeProcessor.getPathNodeType(WalkNodeProcessor.java:413) ~[?:?] {re:classloading}
+	at net.minecraft.pathfinding.WalkNodeProcessor.getPathNodeType(WalkNodeProcessor.java:368) ~[?:?] {re:classloading}
+	at net.minecraft.pathfinding.WalkNodeProcessor.getPathNodeType(WalkNodeProcessor.java:339) ~[?:?] {re:classloading}
+	at net.minecraft.pathfinding.WalkNodeProcessor.lambda$func_237230_a_$1(WalkNodeProcessor.java:408) ~[?:?] {re:classloading}
+	at net.minecraft.pathfinding.WalkNodeProcessor$$Lambda$6869/1453945763.apply(Unknown Source) ~[?:?] {}
+	at it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap.computeIfAbsent(Long2ObjectOpenHashMap.java:479) ~[fastutil-8.2.1.jar:?] {re:classloading}
+	at net.minecraft.pathfinding.WalkNodeProcessor.func_237230_a_(WalkNodeProcessor.java:407) ~[?:?] {re:classloading}
+	at net.minecraft.pathfinding.WalkNodeProcessor.getSafePoint(WalkNodeProcessor.java:219) ~[?:?] {re:classloading}
+	at net.minecraft.pathfinding.WalkNodeProcessor.func_222859_a(WalkNodeProcessor.java:154) ~[?:?] {re:classloading}
+	at net.minecraft.pathfinding.PathFinder.func_227479_a_(PathFinder.java:76) ~[?:?] {re:classloading}
+	at net.minecraft.pathfinding.PathFinder.func_227478_a_(PathFinder.java:37) ~[?:?] {re:classloading}
+	at net.minecraft.pathfinding.PathNavigator.func_225464_a(PathNavigator.java:141) ~[?:?] {re:classloading}
+	at net.minecraft.pathfinding.PathNavigator.getPathToPos(PathNavigator.java:114) ~[?:?] {re:classloading}
+	at net.minecraft.pathfinding.GroundPathNavigator.getPathToPos(GroundPathNavigator.java:46) ~[?:?] {re:classloading}
+	at net.minecraft.pathfinding.ClimberPathNavigator.getPathToPos(ClimberPathNavigator.java:21) ~[?:?] {re:classloading}
+	at net.minecraft.pathfinding.PathNavigator.getPathToPos(PathNavigator.java:96) ~[?:?] {re:classloading}
+	at net.minecraft.pathfinding.PathNavigator.tryMoveToXYZ(PathNavigator.java:157) ~[?:?] {re:classloading}
+	at net.minecraft.entity.ai.goal.RandomWalkingGoal.startExecuting(RandomWalkingGoal.java:82) ~[?:?] {re:classloading}
+	at net.minecraft.entity.ai.goal.PrioritizedGoal.startExecuting(PrioritizedGoal.java:45) ~[?:?] {re:classloading}
+	at net.minecraft.entity.ai.goal.GoalSelector.lambda$tick$9(GoalSelector.java:87) ~[?:?] {re:classloading}
+	at net.minecraft.entity.ai.goal.GoalSelector$$Lambda$6840/1638310008.accept(Unknown Source) ~[?:?] {}
+	at java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184) ~[?:1.8.0_51] {}
+	at java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:175) ~[?:1.8.0_51] {}
+	at java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:175) ~[?:1.8.0_51] {}
+	at java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:175) ~[?:1.8.0_51] {}
+	at java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:175) ~[?:1.8.0_51] {}
+	at java.util.Iterator.forEachRemaining(Iterator.java:116) ~[?:1.8.0_51] {}
+	at java.util.Spliterators$IteratorSpliterator.forEachRemaining(Spliterators.java:1801) ~[?:1.8.0_51] {}
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:512) ~[?:1.8.0_51] {}
+	at java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:502) ~[?:1.8.0_51] {}
+	at java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:151) ~[?:1.8.0_51] {}
+	at java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:174) ~[?:1.8.0_51] {}
+	at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234) ~[?:1.8.0_51] {}
+	at java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:418) ~[?:1.8.0_51] {}
+	at net.minecraft.entity.ai.goal.GoalSelector.tick(GoalSelector.java:81) ~[?:?] {re:classloading}
+	at net.minecraft.entity.MobEntity.updateEntityActionState(MobEntity.java:738) ~[?:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.entity.LivingEntity.livingTick(LivingEntity.java:2564) ~[?:?] {re:classloading}
+	at net.minecraft.entity.MobEntity.livingTick(MobEntity.java:537) ~[?:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.entity.monster.MonsterEntity.livingTick(MonsterEntity.java:43) ~[?:?] {re:classloading}
+	at net.minecraft.entity.LivingEntity.tick(LivingEntity.java:2307) ~[?:?] {re:classloading}
+	at net.minecraft.entity.MobEntity.tick(MobEntity.java:336) ~[?:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.entity.monster.SpiderEntity.tick(SpiderEntity.java:87) ~[?:?] {re:classloading}
+	at net.minecraft.world.server.ServerWorld.updateEntity(ServerWorld.java:616) ~[?:?] {re:classloading}
+	at net.minecraft.world.server.ServerWorld$$Lambda$6823/488587278.accept(Unknown Source) ~[?:?] {}
+	at net.minecraft.world.World.guardEntityTick(World.java:638) ~[?:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.world.server.ServerWorld.tick(ServerWorld.java:400) ~[?:?] {re:classloading}
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:887) ~[?:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:823) ~[?:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:87) ~[?:?] {re:classloading,pl:runtimedistcleaner:A}
+	at net.minecraft.server.MinecraftServer.func_240802_v_(MinecraftServer.java:666) [?:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.server.MinecraftServer.lambda$func_240784_a_$0(MinecraftServer.java:232) [?:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.server.MinecraftServer$$Lambda$6469/1137141072.run(Unknown Source) [?:?] {}
+	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_51] {}
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Thread: Server thread
+Stacktrace:
+	at net.minecraft.tags.TagRegistry$NamedTag.func_232944_c_(TagRegistry.java:77)
+	at net.minecraft.tags.TagRegistry$NamedTag.contains(TagRegistry.java:88)
+	at net.minecraft.fluid.Fluid.isIn(Fluid.java:97)
+	at com.babcsany.minecraft.fluid.block.ModFlowingFluidBlock.allowsMovement(ModFlowingFluidBlock.java:92)
+	at net.minecraft.block.AbstractBlock$AbstractBlockState.allowsMovement(AbstractBlock.java:746)
+	at net.minecraft.pathfinding.WalkNodeProcessor.func_237238_b_(WalkNodeProcessor.java:517)
+	at net.minecraft.pathfinding.WalkNodeProcessor.func_237231_a_(WalkNodeProcessor.java:420)
+	at net.minecraft.pathfinding.WalkNodeProcessor.getPathNodeType(WalkNodeProcessor.java:413)
+	at net.minecraft.pathfinding.WalkNodeProcessor.getPathNodeType(WalkNodeProcessor.java:368)
+	at net.minecraft.pathfinding.WalkNodeProcessor.getPathNodeType(WalkNodeProcessor.java:339)
+	at net.minecraft.pathfinding.WalkNodeProcessor.lambda$func_237230_a_$1(WalkNodeProcessor.java:408)
+	at net.minecraft.pathfinding.WalkNodeProcessor$$Lambda$6869/1453945763.apply(Unknown Source)
+	at it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap.computeIfAbsent(Long2ObjectOpenHashMap.java:479)
+	at net.minecraft.pathfinding.WalkNodeProcessor.func_237230_a_(WalkNodeProcessor.java:407)
+	at net.minecraft.pathfinding.WalkNodeProcessor.getSafePoint(WalkNodeProcessor.java:219)
+	at net.minecraft.pathfinding.WalkNodeProcessor.func_222859_a(WalkNodeProcessor.java:154)
+	at net.minecraft.pathfinding.PathFinder.func_227479_a_(PathFinder.java:76)
+	at net.minecraft.pathfinding.PathFinder.func_227478_a_(PathFinder.java:37)
+	at net.minecraft.pathfinding.PathNavigator.func_225464_a(PathNavigator.java:141)
+	at net.minecraft.pathfinding.PathNavigator.getPathToPos(PathNavigator.java:114)
+	at net.minecraft.pathfinding.GroundPathNavigator.getPathToPos(GroundPathNavigator.java:46)
+	at net.minecraft.pathfinding.ClimberPathNavigator.getPathToPos(ClimberPathNavigator.java:21)
+	at net.minecraft.pathfinding.PathNavigator.getPathToPos(PathNavigator.java:96)
+	at net.minecraft.pathfinding.PathNavigator.tryMoveToXYZ(PathNavigator.java:157)
+	at net.minecraft.entity.ai.goal.RandomWalkingGoal.startExecuting(RandomWalkingGoal.java:82)
+	at net.minecraft.entity.ai.goal.PrioritizedGoal.startExecuting(PrioritizedGoal.java:45)
+	at net.minecraft.entity.ai.goal.GoalSelector.lambda$tick$9(GoalSelector.java:87)
+	at net.minecraft.entity.ai.goal.GoalSelector$$Lambda$6840/1638310008.accept(Unknown Source)
+	at java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
+	at java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:175)
+	at java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:175)
+	at java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:175)
+	at java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:175)
+	at java.util.Iterator.forEachRemaining(Iterator.java:116)
+	at java.util.Spliterators$IteratorSpliterator.forEachRemaining(Spliterators.java:1801)
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:512)
+	at java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:502)
+	at java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:151)
+	at java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:174)
+	at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:418)
+	at net.minecraft.entity.ai.goal.GoalSelector.tick(GoalSelector.java:81)
+	at net.minecraft.entity.MobEntity.updateEntityActionState(MobEntity.java:738)
+	at net.minecraft.entity.LivingEntity.livingTick(LivingEntity.java:2564)
+	at net.minecraft.entity.MobEntity.livingTick(MobEntity.java:537)
+	at net.minecraft.entity.monster.MonsterEntity.livingTick(MonsterEntity.java:43)
+	at net.minecraft.entity.LivingEntity.tick(LivingEntity.java:2307)
+	at net.minecraft.entity.MobEntity.tick(MobEntity.java:336)
+	at net.minecraft.entity.monster.SpiderEntity.tick(SpiderEntity.java:87)
+	at net.minecraft.world.server.ServerWorld.updateEntity(ServerWorld.java:616)
+	at net.minecraft.world.server.ServerWorld$$Lambda$6823/488587278.accept(Unknown Source)
+
+-- Entity being ticked --
+Details:
+	Entity Type: minecraft:spider (net.minecraft.entity.monster.SpiderEntity)
+	Entity ID: 6
+	Entity Name: Pók
+	Entity's Exact location: -2.70, 56.00, 22.99
+	Entity's Block location: World: (-3,56,22), Chunk: (at 13,3,6 in -1,1; contains blocks -16,0,16 to -1,255,31), Region: (-1,0; contains chunks -32,0 to -1,31, blocks -512,0,0 to -1,255,511)
+	Entity's Momentum: 0.00, -0.08, 0.00
+	Entity's Passengers: []
+	Entity's Vehicle: ~~ERROR~~ NullPointerException: null
+Stacktrace:
+	at net.minecraft.world.World.guardEntityTick(World.java:638)
+	at net.minecraft.world.server.ServerWorld.tick(ServerWorld.java:400)
+
+-- Affected level --
+Details:
+	All players: 0 total; []
+	Chunk stats: ServerChunkCache: 2025
+	Level dimension: minecraft:overworld
+	Level spawn location: World: (-16,63,16), Chunk: (at 0,3,0 in -1,1; contains blocks -16,0,16 to -1,255,31), Region: (-1,0; contains chunks -32,0 to -1,31, blocks -512,0,0 to -1,255,511)
+	Level time: 131027 game time, 131027 day time
+	Level name: Új világ
+	Level game mode: Game mode: creative (ID 1). Hardcore: false. Cheats: true
+	Level weather: Rain time: 38746 (now: false), thunder time: 11803 (now: true)
+	Known server brands: forge
+	Level was modded: true
+	Level storage version: 0x04ABD - Anvil
+Stacktrace:
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:887)
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:823)
+	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:87)
+	at net.minecraft.server.MinecraftServer.func_240802_v_(MinecraftServer.java:666)
+	at net.minecraft.server.MinecraftServer.lambda$func_240784_a_$0(MinecraftServer.java:232)
+	at net.minecraft.server.MinecraftServer$$Lambda$6469/1137141072.run(Unknown Source)
+	at java.lang.Thread.run(Thread.java:745)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.16.1
+	Minecraft Version ID: 1.16.1
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 1.8.0_51, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 501154168 bytes (477 MB) / 1118830592 bytes (1067 MB) up to 1883242496 bytes (1796 MB)
+	CPUs: 4
+	JVM Flags: 1 total; -XX:HeapDumpPath=MojangTricksIntelDriversForPerformance_javaw.exe_minecraft.exe.heapdump
+	ModLauncher: 6.1.3+75+master.851120a
+	ModLauncher launch target: fmluserdevclient
+	ModLauncher naming: mcp
+	ModLauncher services: 
+		/mixin-0.8.jar mixin PLUGINSERVICE 
+		/eventbus-3.0.3-service.jar eventbus PLUGINSERVICE 
+		/forge-1.16.1-32.0.108_mapped_snapshot_20200723-1.16.1-launcher.jar object_holder_definalize PLUGINSERVICE 
+		/forge-1.16.1-32.0.108_mapped_snapshot_20200723-1.16.1-launcher.jar runtime_enum_extender PLUGINSERVICE 
+		/accesstransformers-2.2.0-shadowed.jar accesstransformer PLUGINSERVICE 
+		/forge-1.16.1-32.0.108_mapped_snapshot_20200723-1.16.1-launcher.jar capability_inject_definalize PLUGINSERVICE 
+		/forge-1.16.1-32.0.108_mapped_snapshot_20200723-1.16.1-launcher.jar runtimedistcleaner PLUGINSERVICE 
+		/mixin-0.8.jar mixin TRANSFORMATIONSERVICE 
+		/forge-1.16.1-32.0.108_mapped_snapshot_20200723-1.16.1-launcher.jar fml TRANSFORMATIONSERVICE 
+	FML: 32.0
+	Forge: net.minecraftforge:32.0.108
+	FML Language Providers: 
+		javafml@32.0
+		minecraft@1
+	Mod List: 
+		client-extra.jar Minecraft {minecraft@1.16.1 DONE}
+		main Ervin Mod 1 {ervin_mod_1@NONE DONE}
+		forge-1.16.1-32.0.108_mapped_snapshot_20200723-1.16.1-recomp.jar Forge {forge@32.0.75 DONE}
+	Player Count: 0 / 8; []
+	Data Packs: vanilla, mod:ervin_mod_1 (incompatible), mod:forge
+	Type: Integrated Server (map_client.txt)
+	Is Modded: Definitely; Client brand changed to 'forge'

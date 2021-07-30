@@ -12,26 +12,13 @@ import com.babcsany.minecraft.init.villager.VillagerProfessionInit;
 
 public class Ervin_mod_1_ {
 
-    public static void init() {
-        Ervin_mod_1.function(BlockInit.class);
-        Ervin_mod_1.function(BlockItemInit.class);
-        Ervin_mod_1.function(EntityInit.class);
-        Ervin_mod_1.function(ItemInit.class);
-        Ervin_mod_1.function(FeatureInit.class);
-        //Ervin_mod_1.function(StructureInit.class);
-        Ervin_mod_1.function(FluidInit.class);
-        Ervin_mod_1.function(EffectInit.class);
-        Ervin_mod_1.function(ParticleInit.class);
-        Ervin_mod_1.function(RecipeSerializerInit.class);
-        Ervin_mod_1.function(VillagerProfessionInit.class);
-        //Ervin_mod_1.function(DimensionInit.class);
-        //Ervin_mod_1.function(DimensionTypeInit.class);
-        //Ervin_mod_1.function(World.class);
+    public static void init(Class<?>... class$) {
+        class$.clone();
     }
 
     public static void setup() {
-        Ervin_mod_1.function(EntityRendererManager.class);
-        Ervin_mod_1.function(ParticleManager.class);
+        init(EntityRendererManager.class);
+        init(ParticleManager.class);
     }
 
     public static void registries() {
@@ -40,5 +27,6 @@ public class Ervin_mod_1_ {
 
     public static void ervin_mod_1() {
         Ervin_mod_1_classes.inventory();
+        Ervin_mod_1_classes.world();
     }
 }

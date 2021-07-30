@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "tag": "ervin_mod_1:ingredients/purple_stone"
+      "tag": "ervin_mod_1:ingredients/stone/stones/purple_stone"
     },
     {
       "item": "minecraft:purple_dye"

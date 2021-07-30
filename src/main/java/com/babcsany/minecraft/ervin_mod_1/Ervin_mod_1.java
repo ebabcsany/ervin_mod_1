@@ -6,7 +6,7 @@ import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.Dgrurb;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.dgrurbk.Dgrurbk;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.WanderingTraderNirtreEntity;
 import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.Ervin_mod_1_;
-import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.Init;
+import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.init.Init;
 import com.babcsany.minecraft.ervin_mod_1.init.minecraft.block.MinecraftBlocks;
 import com.babcsany.minecraft.ervin_mod_1.world.gen.FeatureGen;
 import net.minecraftforge.fml.DeferredWorkQueue;
@@ -86,14 +86,10 @@ public class Ervin_mod_1 {
         // Register the doClientStuff method for modLoading
         modEventBus.addListener(this::doClientStuff);
 
-        Ervin_mod_1_.ervin_mod_1();
-
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
 
         new Init();
-
-        Ervin_mod_1_.init();
     }
 
     public static void function(Class<?>... class$) {
@@ -111,7 +107,7 @@ public class Ervin_mod_1 {
             GlobalEntityTypeAttributes.put(com.babcsany.minecraft.init.EntityInit.ZUR_ENTITY, ZurEntity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(EntityInit.DGRURB_ENTITY.get(), Dgrurb.registerAttributes().create());
             GlobalEntityTypeAttributes.put(EntityInit.DGRURBK_ENTITY.get(), Dgrurbk.registerAttributes().create());
-            GlobalEntityTypeAttributes.put(EntityInit.ROVENT_ENTITY.get(), RoventEntity.setCustomAttributes().create());
+            GlobalEntityTypeAttributes.put(com.babcsany.minecraft.init.EntityInit.ROVENT_ENTITY, RoventEntity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(EntityInit.ZUR_NIRTRE_ENTITY.get(), ZurNirtreEntity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(EntityInit.FREIN_ENTITY.get(), FreinEntity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(EntityInit.VILT_ENTITY.get(), ViltEntity.setCustomAttributes().create());
@@ -120,7 +116,7 @@ public class Ervin_mod_1 {
             GlobalEntityTypeAttributes.put(EntityInit.HHIJ_ENTITY.get(), HhijEntity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(EntityInit.WANDERING_TRADER_NIRTRE_ENTITY.get(), WanderingTraderNirtreEntity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(EntityInit.TRADER_NIRTRE_ENTITY.get(), TraderNirtreEntity.setCustomAttributes().create());
-            GlobalEntityTypeAttributes.put(EntityInit.TRADER_NIRTREP_ENTITY.get(), TraderNirtre1Entity.setCustomAttributes().create());
+            GlobalEntityTypeAttributes.put(EntityInit.TRADER_NIRTRE1_ENTITY.get(), TraderNirtre1Entity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(EntityInit.$_TRADER_ENTITY.get(), $TraderEntity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(EntityInit.ZOMBIE_TRADER_ENTITY.get(), ZombieTraderEntity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(com.babcsany.minecraft.init.EntityInit.GUBROV, GubrovEntity.setCustomAttributes().create());
@@ -129,7 +125,7 @@ public class Ervin_mod_1 {
             EntitySpawnPlacementRegistry.register(EntityInit.FREIN_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, FreinEntity::func_223366_c);
             EntitySpawnPlacementRegistry.register(com.babcsany.minecraft.init.EntityInit.GUBROV, EntitySpawnPlacementRegistry.PlacementType.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AbstractFishEntity::func_223363_b);
             EntitySpawnPlacementRegistry.register(EntityInit.HHIJ_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, HhijAnimalEntity::canAnimalSpawn);
-            EntitySpawnPlacementRegistry.register(EntityInit.ROVENT_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, RoventEntity::canRoventSpawn);
+            EntitySpawnPlacementRegistry.register(com.babcsany.minecraft.init.EntityInit.ROVENT_ENTITY, EntitySpawnPlacementRegistry.PlacementType.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, RoventEntity::canRoventSpawn);
             EntitySpawnPlacementRegistry.register(EntityInit.SHERT_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ShertEntity::func_223318_c);
             EntitySpawnPlacementRegistry.register(com.babcsany.minecraft.init.EntityInit.SRACH_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::canAnimalSpawn);
             EntitySpawnPlacementRegistry.register(EntityInit.TRADER_NIRTRE_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canSpawnOn);
@@ -152,7 +148,7 @@ public class Ervin_mod_1 {
         DeferredWorkQueue.runLater(FeatureGen::getSpawns);
 
         Ervin_mod_1_.setup();
-        //Ervin_mod_1_.ervin_mod_1();
+        Ervin_mod_1_.ervin_mod_1();
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {

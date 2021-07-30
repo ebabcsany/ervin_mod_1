@@ -66,7 +66,6 @@ public class ZurTrades {
            new ZurTrades.ItemsForEmeraldsTrade(ModSpawnEggItemInit.DGRURB_SPAWN_EGG.get(), 5, 1, 50, 2),
            new ZurTrades.ItemsForBedrocksTrade(SpecialItemInit.GRITHK.get(), 5, 1, 50, 10),
            new ZurTrades.ItemsForTirskBlocksAndItemsTrade(SpecialItemInit.GRITHK.get(), 1, isBurnableSpecialToolItemInit.TERAT.get(), 4, 30, 30),
-           //new ZurTrades.ItemsForTirskBlocksAndItemsTrade((IItemProvider) ItemTag.GARK_BLOCK, 1, isBurnableSpecialToolItemInit.TERAT.get(), 4, 30, 30),
    }));
 
    private static Int2ObjectMap<ZurTrades.ITrade[]> gatAsIntMap(ImmutableMap<Integer, ZurTrades.ITrade[]> p_221238_0_) {

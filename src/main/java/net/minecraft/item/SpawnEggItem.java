@@ -1,9 +1,9 @@
 package net.minecraft.item;
 
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit;
 import com.babcsany.minecraft.ervin_mod_1.reutrien.AbstractReutrien;
 import com.babcsany.minecraft.ervin_mod_1.tile_entity.ReutrienTileEntity;
+import com.babcsany.minecraft.fluid.block.ModFlowingFluidBlock;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Maps;
 import net.minecraft.block.BlockState;
@@ -118,7 +118,7 @@ public class SpawnEggItem extends Item {
          return ActionResult.resultSuccess(itemstack);
       } else {
          BlockPos blockpos = raytraceresult.getPos();
-         if (!(worldIn.getBlockState(blockpos).getBlock() instanceof FlowingFluidBlock) && !(worldIn.getBlockState(blockpos).getBlock() instanceof com.babcsany.minecraft.fluid.block.FlowingFluidBlock)) {
+         if (!(worldIn.getBlockState(blockpos).getBlock() instanceof FlowingFluidBlock) && !(worldIn.getBlockState(blockpos).getBlock() instanceof ModFlowingFluidBlock)) {
             return ActionResult.resultPass(itemstack);
          } else if (worldIn.isBlockModifiable(playerIn, blockpos) && playerIn.canPlayerEdit(blockpos, raytraceresult.getFace(), itemstack)) {
             EntityType<?> entitytype = this.getType(itemstack.getTag());

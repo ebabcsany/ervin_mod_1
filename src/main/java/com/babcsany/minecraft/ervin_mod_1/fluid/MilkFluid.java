@@ -1,12 +1,14 @@
 package com.babcsany.minecraft.ervin_mod_1.fluid;
 
-import com.babcsany.minecraft.ervin_mod_1.init.FluidInit;
+import com.babcsany.minecraft.ervin_mod_1.init.fluid.FluidInit;
 import com.babcsany.minecraft.ervin_mod_1.tags.FluidTag;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.fluid.FlowingFluid;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.particles.IParticleData;
@@ -72,7 +74,7 @@ public abstract class MilkFluid extends FlowingFluid {
    }
 
    public BlockState getBlockState(FluidState state) {
-      return FluidInit.MILK_BLOCK.get().getDefaultState().with(FlowingFluidBlock2.LEVEL, Integer.valueOf(getLevelFromState(state)));
+      return Blocks.WATER.getDefaultState().with(FlowingFluidBlock2.LEVEL, Integer.valueOf(getLevelFromState(state)));
    }
 
    public boolean isEquivalentTo(Fluid fluidIn) {

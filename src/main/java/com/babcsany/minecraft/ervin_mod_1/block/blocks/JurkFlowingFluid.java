@@ -2,6 +2,7 @@ package com.babcsany.minecraft.ervin_mod_1.block.blocks;
 
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.tags.FluidTag;
+import com.babcsany.minecraft.tags.FluidTags;
 import com.google.common.collect.Lists;
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
@@ -78,7 +79,7 @@ public class JurkFlowingFluid extends Block implements IBucketPickupHandler {
    }
 
    public boolean allowsMovement(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type) {
-      return !this.fluid.isIn(FluidTag.JURK);
+      return !this.fluid.isIn(FluidTags.JURK);
    }
 
    public FluidState getFluidState(BlockState state) {
@@ -145,7 +146,7 @@ public class JurkFlowingFluid extends Block implements IBucketPickupHandler {
    }
 
    public boolean reactWithNeighbors(World worldIn, BlockPos pos, BlockState state) {
-      if (this.fluid.isIn(FluidTag.JURK)) {
+      if (this.fluid.isIn(FluidTags.LAVA)) {
          boolean flag = false;
 
          for (Direction direction : Direction.values()) {
@@ -192,7 +193,7 @@ public class JurkFlowingFluid extends Block implements IBucketPickupHandler {
    }
 
    public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
-      if (this.fluid.isIn(FluidTag.JURK)) {
+      if (this.fluid.isIn(FluidTags.JURK)) {
          entityIn.setInLava();
       }
 

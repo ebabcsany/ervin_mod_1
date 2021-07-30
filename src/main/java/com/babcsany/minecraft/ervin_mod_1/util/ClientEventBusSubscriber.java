@@ -5,24 +5,21 @@ import com.babcsany.minecraft.ervin_mod_1.client.entity.render.*;
 import com.babcsany.minecraft.ervin_mod_1.client.gui.screen.*;
 import com.babcsany.minecraft.ervin_mod_1.client.gui.screen.merchant.ZurScreen;
 import com.babcsany.minecraft.ervin_mod_1.client.renderer.entity.ModBoatRender;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.dgrurbk.Dgrurbk;
 import com.babcsany.minecraft.ervin_mod_1.init.*;
 import com.babcsany.minecraft.ervin_mod_1.init.container.ContainerInit;
 import com.babcsany.minecraft.renderer.entity.ModBoatRenderer;
 import net.minecraft.client.gui.ScreenManager;
-import net.minecraft.client.renderer.entity.*;
-import net.minecraft.entity.EntityType;
-import net.minecraft.resources.IReloadableResourceManager;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DeferredWorkQueue;
-import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 @Mod.EventBusSubscriber(modid = Ervin_mod_1.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ClientEventBusSubscriber {
+
+    static net.minecraft.client.renderer.ItemRenderer itemRenderer;
 
     @SubscribeEvent
     public static void clientSetup(FMLClientSetupEvent event) {
@@ -33,7 +30,7 @@ public class ClientEventBusSubscriber {
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.DGRURB_ENTITY.get(), DgrurbRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.DGRURBK_ENTITY.get(), DgrurbkRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.ZUR_NIRTRE_ENTITY.get(), ZurNirtreRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityInit.ROVENT_ENTITY.get(), RoventRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(com.babcsany.minecraft.init.EntityInit.ROVENT_ENTITY, RoventRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.VILT_ENTITY.get(), ViltEntityRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.FREIN_ENTITY.get(), FreinEntityRender::new);
         RenderingRegistry.registerEntityRenderingHandler(com.babcsany.minecraft.init.EntityInit.SRACH_ENTITY, SrachRender::new);
@@ -41,9 +38,10 @@ public class ClientEventBusSubscriber {
         //RenderingRegistry.registerEntityRenderingHandler(EntityInit.SRECH_ENTITY.get(), SrechRender::new);
 
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.HHIJ_ENTITY.get(), HhijRender::new);
+        //RenderingRegistry.registerEntityRenderingHandler(com.babcsany.minecraft.init.EntityInit.ICSVRE, ItemRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.WANDERING_TRADER_NIRTRE_ENTITY.get(), WanderingTraderNirtreRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.TRADER_NIRTRE_ENTITY.get(), TraderNirtreRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityInit.TRADER_NIRTREP_ENTITY.get(), TraderNirtre1Render::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityInit.TRADER_NIRTRE1_ENTITY.get(), TraderNirtre1Render::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.$_TRADER_ENTITY.get(), $TraderRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.ZOMBIE_TRADER_ENTITY.get(), ZombieTraderRender::new);
         RenderingRegistry.registerEntityRenderingHandler(com.babcsany.minecraft.init.EntityInit.GUBROV, GubrovRenderer::new);

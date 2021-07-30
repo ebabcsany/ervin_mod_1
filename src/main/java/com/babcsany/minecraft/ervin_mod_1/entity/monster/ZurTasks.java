@@ -1,5 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.monster;
 
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.AbstractZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.task.*;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.task.Task;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.task.WalkToTargetTask;
@@ -62,7 +63,7 @@ public class ZurTasks<E extends LivingEntity> {
       return p_234469_1_;
    }
 
-   protected static void func_234466_a_(AbstractZurEntity zur) {
+   public static void func_234466_a_(AbstractZurEntity zur) {
       int i = field_234445_b_.func_233018_a_(zur.world.rand);
       zur.getBrain().func_233696_a_(MemoryModuleType.HUNTED_RECENTLY, true, i);
    }

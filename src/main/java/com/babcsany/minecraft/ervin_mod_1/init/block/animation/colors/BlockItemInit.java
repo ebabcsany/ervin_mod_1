@@ -17,7 +17,7 @@ public class BlockItemInit {
 
     public static final DeferredRegister<Block> ANIMATION_BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Ervin_mod_1.MOD_ID);
 
-    public static final RegistryObject<Block> l0 = ANIMATION_BLOCKS.register("animation/colors/1/255/0", () -> new L0(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.SNOW).setRequiresTool().speedFactor(4).hardnessAndResistance(5000000000000000000000000.0F).setLightLevel(Value -> 3).sound(SoundInit.AMBIENT_BASALT_NETHER_ADDITIONS)));
+    /*public static final RegistryObject<Block> l0 = ANIMATION_BLOCKS.register("animation/colors/1/255/0", () -> new L0(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.SNOW).setRequiresTool().speedFactor(4).hardnessAndResistance(5000000000000000000000000.0F).setLightLevel(Value -> 3).sound(SoundInit.AMBIENT_BASALT_NETHER_ADDITIONS)));
     public static final RegistryObject<Block> l1 = ANIMATION_BLOCKS.register("animation/colors/1/255/1", () -> new L1(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.SNOW).setRequiresTool().speedFactor(4).hardnessAndResistance(5000000000000000000000000.0F).setLightLevel(Value -> 3).sound(SoundInit.AMBIENT_BASALT_NETHER_ADDITIONS)));
     public static final RegistryObject<Block> l2 = ANIMATION_BLOCKS.register("animation/colors/1/255/2", () -> new L2(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.SNOW).setRequiresTool().speedFactor(4).hardnessAndResistance(5000000000000000000000000.0F).setLightLevel(Value -> 3).sound(SoundInit.AMBIENT_BASALT_NETHER_ADDITIONS)));
     public static final RegistryObject<Block> l3 = ANIMATION_BLOCKS.register("animation/colors/1/255/3", () -> new L3(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.SNOW).setRequiresTool().speedFactor(4).hardnessAndResistance(5000000000000000000000000.0F).setLightLevel(Value -> 3).sound(SoundInit.AMBIENT_BASALT_NETHER_ADDITIONS)));
@@ -68,5 +68,5 @@ public class BlockItemInit {
     public static final RegistryObject<Block> l48 = ANIMATION_BLOCKS.register("animation/colors/1/255/48", () -> new L48(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.SNOW).setRequiresTool().speedFactor(4).hardnessAndResistance(5000000000000000000000000.0F).setLightLevel(Value -> 3).sound(SoundInit.AMBIENT_BASALT_NETHER_ADDITIONS)));
     public static final RegistryObject<Block> l49 = ANIMATION_BLOCKS.register("animation/colors/1/255/49", () -> new L49(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.SNOW).setRequiresTool().speedFactor(4).hardnessAndResistance(5000000000000000000000000.0F).setLightLevel(Value -> 3).sound(SoundInit.AMBIENT_BASALT_NETHER_ADDITIONS)));
     public static final RegistryObject<Block> l50 = ANIMATION_BLOCKS.register("animation/colors/1/255/50", () -> new L50(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.SNOW).setRequiresTool().speedFactor(4).hardnessAndResistance(5000000000000000000000000.0F).setLightLevel(Value -> 3).sound(SoundInit.AMBIENT_BASALT_NETHER_ADDITIONS)));
-
+*/
 }

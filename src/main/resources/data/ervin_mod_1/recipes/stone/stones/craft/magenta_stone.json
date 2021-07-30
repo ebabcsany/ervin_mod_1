@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "tag": "ervin_mod_1:ingredients/magenta_stone"
+      "tag": "ervin_mod_1:ingredients/stone/stones/magenta_stone"
     },
     {
       "item": "minecraft:magenta_dye"

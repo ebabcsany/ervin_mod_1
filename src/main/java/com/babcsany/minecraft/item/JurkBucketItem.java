@@ -9,7 +9,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.fluid.FlowingFluid;
+import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.classes.fluid.fluids.ModFlowingFluid;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.Item;
@@ -30,9 +30,9 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 
 public class JurkBucketItem extends Item {
-   private final Fluid containedBlock;
+   private final net.minecraft.fluid.Fluid containedBlock;
 
-   public JurkBucketItem(Fluid containedFluidIn, Properties builder) {
+   public JurkBucketItem(net.minecraft.fluid.Fluid containedFluidIn, Properties builder) {
       super(builder);
       this.containedBlock = containedFluidIn;
       this.fluidSupplier = containedFluidIn.delegate;
@@ -115,7 +115,7 @@ public class JurkBucketItem extends Item {
    }
 
    public boolean tryPlaceContainedLiquid(@Nullable PlayerEntity player, World worldIn, BlockPos posIn, @Nullable BlockRayTraceResult rayTrace) {
-      if (!(this.containedBlock instanceof FlowingFluid)) {
+      if (!(this.containedBlock instanceof ModFlowingFluid)) {
          return false;
       } else {
          BlockState blockstate = worldIn.getBlockState(posIn);
@@ -124,7 +124,7 @@ public class JurkBucketItem extends Item {
          boolean flag = blockstate.isReplaceable(this.containedBlock);
          boolean flag1 = blockstate.isAir() || flag || block instanceof ILiquidContainer && ((ILiquidContainer)block).canContainFluid(worldIn, posIn, blockstate, this.containedBlock);
          if (!flag1) {
-            return rayTrace != null && this.tryPlaceContainedLiquid(player, worldIn, rayTrace.getPos().offset(rayTrace.getFace()), (BlockRayTraceResult)null);
+            return rayTrace != null && this.tryPlaceContainedLiquid(player, worldIn, rayTrace.getPos().offset(rayTrace.getFace()), null);
          } else if (worldIn.func_230315_m_().func_236040_e_() && this.containedBlock.isIn(FluidTags.WATER)) {
             int i = posIn.getX();
             int j = posIn.getY();
@@ -137,7 +137,7 @@ public class JurkBucketItem extends Item {
 
             return true;
          } else if (block instanceof ILiquidContainer && ((ILiquidContainer)block).canContainFluid(worldIn,posIn,blockstate,containedBlock)) {
-            ((ILiquidContainer)block).receiveFluid(worldIn, posIn, blockstate, ((FlowingFluid)this.containedBlock).getStillFluidState(false));
+            ((ILiquidContainer)block).receiveFluid(worldIn, posIn, blockstate, ((ModFlowingFluid)this.containedBlock).getStillFluidState(false));
             this.playEmptySound(player, worldIn, posIn);
             return true;
          } else {
@@ -169,8 +169,8 @@ public class JurkBucketItem extends Item {
          return super.initCapabilities(stack, nbt);
    }
 
-   private final java.util.function.Supplier<? extends Fluid> fluidSupplier;
-   public Fluid getFluid() { return fluidSupplier.get(); }
+   private final java.util.function.Supplier<? extends net.minecraft.fluid.Fluid> fluidSupplier;
+   public net.minecraft.fluid.Fluid getFluid() { return fluidSupplier.get(); }
 
    private boolean canBlockContainFluid(World worldIn, BlockPos posIn, BlockState blockstate)
    {

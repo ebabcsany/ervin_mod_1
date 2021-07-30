@@ -2,7 +2,9 @@ package com.babcsany.minecraft.ervin_mod_1.init;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit;
+import com.babcsany.minecraft.ervin_mod_1.init.special.SpecialBlockInit;
 import com.babcsany.minecraft.ervin_mod_1.world.biome.*;
+import com.babcsany.minecraft.init.SurfaceBuilderInit;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.registry.Registry;
@@ -31,12 +33,12 @@ public class BiomeInit {
 
 	public static final RegistryObject<Biome> MIGV_BIOME = BIOMES
 			.register("migv_biome",
-					()-> new MigvBiome(
+					() -> new MigvBiome(
 							new Biome.Builder().precipitation(RainType.SNOW).scale(1.2f).temperature(0.5f)
 									.func_235097_a_((new BiomeAmbience.Builder()).setWaterColor(10456252).setWaterFogColor(26762304).setFogColor(12538462).build())
 									.surfaceBuilder(
 											new ConfiguredSurfaceBuilder<>(
-													register("migv_surface",
+													register("ervin_mod_1:migv_surface",
 															new MigBiomeSurfaceBuilder(
 																	SurfaceBuilderConfig.field_237203_a_)),
 													new SurfaceBuilderConfig(Blocks.WATER.getDefaultState(),
@@ -47,19 +49,11 @@ public class BiomeInit {
 					));
 	public static final RegistryObject<Biome> THE_BHJUIG_BIOME = BIOMES
 			.register("the_bhjuig_biome",
-					()-> new TheBhjuigBiome(
+					() -> new TheBhjuigBiome(
 							new Biome.Builder().precipitation(RainType.SNOW).scale(1.2f).temperature(0.5f)
 									.func_235097_a_((new BiomeAmbience.Builder()).setWaterColor(28634578).setWaterFogColor(837428654).setFogColor(792356895).build())
-									.surfaceBuilder(
-											new ConfiguredSurfaceBuilder<>(
-													register("the_bhjuig_surface",
-															new MigBiomeSurfaceBuilder(
-																	SurfaceBuilderConfig.field_237203_a_)),
-													new SurfaceBuilderConfig(BlockItemInit.KALT_BLOCK.get().getDefaultState(),
-															com.babcsany.minecraft.init.BlockInit.FIRT_BLOCK.getDefaultState(),
-															BlockItemInit.EXAMPLE_BLOCK.get().getDefaultState())))
+									.surfaceBuilder(SurfaceBuilder.DEFAULT, SurfaceBuilder.AIR_CONFIG)
 									.category(Category.PLAINS).downfall(4.0f).depth(2.5f).parent(null)
-									.func_235098_a_(ImmutableList.of(new Biome.Attributes(10.25F, -6.5F, 13.5F, 9.2F, 3.0F)))
 					));
 	public static final RegistryObject<Biome> MIG_BIOME = BIOMES
 			.register("mig_biome",
@@ -68,7 +62,7 @@ public class BiomeInit {
 									.func_235097_a_((new BiomeAmbience.Builder()).setWaterColor(10456252).setWaterFogColor(26762304).setFogColor(12538462).build())
 									.surfaceBuilder(
 											new ConfiguredSurfaceBuilder<>(
-													register("mig_surface",
+													register("ervin_mod_1:mig_surface",
 															new MigBiomeSurfaceBuilder(
 																	SurfaceBuilderConfig.field_237203_a_)),
 													new SurfaceBuilderConfig(Blocks.WATER.getDefaultState(),
@@ -84,7 +78,7 @@ public class BiomeInit {
 									.func_235097_a_((new BiomeAmbience.Builder()).setWaterColor(10456252).setWaterFogColor(26762304).setFogColor(12538462).build())
 									.surfaceBuilder(
 											new ConfiguredSurfaceBuilder<>(
-													register("sriunk_valley_surface",
+													register("ervin_mod_1:sriunk_valley_surface",
 															new SriunkValleySurfaceBuilder(
 																	SurfaceBuilderConfig.field_237203_a_)),
 													new SurfaceBuilderConfig(BlockItemInit.END_PORTAL.get().getDefaultState(),
@@ -99,7 +93,7 @@ public class BiomeInit {
 									.func_235097_a_((new BiomeAmbience.Builder()).setWaterColor(46724639).setWaterFogColor(46769357).setFogColor(4253846).build())
 									.surfaceBuilder(
 											new ConfiguredSurfaceBuilder<>(
-													register("example0_surface",
+													register("ervin_mod_1:example0_surface",
 															new ExampleBiomeSurfaceBuilder(
 																	SurfaceBuilderConfig.field_237203_a_)),
 													new SurfaceBuilderConfig(isBurnableBlockItemInit.SRURG.get().getDefaultState(),
@@ -114,7 +108,7 @@ public class BiomeInit {
 									.func_235097_a_((new BiomeAmbience.Builder()).setWaterColor(10456252).setWaterFogColor(26762304).setFogColor(12538462).build())
 									.surfaceBuilder(
 											new ConfiguredSurfaceBuilder<>(
-													register("example_surface6",
+													register("ervin_mod_1:example_surface6",
 															new ExampleBiomeSurfaceBuilder6(
 																	SurfaceBuilderConfig.field_237203_a_)),
 													new SurfaceBuilderConfig(BlockItemInit.KALT_BLOCK.get().getDefaultState(),
@@ -129,7 +123,7 @@ public class BiomeInit {
 									.func_235097_a_((new BiomeAmbience.Builder()).setWaterColor(16724639).setWaterFogColor(16762304).setFogColor(1253846).build())
 									.surfaceBuilder(
 											new ConfiguredSurfaceBuilder<>(
-													register("example_surface",
+													register("ervin_mod_1:example_surface",
 															new ExampleBiomeSurfaceBuilder(
 																	SurfaceBuilderConfig.field_237203_a_)),
 													new SurfaceBuilderConfig(Blocks.COARSE_DIRT.getDefaultState(),
@@ -144,7 +138,7 @@ public class BiomeInit {
 									.func_235097_a_((new BiomeAmbience.Builder()).setWaterColor(4159204).setWaterFogColor(329011).setFogColor(10518688).setMoodSound(MoodSoundAmbience.field_235027_b_).build())
 									.surfaceBuilder(
 											new ConfiguredSurfaceBuilder<>(
-													register("example_surface0",
+													register("ervin_mod_1:example_surface0",
 															new ExampleBiomeSurfaceBuilder0(
 																	SurfaceBuilderConfig.field_237203_a_)),
 													new SurfaceBuilderConfig(Blocks.END_STONE.getDefaultState(),
@@ -159,7 +153,7 @@ public class BiomeInit {
 									.func_235097_a_((new BiomeAmbience.Builder()).setWaterColor(4563891).setWaterFogColor(7543209).setFogColor(62529834).build())
 									.surfaceBuilder(
 											new ConfiguredSurfaceBuilder<>(
-													register("example_surface1",
+													register("ervin_mod_1:example_surface1",
 															new ExampleBiomeSurfaceBuilder1(
 																	SurfaceBuilderConfig.field_237203_a_)),
 													new SurfaceBuilderConfig(Blocks.COARSE_DIRT.getDefaultState(),
@@ -174,7 +168,7 @@ public class BiomeInit {
 									.func_235097_a_((new BiomeAmbience.Builder()).setWaterColor(16724639).setWaterFogColor(16762304).setFogColor(1253846).build())
 									.surfaceBuilder(
 											new ConfiguredSurfaceBuilder<>(
-													register("example_surface2",
+													register("ervin_mod_1:example_surface2",
 															new ExampleBiomeSurfaceBuilder2(
 																	SurfaceBuilderConfig.field_237203_a_)),
 													new SurfaceBuilderConfig(Blocks.COARSE_DIRT.getDefaultState(),
@@ -189,7 +183,7 @@ public class BiomeInit {
 									.func_235097_a_((new BiomeAmbience.Builder()).setWaterColor(64895).setWaterFogColor(71263).setFogColor(824526).build())
 									.surfaceBuilder(
 											new ConfiguredSurfaceBuilder<>(
-													register("example_surface3",
+													register("ervin_mod_1:example_surface3",
 															new ExampleBiomeSurfaceBuilder3(
 																	SurfaceBuilderConfig.field_237203_a_)),
 													new SurfaceBuilderConfig(Blocks.BEDROCK.getDefaultState(),
@@ -204,7 +198,7 @@ public class BiomeInit {
 									.func_235097_a_((new BiomeAmbience.Builder()).setWaterColor(34895).setWaterFogColor(131263).setFogColor(4562745).build())
 									.surfaceBuilder(
 											new ConfiguredSurfaceBuilder<>(
-													register("example_surface4",
+													register("ervin_mod_1:example_surface4",
 															new ExampleBiomeSurfaceBuilder4(
 																	SurfaceBuilderConfig.field_237203_a_)),
 													new SurfaceBuilderConfig(Blocks.GRASS_BLOCK.getDefaultState(),
@@ -219,7 +213,7 @@ public class BiomeInit {
 									.func_235097_a_((new BiomeAmbience.Builder()).setWaterColor(16724639).setWaterFogColor(16762304).setFogColor(1253846).build())
 									.surfaceBuilder(
 											new ConfiguredSurfaceBuilder<>(
-													register("example_surface5",
+													register("ervin_mod_1:example_surface5",
 															new ExampleBiomeSurfaceBuilder5(
 																	SurfaceBuilderConfig.field_237203_a_)),
 													new SurfaceBuilderConfig(Blocks.COARSE_DIRT.getDefaultState(),
@@ -234,7 +228,7 @@ public class BiomeInit {
 									.func_235097_a_((new BiomeAmbience.Builder()).setWaterColor(16777215).setWaterFogColor(16777210).setFogColor(1677241).build())
 									.surfaceBuilder(
 											new ConfiguredSurfaceBuilder<>(
-													register("firg_surface",
+													register("ervin_mod_1:firg_surface",
 															new FirgBiomeSurfaceBuilder(
 																	SurfaceBuilderConfig.field_237203_a_)),
 													new SurfaceBuilderConfig(BlockInit.FIRG.get().getDefaultState(),
@@ -249,7 +243,7 @@ public class BiomeInit {
 									.func_235097_a_((new BiomeAmbience.Builder()).setWaterColor(16777215).setWaterFogColor(16777210).setFogColor(1677241).build())
 									.surfaceBuilder(
 											new ConfiguredSurfaceBuilder<>(
-													register("scrafth_surface",
+													register("ervin_mod_1:scrafth_surface",
 															new ScrafthBiomeSurfaceBuilder(
 																	SurfaceBuilderConfig.field_237203_a_)),
 													new SurfaceBuilderConfig(BlockInit.SCRAFTH.get().getDefaultState(),
@@ -259,16 +253,16 @@ public class BiomeInit {
 					));
 	public static final RegistryObject<Biome> TWUST = BIOMES
 			.register("twust",
-					() -> new ScrafthBiome(
+					() -> new TwustBiome(
 							new Biome.Builder().precipitation(RainType.SNOW).scale(1.2f).temperature(0.5f)
 									.func_235097_a_((new BiomeAmbience.Builder()).setWaterColor(16777215).setWaterFogColor(16777210).setFogColor(1677241).build())
 									.surfaceBuilder(
 											new ConfiguredSurfaceBuilder<>(
-													register("twust_surface",
-															new ScrafthBiomeSurfaceBuilder(
+													register("ervin_mod_1:twust_surface",
+															new TwustBiomeSurfaceBuilder(
 																	SurfaceBuilderConfig.field_237203_a_)),
-													new SurfaceBuilderConfig(BlockInit.SCRAFTH.get().getDefaultState(),
-															BlockItemInit.GTRZIUZHIZJKJ.get().getDefaultState(),
+													new SurfaceBuilderConfig(Blocks.GRASS_BLOCK.getDefaultState(),
+															SpecialBlockInit.GTRZIUZHIZJKJ.get().getDefaultState(),
 															BlockInit.SCRAFTH.get().getDefaultState())))
 									.category(Category.THEEND).downfall(0.5f).depth(0.12f).parent(null)
 					));
@@ -277,17 +271,20 @@ public class BiomeInit {
 		List<BiomeManager.BiomeEntry> list = new ArrayList<>();
 
 		list.add(new BiomeManager.BiomeEntry(BiomeInit.MIG_BIOME.get(), 10));
+		list.add(new BiomeManager.BiomeEntry(BiomeInit.MIGV_BIOME.get(), 10));
+		//list.add(new BiomeManager.BiomeEntry(BiomeInit.TWUST.get(), 10));
 		registerBiomeWarm_weight_10(THE_BHJUIG_BIOME.get(), Type.RARE, Type.VOID);
 		registerBiomeWarm_weight_10(MIG_BIOME.get(), Type.OCEAN, Type.RARE, Type.OVERWORLD);
 		registerBiomeWarm_weight_10(MIGV_BIOME.get(), Type.OCEAN, Type.RARE, Type.HOT, Type.OVERWORLD);
+		//registerBiomeWarm_weight_10(TWUST.get(), Type.DRY, Type.LUSH, Type.DENSE, Type.HILLS, Type.VOID, Type.RARE, Type.MODIFIED, Type.WATER, Type.MAGICAL, Type.BEACH, Type.CONIFEROUS, Type.DEAD, Type.MESA, Type.MOUNTAIN, Type.MUSHROOM, Type.PLAINS, Type.PLATEAU, Type.SANDY, Type.SAVANNA, Type.SNOWY, Type.SPARSE, Type.SPOOKY, Type.SWAMP, Type.WASTELAND, Type.WET, Type.OVERWORLD);
 		registerBiomeCool_weight_10(SRIUNK_VALLEY_BIOME.get(), Type.DEAD, Type.OVERWORLD);
-		registerBiomeCool_weight_10(EXAMPLE0_BIOME.get(), Type.COLD, Type.PLAINS);
+		//registerBiomeCool_weight_10(EXAMPLE0_BIOME.get(), Type.COLD, Type.PLAINS);
 		registerBiomeWarm_weight_10(EXAMPLE_BIOME.get(), Type.LUSH, Type.PLAINS);
-		registerBiomeDesert_weight_10(EXAMPLE_BIOME1.get(), Type.PLAINS, Type.OVERWORLD);
-		addBiome(EXAMPLE_BIOME0.get(), BiomeManager.BiomeType.create("END"), 10, Type.END, Type.getType("EXAMPLE_BIOME0", Type.fromVanilla(Category.THEEND)));
-		registerBiomeWarm_weight_10(EXAMPLE_BIOME2.get(), Type.PLAINS, Type.HOT, Type.OVERWORLD, Type.DRY);
+		//registerBiomeDesert_weight_10(EXAMPLE_BIOME1.get(), Type.PLAINS, Type.OVERWORLD);
+		registerBiomeCool_weight_10(EXAMPLE_BIOME0.get(), Type.END, Type.getType("EXAMPLE_BIOME0", Type.fromVanilla(Category.THEEND)));
+		//registerBiomeWarm_weight_10(EXAMPLE_BIOME2.get(), Type.PLAINS, Type.HOT, Type.OVERWORLD, Type.DRY);
 		registerBiomeWarm_weight_10(EXAMPLE_BIOME3.get(), Type.DENSE, Type.HOT, Type.OVERWORLD, Type.DENSE);
-		registerBiomeDesert_weight_10(EXAMPLE_BIOME4.get(), Type.BEACH, Type.RARE, Type.OVERWORLD);
+		//registerBiomeDesert_weight_10(EXAMPLE_BIOME4.get(), Type.BEACH, Type.RARE, Type.OVERWORLD);
 		registerBiomeCool_weight_10(EXAMPLE_BIOME5.get(), Type.DEAD, Type.RARE, Type.OVERWORLD);
 		registerBiomeCool_weight_10(EXAMPLE_BIOME6.get(), Type.RARE, Type.VOID, Type.MODIFIED);
 		registerBiomeCool_weight_10(FIRG_BIOME.get(), Type.getType("FIRG", Type.fromVanilla(Category.THEEND)), Type.HILLS, Type.END);
@@ -353,13 +350,6 @@ public class BiomeInit {
 	private static void registerBiomeIcy_weight_10(Biome biome, Type... types) {
 		// the line below will make it spawn in the overworld
 		BiomeManager.addBiome(BiomeManager.BiomeType.ICY, new BiomeManager.BiomeEntry(biome, 10));
-		BiomeDictionary.addTypes(biome, types);
-		BiomeManager.addSpawnBiome(biome);
-	}
-
-	private static void addBiome(Biome biome, BiomeManager.BiomeType biomeType, int weight, Type... types) {
-		// the line below will make it spawn in the overworld
-		BiomeManager.addBiome(biomeType, new BiomeManager.BiomeEntry(biome, weight));
 		BiomeDictionary.addTypes(biome, types);
 		BiomeManager.addSpawnBiome(biome);
 	}

@@ -1,9 +1,10 @@
 package com.babcsany.minecraft.fluid.block;
 
+import com.babcsany.minecraft.ervin_mod_1.block.IBucketPickupHandler;
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
+import com.babcsany.minecraft.tags.FluidTags;
 import com.google.common.collect.Lists;
 import net.minecraft.block.*;
-import net.minecraft.entity.Entity;
 import net.minecraft.fluid.FlowingFluid;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
@@ -14,9 +15,7 @@ import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
-import com.babcsany.minecraft.tags.FluidTags;
 import net.minecraft.util.Direction;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
@@ -27,19 +26,20 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.lwjgl.system.CallbackI;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-public class FlowingFluidBlock extends net.minecraft.block.FlowingFluidBlock implements IBucketPickupHandler {
-   public static final IntegerProperty LEVEL = BlockStateProperties.LEVEL_0_15;
+public class FlowingFluidBlock extends Block implements IBucketPickupHandler {
+   public static final IntegerProperty LEVEL = BlockStateProperties.LEVEL_0_8;
    private final FlowingFluid fluid;
    private final List<FluidState> field_212565_c;
    public static final VoxelShape field_235510_c_ = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D);
 
-   public FlowingFluidBlock(FlowingFluid fluidIn, AbstractBlock.Properties builder) {
-      super(fluidIn, builder);
+   public FlowingFluidBlock(FlowingFluid fluidIn, Properties builder) {
+      super(builder);
       this.fluid = fluidIn;
       this.field_212565_c = Lists.newArrayList();
       this.field_212565_c.add(fluidIn.getStillFluidState(false));
@@ -49,19 +49,19 @@ public class FlowingFluidBlock extends net.minecraft.block.FlowingFluidBlock imp
       }
 
       this.field_212565_c.add(fluidIn.getFlowingFluidState(8, true));
-      this.setDefaultState(this.stateContainer.getBaseState().with(LEVEL, Integer.valueOf(0)));
+      this.setDefaultState(this.stateContainer.getBaseState().with(LEVEL, 0));
       fluidStateCacheInitialized = true;
       supplier = fluidIn.delegate;
    }
 
    /**
-    * @param supplier A fluid supplier such as {@link net.minecraftforge.fml.RegistryObject<Fluid>}
+    * @param supplier A fluid supplier such as {@link net.minecraftforge.fml.RegistryObject< Fluid>}
     */
    public FlowingFluidBlock(java.util.function.Supplier<? extends FlowingFluid> supplier, Properties properties) {
-      super(supplier, properties);
+      super(properties);
       this.fluid = null;
       this.field_212565_c = Lists.newArrayList();
-      this.setDefaultState(this.stateContainer.getBaseState().with(LEVEL, Integer.valueOf(0)));
+      this.setDefaultState(this.stateContainer.getBaseState().with(LEVEL, 0));
       this.supplier = supplier;
    }
 
@@ -148,7 +148,6 @@ public class FlowingFluidBlock extends net.minecraft.block.FlowingFluidBlock imp
 
    }
 
-   @Override
    protected boolean reactWithNeighbors(World worldIn, BlockPos pos, BlockState state) {
       if (this.fluid.isIn(FluidTags.JURK)) {
 
@@ -156,14 +155,14 @@ public class FlowingFluidBlock extends net.minecraft.block.FlowingFluidBlock imp
             if (direction != Direction.DOWN) {
                BlockPos blockpos = pos.offset(direction);
 
-               if (worldIn.getFluidState(blockpos).isTagged(FluidTags.WATER)) {
+               if (worldIn.getFluidState(blockpos).isTagged(net.minecraft.tags.FluidTags.WATER)) {
                   Block block = worldIn.getFluidState(pos).isSource() ? BlockItemInit.DURTGURBF.get() : BlockItemInit.DURT.get();
                   worldIn.setBlockState(pos, net.minecraftforge.event.ForgeEventFactory.fireFluidPlaceBlockEvent(worldIn, pos, pos, block.getDefaultState()));
                   this.triggerMixEffects(worldIn, pos);
                   return false;
                }
 
-               if (worldIn.getFluidState(blockpos).isTagged(FluidTags.LAVA)) {
+               if (worldIn.getFluidState(blockpos).isTagged(net.minecraft.tags.FluidTags.LAVA)) {
                   Block block = worldIn.getFluidState(pos).isSource() ? BlockItemInit.DURTGURBF.get() : BlockItemInit.DURT.get();
                   worldIn.setBlockState(pos, net.minecraftforge.event.ForgeEventFactory.fireFluidPlaceBlockEvent(worldIn, pos, pos, block.getDefaultState()));
                   this.triggerMixEffects(worldIn, pos);
@@ -173,7 +172,7 @@ public class FlowingFluidBlock extends net.minecraft.block.FlowingFluidBlock imp
          }
       }
 
-      if (this.fluid.isIn(FluidTags.LAVA)) {
+      if (this.fluid.isIn(net.minecraft.tags.FluidTags.LAVA)) {
          boolean flag = worldIn.getBlockState(pos.down()).isIn(Blocks.SOUL_SOIL);
 
          for(Direction direction : Direction.values()) {
@@ -202,7 +201,7 @@ public class FlowingFluidBlock extends net.minecraft.block.FlowingFluidBlock imp
          }
       }
 
-      if (this.fluid.isIn(FluidTags.WATER)) {
+      if (this.fluid.isIn(net.minecraft.tags.FluidTags.WATER)) {
 
          for(Direction direction : Direction.values()) {
             if (direction != Direction.DOWN) {
@@ -237,7 +236,7 @@ public class FlowingFluidBlock extends net.minecraft.block.FlowingFluidBlock imp
       }
    }
 
-   // Forge start
+   /** Forge start */
    private final java.util.function.Supplier<? extends Fluid> supplier;
    public FlowingFluid getFluid() {
       return (FlowingFluid)supplier.get();

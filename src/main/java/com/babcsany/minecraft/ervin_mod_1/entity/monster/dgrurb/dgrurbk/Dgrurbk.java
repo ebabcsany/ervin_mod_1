@@ -4,12 +4,12 @@ import com.babcsany.minecraft.IRangedAttackMob;
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.dgrurbk.DgrurbkLookAtGoal;
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.dgrurbk.DgrurbkSwimGoal;
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.dgrurbk.NearestAttackableDgrurbkMobTargetGoal;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.AbstractDgrurbkEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.DgrurbAgeableEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.projectile.DgrurbkSkullEntity;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
+import com.babcsany.minecraft.ervin_mod_1.world.server.ServerBossInfo_;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
@@ -31,8 +31,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.BossInfo;
-import net.minecraft.world.BossInfon;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerBossInfo;
@@ -46,15 +46,15 @@ import java.util.function.Predicate;
 public class Dgrurbk extends AbstractDgrurbkEntity implements IRangedAttackMob {
     private static final DataParameter<Integer> HEAD_TARGET = EntityDataManager.createKey(Dgrurbk.class, DataSerializers.VARINT);
     private static final List<DataParameter<Integer>> HEAD_TARGETS = ImmutableList.of(HEAD_TARGET);
-    private final ServerBossInfo setBossInfo = (ServerBossInfo)(new ServerBossInfo(this.getDisplayName(), BossInfo.Color.RED, BossInfo.Overlay.PROGRESS)).setDarkenSky(true);
-    private static final EntityPredicate PLAYER_INVADER_CONDITION = (new EntityPredicate()).setDistance(64.0D);
+    private final ServerBossInfo setBossInfo = (ServerBossInfo)(new ServerBossInfo(this.getDisplayName(), BossInfo.Color.PURPLE, BossInfo.Overlay.PROGRESS)).setDarkenSky(true);
+    private static final EntityPredicate PLAYER_INVADER_CONDITION = (new EntityPredicate()).setDistance(120.0D);
     private static final DataParameter<Boolean> IS_CHILD = EntityDataManager.createKey(Dgrurbk.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Boolean> BABY = EntityDataManager.createKey(Dgrurbk.class, DataSerializers.BOOLEAN);
     private static final Predicate<LivingEntity> NOT_UNDEAD = (livingEntity) -> livingEntity.getCreatureAttribute() != CreatureAttribute.UNDEAD && livingEntity.attackable();
     private static final EntityPredicate ENEMY_CONDITION = (new EntityPredicate()).setDistance(20.0D).setCustomPredicate(NOT_UNDEAD);
     private static final DataParameter<Boolean> INVULNERABLE = EntityDataManager.createKey(Dgrurbk.class, DataSerializers.BOOLEAN);
     private DgrurbkEatGrassGoal eatGrassGoal;
-    private static BossInfon.Color color;
+    private static BossInfo.Color color;
     private int eatingGrassTimer;
     protected int growingAge;
     private int blockBreakCounter;
@@ -77,6 +77,10 @@ public class Dgrurbk extends AbstractDgrurbkEntity implements IRangedAttackMob {
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
         return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 10000000000.0D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 20000000.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.5D);
+    }
+
+    public BossInfo.Color bossInfo(BossInfo.Color color) {
+        return color;
     }
 
     public boolean canDespawn(double distanceToClosestPlayer) {

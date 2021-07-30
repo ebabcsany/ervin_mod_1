@@ -269,24 +269,6 @@ public class HhijEntity extends HhijTameableEntity implements IAngerable {
          this.func_241359_a_((ServerWorld)this.world, true);
       }
 
-      if (!this.world.isRemote && this.isAlive() && this.isServerWorld()) {
-         ++this.eatTicks;
-         ItemStack itemstack = this.getItemStackFromSlot(EquipmentSlotType.MAINHAND);
-         if (this.canEatItem(itemstack)) {
-            if (this.eatTicks > 600) {
-               ItemStack itemstack1 = itemstack.onItemUseFinish(this.world, this);
-               if (!itemstack1.isEmpty()) {
-                  this.setItemStackToSlot(EquipmentSlotType.MAINHAND, itemstack1);
-               }
-
-               this.eatTicks = 0;
-            } else if (this.eatTicks > 560 && this.rand.nextFloat() < 0.1F) {
-               this.playSound(this.getEatSound(itemstack), 1.0F, 1.0F);
-               this.world.setEntityState(this, (byte)45);
-            }
-         }
-      }
-
       if (this.isSleeping() || this.isMovementBlocked()) {
          this.isJumping = false;
          this.moveStrafing = 0.0F;

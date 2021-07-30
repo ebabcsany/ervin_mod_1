@@ -2,7 +2,7 @@ package com.babcsany.minecraft.ervin_mod_1.block;
 
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
-import com.babcsany.minecraft.ervin_mod_1.tags.FluidTag;
+import com.babcsany.minecraft.tags.FluidTags;
 import com.google.common.collect.Lists;
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
@@ -16,7 +16,6 @@ import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -152,13 +151,13 @@ public class FlowingFluidBlock1 extends Block implements IBucketPickupHandler {
    }
 
    private boolean reactWithNeighbors(World worldIn, BlockPos pos, BlockState state) {
-      if (this.fluid.isIn(FluidTag.LAVA)) {
+      if (this.fluid.isIn(FluidTags.LAVA)) {
          boolean flag = worldIn.getBlockState(pos.down()).isIn(isBurnableBlockItemInit.SRIUNK_BLOCK.get());
 
          for(Direction direction : Direction.values()) {
             if (direction != Direction.DOWN) {
                BlockPos blockpos = pos.offset(direction);
-               if (worldIn.getFluidState(blockpos).isTagged(FluidTag.JURK)) {
+               if (worldIn.getFluidState(blockpos).isTagged(FluidTags.JURK)) {
                   Block block = worldIn.getFluidState(pos).isSource() ? BlockItemInit.AVTER_BLOCK.get() : BlockItemInit.DURT.get();
                   worldIn.setBlockState(pos, net.minecraftforge.event.ForgeEventFactory.fireFluidPlaceBlockEvent(worldIn, pos, pos, block.getDefaultState()));
                   this.triggerMixEffects(worldIn, pos);

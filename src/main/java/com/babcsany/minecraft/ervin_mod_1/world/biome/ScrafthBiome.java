@@ -14,7 +14,7 @@ public class ScrafthBiome extends Biome {
 
 	public ScrafthBiome(Builder biomeBuilder) {
 		super(biomeBuilder);
-		this.addSpawn(EntityClassification.MISC, new SpawnListEntry(EntityType.VILLAGER, 10, 2, 5));
+		/*this.addSpawn(EntityClassification.MISC, new SpawnListEntry(EntityType.VILLAGER, 10, 2, 5));
 		this.addSpawn(EntityClassification.MISC, new SpawnListEntry(EntityType.IRON_GOLEM, 10, 2, 5));
 		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.WANDERING_TRADER, 10, 2, 5));
 		this.addSpawn(EntityClassification.AMBIENT, new SpawnListEntry(EntityType.BAT, 10, 2, 5));
@@ -35,7 +35,7 @@ public class ScrafthBiome extends Biome {
 		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.SHEEP, 10, 2, 5));
 		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.RABBIT, 10, 2, 5));
 		this.addSpawn(EntityClassification.MISC, new SpawnListEntry(EntityType.PLAYER, 10, 2, 5));
-		this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityType.HUSK, 10, 2, 5));
+		this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityType.HUSK, 10, 2, 5));*/
 		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.BEE, 20, 2, 10));
 		this.addCarver(GenerationStage.Carving.AIR,
 				Biome.createCarver(WorldCarver.CAVE, new ProbabilityConfig(0.14285715F)));

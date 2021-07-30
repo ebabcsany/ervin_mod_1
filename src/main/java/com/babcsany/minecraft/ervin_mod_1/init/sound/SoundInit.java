@@ -5,8 +5,9 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 
 public class SoundInit extends SoundType {
-   public static final SoundType AMBIENT_BASALT_NETHER_ADDITIONS = new SoundType(1.0F, 1.0F, SoundEvents.AMBIENT_BASALT_DELTAS_ADDITIONS, SoundEvents.AMBIENT_CRIMSON_FOREST_ADDITIONS, SoundEvents.AMBIENT_NETHER_WASTES_ADDITIONS, SoundEvents.AMBIENT_SOUL_SAND_VALLEY_ADDITIONS, SoundEvents.AMBIENT_WARPED_FOREST_ADDITIONS);
+   public static final SoundInit AMBIENT_BASALT_NETHER_ADDITIONS = new SoundInit(1.0F, 1.0F, SoundEvents.AMBIENT_BASALT_DELTAS_ADDITIONS, SoundEvents.AMBIENT_CRIMSON_FOREST_ADDITIONS, SoundEvents.AMBIENT_NETHER_WASTES_ADDITIONS, SoundEvents.AMBIENT_SOUL_SAND_VALLEY_ADDITIONS, SoundEvents.AMBIENT_WARPED_FOREST_ADDITIONS);
    public static final SoundInit WOOD = new SoundInit(1.0F, 1.0F, SoundEvents.BLOCK_WOOD_BREAK, SoundEvents.BLOCK_WOOD_STEP, SoundEvents.BLOCK_WOOD_PLACE, SoundEvents.BLOCK_WOOD_HIT, SoundEvents.BLOCK_WOOD_FALL);
+   public static final SoundInit WOIK = new SoundInit(1.0F, 1.0F, SoundEvents.WEATHER_RAIN, SoundEvents.UI_TOAST_IN, SoundEvents.BLOCK_BARREL_OPEN, SoundEvents.BLOCK_ROOTS_HIT, SoundEvents.BLOCK_SLIME_BLOCK_FALL);
    public final float volume;
    public final float pitch;
    private final SoundEvent breakSound;

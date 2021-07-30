@@ -1,17 +1,13 @@
 package com.babcsany.minecraft.client.particle;
 
-import com.babcsany.minecraft.init.FluidInit;
-import com.babcsany.minecraft.init.ParticleInit;
+import com.babcsany.minecraft.ervin_mod_1.init.fluid.FluidInit;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
-import net.minecraft.fluid.Fluids;
 import net.minecraft.particles.BasicParticleType;
 import net.minecraft.particles.IParticleData;
 import net.minecraft.particles.ParticleTypes;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -95,7 +91,7 @@ public class DripParticle extends SpriteTexturedParticle {
       }
    }
 
-   @OnlyIn(Dist.CLIENT)
+   /*@OnlyIn(Dist.CLIENT)
    static class DrippingJurk extends Dripping {
       private DrippingJurk(ClientWorld p_i232363_1_, double p_i232363_2_, double p_i232363_4_, double p_i232363_6_, Fluid p_i232363_8_, IParticleData p_i232363_9_) {
          super(p_i232363_1_, p_i232363_2_, p_i232363_4_, p_i232363_6_, p_i232363_8_, p_i232363_9_);
@@ -118,7 +114,7 @@ public class DripParticle extends SpriteTexturedParticle {
       }
 
       public Particle makeParticle(BasicParticleType typeIn, ClientWorld worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-         DrippingJurk dripParticle$drippingJurk = new DrippingJurk(worldIn, x, y, z, FluidInit.JURK, ParticleTypes.FALLING_WATER);
+         DrippingJurk dripParticle$drippingJurk = new DrippingJurk(worldIn, x, y, z, FluidInit.JURK.get(), ParticleTypes.FALLING_WATER);
          dripParticle$drippingJurk.selectSpriteRandomly(this.spriteSet);
          return dripParticle$drippingJurk;
       }
@@ -133,7 +129,7 @@ public class DripParticle extends SpriteTexturedParticle {
       }
 
       public Particle makeParticle(BasicParticleType typeIn, ClientWorld worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-         DripParticle dripparticle = new FallingLiquidParticle(worldIn, x, y, z, FluidInit.JURK, ParticleTypes.LANDING_OBSIDIAN_TEAR);
+         DripParticle dripparticle = new FallingLiquidParticle(worldIn, x, y, z, FluidInit.JURK.get(), ParticleTypes.LANDING_OBSIDIAN_TEAR);
          dripparticle.setColor(4.0F, 0.2857143F, 0.083333336F);
          dripparticle.selectSpriteRandomly(this.spriteSet);
          return dripparticle;
@@ -149,7 +145,7 @@ public class DripParticle extends SpriteTexturedParticle {
       }
 
       public Particle makeParticle(BasicParticleType typeIn, ClientWorld worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-         DripParticle dripparticle = new Landing(worldIn, x, y, z, FluidInit.JURK);
+         DripParticle dripparticle = new Landing(worldIn, x, y, z, FluidInit.JURK.get());
          dripparticle.setColor(4.0F, 0.2857143F, 0.083333336F);
          dripparticle.selectSpriteRandomly(this.spriteSet);
          return dripparticle;
@@ -195,5 +191,5 @@ public class DripParticle extends SpriteTexturedParticle {
          }
 
       }
-   }
+   }*/
 }

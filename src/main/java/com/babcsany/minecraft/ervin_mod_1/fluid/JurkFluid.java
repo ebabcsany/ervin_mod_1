@@ -1,8 +1,11 @@
 package com.babcsany.minecraft.ervin_mod_1.fluid;
 
 import com.babcsany.minecraft.ervin_mod_1.init.*;
+import com.babcsany.minecraft.ervin_mod_1.init.fluid.FlowingFluidInit;
+import com.babcsany.minecraft.ervin_mod_1.init.fluid.FluidInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
 import com.babcsany.minecraft.ervin_mod_1.tags.FluidTag;
+import com.babcsany.minecraft.tags.FluidTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.FlowingFluidBlock;
@@ -23,13 +26,13 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public abstract class JurkFluid extends WaterFluid {
+public abstract class JurkFluid extends LavaFluid {
    public Fluid getFlowingFluid() {
-      return FluidInit.FLOWING_JURK.get();
+      return Fluids.WATER;
    }
 
    public Fluid getStillFluid() {
-      return FluidInit.JURK.get();
+      return Fluids.FLOWING_WATER;
    }
 
    public Item getFilledBucket() {
@@ -133,7 +136,7 @@ public abstract class JurkFluid extends WaterFluid {
    protected void flowInto(IWorld worldIn, BlockPos pos, BlockState blockStateIn, Direction direction, FluidState fluidStateIn) {
       if (direction == Direction.DOWN) {
          FluidState fluidstate = worldIn.getFluidState(pos);
-         if (this.isIn(FluidTag.JURK) && fluidstate.isTagged(FluidTag.LAVA)) {
+         if (this.isIn(FluidTags.JURK) && fluidstate.isTagged(FluidTag.LAVA)) {
             if (blockStateIn.getBlock() instanceof FlowingFluidBlock) {
                worldIn.setBlockState(pos, net.minecraftforge.event.ForgeEventFactory.fireFluidPlaceBlockEvent(worldIn, pos, pos, BlockItemInit.DURT.get().getDefaultState()), 3);
             }

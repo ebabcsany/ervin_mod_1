@@ -1,7 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.goal;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.AbstractZurEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.AbstractZurEntity;
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.AgeableZurEntity;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.CreatureEntity;
@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public abstract class ZurBreakBlockGoal extends AgeableEntity {
+public abstract class ZurBreakBlockGoal extends AgeableZurEntity {
     protected static final Random rand = new Random();
     public GoalSelector goalSelector;
 

@@ -1,7 +1,8 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.AbstractZurEntity;
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.AbstractZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.dgrurbk.Dgrurbk;
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.AgeableZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.ZurTrades;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
@@ -26,12 +27,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import javax.annotation.Nullable;
+
 public class Dgrurb extends AbstractZurEntity {
-    /**
-     * The attribute which determines the chance that this mob will spawn reinforcements
-     */
-    //private static final UUID BABY_SPEED_BOOST_ID = UUID.fromString("B9766B59-9566-4402-BC1F-2EE2A276D836");
-    //private static final AttributeModifier BABY_SPEED_BOOST = new AttributeModifier(BABY_SPEED_BOOST_ID, "Baby speed boost", 0.5D, AttributeModifier.Operation.MULTIPLY_BASE);
     private static final DataParameter<Boolean> IS_CHILD = EntityDataManager.createKey(Dgrurb.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Boolean> BABY = EntityDataManager.createKey(Dgrurb.class, DataSerializers.BOOLEAN);
 
@@ -173,6 +171,12 @@ public class Dgrurb extends AbstractZurEntity {
     protected void onGrowingAdult() {
     }
 
+    @Nullable
+    @Override
+    public AgeableZurEntity createChild(AgeableZurEntity ageable) {
+        return null;
+    }
+
     public int getGrowingAge() {
         if (this.world.isRemote) {
             return this.dataManager.get(BABY) ? -1 : 1;
@@ -205,6 +209,11 @@ public class Dgrurb extends AbstractZurEntity {
             super.onStruckByLightning(lightningBolt);
         }
 
+    }
+
+    @Override
+    public boolean func_223340_ej() {
+        return super.func_223340_ej();
     }
 }
 

@@ -2,7 +2,6 @@ package com.babcsany.minecraft.ervin_mod_1.entity.villager;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.NirtreLookAtCustomerGoal;
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.NirtreTradeWithPlayerGoal;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.TraderNirtreTrades;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.spawn_egg.ModSpawnEggItemInit;
@@ -224,7 +223,7 @@ public class TraderNirtreEntity extends AbstractNirtreEntity {
    public void onStruckByLightning(LightningBoltEntity lightningBolt) {
       if (this.world.getDifficulty() != Difficulty.HARD) {
          LOGGER.info("Trader Nirtre {} was struck by lightning {}.", this, lightningBolt);
-         TraderNirtre1Entity traderNirtre1Entity = EntityInit.TRADER_NIRTREP_ENTITY.get().create(this.world);
+         TraderNirtre1Entity traderNirtre1Entity = EntityInit.TRADER_NIRTRE1_ENTITY.get().create(this.world);
          traderNirtre1Entity.setLocationAndAngles(this.getPosX(), this.getPosY(), this.getPosZ(), this.rotationYaw, this.rotationPitch);
          traderNirtre1Entity.onInitialSpawn(this.world, this.world.getDifficultyForLocation(traderNirtre1Entity.getPosition()), SpawnReason.CONVERSION, null, null);
          traderNirtre1Entity.setNoAI(this.isAIDisabled());

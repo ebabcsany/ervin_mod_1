@@ -1,35 +1,40 @@
 package com.babcsany.minecraft.ervin_mod_1.init;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
+import com.babcsany.minecraft.ervin_mod_1.block.AbstractModBlock;
 import com.babcsany.minecraft.ervin_mod_1.block.FallingZurBlock;
-import com.babcsany.minecraft.ervin_mod_1.block.blocks.burnable.*;
-import com.babcsany.minecraft.ervin_mod_1.block.blocks.burnable.slabs.*;
-import com.babcsany.minecraft.ervin_mod_1.block.blocks.burnable.stairs.*;
-import com.babcsany.minecraft.ervin_mod_1.block.blocks.minecraft.slabs.*;
+import com.babcsany.minecraft.ervin_mod_1.block.blocks.*;
+import com.babcsany.minecraft.ervin_mod_1.block.blocks.burnable.ZurkBlock;
+import com.babcsany.minecraft.ervin_mod_1.block.blocks.burnable.slabs.ZurkSlab;
+import com.babcsany.minecraft.ervin_mod_1.block.blocks.burnable.stairs.GurkStairs;
 import com.babcsany.minecraft.ervin_mod_1.block.blocks.minecraft.slabs.ObsidianSlab;
-import com.babcsany.minecraft.ervin_mod_1.block.blocks.slabs.*;
-import com.babcsany.minecraft.ervin_mod_1.block.blocks.special_blocks.Gtrziuzhizjkj;
-import com.babcsany.minecraft.ervin_mod_1.block.blocks.stairs.*;
+import com.babcsany.minecraft.ervin_mod_1.block.blocks.minecraft.slabs.*;
+import com.babcsany.minecraft.ervin_mod_1.block.blocks.slabs.CharcoalSlab;
+import com.babcsany.minecraft.ervin_mod_1.block.blocks.slabs.GurkSlab;
+import com.babcsany.minecraft.ervin_mod_1.block.blocks.slabs.RubySlab;
+import com.babcsany.minecraft.ervin_mod_1.block.blocks.stairs.CharcoalStairs;
+import com.babcsany.minecraft.ervin_mod_1.block.blocks.stairs.RubyStairs;
 import com.babcsany.minecraft.ervin_mod_1.block.blocks.stairs.ZurkStairs;
 import com.babcsany.minecraft.ervin_mod_1.block.furnace.BlackFurnace;
-import com.babcsany.minecraft.ervin_mod_1.block.iron_ores.*;
 import com.babcsany.minecraft.ervin_mod_1.block.iron_blocks.*;
-import com.babcsany.minecraft.ervin_mod_1.block.blocks.*;
-import com.babcsany.minecraft.ervin_mod_1.block.stone.cobblestones.*;
-import com.babcsany.minecraft.ervin_mod_1.block.stone.smooth_stones.*;
-import com.babcsany.minecraft.ervin_mod_1.block.stone.stone_bricks.*;
-import com.babcsany.minecraft.ervin_mod_1.block.stone.smooth_stone.slabs.*;
-import com.babcsany.minecraft.ervin_mod_1.block.stone.smooth_stone.stairs.*;
+import com.babcsany.minecraft.ervin_mod_1.block.iron_ores.*;
 import com.babcsany.minecraft.ervin_mod_1.block.stone.cobblestone.slabs.*;
 import com.babcsany.minecraft.ervin_mod_1.block.stone.cobblestone.stairs.*;
-import com.babcsany.minecraft.ervin_mod_1.block.stone.stones.*;
+import com.babcsany.minecraft.ervin_mod_1.block.stone.cobblestones.*;
 import com.babcsany.minecraft.ervin_mod_1.block.stone.slabs.*;
+import com.babcsany.minecraft.ervin_mod_1.block.stone.smooth_stone.slabs.*;
+import com.babcsany.minecraft.ervin_mod_1.block.stone.smooth_stone.stairs.*;
+import com.babcsany.minecraft.ervin_mod_1.block.stone.smooth_stones.*;
 import com.babcsany.minecraft.ervin_mod_1.block.stone.stairs.*;
-import com.babcsany.minecraft.ervin_mod_1.world.feature.*;
+import com.babcsany.minecraft.ervin_mod_1.block.stone.stone_bricks.*;
+import com.babcsany.minecraft.ervin_mod_1.block.stone.stones.*;
+import com.babcsany.minecraft.ervin_mod_1.init.sound.SoundInit;
+import com.babcsany.minecraft.ervin_mod_1.world.feature.FrimTree;
+import com.babcsany.minecraft.ervin_mod_1.world.feature.JazzTree;
+import com.babcsany.minecraft.ervin_mod_1.world.feature.ModSaplingBlock;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
-import net.minecraft.util.registry.Registry;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -43,9 +48,8 @@ public class BlockItemInit {
 
     public static final RegistryObject<Block> EXAMPLE_BLOCK = BLOCKS.register("example_block", () -> new Block(Block.Properties.create(Material.SAND).hardnessAndResistance(0.5f, 15.0f).sound(SoundType.SAND)));
     public static final RegistryObject<Block> ZUR_BLOCK = BLOCKS.register("zur_block", () -> new FallingZurBlock(Block.Properties.create(Material.SAND).hardnessAndResistance(1.5f, 45.0f).sound(SoundType.WOOD)));
-    public static final RegistryObject<Block> TRADER_BLOCK = BLOCKS.register("trader_block", () -> new TraderBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(0.5f, 15.0f).sound(SoundType.SAND)));
-    public static final RegistryObject<Block> DEFERRED_BLOCK = BLOCKS.register("def_block", () -> new Block(Block.Properties.create(Material.AIR)));
-    public static final RegistryObject<Block> GTRZIUZHIZJKJ = BLOCKS.register("special_blocks/gtrziuzhizjkj", () -> new Gtrziuzhizjkj(Block.Properties.create(Material.ROCK).hardnessAndResistance(500000.0F, 15000000.0F).sound(SoundType.ROOT)));
+    public static final RegistryObject<Block> TRADER_BLOCK = BLOCKS.register("trader_block", () -> new TraderBlock(AbstractBlock.Properties.create(Material.ROCK).hardnessAndResistance(0.5f, 15.0f).sound(SoundType.SAND), AbstractModBlock.Properties.create(Material.ROCK).doesNotBlockMovement_().soundInit(SoundInit.WOIK)));
+    public static final RegistryObject<Block> DEFERRED_BLOCK = BLOCKS.register("deferred_block", () -> new Block(AbstractBlock.Properties.create(Material.AIR)));
     public static final RegistryObject<Block> JAZZ_LOG = BLOCKS.register("jazz_log", () -> new JazzLog(MaterialColor.WOOD, Block.Properties.from(Blocks.OAK_LOG)));
     public static final RegistryObject<Block> JAZZ_LEAVES = BLOCKS.register("jazz_leaves", () -> new LeavesBlock(Block.Properties.from(Blocks.OAK_LEAVES)));
     public static final RegistryObject<Block> JAZZ_SAPLING = BLOCKS.register("jazz_sapling", () -> new ModSaplingBlock(JazzTree::new, Block.Properties.from(OAK_SAPLING)));
@@ -403,4 +407,5 @@ public class BlockItemInit {
     public static final RegistryObject<Block> WHITE_FURNACE = BLOCKS.register("furnaces/white_furnace", () -> new Block(AbstractBlock.Properties.create(Material.ROCK).setRequiresTool().hardnessAndResistance(3.5F).setLightLevel(Value -> 13)));
     public static final RegistryObject<Block> YELLOW_FURNACE = BLOCKS.register("furnaces/yellow_furnace", () -> new Block(AbstractBlock.Properties.create(Material.ROCK).setRequiresTool().hardnessAndResistance(3.5F).setLightLevel(Value -> 13)));
     public static final RegistryObject<Block> TRUMRUNT = BLOCKS.register("trumrunt", () -> new Block(AbstractBlock.Properties.create(Material.ORGANIC, MaterialColor.LIGHT_BLUE).setRequiresTool().tickRandomly().hardnessAndResistance(5000000.0F).setLightLevel(Value -> 15)));
+
 }

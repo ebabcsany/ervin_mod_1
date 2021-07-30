@@ -30,7 +30,7 @@ public class BigScrafthMushroomFeature extends AbstractBigMushroomFeature {
                if (i >= p_225564_4_ || flag4 != flag5) {
                   p_225564_5_.func_239621_a_(p_225564_3_, l, i, i1);
                   if (p_225564_1_.getBlockState(p_225564_5_).canBeReplacedByLeaves(p_225564_1_, p_225564_5_)) {
-                     this.func_230367_a_(p_225564_1_, p_225564_5_, p_225564_6_.field_227272_a_.getBlockState(p_225564_2_, p_225564_3_).with(HugeMushroomBlock.UP, Boolean.valueOf(i >= p_225564_4_ - 1)).with(HugeMushroomBlock.WEST, Boolean.valueOf(l < -k)).with(HugeMushroomBlock.EAST, Boolean.valueOf(l > k)).with(HugeMushroomBlock.NORTH, Boolean.valueOf(i1 < -k)).with(HugeMushroomBlock.SOUTH, Boolean.valueOf(i1 > k)));
+                     this.func_230367_a_(p_225564_1_, p_225564_5_, p_225564_6_.field_227272_a_.getBlockState(p_225564_2_, p_225564_3_).with(HugeMushroomBlock.UP, i >= p_225564_4_ - 1).with(HugeMushroomBlock.WEST, l < -k).with(HugeMushroomBlock.EAST, l > k).with(HugeMushroomBlock.NORTH, i1 < -k).with(HugeMushroomBlock.SOUTH, i1 > k));
                   }
                }
             }

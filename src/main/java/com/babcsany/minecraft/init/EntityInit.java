@@ -1,18 +1,27 @@
 package com.babcsany.minecraft.init;
 
 import com.babcsany.minecraft.entity.ModBoatEntity;
+import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.entity.animal.SrachEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.fish.GubrovEntity;
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.RoventEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.projectile.DgrurbkSkullEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.projectile.TawrolEntity;
+import com.babcsany.minecraft.ervin_mod_1.item.entity.icsvre.Icsvre;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
+import net.minecraftforge.fml.RegistryObject;
 
 public class EntityInit {
 
+    public static EntityInit ENTITIES;
+
+    public static final EntityType<RoventEntity> ROVENT_ENTITY = register("rovent_entity", EntityType.Builder.create((RoventEntity::new), EntityClassification.CREATURE).size(0.6f, 1.95f).func_233606_a_(10).immuneToFire());
+    public static final EntityType<Icsvre> ICSVRE = register("ervin_mod_1:icsvre", EntityType.Builder.<Icsvre>create(Icsvre::new, EntityClassification.MISC).size(0.25F, 0.25F).func_233606_a_(6).func_233608_b_(20));
     public static final EntityType<TawrolEntity> TAWROL = register("ervin_mod_1:tawrol", EntityType.Builder.<TawrolEntity>create(TawrolEntity::new, EntityClassification.MISC).size(0.25F, 0.25F).func_233606_a_(4).func_233608_b_(10));
     public static final EntityType<ModBoatEntity> MOD_BOAT = register("ervin_mod_1:mod_boat", EntityType.Builder.<ModBoatEntity>create(ModBoatEntity::new, EntityClassification.MISC).size(1.375F, 0.5625F).func_233606_a_(10));
     public static final EntityType<GubrovEntity> GUBROV = register("ervin_mod_1:gubrov", EntityType.Builder.create(GubrovEntity::new, EntityClassification.WATER_CREATURE).size(0.7f, 0.4f).func_233606_a_(10));

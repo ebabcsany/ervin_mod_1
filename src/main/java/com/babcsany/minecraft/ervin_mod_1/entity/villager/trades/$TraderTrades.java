@@ -7,6 +7,7 @@ import com.babcsany.minecraft.ervin_mod_1.init.item.food.FoodItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.food.isBurnableFoodItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.tool.SpecialToolItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.minecraft.block.item.BlockNamedItemInit;
 import com.google.common.collect.ImmutableMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
@@ -32,13 +33,16 @@ public class $TraderTrades {
            new $TraderTrades.ItemsForFirtsTrade($ItemInit.$_9$.get(), 54, 1, 1000, 1),
            new $TraderTrades.ItemsForFirtsTrade($ItemInit.$_10$.get(), 60, 1, 1000, 1),
            new $TraderTrades.ItemsFor$_1$sTrade(ItemInit.RUBY.get(), 1, 4, 1000, 1),
+           new $TraderTrades.ItemsFor$_1$sTrade(BlockNamedItemInit.END_PORTAL.get(), 5, 3, 1000, 1),
            new $TraderTrades.ItemsFor$_1$sTrade(ItemInit.SRACH.get(), 4, 1, 1000, 1),
            new $TraderTrades.ItemsFor$_2$sTrade(isBurnableItemInit.LEAT.get(), 1, 4, 1000, 1),
            new $TraderTrades.ItemsFor$_3$sTrade(ItemInit.CHAK.get(), 18, 1, 1000, 1),
            new $TraderTrades.ItemsFor$_4$sTrade(ItemInit.MLONK.get(), 12, 1, 1000, 1),
            new $TraderTrades.ItemsFor$_5$sTrade(isBurnableItemInit.GART.get(), 24, 1, 1000, 1),
            new $TraderTrades.ItemsFor$_6$sTrade(isBurnableItemInit.TERAT_NUGGET.get(), 60, 1, 1000, 1),
-           new $TraderTrades.ItemsFor30$_10$sAndItemsTrade(ItemInit.FIRK.get(), 30, isBurnableBlockItemInit.CRAINT_BLOCK.get(), 12, 1000, 5),
+           new $TraderTrades.ItemsFor$_4$sTrade(BlockNamedItemInit.END_GATEWAY.get(), 20, 4, 1000, 1),
+           new $TraderTrades.ItemsFor30_10$sAndItemsTrade(ItemInit.FIRK.get(), 30, isBurnableBlockItemInit.CRAINT_BLOCK.get(), 12, 1000, 5),
+           new $TraderTrades.ItemsFor30_10$sAndItemsTrade(ItemInit.FIRK.get(), 30, isBurnableBlockItemInit.CRAINT_BLOCK.get(), 12, 1000, 5),
            new $TraderTrades.ItemsForTgurkBlocksAndItemsTrade($ItemInit.$_6$.get(), 30, SpecialToolItemInit.CRAINT.get(), 30, 1000, 5),
            new $TraderTrades.ItemsFor$_7$sTrade(isBurnableItemInit.NIRK.get(), 15, 1, 1000, 1),
            new $TraderTrades.ItemsFor$_8$sTrade(FoodItemInit.REAT.get(), 9, 1, 1000, 1),
@@ -542,7 +546,7 @@ public class $TraderTrades {
       }
    }
 
-   static class ItemsFor30$_10$sAndItemsTrade implements $TraderTrades.ITrade {
+   static class ItemsFor30_10$sAndItemsTrade implements $TraderTrades.ITrade {
       private final ItemStack buyingItem;
       private final int buyingItemCount;
       private final int $_10$Count;
@@ -552,11 +556,11 @@ public class $TraderTrades {
       private final int xpValue;
       private final float priceMultiplier;
 
-      public ItemsFor30$_10$sAndItemsTrade(IItemProvider buyingItem, int buyingItemCount, Block sellingItem, int sellingItemCount, int maxUses, int xpValue) {
+      public ItemsFor30_10$sAndItemsTrade(IItemProvider buyingItem, int buyingItemCount, Block sellingItem, int sellingItemCount, int maxUses, int xpValue) {
          this(buyingItem, buyingItemCount, 30, sellingItem, sellingItemCount, maxUses, xpValue);
       }
 
-      public ItemsFor30$_10$sAndItemsTrade(IItemProvider buyingItem, int buyingItemCount, int $_10$Count, Block sellingItem, int sellingItemCount, int maxUses, int xpValue) {
+      public ItemsFor30_10$sAndItemsTrade(IItemProvider buyingItem, int buyingItemCount, int $_10$Count, Block sellingItem, int sellingItemCount, int maxUses, int xpValue) {
          this.buyingItem = new ItemStack(buyingItem);
          this.buyingItemCount = buyingItemCount;
          this.$_10$Count = $_10$Count;

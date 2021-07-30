@@ -12,6 +12,8 @@ import java.util.function.Function;
 
 public class ParticleInit {
 
+    public static ParticleInit PARTICLES;
+
     public static final BasicParticleType EPKIN = register("ervin_mod_1:epkin", false);
     public static final BasicParticleType ITEM_FREIN = register("ervin_mod_1:item_frein", false);
     //public static final BasicParticleType DRIPPING_JURK = register("ervin_mod_1:dripping_jurk", false);

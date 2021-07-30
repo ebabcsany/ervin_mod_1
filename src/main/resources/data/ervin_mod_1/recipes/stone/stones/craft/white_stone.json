@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "tag": "ervin_mod_1:ingredients/white_stone"
+      "tag": "ervin_mod_1:ingredients/stone/stones/white_stone"
     },
     {
       "item": "minecraft:white_dye"

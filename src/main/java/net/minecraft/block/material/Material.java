@@ -172,7 +172,7 @@ public final class Material {
          return this;
       }
 
-      public Builder pushBlocks() {
+      protected Builder pushBlocks() {
          this.pushReaction = PushReaction.BLOCK;
          return this;
       }

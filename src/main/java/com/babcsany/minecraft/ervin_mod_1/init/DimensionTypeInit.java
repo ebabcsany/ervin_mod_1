@@ -1,6 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.init;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
+import com.babcsany.minecraft.ervin_mod_1.init.block.FluidBlockInit;
 import com.babcsany.minecraft.ervin_mod_1.init.dimension.settings.ModDimensionSettings;
 import com.babcsany.minecraft.ervin_mod_1.world.dimension.biome_provider.ExampleBiomeProvider;
 import com.babcsany.minecraft.init.BlockInit;
@@ -49,7 +50,7 @@ public class DimensionTypeInit extends DimensionType {
         return new NoiseChunkGenerator(ExampleBiomeProvider.Preset.field_235288_b_.func_235292_a_(p_236041_0_), p_236041_0_, ModDimensionSettings.Preset.EXAMPLE.getDimensionSettings());
     }
 
-    public static final ModDimensionSettings.Preset EXAMPLE = new ModDimensionSettings.Preset("example", (p_236141_0_) -> createSettings(new DimensionStructuresSettings(false), BlockInit.FIRT_BLOCK.getDefaultState(), BlockInit.JURK.getDefaultState(), p_236141_0_));
+    public static final ModDimensionSettings.Preset EXAMPLE = new ModDimensionSettings.Preset("example", (p_236141_0_) -> createSettings(new DimensionStructuresSettings(false), BlockInit.FIRT_BLOCK.getDefaultState(), Blocks.WATER.getDefaultState(), p_236141_0_));
 
     private static ModDimensionSettings createSettings(DimensionStructuresSettings structures, BlockState defaultBlock, BlockState defaultFluid, ModDimensionSettings.Preset preset) {
         Map<Structure<?>, StructureSeparationSettings> map = Maps.newHashMap(DimensionStructuresSettings.field_236191_b_);

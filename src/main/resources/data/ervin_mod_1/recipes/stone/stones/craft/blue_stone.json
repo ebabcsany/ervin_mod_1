@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "tag": "ervin_mod_1:ingredients/blue_stone"
+      "tag": "ervin_mod_1:ingredients/stone/stones/blue_stone"
     },
     {
       "item": "minecraft:blue_dye"

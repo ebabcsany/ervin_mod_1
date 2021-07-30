@@ -25,7 +25,7 @@ public class MigBiomeSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig>
 		Random rd = new Random();
 		int i = rd.nextInt(3);
 		if (i == 0) {
-			SurfaceBuilder.SWAMP.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock,
+			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock,
 					defaultFluid, seaLevel, seed,
 					new SurfaceBuilderConfig(
 							Blocks.GRASS_BLOCK.getDefaultState(),

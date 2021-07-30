@@ -23,7 +23,7 @@ public class Food {
       this.effects = builder.effects;
    }
 
-   private Food(int healing, float saturationIn, boolean isMeat, boolean alwaysEdible, boolean fastEdible, List<Pair<EffectInstance, Float>> effectsIn) {
+   public Food(int healing, float saturationIn, boolean isMeat, boolean alwaysEdible, boolean fastEdible, List<Pair<EffectInstance, Float>> effectsIn) {
       this.value = healing;
       this.saturation = saturationIn;
       this.meat = isMeat;

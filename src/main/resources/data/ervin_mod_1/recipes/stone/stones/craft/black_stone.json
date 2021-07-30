@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "tag": "ervin_mod_1:ingredients/black_stone"
+      "tag": "ervin_mod_1:ingredients/stone/stones/black_stone"
     },
     {
       "item": "minecraft:black_dye"

@@ -21,14 +21,14 @@ public class ExampleBiome1 extends Biome {
 
 	public ExampleBiome1(Builder biomeBuilder) {
 		super(biomeBuilder);
-		this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityType.ZOMBIE, 10, 20, 50));
+		/*this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityType.ZOMBIE, 10, 20, 50));
 		this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityType.AREA_EFFECT_CLOUD, 40, 20, 50));
 		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.BAT, 20, 20, 50));
 		//this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityType.BLAZE, 5, 20, 50));
 		this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityType.COMMAND_BLOCK_MINECART, 15, 20, 50));
 		this.addSpawn(EntityClassification.WATER_CREATURE, new SpawnListEntry(EntityType.DOLPHIN, 20, 20, 50));
 		this.addSpawn(EntityClassification.MISC, new SpawnListEntry(EntityType.ARROW, 25, 20, 50));
-		this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityType.CAT, 30, 20, 50));
+		this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityType.CAT, 30, 20, 50));*/
 
 		//this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityInit.ZUR_ENTITY.get(), 5, 5, 20));
 		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.BEE, 20, 2, 10));

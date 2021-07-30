@@ -23,6 +23,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.IExtensibleEnum;
 
 import java.util.List;
+import java.util.Objects;
 
 public class DefItem extends Item {
 	
@@ -96,7 +97,7 @@ public class DefItem extends Item {
 	@Override
 	public ActionResultType onItemUse(ItemUseContext context) {
 		if (context.getWorld().getBlockState(context.getPos()).getBlock() == BlockItemInit.DEFERRED_BLOCK.get()) {
-			for (ItemStack stack : context.getPlayer().inventory.mainInventory) {
+			for (ItemStack stack : Objects.requireNonNull(context.getPlayer()).inventory.mainInventory) {
 				if (stack.isEmpty()) {
 					context.getPlayer().addItemStackToInventory(new ItemStack(isBurnableSpecialItemInit.DEF_ITEM.get()));
 					context.getItem().damageItem(1, context.getPlayer(), (playerIn) -> playerIn.sendBreakAnimation(context.getHand()));

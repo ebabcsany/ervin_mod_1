@@ -1,0 +1,27 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "ervin_mod_1:block/special/gtrziuzhizjkj",
+      "x": 90
+    },
+    "facing=east": {
+      "model": "ervin_mod_1:block/special/gtrziuzhizjkj",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "ervin_mod_1:block/special/gtrziuzhizjkj"
+    },
+    "facing=south": {
+      "model": "ervin_mod_1:block/special/gtrziuzhizjkj",
+      "y": 180
+    },
+    "facing=up": {
+      "model": "ervin_mod_1:block/special/gtrziuzhizjkj",
+      "x": 270
+    },
+    "facing=west": {
+      "model": "ervin_mod_1:block/special/gtrziuzhizjkj",
+      "y": 270
+    }
+  }
+}

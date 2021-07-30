@@ -1,48 +1,5 @@
 package net.minecraft.world.raid;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.AbstractZurEntity;
-import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
-import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
-import net.minecraft.advancements.CriteriaTriggers;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.*;
-import net.minecraft.entity.monster.AbstractRaiderEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.DyeColor;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.ListNBT;
-import net.minecraft.nbt.NBTUtil;
-import net.minecraft.network.play.server.SPlaySoundEffectPacket;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
-import net.minecraft.stats.Stats;
-import net.minecraft.tileentity.BannerPattern;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.SectionPos;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.*;
-import net.minecraft.world.gen.Heightmap;
-import net.minecraft.world.server.ServerBossInfo;
-import net.minecraft.world.server.ServerWorld;
-import net.minecraft.world.spawner.WorldEntitySpawner;
-
-import javax.annotation.Nullable;
-import java.util.*;
-import java.util.function.Predicate;
-import java.util.stream.Stream;
-
 /*public class Raid {
    private static final TranslationTextComponent RAID = new TranslationTextComponent("event.minecraft.raid");
    private static final TranslationTextComponent VICTORY = new TranslationTextComponent("event.minecraft.raid.victory");

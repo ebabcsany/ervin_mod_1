@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "tag": "ervin_mod_1:ingredients/cyan_stone"
+      "tag": "ervin_mod_1:ingredients/stone/stones/cyan_stone"
     },
     {
       "item": "minecraft:cyan_dye"

@@ -394,6 +394,10 @@ public class ModDefaultBiomeFeatures {
       biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, SCRAFTH, 400)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(50, 0, 0, 2000))));
    }
 
+   public static void addScrafth(Biome biomeIn, int size, int count, int bottomOffset, int topOffset, int maximum) {
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, SCRAFTH, size)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(count, bottomOffset, topOffset, maximum))));
+   }
+
    public static void addOrangeStone(Biome biomeIn) {
       biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, ORANGE_STONE, 400)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(50, 0, 0, 2000))));
    }

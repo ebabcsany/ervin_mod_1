@@ -1,16 +1,16 @@
 package com.babcsany.minecraft.ervin_mod_1.init.item;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
-import com.babcsany.minecraft.ervin_mod_1.entity.item.ModBoatEntityhj;
-import com.babcsany.minecraft.ervin_mod_1.init.init.DyeColorInit;
-import com.babcsany.minecraft.ervin_mod_1.init.init.DyeItemInit;
 import com.babcsany.minecraft.ervin_mod_1.item.*;
 import com.babcsany.minecraft.ervin_mod_1.item.group.ItemGroup;
+import com.babcsany.minecraft.ervin_mod_1.init.fluid.FluidInit;
+import net.minecraft.item.BucketItem;
 import net.minecraft.item.Item;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+
+import static net.minecraft.item.Items.BUCKET;
 
 public class ItemInit {
 

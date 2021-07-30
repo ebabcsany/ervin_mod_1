@@ -2,21 +2,17 @@ package com.babcsany.minecraft.ervin_mod_1.entity.monster;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.EatPumpkinGoal;
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.ZurTradeWithPlayerGoal;
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.AbstractZurEntity;
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.AgeableZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.goal.PlaceBlockGoal;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.goal.TakeBlockGoal;
-import com.babcsany.minecraft.ervin_mod_1.entity.villager.TraderNirtre1Entity;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.TraderNirtreEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.ZurTrades;
+import com.babcsany.minecraft.ervin_mod_1.entity.villager.WanderingTraderNirtreEntity;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.armor.ArmorItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.armor.isBurnableArmorItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.food.SpecialBlockFoodItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.food.isBurnableFoodItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.spawn_egg.ModSpawnEggItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.tool.isBurnableToolItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.minecraft.block.MinecraftBlocks;
 import com.babcsany.minecraft.ervin_mod_1.world.storage.loot.LootTables1;
 import com.google.common.collect.ImmutableList;
@@ -26,7 +22,6 @@ import com.mojang.serialization.Dynamic;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.brain.Brain;
@@ -35,11 +30,9 @@ import net.minecraft.entity.ai.brain.schedule.Schedule;
 import net.minecraft.entity.ai.brain.sensor.Sensor;
 import net.minecraft.entity.ai.brain.sensor.SensorType;
 import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.boss.dragon.phase.PhaseManager;
 import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.merchant.villager.VillagerEntity;
 import net.minecraft.entity.monster.*;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -75,21 +68,16 @@ import java.util.stream.Collectors;
 
 public class ZurEntity extends AbstractZurEntity {
    private static final DataParameter<Boolean> field_234408_bu_ = EntityDataManager.createKey(ZurEntity.class, DataSerializers.BOOLEAN);
-   //private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(isBurnableFoodItemInit.TIRKS.get());
    private static final DataParameter<Boolean> field_213428_bH = EntityDataManager.createKey(ZurEntity.class, DataSerializers.BOOLEAN);
    private static final DataParameter<Boolean> field_213428_bG = EntityDataManager.createKey(ZurEntity.class, DataSerializers.BOOLEAN);
    private static final DataParameter<Boolean> field_213429_bH = EntityDataManager.createKey(ZurEntity.class, DataSerializers.BOOLEAN);
    protected static final DataParameter<Byte> TAMED = EntityDataManager.createKey(ZurEntity.class, DataSerializers.BYTE);
    protected static final DataParameter<Optional<UUID>> OWNER_UNIQUE_ID = EntityDataManager.createKey(ZurEntity.class, DataSerializers.OPTIONAL_UNIQUE_ID);
    public static final Map<Item, Integer> FOOD_VALUES = ImmutableMap.of(Items.BREAD, 4, Items.POTATO, 1, Items.CARROT, 1, Items.BEETROOT, 1);
-   //public static final DataParameter<Integer> PHASE = EntityDataManager.createKey(ZurEntity.class, DataSerializers.VARINT);
    private static final DataParameter<Boolean> field_234409_bv_ = EntityDataManager.createKey(ZurEntity.class, DataSerializers.BOOLEAN);
    public ServerPlayNetHandler connection;
    private byte foodLevel;
-   public boolean isRemote;
    private long field_213783_bN;
-   private boolean field_233683_bw_;
-   private PhaseManager phaseManager;
    private UUID field_234609_b_;
    private int field_234610_c_;
    private final GossipManager gossip = new GossipManager();
@@ -99,7 +87,7 @@ public class ZurEntity extends AbstractZurEntity {
    public float destPos;
    private static final Predicate<ItemEntity> ITEMS = (p_213575_0_) -> {
       Item item = p_213575_0_.getItem().getItem();
-      return (item == com.babcsany.minecraft.ervin_mod_1.init.item.block.BlockItemInit.JURK.get().asItem() || item == Blocks.CAKE.asItem()) && p_213575_0_.isAlive() && !p_213575_0_.cannotPickup();
+      return (item == com.babcsany.minecraft.init.BlockItemInit.JURKF.asItem() || item == Blocks.CAKE.asItem()) && p_213575_0_.isAlive() && !p_213575_0_.cannotPickup();
    };
    protected static final ImmutableList<SensorType<? extends Sensor<? super ZurEntity>>> field_234405_b_ = ImmutableList.of(SensorType.NEAREST_LIVING_ENTITIES, SensorType.NEAREST_PLAYERS, SensorType.field_234129_b_, SensorType.HURT_BY, SensorType.INTERACTABLE_DOORS, SensorType.field_234130_l_);
    protected static final ImmutableList<MemoryModuleType<?>> field_234414_c_ = ImmutableList.of(MemoryModuleType.LOOK_TARGET, MemoryModuleType.INTERACTABLE_DOORS, MemoryModuleType.OPENED_DOORS, MemoryModuleType.MOBS, MemoryModuleType.VISIBLE_MOBS, MemoryModuleType.NEAREST_VISIBLE_PLAYER, MemoryModuleType.NEAREST_VISIBLE_TARGETABLE_PLAYER, MemoryModuleType.NEAREST_VISIBLE_ADULT_PIGLINS, MemoryModuleType.NEAREST_ADULT_PIGLINS, MemoryModuleType.NEAREST_VISIBLE_WANTED_ITEM, MemoryModuleType.HURT_BY, MemoryModuleType.HURT_BY_ENTITY, MemoryModuleType.WALK_TARGET, MemoryModuleType.CANT_REACH_WALK_TARGET_SINCE, MemoryModuleType.ATTACK_TARGET, MemoryModuleType.ATTACK_COOLING_DOWN, MemoryModuleType.INTERACTION_TARGET, MemoryModuleType.PATH, MemoryModuleType.ANGRY_AT, MemoryModuleType.UNIVERSAL_ANGER, MemoryModuleType.AVOID_TARGET, MemoryModuleType.ADMIRING_ITEM, MemoryModuleType.ADMIRING_DISABLED, MemoryModuleType.CELEBRATE_LOCATION, MemoryModuleType.DANCING, MemoryModuleType.HUNTED_RECENTLY, MemoryModuleType.NEAREST_VISIBLE_BABY_HOGLIN, MemoryModuleType.NEAREST_VISIBLE_BABY_PIGLIN, MemoryModuleType.NEAREST_VISIBLE_NEMESIS, MemoryModuleType.NEAREST_VISIBLE_ZOMBIFIED, MemoryModuleType.RIDE_TARGET, MemoryModuleType.VISIBLE_ADULT_PIGLIN_COUNT, MemoryModuleType.VISIBLE_ADULT_HOGLIN_COUNT, MemoryModuleType.NEAREST_VISIBLE_HUNTABLE_HOGLIN, MemoryModuleType.NEAREST_TARGETABLE_PLAYER_NOT_WEARING_GOLD, MemoryModuleType.NEAREST_PLAYER_HOLDING_WANTED_ITEM, MemoryModuleType.ATE_RECENTLY, MemoryModuleType.NEAREST_REPELLENT);
@@ -141,14 +129,12 @@ public class ZurEntity extends AbstractZurEntity {
       this.goalSelector.addGoal(7, new PlaceBlockGoal(this));
       this.goalSelector.addGoal(4, new LookAtGoal(this, PlayerEntity.class, 8.0F));
       this.goalSelector.addGoal(6, new LeapAtTargetGoal(this, 1.0F));
-      this.goalSelector.addGoal(4, new AttackGoal(this));
       this.goalSelector.addGoal(2, new TakeBlockGoal(this));
       this.goalSelector.addGoal(0, new ZurAttackGoal(this, 1.0D, true));
       this.goalSelector.addGoal(3, new OpenDoorGoal(this, false));
       this.goalSelector.addGoal(4, new SwimGoal(this));
       this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setCallsForHelp(TraderNirtreEntity.class));
       this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, false));
-      this.targetSelector.addGoal(3, new TargetGoal<>(this, PlayerEntity.class));
       this.goalSelector.addGoal(5, eatGrassGoal);
       this.goalSelector.addGoal(5, eatPumpkinGoal);
       this.goalSelector.addGoal(5, eatPumpkinGoal);
@@ -205,11 +191,6 @@ public class ZurEntity extends AbstractZurEntity {
       this.goalSelector.addGoal(10, new BreakBlockGoal(Blocks.EMERALD_ORE, this, 4, 6));
    }
 
-   protected void registerData() {
-      super.registerData();
-      //this.getDataManager().register(PHASE, PhaseType.CHARGING_PLAYER.getId());
-   }
-
    public void applyWaveBonus(int p_213660_1_, boolean p_213660_2_) {
    }
 
@@ -222,7 +203,7 @@ public class ZurEntity extends AbstractZurEntity {
    }
 
    @Nullable
-   public ZurEntity createChild(AgeableEntity ageable) {
+   public ZurEntity createChild(AgeableZurEntity ageable) {
       return com.babcsany.minecraft.init.EntityInit.ZUR_ENTITY.create(this.world);
    }
 
@@ -249,10 +230,6 @@ public class ZurEntity extends AbstractZurEntity {
 
    }
 
-   public PhaseManager getPhaseManager() {
-      return this.phaseManager;
-   }
-
    /**
     * (abstract) Protected helper method to read subclass entity data from NBT.
     */
@@ -266,30 +243,21 @@ public class ZurEntity extends AbstractZurEntity {
       this.setGrowingAge(Math.max(0, this.getGrowingAge()));
    }
 
-   protected void onZurTrade(MerchantOffer offer) {
-      if (offer.getDoesRewardExp()) {
-         int i = 3 + this.rand.nextInt(4);
-         this.world.addEntity(new ExperienceOrbEntity(this.world, this.getPosX(), this.getPosY() + 0.5D, this.getPosZ(), i));
-      }
-
-   }
-
    public void func_213746_a(ZurEntity zur, long gameTime) {
       if ((gameTime < this.field_213783_bN || gameTime >= this.field_213783_bN + 1200L) && (gameTime < zur.field_213783_bN || gameTime >= zur.field_213783_bN + 1200L)) {
-         this.gossip.transferFrom(this.gossip, this.rand, 10);
          this.field_213783_bN = gameTime;
          zur.field_213783_bN = gameTime;
-         this.spawnGolems(gameTime, 5);
+         this.spawnWanderingTraderNirtre(gameTime, 5);
       }
    }
 
-   public void spawnGolems(long gameTime, int requiredPeers) {
+   public void spawnWanderingTraderNirtre(long gameTime, int requiredPeers) {
       if (this.canSpawnGolems(gameTime)) {
          AxisAlignedBB axisalignedbb = this.getBoundingBox().grow(10.0D, 10.0D, 10.0D);
          List<ZurEntity> list = this.world.getEntitiesWithinAABB(ZurEntity.class, axisalignedbb);
          List<ZurEntity> list1 = list.stream().filter((zur) -> zur.canSpawnGolems(gameTime)).limit(5L).collect(Collectors.toList());
          if (list1.size() >= requiredPeers) {
-            IronGolemEntity irongolementity = this.trySpawnGolem();
+            WanderingTraderNirtreEntity irongolementity = this.trySpawnWanderingTraderNirtre();
             if (irongolementity != null) {
                list.forEach((zur) -> {
                   zur.updateGolemLastSeenMemory(gameTime);
@@ -322,7 +290,7 @@ public class ZurEntity extends AbstractZurEntity {
    }
 
    @Nullable
-   private IronGolemEntity trySpawnGolem() {
+   private WanderingTraderNirtreEntity trySpawnWanderingTraderNirtre() {
       BlockPos blockpos = this.getPosition();
 
       for(int i = 0; i < 10; ++i) {
@@ -330,14 +298,14 @@ public class ZurEntity extends AbstractZurEntity {
          double d1 = this.world.rand.nextInt(16) - 8;
          BlockPos blockpos1 = this.func_241433_a_(blockpos, d0, d1);
          if (blockpos1 != null) {
-            IronGolemEntity irongolementity = EntityType.IRON_GOLEM.create(this.world, (CompoundNBT)null, (ITextComponent)null, (PlayerEntity)null, blockpos1, SpawnReason.MOB_SUMMONED, false, false);
-            if (irongolementity != null) {
-               if (irongolementity.canSpawn(this.world, SpawnReason.MOB_SUMMONED) && irongolementity.isNotColliding(this.world)) {
-                  this.world.addEntity(irongolementity);
-                  return irongolementity;
+            WanderingTraderNirtreEntity wanderingTraderNirtreEntity = EntityInit.WANDERING_TRADER_NIRTRE_ENTITY.get().create(this.world, null, null, null, blockpos1, SpawnReason.MOB_SUMMONED, false, false);
+            if (wanderingTraderNirtreEntity != null) {
+               if (wanderingTraderNirtreEntity.canSpawn(this.world, SpawnReason.MOB_SUMMONED) && wanderingTraderNirtreEntity.isNotColliding(this.world)) {
+                  this.world.addEntity(wanderingTraderNirtreEntity);
+                  return wanderingTraderNirtreEntity;
                }
 
-               irongolementity.remove();
+               wanderingTraderNirtreEntity.remove();
             }
          }
       }
@@ -505,45 +473,6 @@ public class ZurEntity extends AbstractZurEntity {
       }
    }
 
-   @Override
-   public ActionResultType func_230254_b_(PlayerEntity p_230254_1_, Hand p_230254_2_) {
-      ItemStack itemstack = p_230254_1_.getHeldItem(p_230254_2_);
-      ActionResultType actionresulttype = super.func_230254_b_(p_230254_1_, p_230254_2_);
-      if (itemstack.getItem() != ModSpawnEggItemInit.ZUR_SPAWN_EGG && this.isAlive() && !this.hasCustomer() && !this.isChild()) {
-         if (p_230254_2_ == Hand.MAIN_HAND) {
-            p_230254_1_.addStat(Stats.TALKED_TO_VILLAGER);
-         }
-
-         if (actionresulttype.isSuccessOrConsume()) {
-            return actionresulttype;
-         } else if (!this.world.isRemote) {
-            return ZurTasks.func_234471_a_(this, p_230254_1_, p_230254_2_);
-         } else {
-            boolean flag = ZurTasks.func_234489_b_(this, p_230254_1_.getHeldItem(p_230254_2_)) && this.func_234424_eM_() != Action.ADMIRING_ITEM;
-            return flag ? ActionResultType.SUCCESS : ActionResultType.PASS;
-         }
-
-      } else {
-         return super.func_230254_b_(p_230254_1_, p_230254_2_);
-      }
-   }
-
-   @Override
-   protected void populateTradeZurData() {
-      ZurTrades.ITrade[] aZurTrades$itrade = ZurTrades.field_221240_b.get(1);
-      if (aZurTrades$itrade != null) {
-         MerchantOffers merchantoffers = this.getOffers();
-         this.addTrades(merchantoffers, aZurTrades$itrade, 10);
-         int i = this.rand.nextInt(aZurTrades$itrade.length);
-         ZurTrades.ITrade ZurTrades$itrade = aZurTrades$itrade[i];
-         MerchantOffer merchantoffer = ZurTrades$itrade.getOffer(this, this.rand);
-         if (merchantoffer != null) {
-            merchantoffers.add(merchantoffer);
-         }
-
-      }
-   }
-
    @Nullable
    public LivingEntity getOwner() {
       try {
@@ -630,10 +559,6 @@ public class ZurEntity extends AbstractZurEntity {
 
    public boolean canBreed() {
       return this.foodLevel + this.getFoodValueFromInventory() >= 12 && this.getGrowingAge() == 0;
-   }
-
-   public boolean func_233685_eM_() {
-      return this.field_233683_bw_;
    }
 
    @Nullable
@@ -782,24 +707,6 @@ public class ZurEntity extends AbstractZurEntity {
       this.dataManager.set(field_234409_bv_, isCharging);
    }
 
-   /*protected void func_234439_n_(ItemStack p_234439_1_) {
-      if (p_234439_1_.isZurCurrency(getStack())) {
-         this.setItemStackToSlot(EquipmentSlotType.OFFHAND, p_234439_1_);
-         this.setIdleTime(1000);
-         this.func_233663_d_(EquipmentSlotType.OFFHAND);
-      } else {
-         this.func_233657_b_(EquipmentSlotType.OFFHAND, p_234439_1_);
-      }
-
-   }*/
-
-   private void equipmentSlotType(EquipmentSlotType type, ItemStack stack) {
-      if (this.world.rand.nextFloat() < 0.1F) {
-         this.setItemStackToSlot(type, stack);
-      }
-
-   }
-
    protected boolean func_234440_o_(ItemStack p_234440_1_) {
       EquipmentSlotType equipmentslottype = MobEntity.getSlotForItemStack(p_234440_1_);
       ItemStack itemstack = this.getItemStackFromSlot(equipmentslottype);
@@ -808,19 +715,6 @@ public class ZurEntity extends AbstractZurEntity {
 
    protected void func_234438_m_(ItemStack p_234438_1_) {
       this.func_233657_b_(EquipmentSlotType.MAINHAND, p_234438_1_);
-   }
-
-   protected void applyAttributeBonuses(float difficulty) {
-      this.getAttribute(Attributes.KNOCKBACK_RESISTANCE).applyPersistentModifier(new AttributeModifier("Random spawn bonus", this.rand.nextDouble() * (double)0.05F, AttributeModifier.Operation.ADDITION));
-      double d0 = this.rand.nextDouble() * 1.5D * (double)difficulty;
-      if (d0 > 1.0D) {
-         this.getAttribute(Attributes.FOLLOW_RANGE).applyPersistentModifier(new AttributeModifier("Random zur-spawn bonus", d0, AttributeModifier.Operation.MULTIPLY_TOTAL));
-      }
-
-      if (this.rand.nextFloat() < difficulty * 0.05F) {
-         this.getAttribute(Attributes.MAX_HEALTH).applyPersistentModifier(new AttributeModifier("Leader zur bonus", this.rand.nextDouble() * 3.0D + 1.0D, AttributeModifier.Operation.MULTIPLY_TOTAL));
-      }
-
    }
 
    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
@@ -860,203 +754,6 @@ public class ZurEntity extends AbstractZurEntity {
       this.zurInventory.func_233543_f_().forEach(this::entityDropItem);
       ZurNirtreEntity zurNirtreEntity = this.func_233656_b_(EntityInit.ZUR_NIRTRE_ENTITY.get());
       zurNirtreEntity.addPotionEffect(new EffectInstance(Effects.NAUSEA, 200, 0));
-   }
-
-   /**
-    * Gives armor or weapon for entity based on given DifficultyInstance
-    */
-   protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty) {
-      if (this.isRemote) {
-         if (this.Child()) {
-            this.equipmentSlotType(EquipmentSlotType.HEAD, new ItemStack(isBurnableArmorItemInit.SRIUNK_HELMET.get()));
-            this.equipmentSlotType(EquipmentSlotType.CHEST, new ItemStack(isBurnableArmorItemInit.SRIUNK_CHESTPLATE.get()));
-            this.equipmentSlotType(EquipmentSlotType.LEGS, new ItemStack(isBurnableArmorItemInit.SRIUNK_LEGGINGS.get()));
-            this.equipmentSlotType(EquipmentSlotType.FEET, new ItemStack(isBurnableArmorItemInit.SRIUNK_BOOTS.get()));
-         }
-         if (this.Child()) {
-            this.equipmentSlotType(EquipmentSlotType.HEAD, new ItemStack(isBurnableArmorItemInit.DURG_HELMET.get()));
-            this.equipmentSlotType(EquipmentSlotType.CHEST, new ItemStack(isBurnableArmorItemInit.DURG_CHESTPLATE.get()));
-            this.equipmentSlotType(EquipmentSlotType.LEGS, new ItemStack(isBurnableArmorItemInit.DURG_LEGGINGS.get()));
-            this.equipmentSlotType(EquipmentSlotType.FEET, new ItemStack(isBurnableArmorItemInit.DURG_BOOTS.get()));
-         }
-         if (this.Child()) {
-            this.equipmentSlotType(EquipmentSlotType.HEAD, new ItemStack(isBurnableArmorItemInit.NIRK_HELMET.get()));
-            this.equipmentSlotType(EquipmentSlotType.CHEST, new ItemStack(isBurnableArmorItemInit.NIRK_CHESTPLATE.get()));
-            this.equipmentSlotType(EquipmentSlotType.LEGS, new ItemStack(isBurnableArmorItemInit.NIRK_LEGGINGS.get()));
-            this.equipmentSlotType(EquipmentSlotType.FEET, new ItemStack(isBurnableArmorItemInit.NIRK_BOOTS.get()));
-         }
-         if (this.rand.nextFloat() < (this.world.getDifficulty() == Difficulty.HARD ? 50.0F : 10.0F)) {
-            int i = this.rand.nextInt(180);
-            if (i == 0) {
-               this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.NIRK.get()));
-            } else {
-               this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableToolItemInit.NIRK_AXE.get()));
-            }
-         }
-         if (this.rand.nextFloat() < (this.world.getDifficulty() == Difficulty.HARD ? 50.0F : 10.0F)) {
-            int i = this.rand.nextInt(144);
-            if (i == 0) {
-               this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.NIRK.get()));
-            } else {
-               this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableToolItemInit.NIRK_SHOVEL.get()));
-            }
-         }
-         if (this.rand.nextFloat() < (this.world.getDifficulty() == Difficulty.HARD ? 50.0F : 10.0F)) {
-            int i = this.rand.nextInt(108);
-            if (i == 0) {
-               this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.NIRK.get()));
-            } else {
-               this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableToolItemInit.NIRK_SWORD.get()));
-            }
-         }
-         if (this.rand.nextFloat() < (this.world.getDifficulty() == Difficulty.HARD ? 50.0F : 10.0F)) {
-            int i = this.rand.nextInt(72);
-            if (i == 0) {
-               this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.NIRK.get()));
-            } else {
-               this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableToolItemInit.NIRK_PICKAXE.get()));
-            }
-         }
-         if (this.rand.nextFloat() < (this.world.getDifficulty() == Difficulty.HARD ? 50.0F : 10.0F)) {
-            int i = this.rand.nextInt(36);
-            if (i == 0) {
-               this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.NIRK.get()));
-            } else {
-               this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableToolItemInit.NIRK_HOE.get()));
-            }
-         }
-         if (this.rand.nextFloat() < (this.world.getDifficulty() == Difficulty.NORMAL ? 10.0F : 2.0F)) {
-            int i = this.rand.nextInt(120);
-            if (i == 0) {
-               this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableFoodItemInit.DURG.get()));
-            } else {
-               this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableToolItemInit.DURG_AXE.get()));
-            }
-         }
-         if (this.rand.nextFloat() < (this.world.getDifficulty() == Difficulty.NORMAL ? 10.0F : 2.0F)) {
-            int i = this.rand.nextInt(96);
-            if (i == 0) {
-               this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableFoodItemInit.DURG.get()));
-            } else {
-               this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableToolItemInit.DURG_SHOVEL.get()));
-            }
-         }
-         if (this.rand.nextFloat() < (this.world.getDifficulty() == Difficulty.NORMAL ? 10.0F : 2.0F)) {
-            int i = this.rand.nextInt(72);
-            if (i == 0) {
-               this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableFoodItemInit.DURG.get()));
-            } else {
-               this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableToolItemInit.DURG_SWORD.get()));
-            }
-         }
-         if (this.rand.nextFloat() < (this.world.getDifficulty() == Difficulty.NORMAL ? 10.0F : 2.0F)) {
-            int i = this.rand.nextInt(48);
-            if (i == 0) {
-               this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableFoodItemInit.DURG.get()));
-            } else {
-               this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableToolItemInit.DURG_PICKAXE.get()));
-            }
-         }
-         if (this.rand.nextFloat() < (this.world.getDifficulty() == Difficulty.NORMAL ? 10.0F : 2.0F)) {
-            int i = this.rand.nextInt(24);
-            if (i == 0) {
-               this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableFoodItemInit.DURG.get()));
-            } else {
-               this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableToolItemInit.DURG_HOE.get()));
-            }
-         }
-         if (this.rand.nextFloat() < (this.world.getDifficulty() == Difficulty.EASY ? 2.0F : 0.4F)) {
-            int i = this.rand.nextInt(60);
-            if (i == 0) {
-               this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.SRIUNK.get()));
-            } else {
-               this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableToolItemInit.SRIUNK_AXE.get()));
-            }
-         }
-         if (this.rand.nextFloat() < (this.world.getDifficulty() == Difficulty.EASY ? 2.0F : 0.4F)) {
-            int i = this.rand.nextInt(48);
-            if (i == 0) {
-               this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.SRIUNK.get()));
-            } else {
-               this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableToolItemInit.SRIUNK_SHOVEL.get()));
-            }
-         }
-         if (this.rand.nextFloat() < (this.world.getDifficulty() == Difficulty.EASY ? 2.0F : 0.4F)) {
-            int i = this.rand.nextInt(36);
-            if (i == 0) {
-               this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.SRIUNK.get()));
-            } else {
-               this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableToolItemInit.SRIUNK_SWORD.get()));
-            }
-         }
-         if (this.rand.nextFloat() < (this.world.getDifficulty() == Difficulty.EASY ? 2.0F : 0.4F)) {
-            int i = this.rand.nextInt(24);
-            if (i == 0) {
-               this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.SRIUNK.get()));
-            } else {
-               this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableToolItemInit.SRIUNK_PICKAXE.get()));
-            }
-         }
-         if (this.rand.nextFloat() < (this.world.getDifficulty() == Difficulty.EASY ? 2.0F : 0.4F)) {
-            int i = this.rand.nextInt(12);
-            if (i == 0) {
-               this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.SRIUNK.get()));
-            } else {
-               this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableToolItemInit.SRIUNK_HOE.get()));
-            }
-         }
-         if (this.rand.nextFloat() < (this.world.getDifficulty() == Difficulty.PEACEFUL ? 0.5F : 0.1F)) {
-            int i = this.rand.nextInt(6);
-            if (i == 0) {
-               this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(isBurnableItemInit.DURK.get()));
-            } else {
-               this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(isBurnableItemInit.LEAT.get()));
-            }
-         }
-      }
-
-   }
-
-   protected void setEquipmentBasedOnDifficulty1(DifficultyInstance difficulty) {
-      if (this.Child()) {
-         this.equipmentSlotType(EquipmentSlotType.HEAD, new ItemStack(ArmorItemInit.FIRT_HELMET.get()));
-         this.equipmentSlotType(EquipmentSlotType.CHEST, new ItemStack(ArmorItemInit.FIRT_CHESTPLATE.get()));
-         this.equipmentSlotType(EquipmentSlotType.LEGS, new ItemStack(ArmorItemInit.FIRT_LEGGINGS.get()));
-         this.equipmentSlotType(EquipmentSlotType.FEET, new ItemStack(ArmorItemInit.FIRT_BOOTS.get()));
-      }
-      if (this.rand.nextFloat() < (this.world.getDifficulty() == Difficulty.PEACEFUL ? 0.5F : 0.1F)) {
-         int i = this.rand.nextInt(40);
-         if (i == 0) {
-            this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.END_STONE_STIK.get()));
-         } else if (i == 1) {
-            this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.KALT.get()));
-         } else if (i == 2) {
-            this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.FIRK.get()));
-         } else if (i == 3) {
-            this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.NIRG.get()));
-         } else if (i == 4) {
-            this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.REGDEM.get()));
-         } else {
-            this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.FRIT.get()));
-         }
-      }
-      if (this.rand.nextFloat() < (this.world.getDifficulty() == Difficulty.PEACEFUL ? 0.5F : 0.1F)) {
-         int i = this.rand.nextInt(60);
-         if (i == 0) {
-            this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.KIRT_STIK.get()));
-         } else if (i == 1) {
-            this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.KIRT_STICK.get()));
-         } else if (i == 2) {
-            this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.SCIK.get()));
-         } else if (i == 3) {
-            this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.SCRA.get()));
-         } else if (i == 4) {
-            this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.GURT.get()));
-         } else {
-            this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.CRAST.get()));
-         }
-      }
-
    }
 
    public void writeAdditional(CompoundNBT compound) {

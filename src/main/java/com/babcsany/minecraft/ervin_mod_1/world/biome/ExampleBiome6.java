@@ -16,7 +16,7 @@ public final class ExampleBiome6 extends Biome {
 
    public ExampleBiome6(Builder biomeBuilder) {
       super(biomeBuilder);
-      this.addFeature(GenerationStage.Decoration.TOP_LAYER_MODIFICATION, FeatureInit.VOID_START_PLATFORM1.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
+      this.addFeature(GenerationStage.Decoration.TOP_LAYER_MODIFICATION, Feature.VOID_START_PLATFORM.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
       this.addCarver(GenerationStage.Carving.AIR,
               Biome.createCarver(WorldCarver.CAVE, new ProbabilityConfig(6.586974623F)));
       ModDefaultBiomeFeatures.addNirtkb1(this);
