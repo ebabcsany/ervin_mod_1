@@ -1,5 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.task;
 
+import com.babcsany.minecraft.ervin_mod_1.entity.ai.brain.task.Task;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.brain.Brain;

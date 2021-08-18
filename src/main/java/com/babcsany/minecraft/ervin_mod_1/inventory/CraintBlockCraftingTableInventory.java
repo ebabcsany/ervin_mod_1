@@ -32,12 +32,12 @@ public class CraintBlockCraftingTableInventory implements IInventory {
 
     @Override
     public ItemStack decrStackSize(int index, int count) {
-        return inventory != null && !inventory.get(index).isEmpty() ? ItemStackHelper.getAndSplit(inventory, index, count) : ItemStack.EMPTY;
+        return !inventory.get(index).isEmpty() ? ItemStackHelper.getAndSplit(inventory, index, count) : ItemStack.EMPTY;
     }
 
     @Override
     public ItemStack removeStackFromSlot(int index) {
-        if (inventory != null && !inventory.get(index).isEmpty()) {
+        if (!inventory.get(index).isEmpty()) {
             ItemStack itemstack = inventory.get(index);
             inventory.set(index, ItemStack.EMPTY);
             return itemstack;
@@ -48,9 +48,7 @@ public class CraintBlockCraftingTableInventory implements IInventory {
 
     @Override
     public void setInventorySlotContents(int index, ItemStack stack) {
-        if (inventory != null) {
-            inventory.set(index, stack);
-        }
+        inventory.set(index, stack);
     }
 
     @Override

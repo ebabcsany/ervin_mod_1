@@ -1195,6 +1195,10 @@
         },
         {
           "type": "minecraft:item",
+          "name": "ervin_mod_1:meat/mront"
+        },
+        {
+          "type": "minecraft:item",
           "name": "ervin_mod_1:stripped_firg_log"
         },
         {

@@ -37,7 +37,7 @@
               }
             }
           ],
-          "name": "ervin_mod_1:viltdrop"
+          "name": "ervin_mod_1:meat/mront"
         }
       ]
     },
@@ -46,7 +46,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:meat/mront"
+          "name": "ervin_mod_1:viltdrop"
         }
       ]
     },

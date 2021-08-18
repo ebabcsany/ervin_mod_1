@@ -75,8 +75,8 @@ public class ShertEntity extends SrachEntity implements IShearable, net.minecraf
       this.dataManager.register(MOOSHROOM_TYPE, ShertEntity.Type.RED.name);
    }
 
-   public ActionResultType func_230254_b_(PlayerEntity p_230254_1_, Hand p_230254_2_) {
-      ItemStack itemstack = p_230254_1_.getHeldItem(p_230254_2_);
+   public ActionResultType func_230254_b_(PlayerEntity p_230254_1_, Hand hand) {
+      ItemStack itemstack = p_230254_1_.getHeldItem(hand);
       if (itemstack.getItem() == Items.BOWL && !this.isChild()) {
          boolean flag = false;
          ItemStack itemstack1;
@@ -91,7 +91,7 @@ public class ShertEntity extends SrachEntity implements IShearable, net.minecraf
          }
 
          ItemStack itemstack2 = DrinkHelper.func_241445_a_(itemstack, p_230254_1_, itemstack1);
-         p_230254_1_.setHeldItem(p_230254_2_, itemstack2);
+         p_230254_1_.setHeldItem(hand, itemstack2);
          SoundEvent soundevent;
          if (flag) {
             soundevent = SoundEvents.ENTITY_MOOSHROOM_SUSPICIOUS_MILK;
@@ -105,7 +105,7 @@ public class ShertEntity extends SrachEntity implements IShearable, net.minecraf
          this.shear(SoundCategory.PLAYERS);
          if (!this.world.isRemote) {
             itemstack.damageItem(1, p_230254_1_, (p_213442_1_) -> {
-               p_213442_1_.sendBreakAnimation(p_230254_2_);
+               p_213442_1_.sendBreakAnimation(hand);
             });
          }
 
@@ -137,7 +137,7 @@ public class ShertEntity extends SrachEntity implements IShearable, net.minecraf
 
          return ActionResultType.func_233537_a_(this.world.isRemote);
       } else {
-         return super.func_230254_b_(p_230254_1_, p_230254_2_);
+         return super.func_230254_b_(p_230254_1_, hand);
       }
    }
 

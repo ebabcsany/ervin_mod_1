@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "#",
+    "S"
+  ],
+  "key": {
+    "#": {
+      "item": "ervin_mod_1:special/thufr"
+    },
+    "S": {
+      "item": "ervin_mod_1:stick/terat_stick"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:tools/sword/thufr_sword",
+    "count": 1
+  }
+}

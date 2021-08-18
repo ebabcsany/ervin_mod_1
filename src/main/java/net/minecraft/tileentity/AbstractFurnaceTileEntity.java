@@ -1,6 +1,5 @@
 package net.minecraft.tileentity;
 
-import com.babcsany.minecraft.ervin_mod_1.tags.ItemTag;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import it.unimi.dsi.fastutil.objects.Object2IntMap.Entry;
@@ -147,7 +146,7 @@ public abstract class AbstractFurnaceTileEntity extends LockableTileEntity imple
       return ItemTags.field_232905_P_.contains(p_235644_0_);
    }
 
-   public static void addItemTagBurnTime(Map<Item, Integer> map, ITag<Item> itemTag, int burnTimeIn) {
+   private static void addItemTagBurnTime(Map<Item, Integer> map, ITag<Item> itemTag, int burnTimeIn) {
       for(Item item : itemTag.getAllElements()) {
          if (!func_235644_b_(item)) {
             map.put(item, burnTimeIn);
@@ -156,35 +155,15 @@ public abstract class AbstractFurnaceTileEntity extends LockableTileEntity imple
 
    }
 
-   private static boolean func_235644_g_(Item p_235644_0_) {
-      return ItemTag.field_232905_P_.contains(p_235644_0_);
+   public  static void addItemBurnTime_(Map<Item, Integer> map, IItemProvider itemProvider, int burnTimeIn) {
+      addItemBurnTime(map, itemProvider, burnTimeIn);
    }
 
-   private static void addItemTag1BurnTime(Map<Item, Integer> map, ITag<Item> itemTag, int burnTimeIn) {
-      for(Item item : itemTag.getAllElements()) {
-         if (!func_235644_g_(item)) {
-            map.put(item, burnTimeIn);
-         }
-      }
-
-   }
-
-   private static void addItemBurn1Time(Map<Item, Integer> map, IItemProvider itemProvider, int burnTimeIn) {
-      Item item = itemProvider.asItem();
-      if (func_235644_g_(item)) {
-         if (SharedConstants.developmentMode) {
-            throw (IllegalStateException)Util.pauseDevMode(new IllegalStateException("A developer tried to explicitly make fire resistant item " + item.getDisplayName((ItemStack)null).getString() + " a furnace fuel. That will not work!"));
-         }
-      } else {
-         map.put(item, burnTimeIn);
-      }
-   }
-
-   public static void addItemBurnTime(Map<Item, Integer> map, IItemProvider itemProvider, int burnTimeIn) {
+   private static void addItemBurnTime(Map<Item, Integer> map, IItemProvider itemProvider, int burnTimeIn) {
       Item item = itemProvider.asItem();
       if (func_235644_b_(item)) {
          if (SharedConstants.developmentMode) {
-            throw (IllegalStateException)Util.pauseDevMode(new IllegalStateException("A developer tried to explicitly make fire resistant item " + item.getDisplayName((ItemStack)null).getString() + " a furnace fuel. That will not work!"));
+            throw Util.pauseDevMode(new IllegalStateException("A developer tried to explicitly make fire resistant item " + item.getDisplayName((ItemStack)null).getString() + " a furnace fuel. That will not work!"));
          }
       } else {
          map.put(item, burnTimeIn);

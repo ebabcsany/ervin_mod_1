@@ -1,5 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.classes.inventory;
 
+import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.IClearable;
 import net.minecraft.item.Item;
@@ -7,7 +8,7 @@ import net.minecraft.item.ItemStack;
 
 import java.util.Set;
 
-public interface IInventory extends IClearable {
+public interface IInventory extends net.minecraft.inventory.IInventory {
     /**
      * Returns the number of slots in the inventory.
      */

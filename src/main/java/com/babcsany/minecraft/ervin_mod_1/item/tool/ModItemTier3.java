@@ -9,11 +9,9 @@ public enum ModItemTier3 implements IItemTier3 {
     TERAT(32,160000,210);
 
     private final int harvestLevel;
-    //private final int maxUses;
     private final float efficiency;
     private final float attackDamage;
     //private final int enchantability;
-    //private final LazyValue<Ingredient> repairMaterial;
 
     ModItemTier3(int harvestLevel, /*int maxUses,*/ float efficiency, float attackDamage /*int enchantability, Supplier<Ingredient> repairMaterialIn*/) {
         this.harvestLevel = harvestLevel;

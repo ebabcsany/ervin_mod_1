@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "ervin_mod_1:terat"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:stick/terat_stick",
+    "count": 1
+  }
+}

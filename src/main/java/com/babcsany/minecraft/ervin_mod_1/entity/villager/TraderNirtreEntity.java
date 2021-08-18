@@ -5,6 +5,7 @@ import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.NirtreTradeWithPlayerGo
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.TraderNirtreTrades;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.spawn_egg.ModSpawnEggItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.special.SpecialItemInit;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -28,9 +29,15 @@ import javax.annotation.Nullable;
 public class TraderNirtreEntity extends AbstractNirtreEntity {
    @Nullable
    private BlockPos traderNirtreTarget;
+   public int timeUntilNextItem = this.rand.nextInt(8000) + 8000;
    private int fire = -this.getFireImmuneTicks();
    private int despawnDelay;
+   public float wingRotation;
+   public float wingRotDelta = 1.0F;
+   public boolean dropItem;
    private int xp;
+   private boolean dropItem1;
+   private boolean dropItem2;
 
    public TraderNirtreEntity(EntityType<? extends TraderNirtreEntity> type, World worldIn) {
       super(type, worldIn);
@@ -114,6 +121,11 @@ public class TraderNirtreEntity extends AbstractNirtreEntity {
       }
    }
 
+   @Override
+   protected void populateTradeData1() {
+
+   }
+
    public void setOffers(MerchantOffers offersIn) {
       this.offers = offersIn;
    }
@@ -192,25 +204,6 @@ public class TraderNirtreEntity extends AbstractNirtreEntity {
       return this.despawnDelay;
    }
 
-   /**
-    * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
-    * use this to react to sunlight and start to burn.
-    */
-   public void livingTick() {
-      super.livingTick();
-      if (!this.world.isRemote) {
-         this.handleDespawn();
-      }
-
-   }
-
-   private void handleDespawn() {
-      if (this.despawnDelay > 0 && !this.hasCustomer() && --this.despawnDelay == 0) {
-         this.remove();
-      }
-
-   }
-
    public void setWanderTarget(@Nullable BlockPos pos) {
       this.traderNirtreTarget = pos;
    }
@@ -239,5 +232,18 @@ public class TraderNirtreEntity extends AbstractNirtreEntity {
          super.onStruckByLightning(lightningBolt);
       }
 
+   }
+
+   public void livingTick() {
+      super.livingTick();
+      this.wingRotation += this.wingRotDelta * 2.0F;
+      if (!this.world.isRemote && this.isAlive() && !this.isChild() && !this.isDropItem() && --this.timeUntilNextItem <= 0) {
+         this.entityDropItem(SpecialItemInit.TFJHU_1.get());
+         this.timeUntilNextItem = this.rand.nextInt(12000) + 12000;
+      }
+   }
+
+   public boolean isDropItem() {
+      return this.dropItem;
    }
 }

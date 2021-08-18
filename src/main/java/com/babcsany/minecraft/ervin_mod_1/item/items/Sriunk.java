@@ -1,6 +1,8 @@
 package com.babcsany.minecraft.ervin_mod_1.item.items;
 
 import com.babcsany.minecraft.ervin_mod_1.item.items.i_item_tiers.IItemTier1;
+import com.babcsany.minecraft.ervin_mod_1.item.tool.IItemTier2;
+import com.babcsany.minecraft.ervin_mod_1.item.tool.IItemTier4;
 import com.babcsany.minecraft.ervin_mod_1.item.tool.TieredItem;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.ImmutableMultimap.Builder;
@@ -21,7 +23,7 @@ public class Sriunk extends TieredItem implements IVanishable {
    /** Modifiers applied when the item is in the mainhand of a user. */
    private final Multimap<Attribute, AttributeModifier> attributeModifiers;
 
-   public Sriunk(IItemTier1 tier, int attackDamageIn, Properties builderIn) {
+   public Sriunk(IItemTier2 tier, int attackDamageIn, Properties builderIn) {
       super(tier, builderIn);
       this.attackDamage = (float)attackDamageIn + tier.getAttackDamage();
       Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();

@@ -7,14 +7,14 @@
   ],
   "key": {
     "#": {
-      "item": "ervin_mod_1:truzn"
+      "item": "ervin_mod_1:tnuzn"
     },
     "S": {
-      "item": "ervin_mod_1:sriunk_stick"
+      "item": "ervin_mod_1:stick/sriunk_stick"
     }
   },
   "result": {
-    "item": "ervin_mod_1:truzn_axe",
+    "item": "ervin_mod_1:tnuzn_axe",
     "count": 1
   }
 }

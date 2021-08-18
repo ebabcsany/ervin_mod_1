@@ -66,15 +66,20 @@ public class SrachEntity extends AnimalEntity {
       return 0.4F;
    }
 
-   public ActionResultType func_230254_b_(PlayerEntity p_230254_1_, Hand p_230254_2_) {
-      ItemStack itemstack = p_230254_1_.getHeldItem(p_230254_2_);
+   public ActionResultType func_230254_b_(PlayerEntity p_230254_1_, Hand hand) {
+      ItemStack itemstack = p_230254_1_.getHeldItem(hand);
+      ItemStack itemstack1 = DrinkHelper.func_241445_a_(itemstack, p_230254_1_, com.babcsany.minecraft.init.item.ItemInit.JURK_BUCKET.getDefaultInstance());
+      ItemStack itemstack2 = DrinkHelper.func_241445_a_(itemstack, p_230254_1_, ItemInit.GANT.get().getDefaultInstance());
       if (itemstack.getItem() == Items.BUCKET && !this.isChild()) {
          p_230254_1_.playSound(SoundEvents.ENTITY_COW_MILK, 1.0F, 1.0F);
-         ItemStack itemstack1 = DrinkHelper.func_241445_a_(itemstack, p_230254_1_, com.babcsany.minecraft.init.item.ItemInit.JURK_BUCKET.getDefaultInstance());
-         p_230254_1_.setHeldItem(p_230254_2_, itemstack1);
+         p_230254_1_.setHeldItem(hand, itemstack1);
+         return ActionResultType.func_233537_a_(this.world.isRemote);
+      } else if (itemstack.getItem() == com.babcsany.minecraft.init.item.ItemInit.JURK_BUCKET && !this.isChild()) {
+         p_230254_1_.playSound(SoundEvents.ENTITY_COW_MILK, 1.0F, 1.0F);
+         p_230254_1_.setHeldItem(hand, itemstack2);
          return ActionResultType.func_233537_a_(this.world.isRemote);
       } else {
-         return super.func_230254_b_(p_230254_1_, p_230254_2_);
+         return super.func_230254_b_(p_230254_1_, hand);
       }
    }
 

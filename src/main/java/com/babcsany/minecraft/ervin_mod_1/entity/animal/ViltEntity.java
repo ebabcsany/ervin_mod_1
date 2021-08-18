@@ -1,5 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.animal;
 
+import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.hhij.HhijMeleeAttackGoal;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.init.DyeColorInit;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
@@ -98,9 +99,11 @@ public class ViltEntity extends AnimalEntity implements IShearable, net.minecraf
       this.goalSelector.addGoal(4, new TemptGoal(this, 1.25D, false, TEMPTATION_ITEMS));
       this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.1D));
       this.goalSelector.addGoal(5, this.eatGrassGoal);
+      this.goalSelector.addGoal(5, new MeleeAttackGoal(this, 1.0D, true));
       this.goalSelector.addGoal(6, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
       this.goalSelector.addGoal(7, new LookAtGoal(this, PlayerEntity.class, 6.0F));
       this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
+      this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
    }
 
    protected void updateAITasks() {
@@ -121,7 +124,7 @@ public class ViltEntity extends AnimalEntity implements IShearable, net.minecraf
    }
 
    public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
-      return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 80.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, (double)0.92F).createMutableAttribute(Attributes.ATTACK_DAMAGE, 2.0D);
+      return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 80.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.36F).createMutableAttribute(Attributes.ATTACK_DAMAGE, 2.0D);
    }
 
    protected void registerData() {

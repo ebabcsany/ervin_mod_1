@@ -41,7 +41,7 @@ public class FreinBlock extends BreakableBlock {
    private void bounceEntity(Entity entity) {
       Vector3d vector3d = entity.getMotion();
       if (vector3d.y < 0.0D) {
-         double d0 = entity instanceof LivingEntity ? 1.0D : 0.8D;
+         double d0 = entity instanceof LivingEntity ? 1.0D : 0.9D;
          entity.setMotion(vector3d.x, -vector3d.y * d0, vector3d.z);
       }
 

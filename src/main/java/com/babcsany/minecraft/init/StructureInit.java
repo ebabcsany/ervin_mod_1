@@ -16,11 +16,16 @@ public abstract class StructureInit {
 
     private static final Map<Structure<?>, GenerationStage.Decoration> field_236385_u_ = Maps.newHashMap();
 
-    public static final Structure<BuriedTreasureConfig> BURIED_TREASURE_STRUCTURE = register("ervin_mod_1:Buried_Treasure", new BuriedTreasureStructure(BuriedTreasureConfig.buriedTreasureConfigCodec), GenerationStage.Decoration.UNDERGROUND_STRUCTURES);
+    public static final Structure<BuriedTreasureConfig> BURIED_TREASURE_STRUCTURE = register("Buried_Treasure", new BuriedTreasureStructure(BuriedTreasureConfig.buriedTreasureConfigCodec), GenerationStage.Decoration.UNDERGROUND_STRUCTURES);
+
+    private static String string(String name) {
+        String string = "ervin_mod_1:";
+        return string + name;
+    }
 
     public static <F extends Structure<?>> F register(String string, F F, GenerationStage.Decoration decoration) {
-        Structure.field_236365_a_.put(string.toLowerCase(Locale.ROOT), F);
+        Structure.field_236365_a_.put(string(string).toLowerCase(Locale.ROOT), F);
         field_236385_u_.put(F, decoration);
-        return Registry.register(Registry.STRUCTURE_FEATURE, string.toLowerCase(Locale.ROOT), F);
+        return Registry.register(Registry.STRUCTURE_FEATURE, string(string).toLowerCase(Locale.ROOT), F);
     }
 }

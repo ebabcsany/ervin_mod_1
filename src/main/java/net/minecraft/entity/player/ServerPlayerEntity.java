@@ -1,10 +1,15 @@
 package net.minecraft.entity.player;
 
-import com.babcsany.minecraft.ervin_mod_1.block.FriszernTileEntity;
-import com.babcsany.minecraft.init.item.ItemInit;
 import com.google.common.collect.Lists;
 import com.mojang.authlib.GameProfile;
 import com.mojang.datafixers.util.Either;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.OptionalInt;
+import java.util.Random;
+import java.util.UUID;
+import javax.annotation.Nullable;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.advancements.PlayerAdvancements;
 import net.minecraft.block.BlockState;
@@ -22,8 +27,17 @@ import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.passive.horse.AbstractHorseEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.container.*;
-import net.minecraft.item.*;
+import net.minecraft.inventory.container.Container;
+import net.minecraft.inventory.container.CraftingResultSlot;
+import net.minecraft.inventory.container.HorseInventoryContainer;
+import net.minecraft.inventory.container.IContainerListener;
+import net.minecraft.inventory.container.INamedContainerProvider;
+import net.minecraft.item.AbstractMapItem;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.item.MerchantOffers;
+import net.minecraft.item.WrittenBookItem;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.ServerRecipeBook;
 import net.minecraft.nbt.CompoundNBT;
@@ -31,7 +45,36 @@ import net.minecraft.nbt.NBTDynamicOps;
 import net.minecraft.network.IPacket;
 import net.minecraft.network.play.ServerPlayNetHandler;
 import net.minecraft.network.play.client.CClientSettingsPacket;
-import net.minecraft.network.play.server.*;
+import net.minecraft.network.play.server.SAnimateHandPacket;
+import net.minecraft.network.play.server.SCameraPacket;
+import net.minecraft.network.play.server.SChangeGameStatePacket;
+import net.minecraft.network.play.server.SChatPacket;
+import net.minecraft.network.play.server.SCloseWindowPacket;
+import net.minecraft.network.play.server.SCombatPacket;
+import net.minecraft.network.play.server.SDestroyEntitiesPacket;
+import net.minecraft.network.play.server.SEntityStatusPacket;
+import net.minecraft.network.play.server.SMerchantOffersPacket;
+import net.minecraft.network.play.server.SOpenBookWindowPacket;
+import net.minecraft.network.play.server.SOpenHorseWindowPacket;
+import net.minecraft.network.play.server.SOpenSignMenuPacket;
+import net.minecraft.network.play.server.SOpenWindowPacket;
+import net.minecraft.network.play.server.SPlayEntityEffectPacket;
+import net.minecraft.network.play.server.SPlaySoundEffectPacket;
+import net.minecraft.network.play.server.SPlaySoundEventPacket;
+import net.minecraft.network.play.server.SPlayerAbilitiesPacket;
+import net.minecraft.network.play.server.SPlayerLookPacket;
+import net.minecraft.network.play.server.SRemoveEntityEffectPacket;
+import net.minecraft.network.play.server.SRespawnPacket;
+import net.minecraft.network.play.server.SSendResourcePackPacket;
+import net.minecraft.network.play.server.SServerDifficultyPacket;
+import net.minecraft.network.play.server.SSetExperiencePacket;
+import net.minecraft.network.play.server.SSetSlotPacket;
+import net.minecraft.network.play.server.SSpawnPlayerPacket;
+import net.minecraft.network.play.server.SUnloadChunkPacket;
+import net.minecraft.network.play.server.SUpdateHealthPacket;
+import net.minecraft.network.play.server.SUpdateTileEntityPacket;
+import net.minecraft.network.play.server.SWindowItemsPacket;
+import net.minecraft.network.play.server.SWindowPropertyPacket;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.scoreboard.Score;
@@ -47,10 +90,31 @@ import net.minecraft.stats.Stats;
 import net.minecraft.tileentity.CommandBlockTileEntity;
 import net.minecraft.tileentity.SignTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.*;
-import net.minecraft.util.math.*;
+import net.minecraft.util.CooldownTracker;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.Direction;
+import net.minecraft.util.EntityDamageSource;
+import net.minecraft.util.Hand;
+import net.minecraft.util.HandSide;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.RegistryKey;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.ServerCooldownTracker;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.Unit;
+import net.minecraft.util.Util;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.SectionPos;
 import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.text.*;
+import net.minecraft.util.text.ChatType;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.util.text.event.HoverEvent;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.GameRules;
@@ -61,9 +125,6 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.storage.IWorldInfo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import javax.annotation.Nullable;
-import java.util.*;
 
 public class ServerPlayerEntity extends PlayerEntity implements IContainerListener {
    private static final Logger LOGGER = LogManager.getLogger();
@@ -684,14 +745,16 @@ public class ServerPlayerEntity extends PlayerEntity implements IContainerListen
       if (player.isSpectator()) {
          return this.getSpectatingEntity() == this;
       } else {
-         return !this.isSpectator() && super.isSpectatedByPlayer(player);
+         return this.isSpectator() ? false : super.isSpectatedByPlayer(player);
       }
    }
 
-   private void sendTileEntityUpdate(TileEntity tileEntity) {
-      SUpdateTileEntityPacket supdatetileentitypacket = tileEntity.getUpdatePacket();
-      if (supdatetileentitypacket != null) {
-         this.connection.sendPacket(supdatetileentitypacket);
+   private void sendTileEntityUpdate(TileEntity p_147097_1_) {
+      if (p_147097_1_ != null) {
+         SUpdateTileEntityPacket supdatetileentitypacket = p_147097_1_.getUpdatePacket();
+         if (supdatetileentitypacket != null) {
+            this.connection.sendPacket(supdatetileentitypacket);
+         }
       }
 
    }
@@ -886,17 +949,9 @@ public class ServerPlayerEntity extends PlayerEntity implements IContainerListen
       net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(new net.minecraftforge.event.entity.player.PlayerContainerEvent.Open(this, this.openContainer));
    }
 
-   @Override
    public void openBook(ItemStack stack, Hand hand) {
       Item item = stack.getItem();
       if (item == Items.WRITTEN_BOOK) {
-         if (WrittenBookItem.resolveContents(stack, this.getCommandSource(), this)) {
-            this.openContainer.detectAndSendChanges();
-         }
-
-         this.connection.sendPacket(new SOpenBookWindowPacket(hand));
-      }
-      if (item == ItemInit.WRITTEN_BOOK_BLACK) {
          if (WrittenBookItem.resolveContents(stack, this.getCommandSource(), this)) {
             this.openContainer.detectAndSendChanges();
          }
@@ -909,11 +964,6 @@ public class ServerPlayerEntity extends PlayerEntity implements IContainerListen
    public void openCommandBlock(CommandBlockTileEntity commandBlock) {
       commandBlock.setSendToClient(true);
       this.sendTileEntityUpdate(commandBlock);
-   }
-
-   public void openCommandBlock(FriszernTileEntity friszern) {
-      friszern.setSendToClient(true);
-      this.sendTileEntityUpdate(friszern);
    }
 
    /**

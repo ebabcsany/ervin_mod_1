@@ -1,8 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.init;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
-import com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit;
-import com.babcsany.minecraft.ervin_mod_1.tile_entity.ReutrienTileEntity;
+import com.babcsany.minecraft.init.BlockInit;
 import com.google.common.collect.ImmutableSet;
 import com.mojang.datafixers.types.Type;
 import net.minecraft.block.Block;
@@ -16,7 +15,6 @@ import net.minecraft.util.datafix.TypeReferences;
 import net.minecraft.util.registry.Registry;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
@@ -30,7 +28,6 @@ public class TileEntityInit<T extends TileEntity> {
 	private static final Logger LOGGER = LogManager.getLogger();
 	public static final DeferredRegister<TileEntityType<?>> TILE_ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, Ervin_mod_1.MOD_ID);
 
-	public static final RegistryObject<TileEntityType<ReutrienTileEntity>> REUTRIEN = TILE_ENTITY_TYPES.register("reutrien", () -> TileEntityType.Builder.create(ReutrienTileEntity::new, BlockItemInit.REUTRIEN.get()).build(null));
 	public static final TileEntityType<CommandBlockFriszernTileEntity> FRISZERN = register("ervin_mod_1:friszern", Builder.create(CommandBlockFriszernTileEntity::new, BlockInit.FRISZERN, BlockInit.CHAIN_FRISZERN, BlockInit.REPEATING_FRISZERN));
 	public static final TileEntityType<CommandBlockTileEntity> COMMAND_BLOCK = register("ervin_mod_1:command_block", Builder.create(CommandBlockTileEntity::new, Blocks.COMMAND_BLOCK, Blocks.CHAIN_COMMAND_BLOCK, Blocks.REPEATING_COMMAND_BLOCK, BlockInit.FRISZERN, BlockInit.CHAIN_FRISZERN, BlockInit.REPEATING_FRISZERN));
 

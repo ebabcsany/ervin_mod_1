@@ -32,7 +32,7 @@ public enum TextFormatting1 {
    STRIKETHROUGH("STRIKETHROUGH", 'm', true),
    UNDERLINE("UNDERLINE", 'n', true),
    ITALIC("ITALIC", 'o', true),
-   RESET("RESET", 'r', -1, (Integer)null);
+   RESET("RESET", 'r', -1, null);
 
    private static final Map<String, TextFormatting1> NAME_MAPPING = Arrays.stream(values()).collect(Collectors.toMap((p_199746_0_) -> {
       return lowercaseAlpha(p_199746_0_.name);

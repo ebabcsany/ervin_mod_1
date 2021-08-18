@@ -2,7 +2,7 @@
   "replace": false,
   "values": [
     "ervin_mod_1:cooked_gubrov",
-    "ervin_mod_1:cooked_steef",
+    "ervin_mod_1:meat/cooked_steef",
     "minecraft:cooked_beef",
     "minecraft:cooked_chicken",
     "minecraft:cooked_cod",

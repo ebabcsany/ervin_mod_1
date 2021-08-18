@@ -4,12 +4,16 @@ import com.babcsany.minecraft.IRangedAttackMob;
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.dgrurbk.DgrurbkLookAtGoal;
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.dgrurbk.DgrurbkSwimGoal;
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.dgrurbk.NearestAttackableDgrurbkMobTargetGoal;
+import com.babcsany.minecraft.ervin_mod_1.entity.animal.hhij.HhijEntity;
+import com.babcsany.minecraft.ervin_mod_1.entity.living.Living;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.DgrurbAgeableEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.projectile.DgrurbkSkullEntity;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.tool.isBurnableSpecialToolItemInit;
 import com.babcsany.minecraft.ervin_mod_1.world.server.ServerBossInfo_;
+import com.babcsany.minecraft.init.item.icsvre.IcsvreInit;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
@@ -55,8 +59,11 @@ public class Dgrurbk extends AbstractDgrurbkEntity implements IRangedAttackMob {
     private static final DataParameter<Boolean> INVULNERABLE = EntityDataManager.createKey(Dgrurbk.class, DataSerializers.BOOLEAN);
     private DgrurbkEatGrassGoal eatGrassGoal;
     private static BossInfo.Color color;
+    private static Living living;
     private int eatingGrassTimer;
     protected int growingAge;
+    public boolean dropItem;
+    public int timeUntilNextItem = this.rand.nextInt(6000) + 6000;
     private int blockBreakCounter;
 
     public Dgrurbk(EntityType<? extends Dgrurbk> type, World worldIn) {
@@ -152,6 +159,26 @@ public class Dgrurbk extends AbstractDgrurbkEntity implements IRangedAttackMob {
 
             this.setBossInfo.setPercent(this.getHealth() / this.getMaxHealth());
         }
+    }
+
+    @Override
+    public void livingTick() {
+        super.livingTick();
+        if (!this.world.isRemote) {
+            this.handleDespawn();
+        }
+        if (this.world.isRemote) {
+            this.eatingGrassTimer = Math.max(0, this.eatingGrassTimer - 1);
+        }
+        if (!this.world.isRemote && this.isAlive() && !this.isChild() && !this.isDropItem() && --this.timeUntilNextItem <= 0) {
+            this.entityDropItem(IcsvreInit.STAPHO);
+            living.entityDropEntity(com.babcsany.minecraft.init.EntityInit.ZUR_ENTITY);
+            this.timeUntilNextItem = this.rand.nextInt(24000) + 12000;
+        }
+    }
+
+    public boolean isDropItem() {
+        return this.dropItem;
     }
 
     public void writeAdditional(CompoundNBT compound) {
@@ -364,7 +391,7 @@ public class Dgrurbk extends AbstractDgrurbkEntity implements IRangedAttackMob {
                 if (this.isCharged()) {
                     Entity entity = source.getImmediateSource();
                     if (entity instanceof AbstractArrowEntity) {
-                        return false;
+                        return true;
                     }
                 }
 
@@ -374,6 +401,10 @@ public class Dgrurbk extends AbstractDgrurbkEntity implements IRangedAttackMob {
                 } else {
                     if (this.blockBreakCounter <= 0) {
                         this.blockBreakCounter = 20;
+                    }
+
+                    if (!(entity1 instanceof HhijEntity) && entity1 instanceof LivingEntity && ((LivingEntity) entity1).getCreatureAttribute() == this.getCreatureAttribute()) {
+                        return true;
                     }
 
                     return super.attackEntityFrom(source, amount);

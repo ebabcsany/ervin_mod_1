@@ -20,6 +20,7 @@
 package net.minecraftforge.common.extensions;
 
 import com.babcsany.minecraft.ervin_mod_1.block.FriszernTileEntity;
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurTasks;
 import com.babcsany.minecraft.ervin_mod_1.entity.player.PlayerEntity1;
 import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.Enchantment;
@@ -28,6 +29,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.monster.EndermanEntity;
+import net.minecraft.entity.monster.piglin.PiglinTasks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
@@ -455,6 +457,11 @@ public interface IForgeItemStack extends ICapabilitySerializable<CompoundNBT>
     default boolean isPiglinCurrency()
     {
         return getStack().getItem().isPiglinCurrency(getStack());
+    }
+
+    default boolean isZurCurrency()
+    {
+        return getStack().getItem().isZurCurrency(getStack());
     }
 
     /**

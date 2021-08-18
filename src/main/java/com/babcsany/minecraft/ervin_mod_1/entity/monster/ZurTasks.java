@@ -1,9 +1,22 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.monster;
 
+import com.babcsany.minecraft.ervin_mod_1.entity.ai.brain.task.*;
+import com.babcsany.minecraft.ervin_mod_1.entity.ai.brain.task.DummyTask;
+import com.babcsany.minecraft.ervin_mod_1.entity.ai.brain.task.EndAttackTask;
+import com.babcsany.minecraft.ervin_mod_1.entity.ai.brain.task.FindWalkTargetTask;
+import com.babcsany.minecraft.ervin_mod_1.entity.ai.brain.task.FirstShuffledTask;
+import com.babcsany.minecraft.ervin_mod_1.entity.ai.brain.task.GetAngryTask;
+import com.babcsany.minecraft.ervin_mod_1.entity.ai.brain.task.InteractWithDoorTask;
+import com.babcsany.minecraft.ervin_mod_1.entity.ai.brain.task.InteractWithEntityTask;
+import com.babcsany.minecraft.ervin_mod_1.entity.ai.brain.task.JumpOnBedTask;
+import com.babcsany.minecraft.ervin_mod_1.entity.ai.brain.task.LookAtEntityTask;
+import com.babcsany.minecraft.ervin_mod_1.entity.ai.brain.task.LookTask;
+import com.babcsany.minecraft.ervin_mod_1.entity.ai.brain.task.Task;
+import com.babcsany.minecraft.ervin_mod_1.entity.ai.brain.task.UpdateActivityTask;
+import com.babcsany.minecraft.ervin_mod_1.entity.ai.brain.task.WalkToTargetTask;
+import com.babcsany.minecraft.ervin_mod_1.entity.ai.brain.task.WalkTowardsLookTargetTask;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.AbstractZurEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.task.*;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.task.Task;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.task.WalkToTargetTask;
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.task.ZurIdleActivityTask;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
 import com.babcsany.minecraft.ervin_mod_1.tags.ItemTag;
@@ -22,7 +35,7 @@ import net.minecraft.entity.ai.brain.schedule.Activity;
 import net.minecraft.entity.ai.brain.task.*;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.monster.HoglinEntity;
-import net.minecraft.entity.monster.piglin.*;
+import net.minecraft.entity.monster.piglin.PiglinEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -50,7 +63,7 @@ public class ZurTasks<E extends LivingEntity> {
    private final Map<Activity, Set<MemoryModuleType<?>>> field_233691_h_ = Maps.newHashMap();
 
    protected static Brain<?> func_234469_a_(ZurEntity p_234469_0_, Brain<ZurEntity> p_234469_1_) {
-      //func_234464_a_(p_234469_1_);
+      func_234464_a_(p_234469_1_);
       //func_234485_b_(p_234469_1_);
       //func_234502_d_(p_234469_1_);
       //func_234488_b_(p_234469_0_, p_234469_1_);
@@ -68,12 +81,16 @@ public class ZurTasks<E extends LivingEntity> {
       zur.getBrain().func_233696_a_(MemoryModuleType.HUNTED_RECENTLY, true, i);
    }
 
+   private static void func_234464_a_(Brain<ZurEntity> zurEntityBrain) {
+      zurEntityBrain.func_233698_g_(Activity.CORE, 0, ImmutableList.<Task<? super ZurEntity>>of(new LookTask(45, 90), new WalkToTargetTask(200), new InteractWithDoorTask(), func_241428_d_(), func_234500_d_(), new ZurStartAdmiringItemTask<>(), new ZurAdmireItemTask<>(120), new EndAttackTask(300, ZurTasks::func_234461_a_), new GetAngryTask<>()));
+   }
+
    /*public static ImmutableList<Pair<Integer, ? extends Task<? super ZurEntity>>> play(float walkingSpeed) {
       return ImmutableList.of(Pair.of(0, new WalkToTargetTask(100)), Pair.of(5, new WalkToVillagerBabiesTask()), Pair.of(5, new FirstShuffledTask<>(ImmutableMap.of(MemoryModuleType.VISIBLE_VILLAGER_BABIES, MemoryModuleStatus.VALUE_ABSENT), ImmutableList.of(Pair.of(InteractWithEntityTask.func_220445_a(EntityInit.ZUR_ENTITY.get(), 8, MemoryModuleType.INTERACTION_TARGET, walkingSpeed, 2), 2), Pair.of(InteractWithEntityTask.func_220445_a(EntityType.CAT, 8, MemoryModuleType.INTERACTION_TARGET, walkingSpeed, 2), 1), Pair.of(new FindWalkTargetTask(walkingSpeed), 1), Pair.of(new WalkTowardsLookTargetTask(walkingSpeed, 2), 1), Pair.of(new JumpOnBedTask(walkingSpeed), 2), Pair.of(new DummyTask(20, 40), 2)))), Pair.of(99, new UpdateActivityTask()));
    }*/
 
-   public static ImmutableList<Pair<Integer, ?>> play(float walkingSpeed) {
-      return ImmutableList.of(Pair.of(0, new WalkToTargetTask(100)), Pair.of(5, new WalkToVillagerBabiesTask()), Pair.of(5, new FirstShuffledTask<>(ImmutableMap.of(MemoryModuleType.VISIBLE_VILLAGER_BABIES, MemoryModuleStatus.VALUE_ABSENT), ImmutableList.of(Pair.of(InteractWithEntityTask.func_220445_a(com.babcsany.minecraft.init.EntityInit.ZUR_ENTITY, 8, MemoryModuleType.INTERACTION_TARGET, walkingSpeed, 2), 2), Pair.of(InteractWithEntityTask.func_220445_a(EntityType.CAT, 8, MemoryModuleType.INTERACTION_TARGET, walkingSpeed, 2), 1), Pair.of(new FindWalkTargetTask(walkingSpeed), 1), Pair.of(new WalkTowardsLookTargetTask(walkingSpeed, 2), 1), Pair.of(new JumpOnBedTask(walkingSpeed), 2), Pair.of(new DummyTask(20, 40), 2)))), Pair.of(99, new UpdateActivityTask()));
+   public static ImmutableList<Pair<Integer, ?>> play(float walkingSpeed, float Float) {
+      return ImmutableList.of(Pair.of(0, new WalkToTargetTask(100)), Pair.of(3, new ZurTradeTask(Float)), Pair.of(5, new WalkToVillagerBabiesTask()), Pair.of(5, new FirstShuffledTask<>(ImmutableMap.of(MemoryModuleType.VISIBLE_VILLAGER_BABIES, MemoryModuleStatus.VALUE_ABSENT), ImmutableList.of(Pair.of(InteractWithEntityTask.func_220445_a(com.babcsany.minecraft.init.EntityInit.ZUR_ENTITY, 8, MemoryModuleType.INTERACTION_TARGET, walkingSpeed, 2), 2), Pair.of(InteractWithEntityTask.func_220445_a(EntityType.CAT, 8, MemoryModuleType.INTERACTION_TARGET, walkingSpeed, 2), 1), Pair.of(new FindWalkTargetTask(walkingSpeed), 1), Pair.of(new WalkTowardsLookTargetTask(walkingSpeed, 2), 1), Pair.of(new JumpOnBedTask(walkingSpeed), 2), Pair.of(new DummyTask(20, 40), 2)))), Pair.of(99, new UpdateActivityTask()));
    }
 
    /*public void func_233698_a_(Activity p_233698_1_, int p_233698_2_, ImmutableList<? extends com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.Task<? super E>> p_233698_3_) {
@@ -155,9 +172,9 @@ public class ZurTasks<E extends LivingEntity> {
       return new ZurIdleActivityTask<>(ZurEntity::isChild, MemoryModuleType.NEAREST_VISIBLE_NEMESIS, MemoryModuleType.AVOID_TARGET, field_241418_g_);
    }
 
-   /*private static com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.PiglinIdleActivityTask<ZurEntity, LivingEntity> func_234500_d_() {
-      return new com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.PiglinIdleActivityTask<>(ZurTasks::func_234525_l_, MemoryModuleType.NEAREST_VISIBLE_ZOMBIFIED, field_234449_f_);
-   }*/
+   private static ZurIdleActivityTask<ZurEntity, LivingEntity> func_234500_d_() {
+      return new ZurIdleActivityTask<>(ZurTasks::func_234525_l_, MemoryModuleType.NEAREST_VISIBLE_ZOMBIFIED, MemoryModuleType.AVOID_TARGET, field_234449_f_);
+   }
 
    protected static void func_234486_b_(ZurEntity p_234486_0_) {
       Brain<ZurEntity> brain = (Brain<ZurEntity>) p_234486_0_.getBrain();
@@ -235,34 +252,34 @@ public class ZurTasks<E extends LivingEntity> {
       return itemstack1;
    }
 
-   /*public static void func_234477_a_(ZurEntity zur, boolean p_234477_1_) {
-      ItemStack itemstack = zur.getHeldItem(Hand.OFF_HAND);
-      zur.setHeldItem(Hand.OFF_HAND, ItemStack.EMPTY);
-      if (zur.Child()) {
+   protected static void func_234477_a_(AbstractZurEntity zurEntity, boolean p_234477_1_) {
+      ItemStack itemstack = zurEntity.getHeldItem(Hand.OFF_HAND);
+      zurEntity.setHeldItem(Hand.OFF_HAND, ItemStack.EMPTY);
+      if (zurEntity.isNotChild()) {
          boolean flag = itemstack.isPiglinCurrency();
          if (p_234477_1_ && flag) {
-            func_234475_a_(zur, func_234524_k_(zur));
+            func_234475_a_(zurEntity, func_234524_k_(zurEntity));
          } else if (!flag) {
-            boolean flag1 = zur.func_233665_g_(itemstack);
+            boolean flag1 = zurEntity.func_233665_g_(itemstack);
             if (!flag1) {
-               func_234498_c_(zur, itemstack);
+               func_234498_c_(zurEntity, itemstack);
             }
          }
       } else {
-         boolean flag2 = zur.func_233665_g_(itemstack);
+         boolean flag2 = zurEntity.func_233665_g_(itemstack);
          if (!flag2) {
-            ItemStack itemstack1 = zur.getHeldItemMainhand();
+            ItemStack itemstack1 = zurEntity.getHeldItemMainhand();
             if (func_234480_a_(itemstack1.getItem())) {
-               func_234498_c_(zur, itemstack1);
+               func_234498_c_(zurEntity, itemstack1);
             } else {
-               func_234475_a_(zur, Collections.singletonList(itemstack1));
+               func_234475_a_(zurEntity, Collections.singletonList(itemstack1));
             }
 
-            zur.func_234438_m_(itemstack);
+            zurEntity.func_234438_m_(itemstack);
          }
       }
 
-   }*/
+   }
 
    protected static void func_234496_c_(ZurEntity zur) {
       if (func_234451_A_(zur) && !zur.getHeldItemOffhand().isEmpty()) {
@@ -272,12 +289,12 @@ public class ZurTasks<E extends LivingEntity> {
 
    }
 
-   private static void func_234498_c_(ZurEntity zur, ItemStack stack) {
+   private static void func_234498_c_(AbstractZurEntity zur, ItemStack stack) {
       ItemStack itemstack = zur.func_234436_k_(stack);
       func_234490_b_(zur, Collections.singletonList(itemstack));
    }
 
-   private static void func_234475_a_(ZurEntity zur, List<ItemStack> stackList) {
+   private static void func_234475_a_(AbstractZurEntity zur, List<ItemStack> stackList) {
       Optional<PlayerEntity> optional = zur.getBrain().getMemory(MemoryModuleType.NEAREST_VISIBLE_PLAYER);
       if (optional.isPresent()) {
          func_234472_a_(zur, optional.get(), stackList);
@@ -287,15 +304,15 @@ public class ZurTasks<E extends LivingEntity> {
 
    }
 
-   private static void func_234490_b_(ZurEntity zur, List<ItemStack> stackList) {
+   private static void func_234490_b_(AbstractZurEntity zur, List<ItemStack> stackList) {
       func_234476_a_(zur, stackList, func_234537_y_(zur));
    }
 
-   private static void func_234472_a_(ZurEntity zur, PlayerEntity player, List<ItemStack> p_234472_2_) {
+   private static void func_234472_a_(AbstractZurEntity zur, PlayerEntity player, List<ItemStack> p_234472_2_) {
       func_234476_a_(zur, p_234472_2_, player.getPositionVec());
    }
 
-   private static void func_234476_a_(ZurEntity zur, List<ItemStack> p_234476_1_, Vector3d p_234476_2_) {
+   private static void func_234476_a_(AbstractZurEntity zur, List<ItemStack> p_234476_1_, Vector3d p_234476_2_) {
       if (!p_234476_1_.isEmpty()) {
          zur.swingArm(Hand.OFF_HAND);
 
@@ -306,7 +323,7 @@ public class ZurTasks<E extends LivingEntity> {
 
    }
 
-   private static List<ItemStack> func_234524_k_(ZurEntity p_234524_0_) {
+   private static List<ItemStack> func_234524_k_(AbstractZurEntity p_234524_0_) {
       LootTable loottable = p_234524_0_.world.getServer().getLootTableManager().getLootTableFromLocation(LootTables.field_237385_ay_);
       return loottable.generate((new LootContext.Builder((ServerWorld)p_234524_0_.world)).withParameter(LootParameters.THIS_ENTITY, p_234524_0_).withRandom(p_234524_0_.world.rand).build(LootParameterSets.field_237453_h_));
    }
@@ -345,7 +362,7 @@ public class ZurTasks<E extends LivingEntity> {
       return item.isIn(ItemTag.ZUR_LOVED);
    }
 
-   private static boolean func_234467_a_(ZurEntity p_234467_0_, Entity p_234467_1_) {
+   private static boolean func_234467_a_(AbstractZurEntity p_234467_0_, Entity p_234467_1_) {
       if (!(p_234467_1_ instanceof MobEntity)) {
          return false;
       } else {
@@ -358,19 +375,20 @@ public class ZurTasks<E extends LivingEntity> {
       return func_234526_m_(p_234504_0_).filter((p_234483_1_) -> {
          return p_234483_1_ == p_234504_1_;
       }).isPresent();
-   }
+   }*/
 
-   private static boolean func_234525_l_(ZurEntity p_234525_0_) {
-      Brain<ZurEntity> brain = (Brain<ZurEntity>) p_234525_0_.getBrain();
+   private static boolean func_234525_l_(AbstractZurEntity zurEntity) {
+      Brain<AbstractZurEntity> brain;
+      brain = (Brain<AbstractZurEntity>) zurEntity.getBrain();
       if (brain.hasMemory(MemoryModuleType.NEAREST_VISIBLE_ZOMBIFIED)) {
          LivingEntity livingentity = brain.getMemory(MemoryModuleType.NEAREST_VISIBLE_ZOMBIFIED).get();
-         return p_234525_0_.isEntityInRange(livingentity, 6.0D);
+         return zurEntity.isEntityInRange(livingentity, 6.0D);
       } else {
          return false;
       }
    }
 
-   private static Optional<? extends LivingEntity> func_234526_m_(PiglinEntity p_234526_0_) {
+   /*private static Optional<? extends LivingEntity> func_234526_m_(PiglinEntity p_234526_0_) {
       Brain<ZurEntity> brain = p_234526_0_.getBrain();
       if (func_234525_l_(p_234526_0_)) {
          return Optional.empty();
@@ -411,7 +429,7 @@ public class ZurTasks<E extends LivingEntity> {
       });
    }*/
 
-   public static ActionResultType func_234471_a_(ZurEntity p_234471_0_, PlayerEntity p_234471_1_, Hand p_234471_2_) {
+   public static ActionResultType func_234471_a_(AbstractZurEntity p_234471_0_, PlayerEntity p_234471_1_, Hand p_234471_2_) {
       ItemStack itemstack = p_234471_1_.getHeldItem(p_234471_2_);
       if (func_234489_b_(p_234471_0_, itemstack)) {
          ItemStack itemstack1 = itemstack.split(1);
@@ -424,17 +442,17 @@ public class ZurTasks<E extends LivingEntity> {
       }
    }
 
-   protected static boolean func_234489_b_(ZurEntity p_234489_0_, ItemStack p_234489_1_) {
-      return !func_234453_C_(p_234489_0_) && !func_234451_A_(p_234489_0_) && p_234489_0_.Child() && p_234489_1_.isPiglinCurrency();
+   public static boolean func_234489_b_(AbstractZurEntity p_234489_0_, ItemStack p_234489_1_) {
+      return !func_234453_C_(p_234489_0_) && !func_234451_A_(p_234489_0_) && p_234489_0_.isNotChild() && p_234489_1_.isZurCurrency();
    }
 
-   /*protected static void func_234468_a_(PiglinEntity p_234468_0_, LivingEntity p_234468_1_) {
-      if (!(p_234468_1_ instanceof PiglinEntity)) {
+   protected static void func_234468_a_(AbstractZurEntity p_234468_0_, LivingEntity p_234468_1_) {
+      if (!(p_234468_1_ instanceof AbstractZurEntity)) {
          if (func_234454_D_(p_234468_0_)) {
             func_234477_a_(p_234468_0_, false);
          }
 
-         Brain<PiglinEntity> brain = p_234468_0_.getBrain();
+         Brain<AbstractZurEntity> brain = (Brain<AbstractZurEntity>) p_234468_0_.getBrain();
          brain.removeMemory(MemoryModuleType.CELEBRATE_LOCATION);
          brain.removeMemory(MemoryModuleType.DANCING);
          brain.removeMemory(MemoryModuleType.ADMIRING_ITEM);
@@ -450,20 +468,20 @@ public class ZurTasks<E extends LivingEntity> {
          });
          if (p_234468_0_.isChild()) {
             brain.func_233696_a_(MemoryModuleType.AVOID_TARGET, p_234468_1_, 100L);
-            if (func_234506_e_(p_234468_1_)) {
+            /*if (func_234506_e_(p_234468_1_)) {
                func_234487_b_(p_234468_0_, p_234468_1_);
-            }
+            }*/
 
-         } else if (p_234468_1_.getType() == EntityType.HOGLIN && func_234535_v_(p_234468_0_)) {
+         } else if (p_234468_1_.getType() == EntityInit.ZUR_NIRTRE_ENTITY.get() && func_234535_v_(p_234468_0_)) {
             func_234521_i_(p_234468_0_, p_234468_1_);
-            func_234516_g_(p_234468_0_, p_234468_1_);
+            //func_234516_g_(p_234468_0_, p_234468_1_);
          } else {
             func_234509_e_(p_234468_0_, p_234468_1_);
          }
       }
    }
 
-   private static void func_234509_e_(ZurEntity p_234509_0_, LivingEntity p_234509_1_) {
+   private static void func_234509_e_(AbstractZurEntity p_234509_0_, LivingEntity p_234509_1_) {
       if (!p_234509_0_.getBrain().hasActivity(Activity.AVOID)) {
          if (func_234506_e_(p_234509_1_)) {
             if (!BrainUtil.func_233861_a_(p_234509_0_, p_234509_1_, 4.0D)) {
@@ -472,13 +490,13 @@ public class ZurTasks<E extends LivingEntity> {
                   func_241430_f_(p_234509_0_);
                } else {
                   func_234497_c_(p_234509_0_, p_234509_1_);
-                  func_234487_b_(p_234509_0_, p_234509_1_);
+                  //func_234487_b_(p_234509_0_, p_234509_1_);
                }
 
             }
          }
       }
-   }*/
+   }
 
    public static Optional<SoundEvent> func_241429_d_(ZurEntity p_241429_0_) {
       return p_241429_0_.getBrain().func_233716_f_().map((p_241426_1_) -> func_241422_a_(p_241429_0_, p_241426_1_));
@@ -525,7 +543,7 @@ public class ZurTasks<E extends LivingEntity> {
 
    /*private static RunSometimesTask<ZurEntity> func_234505_e_() {
       return new RunSometimesTask<>(new PiglinIdleActivityTask<>(PiglinEntity::isChild, MemoryModuleType.NEAREST_VISIBLE_BABY_HOGLIN, MemoryModuleType.RIDE_TARGET, field_234447_d_), field_234446_c_);
-   }
+   }*/
 
    /*protected static void func_234487_b_(PiglinEntity p_234487_0_, LivingEntity p_234487_1_) {
       func_234530_q_(p_234487_0_).forEach((p_234484_1_) -> {
@@ -535,11 +553,11 @@ public class ZurTasks<E extends LivingEntity> {
       });
    }*/
 
-   private static List<ZurEntity> func_234530_q_(ZurEntity zur) {
+   private static List<ZurEntity> func_234530_q_(AbstractZurEntity zur) {
       return (List<ZurEntity>) zur.getBrain()/*.getMemory(NEAREST_ADULT_PIGLINS).orElse(ImmutableList.of())*/;
    }
 
-   protected static void func_241430_f_(ZurEntity zur) {
+   protected static void func_241430_f_(AbstractZurEntity zur) {
       func_234530_q_(zur).forEach((p_241419_0_) -> {
          func_241432_i_(p_241419_0_).ifPresent((p_241421_1_) -> {
             func_234497_c_(p_241419_0_, p_241421_1_);
@@ -547,7 +565,7 @@ public class ZurTasks<E extends LivingEntity> {
       });
    }
 
-   protected static void func_234497_c_(ZurEntity zur, LivingEntity entity) {
+   protected static void func_234497_c_(AbstractZurEntity zur, LivingEntity entity) {
       if (func_234506_e_(entity)) {
          zur.getBrain().removeMemory(MemoryModuleType.CANT_REACH_WALK_TARGET_SINCE);
          zur.getBrain().func_233696_a_(MemoryModuleType.ANGRY_AT, entity.getUniqueID(), 600L);
@@ -562,12 +580,12 @@ public class ZurTasks<E extends LivingEntity> {
       }
    }
 
-   private static void func_234531_r_(ZurEntity zur) {
+   private static void func_234531_r_(AbstractZurEntity zur) {
       zur.getBrain().removeMemory(MemoryModuleType.WALK_TARGET);
       zur.getNavigator().clearPath();
    }
 
-   private static void func_241431_f_(ZurEntity zur, LivingEntity entity) {
+   private static void func_241431_f_(AbstractZurEntity zur, LivingEntity entity) {
       Optional<PlayerEntity> optional = func_241432_i_(zur);
       if (optional.isPresent()) {
          func_234497_c_(zur, optional.get());
@@ -585,15 +603,15 @@ public class ZurTasks<E extends LivingEntity> {
       }
    }
 
-   private static Optional<LivingEntity> func_234532_s_(ZurEntity zur) {
+   private static Optional<LivingEntity> func_234532_s_(AbstractZurEntity zur) {
       return BrainUtil.func_233864_a_(zur, MemoryModuleType.ANGRY_AT);
    }
 
-   public static Optional<LivingEntity> func_234515_g_(ZurEntity zur) {
+   public static Optional<LivingEntity> func_234515_g_(AbstractZurEntity zur) {
       return zur.getBrain().hasMemory(MemoryModuleType.AVOID_TARGET) ? zur.getBrain().getMemory(MemoryModuleType.AVOID_TARGET) : Optional.empty();
    }
 
-   public static Optional<PlayerEntity> func_241432_i_(ZurEntity zur) {
+   public static Optional<PlayerEntity> func_241432_i_(AbstractZurEntity zur) {
       return zur.getBrain().hasMemory(MemoryModuleType.NEAREST_VISIBLE_TARGETABLE_PLAYER) ? zur.getBrain().getMemory(MemoryModuleType.NEAREST_VISIBLE_TARGETABLE_PLAYER) : Optional.empty();
    }
 
@@ -627,17 +645,17 @@ public class ZurTasks<E extends LivingEntity> {
       }
    }*/
 
-   private static boolean func_234534_u_(ZurEntity zur) {
+   private static boolean func_234534_u_(AbstractZurEntity zur) {
       return !func_234535_v_(zur);
    }
 
-   private static boolean func_234535_v_(ZurEntity zur) {
+   private static boolean func_234535_v_(AbstractZurEntity zur) {
       int i = zur.getBrain().getMemory(MemoryModuleType.VISIBLE_ADULT_PIGLIN_COUNT).orElse(0) + 1;
       int j = zur.getBrain().getMemory(MemoryModuleType.VISIBLE_ADULT_HOGLIN_COUNT).orElse(0);
       return j > i;
    }
 
-   private static void func_234521_i_(ZurEntity zur, LivingEntity entity) {
+   private static void func_234521_i_(AbstractZurEntity zur, LivingEntity entity) {
       zur.getBrain().removeMemory(MemoryModuleType.ANGRY_AT);
       zur.getBrain().removeMemory(MemoryModuleType.ATTACK_TARGET);
       zur.getBrain().removeMemory(MemoryModuleType.WALK_TARGET);
@@ -645,24 +663,24 @@ public class ZurTasks<E extends LivingEntity> {
       func_234518_h_(zur);
    }
 
-   protected static void func_234518_h_(ZurEntity zur) {
+   protected static void func_234518_h_(AbstractZurEntity zur) {
       zur.getBrain().func_233696_a_(MemoryModuleType.HUNTED_RECENTLY, true, field_234445_b_.func_233018_a_(zur.world.rand));
    }
 
-   private static void func_234536_x_(ZurEntity zur) {
+   private static void func_234536_x_(AbstractZurEntity zur) {
       zur.getBrain().func_233696_a_(MemoryModuleType.ATE_RECENTLY, true, 200L);
    }
 
-   private static Vector3d func_234537_y_(ZurEntity zur) {
+   private static Vector3d func_234537_y_(AbstractZurEntity zur) {
       Vector3d vector3d = RandomPositionGenerator.getLandPos(zur, 4, 2);
       return vector3d == null ? zur.getPositionVec() : vector3d;
    }
 
-   private static boolean func_234538_z_(ZurEntity zur) {
+   private static boolean func_234538_z_(AbstractZurEntity zur) {
       return zur.getBrain().hasMemory(MemoryModuleType.ATE_RECENTLY);
    }
 
-   protected static boolean idleActivity(ZurEntity zur) {
+   protected static boolean idleActivity(AbstractZurEntity zur) {
       return zur.getBrain().hasActivity(Activity.IDLE);
    }
 
@@ -670,7 +688,7 @@ public class ZurTasks<E extends LivingEntity> {
       entity.getBrain().func_233696_a_(MemoryModuleType.ADMIRING_ITEM, true, 120L);
    }
 
-   private static boolean func_234451_A_(ZurEntity zur) {
+   private static boolean func_234451_A_(AbstractZurEntity zur) {
       return zur.getBrain().hasMemory(MemoryModuleType.ADMIRING_ITEM);
    }
 
@@ -702,7 +720,7 @@ public class ZurTasks<E extends LivingEntity> {
       return entity.getType() == EntityType.PLAYER && entity.func_233634_a_(ZurTasks::func_234480_a_);
    }
 
-   private static boolean func_234453_C_(ZurEntity zur) {
+   private static boolean func_234453_C_(AbstractZurEntity zur) {
       return zur.getBrain().hasMemory(MemoryModuleType.ADMIRING_DISABLED);
    }
 
@@ -710,11 +728,11 @@ public class ZurTasks<E extends LivingEntity> {
       return entity.getBrain().hasMemory(MemoryModuleType.HURT_BY);
    }
 
-   private static boolean func_234454_D_(ZurEntity entity) {
+   private static boolean func_234454_D_(AbstractZurEntity entity) {
       return !entity.getHeldItemOffhand().isEmpty();
    }
 
-   private static boolean func_234455_E_(ZurEntity entity) {
+   private static boolean func_234455_E_(AbstractZurEntity entity) {
       return entity.getHeldItemOffhand().isEmpty() || !func_234480_a_(entity.getHeldItemOffhand().getItem());
    }
 

@@ -2,11 +2,11 @@
   "parent": "minecraft:block/cube",
   "textures": {
     "up": "ervin_mod_1:block/special/gtrziuzhizjkj/gtrziuzhizjkj_top",
-    "down": "ervin_mod_1:block/special/gtrziuzhizjkj/gtrziuzhizjkj_y",
+    "down": "ervin_mod_1:block/special/gtrziuzhizjkj/gtrziuzhizjkj_down",
     "north": "ervin_mod_1:block/special/gtrziuzhizjkj/gtrziuzhizjkj_x",
     "east": "ervin_mod_1:block/special/gtrziuzhizjkj/gtrziuzhizjkj_z",
     "west": "ervin_mod_1:block/special/gtrziuzhizjkj/gtrziuzhizjkj_z",
     "south": "ervin_mod_1:block/special/gtrziuzhizjkj/gtrziuzhizjkj_x",
-    "particle": "ervin_mod_1:block/special/gtrziuzhizjkj/gtrziuzhizjkj_y"
+    "particle": "ervin_mod_1:block/special/gtrziuzhizjkj/gtrziuzhizjkj_top"
   }
 }

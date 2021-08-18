@@ -16,6 +16,7 @@ public enum DyeColorInit implements IStringSerializable {
    ORANGE(1, "orange", 16351261, MaterialColorInit.ORANGE, 15435844, 16738335),
    MAGENTA(2, "magenta", 13061821, MaterialColorInit.MAGENTA, 12801229, 16711935),
    LIGHT_BLUE(3, "light_blue", 3847130, MaterialColorInit.LIGHT_BLUE, 6719955, 10141901),
+   LIGHT_BLUE1(4, "light_blue1", 4449235, MaterialColorInit.LIGHT_BLUE1, 6769955, 13562648),
    YELLOW(5, "yellow", 16701501, MaterialColorInit.YELLOW, 14602026, 16776960),
    LIME(6, "lime", 8439583, MaterialColorInit.LIME, 4312372, 12582656),
    PINK(7, "pink", 15961002, MaterialColorInit.PINK, 14188952, 16738740),
@@ -29,7 +30,7 @@ public enum DyeColorInit implements IStringSerializable {
    RED(15, "red", 11546150, MaterialColorInit.RED, 11743532, 16711680),
    BLACK(16, "black", 1908001, MaterialColorInit.BLACK, 1973019, 0);
 
-   private static final DyeColorInit[] VALUES = Arrays.stream(values()).sorted(Comparator.comparingInt(DyeColorInit::getId)).toArray((p_199795_0_) -> new DyeColorInit[p_199795_0_]);
+   private static final DyeColorInit[] VALUES = Arrays.stream(values()).sorted(Comparator.comparingInt(DyeColorInit::getId)).toArray(DyeColorInit[]::new);
    private static final Int2ObjectOpenHashMap<DyeColorInit> BY_FIREWORK_COLOR = new Int2ObjectOpenHashMap<>(Arrays.stream(values()).collect(Collectors.toMap((p_199793_0_) -> p_199793_0_.fireworkColor, (p_199794_0_) -> p_199794_0_)));
    private final int id;
    private final String translationKey;
@@ -50,7 +51,7 @@ public enum DyeColorInit implements IStringSerializable {
       int i = (colorValueIn & 16711680) >> 16;
       int j = (colorValueIn & '\uff00') >> 8;
       int k = (colorValueIn & 255) >> 0;
-      this.swappedColorValue = k << 16 | j << 8 | i << 0;
+      this.swappedColorValue = k << 16 | j << 8 | (i << 0);
       this.tag = net.minecraft.tags.ItemTags.makeWrapperTag("forge:dyes/" + translationKeyIn);
       this.colorComponentValues = new float[]{(float)i / 255.0F, (float)j / 255.0F, (float)k / 255.0F};
       this.fireworkColor = fireworkColorIn;

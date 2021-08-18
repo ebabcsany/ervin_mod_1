@@ -77,7 +77,7 @@ public class ScrakthsPearlEntity extends ProjectileItemEntity {
 
                entity.setPositionAndUpdate(event.getTargetX(), event.getTargetY(), event.getTargetZ());
                entity.fallDistance = 0.0F;
-               entity.attackEntityFrom(DamageSource.FALL, event.getAttackDamage());
+               entity.attackEntityFrom(DamageSource.GENERIC, event.getAttackDamage());
                } //Forge: End
             }
          } else if (entity != null) {

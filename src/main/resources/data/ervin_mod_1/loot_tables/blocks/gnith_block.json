@@ -49,6 +49,11 @@
           "type": "minecraft:item",
           "name": "ervin_mod_1:trinks"
         }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
       ]
     }
   ]

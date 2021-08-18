@@ -1,9 +1,8 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.villager.trades;
 
-import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.block.BlockNamedItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.block.crops.seeds.SeedsItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.food.FoodItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.food.SpecialBlockFoodItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.food.isBurnableFoodItemInit;
@@ -63,12 +62,12 @@ public class WanderingTraderNirtreTrades {
            new WanderingTraderNirtreTrades.ItemsForRubiesTrade(isBurnableItemInit.VILKT.get(), 35, 1, 2, 6),
            new WanderingTraderNirtreTrades.ItemsForSrurgsTrade(ItemInit.CHAK.get(), 20, 1, 120, 26),
            new WanderingTraderNirtreTrades.ItemsForRubiesTrade(FoodItemInit.FRIM.get(), 25, 1, 22, 2),
-           new WanderingTraderNirtreTrades.ItemsForRubiesTrade(BlockNamedItemInit.TARG_SEEDS.get(), 2, 1, 5, 1),
+           new WanderingTraderNirtreTrades.ItemsForRubiesTrade(SeedsItemInit.TARG_SEEDS.get(), 2, 1, 5, 1),
            new WanderingTraderNirtreTrades.ItemsForNautilusShellsTrade(com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.DURT.get(), 5, 1, 20, 3),
            new WanderingTraderNirtreTrades.ItemsForMlonksTrade(isBurnableBlockItemInit.SHZ_BLOCK.get(), 4, 1, 10, 2),
-           new WanderingTraderNirtreTrades.ItemsForMlonksTrade(ModSpawnEggItemInit.SPAWN_EGG_1.get(), 20, 1, 10, 2),
-           new WanderingTraderNirtreTrades.ItemsForObsidiansTrade(com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit.TRIRIJ, 10, 1, 1000, 2),
-           new WanderingTraderNirtreTrades.ItemsForGrassBlocksTrade(ModSpawnEggItemInit.ZUR_SPAWN_EGG, 4, 1, 9, 1),
+           new WanderingTraderNirtreTrades.ItemsForMlonksTrade(com.babcsany.minecraft.init.item.spawn_egg.ModSpawnEggItemInit.SPAWN_EGG_1, 20, 1, 10, 2),
+           new WanderingTraderNirtreTrades.ItemsForObsidiansTrade(com.babcsany.minecraft.init.BlockItemInit.TRIRIJ, 10, 1, 1000, 2),
+           new WanderingTraderNirtreTrades.ItemsForGrassBlocksTrade(com.babcsany.minecraft.init.item.spawn_egg.ModSpawnEggItemInit.ZUR_SPAWN_EGG, 4, 1, 9, 1),
            new WanderingTraderNirtreTrades.ItemsForDreinsTrade(ModSpawnEggItemInit.$_TRADER_SPAWN_EGG.get(), 10, 1, 40, 3),
            new WanderingTraderNirtreTrades.ItemsForDreinsTrade(SpawnEggItemInit.LIGHTNING_BOLT_SPAWN_EGG.get(), 1, 1, 40000, 8),
            new WanderingTraderNirtreTrades.ItemsForSriunkBlocksTrade(isBurnableBlockItemInit.RETRUG.get(), 1, 4, 4, 10),
@@ -92,10 +91,20 @@ public class WanderingTraderNirtreTrades {
            new WanderingTraderNirtreTrades.ItemsForFirtBlocksTrade(ModSpawnEggItemInit.DGRURB_SPAWN_EGG.get(), 20, 1, 20, 3),
            new WanderingTraderNirtreTrades.ItemsForAvtersTrade(SpecialItemInit.GTRZIUZHIZJKJ.get(), 34, 1, 300000, 15),
            new WanderingTraderNirtreTrades.ItemsForVilktsTrade(com.babcsany.minecraft.ervin_mod_1.init.minecraft.block.item.BlockNamedItemInit.END_PORTAL.get(), 15, 3, 20, 15),
+           new WanderingTraderNirtreTrades.ItemsForVilktsTrade(isBurnableBlockItemInit.CRAINT_BLOCK_CRAFTING_TABLE.get(), 10, 3, 20, 1500),
+   }));
+
+   public static final Int2ObjectMap<WanderingTraderNirtreTrades.ITrade1[]> trade2 = gatAsIntMap1(ImmutableMap.of(1, new WanderingTraderNirtreTrades.ITrade1[]{
+           new WanderingTraderNirtreTrades.ItemsForItemsAndItemsTrade1(isBurnableSpecialToolItemInit.TERAT.get(), isBurnableSpecialToolItemInit.TERAT.get(), 1, 1, isBurnableSpecialToolItemInit.TERAT_STICK.get(), 1, 1000000000, 1500),
+           new WanderingTraderNirtreTrades.ItemsForItemsTrade1(isBurnableSpecialToolItemInit.TERAT_STICK.get(), isBurnableSpecialToolItemInit.TERAT.get(), 2, 1, 1500),
    }));
 
    private static Int2ObjectMap<WanderingTraderNirtreTrades.ITrade[]> gatAsIntMap(ImmutableMap<Integer, WanderingTraderNirtreTrades.ITrade[]> p_221238_0_) {
       return new Int2ObjectOpenHashMap<>(p_221238_0_);
+   }
+
+   private static Int2ObjectMap<WanderingTraderNirtreTrades.ITrade1[]> gatAsIntMap1(ImmutableMap<Integer, WanderingTraderNirtreTrades.ITrade1[]> immutableMap) {
+      return new Int2ObjectOpenHashMap<>(immutableMap);
    }
 
    static class DyedArmorForEmeraldsTrade implements WanderingTraderNirtreTrades.ITrade {
@@ -1045,6 +1054,152 @@ public class WanderingTraderNirtreTrades {
       }
    }
 
+   static class ItemsForItemsTrade implements WanderingTraderNirtreTrades.ITrade {
+      private final ItemStack sellingItem;
+      private final IItemProvider item;
+      private final int itemCount;
+      private final int sellingItemCount;
+      private final int maxUses;
+      private final int xpValue;
+      private final float priceMultiplier;
+
+      public ItemsForItemsTrade(Block sellingItem, Item item, int itemCount, int sellingItemCount, int maxUses, int xpValue) {
+         this(new ItemStack(sellingItem), item, itemCount, sellingItemCount, maxUses, xpValue);
+      }
+
+      public ItemsForItemsTrade(Item sellingItem, Item item, int itemCount, int sellingItemCount, int xpValue) {
+         this(new ItemStack(sellingItem), item, itemCount, sellingItemCount, 120, xpValue);
+      }
+
+      public ItemsForItemsTrade(Item sellingItem, Item item, int itemCount, int sellingItemCount, int maxUses, int xpValue) {
+         this(new ItemStack(sellingItem), item, itemCount, sellingItemCount, maxUses, xpValue);
+      }
+
+      public ItemsForItemsTrade(ItemStack sellingItem, Item item, int itemCount, int sellingItemCount, int maxUses, int xpValue) {
+         this(sellingItem, item, itemCount, sellingItemCount, maxUses, xpValue, 0.05F);
+      }
+
+      public ItemsForItemsTrade(ItemStack sellingItem, Item item, int itemCount, int sellingItemCount, int maxUses, int xpValue, float priceMultiplier) {
+         this.sellingItem = sellingItem;
+         this.item = item;
+         this.itemCount = itemCount;
+         this.sellingItemCount = sellingItemCount;
+         this.maxUses = maxUses;
+         this.xpValue = xpValue;
+         this.priceMultiplier = priceMultiplier;
+      }
+
+      public MerchantOffer getOffer(Entity trader, Random rand) {
+         return new MerchantOffer(new ItemStack(this.item, this.itemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+      }
+   }
+
+   static class ItemsForItemsTrade1 implements ITrade1 {
+      private final ItemStack sellingItem;
+      private final IItemProvider item;
+      private final int itemCount;
+      private final int sellingItemCount;
+      private final int maxUses;
+      private final int xpValue;
+      private final float priceMultiplier;
+
+      public ItemsForItemsTrade1(Block sellingItem, Item item, int itemCount, int sellingItemCount, int maxUses, int xpValue) {
+         this(new ItemStack(sellingItem), item, itemCount, sellingItemCount, maxUses, xpValue);
+      }
+
+      public ItemsForItemsTrade1(Item sellingItem, Item item, int itemCount, int sellingItemCount, int xpValue) {
+         this(new ItemStack(sellingItem), item, itemCount, sellingItemCount, 120, xpValue);
+      }
+
+      public ItemsForItemsTrade1(Item sellingItem, Item item, int itemCount, int sellingItemCount, int maxUses, int xpValue) {
+         this(new ItemStack(sellingItem), item, itemCount, sellingItemCount, maxUses, xpValue);
+      }
+
+      public ItemsForItemsTrade1(ItemStack sellingItem, Item item, int itemCount, int sellingItemCount, int maxUses, int xpValue) {
+         this(sellingItem, item, itemCount, sellingItemCount, maxUses, xpValue, 0.05F);
+      }
+
+      public ItemsForItemsTrade1(ItemStack sellingItem, Item item, int itemCount, int sellingItemCount, int maxUses, int xpValue, float priceMultiplier) {
+         this.sellingItem = sellingItem;
+         this.item = item;
+         this.itemCount = itemCount;
+         this.sellingItemCount = sellingItemCount;
+         this.maxUses = maxUses;
+         this.xpValue = xpValue;
+         this.priceMultiplier = priceMultiplier;
+      }
+
+      public com.babcsany.minecraft.item.MerchantOffer getOffer(Entity trader, Random rand) {
+         return new com.babcsany.minecraft.item.MerchantOffer(new ItemStack(this.item, this.itemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+      }
+   }
+
+   static class ItemsForItemsAndItemsTrade implements WanderingTraderNirtreTrades.ITrade {
+      private final ItemStack buyingItem;
+      private final IItemProvider item;
+      private final int buyingItemCount;
+      private final int itemCount;
+      private final ItemStack sellingItem;
+      private final int sellingItemCount;
+      private final int maxUses;
+      private final int xpValue;
+      private final float priceMultiplier;
+
+      public ItemsForItemsAndItemsTrade(IItemProvider buyingItem, Item item, int buyingItemCount, int itemCount, Item sellingItem, int sellingItemCount, int maxUses, int xpValue) {
+         this(buyingItem, item, buyingItemCount, itemCount, sellingItem, sellingItemCount, maxUses, xpValue, "trade");
+      }
+
+      public ItemsForItemsAndItemsTrade(IItemProvider buyingItem, Item item, int buyingItemCount, int itemCount, Item sellingItem, int sellingItemCount, int maxUses, int xpValue, String string) {
+         this.buyingItem = new ItemStack(buyingItem);
+         this.item = item;
+         this.buyingItemCount = buyingItemCount;
+         this.itemCount = itemCount;
+         this.sellingItem = new ItemStack(sellingItem);
+         this.sellingItemCount = sellingItemCount;
+         this.maxUses = maxUses;
+         this.xpValue = xpValue;
+         this.priceMultiplier = 0.05F;
+      }
+
+      @Nullable
+      public MerchantOffer getOffer(Entity trader, Random rand) {
+         return new MerchantOffer(new ItemStack(this.item, this.itemCount), new ItemStack(this.buyingItem.getItem(), this.buyingItemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+      }
+   }
+
+   static class ItemsForItemsAndItemsTrade1 implements ITrade1 {
+      private final ItemStack buyingItem;
+      private final IItemProvider item;
+      private final int buyingItemCount;
+      private final int itemCount;
+      private final ItemStack sellingItem;
+      private final int sellingItemCount;
+      private final int maxUses;
+      private final int xpValue;
+      private final float priceMultiplier;
+
+      public ItemsForItemsAndItemsTrade1(IItemProvider buyingItem, Item item, int buyingItemCount, int itemCount, Item sellingItem, int sellingItemCount, int maxUses, int xpValue) {
+         this(buyingItem, item, buyingItemCount, itemCount, sellingItem, sellingItemCount, maxUses, xpValue, "trade");
+      }
+
+      public ItemsForItemsAndItemsTrade1(IItemProvider buyingItem, Item item, int buyingItemCount, int itemCount, Item sellingItem, int sellingItemCount, int maxUses, int xpValue, String string) {
+         this.buyingItem = new ItemStack(buyingItem);
+         this.item = item;
+         this.buyingItemCount = buyingItemCount;
+         this.itemCount = itemCount;
+         this.sellingItem = new ItemStack(sellingItem);
+         this.sellingItemCount = sellingItemCount;
+         this.maxUses = maxUses;
+         this.xpValue = xpValue;
+         this.priceMultiplier = 0.05F;
+      }
+
+      @Nullable
+      public com.babcsany.minecraft.item.MerchantOffer getOffer(Entity trader, Random rand) {
+         return new com.babcsany.minecraft.item.MerchantOffer(new ItemStack(this.item, this.itemCount), new ItemStack(this.buyingItem.getItem(), this.buyingItemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+      }
+   }
+
    static class ItemsForRubyBlocksTrade1 implements WanderingTraderNirtreTrades.ITrade {
       private final ItemStack sellingItem;
       private final int rubyBlockCount;
@@ -1525,5 +1680,10 @@ public class WanderingTraderNirtreTrades {
    public interface ITrade {
       @Nullable
       MerchantOffer getOffer(Entity trader, Random rand);
+   }
+
+   public interface ITrade1 {
+      @Nullable
+      com.babcsany.minecraft.item.MerchantOffer getOffer(Entity trader, Random rand);
    }
 }

@@ -35,10 +35,6 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:kalt_block"
-        },
-        {
-          "type": "minecraft:item",
           "name": "ervin_mod_1:sriunk_block"
         },
         {

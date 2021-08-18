@@ -1,8 +1,10 @@
 package com.babcsany.minecraft.ervin_mod_1.tile_entity;
 
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.TileEntityInit;
 import com.babcsany.minecraft.ervin_mod_1.reutrien.AbstractReutrien;
+import com.babcsany.minecraft.ervin_mod_1.reutrien.WeightedReutrienEntity;
+import com.babcsany.minecraft.init.BlockInit;
+import com.babcsany.minecraft.init.TileEntityInit;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.nbt.CompoundNBT;
@@ -16,38 +18,35 @@ import net.minecraft.world.World;
 import net.minecraft.world.spawner.AbstractSpawner;
 
 import javax.annotation.Nullable;
+import java.util.Objects;
+
+import static java.util.Objects.requireNonNull;
 
 public class ReutrienTileEntity extends TileEntity implements ITickableTileEntity {
    private final AbstractReutrien reutrienLogic = new AbstractReutrien() {
       public void broadcastEvent(int id) {
-         ReutrienTileEntity.this.world.addBlockEvent(ReutrienTileEntity.this.pos, BlockItemInit.REUTRIEN.get(), id, 0);
+         requireNonNull(ReutrienTileEntity.this.world).addBlockEvent(ReutrienTileEntity.this.pos, BlockInit.REUTRIEN, id, 0);
       }
 
       public World getWorld() {
-         return ReutrienTileEntity.this.world;
+         return requireNonNull(ReutrienTileEntity.this.world);
       }
 
       @Override
       public BlockPos getReutrienPosition() {
-         return null;
-      }
-
-      public BlockPos getSpawnerPosition() {
          return ReutrienTileEntity.this.pos;
       }
 
-      public void setNextSpawnData(WeightedSpawnerEntity nextSpawnData) {
+      public void setNextSpawnData(WeightedReutrienEntity nextSpawnData) {
          super.setNextSpawnData(nextSpawnData);
-         if (this.getWorld() != null) {
-            BlockState blockstate = this.getWorld().getBlockState(this.getSpawnerPosition());
-            this.getWorld().notifyBlockUpdate(ReutrienTileEntity.this.pos, blockstate, blockstate, 4);
-         }
+         BlockState blockstate = this.getWorld().getBlockState(this.getReutrienPosition());
+         this.getWorld().notifyBlockUpdate(ReutrienTileEntity.this.pos, blockstate, blockstate, 4);
 
       }
    };
 
    public ReutrienTileEntity() {
-      super(TileEntityInit.REUTRIEN.get());
+      super(TileEntityInit.REUTRIEN);
    }
 
    public void read(BlockState state, CompoundNBT nbt) {
@@ -89,7 +88,7 @@ public class ReutrienTileEntity extends TileEntity implements ITickableTileEntit
     * clientside.
     */
    public boolean receiveClientEvent(int id, int type) {
-      return this.reutrienLogic.setDelayToMin(id) ? true : super.receiveClientEvent(id, type);
+      return this.reutrienLogic.setDelayToMin(id) || super.receiveClientEvent(id, type);
    }
 
    /* *

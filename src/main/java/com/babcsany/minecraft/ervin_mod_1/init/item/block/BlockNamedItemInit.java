@@ -13,7 +13,4 @@ public class BlockNamedItemInit {
 
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Ervin_mod_1.MOD_ID);
 
-    public static final RegistryObject<Item> TARG_SEEDS = ITEMS.register("seeds/targ_seeds", () -> new BlockNamedItem(
-            BlockInit.TARG_STAGE.get(), (new Item.Properties())
-    ));
 }

@@ -4,6 +4,7 @@
       <w>avter</w>
       <w>bhjuig</w>
       <w>biome</w>
+      <w>bkfur</w>
       <w>blockt</w>
       <w>boit</w>
       <w>brefk</w>
@@ -86,6 +87,7 @@
       <w>jurk</w>
       <w>kalt</w>
       <w>kirt</w>
+      <w>ktchsfit</w>
       <w>leat</w>
       <w>lerp</w>
       <w>liwray</w>
@@ -106,19 +108,32 @@
       <w>rascht</w>
       <w>reat</w>
       <w>regdem</w>
+      <w>retrug</w>
       <w>reutrien</w>
       <w>rovent</w>
+      <w>rugb</w>
+      <w>rugk</w>
+      <w>rugt</w>
+      <w>sacht</w>
       <w>sackt</w>
+      <w>sacr</w>
       <w>sact</w>
+      <w>sarct</w>
+      <w>schraft</w>
       <w>schrofth</w>
       <w>scik</w>
+      <w>scra</w>
+      <w>scraf</w>
+      <w>scraft</w>
       <w>scrafth</w>
       <w>scrak</w>
       <w>scrakt</w>
       <w>scrakths</w>
       <w>shert</w>
       <w>sidet</w>
+      <w>sirk</w>
       <w>specialg</w>
+      <w>srac</w>
       <w>srach</w>
       <w>srack</w>
       <w>srackh</w>
@@ -131,6 +146,7 @@
       <w>sriunk</w>
       <w>srurg</w>
       <w>stakrach</w>
+      <w>stapho</w>
       <w>steef</w>
       <w>stik</w>
       <w>surt</w>
@@ -138,23 +154,41 @@
       <w>survi</w>
       <w>targ</w>
       <w>tawrol</w>
+      <w>tbruhv</w>
       <w>terat</w>
       <w>tfjhu</w>
       <w>tgurn</w>
+      <w>thufr</w>
       <w>thuirth</w>
       <w>tirks</w>
+      <w>tirsk</w>
+      <w>tnagh</w>
+      <w>tnagk</w>
+      <w>tnagt</w>
       <w>tnuzk</w>
       <w>tnuzn</w>
+      <w>tragh</w>
+      <w>tragk</w>
+      <w>tragn</w>
+      <w>tragt</w>
       <w>trask</w>
       <w>traskcrafth</w>
       <w>traskrach</w>
       <w>tring</w>
+      <w>trink</w>
       <w>trinks</w>
       <w>tririj</w>
       <w>troif</w>
+      <w>trugh</w>
+      <w>trugk</w>
       <w>trugn</w>
+      <w>trugt</w>
       <w>trumrunt</w>
+      <w>trurk</w>
+      <w>truzh</w>
+      <w>truzk</w>
       <w>truzn</w>
+      <w>truzt</w>
       <w>turg</w>
       <w>turgs</w>
       <w>twust</w>
@@ -166,13 +200,21 @@
       <w>vilt</w>
       <w>viltdrop</w>
       <w>virk</w>
+      <w>virkt</w>
       <w>volmint</w>
       <w>woik</w>
+      <w>zribt</w>
+      <w>zript</w>
+      <w>zunb</w>
       <w>zunk</w>
+      <w>zunkt</w>
       <w>zunt</w>
       <w>zur's</w>
       <w>zurk</w>
+      <w>zurkt</w>
+      <w>zurkth</w>
       <w>zurs</w>
+      <w>zurt</w>
     </words>
   </dictionary>
 </component>

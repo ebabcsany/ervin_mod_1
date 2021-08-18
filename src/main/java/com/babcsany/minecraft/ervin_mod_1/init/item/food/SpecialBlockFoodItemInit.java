@@ -22,9 +22,9 @@ public class SpecialBlockFoodItemInit {
 
     public static final DeferredRegister<Item> BURNABLE_FOOD_BLOCK_ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Ervin_mod_1.MOD_ID);
 
-    public static final RegistryObject<Item> FIRG = BURNABLE_FOOD_BLOCK_ITEMS.register("firg", () -> new Firg(BlockInit.FIRG.get(), (new Item.Properties()).food(Foods.FIRG).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final RegistryObject<Item> FIRG_SLAB = BURNABLE_FOOD_BLOCK_ITEMS.register("firg_slab", () -> new FirgSlab(BlockInit.FIRG_SLAB.get(), (new Item.Properties()).food(Foods.FIRG_SLAB).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final RegistryObject<Item> FIRG_STAIRS = BURNABLE_FOOD_BLOCK_ITEMS.register("firg_stairs", () -> new FirgStairs(BlockInit.FIRG_STAIRS.get(), (new Item.Properties()).food(Foods.FIRG_STAIRS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
+    public static final RegistryObject<Item> FIRG = BURNABLE_FOOD_BLOCK_ITEMS.register("firg", () -> new Firg(BlockInit.FIRG.get(), (new Item.Properties()).food(Foods.FIRG).group(ItemGroup.ERVIN_MOD_1_SEARCH).isBurnable()));
+    public static final RegistryObject<Item> FIRG_SLAB = BURNABLE_FOOD_BLOCK_ITEMS.register("firg_slab", () -> new FirgSlab(BlockInit.FIRG_SLAB.get(), (new Item.Properties()).food(Foods.FIRG_SLAB).group(ItemGroup.ERVIN_MOD_1_SEARCH).isBurnable()));
+    public static final RegistryObject<Item> FIRG_STAIRS = BURNABLE_FOOD_BLOCK_ITEMS.register("firg_stairs", () -> new FirgStairs(BlockInit.FIRG_STAIRS.get(), (new Item.Properties()).food(Foods.FIRG_STAIRS).group(ItemGroup.ERVIN_MOD_1_SEARCH).isBurnable()));
     public static final RegistryObject<Item> VIRK_BLOCK = BURNABLE_FOOD_BLOCK_ITEMS.register("virk_block", () -> new BlockItem(BlockInit.VIRK_BLOCK.get(), (new Item.Properties()).isBurnable().food(Foods.VIRK_BLOCK).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
     public static final RegistryObject<Item> GRINT_BLOCK = BURNABLE_FOOD_BLOCK_ITEMS.register("grint_block", () -> new GrintBlock(BlockInit.GRINT_BLOCK.get(), (new Item.Properties()).isBurnable().food(Foods.GRINT_BLOCK).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
     public static final RegistryObject<Item> GRINT_SLAB = BURNABLE_FOOD_BLOCK_ITEMS.register("grint_slab", () -> new GrintSlab(BlockInit.GRINT_SLAB.get(), (new Item.Properties()).isBurnable().food(Foods.GRINT_BLOCK).group(ItemGroup.ERVIN_MOD_1_SEARCH)));

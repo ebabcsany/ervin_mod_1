@@ -32,7 +32,7 @@ public class FeatureGen {
 	private static final BlockState AIR = BlockItemInit.AIR.get().getDefaultState();
 	private static final BlockState KALT_BLOCK = BlockItemInit.KALT_BLOCK.get().getDefaultState();
 	private static final BlockState SURVI = BlockItemInit.SURVI.get().getDefaultState();
-	private static final BlockState TRIRIJ = isBurnableBlockItemInit.TRIRIJ.getDefaultState();
+	private static final BlockState TRIRIJ = BlockInit.TRIRIJ.getDefaultState();
 	private static final BlockState TRUGN = isBurnableBlockItemInit.TRUGN.get().getDefaultState();
 	private static final BlockState NETHERRACK = Blocks.NETHERRACK.getDefaultState();
 	private static final BlockState OBSIDIAN = Blocks.OBSIDIAN.getDefaultState();

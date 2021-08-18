@@ -1,19 +1,25 @@
 package com.babcsany.minecraft.ervin_mod_1.stats;
 
+import com.babcsany.minecraft.ervin_mod_1.item.item.icsvre.Icsvre;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.stats.IStatFormatter;
 import net.minecraft.stats.StatType;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.registry.DefaultedRegistry;
 import net.minecraft.util.registry.Registry;
 
 public class ModStats {
+   public static ModStats modStats;
+   public static Icsvre icsvre;
+   public static Registry<?> registry;
    public static final StatType<Block> BLOCK_MINED = registerType("mined", Registry.BLOCK);
    public static final StatType<Item> ITEM_CRAFTED = registerType("crafted", Registry.ITEM);
    public static final StatType<Item> ITEM_USED = registerType("used", Registry.ITEM);
    public static final StatType<Item> ITEM_BROKEN = registerType("broken", Registry.ITEM);
    public static final StatType<Item> ITEM_PICKED_UP = registerType("picked_up", Registry.ITEM);
+   public static final StatType<Icsvre> ICSVRE_PICKED_UP = (StatType<Icsvre>) registerType_("icsvre_picked_up", Registry.ITEM);
    public static final StatType<Item> ITEM_DROPPED = registerType("dropped", Registry.ITEM);
    public static final StatType<EntityType<?>> ENTITY_KILLED = registerType("killed", Registry.ENTITY_TYPE);
    public static final StatType<EntityType<?>> ENTITY_KILLED_BY = registerType("killed_by", Registry.ENTITY_TYPE);
@@ -102,7 +108,15 @@ public class ModStats {
       return resourcelocation;
    }
 
+   public static <T> StatType<T> registry(DefaultedRegistry<T> registry, StatType<T> statType) {
+      return statType;
+   }
+
    private static <T> StatType<T> registerType(String key, Registry<T> registry) {
+      return Registry.register(Registry.STATS, key, new StatType<>(registry));
+   }
+
+   private static StatType<?> registerType_(String key, Registry<?> registry) {
       return Registry.register(Registry.STATS, key, new StatType<>(registry));
    }
 }

@@ -1,12 +1,6 @@
 {
-  "parent": "minecraft:block/cube",
+  "parent": "minecraft:block/cube_all",
   "textures": {
-    "up": "ervin_mod_1:block/special/tfjhu/tfjhu_1",
-    "down": "ervin_mod_1:block/special/tfjhu/tfjhu_1",
-    "north": "ervin_mod_1:block/special/tfjhu/tfjhu_1",
-    "east": "ervin_mod_1:block/special/tfjhu/tfjhu_1",
-    "west": "ervin_mod_1:block/special/tfjhu/tfjhu_1",
-    "south": "ervin_mod_1:block/special/tfjhu/tfjhu_1",
-    "particle": "ervin_mod_1:block/special/tfjhu/tfjhu_1"
+    "all": "ervin_mod_1:block/special/tfjhu/tfjhu_1"
   }
 }

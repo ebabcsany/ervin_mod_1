@@ -2,12 +2,16 @@ package com.babcsany.minecraft.ervin_mod_1.entity.villager;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.TraderNirtre1LookAtCustomerGoal;
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.TraderNirtre1TradeWithPlayerGoal;
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.TraderNirtreTrades;
 import com.babcsany.minecraft.ervin_mod_1.init.item.spawn_egg.ModSpawnEggItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.special.SpecialItemInit;
+import com.babcsany.minecraft.init.EntityInit;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -21,6 +25,7 @@ import net.minecraft.potion.Potions;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
@@ -28,7 +33,11 @@ import javax.annotation.Nullable;
 public class TraderNirtre1Entity extends AbstractTraderNirtre1Entity {
    @Nullable
    private BlockPos traderNirtreTarget;
+   public int timeUntilNextItem = this.rand.nextInt(12000) + 12000;
    private int despawnDelay;
+   public float wingRotation;
+   public float wingRotDelta = 1.0F;
+   public boolean dropItem;
    private int xp;
 
    public TraderNirtre1Entity(EntityType<? extends TraderNirtre1Entity> type, World worldIn) {
@@ -197,15 +206,34 @@ public class TraderNirtre1Entity extends AbstractTraderNirtre1Entity {
     */
    public void livingTick() {
       super.livingTick();
-      if (!this.world.isRemote) {
-         this.handleDespawn();
+      this.wingRotation += this.wingRotDelta * 2.0F;
+      if (!this.world.isRemote && this.isAlive() && !this.isChild() && !this.isDropItem() && --this.timeUntilNextItem <= 0) {
+         this.entityDropItem(SpecialItemInit.TFJHU_1.get());
+         this.timeUntilNextItem = this.rand.nextInt(12000) + 12000;
       }
-
    }
 
-   private void handleDespawn() {
-      if (this.despawnDelay > 0 && !this.hasCustomer() && --this.despawnDelay == 0) {
+   public boolean isDropItem() {
+      return this.dropItem;
+   }
+
+   public void onStruckByLightning_(LightningBoltEntity lightningBolt) {
+      if (this.world.getDifficulty() != Difficulty.PEACEFUL) {
+         LOGGER.info("Trader Nirtre {} was struck by lightning {}.", this, lightningBolt);
+         ZurEntity zurEntity = EntityInit.ZUR_ENTITY.create(this.world);
+         zurEntity.setLocationAndAngles(this.getPosX(), this.getPosY(), this.getPosZ(), this.rotationYaw, this.rotationPitch);
+         zurEntity.onInitialSpawn(this.world, this.world.getDifficultyForLocation(zurEntity.getPosition()), SpawnReason.CONVERSION, null, null);
+         zurEntity.setNoAI(this.isAIDisabled());
+         if (this.hasCustomName()) {
+            zurEntity.setCustomName(this.getCustomName());
+            zurEntity.setCustomNameVisible(this.isCustomNameVisible());
+         }
+
+         zurEntity.enablePersistence();
+         this.world.addEntity(zurEntity);
          this.remove();
+      } else {
+         super.onStruckByLightning(lightningBolt);
       }
 
    }

@@ -18,7 +18,7 @@ public enum ModItemTier implements IItemTier {
     /** int harvestLevel, int maxUses, float efficiency, float attackDamage, int
     enchantability, Supplier<Ingredient> repairMaterial */
     SRIUNK(14, 13462, 220.0F, 26.0F, 250, () -> Ingredient.fromItems(isBurnableItemInit.SRIUNK.get())),
-    TERAT(32, 82345, 210000.0F, 384.0F, 2210, () -> Ingredient.fromItems(isBurnableSpecialToolItemInit.TERAT.get())),
+    TERAT(32, 165846, 210000.0F, 384.0F, 2210, () -> Ingredient.fromItems(isBurnableSpecialToolItemInit.TERAT.get())),
     BLACK_COBBLESTONE(1, 131, 4.0F, 1.0F, 5, () -> Ingredient.fromItems(com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.BLACK_COBBLESTONE.get())),
     BLUE_COBBLESTONE(1, 131, 4.0F, 1.0F, 5, () -> Ingredient.fromItems(com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.BLUE_COBBLESTONE.get())),
     BROWN_COBBLESTONE(1, 131, 4.0F, 1.0F, 5, () -> Ingredient.fromItems(com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.BROWN_COBBLESTONE.get())),
@@ -56,7 +56,8 @@ public enum ModItemTier implements IItemTier {
     TRAGN(44, 12000000, 560000000.0F, 72000.0F, 3000000, () -> Ingredient.fromItems(isBurnableBlockItemInit.TRAGN.get())),
     TRUZN(39, 1200000, 56000000.0F, 7200.0F, 300000, () -> Ingredient.fromItems(isBurnableBlockItemInit.TRUZN.get())),
     TGURN(74, 324000000, 15120000000.0F, 19440000.0F, 81000000, () -> Ingredient.fromItems(isBurnableBlockItemInit.TGURN.get())),
-    SRURG(17, 54636, 2315847.0F, 340.0F, 14328, () -> Ingredient.fromItems(isBurnableBlockItemInit.SRURG.get()));
+    SRURG(17, 54636, 2315847.0F, 340.0F, 14328, () -> Ingredient.fromItems(isBurnableBlockItemInit.SRURG.get())),
+    THUFR(119, 543800000, 3690527310400000000.0F, 34894526265243262.0F, 14328, () -> Ingredient.fromItems(isBurnableSpecialToolItemInit.THUFR.get()));
 
     private final int harvestLevel;
     private final int maxUses;

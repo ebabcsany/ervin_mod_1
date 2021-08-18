@@ -1,5 +1,8 @@
 package com.babcsany.minecraft.ervin_mod_1.block;
 
+import com.babcsany.minecraft.ervin_mod_1.item.item.icsvre.BlockIcsvreUseContext;
+import com.babcsany.minecraft.ervin_mod_1.item.item.icsvre.Icsvre;
+import com.babcsany.minecraft.ervin_mod_1.item.item.stack.IcsvreStack;
 import com.babcsany.minecraft.forge.hooks.ForgeHooks;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
@@ -60,6 +63,7 @@ public class ModBlock extends AbstractModBlock implements IItemProvider, net.min
     private String translationKey;
     @Nullable
     private Item item;
+    private Icsvre icsvre;
     private static final ThreadLocal<Object2ByteLinkedOpenHashMap<net.minecraft.block.Block.RenderSideCacheKey>> SHOULD_SIDE_RENDER_CACHE = ThreadLocal.withInitial(() -> {
         Object2ByteLinkedOpenHashMap<net.minecraft.block.Block.RenderSideCacheKey> object2bytelinkedopenhashmap = new Object2ByteLinkedOpenHashMap<net.minecraft.block.Block.RenderSideCacheKey>(2048, 0.25F) {
             protected void rehash(int p_rehash_1_) {
@@ -351,6 +355,11 @@ public class ModBlock extends AbstractModBlock implements IItemProvider, net.min
         return this.getDefaultState();
     }
 
+    @Nullable
+    public BlockState getStateForPlacement(BlockIcsvreUseContext context) {
+        return this.getDefaultState();
+    }
+
     /**
      * Spawns the block's drops in the world. By the time this is called the Block has possibly been set to air via
      * Block.removedByPlayer
@@ -365,6 +374,9 @@ public class ModBlock extends AbstractModBlock implements IItemProvider, net.min
      * Called by ItemBlocks after a block is set in the world, to allow post-place logic
      */
     public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
+    }
+
+    public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, @Nullable LivingEntity placer, IcsvreStack stack) {
     }
 
     /**
@@ -415,6 +427,10 @@ public class ModBlock extends AbstractModBlock implements IItemProvider, net.min
      */
     public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
         items.add(new ItemStack(this));
+    }
+
+    public void fillIcsvreGroup(ItemGroup group, NonNullList<IcsvreStack> items) {
+        items.add(new IcsvreStack(icsvre));
     }
 
     public float getSlipperiness() {
@@ -496,6 +512,10 @@ public class ModBlock extends AbstractModBlock implements IItemProvider, net.min
 
     @OnlyIn(Dist.CLIENT)
     public void addInformation(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public void addInformation(IcsvreStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
     }
 
     protected ModBlock getSelf() {

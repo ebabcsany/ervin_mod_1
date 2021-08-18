@@ -470,6 +470,10 @@ public class Item extends ForgeRegistryEntry<net.minecraft.item.Item> implements
       return !this.burnable || !damageSource.isFireDamage();
    }
 
+   public boolean isDamageable1(DamageSource damageSource) {
+      return !this.burnable || !damageSource.isFireDamage();
+   }
+
    public static class Properties {
       private int maxStackSize = 2048;
       private int maxDamage;

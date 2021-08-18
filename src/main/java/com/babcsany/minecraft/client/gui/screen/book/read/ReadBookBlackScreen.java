@@ -334,7 +334,7 @@ public class ReadBookBlackScreen extends Screen {
 
       private static List<String> func_216921_b(ItemStack stack) {
          CompoundNBT compoundnbt = stack.getTag();
-         return (List<String>)(compoundnbt != null && WrittenBookItem.validBookTagContents(compoundnbt) ? ReadBookBlackScreen.nbtPagesToStrings(compoundnbt) : ImmutableList.of(ITextComponent.Serializer.toJson((new TranslationTextComponent("book.invalid.tag")).mergeStyle(TextFormatting.DARK_RED))));
+         return compoundnbt != null && WrittenBookItem.validBookTagContents(compoundnbt) ? ReadBookBlackScreen.nbtPagesToStrings(compoundnbt) : ImmutableList.of(ITextComponent.Serializer.toJson((new TranslationTextComponent("book.invalid.tag")).mergeStyle(TextFormatting.DARK_RED)));
       }
 
       /**

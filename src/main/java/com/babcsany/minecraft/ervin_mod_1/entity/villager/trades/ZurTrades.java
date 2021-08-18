@@ -1,24 +1,15 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.villager.trades;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.food.isBurnableFoodItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.spawn_egg.ModSpawnEggItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.special.SpecialItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.tool.SpecialToolItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.tool.isBurnableSpecialToolItemInit;
-import com.babcsany.minecraft.ervin_mod_1.tags.ItemTag;
 import com.babcsany.minecraft.init.BlockItemInit;
-import com.babcsany.minecraft.init.EntityInit;
-import com.babcsany.minecraft.item.IEntityProvider;
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.mojang.serialization.DataResult;
-import com.mojang.serialization.Dynamic;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import net.minecraft.block.Block;
@@ -27,31 +18,15 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentData;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.Pose;
-import net.minecraft.entity.ai.brain.Brain;
 import net.minecraft.entity.villager.IVillagerDataHolder;
 import net.minecraft.entity.villager.IVillagerType;
-import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.INBT;
-import net.minecraft.nbt.ListNBT;
-import net.minecraft.nbt.NBTDynamicOps;
-import net.minecraft.network.IPacket;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.network.play.server.SSpawnMobPacket;
 import net.minecraft.potion.*;
-import net.minecraft.scoreboard.ScorePlayerTeam;
-import net.minecraft.util.HandSide;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.storage.MapData;
@@ -63,9 +38,12 @@ import java.util.stream.Collectors;
 
 public class ZurTrades {
    public static final Int2ObjectMap<ZurTrades.ITrade[]> field_221240_b = gatAsIntMap(ImmutableMap.of(1, new ZurTrades.ITrade[]{
-           new ZurTrades.ItemsForEmeraldsTrade(ModSpawnEggItemInit.DGRURB_SPAWN_EGG.get(), 5, 1, 50, 2),
+           new ZurTrades.ItemsForKirtsTrade(ModSpawnEggItemInit.DGRURB_SPAWN_EGG.get(), 5, 1, 50, 2),
+           new ZurTrades.ItemsForItemsTrade(ItemInit.SIRK.get(), isBurnableItemInit.TIRSK.get(), 1, 50, 2),
            new ZurTrades.ItemsForBedrocksTrade(SpecialItemInit.GRITHK.get(), 5, 1, 50, 10),
+           new ZurTrades.ItemsForItemsTrade(ItemInit.KIRT.get(), Items.PRISMARINE_CRYSTALS, 5, 6, 100, 50),
            new ZurTrades.ItemsForTirskBlocksAndItemsTrade(SpecialItemInit.GRITHK.get(), 1, isBurnableSpecialToolItemInit.TERAT.get(), 4, 30, 30),
+           new ZurTrades.ItemsForTirskBlocksAndItemsTrade(ItemInit.SIRK.get(), 1, com.babcsany.minecraft.init.item.spawn_egg.ModSpawnEggItemInit.ROVENT_SPAWN_EGG, 4, 30, 30),
    }));
 
    private static Int2ObjectMap<ZurTrades.ITrade[]> gatAsIntMap(ImmutableMap<Integer, ZurTrades.ITrade[]> p_221238_0_) {
@@ -430,7 +408,7 @@ public class ZurTrades {
       public MerchantOffer getOffer(Entity trader, Random rand) {
          int i = 5 + rand.nextInt(15);
          ItemStack itemstack = EnchantmentHelper.addRandomEnchantment(rand, new ItemStack(this.sellingStack.getItem()), i, false);
-         int j = Math.min(this.rubyCount + i, 64);
+         int j = Math.min(this.rubyCount + i, 2048);
          ItemStack itemstack1 = new ItemStack(ItemInit.RUBY.get(), j);
          ItemStack itemstack2 = new ItemStack(ItemInit.RUBY.get(), j);
          return new MerchantOffer(itemstack1, itemstack, this.maxUses, this.xpValue, this.priceMultiplier);
@@ -442,7 +420,12 @@ public class ZurTrades {
       MerchantOffer getOffer(Entity trader, Random rand);
    }
 
-   static class ItemWithPotionForEmeraldsAndItemsTrade implements ZurTrades.ITrade {
+   public interface ITrade1 {
+      @Nullable
+      com.babcsany.minecraft.item.MerchantOffer getOffer1(Entity trader, Random rand);
+   }
+
+   static class ItemWithPotionForEmeraldsAndItemsTrade implements ZurTrades.ITrade1 {
       /** An ItemStack that can have potion effects written to it. */
       private final ItemStack potionStack;
       private final int potionCount;
@@ -466,15 +449,13 @@ public class ZurTrades {
          this.priceMultiplier = 0.05F;
       }
 
-      public MerchantOffer getOffer(Entity trader, Random rand) {
+      public com.babcsany.minecraft.item.MerchantOffer getOffer1(Entity trader, Random rand) {
          ItemStack itemstack = new ItemStack(Items.EMERALD, this.emeraldCount);
          ItemStack itemstack_1 = new ItemStack(ItemInit.RUBY.get(), this.rubyCount);
-         List<Potion> list = Registry.POTION.stream().filter((potion) -> {
-            return !potion.getEffects().isEmpty() && PotionBrewing.isBrewablePotion(potion);
-         }).collect(Collectors.toList());
+         List<Potion> list = Registry.POTION.stream().filter((potion) -> !potion.getEffects().isEmpty() && PotionBrewing.isBrewablePotion(potion)).collect(Collectors.toList());
          Potion potion = list.get(rand.nextInt(list.size()));
          ItemStack itemstack1 = PotionUtils.addPotionToItemStack(new ItemStack(this.potionStack.getItem(), this.potionCount), potion);
-         return new MerchantOffer(itemstack, new ItemStack(this.buyingItem, this.buyingItemCount), itemstack1, this.maxUses, this.xpValue, this.priceMultiplier);
+         return new com.babcsany.minecraft.item.MerchantOffer(itemstack, new ItemStack(this.buyingItem, this.buyingItemCount), itemstack1, this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 
@@ -644,6 +625,46 @@ public class ZurTrades {
 
       public MerchantOffer getOffer(Entity trader, Random rand) {
          return new MerchantOffer(new ItemStack(isBurnableFoodItemInit.DURG.get(), this.durgCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+      }
+   }
+
+   static class ItemsForItemsTrade implements ITrade {
+      private final ItemStack sellingItem;
+      private final IItemProvider item;
+      private final int itemCount;
+      private final int sellingItemCount;
+      private final int maxUses;
+      private final int xpValue;
+      private final float priceMultiplier;
+
+      public ItemsForItemsTrade(Block sellingItem, Item item, int itemCount, int sellingItemCount, int maxUses, int xpValue) {
+         this(new ItemStack(sellingItem), item, itemCount, sellingItemCount, maxUses, xpValue);
+      }
+
+      public ItemsForItemsTrade(Item sellingItem, Item item, int itemCount, int sellingItemCount, int xpValue) {
+         this(new ItemStack(sellingItem), item, itemCount, sellingItemCount, 120, xpValue);
+      }
+
+      public ItemsForItemsTrade(Item sellingItem, Item item, int itemCount, int sellingItemCount, int maxUses, int xpValue) {
+         this(new ItemStack(sellingItem), item, itemCount, sellingItemCount, maxUses, xpValue);
+      }
+
+      public ItemsForItemsTrade(ItemStack sellingItem, Item item, int itemCount, int sellingItemCount, int maxUses, int xpValue) {
+         this(sellingItem, item, itemCount, sellingItemCount, maxUses, xpValue, 0.05F);
+      }
+
+      public ItemsForItemsTrade(ItemStack sellingItem, Item item, int itemCount, int sellingItemCount, int maxUses, int xpValue, float priceMultiplier) {
+         this.sellingItem = sellingItem;
+         this.item = item;
+         this.itemCount = itemCount;
+         this.sellingItemCount = sellingItemCount;
+         this.maxUses = maxUses;
+         this.xpValue = xpValue;
+         this.priceMultiplier = priceMultiplier;
+      }
+
+      public MerchantOffer getOffer(Entity trader, Random rand) {
+         return new MerchantOffer(new ItemStack(this.item, this.itemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 

@@ -3,14 +3,14 @@ package com.babcsany.minecraft.ervin_mod_1.block.blocks;
 import com.babcsany.minecraft.ervin_mod_1.tile_entity.ReutrienTileEntity;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.ContainerBlock;
+import net.minecraft.block.SpawnerBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 
-public class Reutrien extends ContainerBlock {
+public class Reutrien extends SpawnerBlock {
    public Reutrien(Properties builder) {
       super(builder);
    }
@@ -36,6 +36,7 @@ public class Reutrien extends ContainerBlock {
     * LIQUID for vanilla liquids, INVISIBLE to skip all rendering
     * @deprecated call via {@link IBlockState#getRenderType()} whenever possible. Implementing/overriding is fine.
     */
+   @Override
    public BlockRenderType getRenderType(BlockState state) {
       return BlockRenderType.MODEL;
    }

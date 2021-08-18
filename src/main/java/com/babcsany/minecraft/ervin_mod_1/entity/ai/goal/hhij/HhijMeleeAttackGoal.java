@@ -101,7 +101,7 @@ public class HhijMeleeAttackGoal extends Goal {
    public void resetTask() {
       LivingEntity livingentity = this.attacker.getAttackTarget();
       if (!EntityPredicates.CAN_AI_TARGET.test(livingentity)) {
-         this.attacker.setAttackTarget((LivingEntity)null);
+         this.attacker.setAttackTarget(null);
       }
 
       this.attacker.setAggroed(false);
@@ -175,6 +175,6 @@ public class HhijMeleeAttackGoal extends Goal {
    }
 
    protected double getAttackReachSqr(LivingEntity attackTarget) {
-      return (double)(this.attacker.getWidth() * 2.0F * this.attacker.getWidth() * 2.0F + attackTarget.getWidth());
+      return this.attacker.getWidth() * 2.0F * this.attacker.getWidth() * 2.0F + attackTarget.getWidth();
    }
 }

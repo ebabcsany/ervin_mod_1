@@ -6,6 +6,7 @@ import com.google.common.collect.Sets;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.entity.merchant.IMerchant;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -38,6 +39,7 @@ public abstract class AbstractTraderNirtre1Entity extends AgeableEntity implemen
    private PlayerEntity customer;
    @Nullable
    protected MerchantOffers offers;
+   private final int fire = -this.getFireImmuneTicks();
    private final Inventory traderNirtreInventory = new Inventory(8);
 
    public AbstractTraderNirtre1Entity(EntityType<? extends AbstractTraderNirtre1Entity> type, World worldIn) {
@@ -251,5 +253,14 @@ public abstract class AbstractTraderNirtre1Entity extends AgeableEntity implemen
          }
       }
 
+   }
+
+   public void onStruckByLightning_(LightningBoltEntity lightningBolt) {
+      this.forceFireTicks(this.fire + 1);
+      if (this.fire == 0) {
+         this.setFire(12);
+      }
+
+      this.attackEntityFrom(DamageSource.LIGHTNING_BOLT, 10.0F);
    }
 }

@@ -5,6 +5,7 @@ import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.DgrurbMobEntity;
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.reutrien.AbstractReutrien;
 import com.babcsany.minecraft.ervin_mod_1.tile_entity.ReutrienTileEntity;
+import com.babcsany.minecraft.init.BlockInit;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Maps;
 import java.util.Map;
@@ -75,7 +76,7 @@ public class SpawnEggItem1 extends Item {
             }
          }
 
-         if (blockstate.isIn(BlockItemInit.REUTRIEN.get())) {
+         if (blockstate.isIn(BlockInit.REUTRIEN)) {
             TileEntity tileentity = world.getTileEntity(blockpos);
             if (tileentity instanceof ReutrienTileEntity) {
                AbstractReutrien abstractspawner = ((ReutrienTileEntity)tileentity).getReutrienBaseLogic();

@@ -2,13 +2,12 @@ package com.babcsany.minecraft.fluid;
 
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.init.BlockInit;
-import com.babcsany.minecraft.init.FluidInit_;
+import com.babcsany.minecraft.init.FluidInit;
 import com.babcsany.minecraft.init.item.ItemInit;
 import com.babcsany.minecraft.tags.FluidTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import com.babcsany.minecraft.fluid.block.FlowingFluidBlock;
-import net.minecraft.fluid.FlowingFluid;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.LavaFluid;
@@ -30,11 +29,11 @@ import java.util.Random;
 
 public abstract class JurkFluid extends LavaFluid {
     public Fluid getFlowingFluid() {
-        return FluidInit_.FLOWING_JURK;
+        return FluidInit.FLOWING_JURK;
     }
 
     public Fluid getStillFluid() {
-        return FluidInit_.JURK;
+        return FluidInit.JURK;
     }
 
     public Item getFilledBucket() {
@@ -53,22 +52,22 @@ public abstract class JurkFluid extends LavaFluid {
 
     }
 
-    public void randomTick(World p_207186_1_, BlockPos pos, FluidState state, Random random) {
-        if (p_207186_1_.getGameRules().getBoolean(GameRules.KEEP_INVENTORY)) {
+    public void randomTick(World worldIn, BlockPos pos, FluidState state, Random random) {
+        if (worldIn.getGameRules().getBoolean(GameRules.KEEP_INVENTORY)) {
             int i = random.nextInt(3);
             if (i > 0) {
                 BlockPos blockpos = pos;
 
                 for(int j = 0; j < i; ++j) {
                     blockpos = blockpos.add(random.nextInt(3) - 1, 1, random.nextInt(3) - 1);
-                    if (!p_207186_1_.isBlockPresent(blockpos)) {
+                    if (!worldIn.isBlockPresent(blockpos)) {
                         return;
                     }
                 }
             } else {
                 for(int k = 0; k < 3; ++k) {
                     BlockPos blockpos1 = pos.add(random.nextInt(3) - 1, 0, random.nextInt(3) - 1);
-                    if (!p_207186_1_.isBlockPresent(blockpos1)) {
+                    if (!worldIn.isBlockPresent(blockpos1)) {
                         return;
                     }
                 }
@@ -101,7 +100,7 @@ public abstract class JurkFluid extends LavaFluid {
     }
 
     public boolean isEquivalentTo(Fluid fluidIn) {
-        return fluidIn == FluidInit_.JURK || fluidIn == FluidInit_.FLOWING_JURK;
+        return fluidIn == FluidInit.JURK || fluidIn == FluidInit.FLOWING_JURK;
     }
 
     public int getLevelDecreasePerBlock(IWorldReader worldIn) {

@@ -13,9 +13,13 @@ public class FeatureInit {
 
     public static FeatureInit FEATURES;
 
-    public static final Feature<GenOreFeatureConfig> GEN_ORE = register("ervin_mod_1:gen_ore", new GenOreFeature(GenOreFeatureConfig.field_236566_a_));
-    public static final Feature<NoFeatureConfig> VOID_START_PLATFORM1 = register("ervin_mod_1:void_start_platform1", new VoidStartPlatformFeature1(NoFeatureConfig.field_236558_a_));
+    public static final Feature<GenOreFeatureConfig> GEN_ORE = register(string("gen_ore"), new GenOreFeature(GenOreFeatureConfig.field_236566_a_));
+    public static final Feature<NoFeatureConfig> VOID_START_PLATFORM1 = register(string("void_start_platform1"), new VoidStartPlatformFeature1(NoFeatureConfig.field_236558_a_));
 
+    private static String string(String name) {
+        String string = "ervin_mod_1:";
+        return string + name;
+    }
 
     private static <C extends IFeatureConfig, F extends Feature<C>> F register(String key, F value) {
         return Registry.register(Registry.FEATURE, key, value);

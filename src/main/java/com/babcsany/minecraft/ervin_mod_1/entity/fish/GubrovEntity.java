@@ -1,6 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.fish;
 
-import com.babcsany.minecraft.ervin_mod_1.init.item.spawn_egg.ModSpawnEggItemInit;
+import com.babcsany.minecraft.init.item.spawn_egg.ModSpawnEggItemInit;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;

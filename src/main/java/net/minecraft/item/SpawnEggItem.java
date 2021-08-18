@@ -1,9 +1,9 @@
 package net.minecraft.item;
 
-import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.reutrien.AbstractReutrien;
 import com.babcsany.minecraft.ervin_mod_1.tile_entity.ReutrienTileEntity;
 import com.babcsany.minecraft.fluid.block.ModFlowingFluidBlock;
+import com.babcsany.minecraft.init.BlockInit;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Maps;
 import net.minecraft.block.BlockState;
@@ -76,12 +76,12 @@ public class SpawnEggItem extends Item {
             }
          }
 
-         if (blockstate.isIn(BlockItemInit.REUTRIEN.get())) {
+         if (blockstate.isIn(BlockInit.REUTRIEN)) {
             TileEntity tileentity = world.getTileEntity(blockpos);
             if (tileentity instanceof ReutrienTileEntity) {
-               AbstractReutrien abstractspawner = ((ReutrienTileEntity)tileentity).getReutrienBaseLogic();
-               EntityType<?> entitytype1 = this.getType(itemstack.getTag());
-               abstractspawner.setEntityType(entitytype1);
+               AbstractReutrien abstractReutrien = ((ReutrienTileEntity)tileentity).getReutrienBaseLogic();
+               EntityType<?> entityType = this.getType(itemstack.getTag());
+               abstractReutrien.setEntityType(entityType);
                tileentity.markDirty();
                world.notifyBlockUpdate(blockpos, blockstate, blockstate, 3);
                itemstack.shrink(1);

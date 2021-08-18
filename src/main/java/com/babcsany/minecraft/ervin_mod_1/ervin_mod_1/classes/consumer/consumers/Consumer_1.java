@@ -2,7 +2,5 @@ package com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.classes.consumer.consumer
 
 public class Consumer_1<T> {
 
-    public void accept(T accept) {
-
-    }
+    public native void accept(T t);
 }

@@ -2,7 +2,7 @@ package com.babcsany.minecraft.ervin_mod_1.client.renderer.entity.item;
 
 import com.babcsany.minecraft.ervin_mod_1.client.renderer.entity.EntityRenderer;
 import com.babcsany.minecraft.ervin_mod_1.client.renderer.entity.EntityRendererManager;
-import com.babcsany.minecraft.ervin_mod_1.item.entity.icsvre.Icsvre;
+import com.babcsany.minecraft.ervin_mod_1.item.entity.icsvre.IcsvreEntity;
 import com.babcsany.minecraft.ervin_mod_1.client.renderer.item.ItemIcsvreRenderer;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
@@ -21,7 +21,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.Random;
 
 @OnlyIn(Dist.CLIENT)
-public class EntityItemIcsvreRenderer extends EntityRenderer<Icsvre> {
+public class EntityItemIcsvreRenderer extends EntityRenderer<IcsvreEntity> {
    private final ItemIcsvreRenderer itemRenderer;
    private final Random random = new Random();
 
@@ -47,7 +47,7 @@ public class EntityItemIcsvreRenderer extends EntityRenderer<Icsvre> {
       return i;
    }
 
-   public void render(Icsvre entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
+   public void render(IcsvreEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
       matrixStackIn.push();
       ItemStack itemstack = entityIn.getItem();
       int i = itemstack.isEmpty() ? 187 : Item.getIdFromItem(itemstack.getItem()) + itemstack.getDamage();
@@ -97,7 +97,7 @@ public class EntityItemIcsvreRenderer extends EntityRenderer<Icsvre> {
    /**
     * Returns the location of an entity's texture.
     */
-   public ResourceLocation getEntityTexture(Icsvre entity) {
+   public ResourceLocation getEntityTexture(IcsvreEntity entity) {
       return AtlasTexture.LOCATION_BLOCKS_TEXTURE;
    }
    

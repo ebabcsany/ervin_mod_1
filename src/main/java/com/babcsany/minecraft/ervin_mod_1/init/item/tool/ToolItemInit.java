@@ -2,6 +2,7 @@ package com.babcsany.minecraft.ervin_mod_1.init.item.tool;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.item.ModItemTier;
+import com.babcsany.minecraft.ervin_mod_1.item.tool.*;
 import net.minecraft.item.*;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -16,11 +17,11 @@ public class ToolItemInit {
     public static final RegistryObject<Item> DURT_PICKAXE = TOOLS.register("durt_pickaxe", () -> new PickaxeItem(ModItemTier.DURT, 4, 1.0F, (new Item.Properties())));
     public static final RegistryObject<Item> DURT_SHOVEL = TOOLS.register("durt_shovel", () -> new ShovelItem(ModItemTier.DURT, 11, 1.5F, (new Item.Properties())));
     public static final RegistryObject<Item> DURT_SWORD = TOOLS.register("durt_sword", () -> new SwordItem(ModItemTier.DURT, 8, 1.2F, (new Item.Properties())));
-    public static final RegistryObject<Item> FIRT_AXE = TOOLS.register("firt_axe", () -> new AxeItem(ModItemTier.FIRT, 16, 21.0F, (new Item.Properties())));
-    public static final RegistryObject<Item> FIRT_HOE = TOOLS.register("firt_hoe", () -> new HoeItem(ModItemTier.FIRT, 2, -1F, (new Item.Properties())));
-    public static final RegistryObject<Item> FIRT_PICKAXE = TOOLS.register("firt_pickaxe", () -> new PickaxeItem(ModItemTier.FIRT, 4, 8.4F, (new Item.Properties())));
-    public static final RegistryObject<Item> FIRT_SHOVEL = TOOLS.register("firt_shovel", () -> new ShovelItem(ModItemTier.FIRT, 12, 16.8F, (new Item.Properties())));
-    public static final RegistryObject<Item> FIRT_SWORD = TOOLS.register("firt_sword", () -> new SwordItem(ModItemTier.FIRT, 8, 12.6F, (new Item.Properties())));
+    public static final RegistryObject<Item> FIRT_AXE = TOOLS.register("firt_axe", () -> new BurningAxeItem(ModItemTier.FIRT, 16, 21.0F, (new Item.Properties()), 7400));
+    public static final RegistryObject<Item> FIRT_HOE = TOOLS.register("firt_hoe", () -> new BurningHoeItem(ModItemTier.FIRT, 2, -1F, (new Item.Properties()), 5000));
+    public static final RegistryObject<Item> FIRT_PICKAXE = TOOLS.register("firt_pickaxe", () -> new BurningPickaxeItem(ModItemTier.FIRT, 4, 8.4F, (new Item.Properties()), 7400));
+    public static final RegistryObject<Item> FIRT_SHOVEL = TOOLS.register("firt_shovel", () -> new BurningShovelItem(ModItemTier.FIRT, 12, 16.8F, (new Item.Properties()), 2600));
+    public static final RegistryObject<Item> FIRT_SWORD = TOOLS.register("firt_sword", () -> new BurningSwordItem(ModItemTier.FIRT, 8, 12.6F, (new Item.Properties()), 4900));
     public static final RegistryObject<Item> KIRT_AXE = TOOLS.register("kirt_axe", () -> new AxeItem(ModItemTier.KIRT, 0.4F, 2.5F, (new Item.Properties())));
     public static final RegistryObject<Item> KIRT_HOE = TOOLS.register("kirt_hoe", () -> new HoeItem(ModItemTier.KIRT, 0, 0.5F, (new Item.Properties())));
     public static final RegistryObject<Item> KIRT_PICKAXE = TOOLS.register("kirt_pickaxe", () -> new PickaxeItem(ModItemTier.KIRT, (int)0.1, 1.0F, (new Item.Properties())));

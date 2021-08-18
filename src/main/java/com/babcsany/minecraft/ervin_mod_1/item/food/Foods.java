@@ -26,16 +26,17 @@ public class Foods {
     public static final Food REAT = (new Food.Builder()).hunger(24).saturation(30).effect(new EffectInstance(Effects.INSTANT_HEALTH, 300, 10000), 10000.0F).setAlwaysEdible().build();
     public static final Food REAT1 = (new Food.Builder()).hunger(24).saturation(30).effect(new EffectInstance(Effects.REGENERATION, 300, 10000), 10000.0F).setAlwaysEdible().fastToEat().build();
     public static final Food REAT2 = (new Food.Builder()).hunger(24).saturation(30).effect(new EffectInstance(Effects.REGENERATION, 300, 10000), 10000.0F).setAlwaysEdible().fastToEat().build();
-    public static final Food BEETROOT_SOUP = buildShek(10);
+    public static final Food BEETROOT_SOUP = buildHunger(10);
     public static final Food GUBROV = (new Food.Builder()).hunger(4).saturation(0.8F).build();
     public static final Food COOKED_GUBROV = (new Food.Builder()).hunger(8).saturation(1.6F).build();
     public static final Food STEEF = (new Food.Builder()).hunger(5).saturation(1.0F).build();
     public static final Food COOKED_STEEF = (new Food.Builder()).hunger(9).saturation(1.8F).build();
-    public static final Food MRONT = (new Food.Builder()).hunger(3).saturation(0.5F).meat().build();
+    public static final Food MRONT = (new Food.Builder()).hunger(3).saturation(0.6F).meat().build();
+    public static final Food COOKED_MRONT = (new Food.Builder()).hunger(5).saturation(1.0F).meat().build();
     public static final Food JAZZ_FRUIT = (new Food.Builder()).hunger(12).saturation(4.8F).effect(new EffectInstance(Effects.REGENERATION, 20, 4), 4.0F).build();
     public static final Food BREFK = (new Food.Builder()).hunger(4).saturation(10.0F).effect(new EffectInstance(Effects.REGENERATION, 200, 50), 50.0F).build();
 
-    private static Food buildShek(int hunger) {
+    private static Food buildHunger(int hunger) {
         return (new Food.Builder()).hunger(hunger).saturation(20.0F).build();
     }
 }

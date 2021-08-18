@@ -10,6 +10,7 @@ public class MaterialColorInit extends MaterialColor {
     public static final MaterialColorInit AIR = new MaterialColorInit(0, 0);
     public static final MaterialColorInit CRASK = new MaterialColorInit(1, 10040115);
     public static final MaterialColorInit LIGHT_BLUE = new MaterialColorInit(2, 6724056);
+    public static final MaterialColorInit LIGHT_BLUE1 = new MaterialColorInit(2, 6724056);
     public static final MaterialColorInit RETRUG = new MaterialColorInit(3, 3355443);
     public static final MaterialColorInit TRURK = new MaterialColorInit(4, 264768);
     public static final MaterialColorInit WHITE = new MaterialColorInit(5, 16777215);
@@ -26,11 +27,14 @@ public class MaterialColorInit extends MaterialColor {
     public static final MaterialColorInit BROWN = new MaterialColorInit(16, 6704179);
     public static final MaterialColorInit GREEN = new MaterialColorInit(17, 6717235);
     public static final MaterialColorInit RED = new MaterialColorInit(18, 10040115);
-    public static final MaterialColorInit BLACK = new MaterialColorInit(19, 1644825);
-    public static final MaterialColorInit STONE = new MaterialColorInit(20, 7368816);
-    public static final MaterialColorInit WOOD = new MaterialColorInit(21, 9402184);
-    public static final MaterialColorInit WOOL = new MaterialColorInit(22, 13092807);
-    public static final MaterialColorInit SAND = new MaterialColorInit(23, 16247203);
+    public static final MaterialColorInit DARK_RED = new MaterialColorInit(19, 11141120);
+    public static final MaterialColorInit BLACK = new MaterialColorInit(20, 1644825);
+    public static final MaterialColorInit STONE = new MaterialColorInit(21, 7368816);
+    public static final MaterialColorInit WOOD = new MaterialColorInit(22, 9402184);
+    public static final MaterialColorInit WOOL = new MaterialColorInit(23, 13092807);
+    public static final MaterialColorInit SAND = new MaterialColorInit(24, 16247203);
+    public static final MaterialColorInit THUFR = new MaterialColorInit(25, 3456268);
+    public static final MaterialColorInit REDL_F = new MaterialColorInit(26, 13543125);
 
 
     public final int colorValue;

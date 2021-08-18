@@ -711,6 +711,11 @@ public interface IForgeBlock extends com.babcsany.minecraft.ervin_mod_1.forge.co
         return state.getBlock() == Blocks.SLIME_BLOCK;
     }
 
+    default boolean isSlimeBlock(BlockState state, Block block)
+    {
+        return state.getBlock() == block;
+    }
+
     /**
      * @param state The state
      * @return true if the block is sticky block which used for pull or push adjacent blocks (use by piston)

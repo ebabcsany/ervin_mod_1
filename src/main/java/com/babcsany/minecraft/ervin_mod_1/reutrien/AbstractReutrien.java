@@ -23,8 +23,8 @@ import java.util.function.Function;
 public abstract class AbstractReutrien {
    private static final Logger LOGGER = LogManager.getLogger();
    private int spawnDelay = 20;
-   private final List<WeightedSpawnerEntity> potentialSpawns = Lists.newArrayList();
-   private WeightedSpawnerEntity spawnData = new WeightedSpawnerEntity();
+   private final List<WeightedReutrienEntity> potentialSpawns = Lists.newArrayList();
+   private WeightedReutrienEntity spawnData = new WeightedReutrienEntity();
    private double mobRotation;
    private double prevMobRotation;
    private int minSpawnDelay = 200;
@@ -183,12 +183,12 @@ public abstract class AbstractReutrien {
          ListNBT listnbt = nbt.getList("SpawnPotentials", 10);
 
          for(int i = 0; i < listnbt.size(); ++i) {
-            this.potentialSpawns.add(new WeightedSpawnerEntity(listnbt.getCompound(i)));
+            this.potentialSpawns.add(new WeightedReutrienEntity(listnbt.getCompound(i)));
          }
       }
 
       if (nbt.contains("SpawnData", 10)) {
-         this.setNextSpawnData(new WeightedSpawnerEntity(1, nbt.getCompound("SpawnData")));
+         this.setNextSpawnData(new WeightedReutrienEntity(1, nbt.getCompound("SpawnData")));
       } else if (!this.potentialSpawns.isEmpty()) {
          this.setNextSpawnData(WeightedRandom.getRandomItem(this.getWorld().rand, this.potentialSpawns));
       }
@@ -231,7 +231,7 @@ public abstract class AbstractReutrien {
          if (this.potentialSpawns.isEmpty()) {
             listnbt.add(this.spawnData.toCompoundTag());
          } else {
-            for(WeightedSpawnerEntity weightedspawnerentity : this.potentialSpawns) {
+            for(WeightedReutrienEntity weightedspawnerentity : this.potentialSpawns) {
                listnbt.add(weightedspawnerentity.toCompoundTag());
             }
          }
@@ -266,7 +266,7 @@ public abstract class AbstractReutrien {
       }
    }
 
-   public void setNextSpawnData(WeightedSpawnerEntity nextSpawnData) {
+   public void setNextSpawnData(WeightedReutrienEntity nextSpawnData) {
       this.spawnData = nextSpawnData;
    }
 

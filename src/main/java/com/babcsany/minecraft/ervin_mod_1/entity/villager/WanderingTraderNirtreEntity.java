@@ -3,7 +3,7 @@ package com.babcsany.minecraft.ervin_mod_1.entity.villager;
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.NirtreLookAtCustomerGoal;
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.NirtreTradeWithPlayerGoal;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.WanderingTraderNirtreTrades;
-import com.babcsany.minecraft.ervin_mod_1.init.item.block.BlockItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.block.BlockItemInit_;
 import com.babcsany.minecraft.ervin_mod_1.init.item.spawn_egg.ModSpawnEggItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.tool.isBurnableToolItemInit;
 import net.minecraft.entity.*;
@@ -11,7 +11,6 @@ import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.item.ExperienceOrbEntity;
-import net.minecraft.entity.merchant.villager.VillagerData;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
@@ -44,6 +43,7 @@ public class WanderingTraderNirtreEntity extends AbstractNirtreEntity {
    private int level;
    private int traderNirtreConversionTime;
    public int timeUntilNextItem = this.rand.nextInt(6000) + 6000;
+   public int timeUntilNextItem_ = this.rand.nextInt(12000) + 7000;
    public boolean dropItem;
 
    public WanderingTraderNirtreEntity(EntityType<? extends WanderingTraderNirtreEntity> type, World worldIn) {
@@ -102,12 +102,29 @@ public class WanderingTraderNirtreEntity extends AbstractNirtreEntity {
 
    protected void populateTradeData() {
       WanderingTraderNirtreTrades.ITrade[] aWanderingTraderNirtreTrades$iTrade = WanderingTraderNirtreTrades.trade1.get(1);
-      if (aWanderingTraderNirtreTrades$iTrade != null) {
+      WanderingTraderNirtreTrades.ITrade1[] aWanderingTraderNirtreTrades$iTrade1 = WanderingTraderNirtreTrades.trade2.get(1);
+      if (aWanderingTraderNirtreTrades$iTrade != null && aWanderingTraderNirtreTrades$iTrade1 != null) {
          MerchantOffers merchantoffers = this.getOffers();
+         com.babcsany.minecraft.item.MerchantOffers merchantoffers1 = this.getOffers1();
          this.addWanderingTraderNirtreTrades(merchantoffers, aWanderingTraderNirtreTrades$iTrade, 10);
          int i = this.rand.nextInt(aWanderingTraderNirtreTrades$iTrade.length);
          WanderingTraderNirtreTrades.ITrade wanderingTraderNirtreTrades$iTrade = aWanderingTraderNirtreTrades$iTrade[i];
          MerchantOffer merchantoffer = wanderingTraderNirtreTrades$iTrade.getOffer(this, this.rand);
+         if (merchantoffer != null) {
+            merchantoffers.add(merchantoffer);
+         }
+
+      }
+   }
+
+   protected void populateTradeData1() {
+      WanderingTraderNirtreTrades.ITrade1[] aWanderingTraderNirtreTrades$iTrade1 = WanderingTraderNirtreTrades.trade2.get(1);
+      if (aWanderingTraderNirtreTrades$iTrade1 != null) {
+         com.babcsany.minecraft.item.MerchantOffers merchantoffers = this.getOffers1();
+         this.addWanderingTraderNirtreTrades(merchantoffers, aWanderingTraderNirtreTrades$iTrade1, 1);
+         int i = this.rand.nextInt(aWanderingTraderNirtreTrades$iTrade1.length);
+         WanderingTraderNirtreTrades.ITrade1 wanderingTraderNirtreTrades$iTrade = aWanderingTraderNirtreTrades$iTrade1[i];
+         com.babcsany.minecraft.item.MerchantOffer merchantoffer = wanderingTraderNirtreTrades$iTrade.getOffer(this, this.rand);
          if (merchantoffer != null) {
             merchantoffers.add(merchantoffer);
          }
@@ -166,7 +183,7 @@ public class WanderingTraderNirtreEntity extends AbstractNirtreEntity {
 
    private boolean canLevelUp() {
       int i = this.getLevel();
-      return canLevelUp(i) && this.xp >= VillagerData.func_221127_c(i);
+      return canLevelUp(i) && this.xp >= func_221127_c(i);
    }
 
    public static int func_221127_c(int p_221127_0_) {
@@ -277,10 +294,6 @@ public class WanderingTraderNirtreEntity extends AbstractNirtreEntity {
       }
    }
 
-   /**
-    * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
-    * use this to react to sunlight and start to burn.
-    */
    public void livingTick() {
       super.livingTick();
       if (!this.world.isRemote) {
@@ -289,8 +302,11 @@ public class WanderingTraderNirtreEntity extends AbstractNirtreEntity {
       this.wingRotation += this.wingRotDelta * 2.0F;
       if (!this.world.isRemote && this.isAlive() && !this.isChild() && !this.isDropItem() && --this.timeUntilNextItem <= 0) {
          this.entityDropItem(isBurnableToolItemInit.Bj_PICKAXE.get());
-         this.entityDropItem(BlockItemInit.FIGHIV.get());
          this.timeUntilNextItem = this.rand.nextInt(12000) + 12000;
+      }
+      if (!this.world.isRemote && this.isAlive() && !this.isChild() && !this.isDropItem() && --this.timeUntilNextItem <= 0) {
+         this.entityDropItem(BlockItemInit_.FIGHIV.get());
+         this.timeUntilNextItem_ = this.rand.nextInt(28000) + 14000;
       }
    }
 

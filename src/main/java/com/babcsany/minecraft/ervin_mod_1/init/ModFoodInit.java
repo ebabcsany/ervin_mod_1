@@ -19,8 +19,8 @@ public class ModFoodInit {
     public static final Food VOLMINT = (new Food.Builder()).hunger(1).saturation(2).effect(new EffectInstance(Effects.NAUSEA, 30, 30), 30).effect(new EffectInstance(Effects.HUNGER, 120, 30), 30).effect(new EffectInstance(Effects.UNLUCK, 30, 30), 30).effect(new EffectInstance(Effects.INSTANT_DAMAGE, 1, 1),1).effect(new EffectInstance(Effects.SLOWNESS,5, 10),10).effect(new EffectInstance(Effects.SATURATION,5,2),1).effect(new EffectInstance(Effects.WEAKNESS,30,30),30).effect(new EffectInstance(Effects.MINING_FATIGUE,5,30),30).effect(new EffectInstance(Effects.GLOWING,30,30),30).effect(new EffectInstance(Effects.WITHER,2,1),1).meat().build();
     public static final Food ZUNT = (new Food.Builder()).hunger(16).saturation(1.2F).build();
     public static final Food REAT = builder(24,30, effect(Effects.INSTANT_HEALTH, 300, 10000), 10000).setAlwaysEdible().build();
-    public static final Food REAT1 = (new Food.Builder()).hunger(24).saturation(30).effect(new EffectInstance(Effects.REGENERATION, 300, 10000), 10000.0F).setAlwaysEdible().fastToEat().build();
-    public static final Food REAT2 = (new Food.Builder()).hunger(24).saturation(30).effect(new EffectInstance(Effects.REGENERATION, 300, 10000), 10000.0F).setAlwaysEdible().fastToEat().build();
+    public static final Food REAT1 = builder(24,30, effect(Effects.INSTANT_HEALTH, 300, 10000), 10000).setAlwaysEdible().fastToEat().build();
+    public static final Food REAT2 = builder(24,30, effect(Effects.INSTANT_HEALTH, 300, 10000), 10000).setAlwaysEdible().fastToEat().build();
     public static final Food REGDEMP = buildShek(10);
     public static final Food GUBROV = (new Food.Builder()).hunger(4).saturation(0.8F).build();
     public static final Food COOKED_GUBROV = (new Food.Builder()).hunger(8).saturation(1.6F).build();

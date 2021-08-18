@@ -1,11 +1,12 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.AbstractZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.dgrurbk.Dgrurbk;
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.AbstractZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.AgeableZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.ZurTrades;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.tool.isBurnableSpecialToolItemInit;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
@@ -28,6 +29,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
+import java.util.Objects;
 
 public class Dgrurb extends AbstractZurEntity {
     private static final DataParameter<Boolean> IS_CHILD = EntityDataManager.createKey(Dgrurb.class, DataSerializers.BOOLEAN);
@@ -36,6 +38,7 @@ public class Dgrurb extends AbstractZurEntity {
     private EatGrassGoal eatGrassGoal;
     private int eatingGrassTimer;
     protected int growingAge;
+    public boolean dropItem;
 
     public Dgrurb(EntityType<? extends Dgrurb> type, World worldIn) {
         super(type, worldIn);
@@ -53,7 +56,7 @@ public class Dgrurb extends AbstractZurEntity {
         this.getDataManager().set(IS_CHILD, childDgrurb);
         if (this.world != null && !this.world.isRemote) {
             ModifiableAttributeInstance modifiableattributeinstance = this.getAttribute(Attributes.MOVEMENT_SPEED);
-            modifiableattributeinstance.removeModifier(BABY_SPEED_BOOST);
+            Objects.requireNonNull(modifiableattributeinstance).removeModifier(BABY_SPEED_BOOST);
             if (childDgrurb) {
                 modifiableattributeinstance.applyNonPersistentModifier(BABY_SPEED_BOOST);
             }
@@ -103,10 +106,14 @@ public class Dgrurb extends AbstractZurEntity {
 
     @Override
     public void livingTick() {
+        super.livingTick();
         if (this.world.isRemote) {
             this.eatingGrassTimer = Math.max(0, this.eatingGrassTimer - 1);
         }
-        super.livingTick();
+        if (!this.world.isRemote && this.isAlive() && !this.isChild() && !this.isDropItem() && --this.timeUntilNextItem <= 0) {
+            this.entityDropItem(isBurnableSpecialToolItemInit.THUFR.get());
+            this.timeUntilNextItem = this.rand.nextInt(24000) + 16000;
+        }
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
@@ -194,7 +201,7 @@ public class Dgrurb extends AbstractZurEntity {
         if (this.world.getDifficulty() != Difficulty.PEACEFUL) {
             LOGGER.info("Trader Nirtre {} was struck by lightning {}.", this, lightningBolt);
             Dgrurbk dgrurbk = EntityInit.DGRURBK_ENTITY.get().create(this.world);
-            dgrurbk.setLocationAndAngles(this.getPosX(), this.getPosY(), this.getPosZ(), this.rotationYaw, this.rotationPitch);
+            Objects.requireNonNull(dgrurbk).setLocationAndAngles(this.getPosX(), this.getPosY(), this.getPosZ(), this.rotationYaw, this.rotationPitch);
             dgrurbk.onInitialSpawn(this.world, this.world.getDifficultyForLocation(dgrurbk.getPosition()), SpawnReason.CONVERSION, null, null);
             dgrurbk.setNoAI(this.isAIDisabled());
             if (this.hasCustomName()) {
@@ -209,6 +216,10 @@ public class Dgrurb extends AbstractZurEntity {
             super.onStruckByLightning(lightningBolt);
         }
 
+    }
+
+    public boolean isDropItem() {
+        return this.dropItem;
     }
 
     @Override

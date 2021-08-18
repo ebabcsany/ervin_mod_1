@@ -23,7 +23,7 @@ public class ItemInit {
     public static final RegistryObject<Item> KIRT_STIK = ITEMS.register("kirt_stik", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
     public static final RegistryObject<Item> RUBY = ITEMS.register("ruby", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
     public static final RegistryObject<Item> FRIN = ITEMS.register("frin", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
-    public static final RegistryObject<Item> FIRT = ITEMS.register("firt", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
+    public static final RegistryObject<Item> FIRT = ITEMS.register("firt", () -> new BurningItem((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS)), 2400));
     public static final RegistryObject<Item> BREND = ITEMS.register("brend", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
     public static final RegistryObject<Item> SIRK = ITEMS.register("sirk", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
     public static final RegistryObject<Item> FRIT = ITEMS.register("frit", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
@@ -102,7 +102,7 @@ public class ItemInit {
     public static final RegistryObject<Item> MLONK = ITEMS.register("mlonk", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
     //public static final RegistryObject<Item> COD_BUCKET = ITEMS.register("cod_bucket", new FishBucketItem(EntityInit.GUBROV_ENTITY.get(), Fluids.WATER, (new Item.Properties()).maxStackSize(1).group(ItemGroup.MISC)));
     public static final RegistryObject<Item> LIGHT_BLUE1_DYE = ITEMS.register("light_blue1_dye", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
-    public static final RegistryObject<Item> DGUCHSR = ITEMS.register("dguchsr", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
+    public static final RegistryObject<Item> DGUCHSR = ITEMS.register("dguchsr", () -> new BurningItem((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS)), 3405));
     public static final RegistryObject<Item> TAWROL = ITEMS.register("tawrol", () -> new TawrolItem((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
     public static final RegistryObject<Item> GWURST_FEATHER = ITEMS.register("gwurst_feather", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
     public static final RegistryObject<Item> HTRAW = ITEMS.register("htraw", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));

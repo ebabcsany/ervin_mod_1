@@ -2,6 +2,7 @@ package com.babcsany.minecraft.ervin_mod_1.block;
 
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.block.BlockNamedItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.block.crops.seeds.SeedsItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.food.FoodItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.food.SpecialBlockFoodItemInit;
 import it.unimi.dsi.fastutil.objects.Object2FloatMap;
@@ -80,7 +81,7 @@ public class ComposterBlock extends Block implements ISidedInventoryProvider {
       registerCompostable(0.3F, Items.SEAGRASS);
       registerCompostable(0.3F, Items.SWEET_BERRIES);
       registerCompostable(0.3F, Items.WHEAT_SEEDS);
-      registerCompostable(0.3F, BlockNamedItemInit.TARG_SEEDS.get());
+      registerCompostable(0.3F, SeedsItemInit.TARG_SEEDS.get());
       registerCompostable(0.35F, com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.FRIM_LEAVES.get());
       registerCompostable(0.35F, com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.FRIM_SAPLING.get());
       registerCompostable(0.4F, com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit.FIRG_LEAVES.get());

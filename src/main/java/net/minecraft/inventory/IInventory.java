@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 
 import java.util.Set;
 
-public interface IInventory extends com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.classes.inventory.IInventory {
+public interface IInventory extends IClearable {
    /**
     * Returns the number of slots in the inventory.
     */

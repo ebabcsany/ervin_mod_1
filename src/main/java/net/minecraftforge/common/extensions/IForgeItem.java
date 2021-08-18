@@ -19,6 +19,7 @@
 
 package net.minecraftforge.common.extensions;
 
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurTasks;
 import com.babcsany.minecraft.ervin_mod_1.entity.player.PlayerEntity1;
 import com.google.common.collect.Multimap;
 import net.minecraft.block.BlockState;
@@ -115,6 +116,11 @@ public interface IForgeItem
     default boolean isPiglinCurrency(ItemStack stack)
     {
         return stack.getItem() == PiglinTasks.field_234444_a_;
+    }
+
+    default boolean isZurCurrency(ItemStack stack)
+    {
+        return stack.getItem() == ZurTasks.field_234444_a_;
     }
 
     /**

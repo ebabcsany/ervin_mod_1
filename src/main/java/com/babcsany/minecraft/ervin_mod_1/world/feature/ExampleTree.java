@@ -24,7 +24,7 @@ public class ExampleTree extends Tree {
 
     public static final BaseTreeFeatureConfig EXAMPLE_TREE_CONFIG0 = (new BaseTreeFeatureConfig.Builder(
             new SimpleBlockStateProvider(BlockItemInit.EXAMPLE_BLOCK.get().getDefaultState()),
-            new SimpleBlockStateProvider(isBurnableBlockItemInit.TRIRIJ.getDefaultState()),
+            new SimpleBlockStateProvider(com.babcsany.minecraft.init.BlockInit.TRIRIJ.getDefaultState()),
             new FancyFoliagePlacer(8, 14, 11, 5, 2),
             new FancyTrunkPlacer(8, 6, 6),
             new TwoLayerFeature(13, 11, 5, OptionalInt.of(2))))

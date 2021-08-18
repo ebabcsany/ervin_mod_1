@@ -5,7 +5,8 @@ public enum ModItemTier2 implements IItemTier2 {
     enchantability, Supplier<Ingredient> repairMaterial */
     GVR(1010000, 120),
     CRAINT(10000,50),
-    TERAT(160000,120);
+    TERAT(123621,120),
+    THUFR(3690527310400000000.0F,34894526265243262.0F);
 
     //private final int harvestLevel;
     //private final int maxUses;

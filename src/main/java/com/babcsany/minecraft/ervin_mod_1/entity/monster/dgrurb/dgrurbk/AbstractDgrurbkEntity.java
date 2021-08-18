@@ -2,6 +2,7 @@ package com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.dgrurbk;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.DgrurbMonsterEntity;
 import net.minecraft.entity.*;
+import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.util.DamageSource;
@@ -15,6 +16,7 @@ public abstract class AbstractDgrurbkEntity extends DgrurbMonsterEntity {
    public int eatingGrassTimer;
    @Nullable
    public PlayerEntity customer;
+   private boolean doesRewardZUR = true;
    public int despawnDelay;
 
    public AbstractDgrurbkEntity(EntityType<? extends AbstractDgrurbkEntity> type, World worldIn) {
@@ -80,6 +82,14 @@ public abstract class AbstractDgrurbkEntity extends DgrurbMonsterEntity {
          this.remove();
       }
 
+      if (this.getDoesRewardZur()) {
+         int i = 1 + this.rand.nextInt(1);
+         this.world.addEntity(new ExperienceOrbEntity(this.world, this.getPosX(), this.getPosY() + 0.5D, this.getPosZ(), i));
+      }
+   }
+
+   public boolean getDoesRewardZur() {
+      return this.doesRewardZUR;
    }
 
    public boolean canAttackDgrurb(AbstractDgrurbkEntity entity) {
