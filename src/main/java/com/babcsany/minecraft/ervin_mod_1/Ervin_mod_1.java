@@ -1,43 +1,31 @@
 package com.babcsany.minecraft.ervin_mod_1;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.animal.*;
-import com.babcsany.minecraft.ervin_mod_1.entity.animal.hhij.HhijAnimalEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.animal.hhij.HhijEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.fish.GubrovEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.RoventEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurNirtreEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.Dgrurb;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.dgrurbk.Dgrurbk;
-import com.babcsany.minecraft.ervin_mod_1.entity.villager.*;
+import com.babcsany.minecraft.Minecraft;
 import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.Ervin_mod_1_;
-import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.classes.string.String_2;
 import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.init.Init;
+import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.setup.DefaultEntitySpawnPlacementRegistry;
+import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.setup.DefaultSetup;
+import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.setup.ModEntitySpawnPlacementRegistry;
+import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.setup.ModSetup;
+import com.babcsany.minecraft.ervin_mod_1.forge.fml.DeferredWorkQueue;
 import com.babcsany.minecraft.ervin_mod_1.init.BiomeInit;
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.minecraft.block.MinecraftBlocks;
 import com.babcsany.minecraft.ervin_mod_1.item.group.ItemGroup;
-import com.babcsany.minecraft.ervin_mod_1.world.gen.FeatureGen;
+import com.babcsany.minecraft.init.item.ItemInit;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.renderer.model.RenderMaterial;
 import net.minecraft.client.renderer.texture.AtlasTexture;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
-import net.minecraft.entity.passive.AnimalEntity;
-import net.minecraft.entity.passive.fish.AbstractFishEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.ShapedRecipe;
 import net.minecraft.potion.EffectInstance;
@@ -48,13 +36,11 @@ import net.minecraft.tags.ITag;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.Heightmap;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
@@ -84,7 +70,6 @@ public class Ervin_mod_1 {
     //public static final ITag<EntityType<?>> blacklisted = EntityTypeTags.func_232896_a_((new ResourceLocation("ervin_mod_1", "blacklisted")).toString());
     /** Directly reference a log4j logger.*/
     public static final Logger LOGGER = LogManager.getLogger();
-    private int maxStackSize;
 
     public Ervin_mod_1() {
         // Register the setup method for modLoading
@@ -112,54 +97,20 @@ public class Ervin_mod_1 {
         LOGGER.info("HELLO FROM PREINIT");
         LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
         DeferredWorkQueue.runLater(() -> {
-            GlobalEntityTypeAttributes.put(EntityInit.LIWRAY.get(), Liwray.setCustomAttributes().create());
-            GlobalEntityTypeAttributes.put(EntityInit.GWURST.get(), GwurstEntity.setCustomAttributes().create());
-            //GlobalEntityTypeAttributes.put(EntityInit.PLAYER1, PlayerEntity.registerAttributes().create());
-            GlobalEntityTypeAttributes.put(com.babcsany.minecraft.init.EntityInit.ZUR_ENTITY, ZurEntity.setCustomAttributes().create());
-            GlobalEntityTypeAttributes.put(EntityInit.DGRURB_ENTITY.get(), Dgrurb.registerAttributes().create());
-            GlobalEntityTypeAttributes.put(EntityInit.DGRURBK_ENTITY.get(), Dgrurbk.registerAttributes().create());
-            GlobalEntityTypeAttributes.put(com.babcsany.minecraft.init.EntityInit.ROVENT_ENTITY, RoventEntity.setCustomAttributes().create());
-            GlobalEntityTypeAttributes.put(EntityInit.ZUR_NIRTRE_ENTITY.get(), ZurNirtreEntity.setCustomAttributes().create());
-            GlobalEntityTypeAttributes.put(EntityInit.FREIN_ENTITY.get(), FreinEntity.setCustomAttributes().create());
-            GlobalEntityTypeAttributes.put(EntityInit.VILT_ENTITY.get(), ViltEntity.setCustomAttributes().create());
-            GlobalEntityTypeAttributes.put(com.babcsany.minecraft.init.EntityInit.SRACH_ENTITY, SrachEntity.setCustomAttributes().create());
-            GlobalEntityTypeAttributes.put(EntityInit.SHERT_ENTITY.get(), ShertEntity.setCustomAttributes().create());
-            GlobalEntityTypeAttributes.put(EntityInit.HHIJ_ENTITY.get(), HhijEntity.setCustomAttributes().create());
-            GlobalEntityTypeAttributes.put(EntityInit.WANDERING_TRADER_NIRTRE_ENTITY.get(), WanderingTraderNirtreEntity.setCustomAttributes().create());
-            GlobalEntityTypeAttributes.put(EntityInit.TRADER_NIRTRE_ENTITY.get(), TraderNirtreEntity.setCustomAttributes().create());
-            GlobalEntityTypeAttributes.put(EntityInit.TRADER_NIRTRE1_ENTITY.get(), TraderNirtre1Entity.setCustomAttributes().create());
-            GlobalEntityTypeAttributes.put(EntityInit.$_TRADER_ENTITY.get(), $TraderEntity.setCustomAttributes().create());
-            GlobalEntityTypeAttributes.put(EntityInit.ZOMBIE_TRADER_ENTITY.get(), ZombieTraderEntity.setCustomAttributes().create());
-            GlobalEntityTypeAttributes.put(com.babcsany.minecraft.init.EntityInit.GUBROV, GubrovEntity.setCustomAttributes().create());
-            EntitySpawnPlacementRegistry.register(EntityInit.$_TRADER_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, Abstract$TraderEntity::canSpawnOn);
-            EntitySpawnPlacementRegistry.register(EntityInit.DGRURB_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canSpawnOn);
-            EntitySpawnPlacementRegistry.register(EntityInit.FREIN_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, FreinEntity::func_223366_c);
-            EntitySpawnPlacementRegistry.register(com.babcsany.minecraft.init.EntityInit.GUBROV, EntitySpawnPlacementRegistry.PlacementType.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AbstractFishEntity::func_223363_b);
-            EntitySpawnPlacementRegistry.register(EntityInit.HHIJ_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, HhijAnimalEntity::canAnimalSpawn);
-            EntitySpawnPlacementRegistry.register(com.babcsany.minecraft.init.EntityInit.ROVENT_ENTITY, EntitySpawnPlacementRegistry.PlacementType.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, RoventEntity::canRoventSpawn);
-            EntitySpawnPlacementRegistry.register(EntityInit.SHERT_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ShertEntity::func_223318_c);
-            EntitySpawnPlacementRegistry.register(com.babcsany.minecraft.init.EntityInit.SRACH_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::canAnimalSpawn);
-            EntitySpawnPlacementRegistry.register(EntityInit.TRADER_NIRTRE_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canSpawnOn);
-            EntitySpawnPlacementRegistry.register(EntityInit.VILT_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::canAnimalSpawn);
-            EntitySpawnPlacementRegistry.register(EntityInit.WANDERING_TRADER_NIRTRE_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canSpawnOn);
-            EntitySpawnPlacementRegistry.register(EntityInit.ZOMBIE_TRADER_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canSpawnOn);
-            EntitySpawnPlacementRegistry.register(com.babcsany.minecraft.init.EntityInit.ZUR_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canSpawnOn);
-            EntitySpawnPlacementRegistry.register(EntityInit.LIWRAY.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canSpawnOn);
-            EntitySpawnPlacementRegistry.func_209342_b(EntityInit.LIWRAY.get());
-            EntitySpawnPlacementRegistry.func_209342_b(com.babcsany.minecraft.init.EntityInit.ZUR_ENTITY);
-            //EntitySpawnPlacementRegistry.canSpawnEntity(EntityInit.LIWRAY, iWorld, SpawnReason.SPAWN_EGG, BlockPos.ZERO, new Random());
-            EntitySpawnPlacementRegistry.getPlacementType(EntityInit.LIWRAY.get());
-            EntitySpawnPlacementRegistry.getPlacementType(com.babcsany.minecraft.init.EntityInit.ZUR_ENTITY);
+            new ModSetup();
+            new DefaultSetup();
+            new ModEntitySpawnPlacementRegistry();
+            new DefaultEntitySpawnPlacementRegistry();
 
             Ervin_mod_1_.registries();
+            Ervin_mod_1_.featureGen();
 
         });
 
-        DeferredWorkQueue.runLater(FeatureGen::GenerateFeature);
-        DeferredWorkQueue.runLater(FeatureGen::getSpawns);
-
         Ervin_mod_1_.setup();
-        Ervin_mod_1_.ervin_mod_1();
+        Ervin_mod_1_.ervin_mod_1_void();
+        Ervin_mod_1_.ervin_mod_1_boolean();
+        minecraft();
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
@@ -177,9 +128,7 @@ public class Ervin_mod_1 {
 
     private void processIMC(final InterModProcessEvent event) {
         // some example code to receive and process InterModComms from other mods
-        LOGGER.info("Got IMC {}", event.getIMCStream().
-                map(m -> m.getMessageSupplier().get()).
-                collect(Collectors.toList()));
+        LOGGER.info("Got IMC {}", event.getIMCStream().map(m -> m.getMessageSupplier().get()).collect(Collectors.toList()));
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
@@ -216,7 +165,7 @@ public class Ervin_mod_1 {
             BlockItemInit.BLOCKS.getEntries().stream().map(RegistryObject::get).forEach(block -> {
                 if (!Blocks.contains(block)) {
                     final Item.Properties properties = new Item.Properties();
-                    properties.group(ItemGroup.ERVIN_MOD_1).group(ItemGroup.ERVIN_MOD_1_SEARCH);
+                    properties.group(ItemGroup.ERVIN_MOD_1);
                     final BlockItem blockItem = new BlockItem(block, properties);
                     ResourceLocation registryName = block.getRegistryName();
                     if (null != registryName) {
@@ -239,7 +188,8 @@ public class Ervin_mod_1 {
             MinecraftBlocks.BLOCKS.getEntries().stream().map(RegistryObject::get).forEach(block -> {
                 if (!Blocks.contains(block)) {
                     final Item.Properties properties = new Item.Properties();
-                    properties.group(ItemGroup.ERVIN_MOD_1).group(ItemGroup.ERVIN_MOD_1_SEARCH);
+                    properties.group(ItemGroup.ERVIN_MOD_1);
+                    properties.group(ItemGroup.ERVIN_MOD_1_SEARCH);
                     final BlockItem blockItem = new BlockItem(block, properties);
                     ResourceLocation registryName = block.getRegistryName();
                     if (null != registryName) {
@@ -251,7 +201,8 @@ public class Ervin_mod_1 {
             isBurnableBlockItemInit.BURNABLE_BLOCKS.getEntries().stream().map(RegistryObject::get).forEach(block -> {
                 if (!Blocks.contains(block)) {
                     final Item.Properties properties = new Item.Properties().isBurnable();
-                    properties.group(ItemGroup.ERVIN_MOD_1).group(ItemGroup.ERVIN_MOD_1_SEARCH);
+                    properties.group(ItemGroup.ERVIN_MOD_1);
+                    properties.group(ItemGroup.ERVIN_MOD_1_SEARCH);
                     final BlockItem blockItem = new BlockItem(block, properties);
                     ResourceLocation registryName = block.getRegistryName();
                     if (null != registryName) {
@@ -276,21 +227,15 @@ public class Ervin_mod_1 {
             PlayerEntity player = event.getPlayer();
             ResourceLocation MaterialBlocksTagId = new ResourceLocation(com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1.MOD_ID, "material_blocks");
             ITag<Block> MaterialBlocks = BlockTags.getCollection().get(MaterialBlocksTagId);
-            if (event.getWorld().hasBlockState(event.getPos(), blockState -> {
-                assert MaterialBlocks != null;
-                return blockState.isIn(MaterialBlocks) && player.isCreative();
-            })) {
+            if (event.getWorld().hasBlockState(event.getPos(), blockState -> blockState.isIn(MaterialBlocks) && player.isCreative())) {
                 event.setCanceled(true);
             }
         }
         @SubscribeEvent
         public static void onLeftClick1Block(final PlayerInteractEvent.LeftClickBlock event) {
             ResourceLocation Material1BlocksTagId = new ResourceLocation(com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1.MOD_ID, "material_blocks1");
-            ITag<Block> Material1Blocks = BlockTags.getCollection().get(Material1BlocksTagId);
-            if (event.getWorld().hasBlockState(event.getPos(), blockState -> {
-                assert Material1Blocks != null;
-                return blockState.isIn(Material1Blocks);
-            })) {
+            ITag<Block> MaterialBlocks1 = BlockTags.getCollection().get(Material1BlocksTagId);
+            if (event.getWorld().hasBlockState(event.getPos(), blockState -> blockState.isIn(MaterialBlocks1))) {
                 event.setCanceled(true);
             }
         }
@@ -303,7 +248,7 @@ public class Ervin_mod_1 {
 
     private void updateTurtleHelmet(PlayerEntity player) {
         ItemStack itemstack = player.getItemStackFromSlot(EquipmentSlotType.HEAD);
-        if (itemstack.getItem() == Items.TURTLE_HELMET && !player.areEyesInFluid(FluidTags.WATER)) {
+        if (itemstack.getItem() == ItemInit.FRISZERN && !player.areEyesInFluid(FluidTags.WATER)) {
             player.addPotionEffect(new EffectInstance(Effects.WATER_BREATHING, 200, 0, false, false, true));
         }
 
@@ -323,6 +268,36 @@ public class Ervin_mod_1 {
 
     public static <T extends Entity> EntityType<T> entityRegister(String key, EntityType.Builder<T> builder) {
         return Registry.register(Registry.ENTITY_TYPE, key, builder.build(key));
+    }
+
+    public static String[] string(String[] strings) {
+        return strings;
+    }
+
+    public static String modId(String modId, String name) {
+        char Char = ':';
+        return modId + Char + name;
+    }
+
+    public static void setWorldRegistryKey(String modId, String string) {
+        string(decompose(modId, string, ':'));
+    }
+
+    public static String[] decompose(String string, String resourceName, char splitOn) {
+        String[] astring = new String[]{string, resourceName};
+        int i = resourceName.indexOf(splitOn);
+        if (i >= 0) {
+            astring[1] = resourceName.substring(i + 1);
+            if (i >= 1) {
+                astring[0] = resourceName.substring(0, i);
+            }
+        }
+
+        return astring;
+    }
+
+    public void minecraft() {
+        new Minecraft();
     }
 
     //https://mcforge.readthedocs.io/en/1.16.x/concepts/sides/

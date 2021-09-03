@@ -1,12 +1,11 @@
 package com.babcsany.minecraft.ervin_mod_1.client.renderer.entity;
 
+import com.babcsany.minecraft.client.renderer.entity.painting.modPaintingRenderer;
 import com.babcsany.minecraft.ervin_mod_1.client.entity.render.GubrovRenderer;
 import com.babcsany.minecraft.ervin_mod_1.client.entity.render.ZurEntityRender;
 import com.babcsany.minecraft.ervin_mod_1.client.entity.render.skull.DgrurbkSkullRenderer;
-import com.babcsany.minecraft.ervin_mod_1.client.renderer.entity.item.EntityItemIcsvreRenderer;
-import com.babcsany.minecraft.ervin_mod_1.client.renderer.item.ItemIcsvreRenderer;
 import com.babcsany.minecraft.init.EntityInit;
-import com.babcsany.minecraft.renderer.entity.ModBoatRenderer;
+import com.babcsany.minecraft.init.special.PaintingEntityInit;
 import com.google.common.collect.Maps;
 import net.minecraft.client.GameSettings;
 import net.minecraft.client.gui.FontRenderer;
@@ -29,13 +28,15 @@ public class EntityRendererManager extends net.minecraft.client.renderer.entity.
    public final TextureManager textureManager;
    public ActiveRenderInfo info;
    public final GameSettings options;
+   public static EntityRendererManager ENTITY_ENDERER_MANAGER;
 
    private void registerRenderers(net.minecraft.client.renderer.ItemRenderer itemRendererIn, IReloadableResourceManager resourceManagerIn) {
-      this.register(EntityInit.MOD_BOAT, new ModBoatRenderer(this));
+      //this.register(EntityInit.MOD_BOAT, new ModBoatRenderer(this));
       this.register(EntityInit.ZUR_ENTITY, new ZurEntityRender(this));
       this.register(EntityInit.GUBROV, new GubrovRenderer(this));
       this.register(EntityInit.DGRURB_SKULL, new DgrurbkSkullRenderer(this));
       this.register(EntityInit.TAWROL, new SpriteRenderer<>(this, itemRendererIn));
+      this.register(PaintingEntityInit.modPainting, new modPaintingRenderer(this));
       this.register(EntityInit.ICSVRE, new ItemRenderer(this, itemRendererIn));
    }
 

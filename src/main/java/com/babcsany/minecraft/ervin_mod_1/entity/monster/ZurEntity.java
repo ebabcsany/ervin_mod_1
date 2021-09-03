@@ -57,6 +57,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.village.GossipManager;
 import net.minecraft.world.Difficulty;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
@@ -71,7 +72,6 @@ public class ZurEntity extends AbstractZurEntity {
    private static final DataParameter<Boolean> field_213428_bG = EntityDataManager.createKey(ZurEntity.class, DataSerializers.BOOLEAN);
    private static final DataParameter<Boolean> field_213429_bH = EntityDataManager.createKey(ZurEntity.class, DataSerializers.BOOLEAN);
    protected static final DataParameter<Byte> TAMED = EntityDataManager.createKey(ZurEntity.class, DataSerializers.BYTE);
-   protected static final DataParameter<Optional<UUID>> OWNER_UNIQUE_ID = EntityDataManager.createKey(ZurEntity.class, DataSerializers.OPTIONAL_UNIQUE_ID);
    public static final Map<Item, Integer> FOOD_VALUES = ImmutableMap.of(Items.BREAD, 4, Items.POTATO, 1, Items.CARROT, 1, Items.BEETROOT, 1);
    private static final DataParameter<Boolean> field_234409_bv_ = EntityDataManager.createKey(ZurEntity.class, DataSerializers.BOOLEAN);
    public ServerPlayNetHandler connection;
@@ -113,6 +113,11 @@ public class ZurEntity extends AbstractZurEntity {
       return ZurTasks.func_234469_a_(this, this.getBrainCodec().func_233748_a_(dynamicIn));
    }
 
+   public static boolean canZurSpawn(EntityType<? extends MobEntity> typeIn, IWorld worldIn, SpawnReason reason, BlockPos pos, Random randomIn) {
+      BlockPos blockpos = pos.up();
+      return reason == SpawnReason.NATURAL || worldIn.getBlockState(blockpos).canEntitySpawn(worldIn, blockpos, typeIn);
+   }
+
    public ZurEntity(World worldIn) {
       this(com.babcsany.minecraft.init.EntityInit.ZUR_ENTITY, worldIn);
    }
@@ -130,7 +135,6 @@ public class ZurEntity extends AbstractZurEntity {
    private void applyEntityAI() {
       EatGrassGoal eatGrassGoal = new EatGrassGoal(this);
       EatPumpkinGoal eatPumpkinGoal = new EatPumpkinGoal(this);
-      //this.goalSelector.addGoal(6, new MorningGiftGoal(this));
       this.goalSelector.addGoal(4, new ZurEntity.PounceGoal(this));
       this.goalSelector.addGoal(1, new LookRandomlyGoal(this));
       this.goalSelector.addGoal(7, new PlaceBlockGoal(this));
@@ -461,16 +465,6 @@ public class ZurEntity extends AbstractZurEntity {
       }
    }
 
-   @Nullable
-   public LivingEntity getOwner() {
-      try {
-         UUID uuid = this.getOwnerId();
-         return uuid == null ? null : this.world.getPlayerByUuid(uuid);
-      } catch (IllegalArgumentException illegalargumentexception) {
-         return null;
-      }
-   }
-
    public boolean func_213416_eg() {
       return this.dataManager.get(field_213428_bG);
    }
@@ -489,11 +483,6 @@ public class ZurEntity extends AbstractZurEntity {
 
    public boolean canBreed() {
       return this.foodLevel + this.getFoodValueFromInventory() >= 12 && this.getGrowingAge() == 0;
-   }
-
-   @Nullable
-   public UUID getOwnerId() {
-      return this.dataManager.get(OWNER_UNIQUE_ID).orElse(null);
    }
 
    class SitGoal extends Goal {
@@ -681,7 +670,6 @@ public class ZurEntity extends AbstractZurEntity {
 
       compound.put("Inventory", this.zurInventory.write());
       compound.putInt("InWaterTime", this.isInWater() ? this.inWaterTime : -1);
-      compound.putInt("DrownedConversionTime", this.isDrowning() ? this.drownedConversionTime : -1);
    }
 
    public void onKillEntity(LivingEntity entityLivingIn) {
@@ -772,29 +760,14 @@ public class ZurEntity extends AbstractZurEntity {
       this.dataManager.set(CARRIED_BLOCK, Optional.ofNullable(state));
    }
 
-   protected void populateTradeZurData() {
-      ZurTrades.ITrade[] aZurTrades$iTrade = ZurTrades.field_221240_b.get(1);
-      if (aZurTrades$iTrade != null) {
-         MerchantOffers merchantoffers = this.getOffers();
-         this.addTrades(merchantoffers, aZurTrades$iTrade, 10);
-         int i = this.rand.nextInt(aZurTrades$iTrade.length);
-         ZurTrades.ITrade wanderingTraderNirtreTrades$iTrade = aZurTrades$iTrade[i];
-         MerchantOffer merchantoffer = wanderingTraderNirtreTrades$iTrade.getOffer(this, this.rand);
-         if (merchantoffer != null) {
-            merchantoffers.add(merchantoffer);
-         }
-
-      }
-   }
-
    @Nullable
    public BlockState getHeldBlockState() {
       return this.dataManager.get(CARRIED_BLOCK).orElse(null);
    }
 
-   public void onStruckByLightning(PlayerEntity player) {
+   public void onStruckByLightning(LightningBoltEntity lightningBolt) {
       if (this.world.getDifficulty() != Difficulty.PEACEFUL) {
-         LOGGER.info("Zur {} was struck by lightning {}.", this, player);
+         LOGGER.info("Zur {} was struck by lightning {}.", this, lightningBolt);
          ZurNirtreEntity zurNirtreEntity = EntityInit.ZUR_NIRTRE_ENTITY.get().create(this.world);
          zurNirtreEntity.setLocationAndAngles(this.getPosX(), this.getPosY(), this.getPosZ(), this.rotationYaw, this.rotationPitch);
          zurNirtreEntity.onInitialSpawn(this.world, this.world.getDifficultyForLocation(zurNirtreEntity.getPosition()), SpawnReason.CONVERSION, null, null);
@@ -808,7 +781,7 @@ public class ZurEntity extends AbstractZurEntity {
          this.world.addEntity(zurNirtreEntity);
          this.remove();
       } else {
-         super.onStruckByLightning(player);
+         super.onStruckByLightning(lightningBolt);
       }
 
    }

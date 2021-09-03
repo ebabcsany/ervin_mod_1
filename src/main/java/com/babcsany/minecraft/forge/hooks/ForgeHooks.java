@@ -3,6 +3,7 @@ package com.babcsany.minecraft.forge.hooks;
 
 import com.babcsany.minecraft.ervin_mod_1.block.ModBlock;
 import com.babcsany.minecraft.ervin_mod_1.entity.living.Living;
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.AbstractZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.interfaces.consumer.consumers.Consumer_1;
 import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.interfaces.consumer.consumers.Consumer_10;
 import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.interfaces.consumer.consumers.Consumer_3;
@@ -12,6 +13,7 @@ import com.babcsany.minecraft.ervin_mod_1.item.item.icsvre.Icsvre;
 import com.babcsany.minecraft.ervin_mod_1.item.item.icsvre.IcsvreUseContext;
 import com.babcsany.minecraft.ervin_mod_1.item.item.stack.IcsvreStack;
 import com.babcsany.minecraft.forge.event.entity.icsvre.IcsvreTossEvent;
+import com.babcsany.minecraft.forge.event.entity.item.zur.ItemTossEvent;
 import com.babcsany.minecraft.item.icsvre.EnchantedBookIcsvre;
 import com.babcsany.minecraft.item.icsvre.PotionIcsvre;
 import com.babcsany.minecraft.item.icsvre.SpawnEggIcsvre;
@@ -36,7 +38,6 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.common.util.BlockSnapshot;
 import net.minecraftforge.event.ForgeEventFactory;
-import net.minecraftforge.event.entity.item.ItemTossEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nonnull;
@@ -189,6 +190,25 @@ public class ForgeHooks {
 
         if (!player.world.isRemote)
             player.getEntityWorld().addEntity(event.getEntityItem());
+        return event.getEntityItem();
+    }
+
+    @Nullable
+    public static ItemEntity onZurTossEvent(@Nonnull AbstractZurEntity zur, @Nonnull ItemStack item, boolean includeName)
+    {
+        zur.captureDrops(Lists.newArrayList());
+        ItemEntity ret = zur.dropItem(item, false, includeName);
+        zur.captureDrops(null);
+
+        if (ret == null)
+            return null;
+
+        ItemTossEvent event = new ItemTossEvent(ret, zur);
+        if (MinecraftForge.EVENT_BUS.post(event))
+            return null;
+
+        if (!zur.world.isRemote)
+            zur.getEntityWorld().addEntity(event.getEntityItem());
         return event.getEntityItem();
     }
 

@@ -81,11 +81,6 @@ public abstract class AbstractDgrurbkEntity extends DgrurbMonsterEntity {
       if (this.despawnDelay > 0 && !this.hasCustomer() && --this.despawnDelay == 0) {
          this.remove();
       }
-
-      if (this.getDoesRewardZur()) {
-         int i = 1 + this.rand.nextInt(1);
-         this.world.addEntity(new ExperienceOrbEntity(this.world, this.getPosX(), this.getPosY() + 0.5D, this.getPosZ(), i));
-      }
    }
 
    public boolean getDoesRewardZur() {

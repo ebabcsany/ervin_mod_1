@@ -1,5 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.item;
 
+import com.babcsany.minecraft.ervin_mod_1.init.block.item.isBurnableBlockItemInit_;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.block.tool.ToolItemInit;
@@ -53,7 +54,7 @@ public enum ModItemTier implements IItemTier {
     OBSIDIAN(4, 3214, 64.0F, 4.0F, 8, () -> Ingredient.fromItems(Items.OBSIDIAN)),
     DURT(3, 2672, 24.0F, 5.0F, 320, () -> Ingredient.fromItems(com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.DURT.get())),
     TRUGN(33, 120000, 5600000.0F, 720.0F, 30000, () -> Ingredient.fromItems(isBurnableBlockItemInit.TRUGN.get())),
-    TRAGN(44, 12000000, 560000000.0F, 72000.0F, 3000000, () -> Ingredient.fromItems(isBurnableBlockItemInit.TRAGN.get())),
+    TRAGN(44, 12000000, 560000000.0F, 72000.0F, 3000000, () -> Ingredient.fromItems(isBurnableBlockItemInit_.TRAGN.get())),
     TRUZN(39, 1200000, 56000000.0F, 7200.0F, 300000, () -> Ingredient.fromItems(isBurnableBlockItemInit.TRUZN.get())),
     TGURN(74, 324000000, 15120000000.0F, 19440000.0F, 81000000, () -> Ingredient.fromItems(isBurnableBlockItemInit.TGURN.get())),
     SRURG(17, 54636, 2315847.0F, 340.0F, 14328, () -> Ingredient.fromItems(isBurnableBlockItemInit.SRURG.get())),

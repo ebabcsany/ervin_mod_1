@@ -10,7 +10,7 @@ import java.util.function.Supplier;
 public enum ModItemTier_ implements IItemTier {
     /** int harvestLevel, int maxUses, float efficiency, float attackDamage, int
     enchantability, Supplier<Ingredient> repairMaterial */
-    THUFR(119, maxUses(1087600000), 3690527310400000000.0F, 34894526265243262.0F, 14328, () -> Ingredient.fromItems(isBurnableSpecialToolItemInit.THUFR.get()));
+    THUFR(142, maxUses(1087600000), 3690527310400000000.0F, 34894526265243262.0F, 14328, () -> Ingredient.fromItems(isBurnableSpecialToolItemInit.THUFR.get()));
 
     public static int maxUses(int maxUses) {
         return 2000000000 + (maxUses * 100);

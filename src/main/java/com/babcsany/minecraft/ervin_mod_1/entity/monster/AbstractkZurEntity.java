@@ -1,5 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.monster;
 
+import com.babcsany.minecraft.ervin_mod_1.entity.event.BabyEntitySpawnEvent;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.Abstract$TraderEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.$TraderTrades;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
@@ -419,7 +420,7 @@ public abstract class AbstractkZurEntity extends CreatureEntity implements IMob,
 
    public void func_234177_a_(World p_234177_1_, AbstractkZurEntity p_234177_2_) {
       AbstractkZurEntity ageableentity = this.createChild(p_234177_2_);
-      final com.babcsany.minecraft.ervin_mod_1.entity.event.zur.BabyEntitySpawnEvent event = new com.babcsany.minecraft.ervin_mod_1.entity.event.zur.BabyEntitySpawnEvent(this, p_234177_2_, ageableentity);
+      final BabyEntitySpawnEvent event = new BabyEntitySpawnEvent(this, p_234177_2_, ageableentity);
       final boolean cancelled = net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(event);
       ageableentity = event.getChild();
       if (cancelled) {

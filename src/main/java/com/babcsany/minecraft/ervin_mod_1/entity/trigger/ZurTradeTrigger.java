@@ -3,6 +3,7 @@ package com.babcsany.minecraft.ervin_mod_1.entity.trigger;
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.AbstractZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.AgeableZurEntity;
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.TraderZurEntity;
 import com.google.gson.JsonObject;
 import net.minecraft.advancements.criterion.AbstractCriterionTrigger;
 import net.minecraft.advancements.criterion.CriterionInstance;
@@ -28,7 +29,7 @@ public class ZurTradeTrigger extends AbstractCriterionTrigger<ZurTradeTrigger.In
       return new Instance(entityPredicate, entitypredicate$andpredicate, itempredicate);
    }
 
-   public void test(ServerPlayerEntity player, AgeableZurEntity zur, ItemStack stack) {
+   public void test(ServerPlayerEntity player, TraderZurEntity zur, ItemStack stack) {
       LootContext lootcontext = EntityPredicate.getLootContext(player, zur);
       this.triggerListeners(player, (p_227267_2_) -> p_227267_2_.test(lootcontext, stack));
    }

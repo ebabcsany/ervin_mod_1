@@ -1,12 +1,10 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.monster.zur;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurNirtreEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurTasks;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.Dgrurb;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.goal.BowAttackGoal;
 import com.babcsany.minecraft.ervin_mod_1.entity.player.PlayerEntity1;
-import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.WanderingTraderNirtreTrades;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.ZurTrades;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
@@ -16,12 +14,12 @@ import com.babcsany.minecraft.ervin_mod_1.init.item.food.isBurnableFoodItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.special.isBurnableSpecialItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.tool.isBurnableToolItemInit;
+import com.babcsany.minecraft.ervin_mod_1.world.storage.loot.LootTables1;
+import com.babcsany.minecraft.forge.hooks.ForgeHooks;
 import com.babcsany.minecraft.init.EntityInit;
 import com.babcsany.minecraft.init.item.spawn_egg.ModSpawnEggItemInit;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Sets;
-import com.mojang.serialization.Dynamic;
 import net.minecraft.block.BedBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -32,15 +30,18 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.ai.brain.Brain;
 import net.minecraft.entity.ai.brain.memory.MemoryModuleType;
-import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.ai.goal.BreakDoorGoal;
+import net.minecraft.entity.ai.goal.Goal;
+import net.minecraft.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.merchant.villager.VillagerData;
-import net.minecraft.entity.monster.piglin.PiglinEntity;
-import net.minecraft.entity.monster.piglin.PiglinTasks;
-import net.minecraft.entity.passive.TameableEntity;
+import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.entity.passive.CatEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileHelper;
+import net.minecraft.inventory.EnderChestInventory;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.container.MerchantContainer;
@@ -48,8 +49,6 @@ import net.minecraft.inventory.container.SimpleNamedContainerProvider;
 import net.minecraft.item.*;
 import net.minecraft.loot.*;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.ListNBT;
-import net.minecraft.nbt.NBTDynamicOps;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -80,14 +79,14 @@ import javax.annotation.Nullable;
 import java.util.*;
 import java.util.function.Predicate;
 
-public abstract class AbstractZurEntity extends AgeableZurEntity {
+public abstract class AbstractZurEntity extends TraderZurEntity {
    public final NonNullList<ItemStack> inventory = NonNullList.withSize(1000000, ItemStack.EMPTY);
    private final BowAttackGoal<AbstractZurEntity> aiArrowAttack = new BowAttackGoal<>(this, 1.0D, 20, 15.0F);
-   private static final UUID MODIFIER_UUID = UUID.fromString("5CD17E52-A79A-43D3-A529-90FDE04B181E");
-   public static final AttributeModifier MODIFIER = new AttributeModifier(MODIFIER_UUID, "Drinking speed penalty", 0.6D, AttributeModifier.Operation.ADDITION);
+   private static final DataParameter<Boolean> field_213429_bH = EntityDataManager.createKey(AbstractZurEntity.class, DataSerializers.BOOLEAN);
+   private static final DataParameter<Boolean> field_213428_bG = EntityDataManager.createKey(AbstractZurEntity.class, DataSerializers.BOOLEAN);
    private static final DataParameter<Integer> SHAKE_HEAD_TICKS = EntityDataManager.createKey(AbstractZurEntity.class, DataSerializers.VARINT);
-   private static final DataParameter<Boolean> IS_DRINKING = EntityDataManager.createKey(AbstractZurEntity.class, DataSerializers.BOOLEAN);
    private static final UUID BABY_SPEED_BOOST_ID = UUID.fromString("B9766B59-9566-4402-BC1F-2EE2A276D836");
+   protected static final DataParameter<Optional<UUID>> OWNER_UNIQUE_ID = EntityDataManager.createKey(AbstractZurEntity.class, DataSerializers.OPTIONAL_UNIQUE_ID);
    public static final AttributeModifier BABY_SPEED_BOOST = new AttributeModifier(BABY_SPEED_BOOST_ID, "Baby speed boost", 0.5D, AttributeModifier.Operation.MULTIPLY_BASE);
    private static final DataParameter<Boolean> IS_CHILD = EntityDataManager.createKey(AbstractZurEntity.class, DataSerializers.BOOLEAN);
    private static final DataParameter<Integer> TRADER_TYPE = EntityDataManager.createKey(AbstractZurEntity.class, DataSerializers.VARINT);
@@ -96,8 +95,11 @@ public abstract class AbstractZurEntity extends AgeableZurEntity {
    private final List<NonNullList<ItemStack>> allInventories = ImmutableList.of(this.inventory);
    private final BreakDoorGoal breakDoor = new BreakDoorGoal(this, HARD_DIFFICULTY_PREDICATE);
    private static final Predicate<Difficulty> HARD_DIFFICULTY_PREDICATE = (p_213697_0_) -> p_213697_0_ == Difficulty.HARD;
-   protected static final DataParameter<Optional<BlockState>> CARRIED_BLOCK = EntityDataManager.createKey(ZurEntity.class, DataSerializers.OPTIONAL_BLOCK_STATE);
+   protected static final DataParameter<Optional<BlockState>> CARRIED_BLOCK = EntityDataManager.createKey(AbstractZurEntity.class, DataSerializers.OPTIONAL_BLOCK_STATE);
    public static final Map<Item, Integer> FOOD_VALUES = ImmutableMap.of(Items.BREAD, 4, Items.POTATO, 1, Items.CARROT, 1, Items.BEETROOT, 1);
+   public final com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.ZurInventory ZurInventory = new ZurInventory(this);
+   protected EnderChestInventory enterChestInventory = new EnderChestInventory();
+   private ItemStack itemStackMainHand = ItemStack.EMPTY;
    @Nullable
    public BlockPos zurTarget;
    @Nullable
@@ -108,7 +110,6 @@ public abstract class AbstractZurEntity extends AgeableZurEntity {
    private boolean doesRewardEXP = true;
    protected final SwimmerPathNavigator waterNavigator;
    protected final GroundPathNavigator groundNavigator;
-   public int potionUseTimer;
    public float wingRotation;
    public int experienceLevel;
    public int experienceTotal;
@@ -127,11 +128,8 @@ public abstract class AbstractZurEntity extends AgeableZurEntity {
    private int level;
    private int timeUntilReset;
    private boolean leveledUp;
-   private int despawnDelay;
-   public boolean zurDropItem;
    public float wingRotDelta = 1.0F;
    private boolean isBreakDoorsTaskSet;
-   private int eatingGrassTimer;
    private int drownedConversionTime;
    private final MeleeAttackGoal aiAttackOnCollide = new MeleeAttackGoal(this, 1.2D, true) {
       /**
@@ -151,7 +149,6 @@ public abstract class AbstractZurEntity extends AgeableZurEntity {
       }
    };
    public int currentItem;
-   public int timeUntilNextItem = this.rand.nextInt(6000) + 6000;
 
    public AbstractZurEntity(EntityType<? extends AbstractZurEntity> type, World worldIn) {
       super(type, worldIn);
@@ -209,6 +206,47 @@ public abstract class AbstractZurEntity extends AgeableZurEntity {
 
    }
 
+   @Nullable
+   public ItemEntity dropItem(ItemStack itemStackIn, boolean unused) {
+      return ForgeHooks.onZurTossEvent(this, itemStackIn, false);
+   }
+
+   /**
+    * Creates and drops the provided item. Depending on the dropAround, it will drop teh item around the player, instead
+    * of dropping the item from where the player is pointing at. Likewise, if traceItem is true, the dropped item entity
+    * will have the thrower set as the player.
+    */
+   @Nullable
+   public ItemEntity dropItem(ItemStack droppedItem, boolean dropAround, boolean traceItem) {
+      if (droppedItem.isEmpty()) {
+         return null;
+      } else {
+         double d0 = this.getPosYEye() - (double)0.3F;
+         ItemEntity itementity = new ItemEntity(this.world, this.getPosX(), d0, this.getPosZ(), droppedItem);
+         itementity.setPickupDelay(40);
+         if (traceItem) {
+            itementity.setThrowerId(this.getUniqueID());
+         }
+
+         if (dropAround) {
+            float f = this.rand.nextFloat() * 0.5F;
+            float f1 = this.rand.nextFloat() * ((float)Math.PI * 2F);
+            itementity.setMotion(-MathHelper.sin(f1) * f, 0.2F, MathHelper.cos(f1) * f);
+         } else {
+            float f7 = 0.3F;
+            float f8 = MathHelper.sin(this.rotationPitch * ((float)Math.PI / 180F));
+            float f2 = MathHelper.cos(this.rotationPitch * ((float)Math.PI / 180F));
+            float f3 = MathHelper.sin(this.rotationYaw * ((float)Math.PI / 180F));
+            float f4 = MathHelper.cos(this.rotationYaw * ((float)Math.PI / 180F));
+            float f5 = this.rand.nextFloat() * ((float)Math.PI * 2F);
+            float f6 = 0.02F * this.rand.nextFloat();
+            itementity.setMotion((double)(-f3 * f2 * 0.3F) + Math.cos(f5) * (double)f6, -f8 * 0.3F + 0.1F + (this.rand.nextFloat() - this.rand.nextFloat()) * 0.1F, (double)(f4 * f2 * 0.3F) + Math.sin(f5) * (double)f6);
+         }
+
+         return itementity;
+      }
+   }
+
    protected boolean isCloseToPathTarget() {
       Path path = this.getNavigator().getPath();
       if (path != null) {
@@ -255,6 +293,21 @@ public abstract class AbstractZurEntity extends AgeableZurEntity {
       this.populateTradeZurData();
    }
 
+   protected void populateTradeZurData() {
+      ZurTrades.ITrade[] aZurTrades$iTrade = ZurTrades.field_221240_b.get(1);
+      if (aZurTrades$iTrade != null) {
+         MerchantOffers merchantoffers = this.getOffers();
+         this.addTrades(merchantoffers, aZurTrades$iTrade, 10);
+         int i = this.rand.nextInt(aZurTrades$iTrade.length);
+         ZurTrades.ITrade wanderingTraderNirtreTrades$iTrade = aZurTrades$iTrade[i];
+         MerchantOffer merchantoffer = wanderingTraderNirtreTrades$iTrade.getOffer(this, this.rand);
+         if (merchantoffer != null) {
+            merchantoffers.add(merchantoffer);
+         }
+
+      }
+   }
+
    /**
     * sets this entity's combat AI.
     */
@@ -282,15 +335,27 @@ public abstract class AbstractZurEntity extends AgeableZurEntity {
    protected void registerData() {
       super.registerData();
       this.dataManager.register(CARRIED_BLOCK, Optional.empty());
+      this.dataManager.register(field_213428_bG, false);
+      this.dataManager.register(field_213429_bH, false);
       this.dataManager.register(CLIMBING, (byte)3);
       this.dataManager.register(SHAKE_HEAD_TICKS, 0);
-      this.dataManager.register(IS_DRINKING, Boolean.TRUE);
       this.getDataManager().register(IS_CHILD, false);
       this.getDataManager().register(TRADER_TYPE, 0);
       this.getDataManager().register(ROVENT, false);
    }
 
-   protected void onZurTrade(MerchantOffer offer) {
+   public boolean canMateWith(AnimalZurEntity otherAnimal) {
+      if (!this.isTamed()) {
+         return false;
+      } else if (!(otherAnimal instanceof AnimalZurEntity)) {
+         return false;
+      } else {
+         AnimalZurEntity animalZurEntity = otherAnimal;
+         return this.isTamed() && super.canMateWith(otherAnimal);
+      }
+   }
+
+   protected void onTraderZurTrade(MerchantOffer offer) {
       int f = 3 + this.rand.nextInt(4);
       this.xp += offer.getGivenExp();
       this.previousCustomer = this.getCustomer();
@@ -320,6 +385,7 @@ public abstract class AbstractZurEntity extends AgeableZurEntity {
    }
 
    protected void registerGoals() {
+      this.goalSelector.addGoal(6, new MorningGiftGoal(this));
       this.goalSelector.addGoal(4, new AttackGoal(this));
    }
 
@@ -356,10 +422,6 @@ public abstract class AbstractZurEntity extends AgeableZurEntity {
          this.setBesideClimbableBlock(this.collidedHorizontally);
       }
 
-      if (this.xpCooldown > 0) {
-         --this.xpCooldown;
-      }
-
       if (!this.world.isRemote && this.isAlive() && !this.isAIDisabled()) {
          if (this.isDrowning()) {
             --this.drownedConversionTime;
@@ -370,11 +432,88 @@ public abstract class AbstractZurEntity extends AgeableZurEntity {
             if (this.areEyesInFluid(FluidTags.WATER)) {
                ++this.inWaterTime;
                if (this.inWaterTime >= 7200) {
-                  this.startRovent();
+                  this.startConversion(600);
                }
             } else {
                this.inWaterTime = 1000;
             }
+         }
+      }
+
+      ItemStack itemstack = this.getHeldItemMainhand();
+      if (!ItemStack.areItemStacksEqual(this.itemStackMainHand, itemstack)) {
+         if (!ItemStack.areItemsEqualIgnoreDurability(this.itemStackMainHand, itemstack)) {
+            this.resetCooldown();
+         }
+
+         this.itemStackMainHand = itemstack.copy();
+      }
+   }
+
+   public void resetCooldown() {
+      this.ticksSinceLastSwing = 0;
+   }
+
+   public boolean replaceItemInInventory_(int inventorySlot, ItemStack itemStackIn) {
+      if (super.replaceItemInInventory(inventorySlot, itemStackIn)) {
+         return true;
+      } else {
+         int i = inventorySlot - 300;
+         if (i >= 0 && i < this.zurInventory.getSizeInventory()) {
+            this.zurInventory.setInventorySlotContents(i, itemStackIn);
+            return true;
+         } else {
+            return false;
+         }
+      }
+   }
+
+   public boolean replaceItemInInventory(int inventorySlot, ItemStack itemStackIn) {
+      if (inventorySlot >= 0 && inventorySlot < this.ZurInventory.mainInventory.size()) {
+         this.ZurInventory.setInventorySlotContents(inventorySlot, itemStackIn);
+         this.replaceItemInInventory_(100000, itemStackIn);
+         return true;
+      } else {
+         EquipmentSlotType equipmentslottype;
+         if (inventorySlot == 100 + EquipmentSlotType.HEAD.getIndex()) {
+            equipmentslottype = EquipmentSlotType.HEAD;
+         } else if (inventorySlot == 100 + EquipmentSlotType.CHEST.getIndex()) {
+            equipmentslottype = EquipmentSlotType.CHEST;
+         } else if (inventorySlot == 100 + EquipmentSlotType.LEGS.getIndex()) {
+            equipmentslottype = EquipmentSlotType.LEGS;
+         } else if (inventorySlot == 100 + EquipmentSlotType.FEET.getIndex()) {
+            equipmentslottype = EquipmentSlotType.FEET;
+         } else {
+            equipmentslottype = null;
+         }
+
+         if (inventorySlot == 98) {
+            this.setItemStackToSlot(EquipmentSlotType.MAINHAND, itemStackIn);
+            return true;
+         } else if (inventorySlot == 99) {
+            this.setItemStackToSlot(EquipmentSlotType.OFFHAND, itemStackIn);
+            return true;
+         } else if (equipmentslottype == null) {
+            int i = inventorySlot - 200;
+            if (i >= 0 && i < this.enterChestInventory.getSizeInventory()) {
+               this.enterChestInventory.setInventorySlotContents(i, itemStackIn);
+               return true;
+            } else {
+               return false;
+            }
+         } else {
+            if (!itemStackIn.isEmpty()) {
+               if (!(itemStackIn.getItem() instanceof ArmorItem) && !(itemStackIn.getItem() instanceof ElytraItem)) {
+                  if (equipmentslottype != EquipmentSlotType.HEAD) {
+                     return false;
+                  }
+               } else if (MobEntity.getSlotForItemStack(itemStackIn) != equipmentslottype) {
+                  return false;
+               }
+            }
+
+            this.ZurInventory.setInventorySlotContents(equipmentslottype.getIndex() + this.ZurInventory.mainInventory.size(), itemStackIn);
+            return true;
          }
       }
    }
@@ -386,6 +525,18 @@ public abstract class AbstractZurEntity extends AgeableZurEntity {
       } else if (i >= this.lastGossipDecay + 24000L) {
          this.gossip.tick();
          this.lastGossipDecay = i;
+      }
+   }
+
+   public ActionResultType func_231254_b_(PlayerEntity player, Hand hand) {
+      ActionResultType actionresulttype = super.func_230254_b_(player, hand);
+      if (actionresulttype.isSuccessOrConsume()) {
+         return actionresulttype;
+      } else if (!this.world.isRemote) {
+         return ZurTasks.func_234471_a_(this, player, hand);
+      } else {
+         boolean flag1 = ZurTasks.func_234489_b_(this, player.getHeldItem(hand)) && this.func_234424_eM_() != Action.ADMIRING_ITEM;
+         return flag1 ? ActionResultType.SUCCESS : ActionResultType.PASS;
       }
    }
 
@@ -409,16 +560,6 @@ public abstract class AbstractZurEntity extends AgeableZurEntity {
                   this.displayMerchantGui(p_230254_1_);
                }
 
-            }
-
-            ActionResultType actionresulttype = super.func_230254_b_(p_230254_1_, p_230254_2_);
-            if (actionresulttype.isSuccessOrConsume()) {
-               return actionresulttype;
-            } else if (!this.world.isRemote) {
-               return ZurTasks.func_234471_a_(this, p_230254_1_, p_230254_2_);
-            } else {
-               boolean flag1 = ZurTasks.func_234489_b_(this, p_230254_1_.getHeldItem(p_230254_2_)) && this.func_234424_eM_() != Action.ADMIRING_ITEM;
-               return flag1 ? ActionResultType.SUCCESS : ActionResultType.PASS;
             }
          }
          return ActionResultType.func_233537_a_(this.world.isRemote);
@@ -552,8 +693,8 @@ public abstract class AbstractZurEntity extends AgeableZurEntity {
 
    }
 
-   private void startRovent() {
-      this.drownedConversionTime = 600;
+   private void startConversion(int drownedConversionTime) {
+      this.drownedConversionTime = drownedConversionTime;
       this.getDataManager().set(ROVENT, true);
    }
 
@@ -915,6 +1056,7 @@ public abstract class AbstractZurEntity extends AgeableZurEntity {
       }
 
       compound.put("Inventory", this.zurInventory.write());
+      compound.putInt("DrownedConversionTime", this.isDrowning() ? this.drownedConversionTime : -1);
       compound.putShort("SleepTimer", (short)this.sleepTimer);
       compound.putFloat("XpP", this.experience);
       compound.putInt("XpLevel", this.experienceLevel);
@@ -957,6 +1099,11 @@ public abstract class AbstractZurEntity extends AgeableZurEntity {
       this.experienceLevel = compound.getInt("XpLevel");
       this.experienceTotal = compound.getInt("XpTotal");
       this.xpSeed = compound.getInt("XpSeed");
+      this.inWaterTime = compound.getInt("InWaterTime");
+      if (compound.contains("DrownedConversionTime", 99) && compound.getInt("DrownedConversionTime") > -1) {
+         this.startConversion(compound.getInt("DrownedConversionTime"));
+      }
+
       if (this.xpSeed == 0) {
          this.xpSeed = this.rand.nextInt();
       }
@@ -1011,115 +1158,12 @@ public abstract class AbstractZurEntity extends AgeableZurEntity {
       return this.zurInventory;
    }
 
-   public boolean replaceItemInInventory(int inventorySlot, ItemStack itemStackIn) {
-      if (super.replaceItemInInventory(inventorySlot, itemStackIn)) {
-         return true;
-      } else {
-         int i = inventorySlot - 300;
-         if (i >= 0 && i < this.zurInventory.getSizeInventory()) {
-            this.zurInventory.setInventorySlotContents(i, itemStackIn);
-            return true;
-         } else {
-            return false;
-         }
-      }
-   }
-
    public World getWorld() {
       return this.world;
    }
 
    public SoundCategory getSoundCategory() {
       return SoundCategory.HOSTILE;
-   }
-
-   /**
-    * Set whether this witch is aggressive at an entity.
-    */
-   public void setDrinkingPotion(boolean drinkingPotion) {
-      this.getDataManager().set(IS_DRINKING, drinkingPotion);
-   }
-
-   public boolean isDrinkingPotion() {
-      return this.getDataManager().get(IS_DRINKING);
-   }
-
-   /**
-    * Called frequently so the entity can update its state every tick as required. For example, zurs and skeletons
-    * use this to react to sunlight and start to burn.
-    */
-   public void livingTick() {
-      super.livingTick();
-      this.updateArmSwingProgress();
-      this.wingRotation += this.wingRotDelta * 2.0F;
-      if (this.world.isRemote) {
-         this.eatingGrassTimer = Math.max(0, this.eatingGrassTimer - 1);
-      }
-
-      if (!this.world.isRemote) {
-         this.handleDespawn();
-      }
-
-      if (!this.world.isRemote && this.isAlive()) {
-         if (this.isDrinkingPotion()) {
-            if (this.potionUseTimer-- <= 1) {
-               this.setDrinkingPotion(false);
-               ItemStack itemstack = this.getHeldItemMainhand();
-               this.setItemStackToSlot(EquipmentSlotType.MAINHAND, ItemStack.EMPTY);
-               if (itemstack.getItem() == isBurnableItemInit.VIRKT.get()) {
-                  List<EffectInstance> list = PotionUtils.getEffectsFromStack(itemstack);
-                  for(EffectInstance effectinstance : list) {
-                     this.addPotionEffect(new EffectInstance(effectinstance));
-                  }
-               }
-
-               this.getAttribute(Attributes.ATTACK_DAMAGE).removeModifier(MODIFIER);
-            }
-         } else {
-            Potion potion = null;
-            if (this.rand.nextFloat() < 0.15F && this.areEyesInFluid(FluidTags.WATER) && !this.isPotionActive(Effects.WATER_BREATHING)) {
-               potion = Potions.WATER_BREATHING;
-            } else if (this.rand.nextFloat() < 0.15F && (this.isBurning() || this.getLastDamageSource() != null && this.getLastDamageSource().isFireDamage()) && !this.isPotionActive(Effects.FIRE_RESISTANCE)) {
-               potion = Potions.FIRE_RESISTANCE;
-            } else if (this.rand.nextFloat() < 0.05F && this.getHealth() < this.getMaxHealth()) {
-               potion = Potions.HEALING;
-            } else if (this.rand.nextFloat() < 0.5F && this.getAttackTarget() != null && !this.isPotionActive(Effects.STRENGTH) && this.getAttackTarget().getDistanceSq(this) > 2.0D || !this.isPotionActive(Effects.SPEED) && !this.isPotionActive(Effects.JUMP_BOOST)) {
-               potion = Potions.SWIFTNESS;
-            }
-
-            if (potion != null) {
-               this.setItemStackToSlot(EquipmentSlotType.MAINHAND, PotionUtils.addPotionToItemStack(new ItemStack(isBurnableItemInit.VIRKT.get()), potion));
-               this.potionUseTimer = this.getHeldItemMainhand().getUseDuration();
-               this.setDrinkingPotion(true);
-               if (!this.isSilent()) {
-                  this.world.playSound(null, this.getPosX(), this.getPosY(), this.getPosZ(), SoundEvents.ENTITY_WITCH_DRINK, this.getSoundCategory(), 1.0F, 0.8F + this.rand.nextFloat() * 0.4F);
-               }
-
-               ModifiableAttributeInstance modifiableattributeinstance = this.getAttribute(Attributes.MOVEMENT_SPEED);
-               modifiableattributeinstance.removeModifier(MODIFIER);
-               modifiableattributeinstance.applyNonPersistentModifier(MODIFIER);
-            }
-         }
-
-         if (this.rand.nextFloat() < 7.5E-4F) {
-            this.world.setEntityState(this, (byte)15);
-         }
-      }
-      if (!this.world.isRemote && this.isAlive() && !this.isChild() && this.isZurDropItem() && --this.timeUntilNextItem <= 0) {
-         this.entityDropItem(isBurnableItemInit.LEAT.get());
-         this.timeUntilNextItem = this.rand.nextInt(12000) + 12000;
-      }
-   }
-
-   public boolean isZurDropItem() {
-      return !this.zurDropItem;
-   }
-
-   public void handleDespawn() {
-      if (this.despawnDelay > 0 && !this.hasCustomer() && --this.despawnDelay == 0) {
-         this.remove();
-      }
-
    }
 
    public boolean getDoesRewardExp() {
@@ -1372,15 +1416,45 @@ public abstract class AbstractZurEntity extends AgeableZurEntity {
       return super.isPotionApplicable(potioneffectIn);
    }
 
-   public static class MorningGiftGoal extends Goal {
-      private final ZurEntity zurEntity;
-      private TameableEntity tameableEntity;
+   @Nullable
+   public LivingEntity getOwner() {
+      try {
+         UUID uuid = this.getOwnerId();
+         return uuid == null ? null : this.world.getPlayerByUuid(uuid);
+      } catch (IllegalArgumentException illegalargumentexception) {
+         return null;
+      }
+   }
+
+   public void func_213419_u(boolean p_213419_1_) {
+      this.dataManager.set(field_213428_bG, p_213419_1_);
+   }
+
+   public boolean func_213416_eg() {
+      return this.dataManager.get(field_213428_bG);
+   }
+
+   public void func_213415_v(boolean p_213415_1_) {
+      this.dataManager.set(field_213429_bH, p_213415_1_);
+   }
+
+   public boolean func_213409_eh() {
+      return this.dataManager.get(field_213429_bH);
+   }
+
+   @Nullable
+   public UUID getOwnerId() {
+      return this.dataManager.get(OWNER_UNIQUE_ID).orElse(null);
+   }
+
+   static class MorningGiftGoal extends Goal {
+      private final AbstractZurEntity zur;
       private PlayerEntity owner;
       private BlockPos bedPos;
       private int tickCounter;
 
-      public MorningGiftGoal(ZurEntity zurIn) {
-         this.zurEntity = zurIn;
+      public MorningGiftGoal(AbstractZurEntity zurIn) {
+         this.zur = zurIn;
       }
 
       /**
@@ -1388,22 +1462,24 @@ public abstract class AbstractZurEntity extends AgeableZurEntity {
        * method as well.
        */
       public boolean shouldExecute() {
-         if (this.tameableEntity.func_233685_eM_()) {
+         if (!this.zur.isTamed()) {
+            return false;
+         } else if (this.zur.func_233685_eM_()) {
             return false;
          } else {
-            LivingEntity livingentity = this.zurEntity.getOwner();
+            LivingEntity livingentity = this.zur.getOwner();
             if (livingentity instanceof PlayerEntity) {
                this.owner = (PlayerEntity)livingentity;
                if (!livingentity.isSleeping()) {
                   return false;
                }
 
-               if (this.zurEntity.getDistanceSq(this.owner) > 100.0D) {
+               if (this.zur.getDistanceSq(this.owner) > 100.0D) {
                   return false;
                }
 
                BlockPos blockpos = this.owner.getPosition();
-               BlockState blockstate = this.zurEntity.world.getBlockState(blockpos);
+               BlockState blockstate = this.zur.world.getBlockState(blockpos);
                if (blockstate.getBlock().isIn(BlockTags.BEDS)) {
                   this.bedPos = blockstate.func_235903_d_(BedBlock.HORIZONTAL_FACING).map((p_234186_1_) -> blockpos.offset(p_234186_1_.getOpposite())).orElseGet(() -> new BlockPos(blockpos));
                   return !this.func_220805_g();
@@ -1415,8 +1491,8 @@ public abstract class AbstractZurEntity extends AgeableZurEntity {
       }
 
       private boolean func_220805_g() {
-         for(ZurEntity zur : this.zurEntity.world.getEntitiesWithinAABB(ZurEntity.class, (new AxisAlignedBB(this.bedPos)).grow(2.0D))) {
-            if (zur != this.zurEntity && (zur.func_213416_eg())) {
+         for(AbstractZurEntity zurEntity : this.zur.world.getEntitiesWithinAABB(AbstractZurEntity.class, (new AxisAlignedBB(this.bedPos)).grow(2.0D))) {
+            if (zurEntity != this.zur && (zurEntity.func_213416_eg() || zurEntity.func_213409_eh())) {
                return true;
             }
          }
@@ -1428,7 +1504,7 @@ public abstract class AbstractZurEntity extends AgeableZurEntity {
        * Returns whether an in-progress EntityAIBase should continue executing
        */
       public boolean shouldContinueExecuting() {
-         return !this.tameableEntity.func_233685_eM_() && this.owner != null && this.owner.isSleeping() && this.bedPos != null && !this.func_220805_g();
+         return this.zur.isTamed() && !this.zur.func_233685_eM_() && this.owner != null && this.owner.isSleeping() && this.bedPos != null && !this.func_220805_g();
       }
 
       /**
@@ -1436,8 +1512,8 @@ public abstract class AbstractZurEntity extends AgeableZurEntity {
        */
       public void startExecuting() {
          if (this.bedPos != null) {
-            this.tameableEntity.func_233686_v_(false);
-            this.zurEntity.getNavigator().tryMoveToXYZ(this.bedPos.getX(), (double)this.bedPos.getY(), (double)this.bedPos.getZ(), (double)1.1F);
+            this.zur.func_233686_v_(false);
+            this.zur.getNavigator().tryMoveToXYZ(this.bedPos.getX(), (double)this.bedPos.getY(), (double)this.bedPos.getZ(), (double)1.1F);
          }
 
       }
@@ -1446,28 +1522,28 @@ public abstract class AbstractZurEntity extends AgeableZurEntity {
        * Reset the task's internal state. Called when this task is interrupted by another one
        */
       public void resetTask() {
-         this.zurEntity.func_213419_u(false);
-         float f = this.zurEntity.world.getCelestialAngle(1.0F);
-         if (this.owner.getSleepTimer() >= 100 && (double)f > 0.77D && (double)f < 0.8D && (double)this.zurEntity.world.getRandom().nextFloat() < 0.7D) {
+         this.zur.func_213419_u(false);
+         float f = this.zur.world.getCelestialAngle(1.0F);
+         if (this.owner.getSleepTimer() >= 100 && (double)f > 0.77D && (double)f < 0.8D && (double)this.zur.world.getRandom().nextFloat() < 0.7D) {
             this.func_220804_h();
          }
 
          this.tickCounter = 0;
-         this.zurEntity.func_213415_v(false);
-         this.zurEntity.getNavigator().clearPath();
+         this.zur.func_213415_v(false);
+         this.zur.getNavigator().clearPath();
       }
 
       private void func_220804_h() {
-         Random random = this.zurEntity.getRNG();
+         Random random = this.zur.getRNG();
          BlockPos.Mutable blockpos$mutable = new BlockPos.Mutable();
-         blockpos$mutable.setPos(this.zurEntity.getPosition());
-         this.zurEntity.attemptTeleport(blockpos$mutable.getX() + random.nextInt(11) - 5, blockpos$mutable.getY() + random.nextInt(5) - 2, blockpos$mutable.getZ() + random.nextInt(11) - 5, false);
-         blockpos$mutable.setPos(this.zurEntity.getPosition());
-         LootTable loottable = this.zurEntity.world.getServer().getLootTableManager().getLootTableFromLocation(LootTables.GAMEPLAY_CAT_MORNING_GIFT);
-         LootContext.Builder lootcontext$builder = (new LootContext.Builder((ServerWorld)this.zurEntity.world)).withParameter(LootParameters.POSITION, blockpos$mutable).withParameter(LootParameters.THIS_ENTITY, this.zurEntity).withRandom(random);
+         blockpos$mutable.setPos(this.zur.getPosition());
+         this.zur.attemptTeleport(blockpos$mutable.getX() + random.nextInt(11) - 5, blockpos$mutable.getY() + random.nextInt(5) - 2, blockpos$mutable.getZ() + random.nextInt(11) - 5, false);
+         blockpos$mutable.setPos(this.zur.getPosition());
+         LootTable loottable = Objects.requireNonNull(this.zur.world.getServer()).getLootTableManager().getLootTableFromLocation(LootTables1.GAMEPLAY_ZUR_MORNING_GIFT);
+         LootContext.Builder lootcontext$builder = (new LootContext.Builder((ServerWorld)this.zur.world)).withParameter(LootParameters.POSITION, blockpos$mutable).withParameter(LootParameters.THIS_ENTITY, this.zur).withRandom(random);
 
          for(ItemStack itemstack : loottable.generate(lootcontext$builder.build(LootParameterSets.GIFT))) {
-            this.zurEntity.world.addEntity(new ItemEntity(this.zurEntity.world, (double)blockpos$mutable.getX() - (double)MathHelper.sin(this.zurEntity.renderYawOffset * ((float)Math.PI / 180F)), blockpos$mutable.getY(), (double)blockpos$mutable.getZ() + (double)MathHelper.cos(this.zurEntity.renderYawOffset * ((float)Math.PI / 180F)), itemstack));
+            this.zur.world.addEntity(new ItemEntity(this.zur.world, (double)blockpos$mutable.getX() - (double)MathHelper.sin(this.zur.renderYawOffset * ((float)Math.PI / 180F)), blockpos$mutable.getY(), (double)blockpos$mutable.getZ() + (double)MathHelper.cos(this.zur.renderYawOffset * ((float)Math.PI / 180F)), itemstack));
          }
 
       }
@@ -1477,19 +1553,19 @@ public abstract class AbstractZurEntity extends AgeableZurEntity {
        */
       public void tick() {
          if (this.owner != null && this.bedPos != null) {
-            this.tameableEntity.func_233686_v_(false);
-            this.zurEntity.getNavigator().tryMoveToXYZ(this.bedPos.getX(), (double)this.bedPos.getY(), (double)this.bedPos.getZ(), (double)1.1F);
-            if (this.zurEntity.getDistanceSq(this.owner) < 2.5D) {
+            this.zur.func_233686_v_(false);
+            this.zur.getNavigator().tryMoveToXYZ(this.bedPos.getX(), (double)this.bedPos.getY(), (double)this.bedPos.getZ(), (double)1.1F);
+            if (this.zur.getDistanceSq(this.owner) < 2.5D) {
                ++this.tickCounter;
                if (this.tickCounter > 16) {
-                  this.zurEntity.func_213419_u(true);
-                  this.zurEntity.func_213415_v(false);
+                  this.zur.func_213419_u(true);
+                  this.zur.func_213415_v(false);
                } else {
-                  this.zurEntity.faceEntity(this.owner, 45.0F, 45.0F);
-                  this.zurEntity.func_213415_v(true);
+                  this.zur.faceEntity(this.owner, 45.0F, 45.0F);
+                  this.zur.func_213415_v(true);
                }
             } else {
-               this.zurEntity.func_213419_u(false);
+               this.zur.func_213419_u(false);
             }
          }
 

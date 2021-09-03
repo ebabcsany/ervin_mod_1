@@ -1,6 +1,5 @@
 package com.babcsany.minecraft.ervin_mod_1.world.dimension.biome_provider;
 
-import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.mojang.serialization.Codec;
@@ -9,8 +8,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeManager;
-import net.minecraft.world.biome.Biomes;
-import net.minecraft.world.biome.provider.*;
+import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -22,14 +20,15 @@ import java.util.Random;
 import java.util.Set;
 
 public abstract class ModBiomeProvider extends BiomeProvider implements BiomeManager.IBiomeReader {
-   public static final List<Biome> BIOMES_TO_SPAWN_IN = Lists.newArrayList(Biomes.FOREST, Biomes.PLAINS, Biomes.TAIGA, Biomes.TAIGA_HILLS, Biomes.WOODED_HILLS, Biomes.JUNGLE, Biomes.JUNGLE_HILLS);
+   public static final Codec<BiomeProvider> MOD_BIOME_PROVIDER_CODEC = PROVIDER_CODEC;
+   public static final List<Biome> MOD_BIOMES_TO_SPAWN_IN = BIOMES_TO_SPAWN_IN;
    protected final Map<Structure<?>, Boolean> hasStructureCache = Maps.newHashMap();
    protected final Set<BlockState> topBlocksCache = Sets.newHashSet();
    protected final List<Biome> biomes;
 
-   protected ModBiomeProvider(List<Biome> p_i231634_1_) {
-      super(p_i231634_1_);
-      this.biomes = p_i231634_1_;
+   protected ModBiomeProvider(List<Biome> biomeList) {
+      super(biomeList);
+      this.biomes = biomeList;
    }
 
    protected abstract Codec<? extends ModBiomeProvider> func_230319_a_();
@@ -124,11 +123,7 @@ public abstract class ModBiomeProvider extends BiomeProvider implements BiomeMan
    }
 
    public boolean hasStructure(Structure<?> structureIn) {
-      return this.hasStructureCache.computeIfAbsent(structureIn, (p_226839_1_) -> {
-         return this.biomes.stream().anyMatch((p_226838_1_) -> {
-            return p_226838_1_.hasStructure(p_226839_1_);
-         });
-      });
+      return this.hasStructureCache.computeIfAbsent(structureIn, (p_226839_1_) -> this.biomes.stream().anyMatch((biome) -> biome.hasStructure(p_226839_1_)));
    }
 
    public Set<BlockState> getSurfaceBlocks() {
@@ -142,6 +137,6 @@ public abstract class ModBiomeProvider extends BiomeProvider implements BiomeMan
    }
 
    static {
-      Registry.register(Registry.BIOME_PROVIDER_CODEC, "example", ExampleBiomeProvider.field_235263_f_);
+      Registry.register(Registry.BIOME_PROVIDER_CODEC, "ervin_mod_1:example", ExampleBiomeProvider.field_235263_f_);
    }
 }

@@ -2,7 +2,6 @@ package com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.util.math.BlockPos;
@@ -10,6 +9,8 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+
+import java.util.Objects;
 
 public abstract class DgrurbCreatureEntity extends DgrurbMobEntity {
    protected DgrurbCreatureEntity(EntityType<? extends DgrurbCreatureEntity> type, World worldIn) {

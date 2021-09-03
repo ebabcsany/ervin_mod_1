@@ -8,15 +8,15 @@ import com.babcsany.minecraft.ervin_mod_1.entity.animal.hhij.HhijEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.living.Living;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.DgrurbAgeableEntity;
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.AbstractZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.projectile.DgrurbkSkullEntity;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.tool.isBurnableSpecialToolItemInit;
-import com.babcsany.minecraft.ervin_mod_1.world.server.ServerBossInfo_;
 import com.babcsany.minecraft.init.item.icsvre.IcsvreInit;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.boss.dragon.EnderDragonEntity;
@@ -30,12 +30,12 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.BossInfo;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
@@ -57,6 +57,7 @@ public class Dgrurbk extends AbstractDgrurbkEntity implements IRangedAttackMob {
     private static final Predicate<LivingEntity> NOT_UNDEAD = (livingEntity) -> livingEntity.getCreatureAttribute() != CreatureAttribute.UNDEAD && livingEntity.attackable();
     private static final EntityPredicate ENEMY_CONDITION = (new EntityPredicate()).setDistance(20.0D).setCustomPredicate(NOT_UNDEAD);
     private static final DataParameter<Boolean> INVULNERABLE = EntityDataManager.createKey(Dgrurbk.class, DataSerializers.BOOLEAN);
+    public static final DataParameter<Boolean> DROWNING = EntityDataManager.createKey(Dgrurbk.class, DataSerializers.BOOLEAN);
     private DgrurbkEatGrassGoal eatGrassGoal;
     private static BossInfo.Color color;
     private static Living living;
@@ -65,6 +66,8 @@ public class Dgrurbk extends AbstractDgrurbkEntity implements IRangedAttackMob {
     public boolean dropItem;
     public int timeUntilNextItem = this.rand.nextInt(6000) + 6000;
     private int blockBreakCounter;
+    private int inWaterTime;
+    private int drownedConversionTime;
 
     public Dgrurbk(EntityType<? extends Dgrurbk> type, World worldIn) {
         super(type, worldIn);
@@ -76,6 +79,7 @@ public class Dgrurbk extends AbstractDgrurbkEntity implements IRangedAttackMob {
 
     protected void registerData() {
         super.registerData();
+        this.getDataManager().register(DROWNING, false);
     }
 
     protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
@@ -110,7 +114,6 @@ public class Dgrurbk extends AbstractDgrurbkEntity implements IRangedAttackMob {
         this.targetSelector.addGoal(2, new NearestAttackableDgrurbkMobTargetGoal<>(this, LivingEntity.class, true));
         //this.targetSelector.addGoal(3, new NearestAttackableDgrurbkMobTargetGoal<>(this, PlayerEntity.class, true));
     }
-
 
     @Override
     protected void updateAITasks() {
@@ -161,6 +164,68 @@ public class Dgrurbk extends AbstractDgrurbkEntity implements IRangedAttackMob {
         }
     }
 
+    public boolean isDrowning() {
+        return this.getDataManager().get(DROWNING);
+    }
+
+    protected boolean shouldDrown() {
+        return true;
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+        if (!this.world.isRemote && this.isAlive() && !this.isAIDisabled()) {
+            if (this.isDrowning()) {
+                --this.drownedConversionTime;
+                if (this.drownedConversionTime < 0) {
+                    this.onEntity();
+                }
+            } else if (this.shouldDrown()) {
+                if (this.areEyesInFluid(FluidTags.WATER)) {
+                    ++this.inWaterTime;
+                    if (this.inWaterTime >= 7200) {
+                        this.startConversion();
+                    }
+                } else {
+                    this.inWaterTime = 1000;
+                }
+            }
+        }
+    }
+
+    private void startConversion() {
+        this.drownedConversionTime = 600;
+        this.getDataManager().set(DROWNING, true);
+    }
+
+    protected void onEntity() {
+        this.func_234341_c_(com.babcsany.minecraft.init.EntityInit.DRURGBK);
+        if (!this.isSilent()) {
+            this.world.playEvent(null, 1040, this.getPosition(), 0);
+        }
+    }
+
+    protected void applyAttributeBonuses(float difficulty) {
+        this.getAttribute(Attributes.KNOCKBACK_RESISTANCE).applyPersistentModifier(new AttributeModifier("Random spawn bonus", this.rand.nextDouble() * (double)0.05F, AttributeModifier.Operation.ADDITION));
+        double d0 = this.rand.nextDouble() * 1.5D * (double)difficulty;
+        if (d0 > 1.0D) {
+            this.getAttribute(Attributes.FOLLOW_RANGE).applyPersistentModifier(new AttributeModifier("Random zur-spawn bonus", d0, AttributeModifier.Operation.MULTIPLY_TOTAL));
+        }
+
+        if (this.rand.nextFloat() < difficulty * 0.05F) {
+            this.getAttribute(Attributes.MAX_HEALTH).applyPersistentModifier(new AttributeModifier("Leader zur bonus", this.rand.nextDouble() * 3.0D + 1.0D, AttributeModifier.Operation.MULTIPLY_TOTAL));
+        }
+
+    }
+
+    protected void func_234341_c_(EntityType<? extends Dgrurbk> dgrurbk) {
+        Dgrurbk dgrurbkEntity = this.func_233656_b_(dgrurbk);
+        if (dgrurbkEntity != null) {
+            dgrurbkEntity.applyAttributeBonuses(dgrurbkEntity.world.getDifficultyForLocation(dgrurbkEntity.getPosition()).getClampedAdditionalDifficulty());
+        }
+    }
+
     @Override
     public void livingTick() {
         super.livingTick();
@@ -173,7 +238,7 @@ public class Dgrurbk extends AbstractDgrurbkEntity implements IRangedAttackMob {
         if (!this.world.isRemote && this.isAlive() && !this.isChild() && !this.isDropItem() && --this.timeUntilNextItem <= 0) {
             this.entityDropItem(IcsvreInit.STAPHO);
             living.entityDropEntity(com.babcsany.minecraft.init.EntityInit.ZUR_ENTITY);
-            this.timeUntilNextItem = this.rand.nextInt(24000) + 12000;
+            this.timeUntilNextItem = this.rand.nextInt(6000) + 3000;
         }
     }
 

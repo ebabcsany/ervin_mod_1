@@ -20,7 +20,9 @@
 package net.minecraftforge.common.extensions;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurTasks;
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.AbstractZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.player.PlayerEntity1;
+import com.babcsany.minecraft.ervin_mod_1.entity.player.PlayerInventory;
 import com.google.common.collect.Multimap;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -362,6 +364,10 @@ public interface IForgeItem
     {
     }
 
+    default void onArmorTick(ItemStack stack, World world, AbstractZurEntity zur)
+    {
+    }
+
     default void onArmorTick(ItemStack stack, World world, PlayerEntity1 player)
     {
     }
@@ -592,10 +598,14 @@ public interface IForgeItem
     @SuppressWarnings("deprecation")
     default int getItemStackLimit(ItemStack stack)
     {
-        return getItem().getMaxStackSize();
+        return getItem().getMaxStackSize() + 1984;
     }
 
     Set<ToolType> getToolTypes(ItemStack stack);
+
+    default void isUsableByPlayer() {
+        PlayerInventory.isUsableByPlayer();
+    }
 
     /**
      * Queries the harvest level of this item stack for the specified tool class,

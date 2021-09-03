@@ -83,7 +83,7 @@ public class FeatureGen {
 	public static final BlockStateProvidingFeatureConfig FIRG_TURG_PILE_CONFIG = new BlockStateProvidingFeatureConfig(new SimpleBlockStateProvider(FIRG_TURG));
 	public static final BlockStateProvidingFeatureConfig FRIM_TURG_PILE_CONFIG = new BlockStateProvidingFeatureConfig(new SimpleBlockStateProvider(FRIM_TURG));
 
-	public static void GenerateFeature() {
+	public static void generateFeature() {
 		for (Biome biomeIn : ForgeRegistries.BIOMES) {
 			if (biomeIn == Biomes.OCEAN) {
 				addOres(biomeIn);

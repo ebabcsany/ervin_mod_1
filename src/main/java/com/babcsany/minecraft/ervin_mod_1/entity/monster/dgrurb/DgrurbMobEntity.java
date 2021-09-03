@@ -1,10 +1,10 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.dgrurb.DgrurbEntitySenses;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.controller.DgrurbBodyController;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.controller.DgrurbJumpController;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.controller.DgrurbLookController;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.controller.DgrurbMovementController;
+import com.babcsany.minecraft.ervin_mod_1.entity.ai.controller.dgrurb.DgrurbBodyController;
+import com.babcsany.minecraft.ervin_mod_1.entity.ai.controller.dgrurb.DgrurbJumpController;
+import com.babcsany.minecraft.ervin_mod_1.entity.ai.controller.dgrurb.DgrurbLookController;
+import com.babcsany.minecraft.ervin_mod_1.entity.ai.controller.dgrurb.DgrurbMovementController;
 import com.babcsany.minecraft.ervin_mod_1.entity.pathfinding.dgrurb.DgrurbPathNavigator;
 import com.babcsany.minecraft.ervin_mod_1.entity.pathfinding.dgrurb.GroundDgrurbPathNavigator;
 import com.babcsany.minecraft.ervin_mod_1.forge.ForgeEventFactory;

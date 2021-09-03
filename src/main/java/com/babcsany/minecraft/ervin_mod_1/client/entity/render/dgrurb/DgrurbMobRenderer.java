@@ -1,6 +1,5 @@
 package com.babcsany.minecraft.ervin_mod_1.client.entity.render.dgrurb;
 
-import com.babcsany.minecraft.ervin_mod_1.client.entity.layers.DgrurbkAuraLayer;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.DgrurbMobEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
@@ -25,6 +24,10 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public abstract class DgrurbMobRenderer<T extends DgrurbMobEntity, M extends EntityModel<T>> extends LivingRenderer<T, M> {
    public DgrurbMobRenderer(EntityRendererManager renderManagerIn, M entityModelIn) {
       super(renderManagerIn, entityModelIn, 0.0F);
+   }
+
+   public DgrurbMobRenderer(EntityRendererManager renderManagerIn, M entityModelIn, float shadowSizeIn) {
+      super(renderManagerIn, entityModelIn, shadowSizeIn);
    }
 
    protected boolean canRenderName(T entity) {

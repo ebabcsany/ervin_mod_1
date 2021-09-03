@@ -513,7 +513,6 @@ public class Item extends ForgeRegistryEntry<net.minecraft.item.Item> implements
 
       public Properties maxDamage(int maxDamageIn) {
          this.maxDamage = maxDamageIn;
-         this.maxStackSize = 1;
          return this;
       }
 

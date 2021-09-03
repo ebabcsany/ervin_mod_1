@@ -188,6 +188,7 @@ public interface IForgeBlockState extends com.babcsany.minecraft.ervin_mod_1.for
     {
         return getBlockState().getBlock().canCreatureSpawn(getBlockState(), world, pos, type, entityType);
     }
+
     /**
      * Returns the position that the sleeper is moved to upon
      * waking up, or respawning at the bed.

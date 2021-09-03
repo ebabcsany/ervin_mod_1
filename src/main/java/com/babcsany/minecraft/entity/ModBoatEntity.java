@@ -66,6 +66,7 @@ public class ModBoatEntity extends Entity {
    private float boatGlide;
    private ModBoatEntity.Status status;
    private ModBoatEntity.Status previousStatus;
+   private static net.minecraft.entity.EntityType<?> entityType;
    private double lastYd;
    private boolean rocking;
    private boolean field_203060_aN;
@@ -79,7 +80,7 @@ public class ModBoatEntity extends Entity {
    }
 
    public ModBoatEntity(World worldIn, double x, double y, double z) {
-      this(EntityInit.MOD_BOAT, worldIn);
+      super(entityType, worldIn);
       this.setPosition(x, y, z);
       this.setMotion(Vector3d.ZERO);
       this.prevPosX = x;

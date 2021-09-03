@@ -1,16 +1,95 @@
 package com.babcsany.minecraft.ervin_mod_1.registry;
 
-import com.babcsany.minecraft.ervin_mod_1.world.biome.ModBiome;
+import com.babcsany.minecraft.ervin_mod_1.util.registries.modPainting_Type;
+import com.babcsany.minecraft.ervin_mod_1.world.dimension.biome_provider.ExampleBiomeProvider;
+import com.babcsany.minecraft.ervin_mod_1.world.dimension.biome_provider.ModBiomeProvider;
+import com.google.common.collect.Maps;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.Lifecycle;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SharedConstants;
+import net.minecraft.util.registry.DefaultedRegistry;
+import net.minecraft.util.registry.MutableRegistry;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.SimpleRegistry;
+import net.minecraft.world.biome.provider.BiomeProvider;
+import net.minecraft.world.gen.ChunkGenerator;
+import org.apache.commons.lang3.Validate;
 
-public class ModRegistry<T> {
-    public static final RegistryKey<Registry<ModBiome<?>>> MOD_BIOME_KEY = createKey("ervin_mod_1:mod_biome");
+import java.util.Map;
+import java.util.function.Supplier;
 
-    //public static final DefaultedRegistry<ModBiome<?>> MOD_BIOME = Registry.forgeDefaulted(MOD_BIOME_KEY, ModBiome.class, () -> ModBiomes.DEFAULT);
+public abstract class ModRegistry<T> extends Registry<T> {
+    private static final Map<ResourceLocation, Supplier<?>> LOCATION_TO_SUPPLIER = Maps.newLinkedHashMap();
+    public static final RegistryKey<Registry<modPainting_Type>> modPainting_Type_KEY = createKey("ervin_mod_1:painting/modPainting/motive");
+    public static final RegistryKey<Registry<Codec<? extends ModBiomeProvider>>> BIOME_SOURCE_KEY = createKey("mod_biome_source");
+
+    public static final DefaultedRegistry<modPainting_Type> modPainting_MOTIVE = forgeDefaulted(modPainting_Type_KEY, modPainting_Type.class, () -> modPainting_Type.lLl_Ss_hu_);
+    public static final Registry<Codec<? extends ChunkGenerator>> CHUNK_GENERATOR_CODEC = func_239742_a_(CHUNK_GENERATOR_KEY, Lifecycle.stable(), () -> ChunkGenerator.field_235948_a_);
+
+    protected ModRegistry(RegistryKey<Registry<T>> registryKey, Lifecycle lifecycle) {
+        super(registryKey, lifecycle);
+        this.registryKey = registryKey;
+        this.lifecycle = lifecycle;
+    }
+
+    private final RegistryKey<Registry<T>> registryKey;
+    private final Lifecycle lifecycle;
 
     public static <T> RegistryKey<Registry<T>> createKey(String name) {
         return RegistryKey.func_240904_a_(new ResourceLocation(name));
+    }
+
+    public static <T> T register(ModRegistry<? super T> registry, String identifier, T value) {
+        return register(registry, new ResourceLocation(identifier), value);
+    }
+
+    private static <T> Registry<T> func_239742_a_(RegistryKey<Registry<T>> registryKey, Lifecycle lifecycle, Supplier<T> supplier) {
+        return func_239743_a_(registryKey, new SimpleRegistry<>(registryKey, lifecycle), supplier);
+    }
+
+    private static <T extends net.minecraftforge.registries.IForgeRegistryEntry<T>> Registry<T> forge(RegistryKey<Registry<T>> key, Class<? super T> cls, Supplier<T> def) {
+        return func_239743_a_(key, net.minecraftforge.registries.GameData.<T>getWrapper(cls), def);
+    }
+
+    private static <T extends net.minecraftforge.registries.IForgeRegistryEntry<T>> DefaultedRegistry<T> forgeDefaulted(RegistryKey<Registry<T>> key, Class<? super T> cls, Supplier<T> def) {
+        return func_239743_a_(key, net.minecraftforge.registries.GameData.<T>getWrapperDefaulted(cls), def);
+    }
+
+    private static <T, R extends MutableRegistry<T>> R func_239743_a_(RegistryKey<Registry<T>> registryKey, R instance, Supplier<T> objectSupplier) {
+        ResourceLocation resourcelocation = registryKey.func_240901_a_();
+        LOCATION_TO_SUPPLIER.put(resourcelocation, objectSupplier);
+        return (R)((MutableRegistry)ROOT_REGISTRY).register(registryKey, instance);
+    }
+
+    private static <T extends MutableRegistry<?>> void validateMutableRegistry(MutableRegistry<T> registry) {
+        registry.forEach((p_239739_1_) -> {
+            if (p_239739_1_.keySet().isEmpty()) {
+                LOGGER.error("Registry '{}' was empty after loading", registry.getKey(p_239739_1_));
+                if (SharedConstants.developmentMode) {
+                    throw new IllegalStateException("Registry: '" + registry.getKey(p_239739_1_) + "' is empty, not allowed, fix me!");
+                }
+            }
+
+            if (p_239739_1_ instanceof DefaultedRegistry) {
+                ResourceLocation resourcelocation = ((DefaultedRegistry)p_239739_1_).getDefaultKey();
+                Validate.notNull(p_239739_1_.getOrDefault(resourcelocation), "Missing default of DefaultedMappedRegistry: " + resourcelocation);
+            }
+
+        });
+    }
+
+    static {
+        LOCATION_TO_SUPPLIER.forEach((registry, registrySupplier) -> {
+            if (registrySupplier.get() == null) {
+                LOGGER.error("Unable to bootstrap registry '{}'", (Object)registry);
+            }
+
+        });
+        validateMutableRegistry(ROOT_REGISTRY);
+    }
+
+    public static void register(Registry<Codec<? extends BiomeProvider>> biomeProviderCodec, ResourceLocation resourceLocation, Codec<ExampleBiomeProvider> field_235263_f_) {
     }
 }

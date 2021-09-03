@@ -21,6 +21,7 @@ package net.minecraftforge.common.extensions;
 
 import com.babcsany.minecraft.ervin_mod_1.block.FriszernTileEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurTasks;
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.AbstractZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.player.PlayerEntity1;
 import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.Enchantment;
@@ -292,6 +293,11 @@ public interface IForgeItemStack extends ICapabilitySerializable<CompoundNBT>
     default void onArmorTick(World world, PlayerEntity player)
     {
         getStack().getItem().onArmorTick(getStack(), world, player);
+    }
+
+    default void onArmorTick(World world, AbstractZurEntity zur)
+    {
+        getStack().getItem().onArmorTick(getStack(), world, zur);
     }
 
     default void onArmorTick(World world, PlayerEntity1 player)

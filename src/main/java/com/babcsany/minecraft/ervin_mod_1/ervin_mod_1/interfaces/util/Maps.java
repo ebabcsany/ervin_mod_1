@@ -7,7 +7,7 @@ import java.util.LinkedHashMap;
 
 public interface Maps {
 
-    static <K, V> Map<Item, Double> newLinkedHashMap() {
-        return (Map<Item, Double>) new LinkedHashMap<K, V>();
+    static <K, V> Map<Item, Integer> newLinkedHashMap() {
+        return (Map<Item, Integer>) new LinkedHashMap<K, V>();
     }
 }

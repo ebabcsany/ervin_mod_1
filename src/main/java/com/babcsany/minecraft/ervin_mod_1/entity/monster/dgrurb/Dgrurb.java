@@ -7,9 +7,7 @@ import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.ZurTrades;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.tool.isBurnableSpecialToolItemInit;
-import net.minecraft.entity.AgeableEntity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
@@ -23,12 +21,17 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.Feature;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.IForgeRegistryEntry;
 
 import javax.annotation.Nullable;
+import java.util.Hashtable;
 import java.util.Objects;
 
 public class Dgrurb extends AbstractZurEntity {
@@ -36,6 +39,7 @@ public class Dgrurb extends AbstractZurEntity {
     private static final DataParameter<Boolean> BABY = EntityDataManager.createKey(Dgrurb.class, DataSerializers.BOOLEAN);
 
     private EatGrassGoal eatGrassGoal;
+    private DgrurbCreatureEntity dgrurb;
     private int eatingGrassTimer;
     protected int growingAge;
     public boolean dropItem;
@@ -199,7 +203,7 @@ public class Dgrurb extends AbstractZurEntity {
 
     public void onStruckByLightning(LightningBoltEntity lightningBolt) {
         if (this.world.getDifficulty() != Difficulty.PEACEFUL) {
-            LOGGER.info("Trader Nirtre {} was struck by lightning {}.", this, lightningBolt);
+            LOGGER.info("Dgrurb {} was struck by lightning {}.", this, lightningBolt);
             Dgrurbk dgrurbk = EntityInit.DGRURBK_ENTITY.get().create(this.world);
             Objects.requireNonNull(dgrurbk).setLocationAndAngles(this.getPosX(), this.getPosY(), this.getPosZ(), this.rotationYaw, this.rotationPitch);
             dgrurbk.onInitialSpawn(this.world, this.world.getDifficultyForLocation(dgrurbk.getPosition()), SpawnReason.CONVERSION, null, null);

@@ -1,13 +1,14 @@
 package com.babcsany.minecraft.ervin_mod_1.forge;
 
+import com.babcsany.minecraft.ervin_mod_1.block.ExampleNetherPortalBlock;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.DgrurbMobEntity;
 import com.babcsany.minecraft.ervin_mod_1.item.entity.icsvre.IcsvreEntity;
 import com.babcsany.minecraft.ervin_mod_1.item.item.stack.IcsvreStack;
 import com.babcsany.minecraft.forge.event.entity.icsvre.IcsvreExpireEvent;
-import com.babcsany.minecraft.forge.event.entity.icsvre.IcsvreTossEvent;
-import net.minecraft.item.ItemStack;
+import com.babcsany.minecraft.forge.event.world.BlockEvent;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IWorld;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.item.ItemExpireEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.eventbus.api.Event;
 
@@ -28,5 +29,10 @@ public class ForgeEventFactory {
         IcsvreExpireEvent event = new IcsvreExpireEvent(entity, item.getIcsvre().getEntityLifespan(item, entity.world));
         if (!MinecraftForge.EVENT_BUS.post(event)) return -1;
         return event.getExtraLife();
+    }
+
+    public static boolean onTrySpawnPortal(IWorld world, BlockPos pos, ExampleNetherPortalBlock.Size size)
+    {
+        return MinecraftForge.EVENT_BUS.post(new BlockEvent.PortalSpawnEvent(world, pos, world.getBlockState(pos), size));
     }
 }

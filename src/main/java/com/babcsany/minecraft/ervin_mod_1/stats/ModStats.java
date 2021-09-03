@@ -57,6 +57,7 @@ public class ModStats {
    public static final ResourceLocation MOB_KILLS = registerCustom("mob_kills", IStatFormatter.DEFAULT);
    public static final ResourceLocation ANIMALS_BRED = registerCustom("animals_bred", IStatFormatter.DEFAULT);
    public static final ResourceLocation HHIJ_BRED = registerCustom("hhij_bred", IStatFormatter.DEFAULT);
+   public static final ResourceLocation ZURS_BRED = registerCustom("zurs_bred", IStatFormatter.DEFAULT);
    public static final ResourceLocation PLAYER_KILLS = registerCustom("player_kills", IStatFormatter.DEFAULT);
    public static final ResourceLocation FISH_CAUGHT = registerCustom("fish_caught", IStatFormatter.DEFAULT);
    public static final ResourceLocation TALKED_TO_VILLAGER = registerCustom("talked_to_villager", IStatFormatter.DEFAULT);

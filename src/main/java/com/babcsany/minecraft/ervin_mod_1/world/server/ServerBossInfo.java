@@ -5,7 +5,7 @@ import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import com.babcsany.minecraft.ervin_mod_1.play.server.SUpdateBossInfoPacket;
+import com.babcsany.minecraft.ervin_mod_1.network.play.server.SUpdateBossInfoPacket;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 

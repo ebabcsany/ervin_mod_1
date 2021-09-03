@@ -2,7 +2,11 @@ package com.babcsany.minecraft.ervin_mod_1.init.item.block;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit;
-import com.babcsany.minecraft.ervin_mod_1.item.BurningBlockItem;
+import com.babcsany.minecraft.ervin_mod_1.item.block.burning.coal.block.CharcoalBlock;
+import com.babcsany.minecraft.ervin_mod_1.item.block.burning.coal.block.CharcoalSlab;
+import com.babcsany.minecraft.ervin_mod_1.item.block.burning.coal.block.CharcoalStairs;
+import com.babcsany.minecraft.ervin_mod_1.item.block.burning.coal.block.CoalSlab;
+import com.babcsany.minecraft.ervin_mod_1.item.block.burning.Tragn;
 import net.minecraft.item.*;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -12,10 +16,9 @@ public class BlockItemInit_ {
 
     public static final DeferredRegister<Item> BLOCK_ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Ervin_mod_1.MOD_ID);
 
-    public static final RegistryObject<Item> COAL_SLAB = BLOCK_ITEMS.register("coal_slab", () -> new BurningBlockItem(BlockInit.COAL_SLAB.get(), (new Item.Properties()), 8000));
-    public static final RegistryObject<Item> CHARCOAL_BLOCK = BLOCK_ITEMS.register("charcoal_block", () -> new BurningBlockItem(BlockInit.CHARCOAL_BLOCK.get(), (new Item.Properties()), 16000));
-    public static final RegistryObject<Item> CHARCOAL_SLAB = BLOCK_ITEMS.register("charcoal_slab", () -> new BurningBlockItem(BlockInit.CHARCOAL_SLAB.get(), (new Item.Properties()), 8000));
-    public static final RegistryObject<Item> CHARCOAL_STAIRS = BLOCK_ITEMS.register("charcoal_stairs", () -> new BurningBlockItem(BlockInit.CHARCOAL_STAIRS.get(), (new Item.Properties()), 12000));
+    public static final RegistryObject<Item> CHARCOAL_BLOCK = BLOCK_ITEMS.register("charcoal_block", () -> new CharcoalBlock(BlockInit.CHARCOAL_BLOCK.get(), (new Item.Properties())));
+    public static final RegistryObject<Item> CHARCOAL_SLAB = BLOCK_ITEMS.register("charcoal_slab", () -> new CharcoalSlab(BlockInit.CHARCOAL_SLAB.get(), (new Item.Properties())));
+    public static final RegistryObject<Item> CHARCOAL_STAIRS = BLOCK_ITEMS.register("charcoal_stairs", () -> new CharcoalStairs(BlockInit.CHARCOAL_STAIRS.get(), (new Item.Properties())));
     public static final RegistryObject<Item> ZUNK_SLAB = BLOCK_ITEMS.register("zunk_slab", () -> new BlockItem(BlockInit.ZUNK_SLAB.get(), (new Item.Properties())));
     public static final RegistryObject<Item> ZUNK_STAIRS = BLOCK_ITEMS.register("zunk_stairs", () -> new BlockItem(BlockInit.ZUNK_STAIRS.get(), (new Item.Properties())));
     public static final RegistryObject<Item> FIGHIV = BLOCK_ITEMS.register("fighiv", () -> new BlockItem(BlockInit.FIGHIV.get(), (new Item.Properties())));

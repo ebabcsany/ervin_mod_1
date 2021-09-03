@@ -2,6 +2,7 @@ package com.babcsany.minecraft.ervin_mod_1.entity.trigger.hhij;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.entity.animal.hhij.HhijAnimalEntity;
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.AnimalDgrurbEntity;
 import com.google.gson.JsonObject;
 import net.minecraft.advancements.criterion.AbstractCriterionTrigger;
 import net.minecraft.advancements.criterion.CriterionInstance;
@@ -26,9 +27,7 @@ public class TameHhijAnimalTrigger extends AbstractCriterionTrigger<TameHhijAnim
 
    public void trigger(ServerPlayerEntity player, HhijAnimalEntity entity) {
       LootContext lootcontext = EntityPredicate.getLootContext(player, entity);
-      this.triggerListeners(player, (p_227251_1_) -> {
-         return p_227251_1_.test(lootcontext);
-      });
+      this.triggerListeners(player, (p_227251_1_) -> p_227251_1_.test(lootcontext));
    }
 
    public static class Instance extends CriterionInstance {

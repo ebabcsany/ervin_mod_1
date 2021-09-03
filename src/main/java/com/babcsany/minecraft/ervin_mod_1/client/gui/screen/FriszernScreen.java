@@ -2,7 +2,7 @@ package com.babcsany.minecraft.ervin_mod_1.client.gui.screen;
 
 import com.babcsany.minecraft.ervin_mod_1.block.FriszernLogic;
 import com.babcsany.minecraft.ervin_mod_1.block.FriszernTileEntity;
-import com.babcsany.minecraft.ervin_mod_1.play.CUpdateFriszernPacket;
+import com.babcsany.minecraft.ervin_mod_1.network.play.CUpdateFriszernPacket;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.util.math.BlockPos;

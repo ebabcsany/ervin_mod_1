@@ -1,8 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.ai.goal;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.fish.AbstractGroupGubrovEntity;
+import com.babcsany.minecraft.ervin_mod_1.entity.fish.gubrov.AbstractGroupGubrovEntity;
 import net.minecraft.entity.ai.goal.Goal;
-import net.minecraft.entity.passive.fish.AbstractGroupFishEntity;
 
 import java.util.List;
 import java.util.function.Predicate;

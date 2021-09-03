@@ -5,6 +5,7 @@ import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.$TraderTrades;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.$ItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.burning.BurningItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.food.FoodItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.food.isBurnableFoodItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
@@ -37,7 +38,7 @@ public class TraderBlockTrades {
            new TraderBlockTrades.ItemsFor$_2$sTrade(isBurnableItemInit.LEAT.get(), 1, 4, 1000, 1),
            new TraderBlockTrades.ItemsFor$_3$sTrade(ItemInit.CHAK.get(), 18, 1, 1000, 1),
            new TraderBlockTrades.ItemsFor$_4$sTrade(ItemInit.MLONK.get(), 12, 1, 1000, 1),
-           new TraderBlockTrades.ItemsFor$_5$sTrade(isBurnableItemInit.GART.get(), 24, 1, 1000, 1),
+           new TraderBlockTrades.ItemsFor$_5$sTrade(BurningItemInit.GART.get(), 24, 1, 1000, 1),
            new TraderBlockTrades.ItemsFor$_6$sTrade(isBurnableItemInit.TERAT_NUGGET.get(), 60, 1, 1000, 1),
            new TraderBlockTrades.ItemsFor30$_10$sAndItemsTrade(ItemInit.FIRK.get(), 30, isBurnableBlockItemInit.CRAINT_BLOCK.get(), 12, 1000, 5),
            new TraderBlockTrades.ItemsForTgurkBlocksAndItemsTrade($ItemInit.$_6$.get(), 30, SpecialToolItemInit.CRAINT.get(), 30, 1000, 5),

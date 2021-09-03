@@ -1,8 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.classes.inventory;
 
-import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.IClearable;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 

@@ -1,39 +1,28 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.monster.zur;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.trigger.CriteriaTriggers1;
-import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.ZurTrades;
-import com.google.common.collect.Sets;
-import net.minecraft.entity.*;
-import net.minecraft.entity.effect.LightningBoltEntity;
-import net.minecraft.entity.merchant.IMerchant;
+import net.minecraft.entity.CreatureEntity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ILivingEntityData;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.MerchantOffer;
-import net.minecraft.item.MerchantOffers;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.particles.ParticleTypes;
-import net.minecraft.util.DamageSource;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Hand;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
-import java.util.Set;
 
-public abstract class AgeableZurEntity extends CreatureEntity implements INPC, IMerchant {
+public abstract class AgeableZurEntity extends CreatureEntity {
    private static final DataParameter<Boolean> BABY = EntityDataManager.createKey(AgeableZurEntity.class, DataSerializers.BOOLEAN);
    protected int growingAge;
    protected int forcedAge;
    protected int forcedAgeTimer;
-   private final int fire = -this.getFireImmuneTicks();
-   @Nullable private PlayerEntity customer;
-   @Nullable protected MerchantOffers offers;
-   protected final Inventory zurInventory = new Inventory(1000000);
-
 
    protected AgeableZurEntity(EntityType<? extends AgeableZurEntity> type, World worldIn) {
       super(type, worldIn);
@@ -59,6 +48,10 @@ public abstract class AgeableZurEntity extends CreatureEntity implements INPC, I
    protected void registerData() {
       super.registerData();
       this.dataManager.register(BABY, false);
+   }
+
+   protected ActionResultType func_231254_b_(PlayerEntity player, Hand hand) {
+      return ActionResultType.PASS;
    }
 
    public boolean canBreed() {
@@ -126,74 +119,11 @@ public abstract class AgeableZurEntity extends CreatureEntity implements INPC, I
 
    }
 
-   public MerchantOffers getOffers() {
-      if (this.offers == null) {
-         this.offers = new MerchantOffers();
-         this.populateTradeZurData();
-      }
-
-      return this.offers;
-   }
-
-   public void setCustomer(@Nullable PlayerEntity player) {
-      this.customer = player;
-   }
-
-   @Nullable
-   public PlayerEntity getCustomer() {
-      return this.customer;
-   }
-
-   protected void addTrades(MerchantOffers givenMerchantOffers, ZurTrades.ITrade[] newTrades, int maxNumbers) {
-      Set<Integer> set = Sets.newHashSet();
-      if (newTrades.length > maxNumbers) {
-         while(set.size() < maxNumbers) {
-            set.add(this.rand.nextInt(newTrades.length));
-         }
-      } else {
-         for(int i = 0; i < newTrades.length; ++i) {
-            set.add(i);
-         }
-      }
-
-      for(Integer integer : set) {
-         ZurTrades.ITrade zurTrades$ITrade = newTrades[integer];
-         MerchantOffer merchantoffer = zurTrades$ITrade.getOffer(this, this.rand);
-         if (merchantoffer != null) {
-            givenMerchantOffers.add(merchantoffer);
-         }
-      }
-
-   }
-
-   public boolean hasCustomer() {
-      return this.customer != null;
-   }
-
-   protected abstract void populateTradeZurData();
-
    public void writeAdditional(CompoundNBT compound) {
       super.writeAdditional(compound);
       compound.putInt("Age", this.getGrowingAge());
       compound.putInt("ForcedAge", this.forcedAge);
-      if (compound.contains("Offers", 10)) {
-         this.offers = new MerchantOffers(compound.getCompound("Offers"));
-      }
-
-      this.zurInventory.read(compound.getList("Inventory", 10));
    }
-
-   public void onTrade(MerchantOffer offer) {
-      offer.increaseUses();
-      this.livingSoundTime = -this.getTalkInterval();
-      this.onZurTrade(offer);
-      if (this.customer instanceof ServerPlayerEntity) {
-         CriteriaTriggers1.ZUR_TRADE.test((ServerPlayerEntity)this.customer, this, offer.getSellingStack());
-      }
-
-   }
-
-   protected abstract void onZurTrade(MerchantOffer offer);
 
    /**
     * (abstract) Protected helper method to read subclass entity data from NBT.
@@ -288,14 +218,5 @@ public abstract class AgeableZurEntity extends CreatureEntity implements INPC, I
       public void setBabySpawnProbability(float babySpawnProbability) {
          this.babySpawnProbability = babySpawnProbability;
       }
-   }
-
-   public void onStruckByLightning(PlayerEntity player) {
-      this.forceFireTicks(this.fire + 1);
-      if (this.fire == 0) {
-         this.setFire(8);
-      }
-
-      this.attackEntityFrom(DamageSource.causePlayerDamage(player), 1.0F);
    }
 }

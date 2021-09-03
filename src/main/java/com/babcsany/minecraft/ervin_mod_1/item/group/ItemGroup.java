@@ -15,7 +15,6 @@ import java.util.function.Supplier;
 
 public abstract class ItemGroup {
    public static ItemGroup[] GROUPS = new ItemGroup[5];
-   //public static final ItemGroup MOD_ITEM_GROUP = new ModTabGroup("simpleores", () -> new ItemStack(com.babcsany.minecraft.ervin_mod_1.init.item.item.ItemInit.REGDEMP.get()));
    public static final net.minecraft.item.ItemGroup ERVIN_MOD_1_SEARCH = (new net.minecraft.item.ItemGroup(14, "ervin_mod_1_search") {
       @OnlyIn(Dist.CLIENT)
       public ItemStack createIcon() {
@@ -201,16 +200,9 @@ public abstract class ItemGroup {
       return false;
    }
 
-   /**
-    * Fills {@code items} with all items that are in this group.
-    */
-   /*@OnlyIn(Dist.CLIENT)
-   public void fill(NonNullList<ItemStack> items) {
-      for(Item item : Registry.ITEM) {
-         item.fillItemGroup(this, items);
-      }
-
-   }*/
+   public boolean hasSearchBar() {
+      return index == ERVIN_MOD_1_SEARCH.index;
+   }
 
    public int getTabPage() {
       return index < 13 ? 0 : ((index - 13) / 10) + 1;

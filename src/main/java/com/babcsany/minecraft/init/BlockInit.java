@@ -1,6 +1,6 @@
 package com.babcsany.minecraft.init;
 
-import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
+import com.babcsany.minecraft.ervin_mod_1.block.ExampleNetherPortalBlock;
 import com.babcsany.minecraft.ervin_mod_1.block.Friszern;
 import com.babcsany.minecraft.ervin_mod_1.block.blocks.FirgPlanksStairs;
 import com.babcsany.minecraft.ervin_mod_1.block.blocks.FirtBlock;
@@ -27,6 +27,7 @@ public class BlockInit {
     public static final Block FIRT_BLOCK = register("firt_block", new FirtBlock(Block.Properties.create(Material.ROCK).setRequiresTool().harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(60.0F)));
     public static final Block REUTRIEN = register("reutrien", new Reutrien(AbstractBlock.Properties.create(Material.ROCK).setRequiresTool().hardnessAndResistance(5.0F).sound(SoundType.METAL).notSolid()));
     public static final Block TRIRIJ = register("tririj", new Tririj(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.RED_TERRACOTTA).setRequiresTool().tickRandomly().hardnessAndResistance(5000000.0F)));
+    public static final Block EXAMPLE_PORTAL_BLOCK = register("portal/example_portal_block", new ExampleNetherPortalBlock(AbstractBlock.Properties.from(Blocks.NETHER_PORTAL)));
 
     private static Block register(String key, Block blockIn) {
         return Registry.register(Registry.BLOCK, string(key), blockIn);
