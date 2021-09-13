@@ -3,7 +3,9 @@ package com.babcsany.minecraft.world;
 import com.babcsany.minecraft.ervin_mod_1.init.DimensionInit;
 import com.babcsany.minecraft.ervin_mod_1.init.DimensionTypeInit;
 import com.babcsany.minecraft.ervin_mod_1.init.dimension.settings.ModDimensionSettings;
+import com.babcsany.minecraft.ervin_mod_1.registry.ModRegistry;
 import com.babcsany.minecraft.ervin_mod_1.world.dimension.biome_provider.ExampleBiomeProvider;
+import com.babcsany.minecraft.ervin_mod_1.world.gen.ModNoiseChunkGenerator;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
@@ -32,13 +34,15 @@ public final class dimension {
     public static final RegistryKey<Dimension> THE_NETHER = Dimension.THE_NETHER;
     public static final RegistryKey<Dimension> THE_END = Dimension.THE_END;
     public static final LinkedHashSet<RegistryKey<Dimension>> DIMENSION_KEYS = Sets.newLinkedHashSet(ImmutableList.of(OVERWORLD, THE_NETHER, THE_END));
-    private Supplier<DimensionType> dimensionTypeSupplier;
-    private static Supplier<DimensionType> dimensionTypeSupplier1;
+    public static final LinkedHashSet<RegistryKey<dimension>> MOD_DIMENSION_KEYS = Sets.newLinkedHashSet(ImmutableList.of());
+    private Supplier<dimensionType> dimensionTypeSupplier;
+    private static Supplier<dimensionType> dimensionTypeSupplier1;
     private ChunkGenerator chunkGenerator;
     private static BiomeProvider biomeProvider;
     private static ChunkGenerator chunkGenerator1;
     static RegistryKey<Dimension> dimensionRegistryKey;
     static SimpleRegistry<Dimension> dimensionSimpleRegistry;
+    static SimpleRegistry<dimension> modDimensionSimpleRegistry;
     static long Long;
     static int Int;
 
@@ -48,20 +52,20 @@ public final class dimension {
         this.chunkGenerator = chunkGenerator1;
     }
 
-    public dimension(Supplier<DimensionType> dimensionTypeSupplier, ChunkGenerator chunkGenerator) {
+    public dimension(Supplier<dimensionType> dimensionTypeSupplier, ChunkGenerator chunkGenerator) {
         this.dimensionTypeSupplier = dimensionTypeSupplier;
         this.chunkGenerator = chunkGenerator;
     }
 
-    public static void setDimensionTypeSupplier1(Supplier<DimensionType> dimensionTypeSupplier1) {
+    public static void setDimensionTypeSupplier1(Supplier<dimensionType> dimensionTypeSupplier1) {
         dimension.dimensionTypeSupplier1 = dimensionTypeSupplier1;
     }
 
-    public Supplier<DimensionType> getDimensionTypeSupplier() {
+    public Supplier<dimensionType> getDimensionTypeSupplier() {
         return this.dimensionTypeSupplier;
     }
 
-    public DimensionType getDimensionType() {
+    public dimensionType getDimensionType() {
         return this.dimensionTypeSupplier.get();
     }
 
@@ -95,19 +99,46 @@ public final class dimension {
         return simpleregistry;
     }
 
+    public static SimpleRegistry<dimension> dimensionSimpleRegistry(SimpleRegistry<dimension> dimensionSimpleRegistry) {
+        SimpleRegistry<dimension> simpleRegistry = new SimpleRegistry<>(ModRegistry.MOD_DIMENSION_KEY, Lifecycle.experimental());
+
+        for(RegistryKey<dimension> registrykey : MOD_DIMENSION_KEYS) {
+            dimension dimension = dimensionSimpleRegistry.getValueForKey(registrykey);
+            if (dimension != null) {
+                simpleRegistry.register(registrykey, dimension);
+                if (dimensionSimpleRegistry.func_239660_c_(registrykey)) {
+                    simpleRegistry.func_239662_d_(registrykey);
+                }
+            }
+        }
+
+        for(Map.Entry<RegistryKey<dimension>, dimension> entry : dimensionSimpleRegistry.getEntries()) {
+            RegistryKey<dimension> registrykey1 = entry.getKey();
+            if (!MOD_DIMENSION_KEYS.contains(registrykey1)) {
+                simpleRegistry.register(registrykey1, entry.getValue());
+                if (dimensionSimpleRegistry.func_239660_c_(registrykey1)) {
+                    simpleRegistry.func_239662_d_(registrykey1);
+                }
+            }
+        }
+
+        return simpleRegistry;
+    }
+
     public static void setDimension(int Int, RegistryKey<Dimension> dimensionRegistryKey, DimensionType dimensionType, DimensionSettings.Preset preset, boolean Boolean) {
         func_236060_a_(Long, dimensionSimpleRegistry);
     }
 
     public static boolean func_236060_a_(long Long, SimpleRegistry<Dimension> dimensionSimpleRegistry) {
         List<Map.Entry<RegistryKey<Dimension>, Dimension>> list = Lists.newArrayList(dimensionSimpleRegistry.getEntries());
-        if (list.size() != DIMENSION_KEYS.size()) {
+        List<Map.Entry<RegistryKey<dimension>, dimension>> modList = Lists.newArrayList(modDimensionSimpleRegistry.getEntries());
+        if (list.size() != DIMENSION_KEYS.size() || list.size() != MOD_DIMENSION_KEYS.size()) {
             return false;
         } else {
             Map.Entry<RegistryKey<Dimension>, Dimension> entry = list.get(0);
             Map.Entry<RegistryKey<Dimension>, Dimension> entry1 = list.get(1);
             Map.Entry<RegistryKey<Dimension>, Dimension> entry2 = list.get(2);
-            Map.Entry<RegistryKey<Dimension>, Dimension> entry3 = list.get(3);
+            Map.Entry<RegistryKey<dimension>, dimension> entry3 = modList.get(3);
             if (entry.getKey() == OVERWORLD && entry1.getKey() == THE_NETHER && entry2.getKey() == THE_END && entry3.getKey() == DimensionInit.EXAMPLE) {
                 if (entry.getValue().getDimensionType() != dimensionType.OVERWORLD_TYPE && entry.getValue().getDimensionType() != dimensionType.field_241498_j_) {
                     return false;
@@ -117,10 +148,10 @@ public final class dimension {
                     return false;
                 } else if (entry3.getValue().getDimensionType() != DimensionTypeInit.EXAMPLE_TYPE) {
                     return false;
-                } else if (entry1.getValue().getChunkGenerator() instanceof NoiseChunkGenerator && entry2.getValue().getChunkGenerator() instanceof NoiseChunkGenerator && entry3.getValue().getChunkGenerator() instanceof NoiseChunkGenerator) {
+                } else if (entry1.getValue().getChunkGenerator() instanceof NoiseChunkGenerator && entry2.getValue().getChunkGenerator() instanceof ModNoiseChunkGenerator && entry3.getValue().getChunkGenerator() instanceof NoiseChunkGenerator) {
                     NoiseChunkGenerator noisechunkgenerator = (NoiseChunkGenerator)entry1.getValue().getChunkGenerator();
-                    NoiseChunkGenerator noisechunkgenerator1 = (NoiseChunkGenerator)entry2.getValue().getChunkGenerator();
-                    NoiseChunkGenerator noisechunkgenerator2 = (NoiseChunkGenerator)entry3.getValue().getChunkGenerator();
+                    NoiseChunkGenerator noisechunkgenerator1 = (NoiseChunkGenerator) entry2.getValue().getChunkGenerator();
+                    ModNoiseChunkGenerator noisechunkgenerator2 = (ModNoiseChunkGenerator)entry3.getValue().getChunkGenerator();
                     if (!noisechunkgenerator.func_236088_a_(Long, DimensionSettings.Preset.NETHER)) {
                         return false;
                     } else if (!noisechunkgenerator1.func_236088_a_(Long, DimensionSettings.Preset.END)) {
@@ -136,7 +167,7 @@ public final class dimension {
                         ExampleBiomeProvider exampleBiomeProvider = (ExampleBiomeProvider) noisechunkgenerator.getBiomeProvider();
                         if (!netherbiomeprovider.func_235280_b_(Long)) {
                             return false;
-                        } else if (!exampleBiomeProvider.func_235280_b_(Long)) {
+                        } else if (!exampleBiomeProvider.getBoolean(Long)) {
                             return false;
                         } else if (!(noisechunkgenerator1.getBiomeProvider() instanceof EndBiomeProvider)) {
                             return false;

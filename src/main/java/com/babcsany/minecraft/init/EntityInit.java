@@ -1,9 +1,8 @@
 package com.babcsany.minecraft.init;
 
-import com.babcsany.minecraft.entity.ModBoatEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.animal.SrachEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.fish.GubrovEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.fish.DrurgbkEntity;
+import com.babcsany.minecraft.ervin_mod_1.entity.fish.GubrovEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.RoventEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.projectile.DgrurbkSkullEntity;
@@ -16,7 +15,7 @@ import net.minecraft.util.registry.Registry;
 
 public class EntityInit {
 
-    public static EntityInit ENTITIES;
+    public static EntityType<?> ENTITIES;
 
     public static final EntityType<RoventEntity> ROVENT_ENTITY = register("rovent", EntityType.Builder.create((RoventEntity::new), EntityClassification.CREATURE).size(0.6f, 1.95f).func_233606_a_(10).immuneToFire());
     public static final EntityType<IcsvreEntity> ICSVRE = register("icsvre", EntityType.Builder.<IcsvreEntity>create(IcsvreEntity::new, EntityClassification.MISC).size(0.25F, 0.25F).func_233606_a_(6).func_233608_b_(20));

@@ -1,14 +1,14 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.ai.brain.task;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurTasks;
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.AbstractZurEntity;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.entity.ai.brain.memory.MemoryModuleStatus;
 import net.minecraft.entity.ai.brain.memory.MemoryModuleType;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.world.server.ServerWorld;
 
-public class ZurAdmireItemTask<E extends ZurEntity> extends Task<E> {
+public class ZurAdmireItemTask<E extends AbstractZurEntity> extends Task<E> {
    private final int field_234540_b_;
 
    public ZurAdmireItemTask(int p_i231573_1_) {

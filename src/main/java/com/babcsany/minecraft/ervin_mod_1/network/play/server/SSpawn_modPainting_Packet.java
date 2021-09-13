@@ -2,8 +2,6 @@ package com.babcsany.minecraft.ervin_mod_1.network.play.server;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.item.modPainting_Entity;
 import com.babcsany.minecraft.ervin_mod_1.network.play.IClientPlayNetHandler;
-import com.babcsany.minecraft.ervin_mod_1.registry.ModRegistry;
-import com.babcsany.minecraft.ervin_mod_1.util.registries.modPainting_Type;
 import net.minecraft.network.IPacket;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.Direction;
@@ -29,7 +27,7 @@ public class SSpawn_modPainting_Packet implements IPacket<IClientPlayNetHandler>
       this.uniqueId = painting.getUniqueID();
       this.position = painting.getHangingPosition();
       this.facing = painting.getHorizontalFacing();
-      this.title = ModRegistry.modPainting_MOTIVE.getId(painting.art);
+      //this.title = ModRegistry.modPainting_MOTIVE.getId(painting.art);
    }
 
    /**
@@ -81,8 +79,8 @@ public class SSpawn_modPainting_Packet implements IPacket<IClientPlayNetHandler>
       return this.facing;
    }
 
-   @OnlyIn(Dist.CLIENT)
+   /*@OnlyIn(Dist.CLIENT)
    public modPainting_Type getType() {
       return ModRegistry.modPainting_MOTIVE.getByValue(this.title);
-   }
+   }*/
 }

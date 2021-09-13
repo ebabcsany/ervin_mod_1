@@ -475,7 +475,7 @@ public class Brain<E extends LivingEntity> {
       }
    }
 
-   static final class MemoryCodec<U> {
+   public static final class MemoryCodec<U> {
       private final MemoryModuleType<U> field_233735_a_;
       private final Optional<? extends Memory<U>> field_233736_b_;
 

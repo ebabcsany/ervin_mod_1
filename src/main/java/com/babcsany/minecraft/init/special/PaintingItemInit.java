@@ -1,22 +1,15 @@
 package com.babcsany.minecraft.init.special;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
-import com.babcsany.minecraft.ervin_mod_1.item.JurkBucketItem;
-import com.babcsany.minecraft.init.EntityInit;
 import net.minecraft.block.Block;
-import net.minecraft.entity.EntityType;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.HangingEntityItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
+import net.minecraft.item.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
-
-import static net.minecraft.item.Items.BUCKET;
+import net.minecraftforge.eventbus.api.IEventBus;
 
 public class PaintingItemInit {
 
-    public static PaintingItemInit PAINTING_ITEMS;
+    public static Items PAINTING_ITEMS;
 
     public static final Item modPainting = register("modPainting", new HangingEntityItem(PaintingEntityInit.modPainting, (new Item.Properties()).group(ItemGroup.DECORATIONS)));
 
@@ -51,5 +44,9 @@ public class PaintingItemInit {
         }
 
         return Registry.register(Registry.ITEM, key, itemIn);
+    }
+
+    public IEventBus register(IEventBus modEventBus) {
+        return modEventBus;
     }
 }

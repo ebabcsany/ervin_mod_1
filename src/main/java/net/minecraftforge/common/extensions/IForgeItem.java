@@ -52,6 +52,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ToolType;
 
 import javax.annotation.Nullable;
+import java.util.Collection;
 import java.util.Set;
 import java.util.function.Consumer;
 
@@ -324,7 +325,7 @@ public interface IForgeItem
      *
      * @return A list of all tabs that this item could possibly be one.
      */
-    default java.util.Collection<ItemGroup> getCreativeTabs()
+    default Collection<ItemGroup> getCreativeTabs()
     {
         return java.util.Collections.singletonList(getItem().getGroup());
     }
@@ -602,10 +603,6 @@ public interface IForgeItem
     }
 
     Set<ToolType> getToolTypes(ItemStack stack);
-
-    default void isUsableByPlayer() {
-        PlayerInventory.isUsableByPlayer();
-    }
 
     /**
      * Queries the harvest level of this item stack for the specified tool class,

@@ -29,8 +29,4 @@ public class Ervin_mod_1_classes {
             ((PlayerEntity1) playerEntity).updateTurtleHelmet();
         }
     }
-
-    public static void world() {
-        com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.classes.world.World.isValid(pos);
-    }
 }

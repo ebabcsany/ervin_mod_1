@@ -1,6 +1,5 @@
 package com.babcsany.minecraft.ervin_mod_1.tags;
 
-import java.util.Set;
 import net.minecraft.block.Block;
 import net.minecraft.tags.ITag;
 import net.minecraft.tags.TagCollection;
@@ -8,6 +7,8 @@ import net.minecraft.tags.TagRegistry;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+
+import java.util.Set;
 
 public class BlockTags1 {
    private static final TagRegistry<Block> collection = new TagRegistry<>();
@@ -94,6 +95,7 @@ public class BlockTags1 {
    public static final ITag.INamedTag<Block> FENCE_GATES = makeWrapperTag("fence_gates");
    public static final ITag.INamedTag<Block> UNSTABLE_BOTTOM_CENTER = makeWrapperTag("unstable_bottom_center");
    public static final ITag.INamedTag<Block> INFINIBURN_OVERWORLD = makeWrapperTag("infiniburn_overworld");
+   public static final ITag.INamedTag<Block> INFINIBURN_EXAMPLE_WORLD = makeWrapperTag("ervin_mod_1:infiniburn_example_world");
    public static final ITag.INamedTag<Block> INFINIBURN_NETHER = makeWrapperTag("infiniburn_nether");
    public static final ITag.INamedTag<Block> INFINIBURN_END = makeWrapperTag("infiniburn_end");
 

@@ -4,6 +4,8 @@ import com.babcsany.minecraft.ervin_mod_1.tile_entity.ReutrienTileEntity;
 import com.babcsany.minecraft.tile_entity.ModTileEntityType;
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityType;
+import net.minecraftforge.eventbus.api.IEventBus;
 
 import java.util.function.Supplier;
 
@@ -11,7 +13,7 @@ import static com.babcsany.minecraft.tile_entity.ModTileEntityType.Builder.creat
 
 public class TileEntityInit<T extends TileEntity> {
 
-    public static TileEntityInit<?> TILE_ENTITIES;
+    public static TileEntityType<?> TILE_ENTITIES;
 
     public static final ModTileEntityType<ReutrienTileEntity> REUTRIEN = ModTileEntityType.register("reutrien", create(ReutrienTileEntity::new, BlockInit.REUTRIEN));
 
@@ -28,5 +30,9 @@ public class TileEntityInit<T extends TileEntity> {
 
     private static <T extends TileEntity> Supplier<? extends T> supplier(Supplier<? extends T> supplier) {
         return supplier;
+    }
+
+    public IEventBus register(IEventBus modEventBus) {
+        return modEventBus;
     }
 }

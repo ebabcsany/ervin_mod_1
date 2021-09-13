@@ -9,12 +9,13 @@ import net.minecraft.entity.item.BoatEntity;
 import net.minecraft.item.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
+import net.minecraftforge.eventbus.api.IEventBus;
 
 import static net.minecraft.item.Items.BUCKET;
 
 public class ItemInit {
 
-    public static ItemInit ITEMS;
+    public static Items ITEMS;
 
     public static final Item JURK_BUCKET = register("jurk_bucket", new JurkBucketItem((new Item.Properties()).containerItem(BUCKET).maxStackSize(1).group(ItemGroup.MISC)));
     //public static final Item JURK_BUCKET = register("jurk_bucket", new JurkBucketItem((new Item.Properties()).containerItem(BUCKET).maxStackSize(1).group(net.minecraft.item.ItemGroup.MISC)));
@@ -90,5 +91,9 @@ public class ItemInit {
         }
 
         return Registry.register(Registry.ITEM, key, itemIn);
+    }
+
+    public IEventBus register(IEventBus modEventBus) {
+        return modEventBus;
     }
 }

@@ -1,5 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.monster;
 
+import com.babcsany.minecraft.ervin_mod_1.entity.ai.brain.task.Task;
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.EatPumpkinGoal;
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.ZurTradeWithPlayerGoal;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.AbstractZurEntity;
@@ -8,7 +9,6 @@ import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.goal.PlaceBlockGoal
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.goal.TakeBlockGoal;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.TraderNirtreEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.WanderingTraderNirtreEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.ZurTrades;
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.food.SpecialBlockFoodItemInit;
@@ -17,7 +17,7 @@ import com.babcsany.minecraft.ervin_mod_1.init.minecraft.block.MinecraftBlocks;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
-import com.mojang.serialization.Dynamic;
+import com.ibm.icu.impl.Pair;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
@@ -25,9 +25,8 @@ import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.brain.Brain;
 import net.minecraft.entity.ai.brain.memory.MemoryModuleType;
+import net.minecraft.entity.ai.brain.schedule.Activity;
 import net.minecraft.entity.ai.brain.schedule.Schedule;
-import net.minecraft.entity.ai.brain.sensor.Sensor;
-import net.minecraft.entity.ai.brain.sensor.SensorType;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.entity.item.ItemEntity;
@@ -37,7 +36,10 @@ import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.entity.projectile.ProjectileHelper;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.Inventory;
-import net.minecraft.item.*;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.item.MerchantOffers;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraft.network.DebugPacketSender;
@@ -57,7 +59,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.village.GossipManager;
 import net.minecraft.world.Difficulty;
-import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
@@ -68,7 +69,6 @@ import java.util.stream.Collectors;
 
 public class ZurEntity extends AbstractZurEntity {
    private static final DataParameter<Boolean> field_234408_bu_ = EntityDataManager.createKey(ZurEntity.class, DataSerializers.BOOLEAN);
-   private static final DataParameter<Boolean> field_213428_bH = EntityDataManager.createKey(ZurEntity.class, DataSerializers.BOOLEAN);
    private static final DataParameter<Boolean> field_213428_bG = EntityDataManager.createKey(ZurEntity.class, DataSerializers.BOOLEAN);
    private static final DataParameter<Boolean> field_213429_bH = EntityDataManager.createKey(ZurEntity.class, DataSerializers.BOOLEAN);
    protected static final DataParameter<Byte> TAMED = EntityDataManager.createKey(ZurEntity.class, DataSerializers.BYTE);
@@ -86,8 +86,6 @@ public class ZurEntity extends AbstractZurEntity {
       Item item = p_213575_0_.getItem().getItem();
       return (item == com.babcsany.minecraft.init.BlockItemInit.JURKF.asItem() || item == Blocks.CAKE.asItem()) && p_213575_0_.isAlive() && !p_213575_0_.cannotPickup();
    };
-   protected static final ImmutableList<SensorType<? extends Sensor<? super ZurEntity>>> field_234405_b_ = ImmutableList.of(SensorType.NEAREST_LIVING_ENTITIES, SensorType.NEAREST_PLAYERS, SensorType.field_234129_b_, SensorType.HURT_BY, SensorType.INTERACTABLE_DOORS, SensorType.field_234130_l_);
-   protected static final ImmutableList<MemoryModuleType<?>> field_234414_c_ = ImmutableList.of(MemoryModuleType.LOOK_TARGET, MemoryModuleType.INTERACTABLE_DOORS, MemoryModuleType.OPENED_DOORS, MemoryModuleType.MOBS, MemoryModuleType.VISIBLE_MOBS, MemoryModuleType.NEAREST_VISIBLE_PLAYER, MemoryModuleType.NEAREST_VISIBLE_TARGETABLE_PLAYER, MemoryModuleType.NEAREST_VISIBLE_WANTED_ITEM, MemoryModuleType.HURT_BY, MemoryModuleType.HURT_BY_ENTITY, MemoryModuleType.WALK_TARGET, MemoryModuleType.CANT_REACH_WALK_TARGET_SINCE, MemoryModuleType.ATTACK_TARGET, MemoryModuleType.ATTACK_COOLING_DOWN, MemoryModuleType.INTERACTION_TARGET, MemoryModuleType.PATH, MemoryModuleType.UNIVERSAL_ANGER, MemoryModuleType.AVOID_TARGET, MemoryModuleType.ADMIRING_ITEM, MemoryModuleType.ADMIRING_DISABLED, MemoryModuleType.CELEBRATE_LOCATION, MemoryModuleType.HUNTED_RECENTLY, MemoryModuleType.NEAREST_VISIBLE_NEMESIS, MemoryModuleType.NEAREST_VISIBLE_ZOMBIFIED, MemoryModuleType.RIDE_TARGET, MemoryModuleType.NEAREST_TARGETABLE_PLAYER_NOT_WEARING_GOLD, MemoryModuleType.NEAREST_PLAYER_HOLDING_WANTED_ITEM, MemoryModuleType.ATE_RECENTLY, MemoryModuleType.NEAREST_REPELLENT);
    private static final ImmutableList<MemoryModuleType<?>> MEMORY_TYPES = ImmutableList.of(MemoryModuleType.HOME, MemoryModuleType.JOB_SITE, MemoryModuleType.POTENTIAL_JOB_SITE, MemoryModuleType.MEETING_POINT, MemoryModuleType.MOBS, MemoryModuleType.VISIBLE_MOBS, MemoryModuleType.VISIBLE_VILLAGER_BABIES, MemoryModuleType.NEAREST_PLAYERS, MemoryModuleType.NEAREST_VISIBLE_PLAYER, MemoryModuleType.NEAREST_VISIBLE_TARGETABLE_PLAYER, MemoryModuleType.NEAREST_VISIBLE_WANTED_ITEM, MemoryModuleType.WALK_TARGET, MemoryModuleType.LOOK_TARGET, MemoryModuleType.INTERACTION_TARGET, MemoryModuleType.BREED_TARGET, MemoryModuleType.PATH, MemoryModuleType.INTERACTABLE_DOORS, MemoryModuleType.OPENED_DOORS, MemoryModuleType.NEAREST_BED, MemoryModuleType.HURT_BY, MemoryModuleType.HURT_BY_ENTITY, MemoryModuleType.NEAREST_HOSTILE, MemoryModuleType.SECONDARY_JOB_SITE, MemoryModuleType.HIDING_PLACE, MemoryModuleType.HEARD_BELL_TIME, MemoryModuleType.CANT_REACH_WALK_TARGET_SINCE, MemoryModuleType.LAST_SLEPT, MemoryModuleType.LAST_WOKEN, MemoryModuleType.LAST_WORKED_AT_POI, MemoryModuleType.GOLEM_LAST_SEEN_TIME);
    private NearestAttackableTargetExpiringGoal<AbstractZurEntity> field_213694_bC;
    private int inWaterTime;
@@ -101,21 +99,6 @@ public class ZurEntity extends AbstractZurEntity {
       this.experienceValue = 5;
       ((GroundPathNavigator)this.getNavigator()).setBreakDoors(true);
       this.setCombatTask();
-   }
-
-   protected Brain.BrainCodec<ZurEntity> getBrainCodec() {
-      return Brain.func_233705_a_(field_234414_c_, field_234405_b_);
-   }
-
-   protected Brain<?> createBrain(Dynamic<?> dynamicIn) {
-      Brain<ZurEntity> brain = this.getBrainCodec().func_233748_a_(dynamicIn);
-      this.initBrain(brain);
-      return ZurTasks.func_234469_a_(this, this.getBrainCodec().func_233748_a_(dynamicIn));
-   }
-
-   public static boolean canZurSpawn(EntityType<? extends MobEntity> typeIn, IWorld worldIn, SpawnReason reason, BlockPos pos, Random randomIn) {
-      BlockPos blockpos = pos.up();
-      return reason == SpawnReason.NATURAL || worldIn.getBlockState(blockpos).canEntitySpawn(worldIn, blockpos, typeIn);
    }
 
    public ZurEntity(World worldIn) {
@@ -451,20 +434,6 @@ public class ZurEntity extends AbstractZurEntity {
       return optional.filter(aLong -> gameTime - aLong < 24000L).isPresent();
    }
 
-   public void resetBrain(ServerWorld serverWorldIn) {
-      Brain<ZurEntity> brain = (Brain<ZurEntity>) this.getBrain();
-      brain.stopAllTasks(serverWorldIn, this);
-      this.brain = brain.copy();
-      this.initBrain((Brain<ZurEntity>) this.getBrain());
-   }
-
-   private void initBrain(Brain<ZurEntity> zurBrain) {
-      if (this.isChild()) {
-         zurBrain.setSchedule(Schedule.VILLAGER_BABY);
-         //zurBrain.registerActivity(Activity.PLAY, (ImmutableList<? extends Pair<Integer, ? extends Task<? super ZurEntity>>>) ZurTasks.play(0.5F));
-      }
-   }
-
    public boolean func_213416_eg() {
       return this.dataManager.get(field_213428_bG);
    }
@@ -636,22 +605,6 @@ public class ZurEntity extends AbstractZurEntity {
 
    protected void playStepSound(BlockPos pos, BlockState blockIn) {
       this.playSound(this.getStepSound(), 0.15F, 1.0F);
-   }
-
-   private boolean func_234431_eV_() {
-      return this.getDataManager().get(field_234408_bu_);
-   }
-
-   public boolean func_234423_eL_() {
-      return !this.world.func_230315_m_().func_241509_i_() && !this.func_234431_eV_() && !this.isAIDisabled();
-   }
-
-   public void func_234442_u_(boolean p_234442_1_) {
-      this.dataManager.set(field_213428_bH, p_234442_1_);
-   }
-
-   protected void func_241417_a_(SoundEvent p_241417_1_) {
-      this.playSound(p_241417_1_, this.getSoundVolume(), this.getSoundPitch());
    }
 
    private void func_234416_a_(ServerWorld p_234416_1_) {

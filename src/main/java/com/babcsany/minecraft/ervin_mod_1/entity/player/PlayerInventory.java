@@ -5,26 +5,34 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.util.INameable;
 
 public abstract class PlayerInventory implements IInventory, INameable {
-    private final PlayerEntity player;
     private static PlayerEntity getPlayer;
-    private net.minecraft.entity.player.PlayerInventory playerInventory;
     private static PlayerInventory getPlayerInventory;
+    private final net.minecraft.entity.player.PlayerInventory playerInventory;
+    private final boolean isUsableByPlayer;
+    private final int getDistanceSq = 2048;
 
-    public PlayerInventory(PlayerEntity player) {
-        this.player = player;
+    public PlayerInventory(PlayerEntity player, net.minecraft.entity.player.PlayerInventory playerInventory) {
+        this.playerInventory = playerInventory;
+        this.isUsableByPlayer = isUsableByPlayer(player);
     }
 
-    public static boolean isUsableByPlayer() {
-        return getPlayerInventory.isUsableByPlayer(getPlayer);
+    public boolean isUsableByPlayer() {
+        return this.isUsableByPlayer;
+    }
+
+    public int getDistanceSq() {
+        return this.getDistanceSq;
     }
 
     public boolean isUsableByPlayer(PlayerEntity player) {
-        if (this.player.removed) {
-            return false;
-        } else if (playerInventory.isUsableByPlayer(player)) {
+        if (playerInventory.isUsableByPlayer(player)) {
             return false;
         } else {
-            return !(player.getDistanceSq(this.player) > 2048);
+            if (player.removed) {
+                return false;
+            } else {
+                return !(player.getDistanceSq(player) > getDistanceSq);
+            }
         }
     }
 

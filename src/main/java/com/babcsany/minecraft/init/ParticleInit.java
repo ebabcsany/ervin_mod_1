@@ -4,13 +4,14 @@ import com.mojang.serialization.Codec;
 import net.minecraft.particles.BasicParticleType;
 import net.minecraft.particles.IParticleData;
 import net.minecraft.particles.ParticleType;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.registry.Registry;
 
 import java.util.function.Function;
 
 public class ParticleInit {
 
-    public static ParticleInit PARTICLES;
+    public static ParticleTypes PARTICLES;
 
     public static final BasicParticleType EPKIN = register("epkin", false);
     public static final BasicParticleType ITEM_FREIN = register("item_frein", false);
@@ -39,5 +40,4 @@ public class ParticleInit {
             }
         });
     }
-
 }

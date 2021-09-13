@@ -197,7 +197,7 @@ public class ExamplePortalBlock extends Block {
       switch(rot) {
       case COUNTERCLOCKWISE_90:
       case CLOCKWISE_90:
-         switch((Direction.Axis)state.get(AXIS)) {
+         switch(state.get(AXIS)) {
          case Z:
             return state.with(AXIS, Direction.Axis.X);
          case X:

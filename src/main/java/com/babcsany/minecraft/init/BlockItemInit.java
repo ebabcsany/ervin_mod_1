@@ -2,15 +2,16 @@ package com.babcsany.minecraft.init;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.item.block.burning.FirtBlock;
-import com.babcsany.minecraft.ervin_mod_1.item.block.burning.Tragn;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.eventbus.api.IEventBus;
 
 public class BlockItemInit {
 
-    public static BlockItemInit BLOCK_ITEMS;
+    public static Items BLOCK_ITEMS;
 
     public static final Item JURKF = register("jurkf", new BlockItem(com.babcsany.minecraft.init.BlockInit.FIRT_BLOCK, (new Item.Properties())));
     public static final Item FIRG_PLANKS = register("firg_planks", new BlockItem(BlockInit.FIRG_PLANKS, (new Item.Properties()).group(ItemGroup.BUILDING_BLOCKS)));
@@ -26,5 +27,9 @@ public class BlockItemInit {
 
     private static Item register(String key, Item itemIn) {
         return Ervin_mod_1.itemRegister(new ResourceLocation(string(key)), itemIn);
+    }
+
+    public IEventBus register(IEventBus modEventBus) {
+        return modEventBus;
     }
 }

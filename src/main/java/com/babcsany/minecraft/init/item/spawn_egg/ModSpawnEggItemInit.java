@@ -1,18 +1,18 @@
 package com.babcsany.minecraft.init.item.spawn_egg;
 
-import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.item.SpawnEggItem1;
 import com.babcsany.minecraft.ervin_mod_1.item.group.ItemGroup;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.eventbus.api.IEventBus;
 
 public class ModSpawnEggItemInit {
 
-    public static ModSpawnEggItemInit SPAWN_EGGS;
+    public static Items SPAWN_EGGS;
 
     public static final Item SPAWN_EGG_1 = register("spawn_eggs/spawn_egg_1", new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
     public static final Item GUBROV_SPAWN_EGG = register("spawn_eggs/gubrov_spawn_egg", new SpawnEggItem1(com.babcsany.minecraft.init.EntityInit.GUBROV, new Item.Properties().group(ItemGroup.ERVIN_MOD_1_SPAWN_EGGS)));
@@ -51,5 +51,9 @@ public class ModSpawnEggItemInit {
         }
 
         return Registry.register(Registry.ITEM, key, itemIn);
+    }
+
+    public IEventBus register(IEventBus modEventBus) {
+        return modEventBus;
     }
 }

@@ -9,7 +9,7 @@ import net.minecraft.util.registry.Registry;
 
 public class PaintingEntityInit {
 
-    public static PaintingEntityInit PAINTING_ENTITIES;
+    public static EntityType<?> PAINTING_ENTITIES;
 
     public static final EntityType<modPainting_Entity> modPainting = register("modPainting", EntityType.Builder.<modPainting_Entity>create(modPainting_Entity::new, EntityClassification.MISC).size(0.5F, 0.5F).immuneToFire().func_233606_a_(10).func_233608_b_(Integer.MAX_VALUE));
 

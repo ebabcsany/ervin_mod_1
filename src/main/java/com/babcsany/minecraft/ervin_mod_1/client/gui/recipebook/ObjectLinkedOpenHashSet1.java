@@ -20,11 +20,8 @@ import it.unimi.dsi.fastutil.objects.*;
 
 import static it.unimi.dsi.fastutil.HashCommon.arraySize;
 import static it.unimi.dsi.fastutil.HashCommon.maxFill;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-import java.util.Comparator;
+
+import java.util.*;
 
 /**
  * A type-specific linked hash set with with a fast, small-footprint
@@ -67,7 +64,7 @@ import java.util.Comparator;
  *
  * <p>
  * The iterators provided by this class are type-specific
- * {@linkplain java.util.ListIterator list iterators}, and can be started at any
+ * {@linkplain ListIterator list iterators}, and can be started at any
  * element <em>which is in the set</em> (if the provided element is not in the
  * set, a {@link NoSuchElementException} exception will be thrown). If, however,
  * the provided element is not the first or last element in the set, the first
@@ -858,13 +855,13 @@ public class ObjectLinkedOpenHashSet1<K> extends AbstractObjectSortedSet<K>
 	private class SetIterator implements ObjectListIterator<K> {
 		/**
 		 * The entry that will be returned by the next call to
-		 * {@link java.util.ListIterator#previous()} (or {@code null} if no previous
+		 * {@link ListIterator#previous()} (or {@code null} if no previous
 		 * entry exists).
 		 */
 		int prev = -1;
 		/**
 		 * The entry that will be returned by the next call to
-		 * {@link java.util.ListIterator#next()} (or {@code null} if no next entry
+		 * {@link ListIterator#next()} (or {@code null} if no next entry
 		 * exists).
 		 */
 		int next = -1;
@@ -874,7 +871,7 @@ public class ObjectLinkedOpenHashSet1<K> extends AbstractObjectSortedSet<K>
 		 */
 		int curr = -1;
 		/**
-		 * The current index (in the sense of a {@link java.util.ListIterator}). When
+		 * The current index (in the sense of a {@link ListIterator}). When
 		 * -1, we do not know the current index.
 		 */
 		int index = -1;

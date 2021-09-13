@@ -1,6 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.init;
 
-import com.babcsany.minecraft.ervin_mod_1.world.gen.Heightmap;
+import com.babcsany.minecraft.world.dimensionType;
 import com.babcsany.minecraft.world.world;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.PlayerEntity;
@@ -11,12 +11,12 @@ import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.world.DimensionType;
 import net.minecraft.world.ITickList;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.AbstractChunkProvider;
 import net.minecraft.world.storage.ISpawnWorldInfo;
+import net.minecraftforge.eventbus.api.IEventBus;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -24,27 +24,27 @@ import java.util.function.Supplier;
 
 public class WorldInit extends world {
 
-    public static WorldInit WORLDS;
+    public static World WORLDS;
 
     public static ISpawnWorldInfo worldInfo;
-    public static RegistryKey<World> worldRegistryKey;
-    public static RegistryKey<DimensionType> dimensionTypeRegistryKey;
-    public static DimensionType dimensionType;
+    public static RegistryKey<world> worldRegistryKey;
+    public static RegistryKey<dimensionType> dimensionTypeRegistryKey_;
+    public static dimensionType dimensionType_;
     public static Supplier<IProfiler> profilerSupplier;
     public static boolean Boolean;
     public static long Long;
 
-    public static final RegistryKey<World> EXAMPLE = worldRegistryKey("example");
+    public static final RegistryKey<world> EXAMPLE = worldRegistryKey("example");
 
     public WorldInit() {
-        this(worldInfo, worldRegistryKey, dimensionTypeRegistryKey, dimensionType, profilerSupplier, Boolean, Boolean, Long);
+        this(worldInfo, worldRegistryKey, dimensionTypeRegistryKey_, dimensionType_, profilerSupplier, Boolean, Boolean, Long);
     }
 
-    public WorldInit(ISpawnWorldInfo p_i231617_1_, RegistryKey<net.minecraft.world.World> p_i231617_2_, RegistryKey<DimensionType> p_i231617_3_, DimensionType p_i231617_4_, Supplier<IProfiler> p_i231617_5_, boolean p_i231617_6_, boolean p_i231617_7_, long p_i231617_8_) {
-        super(p_i231617_1_, p_i231617_2_, p_i231617_3_, p_i231617_4_, p_i231617_5_, p_i231617_6_, p_i231617_7_, p_i231617_8_);
+    public WorldInit(ISpawnWorldInfo iSpawnWorldInfo, RegistryKey<world> worldRegistryKey, RegistryKey<dimensionType> dimensionTypeRegistryKey, dimensionType dimensionType, Supplier<IProfiler> iProfilerSupplier, boolean b, boolean b1, long l) {
+        super(iSpawnWorldInfo, worldRegistryKey, dimensionTypeRegistryKey, dimensionType, iProfilerSupplier, b, b1, l);
     }
 
-    public static RegistryKey<World> worldRegistryKey(String key) {
+    public static RegistryKey<world> worldRegistryKey(String key) {
         return registryKey(key, worldRegistryKey);
     }
 
@@ -95,12 +95,11 @@ public class WorldInit extends world {
     }
 
     @Override
-    public int getHeight(Heightmap.Type heightmapType, int x, int z) {
-        return 0;
-    }
-
-    @Override
     public Biome getNoiseBiomeRaw(int x, int y, int z) {
         return null;
+    }
+
+    public IEventBus register(IEventBus modEventBus) {
+        return modEventBus;
     }
 }

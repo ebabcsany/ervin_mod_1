@@ -22,16 +22,17 @@ import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
 import com.babcsany.minecraft.ervin_mod_1.tags.ItemTag;
 import com.google.common.collect.*;
 import com.mojang.datafixers.util.Pair;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.MobEntity;
+import com.mojang.serialization.Codec;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.RandomPositionGenerator;
 import net.minecraft.entity.ai.brain.Brain;
 import net.minecraft.entity.ai.brain.BrainUtil;
 import net.minecraft.entity.ai.brain.memory.MemoryModuleStatus;
 import net.minecraft.entity.ai.brain.memory.MemoryModuleType;
 import net.minecraft.entity.ai.brain.schedule.Activity;
+import net.minecraft.entity.ai.brain.schedule.Schedule;
+import net.minecraft.entity.ai.brain.sensor.Sensor;
+import net.minecraft.entity.ai.brain.sensor.SensorType;
 import net.minecraft.entity.ai.brain.task.*;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.monster.HoglinEntity;
@@ -48,8 +49,9 @@ import net.minecraft.world.GameRules;
 import net.minecraft.world.server.ServerWorld;
 
 import java.util.*;
+import java.util.function.Supplier;
 
-public class ZurTasks<E extends LivingEntity> {
+public class ZurTasks<E extends LivingEntity> extends Brain<E> {
    public static final Item field_234444_a_ = isBurnableItemInit.SRIUNK.get();
    private static final RangedInteger field_234445_b_ = TickRangeConverter.convertRange(30, 120);
    private static final RangedInteger field_234446_c_ = TickRangeConverter.convertRange(10, 40);
@@ -61,19 +63,24 @@ public class ZurTasks<E extends LivingEntity> {
    private final Map<Integer, Map<Activity, Set<Task<? super E>>>> field_218232_c = Maps.newTreeMap();
    private final Map<Activity, Set<Pair<MemoryModuleType<?>, MemoryModuleStatus>>> requiredMemoryStates = Maps.newHashMap();
    private final Map<Activity, Set<MemoryModuleType<?>>> field_233691_h_ = Maps.newHashMap();
+   private Schedule schedule = Schedule.EMPTY;
 
-   protected static Brain<?> func_234469_a_(ZurEntity p_234469_0_, Brain<ZurEntity> p_234469_1_) {
-      func_234464_a_(p_234469_1_);
-      //func_234485_b_(p_234469_1_);
-      //func_234502_d_(p_234469_1_);
-      //func_234488_b_(p_234469_0_, p_234469_1_);
-      //func_234495_c_(p_234469_1_);
-      //func_234507_e_(p_234469_1_);
-      //func_234511_f_(p_234469_1_);
-      p_234469_1_.setDefaultActivities(ImmutableSet.of(Activity.CORE));
-      p_234469_1_.setFallbackActivity(Activity.IDLE);
-      p_234469_1_.func_233714_e_();
-      return p_234469_1_;
+   public ZurTasks(Collection<? extends MemoryModuleType<?>> p_i231494_1_, Collection<? extends SensorType<? extends Sensor<? super E>>> p_i231494_2_, ImmutableList<Brain.MemoryCodec<?>> p_i231494_3_, Supplier<Codec<Brain<E>>> p_i231494_4_) {
+      super(p_i231494_1_, p_i231494_2_, p_i231494_3_, p_i231494_4_);
+   }
+
+   public static Brain<?> func_234469_a_(AbstractZurEntity p_234469_0_, Brain<AbstractZurEntity> zurEntityBrain, ZurTasks<AbstractZurEntity> zurTasks) {
+      func_234464_a_(zurTasks);
+      //func_234485_b_(zurEntityBrain);
+      //func_234502_d_(zurEntityBrain);
+      //func_234488_b_(p_234469_0_, zurEntityBrain);
+      //func_234495_c_(zurEntityBrain);
+      //func_234507_e_(zurEntityBrain);
+      //func_234511_f_(zurEntityBrain);
+      zurEntityBrain.setDefaultActivities(ImmutableSet.of(Activity.CORE));
+      zurEntityBrain.setFallbackActivity(Activity.IDLE);
+      zurEntityBrain.func_233714_e_();
+      return zurEntityBrain;
    }
 
    public static void func_234466_a_(AbstractZurEntity zur) {
@@ -81,16 +88,71 @@ public class ZurTasks<E extends LivingEntity> {
       zur.getBrain().func_233696_a_(MemoryModuleType.HUNTED_RECENTLY, true, i);
    }
 
-   private static void func_234464_a_(Brain<ZurEntity> zurEntityBrain) {
-      zurEntityBrain.func_233698_g_(Activity.CORE, 0, ImmutableList.<Task<? super ZurEntity>>of(new LookTask(45, 90), new WalkToTargetTask(200), new InteractWithDoorTask(), func_241428_d_(), func_234500_d_(), new ZurStartAdmiringItemTask<>(), new ZurAdmireItemTask<>(120), new EndAttackTask(300, ZurTasks::func_234461_a_), new GetAngryTask<>()));
+   private static void func_234464_a_(ZurTasks<AbstractZurEntity> zurEntityBrain) {
+      zurEntityBrain.func_233698_g_(Activity.CORE, 0, ImmutableList.<Task<? super AbstractZurEntity>>of(new LookTask(45, 90), new WalkToTargetTask(200), new InteractWithDoorTask(), func_241428_d_(), func_234500_d_(), new ZurStartAdmiringItemTask<>(), new ZurAdmireItemTask<>(120), new EndAttackTask(300, ZurTasks::func_234461_a_), new GetAngryTask<>()));
    }
 
-   /*public static ImmutableList<Pair<Integer, ? extends Task<? super ZurEntity>>> play(float walkingSpeed) {
-      return ImmutableList.of(Pair.of(0, new WalkToTargetTask(100)), Pair.of(5, new WalkToVillagerBabiesTask()), Pair.of(5, new FirstShuffledTask<>(ImmutableMap.of(MemoryModuleType.VISIBLE_VILLAGER_BABIES, MemoryModuleStatus.VALUE_ABSENT), ImmutableList.of(Pair.of(InteractWithEntityTask.func_220445_a(EntityInit.ZUR_ENTITY.get(), 8, MemoryModuleType.INTERACTION_TARGET, walkingSpeed, 2), 2), Pair.of(InteractWithEntityTask.func_220445_a(EntityType.CAT, 8, MemoryModuleType.INTERACTION_TARGET, walkingSpeed, 2), 1), Pair.of(new FindWalkTargetTask(walkingSpeed), 1), Pair.of(new WalkTowardsLookTargetTask(walkingSpeed, 2), 1), Pair.of(new JumpOnBedTask(walkingSpeed), 2), Pair.of(new DummyTask(20, 40), 2)))), Pair.of(99, new UpdateActivityTask()));
-   }*/
+   public void func_233698_g_(Activity p_233698_1_, int p_233698_2_, ImmutableList<? extends com.babcsany.minecraft.ervin_mod_1.entity.ai.brain.task.Task<? super E>> p_233698_3_) {
+      this.registerActivityl(p_233698_1_, this.func_233692_a_1(p_233698_2_, p_233698_3_));
+   }
+
+   public void registerActivityl(Activity activityIn, ImmutableList<? extends Pair<Integer, ? extends com.babcsany.minecraft.ervin_mod_1.entity.ai.brain.task.Task<? super E>>> p_218208_2_) {
+      this.func_233701_a_1(activityIn, p_218208_2_, ImmutableSet.of(), Sets.newHashSet());
+   }
+
+   public void registerActivity_l(Activity activityIn, ImmutableList<Pair<Integer, ?>> p_218208_2_) {
+      this.func_233701_a_2(activityIn, p_218208_2_, ImmutableSet.of(), Sets.newHashSet());
+   }
+
+   private void func_233701_a_1(Activity p_233701_1_, ImmutableList<? extends Pair<Integer, ? extends com.babcsany.minecraft.ervin_mod_1.entity.ai.brain.task.Task<? super E>>> p_233701_2_, Set<Pair<MemoryModuleType<?>, MemoryModuleStatus>> p_233701_3_, Set<MemoryModuleType<?>> p_233701_4_) {
+      this.requiredMemoryStates.put(p_233701_1_, p_233701_3_);
+      if (!p_233701_4_.isEmpty()) {
+         this.field_233691_h_.put(p_233701_1_, p_233701_4_);
+      }
+
+      for(Pair<Integer, ? extends com.babcsany.minecraft.ervin_mod_1.entity.ai.brain.task.Task<? super E>> pair : p_233701_2_) {
+         this.field_218232_c.computeIfAbsent(pair.getFirst(), (p_233703_0_) -> Maps.newHashMap()).computeIfAbsent(p_233701_1_, (p_233717_0_) -> Sets.newLinkedHashSet()).add(pair.getSecond());
+      }
+
+   }
+
+   private void func_233701_a_2(Activity p_233701_1_, ImmutableList<Pair<Integer, ?>> p_233701_2_, Set<Pair<MemoryModuleType<?>, MemoryModuleStatus>> p_233701_3_, Set<MemoryModuleType<?>> p_233701_4_) {
+      this.requiredMemoryStates.put(p_233701_1_, p_233701_3_);
+      if (!p_233701_4_.isEmpty()) {
+         this.field_233691_h_.put(p_233701_1_, p_233701_4_);
+      }
+
+      for(Pair<Integer, ?> pair : p_233701_2_) {
+         this.field_218232_c.computeIfAbsent(pair.getFirst(), (p_233703_0_) -> Maps.newHashMap()).computeIfAbsent(p_233701_1_, (p_233717_0_) -> Sets.newLinkedHashSet()).add((Task<? super E>) pair.getSecond());
+      }
+
+   }
+
+   ImmutableList<? extends Pair<Integer, ? extends com.babcsany.minecraft.ervin_mod_1.entity.ai.brain.task.Task<? super E>>> func_233692_a_1(int p_233692_1_, ImmutableList<? extends com.babcsany.minecraft.ervin_mod_1.entity.ai.brain.task.Task<? super E>> p_233692_2_) {
+      int i = p_233692_1_;
+      ImmutableList.Builder<Pair<Integer, ? extends Task<? super E>>> builder = ImmutableList.builder();
+
+      for(com.babcsany.minecraft.ervin_mod_1.entity.ai.brain.task.Task<? super E> task : p_233692_2_) {
+         builder.add(Pair.of(i++, task));
+      }
+
+      return builder.build();
+   }
+
+   public static ImmutableList<Pair<Integer, ?>> play(float walkingSpeed) {
+      return ImmutableList.of(Pair.of(0, new WalkToTargetTask(100)), lookAtMany(), Pair.of(5, new WalkToVillagerBabiesTask()), Pair.of(5, new FirstShuffledTask<>(ImmutableMap.of(MemoryModuleType.VISIBLE_VILLAGER_BABIES, MemoryModuleStatus.VALUE_ABSENT), ImmutableList.of(Pair.of(InteractWithEntityTask.func_220445_a(com.babcsany.minecraft.init.EntityInit.ZUR_ENTITY, 8, MemoryModuleType.INTERACTION_TARGET, walkingSpeed, 2), 2), Pair.of(InteractWithEntityTask.func_220445_a(EntityType.CAT, 8, MemoryModuleType.INTERACTION_TARGET, walkingSpeed, 2), 1), Pair.of(new FindWalkTargetTask(walkingSpeed), 1), Pair.of(new WalkTowardsLookTargetTask(walkingSpeed, 2), 1), Pair.of(new JumpOnBedTask(walkingSpeed), 2), Pair.of(new DummyTask(20, 40), 2)))), Pair.of(99, new UpdateActivityTask()));
+   }
+
+   private static Pair<Integer, ? extends Task<? super AbstractZurEntity>> lookAtMany() {
+      return Pair.of(5, new FirstShuffledTask<>(ImmutableList.of(Pair.of(new LookAtEntityTask(EntityType.CAT, 8.0F), 8), Pair.of(new LookAtEntityTask(com.babcsany.minecraft.init.EntityInit.ZUR_ENTITY, 8.0F), 2), Pair.of(new LookAtEntityTask(EntityType.PLAYER, 8.0F), 2), Pair.of(new LookAtEntityTask(EntityClassification.CREATURE, 8.0F), 1), Pair.of(new LookAtEntityTask(EntityClassification.WATER_CREATURE, 8.0F), 1), Pair.of(new LookAtEntityTask(EntityClassification.WATER_AMBIENT, 8.0F), 1), Pair.of(new LookAtEntityTask(EntityClassification.MONSTER, 8.0F), 1), Pair.of(new DummyTask(30, 60), 2))));
+   }
 
    public static ImmutableList<Pair<Integer, ?>> play(float walkingSpeed, float Float) {
       return ImmutableList.of(Pair.of(0, new WalkToTargetTask(100)), Pair.of(3, new ZurTradeTask(Float)), Pair.of(5, new WalkToVillagerBabiesTask()), Pair.of(5, new FirstShuffledTask<>(ImmutableMap.of(MemoryModuleType.VISIBLE_VILLAGER_BABIES, MemoryModuleStatus.VALUE_ABSENT), ImmutableList.of(Pair.of(InteractWithEntityTask.func_220445_a(com.babcsany.minecraft.init.EntityInit.ZUR_ENTITY, 8, MemoryModuleType.INTERACTION_TARGET, walkingSpeed, 2), 2), Pair.of(InteractWithEntityTask.func_220445_a(EntityType.CAT, 8, MemoryModuleType.INTERACTION_TARGET, walkingSpeed, 2), 1), Pair.of(new FindWalkTargetTask(walkingSpeed), 1), Pair.of(new WalkTowardsLookTargetTask(walkingSpeed, 2), 1), Pair.of(new JumpOnBedTask(walkingSpeed), 2), Pair.of(new DummyTask(20, 40), 2)))), Pair.of(99, new UpdateActivityTask()));
+   }
+
+   public void setSchedule(Schedule newSchedule) {
+      this.schedule = newSchedule;
    }
 
    /*public void func_233698_a_(Activity p_233698_1_, int p_233698_2_, ImmutableList<? extends com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.Task<? super E>> p_233698_3_) {
@@ -108,7 +170,7 @@ public class ZurTasks<E extends LivingEntity> {
       return builder.build();
    }*/
 
-   public void registerActivity(Activity activityIn, ImmutableList<? extends Pair<Integer, ? extends Task<? super E>>> p_218208_2_) {
+   public void registerActivity_(Activity activityIn, ImmutableList<? extends Pair<Integer, ? extends Task<? super E>>> p_218208_2_) {
       this.func_233701_a_(activityIn, p_218208_2_, ImmutableSet.of(), Sets.newHashSet());
    }
 
@@ -168,45 +230,45 @@ public class ZurTasks<E extends LivingEntity> {
       return RunAwayTask.func_233963_a_(MemoryModuleType.NEAREST_REPELLENT, 1.0F, 8, false);
    }
 
-   private static ZurIdleActivityTask<ZurEntity, LivingEntity> func_241428_d_() {
-      return new ZurIdleActivityTask<>(ZurEntity::isChild, MemoryModuleType.NEAREST_VISIBLE_NEMESIS, MemoryModuleType.AVOID_TARGET, field_241418_g_);
+   private static ZurIdleActivityTask<AbstractZurEntity, LivingEntity> func_241428_d_() {
+      return new ZurIdleActivityTask<>(AbstractZurEntity::isChild, MemoryModuleType.NEAREST_VISIBLE_NEMESIS, MemoryModuleType.AVOID_TARGET, field_241418_g_);
    }
 
-   private static ZurIdleActivityTask<ZurEntity, LivingEntity> func_234500_d_() {
+   private static ZurIdleActivityTask<AbstractZurEntity, LivingEntity> func_234500_d_() {
       return new ZurIdleActivityTask<>(ZurTasks::func_234525_l_, MemoryModuleType.NEAREST_VISIBLE_ZOMBIFIED, MemoryModuleType.AVOID_TARGET, field_234449_f_);
    }
 
-   protected static void func_234486_b_(ZurEntity p_234486_0_) {
-      Brain<ZurEntity> brain = (Brain<ZurEntity>) p_234486_0_.getBrain();
-      Activity activity = brain.func_233716_f_().orElse((Activity)null);
+   protected static void func_234486_b_(AbstractZurEntity abstractZurEntity) {
+      Brain<AbstractZurEntity> brain = (Brain<AbstractZurEntity>) abstractZurEntity.getBrain();
+      Activity activity = brain.func_233716_f_().orElse(null);
       brain.func_233706_a_(ImmutableList.of(Activity.ADMIRE_ITEM, Activity.FIGHT, Activity.AVOID, Activity.CELEBRATE, Activity.RIDE, Activity.IDLE));
-      Activity activity1 = brain.func_233716_f_().orElse((Activity)null);
+      Activity activity1 = brain.func_233716_f_().orElse(null);
       if (activity != activity1) {
-         func_241429_d_(p_234486_0_).ifPresent(p_234486_0_::func_241417_a_);
+         func_241429_d_(abstractZurEntity).ifPresent(abstractZurEntity::func_241417_a_);
       }
 
-      p_234486_0_.setAggroed(brain.hasMemory(MemoryModuleType.ATTACK_TARGET));
-      if (!brain.hasMemory(MemoryModuleType.RIDE_TARGET) && func_234522_j_(p_234486_0_)) {
-         p_234486_0_.stopRiding();
+      abstractZurEntity.setAggroed(brain.hasMemory(MemoryModuleType.ATTACK_TARGET));
+      if (!brain.hasMemory(MemoryModuleType.RIDE_TARGET) && func_234522_j_(abstractZurEntity)) {
+         abstractZurEntity.stopRiding();
       }
 
       if (!brain.hasMemory(MemoryModuleType.CELEBRATE_LOCATION)) {
          brain.removeMemory(MemoryModuleType.DANCING);
       }
 
-      p_234486_0_.func_234442_u_(brain.hasMemory(MemoryModuleType.DANCING));
+      abstractZurEntity.func_234442_u_(brain.hasMemory(MemoryModuleType.DANCING));
    }
 
-   private static boolean func_234522_j_(ZurEntity zur) {
+   private static boolean func_234522_j_(AbstractZurEntity zur) {
       if (!zur.isChild()) {
          return false;
       } else {
          Entity entity = zur.getRidingEntity();
-         return entity instanceof ZurEntity && ((ZurEntity)entity).isChild() || entity instanceof HoglinEntity && ((HoglinEntity)entity).isChild();
+         return entity instanceof AbstractZurEntity && ((AbstractZurEntity)entity).isChild() || entity instanceof HoglinEntity && ((HoglinEntity)entity).isChild();
       }
    }
 
-   protected static void func_234470_a_(ZurEntity zur, ItemEntity entity) {
+   protected static void func_234470_a_(AbstractZurEntity zur, ItemEntity entity) {
       func_234531_r_(zur);
       ItemStack itemstack;
       if (entity.getItem().getItem() == isBurnableItemInit.AVTER.get()) {
@@ -498,16 +560,16 @@ public class ZurTasks<E extends LivingEntity> {
       }
    }
 
-   public static Optional<SoundEvent> func_241429_d_(ZurEntity p_241429_0_) {
+   public static Optional<SoundEvent> func_241429_d_(AbstractZurEntity p_241429_0_) {
       return p_241429_0_.getBrain().func_233716_f_().map((p_241426_1_) -> func_241422_a_(p_241429_0_, p_241426_1_));
    }
 
-   private static boolean func_234528_o_(ZurEntity p_234528_0_) {
-      Brain<ZurEntity> brain = (Brain<ZurEntity>) p_234528_0_.getBrain();
+   private static boolean func_234528_o_(AbstractZurEntity p_234528_0_) {
+      Brain<AbstractZurEntity> brain = (Brain<AbstractZurEntity>) p_234528_0_.getBrain();
       return !brain.hasMemory(MemoryModuleType.ATTACK_TARGET) ? false : brain.getMemory(MemoryModuleType.ATTACK_TARGET).get().isEntityInRange(p_234528_0_, 12.0D);
    }
 
-   private static SoundEvent func_241422_a_(ZurEntity p_241422_0_, Activity p_241422_1_) {
+   private static SoundEvent func_241422_a_(AbstractZurEntity p_241422_0_, Activity p_241422_1_) {
       if (p_241422_1_ == Activity.FIGHT) {
          return SoundEvents.ENTITY_GENERIC_HURT;
       } else if (p_241422_0_.func_234423_eL_()) {
@@ -704,7 +766,7 @@ public class ZurTasks<E extends LivingEntity> {
       return EntityPredicates.field_233583_f_.test(entity);
    }
 
-   private static boolean func_234452_B_(ZurEntity zur) {
+   private static boolean func_234452_B_(AbstractZurEntity zur) {
       return zur.getBrain().hasMemory(MemoryModuleType.NEAREST_REPELLENT);
    }
 

@@ -1,6 +1,5 @@
 package com.babcsany.minecraft.ervin_mod_1.item;
 
-import com.babcsany.minecraft.ervin_mod_1.item.block.ToolBlockItem;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Sets;
 import net.minecraft.block.Block;

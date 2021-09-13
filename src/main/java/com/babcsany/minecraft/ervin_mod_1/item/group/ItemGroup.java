@@ -201,7 +201,7 @@ public abstract class ItemGroup {
    }
 
    public boolean hasSearchBar() {
-      return index == ERVIN_MOD_1_SEARCH.index;
+      return index == ERVIN_MOD_1_SEARCH.getIndex();
    }
 
    public int getTabPage() {

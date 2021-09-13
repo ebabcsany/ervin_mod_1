@@ -1,13 +1,13 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.ai.brain.task;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.AbstractZurEntity;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.entity.ai.brain.memory.MemoryModuleStatus;
 import net.minecraft.entity.ai.brain.memory.MemoryModuleType;
 import net.minecraft.item.Items;
 import net.minecraft.world.server.ServerWorld;
 
-public class ZurStartAdmiringItemTask<E extends ZurEntity> extends Task<E> {
+public class ZurStartAdmiringItemTask<E extends AbstractZurEntity> extends Task<E> {
    public ZurStartAdmiringItemTask() {
       super(ImmutableMap.of(MemoryModuleType.ADMIRING_ITEM, MemoryModuleStatus.VALUE_ABSENT));
    }

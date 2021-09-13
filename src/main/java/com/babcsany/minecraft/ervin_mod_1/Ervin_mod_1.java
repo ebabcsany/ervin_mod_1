@@ -67,6 +67,7 @@ public class Ervin_mod_1 {
     public static final RenderMaterial LOCATION_JURK_OVERLAY = new RenderMaterial(AtlasTexture.LOCATION_BLOCKS_TEXTURE, new ResourceLocation(Ervin_mod_1.MOD_ID,"block/fluid/jurk_overlay"));
     public static final String MOD_ID = "ervin_mod_1";
     public static Ervin_mod_1 ervin_mod_1;
+    public static Minecraft minecraft;
     //public static final ITag<EntityType<?>> blacklisted = EntityTypeTags.func_232896_a_((new ResourceLocation("ervin_mod_1", "blacklisted")).toString());
     /** Directly reference a log4j logger.*/
     public static final Logger LOGGER = LogManager.getLogger();
@@ -275,8 +276,7 @@ public class Ervin_mod_1 {
     }
 
     public static String modId(String modId, String name) {
-        char Char = ':';
-        return modId + Char + name;
+        return modId + ':' + name;
     }
 
     public static void setWorldRegistryKey(String modId, String string) {
@@ -296,8 +296,8 @@ public class Ervin_mod_1 {
         return astring;
     }
 
-    public void minecraft() {
-        new Minecraft();
+    public Minecraft minecraft() {
+        return minecraft;
     }
 
     //https://mcforge.readthedocs.io/en/1.16.x/concepts/sides/

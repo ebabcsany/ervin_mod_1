@@ -15,7 +15,7 @@ import net.minecraftforge.common.ToolType;
 
 public class BlockInit {
 
-    public static BlockInit BLOCKS;
+    public static Blocks BLOCKS;
 
     public static final Block FRISZERN = register("friszern", new Friszern(AbstractBlock.Properties.create(Material.IRON, MaterialColor.BLACK_TERRACOTTA).setRequiresTool().hardnessAndResistance(3600000.0F)));
     public static final Block CHAIN_FRISZERN = register("chain_friszern", new Friszern(AbstractBlock.Properties.create(Material.IRON, MaterialColor.BLACK_TERRACOTTA).setRequiresTool().hardnessAndResistance(3600000.0F)));

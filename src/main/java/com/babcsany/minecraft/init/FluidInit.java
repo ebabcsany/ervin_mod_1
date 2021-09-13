@@ -13,7 +13,7 @@ import net.minecraft.util.registry.Registry;
 
 public class FluidInit extends Fluids {
 
-    public static FluidInit FLUIDS;
+    public static Fluids FLUIDS;
 
     //public static FluidAttributes FLUID_ATTRIBUTES = createVanillaFluidAttributes(null);
 

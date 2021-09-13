@@ -273,21 +273,21 @@ public class FreinEntity extends MobEntity implements IMob {
       return this.getSlimeSize() == 1 ? this.getType().getLootTable() : LootTables1.EMPTY;
    }
 
-   public static boolean func_223366_c(EntityType<FreinEntity> p_223366_0_, IWorld p_223366_1_, SpawnReason reason, BlockPos p_223366_3_, Random randomIn) {
-      if (p_223366_1_.getDifficulty() != Difficulty.PEACEFUL) {
-         Biome biome = p_223366_1_.getBiome(p_223366_3_);
-         if (biome == Biomes.SWAMP && p_223366_3_.getY() > 50 && p_223366_3_.getY() < 70 && randomIn.nextFloat() < 0.5F && randomIn.nextFloat() < p_223366_1_.getCurrentMoonPhaseFactor() && p_223366_1_.getLight(p_223366_3_) <= randomIn.nextInt(8)) {
-            return canSpawnOn(p_223366_0_, p_223366_1_, reason, p_223366_3_, randomIn);
+   public static boolean func_223366_c(EntityType<FreinEntity> p_223366_0_, IWorld iWorld, SpawnReason reason, BlockPos p_223366_3_, Random randomIn) {
+      if (iWorld.getDifficulty() != Difficulty.PEACEFUL) {
+         Biome biome = iWorld.getBiome(p_223366_3_);
+         if (biome == Biomes.SWAMP && p_223366_3_.getY() > 50 && p_223366_3_.getY() < 70 && randomIn.nextFloat() < 0.5F && randomIn.nextFloat() < iWorld.getCurrentMoonPhaseFactor() && iWorld.getLight(p_223366_3_) <= randomIn.nextInt(8)) {
+            return canSpawnOn(p_223366_0_, iWorld, reason, p_223366_3_, randomIn);
          }
 
-         if (!(p_223366_1_ instanceof ISeedReader)) {
+         if (!(iWorld instanceof ISeedReader)) {
             return false;
          }
 
          ChunkPos chunkpos = new ChunkPos(p_223366_3_);
-         boolean flag = SharedSeedRandom.seedSlimeChunk(chunkpos.x, chunkpos.z, ((ISeedReader)p_223366_1_).getSeed(), 987234911L).nextInt(10) == 0;
+         boolean flag = SharedSeedRandom.seedSlimeChunk(chunkpos.x, chunkpos.z, ((ISeedReader)iWorld).getSeed(), 987234911L).nextInt(10) == 0;
          if (randomIn.nextInt(10) == 0 && flag && p_223366_3_.getY() < 40) {
-            return canSpawnOn(p_223366_0_, p_223366_1_, reason, p_223366_3_, randomIn);
+            return canSpawnOn(p_223366_0_, iWorld, reason, p_223366_3_, randomIn);
          }
       }
 

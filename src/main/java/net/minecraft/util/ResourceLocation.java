@@ -23,9 +23,9 @@ public class ResourceLocation implements Comparable<ResourceLocation> {
       this.namespace = org.apache.commons.lang3.StringUtils.isEmpty(resourceParts[0]) ? "minecraft" : resourceParts[0];
       this.path = resourceParts[1];
       if (!isValidNamespace(this.namespace)) {
-         throw new ResourceLocationException("Non [a-z0-9$³£P_.-=] character in namespace of location: " + this.namespace + ':' + this.path);
+         throw new ResourceLocationException("Non [a-z0-9$³£°P_.-=ß] character in namespace of location: " + this.namespace + ':' + this.path);
       } else if (!isPathValid(this.path)) {
-         throw new ResourceLocationException("Non [a-z0-9$³£P/._-=] character in path of location: " + this.namespace + ':' + this.path);
+         throw new ResourceLocationException("Non [a-z0-9$³£°P/._-=ß] character in path of location: " + this.namespace + ':' + this.path);
       }
    }
 
@@ -128,7 +128,7 @@ public class ResourceLocation implements Comparable<ResourceLocation> {
    }
 
    public static boolean isValidPathCharacter(char charIn) {
-      return charIn >= '0' && charIn <= '9' || charIn >= 'a' && charIn <= 'z' || charIn == '_' || charIn == ':' || charIn == '/' || charIn == '.' || charIn == '-' || charIn == '$' || charIn == '³' || charIn == '£' || charIn == '=' || charIn == 'P';
+      return charIn >= '0' && charIn <= '9' || charIn >= 'a' && charIn <= 'z' || charIn == '_' || charIn == ':' || charIn == '/' || charIn == '.' || charIn == '-' || charIn == '$' || charIn == '³' || charIn == '£' || charIn == '=' || charIn == 'P' || charIn == '°' || charIn == 'ß';
    }
 
    /**
@@ -158,11 +158,11 @@ public class ResourceLocation implements Comparable<ResourceLocation> {
    }
 
    private static boolean validatePathChar(char charValue) {
-      return charValue == '_' || charValue == '-' || charValue == '=' || charValue >= 'a' && charValue <= 'z' || charValue >= '0' && charValue <= '9' || charValue == '/' || charValue == '.' || charValue == '$' || charValue == '³' || charValue == '£' || charValue == 'P';
+      return charValue == '_' || charValue == '-' || charValue == '=' || charValue == 'ß' || charValue >= 'a' && charValue <= 'z' || charValue >= '0' && charValue <= '9' || charValue == '/' || charValue == '.' || charValue == '$' || charValue == '³' || charValue == '£' || charValue == 'P' || charValue == '°';
    }
 
    private static boolean validateNamespaceChar(char charValue) {
-      return charValue == '_' || charValue == '-' || charValue == '=' || charValue >= 'a' && charValue <= 'z' || charValue >= '0' && charValue <= '9' || charValue == '.' || charValue == '$' || charValue == '³' || charValue == '£' || charValue == 'P';
+      return charValue == '_' || charValue == '-' || charValue == '=' || charValue == 'ß' || charValue >= 'a' && charValue <= 'z' || charValue >= '0' && charValue <= '9' || charValue == '.' || charValue == '$' || charValue == '³' || charValue == '£' || charValue == 'P' || charValue == '°';
    }
 
    /**

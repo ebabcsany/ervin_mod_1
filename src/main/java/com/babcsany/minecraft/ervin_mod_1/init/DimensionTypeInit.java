@@ -2,53 +2,64 @@ package com.babcsany.minecraft.ervin_mod_1.init;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.init.dimension.settings.ModDimensionSettings;
-import com.babcsany.minecraft.ervin_mod_1.world.ModDimensionType;
+import com.babcsany.minecraft.ervin_mod_1.registry.ModRegistry;
 import com.babcsany.minecraft.ervin_mod_1.world.dimension.biome_provider.ExampleBiomeProvider;
+import com.babcsany.minecraft.ervin_mod_1.world.gen.ModNoiseChunkGenerator;
+import com.babcsany.minecraft.server.IDynamicRegistries;
+import com.babcsany.minecraft.world.dimension;
 import com.babcsany.minecraft.world.dimensionType;
+import com.babcsany.minecraft.world.world;
+import com.mojang.serialization.DataResult;
+import com.mojang.serialization.Dynamic;
+import com.mojang.serialization.Lifecycle;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.SimpleRegistry;
 import net.minecraft.world.Dimension;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.biome.FuzzedBiomeMagnifier;
 import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.NoiseChunkGenerator;
 
+import java.util.Optional;
 import java.util.OptionalLong;
 
-public class DimensionTypeInit extends dimensionType {
+public class DimensionTypeInit extends dimensionType.T {
     public static DimensionType DIMENSION_TYPES;
-    public long Long;
-    public static final float[] MOON_PHASE_FACTORS = DimensionType.MOON_PHASE_FACTORS;
-    public static final RegistryKey<DimensionType> EXAMPLE = RegistryKey.func_240903_a_(Registry.DIMENSION_TYPE_KEY, new ResourceLocation(Ervin_mod_1.MOD_ID,"example"));
-    public static final DimensionType EXAMPLE_TYPE = new ModDimensionType(OptionalLong.of(24000L), true, false, true, false, false, true, false, true, true, false, 1024, FuzzedBiomeMagnifier.INSTANCE, BlockTags.INFINIBURN_OVERWORLD.getName(), 0.0F);
-    public static final RegistryKey<DimensionType> field_241497_i_ = RegistryKey.func_240903_a_(Registry.DIMENSION_TYPE_KEY, new ResourceLocation("overworld_caves"));
-    public static final DimensionType field_241498_j_ = ModDimensionType.field_241498_j_;
+    public static final RegistryKey<dimensionType> EXAMPLE = RegistryKey.func_240903_a_(ModRegistry.MOD_DIMENSION_TYPE_KEY, new ResourceLocation(Ervin_mod_1.MOD_ID,"example"));
+    public static final dimensionType EXAMPLE_TYPE = new dimensionType(OptionalLong.of(exampleLong), true, false, true, false, false, true, false, true, true, false, 1024, FuzzedBiomeMagnifier.INSTANCE, BlockTags.INFINIBURN_OVERWORLD.getName(), 0.0F);
+    SimpleRegistry<Dimension> SimpleRegistry;
+    IDynamicRegistries.Impl Impl;
 
     public DimensionTypeInit() {
-        register();
+        super();
     }
 
-    public void register() {
-        dimensionSimpleRegistry();
-        impl();
-        file();
+    public static DataResult<RegistryKey<world>> DataResult(Dynamic<?> p_236025_0_) {
+        Optional<Number> optional = p_236025_0_.asNumber().result();
+        if (optional.isPresent()) {
+            if (i == 2) {
+                return DataResult.success(WorldInit.EXAMPLE);
+            }
+        }
+
+        return world.worldRegistryKeyCodec.parse(p_236025_0_);
     }
 
-    public void dimensionSimpleRegistry() {
-        dimensionSimpleRegistry(DimensionInit.EXAMPLE, new Dimension(() -> EXAMPLE_TYPE, chunk_generator(Long)));
+    public static SimpleRegistry<dimension> SimpleRegistry(long l) {
+        SimpleRegistry<dimension> simpleRegistry = new SimpleRegistry<>(ModRegistry.MOD_DIMENSION_KEY, Lifecycle.experimental());
+        simpleRegistry.register(DimensionInit.EXAMPLE, new dimension(() -> EXAMPLE_TYPE, ExampleChunkGenerator(l)));
+        simpleRegistry.func_239662_d_(DimensionInit.EXAMPLE);
+        return simpleRegistry;
     }
 
-    public void impl() {
-        impl(EXAMPLE, EXAMPLE_TYPE);
+    public static IDynamicRegistries.Impl Impl(IDynamicRegistries.Impl impl) {
+        impl.func_239774_a_(EXAMPLE, EXAMPLE_TYPE);
+        impl.func_239774_a_(DIMENSION, DIMENSION_TYPE);
+        return impl(impl);
     }
 
-    public void file() {
-        file(WorldInit.EXAMPLE, "DIM_1");
-    }
-
-    private static ChunkGenerator chunk_generator(long Long) {
-        return new NoiseChunkGenerator(ExampleBiomeProvider.Preset.field_235288_b_.func_235292_a_(Long), Long, ModDimensionSettings.Preset.EXAMPLE.getSettings());
+    public static ChunkGenerator ExampleChunkGenerator(long Long) {
+        return new ModNoiseChunkGenerator(ExampleBiomeProvider.Preset.EXAMPLE.func_235292_a_(Long), Long, ModDimensionSettings.Preset.EXAMPLE.getSettings());
     }
 }

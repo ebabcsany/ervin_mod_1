@@ -12,7 +12,6 @@ import net.minecraft.client.gui.DialogTexts;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.chat.NarratorChatListener;
 import net.minecraft.client.gui.fonts.TextInputUtil;
-import net.minecraft.client.gui.screen.ReadBookScreen;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.client.gui.widget.button.ChangePageButton;

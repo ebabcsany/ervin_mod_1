@@ -1,7 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.util.text;
 
 import com.google.common.collect.Lists;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 

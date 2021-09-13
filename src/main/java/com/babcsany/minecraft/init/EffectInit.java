@@ -5,10 +5,11 @@ import net.minecraft.potion.EffectType;
 import net.minecraft.potion.Effects;
 import net.minecraft.potion.InstantEffect;
 import net.minecraft.util.registry.Registry;
+import net.minecraftforge.eventbus.api.IEventBus;
 
 public class EffectInit extends Effects {
 
-    public static EffectInit EFFECTS;
+    public static Effects EFFECTS;
 
     public static final Effect INSTANT_HEALTH = register("instant_health", new InstantEffect(EffectType.BENEFICIAL, 16267819));
     public static final Effect BKFUR = register("bkfur", new InstantEffect(EffectType.HARMFUL, 28264839));
@@ -21,5 +22,9 @@ public class EffectInit extends Effects {
 
     private static Effect register(String key, Effect effectIn) {
         return Registry.register(Registry.EFFECTS, string(key), effectIn);
+    }
+
+    public IEventBus register(IEventBus modEventBus) {
+        return modEventBus;
     }
 }

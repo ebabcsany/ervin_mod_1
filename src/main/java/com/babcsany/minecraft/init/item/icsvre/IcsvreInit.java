@@ -1,23 +1,21 @@
 package com.babcsany.minecraft.init.item.icsvre;
 
-import com.babcsany.minecraft.ervin_mod_1.item.JurkBucketItem;
-import com.babcsany.minecraft.ervin_mod_1.item.book.paper.EnchantedBookItemBlack;
 import com.babcsany.minecraft.ervin_mod_1.item.item.icsvre.Icsvre;
-import com.babcsany.minecraft.ervin_mod_1.item.item.stack.IcsvreStack;
 import com.babcsany.minecraft.item.icsvre.BlockIcsvre;
 import com.babcsany.minecraft.item.icsvre.EnchantedBookIcsvre;
-import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.item.Items;
 import net.minecraft.item.Rarity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
+import net.minecraftforge.eventbus.api.IEventBus;
 
-import static net.minecraft.item.Items.*;
+import static net.minecraft.item.Items.BUCKET;
 
 public class IcsvreInit {
 
-    public static IcsvreInit ICSVRE;
+    public static Items ICSVRE;
 
     static Icsvre icsvre;
 
@@ -43,5 +41,9 @@ public class IcsvreInit {
 
     private static Icsvre icsvre(Item item) {
         return icsvre;
+    }
+
+    public IEventBus register(IEventBus modEventBus) {
+        return modEventBus;
     }
 }

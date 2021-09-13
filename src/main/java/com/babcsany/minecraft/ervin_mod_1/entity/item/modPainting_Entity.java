@@ -1,7 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.item;
 
 import com.babcsany.minecraft.ervin_mod_1.network.play.server.SSpawn_modPainting_Packet;
-import com.babcsany.minecraft.ervin_mod_1.registry.ModRegistry;
 import com.babcsany.minecraft.ervin_mod_1.util.registries.modPainting_Type;
 import com.babcsany.minecraft.init.special.PaintingEntityInit;
 import com.babcsany.minecraft.init.special.PaintingItemInit;
@@ -10,12 +9,9 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.item.HangingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
-import net.minecraft.network.play.server.SSpawnPaintingPacket;
 import net.minecraft.util.Direction;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.GameRules;
@@ -39,7 +35,7 @@ public class modPainting_Entity extends HangingEntity {
         List<modPainting_Type> list = Lists.newArrayList();
         int i = 0;
 
-        for(modPainting_Type paintingtype : ModRegistry.modPainting_MOTIVE) {
+        /*for(modPainting_Type paintingtype : ModRegistry.modPainting_MOTIVE) {
             this.art = paintingtype;
             this.updateFacingWithBoundingBox(facing);
             if (this.onValidSurface()) {
@@ -49,7 +45,7 @@ public class modPainting_Entity extends HangingEntity {
                     i = j;
                 }
             }
-        }
+        }*/
 
         if (!list.isEmpty()) {
             Iterator<modPainting_Type> iterator = list.iterator();
@@ -75,7 +71,7 @@ public class modPainting_Entity extends HangingEntity {
    }
 
    public void writeAdditional(CompoundNBT compound) {
-      compound.putString("MOTIVE", ModRegistry.modPainting_MOTIVE.getKey(this.art).toString());
+      //compound.putString("MOTIVE", ModRegistry.modPainting_MOTIVE.getKey(this.art).toString());
       super.writeAdditional(compound);
    }
 
@@ -83,7 +79,7 @@ public class modPainting_Entity extends HangingEntity {
     * (abstract) Protected helper method to read subclass entity data from NBT.
     */
    public void readAdditional(CompoundNBT compound) {
-      this.art = ModRegistry.modPainting_MOTIVE.getOrDefault(ResourceLocation.tryCreate(compound.getString("MOTIVE")));
+      //this.art = ModRegistry.modPainting_MOTIVE.getOrDefault(ResourceLocation.tryCreate(compound.getString("MOTIVE")));
       super.readAdditional(compound);
    }
 

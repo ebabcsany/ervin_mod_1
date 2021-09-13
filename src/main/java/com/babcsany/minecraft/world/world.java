@@ -1,6 +1,6 @@
 package com.babcsany.minecraft.world;
 
-import com.babcsany.minecraft.ervin_mod_1.world.ModWorld;
+import com.babcsany.minecraft.ervin_mod_1.registry.ModRegistry;
 import com.google.common.collect.Lists;
 import com.mojang.serialization.Codec;
 import net.minecraft.block.AbstractFireBlock;
@@ -58,12 +58,12 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
-public abstract class world extends net.minecraftforge.common.capabilities.CapabilityProvider<net.minecraft.world.World> implements IWorld, AutoCloseable, net.minecraftforge.common.extensions.IForgeWorld {
-    public static ModWorld modWorld;
+public abstract class world extends net.minecraftforge.common.capabilities.CapabilityProvider<world> implements IWorld, I_world, AutoCloseable, net.minecraftforge.common.extensions.IForgeWorld {
     public static final int isYOutOfBoundsDown = -256;
     public static final int isYOutOfBoundsUp = 1024;
-    public static final Logger LOGGER = ModWorld.LOGGER;
+    public static final Logger LOGGER = com.babcsany.minecraft.ervin_mod_1.world.modWorld.LOGGER;
     public static final Codec<RegistryKey<World>> field_234917_f_ = World.field_234917_f_;
+    public static final Codec<RegistryKey<world>> worldRegistryKeyCodec = ResourceLocation.RESOURCE_LOCATION_CODEC.xmap(RegistryKey.func_240902_a_(ModRegistry.MOD_WORLD_KEY), RegistryKey::func_240901_a_);
     public static final RegistryKey<World> field_234918_g_ = World.field_234918_g_;
     public static final RegistryKey<World> field_234919_h_ = World.field_234919_h_;
     public static final RegistryKey<World> field_234920_i_ = World.field_234920_i_;
@@ -82,7 +82,7 @@ public abstract class world extends net.minecraftforge.common.capabilities.Capab
      */
     protected final java.util.Set<TileEntity> tileEntitiesToBeRemoved = java.util.Collections.newSetFromMap(new java.util.IdentityHashMap<>()); // Forge: faster "contains" makes removal much more efficient
     private final Thread mainThread;
-    private final boolean field_234916_c_;
+    private final boolean Boolean;
     private int skylightSubtracted;
     /**
      * Contains the current Linear Congruential Generator seed for block updates. Used with an A value of 3 and a C value
@@ -90,52 +90,36 @@ public abstract class world extends net.minecraftforge.common.capabilities.Capab
      * field.
      */
     protected int updateLCG = (new Random()).nextInt();
-    public final int DIST_HASH_MAGIC = modWorld.DIST_HASH_MAGIC_;
     public float prevRainingStrength;
     public float rainingStrength;
     public float prevThunderingStrength;
     public float thunderingStrength;
     public final Random rand = new Random();
-    private final DimensionType field_234921_x_;
+    private final dimensionType dimensionType;
     protected final ISpawnWorldInfo worldInfo;
     private final Supplier<IProfiler> profiler;
     public final boolean isRemote;
     /** True while the World is ticking , to prevent CME's if any of those ticks create more tile entities. */
     protected boolean processingLoadedTiles;
-    private final WorldBorder worldBorder;
-    private final BiomeManager biomeManager;
-    private final RegistryKey<World> dimension;
-    private final RegistryKey<DimensionType> field_234915_C_;
+    private BiomeManager biomeManager;
+    private final RegistryKey<world> dimension;
+    private final RegistryKey<dimensionType> dimensionTypeRegistryKey;
     public boolean restoringBlockSnapshots = false;
     public boolean captureBlockSnapshots = false;
     public World world;
     public java.util.ArrayList<net.minecraftforge.common.util.BlockSnapshot> capturedBlockSnapshots = new java.util.ArrayList<>();
 
-    public world(ISpawnWorldInfo p_i231617_1_, RegistryKey<net.minecraft.world.World> p_i231617_2_, RegistryKey<DimensionType> p_i231617_3_, DimensionType p_i231617_4_, Supplier<IProfiler> p_i231617_5_, boolean p_i231617_6_, boolean p_i231617_7_, long p_i231617_8_) {
-        super(net.minecraft.world.World.class);
-        this.profiler = p_i231617_5_;
-        this.worldInfo = p_i231617_1_;
-        this.field_234921_x_ = p_i231617_4_;
-        this.dimension = p_i231617_2_;
-        this.field_234915_C_ = p_i231617_3_;
-        this.isRemote = p_i231617_6_;
-        if (p_i231617_4_.func_236045_g_()) {
-            this.worldBorder = new WorldBorder() {
-                public double getCenterX() {
-                    return super.getCenterX() / 8.0D;
-                }
-
-                public double getCenterZ() {
-                    return super.getCenterZ() / 8.0D;
-                }
-            };
-        } else {
-            this.worldBorder = new WorldBorder();
-        }
+    public world(ISpawnWorldInfo spawnWorldInfo, RegistryKey<world> worldRegistryKey, RegistryKey<dimensionType> dimensionTypeRegistryKey, dimensionType dimensionType, Supplier<IProfiler> profilerSupplier, boolean isRemote, boolean Boolean, long l) {
+        super(world.class);
+        this.profiler = profilerSupplier;
+        this.worldInfo = spawnWorldInfo;
+        this.dimensionType = dimensionType;
+        this.dimension = worldRegistryKey;
+        this.dimensionTypeRegistryKey = dimensionTypeRegistryKey;
+        this.isRemote = isRemote;
 
         this.mainThread = Thread.currentThread();
-        this.biomeManager = new BiomeManager(this, p_i231617_8_, p_i231617_4_.getMagnifier());
-        this.field_234916_c_ = p_i231617_7_;
+        this.Boolean = Boolean;
     }
 
     public boolean isRemote() {
@@ -144,6 +128,11 @@ public abstract class world extends net.minecraftforge.common.capabilities.Capab
 
     @Nullable
     public MinecraftServer getServer() {
+        return null;
+    }
+
+    @Override
+    public DimensionType func_230315_m_() {
         return null;
     }
 
@@ -1156,22 +1145,24 @@ public abstract class world extends net.minecraftforge.common.capabilities.Capab
     }
 
     public WorldBorder getWorldBorder() {
-        return this.worldBorder;
+        return new WorldBorder();
     }
 
     public void sendPacketToServer(IPacket<?> packetIn) {
         throw new UnsupportedOperationException("Can't send packets to server unless you're on the client.");
     }
 
-    public DimensionType func_230315_m_() {
-        return this.field_234921_x_;
+    @Override
+    public dimensionType getDimensionType() {
+        return this.dimensionType;
     }
 
-    public RegistryKey<DimensionType> func_234922_V_() {
-        return this.field_234915_C_;
+    @Override
+    public RegistryKey<dimensionType> func_234922_V_() {
+        return this.dimensionTypeRegistryKey;
     }
 
-    public RegistryKey<net.minecraft.world.World> func_234923_W_() {
+    public RegistryKey<world> func_234923_W_() {
         return this.dimension;
     }
 
@@ -1220,6 +1211,6 @@ public abstract class world extends net.minecraftforge.common.capabilities.Capab
     }
 
     public final boolean func_234925_Z_() {
-        return this.field_234916_c_;
+        return this.Boolean;
     }
 }
