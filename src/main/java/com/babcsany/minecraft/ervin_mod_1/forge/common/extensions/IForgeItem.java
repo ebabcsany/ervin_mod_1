@@ -20,6 +20,7 @@
 package com.babcsany.minecraft.ervin_mod_1.forge.common.extensions;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.player.PlayerEntity1;
+import com.babcsany.minecraft.item.ModItemUseContext;
 import com.google.common.collect.Multimap;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -103,7 +104,7 @@ public interface IForgeItem
      *
      * @return Return PASS to allow vanilla handling, any other to skip normal code.
      */
-    default ActionResultType onItemUseFirst(ItemStack stack, ItemUseContext context)
+    default ActionResultType onItemUseFirst(ItemStack stack, ModItemUseContext context)
     {
         return ActionResultType.PASS;
     }

@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "ervin_mod_1:block/portal/example_portal_block_ns"
+    },
+    "axis=z": {
+      "model": "ervin_mod_1:block/portal/example_portal_block_ew"
+    }
+  }
+}

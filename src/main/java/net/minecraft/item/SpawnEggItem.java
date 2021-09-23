@@ -4,6 +4,7 @@ import com.babcsany.minecraft.ervin_mod_1.reutrien.AbstractReutrien;
 import com.babcsany.minecraft.ervin_mod_1.tile_entity.ReutrienTileEntity;
 import com.babcsany.minecraft.fluid.block.ModFlowingFluidBlock;
 import com.babcsany.minecraft.init.BlockInit;
+import com.babcsany.minecraft.item.ModItemUseContext;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Maps;
 import net.minecraft.block.BlockState;
@@ -54,7 +55,7 @@ public class SpawnEggItem extends Item {
    /**
     * Called when this item is used when targetting a Block
     */
-   public ActionResultType onItemUse(ItemUseContext context) {
+   public ActionResultType onItemUse(ModItemUseContext context) {
       World world = context.getWorld();
       if (world.isRemote) {
          return ActionResultType.SUCCESS;

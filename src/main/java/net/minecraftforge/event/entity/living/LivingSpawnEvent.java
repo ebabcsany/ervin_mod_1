@@ -19,6 +19,7 @@
 
 package net.minecraftforge.event.entity.living;
 
+import com.babcsany.minecraft.world.world;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.DgrurbMobEntity;
 import com.babcsany.minecraft.ervin_mod_1.reutrien.AbstractReutrien;
 import net.minecraft.entity.MobEntity;
@@ -27,7 +28,6 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.spawner.AbstractSpawner;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.eventbus.api.Event;
 
 import javax.annotation.Nullable;
@@ -188,6 +188,35 @@ public class LivingSpawnEvent extends LivingEvent
          * @param spawner the position of a tileentity or approximate position of an entity that initiated the spawn if any
          */
         public SpecialSpawn(MobEntity entity, World world, double x, double y, double z, @Nullable AbstractSpawner spawner, SpawnReason spawnReason)
+        {
+            super(entity, world, x, y, z);
+            this.spawner = spawner;
+            this.spawnReason = spawnReason;
+        }
+
+        @Nullable
+        public AbstractSpawner getSpawner()
+        {
+            return spawner;
+        }
+
+        public SpawnReason getSpawnReason()
+        {
+            return spawnReason;
+        }
+    }
+
+    @net.minecraftforge.eventbus.api.Cancelable
+    public static class SpecialSpawn_world extends LivingSpawnEvent
+    {
+        @Nullable
+        private final AbstractSpawner spawner;
+        private final SpawnReason spawnReason;
+
+        /**
+         * @param spawner the position of a tileentity or approximate position of an entity that initiated the spawn if any
+         */
+        public SpecialSpawn_world(MobEntity entity, world world, double x, double y, double z, @Nullable AbstractSpawner spawner, SpawnReason spawnReason)
         {
             super(entity, world, x, y, z);
             this.spawner = spawner;

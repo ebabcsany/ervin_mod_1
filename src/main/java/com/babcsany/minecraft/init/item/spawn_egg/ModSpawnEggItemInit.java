@@ -3,7 +3,7 @@ package com.babcsany.minecraft.init.item.spawn_egg;
 import com.babcsany.minecraft.ervin_mod_1.item.SpawnEggItem1;
 import com.babcsany.minecraft.ervin_mod_1.item.group.ItemGroup;
 import net.minecraft.block.Block;
-import net.minecraft.item.BlockItem;
+import com.babcsany.minecraft.item.ModBlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;
@@ -26,7 +26,7 @@ public class ModSpawnEggItemInit {
     }
 
     private static Item register(Block blockIn) {
-        return register(new BlockItem(blockIn, new Item.Properties()));
+        return register(new ModBlockItem(blockIn, new Item.Properties()));
     }
 
     private static Item register(String key, Item itemIn) {
@@ -34,10 +34,10 @@ public class ModSpawnEggItemInit {
     }
 
     private static Item register(Block blockIn, net.minecraft.item.ItemGroup itemGroupIn) {
-        return register(new BlockItem(blockIn, (new Item.Properties()).group(itemGroupIn)));
+        return register(new ModBlockItem(blockIn, (new Item.Properties()).group(itemGroupIn)));
     }
 
-    private static Item register(BlockItem blockItemIn) {
+    private static Item register(ModBlockItem blockItemIn) {
         return register(blockItemIn.getBlock(), blockItemIn);
     }
 
@@ -46,8 +46,8 @@ public class ModSpawnEggItemInit {
     }
 
     private static Item register(ResourceLocation key, Item itemIn) {
-        if (itemIn instanceof BlockItem) {
-            ((BlockItem)itemIn).addToBlockToItemMap(Item.BLOCK_TO_ITEM, itemIn);
+        if (itemIn instanceof ModBlockItem) {
+            ((ModBlockItem)itemIn).addToBlockToItemMap(Item.BLOCK_TO_ITEM, itemIn);
         }
 
         return Registry.register(Registry.ITEM, key, itemIn);

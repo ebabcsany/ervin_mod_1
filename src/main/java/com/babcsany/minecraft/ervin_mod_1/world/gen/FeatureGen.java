@@ -26,6 +26,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import static com.babcsany.minecraft.ervin_mod_1.world.gen.feature.GenOreFeatureConfig.FillerBlockType.*;
 import static net.minecraft.entity.EntityClassification.*;
 import static net.minecraft.world.gen.GenerationStage.Decoration;
+import static net.minecraft.world.gen.feature.OreFeatureConfig.FillerBlockType.NATURAL_STONE;
 
 public class FeatureGen {
 	private static final BlockState RUBY_ORE = BlockItemInit.RUBY_ORE.get().getDefaultState();
@@ -98,7 +99,7 @@ public class FeatureGen {
 			if (biomeIn == Biomes.PLAINS) {
 				addOres(biomeIn);
 				addStones(biomeIn);
-				addFirgTrees(biomeIn);
+				addFirgTrees(biomeIn, 5);
 				addFrimTrees(biomeIn, 5);
 				addOakTurgs(biomeIn, 36);
 				addFirgTurgs(biomeIn, 48);
@@ -116,7 +117,7 @@ public class FeatureGen {
 			if (biomeIn == Biomes.FOREST) {
 				addOres(biomeIn);
 				addStones(biomeIn);
-				addFirgTrees(biomeIn);
+				addFirgTrees(biomeIn, 5);
 				addFrimTrees(biomeIn, 5);
 				addFirtBlocksInTurgs(biomeIn, 10, 100);
 				addBirchTurgs(biomeIn, 16);
@@ -140,7 +141,7 @@ public class FeatureGen {
 			if (biomeIn == Biomes.RIVER) {
 				addOres(biomeIn);
 				addStones(biomeIn);
-				addFirgTrees(biomeIn);
+				addFirgTrees(biomeIn, 5);
 				addFirtBlocksInTurgs(biomeIn, 10, 100);
 			}
 			if (biomeIn == Biomes.NETHER_WASTES) {
@@ -198,7 +199,7 @@ public class FeatureGen {
 			if (biomeIn == Biomes.WOODED_HILLS) {
 				addOres(biomeIn);
 				addStones(biomeIn);
-				addFirgTrees(biomeIn);
+				addFirgTrees(biomeIn, 5);
 				addFirgTurgs(biomeIn, 48);
 				addFirtBlocksInTurgs(biomeIn, 10, 100);
 			}
@@ -210,27 +211,27 @@ public class FeatureGen {
 			if (biomeIn == Biomes.MOUNTAIN_EDGE) {
 				addOres(biomeIn);
 				addStones(biomeIn);
-				addFirgTrees(biomeIn);
+				addFirgTrees(biomeIn, 5);
 				addFirtBlocksInNaturalDirts(biomeIn, 4, 24);
 			}
 			if (biomeIn == Biomes.JUNGLE) {
 				addOres(biomeIn);
 				addStones(biomeIn);
-				addJungleTurgs(biomeIn);
+				addJungleTurgs(biomeIn, 54);
 				addFirtBlocksInTurgs(biomeIn, 10, 100);
 				addFirtBlocksInNaturalDirts(biomeIn, 4, 8);
 			}
 			if (biomeIn == Biomes.JUNGLE_HILLS) {
 				addOres(biomeIn);
 				addStones(biomeIn);
-				addJungleTurgs(biomeIn);
+				addJungleTurgs(biomeIn, 46);
 				addFirtBlocksInTurgs(biomeIn, 10, 100);
 				addFirtBlocksInNaturalDirts(biomeIn, 4, 8);
 			}
 			if (biomeIn == Biomes.JUNGLE_EDGE) {
 				addOres(biomeIn);
 				addStones(biomeIn);
-				addJungleTurgs(biomeIn);
+				addJungleTurgs(biomeIn, 42);
 				addFirtBlocksInTurgs(biomeIn, 10, 100);
 				addFirtBlocksInNaturalDirts(biomeIn, 4, 8);
 			}
@@ -268,14 +269,14 @@ public class FeatureGen {
 			if (biomeIn == Biomes.DARK_FOREST) {
 				addOres(biomeIn);
 				addStones(biomeIn);
-				addDarkOakTurgs(biomeIn);
+				addDarkOakTurgs(biomeIn, 50);
 				addFirtBlocksInTurgs(biomeIn, 10, 100);
 				addFirtBlocksInNaturalDirts(biomeIn, 4, 16);
 			}
 			if (biomeIn == Biomes.SNOWY_TAIGA) {
 				addOres(biomeIn);
 				addStones(biomeIn);
-				addFirgTrees(biomeIn);
+				addFirgTrees(biomeIn, 5);
 				addFirgTurgs(biomeIn, 32);
 				addFirtBlocksInTurgs(biomeIn, 10, 100);
 				addFirtBlocksInNaturalDirts(biomeIn, 4, 16);
@@ -289,6 +290,7 @@ public class FeatureGen {
 			if (biomeIn == Biomes.GIANT_TREE_TAIGA) {
 				addOres(biomeIn);
 				addStones(biomeIn);
+				addDarkOakTurgs(biomeIn, 34);
 				addFirtBlocksInTurgs(biomeIn, 10, 100);
 				addFirtBlocksInNaturalDirts(biomeIn, 12, 8);
 			}
@@ -301,36 +303,38 @@ public class FeatureGen {
 			if (biomeIn == Biomes.WOODED_MOUNTAINS) {
 				addOres(biomeIn);
 				addStones(biomeIn);
-				addFirgTrees(biomeIn);
+				addFirgTrees(biomeIn, 6);
 				addFirtBlocksInNaturalDirts(biomeIn, 8, 12);
 			}
 			if (biomeIn == Biomes.SAVANNA) {
 				addOres(biomeIn);
 				addStones(biomeIn);
-				addFirgTrees(biomeIn);
-				addFrimTrees(biomeIn, 5);
+				addFirgTrees(biomeIn, 8);
+				addFrimTrees(biomeIn, 12);
+				addAcaciaTurgs(biomeIn, 58);
 				addFirtBlocksInTurgs(biomeIn, 10, 100);
 				addFirtBlocksInNaturalDirts(biomeIn, 10, 16);
 			}
 			if (biomeIn == Biomes.SAVANNA_PLATEAU) {
 				addOres(biomeIn);
 				addStones(biomeIn);
-				addFirgTrees(biomeIn);
-				addFrimTrees(biomeIn, 5);
-				addFirtBlocksInTurgs(biomeIn, 10, 100);
+				addFirgTrees(biomeIn, 8);
+				addFrimTrees(biomeIn, 7);
+				addAcaciaTurgs(biomeIn, 41);
+				addFirtBlocksInTurgs(biomeIn, 10, 63);
 				addFirtBlocksInNaturalDirts(biomeIn, 12, 18);
 			}
 			if (biomeIn == Biomes.BADLANDS) {
 				addOres(biomeIn);
 				addStones(biomeIn);
-				addFirtBlocksInTurgs(biomeIn, 10, 100);
+				addFirtBlocksInTurgs(biomeIn, 8, 79);
 				addKaltBlockInTerracottaVariants(biomeIn, 6, 14);
 			}
 			if (biomeIn == Biomes.WOODED_BADLANDS_PLATEAU) {
 				addOres(biomeIn);
 				addStones(biomeIn);
-				addSparseFrimTrees(biomeIn);
-				addFirtBlocksInTurgs(biomeIn, 10, 100);
+				addSparseFrimTrees(biomeIn, 6, 0.3F, 2);
+				addFirtBlocksInTurgs(biomeIn, 13, 86);
 				addKaltBlockInTerracottaVariants(biomeIn, 9, 15);
 			}
 			if (biomeIn == Biomes.BADLANDS_PLATEAU) {
@@ -362,49 +366,49 @@ public class FeatureGen {
 			if (biomeIn == Biomes.WARM_OCEAN) {
 				addOres(biomeIn);
 				addStones(biomeIn);
-				addFirtBlocksInTurgs(biomeIn, 10, 100);
+				addFirtBlocksInTurgs(biomeIn, 4, 55);
 			}
 			if (biomeIn == Biomes.LUKEWARM_OCEAN) {
 				addOres(biomeIn);
 				addStones(biomeIn);
-				addFirtBlocksInTurgs(biomeIn, 10, 100);
+				addFirtBlocksInTurgs(biomeIn, 5, 64);
 			}
 			if (biomeIn == Biomes.COLD_OCEAN) {
 				addOres(biomeIn);
 				addStones(biomeIn);
-				addFirtBlocksInTurgs(biomeIn, 10, 100);
+				addFirtBlocksInTurgs(biomeIn, 3, 81);
 			}
 			if (biomeIn == Biomes.DEEP_WARM_OCEAN) {
 				addOres(biomeIn);
 				addStones(biomeIn);
-				addFirtBlocksInTurgs(biomeIn, 10, 100);
+				addFirtBlocksInTurgs(biomeIn, 6, 74);
 			}
 			if (biomeIn == Biomes.DEEP_LUKEWARM_OCEAN) {
 				addOres(biomeIn);
 				addStones(biomeIn);
-				addFirtBlocksInTurgs(biomeIn, 10, 100);
+				addFirtBlocksInTurgs(biomeIn, 8, 45);
 			}
 			if (biomeIn == Biomes.DEEP_COLD_OCEAN) {
 				addOres(biomeIn);
 				addStones(biomeIn);
-				addFirtBlocksInTurgs(biomeIn, 10, 100);
+				addFirtBlocksInTurgs(biomeIn, 7, 36);
 			}
 			if (biomeIn == Biomes.DEEP_FROZEN_OCEAN) {
 				addOres(biomeIn);
 				addStones(biomeIn);
-				addFirtBlocksInTurgs(biomeIn, 10, 100);
+				addFirtBlocksInTurgs(biomeIn, 10, 27);
 			}
 			if (biomeIn == Biomes.THE_VOID) {
 				addOres(biomeIn);
 				addStones(biomeIn);
-				addFirtBlocksInTurgs(biomeIn, 10, 100);
+				addFirtBlocksInTurgs(biomeIn, 11, 92);
 				addAir1Feature(biomeIn, 4, 8);
 			}
 			if (biomeIn == Biomes.SUNFLOWER_PLAINS) {
 				addOres(biomeIn);
 				addStones(biomeIn);
-				addFirgTrees(biomeIn);
-				addFrimTrees(biomeIn, 5);
+				addFirgTrees(biomeIn, 8);
+				addFrimTrees(biomeIn, 4);
 				addAir1Feature(biomeIn, 5, 9);
 				addFirtBlocksInNaturalDirts(biomeIn, 15, 6);
 			}
@@ -476,12 +480,14 @@ public class FeatureGen {
 			if (biomeIn == Biomes.GIANT_SPRUCE_TAIGA) {
 				addOres(biomeIn);
 				addStones(biomeIn);
+				addSpruceTurgs(biomeIn, 33);
 				addFirtBlocksInTurgs(biomeIn, 10, 100);
 				addFirtBlocksInNaturalDirts(biomeIn, 14, 15);
 			}
 			if (biomeIn == Biomes.GIANT_SPRUCE_TAIGA_HILLS) {
 				addOres(biomeIn);
 				addStones(biomeIn);
+				addSpruceTurgs(biomeIn, 68);
 				addFirtBlocksInNaturalDirts(biomeIn, 21, 12);
 			}
 			if (biomeIn == Biomes.MODIFIED_GRAVELLY_MOUNTAINS) {
@@ -493,46 +499,46 @@ public class FeatureGen {
 				addOres(biomeIn);
 				addStones(biomeIn);
 				addFrimTrees(biomeIn, 5);
-				addFirtBlocksInTurgs(biomeIn, 10, 100);
+				addFirtBlocksInTurgs(biomeIn, 8, 107);
 				addFirtBlocksInNaturalDirts(biomeIn, 13, 15);
 			}
 			if (biomeIn == Biomes.SHATTERED_SAVANNA_PLATEAU) {
 				addOres(biomeIn);
 				addStones(biomeIn);
 				addFrimTrees(biomeIn, 5);
-				addFirtBlocksInTurgs(biomeIn, 10, 100);
+				addFirtBlocksInTurgs(biomeIn, 15, 114);
 				addFirtBlocksInNaturalDirts(biomeIn, 11, 17);
 			}
 			if (biomeIn == Biomes.ERODED_BADLANDS) {
 				addOres(biomeIn);
 				addStones(biomeIn);
-				addFirtBlocksInTurgs(biomeIn, 10, 100);
-				addKaltBlockInTerracottaVariants(biomeIn, 11, 15);
+				addFirtBlocksInTurgs(biomeIn, 12, 89);
+				addKaltBlockInTerracottaVariants(biomeIn, 16, 15);
 			}
 			if (biomeIn == Biomes.MODIFIED_WOODED_BADLANDS_PLATEAU) {
 				addOres(biomeIn);
 				addStones(biomeIn);
-				addSparseFrimTrees(biomeIn);
-				addFirtBlocksInTurgs(biomeIn, 10, 100);
+				addSparseFrimTrees(biomeIn, 2, 0.05F, 1);
+				addFirtBlocksInTurgs(biomeIn, 14, 110);
 				addKaltBlockInTerracottaVariants(biomeIn, 8, 10);
 
 			}
 			if (biomeIn == Biomes.MODIFIED_BADLANDS_PLATEAU) {
 				addOres(biomeIn);
 				addStones(biomeIn);
-				addFirtBlocksInTurgs(biomeIn, 10, 100);
+				addFirtBlocksInTurgs(biomeIn, 13, 105);
 				addKaltBlockInTerracottaVariants(biomeIn, 9, 13);
 			}
 			if (biomeIn == Biomes.BAMBOO_JUNGLE) {
 				addOres(biomeIn);
 				addStones(biomeIn);
-				addFirtBlocksInTurgs(biomeIn, 10, 100);
+				addFirtBlocksInTurgs(biomeIn, 6, 78);
 				addFirtBlocksInNaturalDirts(biomeIn, 7, 14);
 			}
 			if (biomeIn == Biomes.BAMBOO_JUNGLE_HILLS) {
 				addOres(biomeIn);
 				addStones(biomeIn);
-				addFirtBlocksInTurgs(biomeIn, 10, 100);
+				addFirtBlocksInTurgs(biomeIn, 9, 94);
 				addFirtBlocksInNaturalDirts(biomeIn, 14, 9);
 			}
 			if (biomeIn == Biomes.SOUL_SAND_VALLEY) {
@@ -847,159 +853,160 @@ public class FeatureGen {
 		}
 	}
 
-	public static void addFirgTrees(Biome biomeIn) {
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.field_236291_c_.withConfiguration(FirgTree.FIRG_TREE_CONFIG0).withPlacement(Placement.CHANCE_PASSTHROUGH.configure(new ChanceConfig(5))));
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.field_236291_c_.withConfiguration(FirgTree.FIRG_TREE_CONFIG1).withPlacement(Placement.CHANCE_PASSTHROUGH.configure(new ChanceConfig(5))));
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.field_236291_c_.withConfiguration(FirgTree.FIRG_TREE_CONFIG2).withPlacement(Placement.CHANCE_PASSTHROUGH.configure(new ChanceConfig(5))));
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.field_236291_c_.withConfiguration(FirgTree.FIRG_TREE_CONFIG3).withPlacement(Placement.CHANCE_PASSTHROUGH.configure(new ChanceConfig(5))));
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.field_236291_c_.withConfiguration(FirgTree.FIRG_TREE_CONFIG4).withPlacement(Placement.CHANCE_PASSTHROUGH.configure(new ChanceConfig(5))));
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.field_236291_c_.withConfiguration(FirgTree.FIRG_TREE_WITH_FEW_BEEHIVES_CONFIG).withPlacement(Placement.CHANCE_PASSTHROUGH.configure(new ChanceConfig(5))));
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.field_236291_c_.withConfiguration(FirgTree.FIRG_TREE_WITH_FEW_BEEHIVES_CONFIG1).withPlacement(Placement.CHANCE_PASSTHROUGH.configure(new ChanceConfig(5))));
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.field_236291_c_.withConfiguration(FirgTree.FIRG_TREE_WITH_MORE_BEEHIVES_CONFIG).withPlacement(Placement.CHANCE_PASSTHROUGH.configure(new ChanceConfig(5))));
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.field_236291_c_.withConfiguration(FirgTree.FIRG_TREE_WITH_MORE_BEEHIVES_CONFIG1).withPlacement(Placement.CHANCE_PASSTHROUGH.configure(new ChanceConfig(5))));
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.field_236291_c_.withConfiguration(FirgTree.FIRG_TREE_WITH_MANY_BEEHIVES_CONFIG).withPlacement(Placement.CHANCE_PASSTHROUGH.configure(new ChanceConfig(5))));
+	public static void addFirgTrees(Biome biomeIn, int chance) {
+		addFeature(biomeIn, Decoration.UNDERGROUND_DECORATION, Feature.field_236291_c_.withConfiguration(FirgTree.FIRG_TREE_CONFIG0).withPlacement(Placement.CHANCE_PASSTHROUGH.configure(new ChanceConfig(chance))));
+		addFeature(biomeIn, Decoration.UNDERGROUND_DECORATION, Feature.field_236291_c_.withConfiguration(FirgTree.FIRG_TREE_CONFIG1).withPlacement(Placement.CHANCE_PASSTHROUGH.configure(new ChanceConfig(chance))));
+		addFeature(biomeIn, Decoration.UNDERGROUND_DECORATION, Feature.field_236291_c_.withConfiguration(FirgTree.FIRG_TREE_CONFIG2).withPlacement(Placement.CHANCE_PASSTHROUGH.configure(new ChanceConfig(chance))));
+		addFeature(biomeIn, Decoration.UNDERGROUND_DECORATION, Feature.field_236291_c_.withConfiguration(FirgTree.FIRG_TREE_CONFIG3).withPlacement(Placement.CHANCE_PASSTHROUGH.configure(new ChanceConfig(chance))));
+		addFeature(biomeIn, Decoration.UNDERGROUND_DECORATION, Feature.field_236291_c_.withConfiguration(FirgTree.FIRG_TREE_CONFIG4).withPlacement(Placement.CHANCE_PASSTHROUGH.configure(new ChanceConfig(chance))));
+		addFeature(biomeIn, Decoration.UNDERGROUND_DECORATION, Feature.field_236291_c_.withConfiguration(FirgTree.FIRG_TREE_WITH_FEW_BEEHIVES_CONFIG).withPlacement(Placement.CHANCE_PASSTHROUGH.configure(new ChanceConfig(chance))));
+		addFeature(biomeIn, Decoration.UNDERGROUND_DECORATION, Feature.field_236291_c_.withConfiguration(FirgTree.FIRG_TREE_WITH_FEW_BEEHIVES_CONFIG1).withPlacement(Placement.CHANCE_PASSTHROUGH.configure(new ChanceConfig(chance))));
+		addFeature(biomeIn, Decoration.UNDERGROUND_DECORATION, Feature.field_236291_c_.withConfiguration(FirgTree.FIRG_TREE_WITH_MORE_BEEHIVES_CONFIG).withPlacement(Placement.CHANCE_PASSTHROUGH.configure(new ChanceConfig(chance))));
+		addFeature(biomeIn, Decoration.UNDERGROUND_DECORATION, Feature.field_236291_c_.withConfiguration(FirgTree.FIRG_TREE_WITH_MORE_BEEHIVES_CONFIG1).withPlacement(Placement.CHANCE_PASSTHROUGH.configure(new ChanceConfig(chance))));
+		addFeature(biomeIn, Decoration.UNDERGROUND_DECORATION, Feature.field_236291_c_.withConfiguration(FirgTree.FIRG_TREE_WITH_MANY_BEEHIVES_CONFIG).withPlacement(Placement.CHANCE_PASSTHROUGH.configure(new ChanceConfig(chance))));
 	}
 
 	public static void addFrimTrees(Biome biomeIn, int chance) {
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.field_236291_c_.withConfiguration(FrimTree.FRIM_TREE_CONFIG).withPlacement(Placement.CHANCE_PASSTHROUGH.configure(new ChanceConfig(chance))));
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.field_236291_c_.withConfiguration(FrimTree.FRIM_TREE_CONFIG0).withPlacement(Placement.CHANCE_PASSTHROUGH.configure(new ChanceConfig(chance))));
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.field_236291_c_.withConfiguration(FrimTree.FRIM_TREE_CONFIG1).withPlacement(Placement.CHANCE_PASSTHROUGH.configure(new ChanceConfig(chance))));
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.field_236291_c_.withConfiguration(FrimTree.FRIM_TREE_WITH_FEW_BEEHIVES_CONFIG).withPlacement(Placement.CHANCE_PASSTHROUGH.configure(new ChanceConfig(chance))));
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.field_236291_c_.withConfiguration(FrimTree.FRIM_TREE_WITH_MANY_BEEHIVES_CONFIG).withPlacement(Placement.CHANCE_PASSTHROUGH.configure(new ChanceConfig(chance))));
+		addFeature(biomeIn, Decoration.UNDERGROUND_DECORATION, Feature.field_236291_c_.withConfiguration(FrimTree.FRIM_TREE_CONFIG).withPlacement(Placement.CHANCE_PASSTHROUGH.configure(new ChanceConfig(chance))));
+		addFeature(biomeIn, Decoration.UNDERGROUND_DECORATION, Feature.field_236291_c_.withConfiguration(FrimTree.FRIM_TREE_CONFIG0).withPlacement(Placement.CHANCE_PASSTHROUGH.configure(new ChanceConfig(chance))));
+		addFeature(biomeIn, Decoration.UNDERGROUND_DECORATION, Feature.field_236291_c_.withConfiguration(FrimTree.FRIM_TREE_CONFIG1).withPlacement(Placement.CHANCE_PASSTHROUGH.configure(new ChanceConfig(chance))));
+		addFeature(biomeIn, Decoration.UNDERGROUND_DECORATION, Feature.field_236291_c_.withConfiguration(FrimTree.FRIM_TREE_WITH_FEW_BEEHIVES_CONFIG).withPlacement(Placement.CHANCE_PASSTHROUGH.configure(new ChanceConfig(chance))));
+		addFeature(biomeIn, Decoration.UNDERGROUND_DECORATION, Feature.field_236291_c_.withConfiguration(FrimTree.FRIM_TREE_WITH_MANY_BEEHIVES_CONFIG).withPlacement(Placement.CHANCE_PASSTHROUGH.configure(new ChanceConfig(chance))));
 	}
 
-	public static void addSparseFrimTrees(Biome biomeIn) {
-		biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.field_236291_c_.withConfiguration(FrimTree.FRIM_TREE_CONFIG).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(5, 0.1F, 1))));
-		biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.field_236291_c_.withConfiguration(FrimTree.FRIM_TREE_CONFIG0).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(5, 0.1F, 1))));
-		biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.field_236291_c_.withConfiguration(FrimTree.FRIM_TREE_CONFIG1).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(5, 0.1F, 1))));
+	public static void addSparseFrimTrees(Biome biomeIn, int count, float extraChanceIn, int extraCountIn) {
+		addFeature(biomeIn, Decoration.VEGETAL_DECORATION, Feature.field_236291_c_.withConfiguration(FrimTree.FRIM_TREE_CONFIG).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(count, extraChanceIn, extraCountIn))));
+		addFeature(biomeIn, Decoration.VEGETAL_DECORATION, Feature.field_236291_c_.withConfiguration(FrimTree.FRIM_TREE_CONFIG0).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(count, extraChanceIn, extraCountIn))));
+		addFeature(biomeIn, Decoration.VEGETAL_DECORATION, Feature.field_236291_c_.withConfiguration(FrimTree.FRIM_TREE_CONFIG1).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(count, extraChanceIn, extraCountIn))));
 	}
 
 	public static void addStones(Biome biomeIn) {
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, STONE, 20)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(50, 0, 0, 320))));
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, BLACK_STONE, 20)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(50, 0, 0, 320))));
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, BLUE_STONE, 20)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(50, 0, 0, 320))));
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, BROWN_STONE, 20)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(50, 0, 0, 320))));
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, CYAN_STONE, 20)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(50, 0, 0, 320))));
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, GREEN_STONE, 20)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(50, 0, 0, 320))));
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, LIGHT_BLUE1_STONE, 20)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(50, 0, 0, 320))));
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, LIGHT_BLUE_STONE, 20)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(50, 0, 0, 320))));
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, LIGHT_GRAY_STONE, 20)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(50, 0, 0, 320))));
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, LIME_STONE, 20)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(50, 0, 0, 320))));
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, MAGENTA_STONE, 20)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(50, 0, 0, 320))));
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, ORANGE_STONE, 20)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(50, 0, 0, 320))));
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, PINK_STONE, 20)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(50, 0, 0, 320))));
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, PURPLE_STONE, 20)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(50, 0, 0, 320))));
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, RED_STONE, 20)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(50, 0, 0, 320))));
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, WHITE_STONE, 20)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(50, 0, 0, 320))));
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, YELLOW_STONE, 20)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(50, 0, 0, 320))));
+		addOreFeature(biomeIn, Decoration.UNDERGROUND_ORES, NATURAL_STONE, STONE, 20, Placement.COUNT_RANGE.configure(new CountRangeConfig(50, 0, 0, 320)));
+		addOreFeature(biomeIn, Decoration.UNDERGROUND_ORES, NATURAL_STONE, BLACK_STONE, 20, Placement.COUNT_RANGE.configure(new CountRangeConfig(50, 0, 0, 320)));
+		addOreFeature(biomeIn, Decoration.UNDERGROUND_ORES, NATURAL_STONE, BLUE_STONE, 20, Placement.COUNT_RANGE.configure(new CountRangeConfig(50, 0, 0, 320)));
+		addOreFeature(biomeIn, Decoration.UNDERGROUND_ORES, NATURAL_STONE, BROWN_STONE, 20, Placement.COUNT_RANGE.configure(new CountRangeConfig(50, 0, 0, 320)));
+		addOreFeature(biomeIn, Decoration.UNDERGROUND_ORES, NATURAL_STONE, CYAN_STONE, 20, Placement.COUNT_RANGE.configure(new CountRangeConfig(50, 0, 0, 320)));
+		addOreFeature(biomeIn, Decoration.UNDERGROUND_ORES, NATURAL_STONE, GREEN_STONE, 20, Placement.COUNT_RANGE.configure(new CountRangeConfig(50, 0, 0, 320)));
+		addOreFeature(biomeIn, Decoration.UNDERGROUND_ORES, NATURAL_STONE, LIGHT_BLUE1_STONE, 20, Placement.COUNT_RANGE.configure(new CountRangeConfig(50, 0, 0, 320)));
+		addOreFeature(biomeIn, Decoration.UNDERGROUND_ORES, NATURAL_STONE, LIGHT_BLUE_STONE, 20, Placement.COUNT_RANGE.configure(new CountRangeConfig(50, 0, 0, 320)));
+		addOreFeature(biomeIn, Decoration.UNDERGROUND_ORES, NATURAL_STONE, LIGHT_GRAY_STONE, 20, Placement.COUNT_RANGE.configure(new CountRangeConfig(50, 0, 0, 320)));
+		addOreFeature(biomeIn, Decoration.UNDERGROUND_ORES, NATURAL_STONE, LIME_STONE, 20, Placement.COUNT_RANGE.configure(new CountRangeConfig(50, 0, 0, 320)));
+		addOreFeature(biomeIn, Decoration.UNDERGROUND_ORES, NATURAL_STONE, MAGENTA_STONE, 20, Placement.COUNT_RANGE.configure(new CountRangeConfig(50, 0, 0, 320)));
+		addOreFeature(biomeIn, Decoration.UNDERGROUND_ORES, NATURAL_STONE, ORANGE_STONE, 20, Placement.COUNT_RANGE.configure(new CountRangeConfig(50, 0, 0, 320)));
+		addOreFeature(biomeIn, Decoration.UNDERGROUND_ORES, NATURAL_STONE, PINK_STONE, 20, Placement.COUNT_RANGE.configure(new CountRangeConfig(50, 0, 0, 320)));
+		addOreFeature(biomeIn, Decoration.UNDERGROUND_ORES, NATURAL_STONE, PURPLE_STONE, 20, Placement.COUNT_RANGE.configure(new CountRangeConfig(50, 0, 0, 320)));
+		addOreFeature(biomeIn, Decoration.UNDERGROUND_ORES, NATURAL_STONE, RED_STONE, 20, Placement.COUNT_RANGE.configure(new CountRangeConfig(50, 0, 0, 320)));
+		addOreFeature(biomeIn, Decoration.UNDERGROUND_ORES, NATURAL_STONE, WHITE_STONE, 20, Placement.COUNT_RANGE.configure(new CountRangeConfig(50, 0, 0, 320)));
+		addOreFeature(biomeIn, Decoration.UNDERGROUND_ORES, NATURAL_STONE, YELLOW_STONE, 20, Placement.COUNT_RANGE.configure(new CountRangeConfig(50, 0, 0, 320)));
 	}
 
 	public static void addOres(Biome biomeIn) {
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, SURVI, 45)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(20, 0, 0, 25))));
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, RUBY_ORE, 12)).withPlacement(Placement.COUNT_DEPTH_AVERAGE.configure(new DepthAverageConfig(8, 16, 64))));
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, AIR, 8)).withPlacement(Placement.COUNT_DEPTH_AVERAGE.configure(new DepthAverageConfig(20, 24, 36))));
+		addOreFeature(biomeIn, Decoration.UNDERGROUND_ORES, NATURAL_STONE, SURVI, 45, Placement.COUNT_RANGE.configure(new CountRangeConfig(20, 0, 0, 25)));
+		addOreFeature(biomeIn, Decoration.UNDERGROUND_ORES, NATURAL_STONE, RUBY_ORE, 12, Placement.COUNT_DEPTH_AVERAGE.configure(new DepthAverageConfig(8, 16, 64)));
+		addOreFeature(biomeIn, Decoration.UNDERGROUND_ORES, NATURAL_STONE, AIR, 8, Placement.COUNT_DEPTH_AVERAGE.configure(new DepthAverageConfig(20, 24, 36)));
 	}
 
 	public static void addEndStoneOres(Biome biomeIn) {
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.END_STONE, SRIUNK_ORE, 12)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(30, 0, 0, 115))));
+		addGenOreFeature(biomeIn, Decoration.UNDERGROUND_DECORATION, GenOreFeatureConfig.FillerBlockType.END_STONE, SRIUNK_ORE, 12, Placement.COUNT_RANGE.configure(new CountRangeConfig(30, 0, 0, 115)));
 	}
 
 	public static void addNaturalEndStone(Biome biomeIn) {
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_END_STONE, END_STONE, 20)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(80, 0, 0, 256))));
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_END_STONE, END_SRACKT, 16)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(64, 0, 0, 256))));
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_END_STONE, END_SRACT, 12)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(48, 0, 0, 256))));
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_END_STONE, END_STONE_CISK, 4)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(16, 0, 0, 256))));
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_END_STONE, END_STONE_CRISK, 2)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(8, 0, 0, 256))));
+		addGenOreFeature(biomeIn, Decoration.UNDERGROUND_DECORATION, NATURAL_END_STONE, END_STONE, 20, Placement.COUNT_RANGE.configure(new CountRangeConfig(80, 0, 0, 256)));
+		addGenOreFeature(biomeIn, Decoration.UNDERGROUND_DECORATION, NATURAL_END_STONE, END_SRACKT, 16, Placement.COUNT_RANGE.configure(new CountRangeConfig(64, 0, 0, 256)));
+		addGenOreFeature(biomeIn, Decoration.UNDERGROUND_DECORATION, NATURAL_END_STONE, END_SRACT, 12, Placement.COUNT_RANGE.configure(new CountRangeConfig(48, 0, 0, 256)));
+		addGenOreFeature(biomeIn, Decoration.UNDERGROUND_DECORATION, NATURAL_END_STONE, END_STONE_CISK, 4, Placement.COUNT_RANGE.configure(new CountRangeConfig(16, 0, 0, 256)));
+		addGenOreFeature(biomeIn, Decoration.UNDERGROUND_DECORATION, NATURAL_END_STONE, END_STONE_CRISK, 2, Placement.COUNT_RANGE.configure(new CountRangeConfig(8, 0, 0, 256)));
 	}
 
 	public static void addNetherBlocks(Biome biomeIn) {
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NETHERRACK, TRIRIJ, 6)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(8, 0, 0, 64))));
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.MAGMA_BLOCK, TRIRIJ, 16)).withPlacement(Placement.MAGMA.configure(new FrequencyConfig(30))));
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.TRIRIJ, MAGMA_BLOCK, 8)).withPlacement(Placement.MAGMA.configure(new FrequencyConfig(15))));
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NETHER_ORE_REPLACEABLES, TRIRIJ, 8)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(12, 0, 0, 96))));
+		addOreFeature(biomeIn, Decoration.UNDERGROUND_ORES, OreFeatureConfig.FillerBlockType.NETHERRACK, TRIRIJ, 6, Placement.COUNT_RANGE.configure(new CountRangeConfig(8, 0, 0, 64)));
+		addGenOreFeature(biomeIn, Decoration.UNDERGROUND_ORES, GenOreFeatureConfig.FillerBlockType.MAGMA_BLOCK, TRIRIJ, 16, Placement.MAGMA.configure(new FrequencyConfig(30)));
+		addGenOreFeature(biomeIn, Decoration.UNDERGROUND_ORES, GenOreFeatureConfig.FillerBlockType.TRIRIJ, MAGMA_BLOCK, 8, Placement.MAGMA.configure(new FrequencyConfig(15)));
+		addOreFeature(biomeIn, Decoration.UNDERGROUND_ORES, OreFeatureConfig.FillerBlockType.NETHER_ORE_REPLACEABLES, TRIRIJ, 8, Placement.COUNT_RANGE.configure(new CountRangeConfig(12, 0, 0, 96)));
 	}
 
 	public static void addEndStoneVariants(Biome biomeIn) {
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.END_STONE_VARIANTS, ENDER_SACKT, 16)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(80, 0, 0, 256))));
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.END_STONE_VARIANTS, ENDER_SACT, 12)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(80, 0, 0, 256))));
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.END_STONE_VARIANTS, ENDER_SRACK, 20)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(80, 0, 0, 256))));
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.END_STONE_VARIANTS, ENDER_SRACKH, 28)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(80, 0, 0, 256))));
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.END_STONE_VARIANTS, ENDER_SRACT, 36)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(80, 0, 0, 256))));
+		addGenOreFeature(biomeIn, Decoration.UNDERGROUND_DECORATION, GenOreFeatureConfig.FillerBlockType.END_STONE_VARIANTS, ENDER_SACKT, 16, Placement.COUNT_RANGE.configure(new CountRangeConfig(80, 0, 0, 256)));
+		addGenOreFeature(biomeIn, Decoration.UNDERGROUND_DECORATION, GenOreFeatureConfig.FillerBlockType.END_STONE_VARIANTS, ENDER_SACT, 12, Placement.COUNT_RANGE.configure(new CountRangeConfig(80, 0, 0, 256)));
+		addGenOreFeature(biomeIn, Decoration.UNDERGROUND_DECORATION, GenOreFeatureConfig.FillerBlockType.END_STONE_VARIANTS, ENDER_SRACK, 20, Placement.COUNT_RANGE.configure(new CountRangeConfig(80, 0, 0, 256)));
+		addGenOreFeature(biomeIn, Decoration.UNDERGROUND_DECORATION, GenOreFeatureConfig.FillerBlockType.END_STONE_VARIANTS, ENDER_SRACKH, 28, Placement.COUNT_RANGE.configure(new CountRangeConfig(80, 0, 0, 256)));
+		addGenOreFeature(biomeIn, Decoration.UNDERGROUND_DECORATION, GenOreFeatureConfig.FillerBlockType.END_STONE_VARIANTS, ENDER_SRACT, 36, Placement.COUNT_RANGE.configure(new CountRangeConfig(80, 0, 0, 256)));
 	}
 
-	private static void addAcaciaTurgs(Biome biomeIn) {
-		biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.BLOCK_PILE.withConfiguration(ACACIA_TURG_PILE_CONFIG).withPlacement(Placement.CHANCE_HEIGHTMAP_DOUBLE.configure(new ChanceConfig(50))));
+	private static void addAcaciaTurgs(Biome biomeIn, int chance) {
+		addBlockPileFeature(biomeIn, Decoration.VEGETAL_DECORATION, ACACIA_TURG_PILE_CONFIG, Placement.CHANCE_HEIGHTMAP_DOUBLE.configure(new ChanceConfig(chance)));
 	}
 
 	private static void addBirchTurgs(Biome biomeIn, int chance) {
-		biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.BLOCK_PILE.withConfiguration(BIRCH_TURG_PILE_CONFIG).withPlacement(Placement.CHANCE_HEIGHTMAP_DOUBLE.configure(new ChanceConfig(chance))));
+		addBlockPileFeature(biomeIn, Decoration.VEGETAL_DECORATION, BIRCH_TURG_PILE_CONFIG, Placement.CHANCE_HEIGHTMAP_DOUBLE.configure(new ChanceConfig(chance)));
 	}
 
-	private static void addDarkOakTurgs(Biome biomeIn) {
-		biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.BLOCK_PILE.withConfiguration(DARK_OAK_TURG_PILE_CONFIG).withPlacement(Placement.CHANCE_HEIGHTMAP_DOUBLE.configure(new ChanceConfig(50))));
+	private static void addDarkOakTurgs(Biome biomeIn, int chance) {
+		addBlockPileFeature(biomeIn, Decoration.VEGETAL_DECORATION, DARK_OAK_TURG_PILE_CONFIG, Placement.CHANCE_HEIGHTMAP_DOUBLE.configure(new ChanceConfig(chance)));
 	}
 
-	private static void addJungleTurgs(Biome biomeIn) {
-		biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.BLOCK_PILE.withConfiguration(JUNGLE_TURG_PILE_CONFIG).withPlacement(Placement.CHANCE_HEIGHTMAP_DOUBLE.configure(new ChanceConfig(50))));
+	private static void addJungleTurgs(Biome biomeIn, int chance) {
+		addBlockPileFeature(biomeIn, Decoration.VEGETAL_DECORATION, JUNGLE_TURG_PILE_CONFIG, Placement.CHANCE_HEIGHTMAP_DOUBLE.configure(new ChanceConfig(chance)));
 	}
 
 	private static void addOakTurgs(Biome biomeIn, int chance) {
-		biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.BLOCK_PILE.withConfiguration(OAK_TURG_PILE_CONFIG).withPlacement(Placement.CHANCE_HEIGHTMAP_DOUBLE.configure(new ChanceConfig(chance))));
+		addBlockPileFeature(biomeIn, Decoration.VEGETAL_DECORATION, OAK_TURG_PILE_CONFIG, Placement.CHANCE_HEIGHTMAP_DOUBLE.configure(new ChanceConfig(chance)));
 	}
 
 	private static void addSpruceTurgs(Biome biomeIn, int chance) {
-		biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.BLOCK_PILE.withConfiguration(SPRUCE_TURG_PILE_CONFIG).withPlacement(Placement.CHANCE_HEIGHTMAP_DOUBLE.configure(new ChanceConfig(chance))));
+		addBlockPileFeature(biomeIn, Decoration.VEGETAL_DECORATION, SPRUCE_TURG_PILE_CONFIG, Placement.CHANCE_HEIGHTMAP_DOUBLE.configure(new ChanceConfig(chance)));
 	}
 
 	private static void addFirgTurgs(Biome biomeIn, int chance) {
-		biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.BLOCK_PILE.withConfiguration(FIRG_TURG_PILE_CONFIG).withPlacement(Placement.CHANCE_HEIGHTMAP_DOUBLE.configure(new ChanceConfig(chance))));
+		addBlockPileFeature(biomeIn, Decoration.VEGETAL_DECORATION, FIRG_TURG_PILE_CONFIG, Placement.CHANCE_HEIGHTMAP_DOUBLE.configure(new ChanceConfig(chance)));
 	}
 
 	private static void addFrimTurgs(Biome biomeIn, int chance) {
-		biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.BLOCK_PILE.withConfiguration(FRIM_TURG_PILE_CONFIG).withPlacement(Placement.CHANCE_HEIGHTMAP_DOUBLE.configure(new ChanceConfig(chance))));
+		addBlockPileFeature(biomeIn, Decoration.VEGETAL_DECORATION, FRIM_TURG_PILE_CONFIG, Placement.CHANCE_HEIGHTMAP_DOUBLE.configure(new ChanceConfig(chance)));
 	}
 
 	private static void addTrugnInNaturalStone1(Biome biomeIn, int size, int chance) {
-		biomeIn.addFeature(Decoration.TOP_LAYER_MODIFICATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(NATURAL_STONE1, TRUGN, size)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(chance))));
+		addGenOreFeature(biomeIn, Decoration.TOP_LAYER_MODIFICATION, NATURAL_STONE1, TRUGN, size, Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(chance)));
 	}
 
 	private static void addFirtBlocksInNaturalDirts(Biome biomeIn, int size, int chance) {
-		biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(NATURAL_DIRTS, FIRT_BLOCK, size)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(chance))));
+		addGenOreFeature(biomeIn, Decoration.RAW_GENERATION, NATURAL_DIRTS, FIRT_BLOCK, size, Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(chance)));
 	}
 
 	private static void addFirtBlocksInTurgs(Biome biomeIn, int size, int chance) {
-		biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.TURGS, FIRT_BLOCK, size)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(chance))));
+		addGenOreFeature(biomeIn, Decoration.RAW_GENERATION, GenOreFeatureConfig.FillerBlockType.TURGS, FIRT_BLOCK, size, Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(chance)));
 	}
 
 	private static void addKaltBlockInTerracottaVariants(Biome biomeIn, int size, int chance) {
-		biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(TERRACOTTA_VARIANTS, KALT_BLOCK, size)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(chance))));
+		addGenOreFeature(biomeIn, Decoration.RAW_GENERATION, TERRACOTTA_VARIANTS, KALT_BLOCK, size, Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(chance)));
 	}
 
 	private static void addAir1Feature(Biome biomeIn, int size, int chance) {
-		biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(NATURAL_STONE1, AIR, size)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(chance))));
+		addGenOreFeature(biomeIn, Decoration.RAW_GENERATION, NATURAL_STONE1, AIR, size, Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(chance)));
 	}
 
 	private static void addGenOreFeature(Biome biomeIn, GenerationStage.Decoration decoration, GenOreFeatureConfig.FillerBlockType fillerBlockType, BlockState state, int size, ConfiguredPlacement<?> placement) {
-		biomeIn.addFeature(decoration, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(fillerBlockType, state, size)).withPlacement(placement));
+		addFeature(biomeIn, decoration, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(fillerBlockType, state, size)).withPlacement(placement));
 	}
 
 	private static void addOreFeature(Biome biomeIn, GenerationStage.Decoration decoration, OreFeatureConfig.FillerBlockType fillerBlockType, BlockState state, int size, ConfiguredPlacement<?> placement) {
-		biomeIn.addFeature(decoration, Feature.ORE.withConfiguration(new OreFeatureConfig(fillerBlockType, state, size)).withPlacement(placement));
+		addFeature(biomeIn, decoration, Feature.ORE.withConfiguration(new OreFeatureConfig(fillerBlockType, state, size)).withPlacement(placement));
+	}
+
+	private static void addBlockPileFeature(Biome biomeIn, GenerationStage.Decoration decoration, BlockStateProvidingFeatureConfig config, ConfiguredPlacement<?> placement) {
+		addFeature(biomeIn, decoration, Feature.BLOCK_PILE.withConfiguration(config).withPlacement(placement));
 	}
 
 	private static void addFeature(Biome biomeIn, GenerationStage.Decoration decoration, ConfiguredFeature<?, ?> featureIn) {
 		biomeIn.addFeature(decoration, featureIn);
 	}
 
+	private static void addSpawnZur(Biome biomeIn, int weight, int minGroupCountIn, int maxGroupCountIn) {
+		addSpawn(biomeIn, EntityClassification.CREATURE, EntityInit.ZUR_ENTITY, weight, minGroupCountIn, maxGroupCountIn);
+	}
+
 	private static void addSpawn(Biome biomeIn, EntityClassification entityClassification, EntityType<?> entityTypeIn, int weight, int minGroupCountIn, int maxGroupCountIn) {
 		biomeIn.getSpawns(entityClassification).add(new Biome.SpawnListEntry(entityTypeIn, weight, minGroupCountIn, maxGroupCountIn));
-	}
-
-	private static void addSpawnZur(Biome biomeIn, int weight, int minGroupCountIn, int maxGroupCountIn) {
-		biomeIn.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, weight, minGroupCountIn, maxGroupCountIn));
-	}
-
-	private static void addEntityClassification(EntityClassification entityClassification) {
 	}
 
 	static GenerationStage.Decoration decoration1;
@@ -1012,5 +1019,5 @@ public class FeatureGen {
 
 	//public static final EntityClassification ZUR = EntityClassification.create("zur", "8", 40, true, true, 64);
 
-	public static native void lok(Feature<?> feature);
+	public static native void feature(Feature<?> feature);
 }

@@ -4,7 +4,7 @@ import com.google.common.base.MoreObjects;
 import net.minecraft.block.*;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BlockItemUseContext;
+import com.babcsany.minecraft.item.ModBlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
@@ -69,7 +69,7 @@ public class RedTripWireHook extends Block {
    }
 
    @Nullable
-   public BlockState getStateForPlacement(BlockItemUseContext context) {
+   public BlockState getStateForPlacement(ModBlockItemUseContext context) {
       BlockState blockstate = this.getDefaultState().with(POWERED, Boolean.valueOf(false)).with(ATTACHED, Boolean.valueOf(false));
       IWorldReader iworldreader = context.getWorld();
       BlockPos blockpos = context.getPos();

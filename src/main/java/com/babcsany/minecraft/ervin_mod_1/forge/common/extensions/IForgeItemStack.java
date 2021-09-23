@@ -28,14 +28,12 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.monster.EndermanEntity;
 import net.minecraft.entity.passive.horse.HorseEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUseContext;
+import com.babcsany.minecraft.item.ModItemUseContext;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.ActionResultType;
@@ -114,7 +112,7 @@ public interface IForgeItemStack extends ICapabilitySerializable<CompoundNBT>
         return getStack().getIcsvre().getToolTypes(getStack());
     }
 
-    default ActionResultType onItemUseFirst(ItemUseContext context)
+    default ActionResultType onItemUseFirst(ModItemUseContext context)
     {
        PlayerEntity entityplayer = context.getPlayer();
        BlockPos blockpos = context.getPos();

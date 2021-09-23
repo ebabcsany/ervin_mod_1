@@ -1,15 +1,17 @@
 package com.babcsany.minecraft.init;
 
-import com.babcsany.minecraft.ervin_mod_1.block.ExampleNetherPortalBlock;
+import com.babcsany.minecraft.ervin_mod_1.block.ExamplePortalBlock;
 import com.babcsany.minecraft.ervin_mod_1.block.Friszern;
 import com.babcsany.minecraft.ervin_mod_1.block.blocks.FirgPlanksStairs;
 import com.babcsany.minecraft.ervin_mod_1.block.blocks.FirtBlock;
 import com.babcsany.minecraft.ervin_mod_1.block.blocks.Reutrien;
 import com.babcsany.minecraft.ervin_mod_1.block.blocks.Tririj;
+import com.babcsany.minecraft.ervin_mod_1.init.init.MaterialColorInit;
 import com.babcsany.minecraft.fluid.block.FlowingFluidBlock;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
+import net.minecraft.util.Direction;
 import net.minecraft.util.registry.Registry;
 import net.minecraftforge.common.ToolType;
 
@@ -22,15 +24,27 @@ public class BlockInit {
     public static final Block REPEATING_FRISZERN = register("repeating_friszern", new Friszern(AbstractBlock.Properties.create(Material.IRON, MaterialColor.BLACK_TERRACOTTA).setRequiresTool().hardnessAndResistance(3600000.0F)));
     public static final Block JURK = register("fluids/jurk", new FlowingFluidBlock(FluidInit.JURK, AbstractBlock.Properties.create(Material.WATER, MaterialColor.MAGENTA).doesNotBlockMovement().hardnessAndResistance(100.0F).setLightLevel((Value) -> 15).noDrops()));
     public static final Block FIRG_PLANKS = register("firg_planks", new Block(AbstractBlock.Properties.create(Material.ORGANIC, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static final Block FIRG_LOG = register("firg_log", createLogBlock(Material.ORGANIC, MaterialColor.SAND, MaterialColor.WOOD, ToolType.AXE, 2.0F, SoundType.WOOD));
+    public static final Block FIRG_WOOD = register("firg_wood", new RotatedPillarBlock(Block.Properties.create(Material.ORGANIC, MaterialColor.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD)));
+    public static final Block STRIPPED_FIRG_LOG = register("stripped_firg_log", createLogBlock(Material.ORGANIC, MaterialColorInit.SAND, MaterialColor.WOOD, ToolType.AXE, 2.0F, SoundType.WOOD));
+    public static final Block STRIPPED_FIRG_WOOD = register("stripped_firg_wood", new RotatedPillarBlock(Block.Properties.create(Material.ORGANIC, MaterialColor.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD)));
+    public static final Block FRIM_LOG = register("frim_log", createLogBlock(Material.ORGANIC, MaterialColor.WOOD, MaterialColorInit.DARK_RED, ToolType.AXE, 2.0F, SoundType.WOOD));
+    public static final Block FRIM_WOOD = register("frim_wood", new RotatedPillarBlock(Block.Properties.create(Material.ORGANIC, MaterialColorInit.DARK_RED).hardnessAndResistance(2.0F).sound(SoundType.WOOD)));
+    public static final Block STRIPPED_FRIM_LOG = register("stripped_frim_log", createLogBlock(Material.ORGANIC, MaterialColorInit.RED, MaterialColorInit.REDL_F, ToolType.AXE, 2.0F, SoundType.WOOD));
+    public static final Block STRIPPED_FRIM_WOOD = register("stripped_frim_wood", new RotatedPillarBlock(Block.Properties.create(Material.ORGANIC, MaterialColorInit.REDL_F).hardnessAndResistance(2.0F).sound(SoundType.WOOD)));
     public static final Block FIRG_PLANKS_STAIRS = register("firg_planks_stairs", new FirgPlanksStairs(FIRG_PLANKS.getDefaultState(), Block.Properties.from(FIRG_PLANKS)));
     public static final Block FIRG_PLANKS_DOOR = register("firg_planks_door", new DoorBlock(AbstractBlock.Properties.create(Material.ORGANIC).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
     public static final Block FIRT_BLOCK = register("firt_block", new FirtBlock(Block.Properties.create(Material.ROCK).setRequiresTool().harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(60.0F)));
     public static final Block REUTRIEN = register("reutrien", new Reutrien(AbstractBlock.Properties.create(Material.ROCK).setRequiresTool().hardnessAndResistance(5.0F).sound(SoundType.METAL).notSolid()));
     public static final Block TRIRIJ = register("tririj", new Tririj(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.RED_TERRACOTTA).setRequiresTool().tickRandomly().hardnessAndResistance(5000000.0F)));
-    public static final Block EXAMPLE_PORTAL_BLOCK = register("portal/example_portal_block", new ExampleNetherPortalBlock(AbstractBlock.Properties.from(Blocks.NETHER_PORTAL)));
+    public static final Block EXAMPLE_PORTAL_BLOCK = register("portal/example_portal_block", new ExamplePortalBlock(AbstractBlock.Properties.from(Blocks.NETHER_PORTAL)));
 
     private static Block register(String key, Block blockIn) {
         return Registry.register(Registry.BLOCK, string(key), blockIn);
+    }
+
+    private static RotatedPillarBlock createLogBlock(Material material, MaterialColor topColor, MaterialColor barkColor, ToolType harvestTool, float hardnessAndResistance, SoundType soundType) {
+        return new RotatedPillarBlock(AbstractBlock.Properties.create(material, (blockState) -> blockState.get(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? topColor : barkColor).harvestTool(harvestTool).hardnessAndResistance(hardnessAndResistance).sound(soundType));
     }
 
     private static String string(String name) {

@@ -1,5 +1,6 @@
 package com.babcsany.minecraft.entity;
 
+import com.babcsany.minecraft.world.world;
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -17,6 +18,7 @@ import java.util.function.ToIntFunction;
 
 public class EntityType<T extends Entity> extends net.minecraft.entity.EntityType<T> {
     private ResourceLocation name;
+    protected IFactory_<T> createEntity;
     @Nullable
     private T value;
 
@@ -35,5 +37,13 @@ public class EntityType<T extends Entity> extends net.minecraft.entity.EntityTyp
         ret.world.isRemote();
         return ret;
     }
-    
+
+    @Nullable
+    public T create(net.minecraft.entity.EntityType<?> entity, world worldIn) {
+        return createEntity.create((net.minecraft.entity.EntityType<T>) entity, worldIn);
+    }
+
+    public interface IFactory_<T extends Entity> {
+        T create(net.minecraft.entity.EntityType<T> entityType, world world);
+    }
 }

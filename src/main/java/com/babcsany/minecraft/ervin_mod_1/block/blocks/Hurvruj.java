@@ -4,12 +4,10 @@ import com.babcsany.minecraft.ervin_mod_1.init.item.block.isBurnableBlockItemIni
 import com.babcsany.minecraft.ervin_mod_1.state.ModBlockStateProperties;
 import net.minecraft.block.*;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.IntegerProperty;
@@ -20,7 +18,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.*;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
@@ -182,5 +179,26 @@ public class Hurvruj extends Block {
    @Override
    public boolean allowsMovement(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type) {
       return false;
+   }
+
+   public static Optional<Vector3d> func_234567_a_(ServerWorld p_234567_0_, BlockPos p_234567_1_, boolean p_234567_2_, boolean p_234567_3_) {
+      BlockState blockstate = p_234567_0_.getBlockState(p_234567_1_);
+      Block block = blockstate.getBlock();
+      if (block instanceof RespawnAnchorBlock && blockstate.get(RespawnAnchorBlock.CHARGES) > 0 && RespawnAnchorBlock.doesRespawnAnchorWork(p_234567_0_)) {
+         Optional<Vector3d> optional = RespawnAnchorBlock.func_235560_a_(EntityType.PLAYER, p_234567_0_, p_234567_1_);
+         if (!p_234567_3_ && optional.isPresent()) {
+            p_234567_0_.setBlockState(p_234567_1_, blockstate.with(RespawnAnchorBlock.CHARGES, Integer.valueOf(blockstate.get(RespawnAnchorBlock.CHARGES) - 1)), 3);
+         }
+
+         return optional;
+      } else if (blockstate.isBed(p_234567_0_, p_234567_1_, null) && BedBlock.func_235330_a_(p_234567_0_)) {
+         return blockstate.getBedSpawnPosition(EntityType.PLAYER, p_234567_0_, p_234567_1_, null);
+      } else if (!p_234567_2_) {
+         return Optional.empty();
+      } else {
+         boolean flag = block.canSpawnInBlock();
+         boolean flag1 = p_234567_0_.getBlockState(p_234567_1_.up()).getBlock().canSpawnInBlock();
+         return flag && flag1 ? Optional.of(new Vector3d((double)p_234567_1_.getX() + 0.5D, (double)p_234567_1_.getY() + 0.1D, (double)p_234567_1_.getZ() + 0.5D)) : Optional.empty();
+      }
    }
 }

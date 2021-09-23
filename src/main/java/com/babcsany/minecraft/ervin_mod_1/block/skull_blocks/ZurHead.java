@@ -2,7 +2,7 @@ package com.babcsany.minecraft.ervin_mod_1.block.skull_blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.item.BlockItemUseContext;
+import com.babcsany.minecraft.item.ModBlockItemUseContext;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
@@ -34,7 +34,7 @@ public class ZurHead extends Block {
       return VoxelShapes.empty();
    }
 
-   public BlockState getStateForPlacement(BlockItemUseContext context) {
+   public BlockState getStateForPlacement(ModBlockItemUseContext context) {
       return this.getDefaultState().with(ROTATION, MathHelper.floor((double) (context.getPlacementYaw() * 16.0F / 360.0F) + 0.5D) & 15);
    }
 

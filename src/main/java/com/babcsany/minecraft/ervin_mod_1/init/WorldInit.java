@@ -31,6 +31,7 @@ public class WorldInit extends world {
     public static RegistryKey<dimensionType> dimensionTypeRegistryKey_;
     public static dimensionType dimensionType_;
     public static Supplier<IProfiler> profilerSupplier;
+    public static world world;
     public static boolean Boolean;
     public static long Long;
 
@@ -42,6 +43,11 @@ public class WorldInit extends world {
 
     public WorldInit(ISpawnWorldInfo iSpawnWorldInfo, RegistryKey<world> worldRegistryKey, RegistryKey<dimensionType> dimensionTypeRegistryKey, dimensionType dimensionType, Supplier<IProfiler> iProfilerSupplier, boolean b, boolean b1, long l) {
         super(iSpawnWorldInfo, worldRegistryKey, dimensionTypeRegistryKey, dimensionType, iProfilerSupplier, b, b1, l);
+    }
+
+    @Override
+    public com.babcsany.minecraft.world.dimensionType dimensionType() {
+        return world.dimensionType();
     }
 
     public static RegistryKey<world> worldRegistryKey(String key) {
@@ -97,9 +103,5 @@ public class WorldInit extends world {
     @Override
     public Biome getNoiseBiomeRaw(int x, int y, int z) {
         return null;
-    }
-
-    public IEventBus register(IEventBus modEventBus) {
-        return modEventBus;
     }
 }

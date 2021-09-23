@@ -1,6 +1,7 @@
 package net.minecraft.client.renderer.tileentity;
 
 import com.babcsany.minecraft.ervin_mod_1.client.entity.model.TurgShieldModel;
+import com.babcsany.minecraft.item.ModBlockItem;
 import com.mojang.authlib.GameProfile;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
@@ -57,8 +58,8 @@ public class ItemStackTileEntityRenderer {
 
    public void func_239207_a_(ItemStack stack, ItemCameraTransforms.TransformType p_239207_2_, MatrixStack matrixStack, IRenderTypeBuffer buffer, int combinedLight, int combinedOverlay) {
       Item item = stack.getItem();
-      if (item instanceof BlockItem) {
-         Block block = ((BlockItem)item).getBlock();
+      if (item instanceof ModBlockItem) {
+         Block block = ((ModBlockItem)item).getBlock();
          if (block instanceof AbstractSkullBlock) {
             GameProfile gameprofile = null;
             if (stack.hasTag()) {

@@ -2,25 +2,11 @@ package com.babcsany.minecraft.ervin_mod_1.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.state.StateContainer;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-
-import java.util.Random;
-
-import static com.babcsany.minecraft.ervin_mod_1.block.blocks.FirgLeaves.PERSISTENT;
 
 public abstract class ModLeavesBlock extends Block {
    public ModLeavesBlock(Properties properties) {

@@ -1,9 +1,9 @@
 package com.babcsany.minecraft.ervin_mod_1.item;
 
 import net.minecraft.block.Block;
-import net.minecraft.item.BlockItem;
+import com.babcsany.minecraft.item.ModBlockItem;
 
-public class SwordBlockNamedItem extends BlockItem {
+public class SwordBlockNamedItem extends ModBlockItem {
    public SwordBlockNamedItem(Block blockIn, Properties properties) {
       super(blockIn, properties);
    }

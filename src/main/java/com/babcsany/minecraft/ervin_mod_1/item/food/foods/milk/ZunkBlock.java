@@ -5,7 +5,7 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.BlockItem;
+import com.babcsany.minecraft.item.ModBlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.UseAction;
@@ -13,7 +13,7 @@ import net.minecraft.stats.Stats;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
 
-public class ZunkBlock extends BlockItem {
+public class ZunkBlock extends ModBlockItem {
    public ZunkBlock(Block blockIn, Item.Properties properties) {
       super(blockIn, properties);
    }

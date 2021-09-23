@@ -20,7 +20,6 @@
 package net.minecraftforge.common.extensions;
 
 import com.babcsany.minecraft.ervin_mod_1.block.FriszernTileEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurTasks;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.AbstractZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.player.PlayerEntity1;
 import net.minecraft.block.BlockState;
@@ -30,12 +29,11 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.monster.EndermanEntity;
-import net.minecraft.entity.monster.piglin.PiglinTasks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUseContext;
+import com.babcsany.minecraft.item.ModItemUseContext;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.ActionResultType;
@@ -112,7 +110,7 @@ public interface IForgeItemStack extends ICapabilitySerializable<CompoundNBT>
         return getStack().getItem().getToolTypes(getStack());
     }
 
-    default ActionResultType onItemUseFirst(ItemUseContext context)
+    default ActionResultType onItemUseFirst(ModItemUseContext context)
     {
        PlayerEntity entityplayer = context.getPlayer();
        BlockPos blockpos = context.getPos();

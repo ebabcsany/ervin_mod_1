@@ -1,6 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.init.block;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
+import com.babcsany.minecraft.ervin_mod_1.block.ExamplePortalBlock;
 import com.babcsany.minecraft.ervin_mod_1.block.Fighiv;
 import com.babcsany.minecraft.ervin_mod_1.block.PoweredRailBlock;
 import com.babcsany.minecraft.ervin_mod_1.block.TargCropsBlock;
@@ -32,7 +33,7 @@ public class BlockInit {
     //public static final RegistryObject<Block> FRISZERN = BLOCKS.register("friszern", () -> new Friszern(AbstractBlock.Properties.create(Material.IRON, MaterialColor.BLACK_TERRACOTTA).setRequiresTool().hardnessAndResistance(3600000.0F)));
     //public static final RegistryObject<Block> CHAIN_FRISZERN = BLOCKS.register("chain_friszern", () -> new Friszern(AbstractBlock.Properties.create(Material.IRON, MaterialColor.BLACK_TERRACOTTA).setRequiresTool().hardnessAndResistance(3600000.0F)));
     //public static final RegistryObject<Block> REPEATING_FRISZERN = BLOCKS.register("repeater_friszern", () -> new Friszern(AbstractBlock.Properties.create(Material.IRON, MaterialColor.BLACK_TERRACOTTA).setRequiresTool().hardnessAndResistance(3600000.0F)));
-    public static final RegistryObject<Block> EXAMPLE_PORTAL_BLOCK = BLOCKS.register("example_portal_block", () -> new Block(AbstractBlock.Properties.from(Blocks.BEDROCK)));
+    public static final RegistryObject<Block> EXAMPLE_PORTAL_BLOCK = BLOCKS.register("example_portal_block", () -> new ExamplePortalBlock(AbstractBlock.Properties.from(Blocks.BEDROCK)));
     public static final RegistryObject<Block> TARG_STAGE = BLOCKS.register("crops/targ_stage", () -> new TargCropsBlock(Block.Properties.create(Material.PLANTS).zeroHardnessAndResistance().doesNotBlockMovement().tickRandomly().sound(SoundType.CROP)));
     public static final RegistryObject<Block> FIRG = BLOCKS.register("firg", () -> new Firg(Block.Properties.create(Material.ROCK).harvestLevel(0).harvestTool(ToolType.PICKAXE).hardnessAndResistance(10.0f)));
     public static final RegistryObject<Block> FIRG_SLAB = BLOCKS.register("firg_slab", () -> new FirgSlab(Block.Properties.create(Material.ROCK).harvestLevel(0).harvestTool(ToolType.PICKAXE).hardnessAndResistance(10.0F, 15.0F)));

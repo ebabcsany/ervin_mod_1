@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 
-public final class dimension {
+public class dimension {
 
     public static final RegistryKey<Dimension> OVERWORLD = Dimension.OVERWORLD;
     public static final RegistryKey<Dimension> THE_NETHER = Dimension.THE_NETHER;

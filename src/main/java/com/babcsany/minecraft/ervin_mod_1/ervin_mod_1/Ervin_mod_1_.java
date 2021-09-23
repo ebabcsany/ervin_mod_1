@@ -1,12 +1,13 @@
 package com.babcsany.minecraft.ervin_mod_1.ervin_mod_1;
 
 import com.babcsany.minecraft.client.particle.ParticleManager;
+import com.babcsany.minecraft.ervin_mod_1.Modifiers;
 import com.babcsany.minecraft.ervin_mod_1.client.renderer.entity.EntityRendererManager;
 import com.babcsany.minecraft.ervin_mod_1.entity.player.PlayerInventory;
 import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.classes.Ervin_mod_1_classes;
+import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.registries.ComposterBlock;
 import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.registries.block_colors.BlockColors;
 import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.registries.l_l.AbstractFurnaceTileEntity;
-import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.registries.ComposterBlock;
 import com.babcsany.minecraft.ervin_mod_1.util.registries.modPainting_Type;
 import com.babcsany.minecraft.ervin_mod_1.world.gen.FeatureGen;
 
@@ -14,12 +15,17 @@ public class Ervin_mod_1_ {
 
     static Ervin_mod_1_classes ervin_mod_1_classes;
     static PlayerInventory playerInventory;
+    public static final Modifiers modifiers = new Modifiers();
 
     public static void Class(Class<?>... Class) {
         Class.clone();
     }
 
     public static void setup() {
+        classes();
+    }
+
+    public static void classes() {
         Class(EntityRendererManager.class);
         Class(ParticleManager.class);
     }
@@ -32,6 +38,10 @@ public class Ervin_mod_1_ {
     public static void featureGen() {
         FeatureGen.generateFeature();
         FeatureGen.getSpawns();
+    }
+
+    public static void modifiers() {
+        new Modifiers();
     }
 
     public static void modRegistry() {

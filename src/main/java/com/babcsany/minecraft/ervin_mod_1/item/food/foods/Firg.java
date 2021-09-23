@@ -1,11 +1,11 @@
 package com.babcsany.minecraft.ervin_mod_1.item.food.foods;
 
 import net.minecraft.block.Block;
-import net.minecraft.item.BlockItem;
+import com.babcsany.minecraft.item.ModBlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public class Firg extends BlockItem {
+public class Firg extends ModBlockItem {
    public Firg(Block blockIn, Item.Properties properties) {
       super(blockIn, properties);
    }

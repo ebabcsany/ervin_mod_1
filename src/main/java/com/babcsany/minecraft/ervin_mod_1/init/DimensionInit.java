@@ -5,9 +5,8 @@ import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.Dimension;
-import net.minecraftforge.eventbus.api.IEventBus;
 
-public final class DimensionInit {
+public class DimensionInit extends dimension {
 
     public static Dimension DIMENSIONS;
 
@@ -34,9 +33,5 @@ public final class DimensionInit {
         RegistryKey<T> dimensionRegistryKey = registryKey;
         RegistryKey.func_240903_a_(Registry.DIMENSION_KEY, new ResourceLocation(dimension.string(key)));
         return dimensionRegistryKey;
-    }
-
-    public IEventBus register(IEventBus modEventBus) {
-        return modEventBus;
     }
 }

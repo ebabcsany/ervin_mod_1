@@ -2,8 +2,8 @@ package com.babcsany.minecraft.ervin_mod_1.item;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.BlockItemUseContext;
+import com.babcsany.minecraft.item.ModBlockItem;
+import com.babcsany.minecraft.item.ModBlockItemUseContext;
 import net.minecraft.item.Item;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
@@ -13,7 +13,7 @@ import net.minecraft.world.IWorldReader;
 import javax.annotation.Nullable;
 import java.util.Map;
 
-public class WallOrFloorItem1 extends BlockItem {
+public class WallOrFloorItem1 extends ModBlockItem {
    protected final Block wallBlock;
 
    public WallOrFloorItem1(Block floorBlock, Block wallBlockIn, Properties propertiesIn) {
@@ -22,7 +22,7 @@ public class WallOrFloorItem1 extends BlockItem {
    }
 
    @Nullable
-   protected BlockState getStateForPlacement(BlockItemUseContext context) {
+   protected BlockState getStateForPlacement(ModBlockItemUseContext context) {
       BlockState blockstate = this.wallBlock.getStateForPlacement(context);
       BlockState blockstate1 = null;
       IWorldReader iworldreader = context.getWorld();

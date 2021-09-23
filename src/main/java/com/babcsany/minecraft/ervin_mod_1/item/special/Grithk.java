@@ -7,7 +7,7 @@ import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUseContext;
+import com.babcsany.minecraft.item.ModItemUseContext;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
@@ -16,7 +16,7 @@ import net.minecraft.world.World;
 
 import java.util.Objects;
 
-public class Grithk extends Item {
+public class Grithk extends Item implements i_t_r_a_e {
 	public Grithk(Properties properties) {
 		super(properties);
 	}
@@ -47,7 +47,7 @@ public class Grithk extends Item {
 	}
 
 	@Override
-	public ActionResultType onItemUse(ItemUseContext context) {
+	public ActionResultType onItemUse(ModItemUseContext context) {
 		if (context.getWorld().getBlockState(context.getPos()).getBlock() == BlockInit.GRITH_BLOCK.get()) {
 			for (ItemStack stack : Objects.requireNonNull(context.getPlayer()).inventory.mainInventory) {
 				if (stack.isEmpty()) {

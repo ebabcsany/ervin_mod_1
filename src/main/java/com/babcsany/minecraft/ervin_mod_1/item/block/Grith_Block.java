@@ -4,11 +4,11 @@ import com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.item.BlockItem;
+import com.babcsany.minecraft.item.ModBlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public class Grith_Block extends BlockItem {
+public class Grith_Block extends ModBlockItem {
 
     public Grith_Block(Block blockIn, Item.Properties properties) {
         super(blockIn, properties);

@@ -7,7 +7,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.TripWireHookBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BlockItemUseContext;
+import com.babcsany.minecraft.item.ModBlockItemUseContext;
 import net.minecraft.item.Items;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
@@ -50,7 +50,7 @@ public class GrayTripWire extends Block {
       return state.get(ATTACHED) ? AABB : TRIP_WRITE_ATTACHED_AABB;
    }
 
-   public BlockState getStateForPlacement(BlockItemUseContext context) {
+   public BlockState getStateForPlacement(ModBlockItemUseContext context) {
       IBlockReader iblockreader = context.getWorld();
       BlockPos blockpos = context.getPos();
       return this.getDefaultState().with(NORTH, Boolean.valueOf(this.shouldConnectTo(iblockreader.getBlockState(blockpos.north()), Direction.NORTH))).with(EAST, Boolean.valueOf(this.shouldConnectTo(iblockreader.getBlockState(blockpos.east()), Direction.EAST))).with(SOUTH, Boolean.valueOf(this.shouldConnectTo(iblockreader.getBlockState(blockpos.south()), Direction.SOUTH))).with(WEST, Boolean.valueOf(this.shouldConnectTo(iblockreader.getBlockState(blockpos.west()), Direction.WEST)));

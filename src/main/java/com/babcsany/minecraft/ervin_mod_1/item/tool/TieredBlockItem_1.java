@@ -1,11 +1,11 @@
 package com.babcsany.minecraft.ervin_mod_1.item.tool;
 
 import net.minecraft.block.Block;
-import net.minecraft.item.BlockItem;
+import com.babcsany.minecraft.item.ModBlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Rarity;
 
-public class TieredBlockItem_1 extends BlockItem {
+public class TieredBlockItem_1 extends ModBlockItem {
    private final IItemTier2 tier;
    private Rarity rarity;
 

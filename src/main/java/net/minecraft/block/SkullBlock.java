@@ -1,8 +1,7 @@
 package net.minecraft.block;
 
-import net.minecraft.item.BlockItemUseContext;
+import com.babcsany.minecraft.item.ModBlockItemUseContext;
 import net.minecraft.state.IntegerProperty;
-import net.minecraft.state.Property;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.Mirror;
@@ -13,7 +12,6 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
 
 public class SkullBlock extends AbstractSkullBlock {
    public static final IntegerProperty ROTATION = BlockStateProperties.ROTATION_0_15;
@@ -34,7 +32,7 @@ public class SkullBlock extends AbstractSkullBlock {
       return VoxelShapes.empty();
    }
 
-   public BlockState getStateForPlacement(BlockItemUseContext context) {
+   public BlockState getStateForPlacement(ModBlockItemUseContext context) {
       return this.getDefaultState().with(ROTATION, Integer.valueOf(MathHelper.floor((double)(context.getPlacementYaw() * 16.0F / 360.0F) + 0.5D) & 15));
    }
 

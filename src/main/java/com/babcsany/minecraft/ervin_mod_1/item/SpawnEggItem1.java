@@ -2,7 +2,6 @@ package com.babcsany.minecraft.ervin_mod_1.item;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.DgrurbAgeableEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.DgrurbMobEntity;
-import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.reutrien.AbstractReutrien;
 import com.babcsany.minecraft.ervin_mod_1.tile_entity.ReutrienTileEntity;
 import com.babcsany.minecraft.init.BlockInit;
@@ -22,7 +21,7 @@ import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUseContext;
+import com.babcsany.minecraft.item.ModItemUseContext;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.stats.Stats;
 import net.minecraft.tileentity.MobSpawnerTileEntity;
@@ -54,7 +53,7 @@ public class SpawnEggItem1 extends Item {
    /**
     * Called when this item is used when targetting a Block
     */
-   public ActionResultType onItemUse(ItemUseContext context) {
+   public ActionResultType onItemUse(ModItemUseContext context) {
       World world = context.getWorld();
       if (world.isRemote) {
          return ActionResultType.SUCCESS;

@@ -1,7 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.block;
 
 import com.babcsany.minecraft.ervin_mod_1.init.sound.SoundInit;
-import com.babcsany.minecraft.ervin_mod_1.world.storage.loot.LootTables1;
 import com.google.common.collect.ImmutableMap;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
@@ -16,7 +15,7 @@ import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.item.BlockItemUseContext;
+import com.babcsany.minecraft.item.ModBlockItemUseContext;
 import net.minecraft.item.DyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -231,7 +230,7 @@ public abstract class AbstractModBlock extends ForgeRegistryEntry<Block> {
     }
 
     @Deprecated
-    public boolean isReplaceable(BlockState state, BlockItemUseContext useContext) {
+    public boolean isReplaceable(BlockState state, ModBlockItemUseContext useContext) {
         return state.getMaterial().isReplaceable() && (useContext.getItem().isEmpty() || useContext.getItem().getItem() != this.asItem());
     }
 
@@ -739,7 +738,7 @@ public abstract class AbstractModBlock extends ForgeRegistryEntry<Block> {
             return this.getModBlock().allowsMovement(this.getSelf(), worldIn, pos, type);
         }
 
-        public boolean isReplaceable(BlockItemUseContext useContext) {
+        public boolean isReplaceable(ModBlockItemUseContext useContext) {
             return this.getModBlock().isReplaceable(this.getSelf(), useContext);
         }
 

@@ -15,57 +15,87 @@ public class isBurnableItemInit {
 
     public static final DeferredRegister<Item> BURNABLE_ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Ervin_mod_1.MOD_ID);
 
-    public static final RegistryObject<Item> AVTER = BURNABLE_ITEMS.register("avter", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final RegistryObject<Item> AVTER1 = BURNABLE_ITEMS.register("avter1", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
+    public static final RegistryObject<Item> AVTER = register("avter", ItemGroup.ERVIN_MOD_1_ITEMS, ItemGroup.ERVIN_MOD_1_SEARCH);
+    public static final RegistryObject<Item> AVTER1 = register("avter1", ItemGroup.ERVIN_MOD_1_ITEMS, ItemGroup.ERVIN_MOD_1_SEARCH);
     public static final RegistryObject<Item> TERAT_BUCKET = BURNABLE_ITEMS.register("terat_bucket", () -> new TeratBucket((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_SEARCH)));
     public static final RegistryObject<Item> WATER_TERAT_BUCKET = BURNABLE_ITEMS.register("water_terat_bucket", () -> new TeratBucket((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_SEARCH)));
     public static final RegistryObject<Item> LAVA_TERAT_BUCKET = BURNABLE_ITEMS.register("lava_terat_bucket", () -> new TeratBucket((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final RegistryObject<Item> DURK = BURNABLE_ITEMS.register("durk", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final RegistryObject<Item> SRIUNK = BURNABLE_ITEMS.register("sriunk", () -> new Item(new Item.Properties().isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final RegistryObject<Item> SRIFROUL = BURNABLE_ITEMS.register("srifroul", () -> new Item(new Item.Properties().isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final RegistryObject<Item> VILTDROP = BURNABLE_ITEMS.register("viltdrop", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final RegistryObject<Item> SRIUNK_STICK = BURNABLE_ITEMS.register("stick/sriunk_stick", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final RegistryObject<Item> LEAT = BURNABLE_ITEMS.register("leat", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final RegistryObject<Item> NARIN = BURNABLE_ITEMS.register("narin", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
+    public static final RegistryObject<Item> DURK = register("durk", ItemGroup.ERVIN_MOD_1_ITEMS, ItemGroup.ERVIN_MOD_1_SEARCH);
+    public static final RegistryObject<Item> SRIUNK = register("sriunk", ItemGroup.ERVIN_MOD_1_ITEMS, ItemGroup.ERVIN_MOD_1_SEARCH);
+    public static final RegistryObject<Item> SRIFROUL = register("srifroul", ItemGroup.ERVIN_MOD_1_ITEMS, ItemGroup.ERVIN_MOD_1_SEARCH);
+    public static final RegistryObject<Item> VILTDROP = register("viltdrop", ItemGroup.ERVIN_MOD_1_ITEMS, ItemGroup.ERVIN_MOD_1_SEARCH);
+    public static final RegistryObject<Item> SRIUNK_STICK = register("stick/sriunk_stick", ItemGroup.ERVIN_MOD_1_ITEMS, ItemGroup.ERVIN_MOD_1_SEARCH);
+    public static final RegistryObject<Item> LEAT = register("leat", ItemGroup.ERVIN_MOD_1_ITEMS, ItemGroup.ERVIN_MOD_1_SEARCH);
+    public static final RegistryObject<Item> NARIN = register("narin", ItemGroup.ERVIN_MOD_1_ITEMS, ItemGroup.ERVIN_MOD_1_SEARCH);
     //public static final RegistryObject<ModBoatItem> FIRG_BOAT = BURNABLE_ITEMS.register("firg_boat", () -> new ModBoatItem(ModBoatEntityhj.ModBoatType.FIRG, (new Item.Properties()).isBurnable().maxStackSize(1).group(ItemGroup.ERVIN_MOD_1_ITEMS)));
-    public static final RegistryObject<Item> NIRK = BURNABLE_ITEMS.register("nirk", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final RegistryObject<Item> GRUGT = BURNABLE_ITEMS.register("grugt", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final RegistryObject<Item> TIRSK = BURNABLE_ITEMS.register("tirsk", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
-    public static final RegistryObject<Item> GRUT = BURNABLE_ITEMS.register("grut", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final RegistryObject<Item> GURF = BURNABLE_ITEMS.register("gurf", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final RegistryObject<Item> SRIUNK_GRET = BURNABLE_ITEMS.register("sriunk_gret", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final RegistryObject<Item> ZRIPT = BURNABLE_ITEMS.register("zript", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final RegistryObject<Item> ZRIBT = BURNABLE_ITEMS.register("zribt", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final RegistryObject<Item> SHZ = BURNABLE_ITEMS.register("shz", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final RegistryObject<Item> VILKT = BURNABLE_ITEMS.register("vilkt", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final RegistryObject<Item> TERAT_GRET = BURNABLE_ITEMS.register("terat_gret", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final RegistryObject<Item> TERAT_NUGGET = BURNABLE_ITEMS.register("terat_nugget", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final RegistryObject<Item> VIRKT = BURNABLE_ITEMS.register("virkt", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final RegistryObject<Item> TRUGH = BURNABLE_ITEMS.register("trugh", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final RegistryObject<Item> TRUGK = BURNABLE_ITEMS.register("trugk", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final RegistryObject<Item> TRUGT = BURNABLE_ITEMS.register("trugt", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final RegistryObject<Item> GANKT = BURNABLE_ITEMS.register("gankt", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final RegistryObject<Item> GANKTH = BURNABLE_ITEMS.register("gankth", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final RegistryObject<Item> TNAGH = BURNABLE_ITEMS.register("tnagh", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final RegistryObject<Item> TNAGK = BURNABLE_ITEMS.register("tnagk", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final RegistryObject<Item> TNAGT = BURNABLE_ITEMS.register("tnagt", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final RegistryObject<Item> ZURKT = BURNABLE_ITEMS.register("zurkt", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final RegistryObject<Item> ZURKTH = BURNABLE_ITEMS.register("zurkth", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final RegistryObject<Item> TRUZH = BURNABLE_ITEMS.register("truzh", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final RegistryObject<Item> TRUZK = BURNABLE_ITEMS.register("truzk", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final RegistryObject<Item> TRUZT = BURNABLE_ITEMS.register("truzt", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final RegistryObject<Item> RUGT = BURNABLE_ITEMS.register("rugt", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final RegistryObject<Item> RUGB = BURNABLE_ITEMS.register("rugb", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final RegistryObject<Item> RUGK = BURNABLE_ITEMS.register("rugk", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final RegistryObject<Item> RUGKT = BURNABLE_ITEMS.register("rugkt", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final RegistryObject<Item> RUGKTH = BURNABLE_ITEMS.register("rugkth", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final RegistryObject<Item> TGURH = BURNABLE_ITEMS.register("tgurh", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final RegistryObject<Item> TGURK = BURNABLE_ITEMS.register("tgurk", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final RegistryObject<Item> TGURT = BURNABLE_ITEMS.register("tgurt", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
+    public static final RegistryObject<Item> NIRK = register("nirk", ItemGroup.ERVIN_MOD_1_ITEMS, ItemGroup.ERVIN_MOD_1_SEARCH);
+    public static final RegistryObject<Item> GRUGT = register("grugt", ItemGroup.ERVIN_MOD_1_ITEMS, ItemGroup.ERVIN_MOD_1_SEARCH);
+    public static final RegistryObject<Item> TIRSK = register("tirsk", ItemGroup.ERVIN_MOD_1_ITEMS, ItemGroup.ERVIN_MOD_1_SEARCH);
+    public static final RegistryObject<Item> GRUT = register("grut", ItemGroup.ERVIN_MOD_1_ITEMS, ItemGroup.ERVIN_MOD_1_SEARCH);
+    public static final RegistryObject<Item> GURF = register("gurf", ItemGroup.ERVIN_MOD_1_ITEMS, ItemGroup.ERVIN_MOD_1_SEARCH);
+    public static final RegistryObject<Item> SRIUNK_GRET = register("sriunk_gret", ItemGroup.ERVIN_MOD_1_ITEMS, ItemGroup.ERVIN_MOD_1_SEARCH);
+    public static final RegistryObject<Item> ZRIPT = register("zript", ItemGroup.ERVIN_MOD_1_ITEMS, ItemGroup.ERVIN_MOD_1_SEARCH);
+    public static final RegistryObject<Item> ZRIBT = register("zribt", ItemGroup.ERVIN_MOD_1_ITEMS, ItemGroup.ERVIN_MOD_1_SEARCH);
+    public static final RegistryObject<Item> SHZ = register("shz", ItemGroup.ERVIN_MOD_1_ITEMS, ItemGroup.ERVIN_MOD_1_SEARCH);
+    public static final RegistryObject<Item> VILKT = register("vilkt", ItemGroup.ERVIN_MOD_1_ITEMS, ItemGroup.ERVIN_MOD_1_SEARCH);
+    public static final RegistryObject<Item> TERAT_GRET = register("terat_gret", ItemGroup.ERVIN_MOD_1_ITEMS, ItemGroup.ERVIN_MOD_1_SEARCH);
+    public static final RegistryObject<Item> TERAT_NUGGET = register("terat_nugget", ItemGroup.ERVIN_MOD_1_ITEMS, ItemGroup.ERVIN_MOD_1_SEARCH);
+    public static final RegistryObject<Item> VIRKT = register("virkt", ItemGroup.ERVIN_MOD_1_ITEMS, ItemGroup.ERVIN_MOD_1_SEARCH);
+    public static final RegistryObject<Item> TRUGH = register("trugh", ItemGroup.ERVIN_MOD_1_ITEMS, ItemGroup.ERVIN_MOD_1_SEARCH);
+    public static final RegistryObject<Item> TRUGK = register("trugk", ItemGroup.ERVIN_MOD_1_ITEMS, ItemGroup.ERVIN_MOD_1_SEARCH);
+    public static final RegistryObject<Item> TRUGT = register("trugt", ItemGroup.ERVIN_MOD_1_ITEMS, ItemGroup.ERVIN_MOD_1_SEARCH);
+    public static final RegistryObject<Item> GANKT = register("gankt", ItemGroup.ERVIN_MOD_1_ITEMS, ItemGroup.ERVIN_MOD_1_SEARCH);
+    public static final RegistryObject<Item> GANKTH = register("gankth", ItemGroup.ERVIN_MOD_1_ITEMS, ItemGroup.ERVIN_MOD_1_SEARCH);
+    public static final RegistryObject<Item> TNAGH = register("tnagh", ItemGroup.ERVIN_MOD_1_ITEMS, ItemGroup.ERVIN_MOD_1_SEARCH);
+    public static final RegistryObject<Item> TNAGK = register("tnagk", ItemGroup.ERVIN_MOD_1_ITEMS, ItemGroup.ERVIN_MOD_1_SEARCH);
+    public static final RegistryObject<Item> TNAGT = register("tnagt", ItemGroup.ERVIN_MOD_1_ITEMS, ItemGroup.ERVIN_MOD_1_SEARCH);
+    public static final RegistryObject<Item> ZURKT = register("zurkt", ItemGroup.ERVIN_MOD_1_ITEMS, ItemGroup.ERVIN_MOD_1_SEARCH);
+    public static final RegistryObject<Item> ZURKTH = register("zurkth", ItemGroup.ERVIN_MOD_1_ITEMS, ItemGroup.ERVIN_MOD_1_SEARCH);
+    public static final RegistryObject<Item> TRUZH = register("truzh", ItemGroup.ERVIN_MOD_1_ITEMS, ItemGroup.ERVIN_MOD_1_SEARCH);
+    public static final RegistryObject<Item> TRUZK = register("truzk", ItemGroup.ERVIN_MOD_1_ITEMS, ItemGroup.ERVIN_MOD_1_SEARCH);
+    public static final RegistryObject<Item> TRUZT = register("truzt", ItemGroup.ERVIN_MOD_1_ITEMS, ItemGroup.ERVIN_MOD_1_SEARCH);
+    public static final RegistryObject<Item> RUGT = register("rugt", ItemGroup.ERVIN_MOD_1_ITEMS, ItemGroup.ERVIN_MOD_1_SEARCH);
+    public static final RegistryObject<Item> RUGB = register("rugb", ItemGroup.ERVIN_MOD_1_ITEMS, ItemGroup.ERVIN_MOD_1_SEARCH);
+    public static final RegistryObject<Item> RUGK = register("rugk", ItemGroup.ERVIN_MOD_1_ITEMS, ItemGroup.ERVIN_MOD_1_SEARCH);
+    public static final RegistryObject<Item> RUGKT =  register("rugkt", ItemGroup.ERVIN_MOD_1_ITEMS, ItemGroup.ERVIN_MOD_1_SEARCH);
+    public static final RegistryObject<Item> RUGKTH = register("rugkth", ItemGroup.ERVIN_MOD_1_ITEMS, ItemGroup.ERVIN_MOD_1_SEARCH);
+    public static final RegistryObject<Item> TGURH = register("tgurh", ItemGroup.ERVIN_MOD_1_ITEMS, ItemGroup.ERVIN_MOD_1_SEARCH);
+    public static final RegistryObject<Item> TGURK = register("tgurk", ItemGroup.ERVIN_MOD_1_ITEMS, ItemGroup.ERVIN_MOD_1_SEARCH);
+    public static final RegistryObject<Item> TGURT = register("tgurt", ItemGroup.ERVIN_MOD_1_ITEMS, ItemGroup.ERVIN_MOD_1_SEARCH);
     public static final RegistryObject<Item> HUIHK_ROD = BURNABLE_ITEMS.register("huihk_rod", () -> new HuihkRodItem((new Item.Properties()).isBurnable().maxDamage(3842).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final RegistryObject<Item> THUIRTH_DUST = BURNABLE_ITEMS.register("thuirth_dust", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
-    public static final RegistryObject<Item> TRITHK = BURNABLE_ITEMS.register("trithk", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
+    public static final RegistryObject<Item> THUIRTH_DUST = register("thuirth_dust", ItemGroup.ERVIN_MOD_1_ITEMS);
+    public static final RegistryObject<Item> TRITHK = register("trithk", ItemGroup.ERVIN_MOD_1_ITEMS);
 
     public static BurningItemInit BURNING_ITEMS = BurningItemInit.BURNING_ITEMS;
     public static isBurnableBlockItemInit_ BURNING_BLOCK_ITEMS = isBurnableBlockItemInit_.BURNING_BLOCK_ITEMS;
+
+    private static RegistryObject<Item> register(String name) {
+        return BURNABLE_ITEMS.register(name, () -> new Item((new Item.Properties().isBurnable())));
+    }
+
+    private static RegistryObject<Item> register(String name, net.minecraft.item.ItemGroup groupIn) {
+        return BURNABLE_ITEMS.register(name, () -> new Item((new Item.Properties().isBurnable().group(groupIn))));
+    }
+
+    private static RegistryObject<Item> register(String name, net.minecraft.item.ItemGroup groupIn, net.minecraft.item.ItemGroup group1In) {
+        return BURNABLE_ITEMS.register(name, () -> new Item((new Item.Properties().isBurnable().group(groupIn).group(group1In))));
+    }
+
+    private static RegistryObject<Item> registerBurningItem(String name, int burnTimeIn) {
+        return BURNABLE_ITEMS.register(name, () -> new Item(new Item.Properties().isBurnable()) {
+            @Override
+            public int getBurnTime(ItemStack stack) {
+                return burnTimeIn;
+            }
+        });
+    }
+
+    private static RegistryObject<Item> registerBurningItem(String name, net.minecraft.item.ItemGroup groupIn, int burnTimeIn) {
+        return BURNABLE_ITEMS.register(name, () -> new Item(new Item.Properties().isBurnable().group(groupIn)) {
+            @Override
+            public int getBurnTime(ItemStack stack) {
+                return burnTimeIn;
+            }
+        });
+    }
 }

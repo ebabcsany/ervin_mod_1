@@ -2,7 +2,7 @@ package com.babcsany.minecraft.ervin_mod_1.block.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.item.BlockItemUseContext;
+import com.babcsany.minecraft.item.ModBlockItemUseContext;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.IntegerProperty;
@@ -125,7 +125,7 @@ public class Leaves extends Block implements net.minecraftforge.common.IForgeShe
       builder.add(DISTANCE, PERSISTENT);
    }
 
-   public BlockState getStateForPlacement(BlockItemUseContext context) {
+   public BlockState getStateForPlacement(ModBlockItemUseContext context) {
       return updateDistance(this.getDefaultState().with(PERSISTENT, Boolean.valueOf(true)), context.getWorld(), context.getPos());
    }
 }

@@ -1,5 +1,6 @@
 package net.minecraft.world.server;
 
+import com.babcsany.minecraft.world.server.ModServerWorld;
 import com.google.common.collect.*;
 import com.mojang.datafixers.DataFixer;
 import com.mojang.datafixers.util.Either;
@@ -69,6 +70,7 @@ import java.util.stream.Stream;
 
 public class ModChunkManager extends ChunkLoader implements ChunkHolder.IPlayerProvider {
    private static final Logger LOGGER = LogManager.getLogger();
+   public Entity entity;
    public static final int MAX_LOADED_LEVEL = 33 + ChunkStatus.maxDistance();
    /** Chunks in memory. This should only ever be manipulated by the main thread. */
    private final Long2ObjectLinkedOpenHashMap<ChunkHolder> loadedChunks = new Long2ObjectLinkedOpenHashMap<>();
@@ -77,7 +79,8 @@ public class ModChunkManager extends ChunkLoader implements ChunkHolder.IPlayerP
    private final Long2ObjectLinkedOpenHashMap<ChunkHolder> chunksToUnload = new Long2ObjectLinkedOpenHashMap<>();
    /** Chunk positions in this set have fully loaded and their TE's and entities are accessible from the world */
    private final LongSet loadedPositions = new LongOpenHashSet();
-   private final ServerWorld world;
+   private final ModServerWorld world;
+   private EntityTracker entityTracker;
    private ChunkManager chunkManager;
    private final ServerWorldLightManager lightManager;
    private final ThreadTaskExecutor<Runnable> mainThread;
@@ -95,20 +98,24 @@ public class ModChunkManager extends ChunkLoader implements ChunkHolder.IPlayerP
    private final ITaskExecutor<ChunkTaskPriorityQueueSorter.FunctionEntry<Runnable>> field_219264_r;
    private final ITaskExecutor<ChunkTaskPriorityQueueSorter.FunctionEntry<Runnable>> field_219265_s;
    private final IChunkStatusListener field_219266_t;
-   private final ModChunkManager.ProxyTicketManager ticketManager;
+   public ChunkManager.ProxyTicketManager ticketManager;
    private final AtomicInteger field_219268_v = new AtomicInteger();
    private final TemplateManager templateManager;
    private final File dimensionDirectory;
    private final PlayerGenerationTracker playerGenerationTracker = new PlayerGenerationTracker();
-   private final Int2ObjectMap<ModChunkManager.EntityTracker> entities = new Int2ObjectOpenHashMap<>();
+   private final Int2ObjectMap<ChunkManager.EntityTracker> entities = new Int2ObjectOpenHashMap<>();
    private final Long2ByteMap field_241087_z_ = new Long2ByteOpenHashMap();
    private final Queue<Runnable> saveTasks = Queues.newConcurrentLinkedQueue();
    private int viewDistance;
 
-   public ModChunkManager(ServerWorld p_i232602_1_, SaveFormat.LevelSave p_i232602_2_, DataFixer p_i232602_3_, TemplateManager p_i232602_4_, Executor p_i232602_5_, ThreadTaskExecutor<Runnable> p_i232602_6_, IChunkLightProvider p_i232602_7_, ChunkGenerator p_i232602_8_, IChunkStatusListener p_i232602_9_, Supplier<DimensionSavedDataManager> p_i232602_10_, int p_i232602_11_, boolean p_i232602_12_) {
-      super(new File(p_i232602_2_.func_237291_a_(p_i232602_1_.func_234923_W_()), "region"), p_i232602_3_, p_i232602_12_);
+   public ChunkManager.ProxyTicketManager get_TicketManager() {
+      return this.ticketManager;
+   }
+
+   public ModChunkManager(ModServerWorld p_i232602_1_, SaveFormat.LevelSave p_i232602_2_, DataFixer p_i232602_3_, TemplateManager p_i232602_4_, Executor p_i232602_5_, ThreadTaskExecutor<Runnable> p_i232602_6_, IChunkLightProvider p_i232602_7_, ChunkGenerator p_i232602_8_, IChunkStatusListener p_i232602_9_, Supplier<DimensionSavedDataManager> p_i232602_10_, int p_i232602_11_, boolean p_i232602_12_) {
+      super(new File(p_i232602_2_.func_237291_a_(p_i232602_1_.world.func_234923_W_()), "region"), p_i232602_3_, p_i232602_12_);
       this.templateManager = p_i232602_4_;
-      this.dimensionDirectory = p_i232602_2_.func_237291_a_(p_i232602_1_.func_234923_W_());
+      this.dimensionDirectory = p_i232602_2_.func_237291_a_(p_i232602_1_.world.func_234923_W_());
       this.world = p_i232602_1_;
       this.generator = p_i232602_8_;
       this.mainThread = p_i232602_6_;
@@ -120,7 +127,6 @@ public class ModChunkManager extends ChunkLoader implements ChunkHolder.IPlayerP
       this.field_219264_r = this.field_219263_q.func_219087_a(delegatedtaskexecutor, false);
       this.field_219265_s = this.field_219263_q.func_219087_a(itaskexecutor, false);
       this.lightManager = new ServerWorldLightManager(p_i232602_7_, chunkManager, this.world.func_230315_m_().hasSkyLight(), delegatedtaskexecutor1, this.field_219263_q.func_219087_a(delegatedtaskexecutor1, false));
-      this.ticketManager = new ModChunkManager.ProxyTicketManager(p_i232602_5_, p_i232602_6_);
       this.field_219259_m = p_i232602_10_;
       this.pointOfInterestManager = new PointOfInterestManager(new File(this.dimensionDirectory, "poi"), p_i232602_3_, p_i232602_12_);
       this.setViewDistance(p_i232602_11_);
@@ -158,7 +164,7 @@ public class ModChunkManager extends ChunkLoader implements ChunkHolder.IPlayerP
       return Math.max(Math.abs(i), Math.abs(j));
    }
 
-   protected ServerWorldLightManager getLightManager() {
+   public ServerWorldLightManager getLightManager() {
       return this.lightManager;
    }
 
@@ -168,7 +174,7 @@ public class ModChunkManager extends ChunkLoader implements ChunkHolder.IPlayerP
    }
 
    @Nullable
-   protected ChunkHolder func_219219_b(long chunkPosIn) {
+   public ChunkHolder func_219219_b(long chunkPosIn) {
       return this.immutableLoadedChunks.get(chunkPosIn);
    }
 
@@ -304,7 +310,7 @@ public class ModChunkManager extends ChunkLoader implements ChunkHolder.IPlayerP
 
    }
 
-   protected void save(boolean flush) {
+   public void save(boolean flush) {
       if (flush) {
          List<ChunkHolder> list = this.immutableLoadedChunks.values().stream().filter(ChunkHolder::isAccessible).peek(ChunkHolder::updateAccessible).collect(Collectors.toList());
          MutableBoolean mutableboolean = new MutableBoolean();
@@ -338,7 +344,7 @@ public class ModChunkManager extends ChunkLoader implements ChunkHolder.IPlayerP
 
    }
 
-   protected void tick(BooleanSupplier hasMoreTime) {
+   public void tick(BooleanSupplier hasMoreTime) {
       IProfiler iprofiler = this.world.getProfiler();
       iprofiler.startSection("poi");
       this.pointOfInterestManager.tick(hasMoreTime);
@@ -404,7 +410,7 @@ public class ModChunkManager extends ChunkLoader implements ChunkHolder.IPlayerP
       });
    }
 
-   protected boolean refreshOffThreadCache() {
+   public boolean refreshOffThreadCache() {
       if (!this.immutableLoadedChunksDirty) {
          return false;
       } else {
@@ -435,7 +441,7 @@ public class ModChunkManager extends ChunkLoader implements ChunkHolder.IPlayerP
                   if (chunkStatus == ChunkStatus.LIGHT) {
                      completablefuture1 = this.chunkGenerate(chunkHolder, chunkStatus);
                   } else {
-                     completablefuture1 = chunkStatus.doLoadingWork(this.world, this.templateManager, this.lightManager, (p_223175_2_) -> this.func_219200_b(chunkHolder), ichunk);
+                     completablefuture1 = chunkStatus.doLoadingWork(this.world.getWorldServer(), this.templateManager, this.lightManager, (p_223175_2_) -> this.func_219200_b(chunkHolder), ichunk);
                   }
 
                   this.field_219266_t.statusChanged(chunkpos, chunkStatus);
@@ -456,7 +462,7 @@ public class ModChunkManager extends ChunkLoader implements ChunkHolder.IPlayerP
             if (compoundnbt != null) {
                boolean flag = compoundnbt.contains("Level", 10) && compoundnbt.getCompound("Level").contains("Status", 8);
                if (flag) {
-                  IChunk ichunk = ChunkSerializer.read(this.world, this.templateManager, this.pointOfInterestManager, chunkPos, compoundnbt);
+                  IChunk ichunk = ChunkSerializer.read(this.world.getWorldServer(), this.templateManager, this.pointOfInterestManager, chunkPos, compoundnbt);
                   ichunk.setLastSaveTime(this.world.getGameTime());
                   this.func_241088_a_(chunkPos, ichunk.getStatus().getType());
                   return Either.left(ichunk);
@@ -495,7 +501,7 @@ public class ModChunkManager extends ChunkLoader implements ChunkHolder.IPlayerP
       this.world.getProfiler().func_230036_c_(() -> "chunkGenerate " + chunkStatus.getName());
       return completablefuture.thenComposeAsync((p_219235_4_) -> p_219235_4_.map((p_223148_4_) -> {
          try {
-            CompletableFuture<Either<IChunk, ChunkHolder.IChunkLoadingError>> completablefuture1 = chunkStatus.doGenerationWork(this.world, this.generator, this.templateManager, this.lightManager, (p_222954_2_) -> this.func_219200_b(chunkHolder), p_223148_4_);
+            CompletableFuture<Either<IChunk, ChunkHolder.IChunkLoadingError>> completablefuture1 = chunkStatus.doGenerationWork(this.world.getWorldServer(), this.generator, this.templateManager, this.lightManager, (p_222954_2_) -> this.func_219200_b(chunkHolder), p_223148_4_);
             this.field_219266_t.statusChanged(chunkpos, chunkStatus);
             return completablefuture1;
          } catch (Exception exception) {
@@ -537,7 +543,7 @@ public class ModChunkManager extends ChunkLoader implements ChunkHolder.IPlayerP
             if (p_219237_2_ instanceof ChunkPrimerWrapper) {
                chunk = ((ChunkPrimerWrapper)p_219237_2_).func_217336_u();
             } else {
-               chunk = new Chunk(this.world, (ChunkPrimer)p_219237_2_);
+               chunk = new Chunk(this.world.getWorld(), (ChunkPrimer)p_219237_2_);
                p_219200_1_.func_219294_a(new ChunkPrimerWrapper(chunk));
             }
 
@@ -624,7 +630,7 @@ public class ModChunkManager extends ChunkLoader implements ChunkHolder.IPlayerP
             }
 
             this.world.getProfiler().func_230035_c_("chunkSave");
-            CompoundNBT compoundnbt = ChunkSerializer.write(this.world, chunkIn);
+            CompoundNBT compoundnbt = ChunkSerializer.write(this.world.getWorldServer(), chunkIn);
             net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(new net.minecraftforge.event.world.ChunkDataEvent.Save(chunkIn, chunkIn.getWorldForge() != null ? chunkIn.getWorldForge() : this.world, compoundnbt));
             this.writeChunk(chunkpos, compoundnbt);
             this.func_241088_a_(chunkpos, chunkstatus.getType());
@@ -659,7 +665,7 @@ public class ModChunkManager extends ChunkLoader implements ChunkHolder.IPlayerP
       }
    }
 
-   protected void setViewDistance(int viewDistance) {
+   public void setViewDistance(int viewDistance) {
       int i = MathHelper.clamp(viewDistance + 1, 3, 33);
       if (i != this.viewDistance) {
          int j = this.viewDistance;
@@ -684,8 +690,8 @@ public class ModChunkManager extends ChunkLoader implements ChunkHolder.IPlayerP
     * Sends the chunk to the client, or tells it to unload it.
     */
    protected void setChunkLoadedAtClient(ServerPlayerEntity player, ChunkPos chunkPosIn, IPacket<?>[] packetCache, boolean wasLoaded, boolean load) {
-      if (player.world == this.world) {
-         net.minecraftforge.event.ForgeEventFactory.fireChunkWatch(wasLoaded, load, player, chunkPosIn, this.world);
+      if (player.world_ == this.world) {
+         net.minecraftforge.event.ForgeEventFactory.fireChunkWatch(wasLoaded, load, player, chunkPosIn, this.world.getWorldServer());
          if (load && !wasLoaded) {
             ChunkHolder chunkholder = this.func_219219_b(chunkPosIn.asLong());
             if (chunkholder != null) {
@@ -694,7 +700,7 @@ public class ModChunkManager extends ChunkLoader implements ChunkHolder.IPlayerP
                   this.sendChunkData(player, packetCache, chunk);
                }
 
-               DebugPacketSender.sendChuckPos(this.world, chunkPosIn);
+               DebugPacketSender.sendChuckPos(this.world.getWorldServer(), chunkPosIn);
             }
          }
 
@@ -709,7 +715,7 @@ public class ModChunkManager extends ChunkLoader implements ChunkHolder.IPlayerP
       return this.immutableLoadedChunks.size();
    }
 
-   public ModChunkManager.ProxyTicketManager getTicketManager() {
+   public ChunkManager.ProxyTicketManager getTicketManager() {
       return this.ticketManager;
    }
 
@@ -751,14 +757,12 @@ public class ModChunkManager extends ChunkLoader implements ChunkHolder.IPlayerP
    @Nullable
    private CompoundNBT loadChunkData(ChunkPos pos) throws IOException {
       CompoundNBT compoundnbt = this.readChunk(pos);
-      return compoundnbt == null ? null : this.func_235968_a_(this.world.func_234923_W_(), this.field_219259_m, compoundnbt);
+      return compoundnbt == null ? null : this.func_235968_a_(this.world.world.func_234923_W_(), this.field_219259_m, compoundnbt);
    }
 
    boolean isOutsideSpawningRadius(ChunkPos chunkPosIn) {
       long i = chunkPosIn.asLong();
-      return !this.ticketManager.isOutsideSpawningRadius(i) ? true : this.playerGenerationTracker.getGeneratingPlayers(i).noneMatch((p_219201_1_) -> {
-         return !p_219201_1_.isSpectator() && getDistanceSquaredToChunk(chunkPosIn, p_219201_1_) < 16384.0D;
-      });
+      return !this.ticketManager.isOutsideSpawningRadius(i) || this.playerGenerationTracker.getGeneratingPlayers(i).noneMatch((p_219201_1_) -> !p_219201_1_.isSpectator() && getDistanceSquaredToChunk(chunkPosIn, p_219201_1_) < 16384.0D);
    }
 
    private boolean cannotGenerateChunks(ServerPlayerEntity player) {
@@ -801,8 +805,8 @@ public class ModChunkManager extends ChunkLoader implements ChunkHolder.IPlayerP
    }
 
    public void updatePlayerPosition(ServerPlayerEntity player) {
-      for(ModChunkManager.EntityTracker chunkmanager$entitytracker : this.entities.values()) {
-         if (chunkmanager$entitytracker.entity == player) {
+      for(ChunkManager.EntityTracker chunkmanager$entitytracker : this.entities.values()) {
+         if (this.entity == player) {
             chunkmanager$entitytracker.updateTrackingState(this.world.getPlayers());
          } else {
             chunkmanager$entitytracker.updateTrackingState(player);
@@ -893,43 +897,21 @@ public class ModChunkManager extends ChunkLoader implements ChunkHolder.IPlayerP
       });
    }
 
-   protected void track(Entity entityIn) {
-      if (!(entityIn instanceof EnderDragonPartEntity)) {
-         EntityType<?> entitytype = entityIn.getType();
-         int i = entitytype.func_233602_m_() * 16;
-         int j = entitytype.getUpdateFrequency();
-         if (this.entities.containsKey(entityIn.getEntityId())) {
-            throw (IllegalStateException)Util.pauseDevMode(new IllegalStateException("Entity is already tracked!"));
-         } else {
-            ModChunkManager.EntityTracker chunkmanager$entitytracker = new ModChunkManager.EntityTracker(entityIn, i, j, entitytype.shouldSendVelocityUpdates());
-            this.entities.put(entityIn.getEntityId(), chunkmanager$entitytracker);
-            chunkmanager$entitytracker.updateTrackingState(this.world.getPlayers());
-            if (entityIn instanceof ServerPlayerEntity) {
-               ServerPlayerEntity serverplayerentity = (ServerPlayerEntity)entityIn;
-               this.setPlayerTracking(serverplayerentity, true);
-
-               for(ModChunkManager.EntityTracker chunkmanager$entitytracker1 : this.entities.values()) {
-                  if (chunkmanager$entitytracker1.entity != serverplayerentity) {
-                     chunkmanager$entitytracker1.updateTrackingState(serverplayerentity);
-                  }
-               }
-            }
-
-         }
-      }
+   public void track(Entity entityIn) {
+      chunkManager.track(entityIn);
    }
 
-   protected void untrack(Entity entity) {
+   public void untrack(Entity entity) {
       if (entity instanceof ServerPlayerEntity) {
          ServerPlayerEntity serverplayerentity = (ServerPlayerEntity)entity;
          this.setPlayerTracking(serverplayerentity, false);
 
-         for(ModChunkManager.EntityTracker chunkmanager$entitytracker : this.entities.values()) {
+         for(ChunkManager.EntityTracker chunkmanager$entitytracker : this.entities.values()) {
             chunkmanager$entitytracker.removeTracker(serverplayerentity);
          }
       }
 
-      ModChunkManager.EntityTracker chunkmanager$entitytracker1 = this.entities.remove(entity.getEntityId());
+      ChunkManager.EntityTracker chunkmanager$entitytracker1 = this.entities.remove(entity.getEntityId());
       if (chunkmanager$entitytracker1 != null) {
          chunkmanager$entitytracker1.removeAllTrackers();
       }
@@ -940,40 +922,40 @@ public class ModChunkManager extends ChunkLoader implements ChunkHolder.IPlayerP
       List<ServerPlayerEntity> list = Lists.newArrayList();
       List<ServerPlayerEntity> list1 = this.world.getPlayers();
 
-      for(ModChunkManager.EntityTracker chunkmanager$entitytracker : this.entities.values()) {
-         SectionPos sectionpos = chunkmanager$entitytracker.pos;
-         SectionPos sectionpos1 = SectionPos.from(chunkmanager$entitytracker.entity);
+      for(ChunkManager.EntityTracker chunkmanager$entitytracker : this.entities.values()) {
+         SectionPos sectionpos = entityTracker.pos;
+         SectionPos sectionpos1 = SectionPos.from(entityTracker.entity);
          if (!Objects.equals(sectionpos, sectionpos1)) {
             chunkmanager$entitytracker.updateTrackingState(list1);
-            Entity entity = chunkmanager$entitytracker.entity;
+            Entity entity = entityTracker.entity;
             if (entity instanceof ServerPlayerEntity) {
                list.add((ServerPlayerEntity)entity);
             }
 
-            chunkmanager$entitytracker.pos = sectionpos1;
+            entityTracker.pos = sectionpos1;
          }
 
-         chunkmanager$entitytracker.entry.tick();
+         entityTracker.entry.tick();
       }
 
       if (!list.isEmpty()) {
-         for(ModChunkManager.EntityTracker chunkmanager$entitytracker1 : this.entities.values()) {
+         for(ChunkManager.EntityTracker chunkmanager$entitytracker1 : this.entities.values()) {
             chunkmanager$entitytracker1.updateTrackingState(list);
          }
       }
 
    }
 
-   protected void sendToAllTracking(Entity entity, IPacket<?> p_219222_2_) {
-      ModChunkManager.EntityTracker chunkmanager$entitytracker = this.entities.get(entity.getEntityId());
+   public void sendToAllTracking(Entity entity, IPacket<?> p_219222_2_) {
+      ChunkManager.EntityTracker chunkmanager$entitytracker = this.entities.get(entity.getEntityId());
       if (chunkmanager$entitytracker != null) {
          chunkmanager$entitytracker.sendToAllTracking(p_219222_2_);
       }
 
    }
 
-   protected void sendToTrackingAndSelf(Entity entity, IPacket<?> p_219225_2_) {
-      ModChunkManager.EntityTracker chunkmanager$entitytracker = this.entities.get(entity.getEntityId());
+   public void sendToTrackingAndSelf(Entity entity, IPacket<?> p_219225_2_) {
+      ChunkManager.EntityTracker chunkmanager$entitytracker = this.entities.get(entity.getEntityId());
       if (chunkmanager$entitytracker != null) {
          chunkmanager$entitytracker.sendToTrackingAndSelf(p_219225_2_);
       }
@@ -987,12 +969,12 @@ public class ModChunkManager extends ChunkLoader implements ChunkHolder.IPlayerP
       }
 
       player.sendChunkLoad(chunkIn.getPos(), packetCache[0], packetCache[1]);
-      DebugPacketSender.sendChuckPos(this.world, chunkIn.getPos());
+      DebugPacketSender.sendChuckPos(this.world.getWorldServer(), chunkIn.getPos());
       List<Entity> list = Lists.newArrayList();
       List<Entity> list1 = Lists.newArrayList();
 
-      for(ModChunkManager.EntityTracker chunkmanager$entitytracker : this.entities.values()) {
-         Entity entity = chunkmanager$entitytracker.entity;
+      for(ChunkManager.EntityTracker chunkmanager$entitytracker : this.entities.values()) {
+         Entity entity = this.entity;
          if (entity != player && entity.chunkCoordX == chunkIn.getPos().x && entity.chunkCoordZ == chunkIn.getPos().z) {
             chunkmanager$entitytracker.updateTrackingState(player);
             if (entity instanceof MobEntity && ((MobEntity)entity).getLeashHolder() != null) {
@@ -1019,14 +1001,12 @@ public class ModChunkManager extends ChunkLoader implements ChunkHolder.IPlayerP
 
    }
 
-   protected PointOfInterestManager getPointOfInterestManager() {
+   public PointOfInterestManager getPointOfInterestManager() {
       return this.pointOfInterestManager;
    }
 
    public CompletableFuture<Void> func_222973_a(Chunk chunk) {
-      return this.mainThread.runAsync(() -> {
-         chunk.saveScheduledTicks(this.world);
-      });
+      return this.mainThread.runAsync(() -> chunk.saveScheduledTicks(this.world.getWorldServer()));
    }
 
    class EntityTracker {
@@ -1037,7 +1017,7 @@ public class ModChunkManager extends ChunkLoader implements ChunkHolder.IPlayerP
       private final Set<ServerPlayerEntity> trackingPlayers = Sets.newHashSet();
 
       public EntityTracker(Entity entity, int p_i50468_3_, int updateFrequency, boolean sendVelocityUpdates) {
-         this.entry = new TrackedEntity(ModChunkManager.this.world, entity, updateFrequency, sendVelocityUpdates, this::sendToAllTracking);
+         this.entry = new TrackedEntity(ModChunkManager.this.world.getWorldServer(), entity, updateFrequency, sendVelocityUpdates, this::sendToAllTracking);
          this.entity = entity;
          this.range = p_i50468_3_;
          this.pos = SectionPos.from(entity);

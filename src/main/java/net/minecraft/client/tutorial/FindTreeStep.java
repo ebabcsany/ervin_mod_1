@@ -2,6 +2,7 @@ package net.minecraft.client.tutorial;
 
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
+import com.babcsany.minecraft.init.BlockInit;
 import com.google.common.collect.Sets;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -23,7 +24,7 @@ import java.util.Set;
 
 @OnlyIn(Dist.CLIENT)
 public class FindTreeStep implements ITutorialStep {
-   private static final Set<Block> TREE_BLOCKS = Sets.newHashSet(Blocks.OAK_LOG, Blocks.SPRUCE_LOG, Blocks.BIRCH_LOG, Blocks.JUNGLE_LOG, Blocks.ACACIA_LOG, Blocks.DARK_OAK_LOG, Blocks.WARPED_STEM, Blocks.CRIMSON_STEM, BlockItemInit.FIRG_LOG.get(), BlockItemInit.FRIM_LOG.get(), Blocks.OAK_WOOD, Blocks.SPRUCE_WOOD, Blocks.BIRCH_WOOD, Blocks.JUNGLE_WOOD, Blocks.ACACIA_WOOD, Blocks.DARK_OAK_WOOD, Blocks.WARPED_HYPHAE, Blocks.CRIMSON_HYPHAE, BlockItemInit.FIRG_WOOD.get(), BlockItemInit.FRIM_WOOD.get(), Blocks.OAK_LEAVES, Blocks.SPRUCE_LEAVES, Blocks.BIRCH_LEAVES, Blocks.JUNGLE_LEAVES, Blocks.ACACIA_LEAVES, Blocks.DARK_OAK_LEAVES, Blocks.NETHER_WART_BLOCK, Blocks.WARPED_WART_BLOCK, isBurnableBlockItemInit.FIRG_LEAVES.get(), BlockItemInit.FRIM_LEAVES.get());
+   private static final Set<Block> TREE_BLOCKS = Sets.newHashSet(Blocks.OAK_LOG, Blocks.SPRUCE_LOG, Blocks.BIRCH_LOG, Blocks.JUNGLE_LOG, Blocks.ACACIA_LOG, Blocks.DARK_OAK_LOG, Blocks.WARPED_STEM, Blocks.CRIMSON_STEM, BlockInit.FIRG_LOG, BlockInit.FRIM_LOG, Blocks.OAK_WOOD, Blocks.SPRUCE_WOOD, Blocks.BIRCH_WOOD, Blocks.JUNGLE_WOOD, Blocks.ACACIA_WOOD, Blocks.DARK_OAK_WOOD, Blocks.WARPED_HYPHAE, Blocks.CRIMSON_HYPHAE, BlockInit.FIRG_WOOD, BlockInit.FRIM_WOOD, Blocks.OAK_LEAVES, Blocks.SPRUCE_LEAVES, Blocks.BIRCH_LEAVES, Blocks.JUNGLE_LEAVES, Blocks.ACACIA_LEAVES, Blocks.DARK_OAK_LEAVES, Blocks.NETHER_WART_BLOCK, Blocks.WARPED_WART_BLOCK, isBurnableBlockItemInit.FIRG_LEAVES.get(), BlockItemInit.FRIM_LEAVES.get());
    private static final ITextComponent TITLE = new TranslationTextComponent("tutorial.find_tree.title");
    private static final ITextComponent DESCRIPTION = new TranslationTextComponent("tutorial.find_tree.description");
    private final Tutorial tutorial;

@@ -38,7 +38,7 @@ import java.util.OptionalLong;
 import static com.babcsany.minecraft.ervin_mod_1.init.DimensionTypeInit.EXAMPLE_TYPE;
 
 public class dimensionType {
-    public static final MapCodec<dimensionType> DIMENSION_TYPE_CODEC = RecordCodecBuilder.mapCodec((dimensionTypeInstance) -> dimensionTypeInstance.group(Codec.LONG.optionalFieldOf("fixed_time").xmap((longOptional) -> longOptional.map(OptionalLong::of).orElseGet(OptionalLong::empty), (optionalLong) -> optionalLong.isPresent() ? Optional.of(optionalLong.getAsLong()) : Optional.empty()).forGetter((dimensionType) -> dimensionType.fixedTime), Codec.BOOL.fieldOf("has_skylight").forGetter(dimensionType::hasSkyLight), Codec.BOOL.fieldOf("has_ceiling").forGetter(dimensionType::hasCeiling), Codec.BOOL.fieldOf("ultraWarm").forGetter(dimensionType::UltraWarm), Codec.BOOL.fieldOf("natural").forGetter(dimensionType::Natural), Codec.BOOL.fieldOf("shrunk").forGetter(dimensionType::Shrunk), Codec.BOOL.fieldOf("piglin_safe").forGetter(dimensionType::piglinSafe), Codec.BOOL.fieldOf("bed_works").forGetter(dimensionType::bedWorks), Codec.BOOL.fieldOf("respawn_anchor_works").forGetter(dimensionType::respawnAnchorWorks), Codec.BOOL.fieldOf("has_raids").forGetter(dimensionType::hasRaids), RangeCodec.func_232989_a_(0, 1024).fieldOf("logical_height").forGetter(dimensionType::logicalHeight), ResourceLocation.RESOURCE_LOCATION_CODEC.fieldOf("infiniburn").forGetter((dimensionType) -> dimensionType.resourceLocation), Codec.FLOAT.fieldOf("ambient_light").forGetter((dimensionType) -> dimensionType.field_236017_x_)).apply(dimensionTypeInstance, dimensionType::new));
+    public static final MapCodec<dimensionType> DIMENSION_TYPE_CODEC = RecordCodecBuilder.mapCodec((dimensionTypeInstance) -> dimensionTypeInstance.group(Codec.LONG.optionalFieldOf("fixed_time").xmap((longOptional) -> longOptional.map(OptionalLong::of).orElseGet(OptionalLong::empty), (optionalLong) -> optionalLong.isPresent() ? Optional.of(optionalLong.getAsLong()) : Optional.empty()).forGetter((dimensionType) -> dimensionType.fixedTime), Codec.BOOL.fieldOf("has_skylight").forGetter(dimensionType::hasSkyLight), Codec.BOOL.fieldOf("has_ceiling").forGetter(dimensionType::hasCeiling), Codec.BOOL.fieldOf("ultraWarm").forGetter(dimensionType::ultraWarm), Codec.BOOL.fieldOf("natural").forGetter(dimensionType::natural), Codec.BOOL.fieldOf("shrunk").forGetter(dimensionType::shrunk), Codec.BOOL.fieldOf("piglin_safe").forGetter(dimensionType::piglinSafe), Codec.BOOL.fieldOf("bed_works").forGetter(dimensionType::bedWorks), Codec.BOOL.fieldOf("respawn_anchor_works").forGetter(dimensionType::respawnAnchorWorks), Codec.BOOL.fieldOf("has_raids").forGetter(dimensionType::hasRaids), RangeCodec.func_232989_a_(0, 1024).fieldOf("logical_height").forGetter(dimensionType::logicalHeight), ResourceLocation.RESOURCE_LOCATION_CODEC.fieldOf("infiniburn").forGetter((dimensionType) -> dimensionType.resourceLocation), Codec.FLOAT.fieldOf("ambient_light").forGetter((dimensionType) -> dimensionType.field_236017_x_)).apply(dimensionTypeInstance, dimensionType::new));
     public static final float[] MOON_PHASE_FACTORS = DimensionType.MOON_PHASE_FACTORS;
     public static final RegistryKey<DimensionType> OVERWORLD = DimensionType.OVERWORLD;
     public static final RegistryKey<DimensionType> THE_NETHER = DimensionType.THE_NETHER;
@@ -65,9 +65,9 @@ public class dimensionType {
     public static long Long;
     private static float Float;
     private final boolean hasCeiling;
-    private final boolean UltraWarm;
-    private final boolean Natural;
-    private final boolean Shrunk;
+    private final boolean ultraWarm;
+    private final boolean natural;
+    private final boolean shrunk;
     private final boolean field_236015_u_;
     private final boolean piglinSafe;
     private final boolean bedWorks;
@@ -105,9 +105,9 @@ public class dimensionType {
         this.fixedTime = optionalLong;
         this.hasSkyLight = hasSkyLight;
         this.hasCeiling = hasCelling;
-        this.UltraWarm = UltraWarm;
-        this.Natural = Natural;
-        this.Shrunk = Shrunk;
+        this.ultraWarm = UltraWarm;
+        this.natural = Natural;
+        this.shrunk = Shrunk;
         this.field_236015_u_ = p_i241243_7_;
         this.piglinSafe = piglinSafe;
         this.bedWorks = bedWorks;
@@ -201,16 +201,16 @@ public class dimensionType {
         return this.hasCeiling;
     }
 
-    public boolean UltraWarm() {
-        return this.UltraWarm;
+    public boolean ultraWarm() {
+        return this.ultraWarm;
     }
 
-    public boolean Natural() {
-        return this.Natural;
+    public boolean natural() {
+        return this.natural;
     }
 
-    public boolean Shrunk() {
-        return this.Shrunk;
+    public boolean shrunk() {
+        return this.shrunk;
     }
 
     public boolean piglinSafe() {

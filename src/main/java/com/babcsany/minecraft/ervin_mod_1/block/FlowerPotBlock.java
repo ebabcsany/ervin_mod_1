@@ -6,7 +6,7 @@ import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BlockItem;
+import com.babcsany.minecraft.item.ModBlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.pathfinding.PathType;
@@ -74,7 +74,7 @@ public class FlowerPotBlock extends Block {
    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
       ItemStack itemstack = player.getHeldItem(handIn);
       Item item = itemstack.getItem();
-      Block block = item instanceof BlockItem ? getEmptyPot().fullPots.getOrDefault(((BlockItem)item).getBlock().getRegistryName(), Blocks.AIR.delegate).get() : Blocks.AIR;
+      Block block = item instanceof ModBlockItem ? getEmptyPot().fullPots.getOrDefault(((ModBlockItem)item).getBlock().getRegistryName(), Blocks.AIR.delegate).get() : Blocks.AIR;
       boolean flag = block == Blocks.AIR;
       boolean flag1 = this.flower == Blocks.AIR;
       if (flag != flag1) {

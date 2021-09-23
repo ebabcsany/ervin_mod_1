@@ -1,15 +1,14 @@
 package com.babcsany.minecraft.init.item;
 
-import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.item.JurkBucketItem;
 import com.babcsany.minecraft.ervin_mod_1.item.book.paper.*;
 import com.babcsany.minecraft.init.BlockInit;
+import com.babcsany.minecraft.item.ModBlockItem;
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.BoatEntity;
 import net.minecraft.item.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
-import net.minecraftforge.eventbus.api.IEventBus;
 
 import static net.minecraft.item.Items.BUCKET;
 
@@ -48,36 +47,45 @@ public class ItemInit {
         return string + name;
     }
 
-    private static String modId(String string) {
-        String modId = "mod_1:";
-        return modId + string;
-    }
-
-    private static String string(String modId, String name) {
-        return modId + ':' + name;
+    private static String modId(String modId, String string) {
+        return modId + ':' + string;
     }
 
     private static String mod_1(String name) {
         return "mod_1:" + name;
     }
 
-    /*private static String name(String modId, String name) {
-        return "ervin_mod_1/" + modId + ":" + name;
-    }*/
-
     private static Item register(Block blockIn) {
-        return register(new BlockItem(blockIn, new Item.Properties()));
+        return register(new ModBlockItem(blockIn, new Item.Properties()));
+    }
+
+    private static Item registerItem(String key, int burnTimeIn) {
+        return register(new ResourceLocation(string(key)), new Item(new Item.Properties()) {
+            @Override
+            public int getBurnTime(ItemStack stack) {
+                return burnTimeIn;
+            }
+        });
+    }
+
+    private static Item registerItem(String key, ItemGroup groupIn, int burnTimeIn) {
+        return register(new ResourceLocation(string(key)), new Item(new Item.Properties().group(groupIn)) {
+            @Override
+            public int getBurnTime(ItemStack stack) {
+                return burnTimeIn;
+            }
+        });
     }
 
     private static Item register(String key, Item itemIn) {
-        return Ervin_mod_1.itemRegister(new ResourceLocation(string(key)), itemIn);
+        return register(new ResourceLocation(string(key)), itemIn);
     }
 
     private static Item register(Block blockIn, ItemGroup itemGroupIn) {
-        return register(new BlockItem(blockIn, (new Item.Properties()).group(itemGroupIn)));
+        return register(new ModBlockItem(blockIn, (new Item.Properties()).group(itemGroupIn)));
     }
 
-    private static Item register(BlockItem blockItemIn) {
+    private static Item register(ModBlockItem blockItemIn) {
         return register(blockItemIn.getBlock(), blockItemIn);
     }
 
@@ -86,14 +94,10 @@ public class ItemInit {
     }
 
     private static Item register(ResourceLocation key, Item itemIn) {
-        if (itemIn instanceof BlockItem) {
-            ((BlockItem)itemIn).addToBlockToItemMap(Item.BLOCK_TO_ITEM, itemIn);
+        if (itemIn instanceof ModBlockItem) {
+            ((ModBlockItem)itemIn).addToBlockToItemMap(Item.BLOCK_TO_ITEM, itemIn);
         }
 
         return Registry.register(Registry.ITEM, key, itemIn);
-    }
-
-    public IEventBus register(IEventBus modEventBus) {
-        return modEventBus;
     }
 }

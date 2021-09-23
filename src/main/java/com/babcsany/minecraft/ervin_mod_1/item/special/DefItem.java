@@ -9,7 +9,7 @@ import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUseContext;
+import com.babcsany.minecraft.item.ModItemUseContext;
 import net.minecraft.item.Rarity;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
@@ -25,7 +25,7 @@ import net.minecraftforge.common.IExtensibleEnum;
 import java.util.List;
 import java.util.Objects;
 
-public class DefItem extends Item {
+public class DefItem extends Item implements i_t_r_a_e {
 	
 	public DefItem(Properties properties) {
 		super(properties);
@@ -95,12 +95,12 @@ public class DefItem extends Item {
 	}
 
 	@Override
-	public ActionResultType onItemUse(ItemUseContext context) {
+	public ActionResultType onItemUse(ModItemUseContext context) {
 		if (context.getWorld().getBlockState(context.getPos()).getBlock() == BlockItemInit.DEFERRED_BLOCK.get()) {
 			for (ItemStack stack : Objects.requireNonNull(context.getPlayer()).inventory.mainInventory) {
 				if (stack.isEmpty()) {
 					context.getPlayer().addItemStackToInventory(new ItemStack(isBurnableSpecialItemInit.DEF_ITEM.get()));
-					context.getItem().damageItem(1, context.getPlayer(), (playerIn) -> playerIn.sendBreakAnimation(context.getHand()));
+					context.getItem().damageItem(3000, context.getPlayer(), (playerIn) -> playerIn.sendBreakAnimation(context.getHand()));
 					return ActionResultType.SUCCESS;
 				}
 			}

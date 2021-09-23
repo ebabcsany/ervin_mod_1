@@ -42,7 +42,7 @@ import net.minecraft.entity.projectile.DamagingProjectileEntity;
 import net.minecraft.entity.projectile.FireworkRocketEntity;
 import net.minecraft.entity.projectile.ThrowableEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUseContext;
+import com.babcsany.minecraft.item.ModItemUseContext;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.LootTableManager;
 import net.minecraft.resources.DataPackRegistries;
@@ -326,7 +326,7 @@ public class ForgeEventFactory
 
     //TODO: 1.17 Remove
     @Deprecated
-    public static int onHoeUse(ItemUseContext context)
+    public static int onHoeUse(ModItemUseContext context)
     {
         UseHoeEvent event = new UseHoeEvent(context);
         if (MinecraftForge.EVENT_BUS.post(event)) return -1;

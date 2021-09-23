@@ -1,5 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.item;
 
+import com.babcsany.minecraft.item.ModItemUseContext;
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -72,7 +73,7 @@ public class DebugPickaxeItem extends ToolItem {
    /**
     * Called when this item is used when targetting a Block
     */
-   public ActionResultType onItemUse(ItemUseContext context) {
+   public ActionResultType onItemUse(ModItemUseContext context) {
       PlayerEntity playerentity = context.getPlayer();
       World world = context.getWorld();
       if (!world.isRemote && playerentity != null) {

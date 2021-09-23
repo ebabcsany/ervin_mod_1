@@ -6,7 +6,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUseContext;
+import com.babcsany.minecraft.item.ModItemUseContext;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.state.Property;
 import net.minecraft.state.StateContainer;
@@ -51,7 +51,7 @@ public class DebugSriunkStick extends Item {
    /**
     * Called when this item is used when targetting a Block
     */
-   public ActionResultType onItemUse(ItemUseContext context) {
+   public ActionResultType onItemUse(ModItemUseContext context) {
       PlayerEntity playerentity = context.getPlayer();
       World world = context.getWorld();
       if (!world.isRemote && playerentity != null) {

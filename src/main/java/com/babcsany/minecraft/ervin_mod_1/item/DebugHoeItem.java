@@ -1,5 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.item;
 
+import com.babcsany.minecraft.item.ModItemUseContext;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Maps;
@@ -56,7 +57,7 @@ public class DebugHoeItem extends ToolItem {
    /**
     * Called when this item is used when targetting a Block
     */
-   public ActionResultType onItemUse(ItemUseContext context) {
+   public ActionResultType onItemUse(ModItemUseContext context) {
       PlayerEntity playerentity = context.getPlayer();
       World world = context.getWorld();
       BlockPos blockpos = context.getPos();

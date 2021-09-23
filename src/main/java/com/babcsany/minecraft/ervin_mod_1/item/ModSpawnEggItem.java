@@ -12,7 +12,7 @@ import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUseContext;
+import com.babcsany.minecraft.item.ModItemUseContext;
 import net.minecraft.item.SpawnEggItem;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.MobSpawnerTileEntity;
@@ -124,7 +124,7 @@ public class ModSpawnEggItem extends SpawnEggItem {
     /**
      * Called when this item is used when targetting a Block
      */
-    public ActionResultType onItemUse(ItemUseContext context) {
+    public ActionResultType onItemUse(ModItemUseContext context) {
         World world = context.getWorld();
         if (world.isRemote) {
             return ActionResultType.SUCCESS;

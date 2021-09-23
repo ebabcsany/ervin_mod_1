@@ -8,6 +8,7 @@ import com.babcsany.minecraft.world.world;
 import com.google.common.collect.Maps;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.Lifecycle;
+import net.minecraft.item.Item;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SharedConstants;
@@ -15,8 +16,8 @@ import net.minecraft.util.registry.DefaultedRegistry;
 import net.minecraft.util.registry.MutableRegistry;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.SimpleRegistry;
-import net.minecraft.world.Dimension;
 import net.minecraft.world.biome.provider.BiomeProvider;
+import net.minecraftforge.fml.RegistryObject;
 import org.apache.commons.lang3.Validate;
 
 import java.util.Map;

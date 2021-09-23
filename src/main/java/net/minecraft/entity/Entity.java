@@ -1,5 +1,6 @@
 package net.minecraft.entity;
 
+import com.babcsany.minecraft.world.world;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
@@ -87,6 +88,7 @@ public abstract class Entity extends net.minecraftforge.common.capabilities.Capa
    private Entity ridingEntity;
    public boolean forceSpawn;
    public World world;
+   public world world_;
    public double prevPosX;
    public double prevPosY;
    public double prevPosZ;

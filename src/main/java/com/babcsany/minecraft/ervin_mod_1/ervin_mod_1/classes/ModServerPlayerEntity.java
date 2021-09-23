@@ -51,7 +51,7 @@ public class ModServerPlayerEntity extends ServerPlayerEntity {
         ServerWorld serverWorld = this.getServerWorld();
         ModServerWorld modServerWorld = this.getModServerWorld();
         RegistryKey<World> registryKey = serverWorld.func_234923_W_();
-        RegistryKey<world> modRegistryKey = modServerWorld.func_234923_W_();
+        RegistryKey<world> modRegistryKey = modServerWorld.worldRegistryKey();
         if (modRegistryKey == WorldInit.EXAMPLE && server.func_234923_W_() == World.field_234918_g_ && teleporter instanceof Teleporter) { //Forge: Fix non-vanilla teleporters triggering end credits
             this.detach();
             this.getServerWorld().removePlayer(this, true); //Forge: The player entity is cloned so keep the data until after cloning calls copyFrom

@@ -1,5 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.living;
 
+import com.babcsany.minecraft.ervin_mod_1.block.ExamplePortalBlock;
+import com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit;
 import com.babcsany.minecraft.ervin_mod_1.item.entity.icsvre.IIcsvreProvider;
 import com.babcsany.minecraft.ervin_mod_1.item.entity.icsvre.IcsvreEntity;
 import com.babcsany.minecraft.ervin_mod_1.item.item.icsvre.Icsvre;
@@ -9,16 +11,19 @@ import com.babcsany.minecraft.item.icsvre.BlockIcsvre;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.block.AbstractSkullBlock;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.pattern.BlockPattern;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.*;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.*;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
@@ -26,6 +31,7 @@ import javax.annotation.Nullable;
 public abstract class Living extends LivingEntity {
     LivingEntity livingEntity;
     Entity entity;
+    public com.babcsany.minecraft.world.world world_;
     private boolean persistenceRequired;
     protected final float[] inventoryHandsDropChances = new float[2];
     protected final float[] inventoryArmorDropChances = new float[4];
@@ -202,6 +208,29 @@ public abstract class Living extends LivingEntity {
             }
         } else {
             return EquipmentSlotType.HEAD;
+        }
+    }
+
+    /**
+     * Marks the entity as being inside a portal, activating teleportation logic in onEntityUpdate() in the following
+     * tick(s).
+     */
+    public void setExamplePortal(BlockPos pos) {
+        if (this.timeUntilPortal > 0) {
+            this.timeUntilPortal = this.getPortalCooldown();
+        } else {
+            if (!this.world_.isRemote && !pos.equals(this.lastPortalPos)) {
+                this.lastPortalPos = new BlockPos(pos);
+                ExamplePortalBlock examplePortalBlock = (ExamplePortalBlock) BlockInit.EXAMPLE_PORTAL_BLOCK.get();
+                BlockPattern.PatternHelper blockpattern$patternhelper = ExamplePortalBlock.createPatternHelper(this.world_, this.lastPortalPos);
+                double d0 = blockpattern$patternhelper.getForwards().getAxis() == Direction.Axis.X ? (double)blockpattern$patternhelper.getFrontTopLeft().getZ() : (double)blockpattern$patternhelper.getFrontTopLeft().getX();
+                double d1 = MathHelper.clamp(Math.abs(MathHelper.func_233020_c_((blockpattern$patternhelper.getForwards().getAxis() == Direction.Axis.X ? this.getPosZ() : this.getPosX()) - (double)(blockpattern$patternhelper.getForwards().rotateY().getAxisDirection() == Direction.AxisDirection.NEGATIVE ? 1 : 0), d0, d0 - (double)blockpattern$patternhelper.getWidth())), 0.0D, 1.0D);
+                double d2 = MathHelper.clamp(MathHelper.func_233020_c_(this.getPosY() - 1.0D, blockpattern$patternhelper.getFrontTopLeft().getY(), blockpattern$patternhelper.getFrontTopLeft().getY() - blockpattern$patternhelper.getHeight()), 0.0D, 1.0D);
+                this.lastPortalVec = new Vector3d(d1, d2, 0.0D);
+                this.teleportDirection = blockpattern$patternhelper.getForwards();
+            }
+
+            this.inPortal = true;
         }
     }
 }

@@ -13,7 +13,7 @@ import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.item.TNTEntity;
 import net.minecraft.entity.item.minecart.AbstractMinecartEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.BlockItemUseContext;
+import com.babcsany.minecraft.item.ModBlockItemUseContext;
 import net.minecraft.particles.BlockParticleData;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.StateContainer;
@@ -39,7 +39,7 @@ public class Gtrziuzhizjkj extends HorizontalBlock {
       builder.add(HORIZONTAL_FACING);
    }
 
-   public BlockState getStateForPlacement(BlockItemUseContext context) {
+   public BlockState getStateForPlacement(ModBlockItemUseContext context) {
       return this.getDefaultState().with(HORIZONTAL_FACING, context.getPlacementHorizontalFacing().getOpposite());
    }
 

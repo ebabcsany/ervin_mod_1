@@ -1,6 +1,7 @@
 package com.babcsany.minecraft.init.special;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
+import com.babcsany.minecraft.item.ModBlockItem;
 import net.minecraft.block.Block;
 import net.minecraft.item.*;
 import net.minecraft.util.ResourceLocation;
@@ -19,7 +20,7 @@ public class PaintingItemInit {
     }
 
     private static Item register(Block blockIn) {
-        return register(new BlockItem(blockIn, new Item.Properties()));
+        return register(new ModBlockItem(blockIn, new Item.Properties()));
     }
 
     private static Item register(String key, Item itemIn) {
@@ -27,10 +28,10 @@ public class PaintingItemInit {
     }
 
     private static Item register(Block blockIn, ItemGroup itemGroupIn) {
-        return register(new BlockItem(blockIn, (new Item.Properties()).group(itemGroupIn)));
+        return register(new ModBlockItem(blockIn, (new Item.Properties()).group(itemGroupIn)));
     }
 
-    private static Item register(BlockItem blockItemIn) {
+    private static Item register(ModBlockItem blockItemIn) {
         return register(blockItemIn.getBlock(), blockItemIn);
     }
 
@@ -39,8 +40,8 @@ public class PaintingItemInit {
     }
 
     private static Item register(ResourceLocation key, Item itemIn) {
-        if (itemIn instanceof BlockItem) {
-            ((BlockItem)itemIn).addToBlockToItemMap(Item.BLOCK_TO_ITEM, itemIn);
+        if (itemIn instanceof ModBlockItem) {
+            ((ModBlockItem)itemIn).addToBlockToItemMap(Item.BLOCK_TO_ITEM, itemIn);
         }
 
         return Registry.register(Registry.ITEM, key, itemIn);

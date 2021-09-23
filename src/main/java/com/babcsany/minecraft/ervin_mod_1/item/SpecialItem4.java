@@ -3,6 +3,7 @@ package com.babcsany.minecraft.ervin_mod_1.item;
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.special.isBurnableSpecialItemInit;
+import com.babcsany.minecraft.ervin_mod_1.item.special.i_t_r_a_e;
 import com.babcsany.minecraft.ervin_mod_1.util.KeyboardHelper;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.Enchantment;
@@ -10,7 +11,7 @@ import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUseContext;
+import com.babcsany.minecraft.item.ModItemUseContext;
 import net.minecraft.item.Rarity;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
@@ -25,7 +26,7 @@ import net.minecraftforge.common.IExtensibleEnum;
 
 import java.util.List;
 
-public class SpecialItem4 extends Item {
+public class SpecialItem4 extends Item implements i_t_r_a_e {
 
 	public SpecialItem4(Properties properties) {
 		super(properties);
@@ -98,7 +99,7 @@ public class SpecialItem4 extends Item {
 	}
 
 	@Override
-	public ActionResultType onItemUse(ItemUseContext context) {
+	public ActionResultType onItemUse(ModItemUseContext context) {
 		if (context.getWorld().getBlockState(context.getPos()).getBlock() == BlockItemInit.EXAMPLE_BLOCK.get()) {
 			for (ItemStack stack : context.getPlayer().inventory.mainInventory) {
 				if (stack.isEmpty()) {

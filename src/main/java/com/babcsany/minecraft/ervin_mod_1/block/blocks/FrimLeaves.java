@@ -3,8 +3,7 @@ package com.babcsany.minecraft.ervin_mod_1.block.blocks;
 import com.babcsany.minecraft.ervin_mod_1.state.ModBlockStateProperties;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.LeavesBlock;
-import net.minecraft.item.BlockItemUseContext;
+import com.babcsany.minecraft.item.ModBlockItemUseContext;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.IntegerProperty;
@@ -127,7 +126,7 @@ public class FrimLeaves extends Block implements net.minecraftforge.common.IForg
       builder.add(DISTANCE, PERSISTENT);
    }
 
-   public BlockState getStateForPlacement(BlockItemUseContext context) {
+   public BlockState getStateForPlacement(ModBlockItemUseContext context) {
       return updateDistance(this.getDefaultState().with(PERSISTENT, Boolean.TRUE), context.getWorld(), context.getPos());
    }
 }

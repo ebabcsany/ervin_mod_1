@@ -1,13 +1,12 @@
 package com.babcsany.minecraft.ervin_mod_1.block.blocks.burnable.stairs;
 
-import com.babcsany.minecraft.ervin_mod_1.block.blocks.burnable.slabs.SriunkSlab;
 import com.babcsany.minecraft.ervin_mod_1.block.blocks.burnable.slabs.ZurkSlab;
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
-import net.minecraft.item.BlockItemUseContext;
+import com.babcsany.minecraft.item.ModBlockItemUseContext;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
@@ -193,7 +192,7 @@ public class ZurkStairs extends Block implements IWaterLoggable {
       this.modelBlock.onExplosionDestroy(worldIn, pos, explosionIn);
    }
 
-   public BlockState getStateForPlacement(BlockItemUseContext context) {
+   public BlockState getStateForPlacement(ModBlockItemUseContext context) {
       Direction direction = context.getFace();
       BlockPos blockpos = context.getPos();
       FluidState fluidstate = context.getWorld().getFluidState(blockpos);

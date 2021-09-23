@@ -2,10 +2,9 @@ package com.babcsany.minecraft.ervin_mod_1.block.blocks;
 
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.state.ModBlockStateProperties;
-import com.babcsany.minecraft.init.BlockInit;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.item.BlockItemUseContext;
+import com.babcsany.minecraft.item.ModBlockItemUseContext;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.Direction;
@@ -30,7 +29,7 @@ public class Air2 extends Block {
       return facing != Direction.UP ? super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos) : stateIn.with(DEF, facingState.isIn(BlockItemInit.DEFERRED_BLOCK.get()));
    }
 
-   public BlockState getStateForPlacement(BlockItemUseContext context) {
+   public BlockState getStateForPlacement(ModBlockItemUseContext context) {
       BlockState blockstate = context.getWorld().getBlockState(context.getPos().up());
       return this.getDefaultState().with(DEF, blockstate.isIn(BlockItemInit.DEFERRED_BLOCK.get()));
    }

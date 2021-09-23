@@ -2,6 +2,7 @@ package com.babcsany.minecraft.ervin_mod_1.entity.animal;
 
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
+import com.babcsany.minecraft.item.ModBlockItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -201,8 +202,8 @@ public class ShertEntity extends SrachEntity implements IShearable, net.minecraf
 
    private Optional<Pair<Effect, Integer>> getStewEffect(ItemStack p_213443_1_) {
       Item item = p_213443_1_.getItem();
-      if (item instanceof BlockItem) {
-         Block block = ((BlockItem)item).getBlock();
+      if (item instanceof ModBlockItem) {
+         Block block = ((ModBlockItem)item).getBlock();
          if (block instanceof FlowerBlock) {
             FlowerBlock flowerblock = (FlowerBlock)block;
             return Optional.of(Pair.of(flowerblock.getStewEffect(), flowerblock.getStewEffectDuration()));

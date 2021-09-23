@@ -6,7 +6,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.inventory.container.Container;
-import net.minecraft.item.BlockItemUseContext;
+import com.babcsany.minecraft.item.ModBlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
@@ -43,7 +43,7 @@ public abstract class AbstractBlackFurnace extends ContainerBlock {
     */
    protected abstract void interactWith(World worldIn, BlockPos pos, PlayerEntity player);
 
-   public BlockState getStateForPlacement(BlockItemUseContext context) {
+   public BlockState getStateForPlacement(ModBlockItemUseContext context) {
       return this.getDefaultState().with(FACING, context.getPlacementHorizontalFacing().getOpposite());
    }
 

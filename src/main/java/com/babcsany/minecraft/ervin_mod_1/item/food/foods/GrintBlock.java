@@ -1,10 +1,10 @@
 package com.babcsany.minecraft.ervin_mod_1.item.food.foods;
 
 import net.minecraft.block.Block;
-import net.minecraft.item.BlockItem;
+import com.babcsany.minecraft.item.ModBlockItem;
 import net.minecraft.item.ItemStack;
 
-public class GrintBlock extends BlockItem {
+public class GrintBlock extends ModBlockItem {
    public GrintBlock(Block blockIn, Properties properties) {
       super(blockIn, properties);
    }

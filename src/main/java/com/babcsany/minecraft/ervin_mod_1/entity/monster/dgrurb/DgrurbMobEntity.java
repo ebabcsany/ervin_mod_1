@@ -36,7 +36,7 @@ import net.minecraft.fluid.Fluid;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.AxeItem;
-import net.minecraft.item.BlockItem;
+import com.babcsany.minecraft.item.ModBlockItem;
 import net.minecraft.item.BowItem;
 import net.minecraft.item.CrossbowItem;
 import net.minecraft.item.Item;
@@ -640,7 +640,7 @@ public abstract class DgrurbMobEntity extends LivingEntity {
          }
       } else {
          if (candidate.getItem() instanceof ToolItem) {
-            if (existing.getItem() instanceof BlockItem) {
+            if (existing.getItem() instanceof ModBlockItem) {
                return true;
             }
 
@@ -975,7 +975,7 @@ public abstract class DgrurbMobEntity extends LivingEntity {
       final EquipmentSlotType slot = stack.getEquipmentSlot();
       if (slot != null) return slot; // FORGE: Allow modders to set a non-default equipment slot for a stack; e.g. a non-armor chestplate-slot item
       Item item = stack.getItem();
-      if (item != Blocks.CARVED_PUMPKIN.asItem() && (!(item instanceof BlockItem) || !(((BlockItem)item).getBlock() instanceof AbstractSkullBlock))) {
+      if (item != Blocks.CARVED_PUMPKIN.asItem() && (!(item instanceof ModBlockItem) || !(((ModBlockItem)item).getBlock() instanceof AbstractSkullBlock))) {
          if (item instanceof ArmorItem) {
             return ((ArmorItem)item).getEquipmentSlot();
          } else if (item == Items.ELYTRA) {

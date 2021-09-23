@@ -1,12 +1,13 @@
 package com.babcsany.minecraft.ervin_mod_1.block.stone.cobblestone.stairs;
 
-import com.babcsany.minecraft.ervin_mod_1.block.stone.cobblestone.slabs.PurpleCobblestoneSlab;
+import com.babcsany.minecraft.ervin_mod_1.block.stone.cobblestone.slabs.SlabBlock;
+import com.babcsany.minecraft.item.ModBlockItemUseContext;
+import com.babcsany.minecraft.world.world;
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
-import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
@@ -32,13 +33,13 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.Random;
 import java.util.stream.IntStream;
 
-public class PurpleCobblestoneStairs extends Block implements IWaterLoggable {
+public class StairsBlock extends Block implements IWaterLoggable {
    public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
    public static final EnumProperty<Half> HALF = BlockStateProperties.HALF;
    public static final EnumProperty<StairsShape> SHAPE = BlockStateProperties.STAIRS_SHAPE;
    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-   protected static final VoxelShape AABB_SLAB_TOP = PurpleCobblestoneSlab.TOP_SHAPE;
-   protected static final VoxelShape AABB_SLAB_BOTTOM = PurpleCobblestoneSlab.BOTTOM_SHAPE;
+   protected static final VoxelShape AABB_SLAB_TOP = SlabBlock.TOP_SHAPE;
+   protected static final VoxelShape AABB_SLAB_BOTTOM = SlabBlock.BOTTOM_SHAPE;
    protected static final VoxelShape NWD_CORNER = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 8.0D, 8.0D, 8.0D);
    protected static final VoxelShape SWD_CORNER = Block.makeCuboidShape(0.0D, 0.0D, 8.0D, 8.0D, 8.0D, 16.0D);
    protected static final VoxelShape NWU_CORNER = Block.makeCuboidShape(0.0D, 8.0D, 0.0D, 8.0D, 16.0D, 8.0D);
@@ -54,11 +55,7 @@ public class PurpleCobblestoneStairs extends Block implements IWaterLoggable {
    private final BlockState modelState;
 
    private static VoxelShape[] makeShapes(VoxelShape slabShape, VoxelShape nwCorner, VoxelShape neCorner, VoxelShape swCorner, VoxelShape seCorner) {
-      return IntStream.range(0, 16).mapToObj((p_199780_5_) -> {
-         return combineShapes(p_199780_5_, slabShape, nwCorner, neCorner, swCorner, seCorner);
-      }).toArray((p_199778_0_) -> {
-         return new VoxelShape[p_199778_0_];
-      });
+      return IntStream.range(0, 16).mapToObj((p_199780_5_) -> combineShapes(p_199780_5_, slabShape, nwCorner, neCorner, swCorner, seCorner)).toArray(VoxelShape[]::new);
    }
 
    /**
@@ -85,18 +82,17 @@ public class PurpleCobblestoneStairs extends Block implements IWaterLoggable {
       return voxelshape;
    }
 
-   @Deprecated // Forge: Use the other constructor that takes a Supplier
-   public PurpleCobblestoneStairs(BlockState state, Properties properties) {
+   public StairsBlock(BlockState state, Properties properties) {
       super(properties);
-      this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH).with(HALF, Half.BOTTOM).with(SHAPE, StairsShape.STRAIGHT).with(WATERLOGGED, Boolean.valueOf(false)));
+      this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH).with(HALF, Half.BOTTOM).with(SHAPE, StairsShape.STRAIGHT).with(WATERLOGGED, Boolean.FALSE));
       this.modelBlock = state.getBlock();
       this.modelState = state;
       this.stateSupplier = () -> state;
    }
 
-   public PurpleCobblestoneStairs(java.util.function.Supplier<BlockState> state, Properties properties) {
+   public StairsBlock(java.util.function.Supplier<BlockState> state, Properties properties) {
       super(properties);
-      this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH).with(HALF, Half.BOTTOM).with(SHAPE, StairsShape.STRAIGHT).with(WATERLOGGED, Boolean.valueOf(false)));
+      this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH).with(HALF, Half.BOTTOM).with(SHAPE, StairsShape.STRAIGHT).with(WATERLOGGED, Boolean.FALSE));
       this.modelBlock = Blocks.AIR; // These are unused, fields are redirected
       this.modelState = Blocks.AIR.getDefaultState();
       this.stateSupplier = state;
@@ -149,6 +145,13 @@ public class PurpleCobblestoneStairs extends Block implements IWaterLoggable {
       }
    }
 
+   public void onBlockAdded(BlockState state, world worldIn, BlockPos pos, BlockState oldState, boolean isMoving) {
+      if (!state.isIn(state.getBlock())) {
+         this.modelState.neighborChanged(worldIn.getWorld(), pos, Blocks.AIR, pos, false);
+         this.modelBlock.onBlockAdded(this.modelState, worldIn.getWorld(), pos, oldState, false);
+      }
+   }
+
    public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
       if (!state.isIn(newState.getBlock())) {
          this.modelState.onReplaced(worldIn, pos, newState, isMoving);
@@ -192,7 +195,7 @@ public class PurpleCobblestoneStairs extends Block implements IWaterLoggable {
       this.modelBlock.onExplosionDestroy(worldIn, pos, explosionIn);
    }
 
-   public BlockState getStateForPlacement(BlockItemUseContext context) {
+   public BlockState getStateForPlacement(ModBlockItemUseContext context) {
       Direction direction = context.getFace();
       BlockPos blockpos = context.getPos();
       FluidState fluidstate = context.getWorld().getFluidState(blockpos);
@@ -252,7 +255,7 @@ public class PurpleCobblestoneStairs extends Block implements IWaterLoggable {
    }
 
    public static boolean isBlockStairs(BlockState state) {
-      return state.getBlock() instanceof PurpleCobblestoneStairs;
+      return state.getBlock() instanceof StairsBlock;
    }
 
    /* *

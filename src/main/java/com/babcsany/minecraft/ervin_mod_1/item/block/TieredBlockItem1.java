@@ -1,11 +1,11 @@
 package com.babcsany.minecraft.ervin_mod_1.item.block;
 
 import net.minecraft.block.Block;
-import net.minecraft.item.BlockItem;
+import com.babcsany.minecraft.item.ModBlockItem;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemStack;
 
-public class TieredBlockItem1 extends BlockItem {
+public class TieredBlockItem1 extends ModBlockItem {
    private final IItemTier tier;
 
    public TieredBlockItem1(IItemTier tierIn, Block blockIn, Properties builder) {

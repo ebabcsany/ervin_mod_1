@@ -1,12 +1,10 @@
 package com.babcsany.minecraft.world;
 
 import com.babcsany.minecraft.ervin_mod_1.registry.ModRegistry;
+import com.babcsany.minecraft.world.border.ModWorldBorder;
 import com.google.common.collect.Lists;
 import com.mojang.serialization.Codec;
-import net.minecraft.block.AbstractFireBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
+import net.minecraft.block.*;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
 import net.minecraft.crash.ReportedException;
@@ -98,14 +96,15 @@ public abstract class world extends net.minecraftforge.common.capabilities.Capab
     private final dimensionType dimensionType;
     protected final ISpawnWorldInfo worldInfo;
     private final Supplier<IProfiler> profiler;
-    public final boolean isRemote;
+    public boolean isRemote;
     /** True while the World is ticking , to prevent CME's if any of those ticks create more tile entities. */
     protected boolean processingLoadedTiles;
     private BiomeManager biomeManager;
+    private WorldBorder worldBorder;
     private final RegistryKey<world> dimension;
     private final RegistryKey<dimensionType> dimensionTypeRegistryKey;
-    public boolean restoringBlockSnapshots = false;
-    public boolean captureBlockSnapshots = false;
+    public boolean restoringBlockSnapshots;
+    public boolean captureBlockSnapshots;
     public World world;
     public java.util.ArrayList<net.minecraftforge.common.util.BlockSnapshot> capturedBlockSnapshots = new java.util.ArrayList<>();
 
@@ -116,7 +115,6 @@ public abstract class world extends net.minecraftforge.common.capabilities.Capab
         this.dimensionType = dimensionType;
         this.dimension = worldRegistryKey;
         this.dimensionTypeRegistryKey = dimensionTypeRegistryKey;
-        this.isRemote = isRemote;
 
         this.mainThread = Thread.currentThread();
         this.Boolean = Boolean;
@@ -983,6 +981,8 @@ public abstract class world extends net.minecraftforge.common.capabilities.Capab
         return this.worldInfo.getDayTime();
     }
 
+    public abstract dimensionType dimensionType();
+
     public boolean isBlockModifiable(PlayerEntity player, BlockPos pos) {
         return true;
     }
@@ -1092,7 +1092,7 @@ public abstract class world extends net.minecraftforge.common.capabilities.Capab
         });
         crashreportcategory.addDetail("Chunk stats", this.getChunkProvider()::makeString);
         crashreportcategory.addDetail("Level dimension", () -> {
-            return this.func_234923_W_().func_240901_a_().toString();
+            return this.worldRegistryKey().func_240901_a_().toString();
         });
 
         try {
@@ -1162,7 +1162,7 @@ public abstract class world extends net.minecraftforge.common.capabilities.Capab
         return this.dimensionTypeRegistryKey;
     }
 
-    public RegistryKey<world> func_234923_W_() {
+    public RegistryKey<world> worldRegistryKey() {
         return this.dimension;
     }
 
@@ -1212,5 +1212,9 @@ public abstract class world extends net.minecraftforge.common.capabilities.Capab
 
     public final boolean func_234925_Z_() {
         return this.Boolean;
+    }
+
+    public ModWorldBorder getModWorldBorder() {
+        return new ModWorldBorder();
     }
 }

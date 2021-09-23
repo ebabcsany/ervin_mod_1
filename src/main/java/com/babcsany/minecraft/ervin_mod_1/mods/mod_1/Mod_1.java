@@ -1,44 +1,10 @@
 package com.babcsany.minecraft.ervin_mod_1.mods.mod_1;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
-import com.babcsany.minecraft.ervin_mod_1.init.*;
-import com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.block.BlockNamedItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.minecraft.block.MinecraftBlocks;
-import com.babcsany.minecraft.ervin_mod_1.item.group.ItemGroup;
-import com.babcsany.minecraft.ervin_mod_1.mods.mod_1.init.BiomeInit;
-import net.minecraft.block.*;
-import net.minecraft.entity.EntitySpawnPlacementRegistry;
-import net.minecraft.entity.MobEntity;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.ShapedRecipe;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.gen.Heightmap;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.DeferredWorkQueue;
-import net.minecraftforge.fml.InterModComms;
-import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
-import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
-import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.IForgeRegistry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Mod.EventBusSubscriber(modid = Ervin_mod_1.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class Mod_1 {

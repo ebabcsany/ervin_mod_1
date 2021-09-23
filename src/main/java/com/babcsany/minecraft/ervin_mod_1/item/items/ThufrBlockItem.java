@@ -4,12 +4,12 @@ import com.google.common.collect.Maps;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BlockItem;
+import com.babcsany.minecraft.item.ModBlockItem;
 import net.minecraft.item.ItemStack;
 
 import javax.annotation.Nullable;
 
-public class ThufrBlockItem extends BlockItem {
+public class ThufrBlockItem extends ModBlockItem {
    private final java.util.Map<net.minecraftforge.common.ToolType, Integer> toolClasses = Maps.newHashMap();
    public ThufrBlockItem(Block blockIn, Properties builder) {
       super(blockIn, builder);

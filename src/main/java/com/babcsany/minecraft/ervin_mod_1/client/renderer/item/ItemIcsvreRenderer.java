@@ -9,7 +9,6 @@ import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.mojang.blaze3d.vertex.MatrixApplyingVertexBuilder;
 import com.mojang.blaze3d.vertex.VertexBuilderUtils;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
 import net.minecraft.block.BreakableBlock;
 import net.minecraft.block.StainedGlassPaneBlock;
 import net.minecraft.client.Minecraft;
@@ -27,7 +26,7 @@ import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
 import net.minecraft.crash.ReportedException;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.BlockItem;
+import com.babcsany.minecraft.item.ModBlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -97,8 +96,8 @@ public class ItemIcsvreRenderer implements IResourceManagerReloadListener {
          matrixStackIn.translate(-0.5D, -0.5D, -0.5D);
          if (!modelIn.isBuiltInRenderer() && (itemStackIn.getItem() != Items.TRIDENT || flag)) {
             boolean flag1;
-            if (transformTypeIn != ItemCameraTransforms.TransformType.GUI && !transformTypeIn.func_241716_a_() && itemStackIn.getItem() instanceof BlockItem) {
-               Block block = ((BlockItem)itemStackIn.getItem()).getBlock();
+            if (transformTypeIn != ItemCameraTransforms.TransformType.GUI && !transformTypeIn.func_241716_a_() && itemStackIn.getItem() instanceof ModBlockItem) {
+               Block block = ((ModBlockItem)itemStackIn.getItem()).getBlock();
                flag1 = !(block instanceof BreakableBlock) && !(block instanceof StainedGlassPaneBlock);
             } else {
                flag1 = true;

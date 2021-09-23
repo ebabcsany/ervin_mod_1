@@ -362,12 +362,10 @@ public class EntityType<T extends Entity> extends net.minecraftforge.registries.
    }
 
    public static Optional<Entity> loadEntityUnchecked(CompoundNBT compound, World worldIn) {
-      return Util.acceptOrElse(readEntityType(compound).map((entityType) -> {
-         return entityType.create(worldIn);
-      }), (entity) -> {
+      return Util.acceptOrElse(readEntityType(compound).map((entityType) -> entityType.create(worldIn)), (entity) -> {
          entity.read(compound);
       }, () -> {
-         LOGGER.warn("Skipping Entity with id {}", (Object)compound.getString("id"));
+         LOGGER.warn("Skipping Entity with id {}", compound.getString("id"));
       });
    }
 

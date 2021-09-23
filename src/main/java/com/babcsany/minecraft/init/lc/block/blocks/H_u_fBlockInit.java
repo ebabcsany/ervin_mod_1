@@ -7,7 +7,6 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.util.registry.Registry;
-import net.minecraftforge.eventbus.api.IEventBus;
 
 public class H_u_fBlockInit {
 
@@ -24,10 +23,6 @@ public class H_u_fBlockInit {
     private static String string(String name) {
         String string = "ervin_mod_1:lc/block/blocks/hﬂuﬂf_block/";
         return string + name;
-    }
-
-    public IEventBus register(IEventBus modEventBus) {
-        return modEventBus;
     }
 
     static {

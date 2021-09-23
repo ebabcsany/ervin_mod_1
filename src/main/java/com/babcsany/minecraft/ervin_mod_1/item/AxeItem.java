@@ -7,7 +7,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUseContext;
+import com.babcsany.minecraft.item.ModItemUseContext;
 import net.minecraft.item.ToolItem;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.SoundCategory;
@@ -35,7 +35,7 @@ public class AxeItem extends ToolItem {
    /**
     * Called when this item is used when targetting a Block
     */
-   public ActionResultType onItemUse(ItemUseContext context) {
+   public ActionResultType onItemUse(ModItemUseContext context) {
       World world = context.getWorld();
       BlockPos blockpos = context.getPos();
       BlockState blockstate = world.getBlockState(blockpos);

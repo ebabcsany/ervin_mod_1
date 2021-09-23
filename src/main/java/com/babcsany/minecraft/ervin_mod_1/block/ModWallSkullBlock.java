@@ -3,7 +3,7 @@ package com.babcsany.minecraft.ervin_mod_1.block;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import net.minecraft.block.*;
-import net.minecraft.item.BlockItemUseContext;
+import com.babcsany.minecraft.item.ModBlockItemUseContext;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.Direction;
@@ -37,7 +37,7 @@ public class ModWallSkullBlock extends Block {
       return SHAPES.get(state.get(FACING));
    }
 
-   public BlockState getStateForPlacement(BlockItemUseContext context) {
+   public BlockState getStateForPlacement(ModBlockItemUseContext context) {
       BlockState blockstate = this.getDefaultState();
       IBlockReader iblockreader = context.getWorld();
       BlockPos blockpos = context.getPos();

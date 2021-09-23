@@ -1,6 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.item.item;
 
 import com.babcsany.minecraft.ervin_mod_1.tags.ItemTag;
+import com.babcsany.minecraft.item.ModItemUseContext;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Multimap;
@@ -30,7 +31,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.extensions.IForgeItem;
 import net.minecraftforge.registries.ForgeRegistryEntry;
-import net.minecraftforge.registries.IForgeRegistryEntry;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -105,7 +105,7 @@ public class Item extends ForgeRegistryEntry<net.minecraft.item.Item> implements
    /**
     * Called when this item is used when targetting a Block
     */
-   public ActionResultType onItemUse(ItemUseContext context) {
+   public ActionResultType onItemUse(ModItemUseContext context) {
       return ActionResultType.PASS;
    }
 

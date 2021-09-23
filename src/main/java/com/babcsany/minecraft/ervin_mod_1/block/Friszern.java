@@ -2,14 +2,10 @@ package com.babcsany.minecraft.ervin_mod_1.block;
 
 import net.minecraft.block.*;
 import net.minecraft.command.CommandSource;
-import net.minecraft.crash.CrashReport;
-import net.minecraft.crash.CrashReportCategory;
-import net.minecraft.crash.ReportedException;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BlockItemUseContext;
+import com.babcsany.minecraft.item.ModBlockItemUseContext;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
@@ -29,7 +25,6 @@ import net.minecraft.world.server.ServerWorld;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.annotation.Nullable;
 import java.util.Random;
 
 public class Friszern extends ContainerBlock {
@@ -179,7 +174,7 @@ public class Friszern extends ContainerBlock {
       builder.add(FACING, CONDITIONAL);
    }
 
-   public BlockState getStateForPlacement(BlockItemUseContext context) {
+   public BlockState getStateForPlacement(ModBlockItemUseContext context) {
       return this.getDefaultState().with(FACING, context.getNearestLookingDirection().getOpposite());
    }
 

@@ -13,6 +13,7 @@ import com.babcsany.minecraft.ervin_mod_1.init.item.tool.SpecialToolItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.tool.isBurnableSpecialToolItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.minecraft.item.spawn_egg.SpawnEggItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.special.SpecialItemInit;
+import com.babcsany.minecraft.item.ModBlockItem;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
@@ -628,7 +629,7 @@ public class WanderingTraderNirtreTrades {
       private final int buyingItemCount;
       private final float priceMultiplier;
 
-      public ItemWithPotionForTrurksAndItemsTrade(Block buyingItem, int buyingItemCount, BlockItem p_i50526_3_, int p_i50526_4_, int trurks, int maxUses, int xpValue) {
+      public ItemWithPotionForTrurksAndItemsTrade(Block buyingItem, int buyingItemCount, ModBlockItem p_i50526_3_, int p_i50526_4_, int trurks, int maxUses, int xpValue) {
          this.potionStack = new ItemStack(p_i50526_3_);
          this.trurkCount = trurks;
          this.maxUses = maxUses;

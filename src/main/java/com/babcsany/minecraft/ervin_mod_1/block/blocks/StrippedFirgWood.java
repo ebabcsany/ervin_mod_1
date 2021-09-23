@@ -2,7 +2,7 @@ package com.babcsany.minecraft.ervin_mod_1.block.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.item.BlockItemUseContext;
+import com.babcsany.minecraft.item.ModBlockItemUseContext;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
@@ -45,7 +45,7 @@ public class StrippedFirgWood extends Block {
       builder.add(AXIS);
    }
 
-   public BlockState getStateForPlacement(BlockItemUseContext context) {
+   public BlockState getStateForPlacement(ModBlockItemUseContext context) {
       return this.getDefaultState().with(AXIS, context.getFace().getAxis());
    }
 }

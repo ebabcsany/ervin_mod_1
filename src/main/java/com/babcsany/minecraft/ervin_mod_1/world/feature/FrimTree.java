@@ -1,6 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.world.feature;
 
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
+import com.babcsany.minecraft.init.BlockInit;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.block.trees.Tree;
 import net.minecraft.world.gen.Heightmap;
@@ -21,21 +22,21 @@ import java.util.Random;
 public class FrimTree extends Tree {
 
     public static final BaseTreeFeatureConfig FRIM_TREE_CONFIG0 = (new BaseTreeFeatureConfig.Builder(
-            new SimpleBlockStateProvider(BlockItemInit.FRIM_LOG.get().getDefaultState()),
+            new SimpleBlockStateProvider(BlockInit.FRIM_LOG.getDefaultState()),
             new SimpleBlockStateProvider(BlockItemInit.FRIM_LEAVES.get().getDefaultState()),
             new FancyFoliagePlacer(1, 2, 5, 3, 6),
             new FancyTrunkPlacer(4, 9, 11),
             new TwoLayerFeature(7, 4, 12, OptionalInt.of(9))))
             .setIgnoreVines().func_236702_a_(Heightmap.Type.MOTION_BLOCKING).build();
     public static final BaseTreeFeatureConfig FRIM_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
-            new SimpleBlockStateProvider(BlockItemInit.FRIM_LOG.get().getDefaultState()),
+            new SimpleBlockStateProvider(BlockInit.FRIM_LOG.getDefaultState()),
             new SimpleBlockStateProvider(BlockItemInit.FRIM_LEAVES.get().getDefaultState()),
             new BlobFoliagePlacer(3, 0, 0, 0, 4),
             new StraightTrunkPlacer(4, 2, 0),
             new TwoLayerFeature(1, 0, 1)))
             .setIgnoreVines().build();
     public static final BaseTreeFeatureConfig FRIM_TREE_CONFIG1 = (new BaseTreeFeatureConfig.Builder(
-            new SimpleBlockStateProvider(BlockItemInit.FRIM_LOG.get().getDefaultState()),
+            new SimpleBlockStateProvider(BlockInit.FRIM_LOG.getDefaultState()),
             new SimpleBlockStateProvider(BlockItemInit.FRIM_LEAVES.get().getDefaultState()),
             new BlobFoliagePlacer(3, 1, 2, 5, 4),
             new StraightTrunkPlacer(1, 3, 5),

@@ -8,6 +8,7 @@ import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.setup.DefaultSetup;
 import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.setup.ModEntitySpawnPlacementRegistry;
 import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.setup.ModSetup;
 import com.babcsany.minecraft.ervin_mod_1.forge.fml.DeferredWorkQueue;
+import com.babcsany.minecraft.ervin_mod_1.forge.registries.Registries;
 import com.babcsany.minecraft.ervin_mod_1.init.BiomeInit;
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit;
@@ -23,7 +24,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.BlockItem;
+import com.babcsany.minecraft.item.ModBlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeSerializer;
@@ -50,6 +51,8 @@ import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -63,8 +66,10 @@ import java.util.stream.Collectors;
 @Mod(Ervin_mod_1.MOD_ID)
 public class Ervin_mod_1 {
 
+    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Ervin_mod_1.MOD_ID);
     public static final RenderMaterial LOCATION_JURK_FLOW = new RenderMaterial(AtlasTexture.LOCATION_BLOCKS_TEXTURE, new ResourceLocation(Ervin_mod_1.MOD_ID,"block/fluid/jurk_flow"));
     public static final RenderMaterial LOCATION_JURK_OVERLAY = new RenderMaterial(AtlasTexture.LOCATION_BLOCKS_TEXTURE, new ResourceLocation(Ervin_mod_1.MOD_ID,"block/fluid/jurk_overlay"));
+
     public static final String MOD_ID = "ervin_mod_1";
     public static Ervin_mod_1 ervin_mod_1;
     public static Minecraft minecraft;
@@ -105,6 +110,7 @@ public class Ervin_mod_1 {
 
             Ervin_mod_1_.registries();
             Ervin_mod_1_.featureGen();
+            Ervin_mod_1_.modifiers();
 
         });
 
@@ -167,7 +173,7 @@ public class Ervin_mod_1 {
                 if (!Blocks.contains(block)) {
                     final Item.Properties properties = new Item.Properties();
                     properties.group(ItemGroup.ERVIN_MOD_1);
-                    final BlockItem blockItem = new BlockItem(block, properties);
+                    final ModBlockItem blockItem = new ModBlockItem(block, properties);
                     ResourceLocation registryName = block.getRegistryName();
                     if (null != registryName) {
                         blockItem.setRegistryName(registryName);
@@ -178,7 +184,7 @@ public class Ervin_mod_1 {
             com.babcsany.minecraft.ervin_mod_1.init.block.animation.colors.BlockItemInit.ANIMATION_BLOCKS.getEntries().stream().map(RegistryObject::get).forEach(block -> {
                 if (!Blocks.contains(block)) {
                     final Item.Properties properties = new Item.Properties();
-                    final BlockItem blockItem = new BlockItem(block, properties);
+                    final ModBlockItem blockItem = new ModBlockItem(block, properties);
                     ResourceLocation registryName = block.getRegistryName();
                     if (null != registryName) {
                         blockItem.setRegistryName(registryName);
@@ -191,7 +197,7 @@ public class Ervin_mod_1 {
                     final Item.Properties properties = new Item.Properties();
                     properties.group(ItemGroup.ERVIN_MOD_1);
                     properties.group(ItemGroup.ERVIN_MOD_1_SEARCH);
-                    final BlockItem blockItem = new BlockItem(block, properties);
+                    final ModBlockItem blockItem = new ModBlockItem(block, properties);
                     ResourceLocation registryName = block.getRegistryName();
                     if (null != registryName) {
                         blockItem.setRegistryName(registryName);
@@ -204,7 +210,7 @@ public class Ervin_mod_1 {
                     final Item.Properties properties = new Item.Properties().isBurnable();
                     properties.group(ItemGroup.ERVIN_MOD_1);
                     properties.group(ItemGroup.ERVIN_MOD_1_SEARCH);
-                    final BlockItem blockItem = new BlockItem(block, properties);
+                    final ModBlockItem blockItem = new ModBlockItem(block, properties);
                     ResourceLocation registryName = block.getRegistryName();
                     if (null != registryName) {
                         blockItem.setRegistryName(registryName);
@@ -256,19 +262,19 @@ public class Ervin_mod_1 {
     }
 
     public static Block blockRegister(String key, Block blockIn) {
-        return Registry.register(Registry.BLOCK, key, blockIn);
+        return Registry.register(Registry.BLOCK, modId(MOD_ID, key), blockIn);
     }
 
     public static Item itemRegister(ResourceLocation key, Item itemIn) {
-        if (itemIn instanceof BlockItem) {
-            ((BlockItem)itemIn).addToBlockToItemMap(Item.BLOCK_TO_ITEM, itemIn);
+        if (itemIn instanceof ModBlockItem) {
+            ((ModBlockItem)itemIn).addToBlockToItemMap(Item.BLOCK_TO_ITEM, itemIn);
         }
 
-        return Registry.register(Registry.ITEM, key, itemIn);
+        return Registry.register(Registry.ITEM, modId(key), itemIn);
     }
 
     public static <T extends Entity> EntityType<T> entityRegister(String key, EntityType.Builder<T> builder) {
-        return Registry.register(Registry.ENTITY_TYPE, key, builder.build(key));
+        return Registry.register(Registry.ENTITY_TYPE, modId(MOD_ID, key), builder.build(key));
     }
 
     public static String[] string(String[] strings) {
@@ -277,6 +283,10 @@ public class Ervin_mod_1 {
 
     public static String modId(String modId, String name) {
         return modId + ':' + name;
+    }
+
+    public static ResourceLocation modId(ResourceLocation name) {
+        return name;
     }
 
     public static void setWorldRegistryKey(String modId, String string) {

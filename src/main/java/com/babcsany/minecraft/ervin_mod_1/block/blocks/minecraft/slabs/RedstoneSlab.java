@@ -6,7 +6,7 @@ import net.minecraft.block.IWaterLoggable;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
-import net.minecraft.item.BlockItemUseContext;
+import com.babcsany.minecraft.item.ModBlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.BooleanProperty;
@@ -65,7 +65,7 @@ public class RedstoneSlab extends Block implements IWaterLoggable {
    }
 
    @Nullable
-   public BlockState getStateForPlacement(BlockItemUseContext context) {
+   public BlockState getStateForPlacement(ModBlockItemUseContext context) {
       BlockPos blockpos = context.getPos();
       BlockState blockstate = context.getWorld().getBlockState(blockpos);
       if (blockstate.isIn(this)) {
@@ -78,7 +78,7 @@ public class RedstoneSlab extends Block implements IWaterLoggable {
       }
    }
 
-   public boolean isReplaceable(BlockState state, BlockItemUseContext useContext) {
+   public boolean isReplaceable(BlockState state, ModBlockItemUseContext useContext) {
       ItemStack itemstack = useContext.getItem();
       SlabType slabtype = state.get(TYPE);
       if (slabtype != SlabType.DOUBLE && itemstack.getItem() == this.asItem()) {

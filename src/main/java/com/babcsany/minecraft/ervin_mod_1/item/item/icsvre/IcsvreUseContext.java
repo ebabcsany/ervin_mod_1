@@ -4,7 +4,6 @@ import com.babcsany.minecraft.ervin_mod_1.entity.living.Living;
 import com.babcsany.minecraft.ervin_mod_1.item.item.stack.IcsvreStack;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUseContext;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;

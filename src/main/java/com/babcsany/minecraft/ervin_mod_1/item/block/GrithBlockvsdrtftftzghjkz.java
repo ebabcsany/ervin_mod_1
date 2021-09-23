@@ -1,14 +1,10 @@
 package com.babcsany.minecraft.ervin_mod_1.item.block;
 
-import com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit;
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.item.BlockItem;
+import com.babcsany.minecraft.item.ModBlockItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 
-public class GrithBlockvsdrtftftzghjkz extends BlockItem {
+public class GrithBlockvsdrtftftzghjkz extends ModBlockItem {
    public GrithBlockvsdrtftftzghjkz(Block blockIn, Properties properties) {
       super(blockIn, properties);
    }

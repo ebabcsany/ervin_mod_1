@@ -1,13 +1,9 @@
 package com.babcsany.minecraft.ervin_mod_1.block.blocks;
 
-import com.babcsany.minecraft.ervin_mod_1.item.food.Foods;
 import com.babcsany.minecraft.ervin_mod_1.state.ModBlockStateProperties;
-import com.babcsany.minecraft.init.EffectInit;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.Food;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.potion.EffectInstance;
@@ -15,7 +11,6 @@ import net.minecraft.potion.Effects;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;

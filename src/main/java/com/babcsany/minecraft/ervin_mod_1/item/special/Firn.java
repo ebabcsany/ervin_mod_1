@@ -5,13 +5,13 @@ import com.babcsany.minecraft.ervin_mod_1.init.item.special.isBurnableSpecialIte
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUseContext;
+import com.babcsany.minecraft.item.ModItemUseContext;
 import net.minecraft.item.Rarity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.common.IExtensibleEnum;
 
-public class Firn extends Item {
+public class Firn extends Item implements i_t_r_a_e {
 
 	public Firn(Properties properties) {
 		super(properties);
@@ -53,7 +53,7 @@ public class Firn extends Item {
 	}
 
 	@Override
-	public ActionResultType onItemUse(ItemUseContext context) {
+	public ActionResultType onItemUse(ModItemUseContext context) {
 		if (context.getWorld().getBlockState(context.getPos()).getBlock() == isBurnableBlockItemInit.NIRK_BLOCK.get()) {
 			for (ItemStack stack : context.getPlayer().inventory.mainInventory) {
 				if (stack.isEmpty()) {

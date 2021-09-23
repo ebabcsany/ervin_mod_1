@@ -2,13 +2,12 @@ package com.babcsany.minecraft.ervin_mod_1.block.tripwires;
 
 
 import com.babcsany.minecraft.ervin_mod_1.block.tripwires.tripwire_hooks.LightBlue1TripWireHook;
-import com.babcsany.minecraft.ervin_mod_1.block.tripwires.tripwire_hooks.LightBlueTripWireHook;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.TripWireHookBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BlockItemUseContext;
+import com.babcsany.minecraft.item.ModBlockItemUseContext;
 import net.minecraft.item.Items;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
@@ -51,7 +50,7 @@ public class LightBlue1TripWire extends Block {
       return state.get(ATTACHED) ? AABB : TRIP_WRITE_ATTACHED_AABB;
    }
 
-   public BlockState getStateForPlacement(BlockItemUseContext context) {
+   public BlockState getStateForPlacement(ModBlockItemUseContext context) {
       IBlockReader iblockreader = context.getWorld();
       BlockPos blockpos = context.getPos();
       return this.getDefaultState().with(NORTH, this.shouldConnectTo(iblockreader.getBlockState(blockpos.north()), Direction.NORTH)).with(EAST, this.shouldConnectTo(iblockreader.getBlockState(blockpos.east()), Direction.EAST)).with(SOUTH, this.shouldConnectTo(iblockreader.getBlockState(blockpos.south()), Direction.SOUTH)).with(WEST, this.shouldConnectTo(iblockreader.getBlockState(blockpos.west()), Direction.WEST));

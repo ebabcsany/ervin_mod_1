@@ -32,4 +32,6 @@ public interface Consumer_1<K> {
      * @param k the 1. input argument
      */
     void accept(K k);
+
+    K get(K k);
 }

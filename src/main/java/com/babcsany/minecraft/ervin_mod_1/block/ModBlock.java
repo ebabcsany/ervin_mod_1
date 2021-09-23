@@ -4,6 +4,8 @@ import com.babcsany.minecraft.ervin_mod_1.item.item.icsvre.BlockIcsvreUseContext
 import com.babcsany.minecraft.ervin_mod_1.item.item.icsvre.Icsvre;
 import com.babcsany.minecraft.ervin_mod_1.item.item.stack.IcsvreStack;
 import com.babcsany.minecraft.forge.hooks.ForgeHooks;
+import com.babcsany.minecraft.item.ModBlockItem;
+import com.babcsany.minecraft.item.ModBlockItemUseContext;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
@@ -88,7 +90,7 @@ public class ModBlock extends AbstractModBlock implements IItemProvider, net.min
     }
 
     public static net.minecraft.block.Block getBlockFromItem(@Nullable Item itemIn) {
-        return itemIn instanceof BlockItem ? ((BlockItem)itemIn).getBlock() : Blocks.AIR;
+        return itemIn instanceof ModBlockItem ? ((ModBlockItem)itemIn).getBlock() : Blocks.AIR;
     }
 
     public static BlockState nudgeEntitiesWithNewState(BlockState oldState, BlockState newState, World worldIn, BlockPos pos) {
@@ -351,7 +353,7 @@ public class ModBlock extends AbstractModBlock implements IItemProvider, net.min
     }
 
     @Nullable
-    public BlockState getStateForPlacement(BlockItemUseContext context) {
+    public BlockState getStateForPlacement(ModBlockItemUseContext context) {
         return this.getDefaultState();
     }
 

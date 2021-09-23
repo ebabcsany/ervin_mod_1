@@ -6,7 +6,7 @@ import net.minecraft.block.DeadCoralWallFanBlock;
 import net.minecraft.block.IGrowable;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUseContext;
+import com.babcsany.minecraft.item.ModItemUseContext;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.ActionResultType;
@@ -29,7 +29,7 @@ public class HtrawMealItem extends Item {
    /**
     * Called when this item is used when targetting a Block
     */
-   public ActionResultType onItemUse(ItemUseContext context) {
+   public ActionResultType onItemUse(ModItemUseContext context) {
       World world = context.getWorld();
       BlockPos blockpos = context.getPos();
       BlockPos blockpos1 = blockpos.offset(context.getFace());

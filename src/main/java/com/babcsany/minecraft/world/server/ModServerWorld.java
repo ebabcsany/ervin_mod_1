@@ -5,6 +5,10 @@ import com.babcsany.minecraft.ervin_mod_1.world.teleporter.Teleporter;
 import com.babcsany.minecraft.world.world;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.*;
+import com.mojang.datafixers.DSL;
+import com.mojang.datafixers.DataFixer;
+import com.mojang.datafixers.schemas.Schema;
+import com.mojang.serialization.Dynamic;
 import it.unimi.dsi.fastutil.ints.Int2ObjectLinkedOpenHashMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap.Entry;
@@ -74,6 +78,7 @@ import net.minecraft.world.spawner.WorldEntitySpawner;
 import net.minecraft.world.storage.*;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.extensions.IForgeWorldServer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -89,20 +94,21 @@ import java.util.function.BooleanSupplier;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public class ModServerWorld extends world implements ISeedReader, net.minecraftforge.common.extensions.IForgeWorldServer {
+public class ModServerWorld extends world implements ISeedReader, IForgeWorldServer, DataFixer {
    public static final BlockPos field_241108_a_ = new BlockPos(100, 50, 0);
    private static final Logger LOGGER = LogManager.getLogger();
    private final Int2ObjectMap<Entity> entitiesById = new Int2ObjectLinkedOpenHashMap<>();
    private final Map<UUID, Entity> entitiesByUuid = Maps.newHashMap();
    private final Queue<Entity> entitiesToAdd = Queues.newArrayDeque();
    private final List<ServerPlayerEntity> players = Lists.newArrayList();
-   private final ServerChunkProvider field_241102_C_;
+   private final ModServerChunkProvider modServerChunkProvider;
    boolean tickingEntities;
    public TicketManager ticketManager;
    public ModChunkManager modChunkManager;
    private final MinecraftServer server;
    private final IServerWorldInfo iServerWorldInfo;
    private ServerWorld serverWorld;
+   public static ModServerWorld modServerWorld;
    public boolean disableLevelSaving;
    private boolean allPlayersSleeping;
    private int updateEntityTick;
@@ -126,8 +132,8 @@ public class ModServerWorld extends world implements ISeedReader, net.minecraftf
       this.server = minecraftServer;
       this.iSpecialSpawnerList = iSpecialSpawnerList;
       this.iServerWorldInfo = serverWorldInfo;
-      this.field_241102_C_ = new ServerChunkProvider(serverWorld, p_i232604_3_, minecraftServer.getDataFixer(), minecraftServer.func_240792_aT_(), executor, chunkGenerator, minecraftServer.getPlayerList().getViewDistance(), minecraftServer.func_230540_aS_(), chunkStatusListener, () -> minecraftServer.func_241755_D_().getSavedData());
-      this.worldTeleporter = new Teleporter(serverWorld);
+      this.modServerChunkProvider = new ModServerChunkProvider(this, p_i232604_3_, minecraftServer.getDataFixer(), minecraftServer.func_240792_aT_(), executor, chunkGenerator, minecraftServer.getPlayerList().getViewDistance(), minecraftServer.func_230540_aS_(), chunkStatusListener, () -> minecraftServer.func_241755_D_().getSavedData());
+      this.worldTeleporter = new Teleporter(this);
       this.calculateInitialSkylight();
       this.calculateInitialWeather();
       this.getWorldBorder().setSize(minecraftServer.getMaxWorldSize());
@@ -159,6 +165,11 @@ public class ModServerWorld extends world implements ISeedReader, net.minecraftf
 
    @Override
    public DimensionType func_230315_m_() {
+      return null;
+   }
+
+   @Override
+   public dimensionType dimensionType() {
       return null;
    }
 
@@ -641,7 +652,7 @@ public class ModServerWorld extends world implements ISeedReader, net.minecraftf
    }
 
    public void save(@Nullable IProgressUpdate progress, boolean flush, boolean skipSave) {
-      ServerChunkProvider serverchunkprovider = this.getChunkProvider();
+      ModServerChunkProvider serverchunkprovider = this.getChunkProvider();
       if (!skipSave) {
          if (progress != null) {
             progress.displaySavingString(new TranslationTextComponent("menu.savingLevel"));
@@ -670,7 +681,7 @@ public class ModServerWorld extends world implements ISeedReader, net.minecraftf
 
    public List<Entity> getEntities(@Nullable EntityType<?> entityTypeIn, Predicate<? super Entity> predicateIn) {
       List<Entity> list = Lists.newArrayList();
-      ServerChunkProvider serverchunkprovider = this.getChunkProvider();
+      ModServerChunkProvider serverchunkprovider = this.getChunkProvider();
 
       for(Entity entity : this.entitiesById.values()) {
          if ((entityTypeIn == null || entity.getType() == entityTypeIn) && serverchunkprovider.chunkExists(MathHelper.floor(entity.getPosX()) >> 4, MathHelper.floor(entity.getPosZ()) >> 4) && predicateIn.test(entity)) {
@@ -975,8 +986,8 @@ public class ModServerWorld extends world implements ISeedReader, net.minecraftf
    /**
     * Gets the world's chunk provider
     */
-   public ServerChunkProvider getChunkProvider() {
-      return this.field_241102_C_;
+   public ModServerChunkProvider getChunkProvider() {
+      return this.modServerChunkProvider;
    }
 
    public Explosion createExplosion(@Nullable Entity exploder, @Nullable DamageSource damageSource, @Nullable IExplosionContext context, double x, double y, double z, float size, boolean causesFire, Explosion.Mode mode) {
@@ -1370,5 +1381,15 @@ public class ModServerWorld extends world implements ISeedReader, net.minecraftf
 
    public java.util.stream.Stream<Entity> getEntities() {
        return entitiesById.values().stream();
+   }
+
+   @Override
+   public <T> Dynamic<T> update(DSL.TypeReference type, Dynamic<T> input, int version, int newVersion) {
+      return null;
+   }
+
+   @Override
+   public Schema getSchema(int key) {
+      return null;
    }
 }

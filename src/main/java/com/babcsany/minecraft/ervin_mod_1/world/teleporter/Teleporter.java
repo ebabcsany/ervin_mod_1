@@ -3,11 +3,11 @@ package com.babcsany.minecraft.ervin_mod_1.world.teleporter;
 import com.babcsany.minecraft.ervin_mod_1.block.ExamplePortalBlock;
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit;
+import com.babcsany.minecraft.world.server.ModServerWorld;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.pattern.BlockPattern;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
@@ -16,58 +16,68 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.village.PointOfInterest;
 import net.minecraft.village.PointOfInterestManager;
 import net.minecraft.village.PointOfInterestType;
-import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.server.TicketType;
 
 import javax.annotation.Nullable;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Collectors;
 
-public class Teleporter extends net.minecraft.world.Teleporter implements net.minecraftforge.common.util.ITeleporter {
-   protected final ServerWorld world;
-   protected final Random random;
+public class Teleporter implements net.minecraftforge.common.util.ITeleporter {
+   protected ModServerWorld world;
+   protected Random random;
+   public static Entity entity;
+   public float aFloat;
+   public int int_;
+   public BlockPos blockPos;
+   public Vector3d vector3d;
+   public Direction directionIn;
+   public double aDouble;
+   public boolean placeInExamplePortal;
+   public boolean makeExamplePortal;
 
-   public Teleporter(ServerWorld worldIn) {
-      super(worldIn);
+   public Teleporter() {
+      this.placeInExamplePortal = placeInExamplePortal(entity, aFloat);
+      this.makeExamplePortal = makeExamplePortal(entity);
+   }
+
+   public Teleporter(ModServerWorld worldIn) {
       this.world = worldIn;
       this.random = new Random(worldIn.getSeed());
    }
 
-   public boolean placeInPortal(Entity p_222268_1_, float p_222268_2_) {
-      Vector3d vector3d = p_222268_1_.getLastPortalVec();
-      Direction direction = p_222268_1_.getTeleportDirection();
-      BlockPattern.PortalInfo blockpattern$portalinfo = this.placeInExistingPortal(p_222268_1_.getPosition(), p_222268_1_.getMotion(), direction, vector3d.x, vector3d.y, p_222268_1_ instanceof PlayerEntity);
-      if (blockpattern$portalinfo == null) {
+   public boolean placeInExamplePortal(Entity entity, float p_222268_2_) {
+      Vector3d vector3d = entity.getLastPortalVec();
+      Direction direction = entity.getTeleportDirection();
+      BlockPattern.PortalInfo blockPattern$PortalInfo = this.placeInExistingExamplePortal(entity.getPosition(), entity.getMotion(), direction, vector3d.x, vector3d.y);
+      if (blockPattern$PortalInfo == null) {
          return false;
       } else {
-         Vector3d vector3d1 = blockpattern$portalinfo.pos;
-         Vector3d vector3d2 = blockpattern$portalinfo.motion;
-         p_222268_1_.setMotion(vector3d2);
-         p_222268_1_.rotationYaw = p_222268_2_ + (float)blockpattern$portalinfo.rotation;
-         p_222268_1_.moveForced(vector3d1.x, vector3d1.y, vector3d1.z);
+         Vector3d vector3d1 = blockPattern$PortalInfo.pos;
+         Vector3d vector3d2 = blockPattern$PortalInfo.motion;
+         entity.setMotion(vector3d2);
+         entity.rotationYaw = p_222268_2_ + (float)blockPattern$PortalInfo.rotation;
+         entity.moveForced(vector3d1.x, vector3d1.y, vector3d1.z);
          return true;
       }
    }
 
    @Nullable
-   public BlockPattern.PortalInfo placeInExistingPortal(BlockPos p_222272_1_, Vector3d p_222272_2_, Direction directionIn, double p_222272_4_, double p_222272_6_, boolean p_222272_8_) {
+   public BlockPattern.PortalInfo placeInExistingExamplePortal(BlockPos pos, Vector3d vector3d, Direction directionIn, double portalXZ, double portalY) {
       PointOfInterestManager pointofinterestmanager = this.world.getPointOfInterestManager();
-      pointofinterestmanager.ensureLoadedAndValid(this.world, p_222272_1_, 128);
-      List<PointOfInterest> list = pointofinterestmanager.getInSquare((p_226705_0_) -> p_226705_0_ == PointOfInterestType.NETHER_PORTAL, p_222272_1_, 128, PointOfInterestManager.Status.ANY).collect(Collectors.toList());
-      Optional<PointOfInterest> optional = list.stream().min(Comparator.<PointOfInterest>comparingDouble((p_226706_1_) -> p_226706_1_.getPos().distanceSq(p_222272_1_)).thenComparingInt((p_226704_0_) -> p_226704_0_.getPos().getY()));
-      return optional.map((p_226707_7_) -> {
-         BlockPos blockpos = p_226707_7_.getPos();
+      pointofinterestmanager.ensureLoadedAndValid(this.world, pos, 128);
+      List<PointOfInterest> list = pointofinterestmanager.getInSquare((pointOfInterestType) -> pointOfInterestType == PointOfInterestType.NETHER_PORTAL, pos, 128, PointOfInterestManager.Status.ANY).collect(Collectors.toList());
+      Optional<PointOfInterest> optional = list.stream().min(Comparator.<PointOfInterest>comparingDouble((pointOfInterest) -> pointOfInterest.getPos().distanceSq(pos)).thenComparingInt((pointOfInterest) -> pointOfInterest.getPos().getY()));
+      return optional.map((pointOfInterest) -> {
+         BlockPos blockpos = pointOfInterest.getPos();
          this.world.getChunkProvider().registerTicket(TicketType.PORTAL, new ChunkPos(blockpos), 3, blockpos);
-         BlockPattern.PatternHelper blockpattern$patternhelper = ExamplePortalBlock.createPatternHelper(this.world, blockpos);
-         return blockpattern$patternhelper.getPortalInfo(directionIn, blockpos, p_222272_6_, p_222272_2_, p_222272_4_);
+         BlockPattern.PatternHelper blockPattern$PatternHelper = ExamplePortalBlock.createPatternHelper(this.world, blockpos);
+         return blockPattern$PatternHelper.getPortalInfo(directionIn, blockpos, portalY, vector3d, portalXZ);
       }).orElse(null);
    }
 
-   public boolean makePortal(Entity entityIn) {
+   public boolean makeExamplePortal(Entity entityIn) {
       int i = 16;
+      int_ = i * 4;
       double d0 = -1.0D;
       int j = MathHelper.floor(entityIn.getPosX());
       int k = MathHelper.floor(entityIn.getPosY());
@@ -77,7 +87,7 @@ public class Teleporter extends net.minecraft.world.Teleporter implements net.mi
       int k1 = l;
       int l1 = 0;
       int i2 = this.random.nextInt(4);
-      BlockPos.Mutable blockpos$mutable = new BlockPos.Mutable();
+      BlockPos.Mutable blockPos$mutable = new BlockPos.Mutable();
 
       for(int j2 = j - 16; j2 <= j + 16; ++j2) {
          double d1 = (double)j2 + 0.5D - entityIn.getPosX();
@@ -87,8 +97,8 @@ public class Teleporter extends net.minecraft.world.Teleporter implements net.mi
 
             label276:
             for(int j3 = this.world.func_234938_ad_() - 1; j3 >= 0; --j3) {
-               if (this.world.isAirBlock(blockpos$mutable.setPos(j2, j3, l2))) {
-                  while(j3 > 0 && this.world.isAirBlock(blockpos$mutable.setPos(j2, j3 - 1, l2))) {
+               if (this.world.isAirBlock(blockPos$mutable.setPos(j2, j3, l2))) {
+                  while(j3 > 0 && this.world.isAirBlock(blockPos$mutable.setPos(j2, j3 - 1, l2))) {
                      --j3;
                   }
 
@@ -106,8 +116,8 @@ public class Teleporter extends net.minecraft.world.Teleporter implements net.mi
                               int i5 = j2 + (k4 - 1) * l3 + j4 * i4;
                               int j5 = j3 + l4;
                               int k5 = l2 + (k4 - 1) * i4 - j4 * l3;
-                              blockpos$mutable.setPos(i5, j5, k5);
-                              if (l4 < 0 && !this.world.getBlockState(blockpos$mutable).getMaterial().isSolid() || l4 >= 0 && !this.world.isAirBlock(blockpos$mutable)) {
+                              blockPos$mutable.setPos(i5, j5, k5);
+                              if (l4 < 0 && !this.world.getBlockState(blockPos$mutable).getMaterial().isSolid() || l4 >= 0 && !this.world.isAirBlock(blockPos$mutable)) {
                                  continue label276;
                               }
                            }
@@ -138,8 +148,8 @@ public class Teleporter extends net.minecraft.world.Teleporter implements net.mi
 
                label214:
                for(int i7 = this.world.func_234938_ad_() - 1; i7 >= 0; --i7) {
-                  if (this.world.isAirBlock(blockpos$mutable.setPos(l5, i7, j6))) {
-                     while(i7 > 0 && this.world.isAirBlock(blockpos$mutable.setPos(l5, i7 - 1, j6))) {
+                  if (this.world.isAirBlock(blockPos$mutable.setPos(l5, i7, j6))) {
+                     while(i7 > 0 && this.world.isAirBlock(blockPos$mutable.setPos(l5, i7 - 1, j6))) {
                         --i7;
                      }
 
@@ -152,8 +162,8 @@ public class Teleporter extends net.minecraft.world.Teleporter implements net.mi
                               int i11 = l5 + (i10 - 1) * l8;
                               int j11 = i7 + k10;
                               int k11 = j6 + (i10 - 1) * k9;
-                              blockpos$mutable.setPos(i11, j11, k11);
-                              if (k10 < 0 && !this.world.getBlockState(blockpos$mutable).getMaterial().isSolid() || k10 >= 0 && !this.world.isAirBlock(blockpos$mutable)) {
+                              blockPos$mutable.setPos(i11, j11, k11);
+                              if (k10 < 0 && !this.world.getBlockState(blockPos$mutable).getMaterial().isSolid() || k10 >= 0 && !this.world.isAirBlock(blockPos$mutable)) {
                                  continue label214;
                               }
                            }
@@ -196,8 +206,8 @@ public class Teleporter extends net.minecraft.world.Teleporter implements net.mi
                   int j10 = k2 + i9;
                   int l10 = k6 + (i8 - 1) * i3 - j7 * l6;
                   boolean flag = i9 < 0;
-                  blockpos$mutable.setPos(l9, j10, l10);
-                  this.world.setBlockState(blockpos$mutable, flag ? BlockItemInit.GRITK_BLOCK.get().getDefaultState() : Blocks.AIR.getDefaultState());
+                  blockPos$mutable.setPos(l9, j10, l10);
+                  this.world.setBlockState(blockPos$mutable, flag ? BlockItemInit.GRITK_BLOCK.get().getDefaultState() : Blocks.AIR.getDefaultState());
                }
             }
          }
@@ -206,8 +216,8 @@ public class Teleporter extends net.minecraft.world.Teleporter implements net.mi
       for(int k7 = -1; k7 < 3; ++k7) {
          for(int j8 = -1; j8 < 4; ++j8) {
             if (k7 == -1 || k7 == 2 || j8 == -1 || j8 == 3) {
-               blockpos$mutable.setPos(i6 + k7 * l6, k2 + j8, k6 + k7 * i3);
-               this.world.setBlockState(blockpos$mutable, BlockItemInit.EXAMPLE_BLOCK.get().getDefaultState(), 3);
+               blockPos$mutable.setPos(i6 + k7 * l6, k2 + j8, k6 + k7 * i3);
+               this.world.setBlockState(blockPos$mutable, BlockItemInit.GRITK_BLOCK.get().getDefaultState(), 3);
             }
          }
       }
@@ -216,8 +226,8 @@ public class Teleporter extends net.minecraft.world.Teleporter implements net.mi
 
       for(int k8 = 0; k8 < 2; ++k8) {
          for(int j9 = 0; j9 < 3; ++j9) {
-            blockpos$mutable.setPos(i6 + k8 * l6, k2 + j9, k6 + k8 * i3);
-            this.world.setBlockState(blockpos$mutable, examplePortal, 18);
+            blockPos$mutable.setPos(i6 + k8 * l6, k2 + j9, k6 + k8 * i3);
+            this.world.setBlockState(blockPos$mutable, examplePortal, 18);
          }
       }
 

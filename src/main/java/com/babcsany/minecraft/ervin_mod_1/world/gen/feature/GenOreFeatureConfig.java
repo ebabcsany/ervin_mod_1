@@ -29,7 +29,7 @@ public class GenOreFeatureConfig implements IFeatureConfig {
    }
 
    public enum FillerBlockType implements IStringSerializable, net.minecraftforge.common.IExtensibleEnum {
-      NATURAL_STONE("natural_stone", (p_214739_0_) -> {
+      MOD_NATURAL_STONE("mod_natural_stone", (p_214739_0_) -> {
          if (p_214739_0_ == null) {
             return false;
          } else {

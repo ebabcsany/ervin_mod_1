@@ -1,10 +1,8 @@
 package com.babcsany.minecraft.ervin_mod_1.item.items;
 
 import com.google.common.collect.Maps;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 

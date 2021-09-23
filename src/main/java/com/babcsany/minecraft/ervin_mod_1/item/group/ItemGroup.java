@@ -1,5 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.item.group;
 
+import com.babcsany.minecraft.ervin_mod_1.init.item.$ItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.food.brefk.BrefkStageItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
@@ -49,6 +50,12 @@ public abstract class ItemGroup {
       @OnlyIn(Dist.CLIENT)
       public ItemStack createIcon() {
          return new ItemStack(ModSpawnEggItemInit.SPAWN_EGG_1);
+      }
+   };
+   public static final net.minecraft.item.ItemGroup ERVIN_MOD_1_$ = new net.minecraft.item.ItemGroup(17, "ervin_mod_1_spawn_eggs") {
+      @OnlyIn(Dist.CLIENT)
+      public ItemStack createIcon() {
+         return new ItemStack($ItemInit.$_1$.get());
       }
    };
    /*public static final net.minecraft.item.ItemGroup REDSTONE = new net.minecraft.item.ItemGroup(2, "redstone") {
