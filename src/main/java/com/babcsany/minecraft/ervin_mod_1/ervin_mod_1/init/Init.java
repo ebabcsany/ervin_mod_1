@@ -8,6 +8,7 @@ import com.babcsany.minecraft.ervin_mod_1.init.DimensionInit;
 import com.babcsany.minecraft.ervin_mod_1.init.DimensionTypeInit;
 import com.babcsany.minecraft.ervin_mod_1.init.WorldInit;
 import com.babcsany.minecraft.ervin_mod_1.init.minecraft.block.item.MinecraftBlockItems;
+import com.babcsany.minecraft.ervin_mod_1.init.unused.UnusedBlockInit;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
@@ -32,6 +33,7 @@ public class Init {
 
     public IEventBus register(IEventBus modEventBus) {
         new ModInit(modEventBus);
+        new ModInit(modEventBus);
         return modEventBus;
     }
 
@@ -43,6 +45,10 @@ public class Init {
         new DimensionInit();
         new DimensionTypeInit();
         new WorldInit();
+    }
+
+    public void unused() {
+        new UnusedBlockInit();
     }
 
     public static class CreateRegistries<T extends IForgeRegistryEntry<T>> {

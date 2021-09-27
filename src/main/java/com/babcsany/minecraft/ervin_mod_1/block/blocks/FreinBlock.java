@@ -1,5 +1,8 @@
 package com.babcsany.minecraft.ervin_mod_1.block.blocks;
 
+import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
+import com.babcsany.minecraft.world.world;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.BreakableBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -19,6 +22,15 @@ public class FreinBlock extends BreakableBlock {
    public void onFallenUpon(World worldIn, BlockPos pos, Entity entityIn, float fallDistance) {
       if (entityIn.isSuppressingBounce()) {
          super.onFallenUpon(worldIn, pos, entityIn, fallDistance);
+      } else {
+         entityIn.onLivingFall(fallDistance, 0.0F);
+      }
+
+   }
+
+   public void onFallenUpon(world worldIn, BlockPos pos, Entity entityIn, float fallDistance) {
+      if (entityIn.isSuppressingBounce()) {
+         super.onFallenUpon(worldIn.getWorld(), pos, entityIn, fallDistance);
       } else {
          entityIn.onLivingFall(fallDistance, 0.0F);
       }
@@ -58,5 +70,20 @@ public class FreinBlock extends BreakableBlock {
       }
 
       super.onEntityWalk(worldIn, pos, entityIn);
+   }
+
+   public void onEntityWalk(world worldIn, BlockPos pos, Entity entityIn) {
+      double d0 = Math.abs(entityIn.getMotion().y);
+      if (d0 < 0.1D && !entityIn.isSteppingCarefully()) {
+         double d1 = 0.4D + d0 * 0.2D;
+         entityIn.setMotion(entityIn.getMotion().mul(d1, 4.0D, d1));
+      }
+
+      super.onEntityWalk(worldIn.getWorld(), pos, entityIn);
+   }
+
+   @Override
+   public boolean isSlimeBlock(BlockState state) {
+      return state.getBlock() == BlockItemInit.FREIN_BLOCK.get();
    }
 }

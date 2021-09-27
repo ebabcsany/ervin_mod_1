@@ -4,7 +4,6 @@ import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.block.AbstractModBlock;
 import com.babcsany.minecraft.ervin_mod_1.block.FallingZurBlock;
 import com.babcsany.minecraft.ervin_mod_1.block.blocks.*;
-import com.babcsany.minecraft.ervin_mod_1.block.blocks.burnable.ZurkBlock;
 import com.babcsany.minecraft.ervin_mod_1.block.blocks.burnable.slabs.ZurkSlab;
 import com.babcsany.minecraft.ervin_mod_1.block.blocks.burnable.stairs.GurkStairs;
 import com.babcsany.minecraft.ervin_mod_1.block.blocks.minecraft.slabs.ObsidianSlab;
@@ -12,7 +11,6 @@ import com.babcsany.minecraft.ervin_mod_1.block.blocks.minecraft.slabs.*;
 import com.babcsany.minecraft.ervin_mod_1.block.blocks.slabs.GurkSlab;
 import com.babcsany.minecraft.ervin_mod_1.block.blocks.slabs.RubySlab;
 import com.babcsany.minecraft.ervin_mod_1.block.blocks.stairs.RubyStairs;
-import com.babcsany.minecraft.ervin_mod_1.block.blocks.stairs.ZurkStairs;
 import com.babcsany.minecraft.ervin_mod_1.block.furnace.BlackFurnace;
 import com.babcsany.minecraft.ervin_mod_1.block.iron_ores.*;
 import com.babcsany.minecraft.ervin_mod_1.block.stone.cobblestone.stairs.StairsBlock;
@@ -27,12 +25,18 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.IItemTier;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.Direction;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.IBlockReader;
+import net.minecraft.world.World;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.Random;
 import java.util.function.Supplier;
 
 import static net.minecraft.block.Blocks.*;
@@ -51,8 +55,6 @@ public class BlockItemInit {
     public static final RegistryObject<Block> REGDEM_BLOCK = register("regdem_block", Material.WOOD, 0, ToolType.AXE, 10.0f);
     public static final RegistryObject<Block> SRIUNK_ORE = registerRequiresTool("sriunk_ore", Material.ROCK, 3, ToolType.PICKAXE, 100.0f);
     public static final RegistryObject<Block> RUBY_BLOCK = registerRequiresTool("ruby_block", Material.IRON, 2, ToolType.PICKAXE, 8.0f);
-    public static final RegistryObject<Block> RED_COBBLESTONE = registerRequiresTool("stone/cobblestones/red_cobblestone", Material.ROCK, 0, ToolType.PICKAXE, 2.0F, 6.0F);
-    public static final RegistryObject<Block> RED_SMOOTH_STONE = registerRequiresTool("stone/smooth_stones/red_smooth_stone", Material.ROCK, ToolType.PICKAXE, 1000000.0f);
     public static final RegistryObject<Block> AVTER_BLOCK = registerRequiresTool("avter_block", Material.ROCK, 5, ToolType.PICKAXE, 6000.0f);
     public static final RegistryObject<Block> FRIT_BLOCK = registerRequiresTool("frit_block", Material.ROCK, 1, ToolType.PICKAXE, 60.0f);
     public static final RegistryObject<Block> END_PORTAL = registerRequiresTool("end_portal", Material.ROCK, 13, ToolType.PICKAXE, 60.0f);
@@ -65,29 +67,30 @@ public class BlockItemInit {
     public static final RegistryObject<Block> ENDER_SRACKH = registerRequiresTool("ender_srackh", Material.ROCK, 1, ToolType.PICKAXE, 14.0f);
     public static final RegistryObject<Block> ENDER_SRACK = registerRequiresTool("ender_srack", Material.ROCK, 2, ToolType.PICKAXE, 16.0f);
     public static final RegistryObject<Block> END_SRACKT = registerRequiresTool("end_srackt", Material.ROCK, 2, ToolType.PICKAXE, 16.0f);
-    public static final RegistryObject<Block> GRIRZT = BLOCKS.register("grirzt", () -> new Grirzt(Block.Properties.create(Material.SPONGE).setRequiresTool().harvestLevel(17).harvestTool(ToolType.PICKAXE).hardnessAndResistance(160.0f)));
+    public static final RegistryObject<Block> GRIRZT = registerGrirzt();
     public static final RegistryObject<Block> TRING = registerRequiresTool("tring", Material.ORGANIC, 1, ToolType.AXE, 60.0f);
     public static final RegistryObject<Block> PACK_BLOCK = registerRequiresTool("pack_block", Material.EARTH, 1, ToolType.SHOVEL, 40.0f);
-    public static final RegistryObject<Block> KALT_BLOCK = BLOCKS.register("kalt_block", () -> new OreBlock1(Block.Properties.create(Material.ROCK).setRequiresTool().harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(60.0f)));
+    public static final RegistryObject<Block> KALT_BLOCK = registerOreBlock("kalt_block", Material.ROCK, 2, ToolType.PICKAXE, 60.0F, 5, 12);
     public static final RegistryObject<Block> URVI = registerRequiresTool("urvi", Material.ROCK, 0, ToolType.PICKAXE, 3.0F, 9.0F);
     public static final RegistryObject<Block> SURVI = registerRequiresTool("survi", Material.ROCK, 0, ToolType.PICKAXE, 2.0F, 9.0F);
     public static final RegistryObject<Block> SURV = registerRequiresTool("surv", Material.ROCK, 1, ToolType.PICKAXE, 4.0F, 10.0F);
     public static final RegistryObject<Block> SURT = registerRequiresTool("surt", Material.ROCK, 1, ToolType.PICKAXE, 5.0F, 12.0F);
-    public static final RegistryObject<Block> BLACK_COBBLESTONE = registerRequiresTool("stone/cobblestones/black_cobblestone", Material.ROCK, 0, ToolType.PICKAXE, 2.0F, 6.0F);
-    public static final RegistryObject<Block> BLUE_COBBLESTONE = registerRequiresTool("stone/cobblestones/blue_cobblestone", Material.ROCK, 0, ToolType.PICKAXE, 2.0F, 6.0F);
-    public static final RegistryObject<Block> BROWN_COBBLESTONE = registerRequiresTool("stone/cobblestones/brown_cobblestone", Material.ROCK, 0, ToolType.PICKAXE, 2.0F, 6.0F);
-    public static final RegistryObject<Block> CYAN_COBBLESTONE = registerRequiresTool("stone/cobblestones/cyan_cobblestone", Material.ROCK, 0, ToolType.PICKAXE, 2.0F, 6.0F);
-    public static final RegistryObject<Block> GREEN_COBBLESTONE = registerRequiresTool("stone/cobblestones/green_cobblestone", Material.ROCK, 0, ToolType.PICKAXE, 2.0F, 6.0F);
-    public static final RegistryObject<Block> LIGHT_BLUE_COBBLESTONE = registerRequiresTool("stone/cobblestones/light_blue1_cobblestone", Material.ROCK, 0, ToolType.PICKAXE, 2.0F, 6.0F);
-    public static final RegistryObject<Block> LIGHT_BLUE1_COBBLESTONE = registerRequiresTool("stone/cobblestones/light_blue_cobblestone", Material.ROCK, 0, ToolType.PICKAXE, 2.0F, 6.0F);
-    public static final RegistryObject<Block> LIGHT_GRAY_COBBLESTONE = registerRequiresTool("stone/cobblestones/light_gray_cobblestone", Material.ROCK, 0, ToolType.PICKAXE, 2.0F, 6.0F);
-    public static final RegistryObject<Block> LIME_COBBLESTONE = registerRequiresTool("stone/cobblestones/lime_cobblestone", Material.ROCK, 0, ToolType.PICKAXE, 2.0F, 6.0F);
-    public static final RegistryObject<Block> MAGENTA_COBBLESTONE = registerRequiresTool("stone/cobblestones/magenta_cobblestone", Material.ROCK, 0, ToolType.PICKAXE, 2.0F, 6.0F);
-    public static final RegistryObject<Block> ORANGE_COBBLESTONE = registerRequiresTool("stone/cobblestones/orange_cobblestone", Material.ROCK, 0, ToolType.PICKAXE, 2.0F, 6.0F);
-    public static final RegistryObject<Block> PINK_COBBLESTONE = registerRequiresTool("stone/cobblestones/pink_cobblestone", Material.ROCK, 0, ToolType.PICKAXE, 2.0F, 6.0F);
-    public static final RegistryObject<Block> PURPLE_COBBLESTONE = registerRequiresTool("stone/cobblestones/purple_cobblestone", Material.ROCK, 0, ToolType.PICKAXE, 2.0F, 6.0F);
-    public static final RegistryObject<Block> WHITE_COBBLESTONE = registerRequiresTool("stone/cobblestones/white_cobblestone", Material.ROCK, 0, ToolType.PICKAXE, 2.0F, 6.0F);
-    public static final RegistryObject<Block> YELLOW_COBBLESTONE = registerRequiresTool("stone/cobblestones/yellow_cobblestone", Material.ROCK, 0, ToolType.PICKAXE, 2.0F, 6.0F);
+    public static final RegistryObject<Block> BLACK_COBBLESTONE = registerCobblestoneRequiresTool("black_cobblestone");
+    public static final RegistryObject<Block> BLUE_COBBLESTONE = registerCobblestoneRequiresTool("blue_cobblestone");
+    public static final RegistryObject<Block> BROWN_COBBLESTONE = registerCobblestoneRequiresTool("brown_cobblestone");
+    public static final RegistryObject<Block> CYAN_COBBLESTONE = registerCobblestoneRequiresTool("cyan_cobblestone");
+    public static final RegistryObject<Block> GREEN_COBBLESTONE = registerCobblestoneRequiresTool("green_cobblestone");
+    public static final RegistryObject<Block> LIGHT_BLUE_COBBLESTONE = registerCobblestoneRequiresTool("light_blue1_cobblestone");
+    public static final RegistryObject<Block> LIGHT_BLUE1_COBBLESTONE = registerCobblestoneRequiresTool("light_blue_cobblestone");
+    public static final RegistryObject<Block> LIGHT_GRAY_COBBLESTONE = registerCobblestoneRequiresTool("light_gray_cobblestone");
+    public static final RegistryObject<Block> LIME_COBBLESTONE = registerCobblestoneRequiresTool("lime_cobblestone");
+    public static final RegistryObject<Block> MAGENTA_COBBLESTONE = registerCobblestoneRequiresTool("magenta_cobblestone");
+    public static final RegistryObject<Block> ORANGE_COBBLESTONE = registerCobblestoneRequiresTool("orange_cobblestone");
+    public static final RegistryObject<Block> PINK_COBBLESTONE = registerCobblestoneRequiresTool("pink_cobblestone");
+    public static final RegistryObject<Block> PURPLE_COBBLESTONE = registerCobblestoneRequiresTool("purple_cobblestone");
+    public static final RegistryObject<Block> RED_COBBLESTONE = registerCobblestoneRequiresTool("red_cobblestone");
+    public static final RegistryObject<Block> WHITE_COBBLESTONE = registerCobblestoneRequiresTool("white_cobblestone");
+    public static final RegistryObject<Block> YELLOW_COBBLESTONE = registerCobblestoneRequiresTool("yellow_cobblestone");
     public static final RegistryObject<Block> ENDER_SRACKTH = registerRequiresTool("ender_srackth", Material.SPONGE, 1, ToolType.PICKAXE, 20.0f);
     public static final RegistryObject<Block> OAK_TURG = registerRequiresTool("oak_turg", Material.WOOD, 1, ToolType.AXE, 20.0F, SoundType.WOOD);
     public static final RegistryObject<Block> FIRG_TURG = registerRequiresTool("firg_turg", Material.WOOD, 1, ToolType.AXE, 20.0F, SoundType.WOOD);
@@ -188,11 +191,12 @@ public class BlockItemInit {
     public static final RegistryObject<Block> ORANGE_SMOOTH_STONE = registerSmoothStoneRequiresTool("orange_smooth_stone");
     public static final RegistryObject<Block> PINK_SMOOTH_STONE = registerSmoothStoneRequiresTool("pink_smooth_stone");
     public static final RegistryObject<Block> PURPLE_SMOOTH_STONE = registerSmoothStoneRequiresTool("purple_smooth_stone");
+    public static final RegistryObject<Block> RED_SMOOTH_STONE = registerSmoothStoneRequiresTool("red_smooth_stone");
     public static final RegistryObject<Block> WHITE_SMOOTH_STONE = registerSmoothStoneRequiresTool("white_smooth_stone");
     public static final RegistryObject<Block> YELLOW_SMOOTH_STONE = registerSmoothStoneRequiresTool("yellow_smooth_stone");
-    public static final RegistryObject<Block> ENDER_SRACKHT_1 = BLOCKS.register("ender_srackht_1", () -> new EnderSrackht1(Block.Properties.create(Material.ROCK).setRequiresTool().harvestLevel(1).harvestTool(ToolType.PICKAXE).hardnessAndResistance(20.0F)));
-    public static final RegistryObject<Block> ENDER_SRAKTCAF_1 = BLOCKS.register("ender_sraktcaf_1", () -> new EnderSraktcaf1(Block.Properties.create(Material.ROCK).setRequiresTool().harvestLevel(3).harvestTool(ToolType.SHOVEL).hardnessAndResistance(60.0F)));
-    public static final RegistryObject<Block> ENDER_STAKRACH_1 = BLOCKS.register("ender_stakrach_1", () -> new EnderStakrach1(Block.Properties.create(Material.WOOD).setRequiresTool().harvestLevel(2).harvestTool(ToolType.AXE).hardnessAndResistance(40.0F)));
+    public static final RegistryObject<Block> ENDER_SRACKHT_1 = registerRequiresTool("ender_srackht_1", Material.ROCK, 1, ToolType.PICKAXE, 20.0F);
+    public static final RegistryObject<Block> ENDER_SRAKTCAF_1 = registerRequiresTool("ender_sraktcaf_1", Material.ROCK, 3, ToolType.SHOVEL, 60.0F);
+    public static final RegistryObject<Block> ENDER_STAKRACH_1 = registerRequiresTool("ender_stakrach_1", Material.WOOD, 2, ToolType.AXE, 40.0F);
     public static final RegistryObject<Block> BLACK_SMOOTH_STONE_SLAB = registerSmoothStoneSlabRequiresTool("black_smooth_stone_slab");
     public static final RegistryObject<Block> BLUE_SMOOTH_STONE_SLAB = registerSmoothStoneSlabRequiresTool("blue_smooth_stone_slab");
     public static final RegistryObject<Block> BROWN_SMOOTH_STONE_SLAB = registerSmoothStoneSlabRequiresTool("brown_smooth_stone_slab");
@@ -209,56 +213,56 @@ public class BlockItemInit {
     public static final RegistryObject<Block> RED_SMOOTH_STONE_SLAB = registerSmoothStoneSlabRequiresTool("red_smooth_stone_slab");
     public static final RegistryObject<Block> WHITE_SMOOTH_STONE_SLAB = registerSmoothStoneSlabRequiresTool("white_smooth_stone_slab");
     public static final RegistryObject<Block> YELLOW_SMOOTH_STONE_SLAB = registerSmoothStoneSlabRequiresTool("yellow_smooth_stone_slab");
-    public static final RegistryObject<Block> ZURK_BLOCK = BLOCKS.register("zurk_block", () -> new ZurkBlock(Block.Properties.create(Material.AIR).setRequiresTool().harvestLevel(2).harvestTool(ToolType.SHOVEL).hardnessAndResistance(200.0F)));
-    public static final RegistryObject<Block> ZURK_STAIRS = BLOCKS.register("zurk_stairs", () -> new ZurkStairs(() -> ZURK_BLOCK.get().getDefaultState(), Block.Properties.from(ZURK_BLOCK.get())));
-    public static final RegistryObject<Block> BLACK_COBBLESTONE_STAIRS = registerCobblestoneStairsRequiresTool("black_cobblestone_stairs", BLACK_COBBLESTONE.get().getDefaultState(), BLACK_COBBLESTONE);
-    public static final RegistryObject<Block> BLACK_SMOOTH_STONE_STAIRS = registerSmoothStoneStairsRequiresTool("black_smooth_stone_stairs", BLACK_SMOOTH_STONE.get().getDefaultState(), BLACK_SMOOTH_STONE);
-    public static final RegistryObject<Block> BLACK_STONE_STAIRS = registerStoneStairsRequiresTool("black_stone_stairs", BLACK_STONE.get().getDefaultState(), BLACK_STONE);
-    public static final RegistryObject<Block> BLUE_COBBLESTONE_STAIRS = registerCobblestoneStairsRequiresTool("blue_cobblestone_stairs", BLUE_COBBLESTONE.get().getDefaultState(), BLUE_COBBLESTONE);
-    public static final RegistryObject<Block> BLUE_SMOOTH_STONE_STAIRS = registerSmoothStoneStairsRequiresTool("blue_smooth_stone_stairs", BLUE_SMOOTH_STONE.get().getDefaultState(), BLUE_SMOOTH_STONE);
-    public static final RegistryObject<Block> BLUE_STONE_STAIRS = registerStoneStairsRequiresTool("blue_stone_stairs", BLUE_STONE.get().getDefaultState(), BLUE_STONE);
-    public static final RegistryObject<Block> BROWN_COBBLESTONE_STAIRS = registerCobblestoneStairsRequiresTool("brown_cobblestone_stairs", BROWN_COBBLESTONE.get().getDefaultState(), BROWN_COBBLESTONE);
-    public static final RegistryObject<Block> BROWN_SMOOTH_STONE_STAIRS = registerSmoothStoneStairsRequiresTool("brown_smooth_stone_stairs", BROWN_SMOOTH_STONE.get().getDefaultState(), BROWN_SMOOTH_STONE);
-    public static final RegistryObject<Block> BROWN_STONE_STAIRS = registerStoneStairsRequiresTool("brown_stone_stairs", BROWN_STONE.get().getDefaultState(), BROWN_STONE);
-    public static final RegistryObject<Block> CYAN_COBBLESTONE_STAIRS = registerCobblestoneStairsRequiresTool("cyan_cobblestone_stairs", CYAN_COBBLESTONE.get().getDefaultState(), CYAN_COBBLESTONE);
-    public static final RegistryObject<Block> CYAN_SMOOTH_STONE_STAIRS = registerSmoothStoneStairsRequiresTool("cyan_smooth_stone_stairs", CYAN_SMOOTH_STONE.get().getDefaultState(), CYAN_SMOOTH_STONE);
-    public static final RegistryObject<Block> CYAN_STONE_STAIRS = registerStoneStairsRequiresTool("cyan_stone_stairs", CYAN_STONE.get().getDefaultState(), CYAN_STONE);
-    public static final RegistryObject<Block> GREEN_COBBLESTONE_STAIRS = registerCobblestoneStairsRequiresTool("green_cobblestone_stairs", GREEN_COBBLESTONE.get().getDefaultState(), GREEN_COBBLESTONE);
-    public static final RegistryObject<Block> GREEN_SMOOTH_STONE_STAIRS = registerSmoothStoneStairsRequiresTool("green_smooth_stone_stairs", GREEN_SMOOTH_STONE.get().getDefaultState(), GREEN_SMOOTH_STONE);
-    public static final RegistryObject<Block> GREEN_STONE_STAIRS = registerStoneStairsRequiresTool("green_stone_stairs", GREEN_STONE.get().getDefaultState(), GREEN_STONE);
-    public static final RegistryObject<Block> LIGHT_BLUE_COBBLESTONE_STAIRS = registerCobblestoneStairsRequiresTool("light_blue_cobblestone_stairs", LIGHT_BLUE_COBBLESTONE.get().getDefaultState(), LIGHT_BLUE_COBBLESTONE);
-    public static final RegistryObject<Block> LIGHT_BLUE_SMOOTH_STONE_STAIRS = registerSmoothStoneStairsRequiresTool("light_blue_smooth_stone_stairs", LIGHT_BLUE_SMOOTH_STONE.get().getDefaultState(), LIGHT_BLUE_SMOOTH_STONE);
-    public static final RegistryObject<Block> LIGHT_BLUE_STONE_STAIRS = registerStoneStairsRequiresTool("light_blue_stone_stairs", LIGHT_BLUE_STONE.get().getDefaultState(), LIGHT_BLUE_STONE);
-    public static final RegistryObject<Block> LIGHT_BLUE1_COBBLESTONE_STAIRS = registerCobblestoneStairsRequiresTool("light_blue1_cobblestone_stairs", LIGHT_BLUE1_COBBLESTONE.get().getDefaultState(), LIGHT_BLUE1_COBBLESTONE);
-    public static final RegistryObject<Block> LIGHT_BLUE1_SMOOTH_STONE_STAIRS = registerSmoothStoneStairsRequiresTool("light_blue1_smooth_stone_stairs", LIGHT_BLUE1_SMOOTH_STONE.get().getDefaultState(), LIGHT_BLUE1_SMOOTH_STONE);
-    public static final RegistryObject<Block> LIGHT_BLUE1_STONE_STAIRS = registerStoneStairsRequiresTool("light_blue1_stone_stairs", LIGHT_BLUE1_STONE.get().getDefaultState(), LIGHT_BLUE1_STONE);
-    public static final RegistryObject<Block> LIGHT_GRAY_COBBLESTONE_STAIRS = registerCobblestoneStairsRequiresTool("light_gray_cobblestone_stairs", LIGHT_GRAY_COBBLESTONE.get().getDefaultState(), LIGHT_GRAY_COBBLESTONE);
-    public static final RegistryObject<Block> LIGHT_GRAY_SMOOTH_STONE_STAIRS = registerSmoothStoneStairsRequiresTool("light_gray_smooth_stone_stairs", LIGHT_GRAY_SMOOTH_STONE.get().getDefaultState(), LIGHT_GRAY_SMOOTH_STONE);
-    public static final RegistryObject<Block> LIGHT_GRAY_STONE_STAIRS = registerStoneStairsRequiresTool("light_gray_stone_stairs", LIGHT_GRAY_STONE.get().getDefaultState(), LIGHT_GRAY_STONE);
-    public static final RegistryObject<Block> LIME_COBBLESTONE_STAIRS = registerCobblestoneStairsRequiresTool("lime_cobblestone_stairs", LIME_COBBLESTONE.get().getDefaultState(), LIME_COBBLESTONE);
-    public static final RegistryObject<Block> LIME_SMOOTH_STONE_STAIRS = registerSmoothStoneStairsRequiresTool("lime_smooth_stone_stairs", LIME_SMOOTH_STONE.get().getDefaultState(), LIME_SMOOTH_STONE);
-    public static final RegistryObject<Block> LIME_STONE_STAIRS = registerStoneStairsRequiresTool("lime_stone_stairs", LIME_STONE.get().getDefaultState(), LIME_STONE);
-    public static final RegistryObject<Block> MAGENTA_COBBLESTONE_STAIRS = registerCobblestoneStairsRequiresTool("magenta_cobblestone_stairs", MAGENTA_COBBLESTONE.get().getDefaultState(), MAGENTA_COBBLESTONE);
-    public static final RegistryObject<Block> MAGENTA_SMOOTH_STONE_STAIRS = registerSmoothStoneStairsRequiresTool("magenta_smooth_stone_stairs", MAGENTA_SMOOTH_STONE.get().getDefaultState(), MAGENTA_SMOOTH_STONE);
-    public static final RegistryObject<Block> MAGENTA_STONE_STAIRS = registerStoneStairsRequiresTool("magenta_stone_stairs", MAGENTA_STONE.get().getDefaultState(), MAGENTA_STONE);
-    public static final RegistryObject<Block> ORANGE_COBBLESTONE_STAIRS = registerCobblestoneStairsRequiresTool("orange_cobblestone_stairs", ORANGE_COBBLESTONE.get().getDefaultState(), ORANGE_COBBLESTONE);
-    public static final RegistryObject<Block> ORANGE_SMOOTH_STONE_STAIRS = registerSmoothStoneStairsRequiresTool("orange_smooth_stone_stairs", ORANGE_SMOOTH_STONE.get().getDefaultState(), ORANGE_SMOOTH_STONE);
-    public static final RegistryObject<Block> ORANGE_STONE_STAIRS = registerStoneStairsRequiresTool("orange_stone_stairs", ORANGE_STONE.get().getDefaultState(), ORANGE_STONE);
-    public static final RegistryObject<Block> PINK_COBBLESTONE_STAIRS = registerCobblestoneStairsRequiresTool("pink_cobblestone_stairs", PINK_COBBLESTONE.get().getDefaultState(), PINK_COBBLESTONE);
-    public static final RegistryObject<Block> PINK_SMOOTH_STONE_STAIRS = registerSmoothStoneStairsRequiresTool("pink_smooth_stone_stairs", PINK_SMOOTH_STONE.get().getDefaultState(), PINK_SMOOTH_STONE);
-    public static final RegistryObject<Block> PINK_STONE_STAIRS = registerStoneStairsRequiresTool("pink_stone_stairs", PINK_STONE.get().getDefaultState(), PINK_STONE);
-    public static final RegistryObject<Block> PURPLE_COBBLESTONE_STAIRS = registerCobblestoneStairsRequiresTool("purple_cobblestone_stairs", PURPLE_COBBLESTONE.get().getDefaultState(), PURPLE_COBBLESTONE);
-    public static final RegistryObject<Block> PURPLE_SMOOTH_STONE_STAIRS = registerSmoothStoneStairsRequiresTool("purple_smooth_stone_stairs", PURPLE_SMOOTH_STONE.get().getDefaultState(), PURPLE_SMOOTH_STONE);
-    public static final RegistryObject<Block> PURPLE_STONE_STAIRS = registerStoneStairsRequiresTool("purple_stone_stairs", PURPLE_STONE.get().getDefaultState(), PURPLE_STONE);
-    public static final RegistryObject<Block> RED_COBBLESTONE_STAIRS = registerCobblestoneStairsRequiresTool("red_cobblestone_stairs", RED_COBBLESTONE.get().getDefaultState(), RED_COBBLESTONE);
-    public static final RegistryObject<Block> RED_SMOOTH_STONE_STAIRS = registerSmoothStoneStairsRequiresTool("red_smooth_stone_stairs", RED_SMOOTH_STONE.get().getDefaultState(), RED_SMOOTH_STONE);
-    public static final RegistryObject<Block> RED_STONE_STAIRS = registerStoneStairsRequiresTool("red_stone_stairs", RED_STONE.get().getDefaultState(), RED_STONE);
-    public static final RegistryObject<Block> WHITE_COBBLESTONE_STAIRS = registerCobblestoneStairsRequiresTool("white_cobblestone_stairs", WHITE_COBBLESTONE.get().getDefaultState(), WHITE_COBBLESTONE);
-    public static final RegistryObject<Block> WHITE_SMOOTH_STONE_STAIRS = registerSmoothStoneStairsRequiresTool("white_smooth_stone_stairs", WHITE_SMOOTH_STONE.get().getDefaultState(), WHITE_SMOOTH_STONE);
-    public static final RegistryObject<Block> WHITE_STONE_STAIRS = registerStoneStairsRequiresTool("white_stone_stairs", WHITE_STONE.get().getDefaultState(), WHITE_STONE);
-    public static final RegistryObject<Block> YELLOW_COBBLESTONE_STAIRS = registerCobblestoneStairsRequiresTool("yellow_cobblestone_stairs", YELLOW_COBBLESTONE.get().getDefaultState(), YELLOW_COBBLESTONE);
-    public static final RegistryObject<Block> YELLOW_SMOOTH_STONE_STAIRS = registerSmoothStoneStairsRequiresTool("yellow_smooth_stone_stairs", YELLOW_SMOOTH_STONE.get().getDefaultState(), YELLOW_SMOOTH_STONE);
-    public static final RegistryObject<Block> YELLOW_STONE_STAIRS = registerStoneStairsRequiresTool("yellow_stone_stairs", YELLOW_STONE.get().getDefaultState(), YELLOW_STONE);
+    public static final RegistryObject<Block> ZURK_BLOCK = registerRequiresTool("zurk_block", Material.AIR, 2, ToolType.SHOVEL, 200.0F);
+    public static final RegistryObject<Block> ZURK_STAIRS = registerStairsRequiresTool("zurk_stairs", ZURK_BLOCK, ZURK_BLOCK);
+    public static final RegistryObject<Block> BLACK_COBBLESTONE_STAIRS = registerCobblestoneStairsRequiresTool("black_cobblestone_stairs", BLACK_COBBLESTONE, BLACK_COBBLESTONE);
+    public static final RegistryObject<Block> BLUE_COBBLESTONE_STAIRS = registerCobblestoneStairsRequiresTool("blue_cobblestone_stairs", BLUE_COBBLESTONE, BLUE_COBBLESTONE);
+    public static final RegistryObject<Block> BROWN_COBBLESTONE_STAIRS = registerCobblestoneStairsRequiresTool("brown_cobblestone_stairs", BROWN_COBBLESTONE, BROWN_COBBLESTONE);
+    public static final RegistryObject<Block> CYAN_COBBLESTONE_STAIRS = registerCobblestoneStairsRequiresTool("cyan_cobblestone_stairs", CYAN_COBBLESTONE, CYAN_COBBLESTONE);
+    public static final RegistryObject<Block> GREEN_COBBLESTONE_STAIRS = registerCobblestoneStairsRequiresTool("green_cobblestone_stairs", GREEN_COBBLESTONE, GREEN_COBBLESTONE);
+    public static final RegistryObject<Block> LIGHT_BLUE_COBBLESTONE_STAIRS = registerCobblestoneStairsRequiresTool("light_blue_cobblestone_stairs", LIGHT_BLUE_COBBLESTONE, LIGHT_BLUE_COBBLESTONE);
+    public static final RegistryObject<Block> LIGHT_BLUE1_COBBLESTONE_STAIRS = registerCobblestoneStairsRequiresTool("light_blue1_cobblestone_stairs", LIGHT_BLUE1_COBBLESTONE, LIGHT_BLUE1_COBBLESTONE);
+    public static final RegistryObject<Block> LIGHT_GRAY_COBBLESTONE_STAIRS = registerCobblestoneStairsRequiresTool("light_gray_cobblestone_stairs", LIGHT_GRAY_COBBLESTONE, LIGHT_GRAY_COBBLESTONE);
+    public static final RegistryObject<Block> LIME_COBBLESTONE_STAIRS = registerCobblestoneStairsRequiresTool("lime_cobblestone_stairs", LIME_COBBLESTONE, LIME_COBBLESTONE);
+    public static final RegistryObject<Block> MAGENTA_COBBLESTONE_STAIRS = registerCobblestoneStairsRequiresTool("magenta_cobblestone_stairs", MAGENTA_COBBLESTONE, MAGENTA_COBBLESTONE);
+    public static final RegistryObject<Block> ORANGE_COBBLESTONE_STAIRS = registerCobblestoneStairsRequiresTool("orange_cobblestone_stairs", ORANGE_COBBLESTONE, ORANGE_COBBLESTONE);
+    public static final RegistryObject<Block> PINK_COBBLESTONE_STAIRS = registerCobblestoneStairsRequiresTool("pink_cobblestone_stairs", PINK_COBBLESTONE, PINK_COBBLESTONE);
+    public static final RegistryObject<Block> PURPLE_COBBLESTONE_STAIRS = registerCobblestoneStairsRequiresTool("purple_cobblestone_stairs", PURPLE_COBBLESTONE, PURPLE_COBBLESTONE);
+    public static final RegistryObject<Block> RED_COBBLESTONE_STAIRS = registerCobblestoneStairsRequiresTool("red_cobblestone_stairs", RED_COBBLESTONE, RED_COBBLESTONE);
+    public static final RegistryObject<Block> WHITE_COBBLESTONE_STAIRS = registerCobblestoneStairsRequiresTool("white_cobblestone_stairs", WHITE_COBBLESTONE, WHITE_COBBLESTONE);
+    public static final RegistryObject<Block> YELLOW_COBBLESTONE_STAIRS = registerCobblestoneStairsRequiresTool("yellow_cobblestone_stairs", YELLOW_COBBLESTONE, YELLOW_COBBLESTONE);
+    public static final RegistryObject<Block> BLACK_SMOOTH_STONE_STAIRS = registerSmoothStoneStairsRequiresTool("black_smooth_stone_stairs", BLACK_SMOOTH_STONE, BLACK_SMOOTH_STONE);
+    public static final RegistryObject<Block> BLUE_SMOOTH_STONE_STAIRS = registerSmoothStoneStairsRequiresTool("blue_smooth_stone_stairs", BLUE_SMOOTH_STONE, BLUE_SMOOTH_STONE);
+    public static final RegistryObject<Block> BROWN_SMOOTH_STONE_STAIRS = registerSmoothStoneStairsRequiresTool("brown_smooth_stone_stairs", BROWN_SMOOTH_STONE, BROWN_SMOOTH_STONE);
+    public static final RegistryObject<Block> CYAN_SMOOTH_STONE_STAIRS = registerSmoothStoneStairsRequiresTool("cyan_smooth_stone_stairs", CYAN_SMOOTH_STONE, CYAN_SMOOTH_STONE);
+    public static final RegistryObject<Block> GREEN_SMOOTH_STONE_STAIRS = registerSmoothStoneStairsRequiresTool("green_smooth_stone_stairs", GREEN_SMOOTH_STONE, GREEN_SMOOTH_STONE);
+    public static final RegistryObject<Block> LIGHT_BLUE_SMOOTH_STONE_STAIRS = registerSmoothStoneStairsRequiresTool("light_blue_smooth_stone_stairs", LIGHT_BLUE_SMOOTH_STONE, LIGHT_BLUE_SMOOTH_STONE);
+    public static final RegistryObject<Block> LIGHT_BLUE1_SMOOTH_STONE_STAIRS = registerSmoothStoneStairsRequiresTool("light_blue1_smooth_stone_stairs", LIGHT_BLUE1_SMOOTH_STONE, LIGHT_BLUE1_SMOOTH_STONE);
+    public static final RegistryObject<Block> LIGHT_GRAY_SMOOTH_STONE_STAIRS = registerSmoothStoneStairsRequiresTool("light_gray_smooth_stone_stairs", LIGHT_GRAY_SMOOTH_STONE, LIGHT_GRAY_SMOOTH_STONE);
+    public static final RegistryObject<Block> LIME_SMOOTH_STONE_STAIRS = registerSmoothStoneStairsRequiresTool("lime_smooth_stone_stairs", LIME_SMOOTH_STONE, LIME_SMOOTH_STONE);
+    public static final RegistryObject<Block> MAGENTA_SMOOTH_STONE_STAIRS = registerSmoothStoneStairsRequiresTool("magenta_smooth_stone_stairs", MAGENTA_SMOOTH_STONE, MAGENTA_SMOOTH_STONE);
+    public static final RegistryObject<Block> ORANGE_SMOOTH_STONE_STAIRS = registerSmoothStoneStairsRequiresTool("orange_smooth_stone_stairs", ORANGE_SMOOTH_STONE, ORANGE_SMOOTH_STONE);
+    public static final RegistryObject<Block> PINK_SMOOTH_STONE_STAIRS = registerSmoothStoneStairsRequiresTool("pink_smooth_stone_stairs", PINK_SMOOTH_STONE, PINK_SMOOTH_STONE);
+    public static final RegistryObject<Block> PURPLE_SMOOTH_STONE_STAIRS = registerSmoothStoneStairsRequiresTool("purple_smooth_stone_stairs", PURPLE_SMOOTH_STONE, PURPLE_SMOOTH_STONE);
+    public static final RegistryObject<Block> RED_SMOOTH_STONE_STAIRS = registerSmoothStoneStairsRequiresTool("red_smooth_stone_stairs", RED_SMOOTH_STONE, RED_SMOOTH_STONE);
+    public static final RegistryObject<Block> WHITE_SMOOTH_STONE_STAIRS = registerSmoothStoneStairsRequiresTool("white_smooth_stone_stairs", WHITE_SMOOTH_STONE, WHITE_SMOOTH_STONE);
+    public static final RegistryObject<Block> YELLOW_SMOOTH_STONE_STAIRS = registerSmoothStoneStairsRequiresTool("yellow_smooth_stone_stairs", YELLOW_SMOOTH_STONE, YELLOW_SMOOTH_STONE);
+    public static final RegistryObject<Block> BLACK_STONE_STAIRS = registerStoneStairsRequiresTool("black_stone_stairs", BLACK_STONE, BLACK_STONE);
+    public static final RegistryObject<Block> BLUE_STONE_STAIRS = registerStoneStairsRequiresTool("blue_stone_stairs", BLUE_STONE, BLUE_STONE);
+    public static final RegistryObject<Block> BROWN_STONE_STAIRS = registerStoneStairsRequiresTool("brown_stone_stairs", BROWN_STONE, BROWN_STONE);
+    public static final RegistryObject<Block> CYAN_STONE_STAIRS = registerStoneStairsRequiresTool("cyan_stone_stairs", CYAN_STONE, CYAN_STONE);
+    public static final RegistryObject<Block> GREEN_STONE_STAIRS = registerStoneStairsRequiresTool("green_stone_stairs", GREEN_STONE, GREEN_STONE);
+    public static final RegistryObject<Block> LIGHT_BLUE_STONE_STAIRS = registerStoneStairsRequiresTool("light_blue_stone_stairs", LIGHT_BLUE_STONE, LIGHT_BLUE_STONE);
+    public static final RegistryObject<Block> LIGHT_BLUE1_STONE_STAIRS = registerStoneStairsRequiresTool("light_blue1_stone_stairs", LIGHT_BLUE1_STONE, LIGHT_BLUE1_STONE);
+    public static final RegistryObject<Block> LIGHT_GRAY_STONE_STAIRS = registerStoneStairsRequiresTool("light_gray_stone_stairs", LIGHT_GRAY_STONE, LIGHT_GRAY_STONE);
+    public static final RegistryObject<Block> LIME_STONE_STAIRS = registerStoneStairsRequiresTool("lime_stone_stairs", LIME_STONE, LIME_STONE);
+    public static final RegistryObject<Block> MAGENTA_STONE_STAIRS = registerStoneStairsRequiresTool("magenta_stone_stairs", MAGENTA_STONE, MAGENTA_STONE);
+    public static final RegistryObject<Block> ORANGE_STONE_STAIRS = registerStoneStairsRequiresTool("orange_stone_stairs", ORANGE_STONE, ORANGE_STONE);
+    public static final RegistryObject<Block> PINK_STONE_STAIRS = registerStoneStairsRequiresTool("pink_stone_stairs", PINK_STONE, PINK_STONE);
+    public static final RegistryObject<Block> PURPLE_STONE_STAIRS = registerStoneStairsRequiresTool("purple_stone_stairs", PURPLE_STONE, PURPLE_STONE);
+    public static final RegistryObject<Block> RED_STONE_STAIRS = registerStoneStairsRequiresTool("red_stone_stairs", RED_STONE, RED_STONE);
+    public static final RegistryObject<Block> WHITE_STONE_STAIRS = registerStoneStairsRequiresTool("white_stone_stairs", WHITE_STONE, WHITE_STONE);
+    public static final RegistryObject<Block> YELLOW_STONE_STAIRS = registerStoneStairsRequiresTool("yellow_stone_stairs", YELLOW_STONE, YELLOW_STONE);
     public static final RegistryObject<Block> FREIN_BLOCK = BLOCKS.register("frein_block", () -> new FreinBlock(Block.Properties.create(Material.CLAY).slipperiness(0.8F).sound(SoundType.SLIME).zeroHardnessAndResistance().notSolid().jumpFactor(6)));
     public static final RegistryObject<Block> GANK_BLOCK = BLOCKS.register("gank_block", () -> new GankBlock(AbstractBlock.Properties.create(Material.ROCK).setRequiresTool().harvestLevel(0).harvestTool(ToolType.PICKAXE).hardnessAndResistance(990.0F)));
     public static final RegistryObject<Block> GANK_STAIRS = BLOCKS.register("gank_stairs", () -> new GankStairs(() -> GANK_BLOCK.get().getDefaultState(), Block.Properties.from(GANK_BLOCK.get())));
@@ -422,6 +426,10 @@ public class BlockItemInit {
         return BLOCKS.register(name, () -> new Block(AbstractBlock.Properties.create(material, materialColor).hardnessAndResistance(hardnessIn, resistanceIn).harvestTool(harvestTool).sound(soundTypeIn)));
     }
 
+    public static RegistryObject<Block> register(String name, Material material, MaterialColor materialColor, float hardnessIn, float resistanceIn, int lightValue) {
+        return BLOCKS.register(name, () -> new Block(AbstractBlock.Properties.create(material, materialColor).hardnessAndResistance(hardnessIn, resistanceIn).setLightLevel((Value) -> lightValue)));
+    }
+
     public static RegistryObject<Block> register(String name, Material material, MaterialColor materialColor, float hardnessAndResistance, ToolType harvestTool, SoundType soundTypeIn) {
         return BLOCKS.register(name, () -> new Block(AbstractBlock.Properties.create(material, materialColor).hardnessAndResistance(hardnessAndResistance).harvestTool(harvestTool).sound(soundTypeIn)));
     }
@@ -438,36 +446,82 @@ public class BlockItemInit {
         return BLOCKS.register(name, () -> new Block(AbstractBlock.Properties.create(material).hardnessAndResistance(hardnessAndResistance).sound(soundTypeIn)));
     }
 
+    public static RegistryObject<Block> registerLightValue(String name, Material material, MaterialColor materialColor, float hardnessIn, float resistanceIn, int lightValue) {
+        return BLOCKS.register(name, () -> new Block(AbstractBlock.Properties.create(material, materialColor).hardnessAndResistance(hardnessIn, resistanceIn).setLightLevel((Value) -> lightValue)));
+    }
+
+    public static RegistryObject<Block> registerLightValue(String name, Material material, MaterialColor materialColor, float hardnessAndResistance, int lightValue) {
+        return BLOCKS.register(name, () -> new Block(AbstractBlock.Properties.create(material, materialColor).hardnessAndResistance(hardnessAndResistance, hardnessAndResistance).setLightLevel((Value) -> lightValue)));
+    }
+
     public static RegistryObject<Block> register(String name, Material material) {
         return BLOCKS.register(name, () -> new Block(AbstractBlock.Properties.create(material)));
     }
 
-    public static RegistryObject<Block> registerRequiresTool(String name, Material material, int harvestLevel, ToolType harvestTool, float hardnessAndresistanceIn) {
-        return registerRequiresTool(name, material, harvestLevel, harvestTool, hardnessAndresistanceIn, hardnessAndresistanceIn);
+    public static RegistryObject<Block> registerIM(String name, Material material) {
+        return BLOCKS.register(name, () -> new IM(AbstractBlock.Properties.create(material)));
     }
 
-    public static RegistryObject<Block> registerRequiresTool(String name, Material material, int harvestLevel, ToolType harvestTool, float hardnessAndresistanceIn, SoundType sound) {
-        return registerRequiresTool(name, material, harvestLevel, harvestTool, hardnessAndresistanceIn, hardnessAndresistanceIn, sound);
+    public static RegistryObject<Block> registerRequiresTool(String name, Material material, int harvestLevel, ToolType harvestTool, float hardnessAndResistance) {
+        return BLOCKS.register(name, () -> new Block(AbstractBlock.Properties.create(material).setRequiresTool().harvestLevel(harvestLevel).harvestTool(harvestTool).hardnessAndResistance(hardnessAndResistance, hardnessAndResistance)));
     }
 
-    public static RegistryObject<Block> registerRequiresTool(String name, Material material, int harvestLevel, float hardnessAndresistanceIn) {
-        return registerRequiresTool(name, material, harvestLevel, hardnessAndresistanceIn, hardnessAndresistanceIn);
+    public static RegistryObject<Block> registerRequiresTool(String name, Material material, int harvestLevel, ToolType harvestTool, float hardnessAndResistance, SoundType sound) {
+        return BLOCKS.register(name, () -> new Block(AbstractBlock.Properties.create(material).setRequiresTool().harvestLevel(harvestLevel).harvestTool(harvestTool).hardnessAndResistance(hardnessAndResistance, hardnessAndResistance).sound(sound)));
+    }
+
+    public static RegistryObject<Block> registerRequiresTool(String name, Material material, int harvestLevel, float hardnessAndRsistance) {
+        return BLOCKS.register(name, () -> new Block(AbstractBlock.Properties.create(material).setRequiresTool().harvestLevel(harvestLevel).hardnessAndResistance(hardnessAndRsistance, hardnessAndRsistance)));
     }
 
     public static RegistryObject<Block> registerRequiresTool(String name, Material material, int harvestLevel, ToolType harvestTool, float hardnessIn, float resistanceIn) {
         return BLOCKS.register(name, () -> new Block(AbstractBlock.Properties.create(material).setRequiresTool().harvestLevel(harvestLevel).harvestTool(harvestTool).hardnessAndResistance(hardnessIn, resistanceIn)));
     }
 
+    public static RegistryObject<Block> registerBlock(String name, AbstractBlock.Properties properties) {
+        return BLOCKS.register(name, () -> new Block(properties));
+    }
+
+    public static RegistryObject<Block> registerGrirzt() {
+        return BLOCKS.register("grirzt", () -> new Grirzt<>(AbstractBlock.Properties.create(Material.SPONGE).setRequiresTool().harvestLevel(17).harvestTool(ToolType.PICKAXE).hardnessAndResistance(160.0f)));
+    }
+
+    public static RegistryObject<Block> registerOreBlock(String name, Material material, int harvestLevel, ToolType harvestTool, float hardnessAndResistance, int minimumExp, int maximumExp) {
+        return BLOCKS.register(name, () -> new Block(Block.Properties.create(material).setRequiresTool().harvestLevel(harvestLevel).harvestTool(harvestTool).hardnessAndResistance(hardnessAndResistance)) {
+
+            public int getExperience(Random rand, Block oreBlock, int minimumExp, int maximumExp) {
+                if (this == oreBlock) {
+                    return MathHelper.nextInt(rand, minimumExp, maximumExp);
+                } else {
+                    return 0;
+                }
+            }
+
+            public void spawnAdditionalDrops(BlockState state, World worldIn, BlockPos pos, ItemStack stack) {
+                super.spawnAdditionalDrops(state, worldIn, pos, stack);
+            }
+
+            @Override
+            public int getExpDrop(BlockState state, net.minecraft.world.IWorldReader reader, BlockPos pos, int fortune, int silktouch) {
+                return silktouch == 0 ? this.getExperience(RANDOM, this, minimumExp, maximumExp) : 0;
+            }
+        });
+    }
+
+    public static RegistryObject<Block> registerCobblestoneRequiresTool(String name) {
+        return registerRequiresTool("stone/cobblestones/" + name, Material.ROCK, 0, ToolType.PICKAXE, 2.0F, 6.0F);
+    }
+
     public static RegistryObject<Block> registerSlabRequiresTool(String name, Material material, int harvestLevel, ToolType harvestTool, float hardnessIn, float resistanceIn) {
         return BLOCKS.register(name, () -> new SlabBlock(AbstractBlock.Properties.create(material).setRequiresTool().harvestLevel(harvestLevel).harvestTool(harvestTool).hardnessAndResistance(hardnessIn, resistanceIn)));
     }
 
-    public static RegistryObject<Block> registerStairsRequiresTool(String name, BlockState blockState, Block properties) {
-        return BLOCKS.register(name, () -> new StairsBlock(blockState, AbstractBlock.Properties.from(properties)));
+    public static RegistryObject<Block> registerStairsRequiresTool(String name, BlockState blockState, AbstractBlock abstractBlock) {
+        return BLOCKS.register(name, () -> new StairsBlock(blockState, AbstractBlock.Properties.from(abstractBlock)));
     }
 
-    public static RegistryObject<Block> registerStairsRequiresTool(String name, Supplier<BlockState> blockStateSupplier, Supplier<AbstractBlock.Properties> propertiesSupplier) {
-        return BLOCKS.register(name, () -> new StairsBlock(blockStateSupplier, propertiesSupplier.get()));
+    public static RegistryObject<Block> register_StairsRequiresTool(String name, Supplier<BlockState> blockStateSupplier, Supplier<AbstractBlock.Properties> propertiesSupplier) {
+        return BLOCKS.register(name, () -> new StairsBlock(blockStateSupplier.get(), propertiesSupplier.get()));
     }
 
     public static RegistryObject<Block> registerStoneRequiresTool(String name) {
@@ -478,16 +532,20 @@ public class BlockItemInit {
         return registerSlabRequiresTool("stone/slabs/" + name, Material.ROCK, 0, ToolType.PICKAXE, 2.0F, 6.0F);
     }
 
-    public static RegistryObject<Block> registerCobblestoneStairsRequiresTool(String name, BlockState blockSupplier, RegistryObject<Block> propertiesSupplier) {
-        return registerStairsRequiresTool("stone/cobblestone/stairs/" + name, blockSupplier.getBlockState(), propertiesSupplier.get());
+    public static RegistryObject<Block> registerStoneStairsRequiresTool(String name, Supplier<Block> blockState, Supplier<Block> block) {
+        return registerStairsRequiresTool("stone/stairs" + name, blockState.get().getDefaultState(), block.get());
     }
 
-    public static RegistryObject<Block> registerStoneStairsRequiresTool(String name, BlockState blockSupplier, RegistryObject<Block> propertiesSupplier) {
-        return registerStairsRequiresTool("stone/stairs/" + name, blockSupplier.getBlockState(), propertiesSupplier.get());
+    public static RegistryObject<Block> registerCobblestoneStairsRequiresTool(String name, Supplier<Block> blockState, Supplier<Block> block) {
+        return registerStairsRequiresTool("stone/cobblestone/stairs/" + name, blockState.get().getDefaultState(), block.get());
     }
 
-    public static RegistryObject<Block> registerSmoothStoneStairsRequiresTool(String name, BlockState blockSupplier, RegistryObject<Block> propertiesSupplier) {
-        return registerStairsRequiresTool("stone/smoooth_stone/stairs/" + name, blockSupplier.getBlockState(), propertiesSupplier.get());
+    public static RegistryObject<Block> registerStairsRequiresTool(String name, Supplier<Block> blockState, Supplier<Block> block) {
+        return registerStairsRequiresTool(name, blockState.get().getDefaultState(), block.get());
+    }
+
+    public static RegistryObject<Block> registerSmoothStoneStairsRequiresTool(String name, Supplier<Block> blockState, Supplier<Block> block) {
+        return registerStairsRequiresTool("stone/smoooth_stone/stairs/" + name, blockState.get().getDefaultState(), block.get());
     }
 
     public static RegistryObject<Block> registerSmoothStoneRequiresTool(String name) {
@@ -532,6 +590,32 @@ public class BlockItemInit {
 
     public static RegistryObject<Block> registerRequiresTool(String name, Material material, MaterialColor materialColor, float hardnessIn, float resistanceIn, SoundType sound) {
         return BLOCKS.register(name, () -> new Block(AbstractBlock.Properties.create(material, materialColor).setRequiresTool().hardnessAndResistance(hardnessIn, resistanceIn).sound(sound)));
+    }
+
+    public static RegistryObject<Block> registerBurningBlock(String name, AbstractBlock.Properties properties) {
+        return BLOCKS.register(name, () -> new Block(properties) {
+            @Override
+            public boolean isBurning(BlockState state, IBlockReader world, BlockPos pos) {
+                return super.isBurning(state, world, pos);
+            }
+        });
+    }
+
+    public static RegistryObject<Block> registerBurningBlock(String name, Material material) {
+        return BLOCKS.register(name, () -> new Block(AbstractBlock.Properties.create(material)) {
+            @Override
+            public boolean isBurning(BlockState state, IBlockReader world, BlockPos pos) {
+                return super.isBurning(state, world, pos);
+            }
+        });
+    }
+
+    public static RegistryObject<Block> registerBurningBlockRequiresTool(String name, AbstractBlock.Properties properties) {
+        return registerBurningBlock(name, properties.setRequiresTool());
+    }
+
+    public static RegistryObject<Block> registerBurningBlockRequiresTool(String name, Material material) {
+        return registerBurningBlockRequiresTool(name, AbstractBlock.Properties.create(material));
     }
 
     public static AbstractBlock.Properties blockRegister(Material material, MaterialColor materialColor, float hardnessIn, float resistanceIn, ToolType harvestTool, SoundType soundTypeIn) {
@@ -579,7 +663,7 @@ public class BlockItemInit {
         }
     }
 
-    public static class IM extends ModBlock {
+    public static class IM<T> extends ModBlock {
         public Supplier<BlockState> defaultState;
 
         public IM(Properties properties) {
@@ -591,7 +675,7 @@ public class BlockItemInit {
         }
 
         public final Supplier<BlockState> getSupplierDefaultState() {
-            return this.defaultState;
+            return defaultState;
         }
     }
 }
