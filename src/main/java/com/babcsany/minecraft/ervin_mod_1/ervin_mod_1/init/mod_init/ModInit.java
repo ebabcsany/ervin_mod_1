@@ -1,7 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.init.mod_init;
 
 import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.init.mod_init.biome.BiomeInit;
-import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.init.mod_init.block.BlockInit;
 import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.init.mod_init.container.ContainerInit;
 import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.init.mod_init.decorator.DecoratorInit;
 import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.init.mod_init.entity.EntityInit;
@@ -24,7 +23,6 @@ public class ModInit {
 
     public IEventBus register(IEventBus modEventBus) {
         new BiomeInit(modEventBus);
-        new BlockInit(modEventBus);
         new ContainerInit(modEventBus);
         new DecoratorInit(modEventBus);
         new EntityInit(modEventBus);

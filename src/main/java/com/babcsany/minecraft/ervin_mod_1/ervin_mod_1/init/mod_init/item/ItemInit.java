@@ -50,7 +50,7 @@ public class ItemInit {
         com.babcsany.minecraft.ervin_mod_1.init.item.tool.stone.ToolItemInit.TOOL_ITEMS.register(modEventBus);
         ModSpawnEggItemInit.SPAWN_EGGS.register(modEventBus);
         com.babcsany.minecraft.ervin_mod_1.init.minecraft.item.spawn_egg.SpawnEggItemInit.SPAWN_EGGS.register(modEventBus);
-        BlockNamedItemInit.ITEMS.register(modEventBus);
+        BlockNamedItemInit.BLOCK_ITEMS.register(modEventBus);
         isBurnableSpecialBlockItemInit.SPECIAL_ITEMS.register(modEventBus);
         isBurnableSpecialItemInit.SPECIAL_ITEMS.register(modEventBus);
         SpecialBlockFoodItemInit.BURNABLE_FOOD_BLOCK_ITEMS.register(modEventBus);

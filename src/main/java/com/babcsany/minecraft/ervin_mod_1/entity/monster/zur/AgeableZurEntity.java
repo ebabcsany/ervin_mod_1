@@ -4,7 +4,6 @@ import com.babcsany.minecraft.ervin_mod_1.entity.trigger.CriteriaTriggers1;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.ZurTrades;
 import com.google.common.collect.Sets;
 import net.minecraft.entity.*;
-import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.entity.merchant.IMerchant;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -188,7 +187,7 @@ public abstract class AgeableZurEntity extends CreatureEntity implements INPC, I
       this.livingSoundTime = -this.getTalkInterval();
       this.onZurTrade(offer);
       if (this.customer instanceof ServerPlayerEntity) {
-         CriteriaTriggers1.ZUR_TRADE.test((ServerPlayerEntity)this.customer, this, offer.getSellingStack());
+         CriteriaTriggers1.ZUR_TRADE.testAgeable((ServerPlayerEntity)this.customer, this, offer.getSellingStack());
       }
 
    }

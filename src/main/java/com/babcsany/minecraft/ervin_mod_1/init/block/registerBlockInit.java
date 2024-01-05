@@ -2,6 +2,7 @@ package com.babcsany.minecraft.ervin_mod_1.init.block;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.block.ExamplePortalBlock;
+import com.babcsany.minecraft.ervin_mod_1.block.Fighiv;
 import com.babcsany.minecraft.ervin_mod_1.block.PoweredRailBlock;
 import com.babcsany.minecraft.ervin_mod_1.block.TargCropsBlock;
 import com.babcsany.minecraft.ervin_mod_1.block.blocks.*;

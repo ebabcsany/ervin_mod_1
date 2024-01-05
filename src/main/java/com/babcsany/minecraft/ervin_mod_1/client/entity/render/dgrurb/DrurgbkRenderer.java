@@ -4,6 +4,7 @@ import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.entity.fish.DrurgbkEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
+import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.model.SalmonModel;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
@@ -12,7 +13,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class DrurgbkRenderer extends DgrurbMobRenderer<DrurgbkEntity, SalmonModel<DrurgbkEntity>> {
+public class DrurgbkRenderer extends MobRenderer<DrurgbkEntity, SalmonModel<DrurgbkEntity>> {
    private static final ResourceLocation DRURGBK_LOCATION = new ResourceLocation(Ervin_mod_1.MOD_ID,"textures/entity/dgrurb/fish/drurgbk.png");
 
    public DrurgbkRenderer(EntityRendererManager renderManagerIn) {

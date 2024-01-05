@@ -1,6 +1,5 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.pathfinding.dgrurb;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.fish.DrurbFishEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.DgrurbMobEntity;
 import com.babcsany.minecraft.ervin_mod_1.network.DebugPacketSender;
 import net.minecraft.util.Util;
@@ -20,7 +19,7 @@ public class SwimmerDgrurbPathNavigator extends DgrurbPathNavigator {
    }
 
    protected DgrurbPathFinder getPathFinder(int p_179679_1_) {
-      this.field_205155_i = this.entity instanceof DrurbFishEntity;
+      this.field_205155_i = this.entity instanceof DgrurbMobEntity;
       this.nodeProcessor = new SwimDgrurbNodeProcessor(this.field_205155_i);
       return new DgrurbPathFinder(this.nodeProcessor, p_179679_1_);
    }
