@@ -1,7 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.monster.zur;
 
+import com.babcsany.minecraft.ervin_mod_1.entity.trigger.CriteriaTriggers1;
 import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
-import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -267,7 +267,7 @@ public abstract class TameableZurEntity extends AnimalZurEntity {
       this.setTamed(true);
       this.setOwnerId(player.getUniqueID());
       if (player instanceof ServerPlayerEntity) {
-         CriteriaTriggers.TAME_ANIMAL.trigger((ServerPlayerEntity)player, this);
+         CriteriaTriggers1.TAME_ANIMAL.trigger((ServerPlayerEntity)player, this);
       }
 
    }

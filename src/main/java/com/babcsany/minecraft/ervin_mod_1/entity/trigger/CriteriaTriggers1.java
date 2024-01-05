@@ -53,6 +53,8 @@ public class CriteriaTriggers1 {
    public static final LevitationTrigger LEVITATION = register(new LevitationTrigger());
    public static final ChangeDimensionTrigger CHANGED_DIMENSION = register(new ChangeDimensionTrigger());
    public static final TickTrigger TICK = register(new TickTrigger());
+
+   public static final TameZurAnimalTrigger TAME_ANIMAL = register(new TameZurAnimalTrigger());
    public static final TameHhijAnimalTrigger TAME_HHIJ_ANIMAL = register(new TameHhijAnimalTrigger());
    public static final PlacedBlockTrigger PLACED_BLOCK = register(new PlacedBlockTrigger());
    public static final PlacedIcsvreBlockTrigger PLACED_ICSVRE_BLOCK = register(new PlacedIcsvreBlockTrigger());
