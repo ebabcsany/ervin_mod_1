@@ -3,10 +3,12 @@ package com.babcsany.minecraft.ervin_mod_1.entity.fish.drurgbk;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.SpawnReason;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IWorld;
-import net.minecraft.world.iorld;
+import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -16,13 +18,18 @@ public abstract class AbstractGroupDrurgbkFishEntity extends AbstractDrurgbkFish
    private AbstractGroupDrurgbkFishEntity groupLeader;
    private int groupSize = 1;
 
-   public AbstractGroupDrurgbkFishEntity(EntityType<? extends AbstractGroupDrurgbkFishEntity> type, iorld worldIn) {
+   public AbstractGroupDrurgbkFishEntity(EntityType<? extends AbstractGroupDrurgbkFishEntity> type, World worldIn) {
       super(type, worldIn);
    }
 
    protected void registerGoals() {
       super.registerGoals();
       this.goalSelector.addGoal(5, new FollowDrurgbkSchoolLeaderGoal(this));
+   }
+
+   @Override
+   protected ItemStack getFishBucket() {
+      return null;
    }
 
    /**
@@ -38,6 +45,11 @@ public abstract class AbstractGroupDrurgbkFishEntity extends AbstractDrurgbkFish
 
    protected boolean func_212800_dy() {
       return !this.hasGroupLeader();
+   }
+
+   @Override
+   protected SoundEvent getFlopSound() {
+      return null;
    }
 
    public boolean hasGroupLeader() {

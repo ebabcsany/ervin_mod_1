@@ -1,13 +1,13 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.ai.controller.dgrurb.fish;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.DgrurbMobEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.ai.controller.dgrurb.DgrurbLookController;
+import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.ai.controller.LookController;
 import net.minecraft.util.math.MathHelper;
 
-public class DrurbFishLookController extends DgrurbLookController {
+public class DrurbFishLookController extends LookController {
    private final int field_205139_h;
 
-   public DrurbFishLookController(DgrurbMobEntity p_i48942_1_, int p_i48942_2_) {
+   public DrurbFishLookController(MobEntity p_i48942_1_, int p_i48942_2_) {
       super(p_i48942_1_);
       this.field_205139_h = p_i48942_2_;
    }

@@ -11,7 +11,6 @@ import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.init.default_init.painting
 import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.init.default_init.particle.ParticleInit;
 import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.init.default_init.sound_event.SoundEventInit;
 import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.init.default_init.tile_entity.TileEntityInit;
-import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.init.default_init.world.WorldInit;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.item.PaintingType;
@@ -21,7 +20,6 @@ import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.Effects;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.SoundEvents;
-import net.minecraft.world.iorld;
 import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.gen.feature.Feature;
 
@@ -37,7 +35,6 @@ public class DefaultInit {
     public ParticleTypes PARTICLES;
     public SoundEvents SOUND_EVENTS;
     public TileEntityType<?> TILE_ENTITIES;
-    public iorld WORLDS;
     public DefaultInit() {
         register();
     }
@@ -54,6 +51,5 @@ public class DefaultInit {
         new ParticleInit(PARTICLES);
         new SoundEventInit(SOUND_EVENTS);
         new TileEntityInit(TILE_ENTITIES);
-        new WorldInit(WORLDS);
     }
 }

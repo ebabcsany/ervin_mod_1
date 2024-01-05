@@ -8,6 +8,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
+import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -35,7 +36,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public abstract class TameableZurEntity extends AnimalZurEntity {
+public abstract class TameableZurEntity extends AnimalEntity {
    private static final UUID MODIFIER_UUID = UUID.fromString("5CD17E52-A79A-43D3-A529-90FDE04B181E");
    public static final AttributeModifier MODIFIER = new AttributeModifier(MODIFIER_UUID, "Drinking speed penalty", 0.6D, AttributeModifier.Operation.ADDITION);
    public static final DataParameter<Boolean> IS_DRINKING = EntityDataManager.createKey(TameableZurEntity.class, DataSerializers.BOOLEAN);
@@ -267,7 +268,7 @@ public abstract class TameableZurEntity extends AnimalZurEntity {
       this.setTamed(true);
       this.setOwnerId(player.getUniqueID());
       if (player instanceof ServerPlayerEntity) {
-         CriteriaTriggers1.TAME_ANIMAL.trigger((ServerPlayerEntity)player, this);
+         CriteriaTriggers1.TAME_ZUR_ANIMAL.trigger((ServerPlayerEntity)player, this);
       }
 
    }

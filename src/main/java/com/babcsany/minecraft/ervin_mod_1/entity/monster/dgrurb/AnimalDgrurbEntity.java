@@ -19,7 +19,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
-import net.minecraft.world.iorld;
+import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -31,7 +31,7 @@ public abstract class AnimalDgrurbEntity extends DgrurbAgeableEntity {
    private int inLove;
    private UUID playerInLove;
 
-   protected AnimalDgrurbEntity(EntityType<? extends AnimalDgrurbEntity> type, iorld worldIn) {
+   protected AnimalDgrurbEntity(EntityType<? extends AnimalDgrurbEntity> type, World worldIn) {
       super(type, worldIn);
       this.setPathPriority(PathNodeType.DANGER_FIRE, 16.0F);
       this.setPathPriority(PathNodeType.DAMAGE_FIRE, -1.0F);
@@ -232,7 +232,7 @@ public abstract class AnimalDgrurbEntity extends DgrurbAgeableEntity {
       }
    }
 
-   public void func_234177_a_(iorld p_234177_1_, AnimalDgrurbEntity p_234177_2_) {
+   public void func_234177_a_(World p_234177_1_, AnimalDgrurbEntity p_234177_2_) {
       DgrurbAgeableEntity ageableentity = this.createChild(p_234177_2_);
        final BabyEntitySpawnEvent event = new BabyEntitySpawnEvent(this, p_234177_2_, ageableentity);
        final boolean cancelled = net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(event);
@@ -262,7 +262,7 @@ public abstract class AnimalDgrurbEntity extends DgrurbAgeableEntity {
    }
 
    /**
-    * Handler for {@link iorld#setEntityState}
+    * Handler for {@link World#setEntityState}
     */
    @OnlyIn(Dist.CLIENT)
    public void handleStatusUpdate(byte id) {

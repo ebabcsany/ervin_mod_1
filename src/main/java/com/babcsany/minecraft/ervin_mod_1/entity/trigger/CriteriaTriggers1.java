@@ -1,9 +1,11 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.trigger;
 
 import com.babcsany.minecraft.advancements.criterion.RightClickBlockWithIcsvreTrigger;
+import com.babcsany.minecraft.advancements.criterion.TameDgrurbAnimalTrigger;
 import com.babcsany.minecraft.advancements.criterion.trigger.PlacedIcsvreBlockTrigger;
 import com.babcsany.minecraft.ervin_mod_1.block.trader_block.TraderBlockTrigger;
 import com.babcsany.minecraft.ervin_mod_1.entity.CuredZurNirtreTrigger;
+import com.babcsany.minecraft.ervin_mod_1.entity.ai.BredZurTrigger;
 import com.babcsany.minecraft.ervin_mod_1.entity.trigger.hhij.BredHhijTrigger;
 import com.babcsany.minecraft.ervin_mod_1.entity.trigger.hhij.TameHhijAnimalTrigger;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.trigger.*;
@@ -11,7 +13,6 @@ import com.google.common.collect.Maps;
 import net.minecraft.advancements.ICriterionInstance;
 import net.minecraft.advancements.ICriterionTrigger;
 import net.minecraft.advancements.criterion.*;
-
 import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nullable;
@@ -35,7 +36,7 @@ public class CriteriaTriggers1 {
    public static final SummonedEntityTrigger SUMMONED_ENTITY = register(new SummonedEntityTrigger());
    public static final BredAnimalsTrigger BRED_ANIMALS = register(new BredAnimalsTrigger());
    public static final BredHhijTrigger BRED_HHIJ = register(new BredHhijTrigger());
-   //public static final BredZurTrigger BRED_ZUR_ENTITY = register(new BredZurTrigger());
+   public static final BredZurTrigger BRED_ZUR_ENTITY = register(new BredZurTrigger());
    public static final PositionTrigger LOCATION = register(new PositionTrigger(new ResourceLocation("location")));
    public static final PositionTrigger SLEPT_IN_BED = register(new PositionTrigger(new ResourceLocation("slept_in_bed")));
    public static final CuredZombieVillagerTrigger CURED_ZOMBIE_VILLAGER = register(new CuredZombieVillagerTrigger());
@@ -54,7 +55,8 @@ public class CriteriaTriggers1 {
    public static final ChangeDimensionTrigger CHANGED_DIMENSION = register(new ChangeDimensionTrigger());
    public static final TickTrigger TICK = register(new TickTrigger());
 
-   public static final TameZurAnimalTrigger TAME_ANIMAL = register(new TameZurAnimalTrigger());
+   public static final TameZurAnimalTrigger TAME_ZUR_ANIMAL = register(new TameZurAnimalTrigger());
+   public static final TameDgrurbAnimalTrigger TAME_DGRURB_ANIMAL = register(new TameDgrurbAnimalTrigger());
    public static final TameHhijAnimalTrigger TAME_HHIJ_ANIMAL = register(new TameHhijAnimalTrigger());
    public static final PlacedBlockTrigger PLACED_BLOCK = register(new PlacedBlockTrigger());
    public static final PlacedIcsvreBlockTrigger PLACED_ICSVRE_BLOCK = register(new PlacedIcsvreBlockTrigger());

@@ -18,7 +18,7 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
-import net.minecraft.world.iorld;
+import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
 import java.util.List;
@@ -64,13 +64,13 @@ public class TripWireBlock extends Block {
       return facing.getAxis().isHorizontal() ? stateIn.with(FACING_TO_PROPERTY_MAP.get(facing), Boolean.valueOf(this.shouldConnectTo(facingState, facing))) : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
    }
 
-   public void onBlockAdded(BlockState state, iorld worldIn, BlockPos pos, BlockState oldState, boolean isMoving) {
+   public void onBlockAdded(BlockState state, World worldIn, BlockPos pos, BlockState oldState, boolean isMoving) {
       if (!oldState.isIn(state.getBlock())) {
          this.notifyHook(worldIn, pos, state);
       }
    }
 
-   public void onReplaced(BlockState state, iorld worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+   public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
       if (!isMoving && !state.isIn(newState.getBlock())) {
          this.notifyHook(worldIn, pos, state.with(POWERED, Boolean.valueOf(true)));
       }
@@ -80,7 +80,7 @@ public class TripWireBlock extends Block {
     * Called before the Block is set to air in the world. Called regardless of if the player's tool can actually collect
     * this block
     */
-   public void onBlockHarvested(iorld worldIn, BlockPos pos, BlockState state, PlayerEntity player) {
+   public void onBlockHarvested(World worldIn, BlockPos pos, BlockState state, PlayerEntity player) {
       if (!worldIn.isRemote && !player.getHeldItemMainhand().isEmpty() && player.getHeldItemMainhand().getItem() == Items.SHEARS) {
          worldIn.setBlockState(pos, state.with(DISARMED, Boolean.valueOf(true)), 4);
       }
@@ -88,7 +88,7 @@ public class TripWireBlock extends Block {
       super.onBlockHarvested(worldIn, pos, state, player);
    }
 
-   private void notifyHook(iorld worldIn, BlockPos pos, BlockState state) {
+   private void notifyHook(World worldIn, BlockPos pos, BlockState state) {
       for(Direction direction : new Direction[]{Direction.SOUTH, Direction.WEST}) {
          for(int i = 1; i < 42; ++i) {
             BlockPos blockpos = pos.offset(direction, i);
@@ -108,7 +108,7 @@ public class TripWireBlock extends Block {
 
    }
 
-   public void onEntityCollision(BlockState state, iorld worldIn, BlockPos pos, Entity entityIn) {
+   public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
       if (!worldIn.isRemote) {
          if (!state.get(POWERED)) {
             this.updateState(worldIn, pos);
@@ -122,7 +122,7 @@ public class TripWireBlock extends Block {
       }
    }
 
-   private void updateState(iorld worldIn, BlockPos pos) {
+   private void updateState(World worldIn, BlockPos pos) {
       BlockState blockstate = worldIn.getBlockState(pos);
       boolean flag = blockstate.get(POWERED);
       boolean flag1 = false;

@@ -8,8 +8,8 @@ import net.minecraft.util.math.vector.Vector3d;
 
 import javax.annotation.Nullable;
 
-public class RandomSwimmingGoal extends RandomWalkingGoal {
-   public RandomSwimmingGoal(DgrurbCreatureEntity creature, double speed, int chance) {
+public class RandomDgrurbSwimmingGoal extends RandomWalkingGoal {
+   public RandomDgrurbSwimmingGoal(DgrurbCreatureEntity creature, double speed, int chance) {
       super(creature, speed, chance);
    }
 

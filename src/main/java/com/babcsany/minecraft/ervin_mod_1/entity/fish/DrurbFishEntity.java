@@ -1,32 +1,17 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.fish;
 
-import java.util.EnumSet;
-import java.util.List;
-import java.util.Random;
-import java.util.function.Predicate;
-import javax.annotation.Nullable;
-
-import com.babcsany.minecraft.ervin_mod_1.entity.ai.RandomPositionGenerator;
-import com.babcsany.minecraft.ervin_mod_1.entity.ai.controller.dgrurb.DgrurbMovementController;
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.controller.dgrurb.fish.DrurbFishLookController;
-import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.dgrurbk.*;
-import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.dgrurbk.BreatheAirGoal;
-import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.dgrurbk.FindWaterGoal;
-import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.dgrurbk.FollowBoatGoal;
-import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.dgrurbk.HurtByTargetGoal;
-import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.dgrurbk.RandomSwimmingGoal;
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.dgrurbk.fish.DrurbFishJumpGoal;
-import com.babcsany.minecraft.ervin_mod_1.entity.fish.drurgbk.WaterDrurgbkMobEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.Dgrurb;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.dgrurbk.Dgrurbk;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.dgrurbk.MeleeDgrurbkAttackGoal;
-import com.babcsany.minecraft.ervin_mod_1.entity.pathfinding.dgrurb.DgrurbPathNavigator;
-import com.babcsany.minecraft.ervin_mod_1.entity.pathfinding.dgrurb.SwimmerDgrurbPathNavigator;
 import net.minecraft.entity.*;
+import net.minecraft.entity.ai.RandomPositionGenerator;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.controller.MovementController;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.item.ItemEntity;
+import net.minecraft.entity.passive.WaterMobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
@@ -36,37 +21,41 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.particles.IParticleData;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.pathfinding.PathNavigator;
 import net.minecraft.pathfinding.PathType;
+import net.minecraft.pathfinding.SwimmerPathNavigator;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IWorld;
-import net.minecraft.world.iorld;
+import net.minecraft.world.World;
 import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class DrurbFishEntity extends WaterDrurgbkMobEntity {
+import javax.annotation.Nullable;
+import java.util.EnumSet;
+import java.util.List;
+import java.util.Random;
+import java.util.function.Predicate;
+
+public class DrurbFishEntity extends WaterMobEntity {
    private static final DataParameter<BlockPos> TREASURE_POS = EntityDataManager.createKey(DrurbFishEntity.class, DataSerializers.BLOCK_POS);
    private static final DataParameter<Boolean> GOT_FISH = EntityDataManager.createKey(DrurbFishEntity.class, DataSerializers.BOOLEAN);
    private static final DataParameter<Integer> MOISTNESS = EntityDataManager.createKey(DrurbFishEntity.class, DataSerializers.VARINT);
    private static final EntityPredicate field_213810_bA = (new EntityPredicate()).setDistance(10.0D).allowFriendlyFire().allowInvulnerable().setLineOfSiteRequired();
    public static final Predicate<ItemEntity> ITEM_SELECTOR = (p_205023_0_) -> !p_205023_0_.cannotPickup() && p_205023_0_.isAlive() && p_205023_0_.isInWater();
 
-   public DrurbFishEntity(EntityType<? extends DrurbFishEntity> type, iorld worldIN) {
-      super(type, worldIN);
+   public DrurbFishEntity(EntityType<? extends DrurbFishEntity> type, World worldIn) {
+      super(type, worldIn);
       this.moveController = new DrurbFishEntity.MoveHelperController(this);
       this.lookController = new DrurbFishLookController(this, 10);
       this.setCanPickUpLoot(true);
@@ -140,20 +129,20 @@ public class DrurbFishEntity extends WaterDrurgbkMobEntity {
    }
 
    protected void registerGoals() {
-      this.goalSelector.addGoal(0, new BreatheAirGoal(this));
-      this.goalSelector.addGoal(0, new FindWaterGoal(this));
+      this.goalSelector.addGoal(0, new net.minecraft.entity.ai.goal.BreatheAirGoal(this));
+      this.goalSelector.addGoal(0, new net.minecraft.entity.ai.goal.FindWaterGoal(this));
       this.goalSelector.addGoal(1, new DrurbFishEntity.SwimToTreasureGoal(this));
       this.goalSelector.addGoal(2, new DrurbFishEntity.SwimWithPlayerGoal(this, 4.0D));
       this.goalSelector.addGoal(4, new RandomSwimmingGoal(this, 1.0D, 10));
-      this.goalSelector.addGoal(4, new LookDgrurbkRandomlyGoal(this));
-      this.goalSelector.addGoal(5, new DgrurbkLookAtGoal(this, PlayerEntity.class, 6.0F));
+      this.goalSelector.addGoal(4, new LookRandomlyGoal(this));
+      this.goalSelector.addGoal(5, new LookAtGoal(this, PlayerEntity.class, 6.0F));
       this.goalSelector.addGoal(5, new DrurbFishJumpGoal(this, 10));
-      this.goalSelector.addGoal(6, new MeleeDgrurbkAttackGoal(this, 1.2F, true));
+      this.goalSelector.addGoal(6, new MeleeAttackGoal(this, 1.2F, true));
       this.goalSelector.addGoal(8, new DrurbFishEntity.PlayWithItemsGoal());
       this.goalSelector.addGoal(8, new FollowBoatGoal(this));
-      this.goalSelector.addGoal(9, new AvoidDgrurbkEntityGoal<>(this, Dgrurbk.class, 8.0F, 1.0D, 1.0D));
+      this.goalSelector.addGoal(9, new AvoidEntityGoal<>(this, Dgrurbk.class, 8.0F, 1.0D, 1.0D));
       this.targetSelector.addGoal(1, (new HurtByTargetGoal(this, Dgrurb.class)).setCallsForHelp());
-      this.targetSelector.addGoal(3, new NearestAttackableDgrurbkTargetGoal<>(this, LivingEntity.class, false));
+      this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, LivingEntity.class, false));
    }
 
    public static AttributeModifierMap.MutableAttribute func_234190_eK_() {
@@ -163,8 +152,8 @@ public class DrurbFishEntity extends WaterDrurgbkMobEntity {
    /**
     * Returns new PathNavigateGround instance
     */
-   protected DgrurbPathNavigator createNavigator(iorld worldIn) {
-      return new SwimmerDgrurbPathNavigator(this, worldIn);
+   protected PathNavigator createNavigator(World worldIn) {
+      return new SwimmerPathNavigator(this, worldIn);
    }
 
    public boolean attackEntityAsMob(Entity entityIn) {
@@ -272,7 +261,7 @@ public class DrurbFishEntity extends WaterDrurgbkMobEntity {
    }
 
    /**
-    * Handler for {@link iorld#setEntityState}
+    * Handler for {@link World#setEntityState}
     */
    @OnlyIn(Dist.CLIENT)
    public void handleStatusUpdate(byte id) {
@@ -362,12 +351,12 @@ public class DrurbFishEntity extends WaterDrurgbkMobEntity {
       return true;
    }
 
-   static class MoveHelperController extends DgrurbMovementController {
+   static class MoveHelperController extends MovementController {
       private final DrurbFishEntity dolphin;
 
-      public MoveHelperController(DrurbFishEntity dolphinIn) {
-         super(dolphinIn);
-         this.dolphin = dolphinIn;
+      public MoveHelperController(DrurbFishEntity drurbIn) {
+         super(drurbIn);
+         this.dolphin = drurbIn;
       }
 
       public void tick() {
@@ -558,12 +547,12 @@ public class DrurbFishEntity extends WaterDrurgbkMobEntity {
        * Keep ticking a continuous task that has already been started
        */
       public void tick() {
-         iorld world = this.dolphin.world;
+         World world = this.dolphin.world;
          if (this.dolphin.closeToTarget() || this.dolphin.getNavigator().noPath()) {
             Vector3d vector3d = Vector3d.copyCentered(this.dolphin.getTreasurePos());
-            Vector3d vector3d1 = RandomPositionGenerator.findRandomTargetTowardsScaled(this.dolphin, 16, 1, vector3d, (double)((float)Math.PI / 8F));
+            Vector3d vector3d1 = net.minecraft.entity.ai.RandomPositionGenerator.findRandomTargetTowardsScaled(this.dolphin, 16, 1, vector3d, (double)((float)Math.PI / 8F));
             if (vector3d1 == null) {
-               vector3d1 = RandomPositionGenerator.findRandomTargetBlockTowards(this.dolphin, 8, 4, vector3d);
+               vector3d1 = net.minecraft.entity.ai.RandomPositionGenerator.findRandomTargetBlockTowards(this.dolphin, 8, 4, vector3d);
             }
 
             if (vector3d1 != null) {

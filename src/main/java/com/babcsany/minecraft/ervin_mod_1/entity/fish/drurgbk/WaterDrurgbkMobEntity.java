@@ -1,16 +1,16 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.fish.drurgbk;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.dgrurbk.Dgrurbk;
 import net.minecraft.entity.CreatureAttribute;
+import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.IWorldReader;
-import net.minecraft.world.iorld;
+import net.minecraft.world.World;
 
-public abstract class WaterDrurgbkMobEntity extends Dgrurbk {
-   protected WaterDrurgbkMobEntity(EntityType<? extends WaterDrurgbkMobEntity> type, iorld p_i48565_2_) {
+public abstract class WaterDrurgbkMobEntity extends CreatureEntity {
+   protected WaterDrurgbkMobEntity(EntityType<? extends WaterDrurgbkMobEntity> type, World p_i48565_2_) {
       super(type, p_i48565_2_);
       this.setPathPriority(PathNodeType.WATER, 0.0F);
    }

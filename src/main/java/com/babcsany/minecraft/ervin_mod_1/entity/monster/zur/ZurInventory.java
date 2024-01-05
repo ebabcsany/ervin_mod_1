@@ -1,5 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.monster.zur;
 
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.block.BlockState;
 import net.minecraft.crash.CrashReport;
@@ -22,7 +23,7 @@ import net.minecraft.util.INameable;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.iorld;
+import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -36,13 +37,13 @@ public class ZurInventory implements IInventory, INameable {
    public final NonNullList<ItemStack> offHandInventory = NonNullList.withSize(1, ItemStack.EMPTY);
    private final List<NonNullList<ItemStack>> allInventories = ImmutableList.of(this.mainInventory, this.armorInventory, this.offHandInventory);
    public int currentItem;
-   public final AbstractZurEntity zur;
+   public final ZurEntity zur;
    public PlayerEntity player;
    private ItemStack itemStack = ItemStack.EMPTY;
    private int timesChanged;
 
-   public ZurInventory(AbstractZurEntity playerIn) {
-      this.zur = playerIn;
+   public ZurInventory(ZurEntity zurIn) {
+      this.zur = zurIn;
    }
 
    /**
@@ -343,7 +344,7 @@ public class ZurInventory implements IInventory, INameable {
       }
    }
 
-   public void placeItemBackInInventory(iorld worldIn, ItemStack stack) {
+   public void placeItemBackInInventory(World worldIn, ItemStack stack) {
       if (!worldIn.isRemote) {
          while(!stack.isEmpty()) {
             int i = this.storeItemStack(stack);

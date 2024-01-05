@@ -1,14 +1,12 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.trigger;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
-import com.babcsany.minecraft.ervin_mod_1.entity.animal.hhij.HhijAgeableEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.animal.hhij.HhijAnimalEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.AgeableZurEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.AnimalZurEntity;
 import com.google.gson.JsonObject;
 import net.minecraft.advancements.criterion.AbstractCriterionTrigger;
 import net.minecraft.advancements.criterion.CriterionInstance;
 import net.minecraft.advancements.criterion.EntityPredicate;
+import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.loot.ConditionArrayParser;
 import net.minecraft.loot.ConditionArraySerializer;
@@ -31,7 +29,7 @@ public class BredZurAnimalsTrigger extends AbstractCriterionTrigger<BredZurAnima
       return new BredZurAnimalsTrigger.Instance(entityPredicate, entitypredicate$andpredicate, entitypredicate$andpredicate1, entitypredicate$andpredicate2);
    }
 
-   public void trigger(ServerPlayerEntity player, AnimalZurEntity parent1, AnimalZurEntity parent2, @Nullable AgeableZurEntity child) {
+   public void trigger(ServerPlayerEntity player, AnimalEntity parent1, AnimalEntity parent2, @Nullable AgeableZurEntity child) {
       LootContext lootcontext = EntityPredicate.getLootContext(player, parent1);
       LootContext lootcontext1 = EntityPredicate.getLootContext(player, parent2);
       LootContext lootcontext2 = child != null ? EntityPredicate.getLootContext(player, child) : null;

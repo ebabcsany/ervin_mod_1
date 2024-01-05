@@ -1,9 +1,5 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb;
 
-import java.util.Optional;
-import java.util.UUID;
-import javax.annotation.Nullable;
-
 import com.babcsany.minecraft.ervin_mod_1.entity.trigger.CriteriaTriggers1;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -21,16 +17,20 @@ import net.minecraft.server.management.PreYggdrasilConverter;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Util;
 import net.minecraft.world.GameRules;
-import net.minecraft.world.iorld;
+import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+
+import javax.annotation.Nullable;
+import java.util.Optional;
+import java.util.UUID;
 
 public abstract class TameableDgrurbEntity extends AnimalDgrurbEntity {
    protected static final DataParameter<Byte> TAMED = EntityDataManager.createKey(TameableDgrurbEntity.class, DataSerializers.BYTE);
    protected static final DataParameter<Optional<UUID>> OWNER_UNIQUE_ID = EntityDataManager.createKey(TameableDgrurbEntity.class, DataSerializers.OPTIONAL_UNIQUE_ID);
    private boolean field_233683_bw_;
 
-   protected TameableDgrurbEntity(EntityType<? extends TameableDgrurbEntity> type, iorld worldIn) {
+   protected TameableDgrurbEntity(EntityType<? extends TameableDgrurbEntity> type, World worldIn) {
       super(type, worldIn);
       this.setupTamedAI();
    }
@@ -100,7 +100,7 @@ public abstract class TameableDgrurbEntity extends AnimalDgrurbEntity {
    }
 
    /**
-    * Handler for {@link iorld#setEntityState}
+    * Handler for {@link World#setEntityState}
     */
    @OnlyIn(Dist.CLIENT)
    public void handleStatusUpdate(byte id) {

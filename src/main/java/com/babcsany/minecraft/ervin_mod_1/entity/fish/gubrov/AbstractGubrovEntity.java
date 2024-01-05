@@ -27,14 +27,14 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IWorld;
-import net.minecraft.world.iorld;
+import net.minecraft.world.World;
 
 import java.util.Random;
 
 public abstract class AbstractGubrovEntity extends WaterMobEntity {
    private static final DataParameter<Boolean> FROM_BUCKET = EntityDataManager.createKey(AbstractGubrovEntity.class, DataSerializers.BOOLEAN);
 
-   public AbstractGubrovEntity(EntityType<? extends AbstractGubrovEntity> type, iorld worldIn) {
+   public AbstractGubrovEntity(EntityType<? extends AbstractGubrovEntity> type, World worldIn) {
       super(type, worldIn);
       this.moveController = new AbstractGubrovEntity.MoveHelperController(this);
    }
@@ -102,7 +102,7 @@ public abstract class AbstractGubrovEntity extends WaterMobEntity {
    /**
     * Returns new PathNavigateGround instance
     */
-   protected PathNavigator createNavigator(iorld worldIn) {
+   protected PathNavigator createNavigator(World worldIn) {
       return new SwimmerPathNavigator(this, worldIn);
    }
 

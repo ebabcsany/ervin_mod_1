@@ -7,7 +7,7 @@ import net.minecraft.entity.SpawnReason;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IWorld;
-import net.minecraft.world.iorld;
+import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -17,7 +17,7 @@ public abstract class AbstractGroupGubrovEntity extends AbstractGubrovEntity {
    private AbstractGroupGubrovEntity groupLeader;
    private int groupSize = 1;
 
-   public AbstractGroupGubrovEntity(EntityType<? extends AbstractGroupGubrovEntity> type, iorld worldIn) {
+   public AbstractGroupGubrovEntity(EntityType<? extends AbstractGroupGubrovEntity> type, World worldIn) {
       super(type, worldIn);
    }
 

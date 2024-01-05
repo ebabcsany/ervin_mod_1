@@ -1,6 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.block.special;
 
-import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.special.SpecialBlockInit;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -24,7 +24,7 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.iorld;
+import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -63,7 +63,7 @@ public class Gtrziuzhizjkj extends HorizontalBlock {
    /**
     * Block's chance to react to a living entity falling on it.
     */
-   public void onFallenUpon(iorld worldIn, BlockPos pos, Entity entityIn, float fallDistance) {
+   public void onFallenUpon(World worldIn, BlockPos pos, Entity entityIn, float fallDistance) {
       entityIn.playSound(SoundEvents.BLOCK_HONEY_BLOCK_SLIDE, 1.0F, 1.0F);
       if (!worldIn.isRemote) {
          worldIn.setEntityState(entityIn, (byte)54);
@@ -100,7 +100,7 @@ public class Gtrziuzhizjkj extends HorizontalBlock {
 
    }
 
-   public void onEntityCollision(BlockState state, iorld worldIn, BlockPos pos, Entity entityIn) {
+   public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
       if (this.isSliding(pos, entityIn)) {
          this.triggerSlideDownBlock(entityIn, pos);
          this.func_226938_d_(entityIn);
@@ -144,7 +144,7 @@ public class Gtrziuzhizjkj extends HorizontalBlock {
       entity.fallDistance = 0.0F;
    }
 
-   private void func_226934_a_(iorld world, Entity entity) {
+   private void func_226934_a_(World world, Entity entity) {
       if (func_226937_c_(entity)) {
          if (world.rand.nextInt(20) == 0) {
             entity.playSound(SoundEvents.BLOCK_HONEY_BLOCK_SLIDE, 1.0F, 1.0F);
@@ -170,7 +170,7 @@ public class Gtrziuzhizjkj extends HorizontalBlock {
    @OnlyIn(Dist.CLIENT)
    private static void func_226932_a_(Entity entity, int particleCount) {
       if (entity.world.isRemote) {
-         BlockState blockstate = BlockItemInit.GTRZIUZHIZJKJ.get().getDefaultState();
+         BlockState blockstate = SpecialBlockInit.GTRZIUZHIZJKJ.get().getDefaultState();
 
          for(int i = 0; i < particleCount; ++i) {
             entity.world.addParticle(new BlockParticleData(ParticleTypes.BLOCK, blockstate), entity.getPosX(), entity.getPosY(), entity.getPosZ(), 0.0D, 0.0D, 0.0D);
@@ -182,7 +182,7 @@ public class Gtrziuzhizjkj extends HorizontalBlock {
    /**
     * Called when the given entity walks on this Block
     */
-   public void onEntityWalk(iorld worldIn, BlockPos pos, Entity entityIn) {
+   public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
       double d0 = Math.abs(entityIn.getMotion().y);
       if (d0 < 0.1D && !entityIn.isSteppingCarefully()) {
          double d1 = 1.0D + d0 * 0.2D;

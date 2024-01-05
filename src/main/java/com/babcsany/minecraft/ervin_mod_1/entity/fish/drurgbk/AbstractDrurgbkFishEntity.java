@@ -1,24 +1,15 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.fish.drurgbk;
 
-import java.util.Random;
-
-import com.babcsany.minecraft.ervin_mod_1.entity.ai.controller.dgrurb.DgrurbMovementController;
-import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.dgrurbk.AvoidDgrurbkEntityGoal;
-import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.dgrurbk.DgrurbkPanicGoal;
-import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.dgrurbk.RandomSwimmingGoal;
-import com.babcsany.minecraft.ervin_mod_1.entity.pathfinding.dgrurb.DgrurbPathNavigator;
-import com.babcsany.minecraft.ervin_mod_1.entity.pathfinding.dgrurb.SwimmerDgrurbPathNavigator;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.entity.EntitySize;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.MoverType;
-import net.minecraft.entity.Pose;
-import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.controller.MovementController;
+import net.minecraft.entity.ai.goal.AvoidEntityGoal;
+import net.minecraft.entity.ai.goal.PanicGoal;
+import net.minecraft.entity.ai.goal.RandomSwimmingGoal;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -27,24 +18,24 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.pathfinding.PathNavigator;
+import net.minecraft.pathfinding.SwimmerPathNavigator;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.EntityPredicates;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IWorld;
-import net.minecraft.world.iorld;
+import net.minecraft.world.World;
+
+import java.util.Random;
 
 public abstract class AbstractDrurgbkFishEntity extends WaterDrurgbkMobEntity {
    private static final DataParameter<Boolean> FROM_BUCKET = EntityDataManager.createKey(AbstractDrurgbkFishEntity.class, DataSerializers.BOOLEAN);
 
-   public AbstractDrurgbkFishEntity(EntityType<? extends AbstractDrurgbkFishEntity> type, iorld worldIn) {
+   public AbstractDrurgbkFishEntity(EntityType<? extends AbstractDrurgbkFishEntity> type, World worldIn) {
       super(type, worldIn);
-      this.moveController = new DgrurbMovementController(this);
+      this.moveController = new MovementController(this);
    }
 
    protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
@@ -102,16 +93,16 @@ public abstract class AbstractDrurgbkFishEntity extends WaterDrurgbkMobEntity {
 
    protected void registerGoals() {
       super.registerGoals();
-      this.goalSelector.addGoal(0, new DgrurbkPanicGoal(this, 1.25D));
-      this.goalSelector.addGoal(2, new AvoidDgrurbkEntityGoal<>(this, PlayerEntity.class, 8.0F, 1.6D, 1.4D, EntityPredicates.NOT_SPECTATING::test));
+      this.goalSelector.addGoal(0, new PanicGoal(this, 1.25D));
+      this.goalSelector.addGoal(2, new AvoidEntityGoal<>(this, PlayerEntity.class, 8.0F, 1.6D, 1.4D, EntityPredicates.NOT_SPECTATING::test));
       this.goalSelector.addGoal(4, new AbstractDrurgbkFishEntity.SwimGoal(this));
    }
 
    /**
     * Returns new PathNavigateGround instance
     */
-   protected DgrurbPathNavigator createNavigator(iorld worldIn) {
-      return new SwimmerDgrurbPathNavigator(this, worldIn);
+   protected PathNavigator createNavigator(World worldIn) {
+      return new SwimmerPathNavigator(this, worldIn);
    }
 
    public void travel(Vector3d travelVector) {
@@ -192,7 +183,7 @@ public abstract class AbstractDrurgbkFishEntity extends WaterDrurgbkMobEntity {
    protected void playStepSound(BlockPos pos, BlockState blockIn) {
    }
 
-   static class MoveHelperController extends DgrurbMovementController {
+   static class MoveHelperController extends MovementController {
       private final AbstractDrurgbkFishEntity fish;
 
       MoveHelperController(AbstractDrurgbkFishEntity fish) {

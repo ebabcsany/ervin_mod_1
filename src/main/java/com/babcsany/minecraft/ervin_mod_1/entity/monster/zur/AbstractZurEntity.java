@@ -1,13 +1,11 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.monster.zur;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurNirtreEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurTasks;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.Dgrurb;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.goal.BowAttackGoal;
 import com.babcsany.minecraft.ervin_mod_1.entity.player.PlayerEntity1;
-import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.WanderingTraderNirtreTrades;
-import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.ZurTrades;
+import com.babcsany.minecraft.ervin_mod_1.event.ZurItemTossEvent;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.armor.ArmorItemInit;
@@ -20,8 +18,7 @@ import com.babcsany.minecraft.init.EntityInit;
 import com.babcsany.minecraft.init.item.spawn_egg.ModSpawnEggItemInit;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Sets;
-import com.mojang.serialization.Dynamic;
+import com.google.common.collect.Lists;
 import net.minecraft.block.BedBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -32,12 +29,13 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.ai.brain.Brain;
 import net.minecraft.entity.ai.brain.memory.MemoryModuleType;
-import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.ai.goal.BreakDoorGoal;
+import net.minecraft.entity.ai.goal.Goal;
+import net.minecraft.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.merchant.villager.VillagerData;
-import net.minecraft.entity.monster.piglin.PiglinEntity;
-import net.minecraft.entity.monster.piglin.PiglinTasks;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileHelper;
@@ -48,8 +46,6 @@ import net.minecraft.inventory.container.SimpleNamedContainerProvider;
 import net.minecraft.item.*;
 import net.minecraft.loot.*;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.ListNBT;
-import net.minecraft.nbt.NBTDynamicOps;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -75,7 +71,9 @@ import net.minecraft.world.raid.Raid;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.MinecraftForge;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.*;
 import java.util.function.Predicate;
@@ -612,6 +610,65 @@ public abstract class AbstractZurEntity extends AgeableZurEntity {
          this.setItemStackToSlot(type, stack);
       }
 
+   }
+
+   @Nullable
+   public static ItemEntity onPlayerTossEvent(@Nonnull ZurEntity zur, @Nonnull ItemStack item, boolean includeName)
+   {
+      zur.captureDrops(Lists.newArrayList());
+      ItemEntity ret = zur.dropItem(item, false, includeName);
+      zur.captureDrops(null);
+
+      if (ret == null)
+         return null;
+
+      ZurItemTossEvent event = new ZurItemTossEvent(ret, zur);
+      if (MinecraftForge.EVENT_BUS.post(event))
+         return null;
+
+      if (!zur.world.isRemote)
+         zur.getEntityWorld().addEntity(event.getEntityItem());
+      return event.getEntityItem();
+   }
+
+   /**
+    * Creates and drops the provided item. Depending on the dropAround, it will drop teh item around the player, instead
+    * of dropping the item from where the player is pointing at. Likewise, if traceItem is true, the dropped item entity
+    * will have the thrower set as the player.
+    */
+   @Nullable
+   public ItemEntity dropItem(ItemStack droppedItem, boolean dropAround, boolean traceItem) {
+      if (droppedItem.isEmpty()) {
+         return null;
+      } else {
+         if (this.world.isRemote) {
+            this.swingArm(Hand.MAIN_HAND);
+         }
+
+         double d0 = this.getPosYEye() - (double)0.3F;
+         ItemEntity itementity = new ItemEntity(this.world, this.getPosX(), d0, this.getPosZ(), droppedItem);
+         itementity.setPickupDelay(40);
+         if (traceItem) {
+            itementity.setThrowerId(this.getUniqueID());
+         }
+
+         if (dropAround) {
+            float f = this.rand.nextFloat() * 0.5F;
+            float f1 = this.rand.nextFloat() * ((float)Math.PI * 2F);
+            itementity.setMotion((double)(-MathHelper.sin(f1) * f), (double)0.2F, (double)(MathHelper.cos(f1) * f));
+         } else {
+            float f7 = 0.3F;
+            float f8 = MathHelper.sin(this.rotationPitch * ((float)Math.PI / 180F));
+            float f2 = MathHelper.cos(this.rotationPitch * ((float)Math.PI / 180F));
+            float f3 = MathHelper.sin(this.rotationYaw * ((float)Math.PI / 180F));
+            float f4 = MathHelper.cos(this.rotationYaw * ((float)Math.PI / 180F));
+            float f5 = this.rand.nextFloat() * ((float)Math.PI * 2F);
+            float f6 = 0.02F * this.rand.nextFloat();
+            itementity.setMotion((double)(-f3 * f2 * 0.3F) + Math.cos((double)f5) * (double)f6, (double)(-f8 * 0.3F + 0.1F + (this.rand.nextFloat() - this.rand.nextFloat()) * 0.1F), (double)(f4 * f2 * 0.3F) + Math.sin((double)f5) * (double)f6);
+         }
+
+         return itementity;
+      }
    }
 
    /**

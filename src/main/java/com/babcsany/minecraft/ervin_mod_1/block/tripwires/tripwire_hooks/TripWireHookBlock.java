@@ -17,7 +17,7 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
-import net.minecraft.world.iorld;
+import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nullable;
@@ -91,11 +91,11 @@ public class TripWireHookBlock extends Block {
    /**
     * Called by ItemBlocks after a block is set in the world, to allow post-place logic
     */
-   public void onBlockPlacedBy(iorld worldIn, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
+   public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
       this.calculateState(worldIn, pos, state, false, false, -1, (BlockState)null);
    }
 
-   public void calculateState(iorld worldIn, BlockPos pos, BlockState hookState, boolean p_176260_4_, boolean p_176260_5_, int p_176260_6_, @Nullable BlockState state) {
+   public void calculateState(World worldIn, BlockPos pos, BlockState hookState, boolean p_176260_4_, boolean p_176260_5_, int p_176260_6_, @Nullable BlockState state) {
       Direction direction = hookState.get(FACING);
       boolean flag = hookState.get(ATTACHED);
       boolean flag1 = hookState.get(POWERED);
@@ -170,7 +170,7 @@ public class TripWireHookBlock extends Block {
       this.calculateState(worldIn, pos, state, false, true, -1, (BlockState)null);
    }
 
-   private void playSound(iorld worldIn, BlockPos pos, boolean attaching, boolean activated, boolean detaching, boolean deactivating) {
+   private void playSound(World worldIn, BlockPos pos, boolean attaching, boolean activated, boolean detaching, boolean deactivating) {
       if (activated && !deactivating) {
          worldIn.playSound((PlayerEntity)null, pos, SoundEvents.BLOCK_TRIPWIRE_CLICK_ON, SoundCategory.BLOCKS, 0.4F, 0.6F);
       } else if (!activated && deactivating) {
@@ -183,12 +183,12 @@ public class TripWireHookBlock extends Block {
 
    }
 
-   private void notifyNeighbors(iorld worldIn, BlockPos pos, Direction side) {
+   private void notifyNeighbors(World worldIn, BlockPos pos, Direction side) {
       worldIn.notifyNeighborsOfStateChange(pos, this);
       worldIn.notifyNeighborsOfStateChange(pos.offset(side.getOpposite()), this);
    }
 
-   public void onReplaced(BlockState state, iorld worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+   public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
       if (!isMoving && !state.isIn(newState.getBlock())) {
          boolean flag = state.get(ATTACHED);
          boolean flag1 = state.get(POWERED);

@@ -437,6 +437,14 @@ public class ZurEntity extends AbstractZurEntity {
       this.brain.removeMemory(MemoryModuleType.CANT_REACH_WALK_TARGET_SINCE);
    }
 
+   /**
+    * Drops an item into the world.
+    */
+   @Nullable
+   public ItemEntity dropItem(ItemStack itemStackIn, boolean unused) {
+      return onPlayerTossEvent(this, itemStackIn, false);
+   }
+
    public void wakeUp() {
       super.wakeUp();
       this.brain.setMemory(MemoryModuleType.LAST_WOKEN, this.world.getGameTime());

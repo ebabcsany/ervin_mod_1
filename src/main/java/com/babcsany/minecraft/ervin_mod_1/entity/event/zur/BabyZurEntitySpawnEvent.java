@@ -19,13 +19,7 @@
 
 package com.babcsany.minecraft.ervin_mod_1.entity.event.zur;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.AbstractkZurEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.AnimalDgrurbEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.DgrurbAgeableEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.DgrurbMobEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.AbstractZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.AgeableZurEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.AnimalZurEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -64,13 +58,13 @@ public class BabyZurEntitySpawnEvent extends net.minecraftforge.eventbus.api.Eve
     {
         //causedByPlayer calculated here to simplify the patch.
         PlayerEntity causedByPlayer = null;
-        if (parentA instanceof AnimalZurEntity) {
-            causedByPlayer = ((AnimalZurEntity)parentA).getLoveCause();
+        if (parentA instanceof AnimalEntity) {
+            causedByPlayer = ((AnimalEntity)parentA).getLoveCause();
         }
 
-        if (causedByPlayer == null && parentB instanceof AnimalZurEntity)
+        if (causedByPlayer == null && parentB instanceof AnimalEntity)
         {
-            causedByPlayer = ((AnimalZurEntity)parentB).getLoveCause();
+            causedByPlayer = ((AnimalEntity)parentB).getLoveCause();
         }
 
         this.parentA = parentA;

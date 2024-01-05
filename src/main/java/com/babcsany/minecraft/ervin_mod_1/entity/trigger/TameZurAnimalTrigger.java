@@ -1,12 +1,11 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.trigger;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
-import com.babcsany.minecraft.ervin_mod_1.entity.animal.hhij.HhijAnimalEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.AnimalZurEntity;
 import com.google.gson.JsonObject;
 import net.minecraft.advancements.criterion.AbstractCriterionTrigger;
 import net.minecraft.advancements.criterion.CriterionInstance;
 import net.minecraft.advancements.criterion.EntityPredicate;
+import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.loot.ConditionArrayParser;
 import net.minecraft.loot.ConditionArraySerializer;
@@ -25,7 +24,7 @@ public class TameZurAnimalTrigger extends AbstractCriterionTrigger<TameZurAnimal
       return new TameZurAnimalTrigger.Instance(entityPredicate, entitypredicate$andpredicate);
    }
 
-   public void trigger(ServerPlayerEntity player, AnimalZurEntity entity) {
+   public void trigger(ServerPlayerEntity player, AnimalEntity entity) {
       LootContext lootcontext = EntityPredicate.getLootContext(player, entity);
       this.triggerListeners(player, (p_227251_1_) -> {
          return p_227251_1_.test(lootcontext);

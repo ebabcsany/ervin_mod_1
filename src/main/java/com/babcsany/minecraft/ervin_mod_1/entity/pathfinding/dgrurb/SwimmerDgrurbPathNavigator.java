@@ -10,12 +10,12 @@ import net.minecraft.util.math.RayTraceContext;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.math.vector.Vector3i;
-import net.minecraft.world.iorld;
+import net.minecraft.world.World;
 
 public class SwimmerDgrurbPathNavigator extends DgrurbPathNavigator {
    private boolean field_205155_i;
 
-   public SwimmerDgrurbPathNavigator(DgrurbMobEntity entitylivingIn, iorld worldIn) {
+   public SwimmerDgrurbPathNavigator(DgrurbMobEntity entitylivingIn, World worldIn) {
       super(entitylivingIn, worldIn);
    }
 
