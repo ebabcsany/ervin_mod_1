@@ -2,7 +2,6 @@ package com.babcsany.minecraft.ervin_mod_1.init.block;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.block.Fighiv;
-import com.babcsany.minecraft.ervin_mod_1.block.Friszern;
 import com.babcsany.minecraft.ervin_mod_1.block.PoweredRailBlock;
 import com.babcsany.minecraft.ervin_mod_1.block.TargCropsBlock;
 import com.babcsany.minecraft.ervin_mod_1.block.blocks.*;
@@ -17,7 +16,6 @@ import com.babcsany.minecraft.ervin_mod_1.block.blocks.stairs.ZunkStairs;
 import com.babcsany.minecraft.ervin_mod_1.block.tripwires.*;
 import com.babcsany.minecraft.ervin_mod_1.block.tripwires.tripwire_hooks.*;
 import com.babcsany.minecraft.ervin_mod_1.init.init.MaterialColorInit;
-import com.babcsany.minecraft.ervin_mod_1.init.init.MaterialInit;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -98,4 +96,5 @@ public class BlockInit {
     public static final RegistryObject<Block> COAL_SLAB = BLOCKS.register("coal_slab", () -> new CoalSlab(Block.Properties.create(Material.ROCK, MaterialColor.BLACK).setRequiresTool().harvestLevel(0).harvestTool(ToolType.PICKAXE).hardnessAndResistance(6.0F, 6.0F)));
     public static final RegistryObject<Block> CHARCOAL_SLAB = BLOCKS.register("charcoal_slab", () -> new CharcoalSlab(Block.Properties.create(Material.ROCK).setRequiresTool().harvestLevel(0).harvestTool(ToolType.PICKAXE).hardnessAndResistance(6.0F, 6.0F)));
     public static final RegistryObject<Block> CHARCOAL_STAIRS = BLOCKS.register("charcoal_stairs", () -> new CharcoalStairs(() -> CHARCOAL_BLOCK.get().getDefaultState(), Block.Properties.from(CHARCOAL_BLOCK.get())));
+    public static final RegistryObject<Block> FI_RT_PLOCK = BLOCKS.register("lc/blocks/fi°rt_plock", () -> new Fi_rt_plock(Block.Properties.create(Material.ROCK).setRequiresTool().hardnessAndResistance(5000000000.0F, 6.0F)));
 }

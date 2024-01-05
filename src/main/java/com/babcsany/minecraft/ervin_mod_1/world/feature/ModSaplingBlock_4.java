@@ -11,7 +11,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.iorld;
+import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.ForgeEventFactory;
 
@@ -120,7 +120,7 @@ public class ModSaplingBlock_4 extends BushBlock implements IGrowable {
 	}
 
 	@Override
-	public boolean canUseBonemeal(iorld worldIn, Random rand, BlockPos pos, BlockState state) {
+	public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, BlockState state) {
 		return (double) worldIn.rand.nextFloat() < 0.45D;
 	}
 

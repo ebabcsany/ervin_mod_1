@@ -108,7 +108,7 @@ public abstract class TraderZurEntity extends TameableZurEntity implements INPC,
       this.livingSoundTime = -this.getTalkInterval();
       this.onTraderZurTrade(offer);
       if (this.customer instanceof ServerPlayerEntity) {
-         CriteriaTriggers1.ZUR_TRADE.test((ServerPlayerEntity)this.customer, this, offer.getSellingStack());
+         CriteriaTriggers1.ZUR_TRADE.testTameable((ServerPlayerEntity)this.customer, this, offer.getSellingStack());
       }
 
    }

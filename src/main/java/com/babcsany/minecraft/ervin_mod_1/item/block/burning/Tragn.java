@@ -1,10 +1,10 @@
 package com.babcsany.minecraft.ervin_mod_1.item.block.burning;
 
 import net.minecraft.block.Block;
-import com.babcsany.minecraft.item.ModBlockItem;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 
-public class Tragn extends ModBlockItem {
+public class Tragn extends BlockItem {
    public Tragn(Block blockIn, Properties properties) {
       super(blockIn, properties);
    }
