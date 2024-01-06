@@ -17,7 +17,6 @@ import com.babcsany.minecraft.ervin_mod_1.init.minecraft.block.MinecraftBlocks;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
-import com.mojang.serialization.Dynamic;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
@@ -29,7 +28,6 @@ import net.minecraft.entity.ai.brain.schedule.Schedule;
 import net.minecraft.entity.ai.brain.sensor.Sensor;
 import net.minecraft.entity.ai.brain.sensor.SensorType;
 import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -46,8 +44,6 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.network.play.ServerPlayNetHandler;
 import net.minecraft.pathfinding.GroundPathNavigator;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
@@ -95,7 +91,7 @@ public class ZurEntity extends AbstractZurEntity {
    private float crouchAmountO;
    private int drownedConversionTime;
 
-   public ZurEntity(EntityType<? extends ZurEntity> type, World worldIn) {
+   public ZurEntity(EntityType<ZurEntity> type, World worldIn) {
       super(type, worldIn);
       this.setCanPickUpLoot(true);
       this.experienceValue = 5;
@@ -105,16 +101,6 @@ public class ZurEntity extends AbstractZurEntity {
 
    protected Brain.BrainCodec<ZurEntity> getBrainCodec() {
       return Brain.func_233705_a_(field_234414_c_, field_234405_b_);
-   }
-
-   protected Brain<?> createBrain(Dynamic<?> dynamicIn) {
-      Brain<ZurEntity> brain = this.getBrainCodec().func_233748_a_(dynamicIn);
-      this.initBrain(brain);
-      return ZurTasks.func_234469_a_(this, this.getBrainCodec().func_233748_a_(dynamicIn));
-   }
-
-   public ZurEntity(World worldIn) {
-      this(com.babcsany.minecraft.init.EntityInit.ZUR_ENTITY, worldIn);
    }
 
    protected void registerGoals() {
@@ -211,7 +197,7 @@ public class ZurEntity extends AbstractZurEntity {
 
    @Nullable
    public ZurEntity createChild(AgeableZurEntity ageable) {
-      return com.babcsany.minecraft.init.EntityInit.ZUR_ENTITY.create(this.world);
+      return EntityInit.ZUR_ENTITY.get().create(this.world);
    }
 
    public boolean canDespawn(double distanceToClosestPlayer) {
@@ -673,13 +659,6 @@ public class ZurEntity extends AbstractZurEntity {
       this.playSound(p_241417_1_, this.getSoundVolume(), this.getSoundPitch());
    }
 
-   private void func_234416_a_(ServerWorld p_234416_1_) {
-      ZurTasks.func_234496_c_(this);
-      this.zurInventory.func_233543_f_().forEach(this::entityDropItem);
-      ZurNirtreEntity zurNirtreEntity = this.func_233656_b_(EntityInit.ZUR_NIRTRE_ENTITY.get());
-      zurNirtreEntity.addPotionEffect(new EffectInstance(Effects.NAUSEA, 200, 0));
-   }
-
    public void writeAdditional(CompoundNBT compound) {
       super.writeAdditional(compound);
       MerchantOffers merchantoffers = this.getOffers();
@@ -700,7 +679,7 @@ public class ZurEntity extends AbstractZurEntity {
          }
 
          TraderNirtreEntity traderNirtreEntity = (TraderNirtreEntity) entityLivingIn;
-         ZurEntity zurNirtreEntity = com.babcsany.minecraft.init.EntityInit.ZUR_ENTITY.create(this.world);
+         ZurEntity zurNirtreEntity = EntityInit.ZUR_ENTITY.get().create(this.world);
          (zurNirtreEntity).copyLocationAndAnglesFrom(traderNirtreEntity);
          traderNirtreEntity.remove();
          zurNirtreEntity.onInitialSpawn(this.world, this.world.getDifficultyForLocation(zurNirtreEntity.getPosition()), SpawnReason.CONVERSION, new ZurEntity.GroupData(false, true), (CompoundNBT)null);

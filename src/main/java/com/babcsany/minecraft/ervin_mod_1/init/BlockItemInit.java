@@ -1,7 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.init;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
-import com.babcsany.minecraft.ervin_mod_1.block.AbstractModBlock;
 import com.babcsany.minecraft.ervin_mod_1.block.FallingZurBlock;
 import com.babcsany.minecraft.ervin_mod_1.block.blocks.*;
 import com.babcsany.minecraft.ervin_mod_1.block.blocks.burnable.ZurkBlock;
@@ -9,10 +8,8 @@ import com.babcsany.minecraft.ervin_mod_1.block.blocks.burnable.slabs.ZurkSlab;
 import com.babcsany.minecraft.ervin_mod_1.block.blocks.burnable.stairs.GurkStairs;
 import com.babcsany.minecraft.ervin_mod_1.block.blocks.minecraft.slabs.ObsidianSlab;
 import com.babcsany.minecraft.ervin_mod_1.block.blocks.minecraft.slabs.*;
-import com.babcsany.minecraft.ervin_mod_1.block.blocks.slabs.CharcoalSlab;
 import com.babcsany.minecraft.ervin_mod_1.block.blocks.slabs.GurkSlab;
 import com.babcsany.minecraft.ervin_mod_1.block.blocks.slabs.RubySlab;
-import com.babcsany.minecraft.ervin_mod_1.block.blocks.stairs.CharcoalStairs;
 import com.babcsany.minecraft.ervin_mod_1.block.blocks.stairs.RubyStairs;
 import com.babcsany.minecraft.ervin_mod_1.block.blocks.stairs.ZurkStairs;
 import com.babcsany.minecraft.ervin_mod_1.block.furnace.BlackFurnace;
@@ -28,7 +25,6 @@ import com.babcsany.minecraft.ervin_mod_1.block.stone.smooth_stones.*;
 import com.babcsany.minecraft.ervin_mod_1.block.stone.stairs.*;
 import com.babcsany.minecraft.ervin_mod_1.block.stone.stone_bricks.*;
 import com.babcsany.minecraft.ervin_mod_1.block.stone.stones.*;
-import com.babcsany.minecraft.ervin_mod_1.init.init.MaterialColorInit;
 import com.babcsany.minecraft.ervin_mod_1.init.sound.SoundInit;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.FrimTree;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.JazzTree;
@@ -44,8 +40,6 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.function.Function;
-
 import static net.minecraft.block.Blocks.*;
 
 public class BlockItemInit {
@@ -54,7 +48,6 @@ public class BlockItemInit {
 
     public static final RegistryObject<Block> EXAMPLE_BLOCK = BLOCKS.register("example_block", () -> new Block(Block.Properties.create(Material.SAND).hardnessAndResistance(0.5f, 15.0f).sound(SoundType.SAND)));
     public static final RegistryObject<Block> ZUR_BLOCK = BLOCKS.register("zur_block", () -> new FallingZurBlock(Block.Properties.create(Material.SAND).hardnessAndResistance(1.5f, 45.0f).sound(SoundType.WOOD)));
-    public static final RegistryObject<Block> TRADER_BLOCK = BLOCKS.register("trader_block", () -> new TraderBlock(AbstractBlock.Properties.create(Material.ROCK).hardnessAndResistance(0.5f, 15.0f).sound(SoundType.SAND), AbstractModBlock.Properties.create(Material.ROCK).doesNotBlockMovement_().soundInit(SoundInit.WOIK)));
     public static final RegistryObject<Block> DEFERRED_BLOCK = BLOCKS.register("deferred_block", () -> new Block(AbstractBlock.Properties.create(Material.AIR)));
     public static final RegistryObject<Block> JAZZ_LOG = BLOCKS.register("jazz_log", () -> new JazzLog(MaterialColor.WOOD, Block.Properties.from(Blocks.OAK_LOG)));
     public static final RegistryObject<Block> JAZZ_LEAVES = BLOCKS.register("jazz_leaves", () -> new LeavesBlock(Block.Properties.from(Blocks.OAK_LEAVES)));
@@ -280,19 +273,19 @@ public class BlockItemInit {
     public static final RegistryObject<Block> FRIM_PLANKS = BLOCKS.register("frim_planks", () -> new FrimPlanks(AbstractBlock.Properties.create(Material.ORGANIC, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).harvestTool(ToolType.AXE).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> FRIM_STAIRS = BLOCKS.register("frim_planks_stairs", () -> new FrimStairs(() -> FRIM_PLANKS.get().getDefaultState(), Block.Properties.from(FRIM_PLANKS.get())));
     public static final RegistryObject<Block> FRIM_PLANKS_DOOR = BLOCKS.register("frim_planks_door", FrimPlanksDoor::new);
-    public static final RegistryObject<Block> STRIPPED_FIRG_LOG = BLOCKS.register("stripped_firg_log", () -> new RotatedPillarBlock(createLogBlock(MaterialColorInit.SAND, MaterialColor.WOOD, AbstractBlock.Properties.create(Material.ORGANIC).harvestTool(ToolType.AXE).hardnessAndResistance(2.0F).sound(SoundType.WOOD))));
-    public static final RegistryObject<Block> STRIPPED_FRIM_LOG = BLOCKS.register("stripped_frim_log", () -> new RotatedPillarBlock(createLogBlock(MaterialColorInit.RED, MaterialColorInit.REDL_F, AbstractBlock.Properties.create(Material.ORGANIC).harvestTool(ToolType.AXE).hardnessAndResistance(2.0F).sound(SoundType.WOOD))));
+    public static final RegistryObject<Block> STRIPPED_FIRG_LOG = BLOCKS.register("stripped_firg_log", () -> new RotatedPillarBlock(createLogBlock(MaterialColor.SAND, MaterialColor.WOOD, AbstractBlock.Properties.create(Material.ORGANIC).harvestTool(ToolType.AXE).hardnessAndResistance(2.0F).sound(SoundType.WOOD))));
+    public static final RegistryObject<Block> STRIPPED_FRIM_LOG = BLOCKS.register("stripped_frim_log", () -> new RotatedPillarBlock(createLogBlock(MaterialColor.RED, MaterialColor.RED_TERRACOTTA, AbstractBlock.Properties.create(Material.ORGANIC).harvestTool(ToolType.AXE).hardnessAndResistance(2.0F).sound(SoundType.WOOD))));
     public static final RegistryObject<Block> FIRG_WOOD = BLOCKS.register("firg_wood", () -> new RotatedPillarBlock(Block.Properties.create(Material.ORGANIC, MaterialColor.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD)));
-    public static final RegistryObject<Block> FRIM_WOOD = BLOCKS.register("frim_wood", () -> new RotatedPillarBlock(Block.Properties.create(Material.ORGANIC, MaterialColorInit.DARK_RED).hardnessAndResistance(2.0F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> FRIM_WOOD = BLOCKS.register("frim_wood", () -> new RotatedPillarBlock(Block.Properties.create(Material.ORGANIC, MaterialColor.ADOBE).hardnessAndResistance(2.0F).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> STRIPPED_FIRG_WOOD = BLOCKS.register("stripped_firg_wood", () -> new RotatedPillarBlock(Block.Properties.create(Material.ORGANIC, MaterialColor.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD)));
-    public static final RegistryObject<Block> STRIPPED_FRIM_WOOD = BLOCKS.register("stripped_frim_wood", () -> new RotatedPillarBlock(Block.Properties.create(Material.ORGANIC, MaterialColorInit.REDL_F).hardnessAndResistance(2.0F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> STRIPPED_FRIM_WOOD = BLOCKS.register("stripped_frim_wood", () -> new RotatedPillarBlock(Block.Properties.create(Material.ORGANIC, MaterialColor.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> GANK_SLAB = BLOCKS.register("gank_slab", () -> new GankSlab(Block.Properties.create(Material.ROCK).setRequiresTool().harvestLevel(0).harvestTool(ToolType.PICKAXE).hardnessAndResistance(990.0F, 1000.0F)));
     public static final RegistryObject<Block> ENDER_TRASK_1 = BLOCKS.register("ender_trask_1", () -> new EnderTrask1(Block.Properties.create(Material.ORGANIC).setRequiresTool().harvestLevel(6).hardnessAndResistance(160.0f)));
     public static final RegistryObject<Block> ENDER_TRASKCRAFTH_1 = BLOCKS.register("ender_traskcrafth_1", () -> new EnderTraskcrafth(Block.Properties.create(Material.ORGANIC).setRequiresTool().harvestLevel(5).hardnessAndResistance(100.0f)));
     public static final RegistryObject<Block> DURT = BLOCKS.register("durt/durt", () -> new Durt(Block.Properties.create(Material.ROCK).setRequiresTool().harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(30.0f, 440.0f)));
     public static final RegistryObject<Block> DURTGURBF = BLOCKS.register("durt/gurbf", () -> new Durt(Block.Properties.create(Material.ROCK).setRequiresTool().harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(22.0f, 400.0f)));
     public static final RegistryObject<Block> GRITK_BLOCK_1 = BLOCKS.register("gritk_block_1", () -> new GritkBlock1(Block.Properties.create(Material.IRON).setRequiresTool().harvestLevel(0).setLightLevel(Value -> 15).harvestTool(ToolType.PICKAXE).hardnessAndResistance(500000.0F, 1200000.0F)));
-    public static final RegistryObject<Block> FRIM_LOG = BLOCKS.register("frim_log", () -> new RotatedPillarBlock(Block.Properties.create(Material.ORGANIC, MaterialColorInit.DARK_RED).harvestTool(ToolType.AXE).hardnessAndResistance(2.0F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> FRIM_LOG = BLOCKS.register("frim_log", () -> new RotatedPillarBlock(Block.Properties.create(Material.ORGANIC, MaterialColor.RED).harvestTool(ToolType.AXE).hardnessAndResistance(2.0F).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> FRIM_SAPLING = BLOCKS.register("frim_sapling", () -> new ModSaplingBlock(FrimTree::new, AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().sound(SoundType.PLANT)));
     public static final RegistryObject<Block> LEAVES = BLOCKS.register("leaves", () -> new Leaves(Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).tickRandomly().sound(SoundType.PLANT).notSolid()));
     public static final RegistryObject<Block> FRIM_LEAVES = BLOCKS.register("frim_leaves", () -> new LeavesBlock(Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).tickRandomly().sound(SoundType.PLANT).notSolid()));

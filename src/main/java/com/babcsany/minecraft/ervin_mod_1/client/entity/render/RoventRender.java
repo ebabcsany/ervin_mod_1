@@ -6,6 +6,8 @@ import com.babcsany.minecraft.ervin_mod_1.client.entity.model.RoventModel;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.RoventEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
+import net.minecraft.client.renderer.entity.AbstractZombieRenderer;
+import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
@@ -14,7 +16,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class RoventRender extends AbstractZurEntityRender<RoventEntity, RoventModel<RoventEntity>> {
+public class RoventRender extends AbstractZombieRenderer<RoventEntity, RoventModel<RoventEntity>> {
    private static final ResourceLocation ROVENT_LOCATION = new ResourceLocation(Ervin_mod_1.MOD_ID,"textures/entity/zur_entity.png");
 
    public RoventRender(EntityRendererManager renderManagerIn) {
@@ -25,7 +27,7 @@ public class RoventRender extends AbstractZurEntityRender<RoventEntity, RoventMo
    /**
     * Returns the location of an entity's texture.
     */
-   public ResourceLocation getEntityTexture(ZurEntity entity) {
+   public ResourceLocation getEntityTexture(RoventEntity entity) {
       return ROVENT_LOCATION;
    }
 

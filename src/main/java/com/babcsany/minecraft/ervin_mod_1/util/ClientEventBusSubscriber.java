@@ -2,13 +2,15 @@ package com.babcsany.minecraft.ervin_mod_1.util;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.client.entity.render.*;
-import com.babcsany.minecraft.ervin_mod_1.client.gui.screen.*;
+import com.babcsany.minecraft.ervin_mod_1.client.gui.screen.CraintBlockCraftingTableScreen;
+import com.babcsany.minecraft.ervin_mod_1.client.gui.screen.IrtrewScreen;
+import com.babcsany.minecraft.ervin_mod_1.client.gui.screen.LeatBlockCraftingTableScreen;
+import com.babcsany.minecraft.ervin_mod_1.client.gui.screen.TraderBlockScreen;
 import com.babcsany.minecraft.ervin_mod_1.client.gui.screen.merchant.ZurScreen;
-import com.babcsany.minecraft.ervin_mod_1.client.renderer.entity.ModBoatRender;
-import com.babcsany.minecraft.ervin_mod_1.init.*;
+import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.container.ContainerInit;
-import com.babcsany.minecraft.renderer.entity.ModBoatRenderer;
 import net.minecraft.client.gui.ScreenManager;
+import net.minecraft.client.renderer.entity.BoatRenderer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DeferredWorkQueue;
@@ -24,16 +26,14 @@ public class ClientEventBusSubscriber {
     @SubscribeEvent
     public static void clientSetup(FMLClientSetupEvent event) {
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.LIWRAY.get(), LiwrayRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityInit.MOD_BOAT_ENTITY.get(), ModBoatRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityInit.MOD_BOAT_ENTITY.get(), BoatRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.GWURST.get(), GwurstRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(com.babcsany.minecraft.init.EntityInit.ZUR_ENTITY, ZurEntityRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityInit.DGRURB_ENTITY.get(), DgrurbRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityInit.DGRURBK_ENTITY.get(), DgrurbkRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityInit.ZUR_ENTITY.get(), ZurEntityRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.ZUR_NIRTRE_ENTITY.get(), ZurNirtreRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(com.babcsany.minecraft.init.EntityInit.ROVENT_ENTITY, RoventRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityInit.ROVENT_ENTITY.get(), RoventRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.VILT_ENTITY.get(), ViltEntityRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.FREIN_ENTITY.get(), FreinEntityRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(com.babcsany.minecraft.init.EntityInit.SRACH_ENTITY, SrachRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityInit.SRACH_ENTITY.get(), SrachRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.SHERT_ENTITY.get(), ShertRender::new);
         //RenderingRegistry.registerEntityRenderingHandler(EntityInit.SRECH_ENTITY.get(), SrechRender::new);
 
@@ -44,8 +44,7 @@ public class ClientEventBusSubscriber {
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.TRADER_NIRTRE1_ENTITY.get(), TraderNirtre1Render::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.$_TRADER_ENTITY.get(), $TraderRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.ZOMBIE_TRADER_ENTITY.get(), ZombieTraderRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(com.babcsany.minecraft.init.EntityInit.GUBROV, GubrovRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(com.babcsany.minecraft.init.EntityInit.MOD_BOAT, ModBoatRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityInit.GUBROV.get(), GubrovRenderer::new);
         //RenderingRegistry.registerEntityRenderingHandler(EntityInit.HUIHK, HuihkRender::new);
 
         //EntitySpawnPlacementRegistry.canSpawnEntity(EntityInit.$_TRADER_ENTITY.get(), World.field_234917_f_.comapFlatMap(), SpawnReason.NATURAL);

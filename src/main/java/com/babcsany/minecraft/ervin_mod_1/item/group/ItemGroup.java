@@ -3,7 +3,7 @@ package com.babcsany.minecraft.ervin_mod_1.item.group;
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.food.brefk.BrefkStageItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
-import com.babcsany.minecraft.init.item.spawn_egg.ModSpawnEggItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.spawn_egg.ModSpawnEggItemInit;
 import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
@@ -49,7 +49,7 @@ public abstract class ItemGroup {
    public static final net.minecraft.item.ItemGroup ERVIN_MOD_1_SPAWN_EGGS = new net.minecraft.item.ItemGroup(17, "ervin_mod_1_spawn_eggs") {
       @OnlyIn(Dist.CLIENT)
       public ItemStack createIcon() {
-         return new ItemStack(ModSpawnEggItemInit.SPAWN_EGG_1);
+         return new ItemStack(ModSpawnEggItemInit.DRURB_SPAWN_EGG.get());
       }
    };
    /*public static final net.minecraft.item.ItemGroup REDSTONE = new net.minecraft.item.ItemGroup(2, "redstone") {

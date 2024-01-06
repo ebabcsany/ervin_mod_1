@@ -1,9 +1,9 @@
 package com.babcsany.minecraft.ervin_mod_1.world.biome;
 
+import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.ModBiomeFeatures;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.FirgTree;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.ModDefaultBiomeFeatures;
-import com.babcsany.minecraft.init.EntityInit;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.world.biome.*;
@@ -20,7 +20,7 @@ public class ExampleBiome extends Biome {
 		this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityType.ZOMBIE, 30, 1, 20));
 		//this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.LIWRAY.get(), 1, 1, 3));
 		//this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.ROVENT_ENTITY.get(), 1, 1, 3));
-		this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityInit.ZUR_ENTITY, 20, 1, 1));
+		this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityInit.ZUR_ENTITY.get(), 20, 1, 1));
 		//this.addSpawn(EntityClassification.WATER_CREATURE, new SpawnListEntry(EntityInit.GUBROV_ENTITY.get(), 1, 1, 4));
 		//this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityInit.FREIN_ENTITY.get(), 1, 0, 2));
 		this.addSpawn(EntityClassification.AMBIENT, new SpawnListEntry(EntityType.BAT, 40, 1, 20));

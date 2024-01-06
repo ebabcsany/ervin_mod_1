@@ -1,6 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.monster;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.AbstractZurEntity;
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.AgeableZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.TraderNirtreEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.trigger.CriteriaTriggers1;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
@@ -39,14 +40,14 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.UUID;
 
-public class ZurNirtreEntity extends ZurEntity {
+public class ZurNirtreEntity extends AbstractZurEntity {
    private static final DataParameter<Boolean> CONVERTING = EntityDataManager.createKey(ZurNirtreEntity.class, DataSerializers.BOOLEAN);
    private int conversionTime;
    private UUID converstionStarter;
    private CompoundNBT offers;
    private int xp;
 
-   public ZurNirtreEntity(EntityType<? extends ZurNirtreEntity> p_i50186_1_, World p_i50186_2_) {
+   public ZurNirtreEntity(EntityType<ZurNirtreEntity> p_i50186_1_, World p_i50186_2_) {
       super(p_i50186_1_, p_i50186_2_);
    }
 
@@ -57,6 +58,11 @@ public class ZurNirtreEntity extends ZurEntity {
    protected void registerData() {
       super.registerData();
       this.dataManager.register(CONVERTING, false);
+   }
+
+   @Override
+   protected void populateTradeZurData() {
+
    }
 
    public void writeAdditional(CompoundNBT compound) {
@@ -128,6 +134,11 @@ public class ZurNirtreEntity extends ZurEntity {
       } else {
          return super.func_230254_b_(player, hand);
       }
+   }
+
+   @Override
+   public void applyWaveBonus(int p_213660_1_, boolean p_213660_2_) {
+
    }
 
    protected boolean shouldDrown() {
@@ -287,6 +298,12 @@ public class ZurNirtreEntity extends ZurEntity {
    public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
       //this.setVillagerData(this.getVillagerData().withType(IVillagerType.byBiome(worldIn.getBiome(this.getPosition()))));
       return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+   }
+
+   @Nullable
+   @Override
+   public AgeableZurEntity createChild(AgeableZurEntity ageable) {
+      return null;
    }
 
    /*public void setVillagerData(VillagerData p_213792_1_) {

@@ -146,7 +146,7 @@ public class ShertEntity extends SrachEntity implements IShearable, net.minecraf
       if (!this.world.isRemote()) {
          ((ServerWorld)this.world).spawnParticle(ParticleTypes.EXPLOSION, this.getPosX(), this.getPosYHeight(0.5D), this.getPosZ(), 1, 0.0D, 0.0D, 0.0D, 0.0D);
          this.remove();
-         SrachEntity srachentity = com.babcsany.minecraft.init.EntityInit.SRACH_ENTITY.create(this.world);
+         SrachEntity srachentity = EntityInit.SRACH_ENTITY.get().create(this.world);
          srachentity.setLocationAndAngles(this.getPosX(), this.getPosY(), this.getPosZ(), this.rotationYaw, this.rotationPitch);
          srachentity.setHealth(this.getHealth());
          srachentity.renderYawOffset = this.renderYawOffset;
@@ -254,7 +254,7 @@ public class ShertEntity extends SrachEntity implements IShearable, net.minecraf
       if (!world.isRemote()) {
          ((ServerWorld)this.world).spawnParticle(ParticleTypes.EXPLOSION, this.getPosX(), this.getPosYHeight(0.5D), this.getPosZ(), 1, 0.0D, 0.0D, 0.0D, 0.0D);
          this.remove();
-         SrachEntity srachentity = com.babcsany.minecraft.init.EntityInit.SRACH_ENTITY.create(this.world);
+         SrachEntity srachentity = EntityInit.SRACH_ENTITY.get().create(this.world);
          srachentity.setLocationAndAngles(this.getPosX(), this.getPosY(), this.getPosZ(), this.rotationYaw, this.rotationPitch);
          srachentity.setHealth(this.getHealth());
          srachentity.renderYawOffset = this.renderYawOffset;

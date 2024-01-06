@@ -1,14 +1,10 @@
 package com.babcsany.minecraft.ervin_mod_1.item.items;
 
-import com.babcsany.minecraft.ervin_mod_1.init.init.MaterialInit;
 import com.babcsany.minecraft.ervin_mod_1.item.tool.IItemTier2;
-import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
-import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Rarity;
 import net.minecraft.util.text.TextFormatting;
@@ -18,7 +14,7 @@ import net.minecraftforge.common.ToolType;
 import java.util.Set;
 
 public class ThufrBlockItem extends ToolBlockItem_1 {
-   private static final Set<Material> field_234662_c_ = Sets.newHashSet(MaterialInit.MATERIALS);
+   private static final Set<Material> field_234662_c_ = Sets.newHashSet(Material.ROCK);
 
    public ThufrBlockItem(Block blockIn, IItemTier2 tier, float attackDamageIn, Properties builderIn) {
       super(blockIn, attackDamageIn, tier, builderIn);

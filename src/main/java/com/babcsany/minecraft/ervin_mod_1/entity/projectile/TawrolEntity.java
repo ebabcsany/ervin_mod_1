@@ -4,9 +4,6 @@ import com.babcsany.minecraft.ervin_mod_1.entity.animal.GwurstEntity;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.passive.ChickenEntity;
-import net.minecraft.entity.projectile.EggEntity;
 import net.minecraft.entity.projectile.ProjectileItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.particles.ItemParticleData;
@@ -18,17 +15,10 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+
 public class TawrolEntity extends ProjectileItemEntity {
-   public TawrolEntity(EntityType<? extends TawrolEntity> p_i50154_1_, World p_i50154_2_) {
+   public TawrolEntity(EntityType<TawrolEntity> p_i50154_1_, World p_i50154_2_) {
       super(p_i50154_1_, p_i50154_2_);
-   }
-
-   public TawrolEntity(World worldIn, LivingEntity throwerIn) {
-      super(com.babcsany.minecraft.init.EntityInit.TAWROL, throwerIn, worldIn);
-   }
-
-   public TawrolEntity(World worldIn, double x, double y, double z) {
-      super(com.babcsany.minecraft.init.EntityInit.TAWROL, x, y, z, worldIn);
    }
 
    /**

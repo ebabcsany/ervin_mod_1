@@ -16,14 +16,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.RecipeItemHelper;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
-import net.minecraft.network.play.server.SSetSlotPacket;
 import net.minecraft.tags.ITag;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.INameable;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -341,28 +339,6 @@ public class ZurInventory implements IInventory, INameable {
             });
             throw new ReportedException(crashreport);
          }
-      }
-   }
-
-   public void placeItemBackInInventory(World worldIn, ItemStack stack) {
-      if (!worldIn.isRemote) {
-         while(!stack.isEmpty()) {
-            int i = this.storeItemStack(stack);
-            if (i == -1) {
-               i = this.getFirstEmptyStack();
-            }
-
-            if (i == -1) {
-               this.zur.dropItem(stack, false);
-               break;
-            }
-
-            int j = stack.getMaxStackSize() - this.getStackInSlot(i).getCount();
-            if (this.add(i, stack.split(j))) {
-               ((ZurEntity_D)this.zur).connection.sendPacket(new SSetSlotPacket(-2, i, this.getStackInSlot(i)));
-            }
-         }
-
       }
    }
 

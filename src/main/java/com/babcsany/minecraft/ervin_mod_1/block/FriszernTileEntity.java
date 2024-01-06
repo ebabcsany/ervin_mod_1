@@ -1,14 +1,12 @@
 package com.babcsany.minecraft.ervin_mod_1.block;
 
 import com.babcsany.minecraft.init.BlockInit;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.command.CommandSource;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector2f;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.server.ServerWorld;
@@ -115,47 +113,11 @@ public class FriszernTileEntity extends TileEntity {
    }
 
    public void setAuto(boolean autoIn) {
-      boolean flag = this.auto;
       this.auto = autoIn;
-      if (!flag && autoIn && !this.powered && this.world != null && this.getFriszernMode() != FriszernTileEntity.Mode.SEQUENCE) {
-         this.func_226988_y_();
-      }
-
-   }
-
-   public void func_226987_i_() {
-      FriszernTileEntity.Mode friszernTileEntity$mode = this.getFriszernMode();
-      if (friszernTileEntity$mode == FriszernTileEntity.Mode.AUTO && (this.powered || this.auto) && this.world != null) {
-         this.func_226988_y_();
-      }
-
-   }
-
-   private void func_226988_y_() {
-      Block block = this.getBlockState().getBlock();
-      if (block instanceof Friszernk) {
-         this.setConditionMet();
-         this.world.getPendingBlockTicks().scheduleTick(this.pos, block, 1);
-      }
 
    }
 
    public boolean isConditionMet() {
-      return this.conditionMet;
-   }
-
-   public boolean setConditionMet() {
-      this.conditionMet = true;
-      if (this.isConditional1()) {
-         BlockPos blockPos = this.pos.offset(this.world.getBlockState(this.pos).get(Friszernk.FACING).getOpposite());
-         if (this.world.getBlockState(blockPos).getBlock() instanceof Friszernk) {
-            TileEntity tileEntity = this.world.getTileEntity(blockPos);
-            this.conditionMet = tileEntity instanceof FriszernTileEntity && ((FriszernTileEntity)tileEntity).getLogic().getSuccessCount() > 0;
-         } else {
-            this.conditionMet = false;
-         }
-      }
-
       return this.conditionMet;
    }
 
@@ -176,11 +138,6 @@ public class FriszernTileEntity extends TileEntity {
       } else {
          return blockState.isIn(BlockInit.CHAIN_FRISZERN) ? FriszernTileEntity.Mode.SEQUENCE : FriszernTileEntity.Mode.REDSTONE;
       }
-   }
-
-   public boolean isConditional1() {
-      BlockState blockstate = this.world.getBlockState(this.getPos());
-      return blockstate.getBlock() instanceof Friszernk ? blockstate.get(Friszernk.CONDITIONAL) : false;
    }
 
    /**

@@ -1,8 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.animal;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.hhij.HhijMeleeAttackGoal;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
-import com.babcsany.minecraft.ervin_mod_1.init.init.DyeColorInit;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.food.FoodItemInit;
 import com.babcsany.minecraft.ervin_mod_1.world.storage.loot.LootTables1;

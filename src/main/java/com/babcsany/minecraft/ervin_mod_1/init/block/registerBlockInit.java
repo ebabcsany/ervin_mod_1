@@ -1,7 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.init.block;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
-import com.babcsany.minecraft.ervin_mod_1.block.ExamplePortalBlock;
 import com.babcsany.minecraft.ervin_mod_1.block.Fighiv;
 import com.babcsany.minecraft.ervin_mod_1.block.PoweredRailBlock;
 import com.babcsany.minecraft.ervin_mod_1.block.TargCropsBlock;
@@ -18,7 +17,6 @@ import com.babcsany.minecraft.ervin_mod_1.block.special.Thufr;
 import com.babcsany.minecraft.ervin_mod_1.block.stone.cobblestone.stairs.StairsBlock;
 import com.babcsany.minecraft.ervin_mod_1.block.tripwires.TripWireBlock;
 import com.babcsany.minecraft.ervin_mod_1.block.tripwires.tripwire_hooks.TripWireHookBlock;
-import com.babcsany.minecraft.ervin_mod_1.init.init.MaterialColorInit;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.JazzTree;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.ModSaplingBlock;
 import net.minecraft.block.*;
@@ -41,7 +39,7 @@ public class registerBlockInit {
     //public static final RegistryObject<Block> FRISZERN = BLOCKS.register("friszern", () -> new Friszern(AbstractBlock.Properties.create(Material.IRON, MaterialColor.BLACK_TERRACOTTA).setRequiresTool().hardnessAndResistance(3600000.0F)));
     //public static final RegistryObject<Block> CHAIN_FRISZERN = BLOCKS.register("chain_friszern", () -> new Friszern(AbstractBlock.Properties.create(Material.IRON, MaterialColor.BLACK_TERRACOTTA).setRequiresTool().hardnessAndResistance(3600000.0F)));
     //public static final RegistryObject<Block> REPEATING_FRISZERN = BLOCKS.register("repeater_friszern", () -> new Friszern(AbstractBlock.Properties.create(Material.IRON, MaterialColor.BLACK_TERRACOTTA).setRequiresTool().hardnessAndResistance(3600000.0F)));
-    public static final RegistryObject<Block> EXAMPLE_PORTAL_BLOCK = BLOCKS.register("example_portal_block", () -> new ExamplePortalBlock(AbstractBlock.Properties.from(Blocks.BEDROCK)));
+    public static final RegistryObject<Block> EXAMPLE_PORTAL_BLOCK = BLOCKS.register("example_portal_block", () -> new Block(AbstractBlock.Properties.from(Blocks.BEDROCK)));
     public static final RegistryObject<Block> TARG_STAGE = BLOCKS.register("crops/targ_stage", () -> new TargCropsBlock(Block.Properties.create(Material.PLANTS).zeroHardnessAndResistance().doesNotBlockMovement().tickRandomly().sound(SoundType.CROP)));
     public static final RegistryObject<Block> JAZZ_SAPLING = registerModSapling("jazz_sapling", JazzTree::new, OAK_SAPLING);
     public static final RegistryObject<Block> FIRG = BLOCKS.register("firg", () -> new Firg(Block.Properties.create(Material.ROCK).harvestLevel(0).harvestTool(ToolType.PICKAXE).hardnessAndResistance(10.0f)));
@@ -102,7 +100,7 @@ public class registerBlockInit {
     public static final RegistryObject<Block> GRINT_SLAB = BLOCKS.register("grint_slab", () -> new GrintSlab(Block.Properties.create(Material.ROCK).setRequiresTool().harvestLevel(4).harvestTool(ToolType.PICKAXE).hardnessAndResistance(120.0f)));
     public static final RegistryObject<Block> GRINT_STAIRS = BLOCKS.register("grint_stairs", () -> new GrintStairs(() -> GRINT_BLOCK.get().getDefaultState(), Block.Properties.from(GRINT_BLOCK.get())));
     public static final RegistryObject<Block> THUIRTH_RAIL = BLOCKS.register("thuirth_rail", () -> new PoweredRailBlock(AbstractBlock.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(436.5F).sound(SoundType.METAL), true));
-    public static final RegistryObject<Block> THUFR = BLOCKS.register("special/thufr", () -> new Thufr(AbstractBlock.Properties.create(Material.ROCK, MaterialColorInit.THUFR).harvestLevel(138).hardnessAndResistance(3690527310400000000.0F).sound(SoundType.STONE)));
+    public static final RegistryObject<Block> THUFR = BLOCKS.register("special/thufr", () -> new Thufr(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.BLACK).harvestLevel(138).hardnessAndResistance(3690527310400000000.0F).sound(SoundType.STONE)));
     public static final RegistryObject<Block> CHARCOAL_BLOCK = BLOCKS.register("charcoal_block", () -> new CharcoalBlock(Block.Properties.create(Material.ROCK).setRequiresTool().hardnessAndResistance(5.0F, 6.0F)));
     public static final RegistryObject<Block> COAL_SLAB = BLOCKS.register("coal_slab", () -> new CoalSlab(Block.Properties.create(Material.ROCK, MaterialColor.BLACK).setRequiresTool().harvestLevel(0).harvestTool(ToolType.PICKAXE).hardnessAndResistance(6.0F, 6.0F)));
     public static final RegistryObject<Block> CHARCOAL_SLAB = BLOCKS.register("charcoal_slab", () -> new CharcoalSlab(Block.Properties.create(Material.ROCK).setRequiresTool().harvestLevel(0).harvestTool(ToolType.PICKAXE).hardnessAndResistance(6.0F, 6.0F)));

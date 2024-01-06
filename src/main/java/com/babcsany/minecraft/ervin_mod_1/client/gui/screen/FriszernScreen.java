@@ -58,7 +58,6 @@ public class FriszernScreen extends AbstractFriszernScreen {
       this.commandTextField.setText(friszernLogic.getCommand());
       this.trackOutput = friszernLogic.shouldTrackOutput();
       this.commandBlockMode = this.friszern.getFriszernMode();
-      this.conditional = this.friszern.isConditional1();
       this.automatic = this.friszern.isAuto();
       this.updateTrackOutput();
       this.updateMode();

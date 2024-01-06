@@ -20,9 +20,7 @@
 package com.babcsany.minecraft.forge.event.entity.item.zur;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.AbstractZurEntity;
-import com.babcsany.minecraft.forge.event.entity.icsvre.IcsvreEvent;
 import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraftforge.event.entity.item.ItemEvent;
 import net.minecraftforge.eventbus.api.Cancelable;
 

@@ -1,11 +1,10 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.animal;
 
-import com.babcsany.minecraft.ervin_mod_1.init.item.FluidBucketInit;
+import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.food.BlockFoodItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.food.SpecialBlockFoodItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.food.isBurnableFoodItemInit;
-import com.babcsany.minecraft.init.EntityInit;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
@@ -84,7 +83,7 @@ public class SrachEntity extends AnimalEntity {
    }
 
    public SrachEntity createChild(AgeableEntity ageable) {
-      return EntityInit.SRACH_ENTITY.create(this.world);
+      return EntityInit.SRACH_ENTITY.get().create(this.world);
    }
 
    public boolean isBreedingItem(ItemStack stack) {

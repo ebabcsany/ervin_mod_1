@@ -1,5 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.monster;
 
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.AbstractZurEntity;
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.AgeableZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.init.BiomeInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.food.isBurnableFoodItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
@@ -44,12 +46,12 @@ import java.util.Random;
 
 import static net.minecraft.entity.monster.MonsterEntity.isValidLightLevel;
 
-public class RoventEntity extends ZurEntity implements IRangedAttackMob {
+public class RoventEntity extends AbstractZurEntity implements IRangedAttackMob {
    private boolean swimmingUp;
    protected final SwimmerPathNavigator waterNavigator;
    protected final GroundPathNavigator groundNavigator;
 
-   public RoventEntity(EntityType<? extends RoventEntity> type, World worldIn) {
+   public RoventEntity(EntityType<RoventEntity> type, World worldIn) {
       super(type, worldIn);
       this.stepHeight = 1.0F;
       this.moveController = new RoventEntity.MoveHelperController(this);
@@ -61,7 +63,6 @@ public class RoventEntity extends ZurEntity implements IRangedAttackMob {
    protected void applyEntityAI() {
       this.goalSelector.addGoal(1, new RoventEntity.GoToWaterGoal(this, 1.0D));
       this.goalSelector.addGoal(2, new RoventEntity.TridentAttackGoal(this, 1.0D, 40, 10.0F));
-      this.goalSelector.addGoal(2, new RoventEntity.AttackGoal(this, 1.0D, false));
       this.goalSelector.addGoal(5, new RoventEntity.GoToBeachGoal(this, 1.0D));
       this.goalSelector.addGoal(6, new RoventEntity.SwimUpGoal(this, 1.0D, this.world.getSeaLevel()));
       this.goalSelector.addGoal(7, new RandomWalkingGoal(this, 1.0D));
@@ -81,6 +82,17 @@ public class RoventEntity extends ZurEntity implements IRangedAttackMob {
       }
 
       return spawnDataIn;
+   }
+
+   @Nullable
+   @Override
+   public AgeableZurEntity createChild(AgeableZurEntity ageable) {
+      return null;
+   }
+
+   @Override
+   protected void populateTradeZurData() {
+
    }
 
    public static boolean canRoventSpawn(EntityType<RoventEntity> p_223332_0_, IWorld p_223332_1_, SpawnReason reason, BlockPos p_223332_3_, Random p_223332_4_) {
@@ -190,8 +202,13 @@ public class RoventEntity extends ZurEntity implements IRangedAttackMob {
       return p_223333_1_.getY() < p_223333_0_.getSeaLevel() - 5;
    }
 
-   protected boolean canBreakDoors() {
+   public boolean canBreakDoors() {
       return false;
+   }
+
+   @Override
+   public void applyWaveBonus(int p_213660_1_, boolean p_213660_2_) {
+
    }
 
    protected SoundEvent getAmbientSound() {
@@ -341,30 +358,6 @@ public class RoventEntity extends ZurEntity implements IRangedAttackMob {
 
    public void setSwimmingUp(boolean p_204713_1_) {
       this.swimmingUp = p_204713_1_;
-   }
-
-   static class AttackGoal extends ZurAttackGoal {
-      private final RoventEntity field_204726_g;
-
-      public AttackGoal(RoventEntity p_i48913_1_, double p_i48913_2_, boolean p_i48913_4_) {
-         super(p_i48913_1_, p_i48913_2_, p_i48913_4_);
-         this.field_204726_g = p_i48913_1_;
-      }
-
-      /**
-       * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
-       * method as well.
-       */
-      public boolean shouldExecute() {
-         return super.shouldExecute() && this.field_204726_g.shouldAttack(this.field_204726_g.getAttackTarget());
-      }
-
-      /**
-       * Returns whether an in-progress EntityAIBase should continue executing
-       */
-      public boolean shouldContinueExecuting() {
-         return super.shouldContinueExecuting() && this.field_204726_g.shouldAttack(this.field_204726_g.getAttackTarget());
-      }
    }
 
    static class GoToBeachGoal extends MoveToBlockGoal {

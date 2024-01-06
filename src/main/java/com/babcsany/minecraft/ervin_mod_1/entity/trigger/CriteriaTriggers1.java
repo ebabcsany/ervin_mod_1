@@ -1,8 +1,5 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.trigger;
 
-import com.babcsany.minecraft.advancements.criterion.RightClickBlockWithIcsvreTrigger;
-import com.babcsany.minecraft.advancements.criterion.TameDgrurbAnimalTrigger;
-import com.babcsany.minecraft.advancements.criterion.trigger.PlacedIcsvreBlockTrigger;
 import com.babcsany.minecraft.ervin_mod_1.block.trader_block.TraderBlockTrigger;
 import com.babcsany.minecraft.ervin_mod_1.entity.CuredZurNirtreTrigger;
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.BredZurTrigger;
@@ -56,10 +53,8 @@ public class CriteriaTriggers1 {
    public static final TickTrigger TICK = register(new TickTrigger());
 
    public static final TameZurAnimalTrigger TAME_ZUR_ANIMAL = register(new TameZurAnimalTrigger());
-   public static final TameDgrurbAnimalTrigger TAME_DGRURB_ANIMAL = register(new TameDgrurbAnimalTrigger());
    public static final TameHhijAnimalTrigger TAME_HHIJ_ANIMAL = register(new TameHhijAnimalTrigger());
    public static final PlacedBlockTrigger PLACED_BLOCK = register(new PlacedBlockTrigger());
-   public static final PlacedIcsvreBlockTrigger PLACED_ICSVRE_BLOCK = register(new PlacedIcsvreBlockTrigger());
    public static final ConsumeItemTrigger CONSUME_ITEM = register(new ConsumeItemTrigger());
    public static final EffectsChangedTrigger EFFECTS_CHANGED = register(new EffectsChangedTrigger());
    public static final UsedTotemTrigger USED_TOTEM = register(new UsedTotemTrigger());
@@ -75,7 +70,6 @@ public class CriteriaTriggers1 {
    public static final BeeNestDestroyedTrigger BEE_NEST_DESTROYED = register(new BeeNestDestroyedTrigger());
    public static final TargetHitTrigger TARGET_HIT = register(new TargetHitTrigger());
    public static final RightClickBlockWithItemTrigger RIGHT_CLICK_BLOCK_WITH_ITEM = register(new RightClickBlockWithItemTrigger());
-   public static final RightClickBlockWithIcsvreTrigger RIGHT_CLICK_BLOCK_WITH_ICSVRE = register(new RightClickBlockWithIcsvreTrigger());
    public static final PlayerGeneratesContainerLootTrigger PLAYER_GENERATES_CONTAINER_LOOT = register(new PlayerGeneratesContainerLootTrigger());
    public static final ThrownItemPickedUpByEntityTrigger THROWN_ITEM_PICKED_UP_BY_ENTITY = register(new ThrownItemPickedUpByEntityTrigger());
    public static final PlayerEntityInteractionTrigger PLAYER_ENTITY_INTERACTION = register(new PlayerEntityInteractionTrigger());

@@ -1,19 +1,14 @@
 package com.babcsany.minecraft.init;
 
-import com.babcsany.minecraft.ervin_mod_1.tile_entity.ReutrienTileEntity;
 import com.babcsany.minecraft.tile_entity.ModTileEntityType;
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
 
 import java.util.function.Supplier;
 
-import static com.babcsany.minecraft.tile_entity.ModTileEntityType.Builder.create;
-
 public class TileEntityInit<T extends TileEntity> {
 
     public static TileEntityInit<?> TILE_ENTITIES;
-
-    public static final ModTileEntityType<ReutrienTileEntity> REUTRIEN = ModTileEntityType.register("reutrien", create(ReutrienTileEntity::new, BlockInit.REUTRIEN));
 
     private static String string(String name) {
         String string = "ervin_mod_1:";

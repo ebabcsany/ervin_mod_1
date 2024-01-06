@@ -2,8 +2,7 @@ package com.babcsany.minecraft.ervin_mod_1.entity.fish;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.controller.dgrurb.fish.DrurbFishLookController;
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.dgrurbk.fish.DrurbFishJumpGoal;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.Dgrurb;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.dgrurbk.Dgrurbk;
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.RandomPositionGenerator;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
@@ -140,8 +139,8 @@ public class DrurbFishEntity extends WaterMobEntity {
       this.goalSelector.addGoal(6, new MeleeAttackGoal(this, 1.2F, true));
       this.goalSelector.addGoal(8, new DrurbFishEntity.PlayWithItemsGoal());
       this.goalSelector.addGoal(8, new FollowBoatGoal(this));
-      this.goalSelector.addGoal(9, new AvoidEntityGoal<>(this, Dgrurbk.class, 8.0F, 1.0D, 1.0D));
-      this.targetSelector.addGoal(1, (new HurtByTargetGoal(this, Dgrurb.class)).setCallsForHelp());
+      this.goalSelector.addGoal(9, new AvoidEntityGoal<>(this, CreatureEntity.class, 8.0F, 1.0D, 1.0D));
+      this.targetSelector.addGoal(1, (new HurtByTargetGoal(this, ZurEntity.class)).setCallsForHelp());
       this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, LivingEntity.class, false));
    }
 

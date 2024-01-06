@@ -2,19 +2,17 @@ package com.babcsany.minecraft.ervin_mod_1.client.entity.layers;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.client.entity.model.RoventModel;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.RoventEntity;
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.IEntityRenderer;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
-import net.minecraft.client.renderer.entity.model.DrownedModel;
-import net.minecraft.entity.monster.DrownedEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class RoventOuterLayer<T extends RoventEntity> extends LayerRenderer<T, RoventModel<T>> {
+public class RoventOuterLayer<T extends ZurEntity> extends LayerRenderer<T, RoventModel<T>> {
    private static final ResourceLocation LOCATION_OUTER_LAYER = new ResourceLocation(Ervin_mod_1.MOD_ID,"textures/entity/rovent/rovent_outer_layer.png");
    private final RoventModel<T> modelOuterLayer = new RoventModel<>(0.25F, 0.0F, 64, 64);
 

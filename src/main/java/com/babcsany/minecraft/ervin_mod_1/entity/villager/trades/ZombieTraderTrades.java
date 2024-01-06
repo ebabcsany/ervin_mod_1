@@ -4,9 +4,9 @@ import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.food.isBurnableFoodItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.spawn_egg.ModSpawnEggItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.special.isBurnableSpecialItemInit;
 import com.babcsany.minecraft.init.BlockItemInit;
-import com.babcsany.minecraft.init.item.spawn_egg.ModSpawnEggItemInit;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
@@ -43,8 +43,8 @@ import java.util.stream.Collectors;
 
 public class ZombieTraderTrades {
    public static final Int2ObjectMap<ZombieTraderTrades.ITrade[]> field_221240_b = gatAsIntMap(ImmutableMap.of(1, new ZombieTraderTrades.ITrade[]{
-           new ZombieTraderTrades.ItemsForEmeraldsTrade(ModSpawnEggItemInit.ZUR_SPAWN_EGG, 5, 1, 5000, 2),
-           new ZombieTraderTrades.ItemsForDurgsTrade(ModSpawnEggItemInit.ZUR_SPAWN_EGG, 5, 1, 5000, 5),
+           new ZombieTraderTrades.ItemsForEmeraldsTrade(ModSpawnEggItemInit.ZUR_SPAWN_EGG.get(), 5, 1, 5000, 2),
+           new ZombieTraderTrades.ItemsForDurgsTrade(ModSpawnEggItemInit.ZUR_SPAWN_EGG.get(), 5, 1, 5000, 5),
            new ZombieTraderTrades.ItemsForKirtsTrade(Items.EMERALD, 5, 1, 500, 5),
            new ZombieTraderTrades.ItemsForBedrocksTrade(Items.ZOMBIE_SPAWN_EGG, 64, 1, 1, 2),
            new ZombieTraderTrades.ItemsForRugtsTrade(isBurnableItemInit.ZRIBT.get(), 20, 1, 50, 10),

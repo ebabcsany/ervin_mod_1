@@ -11,7 +11,6 @@ import com.google.common.collect.ImmutableMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentData;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -45,7 +44,7 @@ public class TraderNirtreTrades {
            new TraderNirtreTrades.ItemsForEmeraldBlocksTrade(ModSpawnEggItemInit.WANDERING_TRADER_NIRTRE_SPAWN_EGG.get(), 50, 1, 20, 1),
            //new TraderNirtreTrades.ItemsForEmeraldBlocksTrade(ModSpawnEggItemInit.SRACH_SPAWN_EGG, 1, 1, 20, 1),
            new TraderNirtreTrades.ItemsForRegdemBlocksAndItemsTrade(BlockItemInit.FREIN_BLOCK.get(), 10, ModSpawnEggItemInit.HHIJ_SPAWN_EGG.get(), 1, 16, 4),
-           new TraderNirtreTrades.ItemsForEmeraldsAndItemsTrade(com.babcsany.minecraft.init.item.spawn_egg.ModSpawnEggItemInit.SPAWN_EGG_1, 1, isBurnableSpecialItemInit.FIRN.get(), 1, 16, 1),
+           new TraderNirtreTrades.ItemsForEmeraldsAndItemsTrade(ModSpawnEggItemInit.FREIN_SPAWN_EGG.get(), 1, isBurnableSpecialItemInit.FIRN.get(), 1, 16, 1),
            new TraderNirtreTrades.ItemsForEmeraldsAndItemsTrade(ItemInit.CRAKH.get(), 1, isBurnableSpecialItemInit.FIRN.get(), 1, 16, 1),
            new TraderNirtreTrades.ItemsForFirnsTrade(ItemInit.FREIN_BALL.get(), 10, 16, 50),
            new TraderNirtreTrades.ItemsForGrutsTrade(isBurnableFoodItemInit.TIRKS.get(), 30, 4, 50),

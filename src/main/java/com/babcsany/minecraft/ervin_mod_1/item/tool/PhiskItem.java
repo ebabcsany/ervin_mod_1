@@ -1,6 +1,5 @@
 package com.babcsany.minecraft.ervin_mod_1.item.tool;
 
-import com.babcsany.minecraft.ervin_mod_1.init.init.MaterialInit;
 import com.babcsany.minecraft.ervin_mod_1.item.ToolTypeInit;
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.block.Block;
@@ -29,7 +28,7 @@ public class PhiskItem extends ToolItem {
          return i >= blockIn.getHarvestLevel();
       }
       Material material = blockIn.getMaterial();
-      return material == MaterialInit.CRASK || material == Material.ORGANIC || material == Material.BARRIER;
+      return material == Material.CORAL || material == Material.ORGANIC || material == Material.BARRIER;
    }
 
    public float getDestroySpeed(ItemStack stack, BlockState state) {

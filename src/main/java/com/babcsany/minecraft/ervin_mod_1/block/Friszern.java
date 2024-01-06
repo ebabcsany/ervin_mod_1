@@ -2,14 +2,10 @@ package com.babcsany.minecraft.ervin_mod_1.block;
 
 import net.minecraft.block.*;
 import net.minecraft.command.CommandSource;
-import net.minecraft.crash.CrashReport;
-import net.minecraft.crash.CrashReportCategory;
-import net.minecraft.crash.ReportedException;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
@@ -29,7 +25,6 @@ import net.minecraft.world.server.ServerWorld;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.annotation.Nullable;
 import java.util.Random;
 
 public class Friszern extends ContainerBlock {
@@ -66,7 +61,6 @@ public class Friszern extends ContainerBlock {
             commandblocktileentity.setPowered(flag);
             if (!flag1 && !commandblocktileentity.isAuto() && commandblocktileentity.getMode() != CommandBlockTileEntity.Mode.SEQUENCE) {
                if (flag) {
-                  this.setConditionMet(commandblocktileentity);
                   worldIn.getPendingBlockTicks().scheduleTick(pos, this, 1);
                }
 
@@ -81,7 +75,6 @@ public class Friszern extends ContainerBlock {
          CommandBlockTileEntity commandblocktileentity = (CommandBlockTileEntity)tileentity;
          CommandBlockTileEntity.Mode commandblocktileentity$mode = commandblocktileentity.getMode();
          if (commandblocktileentity$mode == CommandBlockTileEntity.Mode.AUTO) {
-            this.setConditionMet(commandblocktileentity);
 
             if (commandblocktileentity.isPowered() || commandblocktileentity.isAuto()) {
                worldIn.getPendingBlockTicks().scheduleTick(pos, this, 1);
@@ -267,20 +260,5 @@ public class Friszern extends ContainerBlock {
    public ServerWorld getWorld() {
       return this.serverWorld;
    }*/
-
-   public boolean setConditionMet(CommandBlockTileEntity tileEntity) {
-      tileEntity.conditionMet = true;
-      if (tileEntity.isConditional()) {
-         BlockPos blockpos = tileEntity.pos.offset(tileEntity.world.getBlockState(tileEntity.pos).get(Friszern.FACING).getOpposite());
-         if (tileEntity.world.getBlockState(blockpos).getBlock() instanceof Friszern) {
-            TileEntity tileentity = tileEntity.world.getTileEntity(blockpos);
-            tileEntity.conditionMet = tileentity instanceof CommandBlockTileEntity;
-         } else {
-            tileEntity.conditionMet = false;
-         }
-      }
-
-      return tileEntity.conditionMet;
-   }
 
 }

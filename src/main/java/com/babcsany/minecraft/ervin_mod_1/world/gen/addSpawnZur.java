@@ -1,6 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.world.gen;
 
 import com.babcsany.minecraft.init.*;
+import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.world.gen.feature.GenOreFeatureConfig;
 import com.google.common.collect.Lists;
 import net.minecraft.block.BlockState;
@@ -28,7 +29,7 @@ public class addSpawnZur {
 
     public void addSpawnZur_count_1(Biome biomeIn) {
         biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 4)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(8))));
-        modBiomeIn.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 4, 1, 1));
+        modBiomeIn.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY.get(), 4, 1, 1));
     }
 
     static class addSpawnZur_weight_4 {
@@ -38,87 +39,87 @@ public class addSpawnZur {
         }
         public static void addSpawnZur_count_1(com.babcsany.minecraft.ervin_mod_1.world.biome.ModBiome modBiomeIn) {
             modBiomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 4)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(8))));
-            modBiomeIn.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 4, 1, 1));
+            modBiomeIn.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY.get(), 4, 1, 1));
         }
         public static void addSpawnZur_count_2(Biome biomeIn) {
             biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 4)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(8))));
-            modBiomeIn.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 4, 1, 2));
+            modBiomeIn.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY.get(), 4, 1, 2));
         }
         public static void addSpawnZur_count_3(Biome biomeIn) {
             biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 4)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(8))));
-            modBiomeIn.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 4, 1, 3));
+            modBiomeIn.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY.get(), 4, 1, 3));
         }
         public static void addSpawnZur_count_4(Biome biomeIn) {
             biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 4)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(8))));
-            modBiomeIn.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 4, 1, 4));
+            modBiomeIn.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY.get(), 4, 1, 4));
         }
         public static void addSpawnZur_count_8(Biome biomeIn) {
             biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 4)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(8))));
-            modBiomeIn.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 4, 1, 8));
+            modBiomeIn.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY.get(), 4, 1, 8));
         }
     }
     public static class addSpawnZur_weight_8 {
         public static void addSpawnZur_count_1(com.babcsany.minecraft.ervin_mod_1.world.biome.ModBiome modBiomeIn) {
             modBiomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 4)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(8))));
-            modBiomeIn.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 8, 1, 1));
+            modBiomeIn.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY.get(), 8, 1, 1));
         }
         public static void addSpawnZur_count_4(Biome biomeIn) {
             biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 4)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(8))));
-            modBiomeIn.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 8, 1, 4));
+            modBiomeIn.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY.get(), 8, 1, 4));
         }
         public static void addSpawnZur_count_8(Biome biomeIn) {
             biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 4)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(8))));
-            modBiomeIn.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 8, 1, 8));
+            modBiomeIn.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY.get(), 8, 1, 8));
         }
     }
     public static class addSpawnZur_weight_12 {
         public static void addSpawnZur_count_1(com.babcsany.minecraft.ervin_mod_1.world.biome.ModBiome modBiomeIn) {
             modBiomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 4)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(8))));
-            modBiomeIn.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 12, 1, 1));
+            modBiomeIn.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY.get(), 12, 1, 1));
         }
         public static void addSpawnZur_count_4(Biome biomeIn) {
             biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 4)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(8))));
-            modBiomeIn.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 12, 1, 4));
+            modBiomeIn.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY.get(), 12, 1, 4));
         }
         public static void addSpawnZur_count_8(Biome biomeIn) {
             biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 4)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(8))));
-            modBiomeIn.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 12, 1, 8));
+            modBiomeIn.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY.get(), 12, 1, 8));
         }
     }
     public static class addSpawnZur_weight_16 {
         public static void addSpawnZur_count_1(com.babcsany.minecraft.ervin_mod_1.world.biome.ModBiome modBiomeIn) {
             modBiomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 4)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(8))));
-            modBiomeIn.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 16, 1, 1));
+            modBiomeIn.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY.get(), 16, 1, 1));
         }
         public static void addSpawnZur_count_4(Biome biomeIn) {
             biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 4)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(8))));
-            modBiomeIn.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 16, 1, 4));
+            modBiomeIn.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY.get(), 16, 1, 4));
         }
         public static void addSpawnZur_count_8(Biome biomeIn) {
             biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 4)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(8))));
-            modBiomeIn.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 16, 1, 8));
+            modBiomeIn.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY.get(), 16, 1, 8));
         }
     }
     public static class addSpawnZur_weight_20 {
         public static void addSpawnZur_count_1(com.babcsany.minecraft.ervin_mod_1.world.biome.ModBiome modBiomeIn) {
             modBiomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 4)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(8))));
-            modBiomeIn.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 20, 1, 1));
+            modBiomeIn.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY.get(), 20, 1, 1));
         }
         public static void addSpawnZur_count_4(Biome biomeIn) {
             biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 4)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(8))));
-            modBiomeIn.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 20, 1, 4));
+            modBiomeIn.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY.get(), 20, 1, 4));
         }
         public static void addSpawnZur_count_8(Biome biomeIn) {
             biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 4)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(8))));
-            modBiomeIn.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 20, 1, 8));
+            modBiomeIn.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY.get(), 20, 1, 8));
         }
     }
     private static void addSpawnZur_count_4(Biome biomeIn) {
         biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 4)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(8))));
-        modBiomeIn.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 8, 1, 4));
+        modBiomeIn.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY.get(), 8, 1, 4));
     }
     private static void addSpawnZur_count_8(Biome biomeIn) {
         biomeIn.addFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_DIRTS, FIRT_BLOCK, 4)).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(8))));
-        modBiomeIn.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY, 8, 1, 8));
+        modBiomeIn.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityInit.ZUR_ENTITY.get(), 8, 1, 8));
     }
 }
