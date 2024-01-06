@@ -1,7 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.world.biome;
 
 import com.babcsany.minecraft.ervin_mod_1.world.feature.ModDefaultBiomeFeatures;
-import com.babcsany.minecraft.init.EntityInit;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
@@ -15,7 +14,7 @@ public class FirgBiome extends Biome {
 
 	public FirgBiome(Builder biomeBuilder) {
 		super(biomeBuilder);
-		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.SRACH_ENTITY, 10, 2, 5));
+		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(com.babcsany.minecraft.ervin_mod_1.init.EntityInit.SRACH_ENTITY.get(), 10, 2, 5));
 		/*this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.IRON_GOLEM, 10, 2, 5));
 		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.WANDERING_TRADER, 10, 2, 5));
 		this.addSpawn(EntityClassification.AMBIENT, new SpawnListEntry(EntityType.BAT, 10, 2, 5));
