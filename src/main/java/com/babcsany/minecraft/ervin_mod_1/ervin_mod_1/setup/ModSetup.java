@@ -3,8 +3,6 @@ package com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.setup;
 import com.babcsany.minecraft.ervin_mod_1.entity.animal.*;
 import com.babcsany.minecraft.ervin_mod_1.entity.animal.hhij.HhijEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurNirtreEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.Dgrurb;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.dgrurbk.Dgrurbk;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.*;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import net.minecraft.entity.EntityType;
@@ -23,8 +21,6 @@ public class ModSetup {
     public void register() {
         put(EntityInit.LIWRAY, Liwray.setCustomAttributes());
         put(EntityInit.GWURST, GwurstEntity.setCustomAttributes());
-        put(EntityInit.DGRURB_ENTITY, Dgrurb.registerAttributes());
-        put(EntityInit.DGRURBK_ENTITY, Dgrurbk.registerAttributes());
         put(EntityInit.ZUR_NIRTRE_ENTITY, ZurNirtreEntity.setCustomAttributes());
         put(EntityInit.FREIN_ENTITY, FreinEntity.setCustomAttributes());
         put(EntityInit.VILT_ENTITY, ViltEntity.setCustomAttributes());

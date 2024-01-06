@@ -1,21 +1,21 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.monster.zur;
 
+import com.babcsany.minecraft.ervin_mod_1.entity.animal.hhij.HhijEntity;
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.RoventEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurTasks;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.dgrurb.Dgrurb;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.goal.BowAttackGoal;
-import com.babcsany.minecraft.ervin_mod_1.entity.player.PlayerEntity1;
 import com.babcsany.minecraft.ervin_mod_1.event.ZurItemTossEvent;
+import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.armor.ArmorItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.armor.isBurnableArmorItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.food.isBurnableFoodItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.spawn_egg.ModSpawnEggItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.special.isBurnableSpecialItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.tool.isBurnableToolItemInit;
-import com.babcsany.minecraft.init.EntityInit;
-import com.babcsany.minecraft.init.item.spawn_egg.ModSpawnEggItemInit;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
@@ -389,7 +389,7 @@ public abstract class AbstractZurEntity extends AgeableZurEntity {
 
    public ActionResultType func_230254_b_(PlayerEntity p_230254_1_, Hand p_230254_2_) {
       ItemStack itemstack = p_230254_1_.getHeldItem(p_230254_2_);
-      if (itemstack.getItem() != ModSpawnEggItemInit.ZUR_SPAWN_EGG && this.isAlive() && !this.hasCustomer() && !this.isSleeping() && !p_230254_1_.isSecondaryUseActive()) {
+      if (itemstack.getItem() != ModSpawnEggItemInit.ZUR_SPAWN_EGG.get() && this.isAlive() && !this.hasCustomer() && !this.isSleeping() && !p_230254_1_.isSecondaryUseActive()) {
          if (this.isChild()) {
             this.shakeHead();
          } else {
@@ -556,14 +556,14 @@ public abstract class AbstractZurEntity extends AgeableZurEntity {
    }
 
    protected void onRovent() {
-      this.func_234341_c_(EntityInit.ROVENT_ENTITY);
+      this.func_234341_c_(EntityInit.ROVENT_ENTITY.get());
       if (!this.isSilent()) {
          this.world.playEvent(null, 1040, this.getPosition(), 0);
       }
    }
 
-   protected void func_234341_c_(EntityType<? extends ZurEntity> zur) {
-      ZurEntity zurEntity = this.func_233656_b_(zur);
+   protected void func_234341_c_(EntityType<RoventEntity> zur) {
+      RoventEntity zurEntity = this.func_233656_b_(zur);
       if (zurEntity != null) {
          zurEntity.applyAttributeBonuses(zurEntity.world.getDifficultyForLocation(zurEntity.getPosition()).getClampedAdditionalDifficulty());
          zurEntity.setBreakDoorsAItask(zurEntity.canBreakDoors() && this.isBreakDoorsTaskSet());
@@ -1284,10 +1284,6 @@ public abstract class AbstractZurEntity extends AgeableZurEntity {
       return true;
    }
 
-   public boolean func_230292_f_(PlayerEntity1 player) {
-      return true;
-   }
-
    public ItemStack findAmmo(ItemStack shootable) {
       if (shootable.getItem() instanceof ShootableItem) {
          Predicate<ItemStack> predicate = ((ShootableItem)shootable.getItem()).getAmmoPredicate();
@@ -1576,7 +1572,7 @@ public abstract class AbstractZurEntity extends AgeableZurEntity {
       this.dataManager.set(CLIMBING, b0);
    }
 
-   public boolean entityLivingUpdate(Dgrurb entity)
+   public boolean entityLivingUpdate(HhijEntity entity)
    {
       return false;
    }

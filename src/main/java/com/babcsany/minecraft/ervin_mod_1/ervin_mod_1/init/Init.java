@@ -32,7 +32,6 @@ import com.babcsany.minecraft.ervin_mod_1.init.special.SpecialBlockInit;
 import com.babcsany.minecraft.ervin_mod_1.init.special.SpecialItemInit;
 import com.babcsany.minecraft.init.*;
 import com.babcsany.minecraft.init.item.ItemInit;
-import com.babcsany.minecraft.init.item.icsvre.IcsvreInit;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
@@ -111,8 +110,6 @@ public class Init {
         BlockItemInit BLOCK_ITEMS = BlockItemInit.BLOCK_ITEMS;
         EntityInit ENTITIES = EntityInit.ENTITIES;
         ItemInit ITEMS = ItemInit.ITEMS;
-        com.babcsany.minecraft.init.item.spawn_egg.ModSpawnEggItemInit SPAWN_EGGS = com.babcsany.minecraft.init.item.spawn_egg.ModSpawnEggItemInit.SPAWN_EGGS;
-        IcsvreInit ICSVRE = IcsvreInit.ICSVRE;
         FluidInit FLUIDS = FluidInit.FLUIDS;
         FeatureInit FEATURES = FeatureInit.FEATURES;
         EffectInit EFFECTS = EffectInit.EFFECTS;

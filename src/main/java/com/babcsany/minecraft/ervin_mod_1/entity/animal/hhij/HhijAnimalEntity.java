@@ -1,11 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.animal.hhij;
 
-import java.util.Random;
-import java.util.UUID;
-import javax.annotation.Nullable;
-
 import com.babcsany.minecraft.ervin_mod_1.entity.trigger.CriteriaTriggers1;
-import com.babcsany.minecraft.ervin_mod_1.stats.ModStats;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
@@ -17,6 +12,7 @@ import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.pathfinding.PathNodeType;
+import net.minecraft.stats.Stats;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
@@ -27,6 +23,10 @@ import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+
+import javax.annotation.Nullable;
+import java.util.Random;
+import java.util.UUID;
 
 public abstract class HhijAnimalEntity extends HhijAgeableEntity {
    private int inLove;
@@ -253,7 +253,7 @@ public abstract class HhijAnimalEntity extends HhijAgeableEntity {
          }
 
          if (serverplayerentity != null) {
-            serverplayerentity.addStat(ModStats.HHIJ_BRED);
+            serverplayerentity.addStat(Stats.ANIMALS_BRED);
             CriteriaTriggers1.BRED_HHIJ.trigger(serverplayerentity, this, p_234177_2_, ageableentity);
          }
 

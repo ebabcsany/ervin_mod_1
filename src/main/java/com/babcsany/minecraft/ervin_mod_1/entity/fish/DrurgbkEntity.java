@@ -33,7 +33,7 @@ public class DrurgbkEntity extends AbstractGroupDrurgbkFishEntity {
    }
 
    protected ItemStack getFishBucket() {
-      return new ItemStack(ModSpawnEggItemInit.DGRURB_SPAWN_EGG.get());
+      return new ItemStack(ModSpawnEggItemInit.DRURB_SPAWN_EGG.get());
    }
 
    protected SoundEvent getAmbientSound() {

@@ -3,6 +3,7 @@ package com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.setup.client;
 import com.babcsany.minecraft.ervin_mod_1.client.entity.render.*;
 import com.babcsany.minecraft.ervin_mod_1.client.renderer.entity.ModBoatRender;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
+import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
 public class ModClientSetup {
@@ -15,7 +16,7 @@ public class ModClientSetup {
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.LIWRAY.get(), LiwrayRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.MOD_BOAT_ENTITY.get(), ModBoatRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.GWURST.get(), GwurstRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityInit.DGRURB_ENTITY.get(), DgrurbRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityInit.DRURB_ENTITY.get(), MobRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.DGRURBK_ENTITY.get(), DgrurbkRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.ZUR_NIRTRE_ENTITY.get(), ZurNirtreRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.VILT_ENTITY.get(), ViltEntityRender::new);
