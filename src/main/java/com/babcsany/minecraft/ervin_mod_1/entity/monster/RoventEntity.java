@@ -1,614 +1,357 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.monster;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.AbstractZurEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.AgeableZurEntity;
-import com.babcsany.minecraft.ervin_mod_1.init.BiomeInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.food.isBurnableFoodItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.tool.SpecialToolItemInit;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
-import net.minecraft.entity.ai.RandomPositionGenerator;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
-import net.minecraft.entity.ai.controller.MovementController;
 import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.monster.ZombifiedPiglinEntity;
+import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
+import net.minecraft.entity.merchant.villager.VillagerEntity;
+import net.minecraft.entity.monster.*;
+import net.minecraft.entity.passive.IronGolemEntity;
+import net.minecraft.entity.passive.TurtleEntity;
+import net.minecraft.entity.passive.fish.AbstractFishEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.TridentEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.item.MerchantOffers;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.NBTUtil;
-import net.minecraft.pathfinding.GroundPathNavigator;
-import net.minecraft.pathfinding.Path;
-import net.minecraft.pathfinding.PathNodeType;
-import net.minecraft.pathfinding.SwimmerPathNavigator;
-import net.minecraft.potion.*;
-import net.minecraft.tags.FluidTags;
+import net.minecraft.nbt.NBTDynamicOps;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.*;
-import net.minecraft.world.biome.Biome;
+import net.minecraft.world.Difficulty;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.IWorld;
+import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
-import java.util.EnumSet;
-import java.util.List;
+import java.time.LocalDate;
+import java.time.temporal.ChronoField;
 import java.util.Random;
+import java.util.UUID;
 
-import static net.minecraft.entity.monster.MonsterEntity.isValidLightLevel;
+public class RoventEntity extends MonsterEntity {
+   private static final UUID BABY_SPEED_BOOST_ID = UUID.fromString("B9766B59-9566-4402-BC1F-2EE2A276D836");
+   private static final AttributeModifier BABY_SPEED_BOOST = new AttributeModifier(BABY_SPEED_BOOST_ID, "Baby speed boost", 0.5D, AttributeModifier.Operation.MULTIPLY_BASE);
+   private static final DataParameter<Boolean> IS_CHILD = EntityDataManager.createKey(RoventEntity.class, DataSerializers.BOOLEAN);
+   public int timeUntilNextItem = this.rand.nextInt(6000) + 6000;
 
-public class RoventEntity extends AbstractZurEntity implements IRangedAttackMob {
-   private boolean swimmingUp;
-   protected final SwimmerPathNavigator waterNavigator;
-   protected final GroundPathNavigator groundNavigator;
-
-   public RoventEntity(EntityType<RoventEntity> type, World worldIn) {
+   public RoventEntity(EntityType<? extends RoventEntity> type, World worldIn) {
       super(type, worldIn);
-      this.stepHeight = 1.0F;
-      this.moveController = new RoventEntity.MoveHelperController(this);
-      this.setPathPriority(PathNodeType.LAVA, 1.0F);
-      this.waterNavigator = new SwimmerPathNavigator(this, worldIn);
-      this.groundNavigator = new GroundPathNavigator(this, worldIn);
+   }
+
+   protected void registerGoals() {
+      this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 8.0F));
+      this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
+      this.applyEntityAI();
    }
 
    protected void applyEntityAI() {
-      this.goalSelector.addGoal(1, new RoventEntity.GoToWaterGoal(this, 1.0D));
-      this.goalSelector.addGoal(2, new RoventEntity.TridentAttackGoal(this, 1.0D, 40, 10.0F));
-      this.goalSelector.addGoal(5, new RoventEntity.GoToBeachGoal(this, 1.0D));
-      this.goalSelector.addGoal(6, new RoventEntity.SwimUpGoal(this, 1.0D, this.world.getSeaLevel()));
-      this.goalSelector.addGoal(7, new RandomWalkingGoal(this, 1.0D));
-      this.targetSelector.addGoal(1, (new HurtByTargetGoal(this, RoventEntity.class)).setCallsForHelp(ZombifiedPiglinEntity.class));
-      this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, 10, true, false, this::shouldAttack));
+      this.goalSelector.addGoal(7, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
+      this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setCallsForHelp(ZombifiedPiglinEntity.class));
+      this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setCallsForHelp(AbstractFishEntity.class));
+      this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
+      this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PatrollerEntity.class, true));
+      this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillagerEntity.class, false));
+      this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
+      this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, TurtleEntity.class, 10, true, false, TurtleEntity.TARGET_DRY_BABY));
    }
 
-   public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
-      return MobEntity.func_233666_p_().createMutableAttribute(Attributes.FOLLOW_RANGE, 100.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.3F).createMutableAttribute(Attributes.ATTACK_DAMAGE, 40.0D).createMutableAttribute(Attributes.ARMOR, 20.0D).createMutableAttribute(Attributes.MAX_HEALTH, 260).createMutableAttribute(Attributes.KNOCKBACK_RESISTANCE, 5.0D).createMutableAttribute(Attributes.ATTACK_KNOCKBACK, 15.0D);
-   }
-
-   public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
-      spawnDataIn = super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
-      if (this.getItemStackFromSlot(EquipmentSlotType.OFFHAND).isEmpty() && this.rand.nextFloat() < 0.03F) {
-         this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(Items.NAUTILUS_SHELL));
-         this.inventoryHandsDropChances[EquipmentSlotType.OFFHAND.getIndex()] = 2.0F;
-      }
-
-      return spawnDataIn;
-   }
-
-   @Nullable
-   @Override
-   public AgeableZurEntity createChild(AgeableZurEntity ageable) {
-      return null;
-   }
-
-   @Override
-   protected void populateTradeZurData() {
-
-   }
-
-   public static boolean canRoventSpawn(EntityType<RoventEntity> p_223332_0_, IWorld p_223332_1_, SpawnReason reason, BlockPos p_223332_3_, Random p_223332_4_) {
-      Biome biome = p_223332_1_.getBiome(p_223332_3_);
-      boolean flag = p_223332_1_.getDifficulty() != Difficulty.HARD && isValidLightLevel(p_223332_1_, p_223332_3_, p_223332_4_) && (reason == SpawnReason.SPAWNER || p_223332_1_.getFluidState(p_223332_3_).isTagged(FluidTags.WATER));
-      if (biome != BiomeInit.EXAMPLE_BIOME.get() && biome != BiomeInit.EXAMPLE_BIOME2.get()) {
-         return p_223332_4_.nextInt(40) == 0 && func_223333_a(p_223332_1_, p_223332_3_) && flag;
-      } else {
-         return p_223332_4_.nextInt(15) == 0 && flag;
-      }
+   public static AttributeModifierMap.MutableAttribute func_234342_eQ_() {
+      return MonsterEntity.func_234295_eP_().createMutableAttribute(Attributes.FOLLOW_RANGE, 35.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, (double)0.23F).createMutableAttribute(Attributes.ATTACK_DAMAGE, 3.0D).createMutableAttribute(Attributes.ARMOR, 2.0D).createMutableAttribute(Attributes.ZOMBIE_SPAWN_REINFORCEMENTS);
    }
 
    /**
-    * Called frequently so the entity can update its state every tick as required. For example, zurs and skeletons
+    * If Animal, checks if the age timer is negative
+    */
+   public boolean isChild() {
+      return this.getDataManager().get(IS_CHILD);
+   }
+
+   /**
+    * Get the experience points the entity currently has.
+    */
+   protected int getExperiencePoints(PlayerEntity player) {
+      if (this.isChild()) {
+         this.experienceValue = (int)((float)this.experienceValue * 2.5F);
+      }
+
+      return super.getExperiencePoints(player);
+   }
+
+   /**
+    * Set whether this zombie is a child.
+    */
+   public void setChild(boolean childZombie) {
+      this.getDataManager().set(IS_CHILD, childZombie);
+      if (this.world != null && !this.world.isRemote) {
+         ModifiableAttributeInstance modifiableattributeinstance = this.getAttribute(Attributes.MOVEMENT_SPEED);
+         modifiableattributeinstance.removeModifier(BABY_SPEED_BOOST);
+         if (childZombie) {
+            modifiableattributeinstance.applyNonPersistentModifier(BABY_SPEED_BOOST);
+         }
+      }
+
+   }
+
+   public void notifyDataManagerChange(DataParameter<?> key) {
+      if (IS_CHILD.equals(key)) {
+         this.recalculateSize();
+      }
+
+      super.notifyDataManagerChange(key);
+   }
+
+   /**
+    * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
     * use this to react to sunlight and start to burn.
     */
-   public void livingTick(ZurEntity zur) {
-      super.livingTick();
-      boolean flag = this.isInDaylight();
-      this.updateArmSwingProgress();
-      this.wingRotation += this.wingRotDelta * 2.0F;
-      if (!this.world.isRemote) {
-         zur.handleDespawn();
-      }
-      if (!this.world.isRemote && this.isAlive()) {
-         if (this.isDrinkingPotion()) {
-            if (zur.potionUseTimer-- <= 0) {
-               this.setDrinkingPotion(false);
-               ItemStack itemstack = this.getHeldItemMainhand();
-               this.setItemStackToSlot(EquipmentSlotType.MAINHAND, ItemStack.EMPTY);
-               if (itemstack.getItem() == Items.POTION) {
-                  List<EffectInstance> list = PotionUtils.getEffectsFromStack(itemstack);
-                  for(EffectInstance effectinstance : list) {
-                     this.addPotionEffect(new EffectInstance(effectinstance));
+   public void livingTick() {
+      if (this.isAlive()) {
+         boolean flag = this.shouldBurnInDay() && this.isInDaylight();
+         if (flag) {
+            ItemStack itemstack = this.getItemStackFromSlot(EquipmentSlotType.HEAD);
+            if (!itemstack.isEmpty()) {
+               if (itemstack.isDamageable()) {
+                  itemstack.setDamage(itemstack.getDamage() + this.rand.nextInt(2));
+                  if (itemstack.getDamage() >= itemstack.getMaxDamage()) {
+                     this.sendBreakAnimation(EquipmentSlotType.HEAD);
+                     this.setItemStackToSlot(EquipmentSlotType.HEAD, ItemStack.EMPTY);
                   }
                }
 
-               this.getAttribute(Attributes.MOVEMENT_SPEED).removeModifier(MODIFIER);
-            }
-         } else {
-            Potion potion = null;
-            if (this.rand.nextFloat() < 0.15F && this.areEyesInFluid(FluidTags.WATER) && !this.isPotionActive(Effects.WATER_BREATHING)) {
-               potion = Potions.WATER_BREATHING;
-            } else if (this.rand.nextFloat() < 0.15F && (this.isBurning() || this.getLastDamageSource() != null && this.getLastDamageSource().isFireDamage()) && !this.isPotionActive(Effects.FIRE_RESISTANCE)) {
-               potion = Potions.FIRE_RESISTANCE;
-            } else if (this.rand.nextFloat() < 0.05F && this.getHealth() < this.getMaxHealth()) {
-               potion = Potions.HEALING;
-            } else if (this.rand.nextFloat() < 0.5F && this.getAttackTarget() != null && !this.isPotionActive(Effects.SPEED) && !this.isPotionActive(Effects.JUMP_BOOST) && !this.isPotionActive(Effects.STRENGTH) && this.getAttackTarget().getDistanceSq(this) > 4.0D) {
-               potion = Potions.SWIFTNESS;
+               flag = false;
             }
 
-            if (potion != null) {
-               this.setItemStackToSlot(EquipmentSlotType.MAINHAND, PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), potion));
-               this.potionUseTimer = this.getHeldItemMainhand().getUseDuration();
-               this.setDrinkingPotion(true);
-               if (!this.isSilent()) {
-                  this.world.playSound(null, this.getPosX(), this.getPosY(), this.getPosZ(), SoundEvents.ENTITY_WITCH_DRINK, this.getSoundCategory(), 1.0F, 0.8F + this.rand.nextFloat() * 0.4F);
-               }
-
-               ModifiableAttributeInstance modifiableattributeinstance = this.getAttribute(Attributes.MOVEMENT_SPEED);
-               modifiableattributeinstance.removeModifier(MODIFIER);
-               modifiableattributeinstance.applyNonPersistentModifier(MODIFIER);
-            }
-         }
-
-         if (this.rand.nextFloat() < 7.5E-4F) {
-            this.world.setEntityState(this, (byte)15);
-         }
-      }
-      if (flag) {
-         ItemStack itemstack = this.getItemStackFromSlot(EquipmentSlotType.HEAD);
-         if (!itemstack.isEmpty()) {
-            if (itemstack.isDamageable()) {
-               itemstack.setDamage(itemstack.getDamage() + this.rand.nextInt(2));
-               if (itemstack.getDamage() >= itemstack.getMaxDamage()) {
-                  this.sendBreakAnimation(EquipmentSlotType.HEAD);
-                  this.setItemStackToSlot(EquipmentSlotType.HEAD, ItemStack.EMPTY);
-               }
+            if (flag) {
+               this.setFire(8);
             }
          }
       }
-      if (!this.world.isRemote && this.isAlive() && !this.isChild() && this.isZurDropItem() && --this.timeUntilNextItem <= 0) {
+
+      super.livingTick();
+
+      Vector3d vector3d = this.getMotion();
+      if (!this.onGround && vector3d.y < 0.0D) {
+         this.setMotion(vector3d.mul(1.0D, 0.6D, 1.0D));
+      }
+
+      if (!this.world.isRemote && this.isAlive() && !this.isChild() && --this.timeUntilNextItem <= 0) {
+         this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
+         this.entityDropItem(ItemInit.KIRT.get());
+         this.timeUntilNextItem = this.rand.nextInt(6000) + 6000;
+      }
+
+      if (!this.world.isRemote && this.isAlive() && !this.isChild() && --this.timeUntilNextItem <= 0) {
+         this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
          this.entityDropItem(isBurnableItemInit.LEAT.get());
-         this.timeUntilNextItem = this.rand.nextInt(12000) + 12000;
+         this.timeUntilNextItem = this.rand.nextInt(6000) + 6000;
       }
    }
 
-   public void writeAdditional(CompoundNBT compound) {
-      super.writeAdditional(compound);
-      MerchantOffers merchantoffers = this.getOffers();
-      if (this.zurTarget != null) {
-         compound.put("ZurTarget", NBTUtil.writeBlockPos(this.zurTarget));
-      }
-
-      if (this.isChild()) {
-         compound.putBoolean("IsBaby", true);
-      }
-
-      if (!merchantoffers.isEmpty()) {
-         compound.put("Offers", merchantoffers.write());
-      }
-
-      compound.put("Inventory", this.zurInventory.write());
+   protected boolean shouldBurnInDay() {
+      return true;
    }
 
-   private static boolean func_223333_a(IWorld p_223333_0_, BlockPos p_223333_1_) {
-      return p_223333_1_.getY() < p_223333_0_.getSeaLevel() - 5;
-   }
+   public boolean attackEntityAsMob(Entity entityIn) {
+      boolean flag = super.attackEntityAsMob(entityIn);
+      if (flag) {
+         float f = this.world.getDifficultyForLocation(this.getPosition()).getAdditionalDifficulty();
+         if (this.getHeldItemMainhand().isEmpty() && this.isBurning() && this.rand.nextFloat() < f * 0.3F) {
+            entityIn.setFire(2 * (int)f);
+         }
+      }
 
-   public boolean canBreakDoors() {
-      return false;
-   }
-
-   @Override
-   public void applyWaveBonus(int p_213660_1_, boolean p_213660_2_) {
-
+      return flag;
    }
 
    protected SoundEvent getAmbientSound() {
-      return this.isInWater() ? SoundEvents.ENTITY_DROWNED_AMBIENT_WATER : SoundEvents.ENTITY_DROWNED_AMBIENT;
+      return SoundEvents.ENTITY_ZOMBIE_AMBIENT;
    }
 
    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-      return this.isInWater() ? SoundEvents.ENTITY_DROWNED_HURT_WATER : SoundEvents.ENTITY_DROWNED_HURT;
+      return SoundEvents.ENTITY_ZOMBIE_HURT;
    }
 
    protected SoundEvent getDeathSound() {
-      return this.isInWater() ? SoundEvents.ENTITY_DROWNED_DEATH_WATER : SoundEvents.ENTITY_DROWNED_DEATH;
+      return SoundEvents.ENTITY_ZOMBIE_DEATH;
    }
 
    protected SoundEvent getStepSound() {
       return SoundEvents.ENTITY_ZOMBIE_STEP;
    }
 
-   protected SoundEvent getSwimSound() {
-      return SoundEvents.ENTITY_PLAYER_SWIM;
+   protected void playStepSound(BlockPos pos, BlockState blockIn) {
+      this.playSound(this.getStepSound(), 0.15F, 1.0F);
    }
 
-   protected ItemStack getSkullDrop() {
-      return ItemStack.EMPTY;
+   public CreatureAttribute getCreatureAttribute() {
+      return CreatureAttribute.UNDEAD;
    }
 
    /**
     * Gives armor or weapon for entity based on given DifficultyInstance
     */
    protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty) {
-      if ((double)this.rand.nextFloat() > 0.9D) {
-         int i = this.rand.nextInt(16);
-         if (i < 10) {
-            this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(Items.TRIDENT));
+      super.setEquipmentBasedOnDifficulty(difficulty);
+      if (this.rand.nextFloat() < (this.world.getDifficulty() == Difficulty.HARD ? 0.05F : 0.01F)) {
+         int i = this.rand.nextInt(3);
+         if (i == 0) {
+            this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(Items.IRON_SWORD));
          } else {
-            this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(Items.FISHING_ROD));
+            this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(Items.IRON_SHOVEL));
          }
       }
 
    }
 
-   protected boolean shouldExchangeEquipment(ItemStack candidate, ItemStack existing) {
-      if (existing.getItem() == SpecialToolItemInit.CRAINT.get()) {
-         return false;
-      } else if (existing.getItem() == Items.TRIDENT) {
-         if (candidate.getItem() == Items.TRIDENT) {
-            return candidate.getDamage() < existing.getDamage();
-         } else {
-            return false;
-         }
-      } else {
-         return candidate.getItem() == Items.TRIDENT ? true : super.shouldExchangeEquipment(candidate, existing);
-      }
-   }
-
-   protected boolean shouldExchangeEquipment1(ItemStack candidate, ItemStack existing) {
-      if (existing.getItem() == isBurnableFoodItemInit.TIRKS.get()) {
-         return false;
-      } else if (existing.getItem() == Items.TRIDENT) {
-         if (candidate.getItem() == Items.TRIDENT) {
-            return candidate.getDamage() < existing.getDamage();
-         } else {
-            return false;
-         }
-      } else {
-         return candidate.getItem() == Items.TRIDENT ? true : super.shouldExchangeEquipment(candidate, existing);
-      }
-   }
-
-   protected boolean shouldDrown() {
-      return false;
-   }
-
-   public boolean isNotColliding(IWorldReader worldIn) {
-      return worldIn.checkNoEntityCollision(this);
-   }
-
-   public boolean shouldAttack(@Nullable LivingEntity p_204714_1_) {
-      if (p_204714_1_ != null) {
-         return !this.world.isDaytime() || p_204714_1_.isInWater();
-      } else {
-         return false;
-      }
-   }
-
-   public boolean isPushedByWater() {
-      return !this.isSwimming();
-   }
-
-   private boolean func_204715_dF() {
-      if (this.swimmingUp) {
-         return true;
-      } else {
-         LivingEntity livingentity = this.getAttackTarget();
-         return livingentity != null && livingentity.isInWater();
-      }
-   }
-
-   public void travel(Vector3d travelVector) {
-      if (this.isServerWorld() && this.isInWater() && this.func_204715_dF()) {
-         this.moveRelative(0.01F, travelVector);
-         this.move(MoverType.SELF, this.getMotion());
-         this.setMotion(this.getMotion().scale(0.9D));
-      } else {
-         super.travel(travelVector);
+   public void writeAdditional(CompoundNBT compound) {
+      super.writeAdditional(compound);
+      if (this.isChild()) {
+         compound.putBoolean("IsBaby", true);
       }
 
-   }
-
-   public void updateSwimming() {
-      if (!this.world.isRemote) {
-         if (this.isServerWorld() && this.isInWater() && this.func_204715_dF()) {
-            this.navigator = this.waterNavigator;
-            this.setSwimming(true);
-         } else {
-            this.navigator = this.groundNavigator;
-            this.setSwimming(false);
-         }
-      }
-
-   }
-
-   protected boolean isCloseToPathTarget() {
-      Path path = this.getNavigator().getPath();
-      if (path != null) {
-         BlockPos blockpos = path.getTarget();
-         double d0 = this.getDistanceSq(blockpos.getX(), blockpos.getY(), blockpos.getZ());
-         return d0 < 4.0D;
-      }
-
-      return false;
    }
 
    /**
-    * Attack the specified entity using a ranged attack.
+    * (abstract) Protected helper method to read subclass entity data from NBT.
     */
-   public void attackEntityWithRangedAttack(LivingEntity target, float distanceFactor) {
-      TridentEntity tridententity = new TridentEntity(this.world, this, new ItemStack(Items.TRIDENT));
-      double d0 = target.getPosX() - this.getPosX();
-      double d1 = target.getPosYHeight(0.3333333333333333D) - tridententity.getPosY();
-      double d2 = target.getPosZ() - this.getPosZ();
-      double d3 = MathHelper.sqrt(d0 * d0 + d2 * d2);
-      tridententity.shoot(d0, d1 + d3 * (double)0.2F, d2, 1.6F, (float)(14 - this.world.getDifficulty().getId() * 4));
-      this.playSound(SoundEvents.ENTITY_DROWNED_SHOOT, 1.0F, 1.0F / (this.getRNG().nextFloat() * 0.4F + 0.8F));
-      this.world.addEntity(tridententity);
+   public void readAdditional(CompoundNBT compound) {
+      super.readAdditional(compound);
+      if (compound.getBoolean("IsBaby")) {
+         this.setChild(true);
+      }
+
    }
 
-   public void setSwimmingUp(boolean p_204713_1_) {
-      this.swimmingUp = p_204713_1_;
+   /**
+    * This method gets called when the entity kills another one.
+    */
+   public void onKillEntity(LivingEntity entityLivingIn) {
+      super.onKillEntity(entityLivingIn);
+      if ((this.world.getDifficulty() == Difficulty.NORMAL || this.world.getDifficulty() == Difficulty.HARD) && entityLivingIn instanceof VillagerEntity) {
+         if (this.world.getDifficulty() != Difficulty.HARD && this.rand.nextBoolean()) {
+            return;
+         }
+
+         VillagerEntity villagerentity = (VillagerEntity)entityLivingIn;
+         ZombieVillagerEntity zombievillagerentity = EntityType.ZOMBIE_VILLAGER.create(this.world);
+         zombievillagerentity.copyLocationAndAnglesFrom(villagerentity);
+         villagerentity.remove();
+         zombievillagerentity.onInitialSpawn(this.world, this.world.getDifficultyForLocation(zombievillagerentity.getPosition()), SpawnReason.CONVERSION, new net.minecraft.entity.monster.ZombieEntity.GroupData(false, true), (CompoundNBT)null);
+         zombievillagerentity.setVillagerData(villagerentity.getVillagerData());
+         zombievillagerentity.setGossips(villagerentity.getGossip().func_234058_a_(NBTDynamicOps.INSTANCE).getValue());
+         zombievillagerentity.setOffers(villagerentity.getOffers().write());
+         zombievillagerentity.setEXP(villagerentity.getXp());
+         zombievillagerentity.setChild(villagerentity.isChild());
+         zombievillagerentity.setNoAI(villagerentity.isAIDisabled());
+         if (villagerentity.hasCustomName()) {
+            zombievillagerentity.setCustomName(villagerentity.getCustomName());
+            zombievillagerentity.setCustomNameVisible(villagerentity.isCustomNameVisible());
+         }
+
+         if (villagerentity.isNoDespawnRequired()) {
+            zombievillagerentity.enablePersistence();
+         }
+
+         zombievillagerentity.setInvulnerable(this.isInvulnerable());
+         this.world.addEntity(zombievillagerentity);
+         if (!this.isSilent()) {
+            this.world.playEvent((PlayerEntity)null, 1026, this.getPosition(), 0);
+         }
+      }
+
    }
 
-   static class GoToBeachGoal extends MoveToBlockGoal {
-      private final RoventEntity drowned;
-
-      public GoToBeachGoal(RoventEntity p_i48911_1_, double p_i48911_2_) {
-         super(p_i48911_1_, p_i48911_2_, 8, 2);
-         this.drowned = p_i48911_1_;
-      }
-
-      /**
-       * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
-       * method as well.
-       */
-      public boolean shouldExecute() {
-         return super.shouldExecute() && !this.drowned.world.isDaytime() && this.drowned.isInWater() && this.drowned.getPosY() >= (double)(this.drowned.world.getSeaLevel() - 3);
-      }
-
-      /**
-       * Returns whether an in-progress EntityAIBase should continue executing
-       */
-      public boolean shouldContinueExecuting() {
-         return super.shouldContinueExecuting();
-      }
-
-      /**
-       * Return true to set given position as destination
-       */
-      protected boolean shouldMoveTo(IWorldReader worldIn, BlockPos pos) {
-         BlockPos blockpos = pos.up();
-         return worldIn.isAirBlock(blockpos) && worldIn.isAirBlock(blockpos.up()) ? worldIn.getBlockState(pos).canSpawnMobs(worldIn, pos, this.drowned) : false;
-      }
-
-      /**
-       * Execute a one shot task or start executing a continuous task
-       */
-      public void startExecuting() {
-         this.drowned.setSwimmingUp(false);
-         this.drowned.navigator = this.drowned.groundNavigator;
-         super.startExecuting();
-      }
-
-      /**
-       * Reset the task's internal state. Called when this task is interrupted by another one
-       */
-      public void resetTask() {
-         super.resetTask();
-      }
+   protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
+      return this.isChild() ? 0.93F : 1.74F;
    }
 
-   static class GoToWaterGoal extends Goal {
-      private final CreatureEntity field_204730_a;
-      private double field_204731_b;
-      private double field_204732_c;
-      private double field_204733_d;
-      private final double field_204734_e;
-      private final World field_204735_f;
+   public boolean canEquipItem(ItemStack stack) {
+      return stack.getItem() == Items.EGG && this.isChild() && this.isPassenger() ? false : super.canEquipItem(stack);
+   }
 
-      public GoToWaterGoal(CreatureEntity p_i48910_1_, double p_i48910_2_) {
-         this.field_204730_a = p_i48910_1_;
-         this.field_204734_e = p_i48910_2_;
-         this.field_204735_f = p_i48910_1_.world;
-         this.setMutexFlags(EnumSet.of(Flag.MOVE));
+   @Nullable
+   public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
+      spawnDataIn = super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+      float f = difficultyIn.getClampedAdditionalDifficulty();
+      this.setCanPickUpLoot(this.rand.nextFloat() < 0.55F * f);
+      if (spawnDataIn == null) {
+         spawnDataIn = new net.minecraft.entity.monster.ZombieEntity.GroupData(func_241399_a_(worldIn.getRandom()), true);
       }
 
-      /**
-       * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
-       * method as well.
-       */
-      public boolean shouldExecute() {
-         if (!this.field_204735_f.isDaytime()) {
-            return false;
-         } else if (this.field_204730_a.isInWater()) {
-            return false;
-         } else {
-            Vector3d vector3d = this.func_204729_f();
-            if (vector3d == null) {
-               return false;
-            } else {
-               this.field_204731_b = vector3d.x;
-               this.field_204732_c = vector3d.y;
-               this.field_204733_d = vector3d.z;
-               return true;
+      if (this.getItemStackFromSlot(EquipmentSlotType.HEAD).isEmpty()) {
+         LocalDate localdate = LocalDate.now();
+         int i = localdate.get(ChronoField.DAY_OF_MONTH);
+         int j = localdate.get(ChronoField.MONTH_OF_YEAR);
+         if (j == 10 && i == 31 && this.rand.nextFloat() < 0.25F) {
+            this.setItemStackToSlot(EquipmentSlotType.HEAD, new ItemStack(this.rand.nextFloat() < 0.1F ? Blocks.JACK_O_LANTERN : Blocks.CARVED_PUMPKIN));
+            this.inventoryArmorDropChances[EquipmentSlotType.HEAD.getIndex()] = 0.0F;
+         }
+      }
+
+      this.applyAttributeBonuses(f);
+      return spawnDataIn;
+   }
+
+   public static boolean func_241399_a_(Random p_241399_0_) {
+      return p_241399_0_.nextFloat() < net.minecraftforge.common.ForgeConfig.SERVER.zombieBabyChance.get();
+   }
+
+   public void applyAttributeBonuses(float difficulty) {
+      this.func_230291_eT_();
+      this.getAttribute(Attributes.KNOCKBACK_RESISTANCE).applyPersistentModifier(new AttributeModifier("Random spawn bonus", this.rand.nextDouble() * (double)0.05F, AttributeModifier.Operation.ADDITION));
+      double d0 = this.rand.nextDouble() * 1.5D * (double)difficulty;
+      if (d0 > 1.0D) {
+         this.getAttribute(Attributes.FOLLOW_RANGE).applyPersistentModifier(new AttributeModifier("Random zombie-spawn bonus", d0, AttributeModifier.Operation.MULTIPLY_TOTAL));
+      }
+
+      if (this.rand.nextFloat() < difficulty * 0.05F) {
+         this.getAttribute(Attributes.ZOMBIE_SPAWN_REINFORCEMENTS).applyPersistentModifier(new AttributeModifier("Leader zombie bonus", this.rand.nextDouble() * 0.25D + 0.5D, AttributeModifier.Operation.ADDITION));
+         this.getAttribute(Attributes.MAX_HEALTH).applyPersistentModifier(new AttributeModifier("Leader zombie bonus", this.rand.nextDouble() * 3.0D + 1.0D, AttributeModifier.Operation.MULTIPLY_TOTAL));
+      }
+
+   }
+
+   protected void func_230291_eT_() {
+      this.getAttribute(Attributes.ZOMBIE_SPAWN_REINFORCEMENTS).setBaseValue(this.rand.nextDouble() * net.minecraftforge.common.ForgeConfig.SERVER.zombieBaseSummonChance.get());
+   }
+
+   /**
+    * Returns the Y Offset of this entity.
+    */
+   public double getYOffset() {
+      return this.isChild() ? 0.0D : -0.45D;
+   }
+
+   protected void dropSpecialItems(DamageSource source, int looting, boolean recentlyHitIn) {
+      super.dropSpecialItems(source, looting, recentlyHitIn);
+      Entity entity = source.getTrueSource();
+      if (entity instanceof CreeperEntity) {
+         CreeperEntity creeperentity = (CreeperEntity)entity;
+         if (creeperentity.ableToCauseSkullDrop()) {
+            creeperentity.incrementDroppedSkulls();
+            ItemStack itemstack = this.getSkullDrop();
+            if (!itemstack.isEmpty()) {
+               this.entityDropItem(itemstack);
             }
          }
       }
 
-      /**
-       * Returns whether an in-progress EntityAIBase should continue executing
-       */
-      public boolean shouldContinueExecuting() {
-         return !this.field_204730_a.getNavigator().noPath();
-      }
-
-      /**
-       * Execute a one shot task or start executing a continuous task
-       */
-      public void startExecuting() {
-         this.field_204730_a.getNavigator().tryMoveToXYZ(this.field_204731_b, this.field_204732_c, this.field_204733_d, this.field_204734_e);
-      }
-
-      @Nullable
-      private Vector3d func_204729_f() {
-         Random random = this.field_204730_a.getRNG();
-         BlockPos blockpos = this.field_204730_a.getPosition();
-
-         for(int i = 0; i < 10; ++i) {
-            BlockPos blockpos1 = blockpos.add(random.nextInt(20) - 10, 2 - random.nextInt(8), random.nextInt(20) - 10);
-            if (this.field_204735_f.getBlockState(blockpos1).isIn(Blocks.WATER)) {
-               return Vector3d.copyCenteredHorizontally(blockpos1);
-            }
-         }
-
-         return null;
-      }
    }
 
-   static class MoveHelperController extends MovementController {
-      private final RoventEntity drowned;
-
-      public MoveHelperController(RoventEntity p_i48909_1_) {
-         super(p_i48909_1_);
-         this.drowned = p_i48909_1_;
-      }
-
-      public void tick() {
-         LivingEntity livingentity = this.drowned.getAttackTarget();
-         if (this.drowned.func_204715_dF() && this.drowned.isInWater()) {
-            if (livingentity != null && livingentity.getPosY() > this.drowned.getPosY() || this.drowned.swimmingUp) {
-               this.drowned.setMotion(this.drowned.getMotion().add(0.0D, 0.002D, 0.0D));
-            }
-
-            if (this.action != Action.MOVE_TO || this.drowned.getNavigator().noPath()) {
-               this.drowned.setAIMoveSpeed(0.0F);
-               return;
-            }
-
-            double d0 = this.posX - this.drowned.getPosX();
-            double d1 = this.posY - this.drowned.getPosY();
-            double d2 = this.posZ - this.drowned.getPosZ();
-            double d3 = MathHelper.sqrt(d0 * d0 + d1 * d1 + d2 * d2);
-            d1 = d1 / d3;
-            float f = (float)(MathHelper.atan2(d2, d0) * (double)(180F / (float)Math.PI)) - 90.0F;
-            this.drowned.rotationYaw = this.limitAngle(this.drowned.rotationYaw, f, 90.0F);
-            this.drowned.renderYawOffset = this.drowned.rotationYaw;
-            float f1 = (float)(this.speed * this.drowned.getAttributeValue(Attributes.MOVEMENT_SPEED));
-            float f2 = MathHelper.lerp(0.125F, this.drowned.getAIMoveSpeed(), f1);
-            this.drowned.setAIMoveSpeed(f2);
-            this.drowned.setMotion(this.drowned.getMotion().add((double)f2 * d0 * 0.005D, (double)f2 * d1 * 0.1D, (double)f2 * d2 * 0.005D));
-         } else {
-            if (!this.drowned.onGround) {
-               this.drowned.setMotion(this.drowned.getMotion().add(0.0D, -0.008D, 0.0D));
-            }
-
-            super.tick();
-         }
-
-      }
-   }
-
-   static class SwimUpGoal extends Goal {
-      private final RoventEntity field_204736_a;
-      private final double field_204737_b;
-      private final int targetY;
-      private boolean obstructed;
-
-      public SwimUpGoal(RoventEntity p_i48908_1_, double p_i48908_2_, int p_i48908_4_) {
-         this.field_204736_a = p_i48908_1_;
-         this.field_204737_b = p_i48908_2_;
-         this.targetY = p_i48908_4_;
-      }
-
-      /**
-       * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
-       * method as well.
-       */
-      public boolean shouldExecute() {
-         return !this.field_204736_a.world.isDaytime() && this.field_204736_a.isInWater() && this.field_204736_a.getPosY() < (double)(this.targetY - 2);
-      }
-
-      /**
-       * Returns whether an in-progress EntityAIBase should continue executing
-       */
-      public boolean shouldContinueExecuting() {
-         return this.shouldExecute() && !this.obstructed;
-      }
-
-      /**
-       * Keep ticking a continuous task that has already been started
-       */
-      public void tick() {
-         if (this.field_204736_a.getPosY() < (double)(this.targetY - 1) && (this.field_204736_a.getNavigator().noPath() || this.field_204736_a.isCloseToPathTarget())) {
-            Vector3d vector3d = RandomPositionGenerator.findRandomTargetBlockTowards(this.field_204736_a, 4, 8, new Vector3d(this.field_204736_a.getPosX(), (double)(this.targetY - 1), this.field_204736_a.getPosZ()));
-            if (vector3d == null) {
-               this.obstructed = true;
-               return;
-            }
-
-            this.field_204736_a.getNavigator().tryMoveToXYZ(vector3d.x, vector3d.y, vector3d.z, this.field_204737_b);
-         }
-
-      }
-
-      /**
-       * Execute a one shot task or start executing a continuous task
-       */
-      public void startExecuting() {
-         this.field_204736_a.setSwimmingUp(true);
-         this.obstructed = false;
-      }
-
-      /**
-       * Reset the task's internal state. Called when this task is interrupted by another one
-       */
-      public void resetTask() {
-         this.field_204736_a.setSwimmingUp(false);
-      }
-   }
-
-   static class TridentAttackGoal extends RangedAttackGoal {
-      private final RoventEntity field_204728_a;
-
-      public TridentAttackGoal(IRangedAttackMob p_i48907_1_, double p_i48907_2_, int p_i48907_4_, float p_i48907_5_) {
-         super(p_i48907_1_, p_i48907_2_, p_i48907_4_, p_i48907_5_);
-         this.field_204728_a = (RoventEntity)p_i48907_1_;
-      }
-
-      /**
-       * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
-       * method as well.
-       */
-      public boolean shouldExecute() {
-         return super.shouldExecute() && this.field_204728_a.getHeldItemMainhand().getItem() == Items.TRIDENT;
-      }
-
-      /**
-       * Execute a one shot task or start executing a continuous task
-       */
-      public void startExecuting() {
-         super.startExecuting();
-         this.field_204728_a.setAggroed(true);
-         this.field_204728_a.setActiveHand(Hand.MAIN_HAND);
-      }
-
-      /**
-       * Reset the task's internal state. Called when this task is interrupted by another one
-       */
-      public void resetTask() {
-         super.resetTask();
-         this.field_204728_a.resetActiveHand();
-         this.field_204728_a.setAggroed(false);
-      }
+   protected ItemStack getSkullDrop() {
+      return new ItemStack(ItemInit.THUNM.get());
    }
 }

@@ -566,7 +566,6 @@ public abstract class AbstractZurEntity extends AgeableZurEntity {
       RoventEntity zurEntity = this.func_233656_b_(zur);
       if (zurEntity != null) {
          zurEntity.applyAttributeBonuses(zurEntity.world.getDifficultyForLocation(zurEntity.getPosition()).getClampedAdditionalDifficulty());
-         zurEntity.setBreakDoorsAItask(zurEntity.canBreakDoors() && this.isBreakDoorsTaskSet());
       }
    }
 

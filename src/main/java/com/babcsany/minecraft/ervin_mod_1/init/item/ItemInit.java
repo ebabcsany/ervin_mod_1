@@ -3,19 +3,16 @@ package com.babcsany.minecraft.ervin_mod_1.init.item;
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.item.*;
 import com.babcsany.minecraft.ervin_mod_1.item.group.ItemGroup;
-import com.babcsany.minecraft.ervin_mod_1.init.fluid.FluidInit;
-import net.minecraft.item.BucketItem;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import static net.minecraft.item.Items.BUCKET;
-
 public class ItemInit {
 
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Ervin_mod_1.MOD_ID);
 
+    public static final RegistryObject<Item> THUNM = ITEMS.register("thunm", () -> new Item((new Item.Properties())));
     public static final RegistryObject<Item> REGDEM = ITEMS.register("regdem", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
     public static final RegistryObject<Item> DREIN = ITEMS.register("drein", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
     public static final RegistryObject<Item> NIRG = ITEMS.register("nirg", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
