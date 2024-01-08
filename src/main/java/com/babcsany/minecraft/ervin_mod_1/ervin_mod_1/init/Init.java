@@ -2,10 +2,8 @@ package com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.init;
 
 import com.babcsany.minecraft.ervin_mod_1.init.BiomeInit;
 import com.babcsany.minecraft.ervin_mod_1.init.IMolaBlocks;
-import com.babcsany.minecraft.ervin_mod_1.init.block.FluidBlockInit;
 import com.babcsany.minecraft.ervin_mod_1.init.container.ContainerInit;
 import com.babcsany.minecraft.ervin_mod_1.init.container.FurnaceContainerInit;
-import com.babcsany.minecraft.ervin_mod_1.init.fluid.FlowingFluidInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.$ItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.FluidBucketInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.armor.ArmorItemInit;
@@ -62,10 +60,6 @@ public class Init {
         com.babcsany.minecraft.ervin_mod_1.init.DecoratorInit.DECORATORS.register(modEventBus);
         com.babcsany.minecraft.ervin_mod_1.init.EntityInit.ENTITY_TYPES.register(modEventBus);
         com.babcsany.minecraft.ervin_mod_1.init.FeatureInit.FEATURES.register(modEventBus);
-        com.babcsany.minecraft.ervin_mod_1.init.fluid.FluidInit.FLUIDS.register(modEventBus);
-        com.babcsany.minecraft.ervin_mod_1.init.fluid.FluidInit.FLUID_BLOCKS.register(modEventBus);
-        FluidBlockInit.FLUID_BLOCKS.register(modEventBus);
-        FlowingFluidInit.FLOWING_FLUIDS.register(modEventBus);
         BrefkStageItemInit.BREFK.register(modEventBus);
         FoodItemInit.FOODS.register(modEventBus);
         FluidBucketInit.FLUID_BUCKETS.register(modEventBus);
@@ -110,7 +104,6 @@ public class Init {
         BlockItemInit BLOCK_ITEMS = BlockItemInit.BLOCK_ITEMS;
         EntityInit ENTITIES = EntityInit.ENTITIES;
         ItemInit ITEMS = ItemInit.ITEMS;
-        FluidInit FLUIDS = FluidInit.FLUIDS;
         FeatureInit FEATURES = FeatureInit.FEATURES;
         EffectInit EFFECTS = EffectInit.EFFECTS;
         ParticleInit PARTICLES = ParticleInit.PARTICLES;

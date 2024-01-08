@@ -8,7 +8,6 @@ import com.babcsany.minecraft.ervin_mod_1.entity.monster.RoventEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurNirtreEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.*;
-import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.Ervin_mod_1_;
 import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.init.Init;
 import com.babcsany.minecraft.ervin_mod_1.init.BiomeInit;
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
@@ -20,8 +19,6 @@ import com.babcsany.minecraft.ervin_mod_1.item.group.ItemGroup;
 import com.babcsany.minecraft.ervin_mod_1.world.gen.FeatureGen;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
-import net.minecraft.client.renderer.model.RenderMaterial;
-import net.minecraft.client.renderer.texture.AtlasTexture;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EntityType;
@@ -74,8 +71,6 @@ import java.util.stream.Collectors;
 @Mod(Ervin_mod_1.MOD_ID)
 public class Ervin_mod_1 {
 
-    public static final RenderMaterial LOCATION_JURK_FLOW = new RenderMaterial(AtlasTexture.LOCATION_BLOCKS_TEXTURE, new ResourceLocation(Ervin_mod_1.MOD_ID,"block/fluid/jurk_flow"));
-    public static final RenderMaterial LOCATION_JURK_OVERLAY = new RenderMaterial(AtlasTexture.LOCATION_BLOCKS_TEXTURE, new ResourceLocation(Ervin_mod_1.MOD_ID,"block/fluid/jurk_overlay"));
     public static final String MOD_ID = "ervin_mod_1";
     public static Ervin_mod_1 ervin_mod_1;
     //public static final ITag<EntityType<?>> blacklisted = EntityTypeTags.func_232896_a_((new ResourceLocation("ervin_mod_1", "blacklisted")).toString());
@@ -150,9 +145,6 @@ public class Ervin_mod_1 {
 
         DeferredWorkQueue.runLater(FeatureGen::GenerateFeature);
         DeferredWorkQueue.runLater(FeatureGen::getSpawns);
-
-        Ervin_mod_1_.setup();
-        Ervin_mod_1_.ervin_mod_1();
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
