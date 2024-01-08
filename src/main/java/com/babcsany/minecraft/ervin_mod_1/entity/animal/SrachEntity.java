@@ -67,13 +67,13 @@ public class SrachEntity extends AnimalEntity {
 
    public ActionResultType func_230254_b_(PlayerEntity p_230254_1_, Hand hand) {
       ItemStack itemstack = p_230254_1_.getHeldItem(hand);
-      ItemStack itemstack1 = DrinkHelper.func_241445_a_(itemstack, p_230254_1_, com.babcsany.minecraft.init.item.ItemInit.JURK_BUCKET.getDefaultInstance());
+      ItemStack itemstack1 = DrinkHelper.func_241445_a_(itemstack, p_230254_1_, ItemInit.JURK_BUCKET.get().getDefaultInstance());
       ItemStack itemstack2 = DrinkHelper.func_241445_a_(itemstack, p_230254_1_, ItemInit.GANT.get().getDefaultInstance());
       if (itemstack.getItem() == Items.BUCKET && !this.isChild()) {
          p_230254_1_.playSound(SoundEvents.ENTITY_COW_MILK, 1.0F, 1.0F);
          p_230254_1_.setHeldItem(hand, itemstack1);
          return ActionResultType.func_233537_a_(this.world.isRemote);
-      } else if (itemstack.getItem() == com.babcsany.minecraft.init.item.ItemInit.JURK_BUCKET && !this.isChild()) {
+      } else if (itemstack.getItem() == ItemInit.JURK_BUCKET.get() && !this.isChild()) {
          p_230254_1_.playSound(SoundEvents.ENTITY_COW_MILK, 1.0F, 1.0F);
          p_230254_1_.setHeldItem(hand, itemstack2);
          return ActionResultType.func_233537_a_(this.world.isRemote);

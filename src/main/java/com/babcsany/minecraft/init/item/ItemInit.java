@@ -1,22 +1,15 @@
 package com.babcsany.minecraft.init.item;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
-import com.babcsany.minecraft.ervin_mod_1.item.JurkBucketItem;
 import com.babcsany.minecraft.ervin_mod_1.item.book.paper.*;
-import com.babcsany.minecraft.init.BlockInit;
-import net.minecraft.block.Block;
 import net.minecraft.entity.item.BoatEntity;
 import net.minecraft.item.*;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
-
-import static net.minecraft.item.Items.BUCKET;
 
 public class ItemInit {
 
     public static ItemInit ITEMS;
 
-    public static final Item JURK_BUCKET = register("jurk_bucket", new JurkBucketItem((new Item.Properties()).containerItem(BUCKET).maxStackSize(1).group(ItemGroup.MISC)));
     //public static final Item JURK_BUCKET = register("jurk_bucket", new JurkBucketItem((new Item.Properties()).containerItem(BUCKET).maxStackSize(1).group(net.minecraft.item.ItemGroup.MISC)));
     public static final Item FIRG_BOAT = register("firg_boat", new BoatItem(BoatEntity.Type.OAK, (new Item.Properties()).maxStackSize(1).group(ItemGroup.TRANSPORTATION)));
     public static final Item ENCHANTED_BOOK_BLACK = register("book/enchanted/paper/black", new EnchantedBookItemBlack((new Item.Properties()).maxStackSize(1).rarity(Rarity.UNCOMMON)));
@@ -37,10 +30,6 @@ public class ItemInit {
     public static final Item ENCHANTED_BOOK_YELLOW = register("book/enchanted/paper/yellow", new EnchantedBookItemYellow((new Item.Properties()).maxStackSize(1).rarity(Rarity.UNCOMMON)));
     public static final Item WRITABLE_BOOK_BLACK = register("book/writable/paper/black", new WritableBookItem((new Item.Properties()).maxStackSize(1).group(ItemGroup.MISC)));
     public static final Item WRITTEN_BOOK_BLACK = register("book/written/paper/black", new WrittenBookItem((new Item.Properties()).maxStackSize(16)));
-    public static final Item REUTRIEN = register(BlockInit.REUTRIEN);
-    public static final Item FRISZERN = register(BlockInit.FRISZERN);
-    public static final Item CHAIN_FRISZERN = register(BlockInit.CHAIN_FRISZERN);
-    public static final Item REPEATING_FRISZERN = register(BlockInit.REPEATING_FRISZERN);
     //public static final Item LIGHT_BLUE1_DYEM = register(string("light_blue1_dyel"), new DyeItemInit(DyeColorInit.LIGHT_BLUE1, (new Item.Properties()).group(net.minecraft.item.ItemGroup.MATERIALS)));
     //public static final Item LIGHT_BLUE1_DYEB = register(mod_1("light_blue1_dyeh"), new DyeItemInit(DyeColorInit.LIGHT_BLUE1, (new Item.Properties()).group(net.minecraft.item.ItemGroup.MATERIALS)));
 
@@ -66,31 +55,7 @@ public class ItemInit {
         return "ervin_mod_1/" + modId + ":" + name;
     }*/
 
-    private static Item register(Block blockIn) {
-        return register(new BlockItem(blockIn, new Item.Properties()));
-    }
-
     private static Item register(String key, Item itemIn) {
         return Ervin_mod_1.itemRegister(new ResourceLocation(string(key)), itemIn);
-    }
-
-    private static Item register(Block blockIn, ItemGroup itemGroupIn) {
-        return register(new BlockItem(blockIn, (new Item.Properties()).group(itemGroupIn)));
-    }
-
-    private static Item register(BlockItem blockItemIn) {
-        return register(blockItemIn.getBlock(), blockItemIn);
-    }
-
-    protected static Item register(Block blockIn, Item itemIn) {
-        return register(Registry.BLOCK.getKey(blockIn), itemIn);
-    }
-
-    private static Item register(ResourceLocation key, Item itemIn) {
-        if (itemIn instanceof BlockItem) {
-            ((BlockItem)itemIn).addToBlockToItemMap(Item.BLOCK_TO_ITEM, itemIn);
-        }
-
-        return Registry.register(Registry.ITEM, key, itemIn);
     }
 }

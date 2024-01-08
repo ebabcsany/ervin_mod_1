@@ -1,9 +1,14 @@
 package com.babcsany.minecraft.ervin_mod_1.init.item;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
+import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.FluidInit;
 import com.babcsany.minecraft.ervin_mod_1.item.*;
 import com.babcsany.minecraft.ervin_mod_1.item.group.ItemGroup;
+import com.babcsany.minecraft.init.BlockInit;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -12,6 +17,7 @@ public class ItemInit {
 
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Ervin_mod_1.MOD_ID);
 
+    public static final RegistryObject<Item> JURK_BUCKET = ITEMS.register("jurk_bucket", () -> new BlockItem(BlockInit.JURK.get(), (new Item.Properties()).containerItem(Items.BUCKET)));
     public static final RegistryObject<Item> THUNM = ITEMS.register("thunm", () -> new Item((new Item.Properties())));
     public static final RegistryObject<Item> REGDEM = ITEMS.register("regdem", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
     public static final RegistryObject<Item> DREIN = ITEMS.register("drein", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
