@@ -2,17 +2,8 @@ package com.babcsany.minecraft.ervin_mod_1.init;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import net.minecraft.block.Block;
-import net.minecraft.block.FlowingFluidBlock;
-import net.minecraft.block.material.Material;
-import net.minecraft.fluid.FlowingFluid;
 import net.minecraft.fluid.Fluid;
-import net.minecraft.fluid.WaterFluid;
-import net.minecraft.item.Rarity;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvents;
-import net.minecraftforge.fluids.FluidAttributes;
-import net.minecraftforge.fluids.ForgeFlowingFluid;
-import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -35,24 +26,24 @@ public class FluidInit {
 
 	//public static final RegistryObject<FlowingFluid> FLOWING_JURK = FLUIDS.register("flowing_jurk", () -> new JurkFluid.Flowing());
 	//public static final RegistryObject<FlowingFluid> JURK = FLUIDS.register("jurk", () -> new JurkFluid.Source());
-	public static final RegistryObject<FlowingFluid> FLOWING_JURK = FLUIDS.register("flowing_jurkt", WaterFluid.Flowing::new);
-	public static final RegistryObject<FlowingFluid> JURK = FLUIDS.register("jurkt", WaterFluid.Source::new);
+	//public static final RegistryObject<FlowingFluid> FLOWING_JURK = FLUIDS.register("flowing_jurkt", WaterFluid.Flowing::new);
+	//public static final RegistryObject<FlowingFluid> JURK = FLUIDS.register("jurkt", WaterFluid.Source::new);
 
-	public static final RegistryObject<FlowingFluid> MILK_FLUID = FLUIDS.register("milk_fluid",
-			() -> new ForgeFlowingFluid.Source(FluidInit.MILK_PROPERTIES));
+    //public static final RegistryObject<FlowingFluid> MILK_FLUID = FLUIDS.register("milk_fluid",
+    //		() -> new ForgeFlowingFluid.Source(FluidInit.MILK_PROPERTIES));
 
-	public static final RegistryObject<FlowingFluid> MILK_FLOWING = FLUIDS.register("milk_flowing",
-			() -> new ForgeFlowingFluid.Flowing(FluidInit.MILK_PROPERTIES));
+    //public static final RegistryObject<FlowingFluid> MILK_FLOWING = FLUIDS.register("milk_flowing",
+    //		() -> new ForgeFlowingFluid.Flowing(FluidInit.MILK_PROPERTIES));
 
-	public static final RegistryObject<FlowingFluidBlock> MILK_BLOCK = BLOCKS.register("milk",
-			() -> new FlowingFluidBlock(FluidInit.MILK_FLUID, Block.Properties.create(Material.WATER)
-					.doesNotBlockMovement().hardnessAndResistance(100.0f).noDrops()));
+    //public static final RegistryObject<FlowingFluidBlock> MILK_BLOCK = BLOCKS.register("milk",
+    //		() -> new FlowingFluidBlock(FluidInit.MILK_FLUID, Block.Properties.create(Material.WATER)
+    //				.doesNotBlockMovement().hardnessAndResistance(100.0f).noDrops()));
 
-	public static final ForgeFlowingFluid.Properties MILK_PROPERTIES = new ForgeFlowingFluid.Properties(
-			MILK_FLUID, MILK_FLOWING,
-			FluidAttributes.builder(MILK_STILL_RL, MILK_FLOWING_RL).density(5).luminosity(10).rarity(Rarity.RARE)
-					.sound(SoundEvents.ITEM_HONEY_BOTTLE_DRINK).overlay(MILK_OVERLAY_RL))
-							.block(FluidInit.MILK_BLOCK);
+    //public static final ForgeFlowingFluid.Properties MILK_PROPERTIES = new ForgeFlowingFluid.Properties(
+    //		MILK_FLUID, MILK_FLOWING,
+    //		FluidAttributes.builder(MILK_STILL_RL, MILK_FLOWING_RL).density(5).luminosity(10).rarity(Rarity.RARE)
+    //				.sound(SoundEvents.ITEM_HONEY_BOTTLE_DRINK).overlay(MILK_OVERLAY_RL))
+    //						.block(FluidInit.MILK_BLOCK);
 
 	/*public static final RegistryObject<FlowingFluid> JURK_FLUID = FLUIDS.register("jurk_fluid",
 			() -> new ForgeFlowingFluid.Source(FluidInit.JURK_PROPERTIES));
