@@ -29,6 +29,7 @@ import com.babcsany.minecraft.ervin_mod_1.init.special.SpecialBlockInit;
 import com.babcsany.minecraft.ervin_mod_1.init.special.SpecialItemInit;
 import com.babcsany.minecraft.init.*;
 import com.babcsany.minecraft.init.item.ItemInit;
+import com.babcsany.minecraft.init.lc.block.blocks.H_u_fBlockInit;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
@@ -100,6 +101,7 @@ public class Init {
 
     public static void default_register(IEventBus modEventBus) {
         BlockInit.REGISTER_BLOCKS.register(modEventBus);
+        H_u_fBlockInit.H_U_F_BLOCKS.register(modEventBus);
         BlockInit BLOCKS = BlockInit.BLOCKS;
         BlockItemInit BLOCK_ITEMS = BlockItemInit.BLOCK_ITEMS;
         EntityInit ENTITIES = EntityInit.ENTITIES;
