@@ -3,7 +3,6 @@ package com.babcsany.minecraft.ervin_mod_1.entity.monster.zur;
 import com.babcsany.minecraft.ervin_mod_1.entity.animal.hhij.HhijEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.RoventEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurTasks;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.goal.BowAttackGoal;
 import com.babcsany.minecraft.ervin_mod_1.event.ZurItemTossEvent;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
@@ -13,7 +12,6 @@ import com.babcsany.minecraft.ervin_mod_1.init.item.armor.ArmorItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.armor.isBurnableArmorItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.food.isBurnableFoodItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.spawn_egg.ModSpawnEggItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.special.isBurnableSpecialItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.tool.isBurnableToolItemInit;
 import com.google.common.collect.ImmutableList;
@@ -56,7 +54,6 @@ import net.minecraft.pathfinding.Path;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.pathfinding.SwimmerPathNavigator;
 import net.minecraft.potion.*;
-import net.minecraft.stats.Stats;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.*;
@@ -387,52 +384,6 @@ public abstract class AbstractZurEntity extends AgeableZurEntity {
       }
    }
 
-   public ActionResultType func_230254_b_(PlayerEntity p_230254_1_, Hand p_230254_2_) {
-      ItemStack itemstack = p_230254_1_.getHeldItem(p_230254_2_);
-      if (itemstack.getItem() != ModSpawnEggItemInit.ZUR_SPAWN_EGG.get() && this.isAlive() && !this.hasCustomer() && !this.isSleeping() && !p_230254_1_.isSecondaryUseActive()) {
-         if (this.isChild()) {
-            this.shakeHead();
-         } else {
-            boolean flag = this.getOffers().isEmpty();
-            if (p_230254_2_ == Hand.MAIN_HAND) {
-               if (flag && !this.world.isRemote) {
-                  this.shakeHead();
-               }
-
-               p_230254_1_.addStat(Stats.TALKED_TO_VILLAGER);
-            }
-
-            if (!flag) {
-               if (this.offers != null && !this.world.isRemote) {
-                  this.displayMerchantGui(p_230254_1_);
-               }
-
-            }
-
-            ActionResultType actionresulttype = super.func_230254_b_(p_230254_1_, p_230254_2_);
-            if (actionresulttype.isSuccessOrConsume()) {
-               return actionresulttype;
-            } else if (!this.world.isRemote) {
-               return ZurTasks.func_234471_a_(this, p_230254_1_, p_230254_2_);
-            } else {
-               boolean flag1 = ZurTasks.func_234489_b_(this, p_230254_1_.getHeldItem(p_230254_2_)) && this.func_234424_eM_() != Action.ADMIRING_ITEM;
-               return flag1 ? ActionResultType.SUCCESS : ActionResultType.PASS;
-            }
-         }
-         return ActionResultType.func_233537_a_(this.world.isRemote);
-      } else {
-         return super.func_230254_b_(p_230254_1_, p_230254_2_);
-      }
-   }
-
-   public Action func_234424_eM_() {
-      if (ZurTasks.func_234480_a_(this.getHeldItemOffhand().getItem())) {
-         return Action.ADMIRING_ITEM;
-      } else {
-         return this.isAggressive() && this.canEquip(isBurnableItemInit.VIRKT.get()) ? Action.CROSSBOW_HOLD : Action.DEFAULT;
-      }
-   }
-
    public void setShakeHeadTicks(int ticks) {
       this.dataManager.set(SHAKE_HEAD_TICKS, ticks);
    }
@@ -597,7 +548,6 @@ public abstract class AbstractZurEntity extends AgeableZurEntity {
          }
       }
 
-      ZurTasks.func_234466_a_(this);
       this.setEquipmentBasedOnDifficulty(difficultyIn);
       this.setEquipmentBasedOnDifficulty1(difficultyIn);
       this.setEnchantmentBasedOnDifficulty(difficultyIn);

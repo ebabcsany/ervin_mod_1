@@ -765,8 +765,8 @@ public class ZurEntity extends AbstractZurEntity {
          MerchantOffers merchantoffers = this.getOffers();
          this.addTrades(merchantoffers, aZurTrades$iTrade, 10);
          int i = this.rand.nextInt(aZurTrades$iTrade.length);
-         ZurTrades.ITrade wanderingTraderNirtreTrades$iTrade = aZurTrades$iTrade[i];
-         MerchantOffer merchantoffer = wanderingTraderNirtreTrades$iTrade.getOffer(this, this.rand);
+         ZurTrades.ITrade zurTrades$iTrade = aZurTrades$iTrade[i];
+         MerchantOffer merchantoffer = zurTrades$iTrade.getOffer(this, this.rand);
          if (merchantoffer != null) {
             merchantoffers.add(merchantoffer);
          }
@@ -777,26 +777,5 @@ public class ZurEntity extends AbstractZurEntity {
    @Nullable
    public BlockState getHeldBlockState() {
       return this.dataManager.get(CARRIED_BLOCK).orElse(null);
-   }
-
-   public void onStruckByLightning(PlayerEntity player) {
-      if (this.world.getDifficulty() != Difficulty.PEACEFUL) {
-         LOGGER.info("Zur {} was struck by lightning {}.", this, player);
-         ZurNirtreEntity zurNirtreEntity = EntityInit.ZUR_NIRTRE_ENTITY.get().create(this.world);
-         zurNirtreEntity.setLocationAndAngles(this.getPosX(), this.getPosY(), this.getPosZ(), this.rotationYaw, this.rotationPitch);
-         zurNirtreEntity.onInitialSpawn(this.world, this.world.getDifficultyForLocation(zurNirtreEntity.getPosition()), SpawnReason.CONVERSION, null, null);
-         zurNirtreEntity.setNoAI(this.isAIDisabled());
-         if (this.hasCustomName()) {
-            zurNirtreEntity.setCustomName(this.getCustomName());
-            zurNirtreEntity.setCustomNameVisible(this.isCustomNameVisible());
-         }
-
-         zurNirtreEntity.enablePersistence();
-         this.world.addEntity(zurNirtreEntity);
-         this.remove();
-      } else {
-         super.onStruckByLightning(player);
-      }
-
    }
 }

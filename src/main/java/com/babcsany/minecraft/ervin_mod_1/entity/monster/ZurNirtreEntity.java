@@ -115,28 +115,6 @@ public class ZurNirtreEntity extends AbstractZurEntity {
    }
 
    @Override
-   public ActionResultType func_230254_b_(PlayerEntity player, Hand hand) {
-      ItemStack itemstack = player.getHeldItem(hand);
-      if (itemstack.getItem() == isBurnableFoodItemInit.GRINT.get()) {
-         if (this.isPotionActive(Effects.WEAKNESS)) {
-            if (!player.abilities.isCreativeMode) {
-               itemstack.shrink(1);
-            }
-
-            if (!this.world.isRemote) {
-               this.startConverting(player.getUniqueID(), this.rand.nextInt(2401) + 3600);
-            }
-
-            return ActionResultType.SUCCESS;
-         } else {
-            return ActionResultType.CONSUME;
-         }
-      } else {
-         return super.func_230254_b_(player, hand);
-      }
-   }
-
-   @Override
    public void applyWaveBonus(int p_213660_1_, boolean p_213660_2_) {
 
    }
