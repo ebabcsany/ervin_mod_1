@@ -1,6 +1,5 @@
 package com.babcsany.minecraft.ervin_mod_1.block;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
@@ -59,7 +58,7 @@ public class FallingZurBlock extends Block {
       return state.isAir() || state.isIn(BlockTags.FIRE) || material.isLiquid() || material.isReplaceable();
    }
 
-   public void onEndFalling(World worldIn, BlockPos pos, BlockState fallingState, BlockState hitState, ZurEntity fallingBlock) {
+   public void onEndFalling(World worldIn, BlockPos pos, BlockState fallingState, BlockState hitState, FallingBlockEntity fallingBlock) {
    }
 
    public void onBroken(World worldIn, BlockPos pos, FallingBlockEntity fallingBlock) {
