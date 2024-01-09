@@ -1,13 +1,13 @@
 package com.babcsany.minecraft.ervin_mod_1.client.entity.model;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.AbstractZurEntity;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.model.ModelHelper;
+import net.minecraft.entity.AgeableEntity;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public abstract class AbstractZurModel_1<T extends AbstractZurEntity> extends BipedModel<T> {
+public abstract class AbstractZurModel_1<T extends AgeableEntity> extends BipedModel<T> {
    protected AbstractZurModel_1(float modelSize, float yOffsetIn, int textureWidthIn, int textureHeightIn) {
       super(modelSize, yOffsetIn, textureWidthIn, textureHeightIn);
    }

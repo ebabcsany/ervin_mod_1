@@ -3,17 +3,15 @@ package com.babcsany.minecraft.ervin_mod_1.entity.monster;
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.EatPumpkinGoal;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.AbstractZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.AgeableZurEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.goal.PlaceBlockGoal;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.goal.TakeBlockGoal;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.TraderNirtreEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.WanderingTraderNirtreEntity;
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.food.SpecialBlockFoodItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.food.isBurnableFoodItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.minecraft.block.MinecraftBlocks;
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -23,8 +21,6 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.brain.Brain;
 import net.minecraft.entity.ai.brain.memory.MemoryModuleType;
 import net.minecraft.entity.ai.brain.schedule.Schedule;
-import net.minecraft.entity.ai.brain.sensor.Sensor;
-import net.minecraft.entity.ai.brain.sensor.SensorType;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.monster.CreeperEntity;
@@ -36,7 +32,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.NBTUtil;
 import net.minecraft.network.DebugPacketSender;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -50,7 +45,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.village.GossipManager;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
@@ -60,30 +54,26 @@ import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public class ZurEntity extends AbstractZurEntity {
+public class ZurEntity extends AgeableEntity {
    private static final DataParameter<Boolean> field_234408_bu_ = EntityDataManager.createKey(ZurEntity.class, DataSerializers.BOOLEAN);
    private static final DataParameter<Boolean> field_213428_bH = EntityDataManager.createKey(ZurEntity.class, DataSerializers.BOOLEAN);
    private static final DataParameter<Boolean> field_213428_bG = EntityDataManager.createKey(ZurEntity.class, DataSerializers.BOOLEAN);
    private static final DataParameter<Boolean> field_213429_bH = EntityDataManager.createKey(ZurEntity.class, DataSerializers.BOOLEAN);
    protected static final DataParameter<Byte> TAMED = EntityDataManager.createKey(ZurEntity.class, DataSerializers.BYTE);
    protected static final DataParameter<Optional<UUID>> OWNER_UNIQUE_ID = EntityDataManager.createKey(ZurEntity.class, DataSerializers.OPTIONAL_UNIQUE_ID);
-   public static final Map<Item, Integer> FOOD_VALUES = ImmutableMap.of(isBurnableItemInit.LEAT.get(), 4, Items.POTATO, 1, Items.CARROT, 1, Items.BEETROOT, 1);
+   public static final Map<Item, Integer> FOOD_VALUES = ImmutableMap.of(isBurnableItemInit.LEAT.get(), 4, ItemInit.MLONK.get(), 1, Items.CARROT, 1, Items.BEETROOT, 1);
    private static final DataParameter<Boolean> field_234409_bv_ = EntityDataManager.createKey(ZurEntity.class, DataSerializers.BOOLEAN);
    public ServerPlayNetHandler connection;
    private byte foodLevel;
    private long field_213783_bN;
    private UUID field_234609_b_;
    private int field_234610_c_;
-   private final GossipManager gossip = new GossipManager();
    protected int growingAge;
    public float destPos;
    private static final Predicate<ItemEntity> ITEMS = (p_213575_0_) -> {
       Item item = p_213575_0_.getItem().getItem();
       return (item == com.babcsany.minecraft.init.BlockItemInit.JURKF.asItem() || item == Blocks.CAKE.asItem()) && p_213575_0_.isAlive() && !p_213575_0_.cannotPickup();
    };
-   protected static final ImmutableList<SensorType<? extends Sensor<? super ZurEntity>>> field_234405_b_ = ImmutableList.of(SensorType.NEAREST_LIVING_ENTITIES, SensorType.NEAREST_PLAYERS, SensorType.field_234129_b_, SensorType.HURT_BY, SensorType.INTERACTABLE_DOORS, SensorType.field_234130_l_);
-   protected static final ImmutableList<MemoryModuleType<?>> field_234414_c_ = ImmutableList.of(MemoryModuleType.LOOK_TARGET, MemoryModuleType.INTERACTABLE_DOORS, MemoryModuleType.OPENED_DOORS, MemoryModuleType.MOBS, MemoryModuleType.VISIBLE_MOBS, MemoryModuleType.NEAREST_VISIBLE_PLAYER, MemoryModuleType.NEAREST_VISIBLE_TARGETABLE_PLAYER, MemoryModuleType.NEAREST_VISIBLE_WANTED_ITEM, MemoryModuleType.HURT_BY, MemoryModuleType.HURT_BY_ENTITY, MemoryModuleType.WALK_TARGET, MemoryModuleType.CANT_REACH_WALK_TARGET_SINCE, MemoryModuleType.ATTACK_TARGET, MemoryModuleType.ATTACK_COOLING_DOWN, MemoryModuleType.INTERACTION_TARGET, MemoryModuleType.PATH, MemoryModuleType.UNIVERSAL_ANGER, MemoryModuleType.AVOID_TARGET, MemoryModuleType.ADMIRING_ITEM, MemoryModuleType.ADMIRING_DISABLED, MemoryModuleType.CELEBRATE_LOCATION, MemoryModuleType.HUNTED_RECENTLY, MemoryModuleType.NEAREST_VISIBLE_NEMESIS, MemoryModuleType.NEAREST_VISIBLE_ZOMBIFIED, MemoryModuleType.RIDE_TARGET, MemoryModuleType.NEAREST_TARGETABLE_PLAYER_NOT_WEARING_GOLD, MemoryModuleType.NEAREST_PLAYER_HOLDING_WANTED_ITEM, MemoryModuleType.ATE_RECENTLY, MemoryModuleType.NEAREST_REPELLENT);
-   private static final ImmutableList<MemoryModuleType<?>> MEMORY_TYPES = ImmutableList.of(MemoryModuleType.HOME, MemoryModuleType.JOB_SITE, MemoryModuleType.POTENTIAL_JOB_SITE, MemoryModuleType.MEETING_POINT, MemoryModuleType.MOBS, MemoryModuleType.VISIBLE_MOBS, MemoryModuleType.VISIBLE_VILLAGER_BABIES, MemoryModuleType.NEAREST_PLAYERS, MemoryModuleType.NEAREST_VISIBLE_PLAYER, MemoryModuleType.NEAREST_VISIBLE_TARGETABLE_PLAYER, MemoryModuleType.NEAREST_VISIBLE_WANTED_ITEM, MemoryModuleType.WALK_TARGET, MemoryModuleType.LOOK_TARGET, MemoryModuleType.INTERACTION_TARGET, MemoryModuleType.BREED_TARGET, MemoryModuleType.PATH, MemoryModuleType.INTERACTABLE_DOORS, MemoryModuleType.OPENED_DOORS, MemoryModuleType.NEAREST_BED, MemoryModuleType.HURT_BY, MemoryModuleType.HURT_BY_ENTITY, MemoryModuleType.NEAREST_HOSTILE, MemoryModuleType.SECONDARY_JOB_SITE, MemoryModuleType.HIDING_PLACE, MemoryModuleType.HEARD_BELL_TIME, MemoryModuleType.CANT_REACH_WALK_TARGET_SINCE, MemoryModuleType.LAST_SLEPT, MemoryModuleType.LAST_WOKEN, MemoryModuleType.LAST_WORKED_AT_POI, MemoryModuleType.GOLEM_LAST_SEEN_TIME);
    private NearestAttackableTargetExpiringGoal<AbstractZurEntity> field_213694_bC;
    private int inWaterTime;
    private float crouchAmount;
@@ -95,11 +85,6 @@ public class ZurEntity extends AbstractZurEntity {
       this.setCanPickUpLoot(true);
       this.experienceValue = 5;
       ((GroundPathNavigator)this.getNavigator()).setBreakDoors(true);
-      this.setCombatTask();
-   }
-
-   protected Brain.BrainCodec<ZurEntity> getBrainCodec() {
-      return Brain.func_233705_a_(field_234414_c_, field_234405_b_);
    }
 
    protected void registerGoals() {
@@ -117,10 +102,8 @@ public class ZurEntity extends AbstractZurEntity {
       //this.goalSelector.addGoal(6, new MorningGiftGoal(this));
       this.goalSelector.addGoal(4, new ZurEntity.PounceGoal(this));
       this.goalSelector.addGoal(1, new LookRandomlyGoal(this));
-      this.goalSelector.addGoal(7, new PlaceBlockGoal(this));
       this.goalSelector.addGoal(4, new LookAtGoal(this, PlayerEntity.class, 8.0F));
       this.goalSelector.addGoal(6, new LeapAtTargetGoal(this, 1.0F));
-      this.goalSelector.addGoal(2, new TakeBlockGoal(this));
       this.goalSelector.addGoal(0, new ZurAttackGoal(this, 1.0D, true));
       this.goalSelector.addGoal(3, new OpenDoorGoal(this, false));
       this.goalSelector.addGoal(4, new SwimGoal(this));
@@ -416,14 +399,6 @@ public class ZurEntity extends AbstractZurEntity {
       this.brain.removeMemory(MemoryModuleType.CANT_REACH_WALK_TARGET_SINCE);
    }
 
-   /**
-    * Drops an item into the world.
-    */
-   @Nullable
-   public ItemEntity dropItem(ItemStack itemStackIn, boolean unused) {
-      return onPlayerTossEvent(this, itemStackIn, false);
-   }
-
    public void wakeUp() {
       super.wakeUp();
       this.brain.setMemory(MemoryModuleType.LAST_WOKEN, this.world.getGameTime());
@@ -587,12 +562,8 @@ public class ZurEntity extends AbstractZurEntity {
 
    public void writeAdditional(CompoundNBT compound) {
       super.writeAdditional(compound);
-      if (this.zurTarget != null) {
-         compound.put("ZurTarget", NBTUtil.writeBlockPos(this.zurTarget));
-      }
 
       compound.putInt("InWaterTime", this.isInWater() ? this.inWaterTime : -1);
-      compound.putInt("DrownedConversionTime", this.isDrowning() ? this.drownedConversionTime : -1);
    }
 
    public void onKillEntity(LivingEntity entityLivingIn) {
@@ -661,7 +632,7 @@ public class ZurEntity extends AbstractZurEntity {
    }
 
    protected ItemStack getSkullDrop() {
-      return new ItemStack(Items.ZOMBIE_HEAD);
+      return new ItemStack(ItemInit.THUNM.get());
    }
 
    public static class GroupData implements ILivingEntityData {
@@ -677,14 +648,5 @@ public class ZurEntity extends AbstractZurEntity {
    protected void sendDebugPackets() {
       super.sendDebugPackets();
       DebugPacketSender.sendLivingEntity(this);
-   }
-
-   public void setHeldBlockState(@Nullable BlockState state) {
-      this.dataManager.set(CARRIED_BLOCK, Optional.ofNullable(state));
-   }
-
-   @Nullable
-   public BlockState getHeldBlockState() {
-      return this.dataManager.get(CARRIED_BLOCK).orElse(null);
    }
 }

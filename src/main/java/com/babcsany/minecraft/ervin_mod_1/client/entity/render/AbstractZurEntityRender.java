@@ -25,8 +25,4 @@ public abstract class AbstractZurEntityRender<T extends ZurEntity, M extends Abs
    public ResourceLocation getEntityTexture(ZurEntity entity) {
       return field_217771_a;
    }
-
-   protected boolean func_230495_a_(T p_230495_1_) {
-      return p_230495_1_.isDrowning();
-   }
 }

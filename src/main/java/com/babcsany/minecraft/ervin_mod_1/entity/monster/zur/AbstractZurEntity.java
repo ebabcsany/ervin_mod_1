@@ -4,7 +4,6 @@ import com.babcsany.minecraft.ervin_mod_1.entity.animal.hhij.HhijEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.RoventEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.goal.BowAttackGoal;
-import com.babcsany.minecraft.ervin_mod_1.event.ZurItemTossEvent;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
@@ -16,7 +15,6 @@ import com.babcsany.minecraft.ervin_mod_1.init.item.special.isBurnableSpecialIte
 import com.babcsany.minecraft.ervin_mod_1.init.item.tool.isBurnableToolItemInit;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Lists;
 import net.minecraft.block.BedBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -62,9 +60,7 @@ import net.minecraft.world.raid.Raid;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.MinecraftForge;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.*;
 import java.util.function.Predicate;
@@ -240,7 +236,6 @@ public abstract class AbstractZurEntity extends AgeableEntity {
       this.dataManager.register(SHAKE_HEAD_TICKS, 0);
       this.dataManager.register(IS_DRINKING, Boolean.TRUE);
       this.getDataManager().register(IS_CHILD, false);
-      this.getDataManager().register(TRADER_TYPE, 0);
    }
 
    public int getLevel() {
@@ -288,24 +283,6 @@ public abstract class AbstractZurEntity extends AgeableEntity {
       if (this.xpCooldown > 0) {
          --this.xpCooldown;
       }
-
-      if (!this.world.isRemote && this.isAlive() && !this.isAIDisabled()) {
-         if (this.isDrowning()) {
-            --this.drownedConversionTime;
-            if (this.drownedConversionTime < 0) {
-               this.onRovent();
-            }
-         } else if (this.shouldDrown()) {
-            if (this.areEyesInFluid(FluidTags.WATER)) {
-               ++this.inWaterTime;
-               if (this.inWaterTime >= 7200) {
-                  this.startRovent();
-               }
-            } else {
-               this.inWaterTime = 1000;
-            }
-         }
-      }
    }
 
    private void tickGossip() {
@@ -316,21 +293,6 @@ public abstract class AbstractZurEntity extends AgeableEntity {
          this.gossip.tick();
          this.lastGossipDecay = i;
       }
-   }
-
-   public void setShakeHeadTicks(int ticks) {
-      this.dataManager.set(SHAKE_HEAD_TICKS, ticks);
-   }
-
-   private void shakeHead() {
-      this.setShakeHeadTicks(40);
-      if (!this.world.isRemote()) {
-         this.playSound(SoundEvents.ENTITY_VILLAGER_NO, this.getSoundVolume(), this.getSoundPitch());
-      }
-
-   }
-
-   public void openMerchantContainer(int containerId, MerchantOffers offers, int xp, boolean p_213818_5_, boolean p_213818_6_) {
    }
 
    public void startSleeping(BlockPos pos) {
@@ -455,25 +417,6 @@ public abstract class AbstractZurEntity extends AgeableEntity {
          this.setItemStackToSlot(type, stack);
       }
 
-   }
-
-   @Nullable
-   public static ItemEntity onPlayerTossEvent(@Nonnull ZurEntity zur, @Nonnull ItemStack item, boolean includeName)
-   {
-      zur.captureDrops(Lists.newArrayList());
-      ItemEntity ret = zur.dropItem(item, false, includeName);
-      zur.captureDrops(null);
-
-      if (ret == null)
-         return null;
-
-      ZurItemTossEvent event = new ZurItemTossEvent(ret, zur);
-      if (MinecraftForge.EVENT_BUS.post(event))
-         return null;
-
-      if (!zur.world.isRemote)
-         zur.getEntityWorld().addEntity(event.getEntityItem());
-      return event.getEntityItem();
    }
 
    /**
