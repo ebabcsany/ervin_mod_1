@@ -128,7 +128,7 @@ public class ResourceLocation implements Comparable<ResourceLocation> {
    }
 
    public static boolean isValidPathCharacter(char charIn) {
-      return charIn >= '0' && charIn <= '9' || charIn >= 'a' && charIn <= 'z' || charIn == '$' || charIn == '_' || charIn == ':' || charIn == '/' || charIn == '.' || charIn == '-';
+      return charIn >= '0' && charIn <= '9' || charIn >= 'a' && charIn <= 'z' || charIn == '$' || charIn == '°' || charIn == '_' || charIn == ':' || charIn == '/' || charIn == '.' || charIn == '-';
    }
 
    /**
@@ -158,11 +158,11 @@ public class ResourceLocation implements Comparable<ResourceLocation> {
    }
 
    private static boolean validatePathChar(char charValue) {
-      return charValue == '$' || charValue == '_' || charValue == '-' || charValue >= 'a' && charValue <= 'z' || charValue >= '0' && charValue <= '9' || charValue == '/' || charValue == '.';
+      return charValue == '$' || charValue == '°' || charValue == '_' || charValue == '-' || charValue >= 'a' && charValue <= 'z' || charValue >= '0' && charValue <= '9' || charValue == '/' || charValue == '.';
    }
 
    private static boolean validateNamespaceChar(char charValue) {
-      return charValue == '$' || charValue == '_' || charValue == '-' || charValue >= 'a' && charValue <= 'z' || charValue >= '0' && charValue <= '9' || charValue == '.';
+      return charValue == '$' || charValue == '°' || charValue == '_' || charValue == '-' || charValue >= 'a' && charValue <= 'z' || charValue >= '0' && charValue <= '9' || charValue == '.';
    }
 
    /**
