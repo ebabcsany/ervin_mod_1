@@ -1,19 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.init.fluid;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
-import net.minecraft.block.Block;
-import net.minecraft.block.FlowingFluidBlock;
-import net.minecraft.block.material.Material;
-import net.minecraft.fluid.FlowingFluid;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.item.Rarity;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvents;
-import net.minecraftforge.fluids.FluidAttributes;
-import net.minecraftforge.fluids.ForgeFlowingFluid;
-import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
 
 public class FluidInit {
 
@@ -28,8 +16,8 @@ public class FluidInit {
 	public static final ResourceLocation MILK_OVERLAY_RL = new ResourceLocation(Ervin_mod_1.MOD_ID,
 			"block/milk_overlay");
 
-	public static final DeferredRegister<Block> FLUID_BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Ervin_mod_1.MOD_ID);
-	public static final DeferredRegister<Fluid> FLUIDS = DeferredRegister.create(ForgeRegistries.FLUIDS, Ervin_mod_1.MOD_ID);
+	//public static final DeferredRegister<Block> FLUID_BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Ervin_mod_1.MOD_ID);
+	//public static final DeferredRegister<Fluid> FLUIDS = DeferredRegister.create(ForgeRegistries.FLUIDS, Ervin_mod_1.MOD_ID);
 
 	//public static final RegistryObject<FlowingFluid> JURK_FLUID = FLUIDS.register("fluids/jurk_", () -> new ModFlowingFluid.Flowing(JURK_PROPERTIES));
 /*

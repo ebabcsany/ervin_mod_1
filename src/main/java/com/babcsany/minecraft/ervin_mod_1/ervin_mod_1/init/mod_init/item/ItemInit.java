@@ -1,7 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.init.mod_init.item;
 
 import com.babcsany.minecraft.ervin_mod_1.init.item.$ItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.FluidBucketInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.armor.ArmorItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.armor.HorseArmorItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.armor.isBurnableArmorItemInit;
@@ -34,7 +33,7 @@ public class ItemInit {
         com.babcsany.minecraft.ervin_mod_1.init.item.block.isBurnableBlockItemInit.BLOCK_ITEMS.register(modEventBus);
         BrefkStageItemInit.BREFK.register(modEventBus);
         FoodItemInit.FOODS.register(modEventBus);
-        FluidBucketInit.FLUID_BUCKETS.register(modEventBus);
+        //FluidBucketInit.FLUID_BUCKETS.register(modEventBus);
         com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit.ITEMS.register(modEventBus);
         com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit.BURNABLE_ITEMS.register(modEventBus);
         SpecialToolItemInit.BURNABLE_ITEMS.register(modEventBus);
