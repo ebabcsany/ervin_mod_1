@@ -3,8 +3,12 @@ package com.babcsany.minecraft.ervin_mod_1.block.blocks.burnable;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.Direction;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
@@ -18,6 +22,14 @@ import java.util.Random;
 public class Trurk extends Block {
    public Trurk(Properties properties) {
       super(properties);
+   }
+
+   public void onEntityWalk(World worldIn, BlockPos blockPos, Entity entityIn) {
+      if (!entityIn.isImmuneToFire() && entityIn instanceof LivingEntity && !EnchantmentHelper.hasFrostWalker((LivingEntity)entityIn)) {
+         entityIn.attackEntityFrom(DamageSource.HOT_FLOOR, 0.2F);
+      }
+
+      super.onEntityWalk(worldIn, blockPos, entityIn);
    }
 
    /* *
