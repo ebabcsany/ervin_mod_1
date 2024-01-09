@@ -25,22 +25,17 @@ import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
-import net.minecraft.entity.ai.brain.Brain;
 import net.minecraft.entity.ai.brain.memory.MemoryModuleType;
 import net.minecraft.entity.ai.goal.BreakDoorGoal;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
-import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.merchant.villager.VillagerData;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileHelper;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.container.MerchantContainer;
-import net.minecraft.inventory.container.SimpleNamedContainerProvider;
 import net.minecraft.item.*;
 import net.minecraft.loot.*;
 import net.minecraft.nbt.CompoundNBT;
@@ -61,7 +56,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.text.ITextComponent;
 import net.minecraft.village.GossipManager;
 import net.minecraft.world.*;
 import net.minecraft.world.raid.Raid;
@@ -75,7 +69,7 @@ import javax.annotation.Nullable;
 import java.util.*;
 import java.util.function.Predicate;
 
-public abstract class AbstractZurEntity extends AgeableZurEntity {
+public abstract class AbstractZurEntity extends AgeableEntity {
    public final NonNullList<ItemStack> inventory = NonNullList.withSize(1000000, ItemStack.EMPTY);
    private final BowAttackGoal<AbstractZurEntity> aiArrowAttack = new BowAttackGoal<>(this, 1.0D, 20, 15.0F);
    private static final UUID MODIFIER_UUID = UUID.fromString("5CD17E52-A79A-43D3-A529-90FDE04B181E");
@@ -215,41 +209,6 @@ public abstract class AbstractZurEntity extends AgeableZurEntity {
       return false;
    }
 
-   protected void updateAITasks() {
-      if (this.field_234542_bL_) {
-         this.field_234542_bL_ = false;
-      }
-
-      if (!this.hasCustomer() && this.timeUntilReset > 0) {
-         --this.timeUntilReset;
-         if (this.timeUntilReset <= 0) {
-            if (this.leveledUp) {
-               this.levelUp();
-               this.leveledUp = true;
-            }
-
-            this.addPotionEffect(new EffectInstance(Effects.REGENERATION, 200, 0));
-         }
-      }
-
-      if (!this.isAIDisabled() && this.rand.nextInt(100) == 0) {
-         Raid raid = ((ServerWorld)this.world).findRaid(this.getPosition());
-         if (raid != null && raid.isActive() && !raid.isOver()) {
-            this.world.setEntityState(this, (byte)42);
-         }
-      }
-
-      if (this.hasCustomer()) {
-         this.resetCustomer();
-      }
-
-      super.updateAITasks();
-   }
-
-   private void levelUp() {
-      this.populateTradeZurData();
-   }
-
    /**
     * sets this entity's combat AI.
     */
@@ -282,23 +241,6 @@ public abstract class AbstractZurEntity extends AgeableZurEntity {
       this.dataManager.register(IS_DRINKING, Boolean.TRUE);
       this.getDataManager().register(IS_CHILD, false);
       this.getDataManager().register(TRADER_TYPE, 0);
-      this.getDataManager().register(ROVENT, false);
-   }
-
-   protected void onZurTrade(MerchantOffer offer) {
-      int f = 3 + this.rand.nextInt(4);
-      this.xp += offer.getGivenExp();
-      this.previousCustomer = this.getCustomer();
-      if (this.canLevelUp()) {
-         this.timeUntilReset = 40;
-         this.leveledUp = true;
-         f += 5;
-      }
-      if (offer.getDoesRewardExp()) {
-         int i = 3 + this.rand.nextInt(4);
-         this.world.addEntity(new ExperienceOrbEntity(this.world, this.getPosX(), this.getPosY() + 0.5D, this.getPosZ(), i));
-      }
-
    }
 
    public int getLevel() {
@@ -318,16 +260,8 @@ public abstract class AbstractZurEntity extends AgeableZurEntity {
       this.goalSelector.addGoal(4, new AttackGoal(this));
    }
 
-   public ItemStack func_234436_k_(ItemStack itemStack) {
-      return this.zurInventory.addItem(itemStack);
-   }
-
    public void func_234438_m_(ItemStack p_234438_1_) {
       this.func_233657_b_(EquipmentSlotType.MAINHAND, p_234438_1_);
-   }
-
-   protected boolean func_234437_l_(ItemStack itemStack) {
-      return this.zurInventory.func_233541_b_(itemStack);
    }
 
    protected boolean shouldDrown() {
@@ -396,23 +330,6 @@ public abstract class AbstractZurEntity extends AgeableZurEntity {
 
    }
 
-   private void displayMerchantGui(PlayerEntity player) {
-      this.recalculateSpecialPricesFor(player);
-      this.setCustomer(player);
-      this.openMerchantContainer(player, this.getDisplayName());
-   }
-
-   public void openMerchantContainer(PlayerEntity player, ITextComponent displayName) {
-      OptionalInt optionalint = player.openContainer(new SimpleNamedContainerProvider((p_213701_1_, p_213701_2_, p_213701_3_) -> new MerchantContainer(p_213701_1_, p_213701_2_, this), displayName));
-      if (optionalint.isPresent()) {
-         MerchantOffers merchantoffers = this.getOffers();
-         if (!merchantoffers.isEmpty()) {
-            this.openMerchantContainer(optionalint.getAsInt(), merchantoffers, this.getXp(), this.func_213705_dZ(), this.func_223340_ej());
-         }
-      }
-
-   }
-
    public void openMerchantContainer(int containerId, MerchantOffers offers, int xp, boolean p_213818_5_, boolean p_213818_6_) {
    }
 
@@ -430,27 +347,6 @@ public abstract class AbstractZurEntity extends AgeableZurEntity {
 
    public int getPlayerReputation(PlayerEntity player) {
       return this.gossip.getReputation(player.getUniqueID(), (p_223103_0_) -> true);
-   }
-
-   private void recalculateSpecialPricesFor(PlayerEntity playerIn) {
-      int i = this.getPlayerReputation(playerIn);
-      if (i != 0) {
-         for(MerchantOffer merchantoffer : this.getOffers()) {
-            merchantoffer.increaseSpecialPrice(-MathHelper.floor((float)i * merchantoffer.getPriceMultiplier()));
-         }
-      }
-
-      if (playerIn.isPotionActive(Effects.HERO_OF_THE_VILLAGE)) {
-         EffectInstance effectinstance = playerIn.getActivePotionEffect(Effects.HERO_OF_THE_VILLAGE);
-         int k = effectinstance.getAmplifier();
-
-         for(MerchantOffer merchantOffer1 : this.getOffers()) {
-            double d0 = 0.3D + 0.0625D * (double)k;
-            int j = (int)Math.floor(d0 * (double)merchantOffer1.getBuyingStackFirst().getCount());
-            merchantOffer1.increaseSpecialPrice(-Math.max(j, 1));
-         }
-      }
-
    }
 
    public boolean canBeLeader() {
@@ -907,10 +803,6 @@ public abstract class AbstractZurEntity extends AgeableZurEntity {
 
    public void writeAdditional(CompoundNBT compound) {
       super.writeAdditional(compound);
-      MerchantOffers merchantoffers = this.getOffers();
-      if (!merchantoffers.isEmpty()) {
-         compound.put("Offers", merchantoffers.write());
-      }
 
       compound.putBoolean("rewardExp", this.doesRewardEXP);
       compound.putByte("FoodLevel", this.foodLevel);
@@ -920,7 +812,6 @@ public abstract class AbstractZurEntity extends AgeableZurEntity {
          compound.putBoolean("IsBaby", true);
       }
 
-      compound.put("Inventory", this.zurInventory.write());
       compound.putShort("SleepTimer", (short)this.sleepTimer);
       compound.putFloat("XpP", this.experience);
       compound.putInt("XpLevel", this.experienceLevel);
@@ -928,23 +819,11 @@ public abstract class AbstractZurEntity extends AgeableZurEntity {
       compound.putInt("XpSeed", this.xpSeed);
    }
 
-   private int getFoodValueFromInventory() {
-      Inventory inventory = this.getZurInventory();
-      return FOOD_VALUES.entrySet().stream().mapToInt((p_226553_1_) -> inventory.count(p_226553_1_.getKey()) * p_226553_1_.getValue()).sum();
-   }
-
-   public boolean canBreed() {
-      return this.foodLevel + this.getFoodValueFromInventory() >= 12 && this.getGrowingAge() == 0;
-   }
-
    /**
     * (abstract) Protected helper method to read subclass entity data from NBT.
     */
    public void readAdditional(CompoundNBT compound) {
       super.readAdditional(compound);
-      if (compound.contains("Offers", 10)) {
-         this.offers = new MerchantOffers(compound.getCompound("Offers"));
-      }
 
       if (dataTag.contains("rewardExp", 1)) {
          this.doesRewardEXP = dataTag.getBoolean("rewardExp");
@@ -958,7 +837,6 @@ public abstract class AbstractZurEntity extends AgeableZurEntity {
          this.xp = compound.getInt("Xp");
       }
 
-      this.zurInventory.read(compound.getList("Inventory", 10));
       this.experience = compound.getFloat("XpP");
       this.experienceLevel = compound.getInt("XpLevel");
       this.experienceTotal = compound.getInt("XpTotal");
@@ -972,30 +850,6 @@ public abstract class AbstractZurEntity extends AgeableZurEntity {
       }
 
       this.setGrowingAge(Math.max(0, this.getGrowingAge()));
-   }
-
-   public void resetBrain(ServerWorld serverWorldIn) {
-      Brain<AbstractZurEntity> brain = (Brain<AbstractZurEntity>) this.getBrain();
-      brain.stopAllTasks(serverWorldIn, this);
-      this.brain = brain.copy();
-   }
-
-   @Nullable
-   public Entity changeDimension(ServerWorld server, net.minecraftforge.common.util.ITeleporter teleporter) {
-      this.resetCustomer();
-      return super.changeDimension(server, teleporter);
-   }
-
-   protected void resetCustomer() {
-      this.setCustomer(null);
-   }
-
-   /**
-    * Called when the mob's health reaches 0.
-    */
-   public void onDeath(DamageSource cause) {
-      super.onDeath(cause);
-      this.resetCustomer();
    }
 
    @OnlyIn(Dist.CLIENT)
@@ -1013,21 +867,12 @@ public abstract class AbstractZurEntity extends AgeableZurEntity {
       return false;
    }
 
-   public Inventory getZurInventory() {
-      return this.zurInventory;
-   }
-
    public boolean replaceItemInInventory(int inventorySlot, ItemStack itemStackIn) {
       if (super.replaceItemInInventory(inventorySlot, itemStackIn)) {
          return true;
       } else {
          int i = inventorySlot - 300;
-         if (i >= 0 && i < this.zurInventory.getSizeInventory()) {
-            this.zurInventory.setInventorySlotContents(i, itemStackIn);
-            return true;
-         } else {
-            return false;
-         }
+         return i >= 0;
       }
    }
 
@@ -1122,7 +967,7 @@ public abstract class AbstractZurEntity extends AgeableZurEntity {
    }
 
    public void handleDespawn() {
-      if (this.despawnDelay > 0 && !this.hasCustomer() && --this.despawnDelay == 0) {
+      if (this.despawnDelay > 0 && --this.despawnDelay == 0) {
          this.remove();
       }
 

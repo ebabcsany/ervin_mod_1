@@ -2,14 +2,14 @@ package com.babcsany.minecraft.ervin_mod_1.entity.monster;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.AbstractZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.AgeableZurEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.villager.TraderNirtreEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.trigger.CriteriaTriggers1;
+import com.babcsany.minecraft.ervin_mod_1.entity.villager.TraderNirtreEntity;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.food.isBurnableFoodItemInit;
 import net.minecraft.block.BedBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.SpawnReason;
@@ -28,7 +28,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
-import net.minecraft.util.*;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IWorld;
@@ -40,7 +40,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.UUID;
 
-public class ZurNirtreEntity extends AbstractZurEntity {
+public class ZurNirtreEntity extends AgeableEntity {
    private static final DataParameter<Boolean> CONVERTING = EntityDataManager.createKey(ZurNirtreEntity.class, DataSerializers.BOOLEAN);
    private int conversionTime;
    private UUID converstionStarter;
@@ -58,11 +58,6 @@ public class ZurNirtreEntity extends AbstractZurEntity {
    protected void registerData() {
       super.registerData();
       this.dataManager.register(CONVERTING, false);
-   }
-
-   @Override
-   protected void populateTradeZurData() {
-
    }
 
    public void writeAdditional(CompoundNBT compound) {
@@ -112,15 +107,6 @@ public class ZurNirtreEntity extends AbstractZurEntity {
       }
 
       super.tick();
-   }
-
-   @Override
-   public void applyWaveBonus(int p_213660_1_, boolean p_213660_2_) {
-
-   }
-
-   protected boolean shouldDrown() {
-      return false;
    }
 
    public boolean canDespawn(double distanceToClosestPlayer) {
@@ -279,9 +265,13 @@ public class ZurNirtreEntity extends AbstractZurEntity {
    }
 
    @Nullable
-   @Override
-   public AgeableZurEntity createChild(AgeableZurEntity ageable) {
+   public AgeableEntity createChild(AgeableEntity ageable) {
       return null;
+   }
+
+   @Nullable
+   public AgeableEntity createChild(AgeableZurEntity ageable) {
+      return EntityInit.ZUR_ENTITY.get().create(this.world);
    }
 
    /*public void setVillagerData(VillagerData p_213792_1_) {

@@ -1,14 +1,12 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.monster;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.EatPumpkinGoal;
-import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.ZurTradeWithPlayerGoal;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.AbstractZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.AgeableZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.goal.PlaceBlockGoal;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.goal.TakeBlockGoal;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.TraderNirtreEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.WanderingTraderNirtreEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.ZurTrades;
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.food.SpecialBlockFoodItemInit;
@@ -17,7 +15,6 @@ import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.minecraft.block.MinecraftBlocks;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.ImmutableSet;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
@@ -35,8 +32,9 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.entity.projectile.ProjectileHelper;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.*;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraft.network.DebugPacketSender;
@@ -109,7 +107,6 @@ public class ZurEntity extends AbstractZurEntity {
       this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
       this.goalSelector.addGoal(15, new UseItemGoal<>(this, new ItemStack(SpecialBlockFoodItemInit.FIRG.get()), SoundEvents.AMBIENT_UNDERWATER_LOOP, (zur) -> this.world.isDaytime() && zur.isInvisible()));
       this.goalSelector.addGoal(15, new UseItemGoal<>(this, new ItemStack(isBurnableFoodItemInit.TIRKS.get()), SoundEvents.AMBIENT_UNDERWATER_LOOP, (zur) -> this.world.isDaytime() && zur.isInvisible()));
-      this.goalSelector.addGoal(6, new ZurTradeWithPlayerGoal(this));
       this.goalSelector.addGoal(7, new ZurEntity.SitGoal());
       this.applyEntityAI();
    }
@@ -337,11 +334,6 @@ public class ZurEntity extends AbstractZurEntity {
       return true;
    }
 
-   @Override
-   public boolean func_223340_ej() {
-      return super.func_223340_ej();
-   }
-
    public class PounceGoal extends net.minecraft.entity.ai.goal.JumpGoal {
       public PounceGoal(ZurEntity zurEntity) {
          super();
@@ -482,8 +474,10 @@ public class ZurEntity extends AbstractZurEntity {
       this.dataManager.set(field_213429_bH, p_213415_1_);
    }
 
-   public boolean canBreed() {
-      return this.foodLevel + this.getFoodValueFromInventory() >= 12 && this.getGrowingAge() == 0;
+   @Nullable
+   @Override
+   public AgeableEntity createChild(AgeableEntity ageable) {
+      return EntityInit.ZUR_ENTITY.get().create(this.world);
    }
 
    @Nullable
@@ -537,77 +531,8 @@ public class ZurEntity extends AbstractZurEntity {
 
    }
 
-   protected void updateEquipmentIfNeeded(ItemEntity itemEntity) {
-      ItemStack itemstack = itemEntity.getItem();
-      if (this.func_230293_i_(itemstack)) {
-         Inventory inventory = this.getZurInventory();
-         boolean flag = inventory.func_233541_b_(itemstack);
-         if (!flag) {
-            return;
-         }
-
-         this.triggerItemPickupTrigger(itemEntity);
-         this.onItemPickup(itemEntity, itemstack.getCount());
-         ItemStack itemstack1 = inventory.addItem(itemstack);
-         if (itemstack1.isEmpty()) {
-            itemEntity.remove();
-         } else {
-            itemstack.setCount(itemstack1.getCount());
-         }
-      }
-
-   }
-
    private boolean func_223344_ex() {
       return this.foodLevel < 12;
-   }
-
-   private void func_213765_en() {
-      if (this.func_223344_ex() && this.getFoodValueFromInventory() != 0) {
-         for(int i = 0; i < this.getZurInventory().getSizeInventory(); ++i) {
-            ItemStack itemstack = this.getZurInventory().getStackInSlot(i);
-            if (!itemstack.isEmpty()) {
-               Integer integer = FOOD_VALUES.get(itemstack.getItem());
-               if (integer != null) {
-                  int j = itemstack.getCount();
-
-                  for(int k = j; k > 0; --k) {
-                     this.foodLevel = (byte)(this.foodLevel + integer);
-                     this.getZurInventory().decrStackSize(i, 1);
-                     if (!this.func_223344_ex()) {
-                        return;
-                     }
-                  }
-               }
-            }
-         }
-
-      }
-   }
-
-   public boolean canAbondonItems() {
-      return this.getFoodValueFromInventory() >= 24;
-   }
-
-   public boolean wantsMoreFood() {
-      return this.getFoodValueFromInventory() < 12;
-   }
-
-   /**
-    * @return calculated food value from item stacks in this zur's inventory
-    */
-   private int getFoodValueFromInventory() {
-      Inventory inventory = this.getZurInventory();
-      return FOOD_VALUES.entrySet().stream().mapToInt((p_226553_1_) -> inventory.count(p_226553_1_.getKey()) * p_226553_1_.getValue()).sum();
-   }
-
-   public boolean isFarmItemInInventory() {
-      return this.getZurInventory().hasAny(ImmutableSet.of(Items.WHEAT_SEEDS, Items.POTATO, Items.CARROT, Items.BEETROOT_SEEDS));
-   }
-
-   public void func_223346_ep() {
-      this.func_213765_en();
-      this.decrFoodLevel();
    }
 
    private void decrFoodLevel() {
@@ -662,12 +587,10 @@ public class ZurEntity extends AbstractZurEntity {
 
    public void writeAdditional(CompoundNBT compound) {
       super.writeAdditional(compound);
-      MerchantOffers merchantoffers = this.getOffers();
       if (this.zurTarget != null) {
          compound.put("ZurTarget", NBTUtil.writeBlockPos(this.zurTarget));
       }
 
-      compound.put("Inventory", this.zurInventory.write());
       compound.putInt("InWaterTime", this.isInWater() ? this.inWaterTime : -1);
       compound.putInt("DrownedConversionTime", this.isDrowning() ? this.drownedConversionTime : -1);
    }
@@ -758,21 +681,6 @@ public class ZurEntity extends AbstractZurEntity {
 
    public void setHeldBlockState(@Nullable BlockState state) {
       this.dataManager.set(CARRIED_BLOCK, Optional.ofNullable(state));
-   }
-
-   protected void populateTradeZurData() {
-      ZurTrades.ITrade[] aZurTrades$iTrade = ZurTrades.field_221240_b.get(1);
-      if (aZurTrades$iTrade != null) {
-         MerchantOffers merchantoffers = this.getOffers();
-         this.addTrades(merchantoffers, aZurTrades$iTrade, 10);
-         int i = this.rand.nextInt(aZurTrades$iTrade.length);
-         ZurTrades.ITrade zurTrades$iTrade = aZurTrades$iTrade[i];
-         MerchantOffer merchantoffer = zurTrades$iTrade.getOffer(this, this.rand);
-         if (merchantoffer != null) {
-            merchantoffers.add(merchantoffer);
-         }
-
-      }
    }
 
    @Nullable
