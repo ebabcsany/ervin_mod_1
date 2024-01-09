@@ -99,6 +99,7 @@ public class Init {
     }
 
     public static void default_register(IEventBus modEventBus) {
+        BlockInit.REGISTER_BLOCKS.register(modEventBus);
         BlockInit BLOCKS = BlockInit.BLOCKS;
         BlockItemInit BLOCK_ITEMS = BlockItemInit.BLOCK_ITEMS;
         EntityInit ENTITIES = EntityInit.ENTITIES;
