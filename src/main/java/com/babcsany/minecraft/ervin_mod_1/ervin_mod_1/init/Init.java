@@ -60,7 +60,7 @@ public class Init {
         com.babcsany.minecraft.ervin_mod_1.init.DecoratorInit.DECORATORS.register(modEventBus);
         com.babcsany.minecraft.ervin_mod_1.init.EntityInit.ENTITY_TYPES.register(modEventBus);
         com.babcsany.minecraft.ervin_mod_1.init.FeatureInit.FEATURES.register(modEventBus);
-        BrefkStageItemInit.BREFK.register(modEventBus);
+        BrefkStageItemInit.BREFK_STAGE.register(modEventBus);
         FoodItemInit.FOODS.register(modEventBus);
         //FluidBucketInit.FLUID_BUCKETS.register(modEventBus);
         com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit.ITEMS.register(modEventBus);
