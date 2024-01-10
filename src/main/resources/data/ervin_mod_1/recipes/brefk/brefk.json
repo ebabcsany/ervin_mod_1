@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "ervin_mod_1:brefk/brefk_stage255"
+    },
+    {
+      "item": "minecraft:milk_bucket"
+    },
+    {
+      "item": "minecraft:milk_bucket"
+    }
+  ],
+  "result": {
+    "item": "ervin_mod_1:brefk",
+    "count": 1
+  }
+}

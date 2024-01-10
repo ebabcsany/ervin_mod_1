@@ -43,7 +43,7 @@ public abstract class ItemGroup {
    public static final net.minecraft.item.ItemGroup BREFK = new net.minecraft.item.ItemGroup(16, "brefk") {
       @OnlyIn(Dist.CLIENT)
       public ItemStack createIcon() {
-         return new ItemStack(BrefkStageItemInit.BREFK_STAGE255.get());
+         return new ItemStack(BrefkStageItemInit.BREFK.get());
       }
    };
    public static final net.minecraft.item.ItemGroup ERVIN_MOD_1_SPAWN_EGGS = new net.minecraft.item.ItemGroup(17, "ervin_mod_1_spawn_eggs") {
