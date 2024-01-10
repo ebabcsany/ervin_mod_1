@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shapeless",
+  "group": "brefk",
   "ingredients": [
     {
       "item": "ervin_mod_1:brefk/brefk_stage255"

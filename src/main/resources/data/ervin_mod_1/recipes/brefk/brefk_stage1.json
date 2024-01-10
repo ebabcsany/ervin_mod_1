@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "brefk",
+  "pattern": [
+    "###",
+    "#O#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:milk_bucket"
+    },
+    "O": {
+      "item": "ervin_mod_1:brefk/brefk_stage255"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:brefk/brefk_stage1",
+    "count": 1
+  }
+}
