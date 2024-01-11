@@ -16,7 +16,6 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.particles.IParticleData;
-import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
@@ -40,8 +39,6 @@ public abstract class TraderZurEntity extends TameableZurEntity implements INPC,
 
    public TraderZurEntity(EntityType<? extends TraderZurEntity> type, World worldIn) {
       super(type, worldIn);
-      this.setPathPriority(PathNodeType.DANGER_FIRE, 16.0F);
-      this.setPathPriority(PathNodeType.DAMAGE_FIRE, -1.0F);
    }
 
    public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {

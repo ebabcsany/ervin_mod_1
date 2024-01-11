@@ -2,7 +2,6 @@ package com.babcsany.minecraft.ervin_mod_1.entity.trigger;
 
 import com.babcsany.minecraft.ervin_mod_1.block.trader_block.TraderBlockTrigger;
 import com.babcsany.minecraft.ervin_mod_1.entity.CuredZurNirtreTrigger;
-import com.babcsany.minecraft.ervin_mod_1.entity.ai.BredZurTrigger;
 import com.babcsany.minecraft.ervin_mod_1.entity.trigger.hhij.BredHhijTrigger;
 import com.babcsany.minecraft.ervin_mod_1.entity.trigger.hhij.TameHhijAnimalTrigger;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.trigger.*;
@@ -33,7 +32,6 @@ public class CriteriaTriggers1 {
    public static final SummonedEntityTrigger SUMMONED_ENTITY = register(new SummonedEntityTrigger());
    public static final BredAnimalsTrigger BRED_ANIMALS = register(new BredAnimalsTrigger());
    public static final BredHhijTrigger BRED_HHIJ = register(new BredHhijTrigger());
-   public static final BredZurTrigger BRED_ZUR_ENTITY = register(new BredZurTrigger());
    public static final PositionTrigger LOCATION = register(new PositionTrigger(new ResourceLocation("location")));
    public static final PositionTrigger SLEPT_IN_BED = register(new PositionTrigger(new ResourceLocation("slept_in_bed")));
    public static final CuredZombieVillagerTrigger CURED_ZOMBIE_VILLAGER = register(new CuredZombieVillagerTrigger());
