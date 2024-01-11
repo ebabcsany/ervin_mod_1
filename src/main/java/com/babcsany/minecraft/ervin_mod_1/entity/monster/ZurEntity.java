@@ -24,6 +24,7 @@ import net.minecraft.entity.ai.brain.schedule.Schedule;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.monster.CreeperEntity;
+import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.entity.projectile.ProjectileHelper;
@@ -54,7 +55,7 @@ import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public class ZurEntity extends AgeableEntity {
+public class ZurEntity extends MonsterEntity {
    private static final DataParameter<Boolean> field_234408_bu_ = EntityDataManager.createKey(ZurEntity.class, DataSerializers.BOOLEAN);
    private static final DataParameter<Boolean> field_213428_bH = EntityDataManager.createKey(ZurEntity.class, DataSerializers.BOOLEAN);
    private static final DataParameter<Boolean> field_213428_bG = EntityDataManager.createKey(ZurEntity.class, DataSerializers.BOOLEAN);
@@ -450,8 +451,7 @@ public class ZurEntity extends AgeableEntity {
    }
 
    @Nullable
-   @Override
-   public AgeableEntity createChild(AgeableEntity ageable) {
+   public CreatureEntity createChild(CreatureEntity creature) {
       return EntityInit.ZUR_ENTITY.get().create(this.world);
    }
 
@@ -506,28 +506,6 @@ public class ZurEntity extends AgeableEntity {
 
    }
 
-   private boolean func_223344_ex() {
-      return this.foodLevel < 12;
-   }
-
-   private void decrFoodLevel() {
-      this.foodLevel = (byte)(this.foodLevel - 12);
-   }
-
-   private boolean func_234433_eX_() {
-      return this.dataManager.get(field_234409_bv_);
-   }
-
-   public void setCharging(boolean isCharging) {
-      this.dataManager.set(field_234409_bv_, isCharging);
-   }
-
-   protected boolean func_234440_o_(ItemStack p_234440_1_) {
-      EquipmentSlotType equipmentslottype = MobEntity.getSlotForItemStack(p_234440_1_);
-      ItemStack itemstack = this.getItemStackFromSlot(equipmentslottype);
-      return this.shouldExchangeEquipment(p_234440_1_, itemstack);
-   }
-
    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
       return SoundEvents.ENTITY_GENERIC_HURT;
    }
@@ -542,22 +520,6 @@ public class ZurEntity extends AgeableEntity {
 
    protected void playStepSound(BlockPos pos, BlockState blockIn) {
       this.playSound(this.getStepSound(), 0.15F, 1.0F);
-   }
-
-   private boolean func_234431_eV_() {
-      return this.getDataManager().get(field_234408_bu_);
-   }
-
-   public boolean func_234423_eL_() {
-      return !this.world.func_230315_m_().func_241509_i_() && !this.func_234431_eV_() && !this.isAIDisabled();
-   }
-
-   public void func_234442_u_(boolean p_234442_1_) {
-      this.dataManager.set(field_213428_bH, p_234442_1_);
-   }
-
-   protected void func_241417_a_(SoundEvent p_241417_1_) {
-      this.playSound(p_241417_1_, this.getSoundVolume(), this.getSoundPitch());
    }
 
    public void writeAdditional(CompoundNBT compound) {
@@ -599,16 +561,8 @@ public class ZurEntity extends AgeableEntity {
       }
    }
 
-   /*public static boolean func_234351_b_(EntityType<ZurEntity> p_234351_0_, IWorld p_234351_1_, SpawnReason p_234351_2_, BlockPos p_234351_3_, Random p_234351_4_) {
-      return p_234351_1_.getDifficulty() != Difficulty.PEACEFUL;
-   }*/
-
    public boolean canEquipItem(ItemStack stack) {
       return (stack.getItem() != Items.EGG || !this.isChild() || !this.isPassenger()) && super.canEquipItem(stack);
-   }
-
-   public static boolean func_241399_a_(Random p_241399_0_) {
-      return p_241399_0_.nextFloat() < net.minecraftforge.common.ForgeConfig.SERVER.zombieBabyChance.get();
    }
 
    public double getYOffset() {
