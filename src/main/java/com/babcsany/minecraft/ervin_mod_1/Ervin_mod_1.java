@@ -19,10 +19,7 @@ import com.babcsany.minecraft.ervin_mod_1.item.group.ItemGroup;
 import com.babcsany.minecraft.ervin_mod_1.world.gen.FeatureGen;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntitySpawnPlacementRegistry;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.fish.AbstractFishEntity;
@@ -106,13 +103,11 @@ public class Ervin_mod_1 {
         DeferredWorkQueue.runLater(() -> {
             GlobalEntityTypeAttributes.put(EntityInit.LIWRAY.get(), Liwray.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(EntityInit.GWURST.get(), GwurstEntity.setCustomAttributes().create());
-            //GlobalEntityTypeAttributes.put(EntityInit.PLAYER1, PlayerEntity.registerAttributes().create());
-            GlobalEntityTypeAttributes.put(EntityInit.ZUR_ENTITY.get(), ZurEntity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(EntityInit.ROVENT_ENTITY.get(), RoventEntity.func_234342_eQ_().create());
             GlobalEntityTypeAttributes.put(EntityInit.ZUR_NIRTRE_ENTITY.get(), ZurNirtreEntity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(EntityInit.FREIN_ENTITY.get(), FreinEntity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(EntityInit.VILT_ENTITY.get(), ViltEntity.setCustomAttributes().create());
-            GlobalEntityTypeAttributes.put(com.babcsany.minecraft.init.EntityInit.SRACH_ENTITY, SrachEntity.setCustomAttributes().create());
+            GlobalEntityTypeAttributes.put(EntityInit.SRACH_ENTITY.get(), SrachEntity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(EntityInit.SHERT_ENTITY.get(), ShertEntity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(EntityInit.HHIJ_ENTITY.get(), HhijEntity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(EntityInit.WANDERING_TRADER_NIRTRE_ENTITY.get(), WanderingTraderNirtreEntity.setCustomAttributes().create());
@@ -120,6 +115,7 @@ public class Ervin_mod_1 {
             GlobalEntityTypeAttributes.put(EntityInit.TRADER_NIRTRE1_ENTITY.get(), TraderNirtre1Entity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(EntityInit.$_TRADER_ENTITY.get(), $TraderEntity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(EntityInit.ZOMBIE_TRADER_ENTITY.get(), ZombieTraderEntity.setCustomAttributes().create());
+            GlobalEntityTypeAttributes.put(EntityInit.ZUR_ENTITY.get(), ZurEntity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(EntityInit.GUBROV.get(), GubrovEntity.setCustomAttributes().create());
             EntitySpawnPlacementRegistry.register(EntityInit.$_TRADER_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, Abstract$TraderEntity::canSpawnOn);
             EntitySpawnPlacementRegistry.register(EntityInit.DRURB_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canSpawnOn);
@@ -137,7 +133,6 @@ public class Ervin_mod_1 {
             EntitySpawnPlacementRegistry.register(EntityInit.LIWRAY.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canSpawnOn);
             EntitySpawnPlacementRegistry.func_209342_b(EntityInit.LIWRAY.get());
             EntitySpawnPlacementRegistry.func_209342_b(EntityInit.ZUR_ENTITY.get());
-            //EntitySpawnPlacementRegistry.canSpawnEntity(EntityInit.LIWRAY, iWorld, SpawnReason.SPAWN_EGG, BlockPos.ZERO, new Random());
             EntitySpawnPlacementRegistry.getPlacementType(EntityInit.LIWRAY.get());
             EntitySpawnPlacementRegistry.getPlacementType(EntityInit.ZUR_ENTITY.get());
 
