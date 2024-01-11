@@ -15,7 +15,6 @@ import com.babcsany.minecraft.ervin_mod_1.init.item.special.isBurnableSpecialIte
 import com.babcsany.minecraft.ervin_mod_1.init.item.tool.isBurnableToolItemInit;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import net.minecraft.block.BedBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
@@ -47,10 +46,8 @@ import net.minecraft.pathfinding.Path;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.pathfinding.SwimmerPathNavigator;
 import net.minecraft.potion.*;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.*;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
@@ -1178,38 +1175,11 @@ public abstract class AbstractZurEntity extends AgeableEntity {
        * method as well.
        */
       public boolean shouldExecute() {
-         if (this.tameableEntity.func_233685_eM_()) {
-            return false;
-         } else {
-            LivingEntity livingentity = this.zurEntity.getOwner();
-            if (livingentity instanceof PlayerEntity) {
-               this.owner = (PlayerEntity)livingentity;
-               if (!livingentity.isSleeping()) {
-                  return false;
-               }
-
-               if (this.zurEntity.getDistanceSq(this.owner) > 100.0D) {
-                  return false;
-               }
-
-               BlockPos blockpos = this.owner.getPosition();
-               BlockState blockstate = this.zurEntity.world.getBlockState(blockpos);
-               if (blockstate.getBlock().isIn(BlockTags.BEDS)) {
-                  this.bedPos = blockstate.func_235903_d_(BedBlock.HORIZONTAL_FACING).map((p_234186_1_) -> blockpos.offset(p_234186_1_.getOpposite())).orElseGet(() -> new BlockPos(blockpos));
-                  return !this.func_220805_g();
-               }
-            }
-
-            return false;
-         }
+         return false;
       }
 
       private boolean func_220805_g() {
-         for(ZurEntity zur : this.zurEntity.world.getEntitiesWithinAABB(ZurEntity.class, (new AxisAlignedBB(this.bedPos)).grow(2.0D))) {
-            if (zur != this.zurEntity && (zur.func_213416_eg())) {
-               return true;
-            }
-         }
+
 
          return false;
       }
@@ -1218,7 +1188,7 @@ public abstract class AbstractZurEntity extends AgeableEntity {
        * Returns whether an in-progress EntityAIBase should continue executing
        */
       public boolean shouldContinueExecuting() {
-         return !this.tameableEntity.func_233685_eM_() && this.owner != null && this.owner.isSleeping() && this.bedPos != null && !this.func_220805_g();
+         return !this.tameableEntity.func_233685_eM_() && this.owner != null && this.owner.isSleeping() && this.bedPos != null;
       }
 
       /**
@@ -1236,14 +1206,12 @@ public abstract class AbstractZurEntity extends AgeableEntity {
        * Reset the task's internal state. Called when this task is interrupted by another one
        */
       public void resetTask() {
-         this.zurEntity.func_213419_u(false);
          float f = this.zurEntity.world.getCelestialAngle(1.0F);
          if (this.owner.getSleepTimer() >= 100 && (double)f > 0.77D && (double)f < 0.8D && (double)this.zurEntity.world.getRandom().nextFloat() < 0.7D) {
             this.func_220804_h();
          }
 
          this.tickCounter = 0;
-         this.zurEntity.func_213415_v(false);
          this.zurEntity.getNavigator().clearPath();
       }
 
@@ -1271,15 +1239,7 @@ public abstract class AbstractZurEntity extends AgeableEntity {
             this.zurEntity.getNavigator().tryMoveToXYZ(this.bedPos.getX(), (double)this.bedPos.getY(), (double)this.bedPos.getZ(), (double)1.1F);
             if (this.zurEntity.getDistanceSq(this.owner) < 2.5D) {
                ++this.tickCounter;
-               if (this.tickCounter > 16) {
-                  this.zurEntity.func_213419_u(true);
-                  this.zurEntity.func_213415_v(false);
-               } else {
-                  this.zurEntity.faceEntity(this.owner, 45.0F, 45.0F);
-                  this.zurEntity.func_213415_v(true);
-               }
             } else {
-               this.zurEntity.func_213419_u(false);
             }
          }
 
