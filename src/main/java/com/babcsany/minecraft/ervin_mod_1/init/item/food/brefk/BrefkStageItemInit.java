@@ -269,12 +269,12 @@ public class BrefkStageItemInit {
     public static final RegistryObject<Item> BREFK_STAGE255 = registerBrefkStage("255", BREFK_STAGE254);
     public static final RegistryObject<Item> BREFK = registerBrefk("brefk", BREFK_STAGE255.get());
 
-    private static RegistryObject<Item> registerBrefkStage(String brefkStageNameIn, RegistryObject<Item> containerItemIn) {
-        return registerBrefk("brefk_stage" + brefkStageNameIn, containerItemIn.get());
-    }
-
-    private static RegistryObject<Item> registerBrefk(String brefkNameIn, Item containerItemIn) {
+    public static RegistryObject<Item> registerBrefk(String brefkNameIn, Item containerItemIn) {
         String name = brefkNameIn.isEmpty() ? brefkNameIn : "/" + brefkNameIn;
         return BREFK_STAGE.register("brefk" + name, () -> new Item((new Item.Properties()).containerItem(containerItemIn).food(Foods.BREFK).group(ItemGroup.BREFK)));
+    }
+
+    public static RegistryObject<Item> registerBrefkStage(String brefkStageNameIn, RegistryObject<Item> containerItemIn) {
+        return registerBrefk("brefk_stage" + brefkStageNameIn, containerItemIn.get());
     }
 }
