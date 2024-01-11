@@ -95,5 +95,5 @@ public class BlockInit {
     public static final RegistryObject<Block> COAL_SLAB = BLOCKS.register("coal_slab", () -> new CoalSlab(Block.Properties.create(Material.ROCK, MaterialColor.BLACK).setRequiresTool().harvestLevel(0).harvestTool(ToolType.PICKAXE).hardnessAndResistance(6.0F, 6.0F)));
     public static final RegistryObject<Block> CHARCOAL_SLAB = BLOCKS.register("charcoal_slab", () -> new CharcoalSlab(Block.Properties.create(Material.ROCK).setRequiresTool().harvestLevel(0).harvestTool(ToolType.PICKAXE).hardnessAndResistance(6.0F, 6.0F)));
     public static final RegistryObject<Block> CHARCOAL_STAIRS = BLOCKS.register("charcoal_stairs", () -> new CharcoalStairs(() -> CHARCOAL_BLOCK.get().getDefaultState(), Block.Properties.from(CHARCOAL_BLOCK.get())));
-    public static final RegistryObject<Block> FI_RT_PLOCK = BLOCKS.register("lc/blocks/fi°rt_plock", () -> new Fi_rt_plock(Block.Properties.create(Material.ROCK).setRequiresTool().hardnessAndResistance(5000000000.0F, 6.0F)));
+    public static final RegistryObject<Block> FI_RT_PLOCK = BLOCKS.register("lc/blocks/fi_rt_plock", () -> new Fi_rt_plock(Block.Properties.create(Material.ROCK).setRequiresTool().hardnessAndResistance(5000000000.0F, 6.0F)));
 }
