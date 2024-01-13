@@ -9,6 +9,7 @@ import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurNirtreEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.*;
 import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.init.Init;
+import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.setup.ModSetup;
 import com.babcsany.minecraft.ervin_mod_1.init.BiomeInit;
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
@@ -90,6 +91,7 @@ public class Ervin_mod_1 {
         MinecraftForge.EVENT_BUS.register(this);
 
         new Init();
+        new ModSetup();
     }
 
     public static void Class(Class<?>... class$) {

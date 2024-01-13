@@ -26,7 +26,7 @@ public class ModSpawnEggItemInit {
     public static final RegistryObject<SpawnEggItem> VILT_SPAWN_EGG = SPAWN_EGGS.register("spawn_eggs/vilt_spawn_egg", () -> new ModSpawnEggItem(EntityInit.VILT_ENTITY, 0xc02020, 0xc02020, new Item.Properties().group(ItemGroup.ERVIN_MOD_1_SPAWN_EGGS)));
     public static final RegistryObject<SpawnEggItem> WANDERING_TRADER_NIRTRE_SPAWN_EGG = SPAWN_EGGS.register("spawn_eggs/wandering_trader_nirtre_spawn_egg", () -> new ModSpawnEggItem(EntityInit.WANDERING_TRADER_NIRTRE_ENTITY, 0x503c28, 0x283c50, new Item.Properties().group(ItemGroup.ERVIN_MOD_1_SPAWN_EGGS)));
     public static final RegistryObject<SpawnEggItem> ZOMBIE_TRADER_SPAWN_EGG = SPAWN_EGGS.register("spawn_eggs/zombie_trader_spawn_egg", () -> new ModSpawnEggItem(EntityInit.ZOMBIE_TRADER_ENTITY, 0x40c080, 0x20a0c0, new Item.Properties().group(ItemGroup.ERVIN_MOD_1_SPAWN_EGGS)));
-    public static final RegistryObject<SpawnEggItem> ZUR_SPAWN_EGG = SPAWN_EGGS.register("spawn_eggs/zur_spawn_egg", () -> new ModSpawnEggItem(EntityInit.ZOMBIE_TRADER_ENTITY, 0x40c080, 0x20a0c0, new Item.Properties().group(ItemGroup.ERVIN_MOD_1_SPAWN_EGGS)));
+    public static final RegistryObject<SpawnEggItem> ZUR_SPAWN_EGG = SPAWN_EGGS.register("spawn_eggs/zur_spawn_egg", () -> new ModSpawnEggItem(EntityInit.ZUR_ENTITY, 0x40c080, 0x20a0c0, new Item.Properties().group(ItemGroup.ERVIN_MOD_1_SPAWN_EGGS)));
     public static final RegistryObject<SpawnEggItem> ROVENT_SPAWN_EGG = SPAWN_EGGS.register("spawn_eggs/rovent_spawn_egg", () -> new ModSpawnEggItem(EntityInit.ROVENT_ENTITY, 0x244830, 0x28384e, new Item.Properties()));
 
     private static Item register(String key, Item itemIn) {
