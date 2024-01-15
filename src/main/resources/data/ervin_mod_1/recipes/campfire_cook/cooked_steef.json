@@ -1,9 +1,9 @@
 {
   "type": "minecraft:campfire_cooking",
   "ingredient": {
-    "item": "ervin_mod_1:steef"
+    "item": "ervin_mod_1:meat/steef"
   },
-  "result": "ervin_mod_1:cooked_steef",
+  "result": "ervin_mod_1:meat/cooked_steef",
   "experience": 0.35,
   "cookingtime": 600
 }

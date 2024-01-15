@@ -1,10 +1,11 @@
 package com.babcsany.minecraft.ervin_mod_1.init.item;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
-import com.babcsany.minecraft.ervin_mod_1.entity.item.ModBoatEntityhj;
-import com.babcsany.minecraft.ervin_mod_1.item.*;
+import com.babcsany.minecraft.ervin_mod_1.item.BurningItem;
+import com.babcsany.minecraft.ervin_mod_1.item.HuihkRodItem;
+import com.babcsany.minecraft.ervin_mod_1.item.TeratBucket;
 import com.babcsany.minecraft.ervin_mod_1.item.group.ItemGroup;
-import net.minecraft.item.*;
+import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;

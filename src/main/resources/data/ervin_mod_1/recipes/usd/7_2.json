@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "usd",
+  "ingredients": [
+    {
+      "item": "ervin_mod_1:usd/3"
+    },
+    {
+      "item": "ervin_mod_1:usd/4"
+    }
+  ],
+  "result": {
+    "item": "ervin_mod_1:usd/7",
+    "count": 1
+  }
+}
