@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "ervin_mod_1:item/spawn_eggs/USD_trader_spawn_egg"
+    "layer0": "ervin_mod_1:item/spawn_eggs/usd_trader_spawn_egg"
   }
 }
