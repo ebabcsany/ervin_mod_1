@@ -25,34 +25,20 @@ import static net.minecraftforge.api.distmarker.Dist.CLIENT;
 public class Liwray extends AnimalEntity {
     private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(ItemInit.TARG.get());
     public float wingRotation;
-    public float destPos;
     public float wingRotDelta = 1.0F;
     private EatGrassGoal eatGrassGoal;
-    private EatPumpkinGoal eatPumpkinGoal;
     private int eatingGrassTimer;
     public int timeUntilNextItem = this.rand.nextInt(6000) + 6000;
     public boolean liwrayJockey;
-    private Object lightningBolt;
 
     public Liwray(EntityType<? extends Liwray> type, World worldIn) {
         super(type, worldIn);
     }
 
-    /*@Override
-    public AgeableEntity createChild(AgeableEntity ageable) {
-        ZurEntity1 entity = new ZurEntity1(EntityInit.ZUR_ENTITY1.get(), this.world);
-
-        entity.onInitialSpawn(this.world, this.world.getDifficultyForLocation(new BlockPos((IPosition) entity)),
-                SpawnReason.BREEDING, (ILivingEntityData) null, (CompoundNBT) null);
-        entity.setGlowing(true);
-        return entity;
-    }*/
-
     @Override
     protected void registerGoals() {
         super.registerGoals();
         this.eatGrassGoal = new EatGrassGoal(this);
-        this.eatPumpkinGoal = new EatPumpkinGoal(this);
         this.goalSelector.addGoal(0, new SwimGoal(this));
         this.goalSelector.addGoal(1, new PanicGoal(this, 1.25D));
         this.goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
@@ -100,28 +86,6 @@ public class Liwray extends AnimalEntity {
             super.handleStatusUpdate(id);
         }
 
-    }
-
-    @OnlyIn(CLIENT)
-    public float getHeadRotationPointY(float p_70894_1_) {
-        if (this.eatingGrassTimer <= 0) {
-            return 0.0F;
-        } else if (this.eatingGrassTimer >= 4 && this.eatingGrassTimer <= 36) {
-            return 1.0F;
-        } else {
-            return this.eatingGrassTimer < 4 ? ((float) this.eatingGrassTimer - p_70894_1_) / 4.0F
-                    : -((float) (this.eatingGrassTimer - 40) - p_70894_1_) / 4.0F;
-        }
-    }
-
-    @OnlyIn(Dist.CLIENT)
-    public float getHeadRotationAngleX(float p_70890_1_) {
-        if (this.eatingGrassTimer > 4 && this.eatingGrassTimer <= 36) {
-            float f = ((float) (this.eatingGrassTimer - 4) - p_70890_1_) / 32.0F;
-            return ((float) Math.PI / 5F) + 0.21991149F * MathHelper.sin(f * 28.7F);
-        } else {
-            return this.eatingGrassTimer > 0 ? ((float) Math.PI / 5F) : this.rotationPitch * ((float) Math.PI / 180F);
-        }
     }
 
     @Override
