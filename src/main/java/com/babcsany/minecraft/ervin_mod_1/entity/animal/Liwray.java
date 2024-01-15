@@ -26,7 +26,6 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 
 public class Liwray extends AnimalEntity {
-    private static final Ingredient TEMPTATION_ITEMS;
     public float wingRotation;
     public float destPos;
     public float oFlapSpeed;
@@ -45,7 +44,6 @@ public class Liwray extends AnimalEntity {
         this.goalSelector.addGoal(0, new SwimGoal(this));
         this.goalSelector.addGoal(1, new PanicGoal(this, 1.4));
         this.goalSelector.addGoal(2, new BreedGoal(this, 1.0));
-        this.goalSelector.addGoal(3, new TemptGoal(this, 1.0, false, TEMPTATION_ITEMS));
         this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.1));
         this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1.0));
         this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 6.0F));
@@ -109,10 +107,6 @@ public class Liwray extends AnimalEntity {
         return EntityInit.LIWRAY.get().create(this.world);
     }
 
-    public boolean isBreedingItem(ItemStack p_70877_1_) {
-        return TEMPTATION_ITEMS.test(p_70877_1_);
-    }
-
     protected int getExperiencePoints(PlayerEntity p_70693_1_) {
         return this.isLiwrayJockey() ? 10 : super.getExperiencePoints(p_70693_1_);
     }
@@ -155,10 +149,6 @@ public class Liwray extends AnimalEntity {
 
     public void setLiwrayJockey(boolean liwrayJockey) {
         this.liwrayJockey = liwrayJockey;
-    }
-
-    static {
-        TEMPTATION_ITEMS = Ingredient.fromItems(ItemInit.TARG.get());
     }
 }
 
