@@ -15,7 +15,7 @@ public class ModSpawnEggItemInit {
 
     public static final DeferredRegister<Item> SPAWN_EGGS = DeferredRegister.create(ForgeRegistries.ITEMS, Ervin_mod_1.MOD_ID);
 
-    public static final RegistryObject<SpawnEggItem> $_TRADER_SPAWN_EGG = SPAWN_EGGS.register("spawn_eggs/$_trader_spawn_egg", () -> new ModSpawnEggItem(EntityInit.$_TRADER_ENTITY, 0x204080, 0x402080, new Item.Properties().group(ItemGroup.ERVIN_MOD_1_SPAWN_EGGS)));
+    public static final RegistryObject<SpawnEggItem> $_TRADER_SPAWN_EGG = SPAWN_EGGS.register("spawn_eggs/USD_trader_spawn_egg", () -> new ModSpawnEggItem(EntityInit.$_TRADER_ENTITY, 0x204080, 0x402080, new Item.Properties().group(ItemGroup.ERVIN_MOD_1_SPAWN_EGGS)));
     public static final RegistryObject<SpawnEggItem> FREIN_SPAWN_EGG = SPAWN_EGGS.register("spawn_eggs/frein_spawn_egg", () -> new ModSpawnEggItem(EntityInit.FREIN_ENTITY, 0x646464, 0x000000, new Item.Properties().group(ItemGroup.ERVIN_MOD_1_SPAWN_EGGS)));
     public static final RegistryObject<SpawnEggItem> GWURST_SPAWN_EGG = SPAWN_EGGS.register("spawn_eggs/gwurst_spawn_egg", () -> new ModSpawnEggItem(EntityInit.GWURST, 0x202020, 0x804020, new Item.Properties().group(ItemGroup.ERVIN_MOD_1_SPAWN_EGGS)));
     public static final RegistryObject<SpawnEggItem> DRURB_SPAWN_EGG = SPAWN_EGGS.register("spawn_eggs/drurb_spawn_egg", () -> new ModSpawnEggItem(EntityInit.DRURB_ENTITY, 0x202020, 0x804020, new Item.Properties().group(ItemGroup.ERVIN_MOD_1_SPAWN_EGGS)));

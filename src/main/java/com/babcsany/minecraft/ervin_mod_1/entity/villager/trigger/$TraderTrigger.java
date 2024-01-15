@@ -15,7 +15,7 @@ import net.minecraft.loot.LootContext;
 import net.minecraft.util.ResourceLocation;
 
 public class $TraderTrigger extends AbstractCriterionTrigger<$TraderTrigger.Instance> {
-   private static final ResourceLocation ID = new ResourceLocation(Ervin_mod_1.MOD_ID,"$_trader_trade");
+   private static final ResourceLocation ID = new ResourceLocation(Ervin_mod_1.MOD_ID,"USD_trader_trade");
 
    public ResourceLocation getId() {
       return ID;
