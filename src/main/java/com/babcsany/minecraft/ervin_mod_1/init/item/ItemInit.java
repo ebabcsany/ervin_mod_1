@@ -90,7 +90,6 @@ public class ItemInit {
     public static final RegistryObject<Item> RED_IRON_INGOT = ITEMS.register("iron/ingots/red_iron_ingot", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
     public static final RegistryObject<Item> WHITE_IRON_INGOT = ITEMS.register("iron/ingots/white_iron_ingot", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
     public static final RegistryObject<Item> YELLOW_IRON_INGOT = ITEMS.register("iron/ingots/yellow_iron_ingot", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
-    public static final RegistryObject<Item> TARG = ITEMS.register("targ", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
     public static final RegistryObject<Item> GURT = ITEMS.register("gurt", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
     public static final RegistryObject<Item> GURB = ITEMS.register("gurb", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
     public static final RegistryObject<Item> GURK = ITEMS.register("gurk", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));

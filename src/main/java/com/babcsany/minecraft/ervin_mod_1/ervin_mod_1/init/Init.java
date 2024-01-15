@@ -63,7 +63,6 @@ public class Init {
         BrefkStageItemInit.BREFK_STAGE.register(modEventBus);
         FoodItemInit.FOODS.register(modEventBus);
         //FluidBucketInit.FLUID_BUCKETS.register(modEventBus);
-        com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit.ITEMS.register(modEventBus);
         com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit.BURNABLE_ITEMS.register(modEventBus);
         SpecialToolItemInit.BURNABLE_ITEMS.register(modEventBus);
         com.babcsany.minecraft.ervin_mod_1.init.item.tool.ToolItemInit.TOOLS.register(modEventBus);
@@ -87,6 +86,7 @@ public class Init {
         $ItemInit.$.register(modEventBus);
         SeedsItemInit.SEEDS.register(modEventBus);
         com.babcsany.minecraft.ervin_mod_1.init.item.item.ItemInit.ITEMS.register(modEventBus);
+        com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit.ITEMS.register(modEventBus);
         com.babcsany.minecraft.ervin_mod_1.init.item.food.milk.BlockFoodItemInit.FOOD_ITEMS.register(modEventBus);
         com.babcsany.minecraft.ervin_mod_1.init.item.food.milk.FoodItemInit.FOOD_ITEMS.register(modEventBus);
         com.babcsany.minecraft.ervin_mod_1.init.minecraft.block.item.BlockNamedItemInit.BLOCK_ITEMS.register(modEventBus);
