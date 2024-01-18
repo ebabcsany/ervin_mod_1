@@ -126,6 +126,7 @@ public class Ervin_mod_1 {
             EntitySpawnPlacementRegistry.getPlacementType(EntityInit.LIWRAY.get());
             EntitySpawnPlacementRegistry.getPlacementType(EntityInit.ZUR_ENTITY.get());
 
+
         });
 
         DeferredWorkQueue.runLater(FeatureGen::GenerateFeature);
