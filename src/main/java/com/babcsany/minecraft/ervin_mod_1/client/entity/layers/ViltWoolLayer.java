@@ -4,7 +4,6 @@ import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.client.entity.model.ViltEntityModel;
 import com.babcsany.minecraft.ervin_mod_1.client.entity.model.ViltWoolModel;
 import com.babcsany.minecraft.ervin_mod_1.entity.animal.ViltEntity;
-import com.babcsany.minecraft.ervin_mod_1.item.DyeColor1;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.IEntityRenderer;
@@ -32,7 +31,7 @@ public class ViltWoolLayer extends LayerRenderer<ViltEntity, ViltEntityModel<Vil
          if (entitylivingbase1In.hasCustomName() && "jeb_".equals(entitylivingbase1In.getName().getUnformattedComponentText())) {
             int i1 = 25;
             int i = entitylivingbase1In.ticksExisted / 25 + entitylivingbase1In.getEntityId();
-            int j = DyeColor1.values().length;
+            int j = DyeColor.values().length;
             int m = i % j;
             int t = (i + 1) % j;
             float f3 = ((float)(entitylivingbase1In.ticksExisted % 25) + partialTicks) / 25.0F;

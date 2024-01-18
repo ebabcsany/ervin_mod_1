@@ -38,6 +38,7 @@ public class ModDefaultBiomeFeatures {
    private static final BlockState GRASS = Blocks.GRASS.getDefaultState();
    private static final BlockState SOUL_FIRE = Blocks.GRASS.getDefaultState();
    private static final BlockState OBSIDIAN = Blocks.OBSIDIAN.getDefaultState();
+   private static final BlockState AIR = Blocks.AIR.getDefaultState();
    private static final BlockState FIRG = BlockInit.FIRG.get().getDefaultState();
    private static final BlockState NIRTKB = isBurnableBlockItemInit.NIRTKB.get().getDefaultState();
    private static final BlockState SCRAFTH = BlockInit.SCRAFTH.get().getDefaultState();
