@@ -14,33 +14,31 @@ public class ScrafthBiome extends Biome {
 
 	public ScrafthBiome(Builder biomeBuilder) {
 		super(biomeBuilder);
-		/*this.addSpawn(EntityClassification.MISC, new SpawnListEntry(EntityType.VILLAGER, 10, 2, 5));
-		this.addSpawn(EntityClassification.MISC, new SpawnListEntry(EntityType.IRON_GOLEM, 10, 2, 5));
-		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.WANDERING_TRADER, 10, 2, 5));
-		this.addSpawn(EntityClassification.AMBIENT, new SpawnListEntry(EntityType.BAT, 10, 2, 5));
-		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.CAT, 10, 2, 5));
-		this.addSpawn(EntityClassification.WATER_CREATURE, new SpawnListEntry(EntityType.DOLPHIN, 10, 2, 5));
-		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.CHICKEN, 10, 2, 5));
-		this.addSpawn(EntityClassification.WATER_CREATURE, new SpawnListEntry(EntityType.COD, 10, 2, 5));
-		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.COW, 10, 2, 5));
-		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.FOX, 10, 2, 5));
-		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.WOLF, 10, 2, 5));
-		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.PIG, 10, 2, 5));
-		this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityType.ZOMBIE, 10, 2, 5));
-		this.addSpawn(EntityClassification.WATER_CREATURE, new SpawnListEntry(EntityType.SALMON, 10, 2, 5));
-		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.HORSE, 10, 2, 5));
-		this.addSpawn(EntityClassification.WATER_CREATURE, new SpawnListEntry(EntityType.MOOSHROOM, 10, 2, 5));
-		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.MOOSHROOM, 10, 2, 5));
-		this.addSpawn(EntityClassification.WATER_CREATURE, new SpawnListEntry(EntityType.PUFFERFISH, 10, 2, 5));
-		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.SHEEP, 10, 2, 5));
-		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.RABBIT, 10, 2, 5));
-		this.addSpawn(EntityClassification.MISC, new SpawnListEntry(EntityType.PLAYER, 10, 2, 5));
-		this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityType.HUSK, 10, 2, 5));*/
-		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.BEE, 20, 2, 10));
+		this.addSpawn(EntityClassification.MISC, new SpawnListEntry(EntityType.VILLAGER, 1, 2, 5));
+		this.addSpawn(EntityClassification.MISC, new SpawnListEntry(EntityType.IRON_GOLEM, 1, 2, 5));
+		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.WANDERING_TRADER, 1, 2, 5));
+		this.addSpawn(EntityClassification.AMBIENT, new SpawnListEntry(EntityType.BAT, 1, 2, 5));
+		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.CAT, 1, 2, 5));
+		this.addSpawn(EntityClassification.WATER_CREATURE, new SpawnListEntry(EntityType.DOLPHIN, 1, 2, 5));
+		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.CHICKEN, 1, 2, 5));
+		this.addSpawn(EntityClassification.WATER_CREATURE, new SpawnListEntry(EntityType.COD, 1, 2, 5));
+		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.COW, 1, 2, 5));
+		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.FOX, 1, 2, 5));
+		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.WOLF, 1, 2, 5));
+		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.PIG, 1, 2, 5));
+		this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityType.ZOMBIE, 1, 2, 5));
+		this.addSpawn(EntityClassification.WATER_CREATURE, new SpawnListEntry(EntityType.SALMON, 1, 2, 5));
+		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.HORSE, 1, 2, 5));
+		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.MOOSHROOM, 1, 2, 5));
+		this.addSpawn(EntityClassification.WATER_CREATURE, new SpawnListEntry(EntityType.PUFFERFISH, 1, 2, 5));
+		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.SHEEP, 1, 2, 5));
+		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.RABBIT, 1, 2, 5));
+		this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityType.HUSK, 1, 2, 5));
+		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.BEE, 2, 2, 10));
 		this.addCarver(GenerationStage.Carving.AIR,
 				Biome.createCarver(WorldCarver.CAVE, new ProbabilityConfig(0.14285715F)));
 		this.addCarver(GenerationStage.Carving.AIR,
-				Biome.createCarver(WorldCarver.field_236240_b_, new ProbabilityConfig(0.02F)));
+				Biome.createCarver(WorldCarver.field_236240_b_, new ProbabilityConfig(0.09F)));
 		this.addCarver(GenerationStage.Carving.AIR,
 				Biome.createCarver(WorldCarver.CANYON, new ProbabilityConfig(0.7421563921F)));
 

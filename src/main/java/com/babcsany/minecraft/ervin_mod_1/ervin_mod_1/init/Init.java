@@ -31,13 +31,10 @@ import com.babcsany.minecraft.init.*;
 import com.babcsany.minecraft.init.item.ItemInit;
 import com.babcsany.minecraft.init.lc.block.blocks.H_u_fBlockInit;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 public class Init {
 
-    public Init() {
-        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-
+    public Init(IEventBus modEventBus) {
         register(modEventBus);
         default_register(modEventBus);
     }
@@ -105,8 +102,8 @@ public class Init {
         BlockInit BLOCKS = BlockInit.BLOCKS;
         BlockItemInit BLOCK_ITEMS = BlockItemInit.BLOCK_ITEMS;
         EntityInit ENTITIES = EntityInit.ENTITIES;
-        ItemInit ITEMS = ItemInit.ITEMS;
-        FeatureInit FEATURES = FeatureInit.FEATURES;
+        ItemInit.REGISTER_ITEMS.register(modEventBus);
+        FeatureInit.FEATURES.register(modEventBus);
         EffectInit EFFECTS = EffectInit.EFFECTS;
         ParticleInit PARTICLES = ParticleInit.PARTICLES;
         TileEntityInit<?> TILE_ENTITIES = TileEntityInit.TILE_ENTITIES;

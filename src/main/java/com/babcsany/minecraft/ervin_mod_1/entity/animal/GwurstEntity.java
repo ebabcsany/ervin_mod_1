@@ -12,6 +12,7 @@ import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.pathfinding.PathNodeType;
@@ -24,7 +25,7 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 
 public class GwurstEntity extends AnimalEntity {
-   private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(isBurnableItemInit.LEAT.get());
+   private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(Items.PUMPKIN_SEEDS);
    public float wingRotation;
    public float destPos;
    public float oFlapSpeed;
@@ -34,7 +35,7 @@ public class GwurstEntity extends AnimalEntity {
    public int timeUntilNextItem = this.rand.nextInt(14000) + 22000;
    public boolean gwurstJockey;
 
-   public GwurstEntity(EntityType<? extends GwurstEntity> type, World worldIn) {
+   public GwurstEntity(EntityType<GwurstEntity> type, World worldIn) {
       super(type, worldIn);
       this.setPathPriority(PathNodeType.WATER, 0.0F);
    }
@@ -43,7 +44,7 @@ public class GwurstEntity extends AnimalEntity {
       this.goalSelector.addGoal(0, new SwimGoal(this));
       this.goalSelector.addGoal(1, new PanicGoal(this, 1.4D));
       this.goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
-      this.goalSelector.addGoal(3, new TemptGoal(this, 1.0D, false, TEMPTATION_ITEMS));
+//      this.goalSelector.addGoal(3, new TemptGoal(this, 1.0D, false, TEMPTATION_ITEMS));
       this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.1D));
       this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
       this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 6.0F));

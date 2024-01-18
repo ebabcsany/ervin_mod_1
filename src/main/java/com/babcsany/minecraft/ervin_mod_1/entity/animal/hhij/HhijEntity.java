@@ -9,6 +9,7 @@ import com.babcsany.minecraft.ervin_mod_1.init.item.food.isBurnableFoodItemInit;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.material.MaterialColor;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -119,7 +120,7 @@ public class HhijEntity extends HhijTameableEntity implements IAngerable {
    protected void registerData() {
       super.registerData();
       this.dataManager.register(BEGGING, false);
-      this.dataManager.register(COLLAR_COLOR, DyeColor.RED.getId());
+      this.dataManager.register(COLLAR_COLOR, DyeColor.LIGHT_GRAY.getId());
       this.dataManager.register(field_234232_bz_, 0);
    }
 

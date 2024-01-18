@@ -1,6 +1,5 @@
 package com.babcsany.minecraft.ervin_mod_1.block.blocks;
 
-import com.babcsany.minecraft.ervin_mod_1.state.ModBlockStateProperties;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -26,7 +25,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.Random;
 
 public class FirgLeaves extends Block implements net.minecraftforge.common.IForgeShearable {
-   public static final IntegerProperty DISTANCE = ModBlockStateProperties.DISTANCE_1_12;
+   public static final IntegerProperty DISTANCE = IntegerProperty.create("distance", 1, 12);
    public static final BooleanProperty PERSISTENT = BlockStateProperties.PERSISTENT;
 
    public FirgLeaves(AbstractBlock.Properties properties) {

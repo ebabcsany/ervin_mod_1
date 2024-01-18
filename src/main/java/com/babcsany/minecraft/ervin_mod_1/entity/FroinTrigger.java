@@ -21,7 +21,7 @@ public class FroinTrigger extends AbstractCriterionTrigger<FroinTrigger.Instance
    }
 
    public FroinTrigger.Instance deserializeTrigger(JsonObject json, EntityPredicate.AndPredicate entityPredicate, ConditionArrayParser conditionsParser) {
-      EntityPredicate.AndPredicate entitypredicate$andpredicate = EntityPredicate.AndPredicate.deserializeJSONObject(json, "$_trader", conditionsParser);
+      EntityPredicate.AndPredicate entitypredicate$andpredicate = EntityPredicate.AndPredicate.deserializeJSONObject(json, "usd_trader", conditionsParser);
       ItemPredicate itempredicate = ItemPredicate.deserialize(json.get("item"));
       return new FroinTrigger.Instance(entityPredicate, entitypredicate$andpredicate, itempredicate);
    }
@@ -58,7 +58,7 @@ public class FroinTrigger extends AbstractCriterionTrigger<FroinTrigger.Instance
       public JsonObject serialize(ConditionArraySerializer conditions) {
          JsonObject jsonobject = super.serialize(conditions);
          jsonobject.add("item", this.item.serialize());
-         jsonobject.add("$_trader", this.$_trader.serializeConditions(conditions));
+         jsonobject.add("usd_trader", this.$_trader.serializeConditions(conditions));
          return jsonobject;
       }
    }

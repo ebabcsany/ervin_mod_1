@@ -1,5 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.item;
 
+import com.google.common.collect.Iterables;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.DispenserBlock;
@@ -49,7 +50,7 @@ public class ModSpawnEggItem extends SpawnEggItem {
 
     public ModSpawnEggItem(final NonNullSupplier<? extends EntityType<?>> entityTypeSupplier, final int primaryColour,
                            final int secondaryColour, final Item.Properties properties) {
-        super(null, primaryColour, secondaryColour, properties);
+        super(entityTypeSupplier.get(), primaryColour, secondaryColour, properties);
         this.entityTypeSupplier = Lazy.of(entityTypeSupplier::get);
         UNADDED_EGGS.add(this);
     }
@@ -57,13 +58,13 @@ public class ModSpawnEggItem extends SpawnEggItem {
     public ModSpawnEggItem(final RegistryObject<? extends EntityType<?>> entityTypeSupplier, final int primaryColour,
                            final int secondaryColour, final Item.Properties properties) {
         super(null, primaryColour, secondaryColour, properties);
-        this.entityTypeSupplier = Lazy.of(entityTypeSupplier::get);
+        this.entityTypeSupplier = Lazy.of(entityTypeSupplier);
         UNADDED_EGGS.add(this);
     }
 
-    /*public static Iterable<SpawnEggItem> getEggs() {
-        return Iterables.unmodifiableIterable(UNADDED_EGGS.values());
-    }*/
+    public static Iterable<SpawnEggItem> getEggs() {
+        return Iterables.unmodifiableIterable(UNADDED_EGGS);
+    }
 
     public static void initSpawnEggs() {
         final Map<EntityType<?>, SpawnEggItem> EGGS = ObfuscationReflectionHelper.getPrivateValue(SpawnEggItem.class,

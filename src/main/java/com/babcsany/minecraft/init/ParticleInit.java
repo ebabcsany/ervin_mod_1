@@ -12,8 +12,8 @@ public class ParticleInit {
 
     public static ParticleInit PARTICLES;
 
-    public static final BasicParticleType EPKIN = register("epkin", false);
-    public static final BasicParticleType ITEM_FREIN = register("item_frein", false);
+    //public static final BasicParticleType EPKIN = register("epkin", false);
+    //public static final BasicParticleType ITEM_FREIN = register("item_frein", false);
     //public static final BasicParticleType DRIPPING_JURK = register("ervin_mod_1:dripping_jurk", false);
     //public static final BasicParticleType FALLING_JURK = register("ervin_mod_1:falling_jurk", false);
     //public static final BasicParticleType LANDING_JURK = register("ervin_mod_1:landing_jurk", false);

@@ -13,6 +13,7 @@ import com.babcsany.minecraft.ervin_mod_1.init.item.tool.SpecialToolItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.tool.isBurnableSpecialToolItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.minecraft.item.spawn_egg.SpawnEggItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.special.SpecialItemInit;
+import com.babcsany.minecraft.init.BlockItemInit;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
@@ -66,7 +67,7 @@ public class WanderingTraderNirtreTrades {
            new WanderingTraderNirtreTrades.ItemsForNautilusShellsTrade(com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.DURT.get(), 5, 1, 20, 3),
            new WanderingTraderNirtreTrades.ItemsForMlonksTrade(isBurnableBlockItemInit.SHZ_BLOCK.get(), 4, 1, 10, 2),
            new WanderingTraderNirtreTrades.ItemsForMlonksTrade(ModSpawnEggItemInit.FREIN_SPAWN_EGG.get(), 20, 1, 10, 2),
-           new WanderingTraderNirtreTrades.ItemsForObsidiansTrade(com.babcsany.minecraft.init.BlockItemInit.TRIRIJ, 10, 1, 1000, 2),
+           new WanderingTraderNirtreTrades.ItemsForObsidiansTrade(com.babcsany.minecraft.init.BlockItemInit.TRIRIJ.get(), 10, 1, 1000, 2),
            new WanderingTraderNirtreTrades.ItemsForGrassBlocksTrade(ModSpawnEggItemInit.ZUR_SPAWN_EGG.get(), 4, 1, 9, 1),
            new WanderingTraderNirtreTrades.ItemsForDreinsTrade(ModSpawnEggItemInit.$_TRADER_SPAWN_EGG.get(), 10, 1, 40, 3),
            new WanderingTraderNirtreTrades.ItemsForDreinsTrade(SpawnEggItemInit.LIGHTNING_BOLT_SPAWN_EGG.get(), 1, 1, 40000, 8),
@@ -1576,7 +1577,7 @@ public class WanderingTraderNirtreTrades {
       }
 
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         return new MerchantOffer(new ItemStack(com.babcsany.minecraft.init.BlockItemInit.FIRT_BLOCK, this.firtBlockCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack(BlockItemInit.FIRT_BLOCK.get(), this.firtBlockCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 

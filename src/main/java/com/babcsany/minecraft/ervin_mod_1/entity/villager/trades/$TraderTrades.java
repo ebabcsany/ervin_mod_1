@@ -48,6 +48,8 @@ public class $TraderTrades {
            new $TraderTrades.ItemsFor$_8$sTrade(FoodItemInit.REAT.get(), 9, 1, 1000, 1),
            new $TraderTrades.ItemsFor$_9$sTrade(ItemInit.GNITH.get(), 10, 27, 1000, 1),
            new $TraderTrades.ItemsFor$_10$sTrade(isBurnableItemInit.RUGK.get(), 10, 1, 1000, 1),
+           new $TraderTrades.ItemsFor$_10$sTrade(isBurnableItemInit.RUGK.get(), 10, 1, 100, 1),
+           new $TraderTrades.ItemsForItemsTrade(isBurnableItemInit.RUGK.get(), isBurnableItemInit.TERAT_GRET.get(), 1),
    }));
 
    private static Int2ObjectMap<$TraderTrades.ITrade[]> gatAsIntMap(ImmutableMap<Integer, $TraderTrades.ITrade[]> p_221238_0_) {
@@ -512,6 +514,54 @@ public class $TraderTrades {
 
       public MerchantOffer getOffer(Entity trader, Random rand) {
          return new MerchantOffer(new ItemStack($ItemInit.$_10$.get(), this.$_10$Count), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+      }
+   }
+
+   static class ItemsForItemsTrade implements $TraderTrades.ITrade {
+      private final ItemStack sellingItem;
+      private final Item buyingItem;
+      private final int itemsCount;
+      private final int sellingItemCount;
+      private final int maxUses;
+      private final int xpValue;
+      private final float priceMultiplier;
+
+      public ItemsForItemsTrade(Item buyingItem, Block sellingItem, int itemsCount, int sellingItemCount, int maxUses, int xpValue) {
+         this(buyingItem, new ItemStack(sellingItem), itemsCount, sellingItemCount, maxUses, xpValue);
+      }
+
+      public ItemsForItemsTrade(Item buyingItem, Item sellingItem, int itemsCount) {
+         this(buyingItem, sellingItem, itemsCount, new Random().nextInt(30));
+      }
+
+      public ItemsForItemsTrade(Item buyingItem, Item sellingItem, int itemsCount, int sellingItemCount) {
+         this(buyingItem, sellingItem, itemsCount, sellingItemCount, 12);
+      }
+
+      public ItemsForItemsTrade(Item buyingItem, Item sellingItem, int itemsCount, int sellingItemCount, int maxUses) {
+         this(buyingItem, sellingItem, itemsCount, sellingItemCount, maxUses, 1);
+      }
+
+      public ItemsForItemsTrade(Item buyingItem, Item sellingItem, int itemsCount, int sellingItemCount, int maxUses, int xpValue) {
+         this(buyingItem, new ItemStack(sellingItem), itemsCount, sellingItemCount, maxUses, xpValue);
+      }
+
+      public ItemsForItemsTrade(Item buyingItem, ItemStack sellingItem, int itemsCount, int sellingItemCount, int maxUses, int xpValue) {
+         this(buyingItem, sellingItem, itemsCount, sellingItemCount, maxUses, xpValue, 0.05F);
+      }
+
+      public ItemsForItemsTrade(Item buyingItem, ItemStack sellingItem, int itemsCount, int sellingItemCount, int maxUses, int xpValue, float priceMultiplier) {
+         this.buyingItem = buyingItem;
+         this.sellingItem = sellingItem;
+         this.itemsCount = itemsCount;
+         this.sellingItemCount = sellingItemCount;
+         this.maxUses = maxUses;
+         this.xpValue = xpValue;
+         this.priceMultiplier = priceMultiplier;
+      }
+
+      public MerchantOffer getOffer(Entity trader, Random rand) {
+         return new MerchantOffer(new ItemStack(this.buyingItem, this.itemsCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 

@@ -135,7 +135,6 @@ public abstract class AbstractBlackFurnaceTileEntity extends LockableTileEntity 
       addItemBurnTime(map, ArmorItemInit.FIRT_BOOTS.get(), 4800);
       addItemBurnTime(map, ArmorItemInit.FIRT_HELMET.get(), 6000);
       addItemBurnTime(map, ToolItemInit.FIRT_HOE.get(), 2600);
-      addItemBurnTime(map, com.babcsany.minecraft.init.BlockItemInit.FIRT_BLOCK, 12000);
       addItemBurnTime(map, Items.BLAZE_ROD, 2400);
       addItemBurnTime(map, Items.COAL, 1600);
       addItemBurnTime(map, Items.CHARCOAL, 1600);

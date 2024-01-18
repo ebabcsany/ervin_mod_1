@@ -42,7 +42,7 @@ import java.util.Random;
 import java.util.UUID;
 
 public class RoventEntity extends MonsterEntity {
-   private static final UUID BABY_SPEED_BOOST_ID = UUID.fromString("B9766B59-9566-4402-BC1F-2EE2A276D836");
+   private static final UUID BABY_SPEED_BOOST_ID = UUID.fromString("B9766B59-9236-4402-BC1F-2EE2A276D836");
    private static final AttributeModifier BABY_SPEED_BOOST = new AttributeModifier(BABY_SPEED_BOOST_ID, "Baby speed boost", 0.5D, AttributeModifier.Operation.MULTIPLY_BASE);
    private static final DataParameter<Boolean> IS_CHILD = EntityDataManager.createKey(RoventEntity.class, DataSerializers.BOOLEAN);
    public int timeUntilNextItem = this.rand.nextInt(6000) + 6000;

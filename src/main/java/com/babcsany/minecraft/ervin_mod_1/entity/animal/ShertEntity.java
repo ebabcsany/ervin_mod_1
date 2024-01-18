@@ -75,7 +75,7 @@ public class ShertEntity extends SrachEntity implements IShearable, net.minecraf
       this.dataManager.register(MOOSHROOM_TYPE, ShertEntity.Type.RED.name);
    }
 
-   public ActionResultType func_230254_b_(PlayerEntity p_230254_1_, Hand hand) {
+   public ActionResultType onJurking(PlayerEntity p_230254_1_, Hand hand) {
       ItemStack itemstack = p_230254_1_.getHeldItem(hand);
       if (itemstack.getItem() == Items.BOWL && !this.isChild()) {
          boolean flag = false;
@@ -137,7 +137,7 @@ public class ShertEntity extends SrachEntity implements IShearable, net.minecraf
 
          return ActionResultType.func_233537_a_(this.world.isRemote);
       } else {
-         return super.func_230254_b_(p_230254_1_, hand);
+         return super.onJurking(p_230254_1_, hand);
       }
    }
 
