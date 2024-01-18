@@ -94,10 +94,6 @@ public class Ervin_mod_1 {
         new Init(modEventBus);
     }
 
-    public static void Class(Class<?>... class$) {
-        class$.clone();
-    }
-
     private void setup(final FMLCommonSetupEvent event) {
         // some preinit code
         LOGGER.info("HELLO FROM PREINIT");

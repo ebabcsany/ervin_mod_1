@@ -44,7 +44,6 @@ public class Init {
         IMolaBlocks.BLOCKS.register(modEventBus);
         com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.BLOCKS.register(modEventBus);
         com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit.BLOCKS.register(modEventBus);
-        com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit.BURNABLE_BLOCKS.register(modEventBus);
         com.babcsany.minecraft.ervin_mod_1.init.block.animation.colors.BlockItemInit.ANIMATION_BLOCKS.register(modEventBus);
         MinecraftBlocks.BLOCKS.register(modEventBus);
         BlockItemInit_.BLOCK_ITEMS.register(modEventBus);
