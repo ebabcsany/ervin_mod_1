@@ -46,7 +46,7 @@ public class TeratBucket extends BucketItem {
         tooltip.add((new TranslationTextComponent("tips.copper_bucket")).mergeStyle(TextFormatting.GREEN));
     }
 
-    public ActionResult<ItemStack> func_77659_a(World worldIn, PlayerEntity playerIn, Hand handIn) {
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
         ActionResult<ItemStack> itemStackActionResult = super.onItemRightClick(worldIn, playerIn, handIn);
         if (itemStackActionResult.getType() == ActionResultType.CONSUME) {
             ItemStack newItemStack;
@@ -67,7 +67,7 @@ public class TeratBucket extends BucketItem {
     }
 
     private Item fixBucketItem(Item bucketIn) {
-        if (bucketIn == Items.BUCKET) {
+        if (bucketIn == isBurnableItemInit.TERAT_BUCKET.get()) {
             return isBurnableItemInit.WATER_TERAT_BUCKET.get();
         } else if (bucketIn == Items.WATER_BUCKET) {
             return isBurnableItemInit.TERAT_BUCKET.get();
@@ -78,7 +78,7 @@ public class TeratBucket extends BucketItem {
         }
     }
 
-    protected ItemStack func_203790_a(ItemStack stack, PlayerEntity player) {
-        return !player.abilities.isCreativeMode ? new ItemStack(isBurnableItemInit.TERAT_BUCKET.get()) : stack;
+    protected ItemStack emptyBucket(ItemStack p_203790_1_, PlayerEntity p_203790_2_) {
+        return !p_203790_2_.abilities.isCreativeMode ? new ItemStack(isBurnableItemInit.TERAT_BUCKET.get()) : p_203790_1_;
     }
 }

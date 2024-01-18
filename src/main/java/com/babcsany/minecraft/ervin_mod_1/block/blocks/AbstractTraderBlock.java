@@ -66,15 +66,6 @@ public abstract class AbstractTraderBlock extends Block implements INPC, IMercha
    public void setXP(int xpIn) {
    }
 
-   public void onTrade(MerchantOffer offer) {
-      offer.increaseUses();
-      this.onTraderBlockTrade(offer);
-      if (this.customer instanceof ServerPlayerEntity) {
-         CriteriaTriggers1.TRADER_BLOCK_TRADE.test((ServerPlayerEntity)this.customer, this, offer.getSellingStack());
-      }
-
-   }
-
    public World getWorld() {
       return this.world;
    }

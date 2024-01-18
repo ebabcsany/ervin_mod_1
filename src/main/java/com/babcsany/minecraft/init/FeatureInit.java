@@ -1,20 +1,22 @@
 package com.babcsany.minecraft.init;
 
-import com.babcsany.minecraft.ervin_mod_1.world.feature.VoidStartPlatformFeature1;
+import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.world.gen.feature.GenOreFeature;
 import com.babcsany.minecraft.ervin_mod_1.world.gen.feature.GenOreFeatureConfig;
-import com.babcsany.minecraft.init.item.ItemInit;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.IFeatureConfig;
-import net.minecraft.world.gen.feature.NoFeatureConfig;
+import net.minecraft.world.gen.feature.OreFeatureConfig;
+import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class FeatureInit {
 
-    public static FeatureInit FEATURES;
+    public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, Ervin_mod_1.MOD_ID);
 
-    public static final Feature<GenOreFeatureConfig> GEN_ORE = register(string("gen_ore"), new GenOreFeature(GenOreFeatureConfig.field_236566_a_));
-    public static final Feature<NoFeatureConfig> VOID_START_PLATFORM1 = register(string("void_start_platform1"), new VoidStartPlatformFeature1(NoFeatureConfig.field_236558_a_));
+    public static final Feature<GenOreFeatureConfig> GEN_ORE1 = register(string("gen_ore"), new GenOreFeature(GenOreFeatureConfig.field_236566_a_));
+    public static final RegistryObject<Feature<GenOreFeatureConfig>> GEN_ORE = FEATURES.register("gen_ore", () -> new GenOreFeature(GenOreFeatureConfig.field_236566_a_));
 
     private static String string(String name) {
         String string = "ervin_mod_1:";

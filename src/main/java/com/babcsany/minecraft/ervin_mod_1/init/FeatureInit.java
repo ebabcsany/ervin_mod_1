@@ -1,24 +1,12 @@
 package com.babcsany.minecraft.ervin_mod_1.init;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
-import com.babcsany.minecraft.ervin_mod_1.world.feature.VoidStartPlatformFeature1;
-import com.babcsany.minecraft.ervin_mod_1.world.gen.FeatureGen;
 import com.babcsany.minecraft.ervin_mod_1.world.gen.feature.BigScrafthMushroomFeature;
-import com.babcsany.minecraft.ervin_mod_1.world.gen.feature.GenOreFeature;
-import com.babcsany.minecraft.ervin_mod_1.world.gen.feature.GenOreFeatureConfig;
-import com.mojang.serialization.Codec;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.ISeedReader;
-import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.feature.*;
-import net.minecraft.world.gen.feature.structure.PillagerOutpostStructure;
-import net.minecraft.world.gen.feature.structure.StructureManager;
+import net.minecraft.world.gen.feature.BigMushroomFeatureConfig;
+import net.minecraft.world.gen.feature.Feature;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-
-import java.util.Random;
 
 public class FeatureInit {
 

@@ -3,7 +3,6 @@ package com.babcsany.minecraft.ervin_mod_1.entity.animal;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.food.FoodItemInit;
-import com.babcsany.minecraft.ervin_mod_1.world.storage.loot.LootTables1;
 import com.google.common.collect.Maps;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -137,7 +136,7 @@ public class ViltEntity extends AnimalEntity implements IShearable, net.minecraf
          switch(this.getFleeceColor()) {
             case RED:
          default:
-            return LootTables1.ENTITIES_VILT1;
+            return new ResourceLocation("entities/vilt1");
          case ORANGE:
             return LootTables.ENTITIES_SHEEP_ORANGE;
          case MAGENTA:

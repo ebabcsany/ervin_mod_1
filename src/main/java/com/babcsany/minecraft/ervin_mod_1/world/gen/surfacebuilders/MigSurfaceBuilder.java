@@ -49,7 +49,7 @@ public class MigSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig> {
 
                if (i1 < sealevel && blockstate.isAir()) {
                   if (biomeIn.getTemperature(blockPos$mutable.setPos(x, i1, z)) < 0.15F) {
-                     blockstate = BlockInit.FIRT_BLOCK.getDefaultState();
+                     blockstate = BlockInit.FIRT_BLOCK.get().getDefaultState();
                   } else {
                      blockstate = defaultFluid;
                   }

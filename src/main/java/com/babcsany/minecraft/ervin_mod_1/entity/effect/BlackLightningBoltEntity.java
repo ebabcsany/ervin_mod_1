@@ -36,7 +36,7 @@ public class BlackLightningBoltEntity extends Entity {
    private boolean effectOnly;
    @Nullable
    private ServerPlayerEntity caster;
-   private int fire = -this.getFireImmuneTicks();
+   private final int fire = -this.getFireImmuneTicks();
 
    public BlackLightningBoltEntity(EntityType<? extends BlackLightningBoltEntity> p_i231491_1_, World world) {
       super(p_i231491_1_, world);

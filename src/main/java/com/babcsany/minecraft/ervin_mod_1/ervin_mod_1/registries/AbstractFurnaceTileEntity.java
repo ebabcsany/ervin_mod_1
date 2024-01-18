@@ -68,7 +68,7 @@ public abstract class AbstractFurnaceTileEntity extends net.minecraft.tileentity
         addItemBurnTime(map, ArmorItemInit.FIRT_CHESTPLATE.get(), 19200);
         addItemBurnTime(map, ArmorItemInit.FIRT_HELMET.get(), 12000);
         addItemBurnTime(map, ArmorItemInit.FIRT_LEGGINGS.get(), 16800);
-        addItemBurnTime(map, com.babcsany.minecraft.init.BlockItemInit.FIRT_BLOCK, 21600);
+        addItemBurnTime(map, com.babcsany.minecraft.init.BlockItemInit.FIRT_BLOCK.get(), 21600);
         return map;
     }
 

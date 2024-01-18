@@ -1,12 +1,10 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.monster;
 
-import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.tool.isBurnableSpecialToolItemInit;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.ai.goal.HurtByTargetGoal;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
@@ -20,9 +18,6 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
@@ -30,22 +25,15 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeConfig;
 
-import java.util.Random;
-import java.util.UUID;
-
-public class ZurEntity extends MonsterEntity {
-    private static final UUID BABY_SPEED_BOOST_ID = UUID.fromString("B9766B59-9566-4402-BC1F-2EE2A276D836");
-    private static final AttributeModifier BABY_SPEED_BOOST;
-    private static final DataParameter<Boolean> IS_CHILD;
+public class ZurEntity extends ZombieEntity {
 
     public ZurEntity(EntityType<ZurEntity> p_i48549_1_, World p_i48549_2_) {
         super(p_i48549_1_, p_i48549_2_);
     }
 
     protected void registerGoals() {
-        this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 8.0F));
+        this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 9.0F));
         this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
         this.applyEntityAI();
     }
@@ -56,15 +44,7 @@ public class ZurEntity extends MonsterEntity {
     }
 
     public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
-        return MonsterEntity.func_234295_eP_().createMutableAttribute(Attributes.FOLLOW_RANGE, 35.0).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23000000417232513).createMutableAttribute(Attributes.ATTACK_DAMAGE, 3.0).createMutableAttribute(Attributes.ARMOR, 2.0).createMutableAttribute(Attributes.ZOMBIE_SPAWN_REINFORCEMENTS);
-    }
-
-    protected boolean canBreakDoors() {
-        return true;
-    }
-
-    public boolean isChild() {
-        return (Boolean)this.getDataManager().get(IS_CHILD);
+        return MonsterEntity.func_234295_eP_().createMutableAttribute(Attributes.FOLLOW_RANGE, 350.0).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23000000417232513).createMutableAttribute(Attributes.ATTACK_DAMAGE, 30.0).createMutableAttribute(Attributes.ARMOR, 20.0).createMutableAttribute(Attributes.ZOMBIE_SPAWN_REINFORCEMENTS);
     }
 
     protected int getExperiencePoints(PlayerEntity p_70693_1_) {
@@ -73,26 +53,6 @@ public class ZurEntity extends MonsterEntity {
         }
 
         return super.getExperiencePoints(p_70693_1_);
-    }
-
-    public void setChild(boolean p_82227_1_) {
-        this.getDataManager().set(IS_CHILD, p_82227_1_);
-        if (this.world != null && !this.world.isRemote) {
-            ModifiableAttributeInstance modifiableattributeinstance = this.getAttribute(Attributes.MOVEMENT_SPEED);
-            modifiableattributeinstance.removeModifier(BABY_SPEED_BOOST);
-            if (p_82227_1_) {
-                modifiableattributeinstance.applyNonPersistentModifier(BABY_SPEED_BOOST);
-            }
-        }
-
-    }
-
-    public void notifyDataManagerChange(DataParameter<?> p_184206_1_) {
-        if (IS_CHILD.equals(p_184206_1_)) {
-            this.recalculateSize();
-        }
-
-        super.notifyDataManagerChange(p_184206_1_);
     }
 
     protected boolean shouldDrown() {
@@ -186,11 +146,23 @@ public class ZurEntity extends MonsterEntity {
     protected void setEquipmentBasedOnDifficulty(DifficultyInstance p_180481_1_) {
         super.setEquipmentBasedOnDifficulty(p_180481_1_);
         if (this.rand.nextFloat() < (this.world.getDifficulty() == Difficulty.HARD ? 0.05F : 0.01F)) {
-            int i = this.rand.nextInt(3);
+            int i = this.rand.nextInt(9);
             if (i == 0) {
                 this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(Items.IRON_SWORD));
-            } else {
+            } else if (i == 1) {
                 this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(Items.IRON_SHOVEL));
+            } else if (i == 2) {
+                this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(Items.NETHERITE_SWORD));
+            } else if (i == 3) {
+                this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(Items.NETHERITE_SHOVEL));
+            } else if (i == 4) {
+                this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(Items.DIAMOND_SWORD));
+            } else if (i == 5) {
+                this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(Items.DIAMOND_SHOVEL));
+            } else if (i == 6) {
+                this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(Items.NETHERITE_AXE));
+            } else {
+                this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(Items.BEDROCK));
             }
         }
 
@@ -219,14 +191,6 @@ public class ZurEntity extends MonsterEntity {
         return p_175448_1_.getItem() == Items.EGG && this.isChild() && this.isPassenger() ? false : super.canEquipItem(p_175448_1_);
     }
 
-    public static boolean func_241399_a_(Random p_241399_0_) {
-        return (double)p_241399_0_.nextFloat() < (Double) ForgeConfig.SERVER.zombieBabyChance.get();
-    }
-
-    protected void func_230291_eT_() {
-        this.getAttribute(Attributes.ZOMBIE_SPAWN_REINFORCEMENTS).setBaseValue(this.rand.nextDouble() * (Double)ForgeConfig.SERVER.zombieBaseSummonChance.get());
-    }
-
     public double getYOffset() {
         return this.isChild() ? 0.0 : -0.45;
     }
@@ -248,21 +212,7 @@ public class ZurEntity extends MonsterEntity {
     }
 
     protected ItemStack getSkullDrop() {
-        return new ItemStack(Items.ZOMBIE_HEAD);
+        return new ItemStack(isBurnableSpecialToolItemInit.THUFR.get());
     }
 
-    static {
-        BABY_SPEED_BOOST = new AttributeModifier(BABY_SPEED_BOOST_ID, "Baby speed boost", 0.5, AttributeModifier.Operation.MULTIPLY_BASE);
-        IS_CHILD = EntityDataManager.createKey(ZombieEntity.class, DataSerializers.BOOLEAN);
-    }
-
-    public static class GroupData implements ILivingEntityData {
-        public final boolean isChild;
-        public final boolean field_241400_b_;
-
-        public GroupData(boolean p_i231567_1_, boolean p_i231567_2_) {
-            this.isChild = p_i231567_1_;
-            this.field_241400_b_ = p_i231567_2_;
-        }
-    }
 }

@@ -112,7 +112,7 @@ public class BlockItemInit {
     public static final RegistryObject<Block> L7 = BLOCKS.register("7", () -> new L7(Block.Properties.create(Material.ORGANIC).setRequiresTool().hardnessAndResistance(1000000000).setLightLevel(Value -> 15)));
     public static final RegistryObject<Block> L8 = BLOCKS.register("8", () -> new L8(Block.Properties.create(Material.ORGANIC).setRequiresTool().hardnessAndResistance(1000000000).setLightLevel(Value -> 15)));
     public static final RegistryObject<Block> L9 = BLOCKS.register("9", () -> new L9(Block.Properties.create(Material.ORGANIC).setRequiresTool().hardnessAndResistance(1000000000).setLightLevel(Value -> 15)));
-    public static final RegistryObject<Block> AIR = BLOCKS.register("air", () -> new Air(Block.Properties.create(Material.AIR).doesNotBlockMovement().noDrops()));
+    public static final RegistryObject<Block> AIR = BLOCKS.register("air", () -> new Block(Block.Properties.create(Material.AIR).doesNotBlockMovement().noDrops()));
     public static final RegistryObject<Block> TRINKS = BLOCKS.register("trinks", () -> new Trinks(Block.Properties.create(Material.ROCK).setRequiresTool().doesNotBlockMovement().setLightLevel(Value -> 15)));
     public static final RegistryObject<Block> DIRT1 = BLOCKS.register("dirt1", () -> new Dirt1(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.GROUND)));
     public static final RegistryObject<Block> GNITH_BLOCK = BLOCKS.register("gnith_block", () -> new OreBlock1(Block.Properties.create(Material.ROCK).setRequiresTool().harvestLevel(4).harvestTool(ToolType.PICKAXE).hardnessAndResistance(200.0F, 5000.0F)));

@@ -1,6 +1,5 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.trigger;
 
-import com.babcsany.minecraft.ervin_mod_1.block.trader_block.TraderBlockTrigger;
 import com.babcsany.minecraft.ervin_mod_1.entity.CuredZurNirtreTrigger;
 import com.babcsany.minecraft.ervin_mod_1.entity.trigger.hhij.BredHhijTrigger;
 import com.babcsany.minecraft.ervin_mod_1.entity.trigger.hhij.TameHhijAnimalTrigger;
@@ -40,7 +39,6 @@ public class CriteriaTriggers1 {
    public static final NirtreTradeTrigger NIRTRE_TRADE = register(new NirtreTradeTrigger());
    public static final $TraderTrigger $_TRADER_TRADE = register(new $TraderTrigger());
    public static final TraderNirtre1TradeTrigger TRADER_NIRTRE1_TRADE = register(new TraderNirtre1TradeTrigger());
-   public static final TraderBlockTrigger TRADER_BLOCK_TRADE = register(new TraderBlockTrigger());
    public static final ZombieTraderTrigger ZOMBIE_TRADER_TRADE = register(new ZombieTraderTrigger());
    public static final ZurTradeTrigger ZUR_TRADE = register(new ZurTradeTrigger());
    //public static final ZurTrigger_1 ZUR1_TRADE = register(new ZurTrigger_1());

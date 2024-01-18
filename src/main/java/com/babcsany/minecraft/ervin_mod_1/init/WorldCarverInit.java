@@ -1,8 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.init;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
-import com.babcsany.minecraft.ervin_mod_1.world.gen.carver.ExampleCaveWorldCarver;
-import com.babcsany.minecraft.ervin_mod_1.world.gen.carver.UnderlavaCaveWorldCarver;
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -28,7 +26,6 @@ public class WorldCarverInit {
         return this.carvableBlocks.contains(p_222706_1_.getBlock());
     }
     public static final RegistryObject<WorldCarver<ProbabilityConfig>> CAVE = CARVERS.register("cave", () -> new CaveWorldCarver(ProbabilityConfig.field_236576_b_, 256));
-    public static final RegistryObject<WorldCarver<ProbabilityConfig>> EXAMPLE_CAVE = CARVERS.register("example_cave", () -> new ExampleCaveWorldCarver(ProbabilityConfig.field_236576_b_, 362));
     public static final RegistryObject<WorldCarver<ProbabilityConfig>> UNDERWATER_CAVE = CARVERS.register("underwater_cave", () -> new UnderwaterCaveWorldCarver(ProbabilityConfig.field_236576_b_));
     //public static final RegistryObject<WorldCarver<ProbabilityConfig>> UNDERLAVA_CAVE = CARVERS.register("underlava_cave", () -> new UnderlavaCaveWorldCarver(ProbabilityConfig.field_236576_b_));
 }

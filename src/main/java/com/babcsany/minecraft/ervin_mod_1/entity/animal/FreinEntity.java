@@ -1,6 +1,5 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.animal;
 
-import com.babcsany.minecraft.ervin_mod_1.world.storage.loot.LootTables1;
 import com.babcsany.minecraft.init.ParticleInit;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
@@ -11,11 +10,14 @@ import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.loot.LootTables;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.particles.IParticleData;
+import net.minecraft.particles.ParticleType;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
@@ -108,7 +110,7 @@ public class FreinEntity extends MobEntity implements IMob {
    }
 
    protected IParticleData getSquishParticle() {
-      return ParticleInit.ITEM_FREIN;
+      return ParticleTypes.BUBBLE;
    }
 
    protected boolean isDespawnPeaceful() {
@@ -270,7 +272,7 @@ public class FreinEntity extends MobEntity implements IMob {
    }
 
    protected ResourceLocation getLootTable() {
-      return this.getSlimeSize() == 1 ? this.getType().getLootTable() : LootTables1.EMPTY;
+      return this.getSlimeSize() == 1 ? this.getType().getLootTable() : LootTables.EMPTY;
    }
 
    public static boolean func_223366_c(EntityType<FreinEntity> p_223366_0_, IWorld p_223366_1_, SpawnReason reason, BlockPos p_223366_3_, Random randomIn) {

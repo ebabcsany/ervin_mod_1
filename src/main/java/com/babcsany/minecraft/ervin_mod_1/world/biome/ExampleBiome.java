@@ -20,7 +20,7 @@ public class ExampleBiome extends Biome {
 		this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityType.ZOMBIE, 30, 1, 20));
 		//this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.LIWRAY.get(), 1, 1, 3));
 		//this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.ROVENT_ENTITY.get(), 1, 1, 3));
-		this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityInit.ZUR_ENTITY.get(), 20, 1, 1));
+		//this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityInit.ZUR_ENTITY.get(), 20, 1, 1));
 		//this.addSpawn(EntityClassification.WATER_CREATURE, new SpawnListEntry(EntityInit.GUBROV_ENTITY.get(), 1, 1, 4));
 		//this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityInit.FREIN_ENTITY.get(), 1, 0, 2));
 		this.addSpawn(EntityClassification.AMBIENT, new SpawnListEntry(EntityType.BAT, 40, 1, 20));

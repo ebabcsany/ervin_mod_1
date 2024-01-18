@@ -65,20 +65,20 @@ public class SrachEntity extends AnimalEntity {
       return 0.4F;
    }
 
-   public ActionResultType func_230254_b_(PlayerEntity p_230254_1_, Hand hand) {
-      ItemStack itemstack = p_230254_1_.getHeldItem(hand);
-      ItemStack itemstack1 = DrinkHelper.func_241445_a_(itemstack, p_230254_1_, ItemInit.JURK_BUCKET.get().getDefaultInstance());
-      ItemStack itemstack2 = DrinkHelper.func_241445_a_(itemstack, p_230254_1_, ItemInit.GANT.get().getDefaultInstance());
+   public ActionResultType onJurking(PlayerEntity player, Hand hand) {
+      ItemStack itemstack = player.getHeldItem(hand);
+      ItemStack itemstack1 = DrinkHelper.func_241445_a_(itemstack, player, ItemInit.JURK_BUCKET.get().getDefaultInstance());
+      ItemStack itemstack2 = DrinkHelper.func_241445_a_(itemstack, player, ItemInit.GANT.get().getDefaultInstance());
       if (itemstack.getItem() == Items.BUCKET && !this.isChild()) {
-         p_230254_1_.playSound(SoundEvents.ENTITY_COW_MILK, 1.0F, 1.0F);
-         p_230254_1_.setHeldItem(hand, itemstack1);
+         player.playSound(SoundEvents.ENTITY_COW_MILK, 1.0F, 1.0F);
+         player.setHeldItem(hand, itemstack1);
          return ActionResultType.func_233537_a_(this.world.isRemote);
       } else if (itemstack.getItem() == ItemInit.JURK_BUCKET.get() && !this.isChild()) {
-         p_230254_1_.playSound(SoundEvents.ENTITY_COW_MILK, 1.0F, 1.0F);
-         p_230254_1_.setHeldItem(hand, itemstack2);
+         player.playSound(SoundEvents.ENTITY_COW_MILK, 1.0F, 1.0F);
+         player.setHeldItem(hand, itemstack2);
          return ActionResultType.func_233537_a_(this.world.isRemote);
       } else {
-         return super.func_230254_b_(p_230254_1_, hand);
+         return super.func_230254_b_(player, hand);
       }
    }
 

@@ -113,17 +113,17 @@ public class Liwray extends AnimalEntity {
 
     public void readAdditional(CompoundNBT p_70037_1_) {
         super.readAdditional(p_70037_1_);
-        this.liwrayJockey = p_70037_1_.getBoolean("IsChickenJockey");
-        if (p_70037_1_.contains("EggLayTime")) {
-            this.timeUntilNextEgg = p_70037_1_.getInt("EggLayTime");
+        this.liwrayJockey = p_70037_1_.getBoolean("IsLiwrayJockey");
+        if (p_70037_1_.contains("TirksLayTime")) {
+            this.timeUntilNextEgg = p_70037_1_.getInt("TirksLayTime");
         }
 
     }
 
     public void writeAdditional(CompoundNBT p_213281_1_) {
         super.writeAdditional(p_213281_1_);
-        p_213281_1_.putBoolean("IsChickenJockey", this.liwrayJockey);
-        p_213281_1_.putInt("EggLayTime", this.timeUntilNextEgg);
+        p_213281_1_.putBoolean("IsLiwrayJockey", this.liwrayJockey);
+        p_213281_1_.putInt("TirksLayTime", this.timeUntilNextEgg);
     }
 
     public boolean canDespawn(double p_213397_1_) {

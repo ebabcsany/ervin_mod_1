@@ -9,8 +9,8 @@ public class SoundEventInit {
 
     public static SoundEvents SOUND_EVENTS;
 
-    public static final SoundEvent AMBIENT_CDS652_1 = register("ambient/cds652_1");
-    public static final SoundEvent AMBIENT_SDISCG = register("ambient.sdiscg");
+//    public static final SoundEvent AMBIENT_CDS652_1 = register("ambient/cds652_1");
+//    public static final SoundEvent AMBIENT_SDISCG = register("ambient.sdiscg");
 
     private static SoundEvent register(String key) {
         return Registry.register(Registry.SOUND_EVENT, string(key), new SoundEvent(new ResourceLocation(key)));

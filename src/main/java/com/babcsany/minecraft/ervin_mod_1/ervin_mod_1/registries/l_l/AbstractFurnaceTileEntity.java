@@ -53,7 +53,7 @@ public abstract class AbstractFurnaceTileEntity {
         ArmorItemInit.FIRT_CHESTPLATE.get();
         ArmorItemInit.FIRT_HELMET.get();
         ArmorItemInit.FIRT_LEGGINGS.get();
-        com.babcsany.minecraft.init.BlockItemInit.FIRT_BLOCK.getItem();
+        com.babcsany.minecraft.init.BlockItemInit.FIRT_BLOCK.get().getItem();
         /*addItemBurnTime(map, ItemInit.EXAMPLE_ITEM, (int));*/
         return map;
     }

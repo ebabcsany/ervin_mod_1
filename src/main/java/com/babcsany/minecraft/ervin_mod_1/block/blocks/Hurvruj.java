@@ -1,15 +1,15 @@
 package com.babcsany.minecraft.ervin_mod_1.block.blocks;
 
 import com.babcsany.minecraft.ervin_mod_1.init.item.block.isBurnableBlockItemInit;
-import com.babcsany.minecraft.ervin_mod_1.state.ModBlockStateProperties;
-import net.minecraft.block.*;
+import net.minecraft.block.BedBlock;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.IntegerProperty;
@@ -20,9 +20,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.*;
-import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -31,7 +29,7 @@ import java.util.Optional;
 import java.util.Random;
 
 public class Hurvruj extends Block {
-   public static final IntegerProperty CHARGES = ModBlockStateProperties.CHARGES_0_16;
+   public static final IntegerProperty CHARGES = IntegerProperty.create("charges", 0, 16);
 
    public Hurvruj(Properties properties) {
       super(properties);

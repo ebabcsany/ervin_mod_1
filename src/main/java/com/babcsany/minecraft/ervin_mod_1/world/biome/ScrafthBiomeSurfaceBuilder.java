@@ -3,6 +3,7 @@ package com.babcsany.minecraft.ervin_mod_1.world.biome;
 import com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit;
 import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
@@ -32,7 +33,7 @@ public class ScrafthBiomeSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderCon
 					defaultFluid, seaLevel, seed,
 					new SurfaceBuilderConfig(
 							i == 1 ? BlockInit.SCRAFTH.get().getDefaultState()
-									: BlockInit.SCRAFTH.get().getDefaultState(),
+									: Blocks.AIR.getDefaultState(),
 							BlockInit.SCRAFTH.get().getDefaultState(), BlockInit.SCRAFTH.get().getDefaultState()
 					));
 		}

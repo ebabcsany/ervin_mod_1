@@ -19,7 +19,7 @@ public final class ExampleBiome6 extends Biome {
       this.addCarver(GenerationStage.Carving.AIR,
               Biome.createCarver(WorldCarver.CAVE, new ProbabilityConfig(6.586974623F)));
       ModDefaultBiomeFeatures.addNirtkb1(this);
-      this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.ZUR_ENTITY.get(), 50, -6, 1));
+//      this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.ZUR_ENTITY.get(), 50, -6, 1));
       DefaultBiomeFeatures.addFreezeTopLayer(this);
    }
 }

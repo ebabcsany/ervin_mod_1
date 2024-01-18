@@ -1,13 +1,11 @@
 package com.babcsany.minecraft.ervin_mod_1.block.blocks;
 
-import com.babcsany.minecraft.ervin_mod_1.item.food.Foods;
-import com.babcsany.minecraft.ervin_mod_1.state.ModBlockStateProperties;
-import com.babcsany.minecraft.init.EffectInit;
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.HorizontalBlock;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.Food;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.potion.EffectInstance;
@@ -15,9 +13,11 @@ import net.minecraft.potion.Effects;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.stats.Stats;
-import net.minecraft.util.*;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Direction;
+import net.minecraft.util.Hand;
+import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -32,7 +32,7 @@ import java.util.Random;
 import static net.minecraft.state.properties.BlockStateProperties.HORIZONTAL_FACING;
 
 public class Firg extends Block {
-    public static final IntegerProperty BITES = ModBlockStateProperties.BITES_0_7;
+    public static final IntegerProperty BITES = IntegerProperty.create("bites", 0, 7);
     public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
     private static final Direction[] GENERATE_DIRECTIONS = new Direction[]{Direction.WEST};
 

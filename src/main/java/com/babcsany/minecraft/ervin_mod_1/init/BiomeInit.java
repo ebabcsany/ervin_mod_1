@@ -4,7 +4,6 @@ import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit;
 import com.babcsany.minecraft.ervin_mod_1.init.special.SpecialBlockInit;
 import com.babcsany.minecraft.ervin_mod_1.world.biome.*;
-import com.babcsany.minecraft.init.SurfaceBuilderInit;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.registry.Registry;

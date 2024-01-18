@@ -486,7 +486,7 @@ public class ZurTrades {
 
       @Nullable
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         return new MerchantOffer(new ItemStack(BlockItemInit.FIRT_BLOCK, this.firtCount), new ItemStack(this.buyingItem.getItem(), this.buyingItemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack(BlockItemInit.FIRT_BLOCK.get(), this.firtCount), new ItemStack(this.buyingItem.getItem(), this.buyingItemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 
