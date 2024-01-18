@@ -75,10 +75,6 @@ public class Ervin_mod_1 {
     //public static final ITag<EntityType<?>> blacklisted = EntityTypeTags.func_232896_a_((new ResourceLocation("ervin_mod_1", "blacklisted")).toString());
     /** Directly reference a log4j logger.*/
     public static final Logger LOGGER = LogManager.getLogger();
-    private int maxStackSize;
-    private CowEntity cow;
-    private PlayerEntity player;
-    private Hand hand;
 
     public Ervin_mod_1() {
         // Register the setup method for modLoading
@@ -279,10 +275,6 @@ public class Ervin_mod_1 {
             player.addPotionEffect(new EffectInstance(Effects.WATER_BREATHING, 200, 0, false, false, true));
         }
 
-    }
-
-    public static Block blockRegister(String key, Block blockIn) {
-        return Registry.register(Registry.BLOCK, key, blockIn);
     }
 
     public static Item itemRegister(ResourceLocation key, Item itemIn) {

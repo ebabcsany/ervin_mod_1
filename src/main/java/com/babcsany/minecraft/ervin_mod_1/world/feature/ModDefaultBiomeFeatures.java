@@ -358,11 +358,11 @@ public class ModDefaultBiomeFeatures {
    }
 
    public static void addStoneVariants(Biome biomeIn) {
-      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, FeatureInit.GEN_ORE.get().withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_STONE, DIRT, 33)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(10, 0, 0, 256))));
-      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, FeatureInit.GEN_ORE.get().withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_STONE, GRAVEL, 33)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(8, 0, 0, 256))));
-      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, FeatureInit.GEN_ORE.get().withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_STONE, GRANITE, 33)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(10, 0, 0, 80))));
-      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, FeatureInit.GEN_ORE.get().withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_STONE, DIORITE, 33)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(10, 0, 0, 80))));
-      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, FeatureInit.GEN_ORE.get().withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.NATURAL_STONE, ANDESITE, 33)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(10, 0, 0, 80))));
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, DIRT, 33)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(10, 0, 0, 256))));
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, GRAVEL, 33)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(8, 0, 0, 256))));
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, GRANITE, 33)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(10, 0, 0, 80))));
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, DIORITE, 33)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(10, 0, 0, 80))));
+      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, ANDESITE, 33)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(10, 0, 0, 80))));
    }
 
    public static void addEndStoneVariants(Biome biomeIn) {
@@ -391,7 +391,7 @@ public class ModDefaultBiomeFeatures {
    }
 
    public static void addScrafth(Biome biomeIn) {
-      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, SCRAFTH, 400)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(50, 0, 0, 2000))));
+      addScrafth(biomeIn, 400, 50, 0, 0, 2000);
    }
 
    public static void addScrafth(Biome biomeIn, int size, int count, int bottomOffset, int topOffset, int maximum) {
@@ -669,7 +669,7 @@ public class ModDefaultBiomeFeatures {
    }
 
    public static void addInfestedStone(Biome biomeIn) {
-      biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, INFESTED_STONE, 9)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(7, 0, 0, 64))));
+      addOreFeature(biomeIn, GenerationStage.Decoration.UNDERGROUND_DECORATION, OreFeatureConfig.FillerBlockType.NATURAL_STONE, INFESTED_STONE, 9, Placement.COUNT_RANGE.configure(new CountRangeConfig(7, 0, 0, 64)));
    }
 
    public static void addSedimentDisks(Biome biomeIn) {
