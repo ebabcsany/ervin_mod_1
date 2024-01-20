@@ -70,7 +70,7 @@ public class MigSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig> {
             } else if (i > 0) {
                --i;
                chunkIn.setBlockState(blockPos$mutable, blockState1, false);
-               if (i == 0 && blockState1.isIn(BlockItemInit.EXAMPLE_BLOCK.get()) && j > 1) {
+               if (i == 0 && blockState1.isIn(BlockItemInit.FRIT_BLOCK.get()) && j > 1) {
                   i = random.nextInt(4) + Math.max(0, i1 - 63);
                   blockState1 = blockState1.isIn(BlockItemInit.KALT_BLOCK.get()) ? isBurnableBlockItemInit.SRIUNK_BLOCK.get().getDefaultState() : BlockItemInit.FRIT_BLOCK.get().getDefaultState();
                }

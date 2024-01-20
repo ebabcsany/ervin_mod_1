@@ -99,7 +99,7 @@ public class SpecialItem4 extends Item {
 
 	@Override
 	public ActionResultType onItemUse(ItemUseContext context) {
-		if (context.getWorld().getBlockState(context.getPos()).getBlock() == BlockItemInit.EXAMPLE_BLOCK.get()) {
+		if (context.getWorld().getBlockState(context.getPos()).getBlock() == BlockItemInit.DEFERRED_BLOCK.get()) {
 			for (ItemStack stack : context.getPlayer().inventory.mainInventory) {
 				if (stack.isEmpty()) {
 					context.getPlayer().addItemStackToInventory(new ItemStack(isBurnableSpecialItemInit.DEF_ITEM.get()));

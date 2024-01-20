@@ -13,7 +13,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class BlockItemInit {
 
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Ervin_mod_1.MOD_ID);
-    public static BlockItemInit BLOCK_ITEMS;
 
     public static final RegistryObject<Item> JURKF = ITEMS.register("jurkf", () -> new BlockItem(com.babcsany.minecraft.init.BlockInit.FIRT_BLOCK.get(), (new Item.Properties())));
     public static final RegistryObject<Item> FIRG_PLANKS = ITEMS.register("firg_planks", () -> new BlockItem(BlockInit.FIRG_PLANKS.get(), (new Item.Properties()).group(ItemGroup.BUILDING_BLOCKS)));

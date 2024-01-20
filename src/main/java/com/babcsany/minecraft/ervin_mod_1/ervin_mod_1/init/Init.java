@@ -24,7 +24,6 @@ import com.babcsany.minecraft.ervin_mod_1.init.item.special.isBurnableSpecialIte
 import com.babcsany.minecraft.ervin_mod_1.init.item.tool.SpecialToolItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.tool.isBurnableSpecialToolItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.tool.isBurnableToolItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.minecraft.block.MinecraftBlocks;
 import com.babcsany.minecraft.ervin_mod_1.init.special.SpecialBlockInit;
 import com.babcsany.minecraft.ervin_mod_1.init.special.SpecialItemInit;
 import com.babcsany.minecraft.init.*;
@@ -42,10 +41,7 @@ public class Init {
     public static void register(IEventBus modEventBus) {
         BiomeInit.BIOMES.register(modEventBus);
         IMolaBlocks.BLOCKS.register(modEventBus);
-        com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.BLOCKS.register(modEventBus);
         com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit.BLOCKS.register(modEventBus);
-        com.babcsany.minecraft.ervin_mod_1.init.block.animation.colors.BlockItemInit.ANIMATION_BLOCKS.register(modEventBus);
-        MinecraftBlocks.BLOCKS.register(modEventBus);
         BlockItemInit_.BLOCK_ITEMS.register(modEventBus);
         SpecialBlockFoodItemInit.BURNABLE_FOOD_BLOCK_ITEMS.register(modEventBus);
         isBurnableFoodItemInit.BURNABLE_FOODS.register(modEventBus);
@@ -89,7 +85,6 @@ public class Init {
         SpecialBlockInit.SPECIAL_BLOCKS.register(modEventBus);
         com.babcsany.minecraft.ervin_mod_1.init.ParticleInit.PARTICLE_TYPES.register(modEventBus);
         com.babcsany.minecraft.ervin_mod_1.init.SoundInit.SOUNDS.register(modEventBus);
-        com.babcsany.minecraft.ervin_mod_1.init.TileEntityInit.TILE_ENTITY_TYPES.register(modEventBus);
         com.babcsany.minecraft.ervin_mod_1.init.TreeDecoratorInit.TREE_DECORATOR_TYPES.register(modEventBus);
         com.babcsany.minecraft.ervin_mod_1.init.WorldCarverInit.CARVERS.register(modEventBus);
     }
@@ -98,13 +93,12 @@ public class Init {
         BlockInit.REGISTER_BLOCKS.register(modEventBus);
         H_u_fBlockInit.H_U_F_BLOCKS.register(modEventBus);
         BlockInit BLOCKS = BlockInit.BLOCKS;
-        BlockItemInit BLOCK_ITEMS = BlockItemInit.BLOCK_ITEMS;
+        BlockItemInit.ITEMS.register(modEventBus);
         EntityInit ENTITIES = EntityInit.ENTITIES;
         ItemInit.REGISTER_ITEMS.register(modEventBus);
         FeatureInit.FEATURES.register(modEventBus);
         EffectInit EFFECTS = EffectInit.EFFECTS;
         ParticleInit PARTICLES = ParticleInit.PARTICLES;
-        TileEntityInit<?> TILE_ENTITIES = TileEntityInit.TILE_ENTITIES;
     }
 
     public static void init(Class<?> class$) {

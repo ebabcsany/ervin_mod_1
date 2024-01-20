@@ -58,7 +58,6 @@ public class WanderingTraderNirtreTrades {
            new WanderingTraderNirtreTrades.ItemsForRubiesTrade(ItemInit.PACK.get(), 4, 1, 50, 1),
            new WanderingTraderNirtreTrades.ItemsForRubyBlocksTrade(isBurnableItemInit.AVTER.get(), 40, 1, 20, 3),
            new WanderingTraderNirtreTrades.ItemsForRubiesTrade(isBurnableBlockItemInit.DRIOP.get(), 1, 5, 100, 1),
-           new WanderingTraderNirtreTrades.ItemsForRubiesTrade(com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.EXAMPLE_BLOCK.get(), 3, 1, 7, 2),
            new WanderingTraderNirtreTrades.ItemsForRubiesTrade(ItemInit.FIRT.get(), 1, 4, 14, 1),
            new WanderingTraderNirtreTrades.ItemsForRubiesTrade(isBurnableItemInit.VILKT.get(), 35, 1, 2, 6),
            new WanderingTraderNirtreTrades.ItemsForSrurgsTrade(ItemInit.CHAK.get(), 20, 1, 120, 26),
@@ -1064,26 +1063,26 @@ public class WanderingTraderNirtreTrades {
       private final int xpValue;
       private final float priceMultiplier;
 
-      public ItemsForItemsTrade(Block sellingItem, Item item, int itemCount, int sellingItemCount, int maxUses, int xpValue) {
-         this(new ItemStack(sellingItem), item, itemCount, sellingItemCount, maxUses, xpValue);
+      public ItemsForItemsTrade(Item item, int itemCount, Block sellingItem, int sellingItemCount, int maxUses, int xpValue) {
+         this(item, itemCount, new ItemStack(sellingItem), sellingItemCount, maxUses, xpValue);
       }
 
-      public ItemsForItemsTrade(Item sellingItem, Item item, int itemCount, int sellingItemCount, int xpValue) {
-         this(new ItemStack(sellingItem), item, itemCount, sellingItemCount, 120, xpValue);
+      public ItemsForItemsTrade(Item item, int itemCount, Item sellingItem, int sellingItemCount, int xpValue) {
+         this(item, itemCount, new ItemStack(sellingItem), sellingItemCount, 12, xpValue);
       }
 
-      public ItemsForItemsTrade(Item sellingItem, Item item, int itemCount, int sellingItemCount, int maxUses, int xpValue) {
-         this(new ItemStack(sellingItem), item, itemCount, sellingItemCount, maxUses, xpValue);
+      public ItemsForItemsTrade(Item item, int itemCount, Item sellingItem, int sellingItemCount, int maxUses, int xpValue) {
+         this(item, itemCount, new ItemStack(sellingItem), sellingItemCount, maxUses, xpValue);
       }
 
-      public ItemsForItemsTrade(ItemStack sellingItem, Item item, int itemCount, int sellingItemCount, int maxUses, int xpValue) {
-         this(sellingItem, item, itemCount, sellingItemCount, maxUses, xpValue, 0.05F);
+      public ItemsForItemsTrade(Item item, int itemCount, ItemStack sellingItem, int sellingItemCount, int maxUses, int xpValue) {
+         this(item, itemCount, sellingItem, sellingItemCount, maxUses, xpValue, 0.05F);
       }
 
-      public ItemsForItemsTrade(ItemStack sellingItem, Item item, int itemCount, int sellingItemCount, int maxUses, int xpValue, float priceMultiplier) {
-         this.sellingItem = sellingItem;
+      public ItemsForItemsTrade(Item item, int itemCount, ItemStack sellingItem, int sellingItemCount, int maxUses, int xpValue, float priceMultiplier) {
          this.item = item;
          this.itemCount = itemCount;
+         this.sellingItem = sellingItem;
          this.sellingItemCount = sellingItemCount;
          this.maxUses = maxUses;
          this.xpValue = xpValue;
