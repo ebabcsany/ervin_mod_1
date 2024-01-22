@@ -1,4 +1,4 @@
-package com.babcsany.minecraft.world.biome;
+package com.babcsany.minecraft.ervin_mod_1.world.biome;
 
 import com.google.common.collect.ImmutableList;
 import net.minecraft.entity.EntityClassification;

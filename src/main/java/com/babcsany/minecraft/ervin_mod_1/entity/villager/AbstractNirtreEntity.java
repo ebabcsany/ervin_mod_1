@@ -38,8 +38,6 @@ public abstract class AbstractNirtreEntity extends AgeableEntity implements INPC
    private PlayerEntity customer;
    @Nullable
    protected MerchantOffers offers;
-   @Nullable
-   protected com.babcsany.minecraft.item.MerchantOffers offers1;
    private final Inventory nirtreInventory = new Inventory(8);
 
    public AbstractNirtreEntity(EntityType<? extends AbstractNirtreEntity> type, World worldIn) {
@@ -98,15 +96,6 @@ public abstract class AbstractNirtreEntity extends AgeableEntity implements INPC
       }
 
       return this.offers;
-   }
-
-   public com.babcsany.minecraft.item.MerchantOffers getOffers1() {
-      if (this.offers1 == null) {
-         this.offers1 = new com.babcsany.minecraft.item.MerchantOffers();
-         this.populateTradeData1();
-      }
-
-      return this.offers1;
    }
 
    @OnlyIn(Dist.CLIENT)
@@ -255,28 +244,6 @@ public abstract class AbstractNirtreEntity extends AgeableEntity implements INPC
       for(Integer integer : set) {
          WanderingTraderNirtreTrades.ITrade wanderingTraderNirtreTrades$iTrade = newTrades[integer];
          MerchantOffer merchantoffer = wanderingTraderNirtreTrades$iTrade.getOffer(this, this.rand);
-         if (merchantoffer != null) {
-            givenMerchantOffers.add(merchantoffer);
-         }
-      }
-
-   }
-
-   protected void addWanderingTraderNirtreTrades(com.babcsany.minecraft.item.MerchantOffers givenMerchantOffers, WanderingTraderNirtreTrades.ITrade1[] newTrades, int maxNumbers) {
-      Set<Integer> set = Sets.newHashSet();
-      if (newTrades.length > maxNumbers) {
-         while(set.size() < maxNumbers) {
-            set.add(this.rand.nextInt(newTrades.length));
-         }
-      } else {
-         for(int i = 0; i < newTrades.length; ++i) {
-            set.add(i);
-         }
-      }
-
-      for(Integer integer : set) {
-         WanderingTraderNirtreTrades.ITrade1 wanderingTraderNirtreTrades$iTrade = newTrades[integer];
-         com.babcsany.minecraft.item.MerchantOffer merchantoffer = wanderingTraderNirtreTrades$iTrade.getOffer(this, this.rand);
          if (merchantoffer != null) {
             givenMerchantOffers.add(merchantoffer);
          }

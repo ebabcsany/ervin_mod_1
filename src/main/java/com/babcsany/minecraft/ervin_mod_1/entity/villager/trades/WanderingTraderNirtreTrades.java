@@ -94,17 +94,13 @@ public class WanderingTraderNirtreTrades {
            new WanderingTraderNirtreTrades.ItemsForVilktsTrade(isBurnableBlockItemInit.CRAINT_BLOCK_CRAFTING_TABLE.get(), 10, 3, 20, 1500),
    }));
 
-   public static final Int2ObjectMap<WanderingTraderNirtreTrades.ITrade1[]> trade2 = gatAsIntMap1(ImmutableMap.of(1, new WanderingTraderNirtreTrades.ITrade1[]{
-           new WanderingTraderNirtreTrades.ItemsForItemsAndItemsTrade1(isBurnableSpecialToolItemInit.TERAT.get(), isBurnableSpecialToolItemInit.TERAT.get(), 1, 1, isBurnableSpecialToolItemInit.TERAT_STICK.get(), 1, 1000000000, 1500),
+   public static final Int2ObjectMap<WanderingTraderNirtreTrades.ITrade[]> trade2 = gatAsIntMap(ImmutableMap.of(1, new WanderingTraderNirtreTrades.ITrade[]{
+           new WanderingTraderNirtreTrades.ItemsForItemsAndItemsTrade(isBurnableSpecialToolItemInit.TERAT.get(), isBurnableSpecialToolItemInit.TERAT.get(), 1, 1, isBurnableSpecialToolItemInit.TERAT_STICK.get(), 1, 1000000000, 1500),
            new WanderingTraderNirtreTrades.ItemsForItemsTrade1(isBurnableSpecialToolItemInit.TERAT_STICK.get(), isBurnableSpecialToolItemInit.TERAT.get(), 2, 1, 1500),
    }));
 
    private static Int2ObjectMap<WanderingTraderNirtreTrades.ITrade[]> gatAsIntMap(ImmutableMap<Integer, WanderingTraderNirtreTrades.ITrade[]> p_221238_0_) {
       return new Int2ObjectOpenHashMap<>(p_221238_0_);
-   }
-
-   private static Int2ObjectMap<WanderingTraderNirtreTrades.ITrade1[]> gatAsIntMap1(ImmutableMap<Integer, WanderingTraderNirtreTrades.ITrade1[]> immutableMap) {
-      return new Int2ObjectOpenHashMap<>(immutableMap);
    }
 
    static class DyedArmorForEmeraldsTrade implements WanderingTraderNirtreTrades.ITrade {
@@ -1094,7 +1090,7 @@ public class WanderingTraderNirtreTrades {
       }
    }
 
-   static class ItemsForItemsTrade1 implements ITrade1 {
+   static class ItemsForItemsTrade1 implements ITrade {
       private final ItemStack sellingItem;
       private final IItemProvider item;
       private final int itemCount;
@@ -1129,8 +1125,8 @@ public class WanderingTraderNirtreTrades {
          this.priceMultiplier = priceMultiplier;
       }
 
-      public com.babcsany.minecraft.item.MerchantOffer getOffer(Entity trader, Random rand) {
-         return new com.babcsany.minecraft.item.MerchantOffer(new ItemStack(this.item, this.itemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+      public MerchantOffer getOffer(Entity trader, Random rand) {
+         return new MerchantOffer(new ItemStack(this.item, this.itemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, 0.05F);
       }
    }
 
@@ -1145,11 +1141,11 @@ public class WanderingTraderNirtreTrades {
       private final int xpValue;
       private final float priceMultiplier;
 
-      public ItemsForItemsAndItemsTrade(IItemProvider buyingItem, Item item, int buyingItemCount, int itemCount, Item sellingItem, int sellingItemCount, int maxUses, int xpValue) {
-         this(buyingItem, item, buyingItemCount, itemCount, sellingItem, sellingItemCount, maxUses, xpValue, "trade");
+      public ItemsForItemsAndItemsTrade(IItemProvider buyingItem, Item item, int buyingItemCount, int itemCount, Item sellingItem, int sellingItemCount, int maxUses) {
+         this(buyingItem, item, buyingItemCount, itemCount, sellingItem, sellingItemCount, maxUses, 1);
       }
 
-      public ItemsForItemsAndItemsTrade(IItemProvider buyingItem, Item item, int buyingItemCount, int itemCount, Item sellingItem, int sellingItemCount, int maxUses, int xpValue, String string) {
+      public ItemsForItemsAndItemsTrade(IItemProvider buyingItem, Item item, int buyingItemCount, int itemCount, Item sellingItem, int sellingItemCount, int maxUses, int xpValue) {
          this.buyingItem = new ItemStack(buyingItem);
          this.item = item;
          this.buyingItemCount = buyingItemCount;
@@ -1167,7 +1163,7 @@ public class WanderingTraderNirtreTrades {
       }
    }
 
-   static class ItemsForItemsAndItemsTrade1 implements ITrade1 {
+   static class ItemsForItemsAndItemsTrade1 implements ITrade {
       private final ItemStack buyingItem;
       private final IItemProvider item;
       private final int buyingItemCount;
@@ -1195,8 +1191,8 @@ public class WanderingTraderNirtreTrades {
       }
 
       @Nullable
-      public com.babcsany.minecraft.item.MerchantOffer getOffer(Entity trader, Random rand) {
-         return new com.babcsany.minecraft.item.MerchantOffer(new ItemStack(this.item, this.itemCount), new ItemStack(this.buyingItem.getItem(), this.buyingItemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+      public MerchantOffer getOffer(Entity trader, Random rand) {
+         return new MerchantOffer(new ItemStack(this.item, this.itemCount), new ItemStack(this.buyingItem.getItem(), this.buyingItemCount), this.maxUses, this.xpValue, 0.05F);
       }
    }
 
@@ -1680,10 +1676,5 @@ public class WanderingTraderNirtreTrades {
    public interface ITrade {
       @Nullable
       MerchantOffer getOffer(Entity trader, Random rand);
-   }
-
-   public interface ITrade1 {
-      @Nullable
-      com.babcsany.minecraft.item.MerchantOffer getOffer(Entity trader, Random rand);
    }
 }

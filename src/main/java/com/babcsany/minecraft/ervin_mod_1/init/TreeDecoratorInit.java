@@ -17,8 +17,7 @@ public class TreeDecoratorInit {
 
     public static final DeferredRegister<TreeDecoratorType<?>> TREE_DECORATOR_TYPES = DeferredRegister.create(ForgeRegistries.TREE_DECORATOR_TYPES, Ervin_mod_1.MOD_ID);
 
-    /*public static final RegistryObject<TreeDecoratorType<FirgTreeDecorator>> FIRG = TREE_DECORATOR_TYPES
-            .register("firg", () -> FirgTreeDecorator.field_236863_a_);*/
+    public static final RegistryObject<TreeDecoratorType<FirgTreeDecorator>> FIRG = TREE_DECORATOR_TYPES.register("firg", () -> (TreeDecoratorType<FirgTreeDecorator>) FirgTreeDecorator.field_236863_a_);
 
     //public static final RegistryObject<TreeDecoratorType<TrunkVineTreeDecorator>> TRUNK_VINE = TREE_DECORATOR_TYPES.register("trunk_vine", TrunkVineTreeDecorator.field_236878_a_);
 

@@ -1,4 +1,4 @@
-package com.babcsany.minecraft.item;
+package com.babcsany.minecraft.ervin_mod_1.item;
 
 import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
 import net.minecraft.advancements.CriteriaTriggers;

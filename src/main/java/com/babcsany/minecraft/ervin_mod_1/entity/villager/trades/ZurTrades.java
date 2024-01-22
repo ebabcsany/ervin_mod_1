@@ -420,45 +420,6 @@ public class ZurTrades {
       MerchantOffer getOffer(Entity trader, Random rand);
    }
 
-   public interface ITrade1 {
-      @Nullable
-      com.babcsany.minecraft.item.MerchantOffer getOffer1(Entity trader, Random rand);
-   }
-
-   static class ItemWithPotionForEmeraldsAndItemsTrade implements ZurTrades.ITrade1 {
-      /** An ItemStack that can have potion effects written to it. */
-      private final ItemStack potionStack;
-      private final int potionCount;
-      private final int emeraldCount;
-      private final int rubyCount;
-      private final int maxUses;
-      private final int xpValue;
-      private final Item buyingItem;
-      private final int buyingItemCount;
-      private final float priceMultiplier;
-
-      public ItemWithPotionForEmeraldsAndItemsTrade(Item buyingItem, int buyingItemCount, Item p_i50526_3_, int p_i50526_4_, int emeralds, int rubies, int maxUses, int xpValue) {
-         this.potionStack = new ItemStack(p_i50526_3_);
-         this.emeraldCount = emeralds;
-         this.rubyCount = rubies;
-         this.maxUses = maxUses;
-         this.xpValue = xpValue;
-         this.buyingItem = buyingItem;
-         this.buyingItemCount = buyingItemCount;
-         this.potionCount = p_i50526_4_;
-         this.priceMultiplier = 0.05F;
-      }
-
-      public com.babcsany.minecraft.item.MerchantOffer getOffer1(Entity trader, Random rand) {
-         ItemStack itemstack = new ItemStack(Items.EMERALD, this.emeraldCount);
-         ItemStack itemstack_1 = new ItemStack(ItemInit.RUBY.get(), this.rubyCount);
-         List<Potion> list = Registry.POTION.stream().filter((potion) -> !potion.getEffects().isEmpty() && PotionBrewing.isBrewablePotion(potion)).collect(Collectors.toList());
-         Potion potion = list.get(rand.nextInt(list.size()));
-         ItemStack itemstack1 = PotionUtils.addPotionToItemStack(new ItemStack(this.potionStack.getItem(), this.potionCount), potion);
-         return new com.babcsany.minecraft.item.MerchantOffer(itemstack, new ItemStack(this.buyingItem, this.buyingItemCount), itemstack1, this.maxUses, this.xpValue, this.priceMultiplier);
-      }
-   }
-
    static class ItemsFor64FirtBlocksAndItemsTrade implements ZurTrades.ITrade {
       private final ItemStack buyingItem;
       private final int buyingItemCount;

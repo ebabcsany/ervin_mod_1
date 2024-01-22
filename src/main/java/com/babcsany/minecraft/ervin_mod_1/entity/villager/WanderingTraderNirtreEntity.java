@@ -102,10 +102,10 @@ public class WanderingTraderNirtreEntity extends AbstractNirtreEntity {
 
    protected void populateTradeData() {
       WanderingTraderNirtreTrades.ITrade[] aWanderingTraderNirtreTrades$iTrade = WanderingTraderNirtreTrades.trade1.get(1);
-      WanderingTraderNirtreTrades.ITrade1[] aWanderingTraderNirtreTrades$iTrade1 = WanderingTraderNirtreTrades.trade2.get(1);
+      WanderingTraderNirtreTrades.ITrade[] aWanderingTraderNirtreTrades$iTrade1 = WanderingTraderNirtreTrades.trade2.get(1);
       if (aWanderingTraderNirtreTrades$iTrade != null && aWanderingTraderNirtreTrades$iTrade1 != null) {
          MerchantOffers merchantoffers = this.getOffers();
-         com.babcsany.minecraft.item.MerchantOffers merchantoffers1 = this.getOffers1();
+         MerchantOffers merchantoffers1 = this.getOffers();
          this.addWanderingTraderNirtreTrades(merchantoffers, aWanderingTraderNirtreTrades$iTrade, 10);
          int i = this.rand.nextInt(aWanderingTraderNirtreTrades$iTrade.length);
          WanderingTraderNirtreTrades.ITrade wanderingTraderNirtreTrades$iTrade = aWanderingTraderNirtreTrades$iTrade[i];
@@ -118,13 +118,13 @@ public class WanderingTraderNirtreEntity extends AbstractNirtreEntity {
    }
 
    protected void populateTradeData1() {
-      WanderingTraderNirtreTrades.ITrade1[] aWanderingTraderNirtreTrades$iTrade1 = WanderingTraderNirtreTrades.trade2.get(1);
+      WanderingTraderNirtreTrades.ITrade[] aWanderingTraderNirtreTrades$iTrade1 = WanderingTraderNirtreTrades.trade2.get(1);
       if (aWanderingTraderNirtreTrades$iTrade1 != null) {
-         com.babcsany.minecraft.item.MerchantOffers merchantoffers = this.getOffers1();
+         MerchantOffers merchantoffers = this.getOffers();
          this.addWanderingTraderNirtreTrades(merchantoffers, aWanderingTraderNirtreTrades$iTrade1, 1);
          int i = this.rand.nextInt(aWanderingTraderNirtreTrades$iTrade1.length);
-         WanderingTraderNirtreTrades.ITrade1 wanderingTraderNirtreTrades$iTrade = aWanderingTraderNirtreTrades$iTrade1[i];
-         com.babcsany.minecraft.item.MerchantOffer merchantoffer = wanderingTraderNirtreTrades$iTrade.getOffer(this, this.rand);
+         WanderingTraderNirtreTrades.ITrade wanderingTraderNirtreTrades$iTrade = aWanderingTraderNirtreTrades$iTrade1[i];
+         MerchantOffer merchantoffer = wanderingTraderNirtreTrades$iTrade.getOffer(this, this.rand);
          if (merchantoffer != null) {
             merchantoffers.add(merchantoffer);
          }

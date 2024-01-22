@@ -7,13 +7,11 @@ import net.minecraft.block.AbstractFireBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
 import net.minecraft.network.play.server.SSpawnObjectPacket;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -24,7 +22,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.EntityStruckByLightningEvent;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -94,7 +91,7 @@ public class BlackLightningBoltEntity extends Entity {
 
             for(Entity entity : list) {
                if (!onEntityStruckByBlackLightning(entity, this))
-               this.onStruckByLightning(this);
+               this.onStruckByLightning();
             }
 
             if (this.caster != null) {
@@ -113,7 +110,7 @@ public class BlackLightningBoltEntity extends Entity {
    /**
     * Called when a lightning bolt hits the entity.
     */
-   public void onStruckByLightning(BlackLightningBoltEntity lightningBolt) {
+   public void onStruckByLightning() {
       this.forceFireTicks(this.fire + 1);
       if (this.fire == 0) {
          this.setFire(8);

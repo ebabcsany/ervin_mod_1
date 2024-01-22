@@ -5,9 +5,8 @@ import com.babcsany.minecraft.ervin_mod_1.item.BurningItem;
 import com.babcsany.minecraft.ervin_mod_1.item.HuihkRodItem;
 import com.babcsany.minecraft.ervin_mod_1.item.TeratBucket;
 import com.babcsany.minecraft.ervin_mod_1.item.group.ItemGroup;
-import com.babcsany.minecraft.item.MilkTeratBucketItem;
+import com.babcsany.minecraft.ervin_mod_1.item.MilkTeratBucketItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.MilkBucketItem;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -28,7 +27,6 @@ public class isBurnableItemInit {
     public static final RegistryObject<Item> SRIUNK_STICK = BURNABLE_ITEMS.register("stick/sriunk_stick", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
     public static final RegistryObject<Item> LEAT = BURNABLE_ITEMS.register("leat", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
     public static final RegistryObject<Item> NARIN = BURNABLE_ITEMS.register("narin", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
-    //public static final RegistryObject<ModBoatItem> FIRG_BOAT = BURNABLE_ITEMS.register("firg_boat", () -> new ModBoatItem(ModBoatEntityhj.ModBoatType.FIRG, (new Item.Properties()).isBurnable().maxStackSize(1).group(ItemGroup.ERVIN_MOD_1_ITEMS)));
     public static final RegistryObject<Item> NIRK = BURNABLE_ITEMS.register("nirk", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
     public static final RegistryObject<Item> GRUGT = BURNABLE_ITEMS.register("grugt", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
     public static final RegistryObject<Item> TIRSK = BURNABLE_ITEMS.register("tirsk", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));

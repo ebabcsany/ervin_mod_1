@@ -262,18 +262,4 @@ public abstract class ItemGroup {
       return index;
    }
 
-   public static final class ModTabGroup extends ItemGroup {
-      @Nonnull
-      private final Supplier<ItemStack> iconSupplier;
-
-      public ModTabGroup(@Nonnull String name, @Nonnull Supplier<ItemStack> iconSupplier) {
-         super(name);
-         this.iconSupplier = iconSupplier;
-      }
-
-      @Nonnull
-      public ItemStack createIcon() {
-         return this.iconSupplier.get();
-      }
-   }
 }
