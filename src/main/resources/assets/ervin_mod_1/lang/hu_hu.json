@@ -24,7 +24,7 @@
   "block.ervin_mod_1.9": "9",
   "block.ervin_mod_1.acacia_planks1": "Akáciadeszka1",
   "block.ervin_mod_1.acacia_turg": "Akácia Turg",
-  "block.ervin_mod_1.air": "Air",
+  "block.ervin_mod_1.unused/air": "Levegő",
   "block.ervin_mod_1.avter_block": "Avterblokk",
   "block.ervin_mod_1.birch_planks1": "Nyírfa Deszka1",
   "block.ervin_mod_1.birch_turg": "Nyírfa Turg",
@@ -38,7 +38,7 @@
   "block.ervin_mod_1.crask": "Crask",
   "block.ervin_mod_1.dark_oak_planks1": "Sötéttölgy Deszka1",
   "block.ervin_mod_1.dark_oak_turg": "Sötéttölgy Turg",
-  "block.ervin_mod_1.def_block": "Deferred Block",
+  "block.ervin_mod_1.def_block": "Deferred Blokk",
   "block.ervin_mod_1.diamond_slab": "Gyémántlap",
   "block.ervin_mod_1.diamond_stairs": "Gyémántlépcső",
   "block.ervin_mod_1.dirt1": "Föld1",
@@ -306,7 +306,8 @@
   "item.ervin_mod_1.crakh": "Crakh",
   "item.ervin_mod_1.crast": "Crast",
   "item.ervin_mod_1.cooked_gubrov": "Sült Gubrov",
-  "item.ervin_mod_1.cooked_steef": "Sült Steef",
+  "item.ervin_mod_1.meat.cooked_steef": "Sült Steef",
+  "item.ervin_mod_1.meat.cooked_mront": "Sült Mront",
   "item.ervin_mod_1.def_item": "Deferred Item",
   "item.ervin_mod_1.drein": "Drein",
   "item.ervin_mod_1.durg": "Durg",
@@ -464,5 +465,6 @@
   "item.ervin_mod_1.stone.tools.sword.purple_stone_sword": "Lila Kő Kard",
   "item.ervin_mod_1.stone.tools.sword.red_stone_sword": "Vörös Kő Kard",
   "item.ervin_mod_1.stone.tools.sword.white_stone_sword": "Fehér Kő Kard",
-  "item.ervin_mod_1.stone.tools.sword.yellow_stone_sword": "Sárga Kő Kard"
+  "item.ervin_mod_1.stone.tools.sword.yellow_stone_sword": "Sárga Kő Kard",
+  "item.ervin_mod_1.tools.pickaxe.thufr_pickaxe": "Thufr Csákány"
 }

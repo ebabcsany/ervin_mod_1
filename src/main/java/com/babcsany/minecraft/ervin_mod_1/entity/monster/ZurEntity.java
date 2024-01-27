@@ -1,5 +1,10 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.monster;
 
+import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.$TraderTradeWithPlayerGoal;
+import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.ZurTradeWithPlayerGoal;
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.AbstractZurEntity;
+import com.babcsany.minecraft.ervin_mod_1.entity.trigger.CriteriaTriggers1;
+import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.tool.isBurnableSpecialToolItemInit;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
@@ -11,12 +16,13 @@ import net.minecraft.entity.ai.goal.LookRandomlyGoal;
 import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
 import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraft.entity.monster.ZombieEntity;
 import net.minecraft.entity.monster.ZombifiedPiglinEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.item.MerchantOffer;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
@@ -26,13 +32,17 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 
-public class ZurEntity extends ZombieEntity {
+import javax.annotation.Nullable;
+
+public class ZurEntity extends AbstractZurEntity {
 
     public ZurEntity(EntityType<ZurEntity> p_i48549_1_, World p_i48549_2_) {
         super(p_i48549_1_, p_i48549_2_);
     }
 
     protected void registerGoals() {
+        super.registerGoals();
+        this.goalSelector.addGoal(1, new ZurTradeWithPlayerGoal(this));
         this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 9.0F));
         this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
         this.applyEntityAI();
@@ -53,10 +63,6 @@ public class ZurEntity extends ZombieEntity {
         }
 
         return super.getExperiencePoints(p_70693_1_);
-    }
-
-    protected boolean shouldDrown() {
-        return true;
     }
 
     public void tick() {
@@ -91,8 +97,13 @@ public class ZurEntity extends ZombieEntity {
         super.livingTick();
     }
 
+    @Override
+    protected void onZurTrade(MerchantOffer offer) {
+
+    }
+
     protected boolean shouldBurnInDay() {
-        return true;
+        return false;
     }
 
     public boolean attackEntityFrom(DamageSource p_70097_1_, float p_70097_2_) {
@@ -139,6 +150,16 @@ public class ZurEntity extends ZombieEntity {
         this.playSound(this.getStepSound(), 0.15F, 1.0F);
     }
 
+    public void onTrade(MerchantOffer offer) {
+        offer.increaseUses();
+        this.livingSoundTime = -this.getTalkInterval();
+        this.onZurTrade(offer);
+        if (this.getCustomer() instanceof ServerPlayerEntity) {
+            CriteriaTriggers1.ZUR_TRADE.test((ServerPlayerEntity) this.getCustomer(), this, offer.getSellingStack());
+        }
+
+    }
+
     public CreatureAttribute getCreatureAttribute() {
         return CreatureAttribute.UNDEAD;
     }
@@ -166,6 +187,12 @@ public class ZurEntity extends ZombieEntity {
             }
         }
 
+    }
+
+    @Nullable
+    @Override
+    public AgeableEntity createChild(AgeableEntity ageableEntity) {
+        return EntityInit.ZUR_ENTITY.get().create(this.world);
     }
 
     public void writeAdditional(CompoundNBT p_213281_1_) {

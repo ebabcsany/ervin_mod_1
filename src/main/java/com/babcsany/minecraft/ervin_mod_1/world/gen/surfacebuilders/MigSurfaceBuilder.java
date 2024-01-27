@@ -2,6 +2,7 @@ package com.babcsany.minecraft.ervin_mod_1.world.gen.surfacebuilders;
 
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.unused.l.UnusedBlockInit;
 import com.babcsany.minecraft.init.BlockInit;
 import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
@@ -61,7 +62,7 @@ public class MigSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig> {
                if (i1 >= sealevel - 1) {
                   chunkIn.setBlockState(blockPos$mutable, blockstate, false);
                } else if (i1 < sealevel - 7 - j) {
-                  blockstate = BlockItemInit.AIR.get().getDefaultState();
+                  blockstate = UnusedBlockInit.AIR.get().getDefaultState();
                   blockState1 = defaultBlock;
                   chunkIn.setBlockState(blockPos$mutable, bottom, false);
                } else {

@@ -18,7 +18,7 @@ public class TwustBiome extends Biome {
 		ModDefaultBiomeFeatures.addExtraKaltBlock(this);
 		ModDefaultBiomeFeatures.addFirgs(this);
 		ModDefaultBiomeFeatures.addWaterLakes(this);
-		ModDefaultBiomeFeatures.addFeature(this, GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureInit.GEN_ORE.get().withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.WATER, BlockInit.FIRT_BLOCK.get().getDefaultState(), 30)));
+		ModDefaultBiomeFeatures.addFeature(this, GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.WATER, BlockInit.FIRT_BLOCK.get().getDefaultState(), 30)));
 	}
 	
 	@Override

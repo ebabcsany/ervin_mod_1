@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": [
+    {
+      "item": "ervin_mod_1:durt/durt"
+    }
+  ],
+  "result": "ervin_mod_1:durt/gurbf",
+  "experience": 0.7,
+  "cookingtime": 800
+}

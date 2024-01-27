@@ -17,7 +17,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class GenOreFeatureConfig implements IFeatureConfig {
-   public static final Codec<GenOreFeatureConfig> deserialize = RecordCodecBuilder.create((builder) -> builder.group(FillerBlockType.field_236571_d_.fieldOf("target").forGetter((p_236570_0_) -> p_236570_0_.target), BlockState.BLOCKSTATE_CODEC.fieldOf("state").forGetter((p_236569_0_) -> p_236569_0_.state), Codec.INT.fieldOf("size").withDefault(0).forGetter((p_236567_0_) -> p_236567_0_.size)).apply(builder, GenOreFeatureConfig::new));
+   public static final Codec<GenOreFeatureConfig> deserialize = RecordCodecBuilder.create((builder) -> builder.group(FillerBlockType.field_236571_d_.fieldOf("target").forGetter((config) -> config.target), BlockState.BLOCKSTATE_CODEC.fieldOf("state").forGetter((config) -> config.state), Codec.INT.fieldOf("size").withDefault(0).forGetter((config) -> config.size)).apply(builder, GenOreFeatureConfig::new));
    public final FillerBlockType target;
    public final int size;
    public final BlockState state;
@@ -85,7 +85,13 @@ public class GenOreFeatureConfig implements IFeatureConfig {
             return terracotta_variants.isIn(Blocks.TERRACOTTA) || terracotta_variants.isIn(Blocks.BLACK_TERRACOTTA) || terracotta_variants.isIn(Blocks.BLUE_TERRACOTTA) || terracotta_variants.isIn(Blocks.BROWN_TERRACOTTA) || terracotta_variants.isIn(Blocks.CYAN_TERRACOTTA) || terracotta_variants.isIn(Blocks.GRAY_TERRACOTTA) || terracotta_variants.isIn(Blocks.GREEN_TERRACOTTA) || terracotta_variants.isIn(Blocks.LIGHT_BLUE_TERRACOTTA) || terracotta_variants.isIn(Blocks.LIGHT_GRAY_TERRACOTTA) || terracotta_variants.isIn(Blocks.LIME_TERRACOTTA) || terracotta_variants.isIn(Blocks.MAGENTA_TERRACOTTA) || terracotta_variants.isIn(Blocks.ORANGE_TERRACOTTA) || terracotta_variants.isIn(Blocks.PINK_TERRACOTTA) || terracotta_variants.isIn(Blocks.PURPLE_TERRACOTTA) || terracotta_variants.isIn(Blocks.RED_TERRACOTTA) || terracotta_variants.isIn(Blocks.WHITE_TERRACOTTA) || terracotta_variants.isIn(Blocks.YELLOW_TERRACOTTA);
          }
       }),
-      TRIRIJ("tririj", BlockMatcher.forBlock(BlockInit.TRIRIJ.get())),
+      TRIRIJ("tririj", (tririj) -> {
+         if (tririj == null) {
+            return false;
+         } else {
+            return tririj.isIn(BlockInit.TRIRIJ.get());
+         }
+      }),
       DIRT("dirt", new BlockMatcher(Blocks.DIRT)),
       RED_SAND("red_sand", new BlockMatcher(Blocks.RED_SAND)),
       WATER("water", new BlockMatcher(Blocks.WATER)),

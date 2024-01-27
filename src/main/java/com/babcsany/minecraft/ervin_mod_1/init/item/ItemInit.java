@@ -23,6 +23,8 @@ public class ItemInit {
     public static final RegistryObject<Item> DREIN = ITEMS.register("drein", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
     public static final RegistryObject<Item> NIRG = ITEMS.register("nirg", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
     public static final RegistryObject<Item> KIRT = ITEMS.register("kirt", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
+    public static final RegistryObject<Item> KIRT_STICK = ITEMS.register("kirt_stick", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
+    public static final RegistryObject<Item> KIRT_STIK_STICK = ITEMS.register("kirt_stik_stick", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
     public static final RegistryObject<Item> KIRT_STIK = ITEMS.register("kirt_stik", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
     public static final RegistryObject<Item> RUBY = ITEMS.register("ruby", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
     public static final RegistryObject<Item> FRIN = ITEMS.register("frin", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
@@ -56,7 +58,6 @@ public class ItemInit {
     public static final RegistryObject<Item> KALT = ITEMS.register("kalt", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
     public static final RegistryObject<Item> TRINK = ITEMS.register("trink", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
     public static final RegistryObject<Item> GNITH = ITEMS.register("gnith", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
-    public static final RegistryObject<Item> KIRT_STICK = ITEMS.register("kirt_stick", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
     public static final RegistryObject<Item> GRITK = ITEMS.register("gritk", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
     public static final RegistryObject<Item> CHAK = ITEMS.register("chak", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
     public static final RegistryObject<Item> GURL = ITEMS.register("gurl", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));

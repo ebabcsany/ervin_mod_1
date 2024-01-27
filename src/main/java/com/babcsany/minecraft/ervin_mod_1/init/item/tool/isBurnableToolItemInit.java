@@ -34,11 +34,11 @@ public class isBurnableToolItemInit {
     public static final RegistryObject<Item> SRURG_PICKAXE = BURNABLE_TOOLS.register("srurg_pickaxe", () -> new PickaxeItem(ModItemTier.SRURG, 1356, 814.0F, (new Item.Properties()).isBurnable()));
     public static final RegistryObject<Item> SRURG_SHOVEL = BURNABLE_TOOLS.register("srurg_shovel", () -> new ShovelItem(ModItemTier.SRURG, 4167, 2232.0F, (new Item.Properties()).isBurnable()));
     public static final RegistryObject<Item> SRURG_SWORD = BURNABLE_TOOLS.register("srurg_sword", () -> new SwordItem(ModItemTier.SRURG, 2713, 1619.0F, (new Item.Properties()).isBurnable()));
-    public static final RegistryObject<Item> TERAT_AXE = BURNABLE_TOOLS.register("terat_axe", () -> new AxeItem(ModItemTier.TERAT, 450,200.0F, (new Item.Properties()).isBurnable()));
-    public static final RegistryObject<Item> TERAT_HOE = BURNABLE_TOOLS.register("terat_hoe", () -> new HoeItem(ModItemTier.TERAT, 150, 50.0F, (new Item.Properties()).isBurnable()));
-    public static final RegistryObject<Item> TERAT_PICKAXE = BURNABLE_TOOLS.register("terat_pickaxe", () -> new PickaxeItem(ModItemTier.TERAT, 250,100.0F, (new Item.Properties()).isBurnable()));
-    public static final RegistryObject<Item> TERAT_SHOVEL = BURNABLE_TOOLS.register("terat_shovel", () -> new ShovelItem(ModItemTier.TERAT, 350,150.0F, (new Item.Properties()).isBurnable()));
-    public static final RegistryObject<Item> TERAT_SWORD = BURNABLE_TOOLS.register("terat_sword", () -> new SwordItem(ModItemTier.TERAT, 300, 60.0F, (new Item.Properties()).isBurnable()));
+    public static final RegistryObject<Item> TERAT_AXE = BURNABLE_TOOLS.register("terat/terat_axe", () -> new AxeItem(ModItemTier.TERAT, 450,200.0F, (new Item.Properties()).isBurnable()));
+    public static final RegistryObject<Item> TERAT_HOE = BURNABLE_TOOLS.register("terat/terat_hoe", () -> new HoeItem(ModItemTier.TERAT, 150, 50.0F, (new Item.Properties()).isBurnable()));
+    public static final RegistryObject<Item> TERAT_PICKAXE = BURNABLE_TOOLS.register("terat/terat_pickaxe", () -> new PickaxeItem(ModItemTier.TERAT, 250,100.0F, (new Item.Properties()).isBurnable()));
+    public static final RegistryObject<Item> TERAT_SHOVEL = BURNABLE_TOOLS.register("terat/terat_shovel", () -> new ShovelItem(ModItemTier.TERAT, 350,150.0F, (new Item.Properties()).isBurnable()));
+    public static final RegistryObject<Item> TERAT_SWORD = BURNABLE_TOOLS.register("terat/terat_sword", () -> new SwordItem(ModItemTier.TERAT, 300, 60.0F, (new Item.Properties()).isBurnable()));
     public static final RegistryObject<Item> DEBUG_TERAT_AXE = BURNABLE_TOOLS.register("debug_terat_axe", () -> new DebugAxeItem(ModItemTier.TERAT, 450,200.0F, (new Item.Properties()).isBurnable()));
     public static final RegistryObject<Item> DEBUG_TERAT_HOE = BURNABLE_TOOLS.register("debug_terat_hoe", () -> new DebugHoeItem(ModItemTier.TERAT, 150, 50.0F, (new Item.Properties()).isBurnable()));
     public static final RegistryObject<Item> DEBUG_TERAT_PICKAXE = BURNABLE_TOOLS.register("debug_terat_pickaxe", () -> new DebugPickaxeItem(ModItemTier.TERAT, 250,100.0F, (new Item.Properties()).isBurnable()));

@@ -87,10 +87,8 @@ public class Firg extends Block {
             player.getFoodStats().addStats( 1, 0.2F);
             player.addPotionEffect(new EffectInstance(Effects.REGENERATION, 50, (int) 1.25));
             int i = state.get(BITES);
-            if (i < 6) {
+            if (i < 7) {
                 world.setBlockState(pos, state.with(BITES, i + 1), 3);
-            } else {
-                world.removeBlock(pos, false);
             }
 
             return ActionResultType.SUCCESS;
@@ -103,7 +101,6 @@ public class Firg extends Block {
 
     public Food.Builder builder(Food.Builder builder, PlayerEntity player, Food food) {
         player.getActiveItemStack().getItem().isFood();
-        final Firg food1 = this.food(food);
         return builder;
     }
 

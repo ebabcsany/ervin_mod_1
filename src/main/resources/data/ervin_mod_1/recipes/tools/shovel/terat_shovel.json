@@ -7,14 +7,14 @@
   ],
   "key": {
     "#": {
-      "item": "ervin_mod_1:terat"
+      "item": "ervin_mod_1:terat/terat"
     },
     "S": {
       "item": "minecraft:stick"
     }
   },
   "result": {
-    "item": "ervin_mod_1:terat_shovel",
+    "item": "ervin_mod_1:terat/terat_shovel",
     "count": 1
   }
 }

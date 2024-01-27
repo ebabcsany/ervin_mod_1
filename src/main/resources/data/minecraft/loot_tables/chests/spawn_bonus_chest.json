@@ -79,7 +79,7 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 2,
+          "weight": 0.4,
           "name": "ervin_mod_1:durt_axe"
         }
       ]
@@ -108,6 +108,10 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:stone_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ervin_mod_1:bj_pickaxe"
         },
         {
           "type": "minecraft:item",

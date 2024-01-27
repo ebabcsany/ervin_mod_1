@@ -4,6 +4,8 @@ import com.babcsany.minecraft.ervin_mod_1.entity.animal.hhij.HhijEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.RoventEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.goal.BowAttackGoal;
+import com.babcsany.minecraft.ervin_mod_1.entity.trigger.CriteriaTriggers1;
+import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.ZurTrades;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
@@ -15,6 +17,7 @@ import com.babcsany.minecraft.ervin_mod_1.init.item.special.isBurnableSpecialIte
 import com.babcsany.minecraft.ervin_mod_1.init.item.tool.isBurnableToolItemInit;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Sets;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
@@ -31,6 +34,7 @@ import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.merchant.villager.VillagerData;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.entity.projectile.ProjectileHelper;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
@@ -43,7 +47,6 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.particles.IParticleData;
 import net.minecraft.pathfinding.GroundPathNavigator;
 import net.minecraft.pathfinding.Path;
-import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.pathfinding.SwimmerPathNavigator;
 import net.minecraft.potion.*;
 import net.minecraft.tags.FluidTags;
@@ -85,7 +88,13 @@ public abstract class AbstractZurEntity extends AgeableEntity {
    @Nullable
    private PlayerEntity previousCustomer;
    private AbstractZurEntity zur;
+   @Nullable
+   protected MerchantOffers offers;
    private boolean swimmingUp;
+   @Nullable
+   private BlockPos wanderTarget;
+   @Nullable
+   private PlayerEntity customer;
    private CompoundNBT dataTag;
    private boolean doesRewardEXP = true;
    protected final SwimmerPathNavigator waterNavigator;
@@ -138,8 +147,6 @@ public abstract class AbstractZurEntity extends AgeableEntity {
    public AbstractZurEntity(EntityType<? extends AbstractZurEntity> type, World worldIn) {
       super(type, worldIn);
       this.experienceValue = 5;
-      this.setPathPriority(PathNodeType.DANGER_FIRE, 16.0F);
-      this.setPathPriority(PathNodeType.DAMAGE_FIRE, -1.0F);
       this.waterNavigator = new SwimmerPathNavigator(this, worldIn);
       this.groundNavigator = new GroundPathNavigator(this, worldIn);
       this.setCanPickUpLoot(true);
@@ -292,6 +299,55 @@ public abstract class AbstractZurEntity extends AgeableEntity {
       }
    }
 
+   public MerchantOffers getOffers() {
+      if (this.offers == null) {
+         this.offers = new MerchantOffers();
+         this.populateTradeData();
+      }
+
+      return this.offers;
+   }
+
+   protected void populateTradeData() {
+      ZurTrades.ITrade[] aWanderingTraderNirtreTrades$iTrade = ZurTrades.trade.get(1);
+      if (aWanderingTraderNirtreTrades$iTrade != null) {
+         MerchantOffers merchantoffers = this.getOffers();
+         this.addZurTrades(merchantoffers, aWanderingTraderNirtreTrades$iTrade, 10);
+         int i = this.rand.nextInt(aWanderingTraderNirtreTrades$iTrade.length);
+         ZurTrades.ITrade wanderingTraderNirtreTrades$iTrade = aWanderingTraderNirtreTrades$iTrade[i];
+         MerchantOffer merchantoffer = wanderingTraderNirtreTrades$iTrade.getOffer(this, this.rand);
+         if (merchantoffer != null) {
+            merchantoffers.add(merchantoffer);
+         }
+
+      }
+   }
+
+   /**
+    * add limites numbers of trades to the given MerchantOffers
+    */
+   protected void addZurTrades(MerchantOffers givenMerchantOffers, ZurTrades.ITrade[] newTrades, int maxNumbers) {
+      Set<Integer> set = Sets.newHashSet();
+      if (newTrades.length > maxNumbers) {
+         while(set.size() < maxNumbers) {
+            set.add(this.rand.nextInt(newTrades.length));
+         }
+      } else {
+         for(int i = 0; i < newTrades.length; ++i) {
+            set.add(i);
+         }
+      }
+
+      for(Integer integer : set) {
+         ZurTrades.ITrade wanderingTraderNirtreTrades$iTrade = newTrades[integer];
+         MerchantOffer merchantoffer = wanderingTraderNirtreTrades$iTrade.getOffer(this, this.rand);
+         if (merchantoffer != null) {
+            givenMerchantOffers.add(merchantoffer);
+         }
+      }
+
+   }
+
    public void startSleeping(BlockPos pos) {
       super.startSleeping(pos);
       this.brain.setMemory(MemoryModuleType.LAST_SLEPT, this.world.getGameTime());
@@ -312,27 +368,8 @@ public abstract class AbstractZurEntity extends AgeableEntity {
       return true;
    }
 
-   public void setLeader(boolean isLeader) {
-      boolean patrolling = true;
-   }
-
    protected boolean canBreakDoors() {
       return true;
-   }
-
-   public void setRaid(@Nullable Raid p_213652_1_) {
-      this.raid = p_213652_1_;
-   }
-
-   public void func_213644_t(boolean p_213644_1_) {
-   }
-
-   public abstract void applyWaveBonus(int p_213660_1_, boolean p_213660_2_);
-
-   public void func_213653_b(int p_213653_1_) {
-   }
-
-   public void setWave(int p_213651_1_) {
    }
 
    /**
@@ -744,6 +781,11 @@ public abstract class AbstractZurEntity extends AgeableEntity {
    public void writeAdditional(CompoundNBT compound) {
       super.writeAdditional(compound);
 
+      compound.putInt("DespawnDelay", this.despawnDelay);
+      if (this.wanderTarget != null) {
+         compound.put("ZurTarget", NBTUtil.writeBlockPos(this.wanderTarget));
+      }
+
       compound.putBoolean("rewardExp", this.doesRewardEXP);
       compound.putByte("FoodLevel", this.foodLevel);
       compound.putInt("Xp", this.xp);
@@ -764,9 +806,16 @@ public abstract class AbstractZurEntity extends AgeableEntity {
     */
    public void readAdditional(CompoundNBT compound) {
       super.readAdditional(compound);
+      if (compound.contains("DespawnDelay", 99)) {
+         this.despawnDelay = compound.getInt("DespawnDelay");
+      }
 
-      if (dataTag.contains("rewardExp", 1)) {
-         this.doesRewardEXP = dataTag.getBoolean("rewardExp");
+      if (compound.contains("ZurTarget")) {
+         this.zurTarget = NBTUtil.readBlockPos(compound.getCompound("ZurTarget"));
+      }
+
+      if (compound.contains("Offers", 10)) {
+         this.offers = new MerchantOffers(compound.getCompound("Offers"));
       }
 
       if (compound.contains("FoodLevel", 1)) {
@@ -783,10 +832,6 @@ public abstract class AbstractZurEntity extends AgeableEntity {
       this.xpSeed = compound.getInt("XpSeed");
       if (this.xpSeed == 0) {
          this.xpSeed = this.rand.nextInt();
-      }
-
-      if (compound.contains("ZurTarget")) {
-         this.zurTarget = NBTUtil.readBlockPos(compound.getCompound("ZurTarget"));
       }
 
       this.setGrowingAge(Math.max(0, this.getGrowingAge()));
@@ -857,7 +902,7 @@ public abstract class AbstractZurEntity extends AgeableEntity {
                this.setDrinkingPotion(false);
                ItemStack itemstack = this.getHeldItemMainhand();
                this.setItemStackToSlot(EquipmentSlotType.MAINHAND, ItemStack.EMPTY);
-               if (itemstack.getItem() == isBurnableItemInit.VIRKT.get()) {
+               if (itemstack.getItem() == isBurnableFoodItemInit.VIRK.get()) {
                   List<EffectInstance> list = PotionUtils.getEffectsFromStack(itemstack);
                   for(EffectInstance effectinstance : list) {
                      this.addPotionEffect(new EffectInstance(effectinstance));
@@ -900,6 +945,17 @@ public abstract class AbstractZurEntity extends AgeableEntity {
          this.entityDropItem(isBurnableItemInit.LEAT.get());
          this.timeUntilNextItem = this.rand.nextInt(12000) + 12000;
       }
+   }
+
+   protected abstract void onZurTrade(MerchantOffer offer);
+
+   @Nullable
+   public PlayerEntity getCustomer() {
+      return this.customer;
+   }
+
+   public boolean hasCustomer() {
+      return this.customer != null;
    }
 
    public boolean isZurDropItem() {
@@ -1027,6 +1083,11 @@ public abstract class AbstractZurEntity extends AgeableEntity {
          return ItemStack.EMPTY;
       }
    }
+
+   public void setCustomer(PlayerEntity player) {
+      this.customer = player;
+   }
+
    public static class LeapAtTargetGoal extends Goal {
       private final MobEntity leaper;
       private LivingEntity leapTarget;

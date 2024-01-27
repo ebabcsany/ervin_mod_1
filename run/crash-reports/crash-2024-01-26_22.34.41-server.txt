@@ -1,0 +1,130 @@
+---- Minecraft Crash Report ----
+// This doesn't make any sense!
+
+Time: 2024.01.26. 22:34
+Description: Exception generating new chunk
+
+java.lang.ArrayIndexOutOfBoundsException: -1
+	at java.util.ArrayList.elementData(ArrayList.java:424) ~[?:1.8.0_302] {}
+	at java.util.ArrayList.get(ArrayList.java:437) ~[?:1.8.0_302] {}
+	at com.babcsany.minecraft.ervin_mod_1.init.unused.UnusedBlockInit.get(UnusedBlockInit.java:64) ~[?:?] {re:classloading}
+	at com.babcsany.minecraft.ervin_mod_1.init.unused.UnusedBlockInit.get(UnusedBlockInit.java:60) ~[?:?] {re:classloading}
+	at com.babcsany.minecraft.ervin_mod_1.init.unused.UnusedBlockInit.getBlock(UnusedBlockInit.java:55) ~[?:?] {re:classloading}
+	at com.babcsany.minecraft.ervin_mod_1.world.biome.ExampleBiomeSurfaceBuilder0.buildSurface(ExampleBiomeSurfaceBuilder0.java:30) ~[?:?] {re:classloading}
+	at com.babcsany.minecraft.ervin_mod_1.world.biome.ExampleBiomeSurfaceBuilder0.buildSurface(ExampleBiomeSurfaceBuilder0.java:16) ~[?:?] {re:classloading}
+	at net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder.buildSurface(SourceFile:23) ~[?:?] {re:classloading}
+	at net.minecraft.world.biome.Biome.buildSurface(Biome.java:431) ~[?:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.world.gen.NoiseChunkGenerator.generateSurface(NoiseChunkGenerator.java:361) ~[?:?] {re:classloading}
+	at net.minecraft.world.chunk.ChunkStatus.lambda$static$6(ChunkStatus.java:63) ~[?:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.world.chunk.ChunkStatus$ISelectiveWorker.doWork(ChunkStatus.java:240) ~[?:?] {re:classloading}
+	at net.minecraft.world.chunk.ChunkStatus.doGenerationWork(ChunkStatus.java:198) ~[?:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.world.server.ChunkManager.lambda$null$18(ChunkManager.java:530) ~[?:?] {re:classloading}
+	at com.mojang.datafixers.util.Either$Left.map(Either.java:38) ~[datafixerupper-3.0.25.jar:?] {re:classloading,re:classloading}
+	at net.minecraft.world.server.ChunkManager.lambda$func_223156_b$20(ChunkManager.java:528) ~[?:?] {re:classloading}
+	at java.util.concurrent.CompletableFuture.uniCompose(CompletableFuture.java:966) ~[?:1.8.0_302] {}
+	at java.util.concurrent.CompletableFuture$UniCompose.tryFire(CompletableFuture.java:940) ~[?:1.8.0_302] {}
+	at java.util.concurrent.CompletableFuture$Completion.run(CompletableFuture.java:456) ~[?:1.8.0_302] {}
+	at net.minecraft.world.chunk.ChunkTaskPriorityQueueSorter.func_219083_b(SourceFile:58) ~[?:?] {re:classloading}
+	at net.minecraft.util.concurrent.DelegatedTaskExecutor.driveOne(SourceFile:94) ~[?:?] {re:classloading}
+	at net.minecraft.util.concurrent.DelegatedTaskExecutor.driveWhile(SourceFile:137) ~[?:?] {re:classloading}
+	at net.minecraft.util.concurrent.DelegatedTaskExecutor.run(SourceFile:105) ~[?:?] {re:classloading}
+	at java.util.concurrent.ForkJoinTask$RunnableExecuteAction.exec(ForkJoinTask.java:1402) ~[?:1.8.0_302] {}
+	at java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:289) ~[?:1.8.0_302] {}
+	at java.util.concurrent.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1056) ~[?:1.8.0_302] {}
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1692) ~[?:1.8.0_302] {}
+	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:175) ~[?:1.8.0_302] {}
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Thread: Server thread
+Stacktrace:
+	at java.util.ArrayList.elementData(ArrayList.java:424)
+	at java.util.ArrayList.get(ArrayList.java:437)
+	at com.babcsany.minecraft.ervin_mod_1.init.unused.UnusedBlockInit.get(UnusedBlockInit.java:64)
+	at com.babcsany.minecraft.ervin_mod_1.init.unused.UnusedBlockInit.get(UnusedBlockInit.java:60)
+	at com.babcsany.minecraft.ervin_mod_1.init.unused.UnusedBlockInit.getBlock(UnusedBlockInit.java:55)
+	at com.babcsany.minecraft.ervin_mod_1.world.biome.ExampleBiomeSurfaceBuilder0.buildSurface(ExampleBiomeSurfaceBuilder0.java:30)
+	at com.babcsany.minecraft.ervin_mod_1.world.biome.ExampleBiomeSurfaceBuilder0.buildSurface(ExampleBiomeSurfaceBuilder0.java:16)
+	at net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder.buildSurface(SourceFile:23)
+	at net.minecraft.world.biome.Biome.buildSurface(Biome.java:431)
+	at net.minecraft.world.gen.NoiseChunkGenerator.generateSurface(NoiseChunkGenerator.java:361)
+	at net.minecraft.world.chunk.ChunkStatus.lambda$static$6(ChunkStatus.java:63)
+	at net.minecraft.world.chunk.ChunkStatus$ISelectiveWorker.doWork(ChunkStatus.java:240)
+	at net.minecraft.world.chunk.ChunkStatus.doGenerationWork(ChunkStatus.java:198)
+
+-- Chunk to be generated --
+Details:
+	Location: 47,-68
+	Position hash: -292057776081
+	Generator: net.minecraft.world.gen.NoiseChunkGenerator@6ff02cda
+Stacktrace:
+	at net.minecraft.world.server.ChunkManager.lambda$null$18(ChunkManager.java:530)
+	at com.mojang.datafixers.util.Either$Left.map(Either.java:38)
+	at net.minecraft.world.server.ChunkManager.lambda$func_223156_b$20(ChunkManager.java:528)
+	at java.util.concurrent.CompletableFuture.uniCompose(CompletableFuture.java:966)
+	at java.util.concurrent.CompletableFuture$UniCompose.tryFire(CompletableFuture.java:940)
+	at java.util.concurrent.CompletableFuture$Completion.run(CompletableFuture.java:456)
+	at net.minecraft.world.chunk.ChunkTaskPriorityQueueSorter.func_219083_b(SourceFile:58)
+	at net.minecraft.util.concurrent.DelegatedTaskExecutor.driveOne(SourceFile:94)
+	at net.minecraft.util.concurrent.DelegatedTaskExecutor.driveWhile(SourceFile:137)
+
+-- Affected level --
+Details:
+	All players: 1 total; [ServerPlayerEntity['Dev'/180, l='ServerLevel[Új világ]', x=684.50, y=179.63, z=-1291.50]]
+	Chunk stats: ServerChunkCache: 3957
+	Level dimension: minecraft:overworld
+	Level spawn location: World: (-109,63,32), Chunk: (at 3,3,0 in -7,2; contains blocks -112,0,32 to -97,255,47), Region: (-1,0; contains chunks -32,0 to -1,31, blocks -512,0,0 to -1,255,511)
+	Level time: 347238 game time, 347238 day time
+	Level name: Új világ
+	Level game mode: Game mode: creative (ID 1). Hardcore: false. Cheats: true
+	Level weather: Rain time: 45924 (now: false), thunder time: 99261 (now: false)
+	Known server brands: forge
+	Level was modded: true
+	Level storage version: 0x04ABD - Anvil
+Stacktrace:
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:855)
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:788)
+	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:81)
+	at net.minecraft.server.MinecraftServer.func_240802_v_(MinecraftServer.java:643)
+	at net.minecraft.server.MinecraftServer.lambda$func_240784_a_$0(MinecraftServer.java:230)
+	at java.lang.Thread.run(Thread.java:748)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.16.1
+	Minecraft Version ID: 1.16.1
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 1.8.0_302, Amazon.com Inc.
+	Java VM Version: OpenJDK 64-Bit Server VM (mixed mode), Amazon.com Inc.
+	Memory: 2103909848 bytes (2006 MB) / 7251427328 bytes (6915 MB) up to 7626293248 bytes (7273 MB)
+	CPUs: 4
+	JVM Flags: 1 total; -XX:HeapDumpPath=MojangTricksIntelDriversForPerformance_javaw.exe_minecraft.exe.heapdump
+	ModLauncher: 6.1.3+75+master.851120a
+	ModLauncher launch target: fmluserdevclient
+	ModLauncher naming: mcp
+	ModLauncher services: 
+		/mixin-0.8.jar mixin PLUGINSERVICE 
+		/eventbus-3.0.3-service.jar eventbus PLUGINSERVICE 
+		/forge-1.16.1-32.0.108_mapped_snapshot_20200723-1.16.1-launcher.jar object_holder_definalize PLUGINSERVICE 
+		/forge-1.16.1-32.0.108_mapped_snapshot_20200723-1.16.1-launcher.jar runtime_enum_extender PLUGINSERVICE 
+		/accesstransformers-2.2.0-shadowed.jar accesstransformer PLUGINSERVICE 
+		/forge-1.16.1-32.0.108_mapped_snapshot_20200723-1.16.1-launcher.jar capability_inject_definalize PLUGINSERVICE 
+		/forge-1.16.1-32.0.108_mapped_snapshot_20200723-1.16.1-launcher.jar runtimedistcleaner PLUGINSERVICE 
+		/mixin-0.8.jar mixin TRANSFORMATIONSERVICE 
+		/forge-1.16.1-32.0.108_mapped_snapshot_20200723-1.16.1-launcher.jar fml TRANSFORMATIONSERVICE 
+	FML: 32.0
+	Forge: net.minecraftforge:32.0.108
+	FML Language Providers: 
+		javafml@32.0
+		minecraft@1
+	Mod List: 
+		client-extra.jar Minecraft {minecraft@1.16.1 DONE}
+		main Ervin Mod 1 {ervin_mod_1@NONE DONE}
+		forge-1.16.1-32.0.108_mapped_snapshot_20200723-1.16.1.jar Forge {forge@32.0.108 DONE}
+	Player Count: 1 / 8; [ServerPlayerEntity['Dev'/180, l='ServerLevel[Új világ]', x=684.50, y=179.63, z=-1291.50]]
+	Data Packs: vanilla, mod:ervin_mod_1 (incompatible), mod:forge
+	Type: Integrated Server (map_client.txt)
+	Is Modded: Definitely; Client brand changed to 'forge'

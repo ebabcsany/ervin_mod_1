@@ -7,11 +7,11 @@
   ],
   "key": {
     "#": {
-      "item": "ervin_mod_1:terat"
+      "item": "ervin_mod_1:terat/terat"
     }
   },
   "result": {
-    "item": "ervin_mod_1:terat_chestplate",
+    "item": "ervin_mod_1:terat/terat_chestplate",
     "count": 1
   }
 }

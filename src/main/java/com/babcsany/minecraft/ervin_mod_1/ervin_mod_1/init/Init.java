@@ -4,6 +4,7 @@ import com.babcsany.minecraft.ervin_mod_1.init.BiomeInit;
 import com.babcsany.minecraft.ervin_mod_1.init.IMolaBlocks;
 import com.babcsany.minecraft.ervin_mod_1.init.container.ContainerInit;
 import com.babcsany.minecraft.ervin_mod_1.init.container.FurnaceContainerInit;
+import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.$ItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.armor.ArmorItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.armor.HorseArmorItemInit;
@@ -24,8 +25,11 @@ import com.babcsany.minecraft.ervin_mod_1.init.item.special.isBurnableSpecialIte
 import com.babcsany.minecraft.ervin_mod_1.init.item.tool.SpecialToolItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.tool.isBurnableSpecialToolItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.tool.isBurnableToolItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.minecraft.block.MinecraftBlocks;
 import com.babcsany.minecraft.ervin_mod_1.init.special.SpecialBlockInit;
 import com.babcsany.minecraft.ervin_mod_1.init.special.SpecialItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.unused.l.UnusedBlockInit;
+import com.babcsany.minecraft.ervin_mod_1.init.unused.l.UnusedBlockItemInit;
 import com.babcsany.minecraft.init.*;
 import com.babcsany.minecraft.init.item.ItemInit;
 import com.babcsany.minecraft.init.lc.block.blocks.H_u_fBlockInit;
@@ -52,7 +56,7 @@ public class Init {
         com.babcsany.minecraft.ervin_mod_1.init.DecoratorInit.DECORATORS.register(modEventBus);
         com.babcsany.minecraft.ervin_mod_1.init.EntityInit.ENTITY_TYPES.register(modEventBus);
         com.babcsany.minecraft.ervin_mod_1.init.FeatureInit.FEATURES.register(modEventBus);
-        BrefkStageItemInit.BREFK_STAGE.register(modEventBus);
+        BrefkStageItemInit.REGISTER_BREFK_STAGE.register(modEventBus);
         FoodItemInit.FOODS.register(modEventBus);
         //FluidBucketInit.FLUID_BUCKETS.register(modEventBus);
         com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit.BURNABLE_ITEMS.register(modEventBus);
@@ -87,10 +91,16 @@ public class Init {
         com.babcsany.minecraft.ervin_mod_1.init.SoundInit.SOUNDS.register(modEventBus);
         com.babcsany.minecraft.ervin_mod_1.init.TreeDecoratorInit.TREE_DECORATOR_TYPES.register(modEventBus);
         com.babcsany.minecraft.ervin_mod_1.init.WorldCarverInit.CARVERS.register(modEventBus);
+        com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.BLOCKS.register(modEventBus);
+        com.babcsany.minecraft.ervin_mod_1.init.block.animation.colors.BlockItemInit.ANIMATION_BLOCKS.register(modEventBus);
+        MinecraftBlocks.BLOCKS.register(modEventBus);
+        isBurnableBlockItemInit.BURNABLE_BLOCKS.register(modEventBus);
     }
 
     public static void default_register(IEventBus modEventBus) {
         BlockInit.REGISTER_BLOCKS.register(modEventBus);
+        UnusedBlockInit.BLOCK_DEFERRED_REGISTER.register(modEventBus);
+        UnusedBlockItemInit.BLOCK_ITEM_DEFERRED_REGISTER.register(modEventBus);
         H_u_fBlockInit.H_U_F_BLOCKS.register(modEventBus);
         BlockInit BLOCKS = BlockInit.BLOCKS;
         BlockItemInit.ITEMS.register(modEventBus);
@@ -99,9 +109,5 @@ public class Init {
         FeatureInit.FEATURES.register(modEventBus);
         EffectInit EFFECTS = EffectInit.EFFECTS;
         ParticleInit PARTICLES = ParticleInit.PARTICLES;
-    }
-
-    public static void init(Class<?> class$) {
-        class$.cast(class$);
     }
 }

@@ -5,6 +5,7 @@ import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.block.tool.ToolItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.food.isBurnableFoodItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.tool.SpecialToolItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.tool.isBurnableSpecialToolItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.tool.isBurnableToolItemInit;
 import net.minecraft.item.IItemTier;
@@ -19,22 +20,23 @@ public enum ModItemTier implements IItemTier {
     enchantability, Supplier<Ingredient> repairMaterial */
     SRIUNK(14, 13462, 220.0F, 26.0F, 250, () -> Ingredient.fromItems(isBurnableItemInit.SRIUNK.get())),
     TERAT(32, 165846, 210000.0F, 384.0F, 2210, () -> Ingredient.fromItems(isBurnableSpecialToolItemInit.TERAT.get())),
-    BLACK_COBBLESTONE(1, 131, 4.0F, 1.0F, 5, () -> Ingredient.fromItems(com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.BLACK_COBBLESTONE.get())),
-    BLUE_COBBLESTONE(1, 131, 4.0F, 1.0F, 5, () -> Ingredient.fromItems(com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.BLUE_COBBLESTONE.get())),
-    BROWN_COBBLESTONE(1, 131, 4.0F, 1.0F, 5, () -> Ingredient.fromItems(com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.BROWN_COBBLESTONE.get())),
-    CYAN_COBBLESTONE(1, 131, 4.0F, 1.0F, 5, () -> Ingredient.fromItems(com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.CYAN_COBBLESTONE.get())),
-    GREEN_COBBLESTONE(1, 131, 4.0F, 1.0F, 5, () -> Ingredient.fromItems(com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.GREEN_COBBLESTONE.get())),
-    LIGHT_BLUE_COBBLESTONE(1, 131, 4.0F, 1.0F, 5, () -> Ingredient.fromItems(com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.LIGHT_BLUE_COBBLESTONE.get())),
-    LIGHT_BLUE1_COBBLESTONE(1, 131, 4.0F, 1.0F, 5, () -> Ingredient.fromItems(com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.LIGHT_BLUE1_COBBLESTONE.get())),
-    LIGHT_GRAY_COBBLESTONE(1, 131, 4.0F, 1.0F, 5, () -> Ingredient.fromItems(com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.LIGHT_GRAY_COBBLESTONE.get())),
-    LIME_COBBLESTONE(1, 131, 4.0F, 1.0F, 5, () -> Ingredient.fromItems(com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.LIME_COBBLESTONE.get())),
-    MAGENTA_COBBLESTONE(1, 131, 4.0F, 1.0F, 5, () -> Ingredient.fromItems(com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.MAGENTA_COBBLESTONE.get())),
-    ORANGE_COBBLESTONE(1, 131, 4.0F, 1.0F, 5, () -> Ingredient.fromItems(com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.ORANGE_COBBLESTONE.get())),
-    PINK_COBBLESTONE(1, 131, 4.0F, 1.0F, 5, () -> Ingredient.fromItems(com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.PINK_COBBLESTONE.get())),
-    PURPLE_COBBLESTONE(1, 131, 4.0F, 1.0F, 5, () -> Ingredient.fromItems(com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.PURPLE_COBBLESTONE.get())),
-    RED_COBBLESTONE(1, 131, 4.0F, 1.0F, 5, () -> Ingredient.fromItems(com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.RED_COBBLESTONE.get())),
-    WHITE_COBBLESTONE(1, 131, 4.0F, 1.0F, 5, () -> Ingredient.fromItems(com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.WHITE_COBBLESTONE.get())),
-    YELLOW_COBBLESTONE(1, 131, 4.0F, 1.0F, 5, () -> Ingredient.fromItems(com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.YELLOW_COBBLESTONE.get())),
+    CRAINT(12,13214,5432.0F,56,320, () -> Ingredient.fromItems(SpecialToolItemInit.CRAINT.get())),
+    BLACK_STONE(1, 131, 4.0F, 1.0F, 5, () -> Ingredient.fromItems(com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.BLACK_COBBLESTONE.get())),
+    BLUE_STONE(1, 131, 4.0F, 1.0F, 5, () -> Ingredient.fromItems(com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.BLUE_COBBLESTONE.get())),
+    BROWN_STONE(1, 131, 4.0F, 1.0F, 5, () -> Ingredient.fromItems(com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.BROWN_COBBLESTONE.get())),
+    CYAN_STONE(1, 131, 4.0F, 1.0F, 5, () -> Ingredient.fromItems(com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.CYAN_COBBLESTONE.get())),
+    GREEN_STONE(1, 131, 4.0F, 1.0F, 5, () -> Ingredient.fromItems(com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.GREEN_COBBLESTONE.get())),
+    LIGHT_BLUE_STONE(1, 131, 4.0F, 1.0F, 5, () -> Ingredient.fromItems(com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.LIGHT_BLUE_COBBLESTONE.get())),
+    LIGHT_BLUE1_STONE(1, 131, 4.0F, 1.0F, 5, () -> Ingredient.fromItems(com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.LIGHT_BLUE1_COBBLESTONE.get())),
+    LIGHT_GRAY_STONE(1, 131, 4.0F, 1.0F, 5, () -> Ingredient.fromItems(com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.LIGHT_GRAY_COBBLESTONE.get())),
+    LIME_STONE(1, 131, 4.0F, 1.0F, 5, () -> Ingredient.fromItems(com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.LIME_COBBLESTONE.get())),
+    MAGENTA_STONE(1, 131, 4.0F, 1.0F, 5, () -> Ingredient.fromItems(com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.MAGENTA_COBBLESTONE.get())),
+    ORANGE_STONE(1, 131, 4.0F, 1.0F, 5, () -> Ingredient.fromItems(com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.ORANGE_COBBLESTONE.get())),
+    PINK_STONE(1, 131, 4.0F, 1.0F, 5, () -> Ingredient.fromItems(com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.PINK_COBBLESTONE.get())),
+    PURPLE_STONE(1, 131, 4.0F, 1.0F, 5, () -> Ingredient.fromItems(com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.PURPLE_COBBLESTONE.get())),
+    RED_STONE(1, 131, 4.0F, 1.0F, 5, () -> Ingredient.fromItems(com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.RED_COBBLESTONE.get())),
+    WHITE_STONE(1, 131, 4.0F, 1.0F, 5, () -> Ingredient.fromItems(com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.WHITE_COBBLESTONE.get())),
+    YELLOW_STONE(1, 131, 4.0F, 1.0F, 5, () -> Ingredient.fromItems(com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.YELLOW_COBBLESTONE.get())),
     BLACK_IRON_INGOT(2, 250, 6.0F, 2.0F, 14, () -> Ingredient.fromItems(ItemInit.BLACK_IRON_INGOT.get())),
     BLUE_IRON_INGOT(2, 250, 6.0F, 2.0F, 14, () -> Ingredient.fromItems(ItemInit.BLUE_IRON_INGOT.get())),
     RED_IRON_INGOT(2, 250, 6.0F, 2.0F, 14, () -> Ingredient.fromItems(ItemInit.RED_IRON_INGOT.get())),
@@ -49,6 +51,7 @@ public enum ModItemTier implements IItemTier {
     ENDER_TRASKRACH(5, 180, 10.0F, 8.0F, 100, () -> Ingredient.fromItems(ToolItemInit.ENDER_TRASKRACH.get())),
     ENDER_TRASK(6, 320, 16.0F, 12.0F, 160, () -> Ingredient.fromItems(com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.ENDER_TRASK.get())),
     KIRT(0, 1, 0.0F, 0.0F, 1, () -> Ingredient.fromItems(ItemInit.KIRT.get())),
+    KIRT_STIK(0, 26, 1.0F, 1.0F, 2, () -> Ingredient.fromItems(ItemInit.KIRT_STIK.get())),
     DURG(12, 17685, 126.0F, 54.0F, 1332, () -> Ingredient.fromItems(isBurnableFoodItemInit.DURG.get())),
     OBSIDIAN(4, 3214, 64.0F, 4.0F, 8, () -> Ingredient.fromItems(Items.OBSIDIAN)),
     DURT(3, 2672, 24.0F, 5.0F, 320, () -> Ingredient.fromItems(com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.DURT.get())),

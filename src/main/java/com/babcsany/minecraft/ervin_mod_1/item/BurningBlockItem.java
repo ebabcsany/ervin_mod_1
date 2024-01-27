@@ -11,7 +11,7 @@ public class BurningBlockItem extends BlockItem {
       this.durationIn = durationIn;
    }
 
-   public int getUseDuration(ItemStack stack) {
+   /*public int getUseDuration(ItemStack stack) {
       return this.durationIn;
-   }
+   }*/
 }

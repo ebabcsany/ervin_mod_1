@@ -15,8 +15,8 @@ public class FeatureInit {
 
     public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, Ervin_mod_1.MOD_ID);
 
-    //public static final Feature<GenOreFeatureConfig> GEN_ORE1 = register(string("gen_ore"), new GenOreFeature(GenOreFeatureConfig.deserialize));
-    public static final RegistryObject<Feature<GenOreFeatureConfig>> GEN_ORE = FEATURES.register("gen_ore", () -> new GenOreFeature(GenOreFeatureConfig.deserialize));
+    public static final Feature<GenOreFeatureConfig> GEN_ORE = register(string("gen_ore"), new GenOreFeature(GenOreFeatureConfig.deserialize));
+//    public static final RegistryObject<Feature<GenOreFeatureConfig>> GEN_ORE = FEATURES.register("gen_ore", () -> new GenOreFeature(GenOreFeatureConfig.deserialize));
 
     private static String string(String name) {
         String string = "ervin_mod_1:";

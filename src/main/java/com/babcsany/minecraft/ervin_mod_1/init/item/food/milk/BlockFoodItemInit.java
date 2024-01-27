@@ -14,7 +14,7 @@ public class BlockFoodItemInit {
 
     public static final DeferredRegister<Item> FOOD_ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Ervin_mod_1.MOD_ID);
 
-    public static final RegistryObject<Item> ZUNK_BLOCK = FOOD_ITEMS.register("zunk_block", () -> new ZunkBlock(BlockInit.ZUNK_BLOCK.get(), (new Item.Properties())));
-    public static final RegistryObject<Item> TNUZK_BLOCK = FOOD_ITEMS.register("tnuzk_block", () -> new TnuzkBlock(BlockInit.TNUZK_BLOCK.get(), (new Item.Properties())));
-    public static final RegistryObject<Item> TNUZN = FOOD_ITEMS.register("tnuzn", () -> new Tnuzn(BlockInit.TNUZN.get(), (new Item.Properties())));
+    public static final RegistryObject<Item> ZUNK_BLOCK = FOOD_ITEMS.register("zunk_block", () -> new ZunkBlock(BlockInit.ZUNK_BLOCK.get(), (new Item.Properties()).group(net.minecraft.item.ItemGroup.FOOD)));
+    public static final RegistryObject<Item> TNUZK_BLOCK = FOOD_ITEMS.register("tnuzk_block", () -> new TnuzkBlock(BlockInit.TNUZK_BLOCK.get(), (new Item.Properties()).group(net.minecraft.item.ItemGroup.FOOD)));
+    public static final RegistryObject<Item> TNUZN = FOOD_ITEMS.register("tnuzn", () -> new Tnuzn(BlockInit.TNUZN.get(), (new Item.Properties()).group(net.minecraft.item.ItemGroup.FOOD)));
 }

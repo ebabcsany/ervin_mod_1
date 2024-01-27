@@ -19,5 +19,5 @@ public class isBurnableSpecialItemInit {
     public static final RegistryObject<Grithvsr> GRITHVSR = SPECIAL_ITEMS.register("grithvsr", () -> new Grithvsr((new Item.Properties()).isBurnable()));
     public static final RegistryObject<Firn> FIRN = SPECIAL_ITEMS.register("firn", () -> new Firn((new Item.Properties()).isBurnable()));
     public static final RegistryObject<Troif> TROIF = SPECIAL_ITEMS.register("troif", () -> new Troif((new Item.Properties())));
-    public static final RegistryObject<DebugSriunkStick> DEBUG_SRIUNK_STICK = SPECIAL_ITEMS.register("debug_sriunk_stick", () -> new DebugSriunkStick((new Item.Properties()).isBurnable()));
+    public static final RegistryObject<DebugStickItem> DEBUG_SRIUNK_STICK = SPECIAL_ITEMS.register("debug_sriunk_stick", () -> new DebugStickItem((new Item.Properties()).isBurnable()));
 }

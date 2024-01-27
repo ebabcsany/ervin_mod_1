@@ -19,6 +19,10 @@ public class TeratStick extends Item {
       return toolClasses.getOrDefault(tool, 30);
    }
 
+   public boolean isEnchantable(ItemStack p_77616_1_) {
+      return this.getItemStackLimit(p_77616_1_) == 256 && this.isDamageable();
+   }
+
    @Override
    public int getItemStackLimit(ItemStack stack) {
       return 2048;

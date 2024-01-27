@@ -31,6 +31,10 @@ public class PhiskItem extends ToolItem {
       return material == Material.CORAL || material == Material.ORGANIC || material == Material.BARRIER;
    }
 
+   public boolean isEnchantable(ItemStack p_77616_1_) {
+      return this.getItemStackLimit(p_77616_1_) == 2048 && this.isDamageable();
+   }
+
    public float getDestroySpeed(ItemStack stack, BlockState state) {
       Material material = state.getMaterial();
       return material != Material.CAKE && material != Material.CORAL && material != Material.DRAGON_EGG ? super.getDestroySpeed(stack, state) : this.efficiency;

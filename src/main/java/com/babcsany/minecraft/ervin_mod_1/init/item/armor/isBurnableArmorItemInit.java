@@ -25,8 +25,8 @@ public class isBurnableArmorItemInit {
     public static final RegistryObject<Item> NIRK_CHESTPLATE = BURNABLE_ARMOR.register("nirk_chestplate", () -> new ArmorItem(ModArmorMaterial.NIRK, EquipmentSlotType.CHEST, (new Item.Properties()).isBurnable()));
     public static final RegistryObject<Item> NIRK_HELMET = BURNABLE_ARMOR.register("nirk_helmet", () -> new ArmorItem(ModArmorMaterial.NIRK, EquipmentSlotType.HEAD, (new Item.Properties()).isBurnable()));
     public static final RegistryObject<Item> NIRK_LEGGINGS = BURNABLE_ARMOR.register("nirk_leggings", () -> new ArmorItem(ModArmorMaterial.NIRK, EquipmentSlotType.LEGS, (new Item.Properties()).isBurnable()));
-    public static final RegistryObject<Item> TERAT_BOOTS = BURNABLE_ARMOR.register("terat_boots", () -> new ArmorItem(ModArmorMaterial.TERAT, EquipmentSlotType.FEET, (new Item.Properties()).isBurnable()));
-    public static final RegistryObject<Item> TERAT_CHESTPLATE = BURNABLE_ARMOR.register("terat_chestplate", () -> new ArmorItem(ModArmorMaterial.TERAT, EquipmentSlotType.CHEST, (new Item.Properties()).isBurnable()));
-    public static final RegistryObject<Item> TERAT_HELMET = BURNABLE_ARMOR.register("terat_helmet", () -> new ArmorItem(ModArmorMaterial.TERAT, EquipmentSlotType.HEAD, (new Item.Properties()).isBurnable()));
-    public static final RegistryObject<Item> TERAT_LEGGINGS = BURNABLE_ARMOR.register("terat_leggings", () -> new ArmorItem(ModArmorMaterial.TERAT, EquipmentSlotType.LEGS, (new Item.Properties()).isBurnable()));
+    public static final RegistryObject<Item> TERAT_BOOTS = BURNABLE_ARMOR.register("terat/terat_boots", () -> new ArmorItem(ModArmorMaterial.TERAT, EquipmentSlotType.FEET, (new Item.Properties()).isBurnable()));
+    public static final RegistryObject<Item> TERAT_CHESTPLATE = BURNABLE_ARMOR.register("terat/terat_chestplate", () -> new ArmorItem(ModArmorMaterial.TERAT, EquipmentSlotType.CHEST, (new Item.Properties()).isBurnable()));
+    public static final RegistryObject<Item> TERAT_HELMET = BURNABLE_ARMOR.register("terat/terat_helmet", () -> new ArmorItem(ModArmorMaterial.TERAT, EquipmentSlotType.HEAD, (new Item.Properties()).isBurnable()));
+    public static final RegistryObject<Item> TERAT_LEGGINGS = BURNABLE_ARMOR.register("terat/terat_leggings", () -> new ArmorItem(ModArmorMaterial.TERAT, EquipmentSlotType.LEGS, (new Item.Properties()).isBurnable()));
 }

@@ -1,0 +1,43 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "brefk",
+  "ingredients": [
+    {
+      "item": "ervin_mod_1:brefk_stage2"
+    },
+    {
+      "item": "minecraft:milk_bucket"
+    },
+    {
+      "item": "minecraft:milk_bucket"
+    },
+    {
+      "item": "minecraft:milk_bucket"
+    },
+    {
+      "item": "minecraft:milk_bucket"
+    },
+    {
+      "item": "minecraft:milk_bucket"
+    },
+    {
+      "item": "minecraft:milk_bucket"
+    },
+    {
+      "item": "minecraft:milk_bucket"
+    },
+    {
+      "item": "minecraft:milk_bucket"
+    },
+    {
+      "item": "ervin_mod_1:targ"
+    },
+    {
+      "item": "ervin_mod_1:volmint"
+    }
+  ],
+  "result": {
+    "item": "ervin_mod_1:brefk/brefk_stage3",
+    "count": 1
+  }
+}

@@ -83,7 +83,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:air"
+          "name": "ervin_mod_1:unused/air"
         },
         {
           "type": "minecraft:item",
@@ -1251,11 +1251,11 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:terat"
+          "name": "ervin_mod_1:terat/terat"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:terat_axe"
+          "name": "ervin_mod_1:terat/terat_axe"
         },
         {
           "type": "minecraft:item",
@@ -1263,47 +1263,47 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:terat_boots"
+          "name": "ervin_mod_1:terat/terat_boots"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:terat_chestplate"
+          "name": "ervin_mod_1:terat/terat_chestplate"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:terat_gret"
+          "name": "ervin_mod_1:terat/terat_gret"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:terat_helmet"
+          "name": "ervin_mod_1:terat/terat_helmet"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:terat_hoe"
+          "name": "ervin_mod_1:terat/terat_hoe"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:terat_horse_armor"
+          "name": "ervin_mod_1:terat/terat_horse_armor"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:terat_leggings"
+          "name": "ervin_mod_1:terat/terat_leggings"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:terat_nugget"
+          "name": "ervin_mod_1:terat/terat_nugget"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:terat_pickaxe"
+          "name": "ervin_mod_1:terat/terat_pickaxe"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:terat_shovel"
+          "name": "ervin_mod_1:terat/terat_shovel"
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:terat_sword"
+          "name": "ervin_mod_1:terat/terat_sword"
         },
         {
           "type": "minecraft:item",

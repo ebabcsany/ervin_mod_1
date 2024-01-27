@@ -37,7 +37,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class ZurTrades {
-   public static final Int2ObjectMap<ZurTrades.ITrade[]> field_221240_b = gatAsIntMap(ImmutableMap.of(1, new ZurTrades.ITrade[]{
+   public static final Int2ObjectMap<ZurTrades.ITrade[]> trade = gatAsIntMap(ImmutableMap.of(1, new ZurTrades.ITrade[]{
            new ZurTrades.ItemsForKirtsTrade(ModSpawnEggItemInit.DRURB_SPAWN_EGG.get(), 5, 1, 50, 2),
            new ZurTrades.ItemsForItemsTrade(ItemInit.SIRK.get(), isBurnableItemInit.TIRSK.get(), 1, 50, 2),
            new ZurTrades.ItemsForBedrocksTrade(SpecialItemInit.GRITHK.get(), 5, 1, 50, 10),

@@ -1,7 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.effect;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.event.EntityStruckByBlackLightningEvent;
-import com.babcsany.minecraft.ervin_mod_1.util.DamageSource1;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.AbstractFireBlock;
 import net.minecraft.block.BlockState;
@@ -12,6 +11,7 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
 import net.minecraft.network.play.server.SSpawnObjectPacket;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -116,7 +116,7 @@ public class BlackLightningBoltEntity extends Entity {
          this.setFire(8);
       }
 
-      this.attackEntityFrom(DamageSource1.BLACK_LIGHTNING_BOLT, 5.0F);
+      this.attackEntityFrom(DamageSource.LIGHTNING_BOLT, 5.0F);
    }
 
    private void igniteBlocks(int extraIgnitions) {

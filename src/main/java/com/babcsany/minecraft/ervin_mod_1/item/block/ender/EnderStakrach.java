@@ -48,6 +48,10 @@ public class EnderStakrach extends ToolBlockItem {
       return material == Material.ROCK || material == Material.IRON || material == Material.ANVIL;
    }
 
+   public boolean isEnchantable(ItemStack p_77616_1_) {
+      return this.getItemStackLimit(p_77616_1_) == 256 && this.isDamageable();
+   }
+
    public ActionResultType onItemUse(ItemUseContext context) {
       World world = context.getWorld();
       BlockPos blockpos = context.getPos();

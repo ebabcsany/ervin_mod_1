@@ -7,11 +7,11 @@
   ],
   "key": {
     "#": {
-      "item": "ervin_mod_1:terat"
+      "item": "ervin_mod_1:terat/terat"
     }
   },
   "result": {
-    "item": "ervin_mod_1:terat_horse_armor",
+    "item": "ervin_mod_1:terat/terat_horse_armor",
     "count": 1
   }
 }

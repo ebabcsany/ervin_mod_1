@@ -1,11 +1,12 @@
 package com.babcsany.minecraft.ervin_mod_1.init.item;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
-import com.babcsany.minecraft.ervin_mod_1.item.BurningItem;
-import com.babcsany.minecraft.ervin_mod_1.item.HuihkRodItem;
-import com.babcsany.minecraft.ervin_mod_1.item.TeratBucket;
+import com.babcsany.minecraft.ervin_mod_1.item.*;
+import com.babcsany.minecraft.ervin_mod_1.item.food.Foods;
 import com.babcsany.minecraft.ervin_mod_1.item.group.ItemGroup;
-import com.babcsany.minecraft.ervin_mod_1.item.MilkTeratBucketItem;
+import com.babcsany.minecraft.ervin_mod_1.item.items.Sriunk;
+import com.babcsany.minecraft.ervin_mod_1.item.tool.TieredItem_1;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -16,12 +17,12 @@ public class isBurnableItemInit {
     public static final DeferredRegister<Item> BURNABLE_ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Ervin_mod_1.MOD_ID);
 
     public static final RegistryObject<Item> AVTER = BURNABLE_ITEMS.register("avter", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final RegistryObject<Item> TERAT_BUCKET = BURNABLE_ITEMS.register("terat_bucket", () -> new TeratBucket((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final RegistryObject<Item> WATER_TERAT_BUCKET = BURNABLE_ITEMS.register("water_terat_bucket", () -> new TeratBucket((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final RegistryObject<Item> MILK_TERAT_BUCKET = BURNABLE_ITEMS.register("milk_terat_bucket", () -> new MilkTeratBucketItem((new Item.Properties()).containerItem(TERAT_BUCKET.get()).isBurnable().group(ItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final RegistryObject<Item> LAVA_TERAT_BUCKET = BURNABLE_ITEMS.register("lava_terat_bucket", () -> new TeratBucket((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_SEARCH)));
+    public static final RegistryObject<Item> TERAT_BUCKET = BURNABLE_ITEMS.register("terat/terat_bucket", () -> new TeratBucket(() -> Fluids.EMPTY, (new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_SEARCH)));
+    public static final RegistryObject<Item> WATER_TERAT_BUCKET = BURNABLE_ITEMS.register("terat/water_terat_bucket", () -> new TeratBucket(() -> Fluids.WATER, (new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_SEARCH)));
+    public static final RegistryObject<Item> MILK_TERAT_BUCKET = BURNABLE_ITEMS.register("terat/milk_terat_bucket", () -> new MilkTeratBucketItem((new Item.Properties()).containerItem(TERAT_BUCKET.get()).isBurnable().group(ItemGroup.ERVIN_MOD_1_SEARCH)));
+    public static final RegistryObject<Item> LAVA_TERAT_BUCKET = BURNABLE_ITEMS.register("terat/lava_terat_bucket", () -> new TeratBucket(() -> Fluids.LAVA, (new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_SEARCH)));
     public static final RegistryObject<Item> DURK = BURNABLE_ITEMS.register("durk", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final RegistryObject<Item> SRIUNK = BURNABLE_ITEMS.register("sriunk", () -> new Item(new Item.Properties().isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
+    public static final RegistryObject<Item> SRIUNK = BURNABLE_ITEMS.register("sriunk", () -> new Sriunk(ModItemTier.SRIUNK, 13, new TieredItem_1.Properties().isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
     public static final RegistryObject<Item> SRIFROUL = BURNABLE_ITEMS.register("srifroul", () -> new Item(new Item.Properties().isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
     public static final RegistryObject<Item> VILTDROP = BURNABLE_ITEMS.register("viltdrop", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
     public static final RegistryObject<Item> SRIUNK_STICK = BURNABLE_ITEMS.register("stick/sriunk_stick", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
@@ -37,8 +38,8 @@ public class isBurnableItemInit {
     public static final RegistryObject<Item> ZRIBT = BURNABLE_ITEMS.register("zribt", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
     public static final RegistryObject<Item> SHZ = BURNABLE_ITEMS.register("shz", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
     public static final RegistryObject<Item> VILKT = BURNABLE_ITEMS.register("vilkt", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final RegistryObject<Item> TERAT_GRET = BURNABLE_ITEMS.register("terat_gret", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final RegistryObject<Item> TERAT_NUGGET = BURNABLE_ITEMS.register("terat_nugget", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
+    public static final RegistryObject<Item> TERAT_GRET = BURNABLE_ITEMS.register("terat/terat_gret", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
+    public static final RegistryObject<Item> TERAT_NUGGET = BURNABLE_ITEMS.register("terat/terat_nugget", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
     public static final RegistryObject<Item> VIRKT = BURNABLE_ITEMS.register("virkt", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
     public static final RegistryObject<Item> TRUGH = BURNABLE_ITEMS.register("trugh", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
     public static final RegistryObject<Item> TRUGK = BURNABLE_ITEMS.register("trugk", () -> new Item((new Item.Properties()).isBurnable().group(ItemGroup.ERVIN_MOD_1_ITEMS).group(ItemGroup.ERVIN_MOD_1_SEARCH)));

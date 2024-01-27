@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "ervin_mod_1:block/lc/block/blocks/h_u_f_block/uuuuuuuuuuuuuuuuuuuuuuuu"
+  }
+}

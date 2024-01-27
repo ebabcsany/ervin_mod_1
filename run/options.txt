@@ -21,11 +21,11 @@ toggleSprint:false
 mouseSensitivity:0.5
 fov:0.0
 gamma:1.0
-renderDistance:9
+renderDistance:14
 entityDistanceScaling:1.0
 guiScale:0
 particles:0
-maxFps:120
+maxFps:10
 difficulty:2
 graphicsMode:1
 ao:2

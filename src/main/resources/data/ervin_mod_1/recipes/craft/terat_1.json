@@ -9,11 +9,11 @@
   ],
   "key": {
     "#": {
-      "item": "ervin_mod_1:terat_nugget"
+      "item": "ervin_mod_1:terat/terat_nugget"
     }
   },
   "result": {
-    "item": "ervin_mod_1:terat",
+    "item": "ervin_mod_1:terat/terat",
     "count": 1
   }
 }

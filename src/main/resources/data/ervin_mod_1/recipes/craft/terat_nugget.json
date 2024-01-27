@@ -2,11 +2,11 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "ervin_mod_1:terat"
+      "item": "ervin_mod_1:terat/terat"
     }
   ],
   "result": {
-    "item": "ervin_mod_1:terat_nugget",
+    "item": "ervin_mod_1:terat/terat_nugget",
     "count": 16
   }
 }

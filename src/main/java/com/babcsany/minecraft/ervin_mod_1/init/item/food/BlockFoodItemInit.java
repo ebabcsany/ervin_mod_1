@@ -15,5 +15,5 @@ public class BlockFoodItemInit {
 
     public static final DeferredRegister<Item> FOOD_ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Ervin_mod_1.MOD_ID);
 
-    public static final RegistryObject<Item> SCRAFTH = FOOD_ITEMS.register("scrafth", () -> new BlockItem(BlockInit.SCRAFTH.get(), (new Item.Properties()).food(Foods.SCRAFTH).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
+    public static final RegistryObject<Item> SCRAFTH = FOOD_ITEMS.register("scrafth", () -> new BlockItem(BlockInit.SCRAFTH.get(), (new Item.Properties()).food(Foods.SCRAFTH).group(net.minecraft.item.ItemGroup.FOOD).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
 }
