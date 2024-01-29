@@ -1,5 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.monster.zur;
 
+import com.babcsany.minecraft.ervin_mod_1.entity.animal.hhij.HhijEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.RoventEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.goal.BowAttackGoal;
@@ -1403,11 +1404,14 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
       this.dataManager.set(CLIMBING, b0);
    }
 
-   public boolean func_233685_eM_() {
-      return this.field_233683_bw_;
+   public boolean entityLivingUpdate(HhijEntity entity)
+   {
+      return false;
    }
 
-   public void func_233687_w_(boolean p_233687_1_) {
-      this.field_233683_bw_ = p_233687_1_;
+   public enum Action {
+      CROSSBOW_HOLD,
+      ADMIRING_ITEM,
+      DEFAULT;
    }
 }

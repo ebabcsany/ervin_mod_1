@@ -8,13 +8,15 @@
           <platformType>MIXIN</platformType>
           <platformType>MCP</platformType>
         </autoDetectTypes>
+        <projectReimportVersion>1</projectReimportVersion>
       </configuration>
     </facet>
   </component>
   <component name="McpModuleSettings">
-    <option name="mappingFile" value="C:\save\modding\ervin_mod_1\build\createMcpToSrg\output.tsrg" />
+    <option name="mappingFile" value="C:\save\ervin\projects\ervin_mod_1\build\createMcpToSrg\output.tsrg" />
     <option name="mcpVersion" value="snapshot_20200723-1.16.1" />
     <option name="minecraftVersion" value="1.16.1" />
+    <option name="platformVersion" value="32.0.108" />
     <option name="srgType" value="TSRG" />
   </component>
 </module>
