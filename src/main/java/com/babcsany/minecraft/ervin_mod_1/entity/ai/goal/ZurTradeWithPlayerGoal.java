@@ -1,5 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.ai.goal;
 
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.AbstractZurEntity;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.player.PlayerEntity;
@@ -7,9 +8,9 @@ import net.minecraft.entity.player.PlayerEntity;
 import java.util.EnumSet;
 
 public class ZurTradeWithPlayerGoal extends Goal {
-   private final AbstractZurEntity zur;
+   private final ZurEntity zur;
 
-   public ZurTradeWithPlayerGoal(AbstractZurEntity zur) {
+   public ZurTradeWithPlayerGoal(ZurEntity zur) {
       this.zur = zur;
       this.setMutexFlags(EnumSet.of(Flag.JUMP, Flag.MOVE));
    }

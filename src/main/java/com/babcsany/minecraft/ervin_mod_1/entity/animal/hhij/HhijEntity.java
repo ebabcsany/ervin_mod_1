@@ -79,13 +79,14 @@ public class HhijEntity extends HhijTameableEntity implements IAngerable {
    public HhijEntity(EntityType<? extends HhijEntity> type, World worldIn) {
       super(type, worldIn);
       this.setTamed(false);
+      func_213765_en();
    }
 
    protected void registerGoals() {
       this.goalSelector.addGoal(1, new SwimGoal(this));
       this.goalSelector.addGoal(2, new HhijSitGoal(this));
-      this.goalSelector.addGoal(3, new HhijAvoidEntityGoal<>(this, WitherEntity.class, 24.0F, 1.5D, 1.5D));
-      this.goalSelector.addGoal(3, new HhijAvoidEntityGoal<>(this, EnderDragonEntity.class, 24.0F, 1.5D, 1.5D));
+      this.goalSelector.addGoal(3, new HhijAvoidEntityGoal<>(this, WitherEntity.class, 24.0F, 10.5D, 1.5D));
+      this.goalSelector.addGoal(3, new HhijAvoidEntityGoal<>(this, EnderDragonEntity.class, 24.0F, 10.5D, 1.5D));
       this.goalSelector.addGoal(4, new LeapAtTargetGoal(this, 0.4F));
       this.goalSelector.addGoal(5, new HhijMeleeAttackGoal(this, 1.0D, true));
       this.goalSelector.addGoal(6, new HhijFollowOwnerGoal(this, 1.0D, 10.0F, 2.0F, false));
@@ -211,7 +212,7 @@ public class HhijEntity extends HhijTameableEntity implements IAngerable {
       if (this.func_233678_J__()) {
          return SoundEvents.ENTITY_GENERIC_HURT;
       } else if (this.rand.nextInt(3) == 0) {
-         return this.isTamed() && this.getHealth() < 10.0F ? SoundEvents.ENTITY_GENERIC_HURT : SoundEvents.ENTITY_GENERIC_HURT;
+         return this.isTamed() && this.getHealth() < 30000.0F ? SoundEvents.ENTITY_GENERIC_HURT : SoundEvents.AMBIENT_CAVE;
       } else {
          return SoundEvents.ENTITY_GENERIC_HURT;
       }
@@ -651,14 +652,14 @@ public class HhijEntity extends HhijTameableEntity implements IAngerable {
    }
 
    public HhijEntity createChild(AgeableEntity ageable) {
-      HhijEntity wolfentity = EntityInit.HHIJ_ENTITY.get().create(this.world);
+      HhijEntity hhijEntity = EntityInit.HHIJ_ENTITY.get().create(ageable.world);
       UUID uuid = this.getOwnerId();
       if (uuid != null) {
-         wolfentity.setOwnerId(uuid);
-         wolfentity.setTamed(true);
+         hhijEntity.setOwnerId(uuid);
+         hhijEntity.setTamed(true);
       }
 
-      return wolfentity;
+      return hhijEntity;
    }
 
    public void setBegging(boolean beg) {

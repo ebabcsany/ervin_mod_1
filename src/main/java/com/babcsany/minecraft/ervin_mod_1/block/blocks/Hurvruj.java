@@ -1,10 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.block.blocks;
 
 import com.babcsany.minecraft.ervin_mod_1.init.item.block.isBurnableBlockItemInit;
-import net.minecraft.block.BedBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
+import net.minecraft.block.*;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -35,6 +32,8 @@ public class Hurvruj extends Block {
       super(properties);
       this.setDefaultState(this.stateContainer.getBaseState().with(CHARGES, 0));
    }
+
+
 
    @Override
    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
@@ -144,41 +143,7 @@ public class Hurvruj extends Block {
       builder.add(CHARGES);
    }
 
-   /**
-    * @deprecated call via {@link BlockState#hasComparatorInputOverride()} whenever possible. Implementing/overriding
-    * is fine.
-    */
-   @Override
-   public boolean hasComparatorInputOverride(BlockState state) {
-      return true;
-   }
-
    public static int func_235565_a_(BlockState state, int charges) {
       return MathHelper.floor((float)(state.get(CHARGES)) / 16.0F * (float)charges);
-   }
-
-   /**
-    * @deprecated call via {@link BlockState#getComparatorInputOverride(World,BlockPos)} whenever possible.
-    * Implementing/overriding is fine.
-    */
-   @Override
-   public int getComparatorInputOverride(BlockState blockState, World worldIn, BlockPos pos) {
-      return func_235565_a_(blockState, 15);
-   }
-
-   public static Optional<Vector3d> getSpawn(EntityType<?> entity, IWorldReader reader, BlockPos pos) {
-      for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-1, -1, -1), pos.add(1, 1, 1))) {
-         Optional<Vector3d> optional = BedBlock.getWakeUpDisplacement(entity, reader, blockpos);
-         if (optional.isPresent()) {
-            return optional;
-         }
-      }
-
-      return Optional.empty();
-   }
-
-   @Override
-   public boolean allowsMovement(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type) {
-      return false;
    }
 }

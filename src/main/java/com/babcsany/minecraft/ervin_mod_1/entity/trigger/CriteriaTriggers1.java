@@ -49,6 +49,7 @@ public class CriteriaTriggers1 {
    public static final TickTrigger TICK = register(new TickTrigger());
 
    public static final TameZurAnimalTrigger TAME_ZUR_ANIMAL = register(new TameZurAnimalTrigger());
+   public static final TameZurTrigger TAME_ZUR = register(new TameZurTrigger());
    public static final TameHhijAnimalTrigger TAME_HHIJ_ANIMAL = register(new TameHhijAnimalTrigger());
    public static final PlacedBlockTrigger PLACED_BLOCK = register(new PlacedBlockTrigger());
    public static final ConsumeItemTrigger CONSUME_ITEM = register(new ConsumeItemTrigger());

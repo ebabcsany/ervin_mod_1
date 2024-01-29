@@ -1,10 +1,8 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.monster.zur;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.animal.hhij.HhijEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.RoventEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.goal.BowAttackGoal;
-import com.babcsany.minecraft.ervin_mod_1.entity.trigger.CriteriaTriggers1;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.ZurTrades;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
@@ -13,6 +11,7 @@ import com.babcsany.minecraft.ervin_mod_1.init.item.armor.ArmorItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.armor.isBurnableArmorItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.food.isBurnableFoodItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.spawn_egg.ModSpawnEggItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.special.isBurnableSpecialItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.tool.isBurnableToolItemInit;
 import com.google.common.collect.ImmutableList;
@@ -31,10 +30,10 @@ import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
 import net.minecraft.entity.item.ItemEntity;
+import net.minecraft.entity.merchant.IMerchant;
 import net.minecraft.entity.merchant.villager.VillagerData;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.entity.projectile.ProjectileHelper;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
@@ -49,6 +48,7 @@ import net.minecraft.pathfinding.GroundPathNavigator;
 import net.minecraft.pathfinding.Path;
 import net.minecraft.pathfinding.SwimmerPathNavigator;
 import net.minecraft.potion.*;
+import net.minecraft.stats.Stats;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
@@ -65,7 +65,10 @@ import javax.annotation.Nullable;
 import java.util.*;
 import java.util.function.Predicate;
 
-public abstract class AbstractZurEntity extends AgeableEntity {
+public abstract class AbstractZurEntity extends AgeableEntity implements INPC, IMerchant {
+
+//   protected static final DataParameter<Byte> TAMED = EntityDataManager.createKey(AbstractZurEntity.class, DataSerializers.BYTE);
+//   protected static final DataParameter<Optional<UUID>> OWNER_UNIQUE_ID = EntityDataManager.createKey(AbstractZurEntity.class, DataSerializers.OPTIONAL_UNIQUE_ID);
    public final NonNullList<ItemStack> inventory = NonNullList.withSize(1000000, ItemStack.EMPTY);
    private final BowAttackGoal<AbstractZurEntity> aiArrowAttack = new BowAttackGoal<>(this, 1.0D, 20, 15.0F);
    private static final UUID MODIFIER_UUID = UUID.fromString("5CD17E52-A79A-43D3-A529-90FDE04B181E");
@@ -93,6 +96,7 @@ public abstract class AbstractZurEntity extends AgeableEntity {
    private boolean swimmingUp;
    @Nullable
    private BlockPos wanderTarget;
+   private boolean field_233683_bw_;
    @Nullable
    private PlayerEntity customer;
    private CompoundNBT dataTag;
@@ -119,6 +123,8 @@ public abstract class AbstractZurEntity extends AgeableEntity {
    private int timeUntilReset;
    private boolean leveledUp;
    private int despawnDelay;
+   private int inLove;
+   private UUID playerInLove;
    public boolean zurDropItem;
    public float wingRotDelta = 1.0F;
    private boolean isBreakDoorsTaskSet;
@@ -425,6 +431,27 @@ public abstract class AbstractZurEntity extends AgeableEntity {
 
    }
 
+   public ActionResultType func_230254_b_(PlayerEntity p_230254_1_, Hand p_230254_2_) {
+      ItemStack itemstack = p_230254_1_.getHeldItem(p_230254_2_);
+      if (itemstack.getItem() != ModSpawnEggItemInit.ZUR_SPAWN_EGG.get() && this.isAlive() && !this.hasCustomer() && !this.isChild()) {
+         if (p_230254_2_ == Hand.MAIN_HAND) {
+            p_230254_1_.addStat(Stats.TALKED_TO_VILLAGER);
+         }
+
+         if (!this.getOffers().isEmpty()) {
+            if (!this.world.isRemote) {
+               this.setCustomer(p_230254_1_);
+               this.openMerchantContainer(p_230254_1_, this.getDisplayName(), 1);
+            }
+
+         }
+
+         return ActionResultType.func_233537_a_(this.world.isRemote);
+      } else {
+         return super.func_230254_b_(p_230254_1_, p_230254_2_);
+      }
+   }
+
    public boolean isBreakDoorsTaskSet() {
       return this.isBreakDoorsTaskSet;
    }
@@ -451,6 +478,25 @@ public abstract class AbstractZurEntity extends AgeableEntity {
          this.setItemStackToSlot(type, stack);
       }
 
+   }
+
+   /**
+    * Decreases ItemStack size by one
+    */
+   protected void consumeItemFromStack(PlayerEntity player, ItemStack stack) {
+      if (!player.abilities.isCreativeMode) {
+         stack.shrink(1);
+      }
+
+   }
+
+   public void setInLove(@Nullable PlayerEntity player) {
+      this.inLove = 600;
+      if (player != null) {
+         this.playerInLove = player.getUniqueID();
+      }
+
+      this.world.setEntityState(this, (byte)18);
    }
 
    /**
@@ -782,6 +828,13 @@ public abstract class AbstractZurEntity extends AgeableEntity {
       super.writeAdditional(compound);
 
       compound.putInt("DespawnDelay", this.despawnDelay);
+//      compound.putInt("InLove", this.inLove);
+//      if (this.playerInLove != null) {
+//         compound.putUniqueId("LoveCause", this.playerInLove);
+//      }
+//      if (this.getOwnerId() != null) {
+//         compound.putUniqueId("Owner", this.getOwnerId());
+//      }
       if (this.wanderTarget != null) {
          compound.put("ZurTarget", NBTUtil.writeBlockPos(this.wanderTarget));
       }
@@ -809,13 +862,33 @@ public abstract class AbstractZurEntity extends AgeableEntity {
       if (compound.contains("DespawnDelay", 99)) {
          this.despawnDelay = compound.getInt("DespawnDelay");
       }
+//
+//      this.inLove = compound.getInt("InLove");
+//      this.playerInLove = compound.hasUniqueId("LoveCause") ? compound.getUniqueId("LoveCause") : null;
+
+//      UUID uuid;
+//      if (compound.hasUniqueId("Owner")) {
+//         uuid = compound.getUniqueId("Owner");
+//      } else {
+//         String s = compound.getString("Owner");
+//         uuid = PreYggdrasilConverter.convertMobOwnerIfNeeded(this.getServer(), s);
+//      }
+//
+//      if (uuid != null) {
+//         try {
+//            this.setOwnerId(uuid);
+//            this.setTamed(true);
+//         } catch (Throwable throwable) {
+//            this.setTamed(false);
+//         }
+//      }
 
       if (compound.contains("ZurTarget")) {
          this.zurTarget = NBTUtil.readBlockPos(compound.getCompound("ZurTarget"));
       }
 
-      if (compound.contains("Offers", 10)) {
-         this.offers = new MerchantOffers(compound.getCompound("Offers"));
+      if (compound.getBoolean("IsBaby")) {
+         this.setChild(true);
       }
 
       if (compound.contains("FoodLevel", 1)) {
@@ -1330,14 +1403,11 @@ public abstract class AbstractZurEntity extends AgeableEntity {
       this.dataManager.set(CLIMBING, b0);
    }
 
-   public boolean entityLivingUpdate(HhijEntity entity)
-   {
-      return false;
+   public boolean func_233685_eM_() {
+      return this.field_233683_bw_;
    }
 
-   public enum Action {
-      CROSSBOW_HOLD,
-      ADMIRING_ITEM,
-      DEFAULT;
+   public void func_233687_w_(boolean p_233687_1_) {
+      this.field_233683_bw_ = p_233687_1_;
    }
 }

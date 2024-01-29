@@ -1,10 +1,10 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.monster;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.$TraderTradeWithPlayerGoal;
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.ZurTradeWithPlayerGoal;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.AbstractZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.trigger.CriteriaTriggers1;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.spawn_egg.ModSpawnEggItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.tool.isBurnableSpecialToolItemInit;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
@@ -23,10 +23,13 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.MerchantOffer;
+import net.minecraft.item.MerchantOffers;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.stats.Stats;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
@@ -54,7 +57,7 @@ public class ZurEntity extends AbstractZurEntity {
     }
 
     public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
-        return MonsterEntity.func_234295_eP_().createMutableAttribute(Attributes.FOLLOW_RANGE, 350.0).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23000000417232513).createMutableAttribute(Attributes.ATTACK_DAMAGE, 30.0).createMutableAttribute(Attributes.ARMOR, 20.0).createMutableAttribute(Attributes.ZOMBIE_SPAWN_REINFORCEMENTS);
+        return MonsterEntity.func_234295_eP_().createMutableAttribute(Attributes.FOLLOW_RANGE, 350.0).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.023000000417232513).createMutableAttribute(Attributes.ATTACK_DAMAGE, 30.0).createMutableAttribute(Attributes.ARMOR, 20.0).createMutableAttribute(Attributes.ZOMBIE_SPAWN_REINFORCEMENTS);
     }
 
     protected int getExperiencePoints(PlayerEntity p_70693_1_) {
@@ -73,7 +76,7 @@ public class ZurEntity extends AbstractZurEntity {
 
     public void livingTick() {
         if (this.isAlive()) {
-            boolean flag = this.shouldBurnInDay() && this.isInDaylight();
+            boolean flag = this.isInDaylight();
             if (flag) {
                 ItemStack itemstack = this.getItemStackFromSlot(EquipmentSlotType.HEAD);
                 if (!itemstack.isEmpty()) {
@@ -89,7 +92,7 @@ public class ZurEntity extends AbstractZurEntity {
                 }
 
                 if (flag) {
-                    this.setFire(8);
+                    this.setCombatTask();
                 }
             }
         }
@@ -112,7 +115,7 @@ public class ZurEntity extends AbstractZurEntity {
         } else {
             LivingEntity livingentity = this.getAttackTarget();
             if (livingentity == null && p_70097_1_.getTrueSource() instanceof LivingEntity) {
-                livingentity = (LivingEntity)p_70097_1_.getTrueSource();
+                livingentity = (LivingEntity) p_70097_1_.getTrueSource();
             }
         }
         return false;
@@ -123,7 +126,7 @@ public class ZurEntity extends AbstractZurEntity {
         if (flag) {
             float f = this.world.getDifficultyForLocation(this.getPosition()).getAdditionalDifficulty();
             if (this.getHeldItemMainhand().isEmpty() && this.isBurning() && this.rand.nextFloat() < f * 0.3F) {
-                p_70652_1_.setFire(2 * (int)f);
+                p_70652_1_.setFire(2 * (int) f);
             }
         }
 
@@ -195,19 +198,19 @@ public class ZurEntity extends AbstractZurEntity {
         return EntityInit.ZUR_ENTITY.get().create(this.world);
     }
 
-    public void writeAdditional(CompoundNBT p_213281_1_) {
-        super.writeAdditional(p_213281_1_);
-        if (this.isChild()) {
-            p_213281_1_.putBoolean("IsBaby", true);
+    public void writeAdditional(CompoundNBT compound) {
+        super.writeAdditional(compound);
+        MerchantOffers merchantoffers = this.getOffers();
+        if (!merchantoffers.isEmpty()) {
+            compound.put("Offers", merchantoffers.write());
         }
     }
 
-    public void readAdditional(CompoundNBT p_70037_1_) {
-        super.readAdditional(p_70037_1_);
-        if (p_70037_1_.getBoolean("IsBaby")) {
-            this.setChild(true);
+    public void readAdditional(CompoundNBT compound) {
+        super.readAdditional(compound);
+        if (compound.contains("Offers", 50)) {
+            this.offers = new MerchantOffers(compound.getCompound("Offers"));
         }
-
     }
 
     protected float getStandingEyeHeight(Pose p_213348_1_, EntitySize p_213348_2_) {

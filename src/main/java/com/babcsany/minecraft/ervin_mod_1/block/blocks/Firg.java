@@ -95,29 +95,6 @@ public class Firg extends Block {
         }
     }
 
-    public Firg food(Food foodIn) {
-        return this;
-    }
-
-    public Food.Builder builder(Food.Builder builder, PlayerEntity player, Food food) {
-        player.getActiveItemStack().getItem().isFood();
-        return builder;
-    }
-
-    /**
-     * Update the provided state given the provided neighbor facing and neighbor state, returning a new state.
-     * For example, fences make their connections to the passed in state if possible, and wet concrete powder immediately
-     * returns its solidified counterpart.
-     * Note that this method should ideally consider only the specific face passed in.
-     */
-    public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-        return facing == Direction.DOWN && !stateIn.isValidPosition(worldIn, currentPos) ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
-    }
-
-    public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-        return worldIn.getBlockState(pos.down()).getMaterial().isSolid();
-    }
-
     /**
      * @deprecated call via {@link BlockState#getComparatorInputOverride(World,BlockPos)} whenever possible.
      * Implementing/overriding is fine.
@@ -135,6 +112,6 @@ public class Firg extends Block {
     }
 
     public boolean allowsMovement(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type) {
-        return false;
+        return true;
     }
 }

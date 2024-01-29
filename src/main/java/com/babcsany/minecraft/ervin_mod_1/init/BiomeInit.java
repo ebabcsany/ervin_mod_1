@@ -33,7 +33,7 @@ public class BiomeInit {
 	public static final RegistryObject<Biome> MIGV_BIOME = BIOMES
 			.register("migv_biome",
 					() -> new MigvBiome(
-							new Biome.Builder().precipitation(RainType.SNOW).scale(1.2f).temperature(0.5f)
+							new Biome.Builder().precipitation(RainType.SNOW).scale(8.5f).temperature(0.5f)
 									.func_235097_a_((new BiomeAmbience.Builder()).setWaterColor(10456252).setWaterFogColor(26762304).setFogColor(12538462).build())
 									.surfaceBuilder(
 											new ConfiguredSurfaceBuilder<>(
@@ -49,7 +49,7 @@ public class BiomeInit {
 	public static final RegistryObject<Biome> THE_BHJUIG_BIOME = BIOMES
 			.register("the_bhjuig_biome",
 					() -> new TheBhjuigBiome(
-							new Biome.Builder().precipitation(RainType.SNOW).scale(1.2f).temperature(0.5f)
+							new Biome.Builder().precipitation(RainType.SNOW).scale(16.3f).temperature(0.5f)
 									.func_235097_a_((new BiomeAmbience.Builder()).setWaterColor(28634578).setWaterFogColor(837428654).setFogColor(792356895).build())
 									.surfaceBuilder(SurfaceBuilder.DEFAULT, SurfaceBuilder.AIR_CONFIG)
 									.category(Category.PLAINS).downfall(4.0f).depth(2.5f).parent(null)
@@ -57,7 +57,7 @@ public class BiomeInit {
 	public static final RegistryObject<Biome> MIG_BIOME = BIOMES
 			.register("mig_biome",
 					() -> new MigBiome(
-							new Biome.Builder().precipitation(RainType.SNOW).scale(1.2f).temperature(0.5f)
+							new Biome.Builder().precipitation(RainType.SNOW).scale(7.9f).temperature(0.5f)
 									.func_235097_a_((new BiomeAmbience.Builder()).setWaterColor(10456252).setWaterFogColor(26762304).setFogColor(12538462).build())
 									.surfaceBuilder(
 											new ConfiguredSurfaceBuilder<>(
@@ -73,7 +73,7 @@ public class BiomeInit {
 	public static final RegistryObject<Biome> SRIUNK_VALLEY_BIOME = BIOMES
 			.register("sriunk_valley_biome",
 					() -> new SriunkValleyBiome(
-							new Biome.Builder().precipitation(RainType.NONE).scale(1.2f).temperature(0.5f)
+							new Biome.Builder().precipitation(RainType.NONE).scale(44.0f).temperature(0.5f)
 									.func_235097_a_((new BiomeAmbience.Builder()).setWaterColor(10456252).setWaterFogColor(26762304).setFogColor(12538462).build())
 									.surfaceBuilder(
 											new ConfiguredSurfaceBuilder<>(
@@ -103,7 +103,7 @@ public class BiomeInit {
 	public static final RegistryObject<Biome> EXAMPLE_BIOME6 = BIOMES
 			.register("example_biome6",
 					() -> new ExampleBiome6(
-							new Biome.Builder().precipitation(RainType.NONE).scale(1.2f).temperature(0.5f)
+							new Biome.Builder().precipitation(RainType.NONE).scale(5327.2f).temperature(0.5f)
 									.func_235097_a_((new BiomeAmbience.Builder()).setWaterColor(10456252).setWaterFogColor(26762304).setFogColor(12538462).build())
 									.surfaceBuilder(
 											new ConfiguredSurfaceBuilder<>(
@@ -118,7 +118,7 @@ public class BiomeInit {
 	public static final RegistryObject<Biome> EXAMPLE_BIOME = BIOMES
 			.register("example_biome",
 					() -> new ExampleBiome(
-							new Biome.Builder().precipitation(RainType.SNOW).scale(1.2f).temperature(0.5f)
+							new Biome.Builder().precipitation(RainType.SNOW).scale(51.6f).temperature(0.5f)
 									.func_235097_a_((new BiomeAmbience.Builder()).setWaterColor(16724639).setWaterFogColor(16762304).setFogColor(1253846).build())
 									.surfaceBuilder(
 											new ConfiguredSurfaceBuilder<>(
@@ -163,7 +163,7 @@ public class BiomeInit {
 	public static final RegistryObject<Biome> EXAMPLE_BIOME2 = BIOMES
 			.register("example_biome2",
 					() -> new ExampleBiome2(
-							new Biome.Builder().precipitation(RainType.SNOW).scale(1.2f).temperature(0.5f)
+							new Biome.Builder().precipitation(RainType.SNOW).scale(25.5f).temperature(0.5f)
 									.func_235097_a_((new BiomeAmbience.Builder()).setWaterColor(16724639).setWaterFogColor(16762304).setFogColor(1253846).build())
 									.surfaceBuilder(
 											new ConfiguredSurfaceBuilder<>(
@@ -223,7 +223,7 @@ public class BiomeInit {
 	public static final RegistryObject<Biome> FIRG_BIOME = BIOMES
 			.register("firg_biome",
 					() -> new FirgBiome(
-							new Biome.Builder().precipitation(RainType.SNOW).scale(1.2f).temperature(0.5f)
+							new Biome.Builder().precipitation(RainType.SNOW).scale(166.8f).temperature(0.5f)
 									.func_235097_a_((new BiomeAmbience.Builder()).setWaterColor(16777215).setWaterFogColor(16777210).setFogColor(1677241).build())
 									.surfaceBuilder(
 											new ConfiguredSurfaceBuilder<>(
@@ -233,12 +233,12 @@ public class BiomeInit {
 													new SurfaceBuilderConfig(BlockInit.FIRG.get().getDefaultState(),
 															BlockInit.FIRG.get().getDefaultState(),
 															BlockInit.FIRG.get().getDefaultState())))
-									.category(Category.THEEND).downfall(0.5f).depth(0.12f).parent(null)
+									.category(Category.THEEND).downfall(1114.5f).depth(0.12f).parent(null)
 					));
 	public static final RegistryObject<Biome> SCRAFTH_BIOME = BIOMES
 			.register("scrafth_biome",
 					() -> new ScrafthBiome(
-							new Biome.Builder().precipitation(RainType.SNOW).scale(1.2f).temperature(0.5f)
+							new Biome.Builder().precipitation(RainType.SNOW).scale(346.2f).temperature(0.5f)
 									.func_235097_a_((new BiomeAmbience.Builder()).setWaterColor(16777215).setWaterFogColor(16777210).setFogColor(1677241).build())
 									.surfaceBuilder(
 											new ConfiguredSurfaceBuilder<>(
@@ -253,7 +253,7 @@ public class BiomeInit {
 	public static final RegistryObject<Biome> TWUST = BIOMES
 			.register("twust",
 					() -> new TwustBiome(
-							new Biome.Builder().precipitation(RainType.SNOW).scale(1.2f).temperature(0.5f)
+							new Biome.Builder().precipitation(RainType.SNOW).scale(1003.2f).temperature(0.5f)
 									.func_235097_a_((new BiomeAmbience.Builder()).setWaterColor(16777215).setWaterFogColor(16777210).setFogColor(1677241).build())
 									.surfaceBuilder(
 											new ConfiguredSurfaceBuilder<>(

@@ -54,8 +54,10 @@ public class ExampleRuinedPortalFeature extends Feature<NoFeatureConfig> {
                 .getTemplateDefaulted(FOSSILS[random.nextInt(FOSSILS.length)]);
         ChunkPos chunkpos = new ChunkPos(pos);
         PlacementSettings placementsettings = (new PlacementSettings()).setRotation(rotation)
-                .setBoundingBox(new MutableBoundingBox(chunkpos.getXStart(), 1024, chunkpos.getZStart(),
-                        chunkpos.getXEnd(), 1048576, chunkpos.getZEnd()))
+                .setBoundingBox(new MutableBoundingBox(chunkpos.getXStart(), 66, chunkpos.getZStart(),
+                        chunkpos.getXEnd(), 831, chunkpos.getZEnd()))
+                .setBoundingBox(new MutableBoundingBox(chunkpos.getXStart(), 364, chunkpos.getZEnd(),
+                        chunkpos.getZStart(), 895, chunkpos.getXEnd()))
                 .setRandom(random).addProcessor(BlockIgnoreStructureProcessor.AIR_AND_STRUCTURE_BLOCK);
         BlockPos blockpos = template.transformedSize(rotation);
         int j = random.nextInt(256 - blockpos.getX());

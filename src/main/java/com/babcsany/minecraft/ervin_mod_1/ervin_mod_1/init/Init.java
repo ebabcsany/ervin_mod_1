@@ -6,6 +6,7 @@ import com.babcsany.minecraft.ervin_mod_1.init.container.ContainerInit;
 import com.babcsany.minecraft.ervin_mod_1.init.container.FurnaceContainerInit;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.$ItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.PaintingInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.armor.ArmorItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.armor.HorseArmorItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.armor.isBurnableArmorItemInit;
@@ -109,5 +110,6 @@ public class Init {
         FeatureInit.FEATURES.register(modEventBus);
         EffectInit EFFECTS = EffectInit.EFFECTS;
         ParticleInit PARTICLES = ParticleInit.PARTICLES;
+        PaintingInit.PAINTINGS.register(modEventBus);
     }
 }

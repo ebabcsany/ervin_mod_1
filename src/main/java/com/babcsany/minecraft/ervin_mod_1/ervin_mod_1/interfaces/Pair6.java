@@ -1,8 +1,9 @@
 package com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.interfaces;
 
+import com.mojang.datafixers.util.Pair;
 import net.minecraft.world.biome.Biome;
 
-public class Pair6<T, S, C, i, H, U> extends com.mojang.datafixers.util.Pair<T, C> {
+public class Pair6<T, S, C, i, H, U> extends Pair<T, C> {
 
     private Biome biome;
     private Biome.Attributes biome_attributes;
