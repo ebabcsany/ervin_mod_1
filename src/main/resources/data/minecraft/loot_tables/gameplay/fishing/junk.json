@@ -26,7 +26,7 @@
         {
           "type": "minecraft:item",
           "weight": 4,
-          "name": "ervin_mod_1:water_bucket"
+          "name": "minecraft:water_bucket"
         },
         {
           "type": "minecraft:item",

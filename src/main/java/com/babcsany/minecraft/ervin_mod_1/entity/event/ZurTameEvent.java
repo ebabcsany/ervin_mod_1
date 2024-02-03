@@ -21,6 +21,7 @@ package com.babcsany.minecraft.ervin_mod_1.entity.event;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.animal.hhij.HhijAnimalEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.AbstractZurEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingEvent;
@@ -36,17 +37,17 @@ import net.minecraftforge.eventbus.api.Cancelable;
 @Cancelable
 public class ZurTameEvent extends LivingEvent
 {
-    private final ZurEntity zur;
+    private final AbstractZurEntity zur;
     private final PlayerEntity tamer;
 
-    public ZurTameEvent(ZurEntity zur, PlayerEntity tamer)
+    public ZurTameEvent(AbstractZurEntity zur, PlayerEntity tamer)
     {
         super(zur);
         this.zur = zur;
         this.tamer = tamer;
     }
 
-    public ZurEntity getZur()
+    public AbstractZurEntity getZur()
     {
         return zur;
     }

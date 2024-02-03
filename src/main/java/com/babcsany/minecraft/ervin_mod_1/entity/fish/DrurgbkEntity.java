@@ -10,6 +10,7 @@ import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.entity.item.ExperienceOrbEntity;
+import net.minecraft.entity.passive.fish.AbstractGroupFishEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.DamageSource;
@@ -23,7 +24,7 @@ import net.minecraftforge.common.util.LazyOptional;
 
 import javax.annotation.Nonnull;
 
-public class DrurgbkEntity extends AbstractGroupDrurgbkFishEntity {
+public class DrurgbkEntity extends AbstractGroupFishEntity {
    public DrurgbkEntity(EntityType<? extends DrurgbkEntity> p_i50279_1_, World p_i50279_2_) {
       super(p_i50279_1_, p_i50279_2_);
    }

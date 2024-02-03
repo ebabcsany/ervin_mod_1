@@ -30,7 +30,7 @@ import static net.minecraft.world.gen.GenerationStage.Decoration;
 
 public class FeatureGen {
 	private static final BlockState RUBY_ORE = BlockItemInit.RUBY_ORE.get().getDefaultState();
-	private static final BlockState AIR = UnusedBlockInit.AIR.get().getDefaultState();
+	private static final BlockState AIR = UnusedBlockInit.getBlock("air").getDefaultState();
 	private static final BlockState KALT_BLOCK = BlockItemInit.KALT_BLOCK.get().getDefaultState();
 	private static final BlockState SURVI = BlockItemInit.SURVI.get().getDefaultState();
 	private static final BlockState TRIRIJ = BlockInit.TRIRIJ.get().getDefaultState();

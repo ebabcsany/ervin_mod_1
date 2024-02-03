@@ -14,6 +14,7 @@ import net.minecraft.entity.ai.goal.HurtByTargetGoal;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
 import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
+import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.monster.ZombifiedPiglinEntity;
@@ -60,14 +61,6 @@ public class ZurEntity extends AbstractZurEntity {
         return MonsterEntity.func_234295_eP_().createMutableAttribute(Attributes.FOLLOW_RANGE, 350.0).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.023000000417232513).createMutableAttribute(Attributes.ATTACK_DAMAGE, 30.0).createMutableAttribute(Attributes.ARMOR, 20.0).createMutableAttribute(Attributes.ZOMBIE_SPAWN_REINFORCEMENTS);
     }
 
-    protected int getExperiencePoints(PlayerEntity p_70693_1_) {
-        if (this.isChild()) {
-            this.experienceValue = (int)((float)this.experienceValue * 2.5F);
-        }
-
-        return super.getExperiencePoints(p_70693_1_);
-    }
-
     public void tick() {
 
 
@@ -102,6 +95,18 @@ public class ZurEntity extends AbstractZurEntity {
 
     @Override
     protected void onZurTrade(MerchantOffer offer) {
+        int f = 3 + this.rand.nextInt(4);
+        this.xp += offer.getGivenExp();
+        this.previousCustomer = this.getCustomer();
+        if (this.canLevelUp()) {
+            this.timeUntilReset = 40;
+            this.leveledUp = true;
+            f += 5;
+        }
+        if (offer.getDoesRewardExp()) {
+            int i = 3 + this.rand.nextInt(4);
+            this.world.addEntity(new ExperienceOrbEntity(this.world, this.getPosX(), this.getPosY() + 0.5D, this.getPosZ(), i));
+        }
 
     }
 
@@ -119,18 +124,6 @@ public class ZurEntity extends AbstractZurEntity {
             }
         }
         return false;
-    }
-
-    public boolean attackEntityAsMob(Entity p_70652_1_) {
-        boolean flag = super.attackEntityAsMob(p_70652_1_);
-        if (flag) {
-            float f = this.world.getDifficultyForLocation(this.getPosition()).getAdditionalDifficulty();
-            if (this.getHeldItemMainhand().isEmpty() && this.isBurning() && this.rand.nextFloat() < f * 0.3F) {
-                p_70652_1_.setFire(2 * (int) f);
-            }
-        }
-
-        return flag;
     }
 
     protected SoundEvent getAmbientSound() {

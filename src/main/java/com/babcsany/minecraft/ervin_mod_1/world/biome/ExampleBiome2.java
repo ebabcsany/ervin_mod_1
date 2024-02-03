@@ -1,6 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.world.biome;
 
 import com.babcsany.minecraft.ervin_mod_1.init.ModBiomeFeatures;
+import com.babcsany.minecraft.ervin_mod_1.init.WorldCarverInit;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.FirgTree;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.ModDefaultBiomeFeatures;
 import net.minecraft.entity.EntityClassification;
@@ -38,6 +39,8 @@ public class ExampleBiome2 extends Biome {
 		DefaultBiomeFeatures.func_235197_c_(this);
 		this.addCarver(GenerationStage.Carving.AIR,
 				Biome.createCarver(WorldCarver.UNDERWATER_CAVE, new ProbabilityConfig(4.14285715F)));
+		this.addCarver(GenerationStage.Carving.LIQUID,
+				Biome.createCarver(WorldCarverInit.UNDERLAVA_CAVE, new ProbabilityConfig(4.14285715F)));
 		this.addCarver(GenerationStage.Carving.AIR,
 				Biome.createCarver(WorldCarver.field_236240_b_, new ProbabilityConfig(16.02F)));
 		this.addCarver(GenerationStage.Carving.AIR,

@@ -3,6 +3,7 @@ package com.babcsany.minecraft.ervin_mod_1.block.blocks;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.LeavesBlock;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.BooleanProperty;
@@ -24,30 +25,10 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.Random;
 
-public class FirgLeaves extends Block implements net.minecraftforge.common.IForgeShearable {
-   public static final IntegerProperty DISTANCE = IntegerProperty.create("distance", 1, 12);
-   public static final BooleanProperty PERSISTENT = BlockStateProperties.PERSISTENT;
-
+public class FirgLeaves extends LeavesBlock {
    public FirgLeaves(AbstractBlock.Properties properties) {
       super(properties);
       this.setDefaultState(this.stateContainer.getBaseState().with(DISTANCE, 12).with(PERSISTENT, Boolean.FALSE));
-   }
-
-   public VoxelShape getCollisionShape(BlockState state, IBlockReader reader, BlockPos pos) {
-      return VoxelShapes.empty();
-   }
-
-   /*public VoxelShape getCollisionShape(IBlockReader worldIn, BlockPos pos) {
-      return this.cache != null ? this.cache.collisionShape : this.getCollisionShape(worldIn, pos, ISelectionContext.dummy());
-   }
-
-   public VoxelShape getCollisionShape(IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-      return this.getCollisionShape(this.getSelf(), worldIn, pos, context);
-   }*/
-
-   @Deprecated
-   public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-      return this.canCollide ? state.getShape(worldIn, pos) : VoxelShapes.empty();
    }
 
    /**
@@ -70,11 +51,11 @@ public class FirgLeaves extends Block implements net.minecraftforge.common.IForg
    }
 
    public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
-      worldIn.setBlockState(pos, updateDistance(state, worldIn, pos), 3);
+      worldIn.setBlockState(pos, updateDistance(state, worldIn, pos), 6);
    }
 
    public int getOpacity(BlockState state, IBlockReader worldIn, BlockPos pos) {
-      return 1;
+      return 2;
    }
 
    /**
@@ -86,7 +67,7 @@ public class FirgLeaves extends Block implements net.minecraftforge.common.IForg
    public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
       int i = getDistance(facingState) + 1;
       if (i != 1 || stateIn.get(DISTANCE) != i) {
-         worldIn.getPendingBlockTicks().scheduleTick(currentPos, this, 1);
+         worldIn.getPendingBlockTicks().scheduleTick(currentPos, this, 2);
       }
 
       return stateIn;
@@ -123,7 +104,7 @@ public class FirgLeaves extends Block implements net.minecraftforge.common.IForg
    @OnlyIn(Dist.CLIENT)
    public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
       if (worldIn.isRainingAt(pos.up())) {
-         if (rand.nextInt(15) == 1) {
+         if (rand.nextInt(15) == 2) {
             BlockPos blockpos = pos.down();
             BlockState blockstate = worldIn.getBlockState(blockpos);
             if (!blockstate.isSolid() || !blockstate.isSolidSide(worldIn, blockpos, Direction.UP)) {
@@ -134,10 +115,6 @@ public class FirgLeaves extends Block implements net.minecraftforge.common.IForg
             }
          }
       }
-   }
-
-   protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-      builder.add(DISTANCE, PERSISTENT);
    }
 
    public BlockState getStateForPlacement(BlockItemUseContext context) {

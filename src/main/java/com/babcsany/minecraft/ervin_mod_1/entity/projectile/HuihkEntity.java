@@ -522,7 +522,7 @@ public class HuihkEntity extends ProjectileEntity {
     * Returns false if this Entity is a boss, true otherwise.
     */
    public boolean isNonBoss() {
-      return false;
+      return true;
    }
 
    public IPacket<?> createSpawnPacket() {

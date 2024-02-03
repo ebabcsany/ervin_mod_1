@@ -2,6 +2,7 @@ package com.babcsany.minecraft.ervin_mod_1.entity.trigger;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.AbstractZurEntity;
 import com.google.gson.JsonObject;
 import net.minecraft.advancements.criterion.AbstractCriterionTrigger;
 import net.minecraft.advancements.criterion.CriterionInstance;
@@ -25,7 +26,7 @@ public class TameZurTrigger extends AbstractCriterionTrigger<TameZurTrigger.Inst
       return new TameZurTrigger.Instance(entityPredicate, entitypredicate$andpredicate);
    }
 
-   public void trigger(ServerPlayerEntity player, ZurEntity entity) {
+   public void trigger(ServerPlayerEntity player, AbstractZurEntity entity) {
       LootContext lootcontext = EntityPredicate.getLootContext(player, entity);
       this.triggerListeners(player, (p_227251_1_) -> {
          return p_227251_1_.test(lootcontext);
