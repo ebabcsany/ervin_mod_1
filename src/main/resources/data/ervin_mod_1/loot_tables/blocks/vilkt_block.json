@@ -135,7 +135,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:cooked_steef"
+          "name": "ervin_mod_1:meat/cooked_steef"
         },
         {
           "type": "minecraft:item",

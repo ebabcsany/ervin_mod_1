@@ -3,6 +3,7 @@ package com.babcsany.minecraft.ervin_mod_1.entity.trigger;
 import com.babcsany.minecraft.ervin_mod_1.entity.CuredZurNirtreTrigger;
 import com.babcsany.minecraft.ervin_mod_1.entity.trigger.hhij.BredHhijTrigger;
 import com.babcsany.minecraft.ervin_mod_1.entity.trigger.hhij.TameHhijAnimalTrigger;
+import com.babcsany.minecraft.ervin_mod_1.entity.trigger.zur.BredZursTrigger;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.trigger.*;
 import com.google.common.collect.Maps;
 import net.minecraft.advancements.ICriterionInstance;
@@ -30,7 +31,8 @@ public class CriteriaTriggers1 {
    public static final UsedEnderEyeTrigger USED_ENDER_EYE = register(new UsedEnderEyeTrigger());
    public static final SummonedEntityTrigger SUMMONED_ENTITY = register(new SummonedEntityTrigger());
    public static final BredAnimalsTrigger BRED_ANIMALS = register(new BredAnimalsTrigger());
-   public static final BredHhijTrigger BRED_HHIJ = register(new BredHhijTrigger());
+   public static final BredHhijTrigger BRED_HHIJS = register(new BredHhijTrigger());
+   public static final BredZursTrigger BRED_ZURS = register(new BredZursTrigger());
    public static final PositionTrigger LOCATION = register(new PositionTrigger(new ResourceLocation("location")));
    public static final PositionTrigger SLEPT_IN_BED = register(new PositionTrigger(new ResourceLocation("slept_in_bed")));
    public static final CuredZombieVillagerTrigger CURED_ZOMBIE_VILLAGER = register(new CuredZombieVillagerTrigger());

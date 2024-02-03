@@ -97,7 +97,8 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:spawn_eggs/gubrov_spawn_egg"
+          "name": "ervin_mod_1:spawn_eggs/gubrov_spawn_egg",
+          "weight": 3
         }
       ]
     }

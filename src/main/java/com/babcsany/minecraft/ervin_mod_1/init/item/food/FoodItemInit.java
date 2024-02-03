@@ -22,6 +22,4 @@ public class FoodItemInit {
     public static final RegistryObject<Item> GUBROV = FOODS.register("gubrov", () -> new Item((new Item.Properties()).food(Foods.GUBROV).group(net.minecraft.item.ItemGroup.FOOD).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
     public static final RegistryObject<Item> COOKED_GUBROV = FOODS.register("cooked_gubrov", () -> new Item((new Item.Properties()).food(Foods.COOKED_GUBROV).group(net.minecraft.item.ItemGroup.FOOD).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
     public static final RegistryObject<Item> JAZZ_FRUIT = FOODS.register("jazz_fruit", () -> new Item((new Item.Properties()).food(Foods.JAZZ_FRUIT).group(net.minecraft.item.ItemGroup.FOOD).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final RegistryObject<Item> J = FOODS.register("", () -> new Item((new Item.Properties()).food(Foods.BREFK_STAGE).group(net.minecraft.item.ItemGroup.FOOD).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
-
 }

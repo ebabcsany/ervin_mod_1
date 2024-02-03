@@ -5,7 +5,7 @@
       "rolls": 1,
       "entries": [
         {
-          "type": "ervin_mod_1:item",
+          "type": "minecraft:item",
           "name": "ervin_mod_1:special/tfjhu/tfjhu_1"
         }
       ],

@@ -277,7 +277,7 @@ public class BiomeInit {
 		registerBiomeWarm_weight_10(MIGV_BIOME.get(), Type.OCEAN, Type.RARE, Type.HOT, Type.OVERWORLD);
 		registerBiomeWarm_weight_10(TWUST.get(), Type.DRY, Type.LUSH, Type.DENSE, Type.HILLS, Type.VOID, Type.RARE, Type.MODIFIED, Type.WATER, Type.MAGICAL, Type.BEACH, Type.CONIFEROUS, Type.DEAD, Type.MESA, Type.MOUNTAIN, Type.MUSHROOM, Type.PLAINS, Type.PLATEAU, Type.SANDY, Type.SAVANNA, Type.SNOWY, Type.SPARSE, Type.SPOOKY, Type.SWAMP, Type.WASTELAND, Type.WET, Type.OVERWORLD);
 		registerBiomeCool_weight_10(SRIUNK_VALLEY_BIOME.get(), Type.DEAD, Type.OVERWORLD);
-		registerBiomeCool_weight_10(EXAMPLE0_BIOME.get(), Type.COLD, Type.PLAINS);
+		registerBiomeCool_weight_10(EXAMPLE0_BIOME.get(), Type.COLD, Type.PLAINS, Type.CONIFEROUS);
 		registerBiomeWarm_weight_10(EXAMPLE_BIOME.get(), Type.LUSH, Type.PLAINS);
 		registerBiomeDesert_weight_10(EXAMPLE_BIOME1.get(), Type.PLAINS, Type.OVERWORLD);
 		registerBiomeCool_weight_10(EXAMPLE_BIOME0.get(), Type.END, Type.getType("EXAMPLE_BIOME0", Type.fromVanilla(Category.THEEND)));

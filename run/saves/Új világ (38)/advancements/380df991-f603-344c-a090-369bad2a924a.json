@@ -503,6 +503,12 @@
     },
     "done": true
   },
+  "minecraft:end/kill_dragon": {
+    "criteria": {
+      "killed_dragon": "2024-02-02 19:44:30 +0100"
+    },
+    "done": true
+  },
   "minecraft:recipes/building_blocks/polished_blackstone_brick_stairs": {
     "criteria": {
       "has_the_recipe": "2021-02-18 12:24:01 +0100"
@@ -1085,6 +1091,12 @@
     },
     "done": true
   },
+  "minecraft:end/dragon_egg": {
+    "criteria": {
+      "dragon_egg": "2024-02-02 19:44:38 +0100"
+    },
+    "done": true
+  },
   "minecraft:recipes/food/honey_bottle": {
     "criteria": {
       "has_the_recipe": "2021-02-18 12:24:01 +0100"
@@ -1448,6 +1460,12 @@
   "minecraft:recipes/misc/red_dye_from_beetroot": {
     "criteria": {
       "has_the_recipe": "2021-02-18 12:24:02 +0100"
+    },
+    "done": true
+  },
+  "ervin_mod_1:recipes/boats/firg_boat": {
+    "criteria": {
+      "in_water": "2024-02-02 15:17:32 +0100"
     },
     "done": true
   },
@@ -2981,6 +2999,12 @@
     },
     "done": true
   },
+  "minecraft:end/dragon_breath": {
+    "criteria": {
+      "dragon_breath": "2024-02-02 19:07:23 +0100"
+    },
+    "done": true
+  },
   "minecraft:adventure/root": {
     "criteria": {
       "killed_something": "2021-04-20 10:34:17 +0200"
@@ -3040,6 +3064,7 @@
       "minecraft:spider": "2021-04-20 10:34:43 +0200",
       "minecraft:creeper": "2021-04-20 10:34:17 +0200",
       "minecraft:zombified_piglin": "2021-04-20 10:34:49 +0200",
+      "minecraft:ender_dragon": "2024-02-02 19:44:30 +0100",
       "minecraft:zombie": "2021-04-20 10:34:26 +0200"
     },
     "done": false
@@ -3227,6 +3252,12 @@
   "minecraft:recipes/redstone/jungle_pressure_plate": {
     "criteria": {
       "has_the_recipe": "2021-02-18 12:24:02 +0100"
+    },
+    "done": true
+  },
+  "minecraft:end/root": {
+    "criteria": {
+      "entered_end": "2024-02-02 15:44:35 +0100"
     },
     "done": true
   },
@@ -3605,7 +3636,8 @@
   "minecraft:adventure/adventuring_time": {
     "criteria": {
       "minecraft:cold_ocean": "2021-04-19 18:54:45 +0200",
-      "minecraft:beach": "2021-02-06 10:10:03 +0100"
+      "minecraft:beach": "2021-02-06 10:10:03 +0100",
+      "minecraft:river": "2024-02-02 15:16:34 +0100"
     },
     "done": false
   },
@@ -4767,6 +4799,12 @@
     },
     "done": true
   },
+  "minecraft:story/root": {
+    "criteria": {
+      "crafting_table": "2024-02-02 19:37:10 +0100"
+    },
+    "done": true
+  },
   "minecraft:recipes/misc/slime_ball": {
     "criteria": {
       "has_the_recipe": "2021-02-18 12:24:02 +0100"
@@ -4998,6 +5036,12 @@
   "minecraft:recipes/decorations/brown_bed_from_white_bed": {
     "criteria": {
       "has_the_recipe": "2021-02-18 12:24:01 +0100"
+    },
+    "done": true
+  },
+  "minecraft:story/enter_the_end": {
+    "criteria": {
+      "entered_end": "2024-02-02 15:44:35 +0100"
     },
     "done": true
   },

@@ -62,7 +62,7 @@ public class MigSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig> {
                if (i1 >= sealevel - 1) {
                   chunkIn.setBlockState(blockPos$mutable, blockstate, false);
                } else if (i1 < sealevel - 7 - j) {
-                  blockstate = UnusedBlockInit.AIR.get().getDefaultState();
+                  blockstate = UnusedBlockInit.getBlock("air").getDefaultState();
                   blockState1 = defaultBlock;
                   chunkIn.setBlockState(blockPos$mutable, bottom, false);
                } else {
