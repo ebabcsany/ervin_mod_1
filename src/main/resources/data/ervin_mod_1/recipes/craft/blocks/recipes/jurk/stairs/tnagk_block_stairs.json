@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "jurk",
+  "ingredients": [
+    {
+      "item": "ervin_mod_1:tragk_block_stairs"
+    },
+    {
+      "item": "ervin_mod_1:trugk_block_stairs"
+    }
+  ],
+  "result": {
+    "item": "ervin_mod_1:tnagk_block_stairs",
+    "count": 2
+  }
+}

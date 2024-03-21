@@ -4,7 +4,7 @@ import java.util.Optional;
 import java.util.UUID;
 import javax.annotation.Nullable;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.trigger.CriteriaTriggers1;
+import com.babcsany.minecraft.ervin_mod_1.trigger.ModCriteriaTriggers;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -159,7 +159,7 @@ public abstract class HhijTameableEntity extends HhijAnimalEntity {
       this.setTamed(true);
       this.setOwnerId(player.getUniqueID());
       if (player instanceof ServerPlayerEntity) {
-         CriteriaTriggers1.TAME_HHIJ_ANIMAL.trigger((ServerPlayerEntity)player, this);
+         ModCriteriaTriggers.TAME_HHIJ_ANIMAL.trigger((ServerPlayerEntity)player, this);
       }
 
    }

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "jurk",
+  "ingredients": [
+    {
+      "item": "ervin_mod_1:tragk_block"
+    },
+    {
+      "item": "ervin_mod_1:trugk_block"
+    }
+  ],
+  "result": {
+    "item": "ervin_mod_1:tnagk_block",
+    "count": 2
+  }
+}

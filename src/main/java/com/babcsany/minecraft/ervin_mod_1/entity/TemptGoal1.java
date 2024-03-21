@@ -12,7 +12,7 @@ import net.minecraft.pathfinding.GroundPathNavigator;
 import java.util.EnumSet;
 
 public class TemptGoal1 extends Goal {
-   private static final EntityPredicate ENTITY_PREDICATE = (new EntityPredicate()).setDistance(10.0D).allowInvulnerable().allowFriendlyFire().setSkipAttackChecks().setLineOfSiteRequired();
+   private static final EntityPredicate ENTITY_PREDICATE = (new EntityPredicate()).setDistance(10.0D).allowInvulnerable().allowFriendlyFire().setSkipAttackChecks().setIgnoresLineOfSight();
    protected final CreatureEntity creature1;
    private final double speed;
    private double targetX;

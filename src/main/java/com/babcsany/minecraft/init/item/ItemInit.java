@@ -15,7 +15,8 @@ public class ItemInit {
     public static ItemInit ITEMS;
 
     //public static final Item JURK_BUCKET = register("jurk_bucket", new JurkBucketItem((new Item.Properties()).containerItem(BUCKET).maxStackSize(1).group(net.minecraft.item.ItemGroup.MISC)));
-    public static final RegistryObject<Item> FIRG_BOAT = REGISTER_ITEMS.register("firg_boat", () -> new BoatItem(BoatEntity.Type.OAK, (new Item.Properties()).maxStackSize(1).group(ItemGroup.TRANSPORTATION)));
+    public static final RegistryObject<Item> FIRG_BOAT = REGISTER_ITEMS.register("firg_boat", () -> new BoatItem(BoatEntity.Type.valueOf(Ervin_mod_1.MOD_ID + "firg"), (new Item.Properties()).maxStackSize(1).group(ItemGroup.TRANSPORTATION)));
+    public static final RegistryObject<Item> FRIM_BOAT = REGISTER_ITEMS.register("frim_boat", () -> new BoatItem(BoatEntity.Type.valueOf(Ervin_mod_1.MOD_ID + "frim"), (new Item.Properties()).maxStackSize(1).group(ItemGroup.TRANSPORTATION)));
     public static final Item ENCHANTED_BOOK_BLACK = register("book/enchanted/paper/black", new EnchantedBookItemBlack((new Item.Properties()).maxStackSize(1).rarity(Rarity.UNCOMMON)));
     public static final Item ENCHANTED_BOOK_BLUE = register("book/enchanted/paper/blue", new EnchantedBookItemBlue((new Item.Properties()).maxStackSize(1).rarity(Rarity.UNCOMMON)));
     public static final Item ENCHANTED_BOOK_BROWN = register("book/enchanted/paper/brown", new EnchantedBookItemBrown((new Item.Properties()).maxStackSize(1).rarity(Rarity.UNCOMMON)));

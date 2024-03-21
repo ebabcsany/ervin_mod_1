@@ -1,7 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.monster;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.AbstractZurEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.trigger.CriteriaTriggers1;
+import com.babcsany.minecraft.ervin_mod_1.trigger.ModCriteriaTriggers;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.TraderNirtreEntity;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import net.minecraft.block.BedBlock;
@@ -27,6 +27,7 @@ import net.minecraft.potion.Effects;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.IServerWorld;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
@@ -186,7 +187,7 @@ public class ZurNirtreEntity extends AgeableEntity {
       if (this.converstionStarter != null) {
          PlayerEntity playerentity = p_213791_1_.getPlayerByUuid(this.converstionStarter);
          if (playerentity instanceof ServerPlayerEntity) {
-            CriteriaTriggers1.CURED_ZUR_NIRTRE.trigger((ServerPlayerEntity)playerentity, this, traderNirtreEntity);
+            ModCriteriaTriggers.CURED_ZUR_NIRTRE.trigger((ServerPlayerEntity)playerentity, this, traderNirtreEntity);
             p_213791_1_.updateReputation(IReputationType.ZOMBIE_VILLAGER_CURED, playerentity, (IReputationTracking) traderNirtreEntity);
          }
       }
@@ -255,13 +256,13 @@ public class ZurNirtreEntity extends AgeableEntity {
    }
 
    @Nullable
-   public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
+   public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
       //this.setVillagerData(this.getVillagerData().withType(IVillagerType.byBiome(worldIn.getBiome(this.getPosition()))));
       return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
    }
 
    @Nullable
-   public AgeableEntity createChild(AgeableEntity ageable) {
+   public AgeableEntity createChild(ServerWorld serverWorld, AgeableEntity ageable) {
       return null;
    }
 

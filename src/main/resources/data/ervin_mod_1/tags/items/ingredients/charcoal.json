@@ -9,10 +9,6 @@
     "ervin_mod_1:frim_wood",
     "ervin_mod_1:stripped_frim_log",
     "ervin_mod_1:stripped_frim_wood",
-    "minecraft:acacia_log",
-    "minecraft:birch_log",
-    "minecraft:jungle_log",
-    "minecraft:oak_log",
-    "minecraft:spruce_log"
+    "#minecraft:logs_that_burn"
   ]
 }

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "jurk",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "ervin_mod_1:tnagn"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:tnagn_slab",
+    "count": 6
+  }
+}

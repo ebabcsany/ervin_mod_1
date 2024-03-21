@@ -26,7 +26,7 @@ public class TawrolItem extends Item {
       if (!worldIn.isRemote) {
          TawrolEntity tawrolEntity = new TawrolEntity(worldIn, playerIn);
          tawrolEntity.setItem(itemstack);
-         tawrolEntity.func_234612_a_(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
+         tawrolEntity.setDirectionAndMovement(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
          worldIn.addEntity(tawrolEntity);
       }
 

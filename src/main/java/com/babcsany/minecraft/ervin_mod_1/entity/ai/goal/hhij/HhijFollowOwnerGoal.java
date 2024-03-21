@@ -138,7 +138,7 @@ public class HhijFollowOwnerGoal extends Goal {
    }
 
    private boolean isTeleportFriendlyBlock(BlockPos pos) {
-      PathNodeType pathnodetype = WalkNodeProcessor.func_237231_a_(this.world, pos.toMutable());
+      PathNodeType pathnodetype = WalkNodeProcessor.getFloorNodeType(this.world, pos.toMutable());
       if (pathnodetype != PathNodeType.WALKABLE) {
          return false;
       } else {

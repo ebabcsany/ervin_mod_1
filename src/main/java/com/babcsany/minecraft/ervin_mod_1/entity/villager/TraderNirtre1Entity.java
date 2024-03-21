@@ -26,7 +26,9 @@ import net.minecraft.stats.Stats;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Difficulty;
+import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nullable;
 
@@ -68,12 +70,17 @@ public class TraderNirtre1Entity extends AbstractTraderNirtre1Entity {
    }
 
    @Nullable
-   public AgeableEntity createChild(AgeableEntity ageable) {
+   public AgeableEntity createChild(ServerWorld serverWorld, AgeableEntity ageable) {
       return null;
    }
 
    @Override
    public void onTrade(MerchantOffer offer) {
+   }
+
+   @Override
+   public boolean hasXPBar() {
+      return false;
    }
 
    @Override
@@ -85,7 +92,7 @@ public class TraderNirtre1Entity extends AbstractTraderNirtre1Entity {
       return false;
    }
 
-   public ActionResultType func_230254_b_(PlayerEntity p_230254_1_, Hand p_230254_2_) {
+   public ActionResultType getEntityInteractionResult(PlayerEntity p_230254_1_, Hand p_230254_2_) {
       ItemStack itemstack = p_230254_1_.getHeldItem(p_230254_2_);
       if (itemstack.getItem() != ModSpawnEggItemInit.TRADER_NIRTRE_SPAWN_EGG.get() && this.isAlive() && !this.hasCustomer() && !this.isChild()) {
          if (p_230254_2_ == Hand.MAIN_HAND) {
@@ -103,7 +110,7 @@ public class TraderNirtre1Entity extends AbstractTraderNirtre1Entity {
             return ActionResultType.func_233537_a_(this.world.isRemote);
          }
       } else {
-         return super.func_230254_b_(p_230254_1_, p_230254_2_);
+         return super.getEntityInteractionResult(p_230254_1_, p_230254_2_);
       }
    }
 
@@ -222,7 +229,7 @@ public class TraderNirtre1Entity extends AbstractTraderNirtre1Entity {
          LOGGER.info("Trader Nirtre {} was struck by lightning {}.", this, lightningBolt);
          ZurEntity zurEntity = EntityInit.ZUR_ENTITY.get().create(this.world);
          zurEntity.setLocationAndAngles(this.getPosX(), this.getPosY(), this.getPosZ(), this.rotationYaw, this.rotationPitch);
-         zurEntity.onInitialSpawn(this.world, this.world.getDifficultyForLocation(zurEntity.getPosition()), SpawnReason.CONVERSION, null, null);
+         zurEntity.onInitialSpawn((IServerWorld) this.world, this.world.getDifficultyForLocation(zurEntity.getPosition()), SpawnReason.CONVERSION, null, null);
          zurEntity.setNoAI(this.isAIDisabled());
          if (this.hasCustomName()) {
             zurEntity.setCustomName(this.getCustomName());
@@ -233,7 +240,7 @@ public class TraderNirtre1Entity extends AbstractTraderNirtre1Entity {
          this.world.addEntity(zurEntity);
          this.remove();
       } else {
-         super.onStruckByLightning(lightningBolt);
+         super.onStruckByLightning_(lightningBolt);
       }
 
    }

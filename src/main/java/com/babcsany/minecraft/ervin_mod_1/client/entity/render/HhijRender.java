@@ -51,7 +51,7 @@ public class HhijRender extends MobRenderer<HhijEntity, HhijModel<HhijEntity>> {
       if (entity.isTamed()) {
          return TAMED_WOLF_TEXTURES;
       } else {
-         return entity.func_233678_J__() ? ANGRY_WOLF_TEXTURES : WOLF_TEXTURES;
+         return entity.isAngry() ? ANGRY_WOLF_TEXTURES : WOLF_TEXTURES;
       }
    }
 }

@@ -30,6 +30,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.apache.commons.lang3.tuple.Pair;
 
+import javax.annotation.Nullable;
 import java.util.Optional;
 import java.util.Random;
 import java.util.UUID;
@@ -49,25 +50,10 @@ public class ShertEntity extends SrachEntity implements IShearable, net.minecraf
       return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 10.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.2F);
    }
 
-   public float getBlockPathWeight(BlockPos pos, IWorldReader worldIn) {
-      return worldIn.getBlockState(pos.down()).isIn(Blocks.MYCELIUM) ? 10.0F : worldIn.getBrightness(pos) - 0.5F;
-   }
-
-   public static boolean func_223318_c(EntityType<ShertEntity> p_223318_0_, IWorld p_223318_1_, SpawnReason p_223318_2_, BlockPos p_223318_3_, Random p_223318_4_) {
-      return p_223318_1_.getBlockState(p_223318_3_.down()).isIn(BlockItemInit.RED_GRASS_BLOCK.get()) && p_223318_1_.getLightSubtracted(p_223318_3_, 0) > 8;
-   }
-
-   /**
-    * Called when a lightning bolt hits the entity.
-    */
-   public void onStruckByLightning(LightningBoltEntity lightningBolt) {
-      UUID uuid = lightningBolt.getUniqueID();
-      if (!uuid.equals(this.lightningUUID)) {
-         this.setMooshroomType(this.getMooshroomType() == ShertEntity.Type.RED ? ShertEntity.Type.BROWN : ShertEntity.Type.RED);
-         this.lightningUUID = uuid;
-         this.playSound(SoundEvents.ENTITY_MOOSHROOM_CONVERT, 2.0F, 1.0F);
-      }
-
+   @Nullable
+   @Override
+   public SrachEntity createChild(ServerWorld serverWorld, AgeableEntity ageableEntity) {
+      return EntityInit.SHERT_ENTITY.get().create(serverWorld);
    }
 
    protected void registerData() {
@@ -75,8 +61,8 @@ public class ShertEntity extends SrachEntity implements IShearable, net.minecraf
       this.dataManager.register(MOOSHROOM_TYPE, ShertEntity.Type.RED.name);
    }
 
-   public ActionResultType onJurking(PlayerEntity p_230254_1_, Hand hand) {
-      ItemStack itemstack = p_230254_1_.getHeldItem(hand);
+   public ActionResultType onJurking(PlayerEntity player, Hand hand) {
+      ItemStack itemstack = player.getHeldItem(hand);
       if (itemstack.getItem() == Items.BOWL && !this.isChild()) {
          boolean flag = false;
          ItemStack itemstack1;
@@ -90,8 +76,8 @@ public class ShertEntity extends SrachEntity implements IShearable, net.minecraf
             itemstack1 = new ItemStack(Items.MUSHROOM_STEW);
          }
 
-         ItemStack itemstack2 = DrinkHelper.func_241445_a_(itemstack, p_230254_1_, itemstack1);
-         p_230254_1_.setHeldItem(hand, itemstack2);
+         ItemStack itemstack2 = DrinkHelper.fill(itemstack, player, itemstack1);
+         player.setHeldItem(hand, itemstack2);
          SoundEvent soundevent;
          if (flag) {
             soundevent = SoundEvents.ENTITY_MOOSHROOM_SUSPICIOUS_MILK;
@@ -104,7 +90,7 @@ public class ShertEntity extends SrachEntity implements IShearable, net.minecraf
       } else if (false && itemstack.getItem() == Items.SHEARS && this.isShearable()) { //Forge: Moved to onSheared
          this.shear(SoundCategory.PLAYERS);
          if (!this.world.isRemote) {
-            itemstack.damageItem(1, p_230254_1_, (p_213442_1_) -> {
+            itemstack.damageItem(1, player, (p_213442_1_) -> {
                p_213442_1_.sendBreakAnimation(hand);
             });
          }
@@ -122,7 +108,7 @@ public class ShertEntity extends SrachEntity implements IShearable, net.minecraf
             }
 
             Pair<Effect, Integer> pair = optional.get();
-            if (!p_230254_1_.abilities.isCreativeMode) {
+            if (!player.abilities.isCreativeMode) {
                itemstack.shrink(1);
             }
 
@@ -137,7 +123,7 @@ public class ShertEntity extends SrachEntity implements IShearable, net.minecraf
 
          return ActionResultType.func_233537_a_(this.world.isRemote);
       } else {
-         return super.onJurking(p_230254_1_, hand);
+         return super.onJurking(player, hand);
       }
    }
 

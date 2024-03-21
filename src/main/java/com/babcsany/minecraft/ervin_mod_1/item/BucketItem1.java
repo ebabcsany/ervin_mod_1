@@ -76,7 +76,7 @@ public class BucketItem1 extends Item {
                      SoundEvent soundevent = this.containedBlock.getAttributes().getEmptySound();
                      if (soundevent == null) soundevent = fluid.isIn(FluidTags.LAVA) ? SoundEvents.ITEM_BUCKET_FILL_LAVA : SoundEvents.ITEM_BUCKET_FILL;
                      playerIn.playSound(soundevent, 1.0F, 1.0F);
-                     ItemStack itemstack1 = DrinkHelper.func_241445_a_(itemstack, playerIn, new ItemStack(fluid.getFilledBucket()));
+                     ItemStack itemstack1 = DrinkHelper.fill(itemstack, playerIn, new ItemStack(fluid.getFilledBucket()));
                      if (!worldIn.isRemote) {
                         CriteriaTriggers.FILLED_BUCKET.trigger((ServerPlayerEntity)playerIn, new ItemStack(fluid.getFilledBucket()));
                      }
@@ -125,7 +125,7 @@ public class BucketItem1 extends Item {
          boolean flag1 = blockstate.isAir() || flag || block instanceof ILiquidContainer && ((ILiquidContainer)block).canContainFluid(worldIn, posIn, blockstate, this.containedBlock);
          if (!flag1) {
             return rayTrace != null && this.tryPlaceContainedLiquid(player, worldIn, rayTrace.getPos().offset(rayTrace.getFace()), (BlockRayTraceResult)null);
-         } else if (worldIn.func_230315_m_().func_236040_e_() && this.containedBlock.isIn(FluidTags.WATER)) {
+         } else if (worldIn.getDimensionType().isUltrawarm() && this.containedBlock.isIn(FluidTags.WATER)) {
             int i = posIn.getX();
             int j = posIn.getY();
             int k = posIn.getZ();

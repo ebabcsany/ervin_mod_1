@@ -30,10 +30,8 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.Difficulty;
-import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
+import net.minecraft.world.*;
+import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nullable;
 import java.time.LocalDate;
@@ -238,8 +236,8 @@ public class RoventEntity extends MonsterEntity {
    /**
     * This method gets called when the entity kills another one.
     */
-   public void onKillEntity(LivingEntity entityLivingIn) {
-      super.onKillEntity(entityLivingIn);
+   public void onKillEntity(ServerWorld serverWorld, LivingEntity entityLivingIn) {
+      super.onKillEntity(serverWorld, entityLivingIn);
       if ((this.world.getDifficulty() == Difficulty.NORMAL || this.world.getDifficulty() == Difficulty.HARD) && entityLivingIn instanceof VillagerEntity) {
          if (this.world.getDifficulty() != Difficulty.HARD && this.rand.nextBoolean()) {
             return;
@@ -249,9 +247,9 @@ public class RoventEntity extends MonsterEntity {
          ZombieVillagerEntity zombievillagerentity = EntityType.ZOMBIE_VILLAGER.create(this.world);
          zombievillagerentity.copyLocationAndAnglesFrom(villagerentity);
          villagerentity.remove();
-         zombievillagerentity.onInitialSpawn(this.world, this.world.getDifficultyForLocation(zombievillagerentity.getPosition()), SpawnReason.CONVERSION, new net.minecraft.entity.monster.ZombieEntity.GroupData(false, true), (CompoundNBT)null);
+         zombievillagerentity.onInitialSpawn(serverWorld, serverWorld.getDifficultyForLocation(zombievillagerentity.getPosition()), SpawnReason.CONVERSION, new net.minecraft.entity.monster.ZombieEntity.GroupData(false, true), (CompoundNBT)null);
          zombievillagerentity.setVillagerData(villagerentity.getVillagerData());
-         zombievillagerentity.setGossips(villagerentity.getGossip().func_234058_a_(NBTDynamicOps.INSTANCE).getValue());
+         zombievillagerentity.setGossips(villagerentity.getGossip().write(NBTDynamicOps.INSTANCE).getValue());
          zombievillagerentity.setOffers(villagerentity.getOffers().write());
          zombievillagerentity.setEXP(villagerentity.getXp());
          zombievillagerentity.setChild(villagerentity.isChild());
@@ -283,7 +281,7 @@ public class RoventEntity extends MonsterEntity {
    }
 
    @Nullable
-   public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
+   public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
       spawnDataIn = super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
       float f = difficultyIn.getClampedAdditionalDifficulty();
       this.setCanPickUpLoot(this.rand.nextFloat() < 0.55F * f);

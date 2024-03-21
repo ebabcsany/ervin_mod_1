@@ -2,7 +2,7 @@ package com.babcsany.minecraft.ervin_mod_1.item;
 
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.block.tool.ToolItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.block.tool.EnderToolItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.food.isBurnableFoodItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.tool.SpecialToolItemInit;
@@ -44,11 +44,11 @@ public enum ModItemTier implements IItemTier {
     FIRT(5, 1965, 14.0F, 6.0F, 148, () -> Ingredient.fromItems(ItemInit.FIRT.get())),
     Bj(3, 5600, 26.0F, 3.0F, 41, () -> Ingredient.fromItems(isBurnableToolItemInit.Bj_PICKAXE.get())),
     NIRK(18, 12281, 387.5F, 117.5F, 925, () -> Ingredient.fromItems(isBurnableItemInit.NIRK.get())),
-    ENDER_SRACKHT(2, 48, 4.0F, 2.0F, 40, () -> Ingredient.fromItems(ToolItemInit.ENDER_SRACKHT.get())),
+    ENDER_SRACKHT(2, 48, 4.0F, 2.0F, 40, () -> Ingredient.fromItems(EnderToolItemInit.ENDER_SRACKHT.get())),
     SURV(2, 1310, 40.0F, 10.0F, 50, () -> Ingredient.fromItems(com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.RED_COBBLESTONE.get())),
-    ENDER_STAKRACH(3, 96, 6.0F, 4.0F, 60, () -> Ingredient.fromItems(ToolItemInit.ENDER_STAKRACH.get())),
-    ENDER_SRAKTCAF(4, 120, 8.0F, 6.0F, 80, () -> Ingredient.fromItems(ToolItemInit.ENDER_SRAKTCAF.get())),
-    ENDER_TRASKRACH(5, 180, 10.0F, 8.0F, 100, () -> Ingredient.fromItems(ToolItemInit.ENDER_TRASKRACH.get())),
+    ENDER_STAKRACH(3, 96, 6.0F, 4.0F, 60, () -> Ingredient.fromItems(EnderToolItemInit.ENDER_STAKRACH.get())),
+    ENDER_SRAKTCAF(4, 120, 8.0F, 6.0F, 80, () -> Ingredient.fromItems(EnderToolItemInit.ENDER_SRAKTCAF.get())),
+    ENDER_TRASKRACH(5, 180, 10.0F, 8.0F, 100, () -> Ingredient.fromItems(EnderToolItemInit.ENDER_TRASKRACH.get())),
     ENDER_TRASK(6, 320, 16.0F, 12.0F, 160, () -> Ingredient.fromItems(com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.ENDER_TRASK.get())),
     KIRT(0, 1, 0.0F, 0.0F, 1, () -> Ingredient.fromItems(ItemInit.KIRT.get())),
     KIRT_STIK(0, 26, 1.0F, 1.0F, 2, () -> Ingredient.fromItems(ItemInit.KIRT_STIK.get())),

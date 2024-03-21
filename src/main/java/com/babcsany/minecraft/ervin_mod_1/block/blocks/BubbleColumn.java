@@ -73,15 +73,15 @@ public class BubbleColumn extends Block implements IBucketPickupHandler {
 
    public static boolean canHoldBubbleColumn(IWorld world, BlockPos pos) {
       FluidState fluidstate = world.getFluidState(pos);
-      return world.getBlockState(pos).isIn(Blocks.WATER) && fluidstate.getLevel() >= 8 && fluidstate.isSource();
+      return world.getBlockState(pos).matchesBlock(Blocks.WATER) && fluidstate.getLevel() >= 8 && fluidstate.isSource();
    }
 
    private static boolean getDrag(IBlockReader reader, BlockPos pos) {
       BlockState blockstate = reader.getBlockState(pos);
-      if (blockstate.isIn(Blocks.BUBBLE_COLUMN)) {
+      if (blockstate.matchesBlock(Blocks.BUBBLE_COLUMN)) {
          return blockstate.get(DRAG);
       } else {
-         return !blockstate.isIn(Blocks.SOUL_SAND);
+         return !blockstate.matchesBlock(Blocks.SOUL_SAND);
       }
    }
 
@@ -122,7 +122,7 @@ public class BubbleColumn extends Block implements IBucketPickupHandler {
       } else {
          if (facing == Direction.DOWN) {
             worldIn.setBlockState(currentPos, Blocks.BUBBLE_COLUMN.getDefaultState().with(DRAG, Boolean.valueOf(getDrag(worldIn, facingPos))), 2);
-         } else if (facing == Direction.UP && !facingState.isIn(Blocks.BUBBLE_COLUMN) && canHoldBubbleColumn(worldIn, facingPos)) {
+         } else if (facing == Direction.UP && !facingState.matchesBlock(Blocks.BUBBLE_COLUMN) && canHoldBubbleColumn(worldIn, facingPos)) {
             worldIn.getPendingBlockTicks().scheduleTick(currentPos, this, 5);
          }
 
@@ -133,7 +133,7 @@ public class BubbleColumn extends Block implements IBucketPickupHandler {
 
    public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
       BlockState blockstate = worldIn.getBlockState(pos.down());
-      return blockstate.isIn(Blocks.BUBBLE_COLUMN) || blockstate.isIn(Blocks.MAGMA_BLOCK) || blockstate.isIn(Blocks.SOUL_SAND);
+      return blockstate.matchesBlock(Blocks.BUBBLE_COLUMN) || blockstate.matchesBlock(Blocks.MAGMA_BLOCK) || blockstate.matchesBlock(Blocks.SOUL_SAND);
    }
 
    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {

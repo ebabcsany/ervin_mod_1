@@ -14,6 +14,7 @@ import java.util.Map;
 
 import static com.babcsany.minecraft.ervin_mod_1.init.block.item.isBurnableBurningBlockItemInit_.*;
 import static com.babcsany.minecraft.ervin_mod_1.init.item.burning.BurningItemInit.*;
+import static com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit.TRAGT;
 
 public abstract class AbstractFurnaceTileEntity {
 
@@ -59,7 +60,7 @@ public abstract class AbstractFurnaceTileEntity {
     }
 
     private static boolean func_235644_b_(Item p_235644_0_) {
-        return ItemTags.field_232905_P_.contains(p_235644_0_);
+        return ItemTags.NON_FLAMMABLE_WOOD.contains(p_235644_0_);
     }
 
     private static void addItemTagBurnTime(Map<Item, Float> map, ITag<Item> itemTag, float burnTimeIn) {

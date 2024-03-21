@@ -101,7 +101,7 @@ public class VoronoiGenerator1 {
 	}
 
 	public static double getDValueNoise3D(int x, int y, int z, int seed) {
-		return 1.0 - ((double) getIValueNoise3D(x, y, z, seed) / 1.0);
+		return 1.0 - ((double) getIValueNoise3D(x, y, z, seed) / 15.0);
 	}
 
 	public static int getIValueNoise3D(int x, int y, int z, int seed) {

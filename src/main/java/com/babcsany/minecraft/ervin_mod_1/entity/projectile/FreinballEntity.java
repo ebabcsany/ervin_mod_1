@@ -63,7 +63,7 @@ public class FreinballEntity extends ProjectileItemEntity {
       if (result.getType() == RayTraceResult.Type.ENTITY) {
          Entity entity = ((EntityRayTraceResult)result).getEntity();
          int i = entity instanceof BlazeEntity ? 3 : 0;
-         entity.attackEntityFrom(DamageSource.causeThrownDamage(this, this.func_234616_v_()), (float)i);
+         entity.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getShooter()), (float)i);
       }
 
       if (!this.world.isRemote) {

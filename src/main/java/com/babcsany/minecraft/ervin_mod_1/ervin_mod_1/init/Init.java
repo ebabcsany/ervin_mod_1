@@ -1,5 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.init;
 
+import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.registries.ComposterBlock;
+import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.registries.l_l.FireBlock;
 import com.babcsany.minecraft.ervin_mod_1.init.BiomeInit;
 import com.babcsany.minecraft.ervin_mod_1.init.IMolaBlocks;
 import com.babcsany.minecraft.ervin_mod_1.init.container.ContainerInit;
@@ -14,7 +16,7 @@ import com.babcsany.minecraft.ervin_mod_1.init.item.armor.isBurnableHorseArmorIt
 import com.babcsany.minecraft.ervin_mod_1.init.item.block.BlockItemInit_;
 import com.babcsany.minecraft.ervin_mod_1.init.item.block.BlockNamedItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.block.crops.seeds.SeedsItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.block.tool.ToolItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.block.tool.EnderToolItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.food.BlockFoodItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.food.FoodItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.food.SpecialBlockFoodItemInit;
@@ -29,8 +31,8 @@ import com.babcsany.minecraft.ervin_mod_1.init.item.tool.isBurnableToolItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.minecraft.block.MinecraftBlocks;
 import com.babcsany.minecraft.ervin_mod_1.init.special.SpecialBlockInit;
 import com.babcsany.minecraft.ervin_mod_1.init.special.SpecialItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.unused.l.UnusedBlockInit;
-import com.babcsany.minecraft.ervin_mod_1.init.unused.l.UnusedBlockItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.unused.UnusedBlockInit;
+import com.babcsany.minecraft.ervin_mod_1.init.unused.UnusedBlockItemInit;
 import com.babcsany.minecraft.init.*;
 import com.babcsany.minecraft.init.item.ItemInit;
 import com.babcsany.minecraft.init.lc.block.blocks.H_u_fBlockInit;
@@ -78,7 +80,7 @@ public class Init {
         isBurnableSpecialBlockItemInit.SPECIAL_ITEMS.register(modEventBus);
         isBurnableSpecialItemInit.SPECIAL_ITEMS.register(modEventBus);
         com.babcsany.minecraft.ervin_mod_1.init.item.special.SpecialItemInit.SPECIAL_ITEMS.register(modEventBus);
-        ToolItemInit.TOOLS.register(modEventBus);
+        EnderToolItemInit.TOOLS.register(modEventBus);
         SpecialItemInit.SPECIAL_ITEMS.register(modEventBus);
         $ItemInit.$.register(modEventBus);
         SeedsItemInit.SEEDS.register(modEventBus);
@@ -111,5 +113,7 @@ public class Init {
         EffectInit EFFECTS = EffectInit.EFFECTS;
         ParticleInit PARTICLES = ParticleInit.PARTICLES;
         PaintingInit.PAINTINGS.register(modEventBus);
+        FireBlock.init();
+        ComposterBlock.init();
     }
 }

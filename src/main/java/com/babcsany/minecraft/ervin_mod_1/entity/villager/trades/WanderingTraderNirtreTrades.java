@@ -13,7 +13,7 @@ import com.babcsany.minecraft.ervin_mod_1.init.item.tool.SpecialToolItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.tool.isBurnableSpecialToolItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.minecraft.item.spawn_egg.SpawnEggItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.special.SpecialItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.unused.l.UnusedBlockItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.unused.UnusedBlockItemInit;
 import com.babcsany.minecraft.init.BlockItemInit;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
@@ -25,7 +25,7 @@ import net.minecraft.enchantment.EnchantmentData;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.villager.IVillagerDataHolder;
-import net.minecraft.entity.villager.IVillagerType;
+import net.minecraft.entity.villager.VillagerType;
 import net.minecraft.item.*;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.Potion;
@@ -87,7 +87,7 @@ public class WanderingTraderNirtreTrades {
            new WanderingTraderNirtreTrades.ItemsForShzsAndBlocksTrade(com.babcsany.minecraft.ervin_mod_1.init.item.block.isBurnableBlockItemInit.GNRTHIRJ.get(), 7, isBurnableBlockItemInit.NETHER_PORTAL.get(), 1, 1000, 4),
            new WanderingTraderNirtreTrades.ItemsFor64NirtksAndBlocksTrade(isBurnableBlockItemInit.NIRTKB.get(), 64, isBurnableBlockItemInit.EPKIN.get(), 1, 1000, 1),
            new WanderingTraderNirtreTrades.ItemsFor40EpkinsAndItemsTrade(isBurnableBlockItemInit.NETHER_PORTAL.get(), 10, isBurnableSpecialItemInit.TROIF.get(), 1, 100, 1),
-           new WanderingTraderNirtreTrades.ItemsForNirtksAndBlocksTrade(UnusedBlockItemInit.getItem("air"), 1, isBurnableBlockItemInit.NIRTKB.get(), 1, 1000, 1),
+           new WanderingTraderNirtreTrades.ItemsForNirtksAndBlocksTrade(UnusedBlockItemInit.get("air").get(), 1, isBurnableBlockItemInit.NIRTKB.get(), 1, 1000, 1),
            new WanderingTraderNirtreTrades.EnchantedBookForFirnsTrade(10),
            new WanderingTraderNirtreTrades.ItemsForFirtBlocksTrade(ModSpawnEggItemInit.DRURB_SPAWN_EGG.get(), 20, 1, 20, 3),
            new WanderingTraderNirtreTrades.ItemsForAvtersTrade(SpecialItemInit.GTRZIUZHIZJKJ.get(), 34, 1, 300000, 15),
@@ -276,7 +276,7 @@ public class WanderingTraderNirtreTrades {
             return null;
          } else {
             ServerWorld serverworld = (ServerWorld)trader.world;
-            BlockPos blockpos = serverworld.func_241117_a_(this.structureName, trader.getPosition(), 100, true);
+            BlockPos blockpos = serverworld.getStructureLocation(this.structureName, trader.getPosition(), 100, true);
             if (blockpos != null) {
                ItemStack itemstack = FilledMapItem.setupNewMap(serverworld, blockpos.getX(), blockpos.getZ(), (byte)2, true, true);
                FilledMapItem.func_226642_a_(serverworld, itemstack);
@@ -311,7 +311,7 @@ public class WanderingTraderNirtreTrades {
             return null;
          } else {
             ServerWorld serverworld = (ServerWorld)trader.world;
-            BlockPos blockpos = serverworld.func_241117_a_(this.structureName, trader.getPosition(), 100, true);
+            BlockPos blockpos = serverworld.getStructureLocation(this.structureName, trader.getPosition(), 100, true);
             if (blockpos != null) {
                ItemStack itemstack = FilledMapItem.setupNewMap(serverworld, blockpos.getX(), blockpos.getZ(), (byte)2, true, true);
                FilledMapItem.func_226642_a_(serverworld, itemstack);
@@ -326,12 +326,12 @@ public class WanderingTraderNirtreTrades {
    }
 
    static class EmeraldForVillageTypeItemTrade implements WanderingTraderNirtreTrades.ITrade {
-      private final Map<IVillagerType, Item> villagerTypeItems;
+      private final Map<VillagerType, Item> villagerTypeItems;
       private final int count;
       private final int maxUses;
       private final int xpValue;
 
-      public EmeraldForVillageTypeItemTrade(int count, int maxUsesIn, int xpValueIn, Map<IVillagerType, Item> villagerTypeItemsIn) {
+      public EmeraldForVillageTypeItemTrade(int count, int maxUsesIn, int xpValueIn, Map<VillagerType, Item> villagerTypeItemsIn) {
          Registry.VILLAGER_TYPE.stream().filter((villagerType) -> {
             return !villagerTypeItemsIn.containsKey(villagerType);
          }).findAny().ifPresent((villagerType) -> {

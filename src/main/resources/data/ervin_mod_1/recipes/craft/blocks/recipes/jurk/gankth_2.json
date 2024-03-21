@@ -1,18 +1,16 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "####",
-    "####",
-    "####",
-    "####"
-  ],
-  "key": {
-    "#": {
-      "item": "ervin_mod_1:gankt"
+  "type": "minecraft:crafting_shapeless",
+  "group": "jurk",
+  "ingredients": [
+    {
+      "item": "ervin_mod_1:garkth"
+    },
+    {
+      "item": "ervin_mod_1:gurkth"
     }
-  },
+  ],
   "result": {
     "item": "ervin_mod_1:gankth",
-    "count": 1
+    "count": 2
   }
 }

@@ -21,6 +21,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -31,19 +32,19 @@ public class FishBucketItem extends BucketItem {
    private final EntityType<?> fishType;
 
    @Deprecated
-   public FishBucketItem(EntityType<?> fishTypeIn, Fluid p_i49022_2_, Item.Properties builder) {
-      super(p_i49022_2_, builder);
+   public FishBucketItem(EntityType<?> fishTypeIn, Fluid fluid, Item.Properties builder) {
+      super(fluid, builder);
       this.fishType = fishTypeIn;
       this.fishTypeSupplier = () -> fishTypeIn;
    }
 
-   public FishBucketItem(java.util.function.Supplier<? extends EntityType<?>> fishTypeIn, java.util.function.Supplier<? extends Fluid> p_i49022_2_, Item.Properties builder) {
-      super(p_i49022_2_, builder);
+   public FishBucketItem(java.util.function.Supplier<? extends EntityType<?>> fishTypeIn, java.util.function.Supplier<? extends Fluid> supplier, Item.Properties builder) {
+      super(supplier, builder);
       this.fishType = null;
       this.fishTypeSupplier = fishTypeIn;
    }
 
-   public void onLiquidPlaced(World worldIn, ItemStack p_203792_2_, BlockPos pos) {
+   public void onLiquidPlaced(ServerWorld worldIn, ItemStack p_203792_2_, BlockPos pos) {
       if (!worldIn.isRemote) {
          this.placeFish(worldIn, p_203792_2_, pos);
       }
@@ -54,7 +55,7 @@ public class FishBucketItem extends BucketItem {
       worldIn.playSound(player, pos, SoundEvents.ITEM_BUCKET_EMPTY_FISH, SoundCategory.NEUTRAL, 1.0F, 1.0F);
    }
 
-   private void placeFish(World worldIn, ItemStack p_205357_2_, BlockPos pos) {
+   private void placeFish(ServerWorld worldIn, ItemStack p_205357_2_, BlockPos pos) {
       Entity entity = this.fishType.spawn(worldIn, p_205357_2_, (PlayerEntity)null, pos, SpawnReason.BUCKET, true, false);
       if (entity != null) {
          ((AbstractFishEntity)entity).setFromBucket(true);
@@ -85,7 +86,7 @@ public class FishBucketItem extends BucketItem {
             tooltip.add((new TranslationTextComponent(TropicalFishEntity.func_212327_q(i))).mergeStyle(atextformatting));
             IFormattableTextComponent iformattabletextcomponent = new TranslationTextComponent(s);
             if (!s.equals(s1)) {
-               iformattabletextcomponent.appendString(", ").append(new TranslationTextComponent(s1));
+               iformattabletextcomponent.appendString(", ").appendSibling(new TranslationTextComponent(s1));
             }
 
             iformattabletextcomponent.mergeStyle(atextformatting);

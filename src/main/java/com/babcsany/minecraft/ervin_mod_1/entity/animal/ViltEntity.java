@@ -31,8 +31,10 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.IServerWorld;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -205,7 +207,7 @@ public class ViltEntity extends AnimalEntity implements IShearable, net.minecraf
       }
    }
 
-   public ActionResultType func_230254_b_(PlayerEntity p_230254_1_, Hand p_230254_2_) {
+   public ActionResultType getEntityInteractionResult(PlayerEntity p_230254_1_, Hand p_230254_2_) {
       ItemStack itemstack = p_230254_1_.getHeldItem(p_230254_2_);
       if (itemstack.getItem() == Items.SHEARS) { //Forge: Moved to onSheared
          if (!this.world.isRemote && this.isShearable()) {
@@ -218,7 +220,7 @@ public class ViltEntity extends AnimalEntity implements IShearable, net.minecraf
             return ActionResultType.CONSUME;
          }
       } else {
-         return super.func_230254_b_(p_230254_1_, p_230254_2_);
+         return super.getEntityInteractionResult(p_230254_1_, p_230254_2_);
       }
    }
 
@@ -324,9 +326,9 @@ public class ViltEntity extends AnimalEntity implements IShearable, net.minecraf
       }
    }
 
-   public ViltEntity createChild(AgeableEntity ageable) {
+   public ViltEntity createChild(ServerWorld serverWorld, AgeableEntity ageable) {
       ViltEntity sheepentity = (ViltEntity)ageable;
-      ViltEntity sheepentity1 = EntityInit.VILT_ENTITY.get().create(this.world);
+      ViltEntity sheepentity1 = EntityInit.VILT_ENTITY.get().create(serverWorld);
       sheepentity1.setFleeceColor(this.getDyeColorMixFromParents(this, sheepentity));
       return sheepentity1;
    }
@@ -348,7 +350,7 @@ public class ViltEntity extends AnimalEntity implements IShearable, net.minecraf
    }
 
    @Nullable
-   public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
+   public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
       this.setFleeceColor(getRandomSheepColor(worldIn.getRandom()));
       return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
    }

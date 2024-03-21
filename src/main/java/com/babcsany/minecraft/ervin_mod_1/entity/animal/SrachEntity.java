@@ -11,6 +11,7 @@ import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.entity.passive.CowEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -18,9 +19,12 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
-public class SrachEntity extends AnimalEntity {
-   private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(com.babcsany.minecraft.ervin_mod_1.init.item.item.ItemInit.TARG.get(), SpecialBlockFoodItemInit.FIRG.get(), SpecialBlockFoodItemInit.FIRG_SLAB.get(), SpecialBlockFoodItemInit.FIRG_STAIRS.get(), isBurnableFoodItemInit.GRINT.get(), SpecialBlockFoodItemInit.GRINT_BLOCK.get(), SpecialBlockFoodItemInit.GRINT_SLAB.get(), SpecialBlockFoodItemInit.GRINT_STAIRS.get(), isBurnableFoodItemInit.DURG.get(), BlockFoodItemInit.SCRAFTH.get());
+import javax.annotation.Nullable;
+
+public class SrachEntity extends CowEntity {
+   private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(new IItemProvider[]{com.babcsany.minecraft.ervin_mod_1.init.item.item.ItemInit.TARG.get(), SpecialBlockFoodItemInit.FIRG.get(), SpecialBlockFoodItemInit.FIRG_SLAB.get(), SpecialBlockFoodItemInit.FIRG_STAIRS.get(), isBurnableFoodItemInit.GRINT.get(), SpecialBlockFoodItemInit.GRINT_BLOCK.get(), SpecialBlockFoodItemInit.GRINT_SLAB.get(), SpecialBlockFoodItemInit.GRINT_STAIRS.get(), isBurnableFoodItemInit.DURG.get(), BlockFoodItemInit.SCRAFTH.get()});
 
    public SrachEntity(EntityType<? extends SrachEntity> type, World worldIn) {
       super(type, worldIn);
@@ -30,7 +34,7 @@ public class SrachEntity extends AnimalEntity {
       this.goalSelector.addGoal(0, new SwimGoal(this));
       this.goalSelector.addGoal(1, new PanicGoal(this, 2.0D));
       this.goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
-      this.goalSelector.addGoal(3, new TemptGoal(this, 1.25D, Ingredient.fromItems(com.babcsany.minecraft.ervin_mod_1.init.item.item.ItemInit.TARG.get(), SpecialBlockFoodItemInit.FIRG.get(), SpecialBlockFoodItemInit.FIRG_SLAB.get(), SpecialBlockFoodItemInit.FIRG_STAIRS.get(), isBurnableFoodItemInit.GRINT.get(), SpecialBlockFoodItemInit.GRINT_BLOCK.get(), SpecialBlockFoodItemInit.GRINT_SLAB.get(), SpecialBlockFoodItemInit.GRINT_STAIRS.get(), isBurnableFoodItemInit.DURG.get(), BlockFoodItemInit.SCRAFTH.get()), false));
+      this.goalSelector.addGoal(3, new TemptGoal(this, 1.25D, Ingredient.fromItems(new IItemProvider[]{com.babcsany.minecraft.ervin_mod_1.init.item.item.ItemInit.TARG.get(), SpecialBlockFoodItemInit.FIRG.get(), SpecialBlockFoodItemInit.FIRG_SLAB.get(), SpecialBlockFoodItemInit.FIRG_STAIRS.get(), isBurnableFoodItemInit.GRINT.get(), SpecialBlockFoodItemInit.GRINT_BLOCK.get(), SpecialBlockFoodItemInit.GRINT_SLAB.get(), SpecialBlockFoodItemInit.GRINT_STAIRS.get(), isBurnableFoodItemInit.DURG.get(), BlockFoodItemInit.SCRAFTH.get()}), false));
       this.goalSelector.addGoal(4, new TemptGoal(this, 1.25D, false, TEMPTATION_ITEMS));
       this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.25D));
       this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
@@ -39,45 +43,26 @@ public class SrachEntity extends AnimalEntity {
    }
 
    public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
-      return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 10.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.2F);
+      return CowEntity.registerAttributes();
    }
 
-   protected SoundEvent getAmbientSound() {
-      return SoundEvents.ENTITY_COW_AMBIENT;
-   }
-
-   protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-      return SoundEvents.ENTITY_COW_HURT;
-   }
-
-   protected SoundEvent getDeathSound() {
-      return SoundEvents.ENTITY_COW_DEATH;
-   }
-
-   protected void playStepSound(BlockPos pos, BlockState blockIn) {
-      this.playSound(SoundEvents.ENTITY_COW_STEP, 0.15F, 1.0F);
-   }
-
-   /**
-    * Returns the volume for the sounds this mob makes.
-    */
-   protected float getSoundVolume() {
-      return 0.4F;
-   }
-
-   public ActionResultType onJurking(PlayerEntity p_230254_1_, Hand p_230254_2_) {
-      ItemStack lvt_3_1_ = p_230254_1_.getHeldItem(p_230254_2_);
-      if (lvt_3_1_.getItem() == Items.BUCKET && !this.isChild()) {
-         p_230254_1_.playSound(SoundEvents.ENTITY_COW_MILK, 1.0F, 1.0F);
-         ItemStack lvt_4_1_ = DrinkHelper.func_241445_a_(lvt_3_1_, p_230254_1_, ItemInit.JURK_BUCKET.get().getDefaultInstance());
-         p_230254_1_.setHeldItem(p_230254_2_, lvt_4_1_);
+   public ActionResultType onJurking(PlayerEntity player, Hand hand) {
+      ItemStack heldItem = player.getHeldItem(hand);
+      if (heldItem.getItem() == Items.BUCKET && !this.isChild()) {
+         player.playSound(SoundEvents.ENTITY_COW_MILK, 1.0F, 1.0F);
+         ItemStack drinkHelper = DrinkHelper.fill(heldItem, player, ItemInit.JURK_BUCKET.get().getDefaultInstance());
+         player.setHeldItem(hand, drinkHelper);
          return ActionResultType.func_233537_a_(this.world.isRemote);
       } else {
-         return super.func_230254_b_(p_230254_1_, p_230254_2_);
+         return super.getEntityInteractionResult(player, hand);
       }
    }
 
-   public SrachEntity createChild(AgeableEntity ageable) {
+   public ActionResultType getEntityInteractionResult(PlayerEntity player, Hand hand) {
+      return this.onJurking(player, hand);
+   }
+
+   public SrachEntity createChild(ServerWorld serverWorld, AgeableEntity ageable) {
       return EntityInit.SRACH_ENTITY.get().create(this.world);
    }
 

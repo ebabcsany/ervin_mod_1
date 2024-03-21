@@ -24,7 +24,7 @@ public class isBurnableBurningBlockItemInit_ {
     public static final RegistryObject<Item> GARK_STAIRS = register("gark_stairs", registerBlockInit.GARK_STAIRS, 98415000);
 
     public static RegistryObject<Item> register(String name, Supplier<Block> blockSupplier, int burnTime) {
-        return BURNABLE_ITEMS.register(name, () -> new BlockItem(blockSupplier.get(), (new Item.Properties().isBurnable())) {
+        return BURNABLE_ITEMS.register(name, () -> new BlockItem(blockSupplier.get(), (new Item.Properties().isImmuneToFire())) {
             @Override
             public int getBurnTime(ItemStack itemStack) {
                 return burnTime;

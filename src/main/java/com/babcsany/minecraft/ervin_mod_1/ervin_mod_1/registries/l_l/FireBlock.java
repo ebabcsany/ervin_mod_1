@@ -35,5 +35,7 @@ public class FireBlock extends net.minecraft.block.FireBlock {
         FireBlock fireblock = (FireBlock) Blocks.FIRE;
         fireblock.setFireInfo(BlockInit.FIRG_PLANKS.get(), 5, 10);
         fireblock.setFireInfo(BlockItemInit.FRIM_PLANKS.get(), 2, 4);
+        fireblock.setFireInfo(BlockInit.FIRG_PLANKS.get(), 5, 10);
+        fireblock.setFireInfo(BlockItemInit.FRIM_PLANKS.get(), 2, 4);
     }
 }

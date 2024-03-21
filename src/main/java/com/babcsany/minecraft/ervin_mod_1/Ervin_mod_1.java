@@ -2,14 +2,10 @@ package com.babcsany.minecraft.ervin_mod_1;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.animal.*;
 import com.babcsany.minecraft.ervin_mod_1.entity.animal.hhij.HhijAnimalEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.animal.hhij.HhijEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.fish.GubrovEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.RoventEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurNirtreEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.*;
 import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.init.Init;
-import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.setup.ModSetup;
 import com.babcsany.minecraft.ervin_mod_1.init.BiomeInit;
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
@@ -21,9 +17,7 @@ import com.babcsany.minecraft.ervin_mod_1.world.gen.FeatureGen;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
-import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.entity.passive.AnimalEntity;
-import net.minecraft.entity.passive.CowEntity;
 import net.minecraft.entity.passive.fish.AbstractFishEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -47,7 +41,6 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
@@ -65,6 +58,8 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import static net.minecraftforge.fml.DeferredWorkQueue.*;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(Ervin_mod_1.MOD_ID)
@@ -98,14 +93,14 @@ public class Ervin_mod_1 {
         // some preinit code
         LOGGER.info("HELLO FROM PREINIT");
         LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
-        DeferredWorkQueue.runLater(() -> {
+        runLater(() -> {
             EntitySpawnPlacementRegistry.register(EntityInit.$_TRADER_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, Abstract$TraderEntity::canSpawnOn);
             EntitySpawnPlacementRegistry.register(EntityInit.DRURB_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canSpawnOn);
-            EntitySpawnPlacementRegistry.register(EntityInit.FREIN_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, FreinEntity::func_223366_c);
-            EntitySpawnPlacementRegistry.register(EntityInit.GUBROV.get(), EntitySpawnPlacementRegistry.PlacementType.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AbstractFishEntity::func_223363_b);
+            EntitySpawnPlacementRegistry.register(EntityInit.FREIN_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, FreinEntity::canFreinSpawn);
+            EntitySpawnPlacementRegistry.register(EntityInit.GUBROV.get(), EntitySpawnPlacementRegistry.PlacementType.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, GubrovEntity::func_223363_b);
             EntitySpawnPlacementRegistry.register(EntityInit.HHIJ_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, HhijAnimalEntity::canAnimalSpawn);
             EntitySpawnPlacementRegistry.register(EntityInit.ROVENT_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, RoventEntity::canMonsterSpawn);
-            EntitySpawnPlacementRegistry.register(EntityInit.SHERT_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ShertEntity::func_223318_c);
+            EntitySpawnPlacementRegistry.register(EntityInit.SHERT_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ShertEntity::canAnimalSpawn);
             EntitySpawnPlacementRegistry.register(EntityInit.SRACH_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::canAnimalSpawn);
             EntitySpawnPlacementRegistry.register(EntityInit.TRADER_NIRTRE_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canSpawnOn);
             EntitySpawnPlacementRegistry.register(EntityInit.VILT_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::canAnimalSpawn);
@@ -121,8 +116,9 @@ public class Ervin_mod_1 {
 
         });
 
-        DeferredWorkQueue.runLater(FeatureGen::GenerateFeature);
-        DeferredWorkQueue.runLater(FeatureGen::getSpawns);
+        runLater(FeatureGen::generateFeature);
+        runLater(FeatureGen::getSpawns);
+        runLater(FeatureGen::generateBlackStone);
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
@@ -214,7 +210,7 @@ public class Ervin_mod_1 {
             });
             isBurnableBlockItemInit.BURNABLE_BLOCKS.getEntries().stream().map(RegistryObject::get).forEach(block -> {
                 if (!Blocks.contains(block)) {
-                    final Item.Properties properties = new Item.Properties().isBurnable();
+                    final Item.Properties properties = new Item.Properties().isImmuneToFire();
                     properties.group(ItemGroup.ERVIN_MOD_1).group(ItemGroup.ERVIN_MOD_1_SEARCH);
                     final BlockItem blockItem = new BlockItem(block, properties);
                     ResourceLocation registryName = block.getRegistryName();

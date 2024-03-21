@@ -34,12 +34,7 @@ public class ViltAttackGoal extends MeleeAttackGoal {
     public void tick() {
         super.tick();
         ++this.raiseArmTicks;
-        if (this.raiseArmTicks >= 5 && this.func_234041_j_() < this.func_234042_k_() / 2) {
-            this.viltEntity.setAggroed(true);
-        } else {
-            this.viltEntity.setAggroed(false);
-        }
-
+        this.viltEntity.setAggroed(this.raiseArmTicks >= 5 && this.getSwingCooldown() < this.func_234042_k_() / 2);
     }
 }
 

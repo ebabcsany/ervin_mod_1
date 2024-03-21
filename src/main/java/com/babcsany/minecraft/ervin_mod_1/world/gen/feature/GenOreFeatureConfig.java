@@ -1,158 +1,72 @@
 package com.babcsany.minecraft.ervin_mod_1.world.gen.feature;
 
-import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
+import com.babcsany.minecraft.ervin_mod_1.tags.ModBlockTags;
 import com.babcsany.minecraft.init.BlockInit;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.pattern.BlockMatcher;
-import net.minecraft.util.IStringSerializable;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.gen.feature.IFeatureConfig;
-
-import java.util.Arrays;
-import java.util.Map;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
+import net.minecraft.world.gen.feature.template.BlockMatchRuleTest;
+import net.minecraft.world.gen.feature.template.RuleTest;
+import net.minecraft.world.gen.feature.template.TagMatchRuleTest;
 
 public class GenOreFeatureConfig implements IFeatureConfig {
-   public static final Codec<GenOreFeatureConfig> deserialize = RecordCodecBuilder.create((builder) -> builder.group(FillerBlockType.field_236571_d_.fieldOf("target").forGetter((config) -> config.target), BlockState.BLOCKSTATE_CODEC.fieldOf("state").forGetter((config) -> config.state), Codec.INT.fieldOf("size").withDefault(0).forGetter((config) -> config.size)).apply(builder, GenOreFeatureConfig::new));
-   public final FillerBlockType target;
+   public static final Codec<GenOreFeatureConfig> CODEC = RecordCodecBuilder.create((p_236568_0_) -> {
+      return p_236568_0_.group(RuleTest.CODEC.fieldOf("target").forGetter((p_236570_0_) -> {
+         return p_236570_0_.target;
+      }), BlockState.CODEC.fieldOf("state").forGetter((p_236569_0_) -> {
+         return p_236569_0_.state;
+      }), Codec.intRange(0, 64).fieldOf("size").forGetter((p_236567_0_) -> {
+         return p_236567_0_.size;
+      })).apply(p_236568_0_, GenOreFeatureConfig::new);
+   });
+   public final RuleTest target;
    public final int size;
    public final BlockState state;
 
-   public GenOreFeatureConfig(FillerBlockType target, BlockState state, int size) {
-      this.size = size;
-      this.state = state;
-      this.target = target;
+   public GenOreFeatureConfig(RuleTest p_i241989_1_, BlockState p_i241989_2_, int p_i241989_3_) {
+      this.size = p_i241989_3_;
+      this.state = p_i241989_2_;
+      this.target = p_i241989_1_;
    }
 
-   public enum FillerBlockType implements IStringSerializable, net.minecraftforge.common.IExtensibleEnum {
-      NATURAL_STONE("natural_stone", (p_214739_0_) -> {
-         if (p_214739_0_ == null) {
-            return false;
-         } else {
-            return p_214739_0_.isIn(Blocks.STONE) || p_214739_0_.isIn(Blocks.GRANITE) || p_214739_0_.isIn(Blocks.DIORITE) || p_214739_0_.isIn(Blocks.ANDESITE);
-         }
-      }),
-      NATURAL_ORANGE_STONE("natural_orange_stone", (p_214739_0_) -> {
-         if (p_214739_0_ == null) {
-            return false;
-         } else {
-            return p_214739_0_.isIn(BlockItemInit.ORANGE_STONE.get()) || p_214739_0_.isIn(Blocks.GRANITE) || p_214739_0_.isIn(Blocks.DIORITE) || p_214739_0_.isIn(Blocks.ANDESITE);
-         }
-      }),
-      NATURAL_END_STONE("natural_end_stone", (natural_end_stone) -> {
-         if (natural_end_stone == null) {
-            return false;
-         } else {
-            return natural_end_stone.isIn(Blocks.END_STONE) || natural_end_stone.isIn(BlockItemInit.END_SRACKT.get()) || natural_end_stone.isIn(BlockItemInit.END_SRACT.get()) || natural_end_stone.isIn(BlockItemInit.END_STONE_CISK.get()) || natural_end_stone.isIn(BlockItemInit.END_STONE_CRISK.get());
-         }
-      }),
-      TURGS("turgs", (turgs) -> {
-         if (turgs == null) {
-            return false;
-         } else {
-            return turgs.isIn(BlockItemInit.OAK_TURG.get()) || turgs.isIn(BlockItemInit.DARK_OAK_TURG.get()) || turgs.isIn(BlockItemInit.ACACIA_TURG.get()) || turgs.isIn(BlockItemInit.BIRCH_TURG.get()) || turgs.isIn(BlockItemInit.JUNGLE_TURG.get()) || turgs.isIn(BlockItemInit.SPRUCE_TURG.get()) || turgs.isIn(BlockItemInit.FIRG_TURG.get()) || turgs.isIn(BlockItemInit.FRIM_TURG.get()) || turgs.isIn(BlockItemInit.TURG.get());
-         }
-      }),
-      END_STONE_VARIANTS("end_stone_variants", (end_stone_variants) -> {
-         if (end_stone_variants == null) {
-            return false;
-         } else {
-            return end_stone_variants.isIn(Blocks.END_STONE) || end_stone_variants.isIn(BlockItemInit.END_SRACKT.get()) || end_stone_variants.isIn(BlockItemInit.ENDER_SACKT.get()) || end_stone_variants.isIn(BlockItemInit.ENDER_SRACT.get()) || end_stone_variants.isIn(BlockItemInit.ENDER_SRACK.get()) || end_stone_variants.isIn(BlockItemInit.ENDER_SACT.get()) || end_stone_variants.isIn(BlockItemInit.ENDER_SRACKH.get());
-         }
-      }),
-      NATURAL_STONE1("natural_stone1", (p_214739_0_) -> {
-         if (p_214739_0_ == null) {
-            return false;
-         } else {
-            return p_214739_0_.isIn(Blocks.STONE) || p_214739_0_.isIn(BlockItemInit.BLACK_STONE.get()) || p_214739_0_.isIn(BlockItemInit.BLUE_STONE.get()) || p_214739_0_.isIn(BlockItemInit.BROWN_STONE.get()) || p_214739_0_.isIn(BlockItemInit.CYAN_STONE.get()) || p_214739_0_.isIn(BlockItemInit.GREEN_STONE.get()) || p_214739_0_.isIn(BlockItemInit.LIGHT_BLUE1_STONE.get()) || p_214739_0_.isIn(BlockItemInit.LIGHT_BLUE_STONE.get()) || p_214739_0_.isIn(BlockItemInit.LIGHT_GRAY_STONE.get()) || p_214739_0_.isIn(BlockItemInit.LIME_STONE.get()) || p_214739_0_.isIn(BlockItemInit.MAGENTA_STONE.get()) || p_214739_0_.isIn(BlockItemInit.ORANGE_STONE.get()) || p_214739_0_.isIn(BlockItemInit.PINK_STONE.get()) || p_214739_0_.isIn(BlockItemInit.PURPLE_STONE.get()) || p_214739_0_.isIn(BlockItemInit.RED_STONE.get()) || p_214739_0_.isIn(BlockItemInit.WHITE_STONE.get()) || p_214739_0_.isIn(BlockItemInit.YELLOW_STONE.get()) || p_214739_0_.isIn(Blocks.GRANITE) || p_214739_0_.isIn(Blocks.DIORITE) || p_214739_0_.isIn(Blocks.ANDESITE);
-         }
-      }),
-      NATURAL_DIRTS("natural_dirts", (natural_dirts) -> {
-         if (natural_dirts == null) {
-            return false;
-         } else {
-            return natural_dirts.isIn(Blocks.DIRT) || natural_dirts.isIn(Blocks.GRASS_BLOCK) || natural_dirts.isIn(Blocks.COARSE_DIRT) || natural_dirts.isIn(Blocks.GRASS_PATH) || natural_dirts.isIn(Blocks.PODZOL);
-         }
-      }),
-      TERRACOTTA_VARIANTS("terracotta_variants", (terracotta_variants) -> {
-         if (terracotta_variants == null) {
-            return false;
-         } else {
-            return terracotta_variants.isIn(Blocks.TERRACOTTA) || terracotta_variants.isIn(Blocks.BLACK_TERRACOTTA) || terracotta_variants.isIn(Blocks.BLUE_TERRACOTTA) || terracotta_variants.isIn(Blocks.BROWN_TERRACOTTA) || terracotta_variants.isIn(Blocks.CYAN_TERRACOTTA) || terracotta_variants.isIn(Blocks.GRAY_TERRACOTTA) || terracotta_variants.isIn(Blocks.GREEN_TERRACOTTA) || terracotta_variants.isIn(Blocks.LIGHT_BLUE_TERRACOTTA) || terracotta_variants.isIn(Blocks.LIGHT_GRAY_TERRACOTTA) || terracotta_variants.isIn(Blocks.LIME_TERRACOTTA) || terracotta_variants.isIn(Blocks.MAGENTA_TERRACOTTA) || terracotta_variants.isIn(Blocks.ORANGE_TERRACOTTA) || terracotta_variants.isIn(Blocks.PINK_TERRACOTTA) || terracotta_variants.isIn(Blocks.PURPLE_TERRACOTTA) || terracotta_variants.isIn(Blocks.RED_TERRACOTTA) || terracotta_variants.isIn(Blocks.WHITE_TERRACOTTA) || terracotta_variants.isIn(Blocks.YELLOW_TERRACOTTA);
-         }
-      }),
-      TRIRIJ("tririj", (tririj) -> {
-         if (tririj == null) {
-            return false;
-         } else {
-            return tririj.isIn(BlockInit.TRIRIJ.get());
-         }
-      }),
-      DIRT("dirt", new BlockMatcher(Blocks.DIRT)),
-      RED_SAND("red_sand", new BlockMatcher(Blocks.RED_SAND)),
-      WATER("water", new BlockMatcher(Blocks.WATER)),
-      MAGMA_BLOCK("magma_block", new BlockMatcher(Blocks.MAGMA_BLOCK)),
-      END_STONE("end_stone", new BlockMatcher(Blocks.END_STONE)),
-      NETHER_ORE_REPLACEABLES("nether_ore_replaceables", (p_236572_0_) -> {
-         if (p_236572_0_ == null) {
-            return false;
-         } else {
-            return p_236572_0_.isIn(Blocks.NETHERRACK) || p_236572_0_.isIn(Blocks.BASALT) || p_236572_0_.isIn(Blocks.BLACKSTONE);
-         }
-      });
+   public static final class FillerBlockType {
+      public static final RuleTest BASE_STONE_OVERWORLD;
+      public static final RuleTest BASE_ORANGE_STONE_OVERWORLD;
+      public static final RuleTest BASE_STONES_OVERWORLD;
+      public static final RuleTest BASE_TURGS_OVERWORLD;
+      public static final RuleTest BASE_DIRTS_OVERWORLD;
+      public static final RuleTest BASE_TERRACOTTA_VARIANTS_OVERWORLD;
+      public static final RuleTest BASE_END_STONES;
+      public static final RuleTest BASE_END_STONE_VARIANTS;
+      public static final RuleTest TRIRIJ;
+      public static final RuleTest DIRT;
+      public static final RuleTest RED_SAND;
+      public static final RuleTest WATER;
+      public static final RuleTest MAGMA_BLOCK;
+      public static final RuleTest END_STONE;
+      public static final RuleTest NETHERRACK;
+      public static final RuleTest BASE_STONE_NETHER;
 
-      public static final Codec<FillerBlockType> field_236571_d_ = IStringSerializable.createEnumCodec(FillerBlockType::values, FillerBlockType::byName);
-      /** maps the filler block type name to the corresponding enum value. */
-      private static final Map<String, FillerBlockType> VALUES_MAP = Arrays.stream(values()).collect(Collectors.toMap(FillerBlockType::getName, (p_236573_0_) -> p_236573_0_));
-      /** the filler block type name. */
-      private final String name;
-      /** the predicate to match the target block to fill */
-      private final Predicate<BlockState> targetBlockPredicate;
-
-      FillerBlockType(String nameIn, Predicate<BlockState> predicateIn) {
-         this.name = nameIn;
-         this.targetBlockPredicate = predicateIn;
-      }
-
-      /**
-       * returns the name of the filler block type.
-       */
-      public String getName() {
-         return this.name;
-      }
-
-      /**
-       * returns the filler block type with the given name.
-       *  
-       * @param nameIn the filler block type name
-       */
-      public static FillerBlockType byName(String nameIn) {
-         return VALUES_MAP.get(nameIn);
-      }
-
-      public static FillerBlockType create(String enumName, String nameIn, Predicate<BlockState> predicateIn) {
-         throw new IllegalStateException("Enum not extended");
-      }
-
-      @Override
-      @Deprecated
-      public void init() {
-          VALUES_MAP.put(getName(), this);
-      }
-
-      /**
-       * returns the target block state predicate
-       */
-      public Predicate<BlockState> getTargetBlockPredicate() {
-         return this.targetBlockPredicate;
-      }
-
-      public String getString() {
-         return this.name;
+      static {
+         BASE_STONE_OVERWORLD = new TagMatchRuleTest(BlockTags.BASE_STONE_OVERWORLD);
+         BASE_ORANGE_STONE_OVERWORLD = new TagMatchRuleTest(ModBlockTags.BASE_ORANGE_STONE_OVERWORLD);
+         BASE_STONES_OVERWORLD = new TagMatchRuleTest(ModBlockTags.BASE_STONES_OVERWORLD);
+         BASE_TURGS_OVERWORLD = new TagMatchRuleTest(ModBlockTags.BASE_TURGS_OVERWORLD);
+         BASE_DIRTS_OVERWORLD = new TagMatchRuleTest(ModBlockTags.BASE_DIRTS_OVERWORLD);
+         BASE_TERRACOTTA_VARIANTS_OVERWORLD = new TagMatchRuleTest(ModBlockTags.BASE_TERRACOTTA_VARIANTS_OVERWORLD);
+         BASE_END_STONES = new TagMatchRuleTest(ModBlockTags.BASE_END_STONES);
+         BASE_END_STONE_VARIANTS = new TagMatchRuleTest(ModBlockTags.BASE_END_STONE_VARIANTS);
+         TRIRIJ = new BlockMatchRuleTest(BlockInit.TRIRIJ.get());
+         DIRT = new BlockMatchRuleTest(Blocks.DIRT);
+         RED_SAND = new BlockMatchRuleTest(Blocks.RED_SAND);
+         WATER = new BlockMatchRuleTest(Blocks.WATER);
+         MAGMA_BLOCK = new BlockMatchRuleTest(Blocks.MAGMA_BLOCK);
+         END_STONE = new BlockMatchRuleTest(Blocks.END_STONE);
+         NETHERRACK = new BlockMatchRuleTest(Blocks.NETHERRACK);
+         BASE_STONE_NETHER = new TagMatchRuleTest(BlockTags.BASE_STONE_NETHER);
       }
    }
 }

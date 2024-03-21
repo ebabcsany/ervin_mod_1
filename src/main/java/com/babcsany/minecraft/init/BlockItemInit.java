@@ -19,6 +19,6 @@ public class BlockItemInit {
     public static final RegistryObject<Item> FIRG_PLANKS_STAIRS = ITEMS.register("firg_planks_stairs", () -> new BlockItem(BlockInit.FIRG_PLANKS_STAIRS.get(), (new Item.Properties()).group(ItemGroup.BUILDING_BLOCKS)));
     public static final RegistryObject<Item> FIRG_PLANKS_DOOR = ITEMS.register("firg_planks_door", () -> new BlockItem(BlockInit.FIRG_PLANKS_DOOR.get(), (new Item.Properties()).group(ItemGroup.BUILDING_BLOCKS)));
     public static final RegistryObject<Item> FIRT_BLOCK = ITEMS.register("firt_block", () -> new BurningBlockItem(BlockInit.FIRT_BLOCK.get(), (new Item.Properties()).group(ItemGroup.BUILDING_BLOCKS), 21600));
-    public static final RegistryObject<Item> TRIRIJ = ITEMS.register("tririj", () -> new BlockItem(com.babcsany.minecraft.init.BlockInit.TRIRIJ.get(), (new Item.Properties()).isBurnable().group(ItemGroup.MATERIALS)));
-    public static final RegistryObject<Item> REUTRIEN = ITEMS.register("reutrien", () -> new BlockItem(BlockInit.REUTRIEN.get(), (new Item.Properties()).isBurnable().group(ItemGroup.MATERIALS)));
+    public static final RegistryObject<Item> TRIRIJ = ITEMS.register("tririj", () -> new BlockItem(com.babcsany.minecraft.init.BlockInit.TRIRIJ.get(), (new Item.Properties()).isImmuneToFire().group(ItemGroup.MATERIALS)));
+    public static final RegistryObject<Item> REUTRIEN = ITEMS.register("reutrien", () -> new BlockItem(BlockInit.REUTRIEN.get(), (new Item.Properties()).isImmuneToFire().group(ItemGroup.MATERIALS)));
 }

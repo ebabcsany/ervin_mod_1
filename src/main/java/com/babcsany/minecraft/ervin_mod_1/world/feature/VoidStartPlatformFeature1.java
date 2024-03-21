@@ -28,8 +28,9 @@ public class VoidStartPlatformFeature1 extends Feature<NoFeatureConfig> {
       return Math.max(Math.abs(firstX - secondX), Math.abs(firstZ - secondZ));
    }
 
-   public boolean func_230362_a_(ISeedReader iSeedReader, StructureManager p_230362_2_, ChunkGenerator p_230362_3_, Random p_230362_4_, BlockPos p_230362_5_, NoFeatureConfig p_230362_6_) {
-      ChunkPos chunkpos = new ChunkPos(p_230362_5_);
+   @Override
+   public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config) {
+      ChunkPos chunkpos = new ChunkPos(pos);
       if (distance(chunkpos.x, chunkpos.z, VOID_SPAWN_CHUNK_POS.x, VOID_SPAWN_CHUNK_POS.z) > 1) {
          return true;
       } else {
@@ -40,9 +41,9 @@ public class VoidStartPlatformFeature1 extends Feature<NoFeatureConfig> {
                if (distance(VOID_SPAWN_POS.getX(), VOID_SPAWN_POS.getZ(), j, i) <= 16) {
                   blockpos$mutable.setPos(j, VOID_SPAWN_POS.getY(), i);
                   if (blockpos$mutable.equals(VOID_SPAWN_POS)) {
-                     iSeedReader.setBlockState(blockpos$mutable, isBurnableBlockItemInit.VILTDROP_BLOCK.get().getDefaultState(), 2);
+                     reader.setBlockState(blockpos$mutable, isBurnableBlockItemInit.VILTDROP_BLOCK.get().getDefaultState(), 2);
                   } else {
-                     iSeedReader.setBlockState(blockpos$mutable, isBurnableBlockItemInit.CRASK.get().getDefaultState(), 2);
+                     reader.setBlockState(blockpos$mutable, isBurnableBlockItemInit.CRASK.get().getDefaultState(), 2);
                   }
                }
             }

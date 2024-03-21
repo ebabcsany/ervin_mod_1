@@ -23,6 +23,7 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.spawner.AbstractSpawner;
 import net.minecraftforge.common.util.Lazy;
 import net.minecraftforge.common.util.NonNullSupplier;
@@ -88,13 +89,13 @@ public class ModSpawnEggItem extends SpawnEggItem {
         UNADDED_EGGS.clear();
     }
 
-    public Optional<MobEntity> func_234809_a_(PlayerEntity p_234809_1_, MobEntity p_234809_2_, EntityType<? extends MobEntity> p_234809_3_, World p_234809_4_, Vector3d p_234809_5_, ItemStack p_234809_6_) {
+    public Optional<MobEntity> getChildToSpawn(PlayerEntity p_234809_1_, MobEntity p_234809_2_, EntityType<? extends MobEntity> p_234809_3_, ServerWorld p_234809_4_, Vector3d p_234809_5_, ItemStack p_234809_6_) {
         if (!this.hasType(p_234809_6_.getTag(), p_234809_3_)) {
             return Optional.empty();
         } else {
             MobEntity mobentity;
             if (p_234809_2_ instanceof AgeableEntity) {
-                mobentity = ((AgeableEntity)p_234809_2_).createChild((AgeableEntity)p_234809_2_);
+                mobentity = ((AgeableEntity)p_234809_2_).createChild(p_234809_4_, (AgeableEntity)p_234809_2_);
             } else {
                 mobentity = p_234809_3_.create(p_234809_4_);
             }
@@ -134,7 +135,7 @@ public class ModSpawnEggItem extends SpawnEggItem {
             BlockPos blockpos = context.getPos();
             Direction direction = context.getFace();
             BlockState blockstate = world.getBlockState(blockpos);
-            if (blockstate.isIn(Blocks.SPAWNER)) {
+            if (blockstate.matchesBlock(Blocks.SPAWNER)) {
                 TileEntity tileentity = world.getTileEntity(blockpos);
                 if (tileentity instanceof MobSpawnerTileEntity) {
                     AbstractSpawner abstractspawner = ((MobSpawnerTileEntity)tileentity).getSpawnerBaseLogic();
@@ -155,7 +156,7 @@ public class ModSpawnEggItem extends SpawnEggItem {
             }
 
             EntityType<?> entitytype = this.getType(itemstack.getTag());
-            if (entitytype.spawn(world, itemstack, context.getPlayer(), blockpos1, SpawnReason.SPAWN_EGG, true, !Objects.equals(blockpos, blockpos1) && direction == Direction.UP) != null) {
+            if (entitytype.spawn((ServerWorld) world, itemstack, context.getPlayer(), blockpos1, SpawnReason.SPAWN_EGG, true, !Objects.equals(blockpos, blockpos1) && direction == Direction.UP) != null) {
                 itemstack.shrink(1);
             }
 

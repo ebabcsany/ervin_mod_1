@@ -26,7 +26,7 @@ public class FreinballItem extends Item {
       if (!worldIn.isRemote) {
          FreinballEntity snowballentity = new FreinballEntity(worldIn, playerIn);
          snowballentity.setItem(itemstack);
-         snowballentity.func_234612_a_(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
+         snowballentity.setDirectionAndMovement(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
          worldIn.addEntity(snowballentity);
       }
 

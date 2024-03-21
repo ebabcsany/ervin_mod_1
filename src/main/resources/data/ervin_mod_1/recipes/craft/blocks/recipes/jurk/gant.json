@@ -1,13 +1,16 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    {
-      "item": "ervin_mod_1:gart"
-    },
-    {
-      "item": "ervin_mod_1:gurt"
-    }
+  "type": "minecraft:crafting_shaped",
+  "group": "jurk",
+  "pattern": [
+    "###",
+    "###",
+    "###"
   ],
+  "key": {
+    "#": {
+      "item": "ervin_mod_1:jurk_bucket"
+    }
+  },
   "result": {
     "item": "ervin_mod_1:gant",
     "count": 1

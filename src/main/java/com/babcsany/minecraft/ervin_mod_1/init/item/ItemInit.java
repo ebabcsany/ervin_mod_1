@@ -72,7 +72,6 @@ public class ItemInit {
     public static final RegistryObject<Item> ENDER_CRAKTH = ITEMS.register("ender_crakth", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
     public static final RegistryObject<Item> SCRAKTHS_PEARL = ITEMS.register("scrakths_pearl", () -> new ScrakthsPearlItem((new Item.Properties()).maxStackSize(16).group(ItemGroup.ERVIN_MOD_1_ITEMS)));
     public static final RegistryObject<Item> ENDER_CRAKTHS = ITEMS.register("ender_crakths", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
-    public static final RegistryObject<Item> FRIM_BOAT = ITEMS.register("frim_boat", () -> new Item((new Item.Properties()).maxStackSize(1).group(ItemGroup.ERVIN_MOD_1_ITEMS)));
     public static final RegistryObject<Item> JURK_BUCKETI = ITEMS.register("jurk_buckett", () -> new JurkBucketItem((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
     public static final RegistryObject<Item> CRAKH = ITEMS.register("crakh", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));
     public static final RegistryObject<Item> BLACK_IRON_INGOT = ITEMS.register("iron/ingots/black_iron_ingot", () -> new Item((new Item.Properties().group(ItemGroup.ERVIN_MOD_1_ITEMS))));

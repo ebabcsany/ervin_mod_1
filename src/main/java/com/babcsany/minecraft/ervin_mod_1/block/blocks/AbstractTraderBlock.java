@@ -1,11 +1,9 @@
 package com.babcsany.minecraft.ervin_mod_1.block.blocks;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.merchant.trader_block.IMerchant;
-import com.babcsany.minecraft.ervin_mod_1.entity.trigger.CriteriaTriggers1;
 import net.minecraft.block.Block;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.MerchantOffer;

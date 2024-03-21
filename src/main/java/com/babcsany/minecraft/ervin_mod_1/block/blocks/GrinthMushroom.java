@@ -37,7 +37,7 @@ public class GrinthMushroom extends BushBlock implements IGrowable {
          int j = 4;
 
          for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-4, -1, -4), pos.add(4, 1, 4))) {
-            if (worldIn.getBlockState(blockpos).isIn(this)) {
+            if (worldIn.getBlockState(blockpos).matchesBlock(this)) {
                --i;
                if (i <= 0) {
                   return;
@@ -69,7 +69,7 @@ public class GrinthMushroom extends BushBlock implements IGrowable {
    public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
       BlockPos blockpos = pos.down();
       BlockState blockstate = worldIn.getBlockState(blockpos);
-      if (!blockstate.isIn(Blocks.MYCELIUM) && !blockstate.isIn(Blocks.PODZOL)) {
+      if (!blockstate.matchesBlock(Blocks.MYCELIUM) && !blockstate.matchesBlock(Blocks.PODZOL)) {
          return worldIn.getLightSubtracted(pos, 0) < 13 && blockstate.canSustainPlant(worldIn, blockpos, net.minecraft.util.Direction.UP, this);
       } else {
          return true;
@@ -80,7 +80,7 @@ public class GrinthMushroom extends BushBlock implements IGrowable {
       world.removeBlock(pos, false);
       ConfiguredFeature<BigMushroomFeatureConfig, ?> configuredfeature;
       if (this == Blocks.BROWN_MUSHROOM) {
-         configuredfeature = Feature.HUGE_BROWN_MUSHROOM.withConfiguration(DefaultBiomeFeatures.BIG_BROWN_MUSHROOM);
+         configuredfeature = Feature.HUGE_BROWN_MUSHROOM.withConfiguration(ModDefaultBiomeFeatures.BIG_BROWN_MUSHROOM);
       } else {
          if (this != BlockItemInit.GRINTH_MUSHROOM.get()) {
             world.setBlockState(pos, state, 3);
@@ -90,7 +90,7 @@ public class GrinthMushroom extends BushBlock implements IGrowable {
          configuredfeature = Feature.HUGE_RED_MUSHROOM.withConfiguration(ModDefaultBiomeFeatures.BIG_GRINTH_MUSHROOM);
       }
 
-      if (configuredfeature.func_236265_a_(world, world.func_241112_a_(), world.getChunkProvider().getChunkGenerator(), rand, pos)) {
+      if (configuredfeature.generate(world, world.getChunkProvider().getChunkGenerator(), rand, pos)) {
          return true;
       } else {
          world.setBlockState(pos, state, 3);

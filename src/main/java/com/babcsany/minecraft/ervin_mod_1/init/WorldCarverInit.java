@@ -31,7 +31,7 @@ public class WorldCarverInit {
     public boolean isCarvable(BlockState p_222706_1_) {
         return this.carvableBlocks.contains(p_222706_1_.getBlock());
     }
-    public static final RegistryObject<WorldCarver<ProbabilityConfig>> CAVE = CARVERS.register("cave", () -> new CaveWorldCarver(ProbabilityConfig.field_236576_b_, 256));
-    public static final RegistryObject<WorldCarver<ProbabilityConfig>> UNDERWATER_CAVE = CARVERS.register("underwater_cave", () -> new UnderwaterCaveWorldCarver(ProbabilityConfig.field_236576_b_));
-    public static final WorldCarver<ProbabilityConfig> UNDERLAVA_CAVE = register("underlava_cave", new UnderlavaCaveWorldCarver(ProbabilityConfig.field_236576_b_));
+    public static final RegistryObject<WorldCarver<ProbabilityConfig>> CAVE = CARVERS.register("cave", () -> new CaveWorldCarver(ProbabilityConfig.CODEC, 256));
+    public static final RegistryObject<WorldCarver<ProbabilityConfig>> UNDERWATER_CAVE = CARVERS.register("underwater_cave", () -> new UnderwaterCaveWorldCarver(ProbabilityConfig.CODEC));
+    public static final WorldCarver<ProbabilityConfig> UNDERLAVA_CAVE = register("underlava_cave", new UnderlavaCaveWorldCarver(ProbabilityConfig.CODEC));
 }

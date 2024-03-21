@@ -1,5 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.block.blocks;
 
+import com.babcsany.minecraft.ervin_mod_1.item.food.Foods;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -64,10 +65,10 @@ public class Firg extends Block {
         return Util.getRandomObject(GENERATE_DIRECTIONS, rand);
     }
 
-    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit, Food.Builder builder, Food food) {
+    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         if (worldIn.isRemote) {
             ItemStack itemstack = player.getHeldItem(handIn);
-            if (this.eatSlice(worldIn, pos, state, player, builder, food).isSuccessOrConsume()) {
+            if (this.eatSlice(worldIn, pos, state, player).isSuccessOrConsume()) {
                 return ActionResultType.SUCCESS;
             }
 
@@ -76,16 +77,16 @@ public class Firg extends Block {
             }
         }
 
-        return this.eatSlice(worldIn, pos, state, player, builder, food);
+        return this.eatSlice(worldIn, pos, state, player);
     }
 
-    private ActionResultType eatSlice(IWorld world, BlockPos pos, BlockState state, PlayerEntity player, Food.Builder builder, Food food) {
+    private ActionResultType eatSlice(IWorld world, BlockPos pos, BlockState state, PlayerEntity player) {
         if (!player.canEat(true)) {
             return ActionResultType.PASS;
         } else {
             player.addStat(Stats.EAT_CAKE_SLICE);
             player.getFoodStats().addStats( 1, 0.2F);
-            player.addPotionEffect(new EffectInstance(Effects.REGENERATION, 50, (int) 1.25));
+            player.addPotionEffect(Foods.FIRG.getEffects().get(0).getFirst());
             int i = state.get(BITES);
             if (i < 7) {
                 world.setBlockState(pos, state.with(BITES, i + 1), 3);

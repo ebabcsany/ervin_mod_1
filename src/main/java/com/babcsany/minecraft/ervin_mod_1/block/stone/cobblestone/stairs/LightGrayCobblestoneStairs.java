@@ -1,7 +1,8 @@
 package com.babcsany.minecraft.ervin_mod_1.block.stone.cobblestone.stairs;
 
-import com.babcsany.minecraft.ervin_mod_1.block.stone.cobblestone.slabs.LightGrayCobblestoneSlab;
+import com.babcsany.minecraft.ervin_mod_1.block.blocks.Slab;
 import net.minecraft.block.*;
+import net.minecraft.block.StairsBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
@@ -37,8 +38,8 @@ public class LightGrayCobblestoneStairs extends Block implements IWaterLoggable 
    public static final EnumProperty<Half> HALF = BlockStateProperties.HALF;
    public static final EnumProperty<StairsShape> SHAPE = BlockStateProperties.STAIRS_SHAPE;
    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-   protected static final VoxelShape AABB_SLAB_TOP = LightGrayCobblestoneSlab.TOP_SHAPE;
-   protected static final VoxelShape AABB_SLAB_BOTTOM = LightGrayCobblestoneSlab.BOTTOM_SHAPE;
+   protected static final VoxelShape AABB_SLAB_TOP = Slab.TOP_SHAPE;
+   protected static final VoxelShape AABB_SLAB_BOTTOM = Slab.BOTTOM_SHAPE;
    protected static final VoxelShape NWD_CORNER = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 8.0D, 8.0D, 8.0D);
    protected static final VoxelShape SWD_CORNER = Block.makeCuboidShape(0.0D, 0.0D, 8.0D, 8.0D, 8.0D, 16.0D);
    protected static final VoxelShape NWU_CORNER = Block.makeCuboidShape(0.0D, 8.0D, 0.0D, 8.0D, 16.0D, 8.0D);
@@ -143,14 +144,14 @@ public class LightGrayCobblestoneStairs extends Block implements IWaterLoggable 
    }
 
    public void onBlockAdded(BlockState state, World worldIn, BlockPos pos, BlockState oldState, boolean isMoving) {
-      if (!state.isIn(state.getBlock())) {
+      if (!state.matchesBlock(state.getBlock())) {
          this.modelState.neighborChanged(worldIn, pos, Blocks.AIR, pos, false);
          this.modelBlock.onBlockAdded(this.modelState, worldIn, pos, oldState, false);
       }
    }
 
    public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
-      if (!state.isIn(newState.getBlock())) {
+      if (!state.matchesBlock(newState.getBlock())) {
          this.modelState.onReplaced(worldIn, pos, newState, isMoving);
       }
    }
@@ -252,7 +253,7 @@ public class LightGrayCobblestoneStairs extends Block implements IWaterLoggable 
    }
 
    public static boolean isBlockStairs(BlockState state) {
-      return state.getBlock() instanceof LightGrayCobblestoneStairs;
+      return state.getBlock() instanceof StairsBlock;
    }
 
    /* *

@@ -73,7 +73,7 @@ public abstract class AbstractFurnaceTileEntity extends net.minecraft.tileentity
     }
 
     private static boolean func_235644_b_(Item p_235644_0_) {
-        return ItemTags.field_232905_P_.contains(p_235644_0_);
+        return ItemTags.NON_FLAMMABLE_WOOD.contains(p_235644_0_);
     }
 
     private static void addItemTagBurnTime(Map<Item, Float> map, ITag<Item> itemTag, float burnTimeIn) {

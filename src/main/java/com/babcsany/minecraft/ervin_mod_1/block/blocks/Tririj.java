@@ -1,8 +1,8 @@
 package com.babcsany.minecraft.ervin_mod_1.block.blocks;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.BubbleColumnBlock;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -20,20 +20,13 @@ import net.minecraft.world.server.ServerWorld;
 
 import java.util.Random;
 
-public class Tririj extends Block {
+public class Tririj extends DamageOnWalkingBlock {
    public Tririj(Properties properties) {
-      super(properties);
+      super(properties, 1000000000000000000000000000000.0F);
    }
 
-   /**
-    * Called when the given entity walks on this Block
-    */
-   public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
-      if (entityIn instanceof LivingEntity && !EnchantmentHelper.hasFrostWalker((LivingEntity)entityIn)) {
-         entityIn.attackEntityFrom(DamageSource.GENERIC, 1000000000000000000000000000000.0F);
-      }
-
-      super.onEntityWalk(worldIn, pos, entityIn);
+   public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
+      BubbleColumnBlock.placeBubbleColumn(worldIn, pos.up(), true);
    }
 
    /**
@@ -43,23 +36,23 @@ public class Tririj extends Block {
     * Note that this method should ideally consider only the specific face passed in.
     */
    public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-      if (facing == Direction.UP && facingState.isIn(Blocks.WATER)) {
-         worldIn.getPendingBlockTicks().scheduleTick(currentPos, this, 20);
+      if (facing == Direction.UP && facingState.matchesBlock(Blocks.WATER)) {
+         worldIn.getPendingBlockTicks().scheduleTick(currentPos, this, 10);
       }
-      if (facing == Direction.DOWN && facingState.isIn(Blocks.WATER)) {
-         worldIn.getPendingBlockTicks().scheduleTick(currentPos, this, 20);
+      if (facing == Direction.DOWN && facingState.matchesBlock(Blocks.WATER)) {
+         worldIn.getPendingBlockTicks().scheduleTick(currentPos, this, 10);
       }
-      if (facing == Direction.EAST && facingState.isIn(Blocks.WATER)) {
-         worldIn.getPendingBlockTicks().scheduleTick(currentPos, this, 20);
+      if (facing == Direction.EAST && facingState.matchesBlock(Blocks.WATER)) {
+         worldIn.getPendingBlockTicks().scheduleTick(currentPos, this, 10);
       }
-      if (facing == Direction.NORTH && facingState.isIn(Blocks.WATER)) {
-         worldIn.getPendingBlockTicks().scheduleTick(currentPos, this, 20);
+      if (facing == Direction.NORTH && facingState.matchesBlock(Blocks.WATER)) {
+         worldIn.getPendingBlockTicks().scheduleTick(currentPos, this, 10);
       }
-      if (facing == Direction.SOUTH && facingState.isIn(Blocks.WATER)) {
-         worldIn.getPendingBlockTicks().scheduleTick(currentPos, this, 20);
+      if (facing == Direction.SOUTH && facingState.matchesBlock(Blocks.WATER)) {
+         worldIn.getPendingBlockTicks().scheduleTick(currentPos, this, 10);
       }
-      if (facing == Direction.WEST && facingState.isIn(Blocks.WATER)) {
-         worldIn.getPendingBlockTicks().scheduleTick(currentPos, this, 20);
+      if (facing == Direction.WEST && facingState.matchesBlock(Blocks.WATER)) {
+         worldIn.getPendingBlockTicks().scheduleTick(currentPos, this, 10);
       }
 
       return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);

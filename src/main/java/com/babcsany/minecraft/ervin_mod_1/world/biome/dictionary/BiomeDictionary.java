@@ -7,7 +7,18 @@ import javax.annotation.Nullable;
 import java.util.*;
 
 public class BiomeDictionary {
+    private static final Map<Biome, Type> biomeTypeMap = new HashMap<>();
+    private static final Collection<Type> TYPES = Collections.unmodifiableCollection(biomeTypeMap.values());
 
+    public static void addTypes(Biome biome, Type... subTypes) {
+        for (Type subType : subTypes) {
+            biomeTypeMap.put(biome, subType);
+        }
+    }
+
+    public static Collection<Type> getTypes() {
+        return TYPES;
+    }
 
     public static final class Type
     {
@@ -21,6 +32,36 @@ public class BiomeDictionary {
         public static final Type OVERWORLD = new Type("OVERWORLD");
         public static final Type NETHER = new Type("NETHER");
         public static final Type END = new Type("END");
+        public static final Type OCEAN = new Type("OCEAN");
+        public static final Type PLAINS = new Type("PLAINS");
+        public static final Type DEAD = new Type("DEAD");
+        public static final Type DENSE = new Type("DENSE");
+        public static final Type HILLS = new Type("HILLS");
+        public static final Type MOUNTAIN = new Type("MOUNTAIN");
+        public static final Type BEACH = new Type("BEACH");
+        public static final Type PLATEAU = new Type("PLATEAU");
+        public static final Type SANDY = new Type("SANDY");
+        public static final Type SAVANNA = new Type("SAVANNA");
+        public static final Type SNOWY = new Type("SNOWY");
+        public static final Type SPARSE = new Type("SPARSE");
+        public static final Type SWAMP = new Type("SWAMP");
+        public static final Type SPOOKY = new Type("SPOOKY");
+        public static final Type WASTELAND = new Type("WASTELAND");
+        public static final Type WET = new Type("WET");
+        public static final Type VOID = new Type("VOID");
+        public static final Type WATER = new Type("WATER");
+        public static final Type MESA = new Type("MESA");
+        public static final Type HOT = new Type("HOT");
+        public static final Type DRY = new Type("DRY");
+        public static final Type COLD = new Type("COLD");
+        public static final Type LUSH = new Type("LUSH");
+        public static final Type MODIFIED = new Type("MODIFIED");
+        public static final Type CONIFEROUS = new Type("CONIFEROUS");
+        public static final Type MAGICAL = new Type("MAGICAL");
+        public static final Type MUSHROOM = new Type("MUSHROOM");
+        public static final Type RARE = new Type("RARE");
+        public static final Type FIRG = new Type("FIRG", Type.fromVanilla(Biome.Category.THEEND));
+        public static final Type SCRAFTH = new Type("SCRAFTH");
 
         private final String name;
         private final List<Type> subTypes;

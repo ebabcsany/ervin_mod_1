@@ -8,6 +8,7 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.OreFeatureConfig;
 import net.minecraft.world.gen.feature.structure.StructureManager;
 
 import java.util.BitSet;
@@ -18,27 +19,27 @@ public class GenOreFeature extends Feature<GenOreFeatureConfig> {
       super(p_i231976_1_);
    }
 
-   public boolean func_230362_a_(ISeedReader p_230362_1_, StructureManager p_230362_2_, ChunkGenerator p_230362_3_, Random p_230362_4_, BlockPos p_230362_5_, GenOreFeatureConfig p_230362_6_) {
-      float f = p_230362_4_.nextFloat() * (float)Math.PI;
-      float f1 = (float)p_230362_6_.size / 8.0F;
-      int i = MathHelper.ceil(((float)p_230362_6_.size / 16.0F * 2.0F + 1.0F) / 2.0F);
-      double d0 = (float)p_230362_5_.getX() + MathHelper.sin(f) * f1;
-      double d1 = (float)p_230362_5_.getX() - MathHelper.sin(f) * f1;
-      double d2 = (float)p_230362_5_.getZ() + MathHelper.cos(f) * f1;
-      double d3 = (float)p_230362_5_.getZ() - MathHelper.cos(f) * f1;
-      int j = 2;
-      double d4 = p_230362_5_.getY() + p_230362_4_.nextInt(3) - 2;
-      double d5 = p_230362_5_.getY() + p_230362_4_.nextInt(3) - 2;
-      int k = p_230362_5_.getX() - MathHelper.ceil(f1) - i;
-      int l = p_230362_5_.getY() - 2 - i;
-      int i1 = p_230362_5_.getZ() - MathHelper.ceil(f1) - i;
-      int j1 = 2 * (MathHelper.ceil(f1) + i);
-      int k1 = 2 * (2 + i);
+   public boolean generate(ISeedReader seedReader, ChunkGenerator chunkGenerator, Random random, BlockPos blockPos, GenOreFeatureConfig config) {
+      float lvt_6_1_ = random.nextFloat() * 3.1415927F;
+      float lvt_7_1_ = (float)config.size / 8.0F;
+      int lvt_8_1_ = MathHelper.ceil(((float)config.size / 16.0F * 2.0F + 1.0F) / 2.0F);
+      double lvt_9_1_ = (double)blockPos.getX() + Math.sin((double)lvt_6_1_) * (double)lvt_7_1_;
+      double lvt_11_1_ = (double)blockPos.getX() - Math.sin((double)lvt_6_1_) * (double)lvt_7_1_;
+      double lvt_13_1_ = (double)blockPos.getZ() + Math.cos((double)lvt_6_1_) * (double)lvt_7_1_;
+      double lvt_15_1_ = (double)blockPos.getZ() - Math.cos((double)lvt_6_1_) * (double)lvt_7_1_;
+      boolean lvt_17_1_ = true;
+      double lvt_18_1_ = (double)(blockPos.getY() + random.nextInt(3) - 2);
+      double lvt_20_1_ = (double)(blockPos.getY() + random.nextInt(3) - 2);
+      int lvt_22_1_ = blockPos.getX() - MathHelper.ceil(lvt_7_1_) - lvt_8_1_;
+      int lvt_23_1_ = blockPos.getY() - 2 - lvt_8_1_;
+      int lvt_24_1_ = blockPos.getZ() - MathHelper.ceil(lvt_7_1_) - lvt_8_1_;
+      int lvt_25_1_ = 2 * (MathHelper.ceil(lvt_7_1_) + lvt_8_1_);
+      int lvt_26_1_ = 2 * (2 + lvt_8_1_);
 
-      for(int l1 = k; l1 <= k + j1; ++l1) {
-         for(int i2 = i1; i2 <= i1 + j1; ++i2) {
-            if (l <= p_230362_1_.getHeight(Heightmap.Type.OCEAN_FLOOR_WG, l1, i2)) {
-               return this.func_207803_a(p_230362_1_, p_230362_4_, p_230362_6_, d0, d1, d2, d3, d4, d5, k, l, i1, j1, k1);
+      for(int lvt_27_1_ = lvt_22_1_; lvt_27_1_ <= lvt_22_1_ + lvt_25_1_; ++lvt_27_1_) {
+         for(int lvt_28_1_ = lvt_24_1_; lvt_28_1_ <= lvt_24_1_ + lvt_25_1_; ++lvt_28_1_) {
+            if (lvt_23_1_ <= seedReader.getHeight(Heightmap.Type.OCEAN_FLOOR_WG, lvt_27_1_, lvt_28_1_)) {
+               return this.func_207803_a(seedReader, random, config, lvt_9_1_, lvt_11_1_, lvt_13_1_, lvt_15_1_, lvt_18_1_, lvt_20_1_, lvt_22_1_, lvt_23_1_, lvt_24_1_, lvt_25_1_, lvt_26_1_);
             }
          }
       }
@@ -46,38 +47,44 @@ public class GenOreFeature extends Feature<GenOreFeatureConfig> {
       return false;
    }
 
-   protected boolean func_207803_a(IWorld worldIn, Random random, GenOreFeatureConfig config, double p_207803_4_, double p_207803_6_, double p_207803_8_, double p_207803_10_, double p_207803_12_, double p_207803_14_, int p_207803_16_, int p_207803_17_, int p_207803_18_, int p_207803_19_, int p_207803_20_) {
-      int i = 0;
-      BitSet bitset = new BitSet(p_207803_19_ * p_207803_20_ * p_207803_19_);
-      BlockPos.Mutable blockpos$mutable = new BlockPos.Mutable();
-      double[] adouble = new double[config.size * 4];
+   protected boolean func_207803_a(IWorld p_207803_1_, Random p_207803_2_, GenOreFeatureConfig p_207803_3_, double p_207803_4_, double p_207803_6_, double p_207803_8_, double p_207803_10_, double p_207803_12_, double p_207803_14_, int p_207803_16_, int p_207803_17_, int p_207803_18_, int p_207803_19_, int p_207803_20_) {
+      int lvt_21_1_ = 0;
+      BitSet lvt_22_1_ = new BitSet(p_207803_19_ * p_207803_20_ * p_207803_19_);
+      BlockPos.Mutable lvt_23_1_ = new BlockPos.Mutable();
+      int lvt_24_1_ = p_207803_3_.size;
+      double[] lvt_25_1_ = new double[lvt_24_1_ * 4];
 
-      for(int j = 0; j < config.size; ++j) {
-         float f = (float)j / (float)config.size;
-         double d0 = MathHelper.lerp((double)f, p_207803_4_, p_207803_6_);
-         double d2 = MathHelper.lerp((double)f, p_207803_12_, p_207803_14_);
-         double d4 = MathHelper.lerp((double)f, p_207803_8_, p_207803_10_);
-         double d6 = random.nextDouble() * (double)config.size / 16.0D;
-         double d7 = ((double)(MathHelper.sin((float)Math.PI * f) + 1.0F) * d6 + 1.0D) / 2.0D;
-         adouble[j * 4 + 0] = d0;
-         adouble[j * 4 + 1] = d2;
-         adouble[j * 4 + 2] = d4;
-         adouble[j * 4 + 3] = d7;
+      int lvt_26_2_;
+      double lvt_28_2_;
+      double lvt_30_2_;
+      double lvt_32_2_;
+      double lvt_34_2_;
+      for(lvt_26_2_ = 0; lvt_26_2_ < lvt_24_1_; ++lvt_26_2_) {
+         float lvt_27_1_ = (float)lvt_26_2_ / (float)lvt_24_1_;
+         lvt_28_2_ = MathHelper.lerp((double)lvt_27_1_, p_207803_4_, p_207803_6_);
+         lvt_30_2_ = MathHelper.lerp((double)lvt_27_1_, p_207803_12_, p_207803_14_);
+         lvt_32_2_ = MathHelper.lerp((double)lvt_27_1_, p_207803_8_, p_207803_10_);
+         lvt_34_2_ = p_207803_2_.nextDouble() * (double)lvt_24_1_ / 16.0;
+         double lvt_36_1_ = ((double)(MathHelper.sin(3.1415927F * lvt_27_1_) + 1.0F) * lvt_34_2_ + 1.0) / 2.0;
+         lvt_25_1_[lvt_26_2_ * 4 + 0] = lvt_28_2_;
+         lvt_25_1_[lvt_26_2_ * 4 + 1] = lvt_30_2_;
+         lvt_25_1_[lvt_26_2_ * 4 + 2] = lvt_32_2_;
+         lvt_25_1_[lvt_26_2_ * 4 + 3] = lvt_36_1_;
       }
 
-      for(int l2 = 0; l2 < config.size - 1; ++l2) {
-         if (!(adouble[l2 * 4 + 3] <= 0.0D)) {
-            for(int j3 = l2 + 1; j3 < config.size; ++j3) {
-               if (!(adouble[j3 * 4 + 3] <= 0.0D)) {
-                  double d12 = adouble[l2 * 4 + 0] - adouble[j3 * 4 + 0];
-                  double d13 = adouble[l2 * 4 + 1] - adouble[j3 * 4 + 1];
-                  double d14 = adouble[l2 * 4 + 2] - adouble[j3 * 4 + 2];
-                  double d15 = adouble[l2 * 4 + 3] - adouble[j3 * 4 + 3];
-                  if (d15 * d15 > d12 * d12 + d13 * d13 + d14 * d14) {
-                     if (d15 > 0.0D) {
-                        adouble[j3 * 4 + 3] = -1.0D;
+      for(lvt_26_2_ = 0; lvt_26_2_ < lvt_24_1_ - 1; ++lvt_26_2_) {
+         if (!(lvt_25_1_[lvt_26_2_ * 4 + 3] <= 0.0)) {
+            for(int lvt_27_2_ = lvt_26_2_ + 1; lvt_27_2_ < lvt_24_1_; ++lvt_27_2_) {
+               if (!(lvt_25_1_[lvt_27_2_ * 4 + 3] <= 0.0)) {
+                  lvt_28_2_ = lvt_25_1_[lvt_26_2_ * 4 + 0] - lvt_25_1_[lvt_27_2_ * 4 + 0];
+                  lvt_30_2_ = lvt_25_1_[lvt_26_2_ * 4 + 1] - lvt_25_1_[lvt_27_2_ * 4 + 1];
+                  lvt_32_2_ = lvt_25_1_[lvt_26_2_ * 4 + 2] - lvt_25_1_[lvt_27_2_ * 4 + 2];
+                  lvt_34_2_ = lvt_25_1_[lvt_26_2_ * 4 + 3] - lvt_25_1_[lvt_27_2_ * 4 + 3];
+                  if (lvt_34_2_ * lvt_34_2_ > lvt_28_2_ * lvt_28_2_ + lvt_30_2_ * lvt_30_2_ + lvt_32_2_ * lvt_32_2_) {
+                     if (lvt_34_2_ > 0.0) {
+                        lvt_25_1_[lvt_27_2_ * 4 + 3] = -1.0;
                      } else {
-                        adouble[l2 * 4 + 3] = -1.0D;
+                        lvt_25_1_[lvt_26_2_ * 4 + 3] = -1.0;
                      }
                   }
                }
@@ -85,35 +92,35 @@ public class GenOreFeature extends Feature<GenOreFeatureConfig> {
          }
       }
 
-      for(int i3 = 0; i3 < config.size; ++i3) {
-         double d11 = adouble[i3 * 4 + 3];
-         if (!(d11 < 0.0D)) {
-            double d1 = adouble[i3 * 4 + 0];
-            double d3 = adouble[i3 * 4 + 1];
-            double d5 = adouble[i3 * 4 + 2];
-            int k = Math.max(MathHelper.floor(d1 - d11), p_207803_16_);
-            int k3 = Math.max(MathHelper.floor(d3 - d11), p_207803_17_);
-            int l = Math.max(MathHelper.floor(d5 - d11), p_207803_18_);
-            int i1 = Math.max(MathHelper.floor(d1 + d11), k);
-            int j1 = Math.max(MathHelper.floor(d3 + d11), k3);
-            int k1 = Math.max(MathHelper.floor(d5 + d11), l);
+      for(lvt_26_2_ = 0; lvt_26_2_ < lvt_24_1_; ++lvt_26_2_) {
+         double lvt_27_3_ = lvt_25_1_[lvt_26_2_ * 4 + 3];
+         if (!(lvt_27_3_ < 0.0)) {
+            double lvt_29_1_ = lvt_25_1_[lvt_26_2_ * 4 + 0];
+            double lvt_31_1_ = lvt_25_1_[lvt_26_2_ * 4 + 1];
+            double lvt_33_1_ = lvt_25_1_[lvt_26_2_ * 4 + 2];
+            int lvt_35_1_ = Math.max(MathHelper.floor(lvt_29_1_ - lvt_27_3_), p_207803_16_);
+            int lvt_36_2_ = Math.max(MathHelper.floor(lvt_31_1_ - lvt_27_3_), p_207803_17_);
+            int lvt_37_1_ = Math.max(MathHelper.floor(lvt_33_1_ - lvt_27_3_), p_207803_18_);
+            int lvt_38_1_ = Math.max(MathHelper.floor(lvt_29_1_ + lvt_27_3_), lvt_35_1_);
+            int lvt_39_1_ = Math.max(MathHelper.floor(lvt_31_1_ + lvt_27_3_), lvt_36_2_);
+            int lvt_40_1_ = Math.max(MathHelper.floor(lvt_33_1_ + lvt_27_3_), lvt_37_1_);
 
-            for(int l1 = k; l1 <= i1; ++l1) {
-               double d8 = ((double)l1 + 0.5D - d1) / d11;
-               if (d8 * d8 < 1.0D) {
-                  for(int i2 = k3; i2 <= j1; ++i2) {
-                     double d9 = ((double)i2 + 0.5D - d3) / d11;
-                     if (d8 * d8 + d9 * d9 < 1.0D) {
-                        for(int j2 = l; j2 <= k1; ++j2) {
-                           double d10 = ((double)j2 + 0.5D - d5) / d11;
-                           if (d8 * d8 + d9 * d9 + d10 * d10 < 1.0D) {
-                              int k2 = l1 - p_207803_16_ + (i2 - p_207803_17_) * p_207803_19_ + (j2 - p_207803_18_) * p_207803_19_ * p_207803_20_;
-                              if (!bitset.get(k2)) {
-                                 bitset.set(k2);
-                                 blockpos$mutable.setPos(l1, i2, j2);
-                                 if (config.target.getTargetBlockPredicate().test(worldIn.getBlockState(blockpos$mutable))) {
-                                    worldIn.setBlockState(blockpos$mutable, config.state, 2);
-                                    ++i;
+            for(int lvt_41_1_ = lvt_35_1_; lvt_41_1_ <= lvt_38_1_; ++lvt_41_1_) {
+               double lvt_42_1_ = ((double)lvt_41_1_ + 0.5 - lvt_29_1_) / lvt_27_3_;
+               if (lvt_42_1_ * lvt_42_1_ < 1.0) {
+                  for(int lvt_44_1_ = lvt_36_2_; lvt_44_1_ <= lvt_39_1_; ++lvt_44_1_) {
+                     double lvt_45_1_ = ((double)lvt_44_1_ + 0.5 - lvt_31_1_) / lvt_27_3_;
+                     if (lvt_42_1_ * lvt_42_1_ + lvt_45_1_ * lvt_45_1_ < 1.0) {
+                        for(int lvt_47_1_ = lvt_37_1_; lvt_47_1_ <= lvt_40_1_; ++lvt_47_1_) {
+                           double lvt_48_1_ = ((double)lvt_47_1_ + 0.5 - lvt_33_1_) / lvt_27_3_;
+                           if (lvt_42_1_ * lvt_42_1_ + lvt_45_1_ * lvt_45_1_ + lvt_48_1_ * lvt_48_1_ < 1.0) {
+                              int lvt_50_1_ = lvt_41_1_ - p_207803_16_ + (lvt_44_1_ - p_207803_17_) * p_207803_19_ + (lvt_47_1_ - p_207803_18_) * p_207803_19_ * p_207803_20_;
+                              if (!lvt_22_1_.get(lvt_50_1_)) {
+                                 lvt_22_1_.set(lvt_50_1_);
+                                 lvt_23_1_.setPos(lvt_41_1_, lvt_44_1_, lvt_47_1_);
+                                 if (p_207803_3_.target.test(p_207803_1_.getBlockState(lvt_23_1_), p_207803_2_)) {
+                                    p_207803_1_.setBlockState(lvt_23_1_, p_207803_3_.state, 2);
+                                    ++lvt_21_1_;
                                  }
                               }
                            }
@@ -125,6 +132,6 @@ public class GenOreFeature extends Feature<GenOreFeatureConfig> {
          }
       }
 
-      return i > 0;
+      return lvt_21_1_ > 0;
    }
 }

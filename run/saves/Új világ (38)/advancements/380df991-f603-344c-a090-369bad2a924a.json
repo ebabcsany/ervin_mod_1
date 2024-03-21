@@ -1183,6 +1183,7 @@
   },
   "minecraft:nether/explore_nether": {
     "criteria": {
+      "minecraft:crimson_forest": "2024-02-05 13:13:28 +0100",
       "minecraft:nether_wastes": "2021-04-03 17:53:56 +0200"
     },
     "done": false
@@ -1847,6 +1848,12 @@
     },
     "done": true
   },
+  "minecraft:story/enter_the_nether": {
+    "criteria": {
+      "entered_nether": "2024-02-05 13:12:54 +0100"
+    },
+    "done": true
+  },
   "minecraft:recipes/decorations/green_bed_from_white_bed": {
     "criteria": {
       "has_the_recipe": "2021-02-18 12:24:01 +0100"
@@ -2261,6 +2268,12 @@
     },
     "done": true
   },
+  "minecraft:end/enter_end_gateway": {
+    "criteria": {
+      "entered_end_gateway": "2024-02-03 13:27:06 +0100"
+    },
+    "done": true
+  },
   "minecraft:recipes/misc/iron_ingot": {
     "criteria": {
       "has_the_recipe": "2021-02-18 12:24:02 +0100"
@@ -2528,6 +2541,12 @@
   "minecraft:recipes/building_blocks/polished_blackstone_brick_stairs_from_polished_blackstone_stonecutting": {
     "criteria": {
       "has_the_recipe": "2021-02-18 12:24:02 +0100"
+    },
+    "done": true
+  },
+  "minecraft:nether/charge_respawn_anchor": {
+    "criteria": {
+      "charge_respawn_anchor": "2024-02-05 14:09:30 +0100"
     },
     "done": true
   },
@@ -3061,11 +3080,14 @@
   },
   "minecraft:adventure/kill_all_mobs": {
     "criteria": {
+      "minecraft:skeleton": "2024-02-03 22:32:26 +0100",
       "minecraft:spider": "2021-04-20 10:34:43 +0200",
       "minecraft:creeper": "2021-04-20 10:34:17 +0200",
       "minecraft:zombified_piglin": "2021-04-20 10:34:49 +0200",
+      "minecraft:husk": "2024-02-03 22:31:43 +0100",
       "minecraft:ender_dragon": "2024-02-02 19:44:30 +0100",
-      "minecraft:zombie": "2021-04-20 10:34:26 +0200"
+      "minecraft:zombie": "2021-04-20 10:34:26 +0200",
+      "minecraft:drowned": "2024-02-03 22:35:52 +0100"
     },
     "done": false
   },
@@ -3636,8 +3658,11 @@
   "minecraft:adventure/adventuring_time": {
     "criteria": {
       "minecraft:cold_ocean": "2021-04-19 18:54:45 +0200",
+      "minecraft:deep_frozen_ocean": "2024-02-03 14:20:25 +0100",
+      "minecraft:snowy_beach": "2024-02-03 14:14:53 +0100",
       "minecraft:beach": "2021-02-06 10:10:03 +0100",
-      "minecraft:river": "2024-02-02 15:16:34 +0100"
+      "minecraft:river": "2024-02-02 15:16:34 +0100",
+      "minecraft:savanna": "2024-02-03 14:14:12 +0100"
     },
     "done": false
   },

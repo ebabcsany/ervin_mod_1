@@ -40,7 +40,7 @@ public class ExampleFeature extends Feature<NoFeatureConfig> {
     }
 
     @Override
-    public boolean func_230362_a_(ISeedReader p_230362_1_, StructureManager p_230362_2_, ChunkGenerator p_230362_3_, Random p_230362_4_, BlockPos p_230362_5_, NoFeatureConfig p_230362_6_) {
+    public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config) {
         return false;
     }
 
@@ -48,7 +48,7 @@ public class ExampleFeature extends Feature<NoFeatureConfig> {
                          BlockPos pos, NoFeatureConfig config) {
         Random random = worldIn.getRandom();
         Rotation rotation = Rotation.values()[random.nextInt(Rotation.values().length)];
-        Template template = ((ServerWorld) worldIn.getWorld()).getStructureTemplateManager()
+        Template template = ((ServerWorld) worldIn).getStructureTemplateManager()
                 .getTemplateDefaulted(FOSSILS[random.nextInt(FOSSILS.length)]);
         ChunkPos chunkpos = new ChunkPos(pos);
         PlacementSettings placementsettings = (new PlacementSettings()).setRotation(rotation)

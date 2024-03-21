@@ -33,13 +33,13 @@ public abstract class ItemGroup {
       public ItemStack createIcon() {
          return new ItemStack(isBurnableItemInit.SRIFROUL.get());
       }
-   }).setTabPath("ervin_mod_1_blocks");
+   }).setGroupPath("ervin_mod_1_blocks");
    public static final net.minecraft.item.ItemGroup ERVIN_MOD_1_ITEMS = (new net.minecraft.item.ItemGroup(13, "ervin_mod_1_items") {
       @OnlyIn(Dist.CLIENT)
       public ItemStack createIcon() {
          return new ItemStack(ItemInit.FIRT.get());
       }
-   }).setTabPath("ervin_mod_1_items");
+   }).setGroupPath("ervin_mod_1_items");
    public static final net.minecraft.item.ItemGroup BREFK = new net.minecraft.item.ItemGroup(16, "brefk") {
       @OnlyIn(Dist.CLIENT)
       public ItemStack createIcon() {

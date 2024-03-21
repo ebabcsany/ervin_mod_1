@@ -1,11 +1,10 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.villager;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.trigger.CriteriaTriggers1;
+import com.babcsany.minecraft.ervin_mod_1.trigger.ModCriteriaTriggers;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.TraderNirtreTrades;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.WanderingTraderNirtreTrades;
 import com.google.common.collect.Sets;
 import net.minecraft.entity.*;
-import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.entity.merchant.IMerchant;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -23,6 +22,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.IServerWorld;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
@@ -33,7 +33,7 @@ import javax.annotation.Nullable;
 import java.util.Set;
 
 public abstract class AbstractNirtreEntity extends AgeableEntity implements INPC, IMerchant {
-   private static final DataParameter<Integer> SHAKE_HEAD_TICKS = EntityDataManager.createKey(AbstractZombieTraderEntity.class, DataSerializers.VARINT);
+   private static final DataParameter<Integer> SHAKE_HEAD_TICKS = EntityDataManager.createKey(AbstractNirtreEntity.class, DataSerializers.VARINT);
    @Nullable
    private PlayerEntity customer;
    @Nullable
@@ -46,10 +46,9 @@ public abstract class AbstractNirtreEntity extends AgeableEntity implements INPC
       this.setPathPriority(PathNodeType.DAMAGE_FIRE, -1.0F);
    }
 
-   public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
+   public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
       if (spawnDataIn == null) {
-         spawnDataIn = new AgeableData();
-         ((AgeableData)spawnDataIn).setCanBabySpawn(false);
+         spawnDataIn = new AgeableData(false);
       }
 
       return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
@@ -110,7 +109,7 @@ public abstract class AbstractNirtreEntity extends AgeableEntity implements INPC
       this.livingSoundTime = -this.getTalkInterval();
       this.onNirtreTrade(offer);
       if (this.customer instanceof ServerPlayerEntity) {
-         CriteriaTriggers1.NIRTRE_TRADE.test((ServerPlayerEntity)this.customer, this, offer.getSellingStack());
+         ModCriteriaTriggers.NIRTRE_TRADE.test((ServerPlayerEntity)this.customer, this, offer.getSellingStack());
       }
 
    }

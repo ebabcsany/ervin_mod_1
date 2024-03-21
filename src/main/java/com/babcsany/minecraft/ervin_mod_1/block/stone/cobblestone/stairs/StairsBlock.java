@@ -1,6 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.block.stone.cobblestone.stairs;
 
-import com.babcsany.minecraft.ervin_mod_1.block.stone.cobblestone.slabs.SlabBlock;
+import com.babcsany.minecraft.ervin_mod_1.block.blocks.Slab;
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -21,7 +21,10 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
-import net.minecraft.world.*;
+import net.minecraft.world.Explosion;
+import net.minecraft.world.IBlockReader;
+import net.minecraft.world.IWorld;
+import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -34,8 +37,8 @@ public class StairsBlock extends Block implements IWaterLoggable {
    public static final EnumProperty<Half> HALF = BlockStateProperties.HALF;
    public static final EnumProperty<StairsShape> SHAPE = BlockStateProperties.STAIRS_SHAPE;
    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-   protected static final VoxelShape AABB_SLAB_TOP = SlabBlock.TOP_SHAPE;
-   protected static final VoxelShape AABB_SLAB_BOTTOM = SlabBlock.BOTTOM_SHAPE;
+   protected static final VoxelShape AABB_SLAB_TOP = Slab.TOP_SHAPE;
+   protected static final VoxelShape AABB_SLAB_BOTTOM = Slab.BOTTOM_SHAPE;
    protected static final VoxelShape NWD_CORNER = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 8.0D, 8.0D, 8.0D);
    protected static final VoxelShape SWD_CORNER = Block.makeCuboidShape(0.0D, 0.0D, 8.0D, 8.0D, 8.0D, 16.0D);
    protected static final VoxelShape NWU_CORNER = Block.makeCuboidShape(0.0D, 8.0D, 0.0D, 8.0D, 16.0D, 8.0D);
@@ -135,14 +138,14 @@ public class StairsBlock extends Block implements IWaterLoggable {
    }
 
    public void onBlockAdded(BlockState state, World worldIn, BlockPos pos, BlockState oldState, boolean isMoving) {
-      if (!state.isIn(state.getBlock())) {
+      if (!state.matchesBlock(state.getBlock())) {
          this.modelState.neighborChanged(worldIn, pos, Blocks.AIR, pos, false);
          this.modelBlock.onBlockAdded(this.modelState, worldIn, pos, oldState, false);
       }
    }
 
    public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
-      if (!state.isIn(newState.getBlock())) {
+      if (!state.matchesBlock(newState.getBlock())) {
          this.modelState.onReplaced(worldIn, pos, newState, isMoving);
       }
    }
@@ -188,7 +191,7 @@ public class StairsBlock extends Block implements IWaterLoggable {
       Direction direction = context.getFace();
       BlockPos blockpos = context.getPos();
       FluidState fluidstate = context.getWorld().getFluidState(blockpos);
-      BlockState blockstate = this.getDefaultState().with(FACING, context.getPlacementHorizontalFacing()).with(HALF, direction != Direction.DOWN && (direction == Direction.UP || !(context.getHitVec().y - (double)blockpos.getY() > 0.5D)) ? Half.BOTTOM : Half.TOP).with(WATERLOGGED, Boolean.valueOf(fluidstate.getFluid() == Fluids.WATER));
+      BlockState blockstate = this.getDefaultState().with(FACING, context.getPlacementHorizontalFacing()).with(HALF, direction != Direction.DOWN && (direction == Direction.UP || !(context.getHitVec().y - (double) blockpos.getY() > 0.5D)) ? Half.BOTTOM : Half.TOP).with(WATERLOGGED, Boolean.valueOf(fluidstate.getFluid() == Fluids.WATER));
       return blockstate.with(SHAPE, getShapeProperty(blockstate, context.getWorld(), blockpos));
    }
 
@@ -265,38 +268,38 @@ public class StairsBlock extends Block implements IWaterLoggable {
    public BlockState mirror(BlockState state, Mirror mirrorIn) {
       Direction direction = state.get(FACING);
       StairsShape stairsshape = state.get(SHAPE);
-      switch(mirrorIn) {
-      case LEFT_RIGHT:
-         if (direction.getAxis() == Direction.Axis.Z) {
-            switch(stairsshape) {
-            case INNER_LEFT:
-               return state.rotate(Rotation.CLOCKWISE_180).with(SHAPE, StairsShape.INNER_RIGHT);
-            case INNER_RIGHT:
-               return state.rotate(Rotation.CLOCKWISE_180).with(SHAPE, StairsShape.INNER_LEFT);
-            case OUTER_LEFT:
-               return state.rotate(Rotation.CLOCKWISE_180).with(SHAPE, StairsShape.OUTER_RIGHT);
-            case OUTER_RIGHT:
-               return state.rotate(Rotation.CLOCKWISE_180).with(SHAPE, StairsShape.OUTER_LEFT);
-            default:
-               return state.rotate(Rotation.CLOCKWISE_180);
+      switch (mirrorIn) {
+         case LEFT_RIGHT:
+            if (direction.getAxis() == Direction.Axis.Z) {
+               switch (stairsshape) {
+                  case INNER_LEFT:
+                     return state.rotate(Rotation.CLOCKWISE_180).with(SHAPE, StairsShape.INNER_RIGHT);
+                  case INNER_RIGHT:
+                     return state.rotate(Rotation.CLOCKWISE_180).with(SHAPE, StairsShape.INNER_LEFT);
+                  case OUTER_LEFT:
+                     return state.rotate(Rotation.CLOCKWISE_180).with(SHAPE, StairsShape.OUTER_RIGHT);
+                  case OUTER_RIGHT:
+                     return state.rotate(Rotation.CLOCKWISE_180).with(SHAPE, StairsShape.OUTER_LEFT);
+                  default:
+                     return state.rotate(Rotation.CLOCKWISE_180);
+               }
             }
-         }
-         break;
-      case FRONT_BACK:
-         if (direction.getAxis() == Direction.Axis.X) {
-            switch(stairsshape) {
-            case INNER_LEFT:
-               return state.rotate(Rotation.CLOCKWISE_180).with(SHAPE, StairsShape.INNER_LEFT);
-            case INNER_RIGHT:
-               return state.rotate(Rotation.CLOCKWISE_180).with(SHAPE, StairsShape.INNER_RIGHT);
-            case OUTER_LEFT:
-               return state.rotate(Rotation.CLOCKWISE_180).with(SHAPE, StairsShape.OUTER_RIGHT);
-            case OUTER_RIGHT:
-               return state.rotate(Rotation.CLOCKWISE_180).with(SHAPE, StairsShape.OUTER_LEFT);
-            case STRAIGHT:
-               return state.rotate(Rotation.CLOCKWISE_180);
+            break;
+         case FRONT_BACK:
+            if (direction.getAxis() == Direction.Axis.X) {
+               switch (stairsshape) {
+                  case INNER_LEFT:
+                     return state.rotate(Rotation.CLOCKWISE_180).with(SHAPE, StairsShape.INNER_LEFT);
+                  case INNER_RIGHT:
+                     return state.rotate(Rotation.CLOCKWISE_180).with(SHAPE, StairsShape.INNER_RIGHT);
+                  case OUTER_LEFT:
+                     return state.rotate(Rotation.CLOCKWISE_180).with(SHAPE, StairsShape.OUTER_RIGHT);
+                  case OUTER_RIGHT:
+                     return state.rotate(Rotation.CLOCKWISE_180).with(SHAPE, StairsShape.OUTER_LEFT);
+                  case STRAIGHT:
+                     return state.rotate(Rotation.CLOCKWISE_180);
+               }
             }
-         }
       }
 
       return super.mirror(state, mirrorIn);
@@ -316,8 +319,9 @@ public class StairsBlock extends Block implements IWaterLoggable {
 
    // Forge Start
    private final java.util.function.Supplier<BlockState> stateSupplier;
+
    private Block getModelBlock() {
-       return getModelState().getBlock();
+      return getModelState().getBlock();
    }
    private BlockState getModelState() {
        return stateSupplier.get();

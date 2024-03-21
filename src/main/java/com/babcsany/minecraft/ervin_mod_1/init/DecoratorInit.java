@@ -10,6 +10,6 @@ public class DecoratorInit {
 
     public static final DeferredRegister<Placement<?>> DECORATORS = DeferredRegister.create(ForgeRegistries.DECORATORS, Ervin_mod_1.MOD_ID);
 
-    public static final RegistryObject<Placement<NoPlacementConfig>> NOPE = DECORATORS.register("nope", () -> new Passthrough(NoPlacementConfig.field_236555_a_));
+    public static final RegistryObject<Placement<NoPlacementConfig>> NOPE = DECORATORS.register("nope", () -> new Passthrough(NoPlacementConfig.CODEC));
 
 }

@@ -5,12 +5,12 @@ import net.minecraft.item.ItemStack;
 
 public class BurningItem extends Item {
    public int durationIn;
-   public BurningItem(Properties properties, int durationIn) {
+   public BurningItem(Properties properties, int burnTimeIn) {
       super(properties);
-      this.durationIn = durationIn;
+      this.durationIn = burnTimeIn;
    }
 
-   public int getUseDuration(ItemStack stack) {
+   public int getBurnTime(ItemStack stack) {
       return this.durationIn;
    }
 

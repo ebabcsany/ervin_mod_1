@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "milk",
+  "ingredients": [
+    {
+      "item": "ervin_mod_1:tnuzn"
+    }
+  ],
+  "result": {
+    "item": "ervin_mod_1:tnuzt",
+    "count": 25
+  }
+}

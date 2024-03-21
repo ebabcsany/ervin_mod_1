@@ -93,7 +93,7 @@ public class TieredBlockItem_1 extends BlockItem {
          return this;
       }
 
-      public Properties isBurnable() {
+      public Properties isImmuneToFire() {
          this.burnable = true;
          return this;
       }

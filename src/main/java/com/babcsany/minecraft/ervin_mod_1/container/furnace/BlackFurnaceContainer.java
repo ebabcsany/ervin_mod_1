@@ -5,6 +5,7 @@ import com.babcsany.minecraft.ervin_mod_1.init.container.FurnaceContainerInit;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.crafting.IRecipeType;
+import net.minecraft.item.crafting.RecipeBookCategory;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.IIntArray;
 
@@ -19,5 +20,10 @@ public class BlackFurnaceContainer extends AbstractBlackFurnaceContainer {
 
    public BlackFurnaceContainer(int id, PlayerInventory playerInventoryIn, PacketBuffer packetBuffer) {
       super(FurnaceContainerInit.BLACK_FURNACE.get(), IRecipeType.SMELTING, id, playerInventoryIn);
+   }
+
+   @Override
+   public RecipeBookCategory func_241850_m() {
+      return null;
    }
 }

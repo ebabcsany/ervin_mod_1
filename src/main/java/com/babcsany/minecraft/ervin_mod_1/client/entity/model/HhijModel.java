@@ -68,7 +68,7 @@ public class HhijModel<T extends HhijEntity> extends TintedAgeableModel<T> {
    }
 
    public void setLivingAnimations(T entityIn, float limbSwing, float limbSwingAmount, float partialTick) {
-      if (entityIn.func_233678_J__()) {
+      if (entityIn.isAngry()) {
          this.tail.rotateAngleY = 0.0F;
       } else {
          this.tail.rotateAngleY = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;

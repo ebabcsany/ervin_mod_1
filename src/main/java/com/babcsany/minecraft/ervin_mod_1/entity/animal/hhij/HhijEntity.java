@@ -9,7 +9,6 @@ import com.babcsany.minecraft.ervin_mod_1.init.item.food.isBurnableFoodItemInit;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.material.MaterialColor;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -49,19 +48,17 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
 
 import javax.annotation.Nullable;
-import java.util.EnumSet;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 import java.util.function.Predicate;
 
 public class HhijEntity extends HhijTameableEntity implements IAngerable {
    public final NonNullList<ItemStack> inventory = NonNullList.withSize(10000, ItemStack.EMPTY);
    private static final DataParameter<Boolean> BEGGING = EntityDataManager.createKey(HhijEntity.class, DataSerializers.BOOLEAN);
    private static final DataParameter<Integer> COLLAR_COLOR = EntityDataManager.createKey(HhijEntity.class, DataSerializers.VARINT);
-   private static final DataParameter<Integer> field_234232_bz_ = EntityDataManager.createKey(HhijEntity.class, DataSerializers.VARINT);
+   private static final DataParameter<Integer> ANGER_TIME = EntityDataManager.createKey(HhijEntity.class, DataSerializers.VARINT);
    private static final Predicate<ItemEntity> TRUSTED_TARGET_SELECTOR = (p_213489_0_) -> !p_213489_0_.cannotPickup() && p_213489_0_.isAlive();
    public static final Map<Item, Integer> FOOD_VALUES = ImmutableMap.of(FoodItemInit.COOKED_STEEF.get(), 4, FoodItemInit.STEEF.get(), 3, isBurnableFoodItemInit.TIRKS.get(), 20, isBurnableFoodItemInit.VIRK.get(), 50, FoodItemInit.VOLMINT.get(), 1);
+   public static final Map<Item, Integer> FOOD_VALUES1 = itemIntegerMapOf(FoodItemInit.COOKED_STEEF.get(), 4, FoodItemInit.STEEF.get(), 3, isBurnableFoodItemInit.TIRKS.get(), 20, isBurnableFoodItemInit.VIRK.get(), 50, FoodItemInit.VOLMINT.get(), 1, FoodItemInit.MRONT.get(), 10);
    private final List<NonNullList<ItemStack>> allInventories = ImmutableList.of(this.inventory);
    private float headRotationCourse;
    private float headRotationCourseOld;
@@ -71,7 +68,7 @@ public class HhijEntity extends HhijTameableEntity implements IAngerable {
    private boolean isShaking;
    private float timeWolfIsShaking;
    private float prevTimeWolfIsShaking;
-   private static final RangedInteger field_234230_bG_ = TickRangeConverter.convertRange(20, 39);
+   private static final RangedInteger ANGER_TIME_RANGE = TickRangeConverter.convertRange(20, 39);
    private final Inventory hhijInventory = new Inventory(10000);
    private UUID field_234231_bH_;
    private int eatTicks;
@@ -108,6 +105,21 @@ public class HhijEntity extends HhijTameableEntity implements IAngerable {
       this.targetSelector.addGoal(1, new ResetAngerGoal<>(this, true));
    }
 
+   private static Map<Item, Integer> itemIntegerMapOf(Object... objects) {
+      HashMap<Item, Integer> itemIntegerHashMap = new HashMap<>();
+      for (int i = 0; i < objects.length; i += 2) {
+         Item item = (Item) objects[i];
+         int value = 0;
+         if (i == objects.length - 2) {
+            if (i + 1 == objects.length - 1) value = (int) objects[i + 1];
+         } else {
+            value = (int) objects[i + 1];
+         }
+         itemIntegerHashMap.put(item, value);
+      }
+      return ImmutableMap.copyOf(itemIntegerHashMap);
+   }
+
    public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
       return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.3F).createMutableAttribute(Attributes.MAX_HEALTH, 20000.0D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 5000.0D);
    }
@@ -122,7 +134,7 @@ public class HhijEntity extends HhijTameableEntity implements IAngerable {
       super.registerData();
       this.dataManager.register(BEGGING, false);
       this.dataManager.register(COLLAR_COLOR, DyeColor.LIGHT_GRAY.getId());
-      this.dataManager.register(field_234232_bz_, 0);
+      this.dataManager.register(ANGER_TIME, 0);
    }
 
    protected void playStepSound(BlockPos pos, BlockState blockIn) {
@@ -209,7 +221,7 @@ public class HhijEntity extends HhijTameableEntity implements IAngerable {
    }
 
    protected SoundEvent getAmbientSound() {
-      if (this.func_233678_J__()) {
+      if (this.isAngry()) {
          return SoundEvents.ENTITY_GENERIC_HURT;
       } else if (this.rand.nextInt(3) == 0) {
          return this.isTamed() && this.getHealth() < 30000.0F ? SoundEvents.ENTITY_GENERIC_HURT : SoundEvents.AMBIENT_CAVE;
@@ -516,11 +528,11 @@ public class HhijEntity extends HhijTameableEntity implements IAngerable {
       this.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(5000.0D);
    }
 
-   public ActionResultType func_230254_b_(PlayerEntity player, Hand p_230254_2_) {
+   public ActionResultType getEntityInteractionResult(PlayerEntity player, Hand p_230254_2_) {
       ItemStack itemstack = player.getHeldItem(p_230254_2_);
       Item item = itemstack.getItem();
       if (this.world.isRemote) {
-         boolean flag = this.isOwner(player) || this.isTamed() || item == ItemInit.HTRAW.get() && !this.isTamed() && !this.func_233678_J__();
+         boolean flag = this.isOwner(player) || this.isTamed() || item == ItemInit.HTRAW.get() && !this.isTamed() && !this.isAngry();
          return flag ? ActionResultType.CONSUME : ActionResultType.PASS;
       } else {
          if (this.isTamed()) {
@@ -534,7 +546,7 @@ public class HhijEntity extends HhijTameableEntity implements IAngerable {
             }
 
             if (!(item instanceof DyeItem)) {
-               ActionResultType actionresulttype = super.func_230254_b_(player, p_230254_2_);
+               ActionResultType actionresulttype = super.getEntityInteractionResult(player, p_230254_2_);
                if ((!actionresulttype.isSuccessOrConsume() || this.isChild()) && this.isOwner(player)) {
                   this.func_233687_w_(!this.func_233685_eM_());
                   this.isJumping = false;
@@ -555,7 +567,7 @@ public class HhijEntity extends HhijTameableEntity implements IAngerable {
 
                return ActionResultType.SUCCESS;
             }
-         } else if (item == ItemInit.HTRAW.get() && !this.func_233678_J__()) {
+         } else if (item == ItemInit.HTRAW.get() && !this.isAngry()) {
             if (!player.abilities.isCreativeMode) {
                itemstack.shrink(100);
             }
@@ -573,7 +585,7 @@ public class HhijEntity extends HhijTameableEntity implements IAngerable {
             return ActionResultType.SUCCESS;
          }
 
-         return super.func_230254_b_(player, p_230254_2_);
+         return super.getEntityInteractionResult(player, p_230254_2_);
       }
    }
 
@@ -599,7 +611,7 @@ public class HhijEntity extends HhijTameableEntity implements IAngerable {
 
    @OnlyIn(Dist.CLIENT)
    public float getTailRotation() {
-      if (this.func_233678_J__()) {
+      if (this.isAngry()) {
          return 1.5393804F;
       } else {
          return this.isTamed() ? (0.55F - (this.getMaxHealth() - this.getHealth()) * 20.0F) * (float)Math.PI : ((float)Math.PI / 5F);
@@ -623,15 +635,15 @@ public class HhijEntity extends HhijTameableEntity implements IAngerable {
    }
 
    public int getAngerTime() {
-      return this.dataManager.get(field_234232_bz_);
+      return this.dataManager.get(ANGER_TIME);
    }
 
    public void setAngerTime(int time) {
-      this.dataManager.set(field_234232_bz_, time);
+      this.dataManager.set(ANGER_TIME, time);
    }
 
    public void func_230258_H__() {
-      this.setAngerTime(field_234230_bG_.func_233018_a_(this.rand));
+      this.setAngerTime(ANGER_TIME_RANGE.getRandomWithinRange(this.rand));
    }
 
    @Nullable
@@ -710,7 +722,7 @@ public class HhijEntity extends HhijTameableEntity implements IAngerable {
    }
 
    public boolean canBeLeashedTo(PlayerEntity player) {
-      return !this.func_233678_J__() && super.canBeLeashedTo(player);
+      return !this.isAngry() && super.canBeLeashedTo(player);
    }
 
    @OnlyIn(Dist.CLIENT)

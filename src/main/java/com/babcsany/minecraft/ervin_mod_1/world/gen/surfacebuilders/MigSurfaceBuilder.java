@@ -2,11 +2,10 @@ package com.babcsany.minecraft.ervin_mod_1.world.gen.surfacebuilders;
 
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.unused.l.UnusedBlockInit;
+import com.babcsany.minecraft.ervin_mod_1.init.unused.UnusedBlockInit;
 import com.babcsany.minecraft.init.BlockInit;
 import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.IChunk;
@@ -38,7 +37,7 @@ public class MigSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig> {
          BlockState blockState2 = chunkIn.getBlockState(blockPos$mutable);
          if (blockState2.isAir()) {
             i = -1;
-         } else if (blockState2.isIn(defaultBlock.getBlock())) {
+         } else if (blockState2.matchesBlock(defaultBlock.getBlock())) {
             if (i == -1) {
                if (j <= 0) {
                   blockstate = isBurnableBlockItemInit.LEAT_BLOCK.get().getDefaultState();
@@ -62,7 +61,7 @@ public class MigSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig> {
                if (i1 >= sealevel - 1) {
                   chunkIn.setBlockState(blockPos$mutable, blockstate, false);
                } else if (i1 < sealevel - 7 - j) {
-                  blockstate = UnusedBlockInit.getBlock("air").getDefaultState();
+                  blockstate = UnusedBlockInit.get("air").get().getDefaultState();
                   blockState1 = defaultBlock;
                   chunkIn.setBlockState(blockPos$mutable, bottom, false);
                } else {
@@ -71,9 +70,9 @@ public class MigSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig> {
             } else if (i > 0) {
                --i;
                chunkIn.setBlockState(blockPos$mutable, blockState1, false);
-               if (i == 0 && blockState1.isIn(BlockItemInit.FRIT_BLOCK.get()) && j > 1) {
+               if (i == 0 && blockState1.matchesBlock(BlockItemInit.FRIT_BLOCK.get()) && j > 1) {
                   i = random.nextInt(4) + Math.max(0, i1 - 63);
-                  blockState1 = blockState1.isIn(BlockItemInit.KALT_BLOCK.get()) ? isBurnableBlockItemInit.SRIUNK_BLOCK.get().getDefaultState() : BlockItemInit.FRIT_BLOCK.get().getDefaultState();
+                  blockState1 = blockState1.matchesBlock(BlockItemInit.KALT_BLOCK.get()) ? isBurnableBlockItemInit.SRIUNK_BLOCK.get().getDefaultState() : BlockItemInit.FRIT_BLOCK.get().getDefaultState();
                }
             }
          }

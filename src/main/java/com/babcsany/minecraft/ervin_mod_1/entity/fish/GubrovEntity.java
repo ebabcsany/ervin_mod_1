@@ -1,5 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.fish;
 
+import com.babcsany.minecraft.ervin_mod_1.entity.fish.gubrov.AbstractGroupGubrovEntity;
 import com.babcsany.minecraft.ervin_mod_1.init.item.spawn_egg.ModSpawnEggItemInit;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
@@ -12,7 +13,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
 
-public class GubrovEntity extends AbstractGroupFishEntity {
+public class GubrovEntity extends AbstractGroupGubrovEntity {
    public GubrovEntity(EntityType<? extends GubrovEntity> p_i50279_1_, World p_i50279_2_) {
       super(p_i50279_1_, p_i50279_2_);
    }

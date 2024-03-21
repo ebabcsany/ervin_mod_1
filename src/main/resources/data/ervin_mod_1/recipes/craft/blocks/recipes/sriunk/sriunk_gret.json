@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "ervin_mod_1:sriunk",
+  "pattern": [
+    "###",
+    "###",
+    "###",
+    " S ",
+    " S "
+  ],
+  "key": {
+    "#": {
+      "item": "ervin_mod_1:sriunk"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:sriunk_gret",
+    "count": 1
+  }
+}

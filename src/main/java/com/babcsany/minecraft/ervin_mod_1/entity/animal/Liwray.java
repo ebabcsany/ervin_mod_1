@@ -24,6 +24,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 public class Liwray extends AnimalEntity {
     public float wingRotation;
@@ -103,8 +104,8 @@ public class Liwray extends AnimalEntity {
         this.playSound(SoundEvents.ENTITY_CHICKEN_STEP, 0.15F, 1.0F);
     }
 
-    public Liwray createChild(AgeableEntity p_90011_1_) {
-        return EntityInit.LIWRAY.get().create(this.world);
+    public Liwray createChild(ServerWorld serverWorld, AgeableEntity p_90011_1_) {
+        return EntityInit.LIWRAY.get().create(serverWorld);
     }
 
     protected int getExperiencePoints(PlayerEntity p_70693_1_) {

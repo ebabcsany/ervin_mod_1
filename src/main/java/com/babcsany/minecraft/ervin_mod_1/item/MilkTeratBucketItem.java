@@ -52,7 +52,7 @@ public class MilkTeratBucketItem extends Item {
     }
 
     public ActionResult<ItemStack> onItemRightClick(World p_77659_1_, PlayerEntity p_77659_2_, Hand p_77659_3_) {
-        return DrinkHelper.func_234707_a_(p_77659_1_, p_77659_2_, p_77659_3_);
+        return DrinkHelper.startDrinking(p_77659_1_, p_77659_2_, p_77659_3_);
     }
 
     public ICapabilityProvider initCapabilities(ItemStack p_initCapabilities_1_, @Nullable CompoundNBT p_initCapabilities_2_) {

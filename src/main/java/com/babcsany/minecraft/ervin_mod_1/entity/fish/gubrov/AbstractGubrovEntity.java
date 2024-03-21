@@ -52,7 +52,7 @@ public abstract class AbstractGubrovEntity extends WaterMobEntity {
    }
 
    public static boolean func_223363_b(EntityType<? extends AbstractGubrovEntity> type, IWorld worldIn, SpawnReason reason, BlockPos p_223363_3_, Random randomIn) {
-      return worldIn.getBlockState(p_223363_3_).isIn(Blocks.WATER) && worldIn.getBlockState(p_223363_3_.up()).isIn(Blocks.WATER);
+      return worldIn.getBlockState(p_223363_3_).matchesBlock(Blocks.WATER) && worldIn.getBlockState(p_223363_3_.up()).matchesBlock(Blocks.WATER);
    }
 
    public boolean canDespawn(double distanceToClosestPlayer) {
@@ -135,7 +135,7 @@ public abstract class AbstractGubrovEntity extends WaterMobEntity {
       super.livingTick();
    }
 
-   protected ActionResultType func_230254_b_(PlayerEntity p_230254_1_, Hand p_230254_2_) {
+   protected ActionResultType getEntityInteractionResult(PlayerEntity p_230254_1_, Hand p_230254_2_) {
       ItemStack itemstack = p_230254_1_.getHeldItem(p_230254_2_);
       if (itemstack.getItem() == Items.WATER_BUCKET && this.isAlive()) {
          this.playSound(SoundEvents.ITEM_BUCKET_FILL_FISH, 2.0F, 2.0F);
@@ -155,7 +155,7 @@ public abstract class AbstractGubrovEntity extends WaterMobEntity {
          this.remove();
          return ActionResultType.func_233537_a_(this.world.isRemote);
       } else {
-         return super.func_230254_b_(p_230254_1_, p_230254_2_);
+         return super.getEntityInteractionResult(p_230254_1_, p_230254_2_);
       }
    }
 

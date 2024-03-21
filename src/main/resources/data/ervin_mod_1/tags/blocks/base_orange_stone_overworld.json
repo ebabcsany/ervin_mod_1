@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "ervin_mod_1:stone/stones/orange_stone",
+    "#minecraft:base_stone_overworld"
+  ]
+}

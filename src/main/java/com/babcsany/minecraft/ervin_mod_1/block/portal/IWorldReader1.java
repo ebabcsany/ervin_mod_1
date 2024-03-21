@@ -51,7 +51,7 @@ public interface IWorldReader1 extends IBlockDisplayReader, ICollisionReader, Bi
 
    @OnlyIn(Dist.CLIENT)
    default int getBlockColor(BlockPos blockPosIn, ColorResolver colorResolverIn) {
-      return colorResolverIn.getColor(this.getBiome(blockPosIn), (double)blockPosIn.getX(), (double)blockPosIn.getZ());
+      return colorResolverIn.getColor(this.getBiome(blockPosIn), (double) blockPosIn.getX(), (double) blockPosIn.getZ());
    }
 
    default Biome getNoiseBiome(int x, int y, int z) {
@@ -88,7 +88,7 @@ public interface IWorldReader1 extends IBlockDisplayReader, ICollisionReader, Bi
          if (!this.canSeeSky(blockpos)) {
             return false;
          } else {
-            for(BlockPos blockpos1 = blockpos.down(); blockpos1.getY() > pos.getY(); blockpos1 = blockpos1.down()) {
+            for (BlockPos blockpos1 = blockpos.down(); blockpos1.getY() > pos.getY(); blockpos1 = blockpos1.down()) {
                BlockState blockstate = this.getBlockState(blockpos1);
                if (blockstate.getOpacity(this, blockpos1) > 0 && !blockstate.getMaterial().isLiquid()) {
                   return false;
@@ -102,7 +102,7 @@ public interface IWorldReader1 extends IBlockDisplayReader, ICollisionReader, Bi
 
    @Deprecated
    default float getBrightness(BlockPos pos) {
-      return this.func_230315_m_().func_236021_a_(this.getLight(pos));
+      return this.func_230315_m_().getAmbientLight(this.getLight(pos));
    }
 
    default int getStrongPower(BlockPos pos, Direction direction) {
@@ -142,9 +142,9 @@ public interface IWorldReader1 extends IBlockDisplayReader, ICollisionReader, Bi
       int j1 = MathHelper.ceil(bb.maxZ);
       BlockPos.Mutable blockpos$mutable = new BlockPos.Mutable();
 
-      for(int k1 = i; k1 < j; ++k1) {
-         for(int l1 = k; l1 < l; ++l1) {
-            for(int i2 = i1; i2 < j1; ++i2) {
+      for (int k1 = i; k1 < j; ++k1) {
+         for (int l1 = k; l1 < l; ++l1) {
+            for (int i2 = i1; i2 < j1; ++i2) {
                BlockState blockstate = this.getBlockState(blockpos$mutable.setPos(k1, l1, i2));
                if (!blockstate.getFluidState().isEmpty()) {
                   return true;
@@ -186,8 +186,8 @@ public interface IWorldReader1 extends IBlockDisplayReader, ICollisionReader, Bi
          toX = toX >> 4;
          toZ = toZ >> 4;
 
-         for(int i = fromX; i <= toX; ++i) {
-            for(int j = fromZ; j <= toZ; ++j) {
+         for (int i = fromX; i <= toX; ++i) {
+            for (int j = fromZ; j <= toZ; ++j) {
                if (!this.chunkExists(i, j)) {
                   return false;
                }

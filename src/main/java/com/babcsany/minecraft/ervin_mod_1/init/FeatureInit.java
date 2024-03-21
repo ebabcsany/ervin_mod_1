@@ -17,5 +17,5 @@ public class FeatureInit {
 
     //public static final RegistryObject<Feature<NoFeatureConfig>> PILLAGER_OUTPOST = FEATURES.register("pillager_outpost", () -> new PillagerOutpostStructure(NoFeatureConfig.field_236558_a_));
     //public static final RegistryObject<Feature<OreFeatureConfig1>> ORE = FEATURES.register("ore", new OreFeature1(OreFeatureConfig1::deserialize));
-    public static final RegistryObject<Feature<BigMushroomFeatureConfig>> HUGE_SCRAFTH_MUSHROOM = FEATURES.register("huge_scrafth_mushroom", () -> new BigScrafthMushroomFeature(BigMushroomFeatureConfig.field_236528_a_));
+    public static final RegistryObject<Feature<BigMushroomFeatureConfig>> HUGE_SCRAFTH_MUSHROOM = FEATURES.register("huge_scrafth_mushroom", () -> new BigScrafthMushroomFeature(BigMushroomFeatureConfig.CODEC));
 }

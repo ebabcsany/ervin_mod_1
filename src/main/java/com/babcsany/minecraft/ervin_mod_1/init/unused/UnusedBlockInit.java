@@ -6,44 +6,55 @@ import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraftforge.api.distmarker.Dist;
+import net.minecraft.item.BlockItem;
 import net.minecraftforge.common.ToolType;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.ArrayList;
+import java.util.function.Supplier;
 
 public class UnusedBlockInit {
 
     public static final DeferredRegister<Block> BLOCK_DEFERRED_REGISTER = DeferredRegister.create(ForgeRegistries.BLOCKS, Ervin_mod_1.MOD_ID);
-    private static final ArrayList<RegistryObject<Block>> UNUSED_BLOCKS = new ArrayList<>();
+
+    public static final int REGISTRY_OBJECTS_COUNT = 2;
     private static RegistryObject<Block> LAST_BLOCK;
-    private static final ArrayList<String> UNUSED_BLOCKS_PATHS = new ArrayList<>();
+    private static final ArrayList<String> BLOCK_PATHS = new ArrayList<>(REGISTRY_OBJECTS_COUNT);
+    private static final ArrayList<RegistryObject<Block>> REGISTRY_OBJECTS = registryObjects();
 
-    public static void setUnusedBlocks() {
-        BLOCK_DEFERRED_REGISTER.register(FMLJavaModLoadingContext.get().getModEventBus());
-        getBlock("air", new Block(Block.Properties.create(Material.AIR).doesNotBlockMovement().noDrops()));
-        setBlockRequiresTool("tgruhuft", Material.CAKE, 4, 12354, 15365, ToolTypeInit.PHISK, SoundType.CHAIN);
+    private static ArrayList<RegistryObject<Block>> registryObjects() {
+        ArrayList<RegistryObject<Block>> registryObjectsArrayList = new ArrayList<>(REGISTRY_OBJECTS_COUNT);
+        registryObjectsArrayList.add(registryObject("air", () -> new Block(Block.Properties.create(Material.AIR).doesNotBlockMovement().noDrops())));
+        registryObjectsArrayList.add(registryObject("tgruhuft", () -> setBlockRequiresTool(Material.CAKE, 4, 12354, 15365, ToolTypeInit.PHISK, SoundType.CHAIN)));
+        return registryObjectsArrayList;
     }
 
-    public static <T extends Block> RegistryObject<Block> getBlock(String name, T block) {
-        final RegistryObject<Block> lastBlock = BLOCK_DEFERRED_REGISTER.register(path(name), () -> block);
-        LAST_BLOCK = lastBlock;
-        UNUSED_BLOCKS.add(lastBlock);
-        UNUSED_BLOCKS_PATHS.add(lastBlock.getId().getPath());
-        return lastBlock;
+    private static RegistryObject<Block> unusedBlockRockRegistryObject(String name) {
+        return unusedBlockRegistryObject(name, Material.ROCK);
     }
 
-    public static <T extends AbstractBlock> void setBlockFrom(String name, T abstractBlock) {
-        getBlock(name, new Block(AbstractBlock.Properties.from(abstractBlock)));
+    private static RegistryObject<Block> unusedBlockRegistryObject(String name, Material material) {
+        return registryObject(name, () -> new Block(AbstractBlock.Properties.create(material)));
     }
 
-    public static void setBlockRequiresTool(String name, Material material, int harvestLevel, int hardnessIn, int resistanceIn, ToolType harvestTool, SoundType sound) {
-        getBlock(name, new Block(AbstractBlock.Properties.create(material).setRequiresTool().harvestLevel(harvestLevel).hardnessAndResistance(hardnessIn, resistanceIn).harvestTool(harvestTool).sound(sound)));
+    private static <T extends Block> RegistryObject<Block> register(String name, Supplier<T> supplier) {
+        return registryObject(name, supplier);
+    }
+
+    private static <T extends Block> RegistryObject<Block> registryObject(String name, Supplier<T> supplier) {
+        return registryObject(BLOCK_DEFERRED_REGISTER, name, supplier);
+    }
+
+    public static <T extends Block> RegistryObject<Block> registryObject(DeferredRegister<Block> deferredRegister, String name, Supplier<T> supplier) {
+        String path = path(name);
+        BLOCK_PATHS.add(path);
+        return LAST_BLOCK = deferredRegister.register(path, supplier);
+    }
+
+    public static Block setBlockRequiresTool(Material material, int harvestLevel, int hardnessIn, int resistanceIn, ToolType harvestTool, SoundType sound) {
+        return new Block(AbstractBlock.Properties.create(material).setRequiresTool().harvestLevel(harvestLevel).hardnessAndResistance(hardnessIn, resistanceIn).harvestTool(harvestTool).sound(sound));
     }
 
     public static String path(String name) {
@@ -51,20 +62,25 @@ public class UnusedBlockInit {
         return string + "/" + name;
     }
 
-    public static Block getBlock(String name) {
-        return get(name).get();
-    }
-
     public static RegistryObject<Block> get(String name) {
-        int index = UNUSED_BLOCKS_PATHS.indexOf(path(name));
+        int index = BLOCK_PATHS.indexOf(path(name));
         return get(index);
     }
 
     public static RegistryObject<Block> get(int index) {
-        return UNUSED_BLOCKS.get(index);
+        return REGISTRY_OBJECTS.get(index);
+    }
+
+    public static RegistryObject<Block> getLast() {
+        return LAST_BLOCK;
+    }
+
+    @Deprecated
+    public static Block getBlock(String name) {
+        return get(name).get();
     }
 
     public static Block getLastBlock() {
-        return LAST_BLOCK.get();
+        return getLast().get();
     }
 }

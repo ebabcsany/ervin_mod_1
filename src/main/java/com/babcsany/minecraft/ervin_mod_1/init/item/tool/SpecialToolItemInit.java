@@ -16,5 +16,5 @@ public class SpecialToolItemInit {
 
     public static final DeferredRegister<Item> BURNABLE_ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Ervin_mod_1.MOD_ID);
 
-    public static final RegistryObject<Item> CRAINT = BURNABLE_ITEMS.register("craint", () -> new Craint(ModItemTier.CRAINT,320, (new TieredItem_1.Properties()).isBurnable()));
+    public static final RegistryObject<Item> CRAINT = BURNABLE_ITEMS.register("craint", () -> new Craint(ModItemTier.CRAINT,320, (new TieredItem_1.Properties()).isImmuneToFire()));
 }

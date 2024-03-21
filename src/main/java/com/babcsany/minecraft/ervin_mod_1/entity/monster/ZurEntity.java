@@ -2,9 +2,9 @@ package com.babcsany.minecraft.ervin_mod_1.entity.monster;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.ZurTradeWithPlayerGoal;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.AbstractZurEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.trigger.CriteriaTriggers1;
+import com.babcsany.minecraft.ervin_mod_1.trigger.ModCriteriaTriggers;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.spawn_egg.ModSpawnEggItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.tool.isBurnableSpecialToolItemInit;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
@@ -16,7 +16,6 @@ import net.minecraft.entity.ai.goal.LookRandomlyGoal;
 import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.monster.CreeperEntity;
-import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.monster.ZombifiedPiglinEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -26,15 +25,12 @@ import net.minecraft.item.Items;
 import net.minecraft.item.MerchantOffer;
 import net.minecraft.item.MerchantOffers;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.stats.Stats;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nullable;
 
@@ -53,12 +49,14 @@ public class ZurEntity extends AbstractZurEntity {
     }
 
     protected void applyEntityAI() {
-        this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setCallsForHelp(ZombifiedPiglinEntity.class));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
+        if (this.world.getDifficulty() != Difficulty.PEACEFUL && !this.canEquip(isBurnableItemInit.VIRKT.get())) {
+            this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setCallsForHelp(ZombifiedPiglinEntity.class));
+            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
+        }
     }
 
     public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
-        return MonsterEntity.func_234295_eP_().createMutableAttribute(Attributes.FOLLOW_RANGE, 350.0).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.023000000417232513).createMutableAttribute(Attributes.ATTACK_DAMAGE, 30.0).createMutableAttribute(Attributes.ARMOR, 20.0).createMutableAttribute(Attributes.ZOMBIE_SPAWN_REINFORCEMENTS);
+        return MobEntity.func_233666_p_().createMutableAttribute(Attributes.FOLLOW_RANGE, 350.0).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.123000000417232513).createMutableAttribute(Attributes.ATTACK_DAMAGE, 30.0).createMutableAttribute(Attributes.ARMOR, 20.0).createMutableAttribute(Attributes.ZOMBIE_SPAWN_REINFORCEMENTS);
     }
 
     public void tick() {
@@ -151,9 +149,14 @@ public class ZurEntity extends AbstractZurEntity {
         this.livingSoundTime = -this.getTalkInterval();
         this.onZurTrade(offer);
         if (this.getCustomer() instanceof ServerPlayerEntity) {
-            CriteriaTriggers1.ZUR_TRADE.test((ServerPlayerEntity) this.getCustomer(), this, offer.getSellingStack());
+            ModCriteriaTriggers.ZUR_TRADE.test((ServerPlayerEntity) this.getCustomer(), this, offer.getSellingStack());
         }
 
+    }
+
+    @Override
+    public boolean hasXPBar() {
+        return true;
     }
 
     public CreatureAttribute getCreatureAttribute() {
@@ -187,8 +190,8 @@ public class ZurEntity extends AbstractZurEntity {
 
     @Nullable
     @Override
-    public AgeableEntity createChild(AgeableEntity ageableEntity) {
-        return EntityInit.ZUR_ENTITY.get().create(this.world);
+    public AgeableEntity createChild(ServerWorld serverWorld, AgeableEntity ageableEntity) {
+        return EntityInit.ZUR_ENTITY.get().create(serverWorld);
     }
 
     public void writeAdditional(CompoundNBT compound) {
@@ -222,7 +225,7 @@ public class ZurEntity extends AbstractZurEntity {
         super.dropSpecialItems(p_213333_1_, p_213333_2_, p_213333_3_);
         Entity entity = p_213333_1_.getTrueSource();
         if (entity instanceof CreeperEntity) {
-            CreeperEntity creeperentity = (CreeperEntity)entity;
+            CreeperEntity creeperentity = (CreeperEntity) entity;
             if (creeperentity.ableToCauseSkullDrop()) {
                 creeperentity.incrementDroppedSkulls();
                 ItemStack itemstack = this.getSkullDrop();
@@ -237,5 +240,4 @@ public class ZurEntity extends AbstractZurEntity {
     protected ItemStack getSkullDrop() {
         return new ItemStack(isBurnableSpecialToolItemInit.THUFR.get());
     }
-
 }

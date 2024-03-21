@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shapeless",
+  "group": "grass",
   "ingredients": [
     {
       "item": "ervin_mod_1:truzk"

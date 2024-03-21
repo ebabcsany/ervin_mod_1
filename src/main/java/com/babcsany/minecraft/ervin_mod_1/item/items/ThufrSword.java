@@ -23,7 +23,7 @@ public class ThufrSword extends SwordItem {
     }
 
     public float getDestroySpeed(ItemStack p_150893_1_, BlockState p_150893_2_) {
-        if (p_150893_2_.isIn(Blocks.COBWEB)) {
+        if (p_150893_2_.matchesBlock(Blocks.COBWEB)) {
             return 15.0F;
         } else {
             Material lvt_3_1_ = p_150893_2_.getMaterial();

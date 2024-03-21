@@ -46,11 +46,16 @@ public class ExampleRuinedPortalFeature extends Feature<NoFeatureConfig> {
         super(config);
     }
 
+    @Override
+    public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config) {
+        return false;
+    }
+
     public boolean place(IWorld worldIn, ChunkGenerator generator, Random rand,
                          BlockPos pos, NoFeatureConfig config) {
         Random random = worldIn.getRandom();
         Rotation rotation = Rotation.values()[random.nextInt(Rotation.values().length)];
-        Template template = ((ServerWorld) worldIn.getWorld()).getStructureTemplateManager()
+        Template template = ((ServerWorld) worldIn).getStructureTemplateManager()
                 .getTemplateDefaulted(FOSSILS[random.nextInt(FOSSILS.length)]);
         ChunkPos chunkpos = new ChunkPos(pos);
         PlacementSettings placementsettings = (new PlacementSettings()).setRotation(rotation)
@@ -76,10 +81,5 @@ public class ExampleRuinedPortalFeature extends Feature<NoFeatureConfig> {
         template.func_237150_a_(blockpos1, rotation, blockpos, Mirror.FRONT_BACK);
         placementsettings.removeProcessor(integrityprocessor);
         return true;
-    }
-
-    @Override
-    public boolean func_230362_a_(ISeedReader p_230362_1_, StructureManager p_230362_2_, ChunkGenerator p_230362_3_, Random p_230362_4_, BlockPos p_230362_5_, NoFeatureConfig p_230362_6_) {
-        return false;
     }
 }

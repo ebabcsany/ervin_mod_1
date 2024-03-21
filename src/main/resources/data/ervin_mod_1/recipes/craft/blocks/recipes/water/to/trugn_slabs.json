@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "water",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "ervin_mod_1:trugn"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:trugn_slab",
+    "count": 6
+  }
+}

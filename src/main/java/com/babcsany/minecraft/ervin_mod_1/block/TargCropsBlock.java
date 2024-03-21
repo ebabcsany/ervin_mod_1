@@ -5,8 +5,12 @@ import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.RavagerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.state.IntegerProperty;
+import net.minecraft.state.Property;
 import net.minecraft.state.StateContainer;
+import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.util.Direction;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -18,12 +22,15 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.ForgeHooks;
+import net.minecraftforge.common.IPlantable;
+import net.minecraftforge.event.ForgeEventFactory;
 
 import java.util.Random;
 
 public class TargCropsBlock extends BushBlock implements IGrowable {
    public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 43);
-   private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[]{
+   private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[] {
            Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D),
            Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D),
            Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D),
@@ -70,9 +77,9 @@ public class TargCropsBlock extends BushBlock implements IGrowable {
            Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D),
    };
 
-   public TargCropsBlock(Properties builder) {
+   public TargCropsBlock(AbstractBlock.Properties builder) {
       super(builder);
-      this.setDefaultState(this.stateContainer.getBaseState().with(this.getAgeProperty(), 0));
+      this.setDefaultState(this.stateContainer.getBaseState().with(this.getAgeProperty(), Integer.valueOf(0)));
    }
 
    @Override
@@ -81,7 +88,7 @@ public class TargCropsBlock extends BushBlock implements IGrowable {
    }
 
    protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos) {
-      return state.getBlock() == Blocks.FARMLAND;
+      return state.matchesBlock(Blocks.FARMLAND);
    }
 
    public IntegerProperty getAgeProperty() {
@@ -97,22 +104,31 @@ public class TargCropsBlock extends BushBlock implements IGrowable {
    }
 
    public BlockState withAge(int age) {
-      return this.getDefaultState().with(this.getAgeProperty(), age);
+      return this.getDefaultState().with(this.getAgeProperty(), Integer.valueOf(age));
    }
 
    public boolean isMaxAge(BlockState state) {
       return state.get(this.getAgeProperty()) >= this.getMaxAge();
    }
 
-   @Override
-   public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
-      super.tick(state, worldIn, pos, rand);
+   /**
+    * Returns whether or not this block is of a type that needs random ticking. Called for ref-counting purposes by
+    * ExtendedBlockStorage in order to broadly cull a chunk from the random chunk update list for efficiency's sake.
+    */
+   public boolean ticksRandomly(BlockState state) {
+      return !this.isMaxAge(state);
+   }
+
+   /**
+    * Performs a random tick on a block.
+    */
+   public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
       if (!worldIn.isAreaLoaded(pos, 1)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light
       if (worldIn.getLightSubtracted(pos, 0) >= 9) {
          int i = this.getAge(state);
          if (i < this.getMaxAge()) {
             float f = getGrowthChance(this, worldIn, pos);
-            if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos, state, rand.nextInt((int)(25.0F / f) + 1) == 0)) {
+            if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos, state, random.nextInt((int)(25.0F / f) + 1) == 0)) {
                worldIn.setBlockState(pos, this.withAge(i + 1), 2);
                net.minecraftforge.common.ForgeHooks.onCropsGrowPost(worldIn, pos, state);
             }
@@ -143,9 +159,9 @@ public class TargCropsBlock extends BushBlock implements IGrowable {
          for(int j = -1; j <= 1; ++j) {
             float f1 = 0.0F;
             BlockState blockstate = worldIn.getBlockState(blockpos.add(i, 0, j));
-            if (blockstate.canSustainPlant(worldIn, blockpos.add(i, 0, j), net.minecraft.util.Direction.UP, (net.minecraftforge.common.IPlantable)blockIn)) {
+            if (blockstate.canSustainPlant(worldIn, blockpos.add(i, 0, j), net.minecraft.util.Direction.UP, (net.minecraftforge.common.IPlantable) blockIn)) {
                f1 = 1.0F;
-               if (blockstate.isFertile(worldIn, blockpos.add(i, 0, j))) {
+               if (blockstate.isFertile(worldIn, pos.add(i, 0, j))) {
                   f1 = 3.0F;
                }
             }
@@ -211,16 +227,6 @@ public class TargCropsBlock extends BushBlock implements IGrowable {
 
    public void grow(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state) {
       this.grow(worldIn, pos, state);
-   }
-
-   public boolean propagatesSkylightDown(BlockState state, IBlockReader reader, BlockPos pos) {
-      return true;
-   }
-
-   @Override
-   @OnlyIn(Dist.CLIENT)
-   public float getAmbientOcclusionLightValue(BlockState state, IBlockReader worldIn, BlockPos pos) {
-      return 1.0F;
    }
 
    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {

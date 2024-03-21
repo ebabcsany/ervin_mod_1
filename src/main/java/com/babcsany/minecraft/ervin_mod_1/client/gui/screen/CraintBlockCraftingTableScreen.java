@@ -59,7 +59,7 @@ public class CraintBlockCraftingTableScreen extends ContainerScreen<CraintBlockC
          this.recipeBookGui.func_230477_a_(matrixStack, this.guiLeft, this.guiTop, true, partialTicks);
       }
 
-      this.func_230459_a_(matrixStack, mouseX, mouseY);
+      this.renderHoveredTooltip(matrixStack, mouseX, mouseY);
       this.recipeBookGui.func_238924_c_(matrixStack, this.guiLeft, this.guiTop, mouseX, mouseY);
    }
 

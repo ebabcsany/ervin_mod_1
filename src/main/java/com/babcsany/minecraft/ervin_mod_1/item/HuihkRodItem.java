@@ -1,7 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.item;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.projectile.HuihkEntity;
 import net.minecraft.enchantment.IVanishable;
+import net.minecraft.entity.projectile.HuihkEntity;
 import net.minecraft.item.Item;
 
 import javax.annotation.Nullable;

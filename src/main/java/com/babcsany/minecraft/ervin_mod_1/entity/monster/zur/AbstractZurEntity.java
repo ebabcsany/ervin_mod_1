@@ -1,16 +1,12 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.monster.zur;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.hhij.HhijBreedGoal;
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.zur.ZurBreedGoal;
-import com.babcsany.minecraft.ervin_mod_1.entity.animal.hhij.HhijAgeableEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.animal.hhij.HhijAnimalEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.animal.hhij.HhijBabyEntitySpawnEvent;
 import com.babcsany.minecraft.ervin_mod_1.entity.animal.hhij.HhijEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.event.ZurTameEvent;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.RoventEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.goal.BowAttackGoal;
-import com.babcsany.minecraft.ervin_mod_1.entity.trigger.CriteriaTriggers1;
+import com.babcsany.minecraft.ervin_mod_1.trigger.ModCriteriaTriggers;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.ZurTrades;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
@@ -32,6 +28,7 @@ import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
+import net.minecraft.entity.ai.brain.Brain;
 import net.minecraft.entity.ai.brain.memory.MemoryModuleType;
 import net.minecraft.entity.ai.goal.BreakDoorGoal;
 import net.minecraft.entity.ai.goal.Goal;
@@ -41,9 +38,11 @@ import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.merchant.IMerchant;
 import net.minecraft.entity.merchant.villager.VillagerData;
+import net.minecraft.entity.monster.piglin.PiglinEntity;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.entity.projectile.ProjectileHelper;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
@@ -78,7 +77,7 @@ import javax.annotation.Nullable;
 import java.util.*;
 import java.util.function.Predicate;
 
-public abstract class AbstractZurEntity extends AgeableEntity implements INPC, IMerchant {
+public abstract class AbstractZurEntity extends AgeableEntity implements INPC, IMerchant, IRangedAttackMob {
     public final NonNullList<ItemStack> inventory = NonNullList.withSize(1000000, ItemStack.EMPTY);
     private final BowAttackGoal<AbstractZurEntity> aiArrowAttack = new BowAttackGoal<>(this, 1.0D, 20, 15.0F);
     private static final UUID MODIFIER_UUID = UUID.fromString("5CD17E52-A79A-43D3-A529-90FDE04B181E");
@@ -98,6 +97,7 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
     protected static final DataParameter<Optional<BlockState>> CARRIED_BLOCK = EntityDataManager.createKey(AbstractZurEntity.class, DataSerializers.OPTIONAL_BLOCK_STATE);
     public static final Map<Item, Integer> FOOD_VALUES = ImmutableMap.of(Items.BREAD, 4, Items.POTATO, 1, Items.CARROT, 1, Items.BEETROOT, 1);
     protected static final DataParameter<Optional<UUID>> OWNER_UNIQUE_ID = EntityDataManager.createKey(AbstractZurEntity.class, DataSerializers.OPTIONAL_UNIQUE_ID);
+    public final ItemStack LEAT = new ItemStack(isBurnableItemInit.LEAT.get());
     @Nullable
     public BlockPos zurTarget;
     @Nullable
@@ -169,14 +169,25 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
         this.goalSelector.addGoal(7, new ZurBreedGoal(this, 1.0D));
         this.groundNavigator = new GroundPathNavigator(this, worldIn);
         this.setCanPickUpLoot(true);
+        this.setupTamedAI();
     }
 
-    public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
+    public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
         if (spawnDataIn == null) {
-            spawnDataIn = new AgeableData();
-            ((AgeableData) spawnDataIn).setCanBabySpawn(true);
+            spawnDataIn = new AgeableData(true);
+        }
+        if (reason != SpawnReason.SPAWN_EGG) {
+            if (worldIn.getRandom().nextFloat() < 0.2F) {
+                this.setChild(true);
+            } else if (this.isNotChild()) {
+                this.setItemStackToSlot(EquipmentSlotType.MAINHAND, this.func_234432_eW_());
+                this.setItemStackToSlot(EquipmentSlotType.OFFHAND, this.func_234432_eW1_());
+            }
         }
 
+        this.setEquipmentBasedOnDifficulty(difficultyIn);
+        this.setEquipmentBasedOnDifficulty1(difficultyIn);
+        this.setEnchantmentBasedOnDifficulty(difficultyIn);
         return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
     }
 
@@ -235,7 +246,7 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
         if (this.world != null && !this.world.isRemote) {
             this.goalSelector.removeGoal(this.aiAttackOnCollide);
             this.goalSelector.removeGoal(this.aiArrowAttack);
-            ItemStack itemstack = this.getHeldItem(ProjectileHelper.getHandWith(this, isBurnableItemInit.TRITHK.get()));
+            ItemStack itemstack = this.getHeldItem(ProjectileHelper.getHandWith(this, Items.BOW));
             if (itemstack.getItem() instanceof net.minecraft.item.BowItem) {
                 int i = 20;
                 if (this.world.getDifficulty() != Difficulty.HARD) {
@@ -269,7 +280,7 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
 
     protected boolean canLevelUp() {
         int i = this.getLevel();
-        return canLevelUp(i) && this.xp >= VillagerData.func_221127_c(i);
+        return canLevelUp(i) && this.xp >= VillagerData.getExperienceNext(i);
     }
 
     public static boolean canLevelUp(int level) {
@@ -277,7 +288,12 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
     }
 
     protected void registerGoals() {
-        this.goalSelector.addGoal(4, new AttackGoal(this));
+        /*AttackGoal attackGoal = new AttackGoal(this);
+        if (this.world.getDifficulty() != Difficulty.PEACEFUL && !this.getHeldItemMainhand().equals(new ItemStack(isBurnableItemInit.VIRKT.get())) || !this.isTamed()) {
+            this.goalSelector.addGoal(4, attackGoal);
+        } else {
+            this.goalSelector.removeGoal(attackGoal);
+        }*/
     }
 
     public void func_234438_m_(ItemStack p_234438_1_) {
@@ -397,12 +413,16 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
             }
         }
 
-        return super.func_230254_b_(player, hand);
+        return super.getEntityInteractionResult(player, hand);
     }
 
     public void wakeUp() {
         super.wakeUp();
         this.brain.setMemory(MemoryModuleType.LAST_WOKEN, this.world.getGameTime());
+    }
+
+    public Brain<AbstractZurEntity> getBrain() {
+        return (Brain<AbstractZurEntity>)super.getBrain();
     }
 
     public int getPlayerReputation(PlayerEntity player) {
@@ -454,7 +474,7 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
         this.setTamed(true);
         this.setOwnerId(player.getUniqueID());
         if (player instanceof ServerPlayerEntity) {
-            CriteriaTriggers1.TAME_ZUR.trigger((ServerPlayerEntity) player, this);
+            ModCriteriaTriggers.TAME_ZUR.trigger((ServerPlayerEntity) player, this);
         }
 
     }
@@ -487,7 +507,7 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
                 }
 
                 if (!(item instanceof DyeItem)) {
-                    ActionResultType actionresulttype = super.func_230254_b_(player, hand);
+                    ActionResultType actionresulttype = super.getEntityInteractionResult(player, hand);
                     if ((!actionresulttype.isSuccessOrConsume() || this.isChild()) && this.isOwner(player)) {
                         this.isJumping = false;
                         this.navigator.clearPath();
@@ -514,7 +534,7 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
                 return ActionResultType.SUCCESS;
             }
 
-            return super.func_230254_b_(player, hand);
+            return super.getEntityInteractionResult(player, hand);
         }
     }
 
@@ -565,20 +585,6 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
         this.getDataManager().set(ROVENT, true);
     }
 
-    protected void onRovent() {
-        this.func_234341_c_(EntityInit.ROVENT_ENTITY.get());
-        if (!this.isSilent()) {
-            this.world.playEvent(null, 1040, this.getPosition(), 0);
-        }
-    }
-
-    protected void func_234341_c_(EntityType<RoventEntity> zur) {
-        RoventEntity zurEntity = this.func_233656_b_(zur);
-        if (zurEntity != null) {
-            zurEntity.applyAttributeBonuses(zurEntity.world.getDifficultyForLocation(zurEntity.getPosition()).getClampedAdditionalDifficulty());
-        }
-    }
-
     protected void applyAttributeBonuses(float difficulty) {
         this.getAttribute(Attributes.KNOCKBACK_RESISTANCE).applyPersistentModifier(new AttributeModifier("Random spawn bonus", this.rand.nextDouble() * (double) 0.05F, AttributeModifier.Operation.ADDITION));
         double d0 = this.rand.nextDouble() * 1.5D * (double) difficulty;
@@ -592,46 +598,64 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
 
     }
 
-    public ActionResultType func_230254_b_(PlayerEntity p_230254_1_, Hand p_230254_2_) {
-        ItemStack itemstack = p_230254_1_.getHeldItem(p_230254_2_);
+    public ActionResultType getEntityInteractionResult(PlayerEntity player, Hand hand) {
+        ItemStack itemstack = player.getHeldItem(hand);
+        Item item = itemstack.getItem();
         if (itemstack.getItem() != ModSpawnEggItemInit.ZUR_SPAWN_EGG.get() && this.isAlive() && !this.hasCustomer() && !this.isChild()) {
-            if (p_230254_2_ == Hand.MAIN_HAND) {
-                p_230254_1_.addStat(Stats.TALKED_TO_VILLAGER);
+            if (hand == Hand.MAIN_HAND) {
+                player.addStat(Stats.TALKED_TO_VILLAGER);
             }
 
-            if (!this.getOffers().isEmpty()) {
+            if (item == isBurnableItemInit.LEAT.get()) {
+
+                if (this.world.isRemote) {
+                    boolean flag = this.isOwner(player) || this.isTamed() || item == isBurnableItemInit.LEAT.get() && !this.isTamed();
+                    return flag ? ActionResultType.CONSUME : ActionResultType.PASS;
+                } else {
+                    if (this.isTamed()) {
+                        if (this.isBreedingItem(itemstack) && this.getHealth() < this.getMaxHealth()) {
+                            if (!player.abilities.isCreativeMode) {
+                                itemstack.shrink(1);
+                            }
+
+                            this.heal((float)item.getFood().getHealing());
+                            return ActionResultType.SUCCESS;
+                        }
+                    } else if (item == isBurnableItemInit.LEAT.get()) {
+                        if (!player.abilities.isCreativeMode) {
+                            itemstack.shrink(1);
+                        }
+
+                        if (this.rand.nextInt(16) == 1 && !onZurTame(this, player)) {
+                            this.setTamedBy(player);
+                            this.navigator.clearPath();
+                            this.setAttackTarget(null);
+                            this.world.setEntityState(this, (byte)7);
+                        } else {
+                            this.world.setEntityState(this, (byte)6);
+                        }
+
+                        return ActionResultType.SUCCESS;
+                    }
+
+                    return super.getEntityInteractionResult(player, hand);
+                }
+            } else if (!this.getOffers().isEmpty()) {
                 if (!this.world.isRemote) {
-                    this.setCustomer(p_230254_1_);
-                    this.openMerchantContainer(p_230254_1_, this.getDisplayName(), 1);
+                    this.setCustomer(player);
+                    this.openMerchantContainer(player, this.getDisplayName(), 1);
                 }
 
             }
 
             return ActionResultType.func_233537_a_(this.world.isRemote);
         } else {
-            return super.func_230254_b_(p_230254_1_, p_230254_2_);
+            return super.getEntityInteractionResult(player, hand);
         }
     }
 
     public boolean isBreakDoorsTaskSet() {
         return this.isBreakDoorsTaskSet;
-    }
-
-    @Nullable
-    public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag, ZurEntity zur) {
-        if (reason != SpawnReason.SPAWN_EGG) {
-            if (worldIn.getRandom().nextFloat() < 0.2F) {
-                this.setChild(true);
-            } else if (this.isNotChild()) {
-                this.setItemStackToSlot(EquipmentSlotType.MAINHAND, this.func_234432_eW_());
-                this.setItemStackToSlot(EquipmentSlotType.OFFHAND, this.func_234432_eW1_());
-            }
-        }
-
-        this.setEquipmentBasedOnDifficulty(difficultyIn);
-        this.setEquipmentBasedOnDifficulty1(difficultyIn);
-        this.setEnchantmentBasedOnDifficulty(difficultyIn);
-        return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
     }
 
     private void equipmentSlotType(EquipmentSlotType type, ItemStack stack) {
@@ -966,6 +990,26 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
         return super.getExperiencePoints(player);
     }
 
+    public void attackEntityWithRangedAttack(LivingEntity p_82196_1_, float p_82196_2_) {
+        ItemStack itemstack = this.findAmmo(this.getHeldItem(ProjectileHelper.getHandWith(this, Items.BOW)));
+        AbstractArrowEntity abstractarrowentity = this.fireArrow(itemstack, p_82196_2_);
+        if (this.getHeldItemMainhand().getItem() instanceof BowItem) {
+            abstractarrowentity = ((BowItem)this.getHeldItemMainhand().getItem()).customArrow(abstractarrowentity);
+        }
+
+        double d0 = p_82196_1_.getPosX() - this.getPosX();
+        double d1 = p_82196_1_.getPosYHeight(0.3333333333333333) - abstractarrowentity.getPosY();
+        double d2 = p_82196_1_.getPosZ() - this.getPosZ();
+        double d3 = (double)MathHelper.sqrt(d0 * d0 + d2 * d2);
+        abstractarrowentity.shoot(d0, d1 + d3 * 0.20000000298023224, d2, 1.6F, (float)(14 - this.world.getDifficulty().getId() * 4));
+        this.playSound(SoundEvents.ENTITY_SKELETON_SHOOT, 1.0F, 1.0F / (this.getRNG().nextFloat() * 0.4F + 0.8F));
+        this.world.addEntity(abstractarrowentity);
+    }
+
+    protected AbstractArrowEntity fireArrow(ItemStack p_213624_1_, float p_213624_2_) {
+        return ProjectileHelper.fireArrow(this, p_213624_1_, p_213624_2_);
+    }
+
     public void notifyDataManagerChange(DataParameter<?> key) {
         if (IS_CHILD.equals(key)) {
             this.recalculateSize();
@@ -1168,7 +1212,7 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
                     this.setDrinkingPotion(false);
                     ItemStack itemstack = this.getHeldItemMainhand();
                     this.setItemStackToSlot(EquipmentSlotType.MAINHAND, ItemStack.EMPTY);
-                    if (itemstack.getItem() == isBurnableFoodItemInit.VIRK.get()) {
+                    if (itemstack.getItem() == isBurnableFoodItemInit.VIRK.get() && !this.isTamed()) {
                         List<EffectInstance> list = PotionUtils.getEffectsFromStack(itemstack);
                         for (EffectInstance effectinstance : list) {
                             this.addPotionEffect(new EffectInstance(effectinstance));
@@ -1187,6 +1231,8 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
                     potion = Potions.HEALING;
                 } else if (this.rand.nextFloat() < 0.5F && this.getAttackTarget() != null && !this.isPotionActive(Effects.STRENGTH) && this.getAttackTarget().getDistanceSq(this) > 2.0D || !this.isPotionActive(Effects.SPEED) && !this.isPotionActive(Effects.JUMP_BOOST)) {
                     potion = Potions.SWIFTNESS;
+                } else if (this.rand.nextFloat() < 0.886F) {
+                    potion = Potions.INVISIBILITY;
                 }
 
                 if (potion != null) {
@@ -1378,40 +1424,40 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
         }
     }
 
-    public void func_234177_a_(World p_234177_1_, AbstractZurEntity p_234177_2_) {
-        AgeableEntity ageableentity = this.createChild(p_234177_2_);
-        final BabyEntitySpawnEvent event = new BabyEntitySpawnEvent(this, p_234177_2_, ageableentity);
+    public void func_234177_a_(World world, AbstractZurEntity abstractZur) {
+        AgeableEntity ageableentity = this.createChild((ServerWorld) world, abstractZur);
+        final BabyEntitySpawnEvent event = new BabyEntitySpawnEvent(this, abstractZur, ageableentity);
         final boolean cancelled = net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(event);
         ageableentity = event.getChild();
         if (cancelled) {
             //Reset the "inLove" state for the animals
             this.setGrowingAge(6000);
-            p_234177_2_.setGrowingAge(6000);
+            abstractZur.setGrowingAge(6000);
             this.resetInLove();
-            p_234177_2_.resetInLove();
+            abstractZur.resetInLove();
             return;
         }
         if (ageableentity != null) {
             ServerPlayerEntity serverplayerentity = this.getLoveCause();
-            if (serverplayerentity == null && p_234177_2_.getLoveCause() != null) {
-                serverplayerentity = p_234177_2_.getLoveCause();
+            if (serverplayerentity == null && abstractZur.getLoveCause() != null) {
+                serverplayerentity = abstractZur.getLoveCause();
             }
 
             if (serverplayerentity != null) {
                 serverplayerentity.addStat(Stats.ANIMALS_BRED);
-                CriteriaTriggers1.BRED_ZURS.trigger(serverplayerentity, this, p_234177_2_, ageableentity);
+                ModCriteriaTriggers.BRED_ZURS.trigger(serverplayerentity, this, abstractZur, ageableentity);
             }
 
             this.setGrowingAge(6000);
-            p_234177_2_.setGrowingAge(6000);
+            abstractZur.setGrowingAge(6000);
             this.resetInLove();
-            p_234177_2_.resetInLove();
+            abstractZur.resetInLove();
             ageableentity.setChild(true);
             ageableentity.setLocationAndAngles(this.getPosX(), this.getPosY(), this.getPosZ(), 0.0F, 0.0F);
-            p_234177_1_.addEntity(ageableentity);
-            p_234177_1_.setEntityState(this, (byte) 18);
-            if (p_234177_1_.getGameRules().getBoolean(GameRules.DO_MOB_LOOT)) {
-                p_234177_1_.addEntity(new ExperienceOrbEntity(p_234177_1_, this.getPosX(), this.getPosY(), this.getPosZ(), this.getRNG().nextInt(7) + 1));
+            world.addEntity(ageableentity);
+            world.setEntityState(this, (byte) 18);
+            if (world.getGameRules().getBoolean(GameRules.DO_MOB_LOOT)) {
+                world.addEntity(new ExperienceOrbEntity(world, this.getPosX(), this.getPosY(), this.getPosZ(), this.getRNG().nextInt(7) + 1));
             }
 
         }
@@ -1544,7 +1590,7 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
     }
 
     public void setMotionMultiplier(BlockState state, Vector3d motionMultiplierIn) {
-        if (!state.isIn(Blocks.COBWEB)) {
+        if (!state.matchesBlock(Blocks.COBWEB)) {
             super.setMotionMultiplier(state, motionMultiplierIn);
         }
 
@@ -1561,93 +1607,6 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
             return event.getResult() == net.minecraftforge.eventbus.api.Event.Result.ALLOW;
         }
         return super.isPotionApplicable(potioneffectIn);
-    }
-
-    public static class MorningGiftGoal extends Goal {
-        private final ZurEntity zurEntity;
-        private TameableEntity tameableEntity;
-        private PlayerEntity owner;
-        private BlockPos bedPos;
-        private int tickCounter;
-
-        public MorningGiftGoal(ZurEntity zurIn) {
-            this.zurEntity = zurIn;
-        }
-
-        /**
-         * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
-         * method as well.
-         */
-        public boolean shouldExecute() {
-            return false;
-        }
-
-        private boolean func_220805_g() {
-
-
-            return false;
-        }
-
-        /**
-         * Returns whether an in-progress EntityAIBase should continue executing
-         */
-        public boolean shouldContinueExecuting() {
-            return !this.tameableEntity.func_233685_eM_() && this.owner != null && this.owner.isSleeping() && this.bedPos != null;
-        }
-
-        /**
-         * Execute a one shot task or start executing a continuous task
-         */
-        public void startExecuting() {
-            if (this.bedPos != null) {
-                this.tameableEntity.func_233686_v_(false);
-                this.zurEntity.getNavigator().tryMoveToXYZ(this.bedPos.getX(), (double) this.bedPos.getY(), (double) this.bedPos.getZ(), (double) 1.1F);
-            }
-
-        }
-
-        /**
-         * Reset the task's internal state. Called when this task is interrupted by another one
-         */
-        public void resetTask() {
-            float f = this.zurEntity.world.getCelestialAngle(1.0F);
-            if (this.owner.getSleepTimer() >= 100 && (double) f > 0.77D && (double) f < 0.8D && (double) this.zurEntity.world.getRandom().nextFloat() < 0.7D) {
-                this.func_220804_h();
-            }
-
-            this.tickCounter = 0;
-            this.zurEntity.getNavigator().clearPath();
-        }
-
-        private void func_220804_h() {
-            Random random = this.zurEntity.getRNG();
-            BlockPos.Mutable blockpos$mutable = new BlockPos.Mutable();
-            blockpos$mutable.setPos(this.zurEntity.getPosition());
-            this.zurEntity.attemptTeleport(blockpos$mutable.getX() + random.nextInt(11) - 5, blockpos$mutable.getY() + random.nextInt(5) - 2, blockpos$mutable.getZ() + random.nextInt(11) - 5, false);
-            blockpos$mutable.setPos(this.zurEntity.getPosition());
-            LootTable loottable = this.zurEntity.world.getServer().getLootTableManager().getLootTableFromLocation(LootTables.GAMEPLAY_CAT_MORNING_GIFT);
-            LootContext.Builder lootcontext$builder = (new LootContext.Builder((ServerWorld) this.zurEntity.world)).withParameter(LootParameters.POSITION, blockpos$mutable).withParameter(LootParameters.THIS_ENTITY, this.zurEntity).withRandom(random);
-
-            for (ItemStack itemstack : loottable.generate(lootcontext$builder.build(LootParameterSets.GIFT))) {
-                this.zurEntity.world.addEntity(new ItemEntity(this.zurEntity.world, (double) blockpos$mutable.getX() - (double) MathHelper.sin(this.zurEntity.renderYawOffset * ((float) Math.PI / 180F)), blockpos$mutable.getY(), (double) blockpos$mutable.getZ() + (double) MathHelper.cos(this.zurEntity.renderYawOffset * ((float) Math.PI / 180F)), itemstack));
-            }
-
-        }
-
-        /**
-         * Keep ticking a continuous task that has already been started
-         */
-        public void tick() {
-            if (this.owner != null && this.bedPos != null) {
-                this.tameableEntity.func_233686_v_(false);
-                this.zurEntity.getNavigator().tryMoveToXYZ(this.bedPos.getX(), (double) this.bedPos.getY(), (double) this.bedPos.getZ(), (double) 1.1F);
-                if (this.zurEntity.getDistanceSq(this.owner) < 2.5D) {
-                    ++this.tickCounter;
-                } else {
-                }
-            }
-
-        }
     }
 
     /**

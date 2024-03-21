@@ -1,0 +1,93 @@
+package com.babcsany.minecraft.ervin_mod_1.world.gen;
+
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.biome.Biome;
+import net.minecraftforge.registries.ForgeRegistries;
+
+import java.util.Objects;
+
+public class Biomes {
+    public static final Biome OCEAN = getBiomeWithKey("ocean");
+    public static final Biome PLAINS = getBiomeWithKey("plains");
+    public static final Biome DESERT = getBiomeWithKey("desert");
+    public static final Biome MOUNTAINS = getBiomeWithKey("mountains");
+    public static final Biome FOREST = getBiomeWithKey("forest");
+    public static final Biome TAIGA = getBiomeWithKey("taiga");
+    public static final Biome SWAMP = getBiomeWithKey("swamp");
+    public static final Biome RIVER = getBiomeWithKey("river");
+    public static final Biome NETHER_WASTES = getBiomeWithKey("nether_wastes");
+    public static final Biome THE_END = getBiomeWithKey("the_end");
+    public static final Biome FROZEN_OCEAN = getBiomeWithKey("frozen_ocean");
+    public static final Biome FROZEN_RIVER = getBiomeWithKey("frozen_river");
+    public static final Biome SNOWY_TUNDRA = getBiomeWithKey("snowy_tundra");
+    public static final Biome SNOWY_MOUNTAINS = getBiomeWithKey("snowy_mountains");
+    public static final Biome MUSHROOM_FIELDS = getBiomeWithKey("mushroom_fields");
+    public static final Biome MUSHROOM_FIELD_SHORE = getBiomeWithKey("mushroom_field_shore");
+    public static final Biome BEACH = getBiomeWithKey("beach");
+    public static final Biome DESERT_HILLS = getBiomeWithKey("desert_hills");
+    public static final Biome WOODED_HILLS = getBiomeWithKey("wooded_hills");
+    public static final Biome TAIGA_HILLS = getBiomeWithKey("taiga_hills");
+    public static final Biome MOUNTAIN_EDGE = getBiomeWithKey("mountain_edge");
+    public static final Biome JUNGLE = getBiomeWithKey("jungle");
+    public static final Biome JUNGLE_HILLS = getBiomeWithKey("jungle_hills");
+    public static final Biome JUNGLE_EDGE = getBiomeWithKey("jungle_edge");
+    public static final Biome DEEP_OCEAN = getBiomeWithKey("deep_ocean");
+    public static final Biome STONE_SHORE = getBiomeWithKey("stone_shore");
+    public static final Biome SNOWY_BEACH = getBiomeWithKey("snowy_beach");
+    public static final Biome BIRCH_FOREST = getBiomeWithKey("birch_forest");
+    public static final Biome BIRCH_FOREST_HILLS = getBiomeWithKey("birch_forest_hills");
+    public static final Biome DARK_FOREST = getBiomeWithKey("dark_forest");
+    public static final Biome SNOWY_TAIGA = getBiomeWithKey("snowy_taiga");
+    public static final Biome SNOWY_TAIGA_HILLS = getBiomeWithKey("snowy_taiga_hills");
+    public static final Biome GIANT_TREE_TAIGA = getBiomeWithKey("giant_tree_taiga");
+    public static final Biome GIANT_TREE_TAIGA_HILLS = getBiomeWithKey("giant_tree_taiga_hills");
+    public static final Biome WOODED_MOUNTAINS = getBiomeWithKey("wooded_mountains");
+    public static final Biome SAVANNA = getBiomeWithKey("savanna");
+    public static final Biome SAVANNA_PLATEAU = getBiomeWithKey("savanna_plateau");
+    public static final Biome BADLANDS = getBiomeWithKey("badlands");
+    public static final Biome WOODED_BADLANDS_PLATEAU = getBiomeWithKey("wooded_badlands_plateau");
+    public static final Biome BADLANDS_PLATEAU = getBiomeWithKey("badlands_plateau");
+    public static final Biome SMALL_END_ISLANDS = getBiomeWithKey("small_end_islands");
+    public static final Biome END_MIDLANDS = getBiomeWithKey("end_midlands");
+    public static final Biome END_HIGHLANDS = getBiomeWithKey("end_highlands");
+    public static final Biome END_BARRENS = getBiomeWithKey("end_barrens");
+    public static final Biome WARM_OCEAN = getBiomeWithKey("warm_ocean");
+    public static final Biome LUKEWARM_OCEAN = getBiomeWithKey("lukewarm_ocean");
+    public static final Biome COLD_OCEAN = getBiomeWithKey("cold_ocean");
+    public static final Biome DEEP_WARM_OCEAN = getBiomeWithKey("deep_warm_ocean");
+    public static final Biome DEEP_LUKEWARM_OCEAN = getBiomeWithKey("deep_lukewarm_ocean");
+    public static final Biome DEEP_COLD_OCEAN = getBiomeWithKey("deep_cold_ocean");
+    public static final Biome DEEP_FROZEN_OCEAN = getBiomeWithKey("deep_frozen_ocean");
+    public static final Biome THE_VOID = getBiomeWithKey("the_void");
+    public static final Biome SUNFLOWER_PLAINS = getBiomeWithKey("sunflower_plains");
+    public static final Biome DESERT_LAKES = getBiomeWithKey("desert_lakes");
+    public static final Biome GRAVELLY_MOUNTAINS = getBiomeWithKey("gravelly_mountains");
+    public static final Biome FLOWER_FOREST = getBiomeWithKey("flower_forest");
+    public static final Biome TAIGA_MOUNTAINS = getBiomeWithKey("taiga_mountains");
+    public static final Biome SWAMP_HILLS = getBiomeWithKey("swamp_hills");
+    public static final Biome ICE_SPIKES = getBiomeWithKey("ice_spikes");
+    public static final Biome MODIFIED_JUNGLE = getBiomeWithKey("modified_jungle");
+    public static final Biome MODIFIED_JUNGLE_EDGE = getBiomeWithKey("modified_jungle_edge");
+    public static final Biome TALL_BIRCH_FOREST = getBiomeWithKey("tall_birch_forest");
+    public static final Biome TALL_BIRCH_HILLS = getBiomeWithKey("tall_birch_hills");
+    public static final Biome DARK_FOREST_HILLS = getBiomeWithKey("dark_forest_hills");
+    public static final Biome SNOWY_TAIGA_MOUNTAINS = getBiomeWithKey("snowy_taiga_mountains");
+    public static final Biome GIANT_SPRUCE_TAIGA = getBiomeWithKey("giant_spruce_taiga");
+    public static final Biome GIANT_SPRUCE_TAIGA_HILLS = getBiomeWithKey("giant_spruce_taiga_hills");
+    public static final Biome MODIFIED_GRAVELLY_MOUNTAINS = getBiomeWithKey("modified_gravelly_mountains");
+    public static final Biome SHATTERED_SAVANNA = getBiomeWithKey("shattered_savanna");
+    public static final Biome SHATTERED_SAVANNA_PLATEAU = getBiomeWithKey("shattered_savanna_plateau");
+    public static final Biome ERODED_BADLANDS = getBiomeWithKey("eroded_badlands");
+    public static final Biome MODIFIED_WOODED_BADLANDS_PLATEAU = getBiomeWithKey("modified_wooded_badlands_plateau");
+    public static final Biome MODIFIED_BADLANDS_PLATEAU = getBiomeWithKey("modified_badlands_plateau");
+    public static final Biome BAMBOO_JUNGLE = getBiomeWithKey("bamboo_jungle");
+    public static final Biome BAMBOO_JUNGLE_HILLS = getBiomeWithKey("bamboo_jungle_hills");
+    public static final Biome SOUL_SAND_VALLEY = getBiomeWithKey("soul_sand_valley");
+    public static final Biome CRIMSON_FOREST = getBiomeWithKey("crimson_forest");
+    public static final Biome WARPED_FOREST = getBiomeWithKey("warped_forest");
+    public static final Biome BASALT_DELTAS = getBiomeWithKey("basalt_deltas");
+
+    protected static Biome getBiomeWithKey(String key) {
+        return Objects.requireNonNull(ForgeRegistries.BIOMES.getValue(new ResourceLocation(key)));
+    }
+}

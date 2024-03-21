@@ -1,7 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.villager;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.ZombieTraderTrades;
-import com.babcsany.minecraft.ervin_mod_1.entity.trigger.CriteriaTriggers1;
+import com.babcsany.minecraft.ervin_mod_1.trigger.ModCriteriaTriggers;
 import com.google.common.collect.Sets;
 import net.minecraft.entity.*;
 import net.minecraft.entity.merchant.IMerchant;
@@ -21,6 +21,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.IServerWorld;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
@@ -44,10 +45,9 @@ public abstract class AbstractZombieTraderEntity extends AgeableEntity implement
       this.setPathPriority(PathNodeType.DAMAGE_FIRE, -1.0F);
    }
 
-   public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
+   public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
       if (spawnDataIn == null) {
-         spawnDataIn = new AgeableData();
-         ((AgeableData)spawnDataIn).setCanBabySpawn(false);
+         spawnDataIn = new AgeableData(false);
       }
 
       return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
@@ -108,7 +108,7 @@ public abstract class AbstractZombieTraderEntity extends AgeableEntity implement
       this.livingSoundTime = -this.getTalkInterval();
       this.onZombieTraderTrade(offer);
       if (this.customer instanceof ServerPlayerEntity) {
-         CriteriaTriggers1.ZOMBIE_TRADER_TRADE.test((ServerPlayerEntity)this.customer, this, offer.getSellingStack());
+         ModCriteriaTriggers.ZOMBIE_TRADER_TRADE.test((ServerPlayerEntity)this.customer, this, offer.getSellingStack());
       }
 
    }
