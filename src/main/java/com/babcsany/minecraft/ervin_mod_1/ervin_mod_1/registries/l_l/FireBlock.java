@@ -4,23 +4,26 @@ import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.init.BlockInit;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
+import net.minecraft.block.AbstractFireBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.state.properties.BlockStateProperties;
 
-public class FireBlock extends net.minecraft.block.FireBlock {
+public class FireBlock extends AbstractFireBlock {
     public FireBlock(Properties builder) {
-        super(builder);
+        super(builder, 1.0F);
     }
 
     private final Object2IntMap<Block> encouragements = new Object2IntOpenHashMap<>();
     private final Object2IntMap<Block> flammabilities = new Object2IntOpenHashMap<>();
 
+    @Deprecated //Forge: Use IForgeBlockState.getFlammability, Public for default implementation only.
     public int getFlammability(BlockState state) {
         return state.hasProperty(BlockStateProperties.WATERLOGGED) && state.get(BlockStateProperties.WATERLOGGED) ? 0 : this.flammabilities.getInt(state.getBlock());
     }
 
+    @Deprecated //Forge: Use IForgeBlockState.getFireSpreadSpeed
     public int getFireSpreadSpeed(BlockState state) {
         return state.hasProperty(BlockStateProperties.WATERLOGGED) && state.get(BlockStateProperties.WATERLOGGED) ? 0 : this.encouragements.getInt(state.getBlock());
     }
@@ -37,5 +40,10 @@ public class FireBlock extends net.minecraft.block.FireBlock {
         fireblock.setFireInfo(BlockItemInit.FRIM_PLANKS.get(), 2, 4);
         fireblock.setFireInfo(BlockInit.FIRG_PLANKS.get(), 5, 10);
         fireblock.setFireInfo(BlockItemInit.FRIM_PLANKS.get(), 2, 4);
+    }
+
+    @Deprecated //Forge: Use canCatchFire with more context
+    protected boolean canBurn(BlockState state) {
+        return this.getFireSpreadSpeed(state) > 0;
     }
 }

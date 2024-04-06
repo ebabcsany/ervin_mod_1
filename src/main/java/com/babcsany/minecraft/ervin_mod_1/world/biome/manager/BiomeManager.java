@@ -2,7 +2,8 @@ package com.babcsany.minecraft.ervin_mod_1.world.biome.manager;
 
 import net.minecraft.world.biome.Biome;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
 
 public class BiomeManager {
     private static final ArrayList<Biome> BIOMES = new ArrayList<>();

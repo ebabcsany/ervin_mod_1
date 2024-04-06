@@ -12,7 +12,5 @@ public class SeedsItemInit {
 
     public static final DeferredRegister<Item> SEEDS = DeferredRegister.create(ForgeRegistries.ITEMS, Ervin_mod_1.MOD_ID);
 
-    public static final RegistryObject<Item> TARG_SEEDS = SEEDS.register("seeds/targ_seeds", () -> new BlockNamedItem(
-            BlockInit.TARG_STAGE.get(), (new Item.Properties())
-    ));
+    public static final RegistryObject<Item> TARG_SEEDS = SEEDS.register("seeds/targ_seeds", () -> new BlockNamedItem(BlockInit.TARG_STAGE.get(), (new Item.Properties())));
 }

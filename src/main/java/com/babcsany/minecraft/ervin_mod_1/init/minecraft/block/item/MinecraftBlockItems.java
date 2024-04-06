@@ -5,7 +5,7 @@ import com.babcsany.minecraft.ervin_mod_1.item.BurningBlockItem;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
 
-import static com.babcsany.minecraft.ervin_mod_1.init.minecraft.block.item.BlockNamedItemInit.BLOCK_ITEMS;
+import static com.babcsany.minecraft.ervin_mod_1.init.minecraft.block.item.MinecraftBlockNamedItemInit.BLOCK_ITEMS;
 
 public class MinecraftBlockItems {
 

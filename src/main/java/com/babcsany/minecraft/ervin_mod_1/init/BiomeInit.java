@@ -12,9 +12,13 @@ import com.babcsany.minecraft.ervin_mod_1.world.biome.surface_builders.ExampleBi
 import com.babcsany.minecraft.ervin_mod_1.world.biome.surface_builders.ExampleBiomeSurfaceBuilder5;
 import com.babcsany.minecraft.ervin_mod_1.world.biome.surface_builders.ExampleBiomeSurfaceBuilder6;
 import net.minecraft.block.Blocks;
+import net.minecraft.client.gui.screen.CreateBuffetWorldScreen;
+import net.minecraft.client.world.DimensionRenderInfo;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.registry.DynamicRegistries;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.world.DimensionType;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.Category;
 import net.minecraft.world.biome.Biome.RainType;
@@ -68,6 +72,7 @@ public class BiomeInit {
         EndBiomeProvider.getRandomNoise(new SimplexNoiseGenerator(new Random(7546325664442138745L)), 45348, 5468217);
         EndBiomeProvider.getRandomNoise(new SimplexNoiseGenerator(new Random(8336725817605470826L)), 546374, 1284526);
         EndBiomeProvider.getRandomNoise(new SimplexNoiseGenerator(new Random(6886536535475794231L)), 6785, 6789148);
+
 
         list.add(new BiomeManager.BiomeEntry(BiomeInit.MIG.get(), 10));
         list.add(new BiomeManager.BiomeEntry(BiomeInit.MIGV.get(), 10));

@@ -1,7 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.init.block;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
-import com.babcsany.minecraft.ervin_mod_1.block.Fighiv;
 import com.babcsany.minecraft.ervin_mod_1.block.TargCropsBlock;
 import com.babcsany.minecraft.ervin_mod_1.block.blocks.DamageOnWalkingBlock;
 import com.babcsany.minecraft.ervin_mod_1.block.blocks.Firg;
@@ -9,7 +8,6 @@ import com.babcsany.minecraft.ervin_mod_1.block.blocks.FirgSlab;
 import com.babcsany.minecraft.ervin_mod_1.block.blocks.FirgStairs;
 import com.babcsany.minecraft.ervin_mod_1.block.blocks.burnable.slabs.DamageOnWalkingSlabBlock;
 import com.babcsany.minecraft.ervin_mod_1.block.blocks.burnable.stairs.DamageOnWalkingStairsBlock;
-import com.babcsany.minecraft.ervin_mod_1.block.special.Thufr;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.JazzTree;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.ModSaplingBlock;
 import net.minecraft.block.*;
@@ -54,7 +52,7 @@ public class registerBlockInit {
     public static final RegistryObject<Block> ZUNK_STAIRS = BLOCKS.register("zunk_stairs", () -> new StairsBlock(() -> ZUNK_BLOCK.get().getDefaultState(), Block.Properties.from(ZUNK_BLOCK.get())));
     public static final RegistryObject<Block> TNUZK_BLOCK = BLOCKS.register("tnuzk_block", () -> new Block(Block.Properties.create(Material.EARTH).setRequiresTool().harvestLevel(15).harvestTool(ToolType.SHOVEL).hardnessAndResistance(100000.0F)));
     public static final RegistryObject<Block> TNUZN = BLOCKS.register("tnuzn", () -> new Block(Block.Properties.create(Material.EARTH).setRequiresTool().harvestLevel(18).harvestTool(ToolType.SHOVEL).hardnessAndResistance(20000000.0f)));
-    public static final RegistryObject<Block> FIGHIV = BLOCKS.register("fighiv", () -> new Fighiv(Block.Properties.create(Material.ROCK).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(0.5F, 1000000000000.0F)));
+    public static final RegistryObject<Block> FIGHIV = BLOCKS.register("fighiv", () -> new Block(Block.Properties.create(Material.ROCK).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(0.5F, 1000000000000.0F)));
     public static final RegistryObject<Block> GNRTHIRJ = BLOCKS.register("gnrthirj", () -> new BubbleColumnBlock(AbstractBlock.Properties.create(Material.BUBBLE_COLUMN).doesNotBlockMovement().noDrops()));
     public static final RegistryObject<TripWireHookBlock> BLACK_TRIPWIRE_HOOK = registerColoredTripWireHook("black");
     public static final RegistryObject<TripWireHookBlock> BLUE_TRIPWIRE_HOOK = registerColoredTripWireHook("blue");

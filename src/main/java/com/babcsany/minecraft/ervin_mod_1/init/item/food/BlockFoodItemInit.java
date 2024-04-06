@@ -3,9 +3,8 @@ package com.babcsany.minecraft.ervin_mod_1.init.item.food;
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit;
 import com.babcsany.minecraft.ervin_mod_1.item.food.Foods;
-import com.babcsany.minecraft.ervin_mod_1.item.group.ItemGroup;
+import com.babcsany.minecraft.ervin_mod_1.item.group.ModItemGroup;
 import net.minecraft.item.BlockItem;
-import net.minecraft.item.BlockNamedItem;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -15,5 +14,5 @@ public class BlockFoodItemInit {
 
     public static final DeferredRegister<Item> FOOD_ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Ervin_mod_1.MOD_ID);
 
-    public static final RegistryObject<Item> SCRAFTH = FOOD_ITEMS.register("scrafth", () -> new BlockItem(BlockInit.SCRAFTH.get(), (new Item.Properties()).food(Foods.SCRAFTH).group(net.minecraft.item.ItemGroup.FOOD).group(ItemGroup.ERVIN_MOD_1_SEARCH)));
+    public static final RegistryObject<Item> SCRAFTH = FOOD_ITEMS.register("scrafth", () -> new BlockItem(BlockInit.SCRAFTH.get(), (new Item.Properties()).food(Foods.SCRAFTH).group(net.minecraft.item.ItemGroup.FOOD).group(ModItemGroup.ERVIN_MOD_1_SEARCH)));
 }

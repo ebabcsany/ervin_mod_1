@@ -1,6 +1,5 @@
 package com.babcsany.minecraft.ervin_mod_1.init.minecraft.block.item;
 
-import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.BlockNamedItem;
 import net.minecraft.item.Item;
@@ -8,7 +7,7 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class BlockNamedItemInit {
+public class MinecraftBlockNamedItemInit {
 
     public static final DeferredRegister<Item> BLOCK_ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, "minecraft");
 

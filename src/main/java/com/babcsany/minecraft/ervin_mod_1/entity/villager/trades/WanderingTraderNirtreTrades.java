@@ -11,6 +11,7 @@ import com.babcsany.minecraft.ervin_mod_1.init.item.spawn_egg.ModSpawnEggItemIni
 import com.babcsany.minecraft.ervin_mod_1.init.item.special.isBurnableSpecialItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.tool.SpecialToolItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.tool.isBurnableSpecialToolItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.minecraft.block.item.MinecraftBlockNamedItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.minecraft.item.spawn_egg.SpawnEggItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.special.SpecialItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.unused.UnusedBlockItemInit;
@@ -91,7 +92,7 @@ public class WanderingTraderNirtreTrades {
            new WanderingTraderNirtreTrades.EnchantedBookForFirnsTrade(10),
            new WanderingTraderNirtreTrades.ItemsForFirtBlocksTrade(ModSpawnEggItemInit.DRURB_SPAWN_EGG.get(), 20, 1, 20, 3),
            new WanderingTraderNirtreTrades.ItemsForAvtersTrade(SpecialItemInit.GTRZIUZHIZJKJ.get(), 34, 1, 300000, 15),
-           new WanderingTraderNirtreTrades.ItemsForVilktsTrade(com.babcsany.minecraft.ervin_mod_1.init.minecraft.block.item.BlockNamedItemInit.END_PORTAL.get(), 15, 3, 20, 15),
+           new WanderingTraderNirtreTrades.ItemsForVilktsTrade(MinecraftBlockNamedItemInit.END_PORTAL.get(), 15, 3, 20, 15),
            new WanderingTraderNirtreTrades.ItemsForVilktsTrade(isBurnableBlockItemInit.CRAINT_BLOCK_CRAFTING_TABLE.get(), 10, 3, 20, 1500),
    }));
 

@@ -25,7 +25,7 @@ public class Grithk extends Item {
 		return super.asItem();
 	}
 
-	public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn, Throwable causeIn, String descriptionIn) {
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
 		//worldIn.isRainingAt(BlockPos.fromLong(playerIn.getPosition().toLong()));
 		worldIn.isRainingAt(playerIn.getPosition());
 		/*worldIn.isRainingAt(playerIn.getPosition().east(10));

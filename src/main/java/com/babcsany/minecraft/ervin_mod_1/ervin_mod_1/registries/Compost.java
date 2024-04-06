@@ -3,21 +3,17 @@ package com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.registries;
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.block.BlockNamedItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.block.crops.seeds.SeedsItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.food.BlockFoodItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.food.FoodItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.food.SpecialBlockFoodItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.food.isBurnableFoodItemInit;
+import net.minecraft.block.ComposterBlock;
 import net.minecraft.util.IItemProvider;
 
-public class ComposterBlock extends net.minecraft.block.ComposterBlock {
-    public ComposterBlock(Properties properties) {
-        super(properties);
-    }
-
+public class Compost {
     public static void init() {
-        CHANCES.defaultReturnValue(-1.0F);
+        ComposterBlock.CHANCES.defaultReturnValue(-1.0F);
         registerCompostable(0.3F, SeedsItemInit.TARG_SEEDS.get());
         registerCompostable(0.35F, BlockItemInit.FRIM_LEAVES.get());
         registerCompostable(0.35F, BlockItemInit.FRIM_SAPLING.get());
@@ -40,6 +36,6 @@ public class ComposterBlock extends net.minecraft.block.ComposterBlock {
     }
 
     public static void registerCompostable(float chance, IItemProvider itemIn) {
-        CHANCES.put(itemIn.asItem(), chance);
+        ComposterBlock.CHANCES.put(itemIn.asItem(), chance);
     }
 }

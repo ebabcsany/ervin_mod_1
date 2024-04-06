@@ -29,6 +29,11 @@ public class FireBlock extends net.minecraft.block.FireBlock {
         return state.hasProperty(BlockStateProperties.WATERLOGGED) && state.get(BlockStateProperties.WATERLOGGED) ? 0 : this.encouragements.getInt(state.getBlock());
     }
 
+    @Deprecated //Forge: Use canCatchFire with more context
+    protected boolean canBurn(BlockState state) {
+        return this.getFireSpreadSpeed(state) > 0;
+    }
+
     private void setFireInfo(Supplier<Block> blockSupplierIn, int encouragement, int flammability) {
         setFireInfo(blockSupplierIn.get(), encouragement, flammability);
     }

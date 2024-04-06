@@ -5,30 +5,30 @@ import com.babcsany.minecraft.ervin_mod_1.init.item.food.brefk.BrefkStageItemIni
 import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.spawn_egg.ModSpawnEggItemInit;
 import net.minecraft.enchantment.EnchantmentType;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.function.Supplier;
 
-public abstract class ItemGroup {
-   public static ItemGroup[] GROUPS = new ItemGroup[5];
-   //public static final ItemGroup MOD_ITEM_GROUP = new ModTabGroup("simpleores", () -> new ItemStack(com.babcsany.minecraft.ervin_mod_1.init.item.item.ItemInit.REGDEMP.get()));
-   public static final net.minecraft.item.ItemGroup ERVIN_MOD_1_SEARCH = (new net.minecraft.item.ItemGroup(14, "ervin_mod_1_search") {
+public abstract class ModItemGroup {
+   public static ModItemGroup[] GROUPS = new ModItemGroup[5];
+//   public static final ItemGroup MOD_ITEM_GROUP = getGroup("simpleores", new ItemStack(BlockItemInit.REGDEM_BLOCK.get()));
+   public static final ItemGroup ERVIN_MOD_1_SEARCH = (new ItemGroup(14, "ervin_mod_1_search") {
       @OnlyIn(Dist.CLIENT)
       public ItemStack createIcon() {
          return new ItemStack(isBurnableItemInit.SRIFROUL.get());
       }
    }).setBackgroundImageName("item_search.png");
-   public static final net.minecraft.item.ItemGroup SEARCH = (new net.minecraft.item.ItemGroup(15, "search1") {
+   public static final ItemGroup SEARCH = (new ItemGroup(15, "search1") {
       @OnlyIn(Dist.CLIENT)
       public ItemStack createIcon() {
          return new ItemStack(isBurnableItemInit.SRIFROUL.get());
       }
    }).setBackgroundImageName("item_search.png");
-   public static final net.minecraft.item.ItemGroup ERVIN_MOD_1 = (new net.minecraft.item.ItemGroup(12, "ervin_mod_1") {
+   public static final ItemGroup ERVIN_MOD_1 = (new ItemGroup(12, "ervin_mod_1") {
       @OnlyIn(Dist.CLIENT)
       public ItemStack createIcon() {
          return new ItemStack(isBurnableItemInit.SRIFROUL.get());
@@ -67,15 +67,36 @@ public abstract class ItemGroup {
    private EnchantmentType[] enchantmentTypes = new EnchantmentType[0];
    private ItemStack icon;
 
-   public ItemGroup(String label) {
+   public ModItemGroup(String label) {
       this(-1, label);
    }
 
-   public ItemGroup(int index, String label) {
-      //super(index, label);
+   public ModItemGroup(int index, String label) {
       this.tabLabel = label;
       this.icon = ItemStack.EMPTY;
       this.index = addGroupSafe(index, this);
+   }
+
+   public static ItemGroup getGroup(String label, Item icon) {
+      return getGroup(label, new ItemStack(icon));
+   }
+
+   public static ItemGroup getGroup(String label, ItemStack icon) {
+      return getGroup(-1, label, icon);
+   }
+
+   public static ItemGroup getGroup(int index, String label, Item icon) {
+      return getGroup(index, label, new ItemStack(icon));
+   }
+
+   public static ItemGroup getGroup(int index, String label, ItemStack icon) {
+      return new ItemGroup(index, label) {
+         @Override
+         @OnlyIn(Dist.CLIENT)
+         public ItemStack createIcon() {
+            return icon;
+         }
+      };
    }
 
    @OnlyIn(Dist.CLIENT)
@@ -121,12 +142,12 @@ public abstract class ItemGroup {
       return this.backgroundTexture;
    }
 
-   public ItemGroup setBackgroundImageName(String texture) {
+   public ModItemGroup setBackgroundImageName(String texture) {
       this.backgroundTexture = texture;
       return this;
    }
 
-   public ItemGroup setTabPath(String pathIn) {
+   public ModItemGroup setTabPath(String pathIn) {
       this.tabPath = pathIn;
       return this;
    }
@@ -136,7 +157,7 @@ public abstract class ItemGroup {
       return this.drawTitle;
    }
 
-   public ItemGroup setNoTitle() {
+   public ModItemGroup setNoTitle() {
       this.drawTitle = false;
       return this;
    }
@@ -146,7 +167,7 @@ public abstract class ItemGroup {
       return this.hasScrollbar;
    }
 
-   public ItemGroup setNoScrollbar() {
+   public ModItemGroup setNoScrollbar() {
       this.hasScrollbar = false;
       return this;
    }
@@ -184,7 +205,7 @@ public abstract class ItemGroup {
    /**
     * Sets the enchantment types for populating this tab with enchanting books
     */
-   public ItemGroup setRelevantEnchantmentTypes(EnchantmentType... types) {
+   public ModItemGroup setRelevantEnchantmentTypes(EnchantmentType... types) {
       this.enchantmentTypes = types;
       return this;
    }
@@ -246,15 +267,15 @@ public abstract class ItemGroup {
    }
 
    public static synchronized int getGroupCountSafe() {
-      return ItemGroup.GROUPS.length;
+      return ModItemGroup.GROUPS.length;
    }
 
-   private static synchronized int addGroupSafe(int index, ItemGroup newGroup) {
+   private static synchronized int addGroupSafe(int index, ModItemGroup newGroup) {
       if(index == -1) {
          index = GROUPS.length;
       }
       if (index >= GROUPS.length) {
-         ItemGroup[] tmp = new ItemGroup[index + 1];
+         ModItemGroup[] tmp = new ModItemGroup[index + 1];
          System.arraycopy(GROUPS, 0, tmp, 0, GROUPS.length);
          GROUPS = tmp;
       }
