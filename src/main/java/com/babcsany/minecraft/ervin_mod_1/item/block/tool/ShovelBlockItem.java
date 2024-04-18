@@ -10,6 +10,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.CampfireBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.IItemTier;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.item.ToolItem;
 import net.minecraft.util.ActionResultType;
@@ -27,15 +28,15 @@ public class ShovelBlockItem extends ToolBlockItem {
    /** Map used to lookup shovel right click interactions */
    protected static final Map<Block, BlockState> SHOVEL_LOOKUP = Maps.newHashMap(ImmutableMap.of(Blocks.GRASS_BLOCK, Blocks.GRASS_PATH.getDefaultState()));
 
-   public ShovelBlockItem(IItemTier tier, Block blockIn, float attackDamageIn, float attackSpeedIn, Properties builder) {
-      super(blockIn, attackDamageIn, attackSpeedIn, tier, EFFECTIVE_ON, builder.addToolType(net.minecraftforge.common.ToolType.SHOVEL, tier.getHarvestLevel()));
+   public ShovelBlockItem(IItemTier tier, Block blockIn, float attackDamageIn, float attackSpeedIn, Item.Properties builder) {
+      super(attackDamageIn, attackSpeedIn, tier, EFFECTIVE_ON, blockIn, builder.addToolType(net.minecraftforge.common.ToolType.SHOVEL, tier.getHarvestLevel()));
    }
 
    /**
     * Check whether this Item can harvest the given Block
     */
    public boolean canHarvestBlock(BlockState blockIn) {
-      return blockIn.isIn(Blocks.SNOW) || blockIn.isIn(Blocks.SNOW_BLOCK);
+      return blockIn.matchesBlock(Blocks.SNOW) || blockIn.matchesBlock(Blocks.SNOW_BLOCK);
    }
 
    /**
@@ -49,7 +50,7 @@ public class ShovelBlockItem extends ToolBlockItem {
          return ActionResultType.PASS;
       } else {
          PlayerEntity playerentity = context.getPlayer();
-         BlockState blockstate1 = SHOVEL_LOOKUP.get(blockstate.getBlock());
+         BlockState blockstate1 = blockstate.getToolModifiedState(world, blockpos, playerentity, context.getItem(), net.minecraftforge.common.ToolType.SHOVEL);
          BlockState blockstate2 = null;
          if (blockstate1 != null && world.isAirBlock(blockpos.up())) {
             world.playSound(playerentity, blockpos, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
@@ -67,8 +68,8 @@ public class ShovelBlockItem extends ToolBlockItem {
             if (!world.isRemote) {
                world.setBlockState(blockpos, blockstate2, 11);
                if (playerentity != null) {
-                  context.getItem().damageItem(1, playerentity, (p_220041_1_) -> {
-                     p_220041_1_.sendBreakAnimation(context.getHand());
+                  context.getItem().damageItem(1, playerentity, (player) -> {
+                     player.sendBreakAnimation(context.getHand());
                   });
                }
             }
@@ -78,5 +79,10 @@ public class ShovelBlockItem extends ToolBlockItem {
             return ActionResultType.PASS;
          }
       }
+   }
+
+   @javax.annotation.Nullable
+   public static BlockState getShovelPathingState(BlockState originalState) {
+      return SHOVEL_LOOKUP.get(originalState.getBlock());
    }
 }

@@ -7,6 +7,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.ProjectileItemEntity;
 import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 import net.minecraft.particles.ItemParticleData;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.DamageSource;
@@ -50,7 +51,7 @@ public class TawrolEntity extends ProjectileItemEntity {
     */
    protected void onEntityHit(EntityRayTraceResult p_213868_1_) {
       super.onEntityHit(p_213868_1_);
-      p_213868_1_.getEntity().attackEntityFrom(DamageSource.causeThrownDamage(this, this.func_234616_v_()), 0.0F);
+      p_213868_1_.getEntity().attackEntityFrom(DamageSource.causeThrownDamage(this, this.getShooter()), 0.0F);
    }
 
    /**
@@ -80,6 +81,6 @@ public class TawrolEntity extends ProjectileItemEntity {
    }
 
    protected Item getDefaultItem() {
-      return ItemInit.TAWROL.get();
+      return Items.EGG;
    }
 }

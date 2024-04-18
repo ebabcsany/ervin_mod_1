@@ -27,7 +27,7 @@ public abstract class Tree1 {
       } else {
          world.setBlockState(pos, Blocks.AIR.getDefaultState(), 4);
          configuredfeature.config.forcePlacement();
-         if (configuredfeature.func_236265_a_(world, world.func_241112_a_(), chunkGenerator, rand, pos)) {
+         if (configuredfeature.generate(world, chunkGenerator, rand, pos)) {
             return true;
          } else {
             world.setBlockState(pos, state, 4);

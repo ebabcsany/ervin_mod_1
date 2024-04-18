@@ -24,6 +24,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.IExtensibleEnum;
 
 import java.util.List;
+import java.util.Objects;
 
 public class SpecialItem4 extends Item {
 
@@ -99,10 +100,10 @@ public class SpecialItem4 extends Item {
 
 	@Override
 	public ActionResultType onItemUse(ItemUseContext context) {
-		if (context.getWorld().getBlockState(context.getPos()).getBlock() == BlockItemInit.DEFERRED_BLOCK.get()) {
-			for (ItemStack stack : context.getPlayer().inventory.mainInventory) {
+		if (context.getWorld().getBlockState(context.getPos()).getBlock() == BlockItemInit.DEFERRED_BLOCK) {
+			for (ItemStack stack : Objects.requireNonNull(context.getPlayer()).inventory.mainInventory) {
 				if (stack.isEmpty()) {
-					context.getPlayer().addItemStackToInventory(new ItemStack(isBurnableSpecialItemInit.DEF_ITEM.get()));
+					context.getPlayer().addItemStackToInventory(new ItemStack(isBurnableSpecialItemInit.DEF_ITEM));
 					context.getItem().damageItem(1, context.getPlayer(), (playerIn) -> {
 						playerIn.sendBreakAnimation(context.getHand());
 					});
@@ -110,7 +111,7 @@ public class SpecialItem4 extends Item {
 				}
 			}
 			context.getWorld().addEntity(new ItemEntity(context.getWorld(), context.getPos().getX(),
-					context.getPos().getY(), context.getPos().getZ(), new ItemStack(isBurnableSpecialItemInit.DEF_ITEM.get())));
+					context.getPos().getY(), context.getPos().getZ(), new ItemStack(isBurnableSpecialItemInit.DEF_ITEM)));
 			return ActionResultType.SUCCESS;
 		}
 		return ActionResultType.FAIL;

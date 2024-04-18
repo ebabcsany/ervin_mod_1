@@ -2,17 +2,24 @@ package com.babcsany.minecraft.ervin_mod_1.init.item.block.crops.seeds;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit;
+import com.babcsany.minecraft.ervin_mod_1.init.unused.UnusedBlockItems;
+import net.minecraft.block.Block;
 import net.minecraft.item.BlockNamedItem;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.function.Supplier;
+
 public class SeedsItemInit {
+    public static final Item TARG_SEEDS = register("targ_seeds", BlockInit.TARG_STAGE);
 
-    public static final DeferredRegister<Item> SEEDS = DeferredRegister.create(ForgeRegistries.ITEMS, Ervin_mod_1.MOD_ID);
+    public static Item register(String name, Block blockIn) {
+        return UnusedBlockItems.unusedBlockNamedItem("seeds/" + name, blockIn);
+    }
 
-    public static final RegistryObject<Item> TARG_SEEDS = SEEDS.register("seeds/targ_seeds", () -> new BlockNamedItem(
-            BlockInit.TARG_STAGE.get(), (new Item.Properties())
-    ));
+    public static void register() {
+        Ervin_mod_1.register(SeedsItemInit.class);
+    }
 }

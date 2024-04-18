@@ -22,6 +22,7 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nullable;
 import java.util.EnumSet;
@@ -70,7 +71,7 @@ public class WanderingTraderNirtreEntity extends AbstractNirtreEntity {
    }
 
    @Nullable
-   public AgeableEntity createChild(AgeableEntity ageable) {
+   public AgeableEntity createChild(ServerWorld serverWorld, AgeableEntity ageable) {
       return null;
    }
 
@@ -78,7 +79,7 @@ public class WanderingTraderNirtreEntity extends AbstractNirtreEntity {
       return true;
    }
 
-   public ActionResultType func_230254_b_(PlayerEntity p_230254_1_, Hand p_230254_2_) {
+   public ActionResultType getEntityInteractionResult(PlayerEntity p_230254_1_, Hand p_230254_2_) {
       ItemStack itemstack = p_230254_1_.getHeldItem(p_230254_2_);
       if (itemstack.getItem() != ModSpawnEggItemInit.WANDERING_TRADER_NIRTRE_SPAWN_EGG.get() && this.isAlive() && !this.hasCustomer() && !this.isChild()) {
          if (p_230254_2_ == Hand.MAIN_HAND) {
@@ -96,7 +97,7 @@ public class WanderingTraderNirtreEntity extends AbstractNirtreEntity {
             return ActionResultType.func_233537_a_(this.world.isRemote);
          }
       } else {
-         return super.func_230254_b_(p_230254_1_, p_230254_2_);
+         return super.getEntityInteractionResult(p_230254_1_, p_230254_2_);
       }
    }
 
@@ -213,6 +214,11 @@ public class WanderingTraderNirtreEntity extends AbstractNirtreEntity {
 
    protected SoundEvent getNirtreYesNoSound(boolean getYesSound) {
       return getYesSound ? SoundEvents.ENTITY_WANDERING_TRADER_YES : SoundEvents.ENTITY_WANDERING_TRADER_NO;
+   }
+
+   @Override
+   public boolean hasXPBar() {
+      return false;
    }
 
    public SoundEvent getYesSound() {

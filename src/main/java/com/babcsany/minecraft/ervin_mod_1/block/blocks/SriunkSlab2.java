@@ -60,7 +60,7 @@ public class SriunkSlab2 extends Block implements IWaterLoggable {
    public BlockState getStateForPlacement(BlockItemUseContext context) {
       BlockPos blockpos = context.getPos();
       BlockState blockstate = context.getWorld().getBlockState(blockpos);
-      if (blockstate.isIn(this)) {
+      if (blockstate.matchesBlock(this)) {
          return blockstate.with(TYPE, SlabType.DOUBLE).with(WATERLOGGED, Boolean.valueOf(false));
       } else {
          FluidState fluidstate = context.getWorld().getFluidState(blockpos);
@@ -95,11 +95,11 @@ public class SriunkSlab2 extends Block implements IWaterLoggable {
    }
 
    public boolean receiveFluid(IWorld worldIn, BlockPos pos, BlockState state, FluidState fluidStateIn) {
-      return state.get(TYPE) != SlabType.DOUBLE ? IWaterLoggable.super.receiveFluid(worldIn, pos, state, fluidStateIn) : false;
+      return state.get(TYPE) != SlabType.DOUBLE && IWaterLoggable.super.receiveFluid(worldIn, pos, state, fluidStateIn);
    }
 
    public boolean canContainFluid(IBlockReader worldIn, BlockPos pos, BlockState state, Fluid fluidIn) {
-      return state.get(TYPE) != SlabType.DOUBLE ? IWaterLoggable.super.canContainFluid(worldIn, pos, state, fluidIn) : false;
+      return state.get(TYPE) != SlabType.DOUBLE && IWaterLoggable.super.canContainFluid(worldIn, pos, state, fluidIn);
    }
 
    /**
@@ -117,15 +117,6 @@ public class SriunkSlab2 extends Block implements IWaterLoggable {
    }
 
    public boolean allowsMovement(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type) {
-      switch(type) {
-      case LAND:
-         return false;
-      case WATER:
-         return worldIn.getFluidState(pos).isTagged(FluidTags.WATER);
-      case AIR:
-         return false;
-      default:
-         return false;
-      }
+       return type == PathType.WATER && worldIn.getFluidState(pos).isTagged(FluidTags.WATER);
    }
 }

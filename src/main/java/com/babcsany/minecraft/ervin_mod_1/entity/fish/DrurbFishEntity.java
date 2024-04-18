@@ -2,7 +2,6 @@ package com.babcsany.minecraft.ervin_mod_1.entity.fish;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.controller.dgrurb.fish.DrurbFishLookController;
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.dgrurbk.fish.DrurbFishJumpGoal;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.RandomPositionGenerator;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
@@ -10,6 +9,7 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.controller.MovementController;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.item.ItemEntity;
+import net.minecraft.entity.monster.GuardianEntity;
 import net.minecraft.entity.passive.WaterMobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -32,8 +32,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.IServerWorld;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.server.ServerWorld;
@@ -41,27 +43,27 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
-import java.util.EnumSet;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.function.Predicate;
 
 public class DrurbFishEntity extends WaterMobEntity {
    private static final DataParameter<BlockPos> TREASURE_POS = EntityDataManager.createKey(DrurbFishEntity.class, DataSerializers.BLOCK_POS);
    private static final DataParameter<Boolean> GOT_FISH = EntityDataManager.createKey(DrurbFishEntity.class, DataSerializers.BOOLEAN);
    private static final DataParameter<Integer> MOISTNESS = EntityDataManager.createKey(DrurbFishEntity.class, DataSerializers.VARINT);
-   private static final EntityPredicate field_213810_bA = (new EntityPredicate()).setDistance(10.0D).allowFriendlyFire().allowInvulnerable().setLineOfSiteRequired();
-   public static final Predicate<ItemEntity> ITEM_SELECTOR = (p_205023_0_) -> !p_205023_0_.cannotPickup() && p_205023_0_.isAlive() && p_205023_0_.isInWater();
+   private static final EntityPredicate field_213810_bA = (new EntityPredicate()).setDistance(10.0D).allowFriendlyFire().allowInvulnerable().setIgnoresLineOfSight();
+   public static final Predicate<ItemEntity> ITEM_SELECTOR = (p_205023_0_) -> {
+      return !p_205023_0_.cannotPickup() && p_205023_0_.isAlive() && p_205023_0_.isInWater();
+   };
 
-   public DrurbFishEntity(EntityType<? extends DrurbFishEntity> type, World worldIn) {
-      super(type, worldIn);
+   public DrurbFishEntity(EntityType<? extends DrurbFishEntity> type, World worldIN) {
+      super(type, worldIN);
       this.moveController = new DrurbFishEntity.MoveHelperController(this);
       this.lookController = new DrurbFishLookController(this, 10);
       this.setCanPickUpLoot(true);
    }
 
    @Nullable
-   public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
+   public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
       this.setAir(this.getMaxAir());
       this.rotationPitch = 0.0F;
       return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
@@ -128,8 +130,8 @@ public class DrurbFishEntity extends WaterMobEntity {
    }
 
    protected void registerGoals() {
-      this.goalSelector.addGoal(0, new net.minecraft.entity.ai.goal.BreatheAirGoal(this));
-      this.goalSelector.addGoal(0, new net.minecraft.entity.ai.goal.FindWaterGoal(this));
+      this.goalSelector.addGoal(0, new BreatheAirGoal(this));
+      this.goalSelector.addGoal(0, new FindWaterGoal(this));
       this.goalSelector.addGoal(1, new DrurbFishEntity.SwimToTreasureGoal(this));
       this.goalSelector.addGoal(2, new DrurbFishEntity.SwimWithPlayerGoal(this, 4.0D));
       this.goalSelector.addGoal(4, new RandomSwimmingGoal(this, 1.0D, 10));
@@ -139,13 +141,13 @@ public class DrurbFishEntity extends WaterMobEntity {
       this.goalSelector.addGoal(6, new MeleeAttackGoal(this, 1.2F, true));
       this.goalSelector.addGoal(8, new DrurbFishEntity.PlayWithItemsGoal());
       this.goalSelector.addGoal(8, new FollowBoatGoal(this));
-      this.goalSelector.addGoal(9, new AvoidEntityGoal<>(this, CreatureEntity.class, 8.0F, 1.0D, 1.0D));
-      this.targetSelector.addGoal(1, (new HurtByTargetGoal(this, ZurEntity.class)).setCallsForHelp());
+      this.goalSelector.addGoal(9, new AvoidEntityGoal<>(this, GuardianEntity.class, 8.0F, 1.0D, 1.0D));
+      this.targetSelector.addGoal(1, (new HurtByTargetGoal(this, GuardianEntity.class)).setCallsForHelp());
       this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, LivingEntity.class, false));
    }
 
    public static AttributeModifierMap.MutableAttribute func_234190_eK_() {
-      return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 10.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, (double)1.2F).createMutableAttribute(Attributes.ATTACK_DAMAGE, 3.0D);
+      return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 30.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 1.2F).createMutableAttribute(Attributes.ATTACK_DAMAGE, 9.0D);
    }
 
    /**
@@ -283,26 +285,31 @@ public class DrurbFishEntity extends WaterMobEntity {
 
    }
 
-   protected ActionResultType func_230254_b_(PlayerEntity p_230254_1_, Hand p_230254_2_) {
-      ItemStack itemstack = p_230254_1_.getHeldItem(p_230254_2_);
+   protected ActionResultType getEntityInteractionResult(PlayerEntity playerIn, Hand hand) {
+      ItemStack itemstack = playerIn.getHeldItem(hand);
       if (!itemstack.isEmpty() && itemstack.getItem().isIn(ItemTags.FISHES)) {
          if (!this.world.isRemote) {
             this.playSound(SoundEvents.ENTITY_DOLPHIN_EAT, 1.0F, 1.0F);
          }
 
          this.setGotFish(true);
-         if (!p_230254_1_.abilities.isCreativeMode) {
+         if (!playerIn.abilities.isCreativeMode) {
             itemstack.shrink(1);
          }
 
          return ActionResultType.func_233537_a_(this.world.isRemote);
       } else {
-         return super.func_230254_b_(p_230254_1_, p_230254_2_);
+         return super.getEntityInteractionResult(playerIn, hand);
       }
    }
 
    public static boolean func_223364_b(EntityType<DrurbFishEntity> p_223364_0_, IWorld p_223364_1_, SpawnReason reason, BlockPos p_223364_3_, Random p_223364_4_) {
-      return p_223364_3_.getY() > 45 && p_223364_3_.getY() < p_223364_1_.getSeaLevel() && (p_223364_1_.getBiome(p_223364_3_) != Biomes.OCEAN || p_223364_1_.getBiome(p_223364_3_) != Biomes.DEEP_OCEAN) && p_223364_1_.getFluidState(p_223364_3_).isTagged(FluidTags.WATER);
+      if (p_223364_3_.getY() > 45 && p_223364_3_.getY() < p_223364_1_.getSeaLevel()) {
+         Optional<RegistryKey<Biome>> optional = p_223364_1_.func_242406_i(p_223364_3_);
+         return (!Objects.equals(optional, Optional.of(Biomes.OCEAN)) || !Objects.equals(optional, Optional.of(Biomes.DEEP_OCEAN))) && p_223364_1_.getFluidState(p_223364_3_).isTagged(FluidTags.WATER);
+      } else {
+         return false;
+      }
    }
 
    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
@@ -353,9 +360,9 @@ public class DrurbFishEntity extends WaterMobEntity {
    static class MoveHelperController extends MovementController {
       private final DrurbFishEntity dolphin;
 
-      public MoveHelperController(DrurbFishEntity drurbIn) {
-         super(drurbIn);
-         this.dolphin = drurbIn;
+      public MoveHelperController(DrurbFishEntity dolphinIn) {
+         super(dolphinIn);
+         this.dolphin = dolphinIn;
       }
 
       public void tick() {
@@ -363,7 +370,7 @@ public class DrurbFishEntity extends WaterMobEntity {
             this.dolphin.setMotion(this.dolphin.getMotion().add(0.0D, 0.005D, 0.0D));
          }
 
-         if (this.action == Action.MOVE_TO && !this.dolphin.getNavigator().noPath()) {
+         if (this.action == MovementController.Action.MOVE_TO && !this.dolphin.getNavigator().noPath()) {
             double d0 = this.posX - this.dolphin.getPosX();
             double d1 = this.posY - this.dolphin.getPosY();
             double d2 = this.posZ - this.dolphin.getPosZ();
@@ -480,7 +487,7 @@ public class DrurbFishEntity extends WaterMobEntity {
 
       SwimToTreasureGoal(DrurbFishEntity dolphinIn) {
          this.dolphin = dolphinIn;
-         this.setMutexFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
+         this.setMutexFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
       }
 
       public boolean isPreemptible() {
@@ -512,11 +519,11 @@ public class DrurbFishEntity extends WaterMobEntity {
             this.field_208058_b = false;
             this.dolphin.getNavigator().clearPath();
             BlockPos blockpos = this.dolphin.getPosition();
-            Structure<?> structure = (double)serverworld.rand.nextFloat() >= 0.5D ? Structure.field_236377_m_ : Structure.field_236373_i_;
-            BlockPos blockpos1 = serverworld.func_241117_a_(structure, blockpos, 50, false);
+            Structure<?> structure = (double)serverworld.rand.nextFloat() >= 0.5D ? Structure.OCEAN_RUIN : Structure.SHIPWRECK;
+            BlockPos blockpos1 = serverworld.getStructureLocation(structure, blockpos, 50, false);
             if (blockpos1 == null) {
-               Structure<?> structure1 = structure.equals(Structure.field_236377_m_) ? Structure.field_236373_i_ : Structure.field_236377_m_;
-               BlockPos blockpos2 = serverworld.func_241117_a_(structure1, blockpos, 50, false);
+               Structure<?> structure1 = structure.equals(Structure.OCEAN_RUIN) ? Structure.SHIPWRECK : Structure.OCEAN_RUIN;
+               BlockPos blockpos2 = serverworld.getStructureLocation(structure1, blockpos, 50, false);
                if (blockpos2 == null) {
                   this.field_208058_b = true;
                   return;
@@ -549,9 +556,9 @@ public class DrurbFishEntity extends WaterMobEntity {
          World world = this.dolphin.world;
          if (this.dolphin.closeToTarget() || this.dolphin.getNavigator().noPath()) {
             Vector3d vector3d = Vector3d.copyCentered(this.dolphin.getTreasurePos());
-            Vector3d vector3d1 = net.minecraft.entity.ai.RandomPositionGenerator.findRandomTargetTowardsScaled(this.dolphin, 16, 1, vector3d, (double)((float)Math.PI / 8F));
+            Vector3d vector3d1 = RandomPositionGenerator.findRandomTargetTowardsScaled(this.dolphin, 16, 1, vector3d, (double)((float)Math.PI / 8F));
             if (vector3d1 == null) {
-               vector3d1 = net.minecraft.entity.ai.RandomPositionGenerator.findRandomTargetBlockTowards(this.dolphin, 8, 4, vector3d);
+               vector3d1 = RandomPositionGenerator.findRandomTargetBlockTowards(this.dolphin, 8, 4, vector3d);
             }
 
             if (vector3d1 != null) {
@@ -584,7 +591,7 @@ public class DrurbFishEntity extends WaterMobEntity {
       SwimWithPlayerGoal(DrurbFishEntity dolphinIn, double speedIn) {
          this.dolphin = dolphinIn;
          this.speed = speedIn;
-         this.setMutexFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
+         this.setMutexFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
       }
 
       /**

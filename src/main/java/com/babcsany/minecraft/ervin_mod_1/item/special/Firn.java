@@ -57,7 +57,7 @@ public class Firn extends Item {
 		if (context.getWorld().getBlockState(context.getPos()).getBlock() == isBurnableBlockItemInit.NIRK_BLOCK.get()) {
 			for (ItemStack stack : context.getPlayer().inventory.mainInventory) {
 				if (stack.isEmpty()) {
-					context.getPlayer().addItemStackToInventory(new ItemStack(isBurnableSpecialItemInit.FIRN.get()));
+					context.getPlayer().addItemStackToInventory(new ItemStack(isBurnableSpecialItemInit.FIRN));
 					context.getItem().damageItem(5, context.getPlayer(), (playerIn) -> {
 						playerIn.sendBreakAnimation(context.getHand());
 					});
@@ -65,7 +65,7 @@ public class Firn extends Item {
 				}
 			}
 			context.getWorld().addEntity(new ItemEntity(context.getWorld(), context.getPos().getX(),
-					context.getPos().getY(), context.getPos().getZ(), new ItemStack(isBurnableSpecialItemInit.FIRN.get())));
+					context.getPos().getY(), context.getPos().getZ(), new ItemStack(isBurnableSpecialItemInit.FIRN)));
 			return ActionResultType.SUCCESS;
 		}
 		return ActionResultType.FAIL;

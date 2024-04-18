@@ -23,6 +23,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 public class GwurstEntity extends AnimalEntity {
    private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(Items.PUMPKIN_SEEDS);
@@ -129,8 +130,8 @@ public class GwurstEntity extends AnimalEntity {
       this.playSound(SoundEvents.ENTITY_CHICKEN_STEP, 0.15F, 1.0F);
    }
 
-   public GwurstEntity createChild(AgeableEntity ageable) {
-      return EntityInit.GWURST.get().create(this.world);
+   public GwurstEntity createChild(ServerWorld serverWorld, AgeableEntity ageable) {
+      return EntityInit.GWURST.get().create(serverWorld);
    }
 
    /**

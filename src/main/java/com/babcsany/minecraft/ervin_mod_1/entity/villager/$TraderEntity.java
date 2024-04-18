@@ -21,8 +21,10 @@ import net.minecraft.stats.Stats;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nullable;
+import java.util.Objects;
 
 public class $TraderEntity extends Abstract$TraderEntity {
    @Nullable
@@ -58,7 +60,7 @@ public class $TraderEntity extends Abstract$TraderEntity {
       return false;
    }
 
-   public ActionResultType func_230254_b_(PlayerEntity p_230254_1_, Hand p_230254_2_) {
+   public ActionResultType getEntityInteractionResult(PlayerEntity p_230254_1_, Hand p_230254_2_) {
       ItemStack itemstack = p_230254_1_.getHeldItem(p_230254_2_);
       if (itemstack.getItem() != ModSpawnEggItemInit.$_TRADER_SPAWN_EGG.get() && this.isAlive() && !this.hasCustomer() && !this.isChild()) {
          if (p_230254_2_ == Hand.MAIN_HAND) {
@@ -76,7 +78,7 @@ public class $TraderEntity extends Abstract$TraderEntity {
             return ActionResultType.func_233537_a_(this.world.isRemote);
          }
       } else {
-         return super.func_230254_b_(p_230254_1_, p_230254_2_);
+         return super.getEntityInteractionResult(p_230254_1_, p_230254_2_);
       }
    }
 
@@ -153,6 +155,11 @@ public class $TraderEntity extends Abstract$TraderEntity {
       return getYesSound ? SoundEvents.ENTITY_WANDERING_TRADER_YES : SoundEvents.ENTITY_WANDERING_TRADER_NO;
    }
 
+   @Override
+   public boolean hasXPBar() {
+      return false;
+   }
+
    public SoundEvent getYesSound() {
       return SoundEvents.ENTITY_WANDERING_TRADER_YES;
    }
@@ -177,8 +184,8 @@ public class $TraderEntity extends Abstract$TraderEntity {
 
    }
 
-   public $TraderEntity createChild(Abstract$TraderEntity ageable) {
-      return EntityInit.$_TRADER_ENTITY.get().create(this.world);
+   public AgeableEntity createChild(ServerWorld serverWorld, AgeableEntity ageable) {
+      return Objects.requireNonNull(EntityInit.$_TRADER_ENTITY.get().create(serverWorld));
    }
 
    private void handleDespawn() {

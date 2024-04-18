@@ -6,7 +6,7 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 
-public class SriunkSlab1 extends Block {
+public class SriunkSlab1 extends SlabBlock {
    protected static final VoxelShape SHAPE = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D);
 
    public SriunkSlab1(AbstractBlock.Properties properties) {

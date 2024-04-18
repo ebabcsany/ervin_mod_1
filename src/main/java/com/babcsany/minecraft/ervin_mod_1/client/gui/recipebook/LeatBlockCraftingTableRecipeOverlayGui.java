@@ -45,7 +45,7 @@ public class LeatBlockCraftingTableRecipeOverlayGui extends AbstractGui implemen
          this.field_201704_n = true;
       }
 
-      boolean flag = playerEntity.getRecipeBook().isFilteringCraftable((RecipeBookContainer)p_201703_1_.player.openContainer);
+      boolean flag = playerEntity.getRecipeBook().func_242141_a((RecipeBookContainer)p_201703_1_.player.openContainer);
       List<IRecipe<?>> list = p_201703_2_.getDisplayRecipes(true);
       List<IRecipe<?>> list1 = flag ? Collections.emptyList() : p_201703_2_.getDisplayRecipes(false);
       int i = list.size();

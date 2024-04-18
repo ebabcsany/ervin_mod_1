@@ -38,7 +38,7 @@ public class TNkBlock extends Block {
    }
 
    public void onBlockAdded(BlockState state, World worldIn, BlockPos pos, BlockState oldState, boolean isMoving) {
-      if (!oldState.isIn(state.getBlock())) {
+      if (!oldState.matchesBlock(state.getBlock())) {
          if (worldIn.isBlockPowered(pos)) {
             catchFire(state, worldIn, pos, null, null);
             worldIn.removeBlock(pos, false);
@@ -116,7 +116,7 @@ public class TNkBlock extends Block {
 
    public void onProjectileCollision(World worldIn, BlockState state, BlockRayTraceResult hit, ProjectileEntity projectile) {
       if (!worldIn.isRemote) {
-         Entity entity = projectile.func_234616_v_();
+         Entity entity = projectile.getShooter();
          if (projectile.isBurning()) {
             BlockPos blockpos = hit.getPos();
             catchFire(state, worldIn, blockpos, null, entity instanceof LivingEntity ? (LivingEntity)entity : null);

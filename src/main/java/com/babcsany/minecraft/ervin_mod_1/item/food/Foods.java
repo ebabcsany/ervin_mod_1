@@ -15,7 +15,7 @@ public class Foods {
     public static final Food GRINT_SLAB = (new Food.Builder()).hunger(12).saturation(7.2F).effect(() -> new EffectInstance(Effects.REGENERATION, 50, 10), 10.0F).setAlwaysEdible().fastToEat().build();
     public static final Food GRINT_STAIRS = (new Food.Builder()).hunger(18).saturation(10.8F).effect(() -> new EffectInstance(Effects.REGENERATION, 50, 10), 10.0F).setAlwaysEdible().fastToEat().build();
     public static final Food GRINT = (new Food.Builder()).hunger(8).saturation(4.8F).effect(() -> new EffectInstance(Effects.REGENERATION, 50, 10), 10.0F).setAlwaysEdible().fastToEat().build();
-    public static final Food FIRG = (new Food.Builder()).hunger(1).saturation(1.2F).effect(() -> new EffectInstance(Effects.REGENERATION, 50, 10), 10.0F).setAlwaysEdible().fastToEat().build();
+    public static final Food FIRG = (new Food.Builder()).hunger(1).saturation(1.25F).effect(() -> new EffectInstance(Effects.REGENERATION, 50, 10), 10.0F).setAlwaysEdible().fastToEat().build();
     public static final Food FIRG_SLICE = (new Food.Builder()).hunger(0).saturation(0.15F).effect(() -> new EffectInstance(Effects.REGENERATION, 10, 1), 1.25F).setAlwaysEdible().fastToEat().build();
     public static final Food FIRG_SLAB = (new Food.Builder()).hunger(new Random().nextInt(1)).saturation(0.6F).effect(() -> new EffectInstance(Effects.REGENERATION, 25, 5), 5.0F).setAlwaysEdible().fastToEat().build();
     public static final Food FIRG_STAIRS = (new Food.Builder()).hunger(0).saturation(0.9F).effect(() -> new EffectInstance(Effects.REGENERATION, 38, 8), 8.0F).setAlwaysEdible().fastToEat().build();

@@ -52,7 +52,7 @@ public class ModSaplingBlock_4 extends BushBlock implements IGrowable {
 
 	public void grow(ServerWorld serverWorld, BlockPos pos, BlockState state, Random rand) {
 		if (state.get(STAGE) == 0) {
-			serverWorld.setBlockState(pos, state.func_235896_a_(STAGE), 4);
+			serverWorld.setBlockState(pos, state.cycleValue(STAGE), 4);
 		} else {
 			if (!ForgeEventFactory.saplingGrowTree(serverWorld, rand, pos))
 				return;
@@ -63,7 +63,7 @@ public class ModSaplingBlock_4 extends BushBlock implements IGrowable {
 
 	public void grow1(ServerWorld serverWorld, BlockPos pos, BlockState state, Random rand) {
 		if (state.get(STAGE) == 0) {
-			serverWorld.setBlockState(pos, state.func_235896_a_(STAGE), 4);
+			serverWorld.setBlockState(pos, state.cycleValue(STAGE), 4);
 		} else {
 			if (!ForgeEventFactory.saplingGrowTree(serverWorld, rand, pos))
 				return;
@@ -74,7 +74,7 @@ public class ModSaplingBlock_4 extends BushBlock implements IGrowable {
 
 	public void grow2(ServerWorld serverWorld, BlockPos pos, BlockState state, Random rand) {
 		if (state.get(STAGE) == 0) {
-			serverWorld.setBlockState(pos, state.func_235896_a_(STAGE), 4);
+			serverWorld.setBlockState(pos, state.cycleValue(STAGE), 4);
 		} else {
 			if (!ForgeEventFactory.saplingGrowTree(serverWorld, rand, pos))
 				return;
@@ -85,7 +85,7 @@ public class ModSaplingBlock_4 extends BushBlock implements IGrowable {
 
 	public void grow3(ServerWorld serverWorld, BlockPos pos, BlockState state, Random rand) {
 		if (state.get(STAGE) == 0) {
-			serverWorld.setBlockState(pos, state.func_235896_a_(STAGE), 4);
+			serverWorld.setBlockState(pos, state.cycleValue(STAGE), 4);
 		} else {
 			if (!ForgeEventFactory.saplingGrowTree(serverWorld, rand, pos))
 				return;
@@ -96,7 +96,7 @@ public class ModSaplingBlock_4 extends BushBlock implements IGrowable {
 
 	public void grow4(ServerWorld serverWorld, BlockPos pos, BlockState state, Random rand) {
 		if (state.get(STAGE) == 0) {
-			serverWorld.setBlockState(pos, state.func_235896_a_(STAGE), 4);
+			serverWorld.setBlockState(pos, state.cycleValue(STAGE), 4);
 		} else {
 			if (!ForgeEventFactory.saplingGrowTree(serverWorld, rand, pos))
 				return;

@@ -1,5 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.classes.world.spawn;
 
+import net.minecraft.world.IServerWorld;
 import net.minecraft.world.gen.Heightmap;
 import com.google.common.collect.Maps;
 import net.minecraft.entity.*;
@@ -51,7 +52,7 @@ public class EntitySpawnPlacementRegistry extends net.minecraft.entity.EntitySpa
       return entityspawnplacementregistry$entry == null ? Heightmap.Type.MOTION_BLOCKING_NO_LEAVES : entityspawnplacementregistry$entry.type;
    }
 
-   public static <T extends Entity> boolean canSpawnEntity(EntityType<T> entityType, IWorld world, SpawnReason reason, BlockPos pos, Random rand) {
+   public static <T extends Entity> boolean canSpawnEntity(EntityType<T> entityType, IServerWorld world, SpawnReason reason, BlockPos pos, Random rand) {
       Entry entityspawnplacementregistry$entry = REGISTRY.get(entityType);
       return entityspawnplacementregistry$entry == null || entityspawnplacementregistry$entry.placementPredicate.test((EntityType) entityType, world, reason, pos, rand);
    }
@@ -74,6 +75,6 @@ public class EntitySpawnPlacementRegistry extends net.minecraft.entity.EntitySpa
 
    @FunctionalInterface
    public interface IPlacementPredicate<T extends Entity> extends net.minecraft.entity.EntitySpawnPlacementRegistry.IPlacementPredicate<T> {
-      boolean test(EntityType<T> p_test_1_, IWorld p_test_2_, SpawnReason p_test_3_, BlockPos p_test_4_, Random p_test_5_);
+      boolean test(EntityType<T> p_test_1_, IServerWorld p_test_2_, SpawnReason p_test_3_, BlockPos p_test_4_, Random p_test_5_);
    }
 }

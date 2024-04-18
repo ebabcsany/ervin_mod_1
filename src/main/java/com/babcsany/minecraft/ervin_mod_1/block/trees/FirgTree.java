@@ -14,18 +14,18 @@ public class FirgTree extends Tree1 {
     */
    @Nullable
    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean p_225546_2_) {
-      return randomIn.nextInt(20) == 0 ? Feature.field_236291_c_.withConfiguration(p_225546_2_ ? ModDefaultBiomeFeatures.FIRG_TREE_WITH_MORE_BEEHIVES_CONFIG : ModDefaultBiomeFeatures.FIRG_TREE_CONFIG) : Feature.field_236291_c_.withConfiguration(p_225546_2_ ? ModDefaultBiomeFeatures.FIRG_TREE_WITH_MORE_BEEHIVES_CONFIG1 : ModDefaultBiomeFeatures.FIRG_TREE_CONFIG1);
+      return randomIn.nextInt(20) == 0 ? Feature.TREE.withConfiguration(p_225546_2_ ? ModDefaultBiomeFeatures.FIRG_TREE_WITH_MORE_BEEHIVES_CONFIG : ModDefaultBiomeFeatures.FIRG_TREE_CONFIG) : Feature.TREE.withConfiguration(p_225546_2_ ? ModDefaultBiomeFeatures.FIRG_TREE_WITH_MORE_BEEHIVES_CONFIG1 : ModDefaultBiomeFeatures.FIRG_TREE_CONFIG1);
    }
    @Nullable
    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature1(Random randomIn, boolean p_225546_2_) {
-      return randomIn.nextInt(10) == 0 ? Feature.field_236291_c_.withConfiguration(p_225546_2_ ? ModDefaultBiomeFeatures.FIRG_TREE_WITH_MORE_FIRGS_CONFIG : ModDefaultBiomeFeatures.FIRG_TREE_CONFIG2) : Feature.field_236291_c_.withConfiguration(p_225546_2_ ? ModDefaultBiomeFeatures.FIRG_TREE_WITH_MORE_FIRGS_CONFIG1 : ModDefaultBiomeFeatures.FIRG_TREE_CONFIG3);
+      return randomIn.nextInt(10) == 0 ? Feature.TREE.withConfiguration(p_225546_2_ ? ModDefaultBiomeFeatures.FIRG_TREE_WITH_MORE_FIRGS_CONFIG : ModDefaultBiomeFeatures.FIRG_TREE_CONFIG2) : Feature.TREE.withConfiguration(p_225546_2_ ? ModDefaultBiomeFeatures.FIRG_TREE_WITH_MORE_FIRGS_CONFIG1 : ModDefaultBiomeFeatures.FIRG_TREE_CONFIG3);
    }
    @Nullable
    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTree_Feature(Random randomIn, boolean p_225546_2_) {
-      return Feature.field_236291_c_.withConfiguration(ModDefaultBiomeFeatures.FIRG_TREE_CONFIG3);
+      return Feature.TREE.withConfiguration(ModDefaultBiomeFeatures.FIRG_TREE_CONFIG3);
    }
    @Nullable
    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getHugeTreeFeature(Random p_225547_1_) {
-      return Feature.field_236291_c_.withConfiguration(ModDefaultBiomeFeatures.MEGA_FIRG_TREE_CONFIG);
+      return Feature.TREE.withConfiguration(ModDefaultBiomeFeatures.MEGA_FIRG_TREE_CONFIG);
    }
 }

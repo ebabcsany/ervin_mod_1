@@ -26,7 +26,7 @@ public class HoeBlockItem extends ToolBlockItem {
    protected static final Map<Block, BlockState> HOE_LOOKUP = Maps.newHashMap(ImmutableMap.of(Blocks.GRASS_BLOCK, Blocks.FARMLAND.getDefaultState(), Blocks.GRASS_PATH, Blocks.FARMLAND.getDefaultState(), Blocks.DIRT, Blocks.FARMLAND.getDefaultState(), Blocks.COARSE_DIRT, Blocks.DIRT.getDefaultState()));
 
    public HoeBlockItem(IItemTier tier, Block blockIn, int attackDamageIn, float attackSpeedIn, Properties builder) {
-      super(blockIn, (float)attackDamageIn, attackSpeedIn, tier, field_234683_c_, builder.addToolType(net.minecraftforge.common.ToolType.HOE, tier.getHarvestLevel()));
+      super(blockIn, attackDamageIn, attackSpeedIn, tier, field_234683_c_, builder.addToolType(net.minecraftforge.common.ToolType.HOE, tier.getHarvestLevel()));
    }
 
    /**

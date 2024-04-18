@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "jurk",
+  "pattern": [
+    "#####",
+    "#####",
+    "#####",
+    "#####",
+    "#####"
+  ],
+  "key": {
+    "#": {
+      "item": "ervin_mod_1:tnagt"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:tnagn",
+    "count": 1
+  }
+}

@@ -65,31 +65,34 @@ public class TeratBucket extends BucketItem {
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
         ActionResult<ItemStack> itemStackActionResult = super.onItemRightClick(worldIn, playerIn, handIn);
         ItemStack newItemStack;
-        Item itemBucket = itemStackActionResult.getResult().getItem();
-        Item teratBucketIn = isBurnableItemInit.TERAT_BUCKET.get();
-        Item waterTeratBucketIn = isBurnableItemInit.WATER_TERAT_BUCKET.get();
-        Item lavaTeratBucketIn = isBurnableItemInit.LAVA_TERAT_BUCKET.get();
-        if (itemBucket == isBurnableItemInit.TERAT_BUCKET.get()) {
-            newItemStack = new ItemStack(teratBucketIn);
-        } else {
-            if (itemBucket == Items.LAVA_BUCKET) {
-                itemBucket = lavaTeratBucketIn;
-            } else if (itemBucket == Items.WATER_BUCKET) {
-                itemBucket = waterTeratBucketIn;
-            } else {
-                itemBucket = teratBucketIn;
-            }
-            newItemStack = new ItemStack(itemBucket);
-        }
+//        Item itemBucket = itemStackActionResult.getResult().getItem();
+//        Item teratBucketIn = isBurnableItemInit.TERAT_BUCKET.get();
+//        Item waterTeratBucketIn = isBurnableItemInit.WATER_TERAT_BUCKET.get();
+//        Item lavaTeratBucketIn = isBurnableItemInit.LAVA_TERAT_BUCKET.get();
+//        if (itemBucket == isBurnableItemInit.TERAT_BUCKET.get()) {
+//            newItemStack = new ItemStack(teratBucketIn);
+//        } else {
+//            if (itemBucket == Items.LAVA_BUCKET) {
+//                itemBucket = lavaTeratBucketIn;
+//            } else if (itemBucket == Items.WATER_BUCKET) {
+//                itemBucket = waterTeratBucketIn;
+//            } else {
+//                itemBucket = teratBucketIn;
+//            }
+//            newItemStack = new ItemStack(itemBucket);
+//        }
+        newItemStack = new ItemStack(this.fixBucketItem(this, playerIn));
         itemStackActionResult = new ActionResult<>(ActionResultType.CONSUME, newItemStack);
 
         return itemStackActionResult;
     }
 
-    private Item fixBucketItem(Item bucketIn) {
+    private Item fixBucketItem(Item bucketIn, PlayerEntity playerIn) {
+        boolean isCreative = playerIn.isCreative();
         Item teratBucketIn = isBurnableItemInit.TERAT_BUCKET.get();
         Item waterTeratBucketIn = isBurnableItemInit.WATER_TERAT_BUCKET.get();
         Item lavaTeratBucketIn = isBurnableItemInit.LAVA_TERAT_BUCKET.get();
+        Item value;
         if (bucketIn == teratBucketIn) {
             Item item = teratBucketIn;
             if (this.containedBlock == Fluids.LAVA) {
@@ -97,14 +100,15 @@ public class TeratBucket extends BucketItem {
             } else if (this.containedBlock == Fluids.WATER) {
                 item = waterTeratBucketIn;
             }
-            return item;
+            value = item;
         } else if (bucketIn == waterTeratBucketIn) {
-            return teratBucketIn;
+            value = teratBucketIn;
         } else if (bucketIn == lavaTeratBucketIn) {
-            return teratBucketIn;
+            value = teratBucketIn;
         } else {
-            return teratBucketIn;
+            value = teratBucketIn;
         }
+        return isCreative ? bucketIn : value;
     }
 
     protected ItemStack emptyBucket(ItemStack p_203790_1_, PlayerEntity p_203790_2_) {

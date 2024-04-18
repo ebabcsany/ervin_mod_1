@@ -1,6 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.monster.zur;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.trigger.CriteriaTriggers1;
+import com.babcsany.minecraft.ervin_mod_1.trigger.ModCriteriaTriggers;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.ZurTrades;
 import com.google.common.collect.Sets;
 import net.minecraft.entity.*;
@@ -20,6 +20,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.IServerWorld;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
@@ -41,10 +42,9 @@ public abstract class TraderZurEntity extends TameableZurEntity implements INPC,
       super(type, worldIn);
    }
 
-   public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
+   public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
       if (spawnDataIn == null) {
-         spawnDataIn = new AgeableData();
-         ((AgeableData)spawnDataIn).setCanBabySpawn(false);
+         spawnDataIn = new AgeableData(false);
       }
 
       return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
@@ -105,7 +105,7 @@ public abstract class TraderZurEntity extends TameableZurEntity implements INPC,
       this.livingSoundTime = -this.getTalkInterval();
       this.onTraderZurTrade(offer);
       if (this.customer instanceof ServerPlayerEntity) {
-         CriteriaTriggers1.ZUR_TRADE.testTameable((ServerPlayerEntity)this.customer, this, offer.getSellingStack());
+         ModCriteriaTriggers.ZUR_TRADE.testTameable((ServerPlayerEntity)this.customer, this, offer.getSellingStack());
       }
 
    }

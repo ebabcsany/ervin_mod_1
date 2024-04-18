@@ -1,12 +1,13 @@
 package com.babcsany.minecraft.ervin_mod_1.item;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.projectile.HuihkEntity;
 import net.minecraft.enchantment.IVanishable;
+import net.minecraft.entity.projectile.HuihkEntity;
+import net.minecraft.item.FishingRodItem;
 import net.minecraft.item.Item;
 
 import javax.annotation.Nullable;
 
-public class HuihkRodItem extends Item implements IVanishable {
+public class HuihkRodItem extends FishingRodItem implements IVanishable {
    @Nullable
    public HuihkEntity huihk;
    public HuihkRodItem(Properties builder) {

@@ -130,7 +130,7 @@ public class HhijRandomPositionGenerator {
                }
 
                if (p_226339_5_ || !p_226339_0_.world.getFluidState(blockpos3).isTagged(FluidTags.WATER)) {
-                  PathNodeType pathnodetype = WalkNodeProcessor.func_237231_a_(p_226339_0_.world, blockpos3.toMutable());
+                  PathNodeType pathnodetype = WalkNodeProcessor.getFloorNodeType(p_226339_0_.world, blockpos3.toMutable());
                   if (p_226339_0_.getPathPriority(pathnodetype) == 0.0F) {
                      double d1 = p_226339_8_.applyAsDouble(blockpos3);
                      if (d1 > d0) {

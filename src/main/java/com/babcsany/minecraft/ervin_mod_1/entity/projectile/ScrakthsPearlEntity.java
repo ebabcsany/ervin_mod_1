@@ -1,9 +1,11 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.projectile;
 
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.minecraft.entity.EntityInit;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.item.EnderPearlEntity;
 import net.minecraft.entity.monster.EndermiteEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -21,18 +23,18 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 
-public class ScrakthsPearlEntity extends ProjectileItemEntity {
+public class ScrakthsPearlEntity extends EnderPearlEntity {
    public ScrakthsPearlEntity(EntityType<? extends ScrakthsPearlEntity> p_i50153_1_, World world) {
       super(p_i50153_1_, world);
    }
 
    public ScrakthsPearlEntity(World worldIn, LivingEntity throwerIn) {
-      super(EntityType.ENDER_PEARL, throwerIn, worldIn);
+      super(worldIn, throwerIn);
    }
 
    @OnlyIn(Dist.CLIENT)
    public ScrakthsPearlEntity(World worldIn, double x, double y, double z) {
-      super(EntityType.ENDER_PEARL, x, y, z, worldIn);
+      super(worldIn, x, y, z);
    }
 
    protected Item getDefaultItem() {
@@ -44,7 +46,7 @@ public class ScrakthsPearlEntity extends ProjectileItemEntity {
     */
    protected void onEntityHit(EntityRayTraceResult p_213868_1_) {
       super.onEntityHit(p_213868_1_);
-      p_213868_1_.getEntity().attackEntityFrom(DamageSource.causeThrownDamage(this, this.func_234616_v_()), 0.0F);
+      p_213868_1_.getEntity().attackEntityFrom(DamageSource.causeThrownDamage(this, this.getShooter()), 0.0F);
    }
 
    /**
@@ -52,7 +54,7 @@ public class ScrakthsPearlEntity extends ProjectileItemEntity {
     */
    protected void onImpact(RayTraceResult result) {
       super.onImpact(result);
-      Entity entity = this.func_234616_v_();
+      Entity entity = this.getShooter();
 
       for(int i = 0; i < 32; ++i) {
          this.world.addParticle(ParticleTypes.PORTAL, this.getPosX(), this.getPosY() + this.rand.nextDouble() * 2.0D, this.getPosZ(), this.rand.nextGaussian(), 0.0D, this.rand.nextGaussian());
@@ -94,7 +96,7 @@ public class ScrakthsPearlEntity extends ProjectileItemEntity {
     * Called to update the entity's position/logic.
     */
    public void tick() {
-      Entity entity = this.func_234616_v_();
+      Entity entity = this.getShooter();
       if (entity instanceof PlayerEntity && !entity.isAlive()) {
          this.remove();
       } else {
@@ -105,8 +107,8 @@ public class ScrakthsPearlEntity extends ProjectileItemEntity {
 
    @Nullable
    public Entity changeDimension(ServerWorld server, net.minecraftforge.common.util.ITeleporter teleporter) {
-      Entity entity = this.func_234616_v_();
-      if (entity != null && entity.world.func_234923_W_() != server.func_234923_W_()) {
+      Entity entity = this.getShooter();
+      if (entity != null && entity.world.getDimensionKey() != server.getDimensionKey()) {
          this.setShooter(null);
       }
 

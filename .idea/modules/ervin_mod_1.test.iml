@@ -14,9 +14,9 @@
   </component>
   <component name="McpModuleSettings">
     <option name="mappingFile" value="C:\save\ervin\projects\ervin_mod_1\build\createMcpToSrg\output.tsrg" />
-    <option name="mcpVersion" value="snapshot_20200723-1.16.1" />
-    <option name="minecraftVersion" value="1.16.1" />
-    <option name="platformVersion" value="32.0.108" />
+    <option name="mcpVersion" value="snapshot_20210309-1.16.5" />
+    <option name="minecraftVersion" value="1.16.2" />
+    <option name="platformVersion" value="33.0.61" />
     <option name="srgType" value="TSRG" />
   </component>
 </module>

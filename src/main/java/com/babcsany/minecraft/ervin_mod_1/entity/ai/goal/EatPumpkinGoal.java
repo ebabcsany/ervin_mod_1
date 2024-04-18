@@ -39,7 +39,7 @@ public class EatPumpkinGoal extends Goal {
          if (IS_PUMPKIN.test(this.entityWorld.getBlockState(blockpos))) {
             return true;
          } else {
-            return this.entityWorld.getBlockState(blockpos.down()).isIn(Blocks.PUMPKIN);
+            return this.entityWorld.getBlockState(blockpos.down()).matchesBlock(Blocks.PUMPKIN);
          }
       }
    }
@@ -89,7 +89,7 @@ public class EatPumpkinGoal extends Goal {
             this.pumpkinEaterEntity.eatGrassBonus();
          } else {
             BlockPos blockpos1 = blockpos.down();
-            if (this.entityWorld.getBlockState(blockpos1).isIn(Blocks.PUMPKIN)) {
+            if (this.entityWorld.getBlockState(blockpos1).matchesBlock(Blocks.PUMPKIN)) {
                if (net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.entityWorld, this.pumpkinEaterEntity)) {
                   this.entityWorld.playEvent(2001, blockpos1, Block.getStateId(Blocks.PUMPKIN.getDefaultState()));
                   this.entityWorld.setBlockState(blockpos1, Blocks.CARVED_PUMPKIN.getDefaultState(), 2);

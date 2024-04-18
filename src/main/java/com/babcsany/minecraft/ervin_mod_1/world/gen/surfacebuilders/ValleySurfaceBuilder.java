@@ -42,10 +42,10 @@ public abstract class ValleySurfaceBuilder extends SurfaceBuilder<SurfaceBuilder
         for (int j1 = 127; j1 >= 0; --j1) {
             blockpos$mutable.setPos(j, j1, k);
             BlockState blockstate3 = chunkIn.getBlockState(blockpos$mutable);
-            if (blockstate2.isIn(defaultBlock.getBlock()) && (blockstate3.isAir() || blockstate3 == defaultFluid)) {
+            if (blockstate2.matchesBlock(defaultBlock.getBlock()) && (blockstate3.isAir() || blockstate3 == defaultFluid)) {
                 for (int k1 = 0; k1 < l; ++k1) {
                     blockpos$mutable.move(Direction.UP);
-                    if (!chunkIn.getBlockState(blockpos$mutable).isIn(defaultBlock.getBlock())) {
+                    if (!chunkIn.getBlockState(blockpos$mutable).matchesBlock(defaultBlock.getBlock())) {
                         break;
                     }
 
@@ -55,8 +55,8 @@ public abstract class ValleySurfaceBuilder extends SurfaceBuilder<SurfaceBuilder
                 blockpos$mutable.setPos(j, j1, k);
             }
 
-            if ((blockstate2.isAir() || blockstate2 == defaultFluid) && blockstate3.isIn(defaultBlock.getBlock())) {
-                for (int l1 = 0; l1 < i1 && chunkIn.getBlockState(blockpos$mutable).isIn(defaultBlock.getBlock()); ++l1) {
+            if ((blockstate2.isAir() || blockstate2 == defaultFluid) && blockstate3.matchesBlock(defaultBlock.getBlock())) {
+                for (int l1 = 0; l1 < i1 && chunkIn.getBlockState(blockpos$mutable).matchesBlock(defaultBlock.getBlock()); ++l1) {
                     if (flag && j1 >= i - 4 && j1 <= i + 1) {
                         chunkIn.setBlockState(blockpos$mutable, this.func_230380_a_(), false);
                     } else {
@@ -71,10 +71,10 @@ public abstract class ValleySurfaceBuilder extends SurfaceBuilder<SurfaceBuilder
         for (int j1 = 112; j1 >= 0; --j1) {
             blockpos$mutable.setPos(j, j1, k);
             BlockState blockstate3 = chunkIn.getBlockState(blockpos$mutable);
-            if (blockstate2.isIn(defaultBlock.getBlock()) && (blockstate3.isAir() || blockstate3 == defaultFluid)) {
+            if (blockstate2.matchesBlock(defaultBlock.getBlock()) && (blockstate3.isAir() || blockstate3 == defaultFluid)) {
                 for (int k1 = 0; k1 < l; ++k1) {
                     blockpos$mutable.move(Direction.UP);
-                    if (!chunkIn.getBlockState(blockpos$mutable).isIn(defaultBlock.getBlock())) {
+                    if (!chunkIn.getBlockState(blockpos$mutable).matchesBlock(defaultBlock.getBlock())) {
                         break;
                     }
 
@@ -84,8 +84,8 @@ public abstract class ValleySurfaceBuilder extends SurfaceBuilder<SurfaceBuilder
                 blockpos$mutable.setPos(j, j1, k);
             }
 
-            if ((blockstate2.isAir() || blockstate2 == defaultFluid) && blockstate3.isIn(defaultBlock.getBlock())) {
-                for (int l1 = 0; l1 < i1 && chunkIn.getBlockState(blockpos$mutable).isIn(defaultBlock.getBlock()); ++l1) {
+            if ((blockstate2.isAir() || blockstate2 == defaultFluid) && blockstate3.matchesBlock(defaultBlock.getBlock())) {
+                for (int l1 = 0; l1 < i1 && chunkIn.getBlockState(blockpos$mutable).matchesBlock(defaultBlock.getBlock()); ++l1) {
                     if (flag && j1 >= i - 8 && j1 <= i + 1) {
                         chunkIn.setBlockState(blockpos$mutable, this.func_230380_b_(), false);
                     } else {
@@ -100,10 +100,10 @@ public abstract class ValleySurfaceBuilder extends SurfaceBuilder<SurfaceBuilder
         for (int j1 = 106; j1 >= 0; --j1) {
             blockpos$mutable.setPos(j, j1, k);
             BlockState blockstate3 = chunkIn.getBlockState(blockpos$mutable);
-            if (blockstate2.isIn(defaultBlock.getBlock()) && (blockstate3.isAir() || blockstate3 == defaultFluid)) {
+            if (blockstate2.matchesBlock(defaultBlock.getBlock()) && (blockstate3.isAir() || blockstate3 == defaultFluid)) {
                 for (int k1 = 0; k1 < l; ++k1) {
                     blockpos$mutable.move(Direction.UP);
-                    if (!chunkIn.getBlockState(blockpos$mutable).isIn(defaultBlock.getBlock())) {
+                    if (!chunkIn.getBlockState(blockpos$mutable).matchesBlock(defaultBlock.getBlock())) {
                         break;
                     }
 
@@ -113,8 +113,8 @@ public abstract class ValleySurfaceBuilder extends SurfaceBuilder<SurfaceBuilder
                 blockpos$mutable.setPos(j, j1, k);
             }
 
-            if ((blockstate2.isAir() || blockstate2 == defaultFluid) && blockstate3.isIn(defaultBlock.getBlock())) {
-                for (int l1 = 0; l1 < i1 && chunkIn.getBlockState(blockpos$mutable).isIn(defaultBlock.getBlock()); ++l1) {
+            if ((blockstate2.isAir() || blockstate2 == defaultFluid) && blockstate3.matchesBlock(defaultBlock.getBlock())) {
+                for (int l1 = 0; l1 < i1 && chunkIn.getBlockState(blockpos$mutable).matchesBlock(defaultBlock.getBlock()); ++l1) {
                     if (flag && j1 >= i - 4 && j1 <= i + 1) {
                         chunkIn.setBlockState(blockpos$mutable, this.func_230380_c_(), false);
                     } else {
@@ -129,10 +129,10 @@ public abstract class ValleySurfaceBuilder extends SurfaceBuilder<SurfaceBuilder
         for (int j1 = 118; j1 >= 0; --j1) {
             blockpos$mutable.setPos(j, j1, k);
             BlockState blockstate3 = chunkIn.getBlockState(blockpos$mutable);
-            if (blockstate2.isIn(defaultBlock.getBlock()) && (blockstate3.isAir() || blockstate3 == defaultFluid)) {
+            if (blockstate2.matchesBlock(defaultBlock.getBlock()) && (blockstate3.isAir() || blockstate3 == defaultFluid)) {
                 for (int k1 = 0; k1 < l; ++k1) {
                     blockpos$mutable.move(Direction.UP);
-                    if (!chunkIn.getBlockState(blockpos$mutable).isIn(defaultBlock.getBlock())) {
+                    if (!chunkIn.getBlockState(blockpos$mutable).matchesBlock(defaultBlock.getBlock())) {
                         break;
                     }
 
@@ -142,8 +142,8 @@ public abstract class ValleySurfaceBuilder extends SurfaceBuilder<SurfaceBuilder
                 blockpos$mutable.setPos(j, j1, k);
             }
 
-            if ((blockstate2.isAir() || blockstate2 == defaultFluid) && blockstate3.isIn(defaultBlock.getBlock())) {
-                for (int l1 = 0; l1 < i1 && chunkIn.getBlockState(blockpos$mutable).isIn(defaultBlock.getBlock()); ++l1) {
+            if ((blockstate2.isAir() || blockstate2 == defaultFluid) && blockstate3.matchesBlock(defaultBlock.getBlock())) {
+                for (int l1 = 0; l1 < i1 && chunkIn.getBlockState(blockpos$mutable).matchesBlock(defaultBlock.getBlock()); ++l1) {
                     if (flag && j1 >= i - 4 && j1 <= i + 1) {
                         chunkIn.setBlockState(blockpos$mutable, this.func_230380_d_(), false);
                     } else {
@@ -158,10 +158,10 @@ public abstract class ValleySurfaceBuilder extends SurfaceBuilder<SurfaceBuilder
         for (int j1 = 125; j1 >= 0; --j1) {
             blockpos$mutable.setPos(j, j1, k);
             BlockState blockstate3 = chunkIn.getBlockState(blockpos$mutable);
-            if (blockstate2.isIn(defaultBlock.getBlock()) && (blockstate3.isAir() || blockstate3 == defaultFluid)) {
+            if (blockstate2.matchesBlock(defaultBlock.getBlock()) && (blockstate3.isAir() || blockstate3 == defaultFluid)) {
                 for (int k1 = 0; k1 < l; ++k1) {
                     blockpos$mutable.move(Direction.UP);
-                    if (!chunkIn.getBlockState(blockpos$mutable).isIn(defaultBlock.getBlock())) {
+                    if (!chunkIn.getBlockState(blockpos$mutable).matchesBlock(defaultBlock.getBlock())) {
                         break;
                     }
 
@@ -171,8 +171,8 @@ public abstract class ValleySurfaceBuilder extends SurfaceBuilder<SurfaceBuilder
                 blockpos$mutable.setPos(j, j1, k);
             }
 
-            if ((blockstate2.isAir() || blockstate2 == defaultFluid) && blockstate3.isIn(defaultBlock.getBlock())) {
-                for (int l1 = 0; l1 < i1 && chunkIn.getBlockState(blockpos$mutable).isIn(defaultBlock.getBlock()); ++l1) {
+            if ((blockstate2.isAir() || blockstate2 == defaultFluid) && blockstate3.matchesBlock(defaultBlock.getBlock())) {
+                for (int l1 = 0; l1 < i1 && chunkIn.getBlockState(blockpos$mutable).matchesBlock(defaultBlock.getBlock()); ++l1) {
                     if (flag && j1 >= i - 7 && j1 <= i + 1) {
                         chunkIn.setBlockState(blockpos$mutable, this.func_230380_e_(), false);
                     } else {
@@ -189,10 +189,10 @@ public abstract class ValleySurfaceBuilder extends SurfaceBuilder<SurfaceBuilder
         for (int j1 = 114; j1 >= 0; --j1) {
             blockpos$mutable.setPos(j, j1, k);
             BlockState blockstate3 = chunkIn.getBlockState(blockpos$mutable);
-            if (blockstate2.isIn(defaultBlock.getBlock()) && (blockstate3.isAir() || blockstate3 == defaultFluid)) {
+            if (blockstate2.matchesBlock(defaultBlock.getBlock()) && (blockstate3.isAir() || blockstate3 == defaultFluid)) {
                 for (int k1 = 0; k1 < l; ++k1) {
                     blockpos$mutable.move(Direction.UP);
-                    if (!chunkIn.getBlockState(blockpos$mutable).isIn(defaultBlock.getBlock())) {
+                    if (!chunkIn.getBlockState(blockpos$mutable).matchesBlock(defaultBlock.getBlock())) {
                         break;
                     }
 
@@ -202,8 +202,8 @@ public abstract class ValleySurfaceBuilder extends SurfaceBuilder<SurfaceBuilder
                 blockpos$mutable.setPos(j, j1, k);
             }
 
-            if ((blockstate2.isAir() || blockstate2 == defaultFluid) && blockstate3.isIn(defaultBlock.getBlock())) {
-                for (int l1 = 0; l1 < i1 && chunkIn.getBlockState(blockpos$mutable).isIn(defaultBlock.getBlock()); ++l1) {
+            if ((blockstate2.isAir() || blockstate2 == defaultFluid) && blockstate3.matchesBlock(defaultBlock.getBlock())) {
+                for (int l1 = 0; l1 < i1 && chunkIn.getBlockState(blockpos$mutable).matchesBlock(defaultBlock.getBlock()); ++l1) {
                     if (flag && j1 >= i - 5 && j1 <= i + 1) {
                         chunkIn.setBlockState(blockpos$mutable, this.func_230380_f_(), false);
                     } else {

@@ -187,7 +187,7 @@ public abstract class AbstractBlackFurnaceTileEntity extends LockableTileEntity 
    }
 
    private static boolean func_235644_b_(Item p_235644_0_) {
-      return ItemTags.field_232905_P_.contains(p_235644_0_);
+      return ItemTags.NON_FLAMMABLE_WOOD.contains(p_235644_0_);
    }
 
    private static void addItemTagBurnTime(Map<Item, Integer> map, ITag<Item> itemTag, int burnTimeIn) {

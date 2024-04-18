@@ -50,7 +50,7 @@ public class TBRVSEntity extends ProjectileItemEntity {
     */
    protected void onEntityHit(EntityRayTraceResult p_213868_1_) {
       super.onEntityHit(p_213868_1_);
-      p_213868_1_.getEntity().attackEntityFrom(DamageSource.causeThrownDamage(this, this.func_234616_v_()), 0.0F);
+      p_213868_1_.getEntity().attackEntityFrom(DamageSource.causeThrownDamage(this, this.getShooter()), 0.0F);
    }
 
    /**

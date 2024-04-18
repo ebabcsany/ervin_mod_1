@@ -12,6 +12,7 @@ import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IItemTier;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -23,17 +24,21 @@ public class ToolBlockItem extends TieredBlockItem implements IVanishable {
    private final Set<Block> effectiveBlocks;
    protected final float efficiency;
    private final float attackDamage;
-   private final Multimap<Attribute, AttributeModifier> field_234674_d_;
+   private final Multimap<Attribute, AttributeModifier> toolAttributes;
 
-   public ToolBlockItem(Block blockIn, float attackDamageIn, float attackSpeedIn, IItemTier tier, Set<Block> effectiveBlocksIn, Properties builderIn) {
+   public ToolBlockItem(Block blockIn, float attackDamageIn, float attackSpeedIn, IItemTier tier, Set<Block> effectiveBlocksIn, Item.Properties builderIn) {
+      this(attackDamageIn, attackSpeedIn, tier, effectiveBlocksIn, blockIn, builderIn);
+   }
+
+   public ToolBlockItem(float attackDamageIn, float attackSpeedIn, IItemTier tier, Set<Block> effectiveBlocksIn, Block blockIn, Item.Properties builderIn) {
       super(tier, blockIn, builderIn);
       this.effectiveBlocks = effectiveBlocksIn;
       this.efficiency = tier.getEfficiency();
       this.attackDamage = attackDamageIn + tier.getAttackDamage();
       Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
-      builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Tool modifier", (double)this.attackDamage, AttributeModifier.Operation.ADDITION));
-      builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(ATTACK_SPEED_MODIFIER, "Tool modifier", (double)attackSpeedIn, AttributeModifier.Operation.ADDITION));
-      this.field_234674_d_ = builder.build();
+      builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Tool modifier", this.attackDamage, AttributeModifier.Operation.ADDITION));
+      builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(ATTACK_SPEED_MODIFIER, "Tool modifier", attackSpeedIn, AttributeModifier.Operation.ADDITION));
+      this.toolAttributes = builder.build();
    }
 
    public float getDestroySpeed(ItemStack stack, BlockState state) {
@@ -46,8 +51,8 @@ public class ToolBlockItem extends TieredBlockItem implements IVanishable {
     * the damage on the stack.
     */
    public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-      stack.damageItem(2, attacker, (p_220039_0_) -> {
-         p_220039_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+      stack.damageItem(2, attacker, (entity) -> {
+         entity.sendBreakAnimation(EquipmentSlotType.MAINHAND);
       });
       return true;
    }
@@ -57,8 +62,8 @@ public class ToolBlockItem extends TieredBlockItem implements IVanishable {
     */
    public boolean onBlockDestroyed(ItemStack stack, World worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving) {
       if (!worldIn.isRemote && state.getBlockHardness(worldIn, pos) != 0.0F) {
-         stack.damageItem(1, entityLiving, (p_220038_0_) -> {
-            p_220038_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+         stack.damageItem(1, entityLiving, (entity) -> {
+            entity.sendBreakAnimation(EquipmentSlotType.MAINHAND);
          });
       }
 
@@ -69,10 +74,10 @@ public class ToolBlockItem extends TieredBlockItem implements IVanishable {
     * Gets a map of item attribute modifiers, used by ItemSword to increase hit damage.
     */
    public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlotType equipmentSlot) {
-      return equipmentSlot == EquipmentSlotType.MAINHAND ? this.field_234674_d_ : super.getAttributeModifiers(equipmentSlot);
+      return equipmentSlot == EquipmentSlotType.MAINHAND ? this.toolAttributes : super.getAttributeModifiers(equipmentSlot);
    }
 
-   public float func_234675_d_() {
+   public float getAttackDamage() {
       return this.attackDamage;
    }
 }

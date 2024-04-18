@@ -1,12 +1,16 @@
 {
   "type": "minecraft:crafting_shapeless",
+  "group": "jurk",
   "ingredients": [
     {
-      "item": "ervin_mod_1:gank_block"
+      "item": "ervin_mod_1:gark"
+    },
+    {
+      "item": "ervin_mod_1:gurk"
     }
   ],
   "result": {
     "item": "ervin_mod_1:gank",
-    "count": 9
+    "count": 2
   }
 }

@@ -10,7 +10,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class HhijHurtByTargetGoal extends TargetGoal {
-   private static final EntityPredicate field_220795_a = (new EntityPredicate()).setLineOfSiteRequired().setUseInvisibilityCheck();
+   private static final EntityPredicate field_220795_a = (new EntityPredicate()).setIgnoresLineOfSight().setUseInvisibilityCheck();
    private boolean entityCallsForHelp;
    /** Store the previous revengeTimer value */
    private int revengeTimerOld;
@@ -70,7 +70,7 @@ public class HhijHurtByTargetGoal extends TargetGoal {
 
    protected void alertOthers() {
       double d0 = this.getTargetDistance();
-      AxisAlignedBB axisalignedbb = AxisAlignedBB.func_241549_a_(this.goalOwner.getPositionVec()).grow(d0, 10.0D, d0);
+      AxisAlignedBB axisalignedbb = AxisAlignedBB.fromVector(this.goalOwner.getPositionVec()).grow(d0, 10.0D, d0);
       List<MobEntity> list = this.goalOwner.world.getLoadedEntitiesWithinAABB(this.goalOwner.getClass(), axisalignedbb);
       Iterator iterator = list.iterator();
 

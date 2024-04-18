@@ -1,6 +1,5 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.zur;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.animal.hhij.HhijAnimalEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.AbstractZurEntity;
 import net.minecraft.entity.EntityPredicate;
 import net.minecraft.entity.ai.goal.Goal;
@@ -11,7 +10,7 @@ import java.util.EnumSet;
 import java.util.List;
 
 public class ZurBreedGoal extends Goal {
-   private static final EntityPredicate field_220689_d = (new EntityPredicate()).setDistance(8.0D).allowInvulnerable().allowFriendlyFire().setLineOfSiteRequired();
+   private static final EntityPredicate field_220689_d = (new EntityPredicate()).setDistance(8.0D).allowInvulnerable().allowFriendlyFire().setIgnoresLineOfSight();
    protected final AbstractZurEntity zur;
    private final Class<? extends AbstractZurEntity> mateClass;
    protected final World world;

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "obsidian",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "ervin_mod_1:tgurn"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:tgurn_stairs",
+    "count": 4
+  }
+}

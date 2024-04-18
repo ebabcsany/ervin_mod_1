@@ -19,27 +19,28 @@ public class OreFeature1 extends Feature<OreFeatureConfig> {
       super(p_i231976_1_);
    }
 
-   public boolean func_230362_a_(ISeedReader p_230362_1_, StructureManager p_230362_2_, ChunkGenerator p_230362_3_, Random p_230362_4_, BlockPos p_230362_5_, OreFeatureConfig p_230362_6_) {
-      float f = p_230362_4_.nextFloat() * (float)Math.PI;
-      float f1 = (float)p_230362_6_.size / 8.0F;
-      int i = MathHelper.ceil(((float)p_230362_6_.size / 16.0F * 2.0F + 1.0F) / 2.0F);
-      double d0 = (double)((float)p_230362_5_.getX() + MathHelper.sin(f) * f1);
-      double d1 = (double)((float)p_230362_5_.getX() - MathHelper.sin(f) * f1);
-      double d2 = (double)((float)p_230362_5_.getZ() + MathHelper.cos(f) * f1);
-      double d3 = (double)((float)p_230362_5_.getZ() - MathHelper.cos(f) * f1);
+   @Override
+   public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, OreFeatureConfig config) {
+      float f = rand.nextFloat() * (float)Math.PI;
+      float f1 = (float)config.size / 8.0F;
+      int i = MathHelper.ceil(((float)config.size / 16.0F * 2.0F + 1.0F) / 2.0F);
+      double d0 = (double)((float)pos.getX() + MathHelper.sin(f) * f1);
+      double d1 = (double)((float)pos.getX() - MathHelper.sin(f) * f1);
+      double d2 = (double)((float)pos.getZ() + MathHelper.cos(f) * f1);
+      double d3 = (double)((float)pos.getZ() - MathHelper.cos(f) * f1);
       int j = 2;
-      double d4 = (double)(p_230362_5_.getY() + p_230362_4_.nextInt(3) - 2);
-      double d5 = (double)(p_230362_5_.getY() + p_230362_4_.nextInt(3) - 2);
-      int k = p_230362_5_.getX() - MathHelper.ceil(f1) - i;
-      int l = p_230362_5_.getY() - 2 - i;
-      int i1 = p_230362_5_.getZ() - MathHelper.ceil(f1) - i;
+      double d4 = (double)(pos.getY() + rand.nextInt(3) - 2);
+      double d5 = (double)(pos.getY() + rand.nextInt(3) - 2);
+      int k = pos.getX() - MathHelper.ceil(f1) - i;
+      int l = pos.getY() - 2 - i;
+      int i1 = pos.getZ() - MathHelper.ceil(f1) - i;
       int j1 = 2 * (MathHelper.ceil(f1) + i);
       int k1 = 2 * (2 + i);
 
       for(int l1 = k; l1 <= k + j1; ++l1) {
          for(int i2 = i1; i2 <= i1 + j1; ++i2) {
-            if (l <= p_230362_1_.getHeight(Heightmap.Type.OCEAN_FLOOR_WG, l1, i2)) {
-               return this.func_207803_a(p_230362_1_, p_230362_4_, p_230362_6_, d0, d1, d2, d3, d4, d5, k, l, i1, j1, k1);
+            if (l <= reader.getHeight(Heightmap.Type.OCEAN_FLOOR_WG, l1, i2)) {
+               return this.func_207803_a(reader, rand, config, d0, d1, d2, d3, d4, d5, k, l, i1, j1, k1);
             }
          }
       }
@@ -112,7 +113,7 @@ public class OreFeature1 extends Feature<OreFeatureConfig> {
                               if (!bitset.get(k2)) {
                                  bitset.set(k2);
                                  blockpos$mutable.setPos(l1, i2, j2);
-                                 if (config.target.getTargetBlockPredicate().test(worldIn.getBlockState(blockpos$mutable))) {
+                                 if (config.target.test(worldIn.getBlockState(blockpos$mutable), random)) {
                                     worldIn.setBlockState(blockpos$mutable, config.state, 2);
                                     ++i;
                                  }

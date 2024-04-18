@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "milk",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "ervin_mod_1:tnuzn"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:tnuzn_slab",
+    "count": 6
+  }
+}

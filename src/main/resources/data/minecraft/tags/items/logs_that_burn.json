@@ -7,7 +7,7 @@
     "#minecraft:birch_logs",
     "#minecraft:jungle_logs",
     "#minecraft:spruce_logs",
-    "#minecraft:firg_logs",
-    "#minecraft:frim_logs"
+    "#ervin_mod_1:firg_logs",
+    "#ervin_mod_1:frim_logs"
   ]
 }

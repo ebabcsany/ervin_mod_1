@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "obsidian",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "ervin_mod_1:rugk_block"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:rugk_block_slab",
+    "count": 6
+  }
+}

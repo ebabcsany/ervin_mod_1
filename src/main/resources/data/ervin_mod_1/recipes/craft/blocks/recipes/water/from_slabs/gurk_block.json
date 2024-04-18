@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "water",
+  "pattern": [
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "ervin_mod_1:gurk_block_slab"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:gurk_block",
+    "count": 4
+  }
+}

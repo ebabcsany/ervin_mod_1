@@ -2,6 +2,7 @@ package com.babcsany.minecraft.ervin_mod_1.init;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import net.minecraft.block.Block;
+import net.minecraft.fluid.Fluid;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -9,19 +10,14 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class FluidInit {
 
 	public static final ResourceLocation MILK_STILL_RL = new ResourceLocation(Ervin_mod_1.MOD_ID, "block/milk_still");
-	public static final ResourceLocation MILK_FLOWING_RL = new ResourceLocation(Ervin_mod_1.MOD_ID,
-			"block/milk_flowing");
-	public static final ResourceLocation MILK_OVERLAY_RL = new ResourceLocation(Ervin_mod_1.MOD_ID,
-			"block/milk_overlay");
+	public static final ResourceLocation MILK_FLOWING_RL = new ResourceLocation(Ervin_mod_1.MOD_ID, "block/milk_flowing");
+	public static final ResourceLocation MILK_OVERLAY_RL = new ResourceLocation(Ervin_mod_1.MOD_ID, "block/milk_overlay");
 	public static final ResourceLocation JURK_STILL_RL = new ResourceLocation(Ervin_mod_1.MOD_ID, "block/jurk_still");
-	public static final ResourceLocation JURK_FLOWING_RL = new ResourceLocation(Ervin_mod_1.MOD_ID,
-			"block/jurk_flowing");
-	public static final ResourceLocation JURK_OVERLAY_RL = new ResourceLocation(Ervin_mod_1.MOD_ID,
-			"block/jurk_overlay");
+	public static final ResourceLocation JURK_FLOWING_RL = new ResourceLocation(Ervin_mod_1.MOD_ID, "block/jurk_flowing");
+	public static final ResourceLocation JURK_OVERLAY_RL = new ResourceLocation(Ervin_mod_1.MOD_ID, "block/jurk_overlay");
 
 	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Ervin_mod_1.MOD_ID);
-	//public static final DeferredRegister<Fluid> FLUIDS = DeferredRegister.create(ForgeRegistries.FLUIDS,
-	//		Ervin_mod_1.MOD_ID);
+	public static final DeferredRegister<Fluid> FLUIDS = DeferredRegister.create(ForgeRegistries.FLUIDS, Ervin_mod_1.MOD_ID);
 
 	//public static final RegistryObject<FlowingFluid> FLOWING_JURK = FLUIDS.register("flowing_jurk", () -> new JurkFluid.Flowing());
 	//public static final RegistryObject<FlowingFluid> JURK = FLUIDS.register("jurk", () -> new JurkFluid.Source());

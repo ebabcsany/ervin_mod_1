@@ -25,7 +25,7 @@ public class Grithk extends Item {
 		return super.asItem();
 	}
 
-	public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn, Throwable causeIn, String descriptionIn) {
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
 		//worldIn.isRainingAt(BlockPos.fromLong(playerIn.getPosition().toLong()));
 		worldIn.isRainingAt(playerIn.getPosition());
 		/*worldIn.isRainingAt(playerIn.getPosition().east(10));
@@ -51,13 +51,13 @@ public class Grithk extends Item {
 		if (context.getWorld().getBlockState(context.getPos()).getBlock() == BlockInit.GRITH_BLOCK.get()) {
 			for (ItemStack stack : Objects.requireNonNull(context.getPlayer()).inventory.mainInventory) {
 				if (stack.isEmpty()) {
-					context.getPlayer().addItemStackToInventory(new ItemStack(isBurnableSpecialItemInit.GRITH.get()));
+					context.getPlayer().addItemStackToInventory(new ItemStack(isBurnableSpecialItemInit.GRITH));
 					context.getItem().damageItem(1, context.getPlayer(), (playerIn) -> playerIn.sendBreakAnimation(context.getHand()));
 					return ActionResultType.SUCCESS;
 				}
 			}
 			context.getWorld().addEntity(new ItemEntity(context.getWorld(), context.getPos().getX(),
-					context.getPos().getY(), context.getPos().getZ(), new ItemStack(isBurnableSpecialItemInit.GRITH.get())));
+					context.getPos().getY(), context.getPos().getZ(), new ItemStack(isBurnableSpecialItemInit.GRITH)));
 			return ActionResultType.SUCCESS;
 		}
 		return ActionResultType.FAIL;

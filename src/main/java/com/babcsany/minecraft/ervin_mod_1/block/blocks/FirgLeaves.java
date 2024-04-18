@@ -78,7 +78,7 @@ public class FirgLeaves extends LeavesBlock {
       BlockPos.Mutable blockPos$mutable = new BlockPos.Mutable();
 
       for(Direction direction : Direction.values()) {
-         blockPos$mutable.func_239622_a_(pos, direction);
+         blockPos$mutable.setAndMove(pos, direction);
          i = Math.min(i, getDistance(worldIn.getBlockState(blockPos$mutable)) + 1);
          if (i == 1) {
             break;

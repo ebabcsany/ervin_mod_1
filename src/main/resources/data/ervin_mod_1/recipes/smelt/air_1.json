@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "ervin_mod_1:unused/air"
+  },
+  "result": "minecraft:air",
+  "experience": 0.05,
+  "cookingtime": 10
+}

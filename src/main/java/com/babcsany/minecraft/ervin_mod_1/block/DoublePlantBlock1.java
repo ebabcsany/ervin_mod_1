@@ -40,7 +40,7 @@ public class DoublePlantBlock1 extends BushBlock {
     */
    public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
       DoubleBlockHalf doubleblockhalf = stateIn.get(HALF);
-      if (facing.getAxis() != Direction.Axis.Y || doubleblockhalf == DoubleBlockHalf.LOWER != (facing == Direction.UP) || facingState.isIn(this) && facingState.get(HALF) != doubleblockhalf) {
+      if (facing.getAxis() != Direction.Axis.Y || doubleblockhalf == DoubleBlockHalf.LOWER != (facing == Direction.UP) || facingState.matchesBlock(this) && facingState.get(HALF) != doubleblockhalf) {
          return doubleblockhalf == DoubleBlockHalf.LOWER && facing == Direction.DOWN && !stateIn.isValidPosition(worldIn, currentPos) ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
       } else {
          return Blocks.AIR.getDefaultState();
@@ -66,7 +66,7 @@ public class DoublePlantBlock1 extends BushBlock {
       } else {
          BlockState blockstate = worldIn.getBlockState(pos.down());
          if (state.getBlock() != this) return super.isValidPosition(state, worldIn, pos); //Forge: This function is called during world gen and placement, before this block is set, so if we are not 'here' then assume it's the pre-check.
-         return blockstate.isIn(this) && blockstate.get(HALF) == DoubleBlockHalf.LOWER;
+         return blockstate.matchesBlock(this) && blockstate.get(HALF) == DoubleBlockHalf.LOWER;
       }
    }
 

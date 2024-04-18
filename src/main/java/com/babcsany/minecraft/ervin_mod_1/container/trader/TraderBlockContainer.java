@@ -232,7 +232,7 @@ public class TraderBlockContainer extends Container {
          }
 
          if (this.merchantInventory.getStackInSlot(0).isEmpty() && this.merchantInventory.getStackInSlot(1).isEmpty()) {
-            ItemStack itemstack2 = this.getOffers().get(p_217046_1_).func_222205_b();
+            ItemStack itemstack2 = this.getOffers().get(p_217046_1_).getSellingStack();
             this.func_217053_c(0, itemstack2);
             ItemStack itemstack3 = this.getOffers().get(p_217046_1_).getBuyingStackSecond();
             this.func_217053_c(1, itemstack3);

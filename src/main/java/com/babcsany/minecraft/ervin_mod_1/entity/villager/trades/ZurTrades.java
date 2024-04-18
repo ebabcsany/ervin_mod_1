@@ -19,7 +19,7 @@ import net.minecraft.enchantment.EnchantmentData;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.villager.IVillagerDataHolder;
-import net.minecraft.entity.villager.IVillagerType;
+import net.minecraft.entity.villager.VillagerType;
 import net.minecraft.item.*;
 import net.minecraft.potion.*;
 import net.minecraft.util.IItemProvider;
@@ -197,7 +197,7 @@ public class ZurTrades {
             return null;
          } else {
             ServerWorld serverworld = (ServerWorld)trader.world;
-            BlockPos blockpos = serverworld.func_241117_a_(this.structureName, trader.getPosition(), 100, true);
+            BlockPos blockpos = serverworld.getStructureLocation(this.structureName, trader.getPosition(), 100, true);
             if (blockpos != null) {
                ItemStack itemstack = FilledMapItem.setupNewMap(serverworld, blockpos.getX(), blockpos.getZ(), (byte)2, true, true);
                FilledMapItem.func_226642_a_(serverworld, itemstack);
@@ -232,7 +232,7 @@ public class ZurTrades {
             return null;
          } else {
             ServerWorld serverworld = (ServerWorld)trader.world;
-            BlockPos blockpos = serverworld.func_241117_a_(this.structureName, trader.getPosition(), 100, true);
+            BlockPos blockpos = serverworld.getStructureLocation(this.structureName, trader.getPosition(), 100, true);
             if (blockpos != null) {
                ItemStack itemstack = FilledMapItem.setupNewMap(serverworld, blockpos.getX(), blockpos.getZ(), (byte)2, true, true);
                FilledMapItem.func_226642_a_(serverworld, itemstack);
@@ -247,15 +247,13 @@ public class ZurTrades {
    }
 
    static class EmeraldForVillageTypeItemTrade implements ZurTrades.ITrade {
-      private final Map<IVillagerType, Item> villagerTypeItems;
+      private final Map<VillagerType, Item> villagerTypeItems;
       private final int count;
       private final int maxUses;
       private final int xpValue;
 
-      public EmeraldForVillageTypeItemTrade(int count, int maxUsesIn, int xpValueIn, Map<IVillagerType, Item> villagerTypeItemsIn) {
-         Registry.VILLAGER_TYPE.stream().filter((villagerType) -> {
-            return !villagerTypeItemsIn.containsKey(villagerType);
-         }).findAny().ifPresent((villagerType) -> {
+      public EmeraldForVillageTypeItemTrade(int count, int maxUsesIn, int xpValueIn, Map<VillagerType, Item> villagerTypeItemsIn) {
+         Registry.VILLAGER_TYPE.stream().filter((villagerType) -> !villagerTypeItemsIn.containsKey(villagerType)).findAny().ifPresent((villagerType) -> {
             throw new IllegalStateException("Missing trade for villager type: " + Registry.VILLAGER_TYPE.getKey(villagerType));
          });
          this.villagerTypeItems = villagerTypeItemsIn;

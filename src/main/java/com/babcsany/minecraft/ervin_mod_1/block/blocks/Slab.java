@@ -28,8 +28,8 @@ import javax.annotation.Nullable;
 public class Slab extends Block implements IWaterLoggable {
    public static final EnumProperty<SlabType> TYPE = BlockStateProperties.SLAB_TYPE;
    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-   protected static final VoxelShape BOTTOM_SHAPE = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D);
-   protected static final VoxelShape TOP_SHAPE = Block.makeCuboidShape(0.0D, 8.0D, 0.0D, 16.0D, 16.0D, 16.0D);
+   public static final VoxelShape BOTTOM_SHAPE = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D);
+   public static final VoxelShape TOP_SHAPE = Block.makeCuboidShape(0.0D, 8.0D, 0.0D, 16.0D, 16.0D, 16.0D);
 
    public Slab(Properties properties) {
       super(properties);
@@ -60,7 +60,7 @@ public class Slab extends Block implements IWaterLoggable {
    public BlockState getStateForPlacement(BlockItemUseContext context) {
       BlockPos blockpos = context.getPos();
       BlockState blockstate = context.getWorld().getBlockState(blockpos);
-      if (blockstate.isIn(this)) {
+      if (blockstate.matchesBlock(this)) {
          return blockstate.with(TYPE, SlabType.DOUBLE).with(WATERLOGGED, Boolean.valueOf(false));
       } else {
          FluidState fluidstate = context.getWorld().getFluidState(blockpos);

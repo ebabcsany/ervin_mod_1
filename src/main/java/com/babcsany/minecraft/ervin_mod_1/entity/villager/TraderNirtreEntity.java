@@ -23,6 +23,7 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nullable;
 
@@ -76,6 +77,11 @@ public class TraderNirtreEntity extends AbstractNirtreEntity {
    }
 
    @Override
+   public boolean hasXPBar() {
+      return false;
+   }
+
+   @Override
    protected void onNirtreTrade(MerchantOffer offer) {
 
    }
@@ -84,7 +90,7 @@ public class TraderNirtreEntity extends AbstractNirtreEntity {
       return false;
    }
 
-   public ActionResultType func_230254_b_(PlayerEntity p_230254_1_, Hand p_230254_2_) {
+   public ActionResultType getEntityInteractionResult(PlayerEntity p_230254_1_, Hand p_230254_2_) {
       ItemStack itemstack = p_230254_1_.getHeldItem(p_230254_2_);
       if (itemstack.getItem() != ModSpawnEggItemInit.TRADER_NIRTRE_SPAWN_EGG.get() && this.isAlive() && !this.hasCustomer() && !this.isChild()) {
          if (p_230254_2_ == Hand.MAIN_HAND) {
@@ -102,7 +108,7 @@ public class TraderNirtreEntity extends AbstractNirtreEntity {
             return ActionResultType.func_233537_a_(this.world.isRemote);
          }
       } else {
-         return super.func_230254_b_(p_230254_1_, p_230254_2_);
+         return super.getEntityInteractionResult(p_230254_1_, p_230254_2_);
       }
    }
 
@@ -132,6 +138,12 @@ public class TraderNirtreEntity extends AbstractNirtreEntity {
 
    public void setXp(int xpIn) {
       this.xp = xpIn;
+   }
+
+   @Nullable
+   @Override
+   public AgeableEntity createChild(ServerWorld world, AgeableEntity mate) {
+      return EntityInit.TRADER_NIRTRE_ENTITY.get().create(world);
    }
 
    public void writeAdditional(CompoundNBT compound) {
@@ -183,19 +195,6 @@ public class TraderNirtreEntity extends AbstractNirtreEntity {
       return SoundEvents.ENTITY_WANDERING_TRADER_DEATH;
    }
 
-   /*protected SoundEvent getDrinkSound(ItemStack stack) {
-      Item item = stack.getItem();
-      return item == Items.MILK_BUCKET ? SoundEvents.ENTITY_WANDERING_TRADER_DRINK_MILK : SoundEvents.ENTITY_WANDERING_TRADER_DRINK_POTION;
-   }
-
-   protected SoundEvent getVillagerYesNoSound(boolean getYesSound) {
-      return getYesSound ? SoundEvents.ENTITY_WANDERING_TRADER_YES : SoundEvents.ENTITY_WANDERING_TRADER_NO;
-   }
-
-   public SoundEvent getYesSound() {
-      return SoundEvents.ENTITY_WANDERING_TRADER_YES;
-   }*/
-
    public void setDespawnDelay(int delay) {
       this.despawnDelay = delay;
    }
@@ -213,12 +212,12 @@ public class TraderNirtreEntity extends AbstractNirtreEntity {
       return this.traderNirtreTarget;
    }
 
-   public void onStruckByLightning(LightningBoltEntity lightningBolt) {
-      if (this.world.getDifficulty() != Difficulty.HARD) {
+   public void onStruckByLightning(ServerWorld serverWorld, LightningBoltEntity lightningBolt) {
+      if (serverWorld.getDifficulty() != Difficulty.HARD) {
          LOGGER.info("Trader Nirtre {} was struck by lightning {}.", this, lightningBolt);
-         TraderNirtre1Entity traderNirtre1Entity = EntityInit.TRADER_NIRTRE1_ENTITY.get().create(this.world);
+         TraderNirtre1Entity traderNirtre1Entity = EntityInit.TRADER_NIRTRE1_ENTITY.get().create(serverWorld);
          traderNirtre1Entity.setLocationAndAngles(this.getPosX(), this.getPosY(), this.getPosZ(), this.rotationYaw, this.rotationPitch);
-         traderNirtre1Entity.onInitialSpawn(this.world, this.world.getDifficultyForLocation(traderNirtre1Entity.getPosition()), SpawnReason.CONVERSION, null, null);
+         traderNirtre1Entity.onInitialSpawn(serverWorld, serverWorld.getDifficultyForLocation(traderNirtre1Entity.getPosition()), SpawnReason.CONVERSION, null, null);
          traderNirtre1Entity.setNoAI(this.isAIDisabled());
          if (this.hasCustomName()) {
             traderNirtre1Entity.setCustomName(this.getCustomName());
@@ -229,7 +228,7 @@ public class TraderNirtreEntity extends AbstractNirtreEntity {
          this.world.addEntity(traderNirtre1Entity);
          this.remove();
       } else {
-         super.onStruckByLightning(lightningBolt);
+         super.causeLightningStrike(serverWorld, lightningBolt);
       }
 
    }

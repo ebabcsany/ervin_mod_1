@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "grass",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "ervin_mod_1:truzn"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:truzn_slab",
+    "count": 6
+  }
+}

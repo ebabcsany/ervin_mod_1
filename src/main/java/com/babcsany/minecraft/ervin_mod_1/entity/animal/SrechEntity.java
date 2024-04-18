@@ -14,6 +14,7 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 public class SrechEntity extends AnimalEntity {
    public SrechEntity(EntityType<? extends SrechEntity> type, World worldIn) {
@@ -58,20 +59,20 @@ public class SrechEntity extends AnimalEntity {
       return 2.0F;
    }
 
-   public ActionResultType func_230254_b_(PlayerEntity p_230254_1_, Hand p_230254_2_) {
+   public ActionResultType getEntityInteractionResult(PlayerEntity p_230254_1_, Hand p_230254_2_) {
       ItemStack itemstack = p_230254_1_.getHeldItem(p_230254_2_);
       if (itemstack.getItem() == ItemInit.JURK_BUCKETI.get() && !this.isChild()) {
          p_230254_1_.playSound(SoundEvents.ENTITY_COW_MILK, 5.0F, 5.0F);
-         ItemStack itemstack1 = DrinkHelper.func_241445_a_(itemstack, p_230254_1_, ItemInit.FIRK.get().getDefaultInstance());
+         ItemStack itemstack1 = DrinkHelper.fill(itemstack, p_230254_1_, ItemInit.FIRK.get().getDefaultInstance());
          p_230254_1_.setHeldItem(p_230254_2_, itemstack1);
          return ActionResultType.func_233537_a_(this.world.isRemote);
       } else {
-         return super.func_230254_b_(p_230254_1_, p_230254_2_);
+         return super.getEntityInteractionResult(p_230254_1_, p_230254_2_);
       }
    }
 
-   public SrachEntity createChild(AgeableEntity ageable) {
-      return EntityInit.SRACH_ENTITY.get().create(this.world);
+   public SrachEntity createChild(ServerWorld serverWorld, AgeableEntity ageable) {
+      return EntityInit.SRACH_ENTITY.get().create(serverWorld);
    }
 
    protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {

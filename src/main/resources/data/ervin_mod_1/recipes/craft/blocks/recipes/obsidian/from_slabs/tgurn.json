@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "obsidian",
+  "pattern": [
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "ervin_mod_1:tgurn_slab"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:tgurn",
+    "count": 4
+  }
+}

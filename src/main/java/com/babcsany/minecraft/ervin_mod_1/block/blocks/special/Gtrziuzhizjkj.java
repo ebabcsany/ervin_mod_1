@@ -1,9 +1,10 @@
 package com.babcsany.minecraft.ervin_mod_1.block.blocks.special;
 
-import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.special.SpecialBlockInit;
 import net.minecraft.advancements.CriteriaTriggers;
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.HorizontalBlock;
 import net.minecraft.block.material.PushReaction;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -52,7 +53,7 @@ public class Gtrziuzhizjkj extends HorizontalBlock {
 
    @OnlyIn(Dist.CLIENT)
    public boolean isSideInvisible(BlockState state, BlockState adjacentBlockState, Direction side) {
-      return adjacentBlockState.isIn(this) || super.isSideInvisible(state, adjacentBlockState, side);
+      return adjacentBlockState.matchesBlock(this) || super.isSideInvisible(state, adjacentBlockState, side);
    }
 
    public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {

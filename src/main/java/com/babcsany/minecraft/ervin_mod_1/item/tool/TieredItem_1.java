@@ -133,7 +133,7 @@ public class TieredItem_1 extends Item {
          return this;
       }
 
-      public Properties isBurnable() {
+      public Properties isImmuneToFire() {
          this.burnable = true;
          return this;
       }

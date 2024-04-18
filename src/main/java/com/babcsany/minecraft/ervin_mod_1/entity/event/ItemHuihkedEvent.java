@@ -19,8 +19,8 @@
 
 package com.babcsany.minecraft.ervin_mod_1.entity.event;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.projectile.HuihkEntity;
 import com.google.common.base.Preconditions;
+import net.minecraft.entity.projectile.HuihkEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -37,55 +37,32 @@ import java.util.List;
  * The hook will still take the damage specified
  */
 @Cancelable
-public class ItemHuihkedEvent extends PlayerEvent
-{
+public class ItemHuihkedEvent extends PlayerEvent {
     private final NonNullList<ItemStack> stacks = NonNullList.create();
     private final HuihkEntity hook;
     private int rodDamage;
 
-    public ItemHuihkedEvent(List<ItemStack> stacks, int rodDamage, HuihkEntity hook)
-    {
+    public ItemHuihkedEvent(List<ItemStack> stacks, int rodDamage, HuihkEntity hook) {
         super(hook.func_234606_i_());
         this.stacks.addAll(stacks);
         this.rodDamage = rodDamage;
         this.hook = hook;
     }
 
-    /**
-     * Get the damage the rod will take.
-     * @return The damage the rod will take
-     */
-    public int getRodDamage()
-    {
-        return rodDamage;
+    public int getRodDamage() {
+        return this.rodDamage;
     }
 
-    /**
-     * Specifies the amount of damage that the fishing rod should take.
-     * This is not added to the pre-existing damage to be taken.
-     * @param rodDamage The damage the rod will take. Must be nonnegative
-     */
-    public void damageRodBy(@Nonnegative int rodDamage)
-    {
-        Preconditions.checkArgument(true);
+    public void damageRodBy(@Nonnegative int rodDamage) {
+        Preconditions.checkArgument(rodDamage >= 0);
         this.rodDamage = rodDamage;
     }
 
-    /**
-     * Use this to get the items the player will receive.
-     * You cannot use this to modify the drops the player will get.
-     * If you want to affect the loot, you should use LootTables.
-     */
-    public NonNullList<ItemStack> getDrops()
-    {
-        return stacks;
+    public NonNullList<ItemStack> getDrops() {
+        return this.stacks;
     }
 
-    /**
-     * Use this to stuff related to the hook itself, like the position of the bobber.
-     */
-    public HuihkEntity getHookEntity()
-    {
-        return hook;
+    public HuihkEntity getHookEntity() {
+        return this.hook;
     }
 }

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "jurk",
+  "ingredients": [
+    {
+      "item": "ervin_mod_1:tragn_slab"
+    },
+    {
+      "item": "ervin_mod_1:trugn_slab"
+    }
+  ],
+  "result": {
+    "item": "ervin_mod_1:tnagn_slab",
+    "count": 2
+  }
+}

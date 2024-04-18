@@ -61,7 +61,7 @@ public abstract class AbstractBlackFurnace extends ContainerBlock {
    }
 
    public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
-      if (!state.isIn(newState.getBlock())) {
+      if (!state.matchesBlock(newState.getBlock())) {
          TileEntity tileentity = worldIn.getTileEntity(pos);
          if (tileentity instanceof AbstractBlackFurnaceTileEntity) {
             InventoryHelper.dropInventoryItems(worldIn, pos, (AbstractBlackFurnaceTileEntity)tileentity);

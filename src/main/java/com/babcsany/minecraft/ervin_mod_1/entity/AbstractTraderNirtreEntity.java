@@ -12,10 +12,7 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
+import net.minecraft.world.*;
 
 public abstract class AbstractTraderNirtreEntity extends CreatureEntity {
    private static final DataParameter<Boolean> BABY = EntityDataManager.createKey(AbstractTraderNirtreEntity.class, DataSerializers.BOOLEAN);
@@ -81,7 +78,7 @@ public abstract class AbstractTraderNirtreEntity extends CreatureEntity {
       super(type, worldIn);
    }
 
-   public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
+   public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
       if (spawnDataIn == null) {
          spawnDataIn = new AbstractTraderNirtreEntity.AgeableData();
       }

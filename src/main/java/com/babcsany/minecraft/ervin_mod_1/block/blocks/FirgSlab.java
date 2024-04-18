@@ -60,7 +60,7 @@ public class FirgSlab extends Block implements IWaterLoggable {
    public BlockState getStateForPlacement(BlockItemUseContext context) {
       BlockPos blockpos = context.getPos();
       BlockState blockstate = context.getWorld().getBlockState(blockpos);
-      if (blockstate.isIn(this)) {
+      if (blockstate.matchesBlock(this)) {
          return blockstate.with(TYPE, SlabType.DOUBLE).with(WATERLOGGED, Boolean.valueOf(false));
       } else {
          FluidState fluidstate = context.getWorld().getFluidState(blockpos);

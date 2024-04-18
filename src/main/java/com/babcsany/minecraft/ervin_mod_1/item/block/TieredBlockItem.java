@@ -3,12 +3,13 @@ package com.babcsany.minecraft.ervin_mod_1.item.block;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.IItemTier;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class TieredBlockItem extends BlockItem {
    private final IItemTier tier;
 
-   public TieredBlockItem(IItemTier tierIn, Block blockIn, Properties builder) {
+   public TieredBlockItem(IItemTier tierIn, Block blockIn, Item.Properties builder) {
       super(blockIn, builder.defaultMaxDamage(tierIn.getMaxUses()));
       this.tier = tierIn;
    }

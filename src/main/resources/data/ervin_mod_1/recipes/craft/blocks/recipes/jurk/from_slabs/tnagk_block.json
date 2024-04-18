@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "jurk",
+  "pattern": [
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "ervin_mod_1:tnagk_block_slab"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:tnagk_block",
+    "count": 4
+  }
+}

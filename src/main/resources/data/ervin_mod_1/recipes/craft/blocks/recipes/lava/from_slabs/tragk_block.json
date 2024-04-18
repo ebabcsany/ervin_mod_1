@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "lava",
+  "pattern": [
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "ervin_mod_1:tragk_block_slab"
+    }
+  },
+  "result": {
+    "item": "ervin_mod_1:tragk_block",
+    "count": 4
+  }
+}

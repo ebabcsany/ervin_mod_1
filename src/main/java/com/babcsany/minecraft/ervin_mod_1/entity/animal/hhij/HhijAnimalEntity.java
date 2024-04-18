@@ -1,6 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.animal.hhij;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.trigger.CriteriaTriggers1;
+import com.babcsany.minecraft.ervin_mod_1.trigger.ModCriteriaTriggers;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
@@ -80,8 +80,8 @@ public abstract class HhijAnimalEntity extends HhijAgeableEntity {
         }
     }
 
-    public float getBlockPathWeight(BlockPos pos, IWorldReader worldIn) {
-        return worldIn.getBlockState(pos.down()).isIn(Blocks.GRASS_BLOCK) ? 10.0F : worldIn.getBrightness(pos) - 0.5F;
+    public float getBlockPathWeight(BlockPos p_205022_1_, IWorldReader p_205022_2_) {
+        return p_205022_2_.getBlockState(p_205022_1_.down()).matchesBlock(Blocks.GRASS_BLOCK) ? 10.0F : p_205022_2_.getBrightness(p_205022_1_) - 0.5F;
     }
 
     public void writeAdditional(CompoundNBT compound) {
@@ -114,8 +114,8 @@ public abstract class HhijAnimalEntity extends HhijAgeableEntity {
      *
      * @param animal The animal entity to be spawned
      */
-    public static boolean canAnimalSpawn(EntityType<? extends HhijAnimalEntity> animal, IWorld worldIn, SpawnReason reason, BlockPos pos, Random random) {
-        return worldIn.getBlockState(pos.down()).isIn(Blocks.GRASS_BLOCK) && worldIn.getLightSubtracted(pos, 0) > 8;
+    public static boolean canAnimalSpawn(EntityType<? extends HhijAnimalEntity> animal, IWorld world, SpawnReason reason, BlockPos pos, Random random) {
+        return world.getBlockState(pos.down()).matchesBlock(Blocks.GRASS_BLOCK) && world.getLightSubtracted(pos, 0) > 8;
     }
 
     /**
@@ -144,7 +144,7 @@ public abstract class HhijAnimalEntity extends HhijAgeableEntity {
         return stack.getItem() == Items.WHEAT;
     }
 
-    public ActionResultType func_230254_b_(PlayerEntity p_230254_1_, Hand p_230254_2_) {
+    public ActionResultType getEntityInteractionResult(PlayerEntity p_230254_1_, Hand p_230254_2_) {
         ItemStack itemstack = p_230254_1_.getHeldItem(p_230254_2_);
         if (this.isBreedingItem(itemstack)) {
             int i = this.getGrowingAge();
@@ -165,7 +165,7 @@ public abstract class HhijAnimalEntity extends HhijAgeableEntity {
             }
         }
 
-        return super.func_230254_b_(p_230254_1_, p_230254_2_);
+        return super.getEntityInteractionResult(p_230254_1_, p_230254_2_);
     }
 
     /**
@@ -254,7 +254,7 @@ public abstract class HhijAnimalEntity extends HhijAgeableEntity {
 
             if (serverplayerentity != null) {
                 serverplayerentity.addStat(Stats.ANIMALS_BRED);
-                CriteriaTriggers1.BRED_HHIJS.trigger(serverplayerentity, this, p_234177_2_, ageableentity);
+                ModCriteriaTriggers.BRED_HHIJS.trigger(serverplayerentity, this, p_234177_2_, ageableentity);
             }
 
             this.setGrowingAge(6000);

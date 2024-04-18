@@ -52,7 +52,7 @@ public class HhijAvoidEntityGoal<T extends LivingEntity> extends Goal {
     * method as well.
     */
    public boolean shouldExecute() {
-      this.avoidTarget = this.entity.world.func_225318_b(this.classToAvoid, this.builtTargetSelector, this.entity, this.entity.getPosX(), this.entity.getPosY(), this.entity.getPosZ(), this.entity.getBoundingBox().grow((double)this.avoidDistance, 3.0D, (double)this.avoidDistance));
+      this.avoidTarget = this.entity.world.getClosestEntity(this.classToAvoid, this.builtTargetSelector, this.entity, this.entity.getPosX(), this.entity.getPosY(), this.entity.getPosZ(), this.entity.getBoundingBox().grow((double)this.avoidDistance, 3.0D, (double)this.avoidDistance));
       if (this.avoidTarget == null) {
          return false;
       } else {
@@ -62,7 +62,7 @@ public class HhijAvoidEntityGoal<T extends LivingEntity> extends Goal {
          } else if (this.avoidTarget.getDistanceSq(vec3d.x, vec3d.y, vec3d.z) < this.avoidTarget.getDistanceSq(this.entity)) {
             return false;
          } else {
-            this.path = this.navigation.getPathToPos(vec3d.x, vec3d.y, vec3d.z, 0);
+            this.path = this.navigation.pathfind(vec3d.x, vec3d.y, vec3d.z, 0);
             return this.path != null;
          }
       }

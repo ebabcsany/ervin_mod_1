@@ -1,17 +1,13 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "###",
-    "###",
-    "###"
-  ],
-  "key": {
-    "#": {
-      "item": "ervin_mod_1:gant"
+  "type": "minecraft:crafting_shapeless",
+  "group": "jurk",
+  "ingredients": [
+    {
+      "item": "ervin_mod_1:gank"
     }
-  },
+  ],
   "result": {
     "item": "ervin_mod_1:ganb",
-    "count": 1
+    "count": 9
   }
 }
