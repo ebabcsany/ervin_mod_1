@@ -2,12 +2,14 @@ package com.babcsany.minecraft.ervin_mod_1.world.gen;
 
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
+import com.babcsany.minecraft.ervin_mod_1.init.ModBlockStates;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.unused.UnusedBlocks;
 import com.babcsany.minecraft.ervin_mod_1.init.unused.init.UnusedBlockInit;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.FirgTree;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.FrimTree;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.ModDefaultBiomeFeatures;
-import com.babcsany.minecraft.ervin_mod_1.world.gen.feature.GenOreFeatureConfig;
+import com.babcsany.minecraft.ervin_mod_1.world.gen.feature.config.GenOreFeatureConfig;
 import com.babcsany.minecraft.ervin_mod_1.world.biome.spawn.SpawnListEntry;
 import com.babcsany.minecraft.init.BlockInit;
 import com.babcsany.minecraft.init.FeatureInit;
@@ -15,10 +17,12 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
+import net.minecraft.util.RegistryKey;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeGenerationSettings;
+import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.blockstateprovider.BlockStateProvider;
@@ -28,63 +32,62 @@ import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.template.RuleTest;
 import net.minecraft.world.gen.placement.*;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilders;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Random;
 
-import static com.babcsany.minecraft.ervin_mod_1.world.gen.feature.GenOreFeatureConfig.FillerBlockType.*;
+import static com.babcsany.minecraft.ervin_mod_1.world.gen.feature.config.GenOreFeatureConfig.FillerBlockType.*;
 import static net.minecraft.entity.EntityClassification.*;
 import static net.minecraft.world.gen.GenerationStage.Decoration;
 
 public class FeatureGen {
-	private static final BlockState RUBY_ORE = BlockItemInit.RUBY_ORE.get().getDefaultState();
-	private static final BlockState AIR = UnusedBlockInit.get("air").get().getDefaultState();
-	private static final BlockState KALT_BLOCK = BlockItemInit.KALT_BLOCK.get().getDefaultState();
-	private static final BlockState SURVI = BlockItemInit.SURVI.get().getDefaultState();
-	private static final BlockState TRIRIJ = BlockInit.TRIRIJ.get().getDefaultState();
-	private static final BlockState TRUGN = isBurnableBlockItemInit.TRUGN.get().getDefaultState();
+	private static final BlockState RUBY_ORE = BlockItemInit.RUBY_ORE.getDefaultState();
+	private static final BlockState AIR = UnusedBlocks.get("air").getDefaultState();
+	private static final BlockState KALT_BLOCK = BlockItemInit.KALT_BLOCK.getDefaultState();
+	private static final BlockState SURVI = BlockItemInit.SURVI.getDefaultState();
+	private static final BlockState TRIRIJ = BlockInit.TRIRIJ.getDefaultState();
+	private static final BlockState TRUGN = isBurnableBlockItemInit.TRUGN.getDefaultState();
 	private static final BlockState NETHERRACK = Blocks.NETHERRACK.getDefaultState();
 	private static final BlockState OBSIDIAN = Blocks.OBSIDIAN.getDefaultState();
-	private static final BlockState FIRT_BLOCK = BlockInit.FIRT_BLOCK.get().getDefaultState();
+	private static final BlockState FIRT_BLOCK = BlockInit.FIRT_BLOCK.getDefaultState();
 	private static final BlockState MAGMA_BLOCK = Blocks.MAGMA_BLOCK.getDefaultState();
 	private static final BlockState STONE = Blocks.STONE.getDefaultState();
-	private static final BlockState BLACK_STONE = BlockItemInit.BLACK_STONE.get().getDefaultState();
-	private static final BlockState BLUE_STONE = BlockItemInit.BLUE_STONE.get().getDefaultState();
-	private static final BlockState BROWN_STONE = BlockItemInit.BROWN_STONE.get().getDefaultState();
-	private static final BlockState CYAN_STONE = BlockItemInit.CYAN_STONE.get().getDefaultState();
-	private static final BlockState GREEN_STONE = BlockItemInit.GREEN_STONE.get().getDefaultState();
-	private static final BlockState GRINT_BLOCK = com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit.GRINT_BLOCK.get().getDefaultState();
-	private static final BlockState FIGHIV = com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit.FIGHIV.get().getDefaultState();
-	private static final BlockState LIGHT_BLUE1_STONE = BlockItemInit.LIGHT_BLUE1_STONE.get().getDefaultState();
-	private static final BlockState LIGHT_BLUE_STONE = BlockItemInit.LIGHT_BLUE_STONE.get().getDefaultState();
-	private static final BlockState LIGHT_GRAY_STONE = BlockItemInit.LIGHT_GRAY_STONE.get().getDefaultState();
-	private static final BlockState LIME_STONE = BlockItemInit.LIME_STONE.get().getDefaultState();
-	private static final BlockState MAGENTA_STONE = BlockItemInit.MAGENTA_STONE.get().getDefaultState();
-	private static final BlockState ORANGE_STONE = BlockItemInit.ORANGE_STONE.get().getDefaultState();
-	private static final BlockState PINK_STONE = BlockItemInit.PINK_STONE.get().getDefaultState();
-	private static final BlockState PURPLE_STONE = BlockItemInit.PURPLE_STONE.get().getDefaultState();
-	private static final BlockState RED_STONE = BlockItemInit.RED_STONE.get().getDefaultState();
-	private static final BlockState WHITE_STONE = BlockItemInit.WHITE_STONE.get().getDefaultState();
-	private static final BlockState YELLOW_STONE = BlockItemInit.YELLOW_STONE.get().getDefaultState();
+	private static final BlockState BLACK_STONE = BlockItemInit.BLACK_STONE.getDefaultState();
+	private static final BlockState BLUE_STONE = BlockItemInit.BLUE_STONE.getDefaultState();
+	private static final BlockState BROWN_STONE = BlockItemInit.BROWN_STONE.getDefaultState();
+	private static final BlockState CYAN_STONE = BlockItemInit.CYAN_STONE.getDefaultState();
+	private static final BlockState GREEN_STONE = BlockItemInit.GREEN_STONE.getDefaultState();
+	private static final BlockState GRINT_BLOCK = com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit.GRINT_BLOCK.getDefaultState();
+	private static final BlockState FIGHIV = com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit.FIGHIV.getDefaultState();
+	private static final BlockState LIGHT_BLUE1_STONE = BlockItemInit.LIGHT_BLUE1_STONE.getDefaultState();
+	private static final BlockState LIGHT_BLUE_STONE = BlockItemInit.LIGHT_BLUE_STONE.getDefaultState();
+	private static final BlockState LIGHT_GRAY_STONE = BlockItemInit.LIGHT_GRAY_STONE.getDefaultState();
+	private static final BlockState LIME_STONE = BlockItemInit.LIME_STONE.getDefaultState();
+	private static final BlockState MAGENTA_STONE = BlockItemInit.MAGENTA_STONE.getDefaultState();
+	private static final BlockState ORANGE_STONE = BlockItemInit.ORANGE_STONE.getDefaultState();
+	private static final BlockState PINK_STONE = BlockItemInit.PINK_STONE.getDefaultState();
+	private static final BlockState PURPLE_STONE = BlockItemInit.PURPLE_STONE.getDefaultState();
+	private static final BlockState RED_STONE = BlockItemInit.RED_STONE.getDefaultState();
+	private static final BlockState WHITE_STONE = BlockItemInit.WHITE_STONE.getDefaultState();
+	private static final BlockState YELLOW_STONE = BlockItemInit.YELLOW_STONE.getDefaultState();
 	private static final BlockState SRIUNK_ORE = BlockItemInit.SRIUNK_ORE.getDefaultState();
 	private static final BlockState END_STONE = Blocks.END_STONE.getDefaultState();
-	private static final BlockState END_SRACKT = BlockItemInit.END_SRACKT.get().getDefaultState();
-	private static final BlockState END_SRACT = BlockItemInit.END_SRACT.get().getDefaultState();
-	private static final BlockState END_STONE_CISK = BlockItemInit.END_STONE_CISK.get().getDefaultState();
-	private static final BlockState END_STONE_CRISK = BlockItemInit.END_STONE_CRISK.get().getDefaultState();
-	private static final BlockState ENDER_SACKT = BlockItemInit.ENDER_SACKT.get().getDefaultState();
-	private static final BlockState ENDER_SACT = BlockItemInit.ENDER_SACT.get().getDefaultState();
-	private static final BlockState ENDER_SRACK = BlockItemInit.ENDER_SRACK.get().getDefaultState();
-	private static final BlockState ENDER_SRACKH = BlockItemInit.ENDER_SRACKH.get().getDefaultState();
-	private static final BlockState ENDER_SRACT = BlockItemInit.ENDER_SRACT.get().getDefaultState();
-	private static final BlockState ACACIA_TURG = BlockItemInit.ACACIA_TURG.get().getDefaultState();
-	private static final BlockState BIRCH_TURG = BlockItemInit.BIRCH_TURG.get().getDefaultState();
-	private static final BlockState DARK_OAK_TURG = BlockItemInit.DARK_OAK_TURG.get().getDefaultState();
-	private static final BlockState JUNGLE_TURG = BlockItemInit.JUNGLE_TURG.get().getDefaultState();
-	private static final BlockState OAK_TURG = BlockItemInit.OAK_TURG.get().getDefaultState();
-	private static final BlockState SPRUCE_TURG = BlockItemInit.SPRUCE_TURG.get().getDefaultState();
-	private static final BlockState FIRG_TURG = BlockItemInit.FIRG_TURG.get().getDefaultState();
-	private static final BlockState FRIM_TURG = BlockItemInit.FRIM_TURG.get().getDefaultState();
+	private static final BlockState END_SRACKT = ModBlockStates.END_SRACKT;
+	private static final BlockState END_SRACT = BlockItemInit.END_SRACT.getDefaultState();
+	private static final BlockState END_STONE_CISK = BlockItemInit.END_STONE_CISK.getDefaultState();
+	private static final BlockState END_STONE_CRISK = BlockItemInit.END_STONE_CRISK.getDefaultState();
+	private static final BlockState ENDER_SACKT = BlockItemInit.ENDER_SACKT.getDefaultState();
+	private static final BlockState ENDER_SACT = BlockItemInit.ENDER_SACT.getDefaultState();
+	private static final BlockState ENDER_SRACK = BlockItemInit.ENDER_SRACK.getDefaultState();
+	private static final BlockState ENDER_SRACKH = BlockItemInit.ENDER_SRACKH.getDefaultState();
+	private static final BlockState ENDER_SRACT = BlockItemInit.ENDER_SRACT.getDefaultState();
+	private static final BlockState ACACIA_TURG = BlockItemInit.ACACIA_TURG.getDefaultState();
+	private static final BlockState BIRCH_TURG = BlockItemInit.BIRCH_TURG.getDefaultState();
+	private static final BlockState DARK_OAK_TURG = BlockItemInit.DARK_OAK_TURG.getDefaultState();
+	private static final BlockState JUNGLE_TURG = BlockItemInit.JUNGLE_TURG.getDefaultState();
+	private static final BlockState OAK_TURG = BlockItemInit.OAK_TURG.getDefaultState();
+	private static final BlockState SPRUCE_TURG = BlockItemInit.SPRUCE_TURG.getDefaultState();
+	private static final BlockState FIRG_TURG = BlockItemInit.FIRG_TURG.getDefaultState();
+	private static final BlockState FRIM_TURG = BlockItemInit.FRIM_TURG.getDefaultState();
 	private static final BlockState[] END_BLOCKS = new BlockState[]{GRINT_BLOCK, FIGHIV};
 	public static final BlockStateProvidingFeatureConfig ACACIA_TURG_PILE_CONFIG = new BlockStateProvidingFeatureConfig(new SimpleBlockStateProvider(ACACIA_TURG));
 	public static final BlockStateProvidingFeatureConfig BIRCH_TURG_PILE_CONFIG = new BlockStateProvidingFeatureConfig(new SimpleBlockStateProvider(BIRCH_TURG));
@@ -108,7 +111,7 @@ public class FeatureGen {
 	}));
 
 	public static void generateFeature() {
-		for (Biome biomeIn : ForgeRegistries.BIOMES) {
+		for (RegistryKey<Biome> biomeIn : BiomeKeys.BIOME_KEYS) {
 			BiomeGenerationSettings.Builder builder = (new BiomeGenerationSettings.Builder()).withSurfaceBuilder(ConfiguredSurfaceBuilders.GRASS);
 			if (biomeIn == Biomes.OCEAN) {
 				addOres(builder);
@@ -576,7 +579,7 @@ public class FeatureGen {
 	}
 
 	public static void getSpawns() {
-		for (Biome biomeIn : ForgeRegistries.BIOMES) {
+		for (RegistryKey<Biome> biomeIn : BiomeKeys.BIOME_KEYS) {
 			MobSpawnInfo.Builder builder = new MobSpawnInfo.Builder();
 			if (biomeIn == Biomes.OCEAN) {
 				addSpawnZur(builder, 36);
@@ -661,19 +664,19 @@ public class FeatureGen {
 			}
 			if (biomeIn == Biomes.JUNGLE) {
 				addSpawnZur(builder, 42, 1);
-				addSpawner(builder, CREATURE, EntityInit.SRACH_ENTITY.get(), 12, 1, 4);
+				addSpawner(builder, ModSpawnerType.SRACH, 12, 1, 4);
 			}
 			if (biomeIn == Biomes.JUNGLE_HILLS) {
 				addSpawnZur(builder, 46, 1);
-				addSpawner(builder, CREATURE, EntityInit.SRACH_ENTITY.get(), 12, 1, 4);
+				addSpawner(builder, ModSpawnerType.SRACH, 12, 1, 4);
 			}
 			if (biomeIn == Biomes.JUNGLE_EDGE) {
 				addSpawnZur(builder, 43, 1);
-				addSpawner(builder, CREATURE, EntityInit.SRACH_ENTITY.get(), 12, 1, 4);
+				addSpawner(builder, ModSpawnerType.SRACH, 12, 1, 4);
 			}
 			if (biomeIn == Biomes.DEEP_OCEAN) {
 				addSpawnZur(builder, 38, 1);
-				addSpawner(builder, WATER_CREATURE, EntityInit.GUBROV.get(), 13, 1, 5);
+				addSpawner(builder, ModSpawnerType.GUBROV, 13, 1, 5);
 			}
 			if (biomeIn == Biomes.STONE_SHORE) {
 				addSpawnZur(builder, 37, 1);
@@ -683,43 +686,43 @@ public class FeatureGen {
 			}
 			if (biomeIn == Biomes.BIRCH_FOREST) {
 				addSpawnZur(builder, 34, 1);
-				addSpawner(builder, CREATURE, EntityInit.SRACH_ENTITY.get(), 12, 1, 4);
+				addSpawner(builder, ModSpawnerType.SRACH, 12, 1, 4);
 			}
 			if (biomeIn == Biomes.BIRCH_FOREST_HILLS) {
 				addSpawnZur(builder, 36, 1);
-				addSpawner(builder, CREATURE, EntityInit.SRACH_ENTITY.get(), 12, 1, 4);
+				addSpawner(builder, ModSpawnerType.SRACH, 12, 1, 4);
 			}
 			if (biomeIn == Biomes.DARK_FOREST) {
 				addSpawnZur(builder, 35, 1);
-				addSpawner(builder, CREATURE, EntityInit.SRACH_ENTITY.get(), 12, 1, 4);
+				addSpawner(builder, ModSpawnerType.SRACH, 12, 1, 4);
 			}
 			if (biomeIn == Biomes.SNOWY_TAIGA) {
 				addSpawnZur(builder, 38, 1);
-				addSpawner(builder, CREATURE, EntityInit.SRACH_ENTITY.get(), 12, 1, 4);
+				addSpawner(builder, ModSpawnerType.SRACH, 12, 1, 4);
 			}
 			if (biomeIn == Biomes.SNOWY_TAIGA_HILLS) {
 				addSpawnZur(builder, 40, 1);
-				addSpawner(builder, CREATURE, EntityInit.SRACH_ENTITY.get(), 12, 1, 4);
+				addSpawner(builder, ModSpawnerType.SRACH, 12, 1, 4);
 			}
 			if (biomeIn == Biomes.GIANT_TREE_TAIGA) {
 				addSpawnZur(builder, 44, 1);
-				addSpawner(builder, CREATURE, EntityInit.SRACH_ENTITY.get(), 12, 1, 4);
+				addSpawner(builder, ModSpawnerType.SRACH, 12, 1, 4);
 			}
 			if (biomeIn == Biomes.GIANT_TREE_TAIGA_HILLS) {
 				addSpawnZur(builder, 46, 1);
-				addSpawner(builder, CREATURE, EntityInit.SRACH_ENTITY.get(), 12, 1, 4);
+				addSpawner(builder, ModSpawnerType.SRACH, 12, 1, 4);
 			}
 			if (biomeIn == Biomes.WOODED_MOUNTAINS) {
 				addSpawnZur(builder, 39, 1);
-				addSpawner(builder, CREATURE, EntityInit.SRACH_ENTITY.get(), 12, 1, 4);
+				addSpawner(builder, ModSpawnerType.SRACH, 12, 1, 4);
 			}
 			if (biomeIn == Biomes.SAVANNA) {
 				addSpawnZur(builder, 36, 1);
-				addSpawner(builder, CREATURE, EntityInit.SRACH_ENTITY.get(), 12, 1, 4);
+				addSpawner(builder, ModSpawnerType.SRACH, 12, 1, 4);
 			}
 			if (biomeIn == Biomes.SAVANNA_PLATEAU) {
 				addSpawnZur(builder, 34, 1);
-				addSpawner(builder, CREATURE, EntityInit.SRACH_ENTITY.get(), 12, 1, 4);
+				addSpawner(builder, ModSpawnerType.SRACH, 12, 1, 4);
 			}
 			if (biomeIn == Biomes.BADLANDS) {
 				addSpawnZur(builder, 37, 1);
@@ -744,31 +747,31 @@ public class FeatureGen {
 			}
 			if (biomeIn == Biomes.WARM_OCEAN) {
 				addSpawnZur(builder, 41, 1);
-				addSpawner(builder, WATER_CREATURE, EntityInit.GUBROV.get(), 8, 1, 5);
+				addSpawner(builder, ModSpawnerType.GUBROV, 8, 1, 5);
 			}
 			if (biomeIn == Biomes.LUKEWARM_OCEAN) {
 				addSpawnZur(builder, 38, 1);
-				addSpawner(builder, WATER_CREATURE, EntityInit.GUBROV.get(), 14, 1, 5);
+				addSpawner(builder, ModSpawnerType.GUBROV, 14, 1, 5);
 			}
 			if (biomeIn == Biomes.COLD_OCEAN) {
 				addSpawnZur(builder, 34, 1);
-				addSpawner(builder, WATER_CREATURE, EntityInit.GUBROV.get(), 16, 1, 5);
+				addSpawner(builder, ModSpawnerType.GUBROV, 16, 1, 5);
 			}
 			if (biomeIn == Biomes.DEEP_WARM_OCEAN) {
 				addSpawnZur(builder, 37, 1);
-				addSpawner(builder, WATER_CREATURE, EntityInit.GUBROV.get(), 14, 1, 5);
+				addSpawner(builder, ModSpawnerType.GUBROV, 14, 1, 5);
 			}
 			if (biomeIn == Biomes.DEEP_LUKEWARM_OCEAN) {
 				addSpawnZur(builder, 35, 1);
-				addSpawner(builder, WATER_CREATURE, EntityInit.GUBROV.get(), 15, 1, 5);
+				addSpawner(builder, ModSpawnerType.GUBROV, 15, 1, 5);
 			}
 			if (biomeIn == Biomes.DEEP_COLD_OCEAN) {
 				addSpawnZur(builder, 37, 1);
-				addSpawner(builder, WATER_CREATURE, EntityInit.GUBROV.get(), 16, 1, 5);
+				addSpawner(builder, ModSpawnerType.GUBROV, 16, 1, 5);
 			}
 			if (biomeIn == Biomes.DEEP_FROZEN_OCEAN) {
 				addSpawnZur(builder, 39, 1);
-				addSpawner(builder, WATER_CREATURE, EntityInit.GUBROV.get(), 16, 1, 5);
+				addSpawner(builder, ModSpawnerType.GUBROV, 16, 1, 5);
 			}
 			if (biomeIn == Biomes.THE_VOID) {
 				addSpawnZur(builder);
@@ -778,7 +781,7 @@ public class FeatureGen {
 			}
 			if (biomeIn == Biomes.DESERT_LAKES) {
 				addSpawnZur(builder, 34, 1);
-				addSpawner(builder, WATER_CREATURE, EntityInit.GUBROV.get(), 16, 1, 5);
+				addSpawner(builder, ModSpawnerType.GUBROV, 16, 1, 5);
 			}
 			if (biomeIn == Biomes.GRAVELLY_MOUNTAINS) {
 				addSpawnZur(builder, 28, 1);
@@ -791,58 +794,58 @@ public class FeatureGen {
 			}
 			if (biomeIn == Biomes.SWAMP_HILLS) {
 				addSpawnZur(builder, 30, 1);
-				addSpawner(builder, WATER_CREATURE, EntityInit.GUBROV.get(), 16, 1, 5);
+				addSpawner(builder, ModSpawnerType.GUBROV, 16, 1, 5);
 			}
 			if (biomeIn == Biomes.ICE_SPIKES) {
 				addSpawnZur(builder, 26, 1);
-				addSpawner(builder, WATER_CREATURE, EntityInit.GUBROV.get(), 16, 1, 5);
+				addSpawner(builder, ModSpawnerType.GUBROV, 16, 1, 5);
 			}
 			if (biomeIn == Biomes.MODIFIED_JUNGLE) {
 				addSpawnZur(builder, 23, 1);
-				addSpawner(builder, CREATURE, EntityInit.SRACH_ENTITY.get(), 12, 1, 4);
+				addSpawner(builder, ModSpawnerType.SRACH, 12, 1, 4);
 			}
 			if (biomeIn == Biomes.MODIFIED_JUNGLE_EDGE) {
 				addSpawnZur(builder, 31, 1);
-				addSpawner(builder, CREATURE, EntityInit.SRACH_ENTITY.get(), 12, 1, 4);
+				addSpawner(builder, ModSpawnerType.SRACH, 12, 1, 4);
 			}
 			if (biomeIn == Biomes.TALL_BIRCH_FOREST) {
 				addSpawnZur(builder, 21, 1);
-				addSpawner(builder, CREATURE, EntityInit.SRACH_ENTITY.get(), 12, 1, 4);
+				addSpawner(builder, ModSpawnerType.SRACH, 12, 1, 4);
 			}
 			if (biomeIn == Biomes.TALL_BIRCH_HILLS) {
 				addSpawnZur(builder, 23, 1);
-				addSpawner(builder, CREATURE, EntityInit.SRACH_ENTITY.get(), 12, 1, 4);
+				addSpawner(builder, ModSpawnerType.SRACH, 12, 1, 4);
 			}
 			if (biomeIn == Biomes.DARK_FOREST_HILLS) {
 				addSpawnZur(builder, 27, 1);
-				addSpawner(builder, CREATURE, EntityInit.SRACH_ENTITY.get(), 12, 1, 4);
+				addSpawner(builder, ModSpawnerType.SRACH, 12, 1, 4);
 			}
 			if (biomeIn == Biomes.SNOWY_TAIGA_MOUNTAINS) {
 				addSpawnZur(builder, 20, 1);
-				addSpawner(builder, CREATURE, EntityInit.SRACH_ENTITY.get(), 12, 1, 4);
+				addSpawner(builder, ModSpawnerType.SRACH, 12, 1, 4);
 			}
 			if (biomeIn == Biomes.GIANT_SPRUCE_TAIGA) {
 				addSpawnZur(builder, 30, 1);
-				addSpawner(builder, CREATURE, EntityInit.SRACH_ENTITY.get(), 12, 1, 4);
+				addSpawner(builder, ModSpawnerType.SRACH, 12, 1, 4);
 			}
 			if (biomeIn == Biomes.GIANT_SPRUCE_TAIGA_HILLS) {
 				addSpawnZur(builder, 32, 1);
-				addSpawner(builder, CREATURE, EntityInit.SRACH_ENTITY.get(), 12, 1, 4);
+				addSpawner(builder, ModSpawnerType.SRACH, 12, 1, 4);
 			}
 			if (biomeIn == Biomes.MODIFIED_GRAVELLY_MOUNTAINS) {
 				addSpawnZur(builder, 34, 1);
-				addSpawner(builder, CREATURE, EntityInit.SRACH_ENTITY.get(), 12, 1, 4);
+				addSpawner(builder, ModSpawnerType.SRACH, 12, 1, 4);
 			}
 			if (biomeIn == Biomes.SHATTERED_SAVANNA) {
 				addSpawnZur(builder, 37, 1);
-				addSpawner(builder, CREATURE, EntityInit.SRACH_ENTITY.get(), 12, 1, 4);
+				addSpawner(builder, ModSpawnerType.SRACH, 12, 1, 4);
 			}
 			if (biomeIn == Biomes.SHATTERED_SAVANNA_PLATEAU) {
 				addSpawnZur(builder, 35, 1);
 			}
 			if (biomeIn == Biomes.ERODED_BADLANDS) {
 				addSpawnZur(builder, 33, 1);
-				addSpawner(builder, CREATURE, EntityInit.SRACH_ENTITY.get(), 12, 1, 4);
+				addSpawner(builder, ModSpawnerType.SRACH, 12, 1, 4);
 			}
 			if (biomeIn == Biomes.MODIFIED_WOODED_BADLANDS_PLATEAU) {
 				addSpawnZur(builder, 29, 1);
@@ -872,7 +875,7 @@ public class FeatureGen {
 	}
 
 	public static void generateBlackStone() {
-		for (Biome biome : ForgeRegistries.BIOMES) {
+		for (RegistryKey<Biome> biome : BiomeKeys.BIOME_KEYS) {
 			BiomeGenerationSettings.Builder builder = new BiomeGenerationSettings.Builder();
 			if (biome == Biomes.THE_END) {
 				builder.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(BASE_END_STONES, SRIUNK_ORE, 50)).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(0, 0, 320))));
@@ -1104,12 +1107,12 @@ public class FeatureGen {
 	public static native void lok(Feature<?> feature);
 
 	public enum ModSpawnerType {
-		GUBROV(EntityClassification.WATER_CREATURE, EntityInit.GUBROV.get()),
-		SRACH(EntityClassification.CREATURE, EntityInit.SRACH_ENTITY.get()),
-		GWURST(EntityClassification.CREATURE, EntityInit.GWURST.get()),
-		FREIN(EntityClassification.MONSTER, EntityInit.FREIN_ENTITY.get()),
-		LIWRAY(EntityClassification.CREATURE, EntityInit.LIWRAY.get()),
-		ZUR(EntityClassification.CREATURE, EntityInit.ZUR_ENTITY.get());
+		GUBROV(EntityClassification.WATER_CREATURE, EntityInit.GUBROV),
+		SRACH(EntityClassification.CREATURE, EntityInit.SRACH_ENTITY),
+		GWURST(EntityClassification.CREATURE, EntityInit.GWURST),
+		FREIN(EntityClassification.MONSTER, EntityInit.FREIN_ENTITY),
+		LIWRAY(EntityClassification.CREATURE, EntityInit.LIWRAY),
+		ZUR(EntityClassification.CREATURE, EntityInit.ZUR_ENTITY);
 
 		private final EntityClassification classification;
 		private final EntityType<?> type;

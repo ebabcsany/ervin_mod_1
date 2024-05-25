@@ -1,13 +1,21 @@
 package com.babcsany.minecraft.ervin_mod_1.item;
 
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.IVanishable;
-import net.minecraft.entity.projectile.HuihkEntity;
-import net.minecraft.item.FishingRodItem;
+import net.minecraft.entity.player.PlayerEntity;
+import com.babcsany.minecraft.ervin_mod_1.entity.projectile.HuihkEntity;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.stats.Stats;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
+import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public class HuihkRodItem extends FishingRodItem implements IVanishable {
+public class HuihkRodItem extends Item implements IVanishable {
    @Nullable
    public HuihkEntity huihk;
    public HuihkRodItem(Properties builder) {
@@ -18,7 +26,7 @@ public class HuihkRodItem extends FishingRodItem implements IVanishable {
     * Called to trigger the item's "innate" right click behavior. To handle when this item is used on a Block, see
     * {@link #onItemUse}.
     */
-   /*public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
+   public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
       ItemStack itemstack = playerIn.getHeldItem(handIn);
       if (this.huihk != null) {
          if (!worldIn.isRemote) {
@@ -34,19 +42,19 @@ public class HuihkRodItem extends FishingRodItem implements IVanishable {
          if (!worldIn.isRemote) {
             int k = EnchantmentHelper.getFishingSpeedBonus(itemstack);
             int j = EnchantmentHelper.getFishingLuckBonus(itemstack);
-            worldIn.addEntity(new HuihkEntity(worldIn, playerIn, j, k));
+            worldIn.addEntity(new HuihkEntity(playerIn, worldIn, j, k));
          }
 
          playerIn.addStat(Stats.ITEM_USED.get(this));
       }
 
       return ActionResult.func_233538_a_(itemstack, worldIn.isRemote());
-   }*/
+   }
 
    /**
     * Return the enchantability factor of the item, most of the time is based on material.
     */
    public int getItemEnchantability() {
-      return 1;
+      return 17;
    }
 }

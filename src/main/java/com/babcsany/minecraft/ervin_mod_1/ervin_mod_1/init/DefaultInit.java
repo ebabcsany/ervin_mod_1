@@ -9,7 +9,7 @@ public class DefaultInit {
         defaultRegister();
     }
 
-    public static void defaultRegister() {
+    public void defaultRegister() {
         UnusedBlocks.register();
         UnusedItems.register();
         UnusedBlockItems.register();

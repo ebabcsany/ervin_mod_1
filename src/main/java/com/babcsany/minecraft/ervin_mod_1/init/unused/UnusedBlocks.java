@@ -6,6 +6,7 @@ import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.DefaultedRegistry;
 import net.minecraft.util.registry.Registry;
 import net.minecraftforge.common.ToolType;
@@ -58,15 +59,20 @@ public class UnusedBlocks {
     }
 
     public static <T extends Block> Block registerBlock(String name, T blockIn) {
-        return registerDefault(name, register(name, blockIn));
+        return registerDefault(name, blockIn);
     }
 
-    public static <T extends Block> Block registerDefault(String name, T block) {
-        return add(name, block);
+    public static <T extends Block> Block registerDefault(String name, T blockIn) {
+        add(name, blockIn);
+        return register(name, blockIn);
     }
 
     public static Block register(String key, Block blockIn) {
-        return Registry.register(registry(), Ervin_mod_1.getKey(key), blockIn);
+        return registerDefault(Ervin_mod_1.getKey(key), blockIn);
+    }
+
+    public static Block registerDefault(ResourceLocation key, Block blockIn) {
+        return Registry.register(registry(), key, blockIn);
     }
 
     @Deprecated

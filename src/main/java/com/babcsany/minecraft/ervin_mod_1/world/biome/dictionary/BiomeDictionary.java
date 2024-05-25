@@ -1,14 +1,21 @@
 package com.babcsany.minecraft.ervin_mod_1.world.biome.dictionary;
 
 import com.google.common.collect.ImmutableList;
+import net.minecraft.util.RegistryKey;
 import net.minecraft.world.biome.Biome;
 
 import javax.annotation.Nullable;
 import java.util.*;
 
+import static com.babcsany.minecraft.ervin_mod_1.world.gen.BiomeKeys.get;
+
 public class BiomeDictionary {
     private static final Map<Biome, Type> biomeTypeMap = new HashMap<>();
     private static final Collection<Type> TYPES = Collections.unmodifiableCollection(biomeTypeMap.values());
+
+    public static void addTypes(RegistryKey<Biome> biome, Type... subTypes) {
+        addTypes(get(biome), subTypes);
+    }
 
     public static void addTypes(Biome biome, Type... subTypes) {
         for (Type subType : subTypes) {

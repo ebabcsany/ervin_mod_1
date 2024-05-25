@@ -26,6 +26,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.item.crafting.IRecipeSerializer;
@@ -37,8 +38,10 @@ import net.minecraft.tags.FluidTags;
 import net.minecraft.tags.ITag;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.world.Teleporter;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.Heightmap;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -90,29 +93,30 @@ public class Ervin_mod_1 {
         Init.init(modEventBus);
     }
 
-    private void setup(final FMLCommonSetupEvent event) {
+    public void setup(final FMLCommonSetupEvent event) {
         // some preinit code
         LOGGER.info("HELLO FROM PREINIT");
         LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
         DeferredWorkQueue.runLater(() -> {
-            EntitySpawnPlacementRegistry.register(EntityInit.$_TRADER_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, Abstract$TraderEntity::canSpawnOn);
-            EntitySpawnPlacementRegistry.register(EntityInit.DRURB_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canSpawnOn);
-            EntitySpawnPlacementRegistry.register(EntityInit.FREIN_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, FreinEntity::canFreinSpawn);
-            EntitySpawnPlacementRegistry.register(EntityInit.GUBROV.get(), EntitySpawnPlacementRegistry.PlacementType.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, GubrovEntity::func_223363_b);
-            EntitySpawnPlacementRegistry.register(EntityInit.HHIJ_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, HhijAnimalEntity::canAnimalSpawn);
-            EntitySpawnPlacementRegistry.register(EntityInit.ROVENT_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, RoventEntity::canMonsterSpawn);
-            EntitySpawnPlacementRegistry.register(EntityInit.SHERT_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ShertEntity::canAnimalSpawn);
-            EntitySpawnPlacementRegistry.register(EntityInit.SRACH_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::canAnimalSpawn);
-            EntitySpawnPlacementRegistry.register(EntityInit.TRADER_NIRTRE_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canSpawnOn);
-            EntitySpawnPlacementRegistry.register(EntityInit.VILT_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::canAnimalSpawn);
-            EntitySpawnPlacementRegistry.register(EntityInit.WANDERING_TRADER_NIRTRE_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canSpawnOn);
-            EntitySpawnPlacementRegistry.register(EntityInit.ZOMBIE_TRADER_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canSpawnOn);
-            EntitySpawnPlacementRegistry.register(EntityInit.ZUR_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canSpawnOn);
-            EntitySpawnPlacementRegistry.register(EntityInit.LIWRAY.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canSpawnOn);
-            EntitySpawnPlacementRegistry.func_209342_b(EntityInit.LIWRAY.get());
-            EntitySpawnPlacementRegistry.func_209342_b(EntityInit.ZUR_ENTITY.get());
-            EntitySpawnPlacementRegistry.getPlacementType(EntityInit.LIWRAY.get());
-            EntitySpawnPlacementRegistry.getPlacementType(EntityInit.ZUR_ENTITY.get());
+            EntitySpawnPlacementRegistry.register(EntityInit.$_TRADER_ENTITY, EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, Abstract$TraderEntity::canSpawnOn);
+            EntitySpawnPlacementRegistry.register(EntityInit.DRURB_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canSpawnOn);
+            EntitySpawnPlacementRegistry.register(EntityInit.FREIN_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, FreinEntity::canFreinSpawn);
+            EntitySpawnPlacementRegistry.register(EntityInit.GUBROV, EntitySpawnPlacementRegistry.PlacementType.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, GubrovEntity::func_223363_b);
+            EntitySpawnPlacementRegistry.register(EntityInit.HHIJ_ENTITY, EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, HhijAnimalEntity::canAnimalSpawn);
+            EntitySpawnPlacementRegistry.register(EntityInit.ROVENT_ENTITY, EntitySpawnPlacementRegistry.PlacementType.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, RoventEntity::canMonsterSpawn);
+            EntitySpawnPlacementRegistry.register(EntityInit.SHERT_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ShertEntity::canAnimalSpawn);
+            EntitySpawnPlacementRegistry.register(EntityInit.SRACH_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::canAnimalSpawn);
+            EntitySpawnPlacementRegistry.register(EntityInit.TRADER_NIRTRE_ENTITY, EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canSpawnOn);
+            EntitySpawnPlacementRegistry.register(EntityInit.VILT_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::canAnimalSpawn);
+            EntitySpawnPlacementRegistry.register(EntityInit.WANDERING_TRADER_NIRTRE_ENTITY, EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canSpawnOn);
+            EntitySpawnPlacementRegistry.register(EntityInit.ZOMBIE_TRADER_ENTITY, EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canSpawnOn);
+            EntitySpawnPlacementRegistry.register(EntityInit.NIRTRE_ENTITY, EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canSpawnOn);
+            EntitySpawnPlacementRegistry.register(EntityInit.ZUR_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canSpawnOn);
+            EntitySpawnPlacementRegistry.register(EntityInit.LIWRAY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canSpawnOn);
+            EntitySpawnPlacementRegistry.func_209342_b(EntityInit.LIWRAY);
+            EntitySpawnPlacementRegistry.func_209342_b(EntityInit.ZUR_ENTITY);
+            EntitySpawnPlacementRegistry.getPlacementType(EntityInit.LIWRAY);
+            EntitySpawnPlacementRegistry.getPlacementType(EntityInit.ZUR_ENTITY);
 
 
         });
@@ -169,10 +173,10 @@ public class Ervin_mod_1 {
         public static void onRegisterItems (final RegistryEvent.Register<Item> event) {
             final IForgeRegistry<Item> registry = event.getRegistry();
             Set<Block> Blocks = new HashSet<>(Arrays.asList(
-                    BlockInit.ENDER_STAKRACH.get(),
-                    BlockInit.ENDER_SRAKTCAF.get(),
-                    BlockInit.ENDER_TRASKRACH.get(),
-                    BlockInit.ENDER_TRASKCRAFTH.get()
+                    BlockInit.ENDER_STAKRACH,
+                    BlockInit.ENDER_SRAKTCAF,
+                    BlockInit.ENDER_TRASKRACH,
+                    BlockInit.ENDER_TRASKCRAFTH
             ));
             BlockItemInit.BLOCKS.getEntries().stream().map(RegistryObject::get).forEach(block -> {
                 if (!Blocks.contains(block)) {
@@ -209,18 +213,18 @@ public class Ervin_mod_1 {
                     registry.register(blockItem);
                 }
             });
-            isBurnableBlockItemInit.BURNABLE_BLOCKS.getEntries().stream().map(RegistryObject::get).forEach(block -> {
-                if (!Blocks.contains(block)) {
-                    final Item.Properties properties = new Item.Properties().isImmuneToFire();
-                    properties.group(ModItemGroup.ERVIN_MOD_1).group(ModItemGroup.ERVIN_MOD_1_SEARCH);
-                    final BlockItem blockItem = new BlockItem(block, properties);
-                    ResourceLocation registryName = block.getRegistryName();
-                    if (null != registryName) {
-                        blockItem.setRegistryName(registryName);
-                    }
-                    registry.register(blockItem);
-                }
-            });
+//            isBurnableBlockItemInit.BURNABLE_BLOCKS.getEntries().stream().map(RegistryObject::get).forEach(block -> {
+//                if (!Blocks.contains(block)) {
+//                    final Item.Properties properties = new Item.Properties().isImmuneToFire();
+//                    properties.group(ModItemGroup.ERVIN_MOD_1).group(ModItemGroup.ERVIN_MOD_1_SEARCH);
+//                    final BlockItem blockItem = new BlockItem(block, properties);
+//                    ResourceLocation registryName = block.getRegistryName();
+//                    if (null != registryName) {
+//                        blockItem.setRegistryName(registryName);
+//                    }
+//                    registry.register(blockItem);
+//                }
+//            });
             
         }
 
@@ -242,6 +246,11 @@ public class Ervin_mod_1 {
             player.preparePlayerToSpawn();
             EntityType.PLAYER.create(player.world);
             player.addItemStackToInventory(new ItemStack(ItemInit.ENCHANTED_BOOK_BLACK));
+            if (player instanceof ServerPlayerEntity) {
+                ServerPlayerEntity serverPlayer = (ServerPlayerEntity) player;
+                ServerWorld serverWorld = serverPlayer.getServerWorld();
+                player.changeDimension(serverWorld, new Teleporter(serverWorld));
+            }
         }
 
         @SubscribeEvent
@@ -297,6 +306,10 @@ public class Ervin_mod_1 {
 
     private static void register(String value) {
         System.out.println("Registered " + value + " in " + Ervin_mod_1.MOD_ID);
+    }
+
+    public static String identifier(String key) {
+        return MOD_ID + ":" + key;
     }
 
     //https://mcforge.readthedocs.io/en/1.16.x/concepts/sides/

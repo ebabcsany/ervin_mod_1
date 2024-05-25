@@ -3,6 +3,7 @@ package com.babcsany.minecraft.ervin_mod_1.world.biome.biomes;
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.ModBiomeFeatures;
 import com.babcsany.minecraft.ervin_mod_1.init.ModConfiguredSurfaceBuilders;
+import com.babcsany.minecraft.ervin_mod_1.world.biome.ModBiomeMaker;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.FirgTree;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.ModDefaultBiomeFeatures;
 import com.babcsany.minecraft.ervin_mod_1.world.biome.spawn.SpawnListEntry;
@@ -67,9 +68,7 @@ public class ExampleBiome4 {
 		builder.withFeature(GenerationStage.Decoration.SURFACE_STRUCTURES,
 				Feature.TREE.withConfiguration(ModDefaultBiomeFeatures.FANCY_TREE_WITH_MORE_BEEHIVES_CONFIG).withPlacement(
 						Placement.CHANCE.configure(new ChanceConfig(25))).withPlacement(Placement.TOP_SOLID_HEIGHTMAP.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
-		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
-				Feature.TREE.withConfiguration(FirgTree.FIRG_TREE_CONFIG0).withPlacement(
-						Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(18, 4.8f, 10))));
+		ModDefaultBiomeFeatures.addExtraTree(builder, FirgTree.FIRG_TREE_CONFIG0, 18, 4.8f, 10);
 		builder.withSurfaceBuilder(configuredSurfaceBuilderSupplier);
 
 		DefaultBiomeFeatures.withOverworldOres(builder);
@@ -106,7 +105,7 @@ public class ExampleBiome4 {
 		ModDefaultBiomeFeatures.addExtraVilktBlock13(builder);
 		ModDefaultBiomeFeatures.addExtraVilktBlock14(builder);
 		ModDefaultBiomeFeatures.addExtraVilktBlock15(builder);
-		ModDefaultBiomeFeatures.addEmeraldOreFeature(builder, GenerationStage.Decoration.UNDERGROUND_ORES, Blocks.STONE.getDefaultState(), BlockItemInit.KALT_BLOCK.get().getDefaultState(), Placement.COUNT.configure(new FeatureSpreadConfig(FeatureSpread.create(20, 10))).range(30));
+		ModDefaultBiomeFeatures.addEmeraldOreFeature(builder, GenerationStage.Decoration.UNDERGROUND_ORES, Blocks.STONE.getDefaultState(), BlockItemInit.KALT_BLOCK.getDefaultState(), Placement.COUNT.configure(new FeatureSpreadConfig(FeatureSpread.create(20, 10))).range(30));
 		ModBiomeFeatures.addExampleFeature(builder, 10000);
 		ModDefaultBiomeFeatures.addKiomne(builder);
 		ModDefaultBiomeFeatures.addStones(builder);
@@ -116,16 +115,18 @@ public class ExampleBiome4 {
 		ambienceBuilder.setWaterColor(34895);
 		ambienceBuilder.setWaterFogColor(131263);
 		ambienceBuilder.setFogColor(4562745);
-		ambienceBuilder.withGrassColor(0x8040ff);
+		ambienceBuilder.withSkyColor(ModBiomeMaker.getSkyColorWithTemperatureModifier(45.897F));
+		ambienceBuilder.withGrassColor(8405247);
 
 		biomeBuilder.precipitation(Biome.RainType.NONE);
 		biomeBuilder.scale(10000.0F);
 		biomeBuilder.temperature(50.0F);
 		biomeBuilder.setEffects(ambienceBuilder.build());
+		biomeBuilder.withMobSpawnSettings(spawn.build());
 		biomeBuilder.withGenerationSettings(builder.build());
 		biomeBuilder.category(Biome.Category.BEACH);
 		biomeBuilder.downfall(50.0F);
-		biomeBuilder.scale(10.0F);
+		biomeBuilder.depth(10.0F);
 
 		return biomeBuilder.build();
 	}

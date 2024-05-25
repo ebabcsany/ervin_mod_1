@@ -9,7 +9,7 @@ import net.minecraft.advancements.criterion.ItemPredicate;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.entity.projectile.HuihkEntity;
+import com.babcsany.minecraft.ervin_mod_1.entity.projectile.HuihkEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.ConditionArrayParser;
 import net.minecraft.loot.ConditionArraySerializer;

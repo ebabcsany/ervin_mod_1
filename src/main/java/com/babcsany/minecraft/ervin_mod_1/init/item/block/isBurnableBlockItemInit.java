@@ -2,6 +2,8 @@ package com.babcsany.minecraft.ervin_mod_1.init.item.block;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit;
+import com.babcsany.minecraft.ervin_mod_1.init.unused.UnusedItems;
+import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -13,7 +15,11 @@ public class isBurnableBlockItemInit {
 
     public static final DeferredRegister<Item> BLOCK_ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Ervin_mod_1.MOD_ID);
 
-    public static final RegistryObject<Item> TERAT_BLOCK = BLOCK_ITEMS.register("terat_block", () -> new BlockItem(BlockInit.TERAT_BLOCK.get(), (new Item.Properties()).isImmuneToFire().group(ItemGroup.MATERIALS)));
-    public static final RegistryObject<Item> THUIRTH_RAIL = BLOCK_ITEMS.register("thuirth_rail", () -> new BlockItem(BlockInit.THUIRTH_RAIL.get(), (new Item.Properties()).isImmuneToFire().group(ItemGroup.MATERIALS)));
-    public static final RegistryObject<Item> GNRTHIRJ = BLOCK_ITEMS.register("gnrthirj", () -> new BlockItem(BlockInit.GNRTHIRJ.get(), (new Item.Properties()).isImmuneToFire().group(ItemGroup.MATERIALS)));
+    public static final Item TERAT_BLOCK = register("terat_block", new BlockItem(BlockInit.TERAT_BLOCK, (new Item.Properties()).isImmuneToFire().group(ItemGroup.MATERIALS)));
+    public static final Item THUIRTH_RAIL = register("thuirth_rail", new BlockItem(BlockInit.THUIRTH_RAIL, (new Item.Properties()).isImmuneToFire().group(ItemGroup.MATERIALS)));
+    public static final Item GNRTHIRJ = register("gnrthirj", new BlockItem(BlockInit.GNRTHIRJ, (new Item.Properties()).isImmuneToFire().group(ItemGroup.MATERIALS)));
+
+    public static Item register(String name, Item item) {
+        return UnusedItems.addDefault(name, item);
+    }
 }

@@ -19,7 +19,7 @@ import java.util.function.Supplier;
 
 public class EndBiome0 {
 	public EndBiome0() {
-		make(() -> ModConfiguredSurfaceBuilders.MUHK_SURFACE);
+		make(() -> ModConfiguredSurfaceBuilders.MUHK);
 	}
 
 	public static Biome make(final Supplier<ConfiguredSurfaceBuilder<?>> configuredSurfaceBuilderSupplier) {
@@ -65,6 +65,7 @@ public class EndBiome0 {
 		builder.precipitation(Biome.RainType.NONE);
 		builder.scale(0.2F);
 		builder.temperature(0.5F);
+		builder.withMobSpawnSettings(spawnInfoBuilder.build());
 		builder.withGenerationSettings(biomeBuilder.build());
 		builder.setEffects(ambienceBuilder.build());
 		builder.category(Biome.Category.THEEND);

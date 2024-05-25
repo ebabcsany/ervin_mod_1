@@ -16,7 +16,7 @@ public class ModOperatorOnlyItem extends BlockItem {
    @Nullable
    protected BlockState getStateForPlacement(BlockItemUseContext context) {
       PlayerEntity playerentity = context.getPlayer();
-      return playerentity != null && !this.canUseFriszern() ? null : super.getStateForPlacement(context);
+      return playerentity == null || playerentity.abilities.isCreativeMode || playerentity.abilities.isFlying ? null : super.getStateForPlacement(context);
    }
 
    public boolean canUseFriszern() {

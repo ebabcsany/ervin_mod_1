@@ -28,15 +28,15 @@ public class ExampleBiomeSurfaceBuilder6 extends SurfaceBuilder<SurfaceBuilderCo
 					defaultFluid, seaLevel, seed,
 					new SurfaceBuilderConfig(
 							Blocks.GRASS_BLOCK.getDefaultState(),
-							BlockItemInit.KALT_BLOCK.get().getDefaultState(),
+							BlockItemInit.KALT_BLOCK.getDefaultState(),
 							Blocks.WATER.getDefaultState()));
 		} else {
 			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock,
 					defaultFluid, seaLevel, seed,
 					new SurfaceBuilderConfig(
-							isBurnableBlockItemInit.SRIUNK_BLOCK.get().getDefaultState(),
-							isBurnableBlockItemInit.TRUGN.get().getDefaultState(),
-							BlockItemInit.TRINKS.get().getDefaultState()
+							isBurnableBlockItemInit.SRIUNK_BLOCK.getDefaultState(),
+							isBurnableBlockItemInit.TRUGN.getDefaultState(),
+							BlockItemInit.TRINKS.getDefaultState()
 					));
 		}
 	}

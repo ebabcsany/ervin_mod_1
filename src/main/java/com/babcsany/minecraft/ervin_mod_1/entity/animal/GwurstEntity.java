@@ -83,28 +83,28 @@ public class GwurstEntity extends AnimalEntity {
       this.wingRotation += this.wingRotDelta * 2.0F;
       if (!this.world.isRemote && this.isAlive() && !this.isChild() && !this.isGwurstJockey() && --this.timeUntilNextEgg <= 0) {
          this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
-         this.entityDropItem(ItemInit.TAWROL.get());
+         this.entityDropItem(ItemInit.TAWROL);
          this.timeUntilNextEgg = this.rand.nextInt(6000) + 6000;
       }
 
       this.wingRotation += this.wingRotDelta * 2.0F;
       if (!this.world.isRemote && this.isAlive() && !this.isChild() && !this.isGwurstJockey() && --this.timeUntilNextEgg <= 0) {
          this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
-         this.entityDropItem(ModSpawnEggItemInit.LIWRAY_SPAWN_EGG.get());
+         this.entityDropItem(ModSpawnEggItemInit.LIWRAY_SPAWN_EGG);
          this.timeUntilNextEgg = this.rand.nextInt(120000) + 120000;
       }
 
       this.wingRotation += this.wingRotDelta * 2.0F;
       if (!this.world.isRemote && this.isAlive() && !this.isChild() && !this.isGwurstJockey() && --this.timeUntilNextEgg <= 0) {
          this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
-         this.entityDropItem(ItemInit.CHAK.get());
+         this.entityDropItem(ItemInit.CHAK);
          this.timeUntilNextItem = this.rand.nextInt(48000) + 48000;
       }
 
       this.wingRotation += this.wingRotDelta * 2.0F;
       if (!this.world.isRemote && this.isAlive() && !this.isChild() && !this.isGwurstJockey() && --this.timeUntilNextEgg <= 0) {
          this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
-         this.entityDropItem(ItemInit.DGUCHSR.get());
+         this.entityDropItem(ItemInit.DGUCHSR);
          this.timeUntilNextItem = this.rand.nextInt(72000) + 72000;
       }
 
@@ -131,7 +131,7 @@ public class GwurstEntity extends AnimalEntity {
    }
 
    public GwurstEntity createChild(ServerWorld serverWorld, AgeableEntity ageable) {
-      return EntityInit.GWURST.get().create(serverWorld);
+      return EntityInit.GWURST.create(serverWorld);
    }
 
    /**

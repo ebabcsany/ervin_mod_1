@@ -1,7 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.world.biome.surface_builders;
 
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.unused.init.UnusedBlockInit;
+import com.babcsany.minecraft.ervin_mod_1.init.unused.UnusedBlocks;
 import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -26,14 +26,14 @@ public class EndBiomeSurfaceBuilder0 extends SurfaceBuilder<SurfaceBuilderConfig
 		if (i == 0) {
 			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock,
 					defaultFluid, seaLevel, seed,
-					new SurfaceBuilderConfig(UnusedBlockInit.get("air").get().getDefaultState(),
+					new SurfaceBuilderConfig(UnusedBlocks.get("air").getDefaultState(),
 							BlockItemInit.DEFERRED_BLOCK.getDefaultState(), Blocks.END_STONE.getDefaultState()));
 		} else {
 			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock,
 					defaultFluid, seaLevel, seed,
 					new SurfaceBuilderConfig(
 							i == 1 ? Blocks.END_STONE.getDefaultState()
-									: BlockItemInit.AVTER_BLOCK.get().getDefaultState(),
+									: BlockItemInit.AVTER_BLOCK.getDefaultState(),
 							BlockItemInit.DEFERRED_BLOCK.getDefaultState(), Blocks.END_STONE.getDefaultState()));
 		}
 	}

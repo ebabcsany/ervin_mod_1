@@ -20,8 +20,8 @@ public class MigtBiome {
     public MigtBiome(BiomeGenerationSettings.Builder biomeBuilder, MobSpawnInfo.Builder spawnInfoBuilder) {
         spawnInfoBuilder.withSpawner(EntityClassification.MONSTER, new SpawnListEntry(EntityType.ZOMBIE, 10, 2, 5));
         spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityType.BEE, 20, 2, 10));
-        spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.VILT_ENTITY.get(), 4, 2, 5));
-        spawnInfoBuilder.withSpawner(EntityClassification.MONSTER, new SpawnListEntry(EntityInit.ZUR_ENTITY.get(), 8, 2, 4));
+        spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.VILT_ENTITY, 4, 2, 5));
+        spawnInfoBuilder.withSpawner(EntityClassification.MONSTER, new SpawnListEntry(EntityInit.ZUR_ENTITY, 8, 2, 4));
         biomeBuilder.withCarver(GenerationStage.Carving.AIR, new ConfiguredCarver<>(WorldCarver.CAVE, new ProbabilityConfig(2.7542778539F)));
         biomeBuilder.withCarver(GenerationStage.Carving.AIR, new ConfiguredCarver<>(WorldCarver.NETHER_CAVE, new ProbabilityConfig(0.02F)));
         DefaultBiomeFeatures.withDisks(biomeBuilder);
@@ -41,9 +41,7 @@ public class MigtBiome {
         biomeBuilder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
                 Feature.RANDOM_PATCH.withConfiguration(ModDefaultBiomeFeatures.RED_MUSHROOM_CONFIG).withPlacement(
                         Placement.COUNT_NOISE.configure(new NoiseDependant(1, 10, 3))));
-        biomeBuilder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
-                Feature.TREE.withConfiguration(ModDefaultBiomeFeatures.FIRG_TREE_CONFIG).withPlacement(
-                        Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(9, 4.7f, 15))));
+        ModDefaultBiomeFeatures.addExtraFirgTree(biomeBuilder, 9, 4.7f, 15);
 
         ModDefaultBiomeFeatures.addOres(biomeBuilder);
         DefaultBiomeFeatures.withExtraGoldOre(biomeBuilder);

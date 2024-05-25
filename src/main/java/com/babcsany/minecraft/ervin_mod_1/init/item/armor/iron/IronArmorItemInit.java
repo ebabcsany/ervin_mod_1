@@ -1,12 +1,12 @@
 package com.babcsany.minecraft.ervin_mod_1.init.item.armor.iron;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
+import com.babcsany.minecraft.ervin_mod_1.init.item.armor.ArmorItemInit;
 import com.babcsany.minecraft.ervin_mod_1.item.ModArmorMaterial;
 import com.babcsany.minecraft.ervin_mod_1.item.group.ModItemGroup;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ArmorItem;
+import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.Item;
-import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -14,72 +14,96 @@ public class IronArmorItemInit {
 
     public static final DeferredRegister<Item> ARMOR = DeferredRegister.create(ForgeRegistries.ITEMS, Ervin_mod_1.MOD_ID);
 
-    public static final RegistryObject<Item> BLACK_IRON_HELMET = ARMOR.register("iron/armor/helmet/black_iron_helmet", () -> new ArmorItem(ModArmorMaterial.BLACK_IRON, EquipmentSlotType.HEAD, (new Item.Properties().group(ModItemGroup.ERVIN_MOD_1_SEARCH))));
-    public static final RegistryObject<Item> BLACK_IRON_CHESTPLATE = ARMOR.register("iron/armor/chestplate/black_iron_chestplate", () -> new ArmorItem(ModArmorMaterial.BLACK_IRON, EquipmentSlotType.CHEST, (new Item.Properties().group(ModItemGroup.ERVIN_MOD_1_SEARCH))));
-    public static final RegistryObject<Item> BLACK_IRON_LEGGINGS = ARMOR.register("iron/armor/leggings/black_iron_leggings", () -> new ArmorItem(ModArmorMaterial.BLACK_IRON, EquipmentSlotType.LEGS, (new Item.Properties().group(ModItemGroup.ERVIN_MOD_1_SEARCH))));
-    public static final RegistryObject<Item> BLACK_IRON_BOOTS = ARMOR.register("iron/armor/boots/black_iron_boots", () -> new ArmorItem(ModArmorMaterial.BLACK_IRON, EquipmentSlotType.FEET, (new Item.Properties().group(ModItemGroup.ERVIN_MOD_1_SEARCH))));
-    public static final RegistryObject<Item> BLUE_IRON_HELMET = ARMOR.register("iron/armor/helmet/blue_iron_helmet", () -> new ArmorItem(ModArmorMaterial.BLUE_IRON, EquipmentSlotType.HEAD, (new Item.Properties().group(ModItemGroup.ERVIN_MOD_1_SEARCH))));
-    public static final RegistryObject<Item> BLUE_IRON_CHESTPLATE = ARMOR.register("iron/armor/chestplate/blue_iron_chestplate", () -> new ArmorItem(ModArmorMaterial.BLUE_IRON, EquipmentSlotType.CHEST, (new Item.Properties().group(ModItemGroup.ERVIN_MOD_1_SEARCH))));
-    public static final RegistryObject<Item> BLUE_IRON_LEGGINGS = ARMOR.register("iron/armor/leggings/blue_iron_leggings", () -> new ArmorItem(ModArmorMaterial.BLUE_IRON, EquipmentSlotType.LEGS, (new Item.Properties().group(ModItemGroup.ERVIN_MOD_1_SEARCH))));
-    public static final RegistryObject<Item> BLUE_IRON_BOOTS = ARMOR.register("iron/armor/boots/blue_iron_boots", () -> new ArmorItem(ModArmorMaterial.BLUE_IRON, EquipmentSlotType.FEET, (new Item.Properties().group(ModItemGroup.ERVIN_MOD_1_SEARCH))));
-    public static final RegistryObject<Item> BROWN_IRON_HELMET = ARMOR.register("iron/armor/helmet/brown_iron_helmet", () -> new ArmorItem(ModArmorMaterial.BROWN_IRON, EquipmentSlotType.HEAD, (new Item.Properties().group(ModItemGroup.ERVIN_MOD_1_SEARCH))));
-    public static final RegistryObject<Item> BROWN_IRON_CHESTPLATE = ARMOR.register("iron/armor/chestplate/brown_iron_chestplate", () -> new ArmorItem(ModArmorMaterial.BROWN_IRON, EquipmentSlotType.CHEST, (new Item.Properties().group(ModItemGroup.ERVIN_MOD_1_SEARCH))));
-    public static final RegistryObject<Item> BROWN_IRON_LEGGINGS = ARMOR.register("iron/armor/leggings/brown_iron_leggings", () -> new ArmorItem(ModArmorMaterial.BROWN_IRON, EquipmentSlotType.LEGS, (new Item.Properties().group(ModItemGroup.ERVIN_MOD_1_SEARCH))));
-    public static final RegistryObject<Item> BROWN_IRON_BOOTS = ARMOR.register("iron/armor/boots/brown_iron_boots", () -> new ArmorItem(ModArmorMaterial.BROWN_IRON, EquipmentSlotType.FEET, (new Item.Properties().group(ModItemGroup.ERVIN_MOD_1_SEARCH))));
-    public static final RegistryObject<Item> CYAN_IRON_HELMET = ARMOR.register("iron/armor/helmet/cyan_iron_helmet", () -> new ArmorItem(ModArmorMaterial.CYAN_IRON, EquipmentSlotType.HEAD, (new Item.Properties().group(ModItemGroup.ERVIN_MOD_1_SEARCH))));
-    public static final RegistryObject<Item> CYAN_IRON_CHESTPLATE = ARMOR.register("iron/armor/chestplate/cyan_iron_chestplate", () -> new ArmorItem(ModArmorMaterial.CYAN_IRON, EquipmentSlotType.CHEST, (new Item.Properties().group(ModItemGroup.ERVIN_MOD_1_SEARCH))));
-    public static final RegistryObject<Item> CYAN_IRON_LEGGINGS = ARMOR.register("iron/armor/leggings/cyan_iron_leggings", () -> new ArmorItem(ModArmorMaterial.CYAN_IRON, EquipmentSlotType.LEGS, (new Item.Properties().group(ModItemGroup.ERVIN_MOD_1_SEARCH))));
-    public static final RegistryObject<Item> CYAN_IRON_BOOTS = ARMOR.register("iron/armor/boots/cyan_iron_boots", () -> new ArmorItem(ModArmorMaterial.CYAN_IRON, EquipmentSlotType.FEET, (new Item.Properties().group(ModItemGroup.ERVIN_MOD_1_SEARCH))));
-    public static final RegistryObject<Item> GRAY_IRON_HELMET = ARMOR.register("iron/armor/helmet/gray_iron_helmet", () -> new ArmorItem(ModArmorMaterial.GRAY_IRON, EquipmentSlotType.HEAD, (new Item.Properties().group(ModItemGroup.ERVIN_MOD_1_SEARCH))));
-    public static final RegistryObject<Item> GRAY_IRON_CHESTPLATE = ARMOR.register("iron/armor/chestplate/gray_iron_chestplate", () -> new ArmorItem(ModArmorMaterial.GRAY_IRON, EquipmentSlotType.CHEST, (new Item.Properties().group(ModItemGroup.ERVIN_MOD_1_SEARCH))));
-    public static final RegistryObject<Item> GRAY_IRON_LEGGINGS = ARMOR.register("iron/armor/leggings/gray_iron_leggings", () -> new ArmorItem(ModArmorMaterial.GRAY_IRON, EquipmentSlotType.LEGS, (new Item.Properties().group(ModItemGroup.ERVIN_MOD_1_SEARCH))));
-    public static final RegistryObject<Item> GRAY_IRON_BOOTS = ARMOR.register("iron/armor/boots/gray_iron_boots", () -> new ArmorItem(ModArmorMaterial.GRAY_IRON, EquipmentSlotType.FEET, (new Item.Properties().group(ModItemGroup.ERVIN_MOD_1_SEARCH))));
-    public static final RegistryObject<Item> GREEN_IRON_HELMET = ARMOR.register("iron/armor/helmet/green_iron_helmet", () -> new ArmorItem(ModArmorMaterial.GREEN_IRON, EquipmentSlotType.HEAD, (new Item.Properties().group(ModItemGroup.ERVIN_MOD_1_SEARCH))));
-    public static final RegistryObject<Item> GREEN_IRON_CHESTPLATE = ARMOR.register("iron/armor/chestplate/green_iron_chestplate", () -> new ArmorItem(ModArmorMaterial.GREEN_IRON, EquipmentSlotType.CHEST, (new Item.Properties().group(ModItemGroup.ERVIN_MOD_1_SEARCH))));
-    public static final RegistryObject<Item> GREEN_IRON_LEGGINGS = ARMOR.register("iron/armor/leggings/green_iron_leggings", () -> new ArmorItem(ModArmorMaterial.GREEN_IRON, EquipmentSlotType.LEGS, (new Item.Properties().group(ModItemGroup.ERVIN_MOD_1_SEARCH))));
-    public static final RegistryObject<Item> GREEN_IRON_BOOTS = ARMOR.register("iron/armor/boots/green_iron_boots", () -> new ArmorItem(ModArmorMaterial.GREEN_IRON, EquipmentSlotType.FEET, (new Item.Properties().group(ModItemGroup.ERVIN_MOD_1_SEARCH))));
-    public static final RegistryObject<Item> LIGHT_BLUE_IRON_HELMET = ARMOR.register("iron/armor/helmet/light_blue_iron_helmet", () -> new ArmorItem(ModArmorMaterial.LIGHT_BLUE_IRON, EquipmentSlotType.HEAD, (new Item.Properties().group(ModItemGroup.ERVIN_MOD_1_SEARCH))));
-    public static final RegistryObject<Item> LIGHT_BLUE_IRON_CHESTPLATE = ARMOR.register("iron/armor/chestplate/light_blue_iron_chestplate", () -> new ArmorItem(ModArmorMaterial.LIGHT_BLUE_IRON, EquipmentSlotType.CHEST, (new Item.Properties().group(ModItemGroup.ERVIN_MOD_1_SEARCH))));
-    public static final RegistryObject<Item> LIGHT_BLUE_IRON_LEGGINGS = ARMOR.register("iron/armor/leggings/light_blue_iron_leggings", () -> new ArmorItem(ModArmorMaterial.LIGHT_BLUE_IRON, EquipmentSlotType.LEGS, (new Item.Properties().group(ModItemGroup.ERVIN_MOD_1_SEARCH))));
-    public static final RegistryObject<Item> LIGHT_BLUE_IRON_BOOTS = ARMOR.register("iron/armor/boots/light_blue_iron_boots", () -> new ArmorItem(ModArmorMaterial.LIGHT_BLUE_IRON, EquipmentSlotType.FEET, (new Item.Properties().group(ModItemGroup.ERVIN_MOD_1_SEARCH))));
-    public static final RegistryObject<Item> LIGHT_BLUE1_IRON_HELMET = ARMOR.register("iron/armor/helmet/light_blue1_iron_helmet", () -> new ArmorItem(ModArmorMaterial.LIGHT_BLUE1_IRON, EquipmentSlotType.HEAD, (new Item.Properties().group(ModItemGroup.ERVIN_MOD_1_SEARCH))));
-    public static final RegistryObject<Item> LIGHT_BLUE1_IRON_CHESTPLATE = ARMOR.register("iron/armor/chestplate/light_blue1_iron_chestplate", () -> new ArmorItem(ModArmorMaterial.LIGHT_BLUE1_IRON, EquipmentSlotType.CHEST, (new Item.Properties().group(ModItemGroup.ERVIN_MOD_1_SEARCH))));
-    public static final RegistryObject<Item> LIGHT_BLUE1_IRON_LEGGINGS = ARMOR.register("iron/armor/leggings/light_blue1_iron_leggings", () -> new ArmorItem(ModArmorMaterial.LIGHT_BLUE1_IRON, EquipmentSlotType.LEGS, (new Item.Properties().group(ModItemGroup.ERVIN_MOD_1_SEARCH))));
-    public static final RegistryObject<Item> LIGHT_BLUE1_IRON_BOOTS = ARMOR.register("iron/armor/boots/light_blue1_iron_boots", () -> new ArmorItem(ModArmorMaterial.LIGHT_BLUE1_IRON, EquipmentSlotType.FEET, (new Item.Properties().group(ModItemGroup.ERVIN_MOD_1_SEARCH))));
-    public static final RegistryObject<Item> LIGHT_GRAY_IRON_HELMET = ARMOR.register("iron/armor/helmet/light_gray_iron_helmet", () -> new ArmorItem(ModArmorMaterial.LIGHT_GRAY_IRON, EquipmentSlotType.HEAD, (new Item.Properties().group(ModItemGroup.ERVIN_MOD_1_SEARCH))));
-    public static final RegistryObject<Item> LIGHT_GRAY_IRON_CHESTPLATE = ARMOR.register("iron/armor/chestplate/light_gray_iron_chestplate", () -> new ArmorItem(ModArmorMaterial.LIGHT_GRAY_IRON, EquipmentSlotType.CHEST, (new Item.Properties().group(ModItemGroup.ERVIN_MOD_1_SEARCH))));
-    public static final RegistryObject<Item> LIGHT_GRAY_IRON_LEGGINGS = ARMOR.register("iron/armor/leggings/light_gray_iron_leggings", () -> new ArmorItem(ModArmorMaterial.LIGHT_GRAY_IRON, EquipmentSlotType.LEGS, (new Item.Properties().group(ModItemGroup.ERVIN_MOD_1_SEARCH))));
-    public static final RegistryObject<Item> LIGHT_GRAY_IRON_BOOTS = ARMOR.register("iron/armor/boots/light_gray_iron_boots", () -> new ArmorItem(ModArmorMaterial.LIGHT_GRAY_IRON, EquipmentSlotType.FEET, (new Item.Properties().group(ModItemGroup.ERVIN_MOD_1_SEARCH))));
-    public static final RegistryObject<Item> LIME_IRON_HELMET = ARMOR.register("iron/armor/helmet/lime_iron_helmet", () -> new ArmorItem(ModArmorMaterial.LIME_IRON, EquipmentSlotType.HEAD, (new Item.Properties())));
-    public static final RegistryObject<Item> LIME_IRON_CHESTPLATE = ARMOR.register("iron/armor/chestplate/lime_iron_chestplate", () -> new ArmorItem(ModArmorMaterial.LIME_IRON, EquipmentSlotType.CHEST, (new Item.Properties())));
-    public static final RegistryObject<Item> LIME_IRON_LEGGINGS = ARMOR.register("iron/armor/leggings/lime_iron_leggings", () -> new ArmorItem(ModArmorMaterial.LIME_IRON, EquipmentSlotType.LEGS, (new Item.Properties())));
-    public static final RegistryObject<Item> LIME_IRON_BOOTS = ARMOR.register("iron/armor/boots/lime_iron_boots", () -> new ArmorItem(ModArmorMaterial.LIME_IRON, EquipmentSlotType.FEET, (new Item.Properties())));
-    public static final RegistryObject<Item> MAGENTA_IRON_HELMET = ARMOR.register("iron/armor/helmet/magenta_iron_helmet", () -> new ArmorItem(ModArmorMaterial.MAGENTA_IRON, EquipmentSlotType.HEAD, (new Item.Properties())));
-    public static final RegistryObject<Item> MAGENTA_IRON_CHESTPLATE = ARMOR.register("iron/armor/chestplate/magenta_iron_chestplate", () -> new ArmorItem(ModArmorMaterial.MAGENTA_IRON, EquipmentSlotType.CHEST, (new Item.Properties())));
-    public static final RegistryObject<Item> MAGENTA_IRON_LEGGINGS = ARMOR.register("iron/armor/leggings/magenta_iron_leggings", () -> new ArmorItem(ModArmorMaterial.MAGENTA_IRON, EquipmentSlotType.LEGS, (new Item.Properties())));
-    public static final RegistryObject<Item> MAGENTA_IRON_BOOTS = ARMOR.register("iron/armor/boots/magenta_iron_boots", () -> new ArmorItem(ModArmorMaterial.MAGENTA_IRON, EquipmentSlotType.FEET, (new Item.Properties())));
-    public static final RegistryObject<Item> ORANGE_IRON_HELMET = ARMOR.register("iron/armor/helmet/orange_iron_helmet", () -> new ArmorItem(ModArmorMaterial.ORANGE_IRON, EquipmentSlotType.HEAD, (new Item.Properties())));
-    public static final RegistryObject<Item> ORANGE_IRON_CHESTPLATE = ARMOR.register("iron/armor/chestplate/orange_iron_chestplate", () -> new ArmorItem(ModArmorMaterial.ORANGE_IRON, EquipmentSlotType.CHEST, (new Item.Properties())));
-    public static final RegistryObject<Item> ORANGE_IRON_LEGGINGS = ARMOR.register("iron/armor/leggings/orange_iron_leggings", () -> new ArmorItem(ModArmorMaterial.ORANGE_IRON, EquipmentSlotType.LEGS, (new Item.Properties())));
-    public static final RegistryObject<Item> ORANGE_IRON_BOOTS = ARMOR.register("iron/armor/boots/orange_iron_boots", () -> new ArmorItem(ModArmorMaterial.ORANGE_IRON, EquipmentSlotType.FEET, (new Item.Properties())));
-    public static final RegistryObject<Item> PINK_IRON_HELMET = ARMOR.register("iron/armor/helmet/pink_iron_helmet", () -> new ArmorItem(ModArmorMaterial.PINK_IRON, EquipmentSlotType.HEAD, (new Item.Properties())));
-    public static final RegistryObject<Item> PINK_IRON_CHESTPLATE = ARMOR.register("iron/armor/chestplate/pink_iron_chestplate", () -> new ArmorItem(ModArmorMaterial.PINK_IRON, EquipmentSlotType.CHEST, (new Item.Properties())));
-    public static final RegistryObject<Item> PINK_IRON_LEGGINGS = ARMOR.register("iron/armor/leggings/pink_iron_leggings", () -> new ArmorItem(ModArmorMaterial.PINK_IRON, EquipmentSlotType.LEGS, (new Item.Properties())));
-    public static final RegistryObject<Item> PINK_IRON_BOOTS = ARMOR.register("iron/armor/boots/pink_iron_boots", () -> new ArmorItem(ModArmorMaterial.PINK_IRON, EquipmentSlotType.FEET, (new Item.Properties())));
-    public static final RegistryObject<Item> PURPLE_IRON_HELMET = ARMOR.register("iron/armor/helmet/purple_iron_helmet", () -> new ArmorItem(ModArmorMaterial.PURPLE_IRON, EquipmentSlotType.HEAD, (new Item.Properties())));
-    public static final RegistryObject<Item> PURPLE_IRON_CHESTPLATE = ARMOR.register("iron/armor/chestplate/purple_iron_chestplate", () -> new ArmorItem(ModArmorMaterial.PURPLE_IRON, EquipmentSlotType.CHEST, (new Item.Properties())));
-    public static final RegistryObject<Item> PURPLE_IRON_LEGGINGS = ARMOR.register("iron/armor/leggings/purple_iron_leggings", () -> new ArmorItem(ModArmorMaterial.PURPLE_IRON, EquipmentSlotType.LEGS, (new Item.Properties())));
-    public static final RegistryObject<Item> PURPLE_IRON_BOOTS = ARMOR.register("iron/armor/boots/purple_iron_boots", () -> new ArmorItem(ModArmorMaterial.PURPLE_IRON, EquipmentSlotType.FEET, (new Item.Properties())));
-    public static final RegistryObject<Item> RED_IRON_HELMET = ARMOR.register("iron/armor/helmet/red_iron_helmet", () -> new ArmorItem(ModArmorMaterial.RED_IRON, EquipmentSlotType.HEAD, (new Item.Properties())));
-    public static final RegistryObject<Item> RED_IRON_CHESTPLATE = ARMOR.register("iron/armor/chestplate/red_iron_chestplate", () -> new ArmorItem(ModArmorMaterial.RED_IRON, EquipmentSlotType.CHEST, (new Item.Properties())));
-    public static final RegistryObject<Item> RED_IRON_LEGGINGS = ARMOR.register("iron/armor/leggings/red_iron_leggings", () -> new ArmorItem(ModArmorMaterial.RED_IRON, EquipmentSlotType.LEGS, (new Item.Properties())));
-    public static final RegistryObject<Item> RED_IRON_BOOTS = ARMOR.register("iron/armor/boots/red_iron_boots", () -> new ArmorItem(ModArmorMaterial.RED_IRON, EquipmentSlotType.FEET, (new Item.Properties())));
-    public static final RegistryObject<Item> WHITE_IRON_HELMET = ARMOR.register("iron/armor/helmet/white_iron_helmet", () -> new ArmorItem(ModArmorMaterial.WHITE_IRON, EquipmentSlotType.HEAD, (new Item.Properties())));
-    public static final RegistryObject<Item> WHITE_IRON_CHESTPLATE = ARMOR.register("iron/armor/chestplate/white_iron_chestplate", () -> new ArmorItem(ModArmorMaterial.WHITE_IRON, EquipmentSlotType.CHEST, (new Item.Properties())));
-    public static final RegistryObject<Item> WHITE_IRON_LEGGINGS = ARMOR.register("iron/armor/leggings/white_iron_leggings", () -> new ArmorItem(ModArmorMaterial.WHITE_IRON, EquipmentSlotType.LEGS, (new Item.Properties())));
-    public static final RegistryObject<Item> WHITE_IRON_BOOTS = ARMOR.register("iron/armor/boots/white_iron_boots", () -> new ArmorItem(ModArmorMaterial.WHITE_IRON, EquipmentSlotType.FEET, (new Item.Properties())));
-    public static final RegistryObject<Item> YELLOW_IRON_HELMET = ARMOR.register("iron/armor/helmet/yellow_iron_helmet", () -> new ArmorItem(ModArmorMaterial.YELLOW_IRON, EquipmentSlotType.HEAD, (new Item.Properties())));
-    public static final RegistryObject<Item> YELLOW_IRON_CHESTPLATE = ARMOR.register("iron/armor/chestplate/yellow_iron_chestplate", () -> new ArmorItem(ModArmorMaterial.YELLOW_IRON, EquipmentSlotType.CHEST, (new Item.Properties())));
-    public static final RegistryObject<Item> YELLOW_IRON_LEGGINGS = ARMOR.register("iron/armor/leggings/yellow_iron_leggings", () -> new ArmorItem(ModArmorMaterial.YELLOW_IRON, EquipmentSlotType.LEGS, (new Item.Properties())));
-    public static final RegistryObject<Item> YELLOW_IRON_BOOTS = ARMOR.register("iron/armor/boots/yellow_iron_boots", () -> new ArmorItem(ModArmorMaterial.YELLOW_IRON, EquipmentSlotType.FEET, (new Item.Properties())));
+    public static final Item BLACK_IRON_HELMET = ironHelmetRegister("black", ModArmorMaterial.BLACK_IRON);
+    public static final Item BLACK_IRON_CHESTPLATE = ironChestplateRegister("black", ModArmorMaterial.BLACK_IRON);
+    public static final Item BLACK_IRON_LEGGINGS = ironLeggingsRegister("black", ModArmorMaterial.BLACK_IRON);
+    public static final Item BLACK_IRON_BOOTS = ironBootsRegister("black", ModArmorMaterial.BLACK_IRON);
+    public static final Item BLUE_IRON_HELMET = ironHelmetRegister("blue", ModArmorMaterial.BLUE_IRON);
+    public static final Item BLUE_IRON_CHESTPLATE = ironChestplateRegister("blue", ModArmorMaterial.BLUE_IRON);
+    public static final Item BLUE_IRON_LEGGINGS = ironLeggingsRegister("blue", ModArmorMaterial.BLUE_IRON);
+    public static final Item BLUE_IRON_BOOTS = ironBootsRegister("blue", ModArmorMaterial.BLUE_IRON);
+    public static final Item BROWN_IRON_HELMET = ironHelmetRegister("brown", ModArmorMaterial.BROWN_IRON);
+    public static final Item BROWN_IRON_CHESTPLATE = ironChestplateRegister("brown", ModArmorMaterial.BROWN_IRON);
+    public static final Item BROWN_IRON_LEGGINGS = ironLeggingsRegister("brown", ModArmorMaterial.BROWN_IRON);
+    public static final Item BROWN_IRON_BOOTS = ironBootsRegister("brown", ModArmorMaterial.BROWN_IRON);
+    public static final Item CYAN_IRON_HELMET = ironHelmetRegister("cyan", ModArmorMaterial.CYAN_IRON);
+    public static final Item CYAN_IRON_CHESTPLATE = ironChestplateRegister("cyan", ModArmorMaterial.CYAN_IRON);
+    public static final Item CYAN_IRON_LEGGINGS = ironLeggingsRegister("cyan", ModArmorMaterial.CYAN_IRON);
+    public static final Item CYAN_IRON_BOOTS = ironBootsRegister("cyan", ModArmorMaterial.CYAN_IRON);
+    public static final Item GRAY_IRON_HELMET = ironHelmetRegister("gray", ModArmorMaterial.GRAY_IRON);
+    public static final Item GRAY_IRON_CHESTPLATE = ironChestplateRegister("gray", ModArmorMaterial.GRAY_IRON);
+    public static final Item GRAY_IRON_LEGGINGS = ironLeggingsRegister("gray", ModArmorMaterial.GRAY_IRON);
+    public static final Item GRAY_IRON_BOOTS = ironBootsRegister("gray", ModArmorMaterial.GRAY_IRON);
+    public static final Item GREEN_IRON_HELMET = ironHelmetRegister("green", ModArmorMaterial.GREEN_IRON);
+    public static final Item GREEN_IRON_CHESTPLATE = ironChestplateRegister("green", ModArmorMaterial.GREEN_IRON);
+    public static final Item GREEN_IRON_LEGGINGS = ironLeggingsRegister("green", ModArmorMaterial.GREEN_IRON);
+    public static final Item GREEN_IRON_BOOTS = ironBootsRegister("green", ModArmorMaterial.GREEN_IRON);
+    public static final Item LIGHT_BLUE_IRON_HELMET = ironHelmetRegister("light_blue", ModArmorMaterial.LIGHT_BLUE_IRON);
+    public static final Item LIGHT_BLUE_IRON_CHESTPLATE = ironChestplateRegister("light_blue", ModArmorMaterial.LIGHT_BLUE_IRON);
+    public static final Item LIGHT_BLUE_IRON_LEGGINGS = ironLeggingsRegister("light_blue", ModArmorMaterial.LIGHT_BLUE_IRON);
+    public static final Item LIGHT_BLUE_IRON_BOOTS = ironBootsRegister("light_blue", ModArmorMaterial.LIGHT_BLUE_IRON);
+    public static final Item LIGHT_BLUE1_IRON_HELMET = ironHelmetRegister("light_blue1", ModArmorMaterial.LIGHT_BLUE1_IRON);
+    public static final Item LIGHT_BLUE1_IRON_CHESTPLATE = ironChestplateRegister("light_blue1", ModArmorMaterial.LIGHT_BLUE1_IRON);
+    public static final Item LIGHT_BLUE1_IRON_LEGGINGS = ironLeggingsRegister("light_blue1", ModArmorMaterial.LIGHT_BLUE1_IRON);
+    public static final Item LIGHT_BLUE1_IRON_BOOTS = ironBootsRegister("light_blue1", ModArmorMaterial.LIGHT_BLUE1_IRON);
+    public static final Item LIGHT_GRAY_IRON_HELMET = ironHelmetRegister("light_gray", ModArmorMaterial.LIGHT_GRAY_IRON);
+    public static final Item LIGHT_GRAY_IRON_CHESTPLATE = ironChestplateRegister("light_gray", ModArmorMaterial.LIGHT_GRAY_IRON);
+    public static final Item LIGHT_GRAY_IRON_LEGGINGS = ironLeggingsRegister("light_gray", ModArmorMaterial.LIGHT_GRAY_IRON);
+    public static final Item LIGHT_GRAY_IRON_BOOTS = ironBootsRegister("light_gray", ModArmorMaterial.LIGHT_GRAY_IRON);
+    public static final Item LIME_IRON_HELMET = ironHelmetRegister("lime", ModArmorMaterial.LIME_IRON);
+    public static final Item LIME_IRON_CHESTPLATE = ironChestplateRegister("lime", ModArmorMaterial.LIME_IRON);
+    public static final Item LIME_IRON_LEGGINGS = ironLeggingsRegister("lime", ModArmorMaterial.LIME_IRON);
+    public static final Item LIME_IRON_BOOTS = ironBootsRegister("lime", ModArmorMaterial.LIME_IRON);
+    public static final Item MAGENTA_IRON_HELMET = ironHelmetRegister("magenta", ModArmorMaterial.MAGENTA_IRON);
+    public static final Item MAGENTA_IRON_CHESTPLATE = ironChestplateRegister("magenta", ModArmorMaterial.MAGENTA_IRON);
+    public static final Item MAGENTA_IRON_LEGGINGS = ironLeggingsRegister("magenta", ModArmorMaterial.MAGENTA_IRON);
+    public static final Item MAGENTA_IRON_BOOTS = ironBootsRegister("magenta", ModArmorMaterial.MAGENTA_IRON);
+    public static final Item ORANGE_IRON_HELMET = ironHelmetRegister("orange", ModArmorMaterial.ORANGE_IRON);
+    public static final Item ORANGE_IRON_CHESTPLATE = ironChestplateRegister("orange", ModArmorMaterial.ORANGE_IRON);
+    public static final Item ORANGE_IRON_LEGGINGS = ironLeggingsRegister("orange", ModArmorMaterial.ORANGE_IRON);
+    public static final Item ORANGE_IRON_BOOTS = ironBootsRegister("orange", ModArmorMaterial.ORANGE_IRON);
+    public static final Item PINK_IRON_HELMET = ironHelmetRegister("pink", ModArmorMaterial.PINK_IRON);
+    public static final Item PINK_IRON_CHESTPLATE = ironChestplateRegister("pink", ModArmorMaterial.PINK_IRON);
+    public static final Item PINK_IRON_LEGGINGS = ironLeggingsRegister("pink", ModArmorMaterial.PINK_IRON);
+    public static final Item PINK_IRON_BOOTS = ironBootsRegister("pink", ModArmorMaterial.PINK_IRON);
+    public static final Item PURPLE_IRON_HELMET = ironHelmetRegister("purple", ModArmorMaterial.PURPLE_IRON);
+    public static final Item PURPLE_IRON_CHESTPLATE = ironChestplateRegister("purple", ModArmorMaterial.PURPLE_IRON);
+    public static final Item PURPLE_IRON_LEGGINGS = ironLeggingsRegister("purple", ModArmorMaterial.PURPLE_IRON);
+    public static final Item PURPLE_IRON_BOOTS = ironBootsRegister("purple", ModArmorMaterial.PURPLE_IRON);
+    public static final Item RED_IRON_HELMET = ironHelmetRegister("red", ModArmorMaterial.RED_IRON);
+    public static final Item RED_IRON_CHESTPLATE = ironChestplateRegister("red", ModArmorMaterial.RED_IRON);
+    public static final Item RED_IRON_LEGGINGS = ironLeggingsRegister("red", ModArmorMaterial.RED_IRON);
+    public static final Item RED_IRON_BOOTS = ironBootsRegister("red", ModArmorMaterial.RED_IRON);
+    public static final Item WHITE_IRON_HELMET = ironHelmetRegister("white", ModArmorMaterial.WHITE_IRON);
+    public static final Item WHITE_IRON_CHESTPLATE = ironChestplateRegister("white", ModArmorMaterial.WHITE_IRON);
+    public static final Item WHITE_IRON_LEGGINGS = ironLeggingsRegister("white", ModArmorMaterial.WHITE_IRON);
+    public static final Item WHITE_IRON_BOOTS = ironBootsRegister("white", ModArmorMaterial.WHITE_IRON);
+    public static final Item YELLOW_IRON_HELMET = ironHelmetRegister("yellow", ModArmorMaterial.YELLOW_IRON);
+    public static final Item YELLOW_IRON_CHESTPLATE = ironChestplateRegister("yellow", ModArmorMaterial.YELLOW_IRON);
+    public static final Item YELLOW_IRON_LEGGINGS = ironLeggingsRegister("yellow", ModArmorMaterial.YELLOW_IRON);
+    public static final Item YELLOW_IRON_BOOTS = ironBootsRegister("yellow", ModArmorMaterial.YELLOW_IRON);
+
+    public static Item ironHelmetRegister(String name, IArmorMaterial materialIn) {
+        return ArmorItemInit.armorHelmetRegister("iron/" + name, materialIn, new Item.Properties().group(ModItemGroup.ERVIN_MOD_1_SEARCH));
+    }
+    
+    public static Item ironChestplateRegister(String name, IArmorMaterial materialIn) {
+        return ArmorItemInit.armorChestplateRegister("iron/" + name, materialIn, new Item.Properties().group(ModItemGroup.ERVIN_MOD_1_SEARCH));
+    }
+    
+    public static Item ironLeggingsRegister(String name, IArmorMaterial materialIn) {
+        return ArmorItemInit.armorLeggingsRegister("iron/" + name, materialIn, new Item.Properties().group(ModItemGroup.ERVIN_MOD_1_SEARCH));
+    }
+    
+    public static Item ironBootsRegister(String name, IArmorMaterial materialIn) {
+        return ArmorItemInit.armorBootsRegister("iron/" + name, materialIn, new Item.Properties().group(ModItemGroup.ERVIN_MOD_1_SEARCH));
+    }
+
+    public static Item register(String name, IArmorMaterial materialIn, EquipmentSlotType slot, Item.Properties properties) {
+        return ArmorItemInit.armorRegister(name, materialIn, slot, properties);
+    }
+    
+    public static void register() {
+        Ervin_mod_1.register(IronArmorItemInit.class);
+    }
 }

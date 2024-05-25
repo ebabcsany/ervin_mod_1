@@ -17,6 +17,8 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtensibleEnum;
 
+import java.util.Objects;
+
 public class Grith1 extends Item {
 	public Grith1(Properties properties) {
 		super(properties);
@@ -69,8 +71,8 @@ public class Grith1 extends Item {
 
 	@Override
 	public ActionResultType onItemUse(ItemUseContext context) {
-		if (context.getWorld().getBlockState(context.getPos()).getBlock() == BlockInit.GRITH_BLOCK.get()) {
-			for (ItemStack stack : context.getPlayer().inventory.mainInventory) {
+		if (context.getWorld().getBlockState(context.getPos()).getBlock() == BlockInit.GRITH_BLOCK) {
+			for (ItemStack stack : Objects.requireNonNull(context.getPlayer()).inventory.mainInventory) {
 				if (stack.isEmpty()) {
 					context.getPlayer().addItemStackToInventory(new ItemStack(isBurnableSpecialItemInit.GRITH));
 					context.getItem().damageItem(1, context.getPlayer(), (playerIn) -> {

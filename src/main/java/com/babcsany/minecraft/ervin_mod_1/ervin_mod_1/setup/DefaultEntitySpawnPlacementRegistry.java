@@ -14,14 +14,14 @@ public class DefaultEntitySpawnPlacementRegistry extends EntitySpawnPlacementReg
     }
 
     public void register() {
-        EntitySpawnPlacementRegistry.register(EntityInit.SRACH_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::canAnimalSpawn);
+        EntitySpawnPlacementRegistry.register(EntityInit.SRACH_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::canAnimalSpawn);
     }
 
     public void heightmapType() {
-        getHeightmapType(com.babcsany.minecraft.ervin_mod_1.init.EntityInit.SRACH_ENTITY.get());
+        getHeightmapType(com.babcsany.minecraft.ervin_mod_1.init.EntityInit.SRACH_ENTITY);
     }
 
     public void placementType() {
-        getPlacementType(com.babcsany.minecraft.ervin_mod_1.init.EntityInit.SRACH_ENTITY.get());
+        getPlacementType(com.babcsany.minecraft.ervin_mod_1.init.EntityInit.SRACH_ENTITY);
     }
 }

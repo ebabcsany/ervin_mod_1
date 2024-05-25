@@ -1,5 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.init;
 
+import com.babcsany.minecraft.ervin_mod_1.entity.ModEntityClassification;
 import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.registries.Compost;
 import com.babcsany.minecraft.ervin_mod_1.init.*;
 import com.babcsany.minecraft.ervin_mod_1.init.container.ContainerInit;
@@ -40,28 +41,26 @@ import com.babcsany.minecraft.ervin_mod_1.init.special.SpecialItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.unused.init.UnusedBlockInit;
 import com.babcsany.minecraft.ervin_mod_1.init.unused.init.UnusedBlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.unused.init.UnusedItemInit;
-import com.babcsany.minecraft.init.*;
+import com.babcsany.minecraft.ervin_mod_1.world.biome.ModBiomeMaker;
+import com.babcsany.minecraft.ervin_mod_1.world.biome.provider.ModBiomeProvider;
 import com.babcsany.minecraft.init.BlockItemInit;
 import com.babcsany.minecraft.init.EntityInit;
-import com.babcsany.minecraft.init.FeatureInit;
 import com.babcsany.minecraft.init.ParticleInit;
+import com.babcsany.minecraft.init.*;
 import com.babcsany.minecraft.init.item.ItemInit;
 import com.babcsany.minecraft.init.lc.block.blocks.H_u_fBlockInit;
-import net.minecraft.util.RegistryKey;
-import net.minecraft.world.Dimension;
-import net.minecraft.world.DimensionType;
-import net.minecraft.world.World;
-import net.minecraft.world.gen.DimensionSettings;
 import net.minecraftforge.eventbus.api.IEventBus;
 
 public class Init extends DefaultInit {
 
     public Init(IEventBus modEventBus) {
+        super();
         register(modEventBus);
         default_register(modEventBus);
     }
 
     public static void register(IEventBus modEventBus) {
+        SoundInit.register();
         BiomeInit.BIOMES.register(modEventBus);
         IMolaBlocks.BLOCKS.register(modEventBus);
         com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit.BLOCKS.register(modEventBus);
@@ -74,7 +73,7 @@ public class Init extends DefaultInit {
         FurnaceContainerInit.CONTAINER_TYPES.register(modEventBus);
         DecoratorInit.DECORATORS.register(modEventBus);
         com.babcsany.minecraft.ervin_mod_1.init.EntityInit.ENTITY_TYPES.register(modEventBus);
-        com.babcsany.minecraft.ervin_mod_1.init.FeatureInit.FEATURES.register(modEventBus);
+        ModFeatures.register();
         BrefkStageItemInit.REGISTER_BREFK_STAGE.register(modEventBus);
         FoodItemInit.FOODS.register(modEventBus);
         //FluidBucketInit.FLUID_BUCKETS.register(modEventBus);
@@ -96,7 +95,7 @@ public class Init extends DefaultInit {
         isBurnableSpecialBlockItemInit.SPECIAL_ITEMS.register(modEventBus);
         isBurnableSpecialItemInit.SPECIAL_ITEMS.register(modEventBus);
         com.babcsany.minecraft.ervin_mod_1.init.item.special.SpecialItemInit.SPECIAL_ITEMS.register(modEventBus);
-        EnderToolItemInit.TOOLS.register(modEventBus);
+        EnderToolItemInit.register();
         SpecialItemInit.SPECIAL_ITEMS.register(modEventBus);
         $ItemInit.register();
         SeedsItemInit.register();
@@ -107,17 +106,16 @@ public class Init extends DefaultInit {
         MinecraftBlockNamedItemInit.BLOCK_ITEMS.register(modEventBus);
         SpecialBlockInit.SPECIAL_BLOCKS.register(modEventBus);
         com.babcsany.minecraft.ervin_mod_1.init.ParticleInit.PARTICLE_TYPES.register(modEventBus);
-        com.babcsany.minecraft.ervin_mod_1.init.SoundInit.SOUNDS.register(modEventBus);
-        com.babcsany.minecraft.ervin_mod_1.init.TreeDecoratorInit.TREE_DECORATOR_TYPES.register(modEventBus);
+        ModTreeDecorators.register();
         com.babcsany.minecraft.ervin_mod_1.init.WorldCarverInit.CARVERS.register(modEventBus);
         com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.BLOCKS.register(modEventBus);
         com.babcsany.minecraft.ervin_mod_1.init.block.animation.colors.BlockItemInit.ANIMATION_BLOCKS.register(modEventBus);
         MinecraftBlocks.BLOCKS.register(modEventBus);
-        isBurnableBlockItemInit.BURNABLE_BLOCKS.register(modEventBus);
+        isBurnableBlockItemInit.register();
     }
 
-    public static void default_register(IEventBus modEventBus) {
-        BlockInit.REGISTER_BLOCKS.register(modEventBus);
+    public void default_register(IEventBus modEventBus) {
+        BlockInit.register();
         UnusedBlockInit.BLOCK_DEFERRED_REGISTER.register(modEventBus);
         UnusedBlockItemInit.BLOCK_ITEM_DEFERRED_REGISTER.register(modEventBus);
         UnusedItemInit.ITEM_DEFERRED_REGISTER.register(modEventBus);
@@ -130,12 +128,25 @@ public class Init extends DefaultInit {
         EffectInit EFFECTS = EffectInit.EFFECTS;
         ParticleInit PARTICLES = ParticleInit.PARTICLES;
         PaintingInit.PAINTINGS.register(modEventBus);
-        RegistryKey<Dimension> DIMENSIONS = Dimensions.EXAMPLE;
-        RegistryKey<DimensionType> DIMENSION_TYPES = DimensionTypes.EXAMPLE;
-        RegistryKey<DimensionSettings> DIMENSION_SETTINGS = ModDimensionSettings.EXAMPLE;
-        RegistryKey<World> WORLDS = Worlds.EXAMPLE;
+        registers();
+        defaultRegister();
+    }
+
+    public void registers() {
+        ModBiomeProvider.register();
+        ModConfiguredSurfaceBuilders.register();
+        ModBiomeMaker.register();
+        ModEntityClassification.register();
+        ModBiomeRegistry.register();
+        ModDimensions.register();
+        ModDimensionTypes.register();
+        ModDimensionSettings.register();
+        ModWorlds.register();
 //        FireBlock.init();
         Compost.init();
+    }
+
+    public void defaultRegister() {
     }
 
     public static Init init(IEventBus modEventBus) {

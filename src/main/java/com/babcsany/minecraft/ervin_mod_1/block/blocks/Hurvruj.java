@@ -2,10 +2,11 @@ package com.babcsany.minecraft.ervin_mod_1.block.blocks;
 
 import com.babcsany.minecraft.ervin_mod_1.init.item.block.isBurnableBlockItemInit;
 import com.google.common.collect.ImmutableList;
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.fluid.FluidState;
@@ -14,7 +15,6 @@ import net.minecraft.particles.ParticleTypes;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
@@ -23,16 +23,13 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.math.vector.Vector3i;
 import net.minecraft.world.*;
-import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-import java.util.Iterator;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.Random;
 
-public class Hurvruj extends RespawnAnchorBlock {
+public class Hurvruj extends Block {
    public static final int MIN_CHARGE = 0;
    public static final int MAX_CHARGE = 16;
    public static final IntegerProperty HURVRUJ_CHARGES = IntegerProperty.create("hurvruj_charges", MIN_CHARGE, MAX_CHARGE);
@@ -79,7 +76,7 @@ public class Hurvruj extends RespawnAnchorBlock {
    }
 
    private static boolean isValidFuel(ItemStack stack) {
-      return stack.getItem() == isBurnableBlockItemInit.TERAT_BLOCK.get();
+      return stack.getItem() == isBurnableBlockItemInit.TERAT_BLOCK;
    }
 
    private static boolean notFullyCharged(BlockState state) {

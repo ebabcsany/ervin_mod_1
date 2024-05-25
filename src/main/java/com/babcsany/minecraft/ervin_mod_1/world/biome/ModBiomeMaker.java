@@ -23,13 +23,13 @@ import java.util.function.Supplier;
 import static com.babcsany.minecraft.ervin_mod_1.init.ModConfiguredSurfaceBuilders.*;
 
 public class ModBiomeMaker {
-    public static final Biome MIGV_BIOME = MigvBiome.make(() -> MIGV_SURFACE);
     public static final Biome RIFT_BIOME = makeRiftBiome(() -> ModConfiguredSurfaceBuilders.RIFT_SURFACE, 0.125F, 0.05F);
+    public static final Biome MIGV_BIOME = MigvBiome.make(() -> MIGV_SURFACE);
     public static final Biome BHJUIG_BIOME = TheBhjuigBiome.make(() -> BHJUIG_SURFACE);
     public static final Biome MIG_BIOME = MigBiome.make(() -> MIG_SURFACE);
-    public static final Biome SRIUNK_VALLEY_BIOME = SriunkValleyBiome.make(() -> SRIUNK_VALLEY_SURFACE);
+    public static final Biome SRIUNK_VALLEY = SriunkValleyBiome.make(() -> SRIUNK_VALLEY_SURFACE);
     public static final Biome EXAMPLE0_BIOME = Example0Biome.make(() -> EXAMPLE0_SURFACE);
-    public static final Biome END0_BIOME = EndBiome0.make(() -> END_SURFACE0);
+    public static final Biome END_BIOME0 = EndBiome0.make(() -> END_SURFACE0);
     public static final Biome EXAMPLE_BIOME = ExampleBiome.make(() -> EXAMPLE_SURFACE);
     public static final Biome EXAMPLE_BIOME1 = ExampleBiome1.make(() -> EXAMPLE_SURFACE1);
     public static final Biome EXAMPLE_BIOME2 = ExampleBiome2.make(() -> EXAMPLE_SURFACE2);
@@ -37,19 +37,35 @@ public class ModBiomeMaker {
     public static final Biome EXAMPLE_BIOME4 = ExampleBiome4.make(() -> EXAMPLE_SURFACE4);
     public static final Biome EXAMPLE_BIOME5 = ExampleBiome5.make(() -> EXAMPLE_SURFACE5);
     public static final Biome EXAMPLE_BIOME6 = ExampleBiome6.make(() -> EXAMPLE_SURFACE6);
-    public static final Biome MUHK_BIOME = MuhkBiome.make(() -> MUHK_SURFACE);
-    public static final Biome SCRAFTH_BIOME = ScrafthBiome.make(() -> SCRAFTH_SURFACE);
-    public static final Biome FIRG_BIOME = FirgBiome.make(() -> FIRG_SURFACE);
-    public static final Biome TWUST_BIOME = TwustBiome.make(() -> TWUST_SURFACE);
+    public static final Biome FIRG = FirgBiome.make(() -> ModConfiguredSurfaceBuilders.FIRG);
+    public static final Biome SCRAFTH = ScrafthBiome.make(() -> ModConfiguredSurfaceBuilders.SCRAFTH);
+    public static final Biome TWUST = TwustBiome.make(() -> ModConfiguredSurfaceBuilders.TWUST);
+    public static final Biome MUHK = MuhkBiome.make(() -> ModConfiguredSurfaceBuilders.MUHK);
+    public static final Biome BLOMUJN = BlomujnBiome.make(() -> ModConfiguredSurfaceBuilders.BLOMUJN);
     public static final RegistryKey<Biome> RIFT_BIOME_KEY = registerBiome("rift_biome");
     public static final RegistryKey<Biome> BHJUIG_BIOME_KEY = registerBiome("bhjuig_biome");
     public static final RegistryKey<Biome> MIG_BIOME_KEY = registerBiome("mig_biome");
     public static final RegistryKey<Biome> MUHK_BIOME_KEY = registerBiome("muhk_biome");
 
-    private static int getSkyColorWithTemperatureModifier(float p_244206_0_) {
+    public static int getSkyColorWithTemperatureModifier(float p_244206_0_) {
         float lvt_1_1_ = p_244206_0_ / 3.0F;
         lvt_1_1_ = MathHelper.clamp(lvt_1_1_, -1.0F, 1.0F);
         return MathHelper.hsvToRGB(0.62222224F - lvt_1_1_ * 0.05F, 0.5F + lvt_1_1_ * 0.1F, 1.0F);
+    }
+
+    public static BiomeAmbience.Builder getAmbienceBuilder(int waterColor, int waterFogColor, int fogColor, int skyColor, int grassColor) {
+        BiomeAmbience.Builder builder = getAmbienceBuilder(waterColor, waterFogColor, fogColor, skyColor);
+        builder.withGrassColor(grassColor);
+        return builder;
+    }
+
+    public static BiomeAmbience.Builder getAmbienceBuilder(int waterColor, int waterFogColor, int fogColor, int skyColor) {
+        BiomeAmbience.Builder builder = new BiomeAmbience.Builder();
+        builder.setWaterColor(waterColor);
+        builder.setWaterFogColor(waterFogColor);
+        builder.setFogColor(fogColor);
+        builder.withSkyColor(skyColor);
+        return builder;
     }
 
     public static Biome makeRiftBiome(final Supplier<ConfiguredSurfaceBuilder<?>> surfaceBuilder, float depth, float scale) {
@@ -113,5 +129,9 @@ public class ModBiomeMaker {
 
     private static RegistryKey<Biome> registerBiome(String name) {
         return RegistryKey.getOrCreateKey(Registry.BIOME_KEY, new ResourceLocation(Ervin_mod_1.MOD_ID, name));
+    }
+
+    public static void register() {
+        Ervin_mod_1.register(ModBiomeMaker.class);
     }
 }

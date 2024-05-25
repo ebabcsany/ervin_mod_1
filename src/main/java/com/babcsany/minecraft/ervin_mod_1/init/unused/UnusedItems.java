@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class UnusedItems {
-    public static Item LAST_ITEM;
+    private static Item LAST_ITEM;
     private static final ArrayList<String> ITEM_PATHS = new ArrayList<>();
     private static final ArrayList<Item> ITEMS = new ArrayList<>();
 
@@ -41,26 +41,34 @@ public class UnusedItems {
     }
 
     public static Item unusedItem(String name, Item.Properties properties) {
-        return registerDefault(name, new Item(properties));
+        return registerUnused(name, new Item(properties));
     }
 
     public static <T extends Item> Item registerUnused(String name, T item) {
-        return registerDefault(name, item);
+        return register(path(name), item);
     }
 
     public static <T extends Item> Item registerDefault(String path, T item) {
-        return addDefault(path, item);
+        return register(path, item);
     }
 
     public static Item.Properties propertiesDefault() {
         return properties(ItemGroup.SEARCH);
     }
 
+    public static Item register(String key) {
+        return register(key, new Item(new Item.Properties()));
+    }
+
+    public static Item register(String key, ItemGroup groupIn) {
+        return register(key, new Item(properties(groupIn)));
+    }
+
     public static Item.Properties properties(ItemGroup groupIn) {
         return new Item.Properties().group(groupIn);
     }
 
-    public static Item register(String key, Item itemIn) {
+    public static <T extends Item> Item register(String key, T itemIn) {
         addDefault(key, itemIn);
         return register(Ervin_mod_1.getKey(key), itemIn);
     }
@@ -120,5 +128,10 @@ public class UnusedItems {
 
     public static void register() {
         Ervin_mod_1.register(UnusedItems.class);
+    }
+
+    static {
+        Collection<Item> values = unusedItemsProperties("thunm");
+        values.size();
     }
 }

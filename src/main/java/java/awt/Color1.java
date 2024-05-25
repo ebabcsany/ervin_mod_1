@@ -272,6 +272,10 @@ public class Color1 extends Color implements Paint, java.io.Serializable {
     public final static Color getColor_FF000000      = new Color(255, 0, 0, 0);
     public final static Color getColor_A000FF00      = new Color(160, 0, 255, 0);
     public final static Color getColor_A000FFFF      = new Color(160, 0, 255, 255);
+    public final static Color getColor_9C2AC2FF      = new Color(156, 42, 194, 255);
+    public final static Color getColor_C22AB5FF      = new Color(194, 42, 181, 255);
+    public final static Color getColor_C22A5FFF      = new Color(194, 42, 95, 255);
+    public final static Color getColor               = new Color(9875161);
     /**
      * The color.  In the default sRGB space.
      * @since 1.4
@@ -293,6 +297,45 @@ public class Color1 extends Color implements Paint, java.io.Serializable {
      * @see #getRGB
      */
     int value;
+
+    static int colorPart(int color) {
+        return (color / 16) + 1;
+    }
+
+    static int colorPart(int color, int multiplier) {
+        return colorPart(color) * multiplier;
+    }
+
+    static int[] part(int color) {
+        int part = colorPart(color);
+        return new int[]{part, color - ((part - 1) * 16)};
+    }
+
+    static int[] part(int color, int multiplierPart1, int multiplierPart2) {
+        int[] part = part(color);
+        part[0] *= multiplierPart1;
+        part[1] *= multiplierPart2;
+        return part;
+    }
+
+    static int partColor(int color, int multiplierPart1, int multiplierPart2) {
+        int[] part = part(color, multiplierPart1, multiplierPart2);
+        return part[0] + part[1];
+    }
+
+    public static int decimal(int red, int green, int blue) {
+        return decimal(0, red, green, blue);
+    }
+
+    public static int decimal(int red, int green, int blue, int alpha) {
+        int[] partRed = part(red);
+        int i = partRed[0] < 8 ? 1 : -1;
+        int colorRed = partColor(red, 268435456, 16777216);
+        int colorGreen = partColor(green, 1048576, 65536);
+        int colorBlue = partColor(blue, 4096, 256);
+        int colorAlpha = partColor(alpha, 16, 1);
+        return (colorRed + colorGreen + colorBlue + colorAlpha) * i;
+    }
 
     /**
      * The color value in the default sRGB <code>ColorSpace</code> as

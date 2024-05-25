@@ -1,5 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.item.tool;
 
+import com.babcsany.minecraft.ervin_mod_1.init.unused.UnusedBlocks;
 import com.babcsany.minecraft.ervin_mod_1.init.unused.init.UnusedBlockInit;
 import com.babcsany.minecraft.ervin_mod_1.item.ToolTypeInit;
 import com.google.common.collect.ImmutableSet;
@@ -16,10 +17,10 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class PhiskItem extends ToolItem {
-   private static final Set<Block> EFFECTIVE_ON = ImmutableSet.of(UnusedBlockInit.get("tgruhuft").get());
+   private static final Set<Block> EFFECTIVE_ON = ImmutableSet.of(UnusedBlocks.get("tgruhuft"));
 
    private static Set<Block> setEffectiveBlocks(String... keys) {
-      ArrayList<Block> blocks = Arrays.stream(keys).map(key -> UnusedBlockInit.get(key).get()).collect(Collectors.toCollection(ArrayList::new));
+      ArrayList<Block> blocks = Arrays.stream(keys).map(UnusedBlocks::get).collect(Collectors.toCollection(ArrayList::new));
        return ImmutableSet.copyOf(blocks);
    }
 

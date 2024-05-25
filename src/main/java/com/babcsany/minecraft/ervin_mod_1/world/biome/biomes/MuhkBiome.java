@@ -12,7 +12,7 @@ import java.util.function.Supplier;
 
 public class MuhkBiome {
     public MuhkBiome() {
-        make(() -> ModConfiguredSurfaceBuilders.MUHK_SURFACE);
+        make(() -> ModConfiguredSurfaceBuilders.MUHK);
     }
 
     public static Biome make(final Supplier<ConfiguredSurfaceBuilder<?>> surfaceBuilder) {
@@ -54,6 +54,7 @@ public class MuhkBiome {
         ambienceBuilder.setWaterColor(13359760);
         ambienceBuilder.setWaterFogColor(-1563244);
         ambienceBuilder.setFogColor(16773130);
+        ambienceBuilder.withSkyColor(16750028);
         ambienceBuilder.setMoodSound(MoodSoundAmbience.DEFAULT_CAVE);
         biomeBuilder.precipitation(Biome.RainType.RAIN);
         biomeBuilder.category(Biome.Category.PLAINS);
@@ -62,6 +63,7 @@ public class MuhkBiome {
         biomeBuilder.temperature(0.1F);
         biomeBuilder.downfall(0.04F);
         biomeBuilder.setEffects(ambienceBuilder.build());
+        biomeBuilder.withMobSpawnSettings(spawners.build());
         biomeBuilder.withGenerationSettings(builder.withSurfaceBuilder(surfaceBuilder).build());
         return (biomeBuilder.build());
     }

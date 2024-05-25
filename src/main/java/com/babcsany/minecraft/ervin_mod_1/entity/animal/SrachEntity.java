@@ -19,7 +19,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
 public class SrachEntity extends CowEntity {
-   private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(new IItemProvider[]{CropItemInit.TARG, SpecialBlockFoodItemInit.FIRG.get(), SpecialBlockFoodItemInit.FIRG_SLAB.get(), SpecialBlockFoodItemInit.FIRG_STAIRS.get(), isBurnableFoodItemInit.GRINT.get(), SpecialBlockFoodItemInit.GRINT_BLOCK.get(), SpecialBlockFoodItemInit.GRINT_SLAB.get(), SpecialBlockFoodItemInit.GRINT_STAIRS.get(), isBurnableFoodItemInit.DURG.get(), BlockFoodItemInit.SCRAFTH.get()});
+   private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(new IItemProvider[]{CropItemInit.TARG, SpecialBlockFoodItemInit.FIRG, SpecialBlockFoodItemInit.FIRG_SLAB, SpecialBlockFoodItemInit.FIRG_STAIRS, isBurnableFoodItemInit.GRINT, SpecialBlockFoodItemInit.GRINT_BLOCK, SpecialBlockFoodItemInit.GRINT_SLAB, SpecialBlockFoodItemInit.GRINT_STAIRS, isBurnableFoodItemInit.DURG, BlockFoodItemInit.SCRAFTH});
 
    public SrachEntity(EntityType<? extends SrachEntity> type, World worldIn) {
       super(type, worldIn);
@@ -29,7 +29,7 @@ public class SrachEntity extends CowEntity {
       this.goalSelector.addGoal(0, new SwimGoal(this));
       this.goalSelector.addGoal(1, new PanicGoal(this, 2.0D));
       this.goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
-      this.goalSelector.addGoal(3, new TemptGoal(this, 1.25D, Ingredient.fromItems(new IItemProvider[]{CropItemInit.TARG, SpecialBlockFoodItemInit.FIRG.get(), SpecialBlockFoodItemInit.FIRG_SLAB.get(), SpecialBlockFoodItemInit.FIRG_STAIRS.get(), isBurnableFoodItemInit.GRINT.get(), SpecialBlockFoodItemInit.GRINT_BLOCK.get(), SpecialBlockFoodItemInit.GRINT_SLAB.get(), SpecialBlockFoodItemInit.GRINT_STAIRS.get(), isBurnableFoodItemInit.DURG.get(), BlockFoodItemInit.SCRAFTH.get()}), false));
+      this.goalSelector.addGoal(3, new TemptGoal(this, 1.25D, Ingredient.fromItems(new IItemProvider[]{CropItemInit.TARG, SpecialBlockFoodItemInit.FIRG, SpecialBlockFoodItemInit.FIRG_SLAB, SpecialBlockFoodItemInit.FIRG_STAIRS, isBurnableFoodItemInit.GRINT, SpecialBlockFoodItemInit.GRINT_BLOCK, SpecialBlockFoodItemInit.GRINT_SLAB, SpecialBlockFoodItemInit.GRINT_STAIRS, isBurnableFoodItemInit.DURG, BlockFoodItemInit.SCRAFTH}), false));
       this.goalSelector.addGoal(4, new TemptGoal(this, 1.25D, false, TEMPTATION_ITEMS));
       this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.25D));
       this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
@@ -45,7 +45,7 @@ public class SrachEntity extends CowEntity {
       ItemStack heldItem = player.getHeldItem(hand);
       if (heldItem.getItem() == Items.BUCKET && !this.isChild()) {
          player.playSound(SoundEvents.ENTITY_COW_MILK, 1.0F, 1.0F);
-         ItemStack drinkHelper = DrinkHelper.fill(heldItem, player, ItemInit.JURK_BUCKET.get().getDefaultInstance());
+         ItemStack drinkHelper = DrinkHelper.fill(heldItem, player, ItemInit.JURK_BUCKET.getDefaultInstance());
          player.setHeldItem(hand, drinkHelper);
          return ActionResultType.func_233537_a_(this.world.isRemote);
       } else {
@@ -58,7 +58,7 @@ public class SrachEntity extends CowEntity {
    }
 
    public SrachEntity createChild(ServerWorld serverWorld, AgeableEntity ageable) {
-      return EntityInit.SRACH_ENTITY.get().create(this.world);
+      return EntityInit.SRACH_ENTITY.create(this.world);
    }
 
    public boolean isBreedingItem(ItemStack stack) {

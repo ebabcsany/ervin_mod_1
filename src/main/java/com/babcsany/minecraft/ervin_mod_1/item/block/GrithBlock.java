@@ -5,7 +5,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
@@ -29,9 +28,9 @@ public class GrithBlock extends Grith_Block {
 
    @Override
    public boolean onEntityItemUpdate(ItemStack stack, ItemEntity entity) {
-      update(entity, entity.getPosition(), entity.getPosition(), BlockInit.GRITH_BLOCK.get().getDefaultState(), Blocks.AIR.getDefaultState());
-      update(entity, entity.getPosition(), entity.getPosition(), BlockInit.GRITH_SLAB.get().getDefaultState(), Blocks.AIR.getDefaultState());
-      update(entity, entity.getPosition(), entity.getPosition(), BlockInit.GRITH_STAIRS.get().getDefaultState(), Blocks.AIR.getDefaultState());
+      update(entity, entity.getPosition(), entity.getPosition(), BlockInit.GRITH_BLOCK.getDefaultState(), Blocks.AIR.getDefaultState());
+      update(entity, entity.getPosition(), entity.getPosition(), BlockInit.GRITH_SLAB.getDefaultState(), Blocks.AIR.getDefaultState());
+      update(entity, entity.getPosition(), entity.getPosition(), BlockInit.GRITH_STAIRS.getDefaultState(), Blocks.AIR.getDefaultState());
       onEntityItemUpdateDown(stack, entity);
       onEntityItemUpdateUp(stack, entity);
       onEntityItemUpdateSide(stack, entity);

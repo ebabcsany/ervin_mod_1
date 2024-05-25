@@ -31,15 +31,10 @@
   },
   "minecraft:adventure/kill_all_mobs": {
     "criteria": {
-      "minecraft:slime": "2024-02-03 19:38:28 +0100"
+      "minecraft:slime": "2024-02-03 19:38:28 +0100",
+      "minecraft:zombie": "2024-05-24 20:26:28 +0200"
     },
     "done": false
-  },
-  "minecraft:story/root": {
-    "criteria": {
-      "crafting_table": "2024-02-03 19:42:30 +0100"
-    },
-    "done": true
   },
   "minecraft:recipes/misc/slime_ball": {
     "criteria": {
@@ -89,5 +84,5 @@
     },
     "done": false
   },
-  "DataVersion": 2567
+  "DataVersion": 2578
 }

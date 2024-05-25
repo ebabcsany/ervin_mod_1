@@ -22,35 +22,35 @@ public class FirgTree extends Tree {
     public static BaseTreeFeatureConfig FIRG_TREE_CONFIG;
     public static final BaseTreeFeatureConfig FIRG_TREE_CONFIG0 = (new BaseTreeFeatureConfig.Builder(
             new SimpleBlockStateProvider(BlockItemInit.FIRG_LOG.getDefaultState()),
-            new SimpleBlockStateProvider(isBurnableBlockItemInit.FIRG_LEAVES.get().getDefaultState()),
+            new SimpleBlockStateProvider(isBurnableBlockItemInit.FIRG_LEAVES.getDefaultState()),
             new FancyFoliagePlacer(FeatureSpread.create(4, 3), FeatureSpread.create(1, 5), 2),
             new FancyTrunkPlacer(8, 2, 6),
             new TwoLayerFeature(13, 11, 5, OptionalInt.of(2))))
             .setIgnoreVines().setHeightmap(Heightmap.Type.MOTION_BLOCKING).build();
     public static final BaseTreeFeatureConfig FIRG_TREE_CONFIG1 = (new BaseTreeFeatureConfig.Builder(
             new SimpleBlockStateProvider(BlockItemInit.FIRG_LOG.getDefaultState()),
-            new SimpleBlockStateProvider(isBurnableBlockItemInit.FIRG_LEAVES.get().getDefaultState()),
+            new SimpleBlockStateProvider(isBurnableBlockItemInit.FIRG_LEAVES.getDefaultState()),
             new BlobFoliagePlacer(FeatureSpread.create(6, 0), FeatureSpread.create(0, 0), 2),
             new StraightTrunkPlacer(1, 6, 3),
             new TwoLayerFeature(4, 5, 3)))
             .setIgnoreVines().build();
     public static final BaseTreeFeatureConfig FIRG_TREE_CONFIG2 = (new BaseTreeFeatureConfig.Builder(
             new SimpleBlockStateProvider(BlockItemInit.FIRG_LOG.getDefaultState()),
-            new SimpleBlockStateProvider(isBurnableBlockItemInit.FIRG_LEAVES.get().getDefaultState()),
+            new SimpleBlockStateProvider(isBurnableBlockItemInit.FIRG_LEAVES.getDefaultState()),
             new BlobFoliagePlacer(FeatureSpread.create(4, 0), FeatureSpread.create(0, 0), 2),
             new StraightTrunkPlacer(3, 5, 2),
             new TwoLayerFeature(6, 2, 4)))
             .setIgnoreVines().build();
     public static final BaseTreeFeatureConfig FIRG_TREE_CONFIG3 = (new BaseTreeFeatureConfig.Builder(
             new SimpleBlockStateProvider(BlockItemInit.FIRG_LOG.getDefaultState()),
-            new SimpleBlockStateProvider(BlockInit.FIRG.get().getDefaultState()),
+            new SimpleBlockStateProvider(BlockInit.FIRG.getDefaultState()),
             new BlobFoliagePlacer(FeatureSpread.create(2, 0), FeatureSpread.create(0, 0), 2),
             new StraightTrunkPlacer(3, 4, 2),
             new TwoLayerFeature(4, 0, 3)))
             .setIgnoreVines().build();
     public static final BaseTreeFeatureConfig FIRG_TREE_CONFIG4 = (new BaseTreeFeatureConfig.Builder(
             new SimpleBlockStateProvider(BlockItemInit.FIRG_LOG.getDefaultState()),
-            new SimpleBlockStateProvider(BlockInit.FIRG.get().getDefaultState()),
+            new SimpleBlockStateProvider(BlockInit.FIRG.getDefaultState()),
             new BlobFoliagePlacer(FeatureSpread.create(5, 0), FeatureSpread.create(0, 0), 3),
             new StraightTrunkPlacer(5, 3, 6),
             new TwoLayerFeature(2, 1, 3))).setIgnoreVines().build();

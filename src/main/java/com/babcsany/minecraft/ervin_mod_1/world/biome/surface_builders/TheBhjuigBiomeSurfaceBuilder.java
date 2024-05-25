@@ -29,15 +29,15 @@ public class TheBhjuigBiomeSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderC
 					defaultFluid, seaLevel, seed,
 					new SurfaceBuilderConfig(
 							Blocks.GRASS_BLOCK.getDefaultState(),
-							SpecialBlockInit.GTRZIUZHIZJKJ.get().getDefaultState(),
-							BlockItemInit.DURT_GURBF.get().getDefaultState()));
+							SpecialBlockInit.GTRZIUZHIZJKJ.getDefaultState(),
+							BlockItemInit.DURT_GURBF.getDefaultState()));
 		} else {
 			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock,
 					defaultFluid, seaLevel, seed,
 					new SurfaceBuilderConfig(
 							Blocks.OBSIDIAN.getDefaultState(),
-							isBurnableBlockItemInit.SRURG.get().getDefaultState(),
-							BlockItemInit.KALT_BLOCK.get().getDefaultState()
+							isBurnableBlockItemInit.SRURG.getDefaultState(),
+							BlockItemInit.KALT_BLOCK.getDefaultState()
 					));
 		}
 	}

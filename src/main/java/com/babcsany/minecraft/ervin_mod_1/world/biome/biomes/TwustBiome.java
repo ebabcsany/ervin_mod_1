@@ -2,12 +2,13 @@ package com.babcsany.minecraft.ervin_mod_1.world.biome.biomes;
 
 import com.babcsany.minecraft.ervin_mod_1.init.ModConfiguredSurfaceBuilders;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.ModDefaultBiomeFeatures;
-import com.babcsany.minecraft.ervin_mod_1.world.gen.feature.GenOreFeatureConfig;
+import com.babcsany.minecraft.ervin_mod_1.world.gen.feature.config.GenOreFeatureConfig;
 import com.babcsany.minecraft.init.BlockInit;
 import com.babcsany.minecraft.init.FeatureInit;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeAmbience;
 import net.minecraft.world.biome.BiomeGenerationSettings;
+import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraft.world.gen.feature.ProbabilityConfig;
@@ -17,7 +18,7 @@ import java.util.function.Supplier;
 
 public class TwustBiome {
 	public TwustBiome() {
-		make(() -> ModConfiguredSurfaceBuilders.TWUST_SURFACE);
+		make(() -> ModConfiguredSurfaceBuilders.TWUST);
 	}
 
 	public static Biome make(final Supplier<ConfiguredSurfaceBuilder<?>> configuredSurfaceBuilderSupplier) {
@@ -30,15 +31,17 @@ public class TwustBiome {
 		ModDefaultBiomeFeatures.addExtraKaltBlock(builder);
 		ModDefaultBiomeFeatures.addFirgs(builder);
 		ModDefaultBiomeFeatures.addWaterLakes(builder);
-		ModDefaultBiomeFeatures.addFeature(builder, GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.WATER, BlockInit.FIRT_BLOCK.get().getDefaultState(), 30)));
-		ambienceBuilder.setWaterColor(16777215);
-		ambienceBuilder.setWaterFogColor(16777210);
+		ModDefaultBiomeFeatures.addFeature(builder, GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.WATER, BlockInit.FIRT_BLOCK.getDefaultState(), 30)));
+		ambienceBuilder.setWaterColor(16707215);
+		ambienceBuilder.setWaterFogColor(16717210);
 		ambienceBuilder.setFogColor(1677241);
-		ambienceBuilder.withGrassColor(0xe0c0a0);
+		ambienceBuilder.withSkyColor(11538742);
+		ambienceBuilder.withGrassColor(14729376);
 		biomeBuilder.precipitation(Biome.RainType.SNOW);
 		biomeBuilder.scale(1003.2F);
 		biomeBuilder.temperature(0.5F);
 		biomeBuilder.setEffects(ambienceBuilder.build());
+		biomeBuilder.withMobSpawnSettings(new MobSpawnInfo.Builder().build());
 		biomeBuilder.withGenerationSettings(builder.build());
 		biomeBuilder.category(Biome.Category.THEEND);
 		biomeBuilder.downfall(0.5F);

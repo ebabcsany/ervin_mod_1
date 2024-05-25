@@ -1,5 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.world.gen.feature;
 
+import com.babcsany.minecraft.ervin_mod_1.world.gen.feature.config.GenOreFeatureConfig;
 import com.mojang.serialization.Codec;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -8,8 +9,6 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.OreFeatureConfig;
-import net.minecraft.world.gen.feature.structure.StructureManager;
 
 import java.util.BitSet;
 import java.util.Random;

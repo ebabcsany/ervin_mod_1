@@ -2,6 +2,7 @@ package com.babcsany.minecraft.ervin_mod_1.entity.monster;
 
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.unused.UnusedItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
@@ -147,13 +148,13 @@ public class RoventEntity extends MonsterEntity {
 
       if (!this.world.isRemote && this.isAlive() && !this.isChild() && --this.timeUntilNextItem <= 0) {
          this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
-         this.entityDropItem(ItemInit.KIRT.get());
+         this.entityDropItem(ItemInit.KIRT);
          this.timeUntilNextItem = this.rand.nextInt(6000) + 6000;
       }
 
       if (!this.world.isRemote && this.isAlive() && !this.isChild() && --this.timeUntilNextItem <= 0) {
          this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
-         this.entityDropItem(isBurnableItemInit.LEAT.get());
+         this.entityDropItem(isBurnableItemInit.LEAT);
          this.timeUntilNextItem = this.rand.nextInt(6000) + 6000;
       }
    }
@@ -350,6 +351,6 @@ public class RoventEntity extends MonsterEntity {
    }
 
    protected ItemStack getSkullDrop() {
-      return new ItemStack(ItemInit.THUNM.get());
+      return new ItemStack(UnusedItems.get("thunm"));
    }
 }

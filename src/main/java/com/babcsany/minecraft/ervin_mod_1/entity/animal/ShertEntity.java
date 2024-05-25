@@ -53,7 +53,7 @@ public class ShertEntity extends SrachEntity implements IShearable, net.minecraf
    @Nullable
    @Override
    public SrachEntity createChild(ServerWorld serverWorld, AgeableEntity ageableEntity) {
-      return EntityInit.SHERT_ENTITY.get().create(serverWorld);
+      return EntityInit.SHERT_ENTITY.create(serverWorld);
    }
 
    protected void registerData() {
@@ -132,7 +132,7 @@ public class ShertEntity extends SrachEntity implements IShearable, net.minecraf
       if (!this.world.isRemote()) {
          ((ServerWorld)this.world).spawnParticle(ParticleTypes.EXPLOSION, this.getPosX(), this.getPosYHeight(0.5D), this.getPosZ(), 1, 0.0D, 0.0D, 0.0D, 0.0D);
          this.remove();
-         SrachEntity srachentity = EntityInit.SRACH_ENTITY.get().create(this.world);
+         SrachEntity srachentity = EntityInit.SRACH_ENTITY.create(this.world);
          srachentity.setLocationAndAngles(this.getPosX(), this.getPosY(), this.getPosZ(), this.rotationYaw, this.rotationPitch);
          srachentity.setHealth(this.getHealth());
          srachentity.renderYawOffset = this.renderYawOffset;
@@ -207,7 +207,7 @@ public class ShertEntity extends SrachEntity implements IShearable, net.minecraf
    }
 
    public ShertEntity createChild(AgeableEntity ageable) {
-      ShertEntity shertentity = EntityInit.SHERT_ENTITY.get().create(this.world);
+      ShertEntity shertentity = EntityInit.SHERT_ENTITY.create(this.world);
       shertentity.setMooshroomType(this.func_213445_a((ShertEntity)ageable));
       return shertentity;
    }
@@ -240,7 +240,7 @@ public class ShertEntity extends SrachEntity implements IShearable, net.minecraf
       if (!world.isRemote()) {
          ((ServerWorld)this.world).spawnParticle(ParticleTypes.EXPLOSION, this.getPosX(), this.getPosYHeight(0.5D), this.getPosZ(), 1, 0.0D, 0.0D, 0.0D, 0.0D);
          this.remove();
-         SrachEntity srachentity = EntityInit.SRACH_ENTITY.get().create(this.world);
+         SrachEntity srachentity = EntityInit.SRACH_ENTITY.create(this.world);
          srachentity.setLocationAndAngles(this.getPosX(), this.getPosY(), this.getPosZ(), this.rotationYaw, this.rotationPitch);
          srachentity.setHealth(this.getHealth());
          srachentity.renderYawOffset = this.renderYawOffset;
@@ -270,7 +270,7 @@ public class ShertEntity extends SrachEntity implements IShearable, net.minecraf
    public static enum Type {
       RED("red", Blocks.RED_MUSHROOM.getDefaultState()),
       BROWN("brown", Blocks.BROWN_MUSHROOM.getDefaultState()),
-      GRINTH("grinth", BlockItemInit.GRINTH_MUSHROOM_BLOCK.get().getDefaultState());
+      GRINTH("grinth", BlockItemInit.GRINTH_MUSHROOM_BLOCK.getDefaultState());
 
       private final String name;
       private final BlockState renderState;

@@ -145,7 +145,7 @@ public class Grith extends Item {
 
 	@Override
 	public ActionResultType onItemUse(ItemUseContext context) {
-		if (context.getWorld().getBlockState(context.getPos()).getBlock() == BlockInit.GRITH_BLOCK.get()) {
+		if (context.getWorld().getBlockState(context.getPos()).getBlock() == BlockInit.GRITH_BLOCK) {
 			for (ItemStack stack : Objects.requireNonNull(context.getPlayer()).inventory.mainInventory) {
 				if (stack.isEmpty()) {
 					context.getPlayer().addItemStackToInventory(new ItemStack(isBurnableSpecialItemInit.GRITH));

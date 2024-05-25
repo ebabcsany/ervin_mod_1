@@ -31,24 +31,24 @@ import java.util.stream.Collectors;
 
 public class TraderNirtreTrades {
    public static final Int2ObjectMap<TraderNirtreTrades.ITrade[]> field_221240_b = gatAsIntMap(ImmutableMap.of(1, new TraderNirtreTrades.ITrade[]{
-           new TraderNirtreTrades.ItemsForRegdemBlocksTrade(ItemInit.DGUCHSR.get(), 1, 1, 1000, 2),
+           new TraderNirtreTrades.ItemsForRegdemBlocksTrade(ItemInit.DGUCHSR, 1, 1, 1000, 2),
            new TraderNirtreTrades.ItemsForAncientDebrisAndItemsTrade(Items.GOLD_BLOCK, 1, Items.NETHERITE_INGOT, 1, 100, 4),
-           new TraderNirtreTrades.ItemsForNetheriteIngotsAndItemsTrade(BlockItemInit.PACK_BLOCK.get(), 1, Items.ANCIENT_DEBRIS, 2, 100, 4),
+           new TraderNirtreTrades.ItemsForNetheriteIngotsAndItemsTrade(BlockItemInit.PACK_BLOCK, 1, Items.ANCIENT_DEBRIS, 2, 100, 4),
            new TraderNirtreTrades.ItemsForChaksTrade(Items.EMERALD, 25, 1, 22, 2),
-           new TraderNirtreTrades.ItemsForRegdemsTrade(ItemInit.RUBY.get(), 1, 1, 1000, 1),
+           new TraderNirtreTrades.ItemsForRegdemsTrade(ItemInit.RUBY, 1, 1, 1000, 1),
            new TraderNirtreTrades.ItemsForChaksTrade(Items.NAUTILUS_SHELL, 5, 1, 20, 3),
-           new TraderNirtreTrades.ItemsForChaksTrade(ItemInit.MLONK.get(), 4, 1, 10, 2),
+           new TraderNirtreTrades.ItemsForChaksTrade(ItemInit.MLONK, 4, 1, 10, 2),
            new TraderNirtreTrades.ItemsForChaksTrade(Items.GRASS_BLOCK, 4, 1, 9, 1),
            new TraderNirtreTrades.ItemsForLavaBucketsAndItemsTrade(Items.NETHERRACK, 64, Items.MAGMA_BLOCK, 64, 100000, 0),
-           new TraderNirtreTrades.ItemsForKirtsTrade(ModSpawnEggItemInit.$_TRADER_SPAWN_EGG.get(), 64, 1, 20, 1),
-           new TraderNirtreTrades.ItemsForEmeraldBlocksTrade(ModSpawnEggItemInit.WANDERING_TRADER_NIRTRE_SPAWN_EGG.get(), 50, 1, 20, 1),
-           //new TraderNirtreTrades.ItemsForEmeraldBlocksTrade(ModSpawnEggItemInit.SRACH_SPAWN_EGG, 1, 1, 20, 1),
-           new TraderNirtreTrades.ItemsForRegdemBlocksAndItemsTrade(BlockItemInit.FREIN_BLOCK.get(), 10, ModSpawnEggItemInit.HHIJ_SPAWN_EGG.get(), 1, 16, 4),
-           new TraderNirtreTrades.ItemsForEmeraldsAndItemsTrade(ModSpawnEggItemInit.FREIN_SPAWN_EGG.get(), 1, isBurnableSpecialItemInit.FIRN, 1, 16, 1),
-           new TraderNirtreTrades.ItemsForEmeraldsAndItemsTrade(ItemInit.CRAKH.get(), 1, isBurnableSpecialItemInit.FIRN, 1, 16, 1),
-           new TraderNirtreTrades.ItemsForFirnsTrade(ItemInit.FREIN_BALL.get(), 10, 16, 50),
+           new TraderNirtreTrades.ItemsForKirtsTrade(ModSpawnEggItemInit.$_TRADER_SPAWN_EGG, 64, 1, 20, 1),
+           new TraderNirtreTrades.ItemsForEmeraldBlocksTrade(ModSpawnEggItemInit.WANDERING_TRADER_NIRTRE_SPAWN_EGG, 50, 1, 20, 1),
+           new TraderNirtreTrades.ItemsForEmeraldBlocksTrade(ModSpawnEggItemInit.SRACH_SPAWN_EGG, 1, 1, 20, 1),
+           new TraderNirtreTrades.ItemsForRegdemBlocksAndItemsTrade(BlockItemInit.FREIN_BLOCK, 10, ModSpawnEggItemInit.HHIJ_SPAWN_EGG, 1, 16, 4),
+           new TraderNirtreTrades.ItemsForEmeraldsAndItemsTrade(ModSpawnEggItemInit.FREIN_SPAWN_EGG, 1, isBurnableSpecialItemInit.FIRN, 1, 16, 1),
+           new TraderNirtreTrades.ItemsForEmeraldsAndItemsTrade(ItemInit.CRAKH, 1, isBurnableSpecialItemInit.FIRN, 1, 16, 1),
+           new TraderNirtreTrades.ItemsForFirnsTrade(ItemInit.FREIN_BALL, 10, 16, 50),
            new TraderNirtreTrades.ItemsForGrutsTrade(isBurnableFoodItemInit.TIRKS.get(), 30, 4, 50),
-           new TraderNirtreTrades.ItemsForLeatsTrade(ItemInit.TAWROL.get(), 26, 1, 10),
+           new TraderNirtreTrades.ItemsForLeatsTrade(ItemInit.TAWROL, 26, 1, 10),
    }));
 
    private static Int2ObjectMap<TraderNirtreTrades.ITrade[]> gatAsIntMap(ImmutableMap<Integer, TraderNirtreTrades.ITrade[]> p_221238_0_) {
@@ -326,7 +326,7 @@ public class TraderNirtreTrades {
             j = 2048;
          }
 
-         return new MerchantOffer(new ItemStack(ItemInit.MLONK.get(), j), new ItemStack(Items.BOOK), itemstack, 12, this.xpValue, 0.2F);
+         return new MerchantOffer(new ItemStack(ItemInit.MLONK, j), new ItemStack(Items.BOOK), itemstack, 12, this.xpValue, 0.2F);
       }
       public MerchantOffer getOffer1(Entity trader, Random rand) {
          List<Enchantment> list = Registry.ENCHANTMENT.stream().filter(Enchantment::canVillagerTrade).collect(Collectors.toList());
@@ -342,7 +342,7 @@ public class TraderNirtreTrades {
             j = 2048;
          }
 
-         return new MerchantOffer(new ItemStack(ItemInit.MLONK.get(), j), new ItemStack(Items.BOOK), itemstack, 12, this.xpValue, 0.2F);
+         return new MerchantOffer(new ItemStack(ItemInit.MLONK, j), new ItemStack(Items.BOOK), itemstack, 12, this.xpValue, 0.2F);
       }
    }
 
@@ -367,7 +367,7 @@ public class TraderNirtreTrades {
             j = 64;
          }
 
-         return new MerchantOffer(new ItemStack(ItemInit.RUBY.get(), j), new ItemStack(Items.BOOK), itemstack, 12, this.xpValue, 0.2F);
+         return new MerchantOffer(new ItemStack(ItemInit.RUBY, j), new ItemStack(Items.BOOK), itemstack, 12, this.xpValue, 0.2F);
       }
       public MerchantOffer getOffer1(Entity trader, Random rand) {
          List<Enchantment> list = Registry.ENCHANTMENT.stream().filter(Enchantment::canVillagerTrade).collect(Collectors.toList());
@@ -383,7 +383,7 @@ public class TraderNirtreTrades {
             j = 64;
          }
 
-         return new MerchantOffer(new ItemStack(ItemInit.RUBY.get(), j), new ItemStack(Items.BOOK), itemstack, 12, this.xpValue, 0.2F);
+         return new MerchantOffer(new ItemStack(ItemInit.RUBY, j), new ItemStack(Items.BOOK), itemstack, 12, this.xpValue, 0.2F);
       }
    }
 
@@ -439,8 +439,8 @@ public class TraderNirtreTrades {
          int i = 5 + rand.nextInt(15);
          ItemStack itemstack = EnchantmentHelper.addRandomEnchantment(rand, new ItemStack(this.sellingStack.getItem()), i, false);
          int j = Math.min(this.rubyCount + i, 64);
-         ItemStack itemstack1 = new ItemStack(ItemInit.RUBY.get(), j);
-         ItemStack itemstack2 = new ItemStack(ItemInit.RUBY.get(), j);
+         ItemStack itemstack1 = new ItemStack(ItemInit.RUBY, j);
+         ItemStack itemstack2 = new ItemStack(ItemInit.RUBY, j);
          return new MerchantOffer(itemstack1, itemstack, this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
@@ -476,7 +476,7 @@ public class TraderNirtreTrades {
 
       public MerchantOffer getOffer(Entity trader, Random rand) {
          ItemStack itemstack = new ItemStack(Items.EMERALD, this.emeraldCount);
-         ItemStack itemstack_1 = new ItemStack(ItemInit.RUBY.get(), this.rubyCount);
+         ItemStack itemstack_1 = new ItemStack(ItemInit.RUBY, this.rubyCount);
          List<Potion> list = Registry.POTION.stream().filter((potion) -> {
             return !potion.getEffects().isEmpty() && PotionBrewing.isBrewablePotion(potion);
          }).collect(Collectors.toList());
@@ -513,7 +513,7 @@ public class TraderNirtreTrades {
 
       @Nullable
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         return new MerchantOffer(new ItemStack(ItemInit.RUBY.get(), this.emeraldCount), new ItemStack(this.buyingItem.getItem(), this.buyingItemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack(ItemInit.RUBY, this.emeraldCount), new ItemStack(this.buyingItem.getItem(), this.buyingItemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 
@@ -544,7 +544,7 @@ public class TraderNirtreTrades {
 
       @Nullable
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         return new MerchantOffer(new ItemStack(isBurnableBlockItemInit.TGURN.get(), this.tgurnCount), new ItemStack(this.buyingItem.getItem(), this.buyingItemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack(isBurnableBlockItemInit.TGURN, this.tgurnCount), new ItemStack(this.buyingItem.getItem(), this.buyingItemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 
@@ -582,7 +582,7 @@ public class TraderNirtreTrades {
       }
 
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         return new MerchantOffer(new ItemStack(ItemInit.CHAK.get(), this.chakCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack(ItemInit.CHAK, this.chakCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 
@@ -620,7 +620,7 @@ public class TraderNirtreTrades {
       }
 
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         return new MerchantOffer(new ItemStack(ItemInit.CHAK.get(), this.regdemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack(ItemInit.CHAK, this.regdemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 
@@ -658,7 +658,7 @@ public class TraderNirtreTrades {
       }
 
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         return new MerchantOffer(new ItemStack(ItemInit.KIRT.get(), this.kirtCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack(ItemInit.KIRT, this.kirtCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 
@@ -848,7 +848,7 @@ public class TraderNirtreTrades {
       }
 
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         return new MerchantOffer(new ItemStack(isBurnableItemInit.GRUT.get(), this.grutCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack(isBurnableItemInit.GRUT, this.grutCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 
@@ -886,7 +886,7 @@ public class TraderNirtreTrades {
       }
 
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         return new MerchantOffer(new ItemStack(isBurnableItemInit.LEAT.get(), this.leatCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack(isBurnableItemInit.LEAT, this.leatCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 

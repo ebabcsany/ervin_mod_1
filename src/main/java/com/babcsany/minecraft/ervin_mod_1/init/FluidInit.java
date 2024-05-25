@@ -1,13 +1,15 @@
 package com.babcsany.minecraft.ervin_mod_1.init;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
+import com.babcsany.minecraft.ervin_mod_1.block.fluid.JurkFluid;
 import net.minecraft.block.Block;
-import net.minecraft.fluid.Fluid;
+import net.minecraft.fluid.*;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.registry.Registry;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class FluidInit {
+public class FluidInit extends Fluids {
 
 	public static final ResourceLocation MILK_STILL_RL = new ResourceLocation(Ervin_mod_1.MOD_ID, "block/milk_still");
 	public static final ResourceLocation MILK_FLOWING_RL = new ResourceLocation(Ervin_mod_1.MOD_ID, "block/milk_flowing");
@@ -20,8 +22,8 @@ public class FluidInit {
 	public static final DeferredRegister<Fluid> FLUIDS = DeferredRegister.create(ForgeRegistries.FLUIDS, Ervin_mod_1.MOD_ID);
 
 	//public static final RegistryObject<FlowingFluid> FLOWING_JURK = FLUIDS.register("flowing_jurk", () -> new JurkFluid.Flowing());
-	//public static final RegistryObject<FlowingFluid> JURK = FLUIDS.register("jurk", () -> new JurkFluid.Source());
-	//public static final RegistryObject<FlowingFluid> FLOWING_JURK = FLUIDS.register("flowing_jurkt", WaterFluid.Flowing::new);
+	public static final FlowingFluid JURK = register("jurk", new JurkFluid.Source());
+	public static final FlowingFluid FLOWING_JURK = register("flowing_jurk", new JurkFluid.Flowing());
 	//public static final RegistryObject<FlowingFluid> JURK = FLUIDS.register("jurkt", WaterFluid.Source::new);
 
     //public static final RegistryObject<FlowingFluid> MILK_FLUID = FLUIDS.register("milk_fluid",
@@ -72,4 +74,12 @@ public class FluidInit {
 			() -> new FlowingFluidBlock1(FluidInit.JURK_FLUID1, Block.Properties.create(Material.WATER)
 					.doesNotBlockMovement().hardnessAndResistance(100.0f).noDrops()));*/
 
+	@Deprecated
+	public static <T extends Fluid> T register(String key, T fluid) {
+		return Registry.register(Registry.FLUID, Ervin_mod_1.identifier("fluids/" + key), fluid);
+	}
+
+	public static void register() {
+		Ervin_mod_1.register(FluidInit.class);
+	}
 }

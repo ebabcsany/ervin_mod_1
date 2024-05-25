@@ -3,20 +3,17 @@ package com.babcsany.minecraft.ervin_mod_1.util;
 public class Cast<T> {
     private T cast;
 
-    @SuppressWarnings("unchecked")
-    public Cast() {
-        this((T) "");
-    }
+    public Cast() {}
 
     public Cast(T cast) {
         this.cast = cast;
     }
 
-    public T getCast() {
+    public T get() {
         return this.cast;
     }
 
-    public void setCast(T cast) {
+    public void set(T cast) {
         this.cast = cast;
     }
 

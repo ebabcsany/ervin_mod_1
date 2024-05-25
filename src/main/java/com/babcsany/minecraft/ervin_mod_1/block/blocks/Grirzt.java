@@ -32,7 +32,7 @@ public class Grirzt extends Block {
 
    protected void tryAbsorb(World worldIn, BlockPos pos) {
       if (this.absorb(worldIn, pos)) {
-         worldIn.setBlockState(pos, BlockItemInit.GRIRZT.get().getDefaultState(), 4);
+         worldIn.setBlockState(pos, BlockItemInit.GRIRZT.getDefaultState(), 4);
          worldIn.playEvent(2001, pos, Block.getStateId(Blocks.LAVA.getDefaultState()));
       }
 

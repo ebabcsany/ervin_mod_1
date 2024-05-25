@@ -49,7 +49,7 @@ public class ZurEntity extends AbstractZurEntity {
     }
 
     protected void applyEntityAI() {
-        if (this.world.getDifficulty() != Difficulty.PEACEFUL && !this.canEquip(isBurnableItemInit.VIRKT.get())) {
+        if (this.world.getDifficulty() != Difficulty.PEACEFUL && !this.canEquip(isBurnableItemInit.VIRKT)) {
             this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setCallsForHelp(ZombifiedPiglinEntity.class));
             this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
         }
@@ -191,7 +191,7 @@ public class ZurEntity extends AbstractZurEntity {
     @Nullable
     @Override
     public AgeableEntity createChild(ServerWorld serverWorld, AgeableEntity ageableEntity) {
-        return EntityInit.ZUR_ENTITY.get().create(serverWorld);
+        return EntityInit.ZUR_ENTITY.create(serverWorld);
     }
 
     public void writeAdditional(CompoundNBT compound) {
@@ -238,6 +238,6 @@ public class ZurEntity extends AbstractZurEntity {
     }
 
     protected ItemStack getSkullDrop() {
-        return new ItemStack(isBurnableSpecialToolItemInit.THUFR.get());
+        return new ItemStack(isBurnableSpecialToolItemInit.THUFR);
     }
 }

@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "#ervin_mod_1:stones_overworld",
+    "#ervin_mod_1:colored_stones",
     "#minecraft:base_stone_overworld"
   ]
 }

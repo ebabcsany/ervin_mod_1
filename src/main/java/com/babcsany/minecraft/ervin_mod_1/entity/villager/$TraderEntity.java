@@ -62,7 +62,7 @@ public class $TraderEntity extends Abstract$TraderEntity {
 
    public ActionResultType getEntityInteractionResult(PlayerEntity p_230254_1_, Hand p_230254_2_) {
       ItemStack itemstack = p_230254_1_.getHeldItem(p_230254_2_);
-      if (itemstack.getItem() != ModSpawnEggItemInit.$_TRADER_SPAWN_EGG.get() && this.isAlive() && !this.hasCustomer() && !this.isChild()) {
+      if (itemstack.getItem() != ModSpawnEggItemInit.$_TRADER_SPAWN_EGG && this.isAlive() && !this.hasCustomer() && !this.isChild()) {
          if (p_230254_2_ == Hand.MAIN_HAND) {
             p_230254_1_.addStat(Stats.TALKED_TO_VILLAGER);
          }
@@ -185,7 +185,7 @@ public class $TraderEntity extends Abstract$TraderEntity {
    }
 
    public AgeableEntity createChild(ServerWorld serverWorld, AgeableEntity ageable) {
-      return Objects.requireNonNull(EntityInit.$_TRADER_ENTITY.get().create(serverWorld));
+      return Objects.requireNonNull(EntityInit.$_TRADER_ENTITY.create(serverWorld));
    }
 
    private void handleDespawn() {
