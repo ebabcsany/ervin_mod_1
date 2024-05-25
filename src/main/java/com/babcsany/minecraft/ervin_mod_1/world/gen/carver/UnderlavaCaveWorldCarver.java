@@ -1,12 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.world.gen.carver;
 
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.BlockStateInit;
-import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.block.BlockItemInit_;
-import com.babcsany.minecraft.ervin_mod_1.init.item.block.BlockNamedItemInit;
-import com.babcsany.minecraft.init.BlockInit;
-import com.google.common.collect.ImmutableSet;
 import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -56,7 +50,7 @@ public class UnderlavaCaveWorldCarver extends CaveWorldCarver {
                   iChunk.setBlockState(mutable, Blocks.MAGMA_BLOCK.getDefaultState(), false);
                   iChunk.getBlocksToBeTicked().scheduleTick(mutable, Blocks.MAGMA_BLOCK, 0);
                } else {
-                  iChunk.setBlockState(mutable, BlockItemInit.DURT.get().getDefaultState(), false);
+                  iChunk.setBlockState(mutable, BlockItemInit.DURT.getDefaultState(), false);
                }
 
                return true;

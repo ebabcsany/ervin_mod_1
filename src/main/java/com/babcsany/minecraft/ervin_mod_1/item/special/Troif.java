@@ -26,7 +26,7 @@ public class Troif extends Item {
 
 	@Override
 	public boolean onEntityItemUpdate(ItemStack stack, ItemEntity entity) {
-		entity.getEntityWorld().setBlockState(entity.getPosition().down(), isBurnableBlockItemInit.NIRTKB.get().getDefaultState());
+		entity.getEntityWorld().setBlockState(entity.getPosition().down(), isBurnableBlockItemInit.NIRTKB.getDefaultState());
 		return super.onEntityItemUpdate(stack, entity);
 	}
 

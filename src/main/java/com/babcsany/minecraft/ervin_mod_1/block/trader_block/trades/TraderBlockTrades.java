@@ -32,19 +32,19 @@ public class TraderBlockTrades {
            new TraderBlockTrades.ItemsForFirtsTrade($ItemInit.$_8$, 48, 1, 1000, 1),
            new TraderBlockTrades.ItemsForFirtsTrade($ItemInit.$_9$, 54, 1, 1000, 1),
            new TraderBlockTrades.ItemsForFirtsTrade($ItemInit.$_10$, 60, 1, 1000, 1),
-           new TraderBlockTrades.ItemsFor$_1$sTrade(ItemInit.RUBY.get(), 1, 4, 1000, 1),
-           new TraderBlockTrades.ItemsFor$_1$sTrade(ItemInit.SRACH.get(), 4, 1, 1000, 1),
-           new TraderBlockTrades.ItemsFor$_2$sTrade(isBurnableItemInit.LEAT.get(), 1, 4, 1000, 1),
-           new TraderBlockTrades.ItemsFor$_3$sTrade(ItemInit.CHAK.get(), 18, 1, 1000, 1),
-           new TraderBlockTrades.ItemsFor$_4$sTrade(ItemInit.MLONK.get(), 12, 1, 1000, 1),
-           new TraderBlockTrades.ItemsFor$_5$sTrade(isBurnableItemInit.GART.get(), 24, 1, 1000, 1),
-           new TraderBlockTrades.ItemsFor$_6$sTrade(isBurnableItemInit.TERAT_NUGGET.get(), 60, 1, 1000, 1),
-           new TraderBlockTrades.ItemsFor30$_10$sAndItemsTrade(ItemInit.FIRK.get(), 30, isBurnableBlockItemInit.CRAINT_BLOCK.get(), 12, 1000, 5),
+           new TraderBlockTrades.ItemsFor$_1$sTrade(ItemInit.RUBY, 1, 4, 1000, 1),
+           new TraderBlockTrades.ItemsFor$_1$sTrade(ItemInit.SRACH, 4, 1, 1000, 1),
+           new TraderBlockTrades.ItemsFor$_2$sTrade(isBurnableItemInit.LEAT, 1, 4, 1000, 1),
+           new TraderBlockTrades.ItemsFor$_3$sTrade(ItemInit.CHAK, 18, 1, 1000, 1),
+           new TraderBlockTrades.ItemsFor$_4$sTrade(ItemInit.MLONK, 12, 1, 1000, 1),
+           new TraderBlockTrades.ItemsFor$_5$sTrade(isBurnableItemInit.GART, 24, 1, 1000, 1),
+           new TraderBlockTrades.ItemsFor$_6$sTrade(isBurnableItemInit.TERAT_NUGGET, 60, 1, 1000, 1),
+           new TraderBlockTrades.ItemsFor30$_10$sAndItemsTrade(ItemInit.FIRK, 30, isBurnableBlockItemInit.CRAINT_BLOCK, 12, 1000, 5),
            new TraderBlockTrades.ItemsForTgurkBlocksAndItemsTrade($ItemInit.$_6$, 30, SpecialToolItemInit.CRAINT.get(), 30, 1000, 5),
-           new TraderBlockTrades.ItemsFor$_7$sTrade(isBurnableItemInit.NIRK.get(), 15, 1, 1000, 1),
-           new TraderBlockTrades.ItemsFor$_8$sTrade(FoodItemInit.REAT.get(), 9, 1, 1000, 1),
-           new TraderBlockTrades.ItemsFor$_9$sTrade(ItemInit.GNITH.get(), 10, 27, 1000, 1),
-           new TraderBlockTrades.ItemsFor$_10$sTrade(isBurnableItemInit.RUGK.get(), 10, 1, 1000, 1),
+           new TraderBlockTrades.ItemsFor$_7$sTrade(isBurnableItemInit.NIRK, 15, 1, 1000, 1),
+           new TraderBlockTrades.ItemsFor$_8$sTrade(FoodItemInit.REAT, 9, 1, 1000, 1),
+           new TraderBlockTrades.ItemsFor$_9$sTrade(ItemInit.GNITH, 10, 27, 1000, 1),
+           new TraderBlockTrades.ItemsFor$_10$sTrade(isBurnableItemInit.RUGK, 10, 1, 1000, 1),
    }));
 
    private static Int2ObjectMap<TraderBlockTrades.ITrade[]> gatAsIntMap(ImmutableMap<Integer, TraderBlockTrades.ITrade[]> p_221238_0_) {
@@ -90,7 +90,7 @@ public class TraderBlockTrades {
       }
 
       public MerchantOffer getOffer(TraderBlockContainer trader, Random rand) {
-         return new MerchantOffer(new ItemStack(ItemInit.FIRT.get(), this.firtCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack(ItemInit.FIRT, this.firtCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 
@@ -128,7 +128,7 @@ public class TraderBlockTrades {
       }
 
       public MerchantOffer getOffer(TraderBlockContainer trader, Random rand) {
-         return new MerchantOffer(new ItemStack(isBurnableFoodItemInit.DURG.get(), this.durgCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack(isBurnableFoodItemInit.DURG, this.durgCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 
@@ -539,7 +539,7 @@ public class TraderBlockTrades {
 
       @Nullable
       public MerchantOffer getOffer(TraderBlockContainer trader, Random rand) {
-         return new MerchantOffer(new ItemStack(isBurnableBlockItemInit.TGURK_BLOCK.get(), this.tgurkBlockCount), new ItemStack(this.buyingItem.getItem(), this.buyingItemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack(isBurnableBlockItemInit.TGURK_BLOCK, this.tgurkBlockCount), new ItemStack(this.buyingItem.getItem(), this.buyingItemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 

@@ -2,6 +2,7 @@ package com.babcsany.minecraft.ervin_mod_1.world.biome.biomes;
 
 import com.babcsany.minecraft.ervin_mod_1.init.ModBiomeFeatures;
 import com.babcsany.minecraft.ervin_mod_1.init.ModConfiguredSurfaceBuilders;
+import com.babcsany.minecraft.ervin_mod_1.world.biome.ModBiomeMaker;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.JazzTree;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.ModDefaultBiomeFeatures;
 import com.babcsany.minecraft.ervin_mod_1.world.biome.spawn.SpawnListEntry;
@@ -39,9 +40,7 @@ public class ExampleBiome5 {
 		DefaultBiomeFeatures.withNormalMushroomGeneration(generationSettingsBuilder);
 		generationSettingsBuilder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Features.RED_MUSHROOM_NORMAL);
 		generationSettingsBuilder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Features.BROWN_MUSHROOM_NORMAL);
-		generationSettingsBuilder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
-				Feature.TREE.withConfiguration(JazzTree.JAZZ_TREE_CONFIG).withPlacement(
-						Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(7, 0.1f, 1))));
+		ModDefaultBiomeFeatures.addExtraTree(generationSettingsBuilder, JazzTree.JAZZ_TREE_CONFIG, 7, 0.1f, 1);
 		generationSettingsBuilder.withSurfaceBuilder(configuredSurfaceBuilderSupplier);
 
 		DefaultBiomeFeatures.withOverworldOres(generationSettingsBuilder);
@@ -72,12 +71,14 @@ public class ExampleBiome5 {
 		ambienceBuilder.setWaterFogColor(16762304);
 		ambienceBuilder.setFogColor(1253846);
 		ambienceBuilder.withGrassColor(0xFF0080);
-		ambienceBuilder.withFoliageColor(0xFF0080);
+		ambienceBuilder.withSkyColor(ModBiomeMaker.getSkyColorWithTemperatureModifier(37.19F));
+		ambienceBuilder.withFoliageColor(0xFF5080);
 
 		builder.precipitation(Biome.RainType.RAIN);
 		builder.scale(1.2F);
-		builder.temperature(0.5F);
+		builder.temperature(4.162F);
 		builder.setEffects(ambienceBuilder.build());
+		builder.withMobSpawnSettings(spawnInfoBuilder.build());
 		builder.withGenerationSettings(generationSettingsBuilder.build());
 		builder.category(Biome.Category.PLAINS);
 		builder.downfall(0.5F);

@@ -75,7 +75,7 @@ public class SpecialItem4 extends Item {
 
 	@Override
 	public boolean onEntityItemUpdate(ItemStack stack, ItemEntity entity) {
-		entity.getEntityWorld().setBlockState(entity.getPosition().down(), isBurnableBlockItemInit.SRIUNK_BLOCK.get().getDefaultState());
+		entity.getEntityWorld().setBlockState(entity.getPosition().down(), isBurnableBlockItemInit.SRIUNK_BLOCK.getDefaultState());
 		return super.onEntityItemUpdate(stack, entity);
 	}
 

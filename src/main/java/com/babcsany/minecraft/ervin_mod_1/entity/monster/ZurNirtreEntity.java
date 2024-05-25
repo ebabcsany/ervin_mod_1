@@ -145,7 +145,7 @@ public class ZurNirtreEntity extends AgeableEntity {
    }
 
    private void cureZur(ServerWorld p_213791_1_) {
-      TraderNirtreEntity traderNirtreEntity = EntityInit.TRADER_NIRTRE_ENTITY.get().create(p_213791_1_);
+      TraderNirtreEntity traderNirtreEntity = EntityInit.TRADER_NIRTRE_ENTITY.create(p_213791_1_);
 
       for(EquipmentSlotType equipmentslottype : EquipmentSlotType.values()) {
          ItemStack itemstack = this.getItemStackFromSlot(equipmentslottype);
@@ -268,7 +268,7 @@ public class ZurNirtreEntity extends AgeableEntity {
 
    @Nullable
    public CreatureEntity createChild(CreatureEntity ageable) {
-      return EntityInit.ZUR_ENTITY.get().create(this.world);
+      return EntityInit.ZUR_ENTITY.create(this.world);
    }
 
    /*public void setVillagerData(VillagerData p_213792_1_) {

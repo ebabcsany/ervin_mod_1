@@ -125,7 +125,7 @@ public class IrtrewContainer extends RecipeBookContainer<CraftingInventory> {
     * Determines whether supplied player can use this container
     */
    public boolean canInteractWith(PlayerEntity playerIn) {
-      return isWithinUsableDistance(this.worldPosCallable, playerIn, isBurnableBlockItemInit.IRTREW.get());
+      return isWithinUsableDistance(this.worldPosCallable, playerIn, isBurnableBlockItemInit.IRTREW);
    }
 
    /**

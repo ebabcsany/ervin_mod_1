@@ -56,7 +56,7 @@ public class ModBoatEntity extends BoatEntity {
 
     public static enum Type {
         FIRG(BlockInit.FIRG_PLANKS, "firg"),
-        FRIM(BlockItemInit.FRIM_PLANKS.get(), "frim");
+        FRIM(BlockItemInit.FRIM_PLANKS, "frim");
 
         private final String name;
         private final Block block;

@@ -1,34 +1,26 @@
 package com.babcsany.minecraft.ervin_mod_1.world.gen.treedecorator;
 
 import com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit;
-import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.treedecorator.TreeDecorator;
-import net.minecraft.world.gen.treedecorator.TreeDecoratorType;
+import net.minecraft.world.gen.treedecorator.BeehiveTreeDecorator;
 
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class FirgTreeDecorator extends TreeDecorator {
-   public static final Codec<FirgTreeDecorator> field_236863_a_ = Codec.FLOAT.fieldOf("probability").xmap(FirgTreeDecorator::new, (p_236865_0_) -> {
-      return p_236865_0_.probability;
-   }).codec();
+public class FirgTreeDecorator extends BeehiveTreeDecorator {
    /** Probability to generate a firg */
    private final float probability;
 
    public FirgTreeDecorator(float probabilityIn) {
+       super(probabilityIn);
       this.probability = probabilityIn;
-   }
-
-   protected TreeDecoratorType<?> getDecoratorType() {
-      return TreeDecoratorType.BEEHIVE;
    }
 
    public void func_225576_a_(ISeedReader p_225576_1_, Random p_225576_2_, List<BlockPos> p_225576_3_, List<BlockPos> p_225576_4_, Set<BlockPos> p_225576_5_, MutableBoundingBox p_225576_6_) {
@@ -38,7 +30,7 @@ public class FirgTreeDecorator extends TreeDecorator {
          if (!list.isEmpty()) {
             BlockPos blockpos = list.get(p_225576_2_.nextInt(list.size()));
             if (Feature.isDirtAt(p_225576_1_, blockpos) && Feature.isDirtAt(p_225576_1_, blockpos.offset(Direction.SOUTH))) {
-               BlockState blockstate = BlockInit.FIRG.get().getDefaultState();
+               BlockState blockstate = BlockInit.FIRG.getDefaultState();
                this.func_227423_a_(p_225576_1_, blockpos, blockstate, p_225576_5_, p_225576_6_);
 
             }

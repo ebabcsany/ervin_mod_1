@@ -68,7 +68,7 @@ public class ZombieTraderEntity extends AbstractZombieTraderEntity {
 
    public ActionResultType getEntityInteractionResult(PlayerEntity p_230254_1_, Hand p_230254_2_) {
       ItemStack itemstack = p_230254_1_.getHeldItem(p_230254_2_);
-      if (itemstack.getItem() != ModSpawnEggItemInit.ZOMBIE_TRADER_SPAWN_EGG.get() && this.isAlive() && !this.hasCustomer() && !this.isChild()) {
+      if (itemstack.getItem() != ModSpawnEggItemInit.ZOMBIE_TRADER_SPAWN_EGG && this.isAlive() && !this.hasCustomer() && !this.isChild()) {
          if (p_230254_2_ == Hand.MAIN_HAND) {
             p_230254_1_.addStat(Stats.TALKED_TO_VILLAGER);
          }

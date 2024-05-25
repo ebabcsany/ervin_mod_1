@@ -41,9 +41,9 @@ public class VoidStartPlatformFeature1 extends Feature<NoFeatureConfig> {
                if (distance(VOID_SPAWN_POS.getX(), VOID_SPAWN_POS.getZ(), j, i) <= 16) {
                   blockpos$mutable.setPos(j, VOID_SPAWN_POS.getY(), i);
                   if (blockpos$mutable.equals(VOID_SPAWN_POS)) {
-                     reader.setBlockState(blockpos$mutable, isBurnableBlockItemInit.VILTDROP_BLOCK.get().getDefaultState(), 2);
+                     reader.setBlockState(blockpos$mutable, isBurnableBlockItemInit.VILTDROP_BLOCK.getDefaultState(), 2);
                   } else {
-                     reader.setBlockState(blockpos$mutable, isBurnableBlockItemInit.CRASK.get().getDefaultState(), 2);
+                     reader.setBlockState(blockpos$mutable, isBurnableBlockItemInit.CRASK.getDefaultState(), 2);
                   }
                }
             }

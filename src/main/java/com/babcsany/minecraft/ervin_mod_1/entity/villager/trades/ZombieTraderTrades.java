@@ -2,6 +2,7 @@ package com.babcsany.minecraft.ervin_mod_1.entity.villager.trades;
 
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.block.BlockItemInit_;
 import com.babcsany.minecraft.ervin_mod_1.init.item.food.isBurnableFoodItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.spawn_egg.ModSpawnEggItemInit;
@@ -43,14 +44,14 @@ import java.util.stream.Collectors;
 
 public class ZombieTraderTrades {
    public static final Int2ObjectMap<ZombieTraderTrades.ITrade[]> field_221240_b = gatAsIntMap(ImmutableMap.of(1, new ZombieTraderTrades.ITrade[]{
-           new ZombieTraderTrades.ItemsForEmeraldsTrade(ModSpawnEggItemInit.ZUR_SPAWN_EGG.get(), 5, 1, 5000, 2),
-           new ZombieTraderTrades.ItemsForDurgsTrade(ModSpawnEggItemInit.ZUR_SPAWN_EGG.get(), 5, 1, 5000, 5),
+           new ZombieTraderTrades.ItemsForEmeraldsTrade(ModSpawnEggItemInit.ZUR_SPAWN_EGG, 5, 1, 5000, 2),
+           new ZombieTraderTrades.ItemsForDurgsTrade(ModSpawnEggItemInit.ZUR_SPAWN_EGG, 5, 1, 5000, 5),
            new ZombieTraderTrades.ItemsForKirtsTrade(Items.EMERALD, 5, 1, 500, 5),
            new ZombieTraderTrades.ItemsForBedrocksTrade(Items.ZOMBIE_SPAWN_EGG, 64, 1, 1, 2),
-           new ZombieTraderTrades.ItemsForRugtsTrade(isBurnableItemInit.ZRIBT.get(), 20, 1, 50, 10),
-           new ZombieTraderTrades.ItemsForRugtsTrade(isBurnableItemInit.ZRIPT.get(), 20, 1, 50, 10),
-           new ZombieTraderTrades.ItemsFor64FirtBlocksAndItemsTrade(isBurnableBlockItemInit.EPKIN.get(), 1, isBurnableSpecialItemInit.DEF_ITEM, 1, 16, 1),
-           new ZombieTraderTrades.ItemWithPotionForEmeraldsAndItemsTrade(isBurnableFoodItemInit.DURG.get(), 1, isBurnableSpecialItemInit.DEF_ITEM, 1, 1, 16, 1, 1),
+           new ZombieTraderTrades.ItemsForRugtsTrade(isBurnableItemInit.ZRIBT, 20, 1, 50, 10),
+           new ZombieTraderTrades.ItemsForRugtsTrade(isBurnableItemInit.ZRIPT, 20, 1, 50, 10),
+           new ZombieTraderTrades.ItemsFor64FirtBlocksAndItemsTrade(BlockItemInit_.EPKIN, 1, isBurnableSpecialItemInit.DEF_ITEM, 1, 16, 1),
+           new ZombieTraderTrades.ItemWithPotionForEmeraldsAndItemsTrade(isBurnableFoodItemInit.DURG, 1, isBurnableSpecialItemInit.DEF_ITEM, 1, 1, 16, 1, 1),
    }));
 
    private static Int2ObjectMap<ZombieTraderTrades.ITrade[]> gatAsIntMap(ImmutableMap<Integer, ZombieTraderTrades.ITrade[]> p_221238_0_) {
@@ -117,7 +118,7 @@ public class ZombieTraderTrades {
       }
 
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         ItemStack itemstack = new ItemStack(ItemInit.RUBY.get(), this.price);
+         ItemStack itemstack = new ItemStack(ItemInit.RUBY, this.price);
          ItemStack itemstack1 = new ItemStack(this.tradeItem);
          if (this.tradeItem instanceof DyeableArmorItem) {
             List<DyeItem> list = Lists.newArrayList();
@@ -179,7 +180,7 @@ public class ZombieTraderTrades {
 
       public MerchantOffer getOffer(Entity trader, Random rand) {
          ItemStack itemstack = new ItemStack(this.tradeItem, this.count);
-         return new MerchantOffer(itemstack, new ItemStack(ItemInit.RUBY.get()), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(itemstack, new ItemStack(ItemInit.RUBY), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 
@@ -245,7 +246,7 @@ public class ZombieTraderTrades {
                FilledMapItem.func_226642_a_(serverworld, itemstack);
                MapData.addTargetDecoration(itemstack, blockpos, "+", this.mapDecorationType);
                itemstack.setDisplayName(new TranslationTextComponent("filled_map." + this.structureName.getStructureName().toLowerCase(Locale.ROOT)));
-               return new MerchantOffer(new ItemStack(ItemInit.RUBY.get(), this.count), new ItemStack(Items.COMPASS), itemstack, this.maxUses, this.xpValue, 0.2F);
+               return new MerchantOffer(new ItemStack(ItemInit.RUBY, this.count), new ItemStack(Items.COMPASS), itemstack, this.maxUses, this.xpValue, 0.2F);
             } else {
                return null;
             }
@@ -344,7 +345,7 @@ public class ZombieTraderTrades {
             j = 64;
          }
 
-         return new MerchantOffer(new ItemStack(ItemInit.RUBY.get(), j), new ItemStack(Items.BOOK), itemstack, 12, this.xpValue, 0.2F);
+         return new MerchantOffer(new ItemStack(ItemInit.RUBY, j), new ItemStack(Items.BOOK), itemstack, 12, this.xpValue, 0.2F);
       }
       public MerchantOffer getOffer1(Entity trader, Random rand) {
          List<Enchantment> list = Registry.ENCHANTMENT.stream().filter(Enchantment::canVillagerTrade).collect(Collectors.toList());
@@ -360,7 +361,7 @@ public class ZombieTraderTrades {
             j = 64;
          }
 
-         return new MerchantOffer(new ItemStack(ItemInit.RUBY.get(), j), new ItemStack(Items.BOOK), itemstack, 12, this.xpValue, 0.2F);
+         return new MerchantOffer(new ItemStack(ItemInit.RUBY, j), new ItemStack(Items.BOOK), itemstack, 12, this.xpValue, 0.2F);
       }
    }
 
@@ -416,8 +417,8 @@ public class ZombieTraderTrades {
          int i = 5 + rand.nextInt(15);
          ItemStack itemstack = EnchantmentHelper.addRandomEnchantment(rand, new ItemStack(this.sellingStack.getItem()), i, false);
          int j = Math.min(this.rubyCount + i, 64);
-         ItemStack itemstack1 = new ItemStack(ItemInit.RUBY.get(), j);
-         ItemStack itemstack2 = new ItemStack(ItemInit.RUBY.get(), j);
+         ItemStack itemstack1 = new ItemStack(ItemInit.RUBY, j);
+         ItemStack itemstack2 = new ItemStack(ItemInit.RUBY, j);
          return new MerchantOffer(itemstack1, itemstack, this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
@@ -453,7 +454,7 @@ public class ZombieTraderTrades {
 
       public MerchantOffer getOffer(Entity trader, Random rand) {
          ItemStack itemstack = new ItemStack(Items.EMERALD, this.emeraldCount);
-         ItemStack itemstack_1 = new ItemStack(ItemInit.RUBY.get(), this.rubyCount);
+         ItemStack itemstack_1 = new ItemStack(ItemInit.RUBY, this.rubyCount);
          List<Potion> list = Registry.POTION.stream().filter((potion) -> {
             return !potion.getEffects().isEmpty() && PotionBrewing.isBrewablePotion(potion);
          }).collect(Collectors.toList());
@@ -490,7 +491,7 @@ public class ZombieTraderTrades {
 
       @Nullable
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         return new MerchantOffer(new ItemStack(BlockItemInit.FIRT_BLOCK.get(), this.firtCount), new ItemStack(this.buyingItem.getItem(), this.buyingItemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack(BlockItemInit.FIRT_BLOCK, this.firtCount), new ItemStack(this.buyingItem.getItem(), this.buyingItemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 
@@ -521,7 +522,7 @@ public class ZombieTraderTrades {
 
       @Nullable
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         return new MerchantOffer(new ItemStack(ItemInit.RUBY.get(), this.emeraldCount), new ItemStack(this.buyingItem.getItem(), this.buyingItemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack(ItemInit.RUBY, this.emeraldCount), new ItemStack(this.buyingItem.getItem(), this.buyingItemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 
@@ -597,7 +598,7 @@ public class ZombieTraderTrades {
       }
 
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         return new MerchantOffer(new ItemStack(isBurnableFoodItemInit.DURG.get(), this.durgCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack(isBurnableFoodItemInit.DURG, this.durgCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 
@@ -673,7 +674,7 @@ public class ZombieTraderTrades {
       }
 
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         return new MerchantOffer(new ItemStack(isBurnableItemInit.RUGT.get(), this.rugtCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack(isBurnableItemInit.RUGT, this.rugtCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 
@@ -711,7 +712,7 @@ public class ZombieTraderTrades {
       }
 
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         return new MerchantOffer(new ItemStack(ItemInit.KIRT.get(), this.kirtCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack(ItemInit.KIRT, this.kirtCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 

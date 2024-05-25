@@ -2,6 +2,7 @@ package com.babcsany.minecraft.ervin_mod_1.world.biome.biomes;
 
 import com.babcsany.minecraft.ervin_mod_1.init.ModBiomeFeatures;
 import com.babcsany.minecraft.ervin_mod_1.init.ModConfiguredSurfaceBuilders;
+import com.babcsany.minecraft.ervin_mod_1.world.biome.ModBiomeMaker;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.FirgTree;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.ModDefaultBiomeFeatures;
 import com.babcsany.minecraft.ervin_mod_1.world.biome.spawn.SpawnListEntry;
@@ -52,18 +53,10 @@ public class ExampleBiome2 {
 		biomeBuilder.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION,
 				Feature.FOSSIL.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG)
 						.withPlacement(Placement.CHANCE.configure(new ChanceConfig(128))));
-		biomeBuilder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
-				Feature.TREE.withConfiguration(ModDefaultBiomeFeatures.FIRG_TREE_CONFIG3)
-						.withPlacement(Placement.CHANCE.configure(new ChanceConfig(240))));
-		biomeBuilder.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION,
-				Feature.TREE.withConfiguration(ModDefaultBiomeFeatures.FIRG_TREE_CONFIG2)
-						.withPlacement(Placement.CHANCE.configure(new ChanceConfig(150))));
-		biomeBuilder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
-				Feature.TREE.withConfiguration(ModDefaultBiomeFeatures.FIRG_TREE_CONFIG1)
-						.withPlacement(Placement.CHANCE.configure(new ChanceConfig(200))));
-		biomeBuilder.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION,
-				Feature.TREE.withConfiguration(ModDefaultBiomeFeatures.FIRG_TREE_CONFIG)
-						.withPlacement(Placement.CHANCE.configure(new ChanceConfig(100))));
+		ModDefaultBiomeFeatures.addFirgTree3(biomeBuilder, 240);
+		ModDefaultBiomeFeatures.addFirgTree2(biomeBuilder, 150);
+		ModDefaultBiomeFeatures.addFirgTree1(biomeBuilder, 200);
+		ModDefaultBiomeFeatures.addFirgTree(biomeBuilder, 100);
 		biomeBuilder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
 				Feature.RANDOM_BOOLEAN_SELECTOR
 						.withConfiguration(new TwoFeatureChoiceConfig(
@@ -85,9 +78,7 @@ public class ExampleBiome2 {
 		biomeBuilder.withFeature(GenerationStage.Decoration.SURFACE_STRUCTURES,
 				Feature.TREE.withConfiguration(ModDefaultBiomeFeatures.FIRG_TREE_WITH_MORE_BEEHIVES_CONFIG1).withPlacement(
 						Placement.CHANCE.configure(new ChanceConfig(250)).countSpread(FeatureSpread.create(46))));
-		biomeBuilder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
-				Feature.TREE.withConfiguration(FirgTree.FIRG_TREE_CONFIG0).withPlacement(
-						Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(18, 4.8f, 10))));
+		ModDefaultBiomeFeatures.addExtraTree(biomeBuilder, FirgTree.FIRG_TREE_CONFIG0, 18, 4.8f, 10);
 		biomeBuilder.withSurfaceBuilder(configuredSurfaceBuilderSupplier);
 
 		DefaultBiomeFeatures.withOverworldOres(biomeBuilder);
@@ -101,12 +92,14 @@ public class ExampleBiome2 {
 		ambienceBuilder.setWaterColor(16724639);
 		ambienceBuilder.setWaterFogColor(16762304);
 		ambienceBuilder.setFogColor(1253846);
-		ambienceBuilder.withGrassColor(0x00FF80);
+		ambienceBuilder.withSkyColor(ModBiomeMaker.getSkyColorWithTemperatureModifier(0.559F));
+		ambienceBuilder.withGrassColor(65408);
 
 		builder.precipitation(Biome.RainType.SNOW);
 		builder.scale(25.5F);
 		builder.temperature(0.5F);
 		builder.setEffects(ambienceBuilder.build());
+		builder.withMobSpawnSettings(spawnInfoBuilder.build());
 		builder.withGenerationSettings(biomeBuilder.build());
 		builder.category(Biome.Category.PLAINS);
 		builder.downfall(0.5F);

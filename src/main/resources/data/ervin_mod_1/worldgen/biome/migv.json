@@ -1,0 +1,75 @@
+{
+  "carvers": {
+    "air": [
+      "minecraft:cave",
+      "minecraft:nether_cave"
+    ]
+  },
+  "has_precipitation": true,
+  "scale": 8.5,
+  "temperature": 0.5,
+  "effects": {
+    "fog_color": 12538462,
+    "grass_color": 11985295,
+    "mood_sound": {
+      "block_search_extent": 16,
+      "offset": 4.0,
+      "sound": "minecraft:ambient.cave",
+      "tick_delay": 12000
+    },
+    "sky_color": 13955750,
+    "water_color": 10456252,
+    "water_fog_color": 26762304
+  },
+  "features": [
+    [
+      "minecraft:fossil",
+      "minecraft:mushroom_field_vegetation",
+      "minecraft:random_patch",
+      "minecraft:tree",
+      "minecraft:ore_dirt",
+      "minecraft:ore_gravel",
+      "minecraft:ore_granite",
+      "minecraft:ore_diorite",
+      "minecraft:ore_andesite",
+      "minecraft:ore_gold_extra",
+      "minecraft:ore_emerald",
+      "minecraft:ore_gold_extra",
+      "minecraft:ore_gold_extra",
+      "ervin_mod_1:orange_stone"
+    ],
+    [
+      "ervin_mod_1:example_feature"
+    ]
+  ],
+  "spawners": {
+    "creature": [
+      {
+        "type": "minecraft:bee",
+        "minCount": 2,
+        "maxCount": 10,
+        "weight": 20
+      },
+      {
+        "type": "ervin_mod_1:vilt",
+        "minCount": 2,
+        "maxCount": 5,
+        "weight": 4
+      }
+    ],
+    "monster": [
+      {
+        "type": "minecraft:zombie",
+        "minCount": 2,
+        "maxCount": 5,
+        "weight": 10
+      },
+      {
+        "type": "ervin_mod_1:zur",
+        "minCount": 2,
+        "maxCount": 4,
+        "weight": 8
+      }
+    ]
+  }
+}

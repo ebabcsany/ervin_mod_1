@@ -34,8 +34,8 @@ public class MigvBiome {
         Biome.Builder builder = new Biome.Builder();
         spawnInfoBuilder.withSpawner(EntityClassification.MONSTER, new SpawnListEntry(EntityType.ZOMBIE, 10, 2, 5));
         spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityType.BEE, 20, 2, 10));
-        spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.VILT_ENTITY.get(), 4, 2, 5));
-        spawnInfoBuilder.withSpawner(EntityClassification.MONSTER, new SpawnListEntry(EntityInit.ZUR_ENTITY.get(), 8, 2, 4));
+        spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.VILT_ENTITY, 4, 2, 5));
+        spawnInfoBuilder.withSpawner(EntityClassification.MONSTER, new SpawnListEntry(EntityInit.ZUR_ENTITY, 8, 2, 4));
         generationSettingsBuilder.withCarver(GenerationStage.Carving.AIR, ConfiguredCarvers.CAVE);
         generationSettingsBuilder.withCarver(GenerationStage.Carving.AIR, ConfiguredCarvers.NETHER_CAVE);
         DefaultBiomeFeatures.withBadlandsStructures(generationSettingsBuilder);
@@ -50,9 +50,7 @@ public class MigvBiome {
         generationSettingsBuilder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
                 Feature.RANDOM_PATCH.withConfiguration(ModDefaultBiomeFeatures.RED_MUSHROOM_CONFIG).withPlacement(
                         Placement.HEIGHTMAP_SPREAD_DOUBLE.configure(NoPlacementConfig.INSTANCE)));
-        generationSettingsBuilder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
-                Feature.TREE.withConfiguration(ModDefaultBiomeFeatures.FIRG_TREE_CONFIG).withPlacement(
-                        Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(9, 4.7f, 15))));
+        ModDefaultBiomeFeatures.addExtraFirgTree(generationSettingsBuilder, 9, 4.7f, 15);
         generationSettingsBuilder.withSurfaceBuilder(surfaceBuilderSupplier);
 
         DefaultBiomeFeatures.withCommonOverworldBlocks(generationSettingsBuilder);
@@ -64,12 +62,13 @@ public class MigvBiome {
         ambienceBuilder.setWaterColor(10456252);
         ambienceBuilder.setWaterFogColor(26762304);
         ambienceBuilder.setFogColor(12538462);
-        ambienceBuilder.withSkyColor(0xd4f2a6);
-        ambienceBuilder.withGrassColor(0xB6E18F);
+        ambienceBuilder.withSkyColor(13955750);
+        ambienceBuilder.withGrassColor(11985295);
         builder.precipitation(Biome.RainType.SNOW);
         builder.scale(8.5F);
         builder.temperature(0.5F);
         builder.setEffects(ambienceBuilder.build());
+        builder.withMobSpawnSettings(spawnInfoBuilder.build());
         builder.withGenerationSettings(generationSettingsBuilder.build());
         builder.category(Biome.Category.PLAINS);
         builder.downfall(12.4f);

@@ -1,6 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.animal;
 
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
+import com.babcsany.minecraft.ervin_mod_1.init.SoundInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.food.isBurnableFoodItemInit;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
@@ -29,8 +30,8 @@ public class Liwray extends AnimalEntity {
     public int timeUntilNextEgg;
     public boolean liwrayJockey;
 
-    public Liwray(EntityType<Liwray> p_i50282_1_, World p_i50282_2_) {
-        super(p_i50282_1_, p_i50282_2_);
+    public Liwray(EntityType<Liwray> type, World world) {
+        super(type, world);
         this.timeUntilNextEgg = this.rand.nextInt(6000) + 6000;
         this.setPathPriority(PathNodeType.WATER, 0.0F);
     }
@@ -83,7 +84,7 @@ public class Liwray extends AnimalEntity {
     }
 
     protected SoundEvent getAmbientSound() {
-        return SoundEvents.ENTITY_CHICKEN_AMBIENT;
+        return SoundInit.LIWRAY_AMBIENT;
     }
 
     protected SoundEvent getHurtSound(DamageSource p_184601_1_) {
@@ -99,7 +100,7 @@ public class Liwray extends AnimalEntity {
     }
 
     public Liwray createChild(ServerWorld serverWorld, AgeableEntity p_90011_1_) {
-        return EntityInit.LIWRAY.get().create(serverWorld);
+        return EntityInit.LIWRAY.create(serverWorld);
     }
 
     protected int getExperiencePoints(PlayerEntity p_70693_1_) {

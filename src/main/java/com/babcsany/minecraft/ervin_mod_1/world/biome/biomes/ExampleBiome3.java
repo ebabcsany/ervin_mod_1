@@ -2,6 +2,7 @@ package com.babcsany.minecraft.ervin_mod_1.world.biome.biomes;
 
 import com.babcsany.minecraft.ervin_mod_1.init.ModBiomeFeatures;
 import com.babcsany.minecraft.ervin_mod_1.init.ModConfiguredSurfaceBuilders;
+import com.babcsany.minecraft.ervin_mod_1.world.biome.ModBiomeMaker;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.FirgTree;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.JazzTree;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.ModDefaultBiomeFeatures;
@@ -35,9 +36,7 @@ public class ExampleBiome3 {
 		biomeBuilder.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION,
 				Feature.FOSSIL.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG)
 						.withPlacement(Placement.CHANCE.configure(new ChanceConfig(5120))));
-		biomeBuilder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
-				Feature.TREE.withConfiguration(ModDefaultBiomeFeatures.MEGA_FIRG_TREE_CONFIG)
-						.withPlacement(Placement.CHANCE.configure(new ChanceConfig(24))));
+		ModDefaultBiomeFeatures.addMegaFirgTree(biomeBuilder, 24);
 		biomeBuilder.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION,
 				Feature.END_ISLAND.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG)
 						.withPlacement(Placement.CHANCE.configure(new ChanceConfig(15))));
@@ -68,12 +67,8 @@ public class ExampleBiome3 {
 		biomeBuilder.withFeature(GenerationStage.Decoration.SURFACE_STRUCTURES,
 				Feature.TREE.withConfiguration(ModDefaultBiomeFeatures.FANCY_TREE_WITH_MORE_BEEHIVES_CONFIG).withPlacement(
 						Placement.CHANCE.configure(new ChanceConfig(25))));
-		biomeBuilder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
-				Feature.TREE.withConfiguration(JazzTree.JAZZ_TREE_CONFIG).withPlacement(
-						Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(7, 0.1f, 1))));
-		biomeBuilder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
-				Feature.TREE.withConfiguration(FirgTree.FIRG_TREE_CONFIG0).withPlacement(
-						Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(18, 4.8f, 10))));
+		ModDefaultBiomeFeatures.addExtraTree(biomeBuilder, JazzTree.JAZZ_TREE_CONFIG, 7, 0.1f, 1);
+		ModDefaultBiomeFeatures.addExtraTree(biomeBuilder, FirgTree.FIRG_TREE_CONFIG0, 18, 4.8f, 10);
 		biomeBuilder.withSurfaceBuilder(configuredSurfaceBuilderSupplier);
 
 		DefaultBiomeFeatures.withOverworldOres(biomeBuilder);
@@ -85,14 +80,16 @@ public class ExampleBiome3 {
 		ModDefaultBiomeFeatures.addKiomne(biomeBuilder);
 
 		ambienceBuilder.setWaterColor(64895);
-		ambienceBuilder.setWaterColor(71263);
+		ambienceBuilder.setWaterFogColor(71263);
 		ambienceBuilder.setFogColor(824526);
-		ambienceBuilder.withGrassColor(0x80ff00);
+		ambienceBuilder.withSkyColor(ModBiomeMaker.getSkyColorWithTemperatureModifier(504.7F));
+		ambienceBuilder.withGrassColor(8453888);
 
 		builder.precipitation(Biome.RainType.RAIN);
 		builder.scale(1000.0F);
 		builder.temperature(500.0F);
 		builder.setEffects(ambienceBuilder.build());
+		builder.withMobSpawnSettings(spawnInfoBuilder.build());
 		builder.withGenerationSettings(biomeBuilder.build());
 		builder.category(Biome.Category.PLAINS);
 		builder.downfall(500.0F);

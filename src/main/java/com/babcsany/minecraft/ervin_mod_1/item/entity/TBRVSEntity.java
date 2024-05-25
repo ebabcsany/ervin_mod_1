@@ -66,7 +66,7 @@ public class TBRVSEntity extends ProjectileItemEntity {
             }
 
             for(int j = 0; j < i; ++j) {
-               $TraderEntity $TraderEntity = EntityInit.$_TRADER_ENTITY.get().create(this.world);
+               $TraderEntity $TraderEntity = EntityInit.$_TRADER_ENTITY.create(this.world);
                $TraderEntity.setGrowingAge(-24000);
                $TraderEntity.setLocationAndAngles(this.getPosX(), this.getPosY(), this.getPosZ(), this.rotationYaw, 0.0F);
                this.world.addEntity($TraderEntity);

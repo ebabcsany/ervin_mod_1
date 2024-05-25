@@ -10,33 +10,39 @@ import com.babcsany.minecraft.ervin_mod_1.init.item.food.SpecialBlockFoodItemIni
 import com.babcsany.minecraft.ervin_mod_1.init.item.food.isBurnableFoodItemInit;
 import net.minecraft.block.ComposterBlock;
 import net.minecraft.util.IItemProvider;
+import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.IForgeRegistryEntry;
 
 public class Compost {
     public static void init() {
         ComposterBlock.CHANCES.defaultReturnValue(-1.0F);
         registerCompostable(0.3F, com.babcsany.minecraft.init.item.ItemInit.ENCHANTED_BOOK_BLACK);
         registerCompostable(0.3F, SeedsItemInit.TARG_SEEDS);
-        registerCompostable(0.35F, BlockItemInit.FRIM_LEAVES.get());
-        registerCompostable(0.35F, BlockItemInit.FRIM_SAPLING.get());
-        registerCompostable(0.4F, isBurnableBlockItemInit.FIRG_LEAVES.get());
-        registerCompostable(0.4F, isBurnableBlockItemInit.FIRG_SAPLING.get());
-        registerCompostable(0.45F, BlockFoodItemInit.SCRAFTH.get());
-        registerCompostable(0.5F, SpecialBlockFoodItemInit.FIRG_SLAB.get());
-        registerCompostable(0.65F, FoodItemInit.JAZZ_FRUIT.get());
-        registerCompostable(0.7F, ItemInit.CRAKH.get());
-        registerCompostable(0.75F, SpecialBlockFoodItemInit.FIRG_STAIRS.get());
-        registerCompostable(0.85F, FoodItemInit.FRIM.get());
-        registerCompostable(1.0F, SpecialBlockFoodItemInit.FIRG.get());
-        registerCompostable(1.25F, FoodItemInit.REAT.get());
-        registerCompostable(4.0F, isBurnableFoodItemInit.GRINT.get());
-        registerCompostable(8.0F, SpecialBlockFoodItemInit.GRINT_SLAB.get());
-        registerCompostable(12.0F, SpecialBlockFoodItemInit.GRINT_STAIRS.get());
-        registerCompostable(16.0F, SpecialBlockFoodItemInit.GRINT_BLOCK.get());
-        registerCompostable(64.0F, isBurnableFoodItemInit.DURG.get());
-        registerCompostable(210.0F, SpecialBlockFoodItemInit.VIRK_BLOCK.get());
+        registerCompostable(0.35F, BlockItemInit.FRIM_LEAVES);
+        registerCompostable(0.35F, BlockItemInit.FRIM_SAPLING);
+        registerCompostable(0.4F, isBurnableBlockItemInit.FIRG_LEAVES);
+        registerCompostable(0.4F, isBurnableBlockItemInit.FIRG_SAPLING);
+        registerCompostable(0.45F, BlockFoodItemInit.SCRAFTH);
+        registerCompostable(0.5F, SpecialBlockFoodItemInit.FIRG_SLAB);
+        registerCompostable(0.65F, FoodItemInit.JAZZ_FRUIT);
+        registerCompostable(0.7F, ItemInit.CRAKH);
+        registerCompostable(0.75F, SpecialBlockFoodItemInit.FIRG_STAIRS);
+        registerCompostable(0.85F, FoodItemInit.FRIM);
+        registerCompostable(1.0F, SpecialBlockFoodItemInit.FIRG);
+        registerCompostable(1.25F, FoodItemInit.REAT);
+        registerCompostable(4.0F, isBurnableFoodItemInit.GRINT);
+        registerCompostable(8.0F, SpecialBlockFoodItemInit.GRINT_SLAB);
+        registerCompostable(12.0F, SpecialBlockFoodItemInit.GRINT_STAIRS);
+        registerCompostable(16.0F, SpecialBlockFoodItemInit.GRINT_BLOCK);
+        registerCompostable(64.0F, isBurnableFoodItemInit.DURG);
+        registerCompostable(210.0F, SpecialBlockFoodItemInit.VIRK_BLOCK);
     }
 
     public static void registerCompostable(float chance, IItemProvider itemIn) {
         ComposterBlock.CHANCES.put(itemIn.asItem(), chance);
+    }
+
+    public static <T extends IItemProvider & IForgeRegistryEntry<? super T>> void registerCompostable(float chance, RegistryObject<T> supplierIn) {
+        registerCompostable(chance, supplierIn.get());
     }
 }

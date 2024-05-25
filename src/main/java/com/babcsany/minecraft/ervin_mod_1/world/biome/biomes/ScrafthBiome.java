@@ -1,6 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.world.biome.biomes;
 
 import com.babcsany.minecraft.ervin_mod_1.init.ModConfiguredSurfaceBuilders;
+import com.babcsany.minecraft.ervin_mod_1.world.biome.ModBiomeMaker;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.ModDefaultBiomeFeatures;
 import com.babcsany.minecraft.ervin_mod_1.world.biome.spawn.SpawnListEntry;
 import net.minecraft.entity.EntityClassification;
@@ -17,7 +18,7 @@ import java.util.function.Supplier;
 
 public class ScrafthBiome {
 	public ScrafthBiome() {
-		make(() -> ModConfiguredSurfaceBuilders.SCRAFTH_SURFACE);
+		make(() -> ModConfiguredSurfaceBuilders.SCRAFTH);
 	}
 
 	public static Biome make(final Supplier<ConfiguredSurfaceBuilder<?>> configuredSurfaceBuilderSupplier) {
@@ -49,6 +50,7 @@ public class ScrafthBiome {
 		biomeBuilder.withCarver(GenerationStage.Carving.AIR, ConfiguredCarvers.CAVE);
 		biomeBuilder.withCarver(GenerationStage.Carving.AIR, ConfiguredCarvers.NETHER_CAVE);
 		biomeBuilder.withCarver(GenerationStage.Carving.AIR, ConfiguredCarvers.CANYON);
+		biomeBuilder.withSurfaceBuilder(configuredSurfaceBuilderSupplier);
 
 		ModDefaultBiomeFeatures.addExtraDirt(biomeBuilder);
 		ModDefaultBiomeFeatures.addScrafth(biomeBuilder);
@@ -56,11 +58,13 @@ public class ScrafthBiome {
 		ambienceBuilder.setWaterColor(16777215);
 		ambienceBuilder.setWaterFogColor(16777210);
 		ambienceBuilder.setFogColor(1677241);
-		ambienceBuilder.withGrassColor(0xa0a0a0);
+		ambienceBuilder.withSkyColor(ModBiomeMaker.getSkyColorWithTemperatureModifier(19.3F));
+		ambienceBuilder.withGrassColor(10526880);
 		builder.precipitation(Biome.RainType.SNOW);
 		builder.scale(346.2F);
-		builder.temperature(0.5F);
+		builder.temperature(7.7F);
 		builder.setEffects(ambienceBuilder.build());
+		builder.withMobSpawnSettings(spawnInfoBuilder.build());
 		builder.withGenerationSettings(biomeBuilder.build());
 		builder.category(Biome.Category.THEEND);
 		builder.downfall(0.5F);

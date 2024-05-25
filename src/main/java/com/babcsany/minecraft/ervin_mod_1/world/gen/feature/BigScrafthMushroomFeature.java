@@ -1,7 +1,11 @@
 package com.babcsany.minecraft.ervin_mod_1.world.gen.feature;
 
+import com.babcsany.minecraft.ervin_mod_1.tags.ModBlockTags;
 import com.mojang.serialization.Codec;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.HugeMushroomBlock;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.feature.AbstractBigMushroomFeature;
@@ -12,6 +16,33 @@ import java.util.Random;
 public class BigScrafthMushroomFeature extends AbstractBigMushroomFeature {
    public BigScrafthMushroomFeature(Codec<BigMushroomFeatureConfig> p_i231960_1_) {
       super(p_i231960_1_);
+   }
+
+   protected boolean func_227209_a_(IWorld p_227209_1_, BlockPos p_227209_2_, int p_227209_3_, BlockPos.Mutable p_227209_4_, BigMushroomFeatureConfig p_227209_5_) {
+      int i = p_227209_2_.getY();
+      if (i >= 1 && i + p_227209_3_ + 1 < 256) {
+         Block block = p_227209_1_.getBlockState(p_227209_2_.down()).getBlock();
+         if (!isDirt(block) && !block.isIn(ModBlockTags.SCRAFTH_MUSHROOM_BLOCK)) {
+            return false;
+         } else {
+            for(int j = 0; j <= p_227209_3_; ++j) {
+               int k = this.func_225563_a_(-1, -1, p_227209_5_.foliageRadius, j);
+
+               for(int l = -k; l <= k; ++l) {
+                  for(int i1 = -k; i1 <= k; ++i1) {
+                     BlockState blockstate = p_227209_1_.getBlockState(p_227209_4_.setAndOffset(p_227209_2_, l, j, i1));
+                     if (!blockstate.isAir(p_227209_1_, p_227209_4_.setAndOffset(p_227209_2_, l, j, i1)) && !blockstate.isIn(BlockTags.LEAVES)) {
+                        return false;
+                     }
+                  }
+               }
+            }
+
+            return true;
+         }
+      } else {
+         return false;
+      }
    }
 
    protected void func_225564_a_(IWorld p_225564_1_, Random p_225564_2_, BlockPos p_225564_3_, int p_225564_4_, BlockPos.Mutable p_225564_5_, BigMushroomFeatureConfig p_225564_6_) {

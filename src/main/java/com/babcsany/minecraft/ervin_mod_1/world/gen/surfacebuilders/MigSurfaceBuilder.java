@@ -2,7 +2,7 @@ package com.babcsany.minecraft.ervin_mod_1.world.gen.surfacebuilders;
 
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.unused.init.UnusedBlockInit;
+import com.babcsany.minecraft.ervin_mod_1.init.unused.UnusedBlocks;
 import com.babcsany.minecraft.init.BlockInit;
 import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
@@ -23,6 +23,7 @@ public class MigSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig> {
       this.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock, defaultFluid, config.getTop(), config.getUnder(), config.getUnderWaterMaterial(), seaLevel);
    }
 
+   @Deprecated
    protected void buildSurface(Random random, IChunk chunkIn, Biome biomeIn, int x, int z, int startHeight, double noise, BlockState defaultBlock, BlockState defaultFluid, BlockState top, BlockState middle, BlockState bottom, int sealevel) {
       BlockState blockstate = top;
       BlockState blockState1 = middle;
@@ -40,7 +41,7 @@ public class MigSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig> {
          } else if (blockState2.matchesBlock(defaultBlock.getBlock())) {
             if (i == -1) {
                if (j <= 0) {
-                  blockstate = isBurnableBlockItemInit.LEAT_BLOCK.get().getDefaultState();
+                  blockstate = isBurnableBlockItemInit.LEAT_BLOCK.getBlock().getDefaultState();
                   blockState1 = defaultBlock;
                } else if (i1 >= sealevel - 4 && i1 <= sealevel + 1) {
                   blockstate = top;
@@ -49,7 +50,7 @@ public class MigSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig> {
 
                if (i1 < sealevel && blockstate.isAir()) {
                   if (biomeIn.getTemperature(blockPos$mutable.setPos(x, i1, z)) < 0.15F) {
-                     blockstate = BlockInit.FIRT_BLOCK.get().getDefaultState();
+                     blockstate = BlockInit.FIRT_BLOCK.getDefaultState();
                   } else {
                      blockstate = defaultFluid;
                   }
@@ -61,7 +62,7 @@ public class MigSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig> {
                if (i1 >= sealevel - 1) {
                   chunkIn.setBlockState(blockPos$mutable, blockstate, false);
                } else if (i1 < sealevel - 7 - j) {
-                  blockstate = UnusedBlockInit.get("air").get().getDefaultState();
+                  blockstate = UnusedBlocks.get("air").getDefaultState();
                   blockState1 = defaultBlock;
                   chunkIn.setBlockState(blockPos$mutable, bottom, false);
                } else {
@@ -70,9 +71,9 @@ public class MigSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig> {
             } else if (i > 0) {
                --i;
                chunkIn.setBlockState(blockPos$mutable, blockState1, false);
-               if (i == 0 && blockState1.matchesBlock(BlockItemInit.FRIT_BLOCK.get()) && j > 1) {
+               if (i == 0 && blockState1.matchesBlock(BlockItemInit.FRIT_BLOCK) && j > 1) {
                   i = random.nextInt(4) + Math.max(0, i1 - 63);
-                  blockState1 = blockState1.matchesBlock(BlockItemInit.KALT_BLOCK.get()) ? isBurnableBlockItemInit.SRIUNK_BLOCK.get().getDefaultState() : BlockItemInit.FRIT_BLOCK.get().getDefaultState();
+                  blockState1 = blockState1.matchesBlock(BlockItemInit.KALT_BLOCK) ? isBurnableBlockItemInit.SRIUNK_BLOCK.getDefaultState() : BlockItemInit.FRIT_BLOCK.getDefaultState();
                }
             }
          }

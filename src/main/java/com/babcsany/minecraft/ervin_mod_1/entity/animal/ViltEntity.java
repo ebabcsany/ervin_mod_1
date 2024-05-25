@@ -46,9 +46,9 @@ import java.util.stream.Collectors;
 
 public class ViltEntity extends AnimalEntity implements IShearable, net.minecraftforge.common.IForgeShearable {
    private static final DataParameter<Byte> DYE_COLOR = EntityDataManager.createKey(ViltEntity.class, DataSerializers.BYTE);
-   private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(FoodItemInit.FRIM.get());
+   private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(FoodItemInit.FRIM);
    private static final Map<DyeColor, IItemProvider> WOOL_BY_COLOR = Util.make(Maps.newEnumMap(DyeColor.class), (dyeColorIItemProviderEnumMap) -> {
-      dyeColorIItemProviderEnumMap.put(DyeColor.RED, isBurnableBlockItemInit.CRASK.get());
+      dyeColorIItemProviderEnumMap.put(DyeColor.RED, isBurnableBlockItemInit.CRASK);
       dyeColorIItemProviderEnumMap.put(DyeColor.WHITE, Blocks.WHITE_WOOL);
       dyeColorIItemProviderEnumMap.put(DyeColor.ORANGE, Blocks.ORANGE_WOOL);
       dyeColorIItemProviderEnumMap.put(DyeColor.MAGENTA, Blocks.MAGENTA_WOOL);
@@ -94,7 +94,7 @@ public class ViltEntity extends AnimalEntity implements IShearable, net.minecraf
       this.goalSelector.addGoal(0, new SwimGoal(this));
       this.goalSelector.addGoal(1, new PanicGoal(this, 1.25D));
       this.goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
-      this.goalSelector.addGoal(3, new TemptGoal(this, 10.0D, Ingredient.fromItems(FoodItemInit.FRIM.get()), false));
+      this.goalSelector.addGoal(3, new TemptGoal(this, 10.0D, Ingredient.fromItems(FoodItemInit.FRIM), false));
       this.goalSelector.addGoal(4, new TemptGoal(this, 1.25D, false, TEMPTATION_ITEMS));
       this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.1D));
       this.goalSelector.addGoal(5, this.eatGrassGoal);
@@ -328,7 +328,7 @@ public class ViltEntity extends AnimalEntity implements IShearable, net.minecraf
 
    public ViltEntity createChild(ServerWorld serverWorld, AgeableEntity ageable) {
       ViltEntity sheepentity = (ViltEntity)ageable;
-      ViltEntity sheepentity1 = EntityInit.VILT_ENTITY.get().create(serverWorld);
+      ViltEntity sheepentity1 = EntityInit.VILT_ENTITY.create(serverWorld);
       sheepentity1.setFleeceColor(this.getDyeColorMixFromParents(this, sheepentity));
       return sheepentity1;
    }

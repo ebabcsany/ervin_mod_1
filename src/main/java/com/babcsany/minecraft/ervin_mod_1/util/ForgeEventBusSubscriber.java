@@ -38,7 +38,7 @@ public class ForgeEventBusSubscriber {
 
     @SubscribeEvent
     public static void FillBucket(FillBucketEvent event) {
-        if (event.getEmptyBucket().getItem() == isBurnableItemInit.TERAT_BUCKET.get() && Objects.requireNonNull(event.getTarget()).getType() == RayTraceResult.Type.BLOCK) {
+        if (event.getEmptyBucket().getItem() == isBurnableItemInit.TERAT_BUCKET && Objects.requireNonNull(event.getTarget()).getType() == RayTraceResult.Type.BLOCK) {
             BlockRayTraceResult rtResult = (BlockRayTraceResult)event.getTarget();
             BlockPos blockpos = rtResult.getPos();
             Direction direction = rtResult.getFace();

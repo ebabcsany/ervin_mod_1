@@ -25,7 +25,7 @@ public class Ores {
     public static OreFeature END_OREGEN;
 
     public static void registerConfiguredFeatures() {
-        OreFeatureConfig oreFeatureConfig = new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, BlockInit.FIRT_BLOCK.get().getDefaultState(), OVERWORLD_VEINSIZE);
+        OreFeatureConfig oreFeatureConfig = new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, BlockInit.FIRT_BLOCK.getDefaultState(), OVERWORLD_VEINSIZE);
 //        OVERWORLD_OREGEN = 4
     }
 }

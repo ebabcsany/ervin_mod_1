@@ -31,10 +31,11 @@ public class ModConfiguredSurfaceBuilders {
     public static ConfiguredSurfaceBuilder<?> EXAMPLE_SURFACE5 = register("example_surface5", new ExampleBiomeSurfaceBuilder5(CODEC), ModSurfaceBuilder.COARSE_DIRT_DIRT_DIRT_CONFIG);
     public static ConfiguredSurfaceBuilder<?> EXAMPLE_SURFACE6 = register("example_surface6", new ExampleBiomeSurfaceBuilder6(CODEC), ModSurfaceBuilder.EXAMPLE_CONFIG6);
     public static ConfiguredSurfaceBuilder<?> SRIUNK_VALLEY_SURFACE = register("sriunk_valley_surface", new SriunkValleySurfaceBuilder(CODEC), ModSurfaceBuilder.SRIUNK_VALLEY_CONFIG);
-    public static ConfiguredSurfaceBuilder<?> MUHK_SURFACE = register("muhk_surface", SurfaceBuilder.GRASS_DIRT_GRAVEL_CONFIG);
-    public static ConfiguredSurfaceBuilder<?> FIRG_SURFACE = register("firg_surface", new FirgBiomeSurfaceBuilder(CODEC), ModSurfaceBuilder.FIRG_CONFIG);
-    public static ConfiguredSurfaceBuilder<?> SCRAFTH_SURFACE = register("scrafth_surface", new ScrafthBiomeSurfaceBuilder(CODEC), ModSurfaceBuilder.SCRAFTH_CONFIG);
-    public static ConfiguredSurfaceBuilder<?> TWUST_SURFACE = register("twust_surface", new TwustBiomeSurfaceBuilder(CODEC), ModSurfaceBuilder.TWUST_CONFIG);
+    public static ConfiguredSurfaceBuilder<?> FIRG = register("firg_surface", new FirgBiomeSurfaceBuilder(CODEC), ModSurfaceBuilder.FIRG_CONFIG);
+    public static ConfiguredSurfaceBuilder<?> SCRAFTH = register("scrafth_surface", new ScrafthBiomeSurfaceBuilder(CODEC), ModSurfaceBuilder.SCRAFTH_CONFIG);
+    public static ConfiguredSurfaceBuilder<?> TWUST = register("twust_surface", new TwustBiomeSurfaceBuilder(CODEC), ModSurfaceBuilder.TWUST_CONFIG);
+    public static ConfiguredSurfaceBuilder<?> MUHK = register("muhk_surface", SurfaceBuilder.GRASS_DIRT_GRAVEL_CONFIG);
+    public static ConfiguredSurfaceBuilder<?> BLOMUJN = register("blomujn_surface", ModSurfaceBuilder.BLOMUJN_CONFIG);
 
     private static <C extends ISurfaceBuilderConfig, F extends SurfaceBuilder<C>> ConfiguredSurfaceBuilder<C> register(String key, F builderIn, C config) {
         return new ConfiguredSurfaceBuilder<>(register(key, builderIn), config);
@@ -79,5 +80,9 @@ public class ModConfiguredSurfaceBuilders {
 
     private static BlockState getState(Block block) {
         return block.getDefaultState();
+    }
+
+    public static void register() {
+        Ervin_mod_1.register(ModConfiguredSurfaceBuilders.class);
     }
 }

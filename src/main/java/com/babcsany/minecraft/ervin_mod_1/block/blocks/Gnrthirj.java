@@ -18,7 +18,7 @@ public class Gnrthirj extends BubbleColumnBlock {
    }
 
    protected int getExperience(Random rand) {
-      if (this == BlockInit.GNRTHIRJ.get()) {
+      if (this == BlockInit.GNRTHIRJ) {
          return MathHelper.nextInt(rand, 3, 7);
       /*} else if (this == BlockItemInit.GNITH_BLOCK.get()) {
          return MathHelper.nextInt(rand, 2, 9);
@@ -31,7 +31,7 @@ public class Gnrthirj extends BubbleColumnBlock {
       } else if (this == Blocks.NETHER_QUARTZ_ORE) {
          return MathHelper.nextInt(rand, 2, 5);*/
       } else {
-         return this == isBurnableBlockItemInit.VILKT_BLOCK.get() ? MathHelper.nextInt(rand, 0, 18) : 0;
+         return this == isBurnableBlockItemInit.VILKT_BLOCK ? MathHelper.nextInt(rand, 0, 18) : 0;
       }
    }
 

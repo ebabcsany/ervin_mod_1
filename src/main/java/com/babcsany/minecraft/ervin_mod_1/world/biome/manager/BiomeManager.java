@@ -2,28 +2,15 @@ package com.babcsany.minecraft.ervin_mod_1.world.biome.manager;
 
 import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.world.DimensionRenderInfo;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.WeightedRandom;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryLookupCodec;
-import net.minecraft.util.registry.WorldGenRegistries;
-import net.minecraft.world.DimensionType;
-import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import com.babcsany.minecraft.ervin_mod_1.world.gen.Biomes;
-import net.minecraft.world.biome.BiomeAmbience;
+import com.babcsany.minecraft.ervin_mod_1.world.gen.BiomeKeys;
+import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.biome.provider.BiomeProvider;
-import net.minecraft.world.biome.provider.OverworldBiomeProvider;
-import net.minecraft.world.spawner.WanderingTraderSpawner;
-import net.minecraft.world.storage.SaveFormat;
-import net.minecraftforge.event.entity.living.LootingLevelEvent;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
 import java.util.*;
-import java.util.function.Function;
 
 public class BiomeManager {
     private static final ArrayList<Biome> BIOMES = new ArrayList<>();
@@ -114,6 +101,10 @@ public class BiomeManager {
         return currentBiomes;
     }
 
+    public static void addSpawnBiome(RegistryKey<Biome> biomeRegistryKey) {
+        addSpawnBiome(BiomeKeys.get(biomeRegistryKey));
+    }
+
     public static void addSpawnBiome(Biome biome) {
         BiomeProvider.CODEC.orElse(new BiomeProvider(new ArrayList<>(Collections.singleton(biome))) {
             @Override
@@ -145,12 +136,6 @@ public class BiomeManager {
         int idx = type.ordinal();
         TrackedList<BiomeEntry> list = idx > biomes.length ? null : biomes[idx];
         return list != null ? list.isModded() : false;
-    }
-
-    static {
-        oceanBiomes.add(Biomes.OCEAN);
-        oceanBiomes.add(Biomes.DEEP_OCEAN);
-        oceanBiomes.add(Biomes.FROZEN_OCEAN);
     }
 
     private static class TrackedList<E> extends ArrayList<E> {
@@ -218,6 +203,11 @@ public class BiomeManager {
 
     public static class BiomeEntry extends WeightedRandom.Item {
         public final Biome biome;
+
+        public BiomeEntry(RegistryKey<Biome> biome, int weight) {
+            super(weight);
+            this.biome = BiomeKeys.getBiomeWithKey(biome.getLocation().getPath());
+        }
 
         public BiomeEntry(Biome biome, int weight) {
             super(weight);

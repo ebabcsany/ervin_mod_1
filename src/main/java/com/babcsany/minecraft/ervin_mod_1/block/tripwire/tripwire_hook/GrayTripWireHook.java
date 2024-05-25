@@ -12,11 +12,11 @@ public class GrayTripWireHook extends ModTripWireHookBlock {
 
    @Override
    public Block getTripWire() {
-      return BlockInit.GRAY_TRIPWIRE.get();
+      return BlockInit.GRAY_TRIPWIRE;
    }
 
    @Override
    public Block getTripWireHook() {
-      return BlockInit.GRAY_TRIPWIRE_HOOK.get();
+      return BlockInit.GRAY_TRIPWIRE_HOOK;
    }
 }

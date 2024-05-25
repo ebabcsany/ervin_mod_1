@@ -4,10 +4,10 @@ import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.food.isBurnableFoodItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.tool.SpecialToolItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.tool.isBurnableSpecialToolItemInit;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IArmorMaterial;
+import net.minecraft.item.Item;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.LazyValue;
 import net.minecraft.util.SoundEvent;
@@ -18,28 +18,33 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.function.Supplier;
 
 public enum ModArmorMaterial implements IArmorMaterial {
-    SRIUNK(Ervin_mod_1.MOD_ID + ":sriunk", 80, new int[]{56, 72, 88, 56}, 1680, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 1.6F, 20.7F, () -> { return Ingredient.fromItems(isBurnableItemInit.SRIUNK.get()); }),
-    NIRK(Ervin_mod_1.MOD_ID + ":nirk", 348, new int[]{174, 348, 522, 174}, 6048, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 19.2F, 90.7F, () -> { return Ingredient.fromItems(isBurnableItemInit.NIRK.get()); }),
-    TERAT(Ervin_mod_1.MOD_ID + ":terat", 640,new int[]{448, 576, 704, 448}, 13440,SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 38.2F, 347.2F, () -> { return Ingredient.fromItems(isBurnableSpecialToolItemInit.TERAT.get()); }),
-    FIRT(Ervin_mod_1.MOD_ID + ":firt", 24, new int[]{16, 24, 32, 16}, 1050, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.8F, 12.4F, () -> { return Ingredient.fromItems(ItemInit.FIRT.get()); }),
-    DURG(Ervin_mod_1.MOD_ID + ":durg", 216, new int[]{144, 216, 288, 144}, 9450, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 8.0F, 111.6F, () -> { return Ingredient.fromItems(isBurnableFoodItemInit.DURG.get()); }),
-    BLACK_IRON(Ervin_mod_1.MOD_ID + ":iron/black_iron", 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> { return Ingredient.fromItems(ItemInit.BLACK_IRON_INGOT.get()); }),
-    BLUE_IRON(Ervin_mod_1.MOD_ID + ":iron/blue_iron", 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> { return Ingredient.fromItems(ItemInit.BLUE_IRON_INGOT.get()); }),
-    BROWN_IRON(Ervin_mod_1.MOD_ID + ":iron/brown_iron", 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> { return Ingredient.fromItems(ItemInit.BROWN_IRON_INGOT.get()); }),
-    CYAN_IRON(Ervin_mod_1.MOD_ID + ":iron/cyan_iron", 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> { return Ingredient.fromItems(ItemInit.CYAN_IRON_INGOT.get()); }),
-    GRAY_IRON(Ervin_mod_1.MOD_ID + ":iron/gray_iron", 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> { return Ingredient.fromItems(ItemInit.GRAY_IRON_INGOT.get()); }),
-    GREEN_IRON(Ervin_mod_1.MOD_ID + ":iron/green_iron", 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> { return Ingredient.fromItems(ItemInit.GREEN_IRON_INGOT.get()); }),
-    LIGHT_BLUE_IRON(Ervin_mod_1.MOD_ID + ":iron/light_blue_iron", 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> { return Ingredient.fromItems(ItemInit.LIGHT_BLUE_IRON_INGOT.get()); }),
-    LIGHT_BLUE1_IRON(Ervin_mod_1.MOD_ID + ":iron/light_blue1_iron", 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> { return Ingredient.fromItems(ItemInit.LIGHT_BLUE1_IRON_INGOT.get()); }),
-    LIGHT_GRAY_IRON(Ervin_mod_1.MOD_ID + ":iron/light_gray_iron", 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> { return Ingredient.fromItems(ItemInit.LIGHT_GRAY_IRON_INGOT.get()); }),
-    LIME_IRON(Ervin_mod_1.MOD_ID + ":iron/lime_iron", 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> { return Ingredient.fromItems(ItemInit.LIME_IRON_INGOT.get()); }),
-    MAGENTA_IRON(Ervin_mod_1.MOD_ID + ":iron/magenta_iron", 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> { return Ingredient.fromItems(ItemInit.MAGENTA_IRON_INGOT.get()); }),
-    ORANGE_IRON(Ervin_mod_1.MOD_ID + ":iron/orange_iron", 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> { return Ingredient.fromItems(ItemInit.ORANGE_IRON_INGOT.get()); }),
-    PINK_IRON(Ervin_mod_1.MOD_ID + ":iron/pink_iron", 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> { return Ingredient.fromItems(ItemInit.PINK_IRON_INGOT.get()); }),
-    PURPLE_IRON(Ervin_mod_1.MOD_ID + ":iron/purple_iron", 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> { return Ingredient.fromItems(ItemInit.PURPLE_IRON_INGOT.get()); }),
-    RED_IRON(Ervin_mod_1.MOD_ID + ":iron/red_iron", 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> { return Ingredient.fromItems(ItemInit.RED_IRON_INGOT.get()); }),
-    WHITE_IRON(Ervin_mod_1.MOD_ID + ":iron/white_iron", 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> { return Ingredient.fromItems(ItemInit.WHITE_IRON_INGOT.get()); }),
-    YELLOW_IRON(Ervin_mod_1.MOD_ID + ":iron/yellow_iron", 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> { return Ingredient.fromItems(ItemInit.YELLOW_IRON_INGOT.get()); });
+    SRIUNK("sriunk", 80, 56, 72, 88, 56, 1680, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 1.6F, 20.7F, isBurnableItemInit.SRIUNK),
+    NIRK("nirk", 348, 174, 348, 522, 174, 1746048, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 19.2F, 90.7F, isBurnableItemInit.NIRK),
+    TERAT("terat", 640,448, 576, 704, 448, 44813440,SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 38.2F, 347.2F, isBurnableSpecialToolItemInit.TERAT),
+    FIRT("firt", 24, 16, 24, 32, 16, 161050, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.8F, 12.4F, ItemInit.FIRT),
+    DURG("durg", 216, 144, 216, 288, 144, 1449450, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 8.0F, 111.6F, isBurnableFoodItemInit.DURG),
+    BLACK_IRON("iron/black_iron", 15, 2, 5, 6, 2, 29, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, ItemInit.BLACK_IRON_INGOT),
+    BLUE_IRON("iron/blue_iron", 15, 2, 5, 6, 2, 29, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, ItemInit.BLUE_IRON_INGOT),
+    BROWN_IRON("iron/brown_iron", 15, 2, 5, 6, 2, 29, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, ItemInit.BROWN_IRON_INGOT),
+    CYAN_IRON("iron/cyan_iron", 15, 2, 5, 6, 2, 29, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, ItemInit.CYAN_IRON_INGOT),
+    GRAY_IRON("iron/gray_iron", 15, 2, 5, 6, 2, 29, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, ItemInit.GRAY_IRON_INGOT),
+    GREEN_IRON("iron/green_iron", 15, 2, 5, 6, 2, 29, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, ItemInit.GREEN_IRON_INGOT),
+    LIGHT_BLUE_IRON("iron/light_blue_iron", 15, 2, 5, 6, 2, 29, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, ItemInit.LIGHT_BLUE_IRON_INGOT),
+    LIGHT_BLUE1_IRON("iron/light_blue1_iron", 15, 2, 5, 6, 2, 29, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, ItemInit.LIGHT_BLUE1_IRON_INGOT),
+    LIGHT_GRAY_IRON("iron/light_gray_iron", 15, 2, 5, 6, 2, 29, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, ItemInit.LIGHT_GRAY_IRON_INGOT),
+    LIME_IRON("iron/lime_iron", 15, 2, 5, 6, 2, 29, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, ItemInit.LIME_IRON_INGOT),
+    MAGENTA_IRON("iron/magenta_iron", 15, 2, 5, 6, 2, 29, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, ItemInit.MAGENTA_IRON_INGOT),
+    ORANGE_IRON("iron/orange_iron", 15, 2, 5, 6, 2, 29, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, ItemInit.ORANGE_IRON_INGOT),
+    PINK_IRON("iron/pink_iron", 15, 2, 5, 6, 2, 29, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, ItemInit.PINK_IRON_INGOT),
+    PURPLE_IRON("iron/purple_iron", 15, 2, 5, 6, 2, 29, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, ItemInit.PURPLE_IRON_INGOT),
+    RED_IRON("iron/red_iron", 15, 2, 5, 6, 2, 29, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, ItemInit.RED_IRON_INGOT),
+    WHITE_IRON("iron/white_iron", 15, 2, 5, 6, 2, 29, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, ItemInit.WHITE_IRON_INGOT),
+    YELLOW_IRON("iron/yellow_iron", 15, 2, 5, 6, 2, 29, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, ItemInit.YELLOW_IRON_INGOT),
+    THUFR("thufr", thufr(653041679), thufr(174928614), thufr(284760951), thufr(297603158), thufr(1694351278), thufr(653051728 * 2), SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 128739410576.316748259F, 380468715.018954213F, isBurnableSpecialToolItemInit.THUFR);
+
+    public static int thufr(int maxUses) {
+        return 2000000000 + (maxUses * 100);
+    }
 
     private static final int[] MAX_DAMAGE_ARRAY = new int[] { 4000, 4000, 4000, 4000 };
     private final String name;
@@ -51,10 +56,11 @@ public enum ModArmorMaterial implements IArmorMaterial {
     private final float knockbackResistance;
     private final LazyValue<Ingredient> repairMaterial;
 
+    ModArmorMaterial(String nameIn, int maxDamageFactorIn, int feetDamageReductionAmountIn, int chestDamageReductionAmountIn, int legsDamageReductionAmountIn, int headDamageReductionAmountIn, int enchantabilityIn, SoundEvent soundEventIn, float knockbackResistanceIn, float toughnessIn, Item... repairMaterialsIn) {
+        this(Ervin_mod_1.identifier(nameIn), maxDamageFactorIn, new int[]{feetDamageReductionAmountIn, chestDamageReductionAmountIn, legsDamageReductionAmountIn, headDamageReductionAmountIn}, enchantabilityIn, soundEventIn, knockbackResistanceIn, toughnessIn, () -> Ingredient.fromItems(repairMaterialsIn));
+    }
 
-    ModArmorMaterial(String nameIn, int maxDamageFactorIn, int[] damageReductionAmountIn,
-                     int enchantabilityIn, SoundEvent soundEventIn, float knockbackResistanceIn, float toughnessIn,
-                     Supplier<Ingredient> repairMaterialIn) {
+    ModArmorMaterial(String nameIn, int maxDamageFactorIn, int[] damageReductionAmountIn, int enchantabilityIn, SoundEvent soundEventIn, float knockbackResistanceIn, float toughnessIn, Supplier<Ingredient> repairMaterialIn) {
         this.name = nameIn;
         this.maxDamageFactor = maxDamageFactorIn;
         this.damageReductionAmountArray = damageReductionAmountIn;
@@ -64,7 +70,6 @@ public enum ModArmorMaterial implements IArmorMaterial {
         this.knockbackResistance = knockbackResistanceIn;
         this.repairMaterial = new LazyValue<>(repairMaterialIn);
     }
-
 
     @Override
     public int getDurability(EquipmentSlotType slotIn) {

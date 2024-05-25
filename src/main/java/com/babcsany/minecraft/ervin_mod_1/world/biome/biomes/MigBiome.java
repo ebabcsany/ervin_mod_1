@@ -26,8 +26,8 @@ public class MigBiome {
         BiomeGenerationSettings.Builder builder = (new BiomeGenerationSettings.Builder()).withSurfaceBuilder(configuredSurfaceBuilderSupplier);
         MobSpawnInfo.Builder spawners = new MobSpawnInfo.Builder();
         spawners.withSpawner(EntityClassification.MONSTER, new SpawnListEntry(EntityType.ZOMBIE, 10, 2, 5));
-        spawners.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.VILT_ENTITY.get(), 4, 2, 5));
-        spawners.withSpawner(EntityClassification.MONSTER, new SpawnListEntry(EntityInit.ZUR_ENTITY.get(), 8, 2, 4));
+        spawners.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.VILT_ENTITY, 4, 2, 5));
+        spawners.withSpawner(EntityClassification.MONSTER, new SpawnListEntry(EntityInit.ZUR_ENTITY, 8, 2, 4));
         builder.withCarver(GenerationStage.Carving.AIR, ConfiguredCarvers.CAVE);
         builder.withCarver(GenerationStage.Carving.AIR, ConfiguredCarvers.NETHER_CAVE);
         DefaultBiomeFeatures.withStrongholdAndMineshaft(builder);
@@ -48,9 +48,7 @@ public class MigBiome {
                 Feature.RANDOM_PATCH.withConfiguration(ModDefaultBiomeFeatures.RED_MUSHROOM_CONFIG).withPlacement(
                                 Placement.HEIGHTMAP_SPREAD_DOUBLE.configure(new NoPlacementConfig()))
                         .withPlacement(Placement.COUNT.configure(new FeatureSpreadConfig(FeatureSpread.create(1, 1)))));
-        builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
-                Feature.TREE.withConfiguration(ModDefaultBiomeFeatures.FIRG_TREE_CONFIG).withPlacement(
-                        Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(9, 4.7f, 15))));
+        ModDefaultBiomeFeatures.addExtraFirgTree(builder, 9, 4.7f, 15);
 
         ModDefaultBiomeFeatures.addOrangeStoneOres(builder);
         ModDefaultBiomeFeatures.addExtraGoldOre(builder);
@@ -62,9 +60,10 @@ public class MigBiome {
         BiomeAmbience.Builder biomeAmbienceBuilder = new BiomeAmbience.Builder();
 
         biomeAmbienceBuilder.setWaterColor(10456252);
-        biomeAmbienceBuilder.setWaterFogColor(26762304);
+        biomeAmbienceBuilder.setWaterFogColor(0x1985c4);
         biomeAmbienceBuilder.setFogColor(12538462);
-        biomeAmbienceBuilder.withGrassColor(0x802000);
+        biomeAmbienceBuilder.withSkyColor(10403487);
+        biomeAmbienceBuilder.withGrassColor(8396800);
 
         Biome.Builder biomeBuilder = new Biome.Builder();
 

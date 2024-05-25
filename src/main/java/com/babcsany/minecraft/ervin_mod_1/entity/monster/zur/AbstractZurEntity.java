@@ -3,12 +3,9 @@ package com.babcsany.minecraft.ervin_mod_1.entity.monster.zur;
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.zur.ZurBreedGoal;
 import com.babcsany.minecraft.ervin_mod_1.entity.animal.hhij.HhijEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.event.ZurTameEvent;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.RoventEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.goal.BowAttackGoal;
-import com.babcsany.minecraft.ervin_mod_1.trigger.ModCriteriaTriggers;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.ZurTrades;
-import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.armor.ArmorItemInit;
@@ -18,15 +15,12 @@ import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.spawn_egg.ModSpawnEggItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.special.isBurnableSpecialItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.tool.isBurnableToolItemInit;
+import com.babcsany.minecraft.ervin_mod_1.trigger.ModCriteriaTriggers;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
@@ -42,15 +36,12 @@ import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.merchant.IMerchant;
 import net.minecraft.entity.merchant.villager.VillagerData;
-import net.minecraft.entity.monster.piglin.PiglinEntity;
-import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.entity.projectile.ProjectileHelper;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
-import net.minecraft.loot.*;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraft.network.datasync.DataParameter;
@@ -101,7 +92,7 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
     protected static final DataParameter<Optional<BlockState>> CARRIED_BLOCK = EntityDataManager.createKey(AbstractZurEntity.class, DataSerializers.OPTIONAL_BLOCK_STATE);
     public static final Map<Item, Integer> FOOD_VALUES = ImmutableMap.of(Items.BREAD, 4, Items.POTATO, 1, Items.CARROT, 1, Items.BEETROOT, 1);
     protected static final DataParameter<Optional<UUID>> OWNER_UNIQUE_ID = EntityDataManager.createKey(AbstractZurEntity.class, DataSerializers.OPTIONAL_UNIQUE_ID);
-    public final ItemStack LEAT = new ItemStack(isBurnableItemInit.LEAT.get());
+    public final ItemStack LEAT = new ItemStack(isBurnableItemInit.LEAT);
     @Nullable
     public BlockPos zurTarget;
     @Nullable
@@ -517,7 +508,7 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
         ItemStack itemstack = player.getHeldItem(hand);
         Item item = itemstack.getItem();
         if (this.world.isRemote) {
-            boolean flag = this.isOwner(player) || this.isTamed() || item == isBurnableItemInit.LEAT.get() && !this.isTamed();
+            boolean flag = this.isOwner(player) || this.isTamed() || item == isBurnableItemInit.LEAT && !this.isTamed();
             return flag ? ActionResultType.CONSUME : ActionResultType.PASS;
         } else {
             if (this.isTamed()) {
@@ -541,7 +532,7 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
 
                     return actionresulttype;
                 }
-            } else if (item == isBurnableItemInit.LEAT.get()) {
+            } else if (item == isBurnableItemInit.LEAT) {
                 if (!player.abilities.isCreativeMode) {
                     itemstack.shrink(1);
                 }
@@ -625,15 +616,15 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
     public ActionResultType getEntityInteractionResult(PlayerEntity player, Hand hand) {
         ItemStack itemstack = player.getHeldItem(hand);
         Item item = itemstack.getItem();
-        if (itemstack.getItem() != ModSpawnEggItemInit.ZUR_SPAWN_EGG.get() && this.isAlive() && !this.hasCustomer() && !this.isChild()) {
+        if (itemstack.getItem() != ModSpawnEggItemInit.ZUR_SPAWN_EGG && this.isAlive() && !this.hasCustomer() && !this.isChild()) {
             if (hand == Hand.MAIN_HAND) {
                 player.addStat(Stats.TALKED_TO_VILLAGER);
             }
 
-            if (item == isBurnableItemInit.LEAT.get()) {
+            if (item == isBurnableItemInit.LEAT) {
 
                 if (this.world.isRemote) {
-                    boolean flag = this.isOwner(player) || this.isTamed() || item == isBurnableItemInit.LEAT.get() && !this.isTamed();
+                    boolean flag = this.isOwner(player) || this.isTamed() || item == isBurnableItemInit.LEAT && !this.isTamed();
                     return flag ? ActionResultType.CONSUME : ActionResultType.PASS;
                 } else {
                     if (this.isTamed()) {
@@ -645,7 +636,7 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
                             this.heal((float)item.getFood().getHealing());
                             return ActionResultType.SUCCESS;
                         }
-                    } else if (item == isBurnableItemInit.LEAT.get()) {
+                    } else if (item == isBurnableItemInit.LEAT) {
                         if (!player.abilities.isCreativeMode) {
                             itemstack.shrink(1);
                         }
@@ -776,7 +767,7 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
             {
                 int i = this.rand.nextInt(180);
                 if (i == 0) {
-                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.NIRK.get()));
+                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.NIRK));
                 } else {
                     this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableToolItemInit.NIRK_AXE.get()));
                 }
@@ -786,7 +777,7 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
             {
                 int i = this.rand.nextInt(144);
                 if (i == 0) {
-                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.NIRK.get()));
+                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.NIRK));
                 } else {
                     this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableToolItemInit.NIRK_SHOVEL.get()));
                 }
@@ -796,7 +787,7 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
             {
                 int i = this.rand.nextInt(108);
                 if (i == 0) {
-                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.NIRK.get()));
+                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.NIRK));
                 } else {
                     this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableToolItemInit.NIRK_SWORD.get()));
                 }
@@ -806,7 +797,7 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
             {
                 int i = this.rand.nextInt(72);
                 if (i == 0) {
-                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.NIRK.get()));
+                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.NIRK));
                 } else {
                     this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableToolItemInit.NIRK_PICKAXE.get()));
                 }
@@ -816,7 +807,7 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
             {
                 int i = this.rand.nextInt(36);
                 if (i == 0) {
-                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.NIRK.get()));
+                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.NIRK));
                 } else {
                     this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableToolItemInit.NIRK_HOE.get()));
                 }
@@ -826,7 +817,7 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
             {
                 int i = this.rand.nextInt(120);
                 if (i == 0) {
-                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableFoodItemInit.DURG.get()));
+                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableFoodItemInit.DURG));
                 } else {
                     this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableToolItemInit.DURG_AXE.get()));
                 }
@@ -836,7 +827,7 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
             {
                 int i = this.rand.nextInt(96);
                 if (i == 0) {
-                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableFoodItemInit.DURG.get()));
+                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableFoodItemInit.DURG));
                 } else {
                     this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableToolItemInit.DURG_SHOVEL.get()));
                 }
@@ -846,7 +837,7 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
             {
                 int i = this.rand.nextInt(72);
                 if (i == 0) {
-                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableFoodItemInit.DURG.get()));
+                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableFoodItemInit.DURG));
                 } else {
                     this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableToolItemInit.DURG_SWORD.get()));
                 }
@@ -856,7 +847,7 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
             {
                 int i = this.rand.nextInt(48);
                 if (i == 0) {
-                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableFoodItemInit.DURG.get()));
+                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableFoodItemInit.DURG));
                 } else {
                     this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableToolItemInit.DURG_PICKAXE.get()));
                 }
@@ -866,11 +857,11 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
             {
                 int i = this.rand.nextInt(24);
                 if (i == 0) {
-                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableFoodItemInit.DURG.get()));
+                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableFoodItemInit.DURG));
                 } else if (i == 1) {
                     this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableToolItemInit.DURG_HOE.get()));
                 } else if (i == 2) {
-                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.SRIUNK.get()));
+                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.SRIUNK));
                 } else {
                     this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableToolItemInit.SRIUNK_PICKAXE.get()));
                 }
@@ -878,7 +869,7 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
             if (this.rand.nextFloat() < (this.world.getDifficulty() == Difficulty.EASY ? 2.0F : 0.4F)) {
                 int i = this.rand.nextInt(60);
                 if (i == 0) {
-                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.SRIUNK.get()));
+                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.SRIUNK));
                 } else {
                     this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableToolItemInit.SRIUNK_AXE.get()));
                 }
@@ -886,7 +877,7 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
             if (this.rand.nextFloat() < (this.world.getDifficulty() == Difficulty.EASY ? 2.0F : 0.4F)) {
                 int i = this.rand.nextInt(48);
                 if (i == 0) {
-                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.SRIUNK.get()));
+                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.SRIUNK));
                 } else {
                     this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableToolItemInit.SRIUNK_SHOVEL.get()));
                 }
@@ -894,7 +885,7 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
             if (this.rand.nextFloat() < (this.world.getDifficulty() == Difficulty.EASY ? 2.0F : 0.4F)) {
                 int i = this.rand.nextInt(36);
                 if (i == 0) {
-                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.SRIUNK.get()));
+                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.SRIUNK));
                 } else {
                     this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableToolItemInit.SRIUNK_SWORD.get()));
                 }
@@ -902,7 +893,7 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
             if (this.rand.nextFloat() < (this.world.getDifficulty() == Difficulty.EASY ? 2.0F : 0.4F)) {
                 int i = this.rand.nextInt(12);
                 if (i == 0) {
-                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.SRIUNK.get()));
+                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.SRIUNK));
                 } else {
                     this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableToolItemInit.SRIUNK_HOE.get()));
                 }
@@ -910,9 +901,9 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
             if (this.rand.nextFloat() < (this.world.getDifficulty() == Difficulty.PEACEFUL ? 0.5F : 0.1F)) {
                 int i = this.rand.nextInt(6);
                 if (i == 0) {
-                    this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(isBurnableItemInit.DURK.get()));
+                    this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(isBurnableItemInit.DURK));
                 } else {
-                    this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(isBurnableItemInit.LEAT.get()));
+                    this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(isBurnableItemInit.LEAT));
                 }
             }
         }
@@ -921,41 +912,41 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
 
     protected void setEquipmentBasedOnDifficulty1(DifficultyInstance difficulty) {
         if (this.isNotChild()) {
-            this.equipmentSlotType(EquipmentSlotType.HEAD, new ItemStack(ArmorItemInit.FIRT_HELMET.get()));
-            this.equipmentSlotType(EquipmentSlotType.CHEST, new ItemStack(ArmorItemInit.FIRT_CHESTPLATE.get()));
-            this.equipmentSlotType(EquipmentSlotType.LEGS, new ItemStack(ArmorItemInit.FIRT_LEGGINGS.get()));
-            this.equipmentSlotType(EquipmentSlotType.FEET, new ItemStack(ArmorItemInit.FIRT_BOOTS.get()));
+            this.equipmentSlotType(EquipmentSlotType.HEAD, new ItemStack(ArmorItemInit.FIRT_HELMET));
+            this.equipmentSlotType(EquipmentSlotType.CHEST, new ItemStack(ArmorItemInit.FIRT_CHESTPLATE));
+            this.equipmentSlotType(EquipmentSlotType.LEGS, new ItemStack(ArmorItemInit.FIRT_LEGGINGS));
+            this.equipmentSlotType(EquipmentSlotType.FEET, new ItemStack(ArmorItemInit.FIRT_BOOTS));
         }
         if (this.rand.nextFloat() < (this.world.getDifficulty() == Difficulty.PEACEFUL ? 0.5F : 0.1F)) {
             int i = this.rand.nextInt(40);
             if (i == 0) {
-                this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.END_STONE_STIK.get()));
+                this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.END_STONE_STIK));
             } else if (i == 1) {
-                this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.KALT.get()));
+                this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.KALT));
             } else if (i == 2) {
-                this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.FIRK.get()));
+                this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.FIRK));
             } else if (i == 3) {
-                this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.NIRG.get()));
+                this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.NIRG));
             } else if (i == 4) {
-                this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.REGDEM.get()));
+                this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.REGDEM));
             } else {
-                this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.FRIT.get()));
+                this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.FRIT));
             }
         }
         if (this.rand.nextFloat() < (this.world.getDifficulty() == Difficulty.PEACEFUL ? 0.5F : 0.1F)) {
             int i = this.rand.nextInt(60);
             if (i == 0) {
-                this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.KIRT_STIK.get()));
+                this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.KIRT_STIK));
             } else if (i == 1) {
-                this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.KIRT_STICK.get()));
+                this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.KIRT_STICK));
             } else if (i == 2) {
-                this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.SCIK.get()));
+                this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.SCIK));
             } else if (i == 3) {
-                this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.SCRA.get()));
+                this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.SCRA));
             } else if (i == 4) {
-                this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.GURT.get()));
+                this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.GURT));
             } else {
-                this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.CRAST.get()));
+                this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.CRAST));
             }
         }
 
@@ -974,11 +965,11 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
     }
 
     ItemStack func_234432_eW_() {
-        return this.rand.nextFloat() < 0.5D ? new ItemStack(isBurnableItemInit.SRIUNK_STICK.get()) : new ItemStack(isBurnableSpecialItemInit.DEBUG_SRIUNK_STICK);
+        return this.rand.nextFloat() < 0.5D ? new ItemStack(isBurnableItemInit.SRIUNK_STICK) : new ItemStack(isBurnableSpecialItemInit.DEBUG_SRIUNK_STICK);
     }
 
     ItemStack func_234432_eW1_() {
-        return this.rand.nextFloat() < 0.5D ? new ItemStack(isBurnableItemInit.VIRKT.get()) : new ItemStack(isBurnableBlockItemInit.NETHER_PORTAL.get());
+        return this.rand.nextFloat() < 0.5D ? new ItemStack(isBurnableItemInit.VIRKT) : new ItemStack(isBurnableBlockItemInit.NETHER_PORTAL);
     }
 
     /**
@@ -1274,7 +1265,7 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
                 }
 
                 if (potion != null) {
-                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, PotionUtils.addPotionToItemStack(new ItemStack(isBurnableItemInit.VIRKT.get()), potion));
+                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, PotionUtils.addPotionToItemStack(new ItemStack(isBurnableItemInit.VIRKT), potion));
                     this.potionUseTimer = this.getHeldItemMainhand().getUseDuration();
                     this.setDrinkingPotion(true);
                     if (!this.isSilent()) {
@@ -1292,7 +1283,7 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
             }
         }
         if (!this.world.isRemote && this.isAlive() && !this.isChild() && this.isZurDropItem() && --this.timeUntilNextItem <= 0) {
-            this.entityDropItem(isBurnableItemInit.LEAT.get());
+            this.entityDropItem(isBurnableItemInit.LEAT);
             this.timeUntilNextItem = this.rand.nextInt(12000) + 12000;
         }
     }

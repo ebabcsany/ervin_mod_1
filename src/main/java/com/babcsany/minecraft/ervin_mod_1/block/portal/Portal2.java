@@ -16,6 +16,6 @@ public interface Portal2 {
 
     static boolean isExamplePortalFrame(BlockState state, IWorldReader world, BlockPos pos)
     {
-        return state.getBlock() == BlockInit.EXAMPLE_PORTAL_BLOCK.get();
+        return state.getBlock() == BlockInit.EXAMPLE_PORTAL_BLOCK;
     }
 }

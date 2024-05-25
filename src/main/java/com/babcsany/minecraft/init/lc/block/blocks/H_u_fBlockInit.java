@@ -2,6 +2,7 @@ package com.babcsany.minecraft.init.lc.block.blocks;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.block.blocks.Tririj;
+import com.babcsany.minecraft.ervin_mod_1.init.unused.UnusedBlocks;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -14,6 +15,6 @@ public class H_u_fBlockInit {
 
     public static final DeferredRegister<Block> H_U_F_BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Ervin_mod_1.MOD_ID);
 
-    public static final RegistryObject<Block> H_U_F_UUUUUUUU = H_U_F_BLOCKS.register("h_u_f_uuuuuuuu", () -> new Block(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.NETHERRACK).setRequiresTool().tickRandomly().hardnessAndResistance(5000000.0F)));
+    public static final Block H_U_F_UUUUUUUU = UnusedBlocks.registerBlock("h_u_f_uuuuuuuu", new Block(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.NETHERRACK).setRequiresTool().tickRandomly().hardnessAndResistance(5000000.0F)));
 
 }

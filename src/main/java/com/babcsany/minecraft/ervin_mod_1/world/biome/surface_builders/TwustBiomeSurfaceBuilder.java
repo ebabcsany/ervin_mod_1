@@ -25,14 +25,14 @@ public class TwustBiomeSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfi
 		if (i == 0) {
 			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock,
 					defaultFluid, seaLevel, seed,
-					new SurfaceBuilderConfig(BlockInit.GRINT_BLOCK.get().getDefaultState(),
-							BlockInit.VIRK_BLOCK.get().getDefaultState(), BlockInit.SCRAFTH.get().getDefaultState()
+					new SurfaceBuilderConfig(BlockInit.GRINT_BLOCK.getDefaultState(),
+							BlockInit.VIRK_BLOCK.getDefaultState(), BlockInit.SCRAFTH.getDefaultState()
 					));
 		} else {
 			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock,
 					defaultFluid, seaLevel, seed,
 					new SurfaceBuilderConfig(
-							i == 6 ? BlockInit.SCRAFTH.get().getDefaultState() : BlockItemInit.KALT_BLOCK.get().getDefaultState(), BlockItemInit.DURT_GURBF.get().getDefaultState(), BlockItemInit.DURT.get().getDefaultState()));
+							i == 6 ? BlockInit.SCRAFTH.getDefaultState() : BlockItemInit.KALT_BLOCK.getDefaultState(), BlockItemInit.DURT_GURBF.getDefaultState(), BlockItemInit.DURT.getDefaultState()));
 		}
 	}
 }

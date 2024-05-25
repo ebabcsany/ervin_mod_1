@@ -3,6 +3,7 @@ package com.babcsany.minecraft.ervin_mod_1.world.biome.biomes;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.ModBiomeFeatures;
 import com.babcsany.minecraft.ervin_mod_1.init.ModConfiguredSurfaceBuilders;
+import com.babcsany.minecraft.ervin_mod_1.world.biome.ModBiomeMaker;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.FirgTree;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.ModDefaultBiomeFeatures;
 import com.babcsany.minecraft.ervin_mod_1.world.biome.spawn.SpawnListEntry;
@@ -28,13 +29,13 @@ public class ExampleBiome {
 		BiomeAmbience.Builder ambienceBuilder = new BiomeAmbience.Builder();
 		Biome.Builder builder = new Biome.Builder();
 		spawnInfoBuilder.withSpawner(EntityClassification.MONSTER, new SpawnListEntry(EntityType.ZOMBIE, 30, 1, 20));
-		spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.LIWRAY.get(), 1, 1, 3));
-		spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.ROVENT_ENTITY.get(), 1, 1, 3));
-		spawnInfoBuilder.withSpawner(EntityClassification.MONSTER, new SpawnListEntry(EntityInit.ZUR_ENTITY.get(), 20, 1, 1));
-		spawnInfoBuilder.withSpawner(EntityClassification.WATER_CREATURE, new SpawnListEntry(EntityInit.GUBROV.get(), 1, 1, 4));
-		spawnInfoBuilder.withSpawner(EntityClassification.MONSTER, new SpawnListEntry(EntityInit.FREIN_ENTITY.get(), 1, 0, 2));
+		spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.LIWRAY, 1, 1, 3));
+		spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.ROVENT_ENTITY, 1, 1, 3));
+		spawnInfoBuilder.withSpawner(EntityClassification.MONSTER, new SpawnListEntry(EntityInit.ZUR_ENTITY, 20, 1, 1));
+		spawnInfoBuilder.withSpawner(EntityClassification.WATER_CREATURE, new SpawnListEntry(EntityInit.GUBROV, 1, 1, 4));
+		spawnInfoBuilder.withSpawner(EntityClassification.MONSTER, new SpawnListEntry(EntityInit.FREIN_ENTITY, 1, 0, 2));
 		spawnInfoBuilder.withSpawner(EntityClassification.AMBIENT, new SpawnListEntry(EntityType.BAT, 40, 1, 20));
-		spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.VILT_ENTITY.get(), 2, 0, 2));
+		spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.VILT_ENTITY, 2, 0, 2));
 		DefaultBiomeFeatures.withStrongholdAndMineshaft(biomeBuilder);
 		biomeBuilder.withCarver(GenerationStage.Carving.AIR, ConfiguredCarvers.CAVE);
 		biomeBuilder.withCarver(GenerationStage.Carving.AIR, ConfiguredCarvers.NETHER_CAVE);
@@ -42,12 +43,8 @@ public class ExampleBiome {
 		biomeBuilder.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION,
 				Feature.FOSSIL.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG)
 						.withPlacement(Placement.CHANCE.configure(new ChanceConfig(64))));
-		biomeBuilder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
-				Feature.TREE.withConfiguration(FirgTree.FIRG_TREE_CONFIG4)
-						.withPlacement(Placement.CHANCE.configure(new ChanceConfig(120))));
-		biomeBuilder.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION,
-				Feature.TREE.withConfiguration(FirgTree.FIRG_TREE_CONFIG3)
-						.withPlacement(Placement.CHANCE.configure(new ChanceConfig(75))));
+		ModDefaultBiomeFeatures.addTree(biomeBuilder, FirgTree.FIRG_TREE_CONFIG4, 120);
+		ModDefaultBiomeFeatures.addTree(biomeBuilder, GenerationStage.Decoration.UNDERGROUND_DECORATION, FirgTree.FIRG_TREE_CONFIG3, 75);
 		biomeBuilder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
 				Feature.TREE.withConfiguration(FirgTree.FIRG_TREE_CONFIG2)
 						.withPlacement(Placement.TOP_SOLID_HEIGHTMAP.configure(NoPlacementConfig.INSTANCE))
@@ -84,9 +81,7 @@ public class ExampleBiome {
 				Feature.TREE.withConfiguration(ModDefaultBiomeFeatures.FANCY_TREE_WITH_MORE_BEEHIVES_CONFIG)
 						.withPlacement(Placement.TOP_SOLID_HEIGHTMAP.configure(IPlacementConfig.NO_PLACEMENT_CONFIG))
 						.withChance(10).feature.get());
-		biomeBuilder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
-				Feature.TREE.withConfiguration(FirgTree.FIRG_TREE_CONFIG0).withPlacement(
-						Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(45, 12.0f, 25))));
+		ModDefaultBiomeFeatures.addExtraTree(biomeBuilder, FirgTree.FIRG_TREE_CONFIG0, 45, 12.0f, 25);
 		biomeBuilder.withSurfaceBuilder(configuredSurfaceBuilderSupplier);
 
 		ModDefaultBiomeFeatures.addOres(biomeBuilder);
@@ -104,12 +99,14 @@ public class ExampleBiome {
 		ambienceBuilder.setWaterColor(16724639);
 		ambienceBuilder.setWaterFogColor(16762304);
 		ambienceBuilder.setFogColor(1253846);
-		ambienceBuilder.withGrassColor(0xFF0000);
+		ambienceBuilder.withSkyColor(ModBiomeMaker.getSkyColorWithTemperatureModifier(1.6F));
+		ambienceBuilder.withGrassColor(16711680);
 
 		builder.precipitation(Biome.RainType.SNOW);
 		builder.scale(51.6F);
 		builder.temperature(0.5F);
 		builder.setEffects(ambienceBuilder.build());
+		builder.withMobSpawnSettings(spawnInfoBuilder.build());
 		builder.withGenerationSettings(biomeBuilder.build());
 		builder.category(Biome.Category.PLAINS);
 		builder.downfall(0.5F);

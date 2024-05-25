@@ -2,6 +2,7 @@ package com.babcsany.minecraft.ervin_mod_1.entity.villager.trades;
 
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.block.BlockItemInit_;
 import com.babcsany.minecraft.ervin_mod_1.init.item.block.crops.seeds.SeedsItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.food.FoodItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.food.SpecialBlockFoodItemInit;
@@ -14,6 +15,7 @@ import com.babcsany.minecraft.ervin_mod_1.init.item.tool.isBurnableSpecialToolIt
 import com.babcsany.minecraft.ervin_mod_1.init.minecraft.block.item.MinecraftBlockNamedItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.minecraft.item.spawn_egg.SpawnEggItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.special.SpecialItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.unused.UnusedBlockItems;
 import com.babcsany.minecraft.ervin_mod_1.init.unused.init.UnusedBlockItemInit;
 import com.babcsany.minecraft.init.BlockItemInit;
 import com.google.common.collect.ImmutableMap;
@@ -52,53 +54,53 @@ import java.util.stream.Collectors;
 
 public class WanderingTraderNirtreTrades {
    public static final Int2ObjectMap<WanderingTraderNirtreTrades.ITrade[]> trade1 = gatAsIntMap(ImmutableMap.of(1, new WanderingTraderNirtreTrades.ITrade[]{
-           new WanderingTraderNirtreTrades.EmeraldForItemsTrade(ItemInit.NIRG.get(), 1, 1000, 8),
-           new WanderingTraderNirtreTrades.ItemsForRubiesTrade(isBurnableBlockItemInit.FIRG_SAPLING.get(), 5, 1, 8, 1),
-           new WanderingTraderNirtreTrades.ItemsForRubiesTrade(com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.FRIM_SAPLING.get(), 5, 1, 8, 1),
-           new WanderingTraderNirtreTrades.ItemsForRubiesTrade(isBurnableItemInit.NARIN.get(), 20, 1, 4, 4),
-           new WanderingTraderNirtreTrades.ItemsForRubyBlocksTrade(isBurnableBlockItemInit.TBRUHV.get(), 30, 1, 10, 2),
-           new WanderingTraderNirtreTrades.ItemsForRubiesTrade(ItemInit.PACK.get(), 4, 1, 50, 1),
-           new WanderingTraderNirtreTrades.ItemsForRubyBlocksTrade(isBurnableItemInit.AVTER.get(), 40, 1, 20, 3),
-           new WanderingTraderNirtreTrades.ItemsForRubiesTrade(isBurnableBlockItemInit.DRIOP.get(), 1, 5, 100, 1),
-           new WanderingTraderNirtreTrades.ItemsForRubiesTrade(ItemInit.FIRT.get(), 1, 4, 14, 1),
-           new WanderingTraderNirtreTrades.ItemsForRubiesTrade(isBurnableItemInit.VILKT.get(), 35, 1, 2, 6),
-           new WanderingTraderNirtreTrades.ItemsForSrurgsTrade(ItemInit.CHAK.get(), 20, 1, 120, 26),
-           new WanderingTraderNirtreTrades.ItemsForRubiesTrade(FoodItemInit.FRIM.get(), 25, 1, 22, 2),
+           new WanderingTraderNirtreTrades.EmeraldForItemsTrade(ItemInit.NIRG, 1, 1000, 8),
+           new WanderingTraderNirtreTrades.ItemsForRubiesTrade(isBurnableBlockItemInit.FIRG_SAPLING, 5, 1, 8, 1),
+           new WanderingTraderNirtreTrades.ItemsForRubiesTrade(com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.FRIM_SAPLING, 5, 1, 8, 1),
+           new WanderingTraderNirtreTrades.ItemsForRubiesTrade(isBurnableItemInit.NARIN, 20, 1, 4, 4),
+           new WanderingTraderNirtreTrades.ItemsForRubyBlocksTrade(isBurnableBlockItemInit.TBRUHV, 30, 1, 10, 2),
+           new WanderingTraderNirtreTrades.ItemsForRubiesTrade(ItemInit.PACK, 4, 1, 50, 1),
+           new WanderingTraderNirtreTrades.ItemsForRubyBlocksTrade(isBurnableItemInit.AVTER, 40, 1, 20, 3),
+           new WanderingTraderNirtreTrades.ItemsForRubiesTrade(isBurnableBlockItemInit.DRIOP, 1, 5, 100, 1),
+           new WanderingTraderNirtreTrades.ItemsForRubiesTrade(ItemInit.FIRT, 1, 4, 14, 1),
+           new WanderingTraderNirtreTrades.ItemsForRubiesTrade(isBurnableItemInit.VILKT, 35, 1, 2, 6),
+           new WanderingTraderNirtreTrades.ItemsForSrurgsTrade(ItemInit.CHAK, 20, 1, 120, 26),
+           new WanderingTraderNirtreTrades.ItemsForRubiesTrade(FoodItemInit.FRIM, 25, 1, 22, 2),
            new WanderingTraderNirtreTrades.ItemsForRubiesTrade(SeedsItemInit.TARG_SEEDS, 2, 1, 5, 1),
-           new WanderingTraderNirtreTrades.ItemsForNautilusShellsTrade(com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.DURT.get(), 5, 1, 20, 3),
-           new WanderingTraderNirtreTrades.ItemsForMlonksTrade(isBurnableBlockItemInit.SHZ_BLOCK.get(), 4, 1, 10, 2),
-           new WanderingTraderNirtreTrades.ItemsForMlonksTrade(ModSpawnEggItemInit.FREIN_SPAWN_EGG.get(), 20, 1, 10, 2),
-           new WanderingTraderNirtreTrades.ItemsForObsidiansTrade(com.babcsany.minecraft.init.BlockItemInit.TRIRIJ.get(), 10, 1, 1000, 2),
-           new WanderingTraderNirtreTrades.ItemsForGrassBlocksTrade(ModSpawnEggItemInit.ZUR_SPAWN_EGG.get(), 4, 1, 9, 1),
-           new WanderingTraderNirtreTrades.ItemsForDreinsTrade(ModSpawnEggItemInit.$_TRADER_SPAWN_EGG.get(), 10, 1, 40, 3),
+           new WanderingTraderNirtreTrades.ItemsForNautilusShellsTrade(com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.DURT, 5, 1, 20, 3),
+           new WanderingTraderNirtreTrades.ItemsForMlonksTrade(isBurnableBlockItemInit.SHZ_BLOCK, 4, 1, 10, 2),
+           new WanderingTraderNirtreTrades.ItemsForMlonksTrade(ModSpawnEggItemInit.FREIN_SPAWN_EGG, 20, 1, 10, 2),
+           new WanderingTraderNirtreTrades.ItemsForObsidiansTrade(com.babcsany.minecraft.init.BlockItemInit.TRIRIJ, 10, 1, 1000, 2),
+           new WanderingTraderNirtreTrades.ItemsForGrassBlocksTrade(ModSpawnEggItemInit.ZUR_SPAWN_EGG, 4, 1, 9, 1),
+           new WanderingTraderNirtreTrades.ItemsForDreinsTrade(ModSpawnEggItemInit.$_TRADER_SPAWN_EGG, 10, 1, 40, 3),
            new WanderingTraderNirtreTrades.ItemsForDreinsTrade(SpawnEggItemInit.LIGHTNING_BOLT_SPAWN_EGG.get(), 1, 1, 40000, 8),
-           new WanderingTraderNirtreTrades.ItemsForSriunkBlocksTrade(isBurnableBlockItemInit.RETRUG.get(), 1, 4, 4, 10),
-           new WanderingTraderNirtreTrades.ItemsForTrurksAndItemsTrade(SpecialToolItemInit.CRAINT.get(), 1, isBurnableBlockItemInit.RETRUG.get(), 1, 16, 1),
-           new WanderingTraderNirtreTrades.ItemsForTrurksAndItemsTrade(isBurnableFoodItemInit.DURG.get(), 1, isBurnableBlockItemInit.CRASK.get(), 1, 16, 1),
-           new WanderingTraderNirtreTrades.ItemsForTrurksAndItemsTrade(isBurnableBlockItemInit.SRIUNK_BLOCK.get(), 1, isBurnableBlockItemInit.SRURG.get(), 1, 16, 1),
-           new WanderingTraderNirtreTrades.ItemsForSrurgsAndBlocksTrade(SpecialBlockFoodItemInit.GRINT_BLOCK.get(), 4, com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.DEFERRED_BLOCK, 1, 16, 1),
-           new WanderingTraderNirtreTrades.ItemsForSrurgsAndItemsTrade(com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.KALT_BLOCK.get(), 30, isBurnableSpecialItemInit.GRITH, 1, 16, 10),
-           new WanderingTraderNirtreTrades.ItemsForSrurgsAndItemsTrade(isBurnableItemInit.SRIUNK.get(), 1, ItemInit.FRIN.get(), 1, 16, 1),
-           new WanderingTraderNirtreTrades.ItemsFor60SrurgsAndItemsTrade(isBurnableFoodItemInit.TIRKS.get(), 60, isBurnableSpecialToolItemInit.TERAT.get(), 1, 16, 1),
-           new WanderingTraderNirtreTrades.ItemsForEnchantedBooksTrade(isBurnableBlockItemInit.EPKIH.get(), 1, 64, 1200, 4),
-           new WanderingTraderNirtreTrades.ItemsForLeatBlockCraftingTablesTrade(isBurnableBlockItemInit.DRIOP.get(), 1, 10, 64, 4),
-           new WanderingTraderNirtreTrades.EnchantedBlockForDurgsTrade(isBurnableBlockItemInit.NIRTK.get(), 18, 1000, 64, 8),
-           new WanderingTraderNirtreTrades.EnchantedBlockForGurltsTrade(isBurnableBlockItemInit.SHZ_BLOCK.get(), 10, 1000, 20, 4),
-           new WanderingTraderNirtreTrades.ItemsFor20ShzBlocksAndItemsTrade(isBurnableBlockItemInit.TBRUHV.get(), 23, com.babcsany.minecraft.ervin_mod_1.init.item.block.isBurnableBlockItemInit.GNRTHIRJ.get(), 1, 1000, 30),
-           new WanderingTraderNirtreTrades.ItemsForShzsAndBlocksTrade(com.babcsany.minecraft.ervin_mod_1.init.item.block.isBurnableBlockItemInit.GNRTHIRJ.get(), 7, isBurnableBlockItemInit.NETHER_PORTAL.get(), 1, 1000, 4),
-           new WanderingTraderNirtreTrades.ItemsFor64NirtksAndBlocksTrade(isBurnableBlockItemInit.NIRTKB.get(), 64, isBurnableBlockItemInit.EPKIN.get(), 1, 1000, 1),
-           new WanderingTraderNirtreTrades.ItemsFor40EpkinsAndItemsTrade(isBurnableBlockItemInit.NETHER_PORTAL.get(), 10, isBurnableSpecialItemInit.TROIF, 1, 100, 1),
-           new WanderingTraderNirtreTrades.ItemsForNirtksAndBlocksTrade(UnusedBlockItemInit.get("air").get(), 1, isBurnableBlockItemInit.NIRTKB.get(), 1, 1000, 1),
+           new WanderingTraderNirtreTrades.ItemsForSriunkBlocksTrade(isBurnableBlockItemInit.RETRUG, 1, 4, 4, 10),
+           new WanderingTraderNirtreTrades.ItemsForTrurksAndItemsTrade(SpecialToolItemInit.CRAINT.get(), 1, isBurnableBlockItemInit.RETRUG, 1, 16, 1),
+           new WanderingTraderNirtreTrades.ItemsForTrurksAndItemsTrade(isBurnableFoodItemInit.DURG, 1, isBurnableBlockItemInit.CRASK, 1, 16, 1),
+           new WanderingTraderNirtreTrades.ItemsForTrurksAndItemsTrade(isBurnableBlockItemInit.SRIUNK_BLOCK, 1, isBurnableBlockItemInit.SRURG, 1, 16, 1),
+           new WanderingTraderNirtreTrades.ItemsForSrurgsAndBlocksTrade(SpecialBlockFoodItemInit.GRINT_BLOCK, 4, com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.DEFERRED_BLOCK, 1, 16, 1),
+           new WanderingTraderNirtreTrades.ItemsForSrurgsAndItemsTrade(com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.KALT_BLOCK, 30, isBurnableSpecialItemInit.GRITH, 1, 16, 10),
+           new WanderingTraderNirtreTrades.ItemsForSrurgsAndItemsTrade(isBurnableItemInit.SRIUNK, 1, ItemInit.FRIN, 1, 16, 1),
+           new WanderingTraderNirtreTrades.ItemsFor60SrurgsAndItemsTrade(isBurnableFoodItemInit.TIRKS.get(), 60, isBurnableSpecialToolItemInit.TERAT, 1, 16, 1),
+           new WanderingTraderNirtreTrades.ItemsForEnchantedBooksTrade(isBurnableBlockItemInit.EPKIH, 1, 64, 1200, 4),
+           new WanderingTraderNirtreTrades.ItemsForLeatBlockCraftingTablesTrade(isBurnableBlockItemInit.DRIOP, 1, 10, 64, 4),
+           new WanderingTraderNirtreTrades.EnchantedBlockForDurgsTrade(isBurnableBlockItemInit.NIRTK, 18, 1000, 64, 8),
+           new WanderingTraderNirtreTrades.EnchantedBlockForGurltsTrade(isBurnableBlockItemInit.SHZ_BLOCK, 10, 1000, 20, 4),
+           new WanderingTraderNirtreTrades.ItemsFor20ShzBlocksAndItemsTrade(isBurnableBlockItemInit.TBRUHV, 23, com.babcsany.minecraft.ervin_mod_1.init.item.block.isBurnableBlockItemInit.GNRTHIRJ, 1, 1000, 30),
+           new WanderingTraderNirtreTrades.ItemsForShzsAndBlocksTrade(com.babcsany.minecraft.ervin_mod_1.init.item.block.isBurnableBlockItemInit.GNRTHIRJ, 7, isBurnableBlockItemInit.NETHER_PORTAL, 1, 1000, 4),
+           new WanderingTraderNirtreTrades.ItemsFor64NirtksAndBlocksTrade(isBurnableBlockItemInit.NIRTKB, 64, BlockItemInit_.EPKIN, 1, 1000, 1),
+           new WanderingTraderNirtreTrades.ItemsFor40EpkinsAndItemsTrade(isBurnableBlockItemInit.NETHER_PORTAL, 10, isBurnableSpecialItemInit.TROIF, 1, 100, 1),
+           new WanderingTraderNirtreTrades.ItemsForNirtksAndBlocksTrade(UnusedBlockItems.get("air"), 1, isBurnableBlockItemInit.NIRTKB, 1, 1000, 1),
            new WanderingTraderNirtreTrades.EnchantedBookForFirnsTrade(10),
-           new WanderingTraderNirtreTrades.ItemsForFirtBlocksTrade(ModSpawnEggItemInit.DRURB_SPAWN_EGG.get(), 20, 1, 20, 3),
-           new WanderingTraderNirtreTrades.ItemsForAvtersTrade(SpecialItemInit.GTRZIUZHIZJKJ.get(), 34, 1, 300000, 15),
+           new WanderingTraderNirtreTrades.ItemsForFirtBlocksTrade(ModSpawnEggItemInit.DRURB_SPAWN_EGG, 20, 1, 20, 3),
+           new WanderingTraderNirtreTrades.ItemsForAvtersTrade(SpecialItemInit.GTRZIUZHIZJKJ, 34, 1, 300000, 15),
            new WanderingTraderNirtreTrades.ItemsForVilktsTrade(MinecraftBlockNamedItemInit.END_PORTAL.get(), 15, 3, 20, 15),
-           new WanderingTraderNirtreTrades.ItemsForVilktsTrade(isBurnableBlockItemInit.CRAINT_BLOCK_CRAFTING_TABLE.get(), 10, 3, 20, 1500),
+           new WanderingTraderNirtreTrades.ItemsForVilktsTrade(isBurnableBlockItemInit.CRAINT_BLOCK_CRAFTING_TABLE, 10, 3, 20, 1500),
    }));
 
    public static final Int2ObjectMap<WanderingTraderNirtreTrades.ITrade[]> trade2 = gatAsIntMap(ImmutableMap.of(1, new WanderingTraderNirtreTrades.ITrade[]{
-           new WanderingTraderNirtreTrades.ItemsForItemsAndItemsTrade(isBurnableSpecialToolItemInit.TERAT.get(), isBurnableSpecialToolItemInit.TERAT.get(), 1, 1, isBurnableSpecialToolItemInit.TERAT_STICK.get(), 1, 1000000000, 1500),
-           new WanderingTraderNirtreTrades.ItemsForItemsTrade1(isBurnableSpecialToolItemInit.TERAT_STICK.get(), isBurnableSpecialToolItemInit.TERAT.get(), 2, 1, 1500),
+           new WanderingTraderNirtreTrades.ItemsForItemsAndItemsTrade(isBurnableSpecialToolItemInit.TERAT, isBurnableSpecialToolItemInit.TERAT, 1, 1, isBurnableSpecialToolItemInit.TERAT_STICK, 1, 1000000000, 1500),
+           new WanderingTraderNirtreTrades.ItemsForItemsTrade1(isBurnableSpecialToolItemInit.TERAT_STICK, isBurnableSpecialToolItemInit.TERAT, 2, 1, 1500),
    }));
 
    private static Int2ObjectMap<WanderingTraderNirtreTrades.ITrade[]> gatAsIntMap(ImmutableMap<Integer, WanderingTraderNirtreTrades.ITrade[]> p_221238_0_) {
@@ -190,7 +192,7 @@ public class WanderingTraderNirtreTrades {
       }
 
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         ItemStack itemstack = new ItemStack(ItemInit.RUBY.get(), this.price);
+         ItemStack itemstack = new ItemStack(ItemInit.RUBY, this.price);
          ItemStack itemstack1 = new ItemStack(this.tradeItem);
          if (this.tradeItem instanceof DyeableArmorItem) {
             List<DyeItem> list = Lists.newArrayList();
@@ -231,7 +233,7 @@ public class WanderingTraderNirtreTrades {
 
       public MerchantOffer getOffer(Entity trader, Random rand) {
          ItemStack itemstack = new ItemStack(this.tradeItem, this.count);
-         return new MerchantOffer(itemstack, new ItemStack(ItemInit.BREND.get()), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(itemstack, new ItemStack(ItemInit.BREND), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 
@@ -252,7 +254,7 @@ public class WanderingTraderNirtreTrades {
 
       public MerchantOffer getOffer(Entity trader, Random rand) {
          ItemStack itemstack = new ItemStack(this.tradeItem, this.count);
-         return new MerchantOffer(itemstack, new ItemStack(ItemInit.RUBY.get()), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(itemstack, new ItemStack(ItemInit.RUBY), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 
@@ -318,7 +320,7 @@ public class WanderingTraderNirtreTrades {
                FilledMapItem.func_226642_a_(serverworld, itemstack);
                MapData.addTargetDecoration(itemstack, blockpos, "+", this.mapDecorationType);
                itemstack.setDisplayName(new TranslationTextComponent("filled_map." + this.structureName.getStructureName().toLowerCase(Locale.ROOT)));
-               return new MerchantOffer(new ItemStack(ItemInit.RUBY.get(), this.count), new ItemStack(Items.COMPASS), itemstack, this.maxUses, this.xpValue, 0.2F);
+               return new MerchantOffer(new ItemStack(ItemInit.RUBY, this.count), new ItemStack(Items.COMPASS), itemstack, this.maxUses, this.xpValue, 0.2F);
             } else {
                return null;
             }
@@ -376,7 +378,7 @@ public class WanderingTraderNirtreTrades {
             j = 2048;
          }
 
-         return new MerchantOffer(new ItemStack(ItemInit.RUBY.get(), j), new ItemStack(Items.BOOK), itemstack, 12, this.xpValue, 0.2F);
+         return new MerchantOffer(new ItemStack(ItemInit.RUBY, j), new ItemStack(Items.BOOK), itemstack, 12, this.xpValue, 0.2F);
       }
    }
 
@@ -431,7 +433,7 @@ public class WanderingTraderNirtreTrades {
          int i = 5 + rand.nextInt(15);
          ItemStack itemstack = EnchantmentHelper.addRandomEnchantment(rand, new ItemStack(this.sellingStack.getItem()), i, false);
          int j = Math.min(this.rubyCount + i, 64);
-         ItemStack itemstack1 = new ItemStack(ItemInit.RUBY.get(), j);
+         ItemStack itemstack1 = new ItemStack(ItemInit.RUBY, j);
          return new MerchantOffer(itemstack1, itemstack, this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
@@ -459,7 +461,7 @@ public class WanderingTraderNirtreTrades {
          int i = 5 + rand.nextInt(15);
          ItemStack itemstack = EnchantmentHelper.addRandomEnchantment(rand, new ItemStack(this.sellingStack.getItem()), i, false);
          int j = Math.min(this.durgCount + i, 64);
-         ItemStack itemstack1 = new ItemStack(isBurnableFoodItemInit.DURG.get(), j);
+         ItemStack itemstack1 = new ItemStack(isBurnableFoodItemInit.DURG, j);
          return new MerchantOffer(itemstack1, itemstack, this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
@@ -487,7 +489,7 @@ public class WanderingTraderNirtreTrades {
          int i = 5 + rand.nextInt(15);
          ItemStack itemstack = EnchantmentHelper.addRandomEnchantment(rand, new ItemStack(this.sellingStack.getItem()), i, false);
          int j = Math.min(this.gurltCount + i, 64);
-         ItemStack itemstack1 = new ItemStack(ItemInit.GURLT.get(), j);
+         ItemStack itemstack1 = new ItemStack(ItemInit.GURLT, j);
          return new MerchantOffer(itemstack1, itemstack, this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
@@ -515,7 +517,7 @@ public class WanderingTraderNirtreTrades {
          int i = 5 + rand.nextInt(15);
          ItemStack itemstack = EnchantmentHelper.addRandomEnchantment(rand, new ItemStack(this.sellingStack.getItem()), i, false);
          int j = Math.min(this.shzBlockCount + i, 64);
-         ItemStack itemstack1 = new ItemStack(isBurnableBlockItemInit.SHZ_BLOCK.get(), j);
+         ItemStack itemstack1 = new ItemStack(isBurnableBlockItemInit.SHZ_BLOCK, j);
          return new MerchantOffer(itemstack1, itemstack, this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
@@ -551,7 +553,7 @@ public class WanderingTraderNirtreTrades {
          int i = 5 + rand.nextInt(15);
          ItemStack itemstack = EnchantmentHelper.addRandomEnchantment(rand, new ItemStack(this.sellingStack.getItem()), i, false);
          int j = Math.min(this.durkCount + i, 64);
-         ItemStack itemstack1 = new ItemStack(isBurnableItemInit.DURK.get(), j);
+         ItemStack itemstack1 = new ItemStack(isBurnableItemInit.DURK, j);
          return new MerchantOffer(itemstack1, itemstack, this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
@@ -583,7 +585,7 @@ public class WanderingTraderNirtreTrades {
 
       @Nullable
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         return new MerchantOffer(new ItemStack(isBurnableItemInit.SHZ.get(), this.shzCount), new ItemStack(this.buyingItem.getItem(), this.buyingItemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack(isBurnableItemInit.SHZ, this.shzCount), new ItemStack(this.buyingItem.getItem(), this.buyingItemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 
@@ -610,7 +612,7 @@ public class WanderingTraderNirtreTrades {
          int i = 5 + rand.nextInt(15);
          ItemStack itemstack = EnchantmentHelper.addRandomEnchantment(rand, new ItemStack(this.sellingStack.getItem()), i, false);
          int j = Math.min(this.nirtkCount + i, 64);
-         ItemStack itemstack1 = new ItemStack(isBurnableBlockItemInit.NIRTK.get(), j);
+         ItemStack itemstack1 = new ItemStack(isBurnableBlockItemInit.NIRTK, j);
          return new MerchantOffer(itemstack1, itemstack, this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
@@ -675,7 +677,7 @@ public class WanderingTraderNirtreTrades {
 
       @Nullable
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         return new MerchantOffer(new ItemStack(isBurnableBlockItemInit.TRURK.get(), this.trurkCount), new ItemStack(this.buyingItem.getItem(), this.buyingItemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack(isBurnableBlockItemInit.TRURK, this.trurkCount), new ItemStack(this.buyingItem.getItem(), this.buyingItemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 
@@ -710,7 +712,7 @@ public class WanderingTraderNirtreTrades {
 
       @Nullable
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         return new MerchantOffer(new ItemStack(isBurnableBlockItemInit.SRURG.get(), this.srurgCount), new ItemStack(this.buyingItem.getItem(), this.buyingItemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack(isBurnableBlockItemInit.SRURG, this.srurgCount), new ItemStack(this.buyingItem.getItem(), this.buyingItemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 
@@ -741,7 +743,7 @@ public class WanderingTraderNirtreTrades {
 
       @Nullable
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         return new MerchantOffer(new ItemStack(isBurnableBlockItemInit.SRURG.get(), this.srurgCount), new ItemStack(this.buyingItem.getItem(), this.buyingItemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack(isBurnableBlockItemInit.SRURG, this.srurgCount), new ItemStack(this.buyingItem.getItem(), this.buyingItemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 
@@ -772,7 +774,7 @@ public class WanderingTraderNirtreTrades {
 
       @Nullable
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         return new MerchantOffer(new ItemStack(isBurnableBlockItemInit.EPKIN.get(), this.epkinCount), new ItemStack(this.buyingItem.getItem(), this.buyingItemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack(BlockItemInit_.EPKIN, this.epkinCount), new ItemStack(this.buyingItem.getItem(), this.buyingItemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 
@@ -803,7 +805,7 @@ public class WanderingTraderNirtreTrades {
 
       @Nullable
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         return new MerchantOffer(new ItemStack(isBurnableBlockItemInit.NIRTK.get(), this.nirtkCount), new ItemStack(this.buyingItem.getItem(), this.buyingItemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack(isBurnableBlockItemInit.NIRTK, this.nirtkCount), new ItemStack(this.buyingItem.getItem(), this.buyingItemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 
@@ -834,7 +836,7 @@ public class WanderingTraderNirtreTrades {
 
       @Nullable
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         return new MerchantOffer(new ItemStack(isBurnableBlockItemInit.SHZ_BLOCK.get(), this.shzBlockCount), new ItemStack(this.buyingItem.getItem(), this.buyingItemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack(isBurnableBlockItemInit.SHZ_BLOCK, this.shzBlockCount), new ItemStack(this.buyingItem.getItem(), this.buyingItemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 
@@ -865,7 +867,7 @@ public class WanderingTraderNirtreTrades {
 
       @Nullable
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         return new MerchantOffer(new ItemStack(isBurnableBlockItemInit.NIRTK.get(), this.nirtkCount), new ItemStack(this.buyingItem.getItem(), this.buyingItemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack(isBurnableBlockItemInit.NIRTK, this.nirtkCount), new ItemStack(this.buyingItem.getItem(), this.buyingItemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 
@@ -896,7 +898,7 @@ public class WanderingTraderNirtreTrades {
 
       @Nullable
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         return new MerchantOffer(new ItemStack(isBurnableBlockItemInit.SRURG.get(), this.srurgCount), new ItemStack(this.buyingItem.getItem(), this.buyingItemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack(isBurnableBlockItemInit.SRURG, this.srurgCount), new ItemStack(this.buyingItem.getItem(), this.buyingItemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 
@@ -972,7 +974,7 @@ public class WanderingTraderNirtreTrades {
       }
 
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         return new MerchantOffer(new ItemStack(ItemInit.RUBY.get(), this.rubyCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack(ItemInit.RUBY, this.rubyCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 
@@ -1010,7 +1012,7 @@ public class WanderingTraderNirtreTrades {
       }
 
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         return new MerchantOffer(new ItemStack(isBurnableItemInit.AVTER.get(), this.avterCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack(isBurnableItemInit.AVTER, this.avterCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 
@@ -1048,7 +1050,7 @@ public class WanderingTraderNirtreTrades {
       }
 
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         return new MerchantOffer(new ItemStack(isBurnableItemInit.VILKT.get(), this.vilktCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack(isBurnableItemInit.VILKT, this.vilktCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 
@@ -1308,7 +1310,7 @@ public class WanderingTraderNirtreTrades {
       }
 
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         return new MerchantOffer(new ItemStack(isBurnableBlockItemInit.SRURG.get(), this.srurgCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack(isBurnableBlockItemInit.SRURG, this.srurgCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 
@@ -1384,7 +1386,7 @@ public class WanderingTraderNirtreTrades {
       }
 
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         return new MerchantOffer(new ItemStack(ItemInit.MLONK.get(), this.mlonkCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack(ItemInit.MLONK, this.mlonkCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 
@@ -1498,7 +1500,7 @@ public class WanderingTraderNirtreTrades {
       }
 
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         return new MerchantOffer(new ItemStack(isBurnableBlockItemInit.SRIUNK_BLOCK.get(), this.sriunkBlockCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack(isBurnableBlockItemInit.SRIUNK_BLOCK, this.sriunkBlockCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 
@@ -1536,7 +1538,7 @@ public class WanderingTraderNirtreTrades {
       }
 
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         return new MerchantOffer(new ItemStack(ItemInit.DREIN.get(), this.dreinCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack(ItemInit.DREIN, this.dreinCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 
@@ -1574,7 +1576,7 @@ public class WanderingTraderNirtreTrades {
       }
 
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         return new MerchantOffer(new ItemStack(BlockItemInit.FIRT_BLOCK.get(), this.firtBlockCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack(BlockItemInit.FIRT_BLOCK, this.firtBlockCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 
@@ -1612,7 +1614,7 @@ public class WanderingTraderNirtreTrades {
       }
 
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         return new MerchantOffer(new ItemStack(isBurnableBlockItemInit.LEAT_BLOCK_CRAFTING_TABLE.get(), this.leatBlockCraftingTableCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack(isBurnableBlockItemInit.LEAT_BLOCK_CRAFTING_TABLE, this.leatBlockCraftingTableCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 

@@ -7,7 +7,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.item.UseAction;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.stats.Stats;
@@ -40,7 +39,7 @@ public class MilkTeratBucketItem extends Item {
             itemStack.shrink(1);
         }
 
-        return itemStack.isEmpty() ? new ItemStack(isBurnableItemInit.TERAT_BUCKET.get()) : itemStack;
+        return itemStack.isEmpty() ? new ItemStack(isBurnableItemInit.TERAT_BUCKET) : itemStack;
     }
 
     public int getUseDuration(ItemStack p_77626_1_) {

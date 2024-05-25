@@ -86,7 +86,7 @@ public abstract class TameableZurEntity extends AnimalEntity {
                this.setDrinkingPotion(false);
                ItemStack itemstack = this.getHeldItemMainhand();
                this.setItemStackToSlot(EquipmentSlotType.MAINHAND, ItemStack.EMPTY);
-               if (itemstack.getItem() == isBurnableItemInit.VIRKT.get()) {
+               if (itemstack.getItem() == isBurnableItemInit.VIRKT) {
                   List<EffectInstance> list = PotionUtils.getEffectsFromStack(itemstack);
                   for(EffectInstance effectinstance : list) {
                      this.addPotionEffect(new EffectInstance(effectinstance));
@@ -108,7 +108,7 @@ public abstract class TameableZurEntity extends AnimalEntity {
             }
 
             if (potion != null) {
-               this.setItemStackToSlot(EquipmentSlotType.MAINHAND, PotionUtils.addPotionToItemStack(new ItemStack(isBurnableItemInit.VIRKT.get()), potion));
+               this.setItemStackToSlot(EquipmentSlotType.MAINHAND, PotionUtils.addPotionToItemStack(new ItemStack(isBurnableItemInit.VIRKT), potion));
                this.potionUseTimer = this.getHeldItemMainhand().getUseDuration();
                this.setDrinkingPotion(true);
                if (!this.isSilent()) {
@@ -126,7 +126,7 @@ public abstract class TameableZurEntity extends AnimalEntity {
          }
       }
       if (!this.world.isRemote && this.isAlive() && !this.isChild() && this.isZurDropItem() && --this.timeUntilNextItem <= 0) {
-         this.entityDropItem(isBurnableItemInit.LEAT.get());
+         this.entityDropItem(isBurnableItemInit.LEAT);
          this.timeUntilNextItem = this.rand.nextInt(12000) + 12000;
       }
    }

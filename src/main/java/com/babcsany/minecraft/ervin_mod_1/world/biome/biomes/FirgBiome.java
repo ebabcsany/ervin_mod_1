@@ -19,7 +19,7 @@ import java.util.function.Supplier;
 public class FirgBiome {
 
 	public FirgBiome() {
-		make(() -> ModConfiguredSurfaceBuilders.FIRG_SURFACE);
+		make(() -> ModConfiguredSurfaceBuilders.FIRG);
 	}
 
 	public static Biome make(final Supplier<ConfiguredSurfaceBuilder<?>> surfaceBuilderSupplier) {
@@ -27,7 +27,7 @@ public class FirgBiome {
 		MobSpawnInfo.Builder spawnInfoBuilder = new MobSpawnInfo.Builder();
 		BiomeAmbience.Builder ambienceBuilder = new BiomeAmbience.Builder();
 		Biome.Builder builder = new Biome.Builder();
-		spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(com.babcsany.minecraft.ervin_mod_1.init.EntityInit.SRACH_ENTITY.get(), 1, 2, 5));
+		spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(com.babcsany.minecraft.ervin_mod_1.init.EntityInit.SRACH_ENTITY, 1, 2, 5));
 		spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityType.IRON_GOLEM, 1, 2, 5));
 		spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityType.WANDERING_TRADER, 1, 2, 5));
 		spawnInfoBuilder.withSpawner(EntityClassification.AMBIENT, new SpawnListEntry(EntityType.BAT, 1, 2, 5));
@@ -48,10 +48,11 @@ public class FirgBiome {
 		spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityType.RABBIT, 1, 2, 5));
 		spawnInfoBuilder.withSpawner(EntityClassification.MONSTER, new SpawnListEntry(EntityType.HUSK, 1, 2, 5));
 		spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityType.BEE, 1, 2, 10));
-		spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.ZUR_ENTITY.get(), 1, 1, 1));
+		spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.ZUR_ENTITY, 1, 1, 1));
 		biomeBuilder.withCarver(GenerationStage.Carving.AIR, ConfiguredCarvers.CAVE);
 		biomeBuilder.withCarver(GenerationStage.Carving.AIR, ConfiguredCarvers.NETHER_CAVE);
 		biomeBuilder.withCarver(GenerationStage.Carving.AIR, ConfiguredCarvers.CANYON);
+		biomeBuilder.withSurfaceBuilder(surfaceBuilderSupplier);
 
 		ModDefaultBiomeFeatures.addExtraDirt(biomeBuilder);
 		ModDefaultBiomeFeatures.addFirgTrees(biomeBuilder);
@@ -60,11 +61,13 @@ public class FirgBiome {
 		ambienceBuilder.setWaterColor(16777215);
 		ambienceBuilder.setWaterFogColor(16777210);
 		ambienceBuilder.setFogColor(1677241);
-		ambienceBuilder.withGrassColor(0xC8C8C8);
+		ambienceBuilder.withSkyColor(15418973);
+		ambienceBuilder.withGrassColor(13158600);
 		builder.precipitation(Biome.RainType.SNOW);
 		builder.scale(166.8F);
 		builder.temperature(0.5F);
 		builder.setEffects(ambienceBuilder.build());
+		builder.withMobSpawnSettings(spawnInfoBuilder.build());
 		builder.withGenerationSettings(biomeBuilder.build());
 		builder.category(Biome.Category.THEEND);
 		builder.downfall(1114.5F);

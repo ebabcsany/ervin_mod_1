@@ -74,7 +74,7 @@ public class SpecialItem3 extends Item {
 
 	@Override
 	public boolean onEntityItemUpdate(ItemStack stack, ItemEntity entity) {
-		entity.getEntityWorld().setBlockState(entity.getPosition().down(), isBurnableBlockItemInit.VILKT_BLOCK.get().getDefaultState());
+		entity.getEntityWorld().setBlockState(entity.getPosition().down(), isBurnableBlockItemInit.VILKT_BLOCK.getDefaultState());
 		return super.onEntityItemUpdate(stack, entity);
 	}
 
@@ -99,7 +99,7 @@ public class SpecialItem3 extends Item {
 
 	@Override
 	public ActionResultType onItemUse(ItemUseContext context) {
-		if (context.getWorld().getBlockState(context.getPos()).getBlock() == isBurnableBlockItemInit.SHZ_BLOCK.get()) {
+		if (context.getWorld().getBlockState(context.getPos()).getBlock() == isBurnableBlockItemInit.SHZ_BLOCK) {
 			for (ItemStack stack : context.getPlayer().inventory.mainInventory) {
 				if (stack.isEmpty()) {
 					context.getPlayer().addItemStackToInventory(new ItemStack(isBurnableSpecialItemInit.DEF_ITEM));

@@ -133,7 +133,7 @@ public class LeatBlockCraftingTableContainer extends RecipeBookContainer<Craftin
      * Determines whether supplied player can use this container
      */
     public boolean canInteractWith(PlayerEntity playerIn) {
-        return isWithinUsableDistance(this.worldPosCallable, playerIn, isBurnableBlockItemInit.LEAT_BLOCK_CRAFTING_TABLE.get());
+        return isWithinUsableDistance(this.worldPosCallable, playerIn, isBurnableBlockItemInit.LEAT_BLOCK_CRAFTING_TABLE.getBlock());
     }
 
     /**

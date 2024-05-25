@@ -127,7 +127,7 @@ public class HhijEntity extends HhijTameableEntity implements IAngerable {
    @Nullable
    @Override
    public HhijAgeableEntity createChild(HhijAgeableEntity ageable) {
-      return EntityInit.HHIJ_ENTITY.get().create(this.world);
+      return EntityInit.HHIJ_ENTITY.create(this.world);
    }
 
    protected void registerData() {
@@ -532,7 +532,7 @@ public class HhijEntity extends HhijTameableEntity implements IAngerable {
       ItemStack itemstack = player.getHeldItem(p_230254_2_);
       Item item = itemstack.getItem();
       if (this.world.isRemote) {
-         boolean flag = this.isOwner(player) || this.isTamed() || item == ItemInit.HTRAW.get() && !this.isTamed() && !this.isAngry();
+         boolean flag = this.isOwner(player) || this.isTamed() || item == ItemInit.HTRAW && !this.isTamed() && !this.isAngry();
          return flag ? ActionResultType.CONSUME : ActionResultType.PASS;
       } else {
          if (this.isTamed()) {
@@ -567,7 +567,7 @@ public class HhijEntity extends HhijTameableEntity implements IAngerable {
 
                return ActionResultType.SUCCESS;
             }
-         } else if (item == ItemInit.HTRAW.get() && !this.isAngry()) {
+         } else if (item == ItemInit.HTRAW && !this.isAngry()) {
             if (!player.abilities.isCreativeMode) {
                itemstack.shrink(100);
             }
@@ -664,7 +664,7 @@ public class HhijEntity extends HhijTameableEntity implements IAngerable {
    }
 
    public HhijEntity createChild(AgeableEntity ageable) {
-      HhijEntity hhijEntity = EntityInit.HHIJ_ENTITY.get().create(ageable.world);
+      HhijEntity hhijEntity = EntityInit.HHIJ_ENTITY.create(ageable.world);
       UUID uuid = this.getOwnerId();
       if (uuid != null) {
          hhijEntity.setOwnerId(uuid);

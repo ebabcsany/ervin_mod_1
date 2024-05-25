@@ -19,21 +19,21 @@ public class FrimTree extends Tree {
 
     public static final BaseTreeFeatureConfig FRIM_TREE_CONFIG0 = (new BaseTreeFeatureConfig.Builder(
             new SimpleBlockStateProvider(BlockItemInit.FRIM_LOG.getDefaultState()),
-            new SimpleBlockStateProvider(BlockItemInit.FRIM_LEAVES.get().getDefaultState()),
+            new SimpleBlockStateProvider(BlockItemInit.FRIM_LEAVES.getDefaultState()),
             new FancyFoliagePlacer(FeatureSpread.create(1, 2), FeatureSpread.create(5, 3), 6),
             new FancyTrunkPlacer(4, 9, 11),
             new TwoLayerFeature(7, 4, 12, OptionalInt.of(9))))
             .setIgnoreVines().setHeightmap(Heightmap.Type.MOTION_BLOCKING).build();
     public static final BaseTreeFeatureConfig FRIM_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
             new SimpleBlockStateProvider(BlockItemInit.FRIM_LOG.getDefaultState()),
-            new SimpleBlockStateProvider(BlockItemInit.FRIM_LEAVES.get().getDefaultState()),
+            new SimpleBlockStateProvider(BlockItemInit.FRIM_LEAVES.getDefaultState()),
             new BlobFoliagePlacer(FeatureSpread.create(3, 0), FeatureSpread.create(0, 0), 4),
             new StraightTrunkPlacer(4, 2, 0),
             new TwoLayerFeature(1, 0, 1)))
             .setIgnoreVines().build();
     public static final BaseTreeFeatureConfig FRIM_TREE_CONFIG1 = (new BaseTreeFeatureConfig.Builder(
             new SimpleBlockStateProvider(BlockItemInit.FRIM_LOG.getDefaultState()),
-            new SimpleBlockStateProvider(BlockItemInit.FRIM_LEAVES.get().getDefaultState()),
+            new SimpleBlockStateProvider(BlockItemInit.FRIM_LEAVES.getDefaultState()),
             new BlobFoliagePlacer(FeatureSpread.create(3, 1), FeatureSpread.create(2, 5), 4),
             new StraightTrunkPlacer(1, 3, 5),
             new TwoLayerFeature(5, 3, 6)))

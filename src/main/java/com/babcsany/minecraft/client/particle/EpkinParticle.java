@@ -1,6 +1,7 @@
 package com.babcsany.minecraft.client.particle;
 
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.block.BlockItemInit_;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.IParticleFactory;
@@ -34,7 +35,7 @@ public class EpkinParticle extends SpriteTexturedParticle {
    @OnlyIn(Dist.CLIENT)
    public static class Factory implements IParticleFactory<BasicParticleType> {
       public Particle makeParticle(BasicParticleType typeIn, ClientWorld worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-         return new EpkinParticle(worldIn, x, y, z, isBurnableBlockItemInit.EPKIN.get().asItem());
+         return new EpkinParticle(worldIn, x, y, z, BlockItemInit_.EPKIN.asItem());
       }
    }
 }

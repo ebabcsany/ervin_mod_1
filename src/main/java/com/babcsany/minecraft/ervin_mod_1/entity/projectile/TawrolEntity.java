@@ -67,7 +67,7 @@ public class TawrolEntity extends ProjectileItemEntity {
             }
 
             for(int j = 0; j < i; ++j) {
-               GwurstEntity gwurstEntity = EntityInit.GWURST.get().create(this.world);
+               GwurstEntity gwurstEntity = EntityInit.GWURST.create(this.world);
                gwurstEntity.setGrowingAge(-24000);
                gwurstEntity.setLocationAndAngles(this.getPosX(), this.getPosY(), this.getPosZ(), this.rotationYaw, 0.0F);
                this.world.addEntity(gwurstEntity);

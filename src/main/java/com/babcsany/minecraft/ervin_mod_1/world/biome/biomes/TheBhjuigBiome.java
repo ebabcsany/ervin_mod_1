@@ -1,6 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.world.biome.biomes;
 
 import com.babcsany.minecraft.ervin_mod_1.init.ModConfiguredSurfaceBuilders;
+import com.babcsany.minecraft.ervin_mod_1.world.biome.ModBiomeMaker;
 import com.babcsany.minecraft.ervin_mod_1.world.biome.spawn.SpawnListEntry;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
@@ -30,6 +31,7 @@ public class TheBhjuigBiome {
       ambienceBuilder.setWaterColor(28634578);
       ambienceBuilder.setWaterFogColor(837428654);
       ambienceBuilder.setFogColor(792356895);
+      ambienceBuilder.withSkyColor(ModBiomeMaker.getSkyColorWithTemperatureModifier(0.5F));
       builder.precipitation(Biome.RainType.SNOW);
       builder.scale(16.3F);
       builder.temperature(0.5F);
@@ -37,6 +39,7 @@ public class TheBhjuigBiome {
       builder.downfall(4.0F);
       builder.depth(2.5F);
       builder.setEffects(ambienceBuilder.build());
+      builder.withMobSpawnSettings(spawnInfoBuilder.build());
       builder.withGenerationSettings(generationSettingsBuilder.withSurfaceBuilder(surfaceBuilderSupplier).build());
       return builder.build();
    }

@@ -170,7 +170,7 @@ public class Gtrziuzhizjkj extends HorizontalBlock {
    @OnlyIn(Dist.CLIENT)
    private static void func_226932_a_(Entity entity, int particleCount) {
       if (entity.world.isRemote) {
-         BlockState blockstate = SpecialBlockInit.GTRZIUZHIZJKJ.get().getDefaultState();
+         BlockState blockstate = SpecialBlockInit.GTRZIUZHIZJKJ.getDefaultState();
 
          for(int i = 0; i < particleCount; ++i) {
             entity.world.addParticle(new BlockParticleData(ParticleTypes.BLOCK, blockstate), entity.getPosX(), entity.getPosY(), entity.getPosZ(), 0.0D, 0.0D, 0.0D);

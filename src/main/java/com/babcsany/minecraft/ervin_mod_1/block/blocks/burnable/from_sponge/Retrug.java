@@ -23,7 +23,7 @@ public class Retrug extends SpongeBlock {
 
    protected void tryAbsorb(World worldIn, BlockPos pos) {
       if (this.absorb(worldIn, pos)) {
-         worldIn.setBlockState(pos, isBurnableBlockItemInit.TRURK.get().getDefaultState(), 2);
+         worldIn.setBlockState(pos, isBurnableBlockItemInit.TRURK.getDefaultState(), 2);
          worldIn.playEvent(2002, pos, Block.getStateId(Blocks.LAVA.getDefaultState()));
       }
 

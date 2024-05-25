@@ -1,9 +1,8 @@
 package com.babcsany.minecraft.ervin_mod_1.world.feature;
 
-import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.*;
 import com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit;
-import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
-import com.babcsany.minecraft.ervin_mod_1.world.gen.feature.GenOreFeatureConfig;
+import com.babcsany.minecraft.ervin_mod_1.world.gen.feature.config.GenOreFeatureConfig;
 import com.babcsany.minecraft.ervin_mod_1.world.gen.treedecorator.FirgTreeDecorator;
 import com.babcsany.minecraft.init.FeatureInit;
 import com.google.common.collect.ImmutableList;
@@ -22,7 +21,6 @@ import net.minecraft.world.gen.blockplacer.DoublePlantBlockPlacer;
 import net.minecraft.world.gen.blockplacer.SimpleBlockPlacer;
 import net.minecraft.world.gen.blockstateprovider.*;
 import net.minecraft.world.gen.feature.*;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.structure.*;
 import net.minecraft.world.gen.feature.template.RuleTest;
 import net.minecraft.world.gen.foliageplacer.*;
@@ -30,7 +28,12 @@ import net.minecraft.world.gen.placement.*;
 import net.minecraft.world.gen.treedecorator.*;
 import net.minecraft.world.gen.trunkplacer.*;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.OptionalInt;
+import java.util.function.Consumer;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static net.minecraft.block.Blocks.*;
 
@@ -39,47 +42,47 @@ public class ModDefaultBiomeFeatures {
    private static final BlockState SOUL_FIRE = Blocks.GRASS.getDefaultState();
    private static final BlockState OBSIDIAN = Blocks.OBSIDIAN.getDefaultState();
    private static final BlockState AIR = Blocks.AIR.getDefaultState();
-   private static final BlockState FIRG = BlockInit.FIRG.get().getDefaultState();
-   private static final BlockState NIRTKB = isBurnableBlockItemInit.NIRTKB.get().getDefaultState();
-   private static final BlockState SCRAFTH = BlockInit.SCRAFTH.get().getDefaultState();
-   private static final BlockState GRITH_BLOCK = BlockInit.GRITH_BLOCK.get().getDefaultState();
-   private static final BlockState GRINT_BLOCK = BlockInit.GRINT_BLOCK.get().getDefaultState();
-   private static final BlockState RED_GRASS_BLOCK = BlockItemInit.RED_GRASS_BLOCK.get().getDefaultState();
+   private static final BlockState FIRG = BlockInit.FIRG.getDefaultState();
+   private static final BlockState NIRTKB = isBurnableBlockItemInit.NIRTKB.getDefaultState();
+   private static final BlockState SCRAFTH = BlockInit.SCRAFTH.getDefaultState();
+   private static final BlockState GRITH_BLOCK = BlockInit.GRITH_BLOCK.getDefaultState();
+   private static final BlockState GRINT_BLOCK = BlockInit.GRINT_BLOCK.getDefaultState();
+   private static final BlockState RED_GRASS_BLOCK = BlockItemInit.RED_GRASS_BLOCK.getDefaultState();
    private static final BlockState BARRIER = Blocks.BARRIER.getDefaultState();
    private static final BlockState END_STONE = Blocks.END_STONE.getDefaultState();
-   private static final BlockState END_SRACKT = BlockItemInit.END_SRACKT.get().getDefaultState();
-   private static final BlockState END_SRACT = BlockItemInit.END_SRACT.get().getDefaultState();
-   private static final BlockState END_STONE_CISK = BlockItemInit.END_STONE_CISK.get().getDefaultState();
-   private static final BlockState END_STONE_CRISK = BlockItemInit.END_STONE_CRISK.get().getDefaultState();
-   private static final BlockState ENDER_SACKT = BlockItemInit.ENDER_SACKT.get().getDefaultState();
-   private static final BlockState ENDER_SACT = BlockItemInit.ENDER_SACT.get().getDefaultState();
-   private static final BlockState ENDER_SRACK = BlockItemInit.ENDER_SRACK.get().getDefaultState();
-   private static final BlockState ENDER_SRACKH = BlockItemInit.ENDER_SRACKH.get().getDefaultState();
-   private static final BlockState ENDER_SRACT = BlockItemInit.ENDER_SRACT.get().getDefaultState();
-   private static final BlockState BLACK_STONE = BlockItemInit.BLACK_STONE.get().getDefaultState();
-   private static final BlockState BLUE_STONE = BlockItemInit.BLUE_STONE.get().getDefaultState();
-   private static final BlockState BROWN_STONE = BlockItemInit.BROWN_STONE.get().getDefaultState();
-   private static final BlockState CYAN_STONE = BlockItemInit.CYAN_STONE.get().getDefaultState();
-   private static final BlockState GREEN_STONE = BlockItemInit.GREEN_STONE.get().getDefaultState();
-   private static final BlockState LIGHT_BLUE1_STONE = BlockItemInit.LIGHT_BLUE1_STONE.get().getDefaultState();
-   private static final BlockState LIGHT_BLUE_STONE = BlockItemInit.LIGHT_BLUE_STONE.get().getDefaultState();
-   private static final BlockState LIGHT_GRAY_STONE = BlockItemInit.LIGHT_GRAY_STONE.get().getDefaultState();
-   private static final BlockState LIME_STONE = BlockItemInit.LIME_STONE.get().getDefaultState();
-   private static final BlockState MAGENTA_STONE = BlockItemInit.MAGENTA_STONE.get().getDefaultState();
-   private static final BlockState ORANGE_STONE = BlockItemInit.ORANGE_STONE.get().getDefaultState();
-   private static final BlockState PINK_STONE = BlockItemInit.PINK_STONE.get().getDefaultState();
-   private static final BlockState PURPLE_STONE = BlockItemInit.PURPLE_STONE.get().getDefaultState();
-   private static final BlockState RED_STONE = BlockItemInit.RED_STONE.get().getDefaultState();
-   private static final BlockState WHITE_STONE = BlockItemInit.WHITE_STONE.get().getDefaultState();
-   private static final BlockState YELLOW_STONE = BlockItemInit.YELLOW_STONE.get().getDefaultState();
+   private static final BlockState END_SRACKT = ModBlockStates.END_SRACKT;
+   private static final BlockState END_SRACT = BlockItemInit.END_SRACT.getDefaultState();
+   private static final BlockState END_STONE_CISK = BlockItemInit.END_STONE_CISK.getDefaultState();
+   private static final BlockState END_STONE_CRISK = BlockItemInit.END_STONE_CRISK.getDefaultState();
+   private static final BlockState ENDER_SACKT = BlockItemInit.ENDER_SACKT.getDefaultState();
+   private static final BlockState ENDER_SACT = BlockItemInit.ENDER_SACT.getDefaultState();
+   private static final BlockState ENDER_SRACK = BlockItemInit.ENDER_SRACK.getDefaultState();
+   private static final BlockState ENDER_SRACKH = BlockItemInit.ENDER_SRACKH.getDefaultState();
+   private static final BlockState ENDER_SRACT = BlockItemInit.ENDER_SRACT.getDefaultState();
+   private static final BlockState BLACK_STONE = BlockItemInit.BLACK_STONE.getDefaultState();
+   private static final BlockState BLUE_STONE = BlockItemInit.BLUE_STONE.getDefaultState();
+   private static final BlockState BROWN_STONE = BlockItemInit.BROWN_STONE.getDefaultState();
+   private static final BlockState CYAN_STONE = BlockItemInit.CYAN_STONE.getDefaultState();
+   private static final BlockState GREEN_STONE = BlockItemInit.GREEN_STONE.getDefaultState();
+   private static final BlockState LIGHT_BLUE1_STONE = BlockItemInit.LIGHT_BLUE1_STONE.getDefaultState();
+   private static final BlockState LIGHT_BLUE_STONE = BlockItemInit.LIGHT_BLUE_STONE.getDefaultState();
+   private static final BlockState LIGHT_GRAY_STONE = BlockItemInit.LIGHT_GRAY_STONE.getDefaultState();
+   private static final BlockState LIME_STONE = BlockItemInit.LIME_STONE.getDefaultState();
+   private static final BlockState MAGENTA_STONE = BlockItemInit.MAGENTA_STONE.getDefaultState();
+   private static final BlockState ORANGE_STONE = BlockItemInit.ORANGE_STONE.getDefaultState();
+   private static final BlockState PINK_STONE = BlockItemInit.PINK_STONE.getDefaultState();
+   private static final BlockState PURPLE_STONE = BlockItemInit.PURPLE_STONE.getDefaultState();
+   private static final BlockState RED_STONE = BlockItemInit.RED_STONE.getDefaultState();
+   private static final BlockState WHITE_STONE = BlockItemInit.WHITE_STONE.getDefaultState();
+   private static final BlockState YELLOW_STONE = BlockItemInit.YELLOW_STONE.getDefaultState();
    private static final BlockState SRIUNK_ORE = BlockItemInit.SRIUNK_ORE.getDefaultState();
-   private static final BlockState SRIUNK_BLOCK = isBurnableBlockItemInit.SRIUNK_BLOCK.get().getDefaultState();
-   private static final BlockState KALT_BLOCK = BlockItemInit.KALT_BLOCK.get().getDefaultState();
-   private static final BlockState VILKT_BLOCK = isBurnableBlockItemInit.VILKT_BLOCK.get().getDefaultState();
+   private static final BlockState SRIUNK_BLOCK = isBurnableBlockItemInit.SRIUNK_BLOCK.getDefaultState();
+   private static final BlockState KALT_BLOCK = BlockItemInit.KALT_BLOCK.getDefaultState();
+   private static final BlockState VILKT_BLOCK = isBurnableBlockItemInit.VILKT_BLOCK.getDefaultState();
    private static final BlockState FIRG_LOG = BlockItemInit.FIRG_LOG.getDefaultState();
    private static final BlockState FRIM_LOG = BlockItemInit.FRIM_LOG.getDefaultState();
-   private static final BlockState FIRG_LEAVES = isBurnableBlockItemInit.FIRG_LEAVES.get().getDefaultState();
-   private static final BlockState FRIM_LEAVES = BlockItemInit.FRIM_LEAVES.get().getDefaultState();
+   private static final BlockState FIRG_LEAVES = isBurnableBlockItemInit.FIRG_LEAVES.getDefaultState();
+   private static final BlockState FRIM_LEAVES = BlockItemInit.FRIM_LEAVES.getDefaultState();
    private static final BlockState FERN = Blocks.FERN.getDefaultState();
    private static final BlockState PODZOL = Blocks.PODZOL.getDefaultState();
    private static final BlockState OAK_LOG = Blocks.OAK_LOG.getDefaultState();
@@ -103,56 +106,56 @@ public class ModDefaultBiomeFeatures {
    private static final BlockState ANDESITE = Blocks.ANDESITE.getDefaultState();
    private static final BlockState COAL_ORE = Blocks.COAL_ORE.getDefaultState();
    private static final BlockState IRON_ORE = Blocks.IRON_ORE.getDefaultState();
-   private static final BlockState BLUE_STONE_IRON_ORE = BlockItemInit.BLUE_STONE_IRON_ORE.get().getDefaultState();
-   private static final BlockState BROWN_STONE_IRON_ORE = BlockItemInit.BROWN_STONE_IRON_ORE.get().getDefaultState();
-   private static final BlockState CYAN_STONE_IRON_ORE = BlockItemInit.CYAN_STONE_IRON_ORE.get().getDefaultState();
-   private static final BlockState GREEN_STONE_IRON_ORE = BlockItemInit.GREEN_STONE_IRON_ORE.get().getDefaultState();
-   private static final BlockState LIGHT_BLUE_STONE_IRON_ORE = BlockItemInit.LIGHT_BLUE_STONE_IRON_ORE.get().getDefaultState();
-   private static final BlockState LIGHT_BLUE1_STONE_IRON_ORE = BlockItemInit.LIGHT_BLUE1_STONE_IRON_ORE.get().getDefaultState();
-   private static final BlockState LIGHT_GRAY_STONE_IRON_ORE = BlockItemInit.LIGHT_GRAY_STONE_IRON_ORE.get().getDefaultState();
-   private static final BlockState LIME_STONE_IRON_ORE = BlockItemInit.LIME_STONE_IRON_ORE.get().getDefaultState();
-   private static final BlockState MAGENTA_STONE_IRON_ORE = BlockItemInit.MAGENTA_STONE_IRON_ORE.get().getDefaultState();
-   private static final BlockState ORANGE_STONE_IRON_ORE = BlockItemInit.ORANGE_STONE_IRON_ORE.get().getDefaultState();
-   private static final BlockState PINK_STONE_IRON_ORE = BlockItemInit.PINK_STONE_IRON_ORE.get().getDefaultState();
-   private static final BlockState PURPLE_STONE_IRON_ORE = BlockItemInit.PURPLE_STONE_IRON_ORE.get().getDefaultState();
-   private static final BlockState RED_STONE_IRON_ORE = BlockItemInit.RED_STONE_IRON_ORE.get().getDefaultState();
-   private static final BlockState WHITE_STONE_IRON_ORE = BlockItemInit.WHITE_STONE_IRON_ORE.get().getDefaultState();
-   private static final BlockState YELLOW_STONE_IRON_ORE = BlockItemInit.YELLOW_STONE_IRON_ORE.get().getDefaultState();
-   private static final BlockState BLACK_STONE_BLACK_IRON_ORE = BlockItemInit.BLACK_STONE_BLACK_IRON_ORE.get().getDefaultState();
-   private static final BlockState BLACK_STONE_BLUE_IRON_ORE = BlockItemInit.BLACK_STONE_BLUE_IRON_ORE.get().getDefaultState();
-   private static final BlockState BLACK_STONE_BROWN_IRON_ORE = BlockItemInit.BLACK_STONE_BROWN_IRON_ORE.get().getDefaultState();
-   private static final BlockState BLACK_STONE_CYAN_IRON_ORE = BlockItemInit.BLACK_STONE_CYAN_IRON_ORE.get().getDefaultState();
-   private static final BlockState BLACK_STONE_GRAY_IRON_ORE = BlockItemInit.BLACK_STONE_GRAY_IRON_ORE.get().getDefaultState();
-   private static final BlockState BLACK_STONE_GREEN_IRON_ORE = BlockItemInit.BLACK_STONE_GREEN_IRON_ORE.get().getDefaultState();
-   private static final BlockState BLACK_STONE_IRON_ORE = BlockItemInit.BLACK_STONE_IRON_ORE.get().getDefaultState();
-   private static final BlockState BLACK_STONE_LIGHT_BLUE1_IRON_ORE = BlockItemInit.BLACK_STONE_LIGHT_BLUE1_IRON_ORE.get().getDefaultState();
-   private static final BlockState BLACK_STONE_LIGHT_BLUE_IRON_ORE = BlockItemInit.BLACK_STONE_LIGHT_BLUE_IRON_ORE.get().getDefaultState();
-   private static final BlockState BLACK_STONE_LIGHT_GRAY_IRON_ORE = BlockItemInit.BLACK_STONE_LIGHT_GRAY_IRON_ORE.get().getDefaultState();
-   private static final BlockState BLACK_STONE_LIME_IRON_ORE = BlockItemInit.BLACK_STONE_LIME_IRON_ORE.get().getDefaultState();
-   private static final BlockState BLACK_STONE_MAGENTA_IRON_ORE = BlockItemInit.BLACK_STONE_MAGENTA_IRON_ORE.get().getDefaultState();
-   private static final BlockState BLACK_STONE_ORANGE_IRON_ORE = BlockItemInit.BLACK_STONE_ORANGE_IRON_ORE.get().getDefaultState();
-   private static final BlockState BLACK_STONE_PINK_IRON_ORE = BlockItemInit.BLACK_STONE_PINK_IRON_ORE.get().getDefaultState();
-   private static final BlockState BLACK_STONE_PURPLE_IRON_ORE = BlockItemInit.BLACK_STONE_PURPLE_IRON_ORE.get().getDefaultState();
-   private static final BlockState BLACK_STONE_RED_IRON_ORE = BlockItemInit.BLACK_STONE_RED_IRON_ORE.get().getDefaultState();
-   private static final BlockState BLACK_STONE_YELLOW_IRON_ORE = BlockItemInit.BLACK_STONE_YELLOW_IRON_ORE.get().getDefaultState();
-   private static final BlockState BLUE_STONE_BLACK_IRON_ORE = BlockItemInit.BLUE_STONE_BLACK_IRON_ORE.get().getDefaultState();
-   private static final BlockState BLUE_STONE_BLUE_IRON_ORE = BlockItemInit.BLUE_STONE_BLUE_IRON_ORE.get().getDefaultState();
-   private static final BlockState BROWN_STONE_BLACK_IRON_ORE = BlockItemInit.BROWN_STONE_BLACK_IRON_ORE.get().getDefaultState();
-   private static final BlockState CYAN_STONE_BLACK_IRON_ORE = BlockItemInit.CYAN_STONE_BLACK_IRON_ORE.get().getDefaultState();
-   private static final BlockState GREEN_STONE_BLACK_IRON_ORE = BlockItemInit.GREEN_STONE_BLACK_IRON_ORE.get().getDefaultState();
-   private static final BlockState LIGHT_BLUE_STONE_BLACK_IRON_ORE = BlockItemInit.LIGHT_BLUE_STONE_BLACK_IRON_ORE.get().getDefaultState();
-   private static final BlockState LIGHT_BLUE1_STONE_BLACK_IRON_ORE = BlockItemInit.LIGHT_BLUE1_STONE_BLACK_IRON_ORE.get().getDefaultState();
-   private static final BlockState LIGHT_GRAY_STONE_BLACK_IRON_ORE = BlockItemInit.LIGHT_GRAY_STONE_BLACK_IRON_ORE.get().getDefaultState();
-   private static final BlockState LIME_STONE_BLACK_IRON_ORE = BlockItemInit.LIME_STONE_BLACK_IRON_ORE.get().getDefaultState();
-   private static final BlockState MAGENTA_STONE_BLACK_IRON_ORE = BlockItemInit.MAGENTA_STONE_BLACK_IRON_ORE.get().getDefaultState();
-   private static final BlockState ORANGE_STONE_BLACK_IRON_ORE = BlockItemInit.ORANGE_STONE_BLACK_IRON_ORE.get().getDefaultState();
-   private static final BlockState PINK_STONE_BLACK_IRON_ORE = BlockItemInit.PINK_STONE_BLACK_IRON_ORE.get().getDefaultState();
-   private static final BlockState PURPLE_STONE_BLACK_IRON_ORE = BlockItemInit.PURPLE_STONE_BLACK_IRON_ORE.get().getDefaultState();
-   private static final BlockState RED_STONE_BLACK_IRON_ORE = BlockItemInit.RED_STONE_BLACK_IRON_ORE.get().getDefaultState();
-   private static final BlockState STONE_BLACK_IRON_ORE = BlockItemInit.STONE_BLACK_IRON_ORE.get().getDefaultState();
-   private static final BlockState WHITE_STONE_BLACK_IRON_ORE = BlockItemInit.WHITE_STONE_BLACK_IRON_ORE.get().getDefaultState();
-   private static final BlockState YELLOW_STONE_BLACK_IRON_ORE = BlockItemInit.YELLOW_STONE_BLACK_IRON_ORE.get().getDefaultState();
-   private static final BlockState RUBY_ORE = BlockItemInit.RUBY_ORE.get().getDefaultState();
+   private static final BlockState BLUE_STONE_IRON_ORE = BlockItemInit.BLUE_STONE_IRON_ORE.getDefaultState();
+   private static final BlockState BROWN_STONE_IRON_ORE = BlockItemInit.BROWN_STONE_IRON_ORE.getDefaultState();
+   private static final BlockState CYAN_STONE_IRON_ORE = BlockItemInit.CYAN_STONE_IRON_ORE.getDefaultState();
+   private static final BlockState GREEN_STONE_IRON_ORE = BlockItemInit.GREEN_STONE_IRON_ORE.getDefaultState();
+   private static final BlockState LIGHT_BLUE_STONE_IRON_ORE = BlockItemInit.LIGHT_BLUE_STONE_IRON_ORE.getDefaultState();
+   private static final BlockState LIGHT_BLUE1_STONE_IRON_ORE = BlockItemInit.LIGHT_BLUE1_STONE_IRON_ORE.getDefaultState();
+   private static final BlockState LIGHT_GRAY_STONE_IRON_ORE = BlockItemInit.LIGHT_GRAY_STONE_IRON_ORE.getDefaultState();
+   private static final BlockState LIME_STONE_IRON_ORE = BlockItemInit.LIME_STONE_IRON_ORE.getDefaultState();
+   private static final BlockState MAGENTA_STONE_IRON_ORE = BlockItemInit.MAGENTA_STONE_IRON_ORE.getDefaultState();
+   private static final BlockState ORANGE_STONE_IRON_ORE = BlockItemInit.ORANGE_STONE_IRON_ORE.getDefaultState();
+   private static final BlockState PINK_STONE_IRON_ORE = BlockItemInit.PINK_STONE_IRON_ORE.getDefaultState();
+   private static final BlockState PURPLE_STONE_IRON_ORE = BlockItemInit.PURPLE_STONE_IRON_ORE.getDefaultState();
+   private static final BlockState RED_STONE_IRON_ORE = BlockItemInit.RED_STONE_IRON_ORE.getDefaultState();
+   private static final BlockState WHITE_STONE_IRON_ORE = BlockItemInit.WHITE_STONE_IRON_ORE.getDefaultState();
+   private static final BlockState YELLOW_STONE_IRON_ORE = BlockItemInit.YELLOW_STONE_IRON_ORE.getDefaultState();
+   private static final BlockState BLACK_STONE_BLACK_IRON_ORE = BlockItemInit.BLACK_STONE_BLACK_IRON_ORE.getDefaultState();
+   private static final BlockState BLACK_STONE_BLUE_IRON_ORE = BlockItemInit.BLACK_STONE_BLUE_IRON_ORE.getDefaultState();
+   private static final BlockState BLACK_STONE_BROWN_IRON_ORE = BlockItemInit.BLACK_STONE_BROWN_IRON_ORE.getDefaultState();
+   private static final BlockState BLACK_STONE_CYAN_IRON_ORE = BlockItemInit.BLACK_STONE_CYAN_IRON_ORE.getDefaultState();
+   private static final BlockState BLACK_STONE_GRAY_IRON_ORE = BlockItemInit.BLACK_STONE_GRAY_IRON_ORE.getDefaultState();
+   private static final BlockState BLACK_STONE_GREEN_IRON_ORE = BlockItemInit.BLACK_STONE_GREEN_IRON_ORE.getDefaultState();
+   private static final BlockState BLACK_STONE_IRON_ORE = BlockItemInit.BLACK_STONE_IRON_ORE.getDefaultState();
+   private static final BlockState BLACK_STONE_LIGHT_BLUE1_IRON_ORE = BlockItemInit.BLACK_STONE_LIGHT_BLUE1_IRON_ORE.getDefaultState();
+   private static final BlockState BLACK_STONE_LIGHT_BLUE_IRON_ORE = BlockItemInit.BLACK_STONE_LIGHT_BLUE_IRON_ORE.getDefaultState();
+   private static final BlockState BLACK_STONE_LIGHT_GRAY_IRON_ORE = BlockItemInit.BLACK_STONE_LIGHT_GRAY_IRON_ORE.getDefaultState();
+   private static final BlockState BLACK_STONE_LIME_IRON_ORE = BlockItemInit.BLACK_STONE_LIME_IRON_ORE.getDefaultState();
+   private static final BlockState BLACK_STONE_MAGENTA_IRON_ORE = BlockItemInit.BLACK_STONE_MAGENTA_IRON_ORE.getDefaultState();
+   private static final BlockState BLACK_STONE_ORANGE_IRON_ORE = BlockItemInit.BLACK_STONE_ORANGE_IRON_ORE.getDefaultState();
+   private static final BlockState BLACK_STONE_PINK_IRON_ORE = BlockItemInit.BLACK_STONE_PINK_IRON_ORE.getDefaultState();
+   private static final BlockState BLACK_STONE_PURPLE_IRON_ORE = BlockItemInit.BLACK_STONE_PURPLE_IRON_ORE.getDefaultState();
+   private static final BlockState BLACK_STONE_RED_IRON_ORE = BlockItemInit.BLACK_STONE_RED_IRON_ORE.getDefaultState();
+   private static final BlockState BLACK_STONE_YELLOW_IRON_ORE = BlockItemInit.BLACK_STONE_YELLOW_IRON_ORE.getDefaultState();
+   private static final BlockState BLUE_STONE_BLACK_IRON_ORE = BlockItemInit.BLUE_STONE_BLACK_IRON_ORE.getDefaultState();
+   private static final BlockState BLUE_STONE_BLUE_IRON_ORE = BlockItemInit.BLUE_STONE_BLUE_IRON_ORE.getDefaultState();
+   private static final BlockState BROWN_STONE_BLACK_IRON_ORE = BlockItemInit.BROWN_STONE_BLACK_IRON_ORE.getDefaultState();
+   private static final BlockState CYAN_STONE_BLACK_IRON_ORE = BlockItemInit.CYAN_STONE_BLACK_IRON_ORE.getDefaultState();
+   private static final BlockState GREEN_STONE_BLACK_IRON_ORE = BlockItemInit.GREEN_STONE_BLACK_IRON_ORE.getDefaultState();
+   private static final BlockState LIGHT_BLUE_STONE_BLACK_IRON_ORE = BlockItemInit.LIGHT_BLUE_STONE_BLACK_IRON_ORE.getDefaultState();
+   private static final BlockState LIGHT_BLUE1_STONE_BLACK_IRON_ORE = BlockItemInit.LIGHT_BLUE1_STONE_BLACK_IRON_ORE.getDefaultState();
+   private static final BlockState LIGHT_GRAY_STONE_BLACK_IRON_ORE = BlockItemInit.LIGHT_GRAY_STONE_BLACK_IRON_ORE.getDefaultState();
+   private static final BlockState LIME_STONE_BLACK_IRON_ORE = BlockItemInit.LIME_STONE_BLACK_IRON_ORE.getDefaultState();
+   private static final BlockState MAGENTA_STONE_BLACK_IRON_ORE = BlockItemInit.MAGENTA_STONE_BLACK_IRON_ORE.getDefaultState();
+   private static final BlockState ORANGE_STONE_BLACK_IRON_ORE = BlockItemInit.ORANGE_STONE_BLACK_IRON_ORE.getDefaultState();
+   private static final BlockState PINK_STONE_BLACK_IRON_ORE = BlockItemInit.PINK_STONE_BLACK_IRON_ORE.getDefaultState();
+   private static final BlockState PURPLE_STONE_BLACK_IRON_ORE = BlockItemInit.PURPLE_STONE_BLACK_IRON_ORE.getDefaultState();
+   private static final BlockState RED_STONE_BLACK_IRON_ORE = BlockItemInit.RED_STONE_BLACK_IRON_ORE.getDefaultState();
+   private static final BlockState STONE_BLACK_IRON_ORE = BlockItemInit.STONE_BLACK_IRON_ORE.getDefaultState();
+   private static final BlockState WHITE_STONE_BLACK_IRON_ORE = BlockItemInit.WHITE_STONE_BLACK_IRON_ORE.getDefaultState();
+   private static final BlockState YELLOW_STONE_BLACK_IRON_ORE = BlockItemInit.YELLOW_STONE_BLACK_IRON_ORE.getDefaultState();
+   private static final BlockState RUBY_ORE = BlockItemInit.RUBY_ORE.getDefaultState();
    private static final BlockState GOLD_ORE = Blocks.GOLD_ORE.getDefaultState();
    private static final BlockState REDSTONE_ORE = Blocks.REDSTONE_ORE.getDefaultState();
    private static final BlockState DIAMOND_ORE = Blocks.DIAMOND_ORE.getDefaultState();
@@ -171,7 +174,7 @@ public class ModDefaultBiomeFeatures {
    private static final BlockState PEONY = Blocks.PEONY.getDefaultState();
    private static final BlockState BROWN_MUSHROOM = Blocks.BROWN_MUSHROOM.getDefaultState();
    private static final BlockState RED_MUSHROOM = Blocks.RED_MUSHROOM.getDefaultState();
-   private static final BlockState GRINTH_MUSHROOM = BlockItemInit.GRINTH_MUSHROOM.get().getDefaultState();
+   private static final BlockState GRINTH_MUSHROOM = BlockItemInit.GRINTH_MUSHROOM.getDefaultState();
    private static final BlockState SEAGRASS = Blocks.SEAGRASS.getDefaultState();
    private static final BlockState PACKED_ICE = Blocks.PACKED_ICE.getDefaultState();
    private static final BlockState BLUE_ICE = Blocks.BLUE_ICE.getDefaultState();
@@ -198,20 +201,22 @@ public class ModDefaultBiomeFeatures {
    public static final StructureFeature<NoFeatureConfig, ? extends Structure<NoFeatureConfig>> STRONGHOLD = Structure.STRONGHOLD.withConfiguration(NoFeatureConfig.INSTANCE);
    public static final StructureFeature<ProbabilityConfig, ? extends Structure<ProbabilityConfig>> BURIED_TREASURE = Structure.BURIED_TREASURE.withConfiguration(new ProbabilityConfig(0.01F));
    private static final BlockState RED_MUSHROOM_BLOCK = Blocks.RED_MUSHROOM_BLOCK.getDefaultState().with(HugeMushroomBlock.DOWN, Boolean.FALSE);
-   private static final BlockState GRINTH_MUSHROOM_BLOCK = BlockItemInit.GRINTH_MUSHROOM_BLOCK.get().getDefaultState().with(HugeMushroomBlock.DOWN, Boolean.FALSE);
+   private static final BlockState GRINTH_MUSHROOM_BLOCK = BlockItemInit.GRINTH_MUSHROOM_BLOCK.getDefaultState().with(HugeMushroomBlock.DOWN, Boolean.FALSE);
    private static final BlockState BROWN_MUSHROOM_BLOCK = Blocks.BROWN_MUSHROOM_BLOCK.getDefaultState().with(HugeMushroomBlock.UP, Boolean.TRUE).with(HugeMushroomBlock.DOWN, Boolean.FALSE);
    private static final BlockState MUSHROOM_STEM = Blocks.MUSHROOM_STEM.getDefaultState().with(HugeMushroomBlock.UP, Boolean.FALSE).with(HugeMushroomBlock.DOWN, Boolean.FALSE);
    public static final BaseTreeFeatureConfig OAK_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(OAK_LOG), new SimpleBlockStateProvider(OAK_LEAVES), new BlobFoliagePlacer(FeatureSpread.create(2, 0), FeatureSpread.create(0, 0), 3), new StraightTrunkPlacer(4, 2, 0), new TwoLayerFeature(1, 0, 1))).setIgnoreVines().build();
    private static final BeehiveTreeDecorator FEW_BEEHIVES = new BeehiveTreeDecorator(0.002F);
    private static final BeehiveTreeDecorator BEEHIVES = new BeehiveTreeDecorator(0.02F);
-   private static final BeehiveTreeDecorator BEEHIVES1 = new BeehiveTreeDecorator(0.5F);
-   private static final BeehiveTreeDecorator BEEHIVES2 = new BeehiveTreeDecorator(5.0F);
-   private static final FirgTreeDecorator FIRGS = new FirgTreeDecorator(5.0F);
-   private static final BeehiveTreeDecorator MANY_BEEHIVES = new BeehiveTreeDecorator(0.05F);
+   private static final BeehiveTreeDecorator MORE_BEEHIVES = new BeehiveTreeDecorator(0.5F);
+   private static final BeehiveTreeDecorator MANY_BEEHIVES = new BeehiveTreeDecorator(5.0F);
+   private static final FirgTreeDecorator FEW_FIRGS = new FirgTreeDecorator(0.002F);
+   private static final FirgTreeDecorator FIRGS = new FirgTreeDecorator(0.02F);
+   private static final FirgTreeDecorator MORE_FIRGS = new FirgTreeDecorator(0.5F);
+   private static final FirgTreeDecorator MANY_FIRGS = new FirgTreeDecorator(5.0F);
    public static final BaseTreeFeatureConfig OAK_TREE_WITH_MORE_BEEHIVES_CONFIG = OAK_TREE_CONFIG.copy(ImmutableList.of(MANY_BEEHIVES));
    public static final BaseTreeFeatureConfig OAK_TREE_WITH_FEW_BEEHIVES_CONFIG = OAK_TREE_CONFIG.copy(ImmutableList.of(FEW_BEEHIVES));
-   public static final BaseTreeFeatureConfig FIRG_TREE_CONFIG1 = (new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(FIRG_LOG), new SimpleBlockStateProvider(FIRG_LEAVES), new BlobFoliagePlacer(FeatureSpread.create(4, 0), FeatureSpread.create(0, 0), 2), new StraightTrunkPlacer(3, 5, 2), new TwoLayerFeature(6, 2, 4))).setIgnoreVines().build();
    public static final BaseTreeFeatureConfig FIRG_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(FIRG_LOG), new SimpleBlockStateProvider(FIRG_LEAVES), new BlobFoliagePlacer(FeatureSpread.create(6, 0), FeatureSpread.create(0, 0), 2), new StraightTrunkPlacer(1, 6, 3), new TwoLayerFeature(4, 5, 3))).setIgnoreVines().build();
+   public static final BaseTreeFeatureConfig FIRG_TREE_CONFIG1 = (new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(FIRG_LOG), new SimpleBlockStateProvider(FIRG_LEAVES), new BlobFoliagePlacer(FeatureSpread.create(4, 0), FeatureSpread.create(0, 0), 2), new StraightTrunkPlacer(3, 5, 2), new TwoLayerFeature(6, 2, 4))).setIgnoreVines().build();
    public static final BaseTreeFeatureConfig FIRG_TREE_CONFIG2 = (new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(FIRG_LOG), new SimpleBlockStateProvider(FIRG), new BlobFoliagePlacer(FeatureSpread.create(2, 0), FeatureSpread.create(0, 0), 2), new StraightTrunkPlacer(3, 4, 2), new TwoLayerFeature(4, 0, 3))).setIgnoreVines().build();
    public static final BaseTreeFeatureConfig FIRG_TREE_CONFIG3 = (new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(FIRG_LOG), new SimpleBlockStateProvider(FIRG), new BlobFoliagePlacer(FeatureSpread.create(5, 0), FeatureSpread.create(0, 0), 3), new StraightTrunkPlacer(5, 3, 6), new TwoLayerFeature(2, 1, 3))).setIgnoreVines().build();
    public static final BaseTreeFeatureConfig JUNGLE_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(JUNGLE_LOG), new SimpleBlockStateProvider(JUNGLE_LEAVES), new BlobFoliagePlacer(FeatureSpread.create(2, 0), FeatureSpread.create(0, 0), 3), new StraightTrunkPlacer(4, 8, 0), new TwoLayerFeature(1, 0, 1))).setDecorators(ImmutableList.of(new CocoaTreeDecorator(0.2F), TrunkVineTreeDecorator.INSTANCE, LeaveVineTreeDecorator.field_236871_b_)).setIgnoreVines().build();
@@ -229,17 +234,47 @@ public class ModDefaultBiomeFeatures {
    public static final BaseTreeFeatureConfig FANCY_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(OAK_LOG), new SimpleBlockStateProvider(OAK_LEAVES), new FancyFoliagePlacer(FeatureSpread.create(2, 0), FeatureSpread.create(4, 0), 4), new FancyTrunkPlacer(3, 11, 0), new TwoLayerFeature(0, 0, 0, OptionalInt.of(4)))).setIgnoreVines().setHeightmap(Heightmap.Type.MOTION_BLOCKING).build();
    public static final BaseTreeFeatureConfig FRIM_TREE_CONFIG0 = (new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(FRIM_LOG), new SimpleBlockStateProvider(FRIM_LEAVES), new FancyFoliagePlacer(FeatureSpread.create(1, 2), FeatureSpread.create(5, 3), 6), new FancyTrunkPlacer(4, 9, 11), new TwoLayerFeature(7, 4, 12, OptionalInt.of(9)))).setIgnoreVines().setHeightmap(Heightmap.Type.MOTION_BLOCKING).build();
    public static final BaseTreeFeatureConfig FIRG_TREE_CONFIG0 = (new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(FIRG_LOG), new SimpleBlockStateProvider(FIRG_LEAVES), new FancyFoliagePlacer(FeatureSpread.create(4, 3), FeatureSpread.create(1, 5), 2), new FancyTrunkPlacer(8, 2, 6), new TwoLayerFeature(13, 11, 5, OptionalInt.of(2)))).setIgnoreVines().setHeightmap(Heightmap.Type.MOTION_BLOCKING).build();
+   public static final List<BaseTreeFeatureConfig> FIRG_TREE_CONFIGS = ImmutableList.of(FIRG_TREE_CONFIG, FIRG_TREE_CONFIG1, FIRG_TREE_CONFIG2, FIRG_TREE_CONFIG3);
+   public static final List<BeehiveTreeDecorator> BEEHIVE_TREE_DECORATORS = ImmutableList.of(FEW_BEEHIVES, BEEHIVES, MORE_BEEHIVES, MANY_BEEHIVES);
+   public static final List<FirgTreeDecorator> FIRG_TREE_DECORATORS = ImmutableList.of(FEW_FIRGS, FIRGS, MORE_FIRGS, MANY_FIRGS);
    public static final BaseTreeFeatureConfig FANCY_TREE_WITH_FEW_BEEHIVES_CONFIG = FANCY_TREE_CONFIG.copy(ImmutableList.of(FEW_BEEHIVES));
    public static final BaseTreeFeatureConfig FANCY_TREE_WITH_BEEHIVES_CONFIG = FANCY_TREE_CONFIG.copy(ImmutableList.of(BEEHIVES));
    public static final BaseTreeFeatureConfig FANCY_TREE_WITH_MORE_BEEHIVES_CONFIG = FANCY_TREE_CONFIG.copy(ImmutableList.of(MANY_BEEHIVES));
-   public static final BaseTreeFeatureConfig FIRG_TREE_WITH_MORE_BEEHIVES_CONFIG1 = FANCY_TREE_CONFIG.copy(ImmutableList.of(BEEHIVES1));
-   public static final BaseTreeFeatureConfig FIRG_TREE_WITH_MORE_BEEHIVES_CONFIG = FANCY_TREE_CONFIG.copy(ImmutableList.of(BEEHIVES1));
+   public static final BaseTreeFeatureConfig FIRG_TREE_WITH_MORE_BEEHIVES_CONFIG1 = FANCY_TREE_CONFIG.copy(ImmutableList.of(MORE_BEEHIVES));
    public static final BaseTreeFeatureConfig FRIM_TREE_WITH_FEW_BEEHIVES_CONFIG = FANCY_TREE_CONFIG.copy(ImmutableList.of(FEW_BEEHIVES));
-   public static final BaseTreeFeatureConfig FIRG_TREE_WITH_FEW_BEEHIVES_CONFIG = FANCY_TREE_CONFIG.copy(ImmutableList.of(BEEHIVES));
-   public static final BaseTreeFeatureConfig FRIM_TREE_WITH_MANY_BEEHIVES_CONFIG = FANCY_TREE_CONFIG.copy(ImmutableList.of(BEEHIVES1));
-   public static final BaseTreeFeatureConfig FIRG_TREE_WITH_MANY_BEEHIVES_CONFIG = FANCY_TREE_CONFIG.copy(ImmutableList.of(BEEHIVES2));
-   public static final BaseTreeFeatureConfig FIRG_TREE_WITH_MORE_FIRGS_CONFIG = FANCY_TREE_CONFIG.copy(ImmutableList.of(FIRGS));
-   public static final BaseTreeFeatureConfig FIRG_TREE_WITH_MORE_FIRGS_CONFIG1 = FIRG_TREE_CONFIG.copy(ImmutableList.of(FIRGS));
+   public static final BaseTreeFeatureConfig FRIM_TREE_WITH_MANY_BEEHIVES_CONFIG = FANCY_TREE_CONFIG.copy(ImmutableList.of(MORE_BEEHIVES));
+   public static final BaseTreeFeatureConfig FIRG_TREE_WITH_FEW_BEEHIVES_CONFIG = FIRG_TREE_CONFIG.copy(ImmutableList.of(FEW_BEEHIVES));
+   public static final BaseTreeFeatureConfig FIRG_TREE1_WITH_FEW_BEEHIVES_CONFIG = FIRG_TREE_CONFIG1.copy(ImmutableList.of(FEW_BEEHIVES));
+   public static final BaseTreeFeatureConfig FIRG_TREE2_WITH_FEW_BEEHIVES_CONFIG = FIRG_TREE_CONFIG2.copy(ImmutableList.of(FEW_BEEHIVES));
+   public static final BaseTreeFeatureConfig FIRG_TREE3_WITH_FEW_BEEHIVES_CONFIG = FIRG_TREE_CONFIG3.copy(ImmutableList.of(FEW_BEEHIVES));
+   public static final BaseTreeFeatureConfig FIRG_TREE_WITH_BEEHIVES_CONFIG = FIRG_TREE_CONFIG.copy(ImmutableList.of(BEEHIVES));
+   public static final BaseTreeFeatureConfig FIRG_TREE1_WITH_BEEHIVES_CONFIG = FIRG_TREE_CONFIG1.copy(ImmutableList.of(BEEHIVES));
+   public static final BaseTreeFeatureConfig FIRG_TREE2_WITH_BEEHIVES_CONFIG = FIRG_TREE_CONFIG2.copy(ImmutableList.of(BEEHIVES));
+   public static final BaseTreeFeatureConfig FIRG_TREE3_WITH_BEEHIVES_CONFIG = FIRG_TREE_CONFIG3.copy(ImmutableList.of(BEEHIVES));
+   public static final BaseTreeFeatureConfig FIRG_TREE_WITH_MORE_BEEHIVES_CONFIG = FIRG_TREE_CONFIG.copy(ImmutableList.of(MORE_BEEHIVES));
+   public static final BaseTreeFeatureConfig FIRG_TREE1_WITH_MORE_BEEHIVES_CONFIG = FIRG_TREE_CONFIG1.copy(ImmutableList.of(MORE_BEEHIVES));
+   public static final BaseTreeFeatureConfig FIRG_TREE2_WITH_MORE_BEEHIVES_CONFIG = FIRG_TREE_CONFIG2.copy(ImmutableList.of(MORE_BEEHIVES));
+   public static final BaseTreeFeatureConfig FIRG_TREE3_WITH_MORE_BEEHIVES_CONFIG = FIRG_TREE_CONFIG3.copy(ImmutableList.of(MORE_BEEHIVES));
+   public static final BaseTreeFeatureConfig FIRG_TREE_WITH_MANY_BEEHIVES_CONFIG = FIRG_TREE_CONFIG.copy(ImmutableList.of(MANY_BEEHIVES));
+   public static final BaseTreeFeatureConfig FIRG_TREE1_WITH_MANY_BEEHIVES_CONFIG = FIRG_TREE_CONFIG1.copy(ImmutableList.of(MANY_BEEHIVES));
+   public static final BaseTreeFeatureConfig FIRG_TREE2_WITH_MANY_BEEHIVES_CONFIG = FIRG_TREE_CONFIG2.copy(ImmutableList.of(MANY_BEEHIVES));
+   public static final BaseTreeFeatureConfig FIRG_TREE3_WITH_MANY_BEEHIVES_CONFIG = FIRG_TREE_CONFIG3.copy(ImmutableList.of(MANY_BEEHIVES));
+   public static final BaseTreeFeatureConfig FIRG_TREE_WITH_FEW_FIRGS_CONFIG = FIRG_TREE_CONFIG.copy(ImmutableList.of(FEW_FIRGS));
+   public static final BaseTreeFeatureConfig FIRG_TREE1_WITH_FEW_FIRGS_CONFIG = FIRG_TREE_CONFIG1.copy(ImmutableList.of(FEW_FIRGS));
+   public static final BaseTreeFeatureConfig FIRG_TREE2_WITH_FEW_FIRGS_CONFIG = FIRG_TREE_CONFIG2.copy(ImmutableList.of(FEW_FIRGS));
+   public static final BaseTreeFeatureConfig FIRG_TREE3_WITH_FEW_FIRGS_CONFIG = FIRG_TREE_CONFIG3.copy(ImmutableList.of(FEW_FIRGS));
+   public static final BaseTreeFeatureConfig FIRG_TREE_WITH_FIRGS_CONFIG = FIRG_TREE_CONFIG.copy(ImmutableList.of(FIRGS));
+   public static final BaseTreeFeatureConfig FIRG_TREE1_WITH_FIRGS_CONFIG = FIRG_TREE_CONFIG1.copy(ImmutableList.of(FIRGS));
+   public static final BaseTreeFeatureConfig FIRG_TREE2_WITH_FIRGS_CONFIG = FIRG_TREE_CONFIG2.copy(ImmutableList.of(FIRGS));
+   public static final BaseTreeFeatureConfig FIRG_TREE3_WITH_FIRGS_CONFIG = FIRG_TREE_CONFIG3.copy(ImmutableList.of(FIRGS));
+   public static final BaseTreeFeatureConfig FIRG_TREE_WITH_MORE_FIRGS_CONFIG = FIRG_TREE_CONFIG.copy(ImmutableList.of(MORE_FIRGS));
+   public static final BaseTreeFeatureConfig FIRG_TREE1_WITH_MORE_FIRGS_CONFIG = FIRG_TREE_CONFIG1.copy(ImmutableList.of(MORE_FIRGS));
+   public static final BaseTreeFeatureConfig FIRG_TREE2_WITH_MORE_FIRGS_CONFIG = FIRG_TREE_CONFIG2.copy(ImmutableList.of(MORE_FIRGS));
+   public static final BaseTreeFeatureConfig FIRG_TREE3_WITH_MORE_FIRGS_CONFIG = FIRG_TREE_CONFIG3.copy(ImmutableList.of(MORE_FIRGS));
+   public static final BaseTreeFeatureConfig FIRG_TREE_WITH_MANY_FIRGS_CONFIG = FIRG_TREE_CONFIG.copy(ImmutableList.of(MANY_FIRGS));
+   public static final BaseTreeFeatureConfig FIRG_TREE1_WITH_MANY_FIRGS_CONFIG = FIRG_TREE_CONFIG1.copy(ImmutableList.of(MANY_FIRGS));
+   public static final BaseTreeFeatureConfig FIRG_TREE2_WITH_MANY_FIRGS_CONFIG = FIRG_TREE_CONFIG2.copy(ImmutableList.of(MANY_FIRGS));
+   public static final BaseTreeFeatureConfig FIRG_TREE3_WITH_MANY_FIRGS_CONFIG = FIRG_TREE_CONFIG3.copy(ImmutableList.of(MANY_FIRGS));
    public static final BaseTreeFeatureConfig field_230133_o_ = FANCY_TREE_CONFIG.copy(ImmutableList.of(FEW_BEEHIVES));
    public static final BaseTreeFeatureConfig field_230133_p_ = FANCY_TREE_CONFIG.copy(ImmutableList.of(BEEHIVES));
    public static final BaseTreeFeatureConfig field_230134_q_ = (new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(OAK_LOG), new SimpleBlockStateProvider(OAK_LEAVES), new BlobFoliagePlacer(FeatureSpread.create(0, 0),FeatureSpread.create(4, 0), 0), new StraightTrunkPlacer(1, 2, 3), new TwoLayerFeature(3, 2, 1))).setIgnoreVines().setDecorators(ImmutableList.of(BEEHIVES)).build();
@@ -288,7 +323,7 @@ public class ModDefaultBiomeFeatures {
    public static final BlockStateProvidingFeatureConfig SRIUNK_PILE_CONFIG1 = new BlockStateProvidingFeatureConfig((new WeightedBlockStateProvider()).addWeightedBlockstate(SRIUNK_BLOCK, 19).addWeightedBlockstate(BARRIER, 1));
    public static final BlockStateProvidingFeatureConfig BLUE_ICE_PILE_CONFIG = new BlockStateProvidingFeatureConfig((new WeightedBlockStateProvider()).addWeightedBlockstate(BLUE_ICE, 1).addWeightedBlockstate(PACKED_ICE, 5));
    public static final LiquidsConfig WATER_SPRING_CONFIG = new LiquidsConfig(Fluids.WATER.getDefaultState(), true, 4, 1, ImmutableSet.of(Blocks.STONE, Blocks.GRANITE, Blocks.DIORITE, Blocks.ANDESITE));
-   public static final LiquidsConfig WATER1_SPRING_CONFIG = new LiquidsConfig(Fluids.WATER.getDefaultState(), true, 20, 12, ImmutableSet.of(BlockItemInit.BLACK_STONE.get(), BlockItemInit.BLUE_STONE.get(), BlockItemInit.BROWN_STONE.get(), BlockItemInit.CYAN_STONE.get(), BlockItemInit.GREEN_STONE.get(), BlockItemInit.LIGHT_BLUE_STONE.get(), BlockItemInit.LIGHT_BLUE1_STONE.get(), BlockItemInit.LIGHT_GRAY_STONE.get(), BlockItemInit.LIME_STONE.get(), BlockItemInit.MAGENTA_STONE.get(), BlockItemInit.ORANGE_STONE.get(), BlockItemInit.PINK_STONE.get(), BlockItemInit.PURPLE_STONE.get(), BlockItemInit.RED_STONE.get(), BlockItemInit.WHITE_STONE.get(), BlockItemInit.YELLOW_STONE.get(), Blocks.GRANITE, Blocks.DIORITE, Blocks.ANDESITE));
+   public static final LiquidsConfig WATER1_SPRING_CONFIG = new LiquidsConfig(Fluids.WATER.getDefaultState(), true, 20, 12, ImmutableSet.of(BlockItemInit.BLACK_STONE, BlockItemInit.BLUE_STONE, BlockItemInit.BROWN_STONE, BlockItemInit.CYAN_STONE, BlockItemInit.GREEN_STONE, BlockItemInit.LIGHT_BLUE_STONE, BlockItemInit.LIGHT_BLUE1_STONE, BlockItemInit.LIGHT_GRAY_STONE, BlockItemInit.LIME_STONE, BlockItemInit.MAGENTA_STONE, BlockItemInit.ORANGE_STONE, BlockItemInit.PINK_STONE, BlockItemInit.PURPLE_STONE, BlockItemInit.RED_STONE, BlockItemInit.WHITE_STONE, BlockItemInit.YELLOW_STONE, Blocks.GRANITE, Blocks.DIORITE, Blocks.ANDESITE));
    public static final LiquidsConfig LAVA_SPRING_CONFIG = new LiquidsConfig(Fluids.LAVA.getDefaultState(), true, 4, 1, ImmutableSet.of(Blocks.STONE, Blocks.GRANITE, Blocks.DIORITE, Blocks.ANDESITE));
    public static final LiquidsConfig NETHER_SPRING_CONFIG = new LiquidsConfig(Fluids.LAVA.getDefaultState(), false, 4, 1, ImmutableSet.of(Blocks.NETHERRACK));
    public static final LiquidsConfig ENCLOSED_NETHER_SPRING_CONFIG = new LiquidsConfig(Fluids.LAVA.getDefaultState(), false, 5, 0, ImmutableSet.of(Blocks.NETHERRACK));
@@ -355,7 +390,7 @@ public class ModDefaultBiomeFeatures {
    }
 
    public static void addOrangeStone(BiomeGenerationSettings.Builder builder) {
-      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, ORANGE_STONE, 400)).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 2000))));
+      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, ModConfiguredFeatures.EXTRA_ORANGE_STONE);
    }
 
    public static void addBlueStone(BiomeGenerationSettings.Builder builder) {
@@ -363,23 +398,23 @@ public class ModDefaultBiomeFeatures {
    }
 
    public static void addStones(BiomeGenerationSettings.Builder builder) {
-      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, STONE, 40)).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 320))));
-      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, BLACK_STONE, 40)).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig( 0, 0, 320))));
-      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, BLUE_STONE, 40)).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 320))));
-      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, BROWN_STONE, 40)).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig( 0, 0, 320))));
-      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, CYAN_STONE, 40)).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 320))));
-      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, GREEN_STONE, 40)).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig( 0, 0, 320))));
-      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, LIGHT_BLUE1_STONE, 40)).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 320))));
-      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, LIGHT_BLUE_STONE, 40)).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 320))));
-      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, LIGHT_GRAY_STONE, 40)).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 320))));
-      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, LIME_STONE, 40)).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 320))));
-      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, MAGENTA_STONE, 40)).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 320))));
-      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, ORANGE_STONE, 40)).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 320))));
-      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, PINK_STONE, 40)).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 320))));
-      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, PURPLE_STONE, 40)).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 320))));
-      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, RED_STONE, 40)).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 320))));
-      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, WHITE_STONE, 40)).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 320))));
-      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, YELLOW_STONE, 40)).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 320))));
+      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, ModConfiguredFeatures.STONE);
+      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, ModConfiguredFeatures.BLACK_STONE);
+      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, ModConfiguredFeatures.BLUE_STONE);
+      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, ModConfiguredFeatures.BROWN_STONE);
+      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, ModConfiguredFeatures.CYAN_STONE);
+      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, ModConfiguredFeatures.GREEN_STONE);
+      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, ModConfiguredFeatures.LIGHT_BLUE1_STONE);
+      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, ModConfiguredFeatures.LIGHT_BLUE_STONE);
+      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, ModConfiguredFeatures.LIGHT_GRAY_STONE);
+      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, ModConfiguredFeatures.LIME_STONE);
+      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, ModConfiguredFeatures.MAGENTA_STONE);
+      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, ModConfiguredFeatures.ORANGE_STONE);
+      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, ModConfiguredFeatures.PINK_STONE);
+      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, ModConfiguredFeatures.PURPLE_STONE);
+      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, ModConfiguredFeatures.RED_STONE);
+      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, ModConfiguredFeatures.WHITE_STONE);
+      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, ModConfiguredFeatures.YELLOW_STONE);
    }
 
    public static void addOres(BiomeGenerationSettings.Builder builder) {
@@ -482,6 +517,62 @@ public class ModDefaultBiomeFeatures {
 
    public static void addExtraBrownStone(BiomeGenerationSettings.Builder builder) {
       builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, BROWN_STONE, 30)).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(320, 320, 800))));
+   }
+
+   public static void addExtraFirgTree(BiomeGenerationSettings.Builder builder, int count, float extraChanceIn, int extraCountIn) {
+      addExtraTree(builder, FIRG_TREE_CONFIG, count, extraChanceIn, extraCountIn);
+   }
+
+   public static void addExtraFirgTree1(BiomeGenerationSettings.Builder builder, int count, float extraChanceIn, int extraCountIn) {
+      addExtraTree(builder, FIRG_TREE_CONFIG1, count, extraChanceIn, extraCountIn);
+   }
+
+   public static void addExtraFirgTree2(BiomeGenerationSettings.Builder builder, int count, float extraChanceIn, int extraCountIn) {
+      addExtraTree(builder, FIRG_TREE_CONFIG2, count, extraChanceIn, extraCountIn);
+   }
+
+   public static void addExtraFirgTree3(BiomeGenerationSettings.Builder builder, int count, float extraChanceIn, int extraCountIn) {
+      addExtraTree(builder, FIRG_TREE_CONFIG3, count, extraChanceIn, extraCountIn);
+   }
+
+   public static void addFirgTree(BiomeGenerationSettings.Builder builder, int chance) {
+      addTree(builder, FIRG_TREE_CONFIG, chance);
+   }
+
+   public static void addFirgTree1(BiomeGenerationSettings.Builder builder, int chance) {
+      addTree(builder, FIRG_TREE_CONFIG1, chance);
+   }
+
+   public static void addFirgTree2(BiomeGenerationSettings.Builder builder, int chance) {
+      addTree(builder, FIRG_TREE_CONFIG2, chance);
+   }
+
+   public static void addFirgTree3(BiomeGenerationSettings.Builder builder, int chance) {
+      addTree(builder, FIRG_TREE_CONFIG3, chance);
+   }
+
+   public static void addMegaFirgTree(BiomeGenerationSettings.Builder builder, int chance) {
+      addTree(builder, MEGA_FIRG_TREE_CONFIG, chance);
+   }
+
+   public static void addExtraTree(BiomeGenerationSettings.Builder builder, BaseTreeFeatureConfig config, int count, float extraChanceIn, int extraCountIn) {
+      builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.TREE.withConfiguration(config).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(count, extraChanceIn, extraCountIn))));
+   }
+
+   public static void addTree(BiomeGenerationSettings.Builder builder, BaseTreeFeatureConfig config, int chance) {
+      builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.TREE.withConfiguration(config).withPlacement(Placement.CHANCE.configure(new ChanceConfig(chance))));
+   }
+
+   public static ConfiguredRandomFeatureList treeFeature(BaseTreeFeatureConfig config, float chance) {
+      return treeFeature(config).withChance(chance);
+   }
+
+   public static ConfiguredFeature<?, ?> treeFeature(BaseTreeFeatureConfig config) {
+      return Feature.TREE.withConfiguration(config);
+   }
+
+   public static void addTree(BiomeGenerationSettings.Builder builder, GenerationStage.Decoration decorationStage, BaseTreeFeatureConfig config, int chance) {
+      builder.withFeature(decorationStage, Feature.TREE.withConfiguration(config).withPlacement(Placement.CHANCE.configure(new ChanceConfig(chance))));
    }
 
    public static void addExtraCyanStone(BiomeGenerationSettings.Builder builder) {
@@ -688,10 +779,66 @@ public class ModDefaultBiomeFeatures {
    }
 
    public static void addFirgTrees(BiomeGenerationSettings.Builder builder) {
-      builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(Feature.TREE.withConfiguration(FIRG_TREE_CONFIG).withChance(10.0F), Feature.TREE.withConfiguration(FIRG_TREE_WITH_FEW_BEEHIVES_CONFIG).withChance(5.0F)), Feature.TREE.withConfiguration(FIRG_TREE_WITH_MORE_BEEHIVES_CONFIG))).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(50, 5.0F, 10))));
-      builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(Feature.TREE.withConfiguration(FIRG_TREE_CONFIG1).withChance(10.0F), Feature.TREE.withConfiguration(FIRG_TREE_WITH_MORE_BEEHIVES_CONFIG1).withChance(5.0F)), Feature.TREE.withConfiguration(FIRG_TREE_WITH_MANY_BEEHIVES_CONFIG))).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(50, 5.0F, 10))));
-      builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(Feature.TREE.withConfiguration(FIRG_TREE_CONFIG2).withChance(10.0F), Feature.TREE.withConfiguration(FIRG_TREE_WITH_MORE_BEEHIVES_CONFIG).withChance(5.0F)), Feature.TREE.withConfiguration(FIRG_TREE_WITH_MORE_BEEHIVES_CONFIG1))).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(50, 5.0F, 10))));
-      builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(Feature.TREE.withConfiguration(FIRG_TREE_CONFIG3).withChance(10.0F), Feature.TREE.withConfiguration(FIRG_TREE_WITH_MANY_BEEHIVES_CONFIG).withChance(5.0F)), Feature.TREE.withConfiguration(FIRG_TREE_WITH_FEW_BEEHIVES_CONFIG))).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(50, 5.0F, 10))));
+      FIRG_TREE_CONFIGS.forEach(firgTreeConfig -> FIRG_TREE_CONFIGS.stream().<Consumer<? super BeehiveTreeDecorator>>map(secondConfig -> beehiveTreeDecorator -> addTreeWithCountExtra2BaseTreeFeatureConfigAndDecorator(builder, firgTreeConfig, secondConfig, beehiveTreeDecorator)).forEach(BEEHIVE_TREE_DECORATORS::forEach));
+      FIRG_TREE_CONFIGS.forEach(firgTreeConfig -> FIRG_TREE_CONFIGS.stream().<Consumer<? super FirgTreeDecorator>>map(secondConfig -> firgTreeDecorator -> addTreeWithCountExtra2BaseTreeFeatureConfigAndDecorator(builder, firgTreeConfig, secondConfig, firgTreeDecorator)).forEach(FIRG_TREE_DECORATORS::forEach));
+      FIRG_TREE_CONFIGS.forEach(firstConfig -> FIRG_TREE_CONFIGS.forEach(secondConfig -> FIRG_TREE_CONFIGS.forEach(thirdConfig -> BEEHIVE_TREE_DECORATORS.stream().<Consumer<? super FirgTreeDecorator>>map(beehiveTreeDecorator -> firgTreeDecorator -> addTreeWithCountExtra3BaseTreeFeatureConfigAnd2Decorators(builder, firstConfig, secondConfig, thirdConfig, beehiveTreeDecorator, firgTreeDecorator)).forEach(FIRG_TREE_DECORATORS::forEach))));
+   }
+
+   public static void addTreeWithCountExtra2BaseTreeFeatureConfigAndDecorator(BiomeGenerationSettings.Builder builder, BaseTreeFeatureConfig config, BaseTreeFeatureConfig configOfDecorator, TreeDecorator decorator) {
+      addTreeWithCountExtra2BaseTreeFeatureConfig(builder, config, configOfDecorator.copy(ImmutableList.of(decorator)), 1.0F, 0.5F, 5, 0.5F, 1);
+   }
+
+   public static void addTreeWithCountExtra3BaseTreeFeatureConfigAnd2Decorators(BiomeGenerationSettings.Builder builder, BaseTreeFeatureConfig config, BaseTreeFeatureConfig configOfFirstDecorator, BaseTreeFeatureConfig configOfSecondDecorator, TreeDecorator firstDecorator, TreeDecorator secondDecorator) {
+      addTreeWithCountExtra3BaseTreeFeatureConfig(builder, config, configOfFirstDecorator.copy(ImmutableList.of(firstDecorator)), configOfSecondDecorator.copy(ImmutableList.of(secondDecorator)), 1.0F, 0.5F, 5, 0.5F, 1);
+   }
+
+   public static void addTreeWithCountExtra2BaseTreeFeatureConfigAndDecorator(BiomeGenerationSettings.Builder builder, BaseTreeFeatureConfig config, BaseTreeFeatureConfig configOfDecorator, TreeDecorator decorator, float firstChance, float secondChance, int count, float extraChanceIn, int extraCountIn) {
+      addTreeWithCountExtra2BaseTreeFeatureConfig(builder, config, configOfDecorator.copy(ImmutableList.of(decorator)), firstChance, secondChance, count, extraChanceIn, extraCountIn);
+   }
+
+   public static void addTreeWithCountExtra3BaseTreeFeatureConfigAnd2Decorators(BiomeGenerationSettings.Builder builder, BaseTreeFeatureConfig config, BaseTreeFeatureConfig configOfFirstDecorator, BaseTreeFeatureConfig configOfSecondDecorator, TreeDecorator firstDecorator, TreeDecorator secondDecorator, float firstChance, float secondChance, int count, float extraChanceIn, int extraCountIn) {
+      addTreeWithCountExtra3BaseTreeFeatureConfig(builder, config, configOfFirstDecorator.copy(ImmutableList.of(firstDecorator)), configOfSecondDecorator.copy(ImmutableList.of(secondDecorator)), firstChance, secondChance, count, extraChanceIn, extraCountIn);
+   }
+
+   public static void addTreeWithCountExtra2BaseTreeFeatureConfig(BiomeGenerationSettings.Builder builder, BaseTreeFeatureConfig first, BaseTreeFeatureConfig second) {
+      addTreeWithCountExtra2BaseTreeFeatureConfig(builder, first, second, 1.0F, 0.5F, 5, 0.5F, 1);
+   }
+
+   public static void addTreeWithCountExtra3BaseTreeFeatureConfig(BiomeGenerationSettings.Builder builder, BaseTreeFeatureConfig first, BaseTreeFeatureConfig second, BaseTreeFeatureConfig third) {
+      addTreeWithCountExtra3BaseTreeFeatureConfig(builder, first, second, third, 1.0F, 0.5F, 5, 0.5F, 1);
+   }
+
+   public static void addTreeWithCountExtra2BaseTreeFeatureConfig(BiomeGenerationSettings.Builder builder, BaseTreeFeatureConfig first, BaseTreeFeatureConfig second, float firstChance, float secondChance, int count, float extraChanceIn, int extraCountIn) {
+      addRandomSelectorWithCountExtra2ConfiguredFeatures(builder, Feature.TREE.withConfiguration(first), Feature.TREE.withConfiguration(second), firstChance, secondChance, count, extraChanceIn, extraCountIn);
+   }
+
+   public static void addTreeWithCountExtra3BaseTreeFeatureConfig(BiomeGenerationSettings.Builder builder, BaseTreeFeatureConfig first, BaseTreeFeatureConfig second, BaseTreeFeatureConfig third, float firstChance, float secondChance, int count, float extraChanceIn, int extraCountIn) {
+      addRandomSelectorWithCountExtra3ConfiguredFeatures(builder, Feature.TREE.withConfiguration(first), Feature.TREE.withConfiguration(second), Feature.TREE.withConfiguration(third), firstChance, secondChance, count, extraChanceIn, extraCountIn);
+   }
+
+   public static void addRandomSelectorWithCountExtra2ConfiguredFeatures(BiomeGenerationSettings.Builder builder, ConfiguredFeature<?, ?> first, ConfiguredFeature<?, ?> second, float firstChance, float secondChance, int count, float extraChanceIn, int extraCountIn) {
+      List<ConfiguredFeature<?, ?>> features = ImmutableList.of(first);
+      List<Float> chances = ImmutableList.of(firstChance, secondChance);
+      addRandomSelectorWithCountExtra(builder, configuredRandomFeatureList(features, chances), second, count, extraChanceIn, extraCountIn);
+   }
+
+   public static void addRandomSelectorWithCountExtra3ConfiguredFeatures(BiomeGenerationSettings.Builder builder, ConfiguredFeature<?, ?> first, ConfiguredFeature<?, ?> second, ConfiguredFeature<?, ?> third, float firstChance, float secondChance, int count, float extraChanceIn, int extraCountIn) {
+      List<ConfiguredFeature<?, ?>> features = ImmutableList.of(first, second);
+      List<Float> chances = ImmutableList.of(firstChance, secondChance);
+      addRandomSelectorWithCountExtra(builder, configuredRandomFeatureList(features, chances), third, count, extraChanceIn, extraCountIn);
+   }
+
+   public static void addRandomSelectorWithCountExtra(BiomeGenerationSettings.Builder builder, ConfiguredRandomFeatureList list, ConfiguredFeature<?, ?> defaultFeature, int count, float extraChanceIn, int extraCountIn) {
+      addRandomSelectorWithCountExtra(builder, Collections.singletonList(list), defaultFeature, count, extraChanceIn, extraCountIn);
+   }
+
+   public static void addRandomSelectorWithCountExtra(BiomeGenerationSettings.Builder builder, List<ConfiguredRandomFeatureList> lists, ConfiguredFeature<?, ?> defaultFeature, int count, float extraChanceIn, int extraCountIn) {
+      builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(lists, defaultFeature)).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(count, extraChanceIn, extraCountIn))));
+   }
+
+   public static List<ConfiguredRandomFeatureList> configuredRandomFeatureList(List<ConfiguredFeature<?, ?>> features, List<Float> chances) {
+       if (chances.size() < features.size()) IntStream.range(chances.size(), features.size()).mapToObj(i -> 0F).forEach(chances::add);
+       return IntStream.range(0, features.size()).mapToObj(i -> new ConfiguredRandomFeatureList(features.get(i), chances.get(i))).collect(Collectors.toList());
    }
 
    public static void addTallBirchForestTrees(BiomeGenerationSettings.Builder builder) {
@@ -853,7 +1000,12 @@ public class ModDefaultBiomeFeatures {
    public static void addEndCity(BiomeGenerationSettings.Builder builder) {
       builder.withFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, Feature.END_ISLAND.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
    }
+
    public static void addKiomne(BiomeGenerationSettings.Builder builder) {
-      builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION,Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(Feature.TREE.withConfiguration(FIRG_TREE_CONFIG).withChance(10.0F),Feature.TREE.withConfiguration(FRIM_GROUND_BUSH_CONFIG).withChance(50.0F),Feature.TREE.withConfiguration(MEGA_FIRG_TREE_CONFIG).withChance(0.33333334F)),Feature.TREE.withConfiguration(FRIM_TREE_CONFIG))).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(5000, 10.0F,100))).chance(10));
+      builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(
+              treeFeature(FIRG_TREE_CONFIG, 10.0F),
+              treeFeature(FRIM_GROUND_BUSH_CONFIG, 50.0F),
+              treeFeature(MEGA_FIRG_TREE_CONFIG, 0.33333334F)
+      ), treeFeature(FRIM_TREE_CONFIG))).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(5000, 10.0F,100))).chance(10));
    }
 }

@@ -2,6 +2,7 @@ package com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.setup;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.animal.*;
 import com.babcsany.minecraft.ervin_mod_1.entity.animal.hhij.HhijEntity;
+import com.babcsany.minecraft.ervin_mod_1.entity.fish.DrurbFishEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.RoventEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurNirtreEntity;
@@ -26,6 +27,7 @@ public class ModSetup {
         put(LIWRAY, Liwray.setCustomAttributes());
         put(GWURST, GwurstEntity.setCustomAttributes());
         put(ROVENT_ENTITY, RoventEntity.func_234342_eQ_());
+        put(DRURB_ENTITY, DrurbFishEntity.func_234190_eK_());
         put(ZUR_NIRTRE_ENTITY, ZurNirtreEntity.setCustomAttributes());
         put(FREIN_ENTITY, FreinEntity.setCustomAttributes());
         put(VILT_ENTITY, ViltEntity.setCustomAttributes());
@@ -38,10 +40,15 @@ public class ModSetup {
         put($_TRADER_ENTITY, $TraderEntity.setCustomAttributes());
         put(ZOMBIE_TRADER_ENTITY, ZombieTraderEntity.setCustomAttributes());
         put(ZUR_ENTITY, ZurEntity.setCustomAttributes());
+        put(NIRTRE_ENTITY, ZurEntity.setCustomAttributes());
         put(GUBROV, GwurstEntity.setCustomAttributes());
     }
 
     public static <T extends LivingEntity> AttributeModifierMap put(Supplier<EntityType<T>> type, AttributeModifierMap.MutableAttribute mutableAttribute) {
-        return GlobalEntityTypeAttributes.put(type.get(), mutableAttribute.create());
+        return put(type.get(), mutableAttribute);
+    }
+
+    public static <T extends LivingEntity> AttributeModifierMap put(EntityType<T> type, AttributeModifierMap.MutableAttribute mutableAttribute) {
+        return GlobalEntityTypeAttributes.put(type, mutableAttribute.create());
     }
 }

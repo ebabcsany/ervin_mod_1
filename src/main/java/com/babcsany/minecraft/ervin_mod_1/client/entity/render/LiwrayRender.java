@@ -10,7 +10,7 @@ import net.minecraft.util.ResourceLocation;
 public class LiwrayRender extends MobRenderer<Liwray, LiwrayModel<Liwray>> {
 
     protected static final ResourceLocation TEXTURE = new ResourceLocation(Ervin_mod_1.MOD_ID,
-            "textures/entity/zur_entity_1.png");
+            "textures/entity/liwray.png");
 
     public LiwrayRender(EntityRendererManager renderManagerIn) {
         super(renderManagerIn, new LiwrayModel<>(), 0.5f);

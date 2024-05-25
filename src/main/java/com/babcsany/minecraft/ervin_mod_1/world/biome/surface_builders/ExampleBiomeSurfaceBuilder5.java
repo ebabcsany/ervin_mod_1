@@ -3,6 +3,7 @@ package com.babcsany.minecraft.ervin_mod_1.world.biome.surface_builders;
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.block.BlockItemInit_;
 import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -28,23 +29,23 @@ public class ExampleBiomeSurfaceBuilder5 extends SurfaceBuilder<SurfaceBuilderCo
 		if (i == 0) {
 			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock,
 					defaultFluid, seaLevel, seed,
-					new SurfaceBuilderConfig(com.babcsany.minecraft.init.BlockInit.FIRT_BLOCK.get().getDefaultState(),
-							isBurnableBlockItemInit.LEAT_BLOCK_CRAFTING_TABLE.get().getDefaultState(), BlockInit.GRITH_BLOCK.get().getDefaultState()
+					new SurfaceBuilderConfig(com.babcsany.minecraft.init.BlockInit.FIRT_BLOCK.getDefaultState(),
+							isBurnableBlockItemInit.LEAT_BLOCK_CRAFTING_TABLE.getBlock().getDefaultState(), BlockInit.GRITH_BLOCK.getDefaultState()
 					));
 		} else if (i == 1) {
 			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, 5, z, 39, noise, defaultBlock,
 					Fluids.LAVA.getDefaultState().getBlockState(), seaLevel, seed,
-					new SurfaceBuilderConfig(isBurnableBlockItemInit.NARIN_BLOCK.get().getDefaultState(),
-							BlockInit.FI_RT_PLOCK.get().getDefaultState(), BlockItemInit.URVI.get().getDefaultState()
+					new SurfaceBuilderConfig(isBurnableBlockItemInit.NARIN_BLOCK.getDefaultState(),
+							BlockInit.FI_RT_PLOCK.getDefaultState(), BlockItemInit.URVI.getDefaultState()
 					));
 		} else {
 			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock,
 					defaultFluid, seaLevel, seed,
 					new SurfaceBuilderConfig(
 							i == 2 ? Blocks.DIRT.getDefaultState()
-									: BlockItemInit.DURT.get().getDefaultState(),
-							i == 3 ? isBurnableBlockItemInit.VILTDROP_BLOCK.get().getDefaultState()
-									: BlockItemInit.SURT.get().getDefaultState(), isBurnableBlockItemInit.EPKIN.get().getDefaultState()
+									: BlockItemInit.DURT.getDefaultState(),
+							i == 3 ? isBurnableBlockItemInit.VILTDROP_BLOCK.getDefaultState()
+									: BlockItemInit.SURT.getDefaultState(), BlockItemInit_.EPKIN.getDefaultState()
 					));
 		}
 	}
