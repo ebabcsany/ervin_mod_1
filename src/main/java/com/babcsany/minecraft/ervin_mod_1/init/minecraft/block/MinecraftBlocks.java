@@ -33,6 +33,6 @@ public class MinecraftBlocks {
     }
 
     public static Block registerBlockItem(String name, Block blockIn) {
-        return UnusedBlockItems.registerDefault(name, blockIn).getBlock();
+        return ((BlockItem) UnusedBlockItems.registerDefault(name, blockIn)).getBlock();
     }
 }

@@ -11,6 +11,6 @@ import static com.babcsany.minecraft.ervin_mod_1.init.minecraft.block.item.Minec
 
 public class MinecraftBlockItems {
 
-    public static final BlockItem COAL_STAIRS = UnusedBlockItems.registerDefault("coal_stairs", new BurningBlockItem(MinecraftBlocks.COAL_STAIRS, (new Item.Properties()), 12000));
+    public static final BlockItem COAL_STAIRS = (BlockItem) UnusedBlockItems.registerDefault("coal_stairs", new BurningBlockItem(MinecraftBlocks.COAL_STAIRS, (new Item.Properties()), 12000));
 
 }
