@@ -1,6 +1,8 @@
 package com.babcsany.minecraft.ervin_mod_1.init.unused;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
+import com.babcsany.minecraft.ervin_mod_1.item.tier.UnusedItemTier;
+import com.babcsany.minecraft.ervin_mod_1.item.tool.PhiskItem;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -100,7 +102,7 @@ public class UnusedItems {
 
     public static Item addDefault(String path, Item item) {
         ITEMS.add(item);
-        ITEM_PATHS.add(path);
+        addPath(path);
         return LAST_ITEM = item;
     }
 
@@ -111,6 +113,12 @@ public class UnusedItems {
     public static String path(String name) {
         String string = "unused";
         return string + "/" + name;
+    }
+
+    public static void addPath(String path) {
+        if (!ITEM_PATHS.contains(path)) {
+            ITEM_PATHS.add(path);
+        }
     }
 
     public static Item getDefault(String path) {
@@ -131,7 +139,6 @@ public class UnusedItems {
     }
 
     static {
-        Collection<Item> values = unusedItemsProperties("thunm");
-        values.size();
+        registerUnused("thunm", new PhiskItem(UnusedItemTier.THUNM, 6, 3, new Item.Properties()));
     }
 }

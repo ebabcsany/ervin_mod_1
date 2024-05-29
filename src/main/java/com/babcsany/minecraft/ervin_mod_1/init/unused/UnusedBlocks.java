@@ -86,7 +86,7 @@ public class UnusedBlocks {
 
     public static Block addDefault(String path, Block block) {
         BLOCKS.add(block);
-        BLOCK_PATHS.add(path);
+        addPath(path);
         return LAST_BLOCK = block;
     }
 
@@ -97,6 +97,12 @@ public class UnusedBlocks {
     public static String path(String name) {
         String string = "unused";
         return string + "/" + name;
+    }
+
+    public static void addPath(String path) {
+        if (!BLOCK_PATHS.contains(path)) {
+            BLOCK_PATHS.add(path);
+        }
     }
 
     public static Block getDefault(String path) {

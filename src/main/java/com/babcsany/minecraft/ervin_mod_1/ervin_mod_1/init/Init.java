@@ -38,9 +38,6 @@ import com.babcsany.minecraft.ervin_mod_1.init.minecraft.block.MinecraftBlocks;
 import com.babcsany.minecraft.ervin_mod_1.init.minecraft.block.item.MinecraftBlockNamedItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.special.SpecialBlockInit;
 import com.babcsany.minecraft.ervin_mod_1.init.special.SpecialItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.unused.init.UnusedBlockInit;
-import com.babcsany.minecraft.ervin_mod_1.init.unused.init.UnusedBlockItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.unused.init.UnusedItemInit;
 import com.babcsany.minecraft.ervin_mod_1.world.biome.ModBiomeMaker;
 import com.babcsany.minecraft.ervin_mod_1.world.biome.provider.ModBiomeProvider;
 import com.babcsany.minecraft.init.BlockItemInit;
@@ -92,7 +89,7 @@ public class Init extends DefaultInit {
         ModSpawnEggItemInit.SPAWN_EGGS.register(modEventBus);
         com.babcsany.minecraft.ervin_mod_1.init.minecraft.item.spawn_egg.SpawnEggItemInit.SPAWN_EGGS.register(modEventBus);
         BlockNamedItemInit.BLOCK_ITEMS.register(modEventBus);
-        isBurnableSpecialBlockItemInit.SPECIAL_ITEMS.register(modEventBus);
+        isBurnableSpecialBlockItemInit.register();
         isBurnableSpecialItemInit.SPECIAL_ITEMS.register(modEventBus);
         com.babcsany.minecraft.ervin_mod_1.init.item.special.SpecialItemInit.SPECIAL_ITEMS.register(modEventBus);
         EnderToolItemInit.register();
@@ -116,9 +113,6 @@ public class Init extends DefaultInit {
 
     public void default_register(IEventBus modEventBus) {
         BlockInit.register();
-        UnusedBlockInit.BLOCK_DEFERRED_REGISTER.register(modEventBus);
-        UnusedBlockItemInit.BLOCK_ITEM_DEFERRED_REGISTER.register(modEventBus);
-        UnusedItemInit.ITEM_DEFERRED_REGISTER.register(modEventBus);
         H_u_fBlockInit.H_U_F_BLOCKS.register(modEventBus);
         BlockInit BLOCKS = BlockInit.BLOCKS;
         BlockItemInit.ITEMS.register(modEventBus);

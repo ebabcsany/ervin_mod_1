@@ -29,11 +29,11 @@ public abstract class AbstractFurnaceTileEntity extends net.minecraft.tileentity
 
     public static Map<Item, Double> init() {
         Map<Item, Double> map = Maps.newLinkedHashMap();
-        BlockItemInit_.COAL_SLAB.get();
-        BlockItemInit_.CHARCOAL_SLAB.get();
-        MinecraftBlockItems.COAL_STAIRS.get();
-        BlockItemInit_.CHARCOAL_STAIRS.get();
-        BlockItemInit_.CHARCOAL_BLOCK.get();
+//        BlockItemInit_.COAL_SLAB;
+//        BlockItemInit_.CHARCOAL_SLAB;
+//        MinecraftBlockItems.COAL_STAIRS;
+//        BlockItemInit_.CHARCOAL_STAIRS;
+//        BlockItemInit_.CHARCOAL_BLOCK;
 //        ItemInit.DGUCHSR;
         addItemBurnTime(map, GART, 180000);
         addItemBurnTime(map, GARB, 1620000);

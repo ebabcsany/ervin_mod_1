@@ -311,7 +311,7 @@ public class WanderingTraderNirtreEntity extends AbstractNirtreEntity {
          this.timeUntilNextItem = this.rand.nextInt(12000) + 12000;
       }
       if (!this.world.isRemote && this.isAlive() && !this.isChild() && !this.isDropItem() && --this.timeUntilNextItem <= 0) {
-         this.entityDropItem(BlockItemInit_.FIGHIV.get());
+         this.entityDropItem(BlockItemInit_.FIGHIV);
          this.timeUntilNextItem_ = this.rand.nextInt(28000) + 14000;
       }
    }

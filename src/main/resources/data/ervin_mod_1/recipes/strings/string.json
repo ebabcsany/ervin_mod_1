@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "tag": "ervin_mod_1:ingredients/string"
+      "tag": "ervin_mod_1:ingredients/strings/string"
     },
     {
       "item": "minecraft:water_bucket"

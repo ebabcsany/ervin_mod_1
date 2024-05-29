@@ -101,11 +101,11 @@ public abstract class AbstractBlackFurnaceTileEntity extends LockableTileEntity 
    public static Map<Item, Integer> getBurnTimes() {
       Map<Item, Integer> map = Maps.newLinkedHashMap();
       int tragk_block = 500000000;
-      addItemBurnTime(map, BlockItemInit_.COAL_SLAB.get(), 8000);
-      addItemBurnTime(map, BlockItemInit_.CHARCOAL_SLAB.get(), 8000);
-      addItemBurnTime(map, MinecraftBlocks.COAL_STAIRS.get(), 12000);
-      addItemBurnTime(map, BlockItemInit_.CHARCOAL_STAIRS.get(), 12000);
-      addItemBurnTime(map, BlockItemInit_.CHARCOAL_BLOCK.get(), 16000);
+      addItemBurnTime(map, BlockItemInit_.COAL_SLAB, 8000);
+      addItemBurnTime(map, BlockItemInit_.CHARCOAL_SLAB, 8000);
+      addItemBurnTime(map, MinecraftBlocks.COAL_STAIRS, 12000);
+      addItemBurnTime(map, BlockItemInit_.CHARCOAL_STAIRS, 12000);
+      addItemBurnTime(map, BlockItemInit_.CHARCOAL_BLOCK, 16000);
       addItemBurnTime(map, ItemInit.DGUCHSR, 3405);
       addItemBurnTime(map, isBurnableItemInit.GART, 50000);
       addItemBurnTime(map, isBurnableItemInit.GARB, 125000);

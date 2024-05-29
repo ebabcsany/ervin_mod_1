@@ -6,6 +6,7 @@ import com.babcsany.minecraft.ervin_mod_1.init.unused.UnusedBlockItems;
 import com.babcsany.minecraft.ervin_mod_1.item.ModItemTier;
 import com.babcsany.minecraft.ervin_mod_1.item.block.tool.*;
 import com.babcsany.minecraft.ervin_mod_1.item.group.ModItemGroup;
+import com.babcsany.minecraft.ervin_mod_1.util.Cast;
 import net.minecraft.item.*;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -19,7 +20,7 @@ public class EnderToolItemInit {
     public static final Item ENDER_TRASKCRAFTH = register("ender_traskcrafth", new SwordBlockItem(ModItemTier.ENDER_TRASKRACH, BlockInit.ENDER_TRASKCRAFTH, 6, 6.0F, (new Item.Properties().group(ModItemGroup.ERVIN_MOD_1_SEARCH))));
 
     public static BlockItem register(String name, BlockItem blockItem) {
-        return UnusedBlockItems.registerDefault(name, blockItem);
+        return new Cast<BlockItem>().cast(UnusedBlockItems.registerDefault(name, blockItem));
     }
 
     public static void register() {

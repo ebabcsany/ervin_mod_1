@@ -2,11 +2,14 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "minecraft:red_wool"
+      "tag": "ervin_mod_1:ingredients/strings/red"
+    },
+    {
+      "item": "minecraft:red_dye"
     }
   ],
   "result": {
-    "item": "ervin_mod_1:strings/red_string",
-    "count": 4
+    "item": "ervin_mod_1:strings/red",
+    "count": 1
   }
 }

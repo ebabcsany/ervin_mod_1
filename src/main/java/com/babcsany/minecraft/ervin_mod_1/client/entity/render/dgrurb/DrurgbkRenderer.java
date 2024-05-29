@@ -14,7 +14,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class DrurgbkRenderer extends MobRenderer<DrurbFishEntity, SalmonModel<DrurbFishEntity>> {
-   private static final ResourceLocation DRURGBK_LOCATION = new ResourceLocation(Ervin_mod_1.MOD_ID,"textures/entity/dgrurb/fish/drurb.png");
+   private static final ResourceLocation DRURGBK_LOCATION = new ResourceLocation(Ervin_mod_1.MOD_ID,"textures/entity/dgrurb/fish/drurgbk.png");
 
    public DrurgbkRenderer(EntityRendererManager renderManagerIn) {
       super(renderManagerIn, new SalmonModel<>(), 3F);

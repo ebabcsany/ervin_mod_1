@@ -10,6 +10,7 @@ import com.babcsany.minecraft.ervin_mod_1.block.blocks.hot.Trurk;
 import com.babcsany.minecraft.ervin_mod_1.block.crafting_table.LeatBlockCraftingTable;
 import com.babcsany.minecraft.ervin_mod_1.init.unused.UnusedBlockItems;
 import com.babcsany.minecraft.ervin_mod_1.init.unused.UnusedBlocks;
+import com.babcsany.minecraft.ervin_mod_1.util.Cast;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.ExampleTree;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.FirgTree;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.ModSaplingBlock;
@@ -80,11 +81,11 @@ public class isBurnableBlockItemInit {
     }
 
     public static BlockItem registerBlockItem(String name, Block block) {
-        return UnusedBlockItems.registerDefault(name, block);
+        return new Cast<BlockItem>().cast(UnusedBlockItems.registerDefault(name, block));
     }
 
     public static BlockItem registerBlockItem(String name, Block block, Item.Properties properties) {
-        return UnusedBlockItems.registerDefault(name, block, properties);
+        return new Cast<BlockItem>().cast(UnusedBlockItems.registerDefault(name, block, properties));
     }
 
     public static void register() {

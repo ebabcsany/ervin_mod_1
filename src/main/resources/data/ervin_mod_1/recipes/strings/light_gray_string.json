@@ -2,11 +2,14 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "minecraft:light_gray_wool"
+      "tag": "ervin_mod_1:ingredients/strings/light_gray"
+    },
+    {
+      "item": "minecraft:light_gray_dye"
     }
   ],
   "result": {
-    "item": "ervin_mod_1:strings/light_gray_string",
-    "count": 4
+    "item": "ervin_mod_1:strings/light_gray",
+    "count": 1
   }
 }

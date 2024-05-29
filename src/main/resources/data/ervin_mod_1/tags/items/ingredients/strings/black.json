@@ -1,0 +1,20 @@
+{
+  "replace": false,
+  "values": [
+    "ervin_mod_1:strings/blue",
+    "ervin_mod_1:strings/brown",
+    "ervin_mod_1:strings/cyan",
+    "ervin_mod_1:strings/gray",
+    "ervin_mod_1:strings/green",
+    "ervin_mod_1:strings/light_blue",
+    "ervin_mod_1:strings/light_gray",
+    "ervin_mod_1:strings/lime",
+    "ervin_mod_1:strings/magenta",
+    "ervin_mod_1:strings/orange",
+    "ervin_mod_1:strings/pink",
+    "ervin_mod_1:strings/purple",
+    "ervin_mod_1:strings/red",
+    "ervin_mod_1:strings/yellow",
+    "minecraft:string"
+  ]
+}

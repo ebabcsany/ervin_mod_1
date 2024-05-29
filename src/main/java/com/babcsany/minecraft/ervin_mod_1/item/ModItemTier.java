@@ -109,5 +109,3 @@ public enum ModItemTier implements IItemTier {
         return repairMaterial.getValue();
     }
 }
-
-

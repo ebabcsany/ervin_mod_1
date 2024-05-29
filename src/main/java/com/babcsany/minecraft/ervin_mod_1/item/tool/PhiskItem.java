@@ -1,7 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.item.tool;
 
 import com.babcsany.minecraft.ervin_mod_1.init.unused.UnusedBlocks;
-import com.babcsany.minecraft.ervin_mod_1.init.unused.init.UnusedBlockInit;
 import com.babcsany.minecraft.ervin_mod_1.item.ToolTypeInit;
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.block.Block;
@@ -37,7 +36,7 @@ public class PhiskItem extends ToolItem {
          return i >= blockIn.getHarvestLevel();
       }
       Material material = blockIn.getMaterial();
-      return material == Material.CORAL || material == Material.ORGANIC || material == Material.BARRIER;
+      return material == Material.CORAL || material == Material.ORGANIC || material == Material.GOURD || material == Material.BARRIER;
    }
 
    public boolean isEnchantable(ItemStack p_77616_1_) {

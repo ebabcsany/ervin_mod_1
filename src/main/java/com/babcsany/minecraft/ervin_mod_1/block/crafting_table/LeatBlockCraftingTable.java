@@ -1,6 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.block.crafting_table;
 
 import com.babcsany.minecraft.ervin_mod_1.container.LeatBlockCraftingTableContainer;
+import com.babcsany.minecraft.ervin_mod_1.tile_entity.LeatBlockCraftingTableTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -8,6 +9,7 @@ import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.inventory.container.SimpleNamedContainerProvider;
 import net.minecraft.inventory.container.WorkbenchContainer;
 import net.minecraft.stats.Stats;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.IWorldPosCallable;
@@ -15,7 +17,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+
+import javax.annotation.Nullable;
 
 public class LeatBlockCraftingTable extends Block {
     private static final ITextComponent field_220271_a = new TranslationTextComponent("container.crafting");
@@ -30,6 +35,12 @@ public class LeatBlockCraftingTable extends Block {
             player.addStat(Stats.INTERACT_WITH_CRAFTING_TABLE);
             return ActionResultType.SUCCESS;
         }
+    }
+
+    @Nullable
+    @Override
+    public TileEntity createTileEntity(BlockState state, IBlockReader world) {
+        return new LeatBlockCraftingTableTileEntity();
     }
 
     public INamedContainerProvider getContainer(BlockState state, World worldIn, BlockPos pos) {

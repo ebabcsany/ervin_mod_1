@@ -16,7 +16,6 @@ import com.babcsany.minecraft.ervin_mod_1.init.minecraft.block.item.MinecraftBlo
 import com.babcsany.minecraft.ervin_mod_1.init.minecraft.item.spawn_egg.SpawnEggItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.special.SpecialItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.unused.UnusedBlockItems;
-import com.babcsany.minecraft.ervin_mod_1.init.unused.init.UnusedBlockItemInit;
 import com.babcsany.minecraft.init.BlockItemInit;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
