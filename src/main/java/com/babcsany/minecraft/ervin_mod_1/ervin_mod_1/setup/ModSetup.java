@@ -7,7 +7,6 @@ import com.babcsany.minecraft.ervin_mod_1.entity.monster.RoventEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurNirtreEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.*;
-import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
@@ -28,7 +27,7 @@ public class ModSetup {
         put(GWURST, GwurstEntity.setCustomAttributes());
         put(ROVENT_ENTITY, RoventEntity.func_234342_eQ_());
         put(DRURB_ENTITY, DrurbFishEntity.func_234190_eK_());
-        put(ZUR_NIRTRE_ENTITY, ZurNirtreEntity.setCustomAttributes());
+//        put(ZUR_NIRTRE_ENTITY, ZurNirtreEntity.setCustomAttributes());
         put(FREIN_ENTITY, FreinEntity.setCustomAttributes());
         put(VILT_ENTITY, ViltEntity.setCustomAttributes());
         put(SRACH_ENTITY, SrachEntity.setCustomAttributes());
@@ -36,11 +35,11 @@ public class ModSetup {
         put(HHIJ_ENTITY, HhijEntity.setCustomAttributes());
         put(WANDERING_TRADER_NIRTRE_ENTITY, WanderingTraderNirtreEntity.setCustomAttributes());
         put(TRADER_NIRTRE_ENTITY, TraderNirtreEntity.setCustomAttributes());
-        put(TRADER_NIRTRE1_ENTITY, TraderNirtre1Entity.setCustomAttributes());
+//        put(TRADER_NIRTRE1_ENTITY, TraderNirtre1Entity.setCustomAttributes());
         put($_TRADER_ENTITY, $TraderEntity.setCustomAttributes());
         put(ZOMBIE_TRADER_ENTITY, ZombieTraderEntity.setCustomAttributes());
-        put(ZUR_ENTITY, ZurEntity.setCustomAttributes());
-        put(NIRTRE_ENTITY, ZurEntity.setCustomAttributes());
+        put(ZUR, ZurEntity.setCustomAttributes());
+//        put(NIRTRE_ENTITY, ZurEntity.setCustomAttributes());
         put(GUBROV, GwurstEntity.setCustomAttributes());
     }
 
@@ -51,4 +50,6 @@ public class ModSetup {
     public static <T extends LivingEntity> AttributeModifierMap put(EntityType<T> type, AttributeModifierMap.MutableAttribute mutableAttribute) {
         return GlobalEntityTypeAttributes.put(type, mutableAttribute.create());
     }
+
+
 }

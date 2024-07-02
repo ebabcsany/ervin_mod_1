@@ -1,5 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.block.tripwire.tripwire_hook;
 
+import com.babcsany.minecraft.ervin_mod_1.block.tripwire.ModTripWireBlock;
 import com.google.common.base.MoreObjects;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
@@ -10,20 +11,37 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
+import java.util.Objects;
 
 public class ModTripWireHookBlock extends TripWireHookBlock {
+   private final Block tripwire;
+   private final Block tripwireHook;
+
    public ModTripWireHookBlock(Properties properties) {
+      this(properties, Blocks.TRIPWIRE, Blocks.TRIPWIRE_HOOK);
+   }
+
+   public ModTripWireHookBlock(Properties properties, Block tripwire) {
+      this(properties, tripwire, Blocks.TRIPWIRE_HOOK);
+   }
+
+   public ModTripWireHookBlock(Properties properties, Block tripwire, Block tripwireHook) {
       super(properties);
+//      tripwire = ModTripWireAndHook.TRIPWIRE != null ? ModTripWireAndHook.TRIPWIRE : tripwire;
+//      tripwireHook = ModTripWireAndHook.TRIPWIRE_HOOK != null ? ModTripWireAndHook.TRIPWIRE_HOOK : tripwireHook;
+      this.tripwire = tripwire == null ? Objects.requireNonNull(ModTripWireBlock.TRIP_WIRE) : tripwire;
+      this.tripwireHook = tripwireHook == null ? this : tripwireHook;
    }
 
    public Block getTripWire() {
-      return Blocks.TRIPWIRE;
+      return this.tripwire;
    }
 
    public Block getTripWireHook() {
-      return Blocks.TRIPWIRE_HOOK;
+      return this.tripwireHook;
    }
 
+   @Override
    public void calculateState(World worldIn, BlockPos pos, BlockState hookState, boolean attaching, boolean shouldNotifyNeighbours, int searchRange, @Nullable BlockState state) {
       Direction direction = hookState.get(FACING);
       boolean flag = hookState.get(ATTACHED);

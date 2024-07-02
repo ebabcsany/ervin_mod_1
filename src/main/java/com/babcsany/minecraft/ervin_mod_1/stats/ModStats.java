@@ -1,0 +1,17 @@
+package com.babcsany.minecraft.ervin_mod_1.stats;
+
+import net.minecraft.stats.IStatFormatter;
+import net.minecraft.stats.Stats;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.registry.Registry;
+
+public class ModStats {
+    public static final ResourceLocation HUIHK_CAUGHT = registerCustom("huihk_caught", IStatFormatter.DEFAULT);
+
+    private static ResourceLocation registerCustom(String key, IStatFormatter formatter) {
+        ResourceLocation resourcelocation = new ResourceLocation(key);
+        Registry.register(Registry.CUSTOM_STAT, key, resourcelocation);
+        Stats.CUSTOM.get(resourcelocation, formatter);
+        return resourcelocation;
+    }
+}

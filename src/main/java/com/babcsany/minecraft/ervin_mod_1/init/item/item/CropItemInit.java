@@ -17,7 +17,7 @@ public class CropItemInit {
     }
 
     public static Item register(String name, Item itemIn) {
-        return UnusedItems.addDefault("seeds/" + name, itemIn);
+        return UnusedItems.registerDefault("crops/" + name, itemIn);
     }
 
     public static void register() {

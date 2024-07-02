@@ -32,7 +32,7 @@ public class TwustBiomeSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfi
 			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock,
 					defaultFluid, seaLevel, seed,
 					new SurfaceBuilderConfig(
-							i == 6 ? BlockInit.SCRAFTH.getDefaultState() : BlockItemInit.KALT_BLOCK.getDefaultState(), BlockItemInit.DURT_GURBF.getDefaultState(), BlockItemInit.DURT.getDefaultState()));
+							i == 6 ? BlockInit.SCRAFTH.getDefaultState() : BlockItemInit.KALT_BLOCK.getDefaultState(), BlockItemInit.DURT_GURBF.getBlock().getDefaultState(), BlockItemInit.DURT.getBlock().getDefaultState()));
 		}
 	}
 }

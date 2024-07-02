@@ -1,8 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.ai.goal;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.TraderNirtre1Entity;
-import com.babcsany.minecraft.ervin_mod_1.entity.villager.TraderNirtreEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.villager.WanderingTraderNirtreEntity;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.player.PlayerEntity;
 

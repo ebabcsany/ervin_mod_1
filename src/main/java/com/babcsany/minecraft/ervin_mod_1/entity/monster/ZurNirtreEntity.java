@@ -28,7 +28,6 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
-import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
@@ -268,7 +267,7 @@ public class ZurNirtreEntity extends AgeableEntity {
 
    @Nullable
    public CreatureEntity createChild(CreatureEntity ageable) {
-      return EntityInit.ZUR_ENTITY.create(this.world);
+      return EntityInit.ZUR.create(this.world);
    }
 
    /*public void setVillagerData(VillagerData p_213792_1_) {

@@ -23,12 +23,13 @@ public class Example0Biome {
 		MobSpawnInfo.Builder spawnInfoBuilder = new MobSpawnInfo.Builder();
 		BiomeAmbience.Builder ambienceBuilder = new BiomeAmbience.Builder();
 		Biome.Builder builder = new Biome.Builder();
-		generationSettingsBuilder.withSurfaceBuilder(configuredSurfaceBuilderSupplier);
 		spawnInfoBuilder.withSpawner(EntityClassification.MONSTER, new SpawnListEntry(EntityType.ZOMBIE, 10, 2, 5));
-		spawnInfoBuilder.withSpawner(EntityClassification.MONSTER, new SpawnListEntry(EntityInit.ZUR_ENTITY, 5, 5, 20));
+		spawnInfoBuilder.withSpawner(EntityClassification.MONSTER, new SpawnListEntry(EntityInit.ZUR, 5, 5, 20));
 		spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityType.BEE, 20, 2, 10));
 		spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.VILT_ENTITY, 30, 15, 40));
 		spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.SRACH_ENTITY, 8, 8, 16));
+		generationSettingsBuilder.withSurfaceBuilder(configuredSurfaceBuilderSupplier);
+
 		DefaultBiomeFeatures.withOceanStructures(generationSettingsBuilder);
 		DefaultBiomeFeatures.withOverworldOres(generationSettingsBuilder);
 		DefaultBiomeFeatures.withExtraGoldOre(generationSettingsBuilder);
@@ -39,25 +40,27 @@ public class Example0Biome {
 		DefaultBiomeFeatures.withCavesAndCanyons(generationSettingsBuilder);
 		ModDefaultBiomeFeatures.addEndCity(generationSettingsBuilder);
 		ModDefaultBiomeFeatures.addWaterLakes(generationSettingsBuilder);
-		ModBiomeFeatures.addExampleFeature(generationSettingsBuilder, 1000);
+		ModBiomeFeatures.addExampleFeature(generationSettingsBuilder, 100);
 		ModDefaultBiomeFeatures.addStones(generationSettingsBuilder);
 		ModDefaultBiomeFeatures.addExtraVilktBlock(generationSettingsBuilder);
 		ModDefaultBiomeFeatures.addKiomne(generationSettingsBuilder);
 		DefaultBiomeFeatures.withFrozenTopLayer(generationSettingsBuilder);
+
 		ambienceBuilder.setWaterColor(46724639);
 		ambienceBuilder.setWaterFogColor(46769357);
 		ambienceBuilder.setFogColor(4253846);
 		ambienceBuilder.withSkyColor(ModBiomeMaker.getSkyColorWithTemperatureModifier(6.8F));
 		ambienceBuilder.withGrassColor(16715412);
+
 		builder.precipitation(Biome.RainType.SNOW);
 		builder.scale(121.2F);
 		builder.temperature(5.5F);
 		builder.setEffects(ambienceBuilder.build());
 		builder.withMobSpawnSettings(spawnInfoBuilder.build());
+		builder.withGenerationSettings(generationSettingsBuilder.build());
 		builder.category(Biome.Category.RIVER);
 		builder.downfall(5.5F);
 		builder.depth(12.12F);
-		builder.withGenerationSettings(generationSettingsBuilder.build());
 		return builder.build();
 	}
 }

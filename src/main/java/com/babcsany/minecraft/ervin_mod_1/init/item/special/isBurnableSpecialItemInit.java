@@ -23,7 +23,7 @@ public class isBurnableSpecialItemInit {
     public static final DebugSriunkStick DEBUG_SRIUNK_STICK = register("debug_sriunk_stick", new DebugSriunkStick(properties()));
 
     public static <T extends Item> T register(String name, T item) {
-        return new Cast<T>().cast(UnusedItems.addDefault(name, item));
+        return new Cast<T>().cast(UnusedItems.registerDefault(name, item));
     }
 
     public static Item.Properties properties() {

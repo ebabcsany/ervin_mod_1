@@ -7,10 +7,10 @@
     "side": "ervin_mod_1:block/firg"
   },
   "elements": [
-    {   "from": [ 6, 0, 0 ],
-      "to": [ 16, 16, 16 ],
+    {   "from": [ 0, 0, 0 ],
+      "to": [ 16, 10, 16 ],
       "faces": {
-        "down":  { "texture": "#bottom", "cullface": "down" },
+        "down":  { "texture": "#bottom" },
         "up":    { "texture": "#top" },
         "north": { "texture": "#side" },
         "south": { "texture": "#side" },

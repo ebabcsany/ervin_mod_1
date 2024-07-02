@@ -1,8 +1,15 @@
 package com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.init;
 
+import com.babcsany.minecraft.ervin_mod_1.client.network.play.ModClientPlayNetHandler;
+import com.babcsany.minecraft.ervin_mod_1.client.renderer.entity.ModEntityRendererManager;
+import com.babcsany.minecraft.ervin_mod_1.command.ModCommands;
+import com.babcsany.minecraft.ervin_mod_1.data.ModFluidTagsProvider;
+import com.babcsany.minecraft.ervin_mod_1.data.ModLootTableProvider;
+import com.babcsany.minecraft.ervin_mod_1.enchantment.ModEnchantments;
 import com.babcsany.minecraft.ervin_mod_1.entity.ModEntityClassification;
 import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.registries.Compost;
 import com.babcsany.minecraft.ervin_mod_1.init.*;
+import com.babcsany.minecraft.ervin_mod_1.init.block.animation.colors.AnimationBlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.container.ContainerInit;
 import com.babcsany.minecraft.ervin_mod_1.init.container.FurnaceContainerInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.$ItemInit;
@@ -35,9 +42,13 @@ import com.babcsany.minecraft.ervin_mod_1.init.item.tool.isBurnableSpecialToolIt
 import com.babcsany.minecraft.ervin_mod_1.init.item.tool.isBurnableToolItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.tool.stone.StoneToolItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.minecraft.block.MinecraftBlocks;
+import com.babcsany.minecraft.ervin_mod_1.init.minecraft.block.item.MinecraftBlockItems;
 import com.babcsany.minecraft.ervin_mod_1.init.minecraft.block.item.MinecraftBlockNamedItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.minecraft.item.spawn_egg.SpawnEggItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.special.SpecialBlockInit;
 import com.babcsany.minecraft.ervin_mod_1.init.special.SpecialItemInit;
+import com.babcsany.minecraft.ervin_mod_1.item.ModItemModelsProperties;
+import com.babcsany.minecraft.ervin_mod_1.network.play.ModServerPlayNetHandler;
 import com.babcsany.minecraft.ervin_mod_1.world.biome.ModBiomeMaker;
 import com.babcsany.minecraft.ervin_mod_1.world.biome.provider.ModBiomeProvider;
 import com.babcsany.minecraft.init.BlockItemInit;
@@ -47,8 +58,11 @@ import com.babcsany.minecraft.init.*;
 import com.babcsany.minecraft.init.item.ItemInit;
 import com.babcsany.minecraft.init.lc.block.blocks.H_u_fBlockInit;
 import net.minecraftforge.eventbus.api.IEventBus;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Init extends DefaultInit {
+    public static final Logger LOGGER = LogManager.getLogger();
 
     public Init(IEventBus modEventBus) {
         super();
@@ -57,12 +71,15 @@ public class Init extends DefaultInit {
     }
 
     public static void register(IEventBus modEventBus) {
+        com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.register();
+        ModBlockStates.register();
+        ModConfiguredFeatures.register();
         SoundInit.register();
         BiomeInit.BIOMES.register(modEventBus);
         IMolaBlocks.BLOCKS.register(modEventBus);
         com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit.BLOCKS.register(modEventBus);
         BlockItemInit_.BLOCK_ITEMS.register(modEventBus);
-        SpecialBlockFoodItemInit.BURNABLE_FOOD_BLOCK_ITEMS.register(modEventBus);
+        SpecialBlockFoodItemInit.register();
         isBurnableFoodItemInit.BURNABLE_FOODS.register(modEventBus);
         BlockFoodItemInit.FOOD_ITEMS.register(modEventBus);
         com.babcsany.minecraft.ervin_mod_1.init.item.block.isBurnableBlockItemInit.BLOCK_ITEMS.register(modEventBus);
@@ -87,7 +104,7 @@ public class Init extends DefaultInit {
         IronToolItemInit.TOOLS.register(modEventBus);
         StoneToolItemInit.TOOL_ITEMS.register(modEventBus);
         ModSpawnEggItemInit.SPAWN_EGGS.register(modEventBus);
-        com.babcsany.minecraft.ervin_mod_1.init.minecraft.item.spawn_egg.SpawnEggItemInit.SPAWN_EGGS.register(modEventBus);
+        SpawnEggItemInit.SPAWN_EGGS.register(modEventBus);
         BlockNamedItemInit.BLOCK_ITEMS.register(modEventBus);
         isBurnableSpecialBlockItemInit.register();
         isBurnableSpecialItemInit.SPECIAL_ITEMS.register(modEventBus);
@@ -100,14 +117,14 @@ public class Init extends DefaultInit {
         com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit.ITEMS.register(modEventBus);
         MilkBlockFoodItemInit.register();
         MilkFoodItemInit.FOOD_ITEMS.register(modEventBus);
-        MinecraftBlockNamedItemInit.BLOCK_ITEMS.register(modEventBus);
+        MinecraftBlockNamedItemInit.register();
         SpecialBlockInit.SPECIAL_BLOCKS.register(modEventBus);
         com.babcsany.minecraft.ervin_mod_1.init.ParticleInit.PARTICLE_TYPES.register(modEventBus);
         ModTreeDecorators.register();
-        com.babcsany.minecraft.ervin_mod_1.init.WorldCarverInit.CARVERS.register(modEventBus);
-        com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.BLOCKS.register(modEventBus);
-        com.babcsany.minecraft.ervin_mod_1.init.block.animation.colors.BlockItemInit.ANIMATION_BLOCKS.register(modEventBus);
+        WorldCarverInit.CARVERS.register(modEventBus);
+        AnimationBlockItemInit.ANIMATION_BLOCKS.register(modEventBus);
         MinecraftBlocks.BLOCKS.register(modEventBus);
+        MinecraftBlockItems.register();
         isBurnableBlockItemInit.register();
     }
 
@@ -123,24 +140,57 @@ public class Init extends DefaultInit {
         ParticleInit PARTICLES = ParticleInit.PARTICLES;
         PaintingInit.PAINTINGS.register(modEventBus);
         registers();
-        defaultRegister();
     }
 
     public void registers() {
+//        Minecraft minecraft = Minecraft.getInstance();
+//        String worldName = "";
+//        SaveFormat.LevelSave saveformat$levelsave;
+//        try {
+//            saveformat$levelsave = minecraft.getSaveLoader().getLevelSave(worldName);
+//        } catch (IOException ioexception2) {
+//            LOGGER.warn("Failed to read level {} data", worldName, ioexception2);
+//            SystemToast.func_238535_a_(minecraft, worldName);
+//            minecraft.displayGuiScreen((Screen) null);
+//            return;
+//        }
+//
+//        Function<SaveFormat.LevelSave, DatapackCodec> quadFunction = Minecraft::loadDataPackCodec;
+//        Function4<SaveFormat.LevelSave, DynamicRegistries.Impl, IResourceManager, DatapackCodec, IServerConfiguration> worldStorage = Minecraft::loadWorld;
+//        boolean vanillaOnly = false;
+//        DatapackCodec datapackcodec = quadFunction.apply((SaveFormat.LevelSave) worldStorage);
+//        ResourcePackList resourcepacklist = new ResourcePackList(new ServerPackFinder(), new FolderPackFinder(saveformat$levelsave.resolveFilePath(FolderName.DATAPACKS).toFile(), IPackNameDecorator.WORLD));
+//
+//        try {
+//            DatapackCodec datapackcodec1 = MinecraftServer.func_240772_a_(resourcepacklist, datapackcodec, vanillaOnly);
+//            CompletableFuture<DataPackRegistries> completablefuture = ModDataPackRegistries.func_240961_a_(resourcepacklist.func_232623_f_(), Commands.EnvironmentType.DEDICATED, 2, Util.getServerExecutor(), Runnable::run);
+//            minecraft.driveUntil(completablefuture::isDone);
+//            DataPackRegistries datapackregistries = completablefuture.get();
+//            IServerConfiguration iserverconfiguration = worldStorage.apply(saveformat$levelsave, DynamicRegistries.func_239770_b_(), datapackregistries.getResourceManager(), datapackcodec1);
+//        } catch (ExecutionException | InterruptedException interruptedexception) {
+//            resourcepacklist.close();
+//        }
         ModBiomeProvider.register();
         ModConfiguredSurfaceBuilders.register();
         ModBiomeMaker.register();
         ModEntityClassification.register();
+        ModCommands.register();
         ModBiomeRegistry.register();
         ModDimensions.register();
         ModDimensionTypes.register();
         ModDimensionSettings.register();
         ModWorlds.register();
+        ModEnchantments.register();
+        ModLootTableProvider.register();
+        ModClientPlayNetHandler.register();
+        ModFluidTagsProvider.register();
+        ModBiomeFeatures.register();
+        ModEntityRendererManager.register();
+        ModServerPlayNetHandler.register();
 //        FireBlock.init();
+        ModItemModelsProperties.init();
+//        ModBlockModelsProperties.init();
         Compost.init();
-    }
-
-    public void defaultRegister() {
     }
 
     public static Init init(IEventBus modEventBus) {

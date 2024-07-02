@@ -227,7 +227,7 @@ public class TraderNirtre1Entity extends AbstractTraderNirtre1Entity {
    public void onStruckByLightning_(LightningBoltEntity lightningBolt) {
       if (this.world.getDifficulty() != Difficulty.PEACEFUL) {
          LOGGER.info("Trader Nirtre {} was struck by lightning {}.", this, lightningBolt);
-         ZurEntity zurEntity = EntityInit.ZUR_ENTITY.create(this.world);
+         ZurEntity zurEntity = EntityInit.ZUR.create(this.world);
          zurEntity.setLocationAndAngles(this.getPosX(), this.getPosY(), this.getPosZ(), this.rotationYaw, this.rotationPitch);
          zurEntity.onInitialSpawn((IServerWorld) this.world, this.world.getDifficultyForLocation(zurEntity.getPosition()), SpawnReason.CONVERSION, null, null);
          zurEntity.setNoAI(this.isAIDisabled());

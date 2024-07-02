@@ -20,7 +20,7 @@ public class SpecialBlockInit {
     public static final Block TFJHU_1 = register("tfjhu/tfjhu_1", new Block(Block.Properties.create(Material.ROCK).speedFactor(3).sound(SoundType.CHAIN)));
 
     public static Block register(String name, Block block) {
-        return UnusedBlocks.registerBlock(string(name), block);
+        return UnusedBlocks.registerDefault(string(name), block);
     }
 
     private static String string(String name) {

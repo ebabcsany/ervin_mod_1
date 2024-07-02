@@ -1,7 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.block.blocks;
 
 import com.babcsany.minecraft.ervin_mod_1.container.CraintBlockCraftingTableContainer;
-import com.babcsany.minecraft.ervin_mod_1.container.LeatBlockCraftingTableContainer;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;

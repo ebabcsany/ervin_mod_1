@@ -4,6 +4,7 @@ import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.block.blocks.minecraft.stairs.RedstoneStairs;
 import com.babcsany.minecraft.ervin_mod_1.init.unused.UnusedBlockItems;
 import com.babcsany.minecraft.ervin_mod_1.init.unused.UnusedBlocks;
+import com.babcsany.minecraft.ervin_mod_1.util.Cast;
 import net.minecraft.block.Block;
 import net.minecraft.block.StairsBlock;
 import net.minecraft.item.BlockItem;
@@ -33,6 +34,6 @@ public class MinecraftBlocks {
     }
 
     public static Block registerBlockItem(String name, Block blockIn) {
-        return ((BlockItem) UnusedBlockItems.registerDefault(name, blockIn)).getBlock();
+        return UnusedBlocks.registerBlockItem(name, blockIn);
     }
 }

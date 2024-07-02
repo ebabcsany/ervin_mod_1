@@ -42,7 +42,7 @@ public class Craint extends ToolItem_1 implements IVanishable {
 
    /**
     * Gets a map of item attribute modifiers, used by ItemSword to increase hit damage.
-    * @return
+    * @return;
     */
    public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlotType equipmentSlot) {
       return equipmentSlot == EquipmentSlotType.MAINHAND ? this.attributeModifiers : super.getAttributeModifiers(equipmentSlot);

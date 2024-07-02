@@ -15,6 +15,6 @@ public class H_u_fBlockInit {
 
     public static final DeferredRegister<Block> H_U_F_BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Ervin_mod_1.MOD_ID);
 
-    public static final Block H_U_F_UUUUUUUU = UnusedBlocks.registerBlock("h_u_f_uuuuuuuu", new Block(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.NETHERRACK).setRequiresTool().tickRandomly().hardnessAndResistance(5000000.0F)));
+    public static final Block H_U_F_UUUUUUUU = UnusedBlocks.registerDefault("h_u_f_uuuuuuuu", new Block(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.NETHERRACK).setRequiresTool().tickRandomly().hardnessAndResistance(5000000.0F)));
 
 }

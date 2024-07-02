@@ -1,7 +1,5 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.villager;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.NirtreLookAtCustomerGoal;
-import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.NirtreTradeWithPlayerGoal;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.TraderNirtreTrades;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.spawn_egg.ModSpawnEggItemInit;
@@ -10,8 +8,8 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.entity.item.ExperienceOrbEntity;
+import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
@@ -21,13 +19,12 @@ import net.minecraft.potion.Potions;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nullable;
 
-public class TraderNirtreEntity extends AbstractNirtreEntity {
+public class TraderNirtreEntity extends AbstractVillagerEntity {
    @Nullable
    private BlockPos traderNirtreTarget;
    public int timeUntilNextItem = this.rand.nextInt(8000) + 8000;
@@ -53,9 +50,9 @@ public class TraderNirtreEntity extends AbstractNirtreEntity {
       this.goalSelector.addGoal(0, new UseItemGoal<>(this, new ItemStack(Items.MILK_BUCKET), SoundEvents.ENTITY_GENERIC_DRINK, (trader) -> this.world.isRaining() && trader.isInvisible()));
       this.goalSelector.addGoal(-1, new UseItemGoal<>(this, PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.LONG_FIRE_RESISTANCE), SoundEvents.ENTITY_GENERIC_DRINK, (trader) -> !this.world.isNightTime() && !trader.isInvisible()));
       this.goalSelector.addGoal(0, new UseItemGoal<>(this, new ItemStack(Items.MILK_BUCKET), SoundEvents.ENTITY_GENERIC_DRINK, (trader) -> this.world.isNightTime() && trader.isInvisible()));
-      this.goalSelector.addGoal(1, new NirtreTradeWithPlayerGoal(this));
+      this.goalSelector.addGoal(1, new TradeWithPlayerGoal(this));
       this.goalSelector.addGoal(1, new PanicGoal(this, 0.5D));
-      this.goalSelector.addGoal(1, new NirtreLookAtCustomerGoal(this));
+      this.goalSelector.addGoal(1, new LookAtCustomerGoal(this));
       this.goalSelector.addGoal(4, new MoveTowardsRestrictionGoal(this, 0.35D));
       this.goalSelector.addGoal(8, new WaterAvoidingRandomWalkingGoal(this, 0.35D));
       this.goalSelector.addGoal(9, new LookAtWithoutMovingGoal(this, PlayerEntity.class, 3.0F, 1.0F));
@@ -79,11 +76,6 @@ public class TraderNirtreEntity extends AbstractNirtreEntity {
    @Override
    public boolean hasXPBar() {
       return false;
-   }
-
-   @Override
-   protected void onNirtreTrade(MerchantOffer offer) {
-
    }
 
    public boolean func_213705_dZ() {
@@ -116,7 +108,7 @@ public class TraderNirtreEntity extends AbstractNirtreEntity {
       TraderNirtreTrades.ITrade[] avillagernirtretrades$itrade = TraderNirtreTrades.field_221240_b.get(1);
       if (avillagernirtretrades$itrade != null) {
          MerchantOffers merchantoffers = this.getOffers();
-         this.addTraderNirtreTrades(merchantoffers, avillagernirtretrades$itrade, 10);
+         this.addTrades(merchantoffers, avillagernirtretrades$itrade, 10);
          int i = this.rand.nextInt(avillagernirtretrades$itrade.length);
          TraderNirtreTrades.ITrade villagertrades$itrade = avillagernirtretrades$itrade[i];
          MerchantOffer merchantoffer = villagertrades$itrade.getOffer(this, this.rand);
@@ -125,11 +117,6 @@ public class TraderNirtreEntity extends AbstractNirtreEntity {
          }
 
       }
-   }
-
-   @Override
-   protected void populateTradeData1() {
-
    }
 
    public void setOffers(MerchantOffers offersIn) {
@@ -210,27 +197,6 @@ public class TraderNirtreEntity extends AbstractNirtreEntity {
    @Nullable
    private BlockPos getWanderTarget() {
       return this.traderNirtreTarget;
-   }
-
-   public void onStruckByLightning(ServerWorld serverWorld, LightningBoltEntity lightningBolt) {
-      if (serverWorld.getDifficulty() != Difficulty.HARD) {
-         LOGGER.info("Trader Nirtre {} was struck by lightning {}.", this, lightningBolt);
-         TraderNirtre1Entity traderNirtre1Entity = EntityInit.TRADER_NIRTRE1_ENTITY.create(serverWorld);
-         traderNirtre1Entity.setLocationAndAngles(this.getPosX(), this.getPosY(), this.getPosZ(), this.rotationYaw, this.rotationPitch);
-         traderNirtre1Entity.onInitialSpawn(serverWorld, serverWorld.getDifficultyForLocation(traderNirtre1Entity.getPosition()), SpawnReason.CONVERSION, null, null);
-         traderNirtre1Entity.setNoAI(this.isAIDisabled());
-         if (this.hasCustomName()) {
-            traderNirtre1Entity.setCustomName(this.getCustomName());
-            traderNirtre1Entity.setCustomNameVisible(this.isCustomNameVisible());
-         }
-
-         traderNirtre1Entity.enablePersistence();
-         this.world.addEntity(traderNirtre1Entity);
-         this.remove();
-      } else {
-         super.causeLightningStrike(serverWorld, lightningBolt);
-      }
-
    }
 
    public void livingTick() {

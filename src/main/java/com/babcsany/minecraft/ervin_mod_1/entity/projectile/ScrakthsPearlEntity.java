@@ -1,7 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.projectile;
 
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.minecraft.entity.EntityInit;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -9,7 +8,6 @@ import net.minecraft.entity.item.EnderPearlEntity;
 import net.minecraft.entity.monster.EndermiteEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.entity.projectile.ProjectileItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.DamageSource;

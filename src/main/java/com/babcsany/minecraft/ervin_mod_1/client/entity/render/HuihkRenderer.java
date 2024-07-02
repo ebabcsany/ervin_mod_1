@@ -1,5 +1,9 @@
 package com.babcsany.minecraft.ervin_mod_1.client.entity.render;
 
+import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
+import com.babcsany.minecraft.ervin_mod_1.client.renderer.entity.ModEntityRendererManager;
+import com.babcsany.minecraft.ervin_mod_1.entity.projectile.Huihk;
+import com.babcsany.minecraft.ervin_mod_1.item.HuihkRodItem;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.Minecraft;
@@ -9,7 +13,6 @@ import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.entity.player.PlayerEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.projectile.HuihkEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.HandSide;
 import net.minecraft.util.ResourceLocation;
@@ -22,26 +25,30 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class HuihkRenderer extends EntityRenderer<HuihkEntity> {
-   private static final ResourceLocation BOBBER = new ResourceLocation("textures/entity/fishing_hook.png");
-   private static final RenderType field_229103_e_ = RenderType.getEntityCutout(BOBBER);
+public class HuihkRenderer extends EntityRenderer<Huihk> {
+   private static final ResourceLocation HUIHK = new ResourceLocation(Ervin_mod_1.MOD_ID, "textures/entity/hook/huihk.png");
+   private static final RenderType CUTOUT = RenderType.getEntityCutout(HUIHK);
+   protected final ModEntityRendererManager modEntityRendererManager;
 
    public HuihkRenderer(EntityRendererManager renderManagerIn) {
       super(renderManagerIn);
+      this.modEntityRendererManager = (ModEntityRendererManager) renderManagerIn;
    }
 
-   public void render(HuihkEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
-      PlayerEntity playerentity = entityIn.func_234606_i_();
+   @Override
+   public void render(Huihk entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
+      PlayerEntity playerentity = entityIn.getPlayer();
       if (playerentity != null) {
+         EntityRendererManager manager = this.renderManager;
          matrixStackIn.push();
          matrixStackIn.push();
          matrixStackIn.scale(0.5F, 0.5F, 0.5F);
-         matrixStackIn.rotate(this.renderManager.getCameraOrientation());
+         matrixStackIn.rotate(manager.getCameraOrientation());
          matrixStackIn.rotate(Vector3f.YP.rotationDegrees(180.0F));
          MatrixStack.Entry matrixstack$entry = matrixStackIn.getLast();
          Matrix4f matrix4f = matrixstack$entry.getMatrix();
          Matrix3f matrix3f = matrixstack$entry.getNormal();
-         IVertexBuilder ivertexbuilder = bufferIn.getBuffer(field_229103_e_);
+         IVertexBuilder ivertexbuilder = bufferIn.getBuffer(CUTOUT);
          func_229106_a_(ivertexbuilder, matrix4f, matrix3f, packedLightIn, 0.0F, 0, 0, 1);
          func_229106_a_(ivertexbuilder, matrix4f, matrix3f, packedLightIn, 1.0F, 0, 1, 1);
          func_229106_a_(ivertexbuilder, matrix4f, matrix3f, packedLightIn, 1.0F, 1, 1, 0);
@@ -49,7 +56,7 @@ public class HuihkRenderer extends EntityRenderer<HuihkEntity> {
          matrixStackIn.pop();
          int i = playerentity.getPrimaryHand() == HandSide.RIGHT ? 1 : -1;
          ItemStack itemstack = playerentity.getHeldItemMainhand();
-         if (!(itemstack.getItem() instanceof net.minecraft.item.FishingRodItem)) {
+         if (!(itemstack.getItem() instanceof HuihkRodItem)) {
             i = -i;
          }
 
@@ -64,8 +71,8 @@ public class HuihkRenderer extends EntityRenderer<HuihkEntity> {
          double d5;
          double d6;
          float f3;
-         if ((this.renderManager.options == null || this.renderManager.options.getPointOfView().func_243192_a()) && playerentity == Minecraft.getInstance().player) {
-            double d7 = this.renderManager.options.fov;
+         if ((manager.options == null || manager.options.getPointOfView().func_243192_a()) && playerentity == Minecraft.getInstance().player) {
+            double d7 = manager.options.fov;
             d7 = d7 / 100.0D;
             Vector3d vector3d = new Vector3d((double)i * -0.36D * d7, -0.045D * d7, 0.4D);
             vector3d = vector3d.rotatePitch(-MathHelper.lerp(partialTicks, playerentity.prevRotationPitch, playerentity.rotationPitch) * ((float)Math.PI / 180F));
@@ -94,8 +101,8 @@ public class HuihkRenderer extends EntityRenderer<HuihkEntity> {
          int j = 16;
 
          for(int k = 0; k < 16; ++k) {
-            func_229104_a_(f4, f5, f6, ivertexbuilder1, matrix4f1, func_229105_a_(k, 16));
-            func_229104_a_(f4, f5, f6, ivertexbuilder1, matrix4f1, func_229105_a_(k + 1, 16));
+            setVertexPosAndColor(f4, f5, f6, ivertexbuilder1, matrix4f1, func_229105_a_(k, 16));
+            setVertexPosAndColor(f4, f5, f6, ivertexbuilder1, matrix4f1, func_229105_a_(k + 1, 16));
          }
 
          matrixStackIn.pop();
@@ -103,22 +110,23 @@ public class HuihkRenderer extends EntityRenderer<HuihkEntity> {
       }
    }
 
-   private static float func_229105_a_(int p_229105_0_, int p_229105_1_) {
+   public static float func_229105_a_(int p_229105_0_, int p_229105_1_) {
       return (float)p_229105_0_ / (float)p_229105_1_;
    }
 
-   private static void func_229106_a_(IVertexBuilder p_229106_0_, Matrix4f p_229106_1_, Matrix3f p_229106_2_, int p_229106_3_, float p_229106_4_, int p_229106_5_, int p_229106_6_, int p_229106_7_) {
-      p_229106_0_.pos(p_229106_1_, p_229106_4_ - 0.5F, (float)p_229106_5_ - 0.5F, 0.0F).color(255, 255, 255, 255).tex((float)p_229106_6_, (float)p_229106_7_).overlay(OverlayTexture.NO_OVERLAY).lightmap(p_229106_3_).normal(p_229106_2_, 0.0F, 1.0F, 0.0F).endVertex();
+   private static void func_229106_a_(IVertexBuilder builder, Matrix4f matrix4f, Matrix3f matrix3f, int lightmapUV, float x, int y, int u, int v) {
+      builder.pos(matrix4f, x - 0.5F, (float)y - 0.5F, 0.0F).color(255, 255, 255, 255).tex((float)u, (float)v).overlay(OverlayTexture.NO_OVERLAY).lightmap(lightmapUV).normal(matrix3f, 0.0F, 1.0F, 0.0F).endVertex();
    }
 
-   private static void func_229104_a_(float p_229104_0_, float p_229104_1_, float p_229104_2_, IVertexBuilder p_229104_3_, Matrix4f p_229104_4_, float p_229104_5_) {
-      p_229104_3_.pos(p_229104_4_, p_229104_0_ * p_229104_5_, p_229104_1_ * (p_229104_5_ * p_229104_5_ + p_229104_5_) * 0.5F + 0.25F, p_229104_2_ * p_229104_5_).color(0, 0, 0, 255).endVertex();
+   private static void setVertexPosAndColor(float moveX, float y, float z, IVertexBuilder builder, Matrix4f matrix4f, float scale) {
+      builder.pos(matrix4f, moveX * scale, y * (scale * scale + scale) * 0.5F + 0.25F, z * scale).color(96, 40, 40, 255).endVertex();
    }
 
    /**
     * Returns the location of an entity's texture.
     */
-   public ResourceLocation getEntityTexture(HuihkEntity entity) {
-      return BOBBER;
+   @Override
+   public ResourceLocation getEntityTexture(Huihk entity) {
+      return HUIHK;
    }
 }

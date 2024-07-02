@@ -36,7 +36,7 @@ public class ExampleBiomeSurfaceBuilder4 extends SurfaceBuilder<SurfaceBuilderCo
 					defaultFluid, seaLevel, seed,
 					new SurfaceBuilderConfig(
 							i == 1 ? Blocks.DIRT.getDefaultState()
-									: BlockItemInit.DURT.getDefaultState(),
+									: BlockItemInit.DURT.getBlock().getDefaultState(),
 							isBurnableBlockItemInit.VILTDROP_BLOCK.getDefaultState(), BlockItemInit_.EPKIN.getDefaultState()
 					));
 		}

@@ -20,7 +20,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class EnchantedBookItem extends Item {
+public class EnchantedBookItem extends net.minecraft.item.EnchantedBookItem {
    public EnchantedBookItem(Properties builder) {
       super(builder);
    }

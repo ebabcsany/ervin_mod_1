@@ -2,14 +2,14 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "tag": "ervin_mod_1:ingredients/stone/stones/brown_stone"
+      "tag": "ervin_mod_1:ingredients/stone/stones/brown"
     },
     {
       "item": "minecraft:brown_dye"
     }
   ],
   "result": {
-    "item": "ervin_mod_1:stone/stones/brown_stone",
+    "item": "ervin_mod_1:stone/stones/brown",
     "count": 1
   }
 }

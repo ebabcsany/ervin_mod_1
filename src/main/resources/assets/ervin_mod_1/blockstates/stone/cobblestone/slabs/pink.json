@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "ervin_mod_1:block/stone/cobblestone/slabs/pink"
+    },
+    "type=double": {
+      "model": "ervin_mod_1:block/stone/cobblestones/pink"
+    },
+    "type=top": {
+      "model": "ervin_mod_1:block/stone/cobblestone/slab_top/pink"
+    }
+  }
+}

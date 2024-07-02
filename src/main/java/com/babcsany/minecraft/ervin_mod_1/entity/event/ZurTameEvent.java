@@ -20,7 +20,6 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.event;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.animal.hhij.HhijAnimalEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.AbstractZurEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraftforge.common.MinecraftForge;

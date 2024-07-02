@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "ervin_mod_1:block/stone/stones/white",
+    "top": "ervin_mod_1:block/stone/stones/white",
+    "side": "ervin_mod_1:block/stone/stones/white"
+  }
+}

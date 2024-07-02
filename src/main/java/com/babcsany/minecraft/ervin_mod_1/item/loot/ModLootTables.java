@@ -1,5 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.item.loot;
 
+import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.google.common.collect.Sets;
 import net.minecraft.loot.LootTables;
 import net.minecraft.util.ResourceLocation;
@@ -8,13 +9,13 @@ import java.util.Collections;
 import java.util.Set;
 
 public class ModLootTables {
-    private static final Set<ResourceLocation> LOOT_TABLES = LootTables.getReadOnlyLootTables();
+    private static final Set<ResourceLocation> LOOT_TABLES = Sets.newHashSet();
     private static final Set<ResourceLocation> READ_ONLY_LOOT_TABLES = Collections.unmodifiableSet(LOOT_TABLES);
     public static final ResourceLocation GAMEPLAY_HUIHK = register("gameplay/huihk");
     public static final ResourceLocation GAMEPLAY_HUIHK_JUNK = register("gameplay/huihk/junk");
 
     private static ResourceLocation register(String id) {
-        return register(new ResourceLocation(id));
+        return register(new ResourceLocation(Ervin_mod_1.MOD_ID, id));
     }
 
     private static ResourceLocation register(ResourceLocation id) {

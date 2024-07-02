@@ -2,7 +2,6 @@ package com.babcsany.minecraft.ervin_mod_1.item.tool;
 
 import com.babcsany.minecraft.ervin_mod_1.item.Rarity;
 import com.google.common.collect.Maps;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.IItemTier;

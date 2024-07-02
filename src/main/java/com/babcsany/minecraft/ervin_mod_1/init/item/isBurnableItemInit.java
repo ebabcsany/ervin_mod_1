@@ -7,6 +7,7 @@ import com.babcsany.minecraft.ervin_mod_1.item.group.ModItemGroup;
 import com.babcsany.minecraft.ervin_mod_1.item.items.Sriunk;
 import com.babcsany.minecraft.ervin_mod_1.item.tool.TieredItem_1;
 import net.minecraft.fluid.Fluids;
+import net.minecraft.item.CompassItem;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -23,7 +24,7 @@ public class isBurnableItemInit {
     public static final Item LAVA_TERAT_BUCKET = register("terat/lava_terat_bucket", new TeratBucket(() -> Fluids.LAVA, (new Item.Properties()).isImmuneToFire().group(ModItemGroup.ERVIN_MOD_1_SEARCH)));
     public static final Item DURK = register("durk", new Item((new Item.Properties()).isImmuneToFire().group(ModItemGroup.ERVIN_MOD_1_ITEMS).group(ModItemGroup.ERVIN_MOD_1_SEARCH)));
     public static final Item SRIUNK = register("sriunk", new Sriunk(ModItemTier.SRIUNK, 13, new TieredItem_1.Properties().isImmuneToFire().group(ModItemGroup.ERVIN_MOD_1_ITEMS).group(ModItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final Item SRIFROUL = register("srifroul", new Item(new Item.Properties().isImmuneToFire().group(ModItemGroup.ERVIN_MOD_1_ITEMS).group(ModItemGroup.ERVIN_MOD_1_SEARCH)));
+    public static final Item SRIFROUL = register("srifroul", new CompassItem(new Item.Properties().isImmuneToFire().group(ModItemGroup.ERVIN_MOD_1_ITEMS).group(ModItemGroup.ERVIN_MOD_1_SEARCH)));
     public static final Item VILTDROP = register("viltdrop", new Item((new Item.Properties()).isImmuneToFire().group(ModItemGroup.ERVIN_MOD_1_ITEMS).group(ModItemGroup.ERVIN_MOD_1_SEARCH)));
     public static final Item SRIUNK_STICK = register("stick/sriunk_stick", new Item((new Item.Properties()).isImmuneToFire().group(ModItemGroup.ERVIN_MOD_1_ITEMS).group(ModItemGroup.ERVIN_MOD_1_SEARCH)));
     public static final Item LEAT = register("leat", new Item((new Item.Properties()).isImmuneToFire().group(ModItemGroup.ERVIN_MOD_1_ITEMS).group(ModItemGroup.ERVIN_MOD_1_SEARCH)));

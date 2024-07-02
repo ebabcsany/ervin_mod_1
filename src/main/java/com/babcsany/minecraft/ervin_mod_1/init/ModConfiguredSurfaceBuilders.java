@@ -43,7 +43,7 @@ public class ModConfiguredSurfaceBuilders {
 
     @Deprecated
     private static <C extends ISurfaceBuilderConfig, F extends SurfaceBuilder<C>> F register(String key, F builderIn) {
-        return Registry.register(Registry.SURFACE_BUILDER, Ervin_mod_1.MOD_ID + ":" + key, builderIn);
+        return Registry.register(Registry.SURFACE_BUILDER, Ervin_mod_1.identifier(key), builderIn);
     }
 
     public static ConfiguredSurfaceBuilder<SurfaceBuilderConfig> register(String name, String top, String under, String underWater) {

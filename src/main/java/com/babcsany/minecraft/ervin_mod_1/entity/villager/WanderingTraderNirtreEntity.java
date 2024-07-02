@@ -1,7 +1,5 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.villager;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.NirtreLookAtCustomerGoal;
-import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.NirtreTradeWithPlayerGoal;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.WanderingTraderNirtreTrades;
 import com.babcsany.minecraft.ervin_mod_1.init.item.block.BlockItemInit_;
 import com.babcsany.minecraft.ervin_mod_1.init.item.spawn_egg.ModSpawnEggItemInit;
@@ -11,6 +9,7 @@ import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.item.ExperienceOrbEntity;
+import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
@@ -27,7 +26,7 @@ import net.minecraft.world.server.ServerWorld;
 import javax.annotation.Nullable;
 import java.util.EnumSet;
 
-public class WanderingTraderNirtreEntity extends AbstractNirtreEntity {
+public class WanderingTraderNirtreEntity extends AbstractVillagerEntity {
    private static final int[] LEVEL_EXPERIENCE_AMOUNTS = new int[]{0, 50, 350, 750, 1250};
    @Nullable
    private BlockPos wanderTarget;
@@ -56,9 +55,9 @@ public class WanderingTraderNirtreEntity extends AbstractNirtreEntity {
       this.goalSelector.addGoal(0, new SwimGoal(this));
       this.goalSelector.addGoal(0, new UseItemGoal<>(this, PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.INVISIBILITY), SoundEvents.ENTITY_WANDERING_TRADER_DISAPPEARED, (trader) -> !this.world.isDaytime() && !trader.isInvisible()));
       this.goalSelector.addGoal(0, new UseItemGoal<>(this, new ItemStack(Items.MILK_BUCKET), SoundEvents.ENTITY_WANDERING_TRADER_REAPPEARED, (trader) -> this.world.isDaytime() && trader.isInvisible()));
-      this.goalSelector.addGoal(1, new NirtreTradeWithPlayerGoal(this));
+      this.goalSelector.addGoal(1, new TradeWithPlayerGoal(this));
       this.goalSelector.addGoal(1, new PanicGoal(this, 0.5D));
-      this.goalSelector.addGoal(1, new NirtreLookAtCustomerGoal(this));
+      this.goalSelector.addGoal(1, new LookAtCustomerGoal(this));
       this.goalSelector.addGoal(2, new WanderingTraderNirtreEntity.MoveToGoal(this, 2.0D, 0.35D));
       this.goalSelector.addGoal(4, new MoveTowardsRestrictionGoal(this, 0.35D));
       this.goalSelector.addGoal(8, new WaterAvoidingRandomWalkingGoal(this, 0.35D));
@@ -107,24 +106,9 @@ public class WanderingTraderNirtreEntity extends AbstractNirtreEntity {
       if (aWanderingTraderNirtreTrades$iTrade != null && aWanderingTraderNirtreTrades$iTrade1 != null) {
          MerchantOffers merchantoffers = this.getOffers();
          MerchantOffers merchantoffers1 = this.getOffers();
-         this.addWanderingTraderNirtreTrades(merchantoffers, aWanderingTraderNirtreTrades$iTrade, 10);
+         this.addTrades(merchantoffers, aWanderingTraderNirtreTrades$iTrade, 10);
          int i = this.rand.nextInt(aWanderingTraderNirtreTrades$iTrade.length);
          WanderingTraderNirtreTrades.ITrade wanderingTraderNirtreTrades$iTrade = aWanderingTraderNirtreTrades$iTrade[i];
-         MerchantOffer merchantoffer = wanderingTraderNirtreTrades$iTrade.getOffer(this, this.rand);
-         if (merchantoffer != null) {
-            merchantoffers.add(merchantoffer);
-         }
-
-      }
-   }
-
-   protected void populateTradeData1() {
-      WanderingTraderNirtreTrades.ITrade[] aWanderingTraderNirtreTrades$iTrade1 = WanderingTraderNirtreTrades.trade2.get(1);
-      if (aWanderingTraderNirtreTrades$iTrade1 != null) {
-         MerchantOffers merchantoffers = this.getOffers();
-         this.addWanderingTraderNirtreTrades(merchantoffers, aWanderingTraderNirtreTrades$iTrade1, 1);
-         int i = this.rand.nextInt(aWanderingTraderNirtreTrades$iTrade1.length);
-         WanderingTraderNirtreTrades.ITrade wanderingTraderNirtreTrades$iTrade = aWanderingTraderNirtreTrades$iTrade1[i];
          MerchantOffer merchantoffer = wanderingTraderNirtreTrades$iTrade.getOffer(this, this.rand);
          if (merchantoffer != null) {
             merchantoffers.add(merchantoffer);
@@ -162,7 +146,7 @@ public class WanderingTraderNirtreEntity extends AbstractNirtreEntity {
       return false;
    }
 
-   protected void onNirtreTrade(MerchantOffer offer) {
+   protected void onVillagerTrade(MerchantOffer offer) {
       int f = 3 + this.rand.nextInt(4);
       this.xp += offer.getGivenExp();
       this.previousCustomer = this.getCustomer();
@@ -212,7 +196,7 @@ public class WanderingTraderNirtreEntity extends AbstractNirtreEntity {
       return item == Items.MILK_BUCKET ? SoundEvents.ENTITY_WANDERING_TRADER_DRINK_MILK : SoundEvents.ENTITY_WANDERING_TRADER_DRINK_POTION;
    }
 
-   protected SoundEvent getNirtreYesNoSound(boolean getYesSound) {
+   protected SoundEvent getVillagerYesNoSound(boolean getYesSound) {
       return getYesSound ? SoundEvents.ENTITY_WANDERING_TRADER_YES : SoundEvents.ENTITY_WANDERING_TRADER_NO;
    }
 

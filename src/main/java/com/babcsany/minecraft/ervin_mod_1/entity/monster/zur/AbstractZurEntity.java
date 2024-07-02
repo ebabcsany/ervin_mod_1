@@ -3,7 +3,6 @@ package com.babcsany.minecraft.ervin_mod_1.entity.monster.zur;
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.zur.ZurBreedGoal;
 import com.babcsany.minecraft.ervin_mod_1.entity.animal.hhij.HhijEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.event.ZurTameEvent;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.goal.BowAttackGoal;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.ZurTrades;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
@@ -35,6 +34,7 @@ import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.merchant.IMerchant;
+import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
 import net.minecraft.entity.merchant.villager.VillagerData;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -72,7 +72,7 @@ import javax.annotation.Nullable;
 import java.util.*;
 import java.util.function.Predicate;
 
-public abstract class AbstractZurEntity extends AgeableEntity implements INPC, IMerchant, IRangedAttackMob {
+public abstract class AbstractZurEntity extends TameableZurEntity implements INPC, IMerchant, IRangedAttackMob {
     public final NonNullList<ItemStack> inventory = NonNullList.withSize(1000000, ItemStack.EMPTY);
     private final BowAttackGoal<AbstractZurEntity> aiArrowAttack = new BowAttackGoal<>(this, 1.0D, 20, 15.0F);
     private static final UUID MODIFIER_UUID = UUID.fromString("5CD17E52-A79A-43D3-A529-90FDE04B181E");
@@ -303,12 +303,10 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
     }
 
     protected void registerGoals() {
-        /*AttackGoal attackGoal = new AttackGoal(this);
-        if (this.world.getDifficulty() != Difficulty.PEACEFUL && !this.getHeldItemMainhand().equals(new ItemStack(isBurnableItemInit.VIRKT.get())) || !this.isTamed()) {
-            this.goalSelector.addGoal(4, attackGoal);
-        } else {
-            this.goalSelector.removeGoal(attackGoal);
-        }*/
+        AttackGoal attackGoal = new AttackGoal(this);
+        this.goalSelector.addGoal(4, attackGoal);
+        this.goalSelector.addGoal(8, new LeapAtTargetGoal(this, 53));
+        this.goalSelector.addGoal(6, new AbstractZurEntity.TargetGoal<>(this, AbstractVillagerEntity.class));
     }
 
     public void func_234438_m_(ItemStack p_234438_1_) {
@@ -622,39 +620,7 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
             }
 
             if (item == isBurnableItemInit.LEAT) {
-
-                if (this.world.isRemote) {
-                    boolean flag = this.isOwner(player) || this.isTamed() || item == isBurnableItemInit.LEAT && !this.isTamed();
-                    return flag ? ActionResultType.CONSUME : ActionResultType.PASS;
-                } else {
-                    if (this.isTamed()) {
-                        if (this.isBreedingItem(itemstack) && this.getHealth() < this.getMaxHealth()) {
-                            if (!player.abilities.isCreativeMode) {
-                                itemstack.shrink(1);
-                            }
-
-                            this.heal((float)item.getFood().getHealing());
-                            return ActionResultType.SUCCESS;
-                        }
-                    } else if (item == isBurnableItemInit.LEAT) {
-                        if (!player.abilities.isCreativeMode) {
-                            itemstack.shrink(1);
-                        }
-
-                        if (this.rand.nextInt(16) == 1 && !onZurTame(this, player)) {
-                            this.setTamedBy(player);
-                            this.navigator.clearPath();
-                            this.setAttackTarget(null);
-                            this.world.setEntityState(this, (byte)7);
-                        } else {
-                            this.world.setEntityState(this, (byte)6);
-                        }
-
-                        return ActionResultType.SUCCESS;
-                    }
-
-                    return super.getEntityInteractionResult(player, hand);
-                }
+                return setTameActionResultType(player, hand);
             } else if (!this.getOffers().isEmpty()) {
                 if (!this.world.isRemote) {
                     this.setCustomer(player);
@@ -1596,7 +1562,7 @@ public abstract class AbstractZurEntity extends AgeableEntity implements INPC, I
     }
 
     static class TargetGoal<T extends LivingEntity> extends NearestAttackableTargetGoal<T> {
-        public TargetGoal(ZurEntity zur, Class<T> classTarget) {
+        public TargetGoal(AbstractZurEntity zur, Class<T> classTarget) {
             super(zur, classTarget, true);
         }
 

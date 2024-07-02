@@ -1,6 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.block.tripwire;
 
 import com.babcsany.minecraft.ervin_mod_1.block.tripwire.tripwire_hook.ModTripWireHookBlock;
+import com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.TripWireBlock;
@@ -11,6 +12,7 @@ import net.minecraft.world.World;
 
 public class ModTripWireBlock extends TripWireBlock {
    private final ModTripWireHookBlock hook;
+   public static Block TRIP_WIRE = null;
 
    public ModTripWireBlock(ModTripWireHookBlock hook, Properties properties) {
       super(hook, properties);

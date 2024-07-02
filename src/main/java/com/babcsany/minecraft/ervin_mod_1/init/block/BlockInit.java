@@ -3,10 +3,12 @@ package com.babcsany.minecraft.ervin_mod_1.init.block;
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.block.Fighiv;
 import com.babcsany.minecraft.ervin_mod_1.block.ModPoweredRailBlock;
-import com.babcsany.minecraft.ervin_mod_1.block.blocks.*;
-import com.babcsany.minecraft.ervin_mod_1.block.tripwire.tripwire_hook.ModTripWireHookBlock;
 import com.babcsany.minecraft.ervin_mod_1.block.TargCropsBlock;
-import com.babcsany.minecraft.ervin_mod_1.block.tripwire.*;
+import com.babcsany.minecraft.ervin_mod_1.block.blocks.Firg;
+import com.babcsany.minecraft.ervin_mod_1.block.blocks.FirgSlab;
+import com.babcsany.minecraft.ervin_mod_1.block.blocks.FirgStairs;
+import com.babcsany.minecraft.ervin_mod_1.block.blocks.ModOreBlock;
+import com.babcsany.minecraft.ervin_mod_1.block.tripwire.ModTripWireBlock;
 import com.babcsany.minecraft.ervin_mod_1.block.tripwire.tripwire_hook.*;
 import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.unused.UnusedBlocks;
@@ -14,7 +16,6 @@ import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraftforge.common.ToolType;
-import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -28,8 +29,8 @@ public class BlockInit {
     public static final Block EXAMPLE_PORTAL_BLOCK = register("example_portal_block", new Block(AbstractBlock.Properties.from(Blocks.BEDROCK)/*create(Material.PORTAL).doesNotBlockMovement().tickRandomly().hardnessAndResistance(-1.0F).sound(SoundType.GLASS).setLightLevel(LightValue -> 11)*/));
     public static final Block TARG_STAGE = register("crops/targ_stage", new TargCropsBlock(Block.Properties.create(Material.PLANTS).hardnessAndResistance(0.5F).doesNotBlockMovement().tickRandomly().sound(SoundType.CROP)));
     public static final Block FIRG = register("firg", new Firg(Block.Properties.create(Material.ROCK).harvestLevel(0).harvestTool(ToolType.PICKAXE).hardnessAndResistance(10.0f)));
-    public static final Block FIRG_SLAB = register("firg_slab", new FirgSlab(Block.Properties.create(Material.ROCK).harvestLevel(0).harvestTool(ToolType.PICKAXE).hardnessAndResistance(10.0F, 15.0F)));
-    public static final Block FIRG_STAIRS = register("firg_stairs", new FirgStairs(FIRG::getDefaultState, Block.Properties.from(FIRG)));
+    public static final Block FIRG_SLAB = register("firg_slab", BlockItemInit.createSlabBlock(Material.ROCK, 0, 10.0F, 15.0F, ToolType.PICKAXE));
+    public static final Block FIRG_STAIRS = register("firg_stairs", BlockItemInit.createStairsBlockFrom(FIRG));
     public static final Block ENDER_SRACKHT = register("ender_srackht", new Block(Block.Properties.create(Material.ROCK).setRequiresTool().harvestLevel(1).harvestTool(ToolType.PICKAXE).hardnessAndResistance(20.0f)));
     public static final Block ENDER_STAKRACH = register("ender_stakrach", new Block(Block.Properties.create(Material.WOOD).setRequiresTool().harvestLevel(2).harvestTool(ToolType.AXE).hardnessAndResistance(40.0f)));
     public static final Block ENDER_SRAKTCAF = register("ender_sraktcaf", new Block(Block.Properties.create(Material.ROCK).setRequiresTool().harvestLevel(3).harvestTool(ToolType.SHOVEL).hardnessAndResistance(60.0f)));
@@ -49,38 +50,38 @@ public class BlockInit {
     public static final Block TNUZN = register("tnuzn", UnusedBlocks.setBlockRequiresTool(Material.EARTH, 18, 20000000.0F, ToolType.SHOVEL));
     public static final Block FIGHIV = register("fighiv", new Fighiv(Block.Properties.create(Material.ROCK).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(0.5F, 1000000000000.0F)));
     public static final Block GNRTHIRJ = register("gnrthirj", new ModOreBlock(6, AbstractBlock.Properties.create(Material.BUBBLE_COLUMN).doesNotBlockMovement().noDrops()));
-    public static final Block BLACK_TRIPWIRE_HOOK = register("tripwires/tripwire_hooks/black_tripwire_hook", new BlackTripWireHook(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
-    public static final Block BLACK_TRIPWIRE = register("tripwires/black_tripwire", new ModTripWireBlock((ModTripWireHookBlock) BLACK_TRIPWIRE_HOOK, Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
-    public static final Block BLUE_TRIPWIRE_HOOK = register("tripwires/tripwire_hooks/blue_tripwire_hook", new BlueTripWireHook(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
-    public static final Block BLUE_TRIPWIRE = register("tripwires/blue_tripwire", new ModTripWireBlock((ModTripWireHookBlock) BLUE_TRIPWIRE_HOOK, Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
-    public static final Block BROWN_TRIPWIRE_HOOK = register("tripwires/tripwire_hooks/brown_tripwire_hook", new BrownTripWireHook(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
-    public static final Block BROWN_TRIPWIRE = register("tripwires/brown_tripwire", new ModTripWireBlock((ModTripWireHookBlock) BROWN_TRIPWIRE_HOOK, Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
-    public static final Block CYAN_TRIPWIRE_HOOK = register("tripwires/tripwire_hooks/cyan_tripwire_hook", new CyanTripWireHook(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
-    public static final Block CYAN_TRIPWIRE = register("tripwires/cyan_tripwire", new ModTripWireBlock((ModTripWireHookBlock) CYAN_TRIPWIRE_HOOK, Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
-    public static final Block GRAY_TRIPWIRE_HOOK = register("tripwires/tripwire_hooks/gray_tripwire_hook", new GrayTripWireHook(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
-    public static final Block GRAY_TRIPWIRE = register("tripwires/gray_tripwire", new ModTripWireBlock((ModTripWireHookBlock) GRAY_TRIPWIRE_HOOK, Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
-    public static final Block GREEN_TRIPWIRE_HOOK = register("tripwires/tripwire_hooks/green_tripwire_hook", new GrayTripWireHook(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
-    public static final Block GREEN_TRIPWIRE = register("tripwires/green_tripwire", new ModTripWireBlock((ModTripWireHookBlock) GREEN_TRIPWIRE_HOOK, Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
-    public static final Block LIGHT_BLUE_TRIPWIRE_HOOK = register("tripwires/tripwire_hooks/light_blue_tripwire_hook", new GreenTripWireHook(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
-    public static final Block LIGHT_BLUE_TRIPWIRE = register("tripwires/light_blue_tripwire", new ModTripWireBlock((ModTripWireHookBlock) LIGHT_BLUE_TRIPWIRE_HOOK, Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
-    public static final Block LIGHT_BLUE1_TRIPWIRE_HOOK = register("tripwires/tripwire_hooks/light_blue1_tripwire_hook", new LightBlueTripWireHook(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
-    public static final Block LIGHT_BLUE1_TRIPWIRE = register("tripwires/light_blue1_tripwire", new ModTripWireBlock((ModTripWireHookBlock) LIGHT_BLUE1_TRIPWIRE_HOOK, Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
-    public static final Block LIGHT_GRAY_TRIPWIRE_HOOK = register("tripwires/tripwire_hooks/light_gray_tripwire_hook", new LightGrayTripWireHook(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
-    public static final Block LIGHT_GRAY_TRIPWIRE = register("tripwires/light_gray_tripwire", new ModTripWireBlock((ModTripWireHookBlock) LIGHT_GRAY_TRIPWIRE_HOOK, Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
-    public static final Block LIME_TRIPWIRE_HOOK = register("tripwires/tripwire_hooks/lime_tripwire_hook", new LimeTripWireHook(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
-    public static final Block LIME_TRIPWIRE = register("tripwires/lime_tripwire", new ModTripWireBlock((ModTripWireHookBlock) LIME_TRIPWIRE_HOOK, Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
-    public static final Block MAGENTA_TRIPWIRE_HOOK = register("tripwires/tripwire_hooks/magenta_tripwire_hook", new MagentaTripWireHook(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
-    public static final Block MAGENTA_TRIPWIRE = register("tripwires/magenta_tripwire", new ModTripWireBlock((ModTripWireHookBlock) MAGENTA_TRIPWIRE_HOOK, Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
-    public static final Block ORANGE_TRIPWIRE_HOOK = register("tripwires/tripwire_hooks/orange_tripwire_hook", new OrangeTripWireHook(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
-    public static final Block ORANGE_TRIPWIRE = register("tripwires/orange_tripwire", new ModTripWireBlock((ModTripWireHookBlock) ORANGE_TRIPWIRE_HOOK, Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
-    public static final Block PINK_TRIPWIRE_HOOK = register("tripwires/tripwire_hooks/pink_tripwire_hook", new PinkTripWireHook(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
-    public static final Block PINK_TRIPWIRE = register("tripwires/pink_tripwire", new ModTripWireBlock((ModTripWireHookBlock) PINK_TRIPWIRE_HOOK, Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
-    public static final Block PURPLE_TRIPWIRE_HOOK = register("tripwires/tripwire_hooks/purple_tripwire_hook", new PurpleTripWireHook(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
-    public static final Block PURPLE_TRIPWIRE = register("tripwires/purple_tripwire", new ModTripWireBlock((ModTripWireHookBlock) PURPLE_TRIPWIRE_HOOK, Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
-    public static final Block RED_TRIPWIRE_HOOK = register("tripwires/tripwire_hooks/red_tripwire_hook", new RedTripWireHook(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
-    public static final Block RED_TRIPWIRE = register("tripwires/red_tripwire", new ModTripWireBlock((ModTripWireHookBlock) RED_TRIPWIRE_HOOK, Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
-    public static final Block YELLOW_TRIPWIRE_HOOK = register("tripwires/tripwire_hooks/yellow_tripwire_hook", new YellowTripWireHook(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
-    public static final Block YELLOW_TRIPWIRE = register("tripwires/yellow_tripwire", new ModTripWireBlock((ModTripWireHookBlock) YELLOW_TRIPWIRE_HOOK, Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
+    public static final Block BLACK_TRIPWIRE_HOOK = registerBlockItem("tripwires/tripwire_hooks/black", new BlackTripWireHook(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
+    public static final Block BLACK_TRIPWIRE = register("tripwires/black", new ModTripWireBlock((ModTripWireHookBlock) BLACK_TRIPWIRE_HOOK, Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
+    public static final Block BLUE_TRIPWIRE_HOOK = registerBlockItem("tripwires/tripwire_hooks/blue", new BlueTripWireHook(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
+    public static final Block BLUE_TRIPWIRE = register("tripwires/blue", new ModTripWireBlock((ModTripWireHookBlock) BLUE_TRIPWIRE_HOOK, Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
+    public static final Block BROWN_TRIPWIRE_HOOK = registerBlockItem("tripwires/tripwire_hooks/brown", new BrownTripWireHook(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
+    public static final Block BROWN_TRIPWIRE = register("tripwires/brown", new ModTripWireBlock((ModTripWireHookBlock) BROWN_TRIPWIRE_HOOK, Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
+    public static final Block CYAN_TRIPWIRE_HOOK = registerBlockItem("tripwires/tripwire_hooks/cyan", new CyanTripWireHook(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
+    public static final Block CYAN_TRIPWIRE = register("tripwires/cyan", new ModTripWireBlock((ModTripWireHookBlock) CYAN_TRIPWIRE_HOOK, Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
+    public static final Block GRAY_TRIPWIRE_HOOK = registerBlockItem("tripwires/tripwire_hooks/gray", new GrayTripWireHook(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
+    public static final Block GRAY_TRIPWIRE = register("tripwires/gray", new ModTripWireBlock((ModTripWireHookBlock) GRAY_TRIPWIRE_HOOK, Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
+    public static final Block GREEN_TRIPWIRE_HOOK = registerBlockItem("tripwires/tripwire_hooks/green", new GrayTripWireHook(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
+    public static final Block GREEN_TRIPWIRE = register("tripwires/green", new ModTripWireBlock((ModTripWireHookBlock) GREEN_TRIPWIRE_HOOK, Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
+    public static final Block LIGHT_BLUE_TRIPWIRE_HOOK = registerBlockItem("tripwires/tripwire_hooks/light_blue", new GreenTripWireHook(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
+    public static final Block LIGHT_BLUE_TRIPWIRE = register("tripwires/light_blue", new ModTripWireBlock((ModTripWireHookBlock) LIGHT_BLUE_TRIPWIRE_HOOK, Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
+    public static final Block LIGHT_BLUE1_TRIPWIRE_HOOK = registerBlockItem("tripwires/tripwire_hooks/light_blue1", new LightBlueTripWireHook(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
+    public static final Block LIGHT_BLUE1_TRIPWIRE = register("tripwires/light_blue1", new ModTripWireBlock((ModTripWireHookBlock) LIGHT_BLUE1_TRIPWIRE_HOOK, Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
+    public static final Block LIGHT_GRAY_TRIPWIRE_HOOK = registerBlockItem("tripwires/tripwire_hooks/light_gray", new LightGrayTripWireHook(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
+    public static final Block LIGHT_GRAY_TRIPWIRE = register("tripwires/light_gray", new ModTripWireBlock((ModTripWireHookBlock) LIGHT_GRAY_TRIPWIRE_HOOK, Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
+    public static final Block LIME_TRIPWIRE_HOOK = registerBlockItem("tripwires/tripwire_hooks/lime", new LimeTripWireHook(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
+    public static final Block LIME_TRIPWIRE = register("tripwires/lime", new ModTripWireBlock((ModTripWireHookBlock) LIME_TRIPWIRE_HOOK, Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
+    public static final Block MAGENTA_TRIPWIRE_HOOK = registerBlockItem("tripwires/tripwire_hooks/magenta", new MagentaTripWireHook(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
+    public static final Block MAGENTA_TRIPWIRE = register("tripwires/magenta", new ModTripWireBlock((ModTripWireHookBlock) MAGENTA_TRIPWIRE_HOOK, Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
+    public static final Block ORANGE_TRIPWIRE_HOOK = registerBlockItem("tripwires/tripwire_hooks/orange", new OrangeTripWireHook(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
+    public static final Block ORANGE_TRIPWIRE = register("tripwires/orange", new ModTripWireBlock((ModTripWireHookBlock) ORANGE_TRIPWIRE_HOOK, Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
+    public static final Block PINK_TRIPWIRE_HOOK = registerBlockItem("tripwires/tripwire_hooks/pink", new PinkTripWireHook(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
+    public static final Block PINK_TRIPWIRE = register("tripwires/pink", new ModTripWireBlock((ModTripWireHookBlock) PINK_TRIPWIRE_HOOK, Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
+    public static final Block PURPLE_TRIPWIRE_HOOK = registerBlockItem("tripwires/tripwire_hooks/purple", new PurpleTripWireHook(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
+    public static final Block PURPLE_TRIPWIRE = register("tripwires/purple", new ModTripWireBlock((ModTripWireHookBlock) PURPLE_TRIPWIRE_HOOK, Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
+    public static final Block RED_TRIPWIRE_HOOK = registerBlockItem("tripwires/tripwire_hooks/red", new RedTripWireHook(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
+    public static final Block RED_TRIPWIRE = register("tripwires/red", new ModTripWireBlock((ModTripWireHookBlock) RED_TRIPWIRE_HOOK, Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
+    public static final Block YELLOW_TRIPWIRE_HOOK = registerBlockItem("tripwires/tripwire_hooks/yellow", new YellowTripWireHook(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
+    public static final Block YELLOW_TRIPWIRE = register("tripwires/yellow", new ModTripWireBlock((ModTripWireHookBlock) YELLOW_TRIPWIRE_HOOK, Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement()));
     public static final Block GRINT_BLOCK = register("grint_block", new Block(Block.Properties.create(Material.ROCK).setRequiresTool().harvestLevel(4).harvestTool(ToolType.PICKAXE).hardnessAndResistance(100.0f)));
     public static final Block GRINT_SLAB = register("grint_slab", new SlabBlock(Block.Properties.create(Material.ROCK).setRequiresTool().harvestLevel(4).harvestTool(ToolType.PICKAXE).hardnessAndResistance(120.0f)));
     public static final Block GRINT_STAIRS = register("grint_stairs", new StairsBlock(GRINT_BLOCK::getDefaultState, Block.Properties.from(GRINT_BLOCK)));
@@ -90,9 +91,33 @@ public class BlockInit {
     public static final Block COAL_SLAB = register("coal_slab", new SlabBlock(Block.Properties.create(Material.ROCK, MaterialColor.BLACK).setRequiresTool().harvestLevel(0).harvestTool(ToolType.PICKAXE).hardnessAndResistance(6.0F, 6.0F)));
     public static final Block CHARCOAL_SLAB = register("charcoal_slab", new SlabBlock(Block.Properties.create(Material.ROCK).setRequiresTool().harvestLevel(0).harvestTool(ToolType.PICKAXE).hardnessAndResistance(6.0F, 6.0F)));
     public static final Block CHARCOAL_STAIRS = register("charcoal_stairs", new StairsBlock(CHARCOAL_BLOCK::getDefaultState, Block.Properties.from(CHARCOAL_BLOCK)));
-    public static final Block FI_RT_PLOCK = register("lc/blocks/fi_rt_plock", new Block(Block.Properties.create(Material.ROCK).setRequiresTool().hardnessAndResistance(5000000000.0F, 6.0F)));
+    public static final Block FI_RT_PLOCK = registerBlockItem("lc/blocks/fi_rt_plock", new Block(Block.Properties.create(Material.ROCK).setRequiresTool().hardnessAndResistance(5000000000.0F, 6.0F)));
+
+    public static Block registerTripwireHook(String name) {
+        return registerBlockItem("tripwires/tripwire_hooks/" + name, createTripwireHook(ModTripWireBlock.TRIP_WIRE));
+    }
+
+    public static Block registerTripwire(String name, Block blockIn) {
+        return ModTripWireBlock.TRIP_WIRE = registerBlockItem("tripwires/" + name, createTripwire(blockIn));
+    }
+
+    public static Block createTripwireHook(Block tripwire) {
+        return new ModTripWireHookBlock(createTripwireProperties(), tripwire);
+    }
+
+    public static Block createTripwire(Block hook) {
+        return new ModTripWireBlock((ModTripWireHookBlock) hook, createTripwireProperties());
+    }
+
+    public static AbstractBlock.Properties createTripwireProperties() {
+        return Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement();
+    }
+
+    public static Block registerBlockItem(String name, Block blockIn) {
+        return UnusedBlocks.registerBlockItem(name, blockIn);
+    }
 
     public static Block register(String name, Block blockIn) {
-        return UnusedBlocks.registerBlock(name, blockIn);
+        return UnusedBlocks.registerDefault(name, blockIn);
     }
 }

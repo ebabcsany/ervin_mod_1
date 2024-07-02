@@ -1,7 +1,7 @@
 {
     "textures": {
         "particle": "minecraft:block/oak_planks",
-        "hook": "ervin_mod_1:block/tripwires/tripwire_hooks/black_tripwire_hook",
+        "hook": "ervin_mod_1:block/tripwires/tripwire_hooks/black",
         "wood": "minecraft:block/oak_planks"
     },
     "elements": [

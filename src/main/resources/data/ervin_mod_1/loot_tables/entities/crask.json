@@ -10,13 +10,12 @@
         }
       ]
     },
-
     {
       "rolls": 1,
       "entries": [
         {
           "type": "minecraft:loot_table",
-          "name": "ervin_mod_1:entities/vilt1"
+          "name": "ervin_mod_1:entities/vilt"
         }
       ]
     },

@@ -1,14 +1,12 @@
 package com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.registries;
 
 import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.interfaces.consumer.Map;
+import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.interfaces.util.Maps;
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.armor.ArmorItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.block.BlockItemInit_;
 import com.babcsany.minecraft.ervin_mod_1.init.item.food.SpecialBlockFoodItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.food.isBurnableFoodItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.tool.ToolItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.minecraft.block.item.MinecraftBlockItems;
-import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.interfaces.util.Maps;
 import net.minecraft.item.Item;
 import net.minecraft.item.crafting.AbstractCookingRecipe;
 import net.minecraft.item.crafting.IRecipeType;

@@ -4,7 +4,6 @@ import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.ZurTradeWithPlayerGoal;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.AbstractZurEntity;
 import com.babcsany.minecraft.ervin_mod_1.trigger.ModCriteriaTriggers;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.tool.isBurnableSpecialToolItemInit;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
@@ -49,7 +48,7 @@ public class ZurEntity extends AbstractZurEntity {
     }
 
     protected void applyEntityAI() {
-        if (this.world.getDifficulty() != Difficulty.PEACEFUL && !this.canEquip(isBurnableItemInit.VIRKT)) {
+        if (this.world.isRemote) {
             this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setCallsForHelp(ZombifiedPiglinEntity.class));
             this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
         }
@@ -191,7 +190,7 @@ public class ZurEntity extends AbstractZurEntity {
     @Nullable
     @Override
     public AgeableEntity createChild(ServerWorld serverWorld, AgeableEntity ageableEntity) {
-        return EntityInit.ZUR_ENTITY.create(serverWorld);
+        return EntityInit.ZUR.create(serverWorld);
     }
 
     public void writeAdditional(CompoundNBT compound) {

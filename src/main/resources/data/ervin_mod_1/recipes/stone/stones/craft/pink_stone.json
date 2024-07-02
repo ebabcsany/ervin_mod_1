@@ -2,14 +2,14 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "tag": "ervin_mod_1:ingredients/stone/stones/pink_stone"
+      "tag": "ervin_mod_1:ingredients/stone/stones/pink"
     },
     {
       "item": "minecraft:pink_dye"
     }
   ],
   "result": {
-    "item": "ervin_mod_1:stone/stones/pink_stone",
+    "item": "ervin_mod_1:stone/stones/pink",
     "count": 1
   }
 }

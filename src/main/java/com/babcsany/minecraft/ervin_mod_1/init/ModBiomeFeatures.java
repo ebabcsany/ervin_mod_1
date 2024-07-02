@@ -41,4 +41,8 @@ public class ModBiomeFeatures {
 	public static <C extends IFeatureConfig, F extends Feature<C>> F register(String key, F value) {
 		return Registry.register(Registry.FEATURE, Ervin_mod_1.identifier(key), value);
 	}
+
+	public static void register() {
+		Ervin_mod_1.register(ModBiomeFeatures.class);
+	}
 }

@@ -1,8 +1,8 @@
 package com.babcsany.minecraft.ervin_mod_1.block.blocks;
 
-import com.babcsany.minecraft.ervin_mod_1.entity.merchant.trader_block.IMerchant;
 import net.minecraft.block.Block;
 import net.minecraft.entity.*;
+import net.minecraft.entity.merchant.IMerchant;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
@@ -129,7 +129,7 @@ public abstract class AbstractTraderBlock extends Block implements INPC, IMercha
    }*/
 
    protected void resetCustomer() {
-      this.setCustomer(null);
+      this.setCustomer((PlayerEntity) null);
    }
 
    /**

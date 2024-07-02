@@ -13,6 +13,7 @@ public final class ModBlockTags {
     public static final ITag.INamedTag<Block> BASE_END_STONES = createTag("base_end_stones");
     public static final ITag.INamedTag<Block> BASE_END_STONE_VARIANTS = createTag("base_end_stone_variants");
     public static final ITag.INamedTag<Block> SCRAFTH_MUSHROOM_BLOCK = createTag("scrafth_mushroom_block");
+    public static final ITag.INamedTag<Block> RESPAWN_BLOCKS = createTag("respawn_blocks");
 
     public static ITag.INamedTag<Block> createTag(String id) {
         return BlockTags.createOptional(Ervin_mod_1.getKey(id));

@@ -9,7 +9,6 @@ import net.minecraft.block.FlowerBlock;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
@@ -22,8 +21,6 @@ import net.minecraft.potion.Effect;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
@@ -32,7 +29,6 @@ import org.apache.commons.lang3.tuple.Pair;
 
 import javax.annotation.Nullable;
 import java.util.Optional;
-import java.util.Random;
 import java.util.UUID;
 
 public class ShertEntity extends SrachEntity implements IShearable, net.minecraftforge.common.IForgeShearable {
@@ -270,7 +266,7 @@ public class ShertEntity extends SrachEntity implements IShearable, net.minecraf
    public static enum Type {
       RED("red", Blocks.RED_MUSHROOM.getDefaultState()),
       BROWN("brown", Blocks.BROWN_MUSHROOM.getDefaultState()),
-      GRINTH("grinth", BlockItemInit.GRINTH_MUSHROOM_BLOCK.getDefaultState());
+      GRINTH("grinth", BlockItemInit.GRINTH_MUSHROOM_BLOCK.getBlock().getDefaultState());
 
       private final String name;
       private final BlockState renderState;

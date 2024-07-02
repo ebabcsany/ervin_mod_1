@@ -4,25 +4,25 @@
       "model": "ervin_mod_1:block/firg"
     },
     "bites=1": {
-      "model": "ervin_mod_1:block/firg_slice1"
+      "model": "ervin_mod_1:block/firg_slice49"
     },
     "bites=2": {
-      "model": "ervin_mod_1:block/firg_slice2"
+      "model": "ervin_mod_1:block/firg_slice50"
     },
     "bites=3": {
-      "model": "ervin_mod_1:block/firg_slice3"
+      "model": "ervin_mod_1:block/firg_slice51"
     },
     "bites=4": {
-      "model": "ervin_mod_1:block/firg_slice4"
+      "model": "ervin_mod_1:block/firg_slice52"
     },
     "bites=5": {
-      "model": "ervin_mod_1:block/firg_slice5"
+      "model": "ervin_mod_1:block/firg_slice53"
     },
     "bites=6": {
-      "model": "ervin_mod_1:block/firg_slice6"
+      "model": "ervin_mod_1:block/firg_slice54"
     },
     "bites=7": {
-      "model": "ervin_mod_1:block/firg_slice7"
+      "model": "ervin_mod_1:block/firg_slice55"
     }
   }
 }

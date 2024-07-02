@@ -15,6 +15,7 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentData;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.merchant.villager.VillagerTrades;
 import net.minecraft.item.*;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.Potion;
@@ -445,7 +446,7 @@ public class TraderNirtreTrades {
       }
    }
 
-   public interface ITrade {
+   public interface ITrade extends VillagerTrades.ITrade {
       @Nullable
       MerchantOffer getOffer(Entity trader, Random rand);
    }

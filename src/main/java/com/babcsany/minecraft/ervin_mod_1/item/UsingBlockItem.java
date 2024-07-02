@@ -14,17 +14,23 @@ import net.minecraft.util.*;
 import net.minecraft.world.World;
 
 public class UsingBlockItem extends BlockItem {
+   private final UseAction useAction;
    private final int useDuration;
 
    public UsingBlockItem(Block blockIn, Item.Properties properties, int useDurationIn) {
+      this(blockIn, properties, UseAction.DRINK, useDurationIn);
+   }
+
+   public UsingBlockItem(Block blockIn, Item.Properties properties, UseAction useActionIn, int useDurationIn) {
       super(blockIn, properties);
+      this.useAction = useActionIn;
       this.useDuration = useDurationIn;
    }
 
    /**
     * Called when the player finishes using this Item (E.g. finishes eating.). Not called when the player stops using
     * the Item before the action is complete.
-    * @return
+    * @return {@link ItemStack}
     */
    public ItemStack onItemUseFinish(ItemStack stack, World worldIn, LivingEntity entityLiving) {
       if (!worldIn.isRemote) entityLiving.curePotionEffects(stack); // FORGE - move up so stack.shrink does not turn stack into air
@@ -57,7 +63,7 @@ public class UsingBlockItem extends BlockItem {
     * returns the action that specifies what animation to play when the items is being used
     */
    public UseAction getUseAction(ItemStack stack) {
-      return UseAction.DRINK;
+      return useAction;
    }
 
    public SoundEvent getDrinkSound() {

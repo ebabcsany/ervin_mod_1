@@ -1,6 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.init;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
@@ -34,12 +35,35 @@ public class ModConfiguredFeatures {
     public static final ConfiguredFeature<?, ?> EXTRA_BLUE_STONE = registerExtraOres(ModBlockStates.BLUE_STONE);
     public static final ConfiguredFeature<?, ?> EXTRA_ORANGE_STONE = registerExtraOres(ModBlockStates.ORANGE_STONE);
 
+    public static ConfiguredFeature<?, ?> registerExtraOres(Block blockIn) {
+        return registerExtraOres(blockIn.delegate.name().getPath(), blockIn.getDefaultState());
+    }
+
+    public static ConfiguredFeature<?, ?> registerOres(Block blockIn) {
+        return registerOres(blockIn.delegate.name().getPath(), blockIn.getDefaultState());
+    }
     public static ConfiguredFeature<?, ?> registerExtraOres(BlockState state) {
         return registerExtraOres(state.getBlock().delegate.name().getPath(), state);
     }
 
     public static ConfiguredFeature<?, ?> registerOres(BlockState state) {
         return registerOres(state.getBlock().delegate.name().getPath(), state);
+    }
+
+    public static ConfiguredFeature<?, ?> registerExtraOres(String name, Block blockIn) {
+        return registerExtraOres(name, blockIn.getDefaultState());
+    }
+
+    public static ConfiguredFeature<?, ?> registerOres(String name, Block blockIn) {
+        return registerOres(name, blockIn.getDefaultState());
+    }
+
+    public static ConfiguredFeature<?, ?> registerExtraOres(ModBlockStates states) {
+        return registerExtraOres(states.getName(), states.getState());
+    }
+
+    public static ConfiguredFeature<?, ?> registerOres(ModBlockStates states) {
+        return registerOres(states.getName(), states.getState());
     }
 
     public static ConfiguredFeature<?, ?> registerExtraOres(String name, BlockState state) {

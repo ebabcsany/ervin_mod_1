@@ -37,7 +37,7 @@ public class ExampleBiome1 {
 		spawnInfoBuilder.withSpawner(EntityClassification.MISC, new SpawnListEntry(EntityType.ARROW, 25, 20, 50));
 		spawnInfoBuilder.withSpawner(EntityClassification.MONSTER, new SpawnListEntry(EntityType.CAT, 30, 20, 50));
 
-		spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.ZUR_ENTITY, 5, 5, 20));
+		spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.ZUR, 5, 5, 20));
 		spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityType.BEE, 20, 2, 10));
 		spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.LIWRAY, 15, 10, 30));
 		spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.VILT_ENTITY, 30, 15, 40));

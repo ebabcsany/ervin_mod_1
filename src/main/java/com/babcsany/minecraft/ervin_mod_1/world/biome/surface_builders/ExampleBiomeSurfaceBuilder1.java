@@ -28,7 +28,7 @@ public class ExampleBiomeSurfaceBuilder1 extends SurfaceBuilder<SurfaceBuilderCo
 			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock,
 					defaultFluid, seaLevel, seed,
 					new SurfaceBuilderConfig(BlockItemInit.GNITH_BLOCK.getDefaultState(),
-							BlockItemInit.DURT.getDefaultState(), isBurnableBlockItemInit.VILTDROP_BLOCK.getDefaultState()
+							BlockItemInit.DURT.getBlock().getDefaultState(), isBurnableBlockItemInit.VILTDROP_BLOCK.getDefaultState()
 					));
 		} else {
 			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock,

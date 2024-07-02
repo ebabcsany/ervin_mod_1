@@ -1,44 +1,47 @@
 package com.babcsany.minecraft.ervin_mod_1;
 
+import com.babcsany.minecraft.ervin_mod_1.init.block.animation.colors.AnimationBlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.entity.animal.FreinEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.animal.ShertEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.animal.hhij.HhijAnimalEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.fish.GubrovEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.RoventEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.Abstract$TraderEntity;
-import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.init.DefaultInit;
 import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.init.Init;
-import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.registries.Compost;
 import com.babcsany.minecraft.ervin_mod_1.init.BiomeInit;
-import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit;
-import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.minecraft.block.MinecraftBlocks;
 import com.babcsany.minecraft.ervin_mod_1.item.group.ModItemGroup;
+import com.babcsany.minecraft.ervin_mod_1.network.ModNetworkManager;
 import com.babcsany.minecraft.ervin_mod_1.world.gen.FeatureGen;
-import com.babcsany.minecraft.init.item.ItemInit;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntitySpawnPlacementRegistry;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.MobEntity;
+import com.babcsany.minecraft.server.management.ModPlayerList;
+import net.minecraft.block.*;
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.*;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.*;
+import net.minecraft.item.BlockItem;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.ShapedRecipe;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.NetworkSystem;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.integrated.IntegratedServer;
+import net.minecraft.server.management.PlayerList;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.tags.ITag;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.world.Teleporter;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.server.ServerWorld;
@@ -62,9 +65,8 @@ import net.minecraftforge.registries.IForgeRegistry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.net.SocketAddress;
+import java.util.*;
 import java.util.stream.Collectors;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -110,13 +112,13 @@ public class Ervin_mod_1 {
             EntitySpawnPlacementRegistry.register(EntityInit.VILT_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::canAnimalSpawn);
             EntitySpawnPlacementRegistry.register(EntityInit.WANDERING_TRADER_NIRTRE_ENTITY, EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canSpawnOn);
             EntitySpawnPlacementRegistry.register(EntityInit.ZOMBIE_TRADER_ENTITY, EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canSpawnOn);
-            EntitySpawnPlacementRegistry.register(EntityInit.NIRTRE_ENTITY, EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canSpawnOn);
-            EntitySpawnPlacementRegistry.register(EntityInit.ZUR_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canSpawnOn);
+//            EntitySpawnPlacementRegistry.register(EntityInit.NIRTRE_ENTITY, EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canSpawnOn);
+            EntitySpawnPlacementRegistry.register(EntityInit.ZUR, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.WORLD_SURFACE_WG, MobEntity::canSpawnOn);
             EntitySpawnPlacementRegistry.register(EntityInit.LIWRAY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canSpawnOn);
             EntitySpawnPlacementRegistry.func_209342_b(EntityInit.LIWRAY);
-            EntitySpawnPlacementRegistry.func_209342_b(EntityInit.ZUR_ENTITY);
+            EntitySpawnPlacementRegistry.func_209342_b(EntityInit.ZUR);
             EntitySpawnPlacementRegistry.getPlacementType(EntityInit.LIWRAY);
-            EntitySpawnPlacementRegistry.getPlacementType(EntityInit.ZUR_ENTITY);
+            EntitySpawnPlacementRegistry.getPlacementType(EntityInit.ZUR);
 
 
         });
@@ -178,19 +180,19 @@ public class Ervin_mod_1 {
                     BlockInit.ENDER_TRASKRACH,
                     BlockInit.ENDER_TRASKCRAFTH
             ));
-            BlockItemInit.BLOCKS.getEntries().stream().map(RegistryObject::get).forEach(block -> {
-                if (!Blocks.contains(block)) {
-                    final Item.Properties properties = new Item.Properties();
-                    properties.group(ModItemGroup.ERVIN_MOD_1).group(ModItemGroup.ERVIN_MOD_1_SEARCH);
-                    final BlockItem blockItem = new BlockItem(block, properties);
-                    ResourceLocation registryName = block.getRegistryName();
-                    if (null != registryName) {
-                        blockItem.setRegistryName(registryName);
-                    }
-                    registry.register(blockItem);
-                }
-            });
-            com.babcsany.minecraft.ervin_mod_1.init.block.animation.colors.BlockItemInit.ANIMATION_BLOCKS.getEntries().stream().map(RegistryObject::get).forEach(block -> {
+//            BlockItemInit.BLOCKS.getEntries().stream().map(RegistryObject::get).forEach(block -> {
+//                if (!Blocks.contains(block)) {
+//                    final Item.Properties properties = new Item.Properties();
+//                    properties.group(ModItemGroup.ERVIN_MOD_1).group(ModItemGroup.ERVIN_MOD_1_SEARCH);
+//                    final BlockItem blockItem = new BlockItem(block, properties);
+//                    ResourceLocation registryName = block.getRegistryName();
+//                    if (null != registryName) {
+//                        blockItem.setRegistryName(registryName);
+//                    }
+//                    registry.register(blockItem);
+//                }
+//            });
+            AnimationBlockItemInit.ANIMATION_BLOCKS.getEntries().stream().map(RegistryObject::get).forEach(block -> {
                 if (!Blocks.contains(block)) {
                     final Item.Properties properties = new Item.Properties();
                     final BlockItem blockItem = new BlockItem(block, properties);
@@ -236,6 +238,8 @@ public class Ervin_mod_1 {
 
     @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
     public static class ForgeEvents {
+        public static int respawnCountAtHurvruj = 0;
+
         @SubscribeEvent
         public static void onChangeDimension(final PlayerEvent.PlayerChangedDimensionEvent event) {
             PlayerEntity player = event.getPlayer();
@@ -245,11 +249,34 @@ public class Ervin_mod_1 {
             player.addExperienceLevel(30);
             player.preparePlayerToSpawn();
             EntityType.PLAYER.create(player.world);
-            player.addItemStackToInventory(new ItemStack(ItemInit.ENCHANTED_BOOK_BLACK));
+            player.addItemStackToInventory(new ItemStack(ItemInit.EPKIN));
             if (player instanceof ServerPlayerEntity) {
                 ServerPlayerEntity serverPlayer = (ServerPlayerEntity) player;
                 ServerWorld serverWorld = serverPlayer.getServerWorld();
-                player.changeDimension(serverWorld, new Teleporter(serverWorld));
+            }
+        }
+
+        @SubscribeEvent
+        public static void onRespawn(final PlayerEvent.PlayerRespawnEvent event) {
+            try {
+                PlayerEntity player = event.getPlayer();
+                ServerPlayerEntity serverPlayer = (ServerPlayerEntity) player;
+                MinecraftServer server = player.getServer();
+                if (server == null) throw new AssertionError();
+                PlayerList playerList = server.getPlayerList();
+                ModPlayerList modPlayerList = (ModPlayerList) playerList;
+                Minecraft minecraft = Minecraft.getInstance();
+                IntegratedServer integratedServer = minecraft.getIntegratedServer();
+                assert integratedServer != null;
+                NetworkSystem networkSystem = integratedServer.getNetworkSystem();
+                assert networkSystem != null;
+                SocketAddress socketAddress = networkSystem.addLocalEndpoint();
+                NetworkManager networkManager = NetworkManager.provideLocalClient(socketAddress);
+                ModNetworkManager modNetworkManager = (ModNetworkManager) networkManager;
+                minecraft.getProfiler().endStartSection("pendingConnection");
+                modNetworkManager.tick();
+            } catch (Throwable throwable) {
+                System.out.println(throwable.getLocalizedMessage());
             }
         }
 
@@ -259,7 +286,7 @@ public class Ervin_mod_1 {
             ResourceLocation MaterialBlocksTagId = new ResourceLocation(com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1.MOD_ID, "material_blocks");
             ITag<Block> MaterialBlocks = BlockTags.getCollection().get(MaterialBlocksTagId);
             if (event.getWorld().hasBlockState(event.getPos(), blockState -> {
-                assert MaterialBlocks != null;
+                if (MaterialBlocks == null) throw new AssertionError();
                 return blockState.isIn(MaterialBlocks) && player.isCreative();
             })) {
                 event.setCanceled(true);

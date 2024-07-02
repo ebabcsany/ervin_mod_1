@@ -1,0 +1,31 @@
+package com.babcsany.minecraft.ervin_mod_1.enchantment;
+
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentType;
+import net.minecraft.enchantment.Enchantments;
+import net.minecraft.enchantment.LureEnchantment;
+import net.minecraft.inventory.EquipmentSlotType;
+
+public class ModLureEnchantment extends Enchantment {
+    protected ModLureEnchantment(Rarity rarityIn, EnchantmentType typeIn, EquipmentSlotType... slots) {
+        super(rarityIn, typeIn, slots);
+    }
+
+    /**
+     * Returns the minimal value of enchantability needed on the enchantment level passed.
+     */
+    public int getMinEnchantability(int enchantmentLevel) {
+        return 39 + (enchantmentLevel - 1) * 15;
+    }
+
+    public int getMaxEnchantability(int enchantmentLevel) {
+        return super.getMinEnchantability(enchantmentLevel) + 100;
+    }
+
+    /**
+     * Returns the maximum level that the enchantment can have.
+     */
+    public int getMaxLevel() {
+        return 10;
+    }
+}

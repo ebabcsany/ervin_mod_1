@@ -3,7 +3,6 @@ package com.babcsany.minecraft.ervin_mod_1.init.item.spawn_egg;
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.unused.UnusedItems;
-import com.babcsany.minecraft.ervin_mod_1.item.ModSpawnEggItem;
 import com.babcsany.minecraft.ervin_mod_1.item.group.ModItemGroup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
@@ -31,7 +30,7 @@ public class ModSpawnEggItemInit {
     public static final SpawnEggItem VILT_SPAWN_EGG = registerSpawnEgg("vilt_spawn_egg", EntityInit.VILT_ENTITY, 0xc02020, 0xc02020, new Item.Properties().group(ModItemGroup.ERVIN_MOD_1_SPAWN_EGGS));
     public static final SpawnEggItem WANDERING_TRADER_NIRTRE_SPAWN_EGG = registerSpawnEgg("wandering_trader_nirtre_spawn_egg", EntityInit.WANDERING_TRADER_NIRTRE_ENTITY, 0x503c28, 0x283c50, new Item.Properties().group(ModItemGroup.ERVIN_MOD_1_SPAWN_EGGS));
     public static final SpawnEggItem ZOMBIE_TRADER_SPAWN_EGG = registerSpawnEgg("zombie_trader_spawn_egg", EntityInit.ZOMBIE_TRADER_ENTITY, 0x40c080, 0x20a0c0, new Item.Properties().group(ModItemGroup.ERVIN_MOD_1_SPAWN_EGGS));
-    public static final SpawnEggItem ZUR_SPAWN_EGG = registerSpawnEgg("zur_spawn_egg", EntityInit.ZUR_ENTITY, 0x40c080, 0x20a0c0, new Item.Properties().group(ModItemGroup.ERVIN_MOD_1_SPAWN_EGGS));
+    public static final SpawnEggItem ZUR_SPAWN_EGG = registerSpawnEgg("zur_spawn_egg", EntityInit.ZUR, 0x40c080, 0x20a0c0, new Item.Properties().group(ModItemGroup.ERVIN_MOD_1_SPAWN_EGGS));
     public static final SpawnEggItem ROVENT_SPAWN_EGG = registerSpawnEgg("rovent_spawn_egg", EntityInit.ROVENT_ENTITY, 0x244830, 0x28384e, new Item.Properties());
     
     public static SpawnEggItem registerSpawnEgg(String name, EntityType<?> type, int primaryColorIn, int secondaryColorIn) {

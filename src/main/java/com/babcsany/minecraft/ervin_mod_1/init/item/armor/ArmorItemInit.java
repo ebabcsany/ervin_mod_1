@@ -61,10 +61,10 @@ public class ArmorItemInit {
     }
 
     public static Item armorRegister(String name, IArmorMaterial materialIn, EquipmentSlotType slot, Item.Properties properties) {
-        return UnusedItems.addDefault(name, new ArmorItem(materialIn, slot, properties));
+        return UnusedItems.registerDefault(name, new ArmorItem(materialIn, slot, properties));
     }
 
     public static Item register(String name, Item item) {
-        return UnusedItems.addDefault(name, item);
+        return UnusedItems.registerDefault(name, item);
     }
 }

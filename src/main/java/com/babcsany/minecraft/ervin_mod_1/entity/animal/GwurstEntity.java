@@ -2,7 +2,6 @@ package com.babcsany.minecraft.ervin_mod_1.entity.animal;
 
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
-import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.spawn_egg.ModSpawnEggItemInit;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;

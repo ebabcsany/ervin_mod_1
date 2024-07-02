@@ -37,9 +37,9 @@ public class FireBlock extends AbstractFireBlock {
     public static void init() {
         FireBlock fireblock = (FireBlock) Blocks.FIRE;
         fireblock.setFireInfo(BlockInit.FIRG_PLANKS, 5, 10);
-        fireblock.setFireInfo(BlockItemInit.FRIM_PLANKS, 2, 4);
+        fireblock.setFireInfo(BlockItemInit.FRIM_PLANKS.getBlock(), 2, 4);
         fireblock.setFireInfo(BlockInit.FIRG_PLANKS, 5, 10);
-        fireblock.setFireInfo(BlockItemInit.FRIM_PLANKS, 2, 4);
+        fireblock.setFireInfo(BlockItemInit.FRIM_PLANKS.getBlock(), 2, 4);
     }
 
     @Deprecated //Forge: Use canCatchFire with more context

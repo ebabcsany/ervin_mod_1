@@ -26,6 +26,7 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentData;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.merchant.villager.VillagerTrades;
 import net.minecraft.entity.villager.IVillagerDataHolder;
 import net.minecraft.entity.villager.VillagerType;
 import net.minecraft.item.*;
@@ -93,7 +94,7 @@ public class WanderingTraderNirtreTrades {
            new WanderingTraderNirtreTrades.EnchantedBookForFirnsTrade(10),
            new WanderingTraderNirtreTrades.ItemsForFirtBlocksTrade(ModSpawnEggItemInit.DRURB_SPAWN_EGG, 20, 1, 20, 3),
            new WanderingTraderNirtreTrades.ItemsForAvtersTrade(SpecialItemInit.GTRZIUZHIZJKJ, 34, 1, 300000, 15),
-           new WanderingTraderNirtreTrades.ItemsForVilktsTrade(MinecraftBlockNamedItemInit.END_PORTAL.get(), 15, 3, 20, 15),
+           new WanderingTraderNirtreTrades.ItemsForVilktsTrade(MinecraftBlockNamedItemInit.END_PORTAL, 15, 3, 20, 15),
            new WanderingTraderNirtreTrades.ItemsForVilktsTrade(isBurnableBlockItemInit.CRAINT_BLOCK_CRAFTING_TABLE, 10, 3, 20, 1500),
    }));
 
@@ -1676,7 +1677,7 @@ public class WanderingTraderNirtreTrades {
       }
    }
 
-   public interface ITrade {
+   public interface ITrade extends VillagerTrades.ITrade {
       @Nullable
       MerchantOffer getOffer(Entity trader, Random rand);
    }

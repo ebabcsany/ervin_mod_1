@@ -2,6 +2,7 @@ package com.babcsany.minecraft.ervin_mod_1.init.item.block;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit;
+import com.babcsany.minecraft.ervin_mod_1.init.unused.UnusedBlockItems;
 import com.babcsany.minecraft.ervin_mod_1.init.unused.UnusedItems;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
@@ -20,6 +21,10 @@ public class isBurnableBlockItemInit {
     public static final Item GNRTHIRJ = register("gnrthirj", new BlockItem(BlockInit.GNRTHIRJ, (new Item.Properties()).isImmuneToFire().group(ItemGroup.MATERIALS)));
 
     public static Item register(String name, Item item) {
-        return UnusedItems.addDefault(name, item);
+        return UnusedItems.registerDefault(name, item);
+    }
+
+    public static void register() {
+        Ervin_mod_1.register(isBurnableBlockItemInit.class);
     }
 }

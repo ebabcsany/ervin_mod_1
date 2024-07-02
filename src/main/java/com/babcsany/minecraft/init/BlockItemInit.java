@@ -17,12 +17,12 @@ public class BlockItemInit {
 
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Ervin_mod_1.MOD_ID);
 
-    public static final Item JURKF = register("jurkf", com.babcsany.minecraft.init.BlockInit.FIRT_BLOCK);
+    public static final Item JURKF = register("jurkf", BlockInit.FIRT_BLOCK);
     public static final Item FIRG_PLANKS = register("firg_planks", BlockInit.FIRG_PLANKS, ItemGroup.BUILDING_BLOCKS);
     public static final Item FIRG_PLANKS_STAIRS = register("firg_planks_stairs", BlockInit.FIRG_PLANKS_STAIRS, ItemGroup.BUILDING_BLOCKS);
     public static final Item FIRG_PLANKS_DOOR = register("firg_planks_door", BlockInit.FIRG_PLANKS_DOOR, ItemGroup.BUILDING_BLOCKS);
     public static final Item FIRT_BLOCK = register("firt_block", new BurningBlockItem(BlockInit.FIRT_BLOCK, (new Item.Properties()).group(ItemGroup.BUILDING_BLOCKS), 21600));
-    public static final Item TRIRIJ = register("tririj", com.babcsany.minecraft.init.BlockInit.TRIRIJ, (new Item.Properties()).isImmuneToFire().group(ItemGroup.MATERIALS));
+    public static final Item TRIRIJ = register("tririj", BlockInit.TRIRIJ, (new Item.Properties()).isImmuneToFire().group(ItemGroup.MATERIALS));
     public static final Item REUTRIEN = register("reutrien", BlockInit.REUTRIEN, (new Item.Properties()).isImmuneToFire().group(ItemGroup.MATERIALS));
 
     public static Item register(String name, Block blockIn) {
@@ -34,7 +34,7 @@ public class BlockItemInit {
     }
 
     public static Item register(String name, Block blockIn, Item.Properties properties) {
-        return UnusedBlockItems.registerDefault(name, blockIn, properties);
+        return UnusedItems.registerBlockItem(name, blockIn, properties);
     }
 
     public static Item register(String name, Item item) {

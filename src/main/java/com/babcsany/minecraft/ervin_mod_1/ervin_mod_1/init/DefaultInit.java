@@ -10,8 +10,8 @@ public class DefaultInit {
     }
 
     public void defaultRegister() {
+        UnusedBlockItems.register();
         UnusedBlocks.register();
         UnusedItems.register();
-        UnusedBlockItems.register();
     }
 }

@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/cobblestones/blue_cobblestone"
+          "name": "ervin_mod_1:stone/cobblestones/blue"
         }
       ],
       "conditions": [

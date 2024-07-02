@@ -47,10 +47,10 @@ public class ModDefaultBiomeFeatures {
    private static final BlockState SCRAFTH = BlockInit.SCRAFTH.getDefaultState();
    private static final BlockState GRITH_BLOCK = BlockInit.GRITH_BLOCK.getDefaultState();
    private static final BlockState GRINT_BLOCK = BlockInit.GRINT_BLOCK.getDefaultState();
-   private static final BlockState RED_GRASS_BLOCK = BlockItemInit.RED_GRASS_BLOCK.getDefaultState();
+   private static final BlockState RED_GRASS_BLOCK = BlockItemInit.RED_GRASS_BLOCK.getBlock().getDefaultState();
    private static final BlockState BARRIER = Blocks.BARRIER.getDefaultState();
    private static final BlockState END_STONE = Blocks.END_STONE.getDefaultState();
-   private static final BlockState END_SRACKT = ModBlockStates.END_SRACKT;
+   private static final BlockState END_SRACKT = ModBlockStates.END_SRACKT.getState();
    private static final BlockState END_SRACT = BlockItemInit.END_SRACT.getDefaultState();
    private static final BlockState END_STONE_CISK = BlockItemInit.END_STONE_CISK.getDefaultState();
    private static final BlockState END_STONE_CRISK = BlockItemInit.END_STONE_CRISK.getDefaultState();
@@ -79,10 +79,10 @@ public class ModDefaultBiomeFeatures {
    private static final BlockState SRIUNK_BLOCK = isBurnableBlockItemInit.SRIUNK_BLOCK.getDefaultState();
    private static final BlockState KALT_BLOCK = BlockItemInit.KALT_BLOCK.getDefaultState();
    private static final BlockState VILKT_BLOCK = isBurnableBlockItemInit.VILKT_BLOCK.getDefaultState();
-   private static final BlockState FIRG_LOG = BlockItemInit.FIRG_LOG.getDefaultState();
-   private static final BlockState FRIM_LOG = BlockItemInit.FRIM_LOG.getDefaultState();
+   private static final BlockState FIRG_LOG = BlockItemInit.FIRG_LOG.getBlock().getDefaultState();
+   private static final BlockState FRIM_LOG = BlockItemInit.FRIM_LOG.getBlock().getDefaultState();
    private static final BlockState FIRG_LEAVES = isBurnableBlockItemInit.FIRG_LEAVES.getDefaultState();
-   private static final BlockState FRIM_LEAVES = BlockItemInit.FRIM_LEAVES.getDefaultState();
+   private static final BlockState FRIM_LEAVES = BlockItemInit.FRIM_LEAVES.getBlock().getDefaultState();
    private static final BlockState FERN = Blocks.FERN.getDefaultState();
    private static final BlockState PODZOL = Blocks.PODZOL.getDefaultState();
    private static final BlockState OAK_LOG = Blocks.OAK_LOG.getDefaultState();
@@ -174,7 +174,7 @@ public class ModDefaultBiomeFeatures {
    private static final BlockState PEONY = Blocks.PEONY.getDefaultState();
    private static final BlockState BROWN_MUSHROOM = Blocks.BROWN_MUSHROOM.getDefaultState();
    private static final BlockState RED_MUSHROOM = Blocks.RED_MUSHROOM.getDefaultState();
-   private static final BlockState GRINTH_MUSHROOM = BlockItemInit.GRINTH_MUSHROOM.getDefaultState();
+   private static final BlockState GRINTH_MUSHROOM = BlockItemInit.GRINTH_MUSHROOM.getBlock().getDefaultState();
    private static final BlockState SEAGRASS = Blocks.SEAGRASS.getDefaultState();
    private static final BlockState PACKED_ICE = Blocks.PACKED_ICE.getDefaultState();
    private static final BlockState BLUE_ICE = Blocks.BLUE_ICE.getDefaultState();
@@ -201,7 +201,7 @@ public class ModDefaultBiomeFeatures {
    public static final StructureFeature<NoFeatureConfig, ? extends Structure<NoFeatureConfig>> STRONGHOLD = Structure.STRONGHOLD.withConfiguration(NoFeatureConfig.INSTANCE);
    public static final StructureFeature<ProbabilityConfig, ? extends Structure<ProbabilityConfig>> BURIED_TREASURE = Structure.BURIED_TREASURE.withConfiguration(new ProbabilityConfig(0.01F));
    private static final BlockState RED_MUSHROOM_BLOCK = Blocks.RED_MUSHROOM_BLOCK.getDefaultState().with(HugeMushroomBlock.DOWN, Boolean.FALSE);
-   private static final BlockState GRINTH_MUSHROOM_BLOCK = BlockItemInit.GRINTH_MUSHROOM_BLOCK.getDefaultState().with(HugeMushroomBlock.DOWN, Boolean.FALSE);
+   private static final BlockState GRINTH_MUSHROOM_BLOCK = BlockItemInit.GRINTH_MUSHROOM_BLOCK.getBlock().getDefaultState().with(HugeMushroomBlock.DOWN, Boolean.FALSE);
    private static final BlockState BROWN_MUSHROOM_BLOCK = Blocks.BROWN_MUSHROOM_BLOCK.getDefaultState().with(HugeMushroomBlock.UP, Boolean.TRUE).with(HugeMushroomBlock.DOWN, Boolean.FALSE);
    private static final BlockState MUSHROOM_STEM = Blocks.MUSHROOM_STEM.getDefaultState().with(HugeMushroomBlock.UP, Boolean.FALSE).with(HugeMushroomBlock.DOWN, Boolean.FALSE);
    public static final BaseTreeFeatureConfig OAK_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(OAK_LOG), new SimpleBlockStateProvider(OAK_LEAVES), new BlobFoliagePlacer(FeatureSpread.create(2, 0), FeatureSpread.create(0, 0), 3), new StraightTrunkPlacer(4, 2, 0), new TwoLayerFeature(1, 0, 1))).setIgnoreVines().build();
@@ -394,7 +394,7 @@ public class ModDefaultBiomeFeatures {
    }
 
    public static void addBlueStone(BiomeGenerationSettings.Builder builder) {
-      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, BLUE_STONE, 400)).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 2000))));
+      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, ModConfiguredFeatures.EXTRA_BLUE_STONE);
    }
 
    public static void addStones(BiomeGenerationSettings.Builder builder) {

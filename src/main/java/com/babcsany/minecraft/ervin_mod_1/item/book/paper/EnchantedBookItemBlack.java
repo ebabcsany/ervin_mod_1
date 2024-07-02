@@ -4,6 +4,7 @@ import com.babcsany.minecraft.init.item.ItemInit;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentData;
+import net.minecraft.item.EnchantedBookItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -20,7 +21,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class EnchantedBookItemBlack extends Item {
+public class EnchantedBookItemBlack extends EnchantedBookItem {
    public EnchantedBookItemBlack(Properties builder) {
       super(builder);
    }

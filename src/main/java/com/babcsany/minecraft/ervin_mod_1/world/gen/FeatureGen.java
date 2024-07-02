@@ -19,10 +19,8 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeGenerationSettings;
-import net.minecraft.world.biome.Biomes;
-import net.minecraft.world.biome.MobSpawnInfo;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.world.biome.*;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.blockstateprovider.BlockStateProvider;
 import net.minecraft.world.gen.blockstateprovider.BlockStateProviderType;
@@ -70,7 +68,7 @@ public class FeatureGen {
 	private static final BlockState YELLOW_STONE = BlockItemInit.YELLOW_STONE.getBlock().getDefaultState();
 	private static final BlockState SRIUNK_ORE = BlockItemInit.SRIUNK_ORE.getDefaultState();
 	private static final BlockState END_STONE = Blocks.END_STONE.getDefaultState();
-	private static final BlockState END_SRACKT = ModBlockStates.END_SRACKT;
+	private static final BlockState END_SRACKT = ModBlockStates.END_SRACKT.getState();
 	private static final BlockState END_SRACT = BlockItemInit.END_SRACT.getDefaultState();
 	private static final BlockState END_STONE_CISK = BlockItemInit.END_STONE_CISK.getDefaultState();
 	private static final BlockState END_STONE_CRISK = BlockItemInit.END_STONE_CRISK.getDefaultState();
@@ -110,7 +108,7 @@ public class FeatureGen {
 	}));
 
 	public static void generateFeature() {
-		for (RegistryKey<Biome> biomeIn : BiomeKeys.BIOME_KEYS) {
+		for (RegistryKey<Biome> biomeIn : BiomeKeys.BIOMES) {
 			BiomeGenerationSettings.Builder builder = (new BiomeGenerationSettings.Builder()).withSurfaceBuilder(ConfiguredSurfaceBuilders.GRASS);
 			if (biomeIn == Biomes.OCEAN) {
 				addOres(builder);
@@ -578,7 +576,7 @@ public class FeatureGen {
 	}
 
 	public static void getSpawns() {
-		for (RegistryKey<Biome> biomeIn : BiomeKeys.BIOME_KEYS) {
+		for (RegistryKey<Biome> biomeIn : BiomeKeys.BIOMES) {
 			MobSpawnInfo.Builder builder = new MobSpawnInfo.Builder();
 			if (biomeIn == Biomes.OCEAN) {
 				addSpawnZur(builder, 36);
@@ -874,7 +872,7 @@ public class FeatureGen {
 	}
 
 	public static void generateBlackStone() {
-		for (RegistryKey<Biome> biome : BiomeKeys.BIOME_KEYS) {
+		for (RegistryKey<Biome> biome : BiomeKeys.BIOMES) {
 			BiomeGenerationSettings.Builder builder = new BiomeGenerationSettings.Builder();
 			if (biome == Biomes.THE_END) {
 				builder.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(BASE_END_STONES, SRIUNK_ORE, 50)).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(0, 0, 320))));
@@ -1111,7 +1109,7 @@ public class FeatureGen {
 		GWURST(EntityClassification.CREATURE, EntityInit.GWURST),
 		FREIN(EntityClassification.MONSTER, EntityInit.FREIN_ENTITY),
 		LIWRAY(EntityClassification.CREATURE, EntityInit.LIWRAY),
-		ZUR(EntityClassification.CREATURE, EntityInit.ZUR_ENTITY);
+		ZUR(EntityClassification.CREATURE, EntityInit.ZUR);
 
 		private final EntityClassification classification;
 		private final EntityType<?> type;

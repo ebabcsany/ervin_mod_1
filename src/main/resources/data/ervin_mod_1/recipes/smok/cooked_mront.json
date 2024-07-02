@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smoking",
+  "ingredient": {
+    "item": "ervin_mod_1:mront"
+  },
+  "result": "ervin_mod_1:cooked_mront",
+  "experience": 0.35,
+  "cookingtime": 100
+}

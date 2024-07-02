@@ -12,7 +12,6 @@ import net.minecraft.inventory.container.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.*;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.tileentity.AbstractFurnaceTileEntity;
 import net.minecraft.util.IIntArray;
 import net.minecraft.util.IntArray;
 import net.minecraft.world.World;

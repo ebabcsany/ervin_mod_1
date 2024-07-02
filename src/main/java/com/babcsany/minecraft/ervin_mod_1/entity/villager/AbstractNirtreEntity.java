@@ -23,7 +23,6 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
-import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
@@ -222,8 +221,6 @@ public abstract class AbstractNirtreEntity extends AgeableEntity implements INPC
    }
 
    protected abstract void populateTradeData();
-
-   protected abstract void populateTradeData1();
 
    /**
     * add limites numbers of trades to the given MerchantOffers

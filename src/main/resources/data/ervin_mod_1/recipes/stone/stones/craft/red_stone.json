@@ -2,14 +2,14 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "tag": "ervin_mod_1:ingredients/stone/stones/red_stone"
+      "tag": "ervin_mod_1:ingredients/stone/stones/red"
     },
     {
       "item": "minecraft:red_dye"
     }
   ],
   "result": {
-    "item": "ervin_mod_1:stone/stones/red_stone",
+    "item": "ervin_mod_1:stone/stones/red",
     "count": 1
   }
 }

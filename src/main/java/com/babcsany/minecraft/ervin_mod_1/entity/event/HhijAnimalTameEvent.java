@@ -20,10 +20,8 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.event;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.animal.hhij.HhijAnimalEntity;
-import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.Cancelable;
 

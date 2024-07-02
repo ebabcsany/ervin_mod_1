@@ -1,35 +1,75 @@
 package com.babcsany.minecraft.ervin_mod_1.item.items;
 
-import com.google.common.collect.Maps;
+import com.google.common.collect.ImmutableMultimap;
+import com.google.common.collect.Multimap;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
+import net.minecraft.enchantment.IVanishable;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.ai.attributes.Attribute;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
-import javax.annotation.Nullable;
+import java.util.Set;
 
-public class ModToolItem extends Item {
-   private final java.util.Map<net.minecraftforge.common.ToolType, Integer> toolClasses = Maps.newHashMap();
-   private final int harvestLevel;
-   private final int maxDamage;
-   public ModToolItem(Properties properties, int harvestLevel, int maxDamage) {
-      super(properties);
-      this.harvestLevel = harvestLevel;
-      this.maxDamage = maxDamage;
+public class ModToolItem extends ModTieredItem implements IVanishable {
+   /** Hardcoded set of blocks this tool can properly dig at full speed. Modders see instead. */
+   private final Set<Block> effectiveBlocks;
+   protected final float efficiency;
+   private final float attackDamage;
+   private final Multimap<Attribute, AttributeModifier> toolAttributes;
+
+   public ModToolItem(float attackDamageIn, float attackSpeedIn, IItemTier tier, Set<Block> effectiveBlocksIn, Properties builderIn) {
+      super(tier, builderIn);
+      this.effectiveBlocks = effectiveBlocksIn;
+      this.efficiency = tier.getEfficiency();
+      this.attackDamage = attackDamageIn + tier.getAttackDamage();
+      ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
+      builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Tool modifier", this.attackDamage, AttributeModifier.Operation.ADDITION));
+      builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(ATTACK_SPEED_MODIFIER, "Tool modifier", attackSpeedIn, AttributeModifier.Operation.ADDITION));
+      this.toolAttributes = builder.build();
    }
 
-   @Override
-   public int getHarvestLevel(ItemStack stack, net.minecraftforge.common.ToolType tool, @Nullable PlayerEntity player, @Nullable BlockState blockState) {
-      return toolClasses.getOrDefault(tool, this.harvestLevel);
+   public float getDestroySpeed(ItemStack stack, BlockState state) {
+      if (getToolTypes(stack).stream().anyMatch(state::isToolEffective)) return efficiency;
+      return this.effectiveBlocks.contains(state.getBlock()) ? this.efficiency : 1.0F;
    }
 
-   @Override
-   public int getMaxDamage(ItemStack stack) {
-      return this.maxDamage;
+   /**
+    * Current implementations of this method in child classes do not use the entry argument beside ev. They just raise
+    * the damage on the stack.
+    */
+   public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+      stack.damageItem((int) this.attackDamage + 2, attacker, (entity) -> entity.sendBreakAnimation(EquipmentSlotType.MAINHAND));
+      return true;
    }
 
-   @Override
-   public int getItemStackLimit(ItemStack stack) {
-      return 2048;
+   /**
+    * Called when a Block is destroyed using this Item. Return true to trigger the "Use Item" statistic.
+    */
+   public boolean onBlockDestroyed(ItemStack stack, World worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving) {
+      if (!worldIn.isRemote && state.getBlockHardness(worldIn, pos) != 0.0F) {
+         stack.damageItem((int) this.attackDamage + 1, entityLiving, (entity) -> {
+            entity.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+         });
+      }
+
+      return true;
+   }
+
+   /**
+    * Gets a map of item attribute modifiers, used by ItemSword to increase hit damage.
+    */
+   public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlotType equipmentSlot) {
+      return equipmentSlot == EquipmentSlotType.MAINHAND ? this.toolAttributes : super.getAttributeModifiers(equipmentSlot);
+   }
+
+   public float getAttackDamage() {
+      return this.attackDamage;
    }
 }

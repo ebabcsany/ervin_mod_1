@@ -9,6 +9,9 @@
     },
     {
       "item": "minecraft:water_bucket"
+    },
+    {
+      "tag": "ervin_mod_1:water_bucket"
     }
   ],
   "result": {

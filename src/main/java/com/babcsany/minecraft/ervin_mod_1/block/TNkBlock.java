@@ -7,7 +7,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.item.TNTEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.ProjectileEntity;
+import net.minecraft.entity.projectile.ModProjectileEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -114,7 +114,7 @@ public class TNkBlock extends Block {
       }
    }
 
-   public void onProjectileCollision(World worldIn, BlockState state, BlockRayTraceResult hit, ProjectileEntity projectile) {
+   public void onProjectileCollision(World worldIn, BlockState state, BlockRayTraceResult hit, ModProjectileEntity projectile) {
       if (!worldIn.isRemote) {
          Entity entity = projectile.getShooter();
          if (projectile.isBurning()) {

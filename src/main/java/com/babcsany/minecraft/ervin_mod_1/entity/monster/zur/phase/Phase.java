@@ -2,12 +2,8 @@ package com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.phase;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.boss.dragon.EnderDragonEntity;
 import net.minecraft.entity.boss.dragon.phase.IPhase;
-import net.minecraft.entity.item.EnderCrystalEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
 

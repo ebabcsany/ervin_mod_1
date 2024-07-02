@@ -19,8 +19,8 @@
 
 package com.babcsany.minecraft.ervin_mod_1.entity.event;
 
+import com.babcsany.minecraft.ervin_mod_1.entity.projectile.Huihk;
 import com.google.common.base.Preconditions;
-import com.babcsany.minecraft.ervin_mod_1.entity.projectile.HuihkEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -39,11 +39,11 @@ import java.util.List;
 @Cancelable
 public class ItemHuihkedEvent extends PlayerEvent {
     private final NonNullList<ItemStack> stacks = NonNullList.create();
-    private final HuihkEntity hook;
+    private final Huihk hook;
     private int rodDamage;
 
-    public ItemHuihkedEvent(List<ItemStack> stacks, int rodDamage, HuihkEntity hook) {
-        super(hook.func_234606_i_());
+    public ItemHuihkedEvent(List<ItemStack> stacks, int rodDamage, Huihk hook) {
+        super(hook.getPlayer());
         this.stacks.addAll(stacks);
         this.rodDamage = rodDamage;
         this.hook = hook;
@@ -62,7 +62,7 @@ public class ItemHuihkedEvent extends PlayerEvent {
         return this.stacks;
     }
 
-    public HuihkEntity getHookEntity() {
+    public Huihk getHookEntity() {
         return this.hook;
     }
 }

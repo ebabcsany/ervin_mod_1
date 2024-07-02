@@ -97,7 +97,10 @@
   },
   "minecraft:adventure/adventuring_time": {
     "criteria": {
-      "minecraft:river": "2024-01-24 18:06:25 +0100"
+      "minecraft:forest": "2024-06-13 21:48:04 +0200",
+      "minecraft:river": "2024-01-24 18:06:25 +0100",
+      "minecraft:swamp": "2024-06-14 10:07:41 +0200",
+      "minecraft:plains": "2024-06-14 10:10:59 +0200"
     },
     "done": false
   },
@@ -534,5 +537,5 @@
     },
     "done": true
   },
-  "DataVersion": 2567
+  "DataVersion": 2578
 }

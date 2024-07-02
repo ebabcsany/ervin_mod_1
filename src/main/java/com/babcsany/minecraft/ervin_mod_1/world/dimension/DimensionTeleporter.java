@@ -1,5 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.world.dimension;
 
+import com.babcsany.minecraft.ervin_mod_1.block.ExamplePortalBlock;
 import com.babcsany.minecraft.ervin_mod_1.block.portal.Portal4;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -54,7 +55,7 @@ public class DimensionTeleporter implements ITeleporter {
         if (inside) {
             boolean doSetBlock = true;
             for (BlockPos checkPos : BlockPos.getAllInBoxMutable(destPos.up(10).east(10), destPos.down(10).west(10))) {
-                if (destWorld.getBlockState(checkPos).getBlock() instanceof NetherPortalBlock) {
+                if (destWorld.getBlockState(checkPos).getBlock() instanceof ExamplePortalBlock) {
                     doSetBlock = false;
                     break;
                 }

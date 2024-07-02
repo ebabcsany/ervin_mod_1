@@ -4,9 +4,6 @@ import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.init.unused.UnusedItems;
 import com.babcsany.minecraft.ervin_mod_1.item.group.ModItemGroup;
 import net.minecraft.item.Item;
-import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
 
 public class $ItemInit {
     public static final Item $_1$ = registerDefault("1");
@@ -21,7 +18,7 @@ public class $ItemInit {
     public static final Item $_10$ = registerDefault("10");
 
     public static Item registerDefault(String name) {
-        return UnusedItems.addDefault("usd/" + name, new Item.Properties().isImmuneToFire().group(ModItemGroup.ERVIN_MOD_1_ITEMS));
+        return UnusedItems.registerDefault("usd/" + name, new Item.Properties().isImmuneToFire().group(ModItemGroup.ERVIN_MOD_1_ITEMS));
     }
 
     public static void register() {

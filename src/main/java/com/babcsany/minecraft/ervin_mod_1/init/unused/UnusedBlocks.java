@@ -2,10 +2,12 @@ package com.babcsany.minecraft.ervin_mod_1.init.unused;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.item.ToolTypeInit;
+import com.babcsany.minecraft.ervin_mod_1.util.Cast;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.item.BlockItem;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.DefaultedRegistry;
 import net.minecraft.util.registry.Registry;
@@ -22,11 +24,11 @@ public class UnusedBlocks {
         return unusedBlockRegistryObject(name, Material.ROCK);
     }
 
-    public static Block unusedBlockRegistryObject(String name, Material material) {
+    private static Block unusedBlockRegistryObject(String name, Material material) {
         return registerDefault(name, new Block(AbstractBlock.Properties.create(material)));
     }
 
-    public static Block setBlockRequiresTool(Material material, int harvestLevel, float hardnessAndResistanceIn, ToolType harvestTool, SoundType sound) {
+    private static Block setBlockRequiresTool(Material material, int harvestLevel, float hardnessAndResistanceIn, ToolType harvestTool, SoundType sound) {
         return new Block(requiresToolProperties(material, harvestLevel, hardnessAndResistanceIn, harvestTool, sound));
     }
 
@@ -50,7 +52,7 @@ public class UnusedBlocks {
         return AbstractBlock.Properties.create(material).setRequiresTool().harvestLevel(harvestLevel).hardnessAndResistance(hardnessAndResistanceIn).harvestTool(harvestTool);
     }
 
-    public static AbstractBlock.Properties requiresToolProperties(Material material, int harvestLevel, float hardnessIn, float resistanceIn, ToolType harvestTool, SoundType sound) {
+    private static AbstractBlock.Properties requiresToolProperties(Material material, int harvestLevel, float hardnessIn, float resistanceIn, ToolType harvestTool, SoundType sound) {
         return AbstractBlock.Properties.create(material).setRequiresTool().harvestLevel(harvestLevel).hardnessAndResistance(hardnessIn, resistanceIn).harvestTool(harvestTool).sound(sound);
     }
 
@@ -59,47 +61,56 @@ public class UnusedBlocks {
     }
 
     public static <T extends Block> Block registerBlock(String name, T blockIn) {
-        return registerDefault(name, blockIn);
+        return registerDefault(path(name), blockIn);
     }
 
     public static <T extends Block> Block registerDefault(String name, T blockIn) {
-        add(name, blockIn);
+        addDefault(name, blockIn);
         return register(name, blockIn);
     }
 
-    public static Block register(String key, Block blockIn) {
+    public static Block registerBlockItem(String name, Block blockIn) {
+        return new Cast<BlockItem>().cast(UnusedBlockItems.registerDefault(name, blockIn)).getBlock();
+    }
+
+    private static Block register(String key, Block blockIn) {
         return registerDefault(Ervin_mod_1.getKey(key), blockIn);
     }
 
     public static Block registerDefault(ResourceLocation key, Block blockIn) {
-        return Registry.register(registry(), key, blockIn);
+        boolean notContains = !BLOCK_PATHS.contains(key.getPath()) && !BLOCKS.contains(blockIn);
+        Registry.register(registry(), key, blockIn);
+        return blockIn;
     }
 
     @Deprecated
-    public static DefaultedRegistry<Block> registry() {
+    private static DefaultedRegistry<Block> registry() {
         return Registry.BLOCK;
     }
 
-    public static Block add(String name, Block block) {
+    private static Block add(String name, Block block) {
         return addDefault(path(name), block);
     }
 
-    public static Block addDefault(String path, Block block) {
-        BLOCKS.add(block);
-        addPath(path);
-        return LAST_BLOCK = block;
+    private static Block addDefault(String path, Block block) {
+        if (!BLOCK_PATHS.contains(path) && !BLOCKS.contains(block)) {
+            BLOCKS.add(block);
+            addPath(path);
+            LAST_BLOCK = block;
+        }
+        return block;
     }
 
     public static Block get(String name) {
         return getDefault(path(name));
     }
 
-    public static String path(String name) {
+    private static String path(String name) {
         String string = "unused";
         return string + "/" + name;
     }
 
-    public static void addPath(String path) {
+    private static void addPath(String path) {
         if (!BLOCK_PATHS.contains(path)) {
             BLOCK_PATHS.add(path);
         }
@@ -121,10 +132,6 @@ public class UnusedBlocks {
 
     public static void register() {
         Ervin_mod_1.register(UnusedBlocks.class);
-    }
-
-    static {
-        registerBlock("air", new Block(Block.Properties.create(Material.AIR).doesNotBlockMovement().noDrops()));
-        registerBlock("tgruhuft", setBlockRequiresTool(Material.CAKE, 4, 12354, 15365, ToolTypeInit.PHISK, SoundType.CHAIN));
+        registerBlock("fs", setBlockRequiresTool(Material.GOURD, 4, 12354, 15365, ToolType.HOE, SoundType.GROUND));
     }
 }

@@ -7,7 +7,6 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.ProjectileItemEntity;
 import net.minecraft.item.Item;
-import net.minecraft.item.Items;
 import net.minecraft.particles.ItemParticleData;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.DamageSource;
@@ -24,11 +23,11 @@ public class TawrolEntity extends ProjectileItemEntity {
    }
 
    public TawrolEntity(World worldIn, LivingEntity throwerIn) {
-      super(EntityType.EGG, throwerIn, worldIn);
+      super(com.babcsany.minecraft.init.EntityInit.TAWROL, throwerIn, worldIn);
    }
 
    public TawrolEntity(World worldIn, double x, double y, double z) {
-      super(EntityType.EGG, x, y, z, worldIn);
+      super(com.babcsany.minecraft.init.EntityInit.TAWROL, x, y, z, worldIn);
    }
 
    /**
@@ -81,6 +80,6 @@ public class TawrolEntity extends ProjectileItemEntity {
    }
 
    protected Item getDefaultItem() {
-      return Items.EGG;
+      return ItemInit.TAWROL;
    }
 }

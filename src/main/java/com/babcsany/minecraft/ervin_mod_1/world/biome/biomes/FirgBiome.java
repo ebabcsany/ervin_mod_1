@@ -48,7 +48,7 @@ public class FirgBiome {
 		spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityType.RABBIT, 1, 2, 5));
 		spawnInfoBuilder.withSpawner(EntityClassification.MONSTER, new SpawnListEntry(EntityType.HUSK, 1, 2, 5));
 		spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityType.BEE, 1, 2, 10));
-		spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.ZUR_ENTITY, 1, 1, 1));
+		spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.ZUR, 1, 1, 1));
 		biomeBuilder.withCarver(GenerationStage.Carving.AIR, ConfiguredCarvers.CAVE);
 		biomeBuilder.withCarver(GenerationStage.Carving.AIR, ConfiguredCarvers.NETHER_CAVE);
 		biomeBuilder.withCarver(GenerationStage.Carving.AIR, ConfiguredCarvers.CANYON);
@@ -63,16 +63,17 @@ public class FirgBiome {
 		ambienceBuilder.setFogColor(1677241);
 		ambienceBuilder.withSkyColor(15418973);
 		ambienceBuilder.withGrassColor(13158600);
+
 		builder.precipitation(Biome.RainType.SNOW);
 		builder.scale(166.8F);
 		builder.temperature(0.5F);
 		builder.setEffects(ambienceBuilder.build());
 		builder.withMobSpawnSettings(spawnInfoBuilder.build());
 		builder.withGenerationSettings(biomeBuilder.build());
+		builder.withTemperatureModifier(Biome.TemperatureModifier.NONE);
 		builder.category(Biome.Category.THEEND);
 		builder.downfall(1114.5F);
 		builder.depth(0.12F);
-		builder.withTemperatureModifier(Biome.TemperatureModifier.NONE);
 		return builder.build();
 	}
 }

@@ -2,7 +2,6 @@ package com.babcsany.minecraft.ervin_mod_1.entity.ai.goal;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.AbstractNirtreEntity;
 import net.minecraft.entity.ai.goal.LookAtGoal;
-import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 
 public class NirtreLookAtCustomerGoal extends LookAtGoal {

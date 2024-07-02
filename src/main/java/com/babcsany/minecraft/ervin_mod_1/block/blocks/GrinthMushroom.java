@@ -82,7 +82,7 @@ public class GrinthMushroom extends BushBlock implements IGrowable {
       if (this == Blocks.BROWN_MUSHROOM) {
          configuredfeature = Feature.HUGE_BROWN_MUSHROOM.withConfiguration(ModDefaultBiomeFeatures.BIG_BROWN_MUSHROOM);
       } else {
-         if (this != BlockItemInit.GRINTH_MUSHROOM) {
+         if (this != BlockItemInit.GRINTH_MUSHROOM.getBlock()) {
             world.setBlockState(pos, state, 3);
             return false;
          }

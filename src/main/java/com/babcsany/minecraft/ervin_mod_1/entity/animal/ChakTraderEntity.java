@@ -18,8 +18,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
-import javax.annotation.Nullable;
-
 public class ChakTraderEntity extends AnimalEntity {
    public ChakTraderEntity(EntityType<? extends SrachEntity> type, World worldIn) {
       super(type, worldIn);

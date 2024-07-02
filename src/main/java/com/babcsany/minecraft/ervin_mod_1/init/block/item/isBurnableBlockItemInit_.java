@@ -16,6 +16,6 @@ public class isBurnableBlockItemInit_ {
     public static final Item GARK_STAIRS = register("gark_stairs", new BurningBlockItem(isBurnableBlockItemInit.GARK_STAIRS, (new Item.Properties()).isImmuneToFire(),98415000));
 
     public static Item register(String name, Item item) {
-        return UnusedItems.addDefault(name, item);
+        return UnusedItems.registerDefault(name, item);
     }
 }

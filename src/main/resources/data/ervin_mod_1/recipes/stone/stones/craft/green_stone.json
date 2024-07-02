@@ -2,14 +2,14 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "tag": "ervin_mod_1:ingredients/stone/stones/green_stone"
+      "tag": "ervin_mod_1:ingredients/stone/stones/green"
     },
     {
       "item": "minecraft:green_dye"
     }
   ],
   "result": {
-    "item": "ervin_mod_1:stone/stones/green_stone",
+    "item": "ervin_mod_1:stone/stones/green",
     "count": 1
   }
 }

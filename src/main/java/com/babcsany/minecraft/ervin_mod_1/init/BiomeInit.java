@@ -27,7 +27,7 @@ public class BiomeInit {
     public static final DeferredRegister<Biome> BIOMES = DeferredRegister.create(ForgeRegistries.BIOMES,
             Ervin_mod_1.MOD_ID);
 
-    public static final RegistryObject<Biome> RIFT_BIOME = BIOMES.register("rift_biome", () -> ModBiomeMaker.RIFT_BIOME);
+    public static final RegistryObject<Biome> RIFT_BIOME = BIOMES.register("rift", () -> ModBiomeMaker.RIFT_BIOME);
     public static final RegistryKey<Biome> MIGV = makeKey("migv");
     public static final RegistryKey<Biome> THE_BHJUIG = makeKey("the_bhjuig");
     public static final RegistryKey<Biome> MIG = makeKey("mig");

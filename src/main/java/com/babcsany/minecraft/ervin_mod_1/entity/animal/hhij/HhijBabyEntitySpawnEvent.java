@@ -19,9 +19,7 @@
 
 package com.babcsany.minecraft.ervin_mod_1.entity.animal.hhij;
 
-import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.Cancelable;

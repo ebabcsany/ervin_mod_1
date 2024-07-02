@@ -7,7 +7,6 @@ import net.minecraft.util.*;
 public class YellowTripWireHook extends ModTripWireHookBlock {
    public YellowTripWireHook(Properties properties) {
       super(properties);
-      this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH).with(POWERED, Boolean.valueOf(false)).with(ATTACHED, Boolean.valueOf(false)));
    }
 
    @Override

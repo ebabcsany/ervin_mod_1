@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    "ervin_mod_1:stone/stones/black",
+    "ervin_mod_1:stone/stones/blue",
+    "ervin_mod_1:stone/stones/brown",
+    "minecraft:stone",
+    "ervin_mod_1:stone/stones/cyan",
+    "ervin_mod_1:stone/stones/green",
+    "ervin_mod_1:stone/stones/light_blue",
+    "ervin_mod_1:stone/stones/light_blue1",
+    "ervin_mod_1:stone/stones/lime",
+    "ervin_mod_1:stone/stones/magenta",
+    "ervin_mod_1:stone/stones/orange",
+    "ervin_mod_1:stone/stones/pink",
+    "ervin_mod_1:stone/stones/purple",
+    "ervin_mod_1:stone/stones/red",
+    "ervin_mod_1:stone/stones/white",
+    "ervin_mod_1:stone/stones/yellow"
+  ]
+}

@@ -46,13 +46,13 @@ public class FireBlock extends net.minecraft.block.FireBlock {
 
     public static void init() {
         FireBlock fireblock = (FireBlock) Blocks.FIRE;
-        fireblock.setFireInfo(BlockItemInit.FIRG_PLANKS_SLAB, 5, 5);
-        fireblock.setFireInfo(BlockItemInit.FIRG_LOG, 5, 5);
-        fireblock.setFireInfo(BlockItemInit.FRIM_LOG, 5, 5);
-        fireblock.setFireInfo(BlockItemInit.STRIPPED_FIRG_WOOD, 5, 5);
-        fireblock.setFireInfo(BlockItemInit.STRIPPED_FRIM_WOOD, 5, 5);
-        fireblock.setFireInfo(BlockItemInit.FIRG_WOOD, 5, 5);
-        fireblock.setFireInfo(BlockItemInit.FRIM_WOOD, 5, 5);
+        fireblock.setFireInfo(BlockItemInit.FIRG_PLANKS_SLAB.getBlock(), 5, 5);
+        fireblock.setFireInfo(BlockItemInit.FIRG_LOG.getBlock(), 5, 5);
+        fireblock.setFireInfo(BlockItemInit.FRIM_LOG.getBlock(), 5, 5);
+        fireblock.setFireInfo(BlockItemInit.STRIPPED_FIRG_WOOD.getBlock(), 5, 5);
+        fireblock.setFireInfo(BlockItemInit.STRIPPED_FRIM_WOOD.getBlock(), 5, 5);
+        fireblock.setFireInfo(BlockItemInit.FIRG_WOOD.getBlock(), 5, 5);
+        fireblock.setFireInfo(BlockItemInit.FRIM_WOOD.getBlock(), 5, 5);
         fireblock.setFireInfo(BlockItemInit.TURG, 4, 4);
         fireblock.setFireInfo(BlockItemInit.ACACIA_TURG, 4, 4);
         fireblock.setFireInfo(BlockItemInit.BIRCH_TURG, 4, 4);

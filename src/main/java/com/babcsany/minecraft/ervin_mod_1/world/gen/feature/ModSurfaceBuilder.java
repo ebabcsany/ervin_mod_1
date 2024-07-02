@@ -23,7 +23,7 @@ public abstract class ModSurfaceBuilder<C extends ISurfaceBuilderConfig> extends
     public static final SurfaceBuilderConfig RIFT_CONFIG = register(REDSTONE_BLOCK, MAGMA_BLOCK, RED_CONCRETE);
     public static final SurfaceBuilderConfig BHJUIG_CONFIG = register(AIR, STONE, CAVE_AIR);
     public static final SurfaceBuilderConfig MIG_CONFIG = register(WATER, GRASS, CARVED_PUMPKIN);
-    public static final SurfaceBuilderConfig SRIUNK_VALLEY_CONFIG = register(MOD_END_PORTAL, MOD_NETHER_PORTAL, DURT);
+    public static final SurfaceBuilderConfig SRIUNK_VALLEY_CONFIG = register(END_PORTAL, NETHER_PORTAL, DURT);
     public static final SurfaceBuilderConfig EXAMPLE0_CONFIG = register(SRURG, EPKIH, DIRT);
     public static final SurfaceBuilderConfig COARSE_DIRT_DIRT_DIRT_CONFIG = register12(COARSE_DIRT, DIRT);
     public static final SurfaceBuilderConfig EXAMPLE_CONFIG1 = register(COARSE_DIRT, GRASS_BLOCK, DIRT);
@@ -165,14 +165,14 @@ public abstract class ModSurfaceBuilder<C extends ISurfaceBuilderConfig> extends
         FIRG(BlockInit.FIRG),
         SCRAFTH(BlockInit.SCRAFTH),
         GTRZIUZHIZJKJ(SpecialBlockInit.GTRZIUZHIZJKJ),
-        MOD_END_PORTAL(BlockItemInit.END_PORTAL),
+        END_PORTAL(Blocks.END_PORTAL),
         KALT_BLOCK(BlockItemInit.KALT_BLOCK),
-        DURT(BlockItemInit.DURT),
+        DURT(BlockItemInit.DURT.getBlock()),
         SRURG(isBurnableBlockItemInit.SRURG),
         NIRTK(isBurnableBlockItemInit.NIRTK),
         NIRTKB(isBurnableBlockItemInit.NIRTKB),
         EPKIH(isBurnableBlockItemInit.EPKIH),
-        MOD_NETHER_PORTAL(isBurnableBlockItemInit.NETHER_PORTAL),
+        NETHER_PORTAL(Blocks.NETHER_PORTAL),
         TERAT_BLOCK(BlockInit.TERAT_BLOCK);
 
         public final BlockState state;

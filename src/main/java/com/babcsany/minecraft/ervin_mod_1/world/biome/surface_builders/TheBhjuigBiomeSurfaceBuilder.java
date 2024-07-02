@@ -30,7 +30,7 @@ public class TheBhjuigBiomeSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderC
 					new SurfaceBuilderConfig(
 							Blocks.GRASS_BLOCK.getDefaultState(),
 							SpecialBlockInit.GTRZIUZHIZJKJ.getDefaultState(),
-							BlockItemInit.DURT_GURBF.getDefaultState()));
+							BlockItemInit.DURT_GURBF.getBlock().getDefaultState()));
 		} else {
 			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock,
 					defaultFluid, seaLevel, seed,
