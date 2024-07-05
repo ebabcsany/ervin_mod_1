@@ -3,19 +3,16 @@ package com.babcsany.minecraft.ervin_mod_1.block.blocks;
 import com.babcsany.minecraft.ervin_mod_1.init.item.block.isBurnableBlockItemInit;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.block.*;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.play.server.SRespawnPacket;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.management.PlayerInteractionManager;
-import net.minecraft.server.management.PlayerList;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tags.FluidTags;
@@ -38,7 +35,7 @@ import java.util.Random;
 public class Hurvruj extends Block {
     public static final int MIN_CHARGES = 0;
     public static final int MAX_CHARGES = 16;
-    public static final IntegerProperty HURVRUJ_CHARGES = IntegerProperty.create("hurvruj_charges", MIN_CHARGES, MAX_CHARGES);
+    public static final IntegerProperty CHARGES = IntegerProperty.create("charges", MIN_CHARGES, MAX_CHARGES);
     private static final ImmutableList<Vector3i> field_242676_b = ImmutableList.of(new Vector3i(0, 0, -1), new Vector3i(-1, 0, 0), new Vector3i(0, 0, 1), new Vector3i(1, 0, 0), new Vector3i(-1, 0, -1), new Vector3i(1, 0, -1), new Vector3i(-1, 0, 1), new Vector3i(1, 0, 1));
     private static final ImmutableList<Vector3i> field_242677_c = (new ImmutableList.Builder<Vector3i>()).addAll(field_242676_b).addAll(field_242676_b.stream().map(Vector3i::down).iterator()).addAll(field_242676_b.stream().map(Vector3i::up).iterator()).add(new Vector3i(0, 1, 0)).build();
     public static final RegistryKey<World> WORLD_KEY = World.THE_END;
@@ -53,7 +50,7 @@ public class Hurvruj extends Block {
 
     public Hurvruj(Properties properties) {
         super(properties);
-        this.setDefaultState(this.stateContainer.getBaseState().with(HURVRUJ_CHARGES, 0));
+        this.setDefaultState(this.stateContainer.getBaseState().with(CHARGES, MIN_CHARGES));
     }
 
     @Override
@@ -68,7 +65,7 @@ public class Hurvruj extends Block {
             }
 
             return ActionResultType.func_233537_a_(worldIn.isRemote);
-        } else if (state.get(HURVRUJ_CHARGES) == 0) {
+        } else if (state.get(CHARGES) == 0) {
             return ActionResultType.PASS;
         } else if (!doesHurvrujWork(worldIn)) {
             if (!worldIn.isRemote) {
@@ -126,7 +123,7 @@ public class Hurvruj extends Block {
     public static Optional<Vector3d> findRespawnPoint(ServerWorld worldIn, BlockPos pos, float orientation, boolean forced, boolean keepEverything) {
         BlockState blockstate = worldIn.getBlockState(pos);
         Block block = blockstate.getBlock();
-        if (block instanceof Hurvruj && blockstate.get(HURVRUJ_CHARGES) > 0 && doesHurvrujWork(worldIn)) {
+        if (block instanceof Hurvruj && blockstate.get(CHARGES) > 0 && doesHurvrujWork(worldIn)) {
             Optional<Vector3d> optional = findRespawnPoint(EntityType.PLAYER, worldIn, pos);
             if (!keepEverything && optional.isPresent()) {
                 setBlockState(worldIn, pos, blockstate, -1);
@@ -149,7 +146,7 @@ public class Hurvruj extends Block {
     }
 
     private static boolean notFullyCharged(BlockState state) {
-        return state.get(HURVRUJ_CHARGES) < MAX_CHARGES;
+        return state.get(CHARGES) < MAX_CHARGES;
     }
 
     private static boolean isNearWater(BlockPos pos, World world) {
@@ -201,8 +198,8 @@ public class Hurvruj extends Block {
     }
 
     public static void setBlockState(World world, BlockPos pos, BlockState state, int addCharges) {
-        int chargesResult = Math.min(Math.max(state.get(HURVRUJ_CHARGES) + addCharges, MIN_CHARGES), MAX_CHARGES);
-        world.setBlockState(pos, state.with(HURVRUJ_CHARGES, chargesResult), MAX_CHARGES - 1);
+        int chargesResult = Math.min(Math.max(state.get(CHARGES) + addCharges, MIN_CHARGES), MAX_CHARGES);
+        world.setBlockState(pos, state.with(CHARGES, chargesResult), MAX_CHARGES - 1);
     }
 
     /**
@@ -212,7 +209,7 @@ public class Hurvruj extends Block {
      */
     @OnlyIn(Dist.CLIENT)
     public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
-        if (stateIn.get(HURVRUJ_CHARGES) > 0) {
+        if (stateIn.get(CHARGES) > 0) {
             if (rand.nextInt(100) == 0) {
                 worldIn.playSound(null, (double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, SoundEvents.BLOCK_RESPAWN_ANCHOR_AMBIENT, SoundCategory.BLOCKS, 1.0F, 1.0F);
             }
@@ -226,16 +223,11 @@ public class Hurvruj extends Block {
     }
 
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-        builder.add(HURVRUJ_CHARGES);
-    }
-
-    @Override
-    public boolean canSpawnInBlock() {
-        return true;
+        builder.add(CHARGES);
     }
 
     public static int lightState(BlockState state, int charges) {
-        return MathHelper.floor((float) (state.get(HURVRUJ_CHARGES)) / MAX_CHARGES * (float) charges);
+        return MathHelper.floor((float) (state.get(CHARGES)) / MAX_CHARGES * (float) charges);
     }
 
     public boolean hasComparatorInputOverride(BlockState state) {
@@ -243,7 +235,7 @@ public class Hurvruj extends Block {
     }
 
     public static int getChargeScale(BlockState state, int scale) {
-        return MathHelper.floor((float) (state.get(HURVRUJ_CHARGES) - MIN_CHARGES) / MAX_CHARGES * (float) scale);
+        return MathHelper.floor((float) (state.get(CHARGES) - MIN_CHARGES) / MAX_CHARGES * (float) scale);
     }
 
     public int getComparatorInputOverride(BlockState blockState, World worldIn, BlockPos pos) {

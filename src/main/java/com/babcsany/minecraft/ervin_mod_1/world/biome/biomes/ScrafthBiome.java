@@ -53,7 +53,7 @@ public class ScrafthBiome {
 		biomeBuilder.withSurfaceBuilder(configuredSurfaceBuilderSupplier);
 
 		ModDefaultBiomeFeatures.addExtraDirt(biomeBuilder);
-		ModDefaultBiomeFeatures.addScrafth(biomeBuilder);
+		ModDefaultBiomeFeatures.addExtraScrafth(biomeBuilder);
 
 		ambienceBuilder.setWaterColor(16777215);
 		ambienceBuilder.setWaterFogColor(16777210);

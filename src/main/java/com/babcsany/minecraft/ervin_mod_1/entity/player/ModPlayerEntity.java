@@ -30,10 +30,10 @@ public abstract class ModPlayerEntity extends PlayerEntity {
             }
 
             return optional;
-        } else if (block instanceof Hurvruj && blockstate.get(Hurvruj.HURVRUJ_CHARGES) > 0 && Hurvruj.doesHurvrujWork(worldIn)) {
+        } else if (block instanceof Hurvruj && blockstate.get(Hurvruj.CHARGES) > 0 && Hurvruj.doesHurvrujWork(worldIn)) {
             Optional<Vector3d> optional = Hurvruj.findRespawnPoint(EntityType.PLAYER, worldIn, pos);
             if (!keepEverything && optional.isPresent()) {
-                worldIn.setBlockState(pos, blockstate.with(Hurvruj.HURVRUJ_CHARGES, Integer.valueOf(blockstate.get(Hurvruj.HURVRUJ_CHARGES) - 1)), Hurvruj.MAX_CHARGES - 1);
+                worldIn.setBlockState(pos, blockstate.with(Hurvruj.CHARGES, Integer.valueOf(blockstate.get(Hurvruj.CHARGES) - 1)), Hurvruj.MAX_CHARGES - 1);
             }
 
             return optional;

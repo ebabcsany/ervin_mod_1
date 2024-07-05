@@ -1,5 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.fish.gubrov;
 
+import com.babcsany.minecraft.ervin_mod_1.tags.ModBlockTags;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -20,7 +21,9 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.pathfinding.PathNavigator;
+import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.pathfinding.SwimmerPathNavigator;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
@@ -36,7 +39,15 @@ public abstract class AbstractGubrovEntity extends WaterMobEntity {
 
    public AbstractGubrovEntity(EntityType<? extends AbstractGubrovEntity> type, World worldIn) {
       super(type, worldIn);
+      this.setPathPriority(PathNodeType.LAVA, 0.0F);
+      this.setPathPriority(PathNodeType.DANGER_FIRE, 0.0F);
+      this.setPathPriority(PathNodeType.DAMAGE_FIRE, 0.0F);
       this.moveController = new AbstractGubrovEntity.MoveHelperController(this);
+   }
+
+   @Override
+   protected float getWaterSlowDown() {
+      return super.getWaterSlowDown();
    }
 
    protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
@@ -51,8 +62,8 @@ public abstract class AbstractGubrovEntity extends WaterMobEntity {
       return super.preventDespawn() || this.isFromBucket();
    }
 
-   public static boolean func_223363_b(EntityType<? extends AbstractGubrovEntity> type, IWorld worldIn, SpawnReason reason, BlockPos p_223363_3_, Random randomIn) {
-      return worldIn.getBlockState(p_223363_3_).matchesBlock(Blocks.WATER) && worldIn.getBlockState(p_223363_3_.up()).matchesBlock(Blocks.WATER);
+   public static boolean canGubrovSpawn(EntityType<? extends AbstractGubrovEntity> type, IWorld worldIn, SpawnReason reason, BlockPos pos, Random randomIn) {
+      return worldIn.getBlockState(pos).isIn(ModBlockTags.LIVING_GUBROV_FLUIDS) && worldIn.getBlockState(pos.up()).isIn(ModBlockTags.LIVING_GUBROV_FLUIDS);
    }
 
    public boolean canDespawn(double distanceToClosestPlayer) {

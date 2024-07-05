@@ -1,14 +1,16 @@
 package com.babcsany.minecraft.ervin_mod_1.tile_entity;
 
 import com.babcsany.minecraft.ervin_mod_1.init.ModTileEntities;
+import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import net.minecraft.block.BarrelBlock;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.inventory.container.ChestContainer;
 import net.minecraft.inventory.container.Container;
+import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ChestTileEntity;
@@ -16,13 +18,15 @@ import net.minecraft.tileentity.LockableLootTileEntity;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.vector.Vector3i;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
+import javax.annotation.Nullable;
+import java.util.Objects;
+
 public class LeatBlockCraftingTableTileEntity extends LockableLootTileEntity {
-    private NonNullList<ItemStack> barrelContents = NonNullList.withSize(10, ItemStack.EMPTY);
+    private NonNullList<ItemStack> leatBlockCraftingTableContents = NonNullList.withSize(20, ItemStack.EMPTY);
     private int numPlayersUsing;
 
     public LeatBlockCraftingTableTileEntity() {
@@ -32,7 +36,7 @@ public class LeatBlockCraftingTableTileEntity extends LockableLootTileEntity {
     public CompoundNBT write(CompoundNBT compound) {
         super.write(compound);
         if (!this.checkLootAndWrite(compound)) {
-            ItemStackHelper.saveAllItems(compound, this.barrelContents);
+            ItemStackHelper.saveAllItems(compound, this.leatBlockCraftingTableContents);
         }
 
         return compound;
@@ -40,9 +44,9 @@ public class LeatBlockCraftingTableTileEntity extends LockableLootTileEntity {
 
     public void read(BlockState state, CompoundNBT nbt) {
         super.read(state, nbt);
-        this.barrelContents = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
+        this.leatBlockCraftingTableContents = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
         if (!this.checkLootAndRead(nbt)) {
-            ItemStackHelper.loadAllItems(nbt, this.barrelContents);
+            ItemStackHelper.loadAllItems(nbt, this.leatBlockCraftingTableContents);
         }
 
     }
@@ -55,19 +59,24 @@ public class LeatBlockCraftingTableTileEntity extends LockableLootTileEntity {
     }
 
     protected NonNullList<ItemStack> getItems() {
-        return this.barrelContents;
+        return this.leatBlockCraftingTableContents;
     }
 
     protected void setItems(NonNullList<ItemStack> itemsIn) {
-        this.barrelContents = itemsIn;
+        this.leatBlockCraftingTableContents = itemsIn;
     }
 
     protected ITextComponent getDefaultName() {
-        return new TranslationTextComponent("container.barrel");
+        return new TranslationTextComponent("container.crafting");
     }
 
+    @Override
     protected Container createMenu(int id, PlayerInventory player) {
-        return ChestContainer.createGeneric9X3(id, player, this);
+        return createLeatBlockCraftingTableMenu(id, player, this);
+    }
+
+    public Container createLeatBlockCraftingTableMenu(int id, PlayerInventory player, IInventory blockEntity) {
+        return new ChestContainer(ContainerType.GENERIC_9X1, id, player, blockEntity, 1);
     }
 
     public void openInventory(PlayerEntity player) {
@@ -77,12 +86,6 @@ public class LeatBlockCraftingTableTileEntity extends LockableLootTileEntity {
             }
 
             ++this.numPlayersUsing;
-            BlockState blockstate = this.getBlockState();
-            boolean flag = blockstate.get(BarrelBlock.PROPERTY_OPEN);
-            if (!flag) {
-                this.playSound(blockstate, SoundEvents.BLOCK_BARREL_OPEN);
-                this.setOpenProperty(blockstate, true);
-            }
 
             this.scheduleTick();
         }
@@ -93,7 +96,7 @@ public class LeatBlockCraftingTableTileEntity extends LockableLootTileEntity {
         this.world.getPendingBlockTicks().scheduleTick(this.getPos(), this.getBlockState().getBlock(), 5);
     }
 
-    public void barrelTick() {
+    public void leatBlockCraftingTableTick() {
         int i = this.pos.getX();
         int j = this.pos.getY();
         int k = this.pos.getZ();
@@ -102,18 +105,10 @@ public class LeatBlockCraftingTableTileEntity extends LockableLootTileEntity {
             this.scheduleTick();
         } else {
             BlockState blockstate = this.getBlockState();
-            if (!blockstate.matchesBlock(Blocks.BARREL)) {
+            if (!blockstate.matchesBlock(isBurnableBlockItemInit.LEAT_BLOCK_CRAFTING_TABLE.getBlock())) {
                 this.remove();
-                return;
-            }
-
-            boolean flag = blockstate.get(BarrelBlock.PROPERTY_OPEN);
-            if (flag) {
-                this.playSound(blockstate, SoundEvents.BLOCK_BARREL_CLOSE);
-                this.setOpenProperty(blockstate, false);
             }
         }
-
     }
 
     public void closeInventory(PlayerEntity player) {

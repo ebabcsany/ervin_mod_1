@@ -381,11 +381,12 @@ public class ModDefaultBiomeFeatures {
       builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, NIRTKB, 100)).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 2000))));
    }
 
-   public static void addScrafth(BiomeGenerationSettings.Builder builder) {
-      addScrafth(builder, 400, 0, 0, 2000);
+   public static void addExtraScrafth(BiomeGenerationSettings.Builder builder) {
+      addOres(builder, ModConfiguredFeatures.EXTRA_SCRAFTH);
    }
 
    public static void addScrafth(BiomeGenerationSettings.Builder builder, int size, int bottomOffset, int topOffset, int maximum) {
+      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, ModConfiguredFeatures.EXTRA_SCRAFTH);
       builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, SCRAFTH, size)).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(bottomOffset, topOffset, maximum))));
    }
 
@@ -713,6 +714,10 @@ public class ModDefaultBiomeFeatures {
 
    private static void addOreFeature(BiomeGenerationSettings.Builder builder, GenerationStage.Decoration decoration, RuleTest ruleTest, BlockState state, int size, ConfiguredPlacement<?> placement) {
       builder.withFeature(decoration, Feature.ORE.withConfiguration(new OreFeatureConfig(ruleTest, state, size)).withPlacement(placement));
+   }
+
+   private static void addOres(BiomeGenerationSettings.Builder builder, ConfiguredFeature<?, ?> configuredFeature) {
+      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, configuredFeature);
    }
 
    public static void addFeature(BiomeGenerationSettings.Builder builder, GenerationStage.Decoration decorationStageIn, ConfiguredFeature<?, ?> featureIn) {

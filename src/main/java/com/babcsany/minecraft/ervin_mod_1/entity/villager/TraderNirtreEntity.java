@@ -1,5 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.villager;
 
+import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.NirtreLookAtCustomerGoal;
+import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.NirtreTradeWithPlayerGoal;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.TraderNirtreTrades;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.spawn_egg.ModSpawnEggItemInit;
@@ -24,7 +26,7 @@ import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nullable;
 
-public class TraderNirtreEntity extends AbstractVillagerEntity {
+public class TraderNirtreEntity extends AbstractNirtreEntity {
    @Nullable
    private BlockPos traderNirtreTarget;
    public int timeUntilNextItem = this.rand.nextInt(8000) + 8000;
@@ -50,9 +52,9 @@ public class TraderNirtreEntity extends AbstractVillagerEntity {
       this.goalSelector.addGoal(0, new UseItemGoal<>(this, new ItemStack(Items.MILK_BUCKET), SoundEvents.ENTITY_GENERIC_DRINK, (trader) -> this.world.isRaining() && trader.isInvisible()));
       this.goalSelector.addGoal(-1, new UseItemGoal<>(this, PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.LONG_FIRE_RESISTANCE), SoundEvents.ENTITY_GENERIC_DRINK, (trader) -> !this.world.isNightTime() && !trader.isInvisible()));
       this.goalSelector.addGoal(0, new UseItemGoal<>(this, new ItemStack(Items.MILK_BUCKET), SoundEvents.ENTITY_GENERIC_DRINK, (trader) -> this.world.isNightTime() && trader.isInvisible()));
-      this.goalSelector.addGoal(1, new TradeWithPlayerGoal(this));
+      this.goalSelector.addGoal(1, new NirtreTradeWithPlayerGoal(this));
       this.goalSelector.addGoal(1, new PanicGoal(this, 0.5D));
-      this.goalSelector.addGoal(1, new LookAtCustomerGoal(this));
+      this.goalSelector.addGoal(1, new NirtreLookAtCustomerGoal(this));
       this.goalSelector.addGoal(4, new MoveTowardsRestrictionGoal(this, 0.35D));
       this.goalSelector.addGoal(8, new WaterAvoidingRandomWalkingGoal(this, 0.35D));
       this.goalSelector.addGoal(9, new LookAtWithoutMovingGoal(this, PlayerEntity.class, 3.0F, 1.0F));
@@ -108,7 +110,7 @@ public class TraderNirtreEntity extends AbstractVillagerEntity {
       TraderNirtreTrades.ITrade[] avillagernirtretrades$itrade = TraderNirtreTrades.field_221240_b.get(1);
       if (avillagernirtretrades$itrade != null) {
          MerchantOffers merchantoffers = this.getOffers();
-         this.addTrades(merchantoffers, avillagernirtretrades$itrade, 10);
+         this.addTraderNirtreTrades(merchantoffers, avillagernirtretrades$itrade, 10);
          int i = this.rand.nextInt(avillagernirtretrades$itrade.length);
          TraderNirtreTrades.ITrade villagertrades$itrade = avillagernirtretrades$itrade[i];
          MerchantOffer merchantoffer = villagertrades$itrade.getOffer(this, this.rand);
@@ -162,7 +164,7 @@ public class TraderNirtreEntity extends AbstractVillagerEntity {
       return false;
    }
 
-   protected void onVillagerTrade(MerchantOffer offer) {
+   protected void onNirtreTrade(MerchantOffer offer) {
       if (offer.getDoesRewardExp()) {
          int i = 3 + this.rand.nextInt(4);
          this.world.addEntity(new ExperienceOrbEntity(this.world, this.getPosX(), this.getPosY() + 0.5D, this.getPosZ(), i));

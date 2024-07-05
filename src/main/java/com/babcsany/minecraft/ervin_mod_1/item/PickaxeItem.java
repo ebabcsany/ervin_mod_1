@@ -40,4 +40,9 @@ public class PickaxeItem extends ToolItem {
    public boolean canPlayerBreakBlockWhileHolding(BlockState state, World worldIn, BlockPos pos, PlayerEntity player) {
       return !player.isCreative();
    }
+
+   @Override
+   public boolean isDamageable() {
+      return true;
+   }
 }

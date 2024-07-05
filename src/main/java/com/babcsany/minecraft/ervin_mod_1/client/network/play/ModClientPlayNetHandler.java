@@ -11,6 +11,7 @@ import net.minecraft.client.network.play.ClientPlayNetHandler;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SSpawnObjectPacket;
@@ -44,6 +45,8 @@ public class ModClientPlayNetHandler extends ClientPlayNetHandler {
             }
         } else if (entitytype == EntityInit.TAWROL) {
             entity = new TawrolEntity(this.getWorld(), d0, d1, d2);
+        } else if (entitytype == EntityType.ITEM) {
+            entity = new ItemEntity(this.getWorld(), d0, d1, d2);
         } else {
             entity = null;
         }

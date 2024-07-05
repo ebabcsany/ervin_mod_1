@@ -7,6 +7,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Rarity;
+import net.minecraft.util.text.Color;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.common.IExtensibleEnum;
 import net.minecraftforge.common.ToolType;
@@ -35,6 +36,11 @@ public class ThufrBlockItem extends ToolBlockItem_1 {
    public float getDestroySpeed(ItemStack stack, BlockState state) {
       Material material = state.getMaterial();
       return field_234662_c_.contains(material) ? this.efficiency : super.getDestroySpeed(stack, state);
+   }
+
+   @Override
+   public boolean isDamageable() {
+      return true;
    }
 
    @Override

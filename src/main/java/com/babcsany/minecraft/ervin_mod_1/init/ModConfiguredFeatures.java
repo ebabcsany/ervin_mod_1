@@ -34,6 +34,7 @@ public class ModConfiguredFeatures {
     public static final ConfiguredFeature<?, ?> YELLOW_STONE = registerOres(ModBlockStates.YELLOW_STONE);
     public static final ConfiguredFeature<?, ?> EXTRA_BLUE_STONE = registerExtraOres(ModBlockStates.BLUE_STONE);
     public static final ConfiguredFeature<?, ?> EXTRA_ORANGE_STONE = registerExtraOres(ModBlockStates.ORANGE_STONE);
+    public static final ConfiguredFeature<?, ?> EXTRA_SCRAFTH = registerExtraOres(ModBlockStates.SCRAFTH);
 
     public static ConfiguredFeature<?, ?> registerExtraOres(Block blockIn) {
         return registerExtraOres(blockIn.delegate.name().getPath(), blockIn.getDefaultState());

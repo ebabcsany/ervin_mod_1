@@ -1,6 +1,8 @@
 package com.babcsany.minecraft.ervin_mod_1.init;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
+import com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.food.BlockFoodItemInit;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -30,6 +32,7 @@ public class ModBlockStates {
     public static final ModBlockStates WHITE_STONE = states("white_stone", BlockItemInit.WHITE_STONE);
     public static final ModBlockStates YELLOW_STONE = states("yellow_stone", BlockItemInit.YELLOW_STONE);
     public static final ModBlockStates END_SRACKT = states("end_srackt", BlockItemInit.END_SRACKT);
+    public static final ModBlockStates SCRAFTH = states("scrafth", BlockInit.SCRAFTH);
 
     private ModBlockStates() {
         this.name = null;

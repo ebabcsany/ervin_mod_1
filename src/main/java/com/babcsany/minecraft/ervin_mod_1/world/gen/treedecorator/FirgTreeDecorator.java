@@ -1,6 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.world.gen.treedecorator;
 
 import com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit;
+import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
@@ -8,6 +9,8 @@ import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.treedecorator.BeehiveTreeDecorator;
+import net.minecraft.world.gen.treedecorator.TreeDecorator;
+import net.minecraft.world.gen.treedecorator.TreeDecoratorType;
 
 import java.util.List;
 import java.util.Random;
@@ -15,12 +18,18 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class FirgTreeDecorator extends BeehiveTreeDecorator {
+   public static final Codec<FirgTreeDecorator> CODEC = Codec.floatRange(0.0F, 1.0F).fieldOf("probability").xmap(FirgTreeDecorator::new, (decorator) -> decorator.probability).codec();
    /** Probability to generate a firg */
    private final float probability;
 
    public FirgTreeDecorator(float probabilityIn) {
        super(probabilityIn);
-      this.probability = probabilityIn;
+       this.probability = probabilityIn;
+   }
+
+   @Override
+   protected TreeDecoratorType<?> getDecoratorType() {
+      return TreeDecoratorType.BEEHIVE;
    }
 
    public void func_225576_a_(ISeedReader p_225576_1_, Random p_225576_2_, List<BlockPos> p_225576_3_, List<BlockPos> p_225576_4_, Set<BlockPos> p_225576_5_, MutableBoundingBox p_225576_6_) {

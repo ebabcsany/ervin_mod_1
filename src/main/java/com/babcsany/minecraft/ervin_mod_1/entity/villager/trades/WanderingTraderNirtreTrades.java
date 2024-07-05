@@ -1677,7 +1677,7 @@ public class WanderingTraderNirtreTrades {
       }
    }
 
-   public interface ITrade extends VillagerTrades.ITrade {
+   public interface ITrade extends TraderNirtreTrades.ITrade {
       @Nullable
       MerchantOffer getOffer(Entity trader, Random rand);
    }

@@ -14,6 +14,7 @@ import com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.minecraft.block.MinecraftBlocks;
 import com.babcsany.minecraft.ervin_mod_1.item.group.ModItemGroup;
+import com.babcsany.minecraft.ervin_mod_1.mixin.MixinConnector;
 import com.babcsany.minecraft.ervin_mod_1.network.ModNetworkManager;
 import com.babcsany.minecraft.ervin_mod_1.world.gen.FeatureGen;
 import com.babcsany.minecraft.server.management.ModPlayerList;
@@ -32,6 +33,7 @@ import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.ShapedRecipe;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.NetworkSystem;
+import net.minecraft.network.PacketDirection;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.server.MinecraftServer;
@@ -49,6 +51,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DeferredWorkQueue;
@@ -103,7 +106,7 @@ public class Ervin_mod_1 {
             EntitySpawnPlacementRegistry.register(EntityInit.$_TRADER_ENTITY, EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, Abstract$TraderEntity::canSpawnOn);
             EntitySpawnPlacementRegistry.register(EntityInit.DRURB_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canSpawnOn);
             EntitySpawnPlacementRegistry.register(EntityInit.FREIN_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, FreinEntity::canFreinSpawn);
-            EntitySpawnPlacementRegistry.register(EntityInit.GUBROV, EntitySpawnPlacementRegistry.PlacementType.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, GubrovEntity::func_223363_b);
+            EntitySpawnPlacementRegistry.register(EntityInit.GUBROV, EntitySpawnPlacementRegistry.PlacementType.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, GubrovEntity::canGubrovSpawn);
             EntitySpawnPlacementRegistry.register(EntityInit.HHIJ_ENTITY, EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, HhijAnimalEntity::canAnimalSpawn);
             EntitySpawnPlacementRegistry.register(EntityInit.ROVENT_ENTITY, EntitySpawnPlacementRegistry.PlacementType.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, RoventEntity::canMonsterSpawn);
             EntitySpawnPlacementRegistry.register(EntityInit.SHERT_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ShertEntity::canAnimalSpawn);
@@ -126,6 +129,7 @@ public class Ervin_mod_1 {
         DeferredWorkQueue.runLater(FeatureGen::generateFeature);
         DeferredWorkQueue.runLater(FeatureGen::getSpawns);
         DeferredWorkQueue.runLater(FeatureGen::generateBlackStone);
+//        new MixinConnector().connect();
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
@@ -256,24 +260,15 @@ public class Ervin_mod_1 {
             }
         }
 
+        public static void  on(final Event event) {
+//            event.
+        }
+
         @SubscribeEvent
         public static void onRespawn(final PlayerEvent.PlayerRespawnEvent event) {
+
             try {
-                PlayerEntity player = event.getPlayer();
-                ServerPlayerEntity serverPlayer = (ServerPlayerEntity) player;
-                MinecraftServer server = player.getServer();
-                if (server == null) throw new AssertionError();
-                PlayerList playerList = server.getPlayerList();
-                ModPlayerList modPlayerList = (ModPlayerList) playerList;
-                Minecraft minecraft = Minecraft.getInstance();
-                IntegratedServer integratedServer = minecraft.getIntegratedServer();
-                assert integratedServer != null;
-                NetworkSystem networkSystem = integratedServer.getNetworkSystem();
-                assert networkSystem != null;
-                SocketAddress socketAddress = networkSystem.addLocalEndpoint();
-                NetworkManager networkManager = NetworkManager.provideLocalClient(socketAddress);
-                ModNetworkManager modNetworkManager = (ModNetworkManager) networkManager;
-                minecraft.getProfiler().endStartSection("pendingConnection");
+                ModNetworkManager modNetworkManager = new ModNetworkManager(PacketDirection.CLIENTBOUND);
                 modNetworkManager.tick();
             } catch (Throwable throwable) {
                 System.out.println(throwable.getLocalizedMessage());

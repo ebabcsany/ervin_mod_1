@@ -21,4 +21,8 @@ public class Cast<T> {
     public T cast(Object object) {
         return (T) object;
     }
+
+    public T cast() {
+        return cast(this.cast);
+    }
 }

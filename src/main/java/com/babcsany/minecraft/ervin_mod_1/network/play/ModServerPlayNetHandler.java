@@ -43,14 +43,14 @@ public class ModServerPlayNetHandler extends ServerPlayNetHandler {
             case PERFORM_RESPAWN:
                 if (this.player.queuedEndExit) {
                     this.player.queuedEndExit = false;
-                    this.player = ((ModPlayerList) this.server.getPlayerList()).spawn(this.player, true);
+                    this.player = ModPlayerList.list.func_232644_a_(this.player, true);
                     CriteriaTriggers.CHANGED_DIMENSION.testForAll(this.player, World.THE_END, World.OVERWORLD);
                 } else {
                     if (this.player.getHealth() > 0.0F) {
                         return;
                     }
 
-                    this.player = ((ModPlayerList) this.server.getPlayerList()).spawn(this.player, false);
+                    this.player = ModPlayerList.list.func_232644_a_(this.player, false);
                     if (this.server.isHardcore()) {
                         this.player.setGameType(GameType.SPECTATOR);
                         this.player.getServerWorld().getGameRules().get(GameRules.SPECTATORS_GENERATE_CHUNKS).set(false, this.server);

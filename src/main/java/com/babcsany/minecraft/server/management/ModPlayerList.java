@@ -63,18 +63,18 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public abstract class ModPlayerList extends PlayerList {
+public abstract class ModPlayerList {
     private static final Logger LOGGER = LogManager.getLogger();
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
-    private final Minecraft minecraft = Minecraft.getInstance();
-    private final PlayerEntity player = Objects.requireNonNull(minecraft.player);
-    private final MinecraftServer server = Objects.requireNonNull(player.getServer());
-    private final SaveFormat.LevelSave levelSave = getLevelSave();
-    private final DataFixer dataFixer = minecraft.getDataFixer();
-    private final PlayerData playerData = new PlayerData(levelSave, dataFixer);
-    private final DynamicRegistries.Impl impl = DynamicRegistries.func_239770_b_();
-    private final int maxPlayers = server.getMaxPlayers();
-    private final PlayerList list = new PlayerList(server, impl, playerData, maxPlayers) {
+    private static final Minecraft minecraft = Minecraft.getInstance();
+    private static final PlayerEntity player = Objects.requireNonNull(minecraft.player);
+    private static final MinecraftServer server = Objects.requireNonNull(player.getServer());
+    private static final SaveFormat.LevelSave levelSave = getLevelSave();
+    private static final DataFixer dataFixer = minecraft.getDataFixer();
+    private static final PlayerData playerData = new PlayerData(levelSave, dataFixer);
+    private static final DynamicRegistries.Impl impl = DynamicRegistries.func_239770_b_();
+    private static final int maxPlayers = server.getMaxPlayers();
+    public static final PlayerList list = new PlayerList(server, impl, playerData, maxPlayers) {
         private final MinecraftServer server = super.getServer();
         private final List<ServerPlayerEntity> players = Lists.newArrayList();
         /**
@@ -800,11 +800,7 @@ public abstract class ModPlayerList extends PlayerList {
         }
     };
 
-    public ModPlayerList(MinecraftServer p_i231425_1_, DynamicRegistries.Impl p_i231425_2_, PlayerData p_i231425_3_, int p_i231425_4_) {
-        super(p_i231425_1_, p_i231425_2_, p_i231425_3_, p_i231425_4_);
-    }
-
-    private SaveFormat.LevelSave getLevelSave() {
+    private static SaveFormat.LevelSave getLevelSave() {
         SaveFormat.LevelSave save;
         try {
             save = minecraft.getSaveLoader().getLevelSave(server.isDemo() ? "Demo_World" : minecraft.gameDir.getName());
@@ -819,22 +815,22 @@ public abstract class ModPlayerList extends PlayerList {
     }
 
     public void sendWorldInfo(ServerPlayerEntity serverPlayer, ServerWorld serverWorld) {
-        this.list.sendWorldInfo(serverPlayer, serverWorld);
+        list.sendWorldInfo(serverPlayer, serverWorld);
     }
 
     public void updatePermissionLevel(ServerPlayerEntity serverPlayer) {
-        this.list.updatePermissionLevel(serverPlayer);
+        list.updatePermissionLevel(serverPlayer);
     }
 
     public boolean removePlayer(ServerPlayerEntity serverPlayer) {
-        return this.list.removePlayer(serverPlayer);
+        return list.removePlayer(serverPlayer);
     }
 
     public boolean addPlayer(ServerPlayerEntity serverPlayer) {
-        return this.list.addPlayer(serverPlayer);
+        return list.addPlayer(serverPlayer);
     }
 
-    public PlayerList getList() {
-        return this.list;
+    public static PlayerList getList() {
+        return list;
     }
 }

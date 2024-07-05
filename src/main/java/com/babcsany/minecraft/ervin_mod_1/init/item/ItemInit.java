@@ -103,7 +103,7 @@ public class ItemInit {
     public static final Item HTRAW = registerWithModGroup("htraw");
     public static final Item LIGHT_BLUE1_DYE = register("light_blue1_dye", new ModDyeItem(ModDyeColor.LIGHT_BLUE1, (new Item.Properties()).group(ItemGroup.MATERIALS)));
     public static final Item JURK_BUCKETI = register("jurk_buckett", new JurkBucketItem((new Item.Properties().group(ModItemGroup.ERVIN_MOD_1_ITEMS))));
-    public static final Item GUBROV_BUCKET = registerFishBucket("gubrov_bucket", EntityInit.GUBROV, Fluids.WATER, ItemGroup.MISC);
+    public static final Item GUBROV_BUCKET = registerGubrovBucket("gubrov_bucket", EntityInit.GUBROV, Fluids.WATER, ItemGroup.MISC);
     public static final Item DGUCHSR = register("dguchsr", new BurningItem((new Item.Properties().group(ModItemGroup.ERVIN_MOD_1_ITEMS)), 3405));
     public static final Item TAWROL = register("tawrol", new TawrolItem((new Item.Properties().group(ModItemGroup.ERVIN_MOD_1_ITEMS))));
     public static final Item FREIN_BALL = register("frein_ball", new FreinballItem((new Item.Properties().group(ModItemGroup.ERVIN_MOD_1_ITEMS))));
@@ -115,6 +115,10 @@ public class ItemInit {
 
     private static Item registerFishBucket(String name, EntityType<?> type, Fluid fluid, ItemGroup group) {
         return register(name, new FishBucketItem(() -> type, () -> fluid, (new Item.Properties()).maxStackSize(1).group(group)));
+    }
+
+    private static Item registerGubrovBucket(String name, EntityType<?> type, Fluid fluid, ItemGroup group) {
+        return register(name, new GubrovBucketItem(type, fluid, (new Item.Properties()).maxStackSize(1).group(group)));
     }
 
     private static Item registerBucket(String name, Fluid fluid, Item containerItem) {

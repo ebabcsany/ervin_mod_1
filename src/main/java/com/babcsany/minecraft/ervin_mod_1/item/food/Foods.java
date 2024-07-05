@@ -9,7 +9,7 @@ import java.util.Random;
 import static net.minecraft.potion.Effects.REGENERATION;
 
 public class Foods {
-    public static final Food FRIM = (new Food.Builder()).hunger(16).saturation(1.2F).build();
+    public static final Food FRIM = buildHungerAndSaturation(16, 1.2F);
     public static final Food DURG = (new Food.Builder()).hunger(30).saturation(24.0F).effect(() -> new EffectInstance(Effects.REGENERATION, 50, 10), 10.0F).setAlwaysEdible().fastToEat().build();
     public static final Food GRINT_BLOCK = (new Food.Builder()).hunger(24).saturation(14.4F).effect(() -> new EffectInstance(Effects.REGENERATION, 50, 10), 10.0F).setAlwaysEdible().fastToEat().build();
     public static final Food GRINT_SLAB = (new Food.Builder()).hunger(12).saturation(7.2F).effect(() -> new EffectInstance(Effects.REGENERATION, 50, 10), 10.0F).setAlwaysEdible().fastToEat().build();
@@ -41,7 +41,23 @@ public class Foods {
     public static final Food BREFK = (new Food.Builder()).hunger(4).saturation(10.0F).effect(() -> new EffectInstance(Effects.HUNGER, 50, 25), 25.0F).effect(() -> new EffectInstance(Effects.REGENERATION, 200, 50), 50.0F).build();
     public static final Food BREFK_STAGE = (new Food.Builder()).hunger(3).saturation(6.6F).effect(() -> new EffectInstance(Effects.HUNGER, 25, 12), 12.0F).effect(() -> new EffectInstance(REGENERATION, 100, 30), 40.0F).build();
 
-    private static Food buildHunger(int hunger) {
-        return (new Food.Builder()).hunger(hunger).saturation(20.0F).build();
+    private static Food buildHunger(int hungerIn) {
+        return buildHungerAndSaturation(hungerIn, 20.0F);
+    }
+
+    private static Food buildHungerAndSaturation(int hungerIn, float saturationIn) {
+        return hungerAndSaturation(hungerIn, saturationIn).build();
+    }
+
+    private static Food.Builder builder() {
+        return new Food.Builder();
+    }
+
+    private static Food.Builder hungerAndSaturation(int hungerIn, float saturationIn) {
+        return hunger(hungerIn).saturation(saturationIn);
+    }
+
+    private static Food.Builder hunger(int hungerIn) {
+        return builder().hunger(hungerIn);
     }
 }

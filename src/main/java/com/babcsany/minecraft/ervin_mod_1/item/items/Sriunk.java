@@ -42,4 +42,9 @@ public class Sriunk extends ToolItem_1 implements IVanishable {
    public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlotType equipmentSlot) {
       return equipmentSlot == EquipmentSlotType.MAINHAND ? this.attributeModifiers : super.getAttributeModifiers(equipmentSlot);
    }
+
+   @Override
+   public boolean isDamageable() {
+      return true;
+   }
 }

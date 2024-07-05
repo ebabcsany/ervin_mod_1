@@ -239,6 +239,12 @@
     },
     "done": true
   },
+  "minecraft:recipes/misc/white_dye": {
+    "criteria": {
+      "has_bone_meal": "2024-07-03 14:18:35 +0200"
+    },
+    "done": true
+  },
   "minecraft:recipes/misc/stick": {
     "criteria": {
       "has_planks": "2024-06-24 18:35:52 +0200"
@@ -362,6 +368,12 @@
     },
     "done": true
   },
+  "minecraft:recipes/food/cooked_cod_from_smoking": {
+    "criteria": {
+      "has_cod": "2024-07-03 14:18:35 +0200"
+    },
+    "done": true
+  },
   "minecraft:recipes/decorations/white_carpet": {
     "criteria": {
       "has_white_wool": "2024-06-23 16:42:10 +0200"
@@ -377,6 +389,12 @@
   "ervin_mod_1:adventure/kill_an_entity": {
     "criteria": {
       "minecraft:zombie": "2024-06-23 16:47:05 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/food/cooked_cod": {
+    "criteria": {
+      "has_cod": "2024-07-03 14:18:35 +0200"
     },
     "done": true
   },
@@ -458,6 +476,12 @@
     },
     "done": true
   },
+  "minecraft:recipes/food/cooked_cod_from_campfire_cooking": {
+    "criteria": {
+      "has_cod": "2024-07-03 14:18:35 +0200"
+    },
+    "done": true
+  },
   "minecraft:recipes/building_blocks/yellow_wool": {
     "criteria": {
       "has_white_wool": "2024-06-23 16:42:10 +0200"
@@ -491,6 +515,12 @@
   "minecraft:story/form_obsidian": {
     "criteria": {
       "obsidian": "2024-06-24 17:29:29 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/bone_block": {
+    "criteria": {
+      "has_bonemeal": "2024-07-03 14:18:35 +0200"
     },
     "done": true
   },

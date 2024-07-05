@@ -28,20 +28,20 @@ public class FreinEntity extends SlimeEntity {
       return MonsterEntity.func_234295_eP_();
    }
 
-   public static boolean canFreinSpawn(EntityType<FreinEntity> p_223366_0_, IWorld p_223366_1_, SpawnReason p_223366_2_, BlockPos p_223366_3_, Random p_223366_4_) {
-      if (p_223366_1_.getDifficulty() != Difficulty.PEACEFUL) {
-         if (Objects.equals(p_223366_1_.func_242406_i(p_223366_3_), Optional.of(Biomes.SWAMP)) && p_223366_3_.getY() > 50 && p_223366_3_.getY() < 70 && p_223366_4_.nextFloat() < 0.5F && p_223366_4_.nextFloat() < p_223366_1_.getMoonFactor() && p_223366_1_.getLight(p_223366_3_) <= p_223366_4_.nextInt(8)) {
-            return canSpawnOn(p_223366_0_, p_223366_1_, p_223366_2_, p_223366_3_, p_223366_4_);
+   public static boolean canFreinSpawn(EntityType<FreinEntity> frein, IWorld worldIn, SpawnReason reason, BlockPos pos, Random random) {
+      if (worldIn.getDifficulty() != Difficulty.PEACEFUL) {
+         if (Objects.equals(worldIn.func_242406_i(pos), Optional.of(Biomes.SWAMP)) && pos.getY() > 50 && pos.getY() < 70 && random.nextFloat() < 0.5F && random.nextFloat() < worldIn.getMoonFactor() && worldIn.getLight(pos) <= random.nextInt(8)) {
+            return canSpawnOn(frein, worldIn, reason, pos, random);
          }
 
-         if (!(p_223366_1_ instanceof ISeedReader)) {
+         if (!(worldIn instanceof ISeedReader)) {
             return false;
          }
 
-         ChunkPos chunkpos = new ChunkPos(p_223366_3_);
-         boolean flag = SharedSeedRandom.createSlimeChunkSpawningSeed(chunkpos.x, chunkpos.z, ((ISeedReader)p_223366_1_).getSeed(), 987234911L).nextInt(10) == 0;
-         if (p_223366_4_.nextInt(10) == 0 && flag && p_223366_3_.getY() < 40) {
-            return canSpawnOn(p_223366_0_, p_223366_1_, p_223366_2_, p_223366_3_, p_223366_4_);
+         ChunkPos chunkpos = new ChunkPos(pos);
+         boolean flag = SharedSeedRandom.createSlimeChunkSpawningSeed(chunkpos.x, chunkpos.z, ((ISeedReader)worldIn).getSeed(), 987234911L).nextInt(10) == 0;
+         if (random.nextInt(10) == 0 && flag && pos.getY() < 40) {
+            return canSpawnOn(frein, worldIn, reason, pos, random);
          }
       }
 

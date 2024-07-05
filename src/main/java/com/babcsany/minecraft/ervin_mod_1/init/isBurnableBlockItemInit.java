@@ -67,9 +67,9 @@ public class isBurnableBlockItemInit {
     public static final BlockItem LEAT_BLOCK_CRAFTING_TABLE = registerBlockItem("leat_block_crafting_table", new LeatBlockCraftingTable(Block.Properties.create(Material.ROCK, MaterialColor.GREEN).harvestTool(ToolType.AXE).harvestTool(ToolType.PICKAXE).harvestTool(ToolType.SHOVEL).harvestTool(ToolType.HOE).hardnessAndResistance(500.0f)));
     public static final Block CRAINT_BLOCK = UnusedBlocks.registerBlockItem("craint_block", new Block(Block.Properties.create(Material.ROCK).setRequiresTool().harvestLevel(4).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1000.0f)));
     public static final Block CRAINT_BLOCK_CRAFTING_TABLE = UnusedBlocks.registerBlockItem("craint_block_crafting_table", new CraintBlockCraftingTable(Block.Properties.create(Material.ROCK).setRequiresTool().harvestLevel(5).harvestTool(ToolType.PICKAXE).hardnessAndResistance(10000.0f)));
-    public static final Block NARIN_BLOCK = UnusedBlocks.registerBlockItem("narin_block", new Block(Block.Properties.create(Material.ROCK).setRequiresTool().harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(5000.0f)));
+    public static final Block NARIN_BLOCK = registerBlockWithItem("narin_block", new Block(Block.Properties.create(Material.ROCK).setRequiresTool().harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(5000.0f)), new Item.Properties().isImmuneToFire());
     public static final Block NETHER_PORTAL = register("nether_portal", new NetherPortalBlock(Block.Properties.create(Material.ROCK).setRequiresTool().harvestLevel(0).doesNotBlockMovement().harvestTool(ToolType.PICKAXE).hardnessAndResistance(120000000.0F).setLightLevel(Value -> 15)));
-    public static final Block HURVRUJ = registerBlockItem("hurvruj", new Hurvruj(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.BLACK).setRequiresTool().hardnessAndResistance(500000.0F, 12000000.0F).setLightLevel((blockState) -> Hurvruj.lightState(blockState, 15))), new Item.Properties().isImmuneToFire());
+    public static final Block HURVRUJ = Block.getBlockFromItem(registerBlockItem("hurvruj", new Hurvruj(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.BLACK).setRequiresTool().hardnessAndResistance(500000.0F, 12000000.0F).setLightLevel((blockState) -> Hurvruj.lightState(blockState, 15))), new Item.Properties().isImmuneToFire()));
     public static final Block CRASK = UnusedBlocks.registerBlockItem("crask", new Block(Block.Properties.create(Material.WOOL).setRequiresTool().hardnessAndResistance(100.0f)));
     public static final Block UUUUUUUUUUUUUUUUUUUUUUUU = UnusedBlocks.registerBlockItem("uuuuuuuuuuuuuuuuuuuuuuuu", new Tririj(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.NETHERRACK).setRequiresTool().tickRandomly().hardnessAndResistance(5000000.0F)));
 
@@ -81,8 +81,12 @@ public class isBurnableBlockItemInit {
         return new Cast<BlockItem>().cast(UnusedBlockItems.registerDefault(name, block));
     }
 
-    public static Block registerBlockItem(String name, Block block, Item.Properties properties) {
-        return new Cast<BlockItem>().cast(UnusedBlockItems.registerDefault(name, block, properties)).getBlock();
+    public static Block registerBlockWithItem(String name, Block block, Item.Properties properties) {
+        return new Cast<BlockItem>().cast(registerBlockItem(name, block, properties)).getBlock();
+    }
+
+    public static Item registerBlockItem(String name, Block block, Item.Properties properties) {
+        return UnusedBlockItems.registerDefault(name, block, properties);
     }
 
     public static void register() {

@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "com/babcsany/minecraft/ervin_mod_1/mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "ervin_mod_1.refmap.json",
+  "minVersion": "1.8",
+  "client": [
+    "PlayerListMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
