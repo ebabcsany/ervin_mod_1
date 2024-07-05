@@ -267,25 +267,25 @@ public abstract class AbstractNirtreEntity extends AgeableEntity implements INPC
          }
       }
    }
-   protected void addThuvrujTrades(MerchantOffers givenMerchantOffers, TraderNirtreTrades.ITrade[] newTrades, int maxNumbers)
-   {
-      Set<Integer> set = Sets.newHashSet();
-      if (newTrades.length > maxNumbers) {
-         while (set.size() < maxNumbers) {
-            set.add(this.rand.nextInt(newTrades.length));
-         }
-      } else {
-         for (int i = 0; i < newTrades.length; ++i) {
-            set.add(i);
-         }
-      }
-
-      for (Integer integer : set) {
-         TraderNirtreTrades.ITrade villagertrades$itrade = newTrades[integer];
-         MerchantOffer merchantoffer = villagertrades$itrade.getOffer(this, this.rand);
-         if (merchantoffer != null) {
-            givenMerchantOffers.add(merchantoffer);
-         }
-      }
-   }
+//   protected void addThuvrujTrades(MerchantOffers givenMerchantOffers, TraderNirtreTrades.ITrade[] newTrades, int maxNumbers)
+//   {
+//      Set<Integer> set = Sets.newHashSet();
+//      if (newTrades.length > maxNumbers) {
+//         while (set.size() < maxNumbers) {
+//            set.add(this.rand.nextInt(newTrades.length));
+//         }
+//      } else {
+//         for (int i = 0; i < newTrades.length; ++i) {
+//            set.add(i);
+//         }
+//      }
+//
+//      for (Integer integer : set) {
+//         TraderNirtreTrades.ITrade villagertrades$itrade = newTrades[integer];
+//         MerchantOffer merchantoffer = villagertrades$itrade.getOffer(this, this.rand);
+//         if (merchantoffer != null) {
+//            givenMerchantOffers.add(merchantoffer);
+//         }
+//      }
+//   }
 }
