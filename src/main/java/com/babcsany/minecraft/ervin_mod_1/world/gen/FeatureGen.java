@@ -19,7 +19,6 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.*;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.blockstateprovider.BlockStateProvider;
@@ -1107,7 +1106,7 @@ public class FeatureGen {
 		GUBROV(EntityClassification.WATER_CREATURE, EntityInit.GUBROV),
 		SRACH(EntityClassification.CREATURE, EntityInit.SRACH_ENTITY),
 		GWURST(EntityClassification.CREATURE, EntityInit.GWURST),
-		FREIN(EntityClassification.MONSTER, EntityInit.FREIN_ENTITY),
+		FREIN(EntityClassification.MONSTER, EntityInit.FREIN),
 		LIWRAY(EntityClassification.CREATURE, EntityInit.LIWRAY),
 		ZUR(EntityClassification.CREATURE, EntityInit.ZUR);
 

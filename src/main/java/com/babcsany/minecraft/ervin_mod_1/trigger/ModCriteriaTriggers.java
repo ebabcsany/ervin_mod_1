@@ -1,17 +1,17 @@
 package com.babcsany.minecraft.ervin_mod_1.trigger;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.CuredZurNirtreTrigger;
+import com.babcsany.minecraft.ervin_mod_1.entity.villager.trigger.*;
 import com.babcsany.minecraft.ervin_mod_1.trigger.hhij.BredHhijTrigger;
 import com.babcsany.minecraft.ervin_mod_1.trigger.hhij.TameHhijAnimalTrigger;
 import com.babcsany.minecraft.ervin_mod_1.trigger.zur.BredZursTrigger;
-import com.babcsany.minecraft.ervin_mod_1.entity.villager.trigger.*;
+import com.babcsany.minecraft.ervin_mod_1.util.Cast;
 import com.google.common.collect.Maps;
 import net.minecraft.advancements.ICriterionInstance;
 import net.minecraft.advancements.ICriterionTrigger;
 import net.minecraft.advancements.criterion.*;
 import net.minecraft.util.ResourceLocation;
 
-import javax.annotation.Nullable;
 import java.util.Map;
 
 public class ModCriteriaTriggers {
@@ -82,9 +82,8 @@ public class ModCriteriaTriggers {
       }
    }
 
-   @Nullable
    public static <T extends ICriterionInstance> ICriterionTrigger<T> get(ResourceLocation id) {
-      return (ICriterionTrigger<T>) REGISTRY.get(id);
+      return new Cast<ICriterionTrigger<T>>().cast(REGISTRY.get(id));
    }
 
    public static Iterable<? extends ICriterionTrigger<?>> getAll() {

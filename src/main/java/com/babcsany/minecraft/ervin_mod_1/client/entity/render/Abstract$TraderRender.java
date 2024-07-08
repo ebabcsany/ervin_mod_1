@@ -25,5 +25,4 @@ public abstract class Abstract$TraderRender<T extends $TraderEntity, M extends $
    public ResourceLocation getEntityTexture($TraderEntity entity) {
       return field_217771_a;
    }
-
 }

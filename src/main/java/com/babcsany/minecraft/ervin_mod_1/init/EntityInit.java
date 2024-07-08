@@ -35,7 +35,7 @@ public class EntityInit<T extends Entity> extends EntityType<T> {
     public static final EntityType<DrurbFishEntity> DRURB_ENTITY = register("dgrurb", EntityType.Builder.create(DrurbFishEntity::new, EntityClassification.CREATURE).size(0.6f, 0.5f).trackingRange(8).immuneToFire());
     public static final EntityType<ZurEntity> ZUR = register("zur", EntityType.Builder.create(ZurEntity::new, EntityClassification.CREATURE).size(0.6f, 1.95f).trackingRange(10).immuneToFire());
 //    public static final EntityType<ZurNirtreEntity> ZUR_NIRTRE_ENTITY = register("zur_nirtre", EntityType.Builder.create(ZurNirtreEntity::new, EntityClassification.CREATURE).size(0.6f, 1.95f).trackingRange(10).immuneToFire());
-    public static final EntityType<FreinEntity> FREIN_ENTITY = register("frein", EntityType.Builder.create(FreinEntity::new, EntityClassification.CREATURE).size(1.0f, 3.0f).trackingRange(10));
+    public static final EntityType<FreinEntity> FREIN = register("frein", EntityType.Builder.create(FreinEntity::new, EntityClassification.MONSTER).size(1.0f, 3.0f).trackingRange(10));
     public static final EntityType<ViltEntity> VILT_ENTITY = register("vilt", EntityType.Builder.create(ViltEntity::new, EntityClassification.CREATURE).size(1.0f, 2.0f).trackingRange(10));
     public static final EntityType<ShertEntity> SHERT_ENTITY = register("srach/shert", EntityType.Builder.create(ShertEntity::new, EntityClassification.CREATURE).size(0.9f, 1.4f).trackingRange(13));
     public static final EntityType<HhijEntity> HHIJ_ENTITY = register("hhij", EntityType.Builder.create(HhijEntity::new, EntityClassification.CREATURE).size(0.6f, 0.85f).trackingRange(20).immuneToFire());

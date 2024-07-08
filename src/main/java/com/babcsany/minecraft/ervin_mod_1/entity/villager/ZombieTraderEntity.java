@@ -3,6 +3,7 @@ package com.babcsany.minecraft.ervin_mod_1.entity.villager;
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.ZombieTraderLookAtCustomerGoal;
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.ZombieTraderTradeWithPlayerGoal;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.ZombieTraderTrades;
+import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.spawn_egg.ModSpawnEggItemInit;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
@@ -13,9 +14,7 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.MerchantOffer;
-import net.minecraft.item.MerchantOffers;
+import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraft.stats.Stats;
@@ -29,7 +28,6 @@ import javax.annotation.Nullable;
 public class ZombieTraderEntity extends AbstractZombieTraderEntity {
    @Nullable
    private BlockPos zombieTraderTarget;
-   private int despawnDelay;
 
    public ZombieTraderEntity(EntityType<? extends ZombieTraderEntity> type, World worldIn) {
       super(type, worldIn);
@@ -54,7 +52,7 @@ public class ZombieTraderEntity extends AbstractZombieTraderEntity {
 
    @Nullable
    public AgeableEntity createChild(ServerWorld serverWorld, AgeableEntity ageable) {
-      return null;
+      return EntityInit.ZOMBIE_TRADER_ENTITY.create(serverWorld);
    }
 
    @Override
@@ -62,7 +60,7 @@ public class ZombieTraderEntity extends AbstractZombieTraderEntity {
 
    }
 
-   public boolean func_213705_dZ() {
+   public boolean isSpawnItem() {
       return false;
    }
 
@@ -105,7 +103,6 @@ public class ZombieTraderEntity extends AbstractZombieTraderEntity {
 
    public void writeAdditional(CompoundNBT compound) {
       super.writeAdditional(compound);
-      compound.putInt("DespawnDelay", this.despawnDelay);
       if (this.zombieTraderTarget != null) {
          compound.put("ZombieTraderTarget", NBTUtil.writeBlockPos(this.zombieTraderTarget));
       }
@@ -117,10 +114,6 @@ public class ZombieTraderEntity extends AbstractZombieTraderEntity {
     */
    public void readAdditional(CompoundNBT compound) {
       super.readAdditional(compound);
-      if (compound.contains("DespawnDelay", 99)) {
-         this.despawnDelay = compound.getInt("DespawnDelay");
-      }
-
       if (compound.contains("ZombieTraderTarget")) {
          this.zombieTraderTarget = NBTUtil.readBlockPos(compound.getCompound("ZombieTraderTarget"));
       }
@@ -128,21 +121,16 @@ public class ZombieTraderEntity extends AbstractZombieTraderEntity {
       this.setGrowingAge(Math.max(0, this.getGrowingAge()));
    }
 
-   public boolean canDespawn(double distanceToClosestPlayer) {
-      return false;
-   }
-
-   protected void onVillagerTrade(MerchantOffer offer) {
+   public void onTrade(MerchantOffer offer) {
       if (offer.getDoesRewardExp()) {
          int i = 3 + this.rand.nextInt(4);
          this.world.addEntity(new ExperienceOrbEntity(this.world, this.getPosX(), this.getPosY() + 0.5D, this.getPosZ(), i));
       }
-
    }
 
-   /*protected SoundEvent getAmbientSound() {
+   protected SoundEvent getAmbientSound() {
       return this.hasCustomer() ? SoundEvents.ENTITY_WANDERING_TRADER_TRADE : SoundEvents.ENTITY_WANDERING_TRADER_AMBIENT;
-   }*/
+   }
 
    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
       return SoundEvents.ENTITY_ZOMBIE_HURT;
@@ -152,44 +140,17 @@ public class ZombieTraderEntity extends AbstractZombieTraderEntity {
       return SoundEvents.ENTITY_ZOMBIE_DEATH;
    }
 
-   /*protected SoundEvent getDrinkSound(ItemStack stack) {
+   protected SoundEvent getDrinkSound(ItemStack stack) {
       Item item = stack.getItem();
       return item == Items.MILK_BUCKET ? SoundEvents.ENTITY_WANDERING_TRADER_DRINK_MILK : SoundEvents.ENTITY_WANDERING_TRADER_DRINK_POTION;
    }
 
-   protected SoundEvent getVillagerYesNoSound(boolean getYesSound) {
-      return getYesSound ? SoundEvents.ENTITY_WANDERING_TRADER_YES : SoundEvents.ENTITY_WANDERING_TRADER_NO;
-   }
-
    public SoundEvent getYesSound() {
       return SoundEvents.ENTITY_WANDERING_TRADER_YES;
-   }*/
-
-   public void setDespawnDelay(int delay) {
-      this.despawnDelay = delay;
    }
 
-   public int getDespawnDelay() {
-      return this.despawnDelay;
-   }
-
-   /**
-    * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
-    * use this to react to sunlight and start to burn.
-    */
-   public void livingTick() {
-      super.livingTick();
-      if (!this.world.isRemote) {
-         this.handleDespawn();
-      }
-
-   }
-
-   private void handleDespawn() {
-      if (this.despawnDelay > 0 && !this.hasCustomer() && --this.despawnDelay == 0) {
-         this.remove();
-      }
-
+   public SoundEvent getNoSound() {
+      return SoundEvents.ENTITY_WANDERING_TRADER_NO;
    }
 
    public void setWanderTarget(@Nullable BlockPos pos) {
@@ -199,10 +160,5 @@ public class ZombieTraderEntity extends AbstractZombieTraderEntity {
    @Nullable
    private BlockPos getWanderTarget() {
       return this.zombieTraderTarget;
-   }
-
-   @Override
-   public boolean hasXPBar() {
-      return false;
    }
 }

@@ -2,6 +2,7 @@ package com.babcsany.minecraft.ervin_mod_1.client.entity.render;
 
 import com.babcsany.minecraft.ervin_mod_1.client.entity.model.$TraderModel;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.$TraderEntity;
+import com.babcsany.minecraft.ervin_mod_1.entity.villager.Abstract$TraderEntity;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;

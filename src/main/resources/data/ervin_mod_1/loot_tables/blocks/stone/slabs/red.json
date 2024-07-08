@@ -12,7 +12,7 @@
               "conditions": [
                 {
                   "condition": "minecraft:block_state_property",
-                  "block": "ervin_mod_1:stone/slabs/red_stone_slab",
+                  "block": "ervin_mod_1:stone/slabs/red",
                   "properties": {
                     "type": "double"
                   }

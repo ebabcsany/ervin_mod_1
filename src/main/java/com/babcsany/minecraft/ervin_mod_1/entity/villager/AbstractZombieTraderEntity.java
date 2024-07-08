@@ -1,6 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.villager;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.ZombieTraderTrades;
+import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
 import com.babcsany.minecraft.ervin_mod_1.trigger.ModCriteriaTriggers;
 import com.google.common.collect.Sets;
 import net.minecraft.entity.*;
@@ -8,6 +9,7 @@ import net.minecraft.entity.merchant.IMerchant;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.MerchantOffer;
 import net.minecraft.item.MerchantOffers;
@@ -32,11 +34,15 @@ import java.util.Set;
 
 public abstract class AbstractZombieTraderEntity extends AgeableEntity implements INPC, IMerchant {
    private static final DataParameter<Integer> SHAKE_HEAD_TICKS = EntityDataManager.createKey(AbstractZombieTraderEntity.class, DataSerializers.VARINT);
+   private int timeUntilNextItem = super.rand.nextInt(3897) * 5;
    @Nullable
    private PlayerEntity customer;
    @Nullable
    protected MerchantOffers offers;
    private final Inventory zombieTraderInventory = new Inventory(8);
+   private Item droppedItem = null;
+   private int xp = 0;
+   private int despawnDelay;
 
    public AbstractZombieTraderEntity(EntityType<? extends AbstractZombieTraderEntity> type, World worldIn) {
       super(type, worldIn);
@@ -61,7 +67,7 @@ public abstract class AbstractZombieTraderEntity extends AgeableEntity implement
    }
 
    public int getXp() {
-      return 0;
+      return this.xp;
    }
 
    protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
@@ -88,7 +94,7 @@ public abstract class AbstractZombieTraderEntity extends AgeableEntity implement
 
    public MerchantOffers getOffers() {
       if (this.offers == null) {
-         this.offers = new MerchantOffers();
+         this.setClientSideOffers(new MerchantOffers());
          this.populateTradeData();
       }
 
@@ -97,9 +103,11 @@ public abstract class AbstractZombieTraderEntity extends AgeableEntity implement
 
    @OnlyIn(Dist.CLIENT)
    public void setClientSideOffers(@Nullable MerchantOffers offers) {
+      this.offers = offers;
    }
 
    public void setXP(int xpIn) {
+      this.xp = xpIn;
    }
 
    public void onTrade(MerchantOffer offer) {
@@ -114,7 +122,7 @@ public abstract class AbstractZombieTraderEntity extends AgeableEntity implement
 
    protected abstract void onZombieTraderTrade(MerchantOffer offer);
 
-   public boolean func_213705_dZ() {
+   public boolean isSpawnItem() {
       return true;
    }
 
@@ -127,23 +135,83 @@ public abstract class AbstractZombieTraderEntity extends AgeableEntity implement
          this.livingSoundTime = -this.getTalkInterval();
          this.playSound(this.getZombieTraderYesNoSound(!stack.isEmpty()), this.getSoundVolume(), this.getSoundPitch());
       }
+   }
 
+   protected void dropItem(int timeUntilNextItem, Item droppedItem, int nextTimeUntilNextItem) {
+      this.setTimeUntilNextItem(timeUntilNextItem);
+      this.setDroppedItem(droppedItem);
+      this.dropItem(nextTimeUntilNextItem);
+   }
+
+   protected void dropItem(int nextTimeUntilNextItem) {
+      if (this.isDropItem()) {
+         this.dropItem();
+         this.setTimeUntilNextItem(nextTimeUntilNextItem);
+      }
+   }
+
+   protected void dropItem() {
+      if (this.isDropItem()) {
+         this.entityDropItem(this.droppedItem);
+      }
+   }
+
+   protected void setTimeUntilNextItem(int timeUntilNextItem) {
+      this.timeUntilNextItem = timeUntilNextItem;
+   }
+
+   protected void setDroppedItem(Item droppedItem) {
+      this.droppedItem = droppedItem;
    }
 
    public SoundEvent getYesSound() {
-      return SoundEvents.AMBIENT_CAVE;
+      return SoundEvents.ENTITY_ZOMBIE_HURT;
+   }
+
+   public SoundEvent getNoSound() {
+      return SoundEvents.ENTITY_ZOMBIE_AMBIENT;
    }
 
    protected SoundEvent getZombieTraderYesNoSound(boolean getYesSound) {
-      return getYesSound ? SoundEvents.AMBIENT_CAVE : SoundEvents.AMBIENT_BASALT_DELTAS_ADDITIONS;
+      return getYesSound ? this.getYesSound() : this.getNoSound();
    }
 
    public void playCelebrateSound() {
       this.playSound(SoundEvents.AMBIENT_BASALT_DELTAS_LOOP, this.getSoundVolume(), this.getSoundPitch());
    }
 
+   public void setDespawnDelay(int delay) {
+      this.despawnDelay = delay;
+   }
+
+   public int getDespawnDelay() {
+      return this.despawnDelay;
+   }
+
+   /**
+    * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
+    * use this to react to sunlight and start to burn.
+    */
+   public void livingTick() {
+      super.livingTick();
+      if (!this.world.isRemote) {
+         this.handleDespawn();
+      }
+      if (isSpawnItem()) {
+         int nextTimeUntilNextItem = super.rand.nextInt(8321) - 1857;
+         this.dropItem(this.timeUntilNextItem, ItemInit.FIRT, nextTimeUntilNextItem);
+      }
+   }
+
+   private void handleDespawn() {
+      if (this.despawnDelay > 0 && !this.hasCustomer() && --this.despawnDelay == 0) {
+         this.remove();
+      }
+   }
+
    public void writeAdditional(CompoundNBT compound) {
       super.writeAdditional(compound);
+      compound.putInt("DespawnDelay", this.despawnDelay);
       MerchantOffers merchantoffers = this.getOffers();
       if (!merchantoffers.isEmpty()) {
          compound.put("Offers", merchantoffers.write());
@@ -157,11 +225,24 @@ public abstract class AbstractZombieTraderEntity extends AgeableEntity implement
     */
    public void readAdditional(CompoundNBT compound) {
       super.readAdditional(compound);
+      if (compound.contains("DespawnDelay", 99)) {
+         this.despawnDelay = compound.getInt("DespawnDelay");
+      }
+
       if (compound.contains("Offers", 10)) {
          this.offers = new MerchantOffers(compound.getCompound("Offers"));
       }
 
       this.zombieTraderInventory.read(compound.getList("Inventory", 10));
+   }
+
+   @Override
+   public boolean hasXPBar() {
+      return false;
+   }
+
+   public boolean canDespawn(double distanceToClosestPlayer) {
+      return false;
    }
 
    @Nullable
@@ -244,5 +325,13 @@ public abstract class AbstractZombieTraderEntity extends AgeableEntity implement
          }
       }
 
+   }
+
+   protected boolean isDropItem() {
+      return this.droppedItem != null && !this.world.isRemote && this.isAlive() && !this.isChild() && --this.timeUntilNextItem <= 0;
+   }
+
+   protected boolean isNoDropItem() {
+      return !this.isDropItem();
    }
 }

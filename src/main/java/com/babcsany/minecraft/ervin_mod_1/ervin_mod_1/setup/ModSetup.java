@@ -5,7 +5,6 @@ import com.babcsany.minecraft.ervin_mod_1.entity.animal.hhij.HhijEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.fish.DrurbFishEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.RoventEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurEntity;
-import com.babcsany.minecraft.ervin_mod_1.entity.monster.ZurNirtreEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.*;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -28,7 +27,7 @@ public class ModSetup {
         put(ROVENT_ENTITY, RoventEntity.func_234342_eQ_());
         put(DRURB_ENTITY, DrurbFishEntity.func_234190_eK_());
 //        put(ZUR_NIRTRE_ENTITY, ZurNirtreEntity.setCustomAttributes());
-        put(FREIN_ENTITY, FreinEntity.setCustomAttributes());
+        put(FREIN, FreinEntity.registerAttributes());
         put(VILT_ENTITY, ViltEntity.setCustomAttributes());
         put(SRACH_ENTITY, SrachEntity.setCustomAttributes());
         put(SHERT_ENTITY, ShertEntity.setCustomAttributes());

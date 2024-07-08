@@ -39,7 +39,7 @@ public class GubrovFollowSchoolLeaderGoal extends Goal {
          };
          List<AbstractGroupGubrovEntity> list = this.taskOwner.world.getEntitiesWithinAABB(this.taskOwner.getClass(), this.taskOwner.getBoundingBox().grow(32.0D, 32.0D, 32.0D), predicate);
          AbstractGroupGubrovEntity abstractgroupgubroventity = list.stream().filter(AbstractGroupGubrovEntity::canGroupGrow).findAny().orElse(this.taskOwner);
-         abstractgroupgubroventity.func_212810_a(list.stream().filter((fish) -> {
+         abstractgroupgubroventity.joinGroups(list.stream().filter((fish) -> {
             return !fish.hasGroupLeader();
          }));
          return this.taskOwner.hasGroupLeader();

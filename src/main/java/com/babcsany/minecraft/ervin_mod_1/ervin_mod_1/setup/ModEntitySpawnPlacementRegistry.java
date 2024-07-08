@@ -20,7 +20,7 @@ public class ModEntitySpawnPlacementRegistry extends EntitySpawnPlacementRegistr
 
     public void register() {
         EntitySpawnPlacementRegistry.register(EntityInit.$_TRADER_ENTITY, EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, Abstract$TraderEntity::canSpawnOn);
-        EntitySpawnPlacementRegistry.register(EntityInit.FREIN_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, FreinEntity::canFreinSpawn);
+        EntitySpawnPlacementRegistry.register(EntityInit.FREIN, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, FreinEntity::canFreinSpawn);
         EntitySpawnPlacementRegistry.register(EntityInit.HHIJ_ENTITY, EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, HhijAnimalEntity::canAnimalSpawn);
         EntitySpawnPlacementRegistry.register(EntityInit.SHERT_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ShertEntity::canAnimalSpawn);
         EntitySpawnPlacementRegistry.register(EntityInit.TRADER_NIRTRE_ENTITY, EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canSpawnOn);

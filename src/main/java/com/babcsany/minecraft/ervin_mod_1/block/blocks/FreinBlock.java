@@ -1,6 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.block.blocks;
 
-import net.minecraft.block.BreakableBlock;
+import net.minecraft.block.HoneyBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.math.BlockPos;
@@ -8,7 +8,7 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 
-public class FreinBlock extends BreakableBlock {
+public class FreinBlock extends HoneyBlock {
    public FreinBlock(Properties properties) {
       super(properties);
    }

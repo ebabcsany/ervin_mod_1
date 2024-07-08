@@ -41,7 +41,7 @@ public class ClientEventBusSubscriber {
 //        RenderingRegistry.registerEntityRenderingHandler(EntityInit.ZUR_NIRTRE_ENTITY, ZurNirtreRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.ROVENT_ENTITY, RoventRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.VILT_ENTITY, ViltEntityRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityInit.FREIN_ENTITY, FreinEntityRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityInit.FREIN, FreinEntityRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.SRACH_ENTITY, SrachRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.SHERT_ENTITY, ShertRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.DRURB_ENTITY, DrurgbkRenderer::new);

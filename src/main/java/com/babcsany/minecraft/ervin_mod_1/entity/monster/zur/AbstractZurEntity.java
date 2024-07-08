@@ -303,8 +303,7 @@ public abstract class AbstractZurEntity extends TameableZurEntity implements INP
     }
 
     protected void registerGoals() {
-        AttackGoal attackGoal = new AttackGoal(this);
-        this.goalSelector.addGoal(4, attackGoal);
+        this.goalSelector.addGoal(4, new AttackGoal(this));
         this.goalSelector.addGoal(8, new LeapAtTargetGoal(this, 53));
         this.goalSelector.addGoal(6, new AbstractZurEntity.TargetGoal<>(this, AbstractVillagerEntity.class));
     }
@@ -1226,7 +1225,7 @@ public abstract class AbstractZurEntity extends TameableZurEntity implements INP
                     potion = Potions.HEALING;
                 } else if (this.rand.nextFloat() < 0.5F && this.getAttackTarget() != null && !this.isPotionActive(Effects.STRENGTH) && this.getAttackTarget().getDistanceSq(this) > 2.0D || !this.isPotionActive(Effects.SPEED) && !this.isPotionActive(Effects.JUMP_BOOST)) {
                     potion = Potions.SWIFTNESS;
-                } else if (this.rand.nextFloat() < 0.886F) {
+                } else if (this.rand.nextFloat() < 0.886F && !this.isInDaylight()) {
                     potion = Potions.INVISIBILITY;
                 }
 

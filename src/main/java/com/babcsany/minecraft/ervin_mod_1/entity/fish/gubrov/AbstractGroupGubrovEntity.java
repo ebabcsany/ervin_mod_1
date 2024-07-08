@@ -7,7 +7,6 @@ import net.minecraft.entity.SpawnReason;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
-import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
@@ -46,7 +45,8 @@ public abstract class AbstractGroupGubrovEntity extends AbstractGubrovEntity {
       return this.groupLeader != null && this.groupLeader.isAlive();
    }
 
-   public AbstractGroupGubrovEntity func_212803_a(AbstractGroupGubrovEntity groupLeaderIn) {
+   @SuppressWarnings("UnusedReturnValue")
+   public AbstractGroupGubrovEntity joinGroup(AbstractGroupGubrovEntity groupLeaderIn) {
       this.groupLeader = groupLeaderIn;
       groupLeaderIn.increaseGroupSize();
       return groupLeaderIn;
@@ -98,12 +98,8 @@ public abstract class AbstractGroupGubrovEntity extends AbstractGubrovEntity {
 
    }
 
-   public void func_212810_a(Stream<AbstractGroupGubrovEntity> p_212810_1_) {
-      p_212810_1_.limit((long)(this.getMaxGroupSize() - this.groupSize)).filter((p_212801_1_) -> {
-         return p_212801_1_ != this;
-      }).forEach((p_212804_1_) -> {
-         p_212804_1_.func_212803_a(this);
-      });
+   public void joinGroups(Stream<AbstractGroupGubrovEntity> abstractGroupGubrovStream) {
+      abstractGroupGubrovStream.limit(this.getMaxGroupSize() - this.groupSize).filter((gubrov) -> gubrov != this).forEach((customer) -> customer.joinGroup(this));
    }
 
    @Nullable
@@ -112,7 +108,7 @@ public abstract class AbstractGroupGubrovEntity extends AbstractGubrovEntity {
       if (spawnDataIn == null) {
          spawnDataIn = new AbstractGroupGubrovEntity.GroupData(this);
       } else {
-         this.func_212803_a(((AbstractGroupGubrovEntity.GroupData)spawnDataIn).groupLeader);
+         this.joinGroup(((AbstractGroupGubrovEntity.GroupData)spawnDataIn).groupLeader);
       }
 
       return spawnDataIn;

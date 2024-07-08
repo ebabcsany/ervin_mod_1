@@ -48,10 +48,9 @@ public class ZurEntity extends AbstractZurEntity {
     }
 
     protected void applyEntityAI() {
-        if (this.world.isRemote) {
-            this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setCallsForHelp(ZombifiedPiglinEntity.class));
-            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
-        }
+        this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setCallsForHelp(ZombifiedPiglinEntity.class));
+        this.targetSelector.addGoal(5, (new HurtByTargetGoal(this)).setCallsForHelp(ZurEntity.class));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
     }
 
     public static AttributeModifierMap.MutableAttribute setCustomAttributes() {

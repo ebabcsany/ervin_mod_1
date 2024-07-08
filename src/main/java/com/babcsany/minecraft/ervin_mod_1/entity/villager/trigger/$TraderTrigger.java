@@ -1,7 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.villager.trigger;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
-import com.babcsany.minecraft.ervin_mod_1.entity.villager.Abstract$TraderEntity;
+import com.babcsany.minecraft.ervin_mod_1.entity.villager.$TraderEntity;
 import com.google.gson.JsonObject;
 import net.minecraft.advancements.criterion.AbstractCriterionTrigger;
 import net.minecraft.advancements.criterion.CriterionInstance;
@@ -27,7 +27,7 @@ public class $TraderTrigger extends AbstractCriterionTrigger<$TraderTrigger.Inst
       return new $TraderTrigger.Instance(entityPredicate, entitypredicate$andpredicate, itempredicate);
    }
 
-   public void test(ServerPlayerEntity player, Abstract$TraderEntity $_trader, ItemStack stack) {
+   public void test(ServerPlayerEntity player, $TraderEntity $_trader, ItemStack stack) {
       LootContext lootcontext = EntityPredicate.getLootContext(player, $_trader);
       this.triggerListeners(player, (p_227267_2_) -> p_227267_2_.test(lootcontext, stack));
    }

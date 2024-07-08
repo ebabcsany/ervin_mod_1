@@ -56,13 +56,13 @@ public class isBurnableBlockItemInit {
     public static final Block NIRTKB = UnusedBlocks.registerBlockItem("nirtkb", new SandBlock(14406560, AbstractBlock.Properties.create(Material.ROCK).setRequiresTool().harvestLevel(0).hardnessAndResistance(1000000000000000000.0F)));
     public static final BlockItem TIRKS_BLOCK = registerBlockItem("tirks_block", new Block(Block.Properties.create(Material.ORGANIC).setRequiresTool().harvestLevel(1).harvestTool(ToolType.PICKAXE).hardnessAndResistance(80.0f)));
     public static final BlockItem TIRSK_BLOCK = registerBlockItem("tirsk_block", new Block(Block.Properties.create(Material.ORGANIC).setRequiresTool().harvestLevel(1).harvestTool(ToolType.PICKAXE).hardnessAndResistance(140.0f)));
-    public static final Block SHZ_BLOCK = register("shz_block", new Block(Block.Properties.create(Material.ORGANIC).setRequiresTool().harvestLevel(0).harvestTool(ToolType.PICKAXE).hardnessAndResistance(6000000.0f).setLightLevel(Value -> 15)));
-    public static final Block RUGK_BLOCK = register("rugk_block", new Block(Block.Properties.create(Material.ROCK).setRequiresTool().harvestLevel(4).harvestTool(ToolType.PICKAXE).hardnessAndResistance(3590.0f)));
-    public static final Block RUGK_SLAB = register("rugk_slab", new SlabBlock(Block.Properties.create(Material.ROCK).setRequiresTool().harvestLevel(4).harvestTool(ToolType.PICKAXE).hardnessAndResistance(3590.0F, 3600.0F)));
-    public static final Block RUGK_STAIRS = register("rugk_stairs", new StairsBlock(RUGK_BLOCK::getDefaultState, Block.Properties.from(RUGK_BLOCK)));
+    public static final Block SHZ_BLOCK = registerBlockItemWithBlock("shz_block", new Block(Block.Properties.create(Material.ORGANIC).setRequiresTool().harvestLevel(0).harvestTool(ToolType.PICKAXE).hardnessAndResistance(6000000.0f).setLightLevel(Value -> 15)));
+    public static final BlockItem RUGK_BLOCK = registerBlockItem("rugk_block", new Block(Block.Properties.create(Material.ROCK).setRequiresTool().harvestLevel(4).harvestTool(ToolType.PICKAXE).hardnessAndResistance(3590.0f)));
+    public static final Block RUGK_SLAB = registerBlockItemWithBlock("rugk_slab", new SlabBlock(Block.Properties.create(Material.ROCK).setRequiresTool().harvestLevel(4).harvestTool(ToolType.PICKAXE).hardnessAndResistance(3590.0F, 3600.0F)));
+    public static final Block RUGK_STAIRS = registerBlockItemWithBlock("rugk_stairs", new StairsBlock(RUGK_BLOCK.getBlock()::getDefaultState, Block.Properties.from(RUGK_BLOCK.getBlock())));
     public static final Block EPKIH = UnusedBlocks.registerDefault("epkih", new Epkih(Block.Properties.create(Material.BARRIER).setRequiresTool().harvestLevel(0).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1000.0f)));
-    public static final Block DRIOP = register("driop", new Driop(Block.Properties.create(Material.BARRIER).doesNotBlockMovement().setRequiresTool().harvestLevel(0).harvestTool(ToolType.PICKAXE).hardnessAndResistance(10.0f)));
-    public static final Block IRTREW = register("irtrew", new Irtrew(Block.Properties.create(Material.BARRIER).doesNotBlockMovement().harvestTool(ToolType.PICKAXE).harvestTool(ToolType.AXE).harvestTool(ToolType.SHOVEL).harvestTool(ToolType.HOE).hardnessAndResistance(20.0f)));
+    public static final BlockItem DRIOP = registerBlockItem("driop", new Driop(Block.Properties.create(Material.BARRIER).doesNotBlockMovement().setRequiresTool().harvestLevel(0).harvestTool(ToolType.PICKAXE).hardnessAndResistance(10.0f)));
+    public static final BlockItem IRTREW = registerBlockItem("irtrew", new Irtrew(Block.Properties.create(Material.BARRIER).doesNotBlockMovement().harvestTool(ToolType.PICKAXE).harvestTool(ToolType.AXE).harvestTool(ToolType.SHOVEL).harvestTool(ToolType.HOE).hardnessAndResistance(20.0f)));
     public static final BlockItem LEAT_BLOCK = registerBlockItem("leat_block", new Block(Block.Properties.create(Material.ORGANIC).setRequiresTool().harvestTool(ToolType.AXE).harvestTool(ToolType.PICKAXE).harvestTool(ToolType.SHOVEL).harvestTool(ToolType.HOE).hardnessAndResistance(100.0f)));
     public static final BlockItem LEAT_BLOCK_CRAFTING_TABLE = registerBlockItem("leat_block_crafting_table", new LeatBlockCraftingTable(Block.Properties.create(Material.ROCK, MaterialColor.GREEN).harvestTool(ToolType.AXE).harvestTool(ToolType.PICKAXE).harvestTool(ToolType.SHOVEL).harvestTool(ToolType.HOE).hardnessAndResistance(500.0f)));
     public static final Block CRAINT_BLOCK = UnusedBlocks.registerBlockItem("craint_block", new Block(Block.Properties.create(Material.ROCK).setRequiresTool().harvestLevel(4).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1000.0f)));
@@ -79,6 +79,10 @@ public class isBurnableBlockItemInit {
 
     public static BlockItem registerBlockItem(String name, Block block) {
         return new Cast<BlockItem>().cast(UnusedBlockItems.registerDefault(name, block));
+    }
+
+    public static Block registerBlockItemWithBlock(String name, Block block) {
+        return registerBlockItem(name, block).getBlock();
     }
 
     public static Block registerBlockWithItem(String name, Block block, Item.Properties properties) {

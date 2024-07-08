@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "ervin_mod_1:stone/smooth_stones/black_smooth_stone"
+          "name": "ervin_mod_1:stone/smooth_stones/black"
         }
       ],
       "conditions": [

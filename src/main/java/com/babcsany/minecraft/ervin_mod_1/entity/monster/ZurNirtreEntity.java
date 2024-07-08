@@ -164,7 +164,7 @@ public class ZurNirtreEntity extends AgeableEntity {
          traderNirtreEntity.setOffers(new MerchantOffers(this.offers));
       }
 
-      traderNirtreEntity.setXp(this.xp);
+      traderNirtreEntity.setXP(this.xp);
       traderNirtreEntity.onInitialSpawn(p_213791_1_, p_213791_1_.getDifficultyForLocation(traderNirtreEntity.getPosition()), SpawnReason.CONVERSION, null, null);
       if (this.isChild()) {
          traderNirtreEntity.setGrowingAge(-24000);

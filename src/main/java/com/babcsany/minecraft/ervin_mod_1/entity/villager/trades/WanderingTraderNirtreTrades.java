@@ -26,7 +26,6 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentData;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.merchant.villager.VillagerTrades;
 import net.minecraft.entity.villager.IVillagerDataHolder;
 import net.minecraft.entity.villager.VillagerType;
 import net.minecraft.item.*;
@@ -72,7 +71,7 @@ public class WanderingTraderNirtreTrades {
            new WanderingTraderNirtreTrades.ItemsForMlonksTrade(ModSpawnEggItemInit.FREIN_SPAWN_EGG, 20, 1, 10, 2),
            new WanderingTraderNirtreTrades.ItemsForObsidiansTrade(com.babcsany.minecraft.init.BlockItemInit.TRIRIJ, 10, 1, 1000, 2),
            new WanderingTraderNirtreTrades.ItemsForGrassBlocksTrade(ModSpawnEggItemInit.ZUR_SPAWN_EGG, 4, 1, 9, 1),
-           new WanderingTraderNirtreTrades.ItemsForDreinsTrade(ModSpawnEggItemInit.$_TRADER_SPAWN_EGG, 10, 1, 40, 3),
+           new WanderingTraderNirtreTrades.ItemsForDreinsTrade(ModSpawnEggItemInit.$_TRADER, 10, 1, 40, 3),
            new WanderingTraderNirtreTrades.ItemsForDreinsTrade(SpawnEggItemInit.LIGHTNING_BOLT_SPAWN_EGG.get(), 1, 1, 40000, 8),
            new WanderingTraderNirtreTrades.ItemsForSriunkBlocksTrade(isBurnableBlockItemInit.RETRUG, 1, 4, 4, 10),
            new WanderingTraderNirtreTrades.ItemsForTrurksAndItemsTrade(SpecialToolItemInit.CRAINT.get(), 1, isBurnableBlockItemInit.RETRUG, 1, 16, 1),
