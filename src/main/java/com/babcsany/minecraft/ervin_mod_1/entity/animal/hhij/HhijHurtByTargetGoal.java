@@ -8,6 +8,7 @@ import net.minecraft.world.GameRules;
 import java.util.EnumSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 
 public class HhijHurtByTargetGoal extends TargetGoal {
    private static final EntityPredicate field_220795_a = (new EntityPredicate()).setIgnoresLineOfSight().setUseInvisibilityCheck();
@@ -72,7 +73,7 @@ public class HhijHurtByTargetGoal extends TargetGoal {
       double d0 = this.getTargetDistance();
       AxisAlignedBB axisalignedbb = AxisAlignedBB.fromVector(this.goalOwner.getPositionVec()).grow(d0, 10.0D, d0);
       List<MobEntity> list = this.goalOwner.world.getLoadedEntitiesWithinAABB(this.goalOwner.getClass(), axisalignedbb);
-      Iterator iterator = list.iterator();
+      Iterator<MobEntity> iterator = list.iterator();
 
       while(true) {
          MobEntity mobentity;
@@ -81,8 +82,8 @@ public class HhijHurtByTargetGoal extends TargetGoal {
                return;
             }
 
-            mobentity = (MobEntity)iterator.next();
-            if (this.goalOwner != mobentity && mobentity.getAttackTarget() == null && (!(this.goalOwner instanceof HhijTameableEntity) || ((HhijTameableEntity)this.goalOwner).getOwner() == ((HhijTameableEntity)mobentity).getOwner()) && !mobentity.isOnSameTeam(this.goalOwner.getRevengeTarget())) {
+            mobentity = iterator.next();
+            if (this.goalOwner != mobentity && mobentity.getAttackTarget() == null && (!(this.goalOwner instanceof HhijTameableEntity) || ((HhijTameableEntity)this.goalOwner).getOwner() == ((HhijTameableEntity)mobentity).getOwner()) && !mobentity.isOnSameTeam(Objects.requireNonNull(this.goalOwner.getRevengeTarget()))) {
                if (this.reinforcementTypes == null) {
                   break;
                }

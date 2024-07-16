@@ -4,6 +4,7 @@ import com.babcsany.minecraft.ervin_mod_1.entity.animal.hhij.HhijAnimalEntity;
 import net.minecraft.entity.EntityPredicate;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nullable;
 import java.util.EnumSet;
@@ -79,22 +80,22 @@ public class HhijBreedGoal extends Goal {
    private HhijAnimalEntity getNearbyMate() {
       List<HhijAnimalEntity> list = this.world.getTargettableEntitiesWithinAABB(this.mateClass, field_220689_d, this.animal, this.animal.getBoundingBox().grow(8.0D));
       double d0 = Double.MAX_VALUE;
-      HhijAnimalEntity animalentity = null;
+      HhijAnimalEntity animal = null;
 
-      for(HhijAnimalEntity animalentity1 : list) {
-         if (this.animal.canMateWith(animalentity1) && this.animal.getDistanceSq(animalentity1) < d0) {
-            animalentity = animalentity1;
-            d0 = this.animal.getDistanceSq(animalentity1);
+      for (HhijAnimalEntity animal1 : list) {
+         if (this.animal.canMateWith(animal1) && this.animal.getDistanceSq(animal1) < d0) {
+            animal = animal1;
+            d0 = this.animal.getDistanceSq(animal1);
          }
       }
 
-      return animalentity;
+      return animal;
    }
 
    /**
     * Spawns a baby animal of the same type.
     */
    protected void spawnBaby() {
-      this.animal.func_234177_a_(this.world, this.targetMate);
+      this.animal.spawnBabyAnimal((ServerWorld) this.world, this.targetMate);
    }
 }

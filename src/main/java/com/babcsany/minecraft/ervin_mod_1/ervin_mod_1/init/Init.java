@@ -8,6 +8,7 @@ import com.babcsany.minecraft.ervin_mod_1.data.ModLootTableProvider;
 import com.babcsany.minecraft.ervin_mod_1.enchantment.ModEnchantments;
 import com.babcsany.minecraft.ervin_mod_1.entity.ModEntityClassification;
 import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.registries.Compost;
+import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.setup.ModEntitySpawnPlacementRegistry;
 import com.babcsany.minecraft.ervin_mod_1.init.*;
 import com.babcsany.minecraft.ervin_mod_1.init.block.animation.colors.AnimationBlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.container.ContainerInit;
@@ -145,9 +146,9 @@ public class Init extends DefaultInit {
     public void registers() {
 //        Minecraft minecraft = Minecraft.getInstance();
 //        String worldName = "";
-//        SaveFormat.LevelSave saveformat$levelsave;
+//        SaveFormat.LevelSave saveFormat$levelSave;
 //        try {
-//            saveformat$levelsave = minecraft.getSaveLoader().getLevelSave(worldName);
+//            saveFormat$levelSave = minecraft.getSaveLoader().getLevelSave(worldName);
 //        } catch (IOException ioexception2) {
 //            LOGGER.warn("Failed to read level {} data", worldName, ioexception2);
 //            SystemToast.func_238535_a_(minecraft, worldName);
@@ -158,17 +159,17 @@ public class Init extends DefaultInit {
 //        Function<SaveFormat.LevelSave, DatapackCodec> quadFunction = Minecraft::loadDataPackCodec;
 //        Function4<SaveFormat.LevelSave, DynamicRegistries.Impl, IResourceManager, DatapackCodec, IServerConfiguration> worldStorage = Minecraft::loadWorld;
 //        boolean vanillaOnly = false;
-//        DatapackCodec datapackcodec = quadFunction.apply((SaveFormat.LevelSave) worldStorage);
-//        ResourcePackList resourcepacklist = new ResourcePackList(new ServerPackFinder(), new FolderPackFinder(saveformat$levelsave.resolveFilePath(FolderName.DATAPACKS).toFile(), IPackNameDecorator.WORLD));
+//        DatapackCodec dataPackCodec = quadFunction.apply((SaveFormat.LevelSave) worldStorage);
+//        ResourcePackList resourcePackList = new ResourcePackList(new ServerPackFinder(), new FolderPackFinder(saveFormat$levelSave.resolveFilePath(FolderName.DATAPACKS).toFile(), IPackNameDecorator.WORLD));
 //
 //        try {
-//            DatapackCodec datapackcodec1 = MinecraftServer.func_240772_a_(resourcepacklist, datapackcodec, vanillaOnly);
-//            CompletableFuture<DataPackRegistries> completablefuture = ModDataPackRegistries.func_240961_a_(resourcepacklist.func_232623_f_(), Commands.EnvironmentType.DEDICATED, 2, Util.getServerExecutor(), Runnable::run);
-//            minecraft.driveUntil(completablefuture::isDone);
-//            DataPackRegistries datapackregistries = completablefuture.get();
-//            IServerConfiguration iserverconfiguration = worldStorage.apply(saveformat$levelsave, DynamicRegistries.func_239770_b_(), datapackregistries.getResourceManager(), datapackcodec1);
-//        } catch (ExecutionException | InterruptedException interruptedexception) {
-//            resourcepacklist.close();
+//            DatapackCodec dataPackCodec1 = MinecraftServer.func_240772_a_(resourcePackList, dataPackCodec, vanillaOnly);
+//            CompletableFuture<DataPackRegistries> completableFuture = ModDataPackRegistries.func_240961_a_(resourcePackList.func_232623_f_(), Commands.EnvironmentType.DEDICATED, 2, Util.getServerExecutor(), Runnable::run);
+//            minecraft.driveUntil(completableFuture::isDone);
+//            DataPackRegistries dataPackRegistries = completableFuture.get();
+//            IServerConfiguration iServerConfiguration = worldStorage.apply(saveFormat$levelSave, DynamicRegistries.func_239770_b_(), dataPackRegistries.getResourceManager(), dataPackCodec1);
+//        } catch (ExecutionException | InterruptedException interruptedException) {
+//            resourcePackList.close();
 //        }
         ModBiomeProvider.register();
         ModConfiguredSurfaceBuilders.register();
@@ -187,6 +188,7 @@ public class Init extends DefaultInit {
         ModBiomeFeatures.register();
         ModEntityRendererManager.register();
         ModServerPlayNetHandler.register();
+        ModEntitySpawnPlacementRegistry.register();
 //        FireBlock.init();
         ModItemModelsProperties.init();
 //        ModBlockModelsProperties.init();

@@ -9,7 +9,7 @@ import net.minecraft.util.registry.Registry;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class FluidInit extends Fluids {
+public class FluidInit {
 
 	public static final ResourceLocation MILK_STILL_RL = new ResourceLocation(Ervin_mod_1.MOD_ID, "block/milk_still");
 	public static final ResourceLocation MILK_FLOWING_RL = new ResourceLocation(Ervin_mod_1.MOD_ID, "block/milk_flowing");

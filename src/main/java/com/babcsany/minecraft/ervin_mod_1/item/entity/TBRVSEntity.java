@@ -4,7 +4,6 @@ import com.babcsany.minecraft.ervin_mod_1.entity.villager.$TraderEntity;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.passive.ChickenEntity;
 import net.minecraft.entity.projectile.ProjectileItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
@@ -66,7 +65,7 @@ public class TBRVSEntity extends ProjectileItemEntity {
             }
 
             for(int j = 0; j < i; ++j) {
-               $TraderEntity $TraderEntity = EntityInit.$_TRADER_ENTITY.create(this.world);
+               $TraderEntity $TraderEntity = EntityInit.$_TRADER.create(this.world);
                $TraderEntity.setGrowingAge(-24000);
                $TraderEntity.setLocationAndAngles(this.getPosX(), this.getPosY(), this.getPosZ(), this.rotationYaw, 0.0F);
                this.world.addEntity($TraderEntity);

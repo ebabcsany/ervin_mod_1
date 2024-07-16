@@ -1,15 +1,14 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.animal.hhij;
 
-import java.util.Optional;
-import java.util.UUID;
-import javax.annotation.Nullable;
-
+import com.babcsany.minecraft.ervin_mod_1.init.item.food.FoodItemInit;
+import com.babcsany.minecraft.ervin_mod_1.init.item.food.isBurnableFoodItemInit;
 import com.babcsany.minecraft.ervin_mod_1.trigger.ModCriteriaTriggers;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -17,6 +16,7 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.particles.IParticleData;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.scoreboard.Team;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.management.PreYggdrasilConverter;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Util;
@@ -25,10 +25,16 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import javax.annotation.Nullable;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.UUID;
+
 public abstract class HhijTameableEntity extends HhijAnimalEntity {
    protected static final DataParameter<Byte> TAMED = EntityDataManager.createKey(HhijTameableEntity.class, DataSerializers.BYTE);
    protected static final DataParameter<Optional<UUID>> OWNER_UNIQUE_ID = EntityDataManager.createKey(HhijTameableEntity.class, DataSerializers.OPTIONAL_UNIQUE_ID);
-   private boolean field_233683_bw_;
+   private boolean sitting;
 
    protected HhijTameableEntity(EntityType<? extends HhijTameableEntity> type, World worldIn) {
       super(type, worldIn);
@@ -41,26 +47,27 @@ public abstract class HhijTameableEntity extends HhijAnimalEntity {
       this.dataManager.register(OWNER_UNIQUE_ID, Optional.empty());
    }
 
-   public void writeAdditional(CompoundNBT compound) {
-      super.writeAdditional(compound);
+   public void writeAdditional(CompoundNBT nbt) {
+      super.writeAdditional(nbt);
       if (this.getOwnerId() != null) {
-         compound.putUniqueId("Owner", this.getOwnerId());
+         nbt.putUniqueId("Owner", this.getOwnerId());
       }
 
-      compound.putBoolean("Sitting", this.field_233683_bw_);
+      nbt.putBoolean("Sitting", this.sitting);
    }
 
    /**
     * (abstract) Protected helper method to read subclass entity data from NBT.
     */
-   public void readAdditional(CompoundNBT compound) {
-      super.readAdditional(compound);
+   public void readAdditional(CompoundNBT nbt) {
+      super.readAdditional(nbt);
       UUID uuid;
-      if (compound.hasUniqueId("Owner")) {
-         uuid = compound.getUniqueId("Owner");
+      if (nbt.hasUniqueId("Owner")) {
+         uuid = nbt.getUniqueId("Owner");
       } else {
-         String s = compound.getString("Owner");
-         uuid = PreYggdrasilConverter.convertMobOwnerIfNeeded(this.getServer(), s);
+         String s = nbt.getString("Owner");
+         MinecraftServer server = Objects.requireNonNull(this.getServer());
+         uuid = PreYggdrasilConverter.convertMobOwnerIfNeeded(server, s);
       }
 
       if (uuid != null) {
@@ -72,8 +79,8 @@ public abstract class HhijTameableEntity extends HhijAnimalEntity {
          }
       }
 
-      this.field_233683_bw_ = compound.getBoolean("Sitting");
-      this.func_233686_v_(this.field_233683_bw_);
+      this.sitting = nbt.getBoolean("Sitting");
+      this.setQueuedToSit(this.sitting);
    }
 
    public boolean canBeLeashedTo(PlayerEntity player) {
@@ -132,11 +139,11 @@ public abstract class HhijTameableEntity extends HhijAnimalEntity {
    protected void setupTamedAI() {
    }
 
-   public boolean func_233684_eK_() {
+   public boolean isEntitySleeping() {
       return (this.dataManager.get(TAMED) & 1) != 0;
    }
 
-   public void func_233686_v_(boolean p_233686_1_) {
+   public void setQueuedToSit(boolean p_233686_1_) {
       byte b0 = this.dataManager.get(TAMED);
       if (p_233686_1_) {
          this.dataManager.set(TAMED, (byte)(b0 | 1));
@@ -159,9 +166,8 @@ public abstract class HhijTameableEntity extends HhijAnimalEntity {
       this.setTamed(true);
       this.setOwnerId(player.getUniqueID());
       if (player instanceof ServerPlayerEntity) {
-         ModCriteriaTriggers.TAME_HHIJ_ANIMAL.trigger((ServerPlayerEntity)player, this);
+         ModCriteriaTriggers.TAME_HHIJ_ANIMAL.trigger((ServerPlayerEntity) player, this);
       }
-
    }
 
    @Nullable
@@ -226,11 +232,11 @@ public abstract class HhijTameableEntity extends HhijAnimalEntity {
       super.onDeath(cause);
    }
 
-   public boolean func_233685_eM_() {
-      return this.field_233683_bw_;
+   public boolean isQueuedToSit() {
+      return this.sitting;
    }
 
-   public void func_233687_w_(boolean p_233687_1_) {
-      this.field_233683_bw_ = p_233687_1_;
+   public void setSitting(boolean sitting) {
+      this.sitting = sitting;
    }
 }

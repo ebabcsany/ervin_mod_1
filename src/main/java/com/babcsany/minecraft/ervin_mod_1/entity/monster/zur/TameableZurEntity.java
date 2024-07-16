@@ -255,6 +255,11 @@ public abstract class TameableZurEntity extends AnimalEntity {
 
    }
 
+   @Override
+   public boolean canDespawn(double p_213397_1_) {
+      return p_213397_1_ > 1083.7D;
+   }
+
    @Nullable
    public UUID getOwnerId() {
       return this.dataManager.get(OWNER_UNIQUE_ID).orElse((UUID)null);

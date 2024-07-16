@@ -74,7 +74,7 @@ public class HhijModel<T extends HhijEntity> extends TintedAgeableModel<T> {
          this.tail.rotateAngleY = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
       }
 
-      if (entityIn.func_233684_eK_()) {
+      if (entityIn.isEntitySleeping()) {
          this.mane.setRotationPoint(-1.0F, 16.0F, -3.0F);
          this.mane.rotateAngleX = 1.2566371F;
          this.mane.rotateAngleY = 0.0F;

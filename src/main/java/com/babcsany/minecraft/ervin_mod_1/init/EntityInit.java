@@ -32,18 +32,18 @@ public class EntityInit<T extends Entity> extends EntityType<T> {
     public static final EntityType<RoventEntity> ROVENT_ENTITY = register("rovent", EntityType.Builder.create(RoventEntity::new, EntityClassification.CREATURE).size(0.4F, 0.7F).trackingRange(10).immuneToFire());
     public static final EntityType<GubrovEntity> GUBROV = register("gubrov", EntityType.Builder.create(GubrovEntity::new, EntityClassification.CREATURE).size(0.7f, 0.4f).trackingRange(10).immuneToFire());
 //    public static final EntityType<TraderNirtre1Entity> TRADER_NIRTRE1_ENTITY = register("trader_nirtre1", EntityType.Builder.create(TraderNirtre1Entity::new, EntityClassification.CREATURE).size(0.6f, 1.95f).trackingRange(8).immuneToFire());
-    public static final EntityType<DrurbFishEntity> DRURB_ENTITY = register("dgrurb", EntityType.Builder.create(DrurbFishEntity::new, EntityClassification.CREATURE).size(0.6f, 0.5f).trackingRange(8).immuneToFire());
+    public static final EntityType<DrurbFishEntity> DGRURB = register("dgrurb", EntityType.Builder.create(DrurbFishEntity::new, EntityClassification.CREATURE).size(0.6f, 0.5f).trackingRange(8).immuneToFire());
     public static final EntityType<ZurEntity> ZUR = register("zur", EntityType.Builder.create(ZurEntity::new, EntityClassification.CREATURE).size(0.6f, 1.95f).trackingRange(10).immuneToFire());
 //    public static final EntityType<ZurNirtreEntity> ZUR_NIRTRE_ENTITY = register("zur_nirtre", EntityType.Builder.create(ZurNirtreEntity::new, EntityClassification.CREATURE).size(0.6f, 1.95f).trackingRange(10).immuneToFire());
     public static final EntityType<FreinEntity> FREIN = register("frein", EntityType.Builder.create(FreinEntity::new, EntityClassification.MONSTER).size(1.0f, 3.0f).trackingRange(10));
-    public static final EntityType<ViltEntity> VILT_ENTITY = register("vilt", EntityType.Builder.create(ViltEntity::new, EntityClassification.CREATURE).size(1.0f, 2.0f).trackingRange(10));
+    public static final EntityType<ViltEntity> VILT = register("vilt", EntityType.Builder.create(ViltEntity::new, EntityClassification.CREATURE).size(1.0f, 2.0f).trackingRange(10));
     public static final EntityType<ShertEntity> SHERT_ENTITY = register("srach/shert", EntityType.Builder.create(ShertEntity::new, EntityClassification.CREATURE).size(0.9f, 1.4f).trackingRange(13));
-    public static final EntityType<HhijEntity> HHIJ_ENTITY = register("hhij", EntityType.Builder.create(HhijEntity::new, EntityClassification.CREATURE).size(0.6f, 0.85f).trackingRange(20).immuneToFire());
+    public static final EntityType<HhijEntity> HHIJ = register("hhij", EntityType.Builder.create(HhijEntity::new, EntityClassification.CREATURE).size(0.6f, 0.85f).trackingRange(20).immuneToFire());
     public static final EntityType<SrachEntity> SRACH_ENTITY = register("srach", EntityType.Builder.create(SrachEntity::new, EntityClassification.MISC).size(0.9f, 1.4f).trackingRange(8));
     public static final EntityType<SrechEntity> SRECH_ENTITY = register("srech", EntityType.Builder.create(SrechEntity::new, EntityClassification.MISC).size(0.9f, 1.4f).trackingRange(6));
     public static final EntityType<WanderingTraderNirtreEntity> WANDERING_TRADER_NIRTRE_ENTITY = register("wandering_trader_nirtre", EntityType.Builder.create(WanderingTraderNirtreEntity::new, EntityClassification.CREATURE).size(0.6F, 1.95F).trackingRange(12).immuneToFire());
     public static final EntityType<TraderNirtreEntity> TRADER_NIRTRE_ENTITY = register("trader_nirtre", EntityType.Builder.create(TraderNirtreEntity::new, EntityClassification.CREATURE).size(0.6f, 1.95f).trackingRange(12).immuneToFire());
-    public static final EntityType<$TraderEntity> $_TRADER_ENTITY = register("usd_trader", EntityType.Builder.create($TraderEntity::new, EntityClassification.CREATURE).size(0.6f, 1.95f).trackingRange(10));
+    public static final EntityType<$TraderEntity> $_TRADER = register("usd_trader", EntityType.Builder.create($TraderEntity::new, EntityClassification.CREATURE).size(0.6f, 1.95f).trackingRange(10));
     public static final EntityType<ZombieTraderEntity> ZOMBIE_TRADER_ENTITY = register("zombie_trader", EntityType.Builder.create(ZombieTraderEntity::new, EntityClassification.CREATURE).size(0.6f, 1.95f).trackingRange(10));
 //    public static final EntityType<ZurEntity> NIRTRE_ENTITY = register("nirtre", EntityType.Builder.create(ZurEntity::new, EntityClassification.CREATURE).size(0.6f, 1.95f).trackingRange(10));
 

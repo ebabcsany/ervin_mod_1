@@ -34,30 +34,30 @@ public class ClientEventBusSubscriber {
     public static void clientSetup(FMLClientSetupEvent event) {
         Minecraft minecraft = event.getMinecraftSupplier().get();
         ItemRenderer itemRenderer = minecraft.getItemRenderer();
+        new ModSetup();
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.LIWRAY, LiwrayRender::new);
         RenderingRegistry.registerEntityRenderingHandler(com.babcsany.minecraft.init.EntityInit.MOD_BOAT, ModBoatRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.GWURST, GwurstRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.ZUR, ZurEntityRender::new);
 //        RenderingRegistry.registerEntityRenderingHandler(EntityInit.ZUR_NIRTRE_ENTITY, ZurNirtreRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.ROVENT_ENTITY, RoventRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityInit.VILT_ENTITY, ViltEntityRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityInit.VILT, ViltEntityRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.FREIN, FreinEntityRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.SRACH_ENTITY, SrachRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.SHERT_ENTITY, ShertRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityInit.DRURB_ENTITY, DrurgbkRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityInit.DGRURB, DrurgbkRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.SRECH_ENTITY, SrechRender::new);
 
-        RenderingRegistry.registerEntityRenderingHandler(EntityInit.HHIJ_ENTITY, HhijRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityInit.HHIJ, HhijRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.WANDERING_TRADER_NIRTRE_ENTITY, WanderingTraderNirtreRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.TRADER_NIRTRE_ENTITY, TraderNirtreRender::new);
 //        RenderingRegistry.registerEntityRenderingHandler(EntityInit.TRADER_NIRTRE1_ENTITY, TraderNirtre1Render::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityInit.$_TRADER_ENTITY, $TraderRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityInit.$_TRADER, $TraderRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.ZOMBIE_TRADER_ENTITY, ZombieTraderRender::new);
 //        RenderingRegistry.registerEntityRenderingHandler(EntityInit.NIRTRE_ENTITY, ZurEntityRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.GUBROV, GubrovRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(com.babcsany.minecraft.init.EntityInit.HUIHK, HuihkRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(com.babcsany.minecraft.init.EntityInit.TAWROL, manager -> new SpriteRenderer<>(manager, itemRenderer));
-        new ModSetup();
 
         //EntitySpawnPlacementRegistry.canSpawnEntity(EntityInit.$_TRADER_ENTITY.get(), World.field_234917_f_.comapFlatMap(), SpawnReason.NATURAL);
         /*EntitySpawnPlacementRegistry.register(EntityInit.DGRURB_ENTITY.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canSpawnOn);

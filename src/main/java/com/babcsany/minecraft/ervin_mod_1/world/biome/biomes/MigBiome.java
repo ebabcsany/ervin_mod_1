@@ -26,7 +26,7 @@ public class MigBiome {
         BiomeGenerationSettings.Builder builder = (new BiomeGenerationSettings.Builder()).withSurfaceBuilder(configuredSurfaceBuilderSupplier);
         MobSpawnInfo.Builder spawners = new MobSpawnInfo.Builder();
         spawners.withSpawner(EntityClassification.MONSTER, new SpawnListEntry(EntityType.ZOMBIE, 10, 2, 5));
-        spawners.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.VILT_ENTITY, 4, 2, 5));
+        spawners.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.VILT, 4, 2, 5));
         spawners.withSpawner(EntityClassification.MONSTER, new SpawnListEntry(EntityInit.ZUR, 8, 2, 4));
         builder.withCarver(GenerationStage.Carving.AIR, ConfiguredCarvers.CAVE);
         builder.withCarver(GenerationStage.Carving.AIR, ConfiguredCarvers.NETHER_CAVE);

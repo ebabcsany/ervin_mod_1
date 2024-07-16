@@ -132,7 +132,7 @@ public class $TraderEntity extends Abstract$TraderEntity {
     }
 
     public AgeableEntity createChild(ServerWorld serverWorld, AgeableEntity ageable) {
-        return Objects.requireNonNull(EntityInit.$_TRADER_ENTITY.create(serverWorld));
+        return Objects.requireNonNull(EntityInit.$_TRADER.create(serverWorld));
     }
 
     public void set$traderTarget(@Nullable BlockPos pos) {

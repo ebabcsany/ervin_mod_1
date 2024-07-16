@@ -28,10 +28,8 @@ import javax.annotation.Nullable;
 
 /**
  * BabyEntitySpawnEvent is fired just before a baby entity is about to be spawned. <br>
- * Parents will have disengaged their relationship. {@link @Cancelable} <br>
+ * Parents will have disengaged their relationship. {@link Cancelable} <br>
  * It is possible to change the child completely by using {@link #setChild(HhijAgeableEntity)} <br>
- * This event is fired from {@link //EntityAIMate#spawnBaby()} and {@link //EntityAIVillagerMate#giveBirth()} <br>
- * <br>
  * {@link #parentA} contains the initiating parent entity.<br>
  * {@link #parentB} contains the secondary parent entity.<br>
  * {@link #causedByPlayer} contains the player responsible for the breading (if applicable).<br>
@@ -72,17 +70,20 @@ public class HhijBabyEntitySpawnEvent extends net.minecraftforge.eventbus.api.Ev
         this.child = proposedChild;
     }
 
+    @SuppressWarnings("UnusedDeclaration")
     public MobEntity getParentA()
     {
         return parentA;
     }
 
+    @SuppressWarnings("UnusedDeclaration")
     public MobEntity getParentB()
     {
         return parentB;
     }
 
     @Nullable
+    @SuppressWarnings("UnusedDeclaration")
     public PlayerEntity getCausedByPlayer()
     {
         return causedByPlayer;

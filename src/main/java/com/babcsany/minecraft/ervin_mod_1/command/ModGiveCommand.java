@@ -20,19 +20,19 @@ import net.minecraft.util.text.TranslationTextComponent;
 
 import java.util.Collection;
 
-public class ModGiveCommand extends GiveCommand {
+public class ModGiveCommand {
     public static void register(CommandDispatcher<CommandSource> dispatcher) {
         dispatcher.register(Commands.literal("give").requires((source) -> {
             return source.hasPermissionLevel(2);
         }).then(Commands.argument("targets", EntityArgument.players()).then(Commands.argument("item", ItemArgument.item()).executes((context) -> {
-            return giveItem(context.getSource(), ItemArgument.getItem(context, "item"), EntityArgument.getPlayers(context, "targets"), 1);
+            return giveItemWithCondition(context.getSource(), ItemArgument.getItem(context, "item"), EntityArgument.getPlayers(context, "targets"), 1);
         }).then(Commands.argument("count", IntegerArgumentType.integer(1)).executes((context) -> {
-            return giveItem(context.getSource(), ItemArgument.getItem(context, "item"), EntityArgument.getPlayers(context, "targets"), IntegerArgumentType.getInteger(context, "count"));
+            return giveItemWithCondition(context.getSource(), ItemArgument.getItem(context, "item"), EntityArgument.getPlayers(context, "targets"), IntegerArgumentType.getInteger(context, "count"));
         })))));
     }
 
     private static int giveItemWithCondition(CommandSource source, ItemInput itemIn, Collection<ServerPlayerEntity> targets, int count) throws CommandSyntaxException {
-        if (itemIn.getItem() != BlockItemInit_.EPKIN.asItem()) return giveItem(source, itemIn, targets, count); else return targets.size();
+        if (itemIn.getItem() != BlockItemInit_.EPKIN.asItem()) return giveItem(source, itemIn, targets, count); else return 0;
     }
 
     private static int giveItem(CommandSource source, ItemInput itemIn, Collection<ServerPlayerEntity> targets, int count) throws CommandSyntaxException {

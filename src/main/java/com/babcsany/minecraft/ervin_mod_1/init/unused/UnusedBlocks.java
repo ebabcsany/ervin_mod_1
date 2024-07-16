@@ -79,13 +79,8 @@ public class UnusedBlocks {
 
     public static Block registerDefault(ResourceLocation key, Block blockIn) {
         boolean notContains = !BLOCK_PATHS.contains(key.getPath()) && !BLOCKS.contains(blockIn);
-        Registry.register(registry(), key, blockIn);
-        return blockIn;
-    }
-
-    @Deprecated
-    private static DefaultedRegistry<Block> registry() {
-        return Registry.BLOCK;
+        addDefault(key.getPath(), blockIn);
+        return (Block) Registry.register(Registry.BLOCK, key.toString(), blockIn);
     }
 
     private static Block add(String name, Block block) {

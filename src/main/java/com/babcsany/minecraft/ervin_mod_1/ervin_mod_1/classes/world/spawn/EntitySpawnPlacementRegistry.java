@@ -35,6 +35,22 @@ public class EntitySpawnPlacementRegistry extends net.minecraft.entity.EntitySpa
       net.minecraft.entity.EntitySpawnPlacementRegistry.register(entityTypeIn, placementType, heightMapType, placementPredicate);
    }
 
+   public static <T extends MobEntity> void registerOnGround(EntityType<T> entityTypeIn, net.minecraft.world.gen.Heightmap.Type heightMapType, net.minecraft.entity.EntitySpawnPlacementRegistry.IPlacementPredicate<T> placementPredicate) {
+      register(entityTypeIn, PlacementType.ON_GROUND, heightMapType, placementPredicate);
+   }
+
+   public static <T extends MobEntity> void registerNoRestrictions(EntityType<T> entityTypeIn, net.minecraft.world.gen.Heightmap.Type heightMapType, net.minecraft.entity.EntitySpawnPlacementRegistry.IPlacementPredicate<T> placementPredicate) {
+      register(entityTypeIn, PlacementType.NO_RESTRICTIONS, heightMapType, placementPredicate);
+   }
+
+   public static <T extends MobEntity> void registerOnGroundNoLeaves(EntityType<T> entityTypeIn, net.minecraft.entity.EntitySpawnPlacementRegistry.IPlacementPredicate<T> placementPredicate) {
+      registerOnGround(entityTypeIn, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, placementPredicate);
+   }
+
+   public static <T extends MobEntity> void registerNoRestrictionsNoLeaves(EntityType<T> entityTypeIn, net.minecraft.entity.EntitySpawnPlacementRegistry.IPlacementPredicate<T> placementPredicate) {
+      registerNoRestrictions(entityTypeIn, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, placementPredicate);
+   }
+
    public static <T extends Entity> void register1(EntityType<T> entityTypeIn, PlacementType placementType, Heightmap.Type heightMapType, IPlacementPredicate<T> placementPredicate) {
       Entry entityspawnplacementregistry$entry = REGISTRY.put(entityTypeIn, new Entry(heightMapType, placementType, placementPredicate));
       if (entityspawnplacementregistry$entry != null) {
