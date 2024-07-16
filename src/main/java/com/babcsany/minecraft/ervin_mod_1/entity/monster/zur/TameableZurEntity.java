@@ -255,9 +255,14 @@ public abstract class TameableZurEntity extends AnimalEntity {
 
    }
 
+   @Override
+   public boolean canDespawn(double p_213397_1_) {
+      return p_213397_1_ > 1083.7D;
+   }
+
    @Nullable
    public UUID getOwnerId() {
-      return this.dataManager.get(OWNER_UNIQUE_ID).orElse((UUID)null);
+      return this.dataManager.get(OWNER_UNIQUE_ID).orElse(null);
    }
 
    public void setOwnerId(@Nullable UUID p_184754_1_) {
@@ -284,7 +289,7 @@ public abstract class TameableZurEntity extends AnimalEntity {
    }
 
    public boolean canAttack(LivingEntity target) {
-      return this.isOwner(target) ? false : super.canAttack(target);
+      return !this.isOwner(target) && super.canAttack(target);
    }
 
    public boolean isOwner(LivingEntity entityIn) {

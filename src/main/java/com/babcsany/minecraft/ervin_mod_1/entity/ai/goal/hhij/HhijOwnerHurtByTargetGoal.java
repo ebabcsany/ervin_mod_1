@@ -23,7 +23,7 @@ public class HhijOwnerHurtByTargetGoal extends TargetGoal {
     * method as well.
     */
    public boolean shouldExecute() {
-      if (this.tameable.isTamed() && !this.tameable.func_233685_eM_()) {
+      if (this.tameable.isTamed() && !this.tameable.isQueuedToSit()) {
          LivingEntity livingentity = this.tameable.getOwner();
          if (livingentity == null) {
             return false;

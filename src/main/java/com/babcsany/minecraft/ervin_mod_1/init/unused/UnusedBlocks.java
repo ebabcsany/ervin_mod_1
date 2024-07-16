@@ -1,7 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.init.unused;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
-import com.babcsany.minecraft.ervin_mod_1.item.ToolTypeInit;
 import com.babcsany.minecraft.ervin_mod_1.util.Cast;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -9,7 +8,6 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItem;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.DefaultedRegistry;
 import net.minecraft.util.registry.Registry;
 import net.minecraftforge.common.ToolType;
 
@@ -20,15 +18,7 @@ public class UnusedBlocks {
     private static final ArrayList<String> BLOCK_PATHS = new ArrayList<>();
     private static final ArrayList<Block> BLOCKS = new ArrayList<>();
 
-    private static Block unusedBlockRockRegistryObject(String name) {
-        return unusedBlockRegistryObject(name, Material.ROCK);
-    }
-
-    private static Block unusedBlockRegistryObject(String name, Material material) {
-        return registerDefault(name, new Block(AbstractBlock.Properties.create(material)));
-    }
-
-    private static Block setBlockRequiresTool(Material material, int harvestLevel, float hardnessAndResistanceIn, ToolType harvestTool, SoundType sound) {
+    public static Block setBlockRequiresTool(Material material, int harvestLevel, float hardnessAndResistanceIn, ToolType harvestTool, SoundType sound) {
         return new Block(requiresToolProperties(material, harvestLevel, hardnessAndResistanceIn, harvestTool, sound));
     }
 
@@ -79,13 +69,8 @@ public class UnusedBlocks {
 
     public static Block registerDefault(ResourceLocation key, Block blockIn) {
         boolean notContains = !BLOCK_PATHS.contains(key.getPath()) && !BLOCKS.contains(blockIn);
-        Registry.register(registry(), key, blockIn);
-        return blockIn;
-    }
-
-    @Deprecated
-    private static DefaultedRegistry<Block> registry() {
-        return Registry.BLOCK;
+        addDefault(key.getPath(), blockIn);
+        return (Block) Registry.register(Registry.BLOCK, key.toString(), blockIn);
     }
 
     private static Block add(String name, Block block) {

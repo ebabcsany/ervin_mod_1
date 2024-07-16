@@ -28,7 +28,7 @@ import net.minecraftforge.eventbus.api.Cancelable;
 
 /**
  * This event is fired when an {@link HhijAnimalEntity} is tamed. <br>
- * It is fired via {@link com.babcsany.minecraft.ervin_mod_1.entity.animal.hhij.HhijEntity#onAnimalTame(HhijAnimalEntity, PlayerEntity)}.
+ * It is fired via {@link com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.AbstractZurEntity#onAnimalTame(HhijAnimalEntity, PlayerEntity)}.
  * Forge fires this event for applicable vanilla animals, mods need to fire it themselves.
  * This event is {@link Cancelable}. If canceled, taming the animal will fail.
  * This event is fired on the {@link MinecraftForge#EVENT_BUS}.

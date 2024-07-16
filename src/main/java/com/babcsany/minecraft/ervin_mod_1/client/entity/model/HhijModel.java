@@ -27,36 +27,36 @@ public class HhijModel<T extends HhijEntity> extends TintedAgeableModel<T> {
       float f = 0.0F;
       float f1 = 13.5F;
       this.head = new ModelRenderer(this, 0, 0);
-      this.head.setRotationPoint(-1.0F, 13.5F, -7.0F);
+      this.head.setRotationPoint(-1.0F, f1, -7.0F);
       this.headChild = new ModelRenderer(this, 0, 0);
-      this.headChild.addBox(-2.0F, -3.0F, -2.0F, 6.0F, 6.0F, 4.0F, 0.0F);
+      this.headChild.addBox(-2.0F, -3.0F, -2.0F, 6.0F, 6.0F, 4.0F, f);
       this.head.addChild(this.headChild);
       this.body = new ModelRenderer(this, 18, 14);
-      this.body.addBox(-3.0F, -2.0F, -3.0F, 6.0F, 9.0F, 6.0F, 0.0F);
+      this.body.addBox(-3.0F, -2.0F, -3.0F, 6.0F, 9.0F, 6.0F, f);
       this.body.setRotationPoint(0.0F, 14.0F, 2.0F);
       this.mane = new ModelRenderer(this, 21, 0);
-      this.mane.addBox(-3.0F, -3.0F, -3.0F, 8.0F, 6.0F, 7.0F, 0.0F);
+      this.mane.addBox(-3.0F, -3.0F, -3.0F, 8.0F, 6.0F, 7.0F, f);
       this.mane.setRotationPoint(-1.0F, 14.0F, 2.0F);
       this.legBackRight = new ModelRenderer(this, 0, 18);
-      this.legBackRight.addBox(0.0F, 0.0F, -1.0F, 2.0F, 8.0F, 2.0F, 0.0F);
+      this.legBackRight.addBox(0.0F, 0.0F, -1.0F, 2.0F, 8.0F, 2.0F, f);
       this.legBackRight.setRotationPoint(-2.5F, 16.0F, 7.0F);
       this.legBackLeft = new ModelRenderer(this, 0, 18);
-      this.legBackLeft.addBox(0.0F, 0.0F, -1.0F, 2.0F, 8.0F, 2.0F, 0.0F);
+      this.legBackLeft.addBox(0.0F, 0.0F, -1.0F, 2.0F, 8.0F, 2.0F, f);
       this.legBackLeft.setRotationPoint(0.5F, 16.0F, 7.0F);
       this.legFrontRight = new ModelRenderer(this, 0, 18);
-      this.legFrontRight.addBox(0.0F, 0.0F, -1.0F, 2.0F, 8.0F, 2.0F, 0.0F);
+      this.legFrontRight.addBox(0.0F, 0.0F, -1.0F, 2.0F, 8.0F, 2.0F, f);
       this.legFrontRight.setRotationPoint(-2.5F, 16.0F, -4.0F);
       this.legFrontLeft = new ModelRenderer(this, 0, 18);
-      this.legFrontLeft.addBox(0.0F, 0.0F, -1.0F, 2.0F, 8.0F, 2.0F, 0.0F);
+      this.legFrontLeft.addBox(0.0F, 0.0F, -1.0F, 2.0F, 8.0F, 2.0F, f);
       this.legFrontLeft.setRotationPoint(0.5F, 16.0F, -4.0F);
       this.tail = new ModelRenderer(this, 9, 18);
       this.tail.setRotationPoint(-1.0F, 12.0F, 8.0F);
       this.tailChild = new ModelRenderer(this, 9, 18);
-      this.tailChild.addBox(0.0F, 0.0F, -1.0F, 2.0F, 8.0F, 2.0F, 0.0F);
+      this.tailChild.addBox(0.0F, 0.0F, -1.0F, 2.0F, 8.0F, 2.0F, f);
       this.tail.addChild(this.tailChild);
-      this.headChild.setTextureOffset(16, 14).addBox(-2.0F, -5.0F, 0.0F, 2.0F, 2.0F, 1.0F, 0.0F);
-      this.headChild.setTextureOffset(16, 14).addBox(2.0F, -5.0F, 0.0F, 2.0F, 2.0F, 1.0F, 0.0F);
-      this.headChild.setTextureOffset(0, 10).addBox(-0.5F, 0.0F, -5.0F, 3.0F, 3.0F, 4.0F, 0.0F);
+      this.headChild.setTextureOffset(16, 14).addBox(-2.0F, -5.0F, 0.0F, 2.0F, 2.0F, 1.0F, f);
+      this.headChild.setTextureOffset(16, 14).addBox(2.0F, -5.0F, 0.0F, 2.0F, 2.0F, 1.0F, f);
+      this.headChild.setTextureOffset(0, 10).addBox(-0.5F, 0.0F, -5.0F, 3.0F, 3.0F, 4.0F, f);
    }
 
    protected Iterable<ModelRenderer> getHeadParts() {
@@ -74,7 +74,7 @@ public class HhijModel<T extends HhijEntity> extends TintedAgeableModel<T> {
          this.tail.rotateAngleY = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
       }
 
-      if (entityIn.func_233684_eK_()) {
+      if (entityIn.isEntitySleeping()) {
          this.mane.setRotationPoint(-1.0F, 16.0F, -3.0F);
          this.mane.rotateAngleX = 1.2566371F;
          this.mane.rotateAngleY = 0.0F;

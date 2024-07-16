@@ -322,42 +322,42 @@
         ]
       }
     },
-    "ervin_mod_1:shert_entity": {
+    "ervin_mod_1:srach/shert": {
       "trigger": "minecraft:bred_animals",
       "conditions": {
         "child": [
           {
             "condition": "minecraft:entity_properties",
             "predicate": {
-              "type": "ervin_mod_1:shert_entity"
+              "type": "ervin_mod_1:srach/shert"
             },
             "entity": "this"
           }
         ]
       }
     },
-    "ervin_mod_1:srach_entity": {
+    "ervin_mod_1:srach": {
       "trigger": "minecraft:bred_animals",
       "conditions": {
         "child": [
           {
             "condition": "minecraft:entity_properties",
             "predicate": {
-              "type": "ervin_mod_1:srach_entity"
+              "type": "ervin_mod_1:srach"
             },
             "entity": "this"
           }
         ]
       }
     },
-    "ervin_mod_1:vilt_entity": {
+    "ervin_mod_1:vilt": {
       "trigger": "minecraft:bred_animals",
       "conditions": {
         "child": [
           {
             "condition": "minecraft:entity_properties",
             "predicate": {
-              "type": "ervin_mod_1:vilt_entity"
+              "type": "ervin_mod_1:vilt"
             },
             "entity": "this"
           }
@@ -444,13 +444,13 @@
       "ervin_mod_1:liwray"
     ],
     [
-      "ervin_mod_1:shert_entity"
+      "ervin_mod_1:srach/shert"
     ],
     [
-      "ervin_mod_1:srach_entity"
+      "ervin_mod_1:srach"
     ],
     [
-      "ervin_mod_1:vilt_entity"
+      "ervin_mod_1:vilt"
     ],
     [
       "ervin_mod_1:hhij"

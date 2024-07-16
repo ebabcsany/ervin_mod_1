@@ -9,9 +9,7 @@ import net.minecraft.command.Commands;
 import net.minecraft.command.arguments.EntityArgument;
 import net.minecraft.command.arguments.ItemArgument;
 import net.minecraft.command.arguments.ItemInput;
-import net.minecraft.command.impl.GiveCommand;
 import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.SoundCategory;
@@ -20,44 +18,38 @@ import net.minecraft.util.text.TranslationTextComponent;
 
 import java.util.Collection;
 
-public class ModGiveCommand extends GiveCommand {
+public class ModGiveCommand {
     public static void register(CommandDispatcher<CommandSource> dispatcher) {
-        dispatcher.register(Commands.literal("give").requires((source) -> {
-            return source.hasPermissionLevel(2);
-        }).then(Commands.argument("targets", EntityArgument.players()).then(Commands.argument("item", ItemArgument.item()).executes((context) -> {
-            return giveItem(context.getSource(), ItemArgument.getItem(context, "item"), EntityArgument.getPlayers(context, "targets"), 1);
-        }).then(Commands.argument("count", IntegerArgumentType.integer(1)).executes((context) -> {
-            return giveItem(context.getSource(), ItemArgument.getItem(context, "item"), EntityArgument.getPlayers(context, "targets"), IntegerArgumentType.getInteger(context, "count"));
-        })))));
+        dispatcher.register(Commands.literal("give").requires((source) -> source.hasPermissionLevel(2)).then(Commands.argument("targets", EntityArgument.players()).then(Commands.argument("item", ItemArgument.item()).executes((context) -> giveItemWithCondition(context.getSource(), ItemArgument.getItem(context, "item"), EntityArgument.getPlayers(context, "targets"), 1)).then(Commands.argument("count", IntegerArgumentType.integer(1)).executes((context) -> giveItemWithCondition(context.getSource(), ItemArgument.getItem(context, "item"), EntityArgument.getPlayers(context, "targets"), IntegerArgumentType.getInteger(context, "count")))))));
     }
 
     private static int giveItemWithCondition(CommandSource source, ItemInput itemIn, Collection<ServerPlayerEntity> targets, int count) throws CommandSyntaxException {
-        if (itemIn.getItem() != BlockItemInit_.EPKIN.asItem()) return giveItem(source, itemIn, targets, count); else return targets.size();
+        if (itemIn.getItem() != BlockItemInit_.EPKIN.asItem()) return modGiveItem(source, itemIn, targets, count); else return 0;
     }
 
-    private static int giveItem(CommandSource source, ItemInput itemIn, Collection<ServerPlayerEntity> targets, int count) throws CommandSyntaxException {
+    public static int modGiveItem(CommandSource source, ItemInput itemIn, Collection<ServerPlayerEntity> targets, int count) throws CommandSyntaxException {
         for (ServerPlayerEntity serverplayerentity : targets) {
             int i = count;
 
             while(i > 0) {
-                int j = Math.min(itemIn.getItem().getMaxStackSize(), i);
+                int maxStackSize = 64;
+                int j = Math.min(maxStackSize, i);
                 i -= j;
-                ItemStack itemstack = itemIn.createStack(j, false);
-                boolean flag = serverplayerentity.inventory.addItemStackToInventory(itemstack);
-                if (flag && itemstack.isEmpty()) {
-                    itemstack.setCount(1);
-                    ItemEntity itementity1 = serverplayerentity.dropItem(itemstack, false);
-                    if (itementity1 != null) {
-                        itementity1.makeFakeItem();
+                ItemStack itemStack = itemIn.createStack(j, false);
+                boolean flag = serverplayerentity.inventory.addItemStackToInventory(itemStack);
+                ItemEntity itemEntity = serverplayerentity.dropItem(itemStack, false);
+                if (flag && itemStack.isEmpty()) {
+                    itemStack.setCount(1);
+                    if (itemEntity != null) {
+                        itemEntity.makeFakeItem();
                     }
 
-                    serverplayerentity.world.playSound((PlayerEntity)null, serverplayerentity.getPosX(), serverplayerentity.getPosY(), serverplayerentity.getPosZ(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.2F, ((serverplayerentity.getRNG().nextFloat() - serverplayerentity.getRNG().nextFloat()) * 0.7F + 1.0F) * 2.0F);
+                    serverplayerentity.world.playSound(null, serverplayerentity.getPosX(), serverplayerentity.getPosY(), serverplayerentity.getPosZ(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.2F, ((serverplayerentity.getRNG().nextFloat() - serverplayerentity.getRNG().nextFloat()) * 0.7F + 1.0F) * 2.0F);
                     serverplayerentity.container.detectAndSendChanges();
                 } else {
-                    ItemEntity itementity = serverplayerentity.dropItem(itemstack, false);
-                    if (itementity != null) {
-                        itementity.setNoPickupDelay();
-                        itementity.setOwnerId(serverplayerentity.getUniqueID());
+                    if (itemEntity != null) {
+                        itemEntity.setNoPickupDelay();
+                        itemEntity.setOwnerId(serverplayerentity.getUniqueID());
                     }
                 }
             }

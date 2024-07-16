@@ -31,8 +31,8 @@ public class BlomujnBiome {
         float temperature = 6.86428648622135309935614699977474100243124564054F;
         spawnInfoBuilder.withSpawner(EntityClassification.MONSTER, new SpawnListEntry(EntityType.ZOMBIE, 10, 2, 5));
         spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityType.BEE, 20, 2, 10));
-        spawnInfoBuilder.withSpawnCost(EntityInit.VILT_ENTITY, 5, 12);
-        spawnInfoBuilder.withSpawnCost(EntityInit.HHIJ_ENTITY, 5, 12);
+        spawnInfoBuilder.withSpawnCost(EntityInit.VILT, 5, 12);
+        spawnInfoBuilder.withSpawnCost(EntityInit.HHIJ, 5, 12);
         spawnInfoBuilder.withSpawnCost(EntityInit.LIWRAY, 5, 12);
         biomeBuilder.withCarver(GenerationStage.Carving.AIR,
                 ConfiguredCarvers.CAVE);

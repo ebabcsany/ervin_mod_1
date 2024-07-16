@@ -7,6 +7,7 @@ import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
@@ -21,8 +22,10 @@ import net.minecraft.world.GameRules;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.MinecraftForge;
 
 import javax.annotation.Nullable;
 import java.util.Random;
@@ -59,13 +62,12 @@ public abstract class HhijAnimalEntity extends HhijAgeableEntity {
         if (this.inLove > 0) {
             --this.inLove;
             if (this.inLove % 10 == 0) {
-                double d0 = this.rand.nextGaussian() * 0.02D;
-                double d1 = this.rand.nextGaussian() * 0.02D;
-                double d2 = this.rand.nextGaussian() * 0.02D;
-                this.world.addParticle(ParticleTypes.ASH, this.getPosXRandom(1.0D), this.getPosYRandom() + 0.5D, this.getPosZRandom(1.0D), d0, d1, d2);
+                double d0 = this.rand.nextGaussian() * 0.02;
+                double d1 = this.rand.nextGaussian() * 0.02;
+                double d2 = this.rand.nextGaussian() * 0.02;
+                this.world.addParticle(ParticleTypes.HEART, this.getPosXRandom(1.0), this.getPosYRandom() + 0.5, this.getPosZRandom(1.0), d0, d1, d2);
             }
         }
-
     }
 
     /**
@@ -80,41 +82,38 @@ public abstract class HhijAnimalEntity extends HhijAgeableEntity {
         }
     }
 
-    public float getBlockPathWeight(BlockPos p_205022_1_, IWorldReader p_205022_2_) {
-        return p_205022_2_.getBlockState(p_205022_1_.down()).matchesBlock(Blocks.GRASS_BLOCK) ? 10.0F : p_205022_2_.getBrightness(p_205022_1_) - 0.5F;
+    @Deprecated
+    public float getBlockPathWeight(BlockPos pos, IWorldReader reader) {
+        return reader.getBlockState(pos.down()).matchesBlock(Blocks.GRASS_BLOCK) ? 10.0F : reader.getBrightness(pos) - 0.5F;
     }
 
-    public void writeAdditional(CompoundNBT compound) {
-        super.writeAdditional(compound);
-        compound.putInt("InLove", this.inLove);
+    public void writeAdditional(CompoundNBT nbt) {
+        super.writeAdditional(nbt);
+        nbt.putInt("InLove", this.inLove);
         if (this.playerInLove != null) {
-            compound.putUniqueId("LoveCause", this.playerInLove);
+            nbt.putUniqueId("LoveCause", this.playerInLove);
         }
-
     }
 
     /**
      * Returns the Y Offset of this entity.
      */
     public double getYOffset() {
-        return 0.14D;
+        return 0.14;
+    }
+
+    public void readAdditional(CompoundNBT nbt) {
+        super.readAdditional(nbt);
+        this.inLove = nbt.getInt("InLove");
+        this.playerInLove = nbt.hasUniqueId("LoveCause") ? nbt.getUniqueId("LoveCause") : null;
     }
 
     /**
-     * (abstract) Protected helper method to read subclass entity data from NBT.
-     */
-    public void readAdditional(CompoundNBT compound) {
-        super.readAdditional(compound);
-        this.inLove = compound.getInt("InLove");
-        this.playerInLove = compound.hasUniqueId("LoveCause") ? compound.getUniqueId("LoveCause") : null;
-    }
-
-    /**
-     * Static predicate for determining whether or not an animal can spawn at the provided location.
+     * Static predicate for determining whether, or not an animal can spawn at the provided location.
      *
      * @param animal The animal entity to be spawned
      */
-    public static boolean canAnimalSpawn(EntityType<? extends HhijAnimalEntity> animal, IWorld world, SpawnReason reason, BlockPos pos, Random random) {
+    public static boolean canAnimalSpawn(@SuppressWarnings("UnusedDeclaration") EntityType<? extends HhijAnimalEntity> animal, IWorld world, @SuppressWarnings("UnusedDeclaration") SpawnReason reason, BlockPos pos, @SuppressWarnings("UnusedDeclaration") Random random) {
         return world.getBlockState(pos.down()).matchesBlock(Blocks.GRASS_BLOCK) && world.getLightSubtracted(pos, 0) > 8;
     }
 
@@ -141,22 +140,26 @@ public abstract class HhijAnimalEntity extends HhijAgeableEntity {
      * the animal type)
      */
     public boolean isBreedingItem(ItemStack stack) {
-        return stack.getItem() == Items.WHEAT;
+        return stack.getItem() == getBreedingItem();
     }
 
-    public ActionResultType getEntityInteractionResult(PlayerEntity p_230254_1_, Hand p_230254_2_) {
-        ItemStack itemstack = p_230254_1_.getHeldItem(p_230254_2_);
+    public Item getBreedingItem() {
+        return Items.WHEAT;
+    }
+
+    public ActionResultType getEntityInteractionResult(PlayerEntity player, Hand hand) {
+        ItemStack itemstack = player.getHeldItem(hand);
         if (this.isBreedingItem(itemstack)) {
             int i = this.getGrowingAge();
-            if (!this.world.isRemote && i == 0 && this.canBreed()) {
-                this.consumeItemFromStack(p_230254_1_, itemstack);
-                this.setInLove(p_230254_1_);
+            if (!this.world.isRemote && i == 0 && this.canFallInLove()) {
+                this.consumeItemFromStack(player, itemstack);
+                this.setInLove(player);
                 return ActionResultType.SUCCESS;
             }
 
             if (this.isChild()) {
-                this.consumeItemFromStack(p_230254_1_, itemstack);
-                this.ageUp((int) ((float) (-i / 20) * 0.1F), true);
+                this.consumeItemFromStack(player, itemstack);
+                this.ageUp((int)((float)(-i / 20) * 0.1F), true);
                 return ActionResultType.func_233537_a_(this.world.isRemote);
             }
 
@@ -165,7 +168,7 @@ public abstract class HhijAnimalEntity extends HhijAgeableEntity {
             }
         }
 
-        return super.getEntityInteractionResult(p_230254_1_, p_230254_2_);
+        return super.getEntityInteractionResult(player, hand);
     }
 
     /**
@@ -178,7 +181,7 @@ public abstract class HhijAnimalEntity extends HhijAgeableEntity {
 
     }
 
-    public boolean canBreed() {
+    public boolean canFallInLove() {
         return this.inLove <= 0;
     }
 
@@ -191,11 +194,13 @@ public abstract class HhijAnimalEntity extends HhijAgeableEntity {
         this.world.setEntityState(this, (byte) 18);
     }
 
+    @SuppressWarnings("UnusedDeclaration")
     public void setInLove(int ticks) {
         this.inLove = ticks;
     }
 
-    public int func_234178_eO_() {
+    @SuppressWarnings("UnusedDeclaration")
+    public int inLove() {
         return this.inLove;
     }
 
@@ -205,7 +210,8 @@ public abstract class HhijAnimalEntity extends HhijAgeableEntity {
             return null;
         } else {
             PlayerEntity playerentity = this.world.getPlayerByUuid(this.playerInLove);
-            return playerentity instanceof ServerPlayerEntity ? (ServerPlayerEntity) playerentity : null;
+            boolean isServerPlayer = playerentity instanceof ServerPlayerEntity;
+            return isServerPlayer ? (ServerPlayerEntity) playerentity : null;
         }
     }
 
@@ -233,42 +239,42 @@ public abstract class HhijAnimalEntity extends HhijAgeableEntity {
         }
     }
 
-    public void func_234177_a_(World p_234177_1_, HhijAnimalEntity p_234177_2_) {
-        HhijAgeableEntity ageableentity = this.createChild(p_234177_2_);
-        final HhijBabyEntitySpawnEvent event = new HhijBabyEntitySpawnEvent(this, p_234177_2_, ageableentity);
-        final boolean cancelled = net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(event);
-        ageableentity = event.getChild();
+    @SuppressWarnings("UnusedDeclaration")
+    public void spawnBabyAnimal(ServerWorld serverWorld, HhijAnimalEntity animal) {
+        HhijAgeableEntity ageable = this.createChild(serverWorld, animal);
+        final HhijBabyEntitySpawnEvent event = new HhijBabyEntitySpawnEvent(this, animal, ageable);
+        final boolean cancelled = MinecraftForge.EVENT_BUS.post(event);
+        ageable = event.getChild();
         if (cancelled) {
             //Reset the "inLove" state for the animals
             this.setGrowingAge(6000);
-            p_234177_2_.setGrowingAge(6000);
+            animal.setGrowingAge(6000);
             this.resetInLove();
-            p_234177_2_.resetInLove();
-            return;
-        }
-        if (ageableentity != null) {
-            ServerPlayerEntity serverplayerentity = this.getLoveCause();
-            if (serverplayerentity == null && p_234177_2_.getLoveCause() != null) {
-                serverplayerentity = p_234177_2_.getLoveCause();
-            }
+            animal.resetInLove();
+        } else {
+            if (ageable != null) {
+                ServerPlayerEntity serverPlayer = this.getLoveCause();
+                if (serverPlayer == null && animal.getLoveCause() != null) {
+                    serverPlayer = animal.getLoveCause();
+                }
 
-            if (serverplayerentity != null) {
-                serverplayerentity.addStat(Stats.ANIMALS_BRED);
-                ModCriteriaTriggers.BRED_HHIJS.trigger(serverplayerentity, this, p_234177_2_, ageableentity);
-            }
+                if (serverPlayer != null) {
+                    serverPlayer.addStat(Stats.ANIMALS_BRED);
+                    ModCriteriaTriggers.BRED_HHIJS.trigger(serverPlayer, this, animal, ageable);
+                }
 
-            this.setGrowingAge(6000);
-            p_234177_2_.setGrowingAge(6000);
-            this.resetInLove();
-            p_234177_2_.resetInLove();
-            ageableentity.setChild(true);
-            ageableentity.setLocationAndAngles(this.getPosX(), this.getPosY(), this.getPosZ(), 0.0F, 0.0F);
-            p_234177_1_.addEntity(ageableentity);
-            p_234177_1_.setEntityState(this, (byte) 18);
-            if (p_234177_1_.getGameRules().getBoolean(GameRules.DO_MOB_LOOT)) {
-                p_234177_1_.addEntity(new ExperienceOrbEntity(p_234177_1_, this.getPosX(), this.getPosY(), this.getPosZ(), this.getRNG().nextInt(7) + 1));
+                this.setGrowingAge(6000);
+                animal.setGrowingAge(6000);
+                this.resetInLove();
+                animal.resetInLove();
+                ageable.setChild(true);
+                ageable.setLocationAndAngles(this.getPosX(), this.getPosY(), this.getPosZ(), 0.0F, 0.0F);
+                serverWorld.func_242417_l(ageable);
+                serverWorld.setEntityState(this, (byte)18);
+                if (serverWorld.getGameRules().getBoolean(GameRules.DO_MOB_LOOT)) {
+                    serverWorld.addEntity(new ExperienceOrbEntity(serverWorld, this.getPosX(), this.getPosY(), this.getPosZ(), this.getRNG().nextInt(7) + 1));
+                }
             }
-
         }
     }
 
@@ -279,14 +285,13 @@ public abstract class HhijAnimalEntity extends HhijAgeableEntity {
     public void handleStatusUpdate(byte id) {
         if (id == 18) {
             for (int i = 0; i < 7; ++i) {
-                double d0 = this.rand.nextGaussian() * 0.02D;
-                double d1 = this.rand.nextGaussian() * 0.02D;
-                double d2 = this.rand.nextGaussian() * 0.02D;
-                this.world.addParticle(ParticleTypes.HEART, this.getPosXRandom(1.0D), this.getPosYRandom() + 0.5D, this.getPosZRandom(1.0D), d0, d1, d2);
+                double d0 = this.rand.nextGaussian() * 0.02;
+                double d1 = this.rand.nextGaussian() * 0.02;
+                double d2 = this.rand.nextGaussian() * 0.02;
+                this.world.addParticle(ParticleTypes.HEART, this.getPosXRandom(1.0), this.getPosYRandom() + 0.5, this.getPosZRandom(1.0), d0, d1, d2);
             }
         } else {
             super.handleStatusUpdate(id);
         }
-
     }
 }

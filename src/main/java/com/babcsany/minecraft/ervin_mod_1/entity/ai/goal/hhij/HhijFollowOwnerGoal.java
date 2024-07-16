@@ -51,7 +51,7 @@ public class HhijFollowOwnerGoal extends Goal {
          return false;
       } else if (livingentity.isSpectator()) {
          return false;
-      } else if (this.tameable.func_233685_eM_()) {
+      } else if (this.tameable.isQueuedToSit()) {
          return false;
       } else if (this.tameable.getDistanceSq(livingentity) < (double)(this.minDist * this.minDist)) {
          return false;
@@ -67,7 +67,7 @@ public class HhijFollowOwnerGoal extends Goal {
    public boolean shouldContinueExecuting() {
       if (this.navigator.noPath()) {
          return false;
-      } else if (this.tameable.func_233685_eM_()) {
+      } else if (this.tameable.isQueuedToSit()) {
          return false;
       } else {
          return !(this.tameable.getDistanceSq(this.owner) <= (double)(this.maxDist * this.maxDist));
@@ -131,7 +131,7 @@ public class HhijFollowOwnerGoal extends Goal {
       } else if (!this.isTeleportFriendlyBlock(new BlockPos(x, y, z))) {
          return false;
       } else {
-         this.tameable.setLocationAndAngles((double)x + 0.5D, (double)y, (double)z + 0.5D, this.tameable.rotationYaw, this.tameable.rotationPitch);
+         this.tameable.setLocationAndAngles((double)x + 0.5D, y, (double)z + 0.5D, this.tameable.rotationYaw, this.tameable.rotationPitch);
          this.navigator.clearPath();
          return true;
       }

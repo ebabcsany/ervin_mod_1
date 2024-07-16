@@ -18,7 +18,7 @@ public class HhijSitGoal extends Goal {
     * Returns whether an in-progress EntityAIBase should continue executing
     */
    public boolean shouldContinueExecuting() {
-      return this.tameable.func_233685_eM_();
+      return this.tameable.isQueuedToSit();
    }
 
    /**
@@ -37,7 +37,7 @@ public class HhijSitGoal extends Goal {
          if (livingentity == null) {
             return true;
          } else {
-            return this.tameable.getDistanceSq(livingentity) < 144.0D && livingentity.getRevengeTarget() != null ? false : this.tameable.func_233685_eM_();
+            return (!(this.tameable.getDistanceSq(livingentity) < 144.0D) || livingentity.getRevengeTarget() == null) && this.tameable.isQueuedToSit();
          }
       }
    }
@@ -47,13 +47,13 @@ public class HhijSitGoal extends Goal {
     */
    public void startExecuting() {
       this.tameable.getNavigator().clearPath();
-      this.tameable.func_233686_v_(true);
+      this.tameable.setQueuedToSit(true);
    }
 
    /**
     * Reset the task's internal state. Called when this task is interrupted by another one
     */
    public void resetTask() {
-      this.tameable.func_233686_v_(false);
+      this.tameable.setQueuedToSit(false);
    }
 }

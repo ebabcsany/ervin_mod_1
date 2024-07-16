@@ -1,7 +1,9 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.monster.zur;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.ai.goal.zur.ZurBreedGoal;
+import com.babcsany.minecraft.ervin_mod_1.entity.animal.hhij.HhijAnimalEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.animal.hhij.HhijEntity;
+import com.babcsany.minecraft.ervin_mod_1.entity.event.HhijAnimalTameEvent;
 import com.babcsany.minecraft.ervin_mod_1.entity.event.ZurTameEvent;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.goal.BowAttackGoal;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.ZurTrades;
@@ -935,6 +937,11 @@ public abstract class AbstractZurEntity extends TameableZurEntity implements INP
 
     ItemStack func_234432_eW1_() {
         return this.rand.nextFloat() < 0.5D ? new ItemStack(isBurnableItemInit.VIRKT) : new ItemStack(isBurnableBlockItemInit.NETHER_PORTAL);
+    }
+
+    public static boolean onAnimalTame(HhijAnimalEntity animal, PlayerEntity tamer)
+    {
+        return MinecraftForge.EVENT_BUS.post(new HhijAnimalTameEvent(animal, tamer));
     }
 
     /**

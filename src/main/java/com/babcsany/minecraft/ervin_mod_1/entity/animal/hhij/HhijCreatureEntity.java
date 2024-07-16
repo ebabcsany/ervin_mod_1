@@ -1,9 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.entity.animal.hhij;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
@@ -20,61 +17,54 @@ public abstract class HhijCreatureEntity extends MobEntity {
       return this.getBlockPathWeight(pos, this.world);
    }
 
-   public float getBlockPathWeight(BlockPos pos, IWorldReader worldIn) {
+   public float getBlockPathWeight(BlockPos pos, IWorldReader reader) {
       return 0.0F;
    }
 
-   public boolean canSpawn(IWorld worldIn, SpawnReason spawnReasonIn) {
+   public boolean canSpawn(IWorld worldIn, SpawnReason reason) {
       return this.getBlockPathWeight(this.getPosition(), worldIn) >= 0.0F;
    }
 
-   /**
-    * if the entity got a PathEntity it returns true, else false
-    */
    public boolean hasPath() {
       return !this.getNavigator().noPath();
    }
 
-   /**
-    * Applies logic related to leashes, for example dragging the entity or breaking the leash.
-    */
    protected void updateLeashedState() {
       super.updateLeashedState();
-      Entity entity = this.getLeashHolder();
-      if (entity != null && entity.world == this.world) {
-         this.setHomePosAndDistance(entity.getPosition(), 5);
-         float f = this.getDistance(entity);
-         if (this instanceof HhijTameableEntity && ((HhijTameableEntity)this).func_233684_eK_()) {
-            if (f > 10.0F) {
+      Entity leashedEntity = this.getLeashHolder();
+      if (leashedEntity != null && leashedEntity.world == this.world) {
+         this.setHomePosAndDistance(leashedEntity.getPosition(), 5);
+         float distance = this.getDistance(leashedEntity);
+         if (this instanceof HhijTameableEntity && ((HhijTameableEntity)this).isEntitySleeping()) {
+            if (distance > 10.0F) {
                this.clearLeashed(true, true);
             }
 
             return;
          }
 
-         this.onLeashDistance(f);
-         if (f > 10.0F) {
+         this.onLeashDistance(distance);
+         if (distance > 10.0F) {
             this.clearLeashed(true, true);
             this.goalSelector.disableFlag(Goal.Flag.MOVE);
-         } else if (f > 6.0F) {
-            double d0 = (entity.getPosX() - this.getPosX()) / (double)f;
-            double d1 = (entity.getPosY() - this.getPosY()) / (double)f;
-            double d2 = (entity.getPosZ() - this.getPosZ()) / (double)f;
-            this.setMotion(this.getMotion().add(Math.copySign(d0 * d0 * 0.4D, d0), Math.copySign(d1 * d1 * 0.4D, d1), Math.copySign(d2 * d2 * 0.4D, d2)));
+         } else if (distance > 6.0F) {
+            double x = (leashedEntity.getPosX() - this.getPosX()) / (double)distance;
+            double y = (leashedEntity.getPosY() - this.getPosY()) / (double)distance;
+            double z = (leashedEntity.getPosZ() - this.getPosZ()) / (double)distance;
+            this.setMotion(this.getMotion().add(Math.copySign(x * x * 0.4, x), Math.copySign(y * y * 0.4, y), Math.copySign(z * z * 0.4, z)));
          } else {
             this.goalSelector.enableFlag(Goal.Flag.MOVE);
-            float f1 = 2.0F;
-            Vector3d vector3d = (new Vector3d(entity.getPosX() - this.getPosX(), entity.getPosY() - this.getPosY(), entity.getPosZ() - this.getPosZ())).normalize().scale((double)Math.max(f - 2.0F, 0.0F));
+            float f = 2.0F;
+            Vector3d vector3d = (new Vector3d(leashedEntity.getPosX() - this.getPosX(), leashedEntity.getPosY() - this.getPosY(), leashedEntity.getPosZ() - this.getPosZ())).normalize().scale(Math.max(distance - f, 0.0F));
             this.getNavigator().tryMoveToXYZ(this.getPosX() + vector3d.x, this.getPosY() + vector3d.y, this.getPosZ() + vector3d.z, this.followLeashSpeed());
          }
       }
-
    }
 
    protected double followLeashSpeed() {
-      return 1.0D;
+      return 1.0;
    }
 
-   protected void onLeashDistance(float distance) {
+   protected void onLeashDistance(@SuppressWarnings("UnusedDeclaration") float distance) {
    }
 }
