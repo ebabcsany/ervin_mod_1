@@ -84,7 +84,7 @@ public class Liwray extends AnimalEntity {
     }
 
     protected SoundEvent getAmbientSound() {
-        return SoundInit.LIWRAY_AMBIENT;
+        return SoundEvents.MUSIC_GAME;
     }
 
     protected SoundEvent getHurtSound(DamageSource p_184601_1_) {
@@ -100,7 +100,7 @@ public class Liwray extends AnimalEntity {
     }
 
     public Liwray createChild(ServerWorld serverWorld, AgeableEntity p_90011_1_) {
-        return EntityInit.LIWRAY.create(serverWorld);
+        return EntityInit.LIWRAY.get().create(serverWorld);
     }
 
     protected int getExperiencePoints(PlayerEntity p_70693_1_) {

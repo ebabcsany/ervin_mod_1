@@ -142,7 +142,7 @@ public class Hurvruj extends Block {
     }
 
     public boolean isValidFuel(ItemStack stack) {
-        return stack.getItem() == isBurnableBlockItemInit.TERAT_BLOCK;
+        return stack.getItem() == isBurnableBlockItemInit.TERAT_BLOCK.get();
     }
 
     private static boolean notFullyCharged(BlockState state) {

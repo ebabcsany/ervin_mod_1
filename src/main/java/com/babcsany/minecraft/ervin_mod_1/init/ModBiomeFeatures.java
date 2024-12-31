@@ -4,6 +4,7 @@ import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.ExampleFeature;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.ExampleFeature1;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.ExampleRuinedPortalFeature;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.BiomeGenerationSettings;
 import net.minecraft.world.gen.GenerationStage;
@@ -12,27 +13,32 @@ import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.placement.ChanceConfig;
 import net.minecraft.world.gen.placement.Placement;
+import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class ModBiomeFeatures {
-	public static Feature<NoFeatureConfig> EXAMPLE_FEATURE = register("example_feature", new ExampleFeature(NoFeatureConfig.CODEC));
-	public static Feature<NoFeatureConfig> EXAMPLE_FEATURE1 = register("example_feature1", new ExampleFeature1(NoFeatureConfig.CODEC));
-	public static Feature<NoFeatureConfig> EXAMPLE_RUINED_PORTAL_FEATURE = register("example_ruined_portal_feature", new ExampleRuinedPortalFeature(NoFeatureConfig.CODEC));
+	public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, Ervin_mod_1.MOD_ID);
+
+	public static RegistryObject<Feature<NoFeatureConfig>> EXAMPLE_FEATURE = FEATURES.register("example_feature", () -> new ExampleFeature(NoFeatureConfig.CODEC));
+	public static RegistryObject<Feature<NoFeatureConfig>> EXAMPLE_FEATURE1 = FEATURES.register("example_feature1", () -> new ExampleFeature1(NoFeatureConfig.CODEC));
+	public static RegistryObject<Feature<NoFeatureConfig>> EXAMPLE_RUINED_PORTAL_FEATURE = FEATURES.register("example_ruined_portal_feature", () -> new ExampleRuinedPortalFeature(NoFeatureConfig.CODEC));
 
 	public static void addExampleFeature(BiomeGenerationSettings.Builder builder, int chance) {
 		builder.withFeature(GenerationStage.Decoration.SURFACE_STRUCTURES,
-				EXAMPLE_FEATURE.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG)
+				EXAMPLE_FEATURE.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG)
 						.withPlacement(Placement.CHANCE.configure(new ChanceConfig(chance)))
 		);
 	}
 	public static void addExampleFeature1(BiomeGenerationSettings.Builder builder, int chance) {
 		builder.withFeature(GenerationStage.Decoration.SURFACE_STRUCTURES,
-				EXAMPLE_FEATURE1.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG)
+				EXAMPLE_FEATURE1.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG)
 						.withPlacement(Placement.CHANCE.configure(new ChanceConfig(chance)))
 		);
 	}
 	public static void addExampleRuinedPortalFeature(BiomeGenerationSettings.Builder builder, int chance) {
 		builder.withFeature(GenerationStage.Decoration.SURFACE_STRUCTURES,
-				EXAMPLE_RUINED_PORTAL_FEATURE.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG)
+				EXAMPLE_RUINED_PORTAL_FEATURE.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG)
 						.withPlacement(Placement.CHANCE.configure(new ChanceConfig(chance)))
 		);
 	}

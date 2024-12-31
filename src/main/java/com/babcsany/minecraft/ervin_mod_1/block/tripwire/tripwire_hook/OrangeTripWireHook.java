@@ -11,11 +11,11 @@ public class OrangeTripWireHook extends ModTripWireHookBlock {
 
    @Override
    public Block getTripWire() {
-      return BlockInit.ORANGE_TRIPWIRE;
+      return BlockInit.ORANGE_TRIPWIRE.get();
    }
 
    @Override
    public Block getTripWireHook() {
-      return BlockInit.ORANGE_TRIPWIRE_HOOK;
+      return BlockInit.ORANGE_TRIPWIRE_HOOK.get();
    }
 }

@@ -39,7 +39,7 @@ public class MilkTeratBucketItem extends Item {
             itemStack.shrink(1);
         }
 
-        return itemStack.isEmpty() ? new ItemStack(isBurnableItemInit.TERAT_BUCKET) : itemStack;
+        return itemStack.isEmpty() ? new ItemStack(isBurnableItemInit.TERAT_BUCKET.get()) : itemStack;
     }
 
     public int getUseDuration(ItemStack p_77626_1_) {

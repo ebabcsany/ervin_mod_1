@@ -24,7 +24,7 @@ public class ModGiveCommand {
     }
 
     private static int giveItemWithCondition(CommandSource source, ItemInput itemIn, Collection<ServerPlayerEntity> targets, int count) throws CommandSyntaxException {
-        if (itemIn.getItem() != BlockItemInit_.EPKIN.asItem()) return modGiveItem(source, itemIn, targets, count); else return 0;
+        if (itemIn.getItem() != BlockItemInit_.EPKIN.get().asItem()) return modGiveItem(source, itemIn, targets, count); else return 0;
     }
 
     public static int modGiveItem(CommandSource source, ItemInput itemIn, Collection<ServerPlayerEntity> targets, int count) throws CommandSyntaxException {

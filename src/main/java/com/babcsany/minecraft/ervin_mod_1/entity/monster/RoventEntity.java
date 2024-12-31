@@ -148,13 +148,13 @@ public class RoventEntity extends MonsterEntity {
 
       if (!this.world.isRemote && this.isAlive() && !this.isChild() && --this.timeUntilNextItem <= 0) {
          this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
-         this.entityDropItem(ItemInit.KIRT);
+         this.entityDropItem(ItemInit.KIRT.get());
          this.timeUntilNextItem = this.rand.nextInt(6000) + 6000;
       }
 
       if (!this.world.isRemote && this.isAlive() && !this.isChild() && --this.timeUntilNextItem <= 0) {
          this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
-         this.entityDropItem(isBurnableItemInit.LEAT);
+         this.entityDropItem(isBurnableItemInit.LEAT.get());
          this.timeUntilNextItem = this.rand.nextInt(6000) + 6000;
       }
    }

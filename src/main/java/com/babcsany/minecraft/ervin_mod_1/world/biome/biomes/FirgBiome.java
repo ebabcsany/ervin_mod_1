@@ -2,8 +2,10 @@ package com.babcsany.minecraft.ervin_mod_1.world.biome.biomes;
 
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.ModConfiguredSurfaceBuilders;
+import com.babcsany.minecraft.ervin_mod_1.world.biome.surface_builders.FirgBiomeSurfaceBuilder;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.ModDefaultBiomeFeatures;
 import com.babcsany.minecraft.ervin_mod_1.world.biome.spawn.SpawnListEntry;
+import com.babcsany.minecraft.ervin_mod_1.world.gen.feature.ModSurfaceBuilder;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.world.biome.Biome;
@@ -13,21 +15,22 @@ import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.carver.ConfiguredCarvers;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
 import java.util.function.Supplier;
 
 public class FirgBiome {
 
 	public FirgBiome() {
-		make(() -> ModConfiguredSurfaceBuilders.FIRG);
+		make(ModConfiguredSurfaceBuilders.FIRG.get(), ModSurfaceBuilder.FIRG_CONFIG);
 	}
 
-	public static Biome make(final Supplier<ConfiguredSurfaceBuilder<?>> surfaceBuilderSupplier) {
+	public static Biome make(final FirgBiomeSurfaceBuilder surfaceBuilder, SurfaceBuilderConfig config) {
 		BiomeGenerationSettings.Builder biomeBuilder = new BiomeGenerationSettings.Builder();
 		MobSpawnInfo.Builder spawnInfoBuilder = new MobSpawnInfo.Builder();
 		BiomeAmbience.Builder ambienceBuilder = new BiomeAmbience.Builder();
 		Biome.Builder builder = new Biome.Builder();
-		spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(com.babcsany.minecraft.ervin_mod_1.init.EntityInit.SRACH_ENTITY, 1, 2, 5));
+		spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(com.babcsany.minecraft.ervin_mod_1.init.EntityInit.SRACH_ENTITY.get(), 1, 2, 5));
 		spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityType.IRON_GOLEM, 1, 2, 5));
 		spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityType.WANDERING_TRADER, 1, 2, 5));
 		spawnInfoBuilder.withSpawner(EntityClassification.AMBIENT, new SpawnListEntry(EntityType.BAT, 1, 2, 5));
@@ -48,11 +51,11 @@ public class FirgBiome {
 		spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityType.RABBIT, 1, 2, 5));
 		spawnInfoBuilder.withSpawner(EntityClassification.MONSTER, new SpawnListEntry(EntityType.HUSK, 1, 2, 5));
 		spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityType.BEE, 1, 2, 10));
-		spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.ZUR, 1, 1, 1));
+		spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.ZUR.get(), 1, 1, 1));
 		biomeBuilder.withCarver(GenerationStage.Carving.AIR, ConfiguredCarvers.CAVE);
 		biomeBuilder.withCarver(GenerationStage.Carving.AIR, ConfiguredCarvers.NETHER_CAVE);
 		biomeBuilder.withCarver(GenerationStage.Carving.AIR, ConfiguredCarvers.CANYON);
-		biomeBuilder.withSurfaceBuilder(surfaceBuilderSupplier);
+		biomeBuilder.withSurfaceBuilder(surfaceBuilder.func_242929_a(config));
 
 		ModDefaultBiomeFeatures.addExtraDirt(biomeBuilder);
 		ModDefaultBiomeFeatures.addFirgTrees(biomeBuilder);

@@ -2,20 +2,23 @@ package com.babcsany.minecraft.ervin_mod_1.world.biome.biomes;
 
 import com.babcsany.minecraft.ervin_mod_1.init.ModConfiguredSurfaceBuilders;
 import com.babcsany.minecraft.ervin_mod_1.world.biome.spawn.SpawnListEntry;
+import com.babcsany.minecraft.ervin_mod_1.world.gen.feature.ModSurfaceBuilder;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.world.biome.*;
 import net.minecraft.world.gen.feature.structure.StructureFeatures;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
 import java.util.function.Supplier;
 
 public class MuhkBiome {
     public MuhkBiome() {
-        make(() -> ModConfiguredSurfaceBuilders.MUHK);
+        make(ModConfiguredSurfaceBuilders.MUHK.get(), SurfaceBuilder.GRASS_DIRT_GRAVEL_CONFIG);
     }
 
-    public static Biome make(final Supplier<ConfiguredSurfaceBuilder<?>> surfaceBuilder) {
+    public static Biome make(final SurfaceBuilder<SurfaceBuilderConfig> surfaceBuilder, final SurfaceBuilderConfig config) {
         BiomeGenerationSettings.Builder builder = new BiomeGenerationSettings.Builder();
         MobSpawnInfo.Builder spawners = new MobSpawnInfo.Builder();
         BiomeAmbience.Builder ambienceBuilder = new BiomeAmbience.Builder();
@@ -64,7 +67,7 @@ public class MuhkBiome {
         biomeBuilder.downfall(0.04F);
         biomeBuilder.setEffects(ambienceBuilder.build());
         biomeBuilder.withMobSpawnSettings(spawners.build());
-        biomeBuilder.withGenerationSettings(builder.withSurfaceBuilder(surfaceBuilder).build());
+        biomeBuilder.withGenerationSettings(builder.withSurfaceBuilder(surfaceBuilder.func_242929_a(config)).build());
         return (biomeBuilder.build());
     }
 }

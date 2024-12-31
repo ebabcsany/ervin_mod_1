@@ -1,7 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.init.unused.init;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
-import com.babcsany.minecraft.ervin_mod_1.init.unused.init.UnusedBlockInit;
+import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
@@ -49,6 +49,11 @@ public class UnusedBlockItemInit {
 
     private static <T extends BlockItem> RegistryObject<BlockItem> registryObject(String name, Supplier<T> supplier) {
         return registryObject(BLOCK_ITEM_DEFERRED_REGISTER, name, supplier);
+    }
+
+    public static <T extends Block> RegistryObject<Block> registerBlockItem(String name, Supplier<T> supplier) {
+//        RegistryObject<BlockItem> itemRegistryObject = registryObject(BLOCK_ITEM_DEFERRED_REGISTER, name, () -> new BlockItem(supplier.get(), new Item.Properties()));
+        return UnusedBlockInit.defaultRegistryObject(UnusedBlockInit.BLOCK_DEFERRED_REGISTER, name, supplier);
     }
 
     public static <T extends BlockItem> RegistryObject<BlockItem> registryObject(DeferredRegister<Item> deferredRegister, String name, Supplier<T> supplier) {

@@ -6,7 +6,6 @@ import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.item.BlockItem;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -21,14 +20,14 @@ public class UnusedBlockInit {
 
     public static final int REGISTRY_OBJECTS_COUNT = 0;
     private static RegistryObject<Block> LAST_BLOCK;
-    private static final ArrayList<String> BLOCK_PATHS = new ArrayList<>(REGISTRY_OBJECTS_COUNT);
-    private static final ArrayList<RegistryObject<Block>> REGISTRY_OBJECTS = registryObjects();
+    private static final ArrayList<String> BLOCK_PATHS = new ArrayList<>();
+    private static ArrayList<RegistryObject<Block>> REGISTRY_OBJECTS = new ArrayList<>(REGISTRY_OBJECTS_COUNT);
 
-    private static ArrayList<RegistryObject<Block>> registryObjects() {
+    private static void registryObjects() {
         ArrayList<RegistryObject<Block>> registryObjectsArrayList = new ArrayList<>(REGISTRY_OBJECTS_COUNT);
         registryObjectsArrayList.add(registryObject("air", () -> new Block(Block.Properties.create(Material.AIR).doesNotBlockMovement().noDrops())));
         registryObjectsArrayList.add(registryObject("tgruhuft", () -> setBlockRequiresTool(Material.CAKE, 4, 12354, 15365, ToolTypeInit.PHISK, SoundType.CHAIN)));
-        return registryObjectsArrayList;
+        REGISTRY_OBJECTS = registryObjectsArrayList;
     }
 
     private static RegistryObject<Block> unusedBlockRockRegistryObject(String name) {
@@ -47,14 +46,50 @@ public class UnusedBlockInit {
         return registryObject(BLOCK_DEFERRED_REGISTER, name, supplier);
     }
 
-    public static <T extends Block> RegistryObject<Block> registryObject(DeferredRegister<Block> deferredRegister, String name, Supplier<T> supplier) {
+    private static <T extends Block> RegistryObject<Block> registryObject(DeferredRegister<Block> deferredRegister, String name, Supplier<T> supplier) {
         String path = path(name);
-        BLOCK_PATHS.add(path);
-        return LAST_BLOCK = deferredRegister.register(path, supplier);
+        return defaultRegistryObject(deferredRegister, path, supplier);
     }
 
-    public static Block setBlockRequiresTool(Material material, int harvestLevel, int hardnessIn, int resistanceIn, ToolType harvestTool, SoundType sound) {
-        return new Block(AbstractBlock.Properties.create(material).setRequiresTool().harvestLevel(harvestLevel).hardnessAndResistance(hardnessIn, resistanceIn).harvestTool(harvestTool).sound(sound));
+    private static <T extends Block> RegistryObject<Block> defaultRegistryObject(String name, Supplier<T> supplier) {
+        return defaultRegistryObject(BLOCK_DEFERRED_REGISTER, name, supplier);
+    }
+
+    public static <T extends Block> RegistryObject<Block> defaultRegistryObject(DeferredRegister<Block> deferredRegister, String name, Supplier<T> supplier) {
+        BLOCK_PATHS.add(name);
+        return LAST_BLOCK = deferredRegister.register(name, supplier);
+    }
+
+    public static Block setBlockRequiresTool(Material material, int harvestLevel, float hardnessAndResistanceIn, ToolType harvestTool, SoundType sound) {
+        return new Block(requiresToolProperties(material, harvestLevel, hardnessAndResistanceIn, harvestTool, sound));
+    }
+
+    public static Block setBlockRequiresTool(Material material, int harvestLevel, float hardnessAndResistanceIn, ToolType harvestTool) {
+        return new Block(requiresToolProperties(material, harvestLevel, hardnessAndResistanceIn, harvestTool));
+    }
+
+    public static Block setBlockRequiresTool(Material material, int harvestLevel, float hardnessIn, float resistanceIn, ToolType harvestTool, SoundType sound) {
+        return new Block(requiresToolProperties(material, harvestLevel, hardnessIn, resistanceIn, harvestTool, sound));
+    }
+
+    public static Block setBlockRequiresTool(Material material, int harvestLevel, float hardnessIn, float resistanceIn, ToolType harvestTool) {
+        return new Block(requiresToolProperties(material, harvestLevel, hardnessIn, resistanceIn, harvestTool));
+    }
+
+    public static AbstractBlock.Properties requiresToolProperties(Material material, int harvestLevel, float hardnessAndResistanceIn, ToolType harvestTool, SoundType sound) {
+        return AbstractBlock.Properties.create(material).setRequiresTool().harvestLevel(harvestLevel).hardnessAndResistance(hardnessAndResistanceIn).harvestTool(harvestTool).sound(sound);
+    }
+
+    public static AbstractBlock.Properties requiresToolProperties(Material material, int harvestLevel, float hardnessAndResistanceIn, ToolType harvestTool) {
+        return AbstractBlock.Properties.create(material).setRequiresTool().harvestLevel(harvestLevel).hardnessAndResistance(hardnessAndResistanceIn).harvestTool(harvestTool);
+    }
+
+    private static AbstractBlock.Properties requiresToolProperties(Material material, int harvestLevel, float hardnessIn, float resistanceIn, ToolType harvestTool, SoundType sound) {
+        return AbstractBlock.Properties.create(material).setRequiresTool().harvestLevel(harvestLevel).hardnessAndResistance(hardnessIn, resistanceIn).harvestTool(harvestTool).sound(sound);
+    }
+
+    public static AbstractBlock.Properties requiresToolProperties(Material material, int harvestLevel, float hardnessIn, float resistanceIn, ToolType harvestTool) {
+        return AbstractBlock.Properties.create(material).setRequiresTool().harvestLevel(harvestLevel).hardnessAndResistance(hardnessIn, resistanceIn).harvestTool(harvestTool);
     }
 
     public static String path(String name) {

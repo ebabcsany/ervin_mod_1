@@ -134,7 +134,7 @@ public class CraintBlockCraftingTableContainer extends RecipeBookContainer<Craft
      * Determines whether supplied player can use this container
      */
     public boolean canInteractWith(PlayerEntity playerIn) {
-        return isWithinUsableDistance(this.worldPosCallable, playerIn, isBurnableBlockItemInit.CRAINT_BLOCK_CRAFTING_TABLE);
+        return isWithinUsableDistance(this.worldPosCallable, playerIn, isBurnableBlockItemInit.CRAINT_BLOCK_CRAFTING_TABLE.get());
     }
 
     /**

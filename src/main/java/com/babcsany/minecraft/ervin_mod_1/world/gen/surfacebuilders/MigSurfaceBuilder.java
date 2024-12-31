@@ -41,7 +41,7 @@ public class MigSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig> {
          } else if (blockState2.matchesBlock(defaultBlock.getBlock())) {
             if (i == -1) {
                if (j <= 0) {
-                  blockstate = isBurnableBlockItemInit.LEAT_BLOCK.getBlock().getDefaultState();
+                  blockstate = isBurnableBlockItemInit.LEAT_BLOCK.get().getDefaultState();
                   blockState1 = defaultBlock;
                } else if (i1 >= sealevel - 4 && i1 <= sealevel + 1) {
                   blockstate = top;
@@ -50,7 +50,7 @@ public class MigSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig> {
 
                if (i1 < sealevel && blockstate.isAir()) {
                   if (biomeIn.getTemperature(blockPos$mutable.setPos(x, i1, z)) < 0.15F) {
-                     blockstate = BlockInit.FIRT_BLOCK.getDefaultState();
+                     blockstate = BlockInit.FIRT_BLOCK.get().getDefaultState();
                   } else {
                      blockstate = defaultFluid;
                   }
@@ -71,9 +71,9 @@ public class MigSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig> {
             } else if (i > 0) {
                --i;
                chunkIn.setBlockState(blockPos$mutable, blockState1, false);
-               if (i == 0 && blockState1.matchesBlock(BlockItemInit.FRIT_BLOCK) && j > 1) {
+               if (i == 0 && blockState1.matchesBlock(BlockItemInit.FRIT_BLOCK.get()) && j > 1) {
                   i = random.nextInt(4) + Math.max(0, i1 - 63);
-                  blockState1 = blockState1.matchesBlock(BlockItemInit.KALT_BLOCK) ? isBurnableBlockItemInit.SRIUNK_BLOCK.getDefaultState() : BlockItemInit.FRIT_BLOCK.getDefaultState();
+                  blockState1 = blockState1.matchesBlock(BlockItemInit.KALT_BLOCK.get()) ? isBurnableBlockItemInit.SRIUNK_BLOCK.get().getDefaultState() : BlockItemInit.FRIT_BLOCK.get().getDefaultState();
                }
             }
          }

@@ -11,11 +11,11 @@
       "item": "minecraft:bone_block"
     },
     "X": {
-      "item": "minecraft:spruce_wood"
+      "tag": "minecraft:spruce_wood"
       }
     },
     "result": {
       "item": "minecraft:spruce_sapling",
-      "count": 1
+      "count": 3
     }
   }

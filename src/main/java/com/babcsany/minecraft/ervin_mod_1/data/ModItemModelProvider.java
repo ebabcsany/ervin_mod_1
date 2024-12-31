@@ -44,8 +44,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         super.func_240074_a_();
 
         for(int i = 1; i < 512; ++i) {
-            this.resourceAndTexture(BlockInit.FIGHIV, String.format("_%02d", i), StockModelShapes.CUBE_ALL);
-            this.resourceAndTexture(BlockItemInit_.FIGHIV, String.format("_%02d", i), StockModelShapes.CUBE_ALL);
+            this.resourceAndTexture(BlockInit.FIGHIV.get(), String.format("_%02d", i), StockModelShapes.CUBE_ALL);
+            this.resourceAndTexture(BlockItemInit_.FIGHIV.get(), String.format("_%02d", i), StockModelShapes.CUBE_ALL);
         }
     }
 

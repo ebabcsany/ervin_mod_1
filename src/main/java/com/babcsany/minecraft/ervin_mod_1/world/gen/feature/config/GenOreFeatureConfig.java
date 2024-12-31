@@ -39,7 +39,7 @@ public class GenOreFeatureConfig implements IFeatureConfig {
       public static final RuleTest BASE_TERRACOTTA_VARIANTS_OVERWORLD = new TagMatchRuleTest(ModBlockTags.BASE_TERRACOTTA_VARIANTS_OVERWORLD);
       public static final RuleTest BASE_END_STONES = new TagMatchRuleTest(ModBlockTags.BASE_END_STONES);
       public static final RuleTest BASE_END_STONE_VARIANTS = new TagMatchRuleTest(ModBlockTags.BASE_END_STONE_VARIANTS);
-      public static final RuleTest TRIRIJ = new BlockMatchRuleTest(BlockInit.TRIRIJ);
+      public static final RuleTest TRIRIJ = new BlockMatchRuleTest(BlockInit.TRIRIJ.get());
       public static final RuleTest DIRT = new BlockMatchRuleTest(Blocks.DIRT);
       public static final RuleTest RED_SAND = new BlockMatchRuleTest(Blocks.RED_SAND);
       public static final RuleTest WATER = new BlockMatchRuleTest(Blocks.WATER);

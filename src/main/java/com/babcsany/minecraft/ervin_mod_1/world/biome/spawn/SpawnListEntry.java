@@ -10,16 +10,16 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.MobSpawnInfo;
 
 public class SpawnListEntry extends MobSpawnInfo.Spawners {
-    public static final Codec<MobSpawnInfo.Spawners> CODEC = RecordCodecBuilder.create((p_242592_0_) -> {
-        return p_242592_0_.group(Registry.ENTITY_TYPE.fieldOf("type").forGetter((p_242595_0_) -> {
-            return p_242595_0_.type;
-        }), Codec.INT.fieldOf("weight").forGetter((p_242594_0_) -> {
-            return p_242594_0_.itemWeight;
-        }), Codec.INT.fieldOf("minCount").forGetter((p_242593_0_) -> {
-            return p_242593_0_.minCount;
-        }), Codec.INT.fieldOf("maxCount").forGetter((p_242591_0_) -> {
-            return p_242591_0_.maxCount;
-        })).apply(p_242592_0_, MobSpawnInfo.Spawners::new);
+    public static final Codec<SpawnListEntry> CODEC = RecordCodecBuilder.create((builder) -> {
+        return builder.group(Registry.ENTITY_TYPE.fieldOf("type").forGetter((spawner) -> {
+            return spawner.type;
+        }), Codec.INT.fieldOf("weight").forGetter((spawner) -> {
+            return spawner.itemWeight;
+        }), Codec.INT.fieldOf("minCount").forGetter((spawner) -> {
+            return spawner.minCount;
+        }), Codec.INT.fieldOf("maxCount").forGetter((spawner) -> {
+            return spawner.maxCount;
+        })).apply(builder, SpawnListEntry::new);
     });
     public final EntityType<?> type;
     public final int minCount;

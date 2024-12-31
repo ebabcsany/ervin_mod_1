@@ -94,7 +94,7 @@ public class TraderNirtre1Entity extends AbstractTraderNirtre1Entity {
 
    public ActionResultType getEntityInteractionResult(PlayerEntity p_230254_1_, Hand p_230254_2_) {
       ItemStack itemstack = p_230254_1_.getHeldItem(p_230254_2_);
-      if (itemstack.getItem() != ModSpawnEggItemInit.TRADER_NIRTRE_SPAWN_EGG && this.isAlive() && !this.hasCustomer() && !this.isChild()) {
+      if (itemstack.getItem() != ModSpawnEggItemInit.TRADER_NIRTRE_SPAWN_EGG.get() && this.isAlive() && !this.hasCustomer() && !this.isChild()) {
          if (p_230254_2_ == Hand.MAIN_HAND) {
             p_230254_1_.addStat(Stats.TALKED_TO_VILLAGER);
          }
@@ -215,7 +215,7 @@ public class TraderNirtre1Entity extends AbstractTraderNirtre1Entity {
       super.livingTick();
       this.wingRotation += this.wingRotDelta * 2.0F;
       if (!this.world.isRemote && this.isAlive() && !this.isChild() && !this.isDropItem() && --this.timeUntilNextItem <= 0) {
-         this.entityDropItem(SpecialItemInit.TFJHU_1);
+         this.entityDropItem(SpecialItemInit.TFJHU_1.get());
          this.timeUntilNextItem = this.rand.nextInt(12000) + 12000;
       }
    }
@@ -227,7 +227,7 @@ public class TraderNirtre1Entity extends AbstractTraderNirtre1Entity {
    public void onStruckByLightning_(LightningBoltEntity lightningBolt) {
       if (this.world.getDifficulty() != Difficulty.PEACEFUL) {
          LOGGER.info("Trader Nirtre {} was struck by lightning {}.", this, lightningBolt);
-         ZurEntity zurEntity = EntityInit.ZUR.create(this.world);
+         ZurEntity zurEntity = EntityInit.ZUR.get().create(this.world);
          zurEntity.setLocationAndAngles(this.getPosX(), this.getPosY(), this.getPosZ(), this.rotationYaw, this.rotationPitch);
          zurEntity.onInitialSpawn((IServerWorld) this.world, this.world.getDifficultyForLocation(zurEntity.getPosition()), SpawnReason.CONVERSION, null, null);
          zurEntity.setNoAI(this.isAIDisabled());

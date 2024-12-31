@@ -20,15 +20,6 @@ public class ModBoatEntity extends BoatEntity {
         super(p_i50129_1_, p_i50129_2_);
     }
 
-    public ModBoatEntity(World p_i1705_1_, double p_i1705_2_, double p_i1705_4_, double p_i1705_6_) {
-        this(EntityInit.MOD_BOAT, p_i1705_1_);
-        this.setPosition(p_i1705_2_, p_i1705_4_, p_i1705_6_);
-        this.setMotion(Vector3d.ZERO);
-        this.prevPosX = p_i1705_2_;
-        this.prevPosY = p_i1705_4_;
-        this.prevPosZ = p_i1705_6_;
-    }
-
     @Override
     protected void registerData() {
         super.registerData();
@@ -55,8 +46,8 @@ public class ModBoatEntity extends BoatEntity {
     }
 
     public static enum Type {
-        FIRG(BlockInit.FIRG_PLANKS, "firg"),
-        FRIM(BlockItemInit.FRIM_PLANKS.getBlock(), "frim");
+        FIRG(BlockInit.FIRG_PLANKS.get(), "firg"),
+        FRIM(BlockItemInit.FRIM_PLANKS.get(), "frim");
 
         private final String name;
         private final Block block;

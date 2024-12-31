@@ -36,7 +36,7 @@ public class ScrakthsPearlEntity extends EnderPearlEntity {
    }
 
    protected Item getDefaultItem() {
-      return ItemInit.SCRAKTHS_PEARL;
+      return ItemInit.SCRAKTHS_PEARL.get();
    }
 
    /**

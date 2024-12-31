@@ -2,10 +2,12 @@ package com.babcsany.minecraft.ervin_mod_1.init;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.world.biome.*;
+import com.babcsany.minecraft.ervin_mod_1.world.biome.biomes.*;
 import com.babcsany.minecraft.ervin_mod_1.world.biome.dictionary.BiomeDictionary;
 import com.babcsany.minecraft.ervin_mod_1.world.biome.dictionary.BiomeDictionary.Type;
 import com.babcsany.minecraft.ervin_mod_1.world.biome.manager.BiomeManager;
 import com.babcsany.minecraft.ervin_mod_1.world.gen.BiomeKeys;
+import com.babcsany.minecraft.ervin_mod_1.world.gen.feature.ModSurfaceBuilder;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
@@ -23,9 +25,30 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import static com.babcsany.minecraft.ervin_mod_1.init.ModConfiguredSurfaceBuilders.*;
+
 public class BiomeInit {
-    public static final DeferredRegister<Biome> BIOMES = DeferredRegister.create(ForgeRegistries.BIOMES,
-            Ervin_mod_1.MOD_ID);
+    public static final DeferredRegister<Biome> BIOMES = DeferredRegister.create(ForgeRegistries.BIOMES, Ervin_mod_1.MOD_ID);
+
+//    public static final RegistryObject<Biome> MIGV = BIOMES.register("migv", () -> MigvBiome.make(MIGV_SURFACE.get(), ModSurfaceBuilder.MIG_CONFIG));
+//    public static final RegistryObject<Biome> RIFT_BIOME = BIOMES.register("rift", () -> ModBiomeMaker.makeRiftBiome(ModConfiguredSurfaceBuilders.RIFT_SURFACE, ModSurfaceBuilder.RIFT_CONFIG, 0.125F, 0.05F));
+//    public static final RegistryObject<Biome> THE_BHJUIG = BIOMES.register("the_bhjuig", () -> TheBhjuigBiome.make(BHJUIG_SURFACE.get(), ModSurfaceBuilder.BHJUIG_CONFIG));
+//    public static final RegistryObject<Biome> MIG = BIOMES.register("mig", () -> MigBiome.make(MIG_SURFACE.get(), ModSurfaceBuilder.MIG_CONFIG));
+//    public static final RegistryObject<Biome> SRIUNK_VALLEY = BIOMES.register("sriunk_valley", () -> SriunkValleyBiome.make(SRIUNK_VALLEY_SURFACE.get(), ModSurfaceBuilder.SRIUNK_VALLEY_CONFIG));
+//    public static final RegistryObject<Biome> EXAMPLE0_BIOME = BIOMES.register("example0_biome", () -> Example0Biome.make(EXAMPLE0_SURFACE.get(), ModSurfaceBuilder.EXAMPLE0_CONFIG));
+//    public static final RegistryObject<Biome> END_BIOME0 = BIOMES.register("end_biome0", () -> EndBiome0.make(END_SURFACE0.get(), SurfaceBuilder.END_STONE_CONFIG));
+//    public static final RegistryObject<Biome> EXAMPLE_BIOME = BIOMES.register("example_biome", () -> ExampleBiome.make(EXAMPLE_SURFACE.get(), ModSurfaceBuilder.COARSE_DIRT_DIRT_DIRT_CONFIG));
+//    public static final RegistryObject<Biome> EXAMPLE_BIOME1 = BIOMES.register("example_biome1", () -> ExampleBiome1.make(EXAMPLE_SURFACE1.get(), ModSurfaceBuilder.EXAMPLE_CONFIG1));
+//    public static final RegistryObject<Biome> EXAMPLE_BIOME2 = BIOMES.register("example_biome2", () -> ExampleBiome2.make(EXAMPLE_SURFACE2.get(), ModSurfaceBuilder.COARSE_DIRT_DIRT_DIRT_CONFIG));
+//    public static final RegistryObject<Biome> EXAMPLE_BIOME3 = BIOMES.register("example_biome3", () -> ExampleBiome3.make(EXAMPLE_SURFACE3.get(), ModSurfaceBuilder.EXAMPLE_CONFIG3));
+//    public static final RegistryObject<Biome> EXAMPLE_BIOME4 = BIOMES.register("example_biome4", () -> ExampleBiome4.make(EXAMPLE_SURFACE4.get(), ModSurfaceBuilder.EXAMPLE_CONFIG4));
+//    public static final RegistryObject<Biome> EXAMPLE_BIOME5 = BIOMES.register("example_biome5", () -> ExampleBiome5.make(EXAMPLE_SURFACE5.get(), ModSurfaceBuilder.COARSE_DIRT_DIRT_DIRT_CONFIG));
+//    public static final RegistryObject<Biome> EXAMPLE_BIOME6 = BIOMES.register("example_biome6", () -> ExampleBiome6.make(EXAMPLE_SURFACE6.get(), ModSurfaceBuilder.EXAMPLE_CONFIG6));
+//    public static final RegistryObject<Biome> FIRG = BIOMES.register("firg", () -> FirgBiome.make(ModConfiguredSurfaceBuilders.FIRG.get(), ModSurfaceBuilder.FIRG_CONFIG));
+//    public static final RegistryObject<Biome> SCRAFTH = BIOMES.register("scrafth", () -> ScrafthBiome.make(ModConfiguredSurfaceBuilders.SCRAFTH.get(), ModSurfaceBuilder.SCRAFTH_CONFIG));
+//    public static final RegistryObject<Biome> TWUST = BIOMES.register("twust", () -> TwustBiome.make(ModConfiguredSurfaceBuilders.TWUST.get(), ModSurfaceBuilder.TWUST_CONFIG));
+//    public static final RegistryObject<Biome> MUHK = BIOMES.register("muhk", () -> MuhkBiome.make(ModConfiguredSurfaceBuilders.MUHK.get(), SurfaceBuilder.GRASS_DIRT_GRAVEL_CONFIG));
+//    public static final RegistryObject<Biome> BLOMUJN = BIOMES.register("blomujn", () -> BlomujnBiome.make(ModConfiguredSurfaceBuilders.BLOMUJN.get(), ModSurfaceBuilder.BLOMUJN_CONFIG));
 
     public static final RegistryObject<Biome> RIFT_BIOME = BIOMES.register("rift", () -> ModBiomeMaker.RIFT_BIOME);
     public static final RegistryKey<Biome> MIGV = makeKey("migv");
@@ -46,6 +69,7 @@ public class BiomeInit {
     public static final RegistryKey<Biome> TWUST = makeKey("twust");
     public static final RegistryKey<Biome> MUHK = makeKey("muhk");
     public static final RegistryKey<Biome> BLOMUJN = makeKey("blomujn");
+
 
     public static RegistryKey<Biome> makeKey(String key) {
         return RegistryKey.getOrCreateKey(Registry.BIOME_KEY, new ResourceLocation(Ervin_mod_1.MOD_ID, key));

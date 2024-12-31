@@ -7,14 +7,18 @@ import com.babcsany.minecraft.ervin_mod_1.init.unused.init.UnusedBlockInit;
 import com.babcsany.minecraft.ervin_mod_1.init.unused.init.UnusedBlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.unused.init.UnusedItemInit;
 import net.minecraftforge.eventbus.api.IEventBus;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class DefaultInit {
+    public static final Logger LOGGER = LogManager.getLogger();
+
     public DefaultInit() {
         defaultRegister();
     }
 
     public DefaultInit(IEventBus modEventBus) {
-        this();
+//        this();
         defaultRegister(modEventBus);
     }
 

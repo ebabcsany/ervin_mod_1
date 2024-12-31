@@ -199,7 +199,7 @@ public abstract class AbstractZombieTraderEntity extends AgeableEntity implement
       }
       if (isSpawnItem()) {
          int nextTimeUntilNextItem = super.rand.nextInt(8321) - 1857;
-         this.dropItem(this.timeUntilNextItem, ItemInit.FIRT, nextTimeUntilNextItem);
+         this.dropItem(this.timeUntilNextItem, ItemInit.FIRT.get(), nextTimeUntilNextItem);
       }
    }
 

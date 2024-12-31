@@ -34,7 +34,7 @@ public class HuihkRodHookedTrigger extends AbstractCriterionTrigger<HuihkRodHook
    }
 
    public void trigger(ServerPlayerEntity serverPlayer, ItemStack rod, Huihk huihk, Collection<ItemStack> stacks) {
-      Entity caughtEntity = huihk.getCaughtEntity() != null ? Objects.requireNonNull(huihk.getCaughtEntity()) : huihk;
+      Entity caughtEntity = huihk;//.getCaughtEntity() != null ? Objects.requireNonNull(huihk.getCaughtEntity()) : huihk;
       LootContext lootContext = EntityPredicate.getLootContext(serverPlayer, caughtEntity);
       this.triggerListeners(serverPlayer, (instance) -> instance.test(rod, lootContext, stacks));
    }

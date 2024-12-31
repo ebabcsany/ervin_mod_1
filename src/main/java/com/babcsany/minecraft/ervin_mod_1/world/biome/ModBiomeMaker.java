@@ -17,16 +17,16 @@ import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.structure.StructureFeatures;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
-
-import java.util.function.Supplier;
+import net.minecraft.world.gen.surfacebuilders.ISurfaceBuilderConfig;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
 import static com.babcsany.minecraft.ervin_mod_1.init.ModConfiguredSurfaceBuilders.*;
 
 public class ModBiomeMaker {
-    public static final Biome RIFT_BIOME = makeRiftBiome(() -> ModConfiguredSurfaceBuilders.RIFT_SURFACE, 0.125F, 0.05F);
-    public static final Biome MIGV_BIOME = MigvBiome.make(() -> MIGV_SURFACE);
+    public static final Biome RIFT_BIOME = makeRiftBiome(ModConfiguredSurfaceBuilders.RIFT_SURFACE, 0.125F, 0.05F);
+    public static final Biome MIGV_BIOME = MigvBiome.make(MIGV_SURFACE);
     public static final Biome BHJUIG_BIOME = TheBhjuigBiome.make(() -> BHJUIG_SURFACE);
-    public static final Biome MIG_BIOME = MigBiome.make(() -> MIG_SURFACE);
+    public static final Biome MIG_BIOME = MigBiome.make(MIG_SURFACE);
     public static final Biome SRIUNK_VALLEY = SriunkValleyBiome.make(() -> SRIUNK_VALLEY_SURFACE);
     public static final Biome EXAMPLE0_BIOME = Example0Biome.make(() -> EXAMPLE0_SURFACE);
     public static final Biome END_BIOME0 = EndBiome0.make(() -> END_SURFACE0);
@@ -68,7 +68,7 @@ public class ModBiomeMaker {
         return builder;
     }
 
-    public static Biome makeRiftBiome(final Supplier<ConfiguredSurfaceBuilder<?>> surfaceBuilder, float depth, float scale) {
+    public static Biome makeRiftBiome(final ConfiguredSurfaceBuilder<?> surfaceBuilder, float depth, float scale) {
         MobSpawnInfo.Builder mobspawninfo$builder = new MobSpawnInfo.Builder();
         DefaultBiomeFeatures.withPassiveMobs(mobspawninfo$builder);
         DefaultBiomeFeatures.withBatsAndHostiles(mobspawninfo$builder);

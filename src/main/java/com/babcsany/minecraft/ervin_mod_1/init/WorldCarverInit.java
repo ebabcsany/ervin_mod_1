@@ -24,14 +24,64 @@ public class WorldCarverInit {
             Ervin_mod_1.MOD_ID);
 
     //protected static final BlockState AIR = BlockInit.AIR.get().getDefaultState();
-    private static <C extends ICarverConfig, F extends WorldCarver<C>> F register(String p_222699_0_, F p_222699_1_) {
+
+    @Deprecated
+    public static <C extends ICarverConfig, F extends WorldCarver<C>> F register(String p_222699_0_, F p_222699_1_) {
         return Registry.register(Registry.CARVER, Ervin_mod_1.identifier(p_222699_0_), p_222699_1_);
     }
-    protected Set<Block> carvableBlocks = ImmutableSet.<Block>of(Blocks.STONE, BlockItemInit.BLACK_STONE.getBlock(), BlockItemInit.BLUE_STONE.getBlock(), BlockItemInit.BROWN_STONE.getBlock(), BlockItemInit.CYAN_STONE.getBlock(), BlockItemInit.GREEN_STONE.getBlock(), BlockItemInit.LIGHT_BLUE1_STONE.getBlock(), BlockItemInit.LIGHT_BLUE_STONE.getBlock(), BlockItemInit.LIGHT_GRAY_STONE.getBlock(), BlockItemInit.LIME_STONE.getBlock(), BlockItemInit.MAGENTA_STONE.getBlock(), BlockItemInit.ORANGE_STONE.getBlock(), BlockItemInit.PINK_STONE.getBlock(), BlockItemInit.PURPLE_STONE.getBlock(), BlockItemInit.RED_STONE.getBlock(), BlockItemInit.WHITE_STONE.getBlock(), BlockItemInit.YELLOW_STONE.getBlock(), Blocks.GRANITE, Blocks.DIORITE, Blocks.ANDESITE, Blocks.DIRT, Blocks.COARSE_DIRT, Blocks.PODZOL, Blocks.GRASS_BLOCK, Blocks.TERRACOTTA, Blocks.WHITE_TERRACOTTA, Blocks.ORANGE_TERRACOTTA, Blocks.MAGENTA_TERRACOTTA, Blocks.LIGHT_BLUE_TERRACOTTA, Blocks.YELLOW_TERRACOTTA, Blocks.LIME_TERRACOTTA, Blocks.PINK_TERRACOTTA, Blocks.GRAY_TERRACOTTA, Blocks.LIGHT_GRAY_TERRACOTTA, Blocks.CYAN_TERRACOTTA, Blocks.PURPLE_TERRACOTTA, Blocks.BLUE_TERRACOTTA, Blocks.BROWN_TERRACOTTA, Blocks.GREEN_TERRACOTTA, Blocks.RED_TERRACOTTA, Blocks.BLACK_TERRACOTTA, Blocks.SANDSTONE, Blocks.RED_SANDSTONE, Blocks.MYCELIUM, Blocks.SNOW, Blocks.PACKED_ICE);
+
+    protected Set<Block> carvableBlocks = ImmutableSet.<Block>of(
+            Blocks.STONE,
+            BlockItemInit.BLACK_STONE.get(),
+            BlockItemInit.BLUE_STONE.get(),
+            BlockItemInit.BROWN_STONE.get(),
+            BlockItemInit.CYAN_STONE.get(),
+            BlockItemInit.GREEN_STONE.get(),
+            BlockItemInit.LIGHT_BLUE1_STONE.get(),
+            BlockItemInit.LIGHT_BLUE_STONE.get(),
+            BlockItemInit.LIGHT_GRAY_STONE.get(),
+            BlockItemInit.LIME_STONE.get(),
+            BlockItemInit.MAGENTA_STONE.get(),
+            BlockItemInit.ORANGE_STONE.get(),
+            BlockItemInit.PINK_STONE.get(),
+            BlockItemInit.PURPLE_STONE.get(),
+            BlockItemInit.RED_STONE.get(),
+            BlockItemInit.WHITE_STONE.get(),
+            BlockItemInit.YELLOW_STONE.get(),
+            Blocks.GRANITE,
+            Blocks.DIORITE,
+            Blocks.ANDESITE,
+            Blocks.DIRT,
+            Blocks.COARSE_DIRT,
+            Blocks.PODZOL,
+            Blocks.GRASS_BLOCK,
+            Blocks.TERRACOTTA,
+            Blocks.WHITE_TERRACOTTA,
+            Blocks.ORANGE_TERRACOTTA,
+            Blocks.MAGENTA_TERRACOTTA,
+            Blocks.LIGHT_BLUE_TERRACOTTA,
+            Blocks.YELLOW_TERRACOTTA,
+            Blocks.LIME_TERRACOTTA,
+            Blocks.PINK_TERRACOTTA,
+            Blocks.GRAY_TERRACOTTA,
+            Blocks.LIGHT_GRAY_TERRACOTTA,
+            Blocks.CYAN_TERRACOTTA,
+            Blocks.PURPLE_TERRACOTTA,
+            Blocks.BLUE_TERRACOTTA,
+            Blocks.BROWN_TERRACOTTA,
+            Blocks.GREEN_TERRACOTTA,
+            Blocks.RED_TERRACOTTA,
+            Blocks.BLACK_TERRACOTTA,
+            Blocks.SANDSTONE,
+            Blocks.RED_SANDSTONE,
+            Blocks.MYCELIUM,
+            Blocks.SNOW,
+            Blocks.PACKED_ICE
+    );
     public boolean isCarvable(BlockState p_222706_1_) {
         return this.carvableBlocks.contains(p_222706_1_.getBlock());
     }
     public static final RegistryObject<WorldCarver<ProbabilityConfig>> CAVE = CARVERS.register("cave", () -> new CaveWorldCarver(ProbabilityConfig.CODEC, 256));
     public static final RegistryObject<WorldCarver<ProbabilityConfig>> UNDERWATER_CAVE = CARVERS.register("underwater_cave", () -> new UnderwaterCaveWorldCarver(ProbabilityConfig.CODEC));
-    public static final WorldCarver<ProbabilityConfig> UNDERLAVA_CAVE = register("underlava_cave", new UnderlavaCaveWorldCarver(ProbabilityConfig.CODEC));
+    public static final RegistryObject<WorldCarver<ProbabilityConfig>> UNDERLAVA_CAVE = CARVERS.register("underlava_cave", () -> new UnderlavaCaveWorldCarver(ProbabilityConfig.CODEC));
 }

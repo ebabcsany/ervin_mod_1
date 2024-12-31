@@ -11,11 +11,11 @@
       "item": "minecraft:bone_block"
     },
     "X": {
-      "item": "minecraft:acacia_wood"
+      "tag": "minecraft:acacia_wood"
       }
     },
     "result": {
       "item": "minecraft:acacia_sapling",
-      "count": 1
+      "count": 3
     }
   }

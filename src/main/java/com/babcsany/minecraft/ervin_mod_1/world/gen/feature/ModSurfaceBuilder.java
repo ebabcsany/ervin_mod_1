@@ -167,7 +167,7 @@ public abstract class ModSurfaceBuilder<C extends ISurfaceBuilderConfig> extends
         GTRZIUZHIZJKJ(SpecialBlockInit.GTRZIUZHIZJKJ),
         END_PORTAL(Blocks.END_PORTAL),
         KALT_BLOCK(BlockItemInit.KALT_BLOCK),
-        DURT(BlockItemInit.DURT.getBlock()),
+        DURT(BlockItemInit.DURT.get()),
         SRURG(isBurnableBlockItemInit.SRURG),
         NIRTK(isBurnableBlockItemInit.NIRTK),
         NIRTKB(isBurnableBlockItemInit.NIRTKB),

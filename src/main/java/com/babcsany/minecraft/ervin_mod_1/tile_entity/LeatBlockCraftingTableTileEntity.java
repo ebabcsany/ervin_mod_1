@@ -105,7 +105,7 @@ public class LeatBlockCraftingTableTileEntity extends LockableLootTileEntity {
             this.scheduleTick();
         } else {
             BlockState blockstate = this.getBlockState();
-            if (!blockstate.matchesBlock(isBurnableBlockItemInit.LEAT_BLOCK_CRAFTING_TABLE.getBlock())) {
+            if (!blockstate.matchesBlock(isBurnableBlockItemInit.LEAT_BLOCK_CRAFTING_TABLE.get())) {
                 this.remove();
             }
         }

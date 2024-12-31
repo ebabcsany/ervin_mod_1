@@ -37,7 +37,7 @@ public class HuihkRenderer extends EntityRenderer<Huihk> {
 
    @Override
    public void render(Huihk entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
-      PlayerEntity playerentity = entityIn.getPlayer();
+      PlayerEntity playerentity = entityIn.func_234606_i_();
       if (playerentity != null) {
          EntityRendererManager manager = this.renderManager;
          matrixStackIn.push();

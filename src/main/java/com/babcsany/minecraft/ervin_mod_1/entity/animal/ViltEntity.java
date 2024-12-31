@@ -42,15 +42,16 @@ import net.minecraftforge.common.IForgeShearable;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.stream.Collectors;
 
 public class ViltEntity extends AnimalEntity implements IShearable, IForgeShearable {
-    private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(FoodItemInit.FRIM);
+    private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(FoodItemInit.FRIM.get());
     private static final DataParameter<Byte> DYE_COLOR = EntityDataManager.createKey(ViltEntity.class, DataSerializers.BYTE);
     private static final Map<DyeColor, IItemProvider> WOOL_BY_COLOR = Util.make(Maps.newEnumMap(DyeColor.class), (dyeColorIItemProviderEnumMap) -> {
-        dyeColorIItemProviderEnumMap.put(DyeColor.RED, isBurnableBlockItemInit.CRASK);
+        dyeColorIItemProviderEnumMap.put(DyeColor.RED, isBurnableBlockItemInit.CRASK.get());
         dyeColorIItemProviderEnumMap.put(DyeColor.WHITE, Blocks.WHITE_WOOL);
         dyeColorIItemProviderEnumMap.put(DyeColor.ORANGE, Blocks.ORANGE_WOOL);
         dyeColorIItemProviderEnumMap.put(DyeColor.MAGENTA, Blocks.MAGENTA_WOOL);
@@ -67,7 +68,7 @@ public class ViltEntity extends AnimalEntity implements IShearable, IForgeSheara
         dyeColorIItemProviderEnumMap.put(DyeColor.GREEN, Blocks.GREEN_WOOL);
         dyeColorIItemProviderEnumMap.put(DyeColor.BLACK, Blocks.BLACK_WOOL);
     });
-    private static final Map<DyeColor, float[]> DYE_TO_RGB = Maps.newEnumMap(Arrays.stream(DyeColor.values()).collect(Collectors.toMap((dyeColor) -> dyeColor, ViltEntity::createViltColor)));
+    private static final Map<DyeColor, float[]> DYE_TO_RGB = Maps.newEnumMap((Map<DyeColor, float[]>) Arrays.stream(DyeColor.values()).collect(Collectors.toMap((dyeColor) -> dyeColor, ViltEntity::createViltColor)));
     private int sheepTimer;
     private EatGrassGoal eatGrassGoal;
     private boolean isAttack = false;
@@ -90,21 +91,21 @@ public class ViltEntity extends AnimalEntity implements IShearable, IForgeSheara
     }
 
     protected void registerTemptAndAttackGoals() {
-        TemptGoal firstTemptGoal = new TemptGoal(this, 10.0D, Ingredient.fromItems(FoodItemInit.REAT), false);
+        TemptGoal firstTemptGoal = new TemptGoal(this, 10.0D, Ingredient.fromItems(FoodItemInit.REAT.get()), false);
         TemptGoal secondTemptGoal = new TemptGoal(this, 1.25D, false, TEMPTATION_ITEMS);
         MeleeAttackGoal meleeAttackGoal = new MeleeAttackGoal(this, 1.0D, true);
         NearestAttackableTargetGoal<PlayerEntity> attackPlayerGoal = new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true);
         addTemptGoal(4, firstTemptGoal);
         addTemptGoal(3, secondTemptGoal);
-        addTemptGoal(2, 0.3D, false, Ingredient.fromItems(SpecialBlockFoodItemInit.VIRK_BLOCK));
-        addTemptGoal(2, 0.3D/9, true, Ingredient.fromItems(isBurnableFoodItemInit.VIRK.get()));
-        addTemptGoal(1, 0.36D, true, Ingredient.fromItems(isBurnableFoodItemInit.DURG));
-        addTemptGoal(1, 0.04D, true, Ingredient.fromItems(SpecialBlockFoodItemInit.GRINT_BLOCK));
-        addTemptGoal(1, 0.02D, true, Ingredient.fromItems(SpecialBlockFoodItemInit.GRINT_SLAB));
-        addTemptGoal(1, 0.03D, true, Ingredient.fromItems(SpecialBlockFoodItemInit.GRINT_STAIRS));
-        addTemptGoal(0, 0.005D, true, Ingredient.fromItems(SpecialBlockFoodItemInit.FIRG));
-        addTemptGoal(0, 0.0025D, true, Ingredient.fromItems(SpecialBlockFoodItemInit.FIRG_SLAB));
-        addTemptGoal(0, 0.00375D, true, Ingredient.fromItems(SpecialBlockFoodItemInit.FIRG_STAIRS));
+        addTemptGoal(2, 0.3D, false, Ingredient.fromItems(SpecialBlockFoodItemInit.VIRK_BLOCK.get()));
+        addTemptGoal(2, 0.3D / 9, true, Ingredient.fromItems(isBurnableFoodItemInit.VIRK.get()));
+        addTemptGoal(1, 0.36D, true, Ingredient.fromItems(isBurnableFoodItemInit.DURG.get()));
+        addTemptGoal(1, 0.04D, true, Ingredient.fromItems(SpecialBlockFoodItemInit.GRINT_BLOCK.get()));
+        addTemptGoal(1, 0.02D, true, Ingredient.fromItems(SpecialBlockFoodItemInit.GRINT_SLAB.get()));
+        addTemptGoal(1, 0.03D, true, Ingredient.fromItems(SpecialBlockFoodItemInit.GRINT_STAIRS.get()));
+        addTemptGoal(0, 0.005D, true, Ingredient.fromItems(SpecialBlockFoodItemInit.FIRG.get()));
+        addTemptGoal(0, 0.0025D, true, Ingredient.fromItems(SpecialBlockFoodItemInit.FIRG_SLAB.get()));
+        addTemptGoal(0, 0.00375D, true, Ingredient.fromItems(SpecialBlockFoodItemInit.FIRG_STAIRS.get()));
         if (!firstTemptGoal.isRunning() && !secondTemptGoal.isRunning()) {
             this.isAttack = true;
             this.goalSelector.addGoal(5, meleeAttackGoal);
@@ -122,10 +123,6 @@ public class ViltEntity extends AnimalEntity implements IShearable, IForgeSheara
 
     private void addTemptGoal(int priority, double speed, boolean scaredByPlayerMovement, Ingredient temptItem) {
         this.goalSelector.addGoal(priority, new TemptGoal(this, speed, scaredByPlayerMovement, temptItem));
-    }
-
-    private void addTemptGoal(int priority, double speed, Ingredient temptItem, boolean scaredByPlayerMovement) {
-        this.goalSelector.addGoal(priority, new TemptGoal(this, speed, temptItem, scaredByPlayerMovement));
     }
 
     protected void updateAITasks() {
@@ -171,13 +168,13 @@ public class ViltEntity extends AnimalEntity implements IShearable, IForgeSheara
 
     protected void registerData() {
         super.registerData();
-        this.dataManager.register(DYE_COLOR, (byte)0);
+        this.dataManager.register(DYE_COLOR, (byte) 0);
     }
 
     public void writeAdditional(CompoundNBT nbt) {
         super.writeAdditional(nbt);
         nbt.putBoolean("Sheared", this.getSheared());
-        nbt.putByte("Color", (byte)this.getFleeceColor().getId());
+        nbt.putByte("Color", (byte) this.getFleeceColor().getId());
     }
 
     public void readAdditional(CompoundNBT p_70037_1_) {
@@ -192,7 +189,7 @@ public class ViltEntity extends AnimalEntity implements IShearable, IForgeSheara
 
     public void setFleeceColor(DyeColor p_175512_1_) {
         byte b0 = this.dataManager.get(DYE_COLOR);
-        this.dataManager.set(DYE_COLOR, (byte)(b0 & 240 | p_175512_1_.getId() & 15));
+        this.dataManager.set(DYE_COLOR, (byte) (b0 & 240 | p_175512_1_.getId() & 15));
     }
 
     public boolean getSheared() {
@@ -202,9 +199,9 @@ public class ViltEntity extends AnimalEntity implements IShearable, IForgeSheara
     public void setSheared(boolean p_70893_1_) {
         byte b0 = this.dataManager.get(DYE_COLOR);
         if (p_70893_1_) {
-            this.dataManager.set(DYE_COLOR, (byte)(b0 | 16));
+            this.dataManager.set(DYE_COLOR, (byte) (b0 | 16));
         } else {
-            this.dataManager.set(DYE_COLOR, (byte)(b0 & -17));
+            this.dataManager.set(DYE_COLOR, (byte) (b0 & -17));
         }
     }
 
@@ -359,13 +356,35 @@ public class ViltEntity extends AnimalEntity implements IShearable, IForgeSheara
         } else if (i < 99) {
             return DyeColor.LIME;
         } else {
-            return random.nextInt(500) == 0 ? random.nextInt(200) == 0 ? DyeColor.CYAN : DyeColor.PINK : random.nextInt(800) == 0 ? random.nextInt(300) == 0 ? random.nextInt(400) == 0 ? DyeColor.YELLOW : DyeColor.MAGENTA : DyeColor.ORANGE : DyeColor.RED;
+            return dyeColor(random, Arrays.asList(800, 500, 400, 300, 200), DyeColor.RED, DyeColor.PINK, DyeColor.ORANGE, DyeColor.YELLOW, DyeColor.MAGENTA, DyeColor.CYAN);
         }
+    }
+
+    public static DyeColor dyeColor(Random random, List<Integer> bounds, DyeColor... colors) {
+        return dyeColor(random, bounds, Arrays.asList(colors));
+    }
+
+    public static DyeColor dyeColor(Random random, List<Integer> bounds, List<DyeColor> colors) {
+        int bound = 0;
+        DyeColor color = DyeColor.RED;
+        boolean isSecondColor = false;
+        DyeColor secondColor = color;
+        if (!bounds.isEmpty() && !colors.isEmpty()) isSecondColor = true;
+        if (!bounds.isEmpty()) {
+            bound = bounds.get(0);
+            bounds.remove(0);
+        }
+        if (!colors.isEmpty()) {
+            color = colors.get(0);
+            colors.remove(0);
+        }
+        if (isSecondColor) secondColor = dyeColor(random, bounds, colors);
+        return random.nextInt(bound) == 0 ? color : secondColor;
     }
 
     public ViltEntity createChild(ServerWorld serverWorld, AgeableEntity ageable) {
         ViltEntity viltEntity = (ViltEntity) ageable;
-        ViltEntity newViltEntity = EntityInit.VILT.create(serverWorld);
+        ViltEntity newViltEntity = EntityInit.VILT.get().create(serverWorld);
         if (newViltEntity == null) throw new AssertionError();
         newViltEntity.setFleeceColor(this.getDyeColorMixFromParents(this, viltEntity));
         return newViltEntity;

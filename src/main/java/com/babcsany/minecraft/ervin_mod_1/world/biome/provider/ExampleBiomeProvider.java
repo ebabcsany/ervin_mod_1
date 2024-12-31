@@ -30,26 +30,7 @@ public class ExampleBiomeProvider extends BiomeProvider {
         })).apply(builder, builder.stable(ExampleBiomeProvider::new));
     });
     private final Layer genBiomes;
-    private static final List<RegistryKey<Biome>> biomes = ImmutableList.of(
-            BiomeInit.MIGV,
-            BiomeInit.THE_BHJUIG,
-            BiomeInit.MIG,
-            BiomeInit.SRIUNK_VALLEY,
-            BiomeInit.EXAMPLE0_BIOME,
-            BiomeInit.END_BIOME0,
-            BiomeInit.EXAMPLE_BIOME,
-            BiomeInit.EXAMPLE_BIOME1,
-            BiomeInit.EXAMPLE_BIOME2,
-            BiomeInit.EXAMPLE_BIOME3,
-            BiomeInit.EXAMPLE_BIOME4,
-            BiomeInit.EXAMPLE_BIOME5,
-            BiomeInit.EXAMPLE_BIOME6,
-            BiomeInit.FIRG,
-            BiomeInit.SCRAFTH,
-            BiomeInit.TWUST,
-            BiomeInit.MUHK,
-            BiomeInit.BLOMUJN
-    );
+    private static final List<RegistryKey<Biome>> biomes = ImmutableList.of();
     private final long seed;
     private final boolean legacyBiomes;
     private final boolean largeBiomes;

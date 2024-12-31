@@ -4,9 +4,11 @@ import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.ModBiomeFeatures;
 import com.babcsany.minecraft.ervin_mod_1.init.ModConfiguredSurfaceBuilders;
 import com.babcsany.minecraft.ervin_mod_1.world.biome.ModBiomeMaker;
+import com.babcsany.minecraft.ervin_mod_1.world.biome.surface_builders.ExampleBiomeSurfaceBuilder4;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.FirgTree;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.ModDefaultBiomeFeatures;
 import com.babcsany.minecraft.ervin_mod_1.world.biome.spawn.SpawnListEntry;
+import com.babcsany.minecraft.ervin_mod_1.world.gen.feature.ModSurfaceBuilder;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
@@ -15,15 +17,16 @@ import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.placement.*;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
 import java.util.function.Supplier;
 
 public class ExampleBiome4 {
 	public ExampleBiome4() {
-		make(() -> ModConfiguredSurfaceBuilders.EXAMPLE_SURFACE4);
+		make(ModConfiguredSurfaceBuilders.EXAMPLE_SURFACE4.get(), ModSurfaceBuilder.EXAMPLE_CONFIG4);
 	}
 
-	public static Biome make(final Supplier<ConfiguredSurfaceBuilder<?>> configuredSurfaceBuilderSupplier) {
+	public static Biome make(final ExampleBiomeSurfaceBuilder4 configuredSurfaceBuilder, SurfaceBuilderConfig config) {
 		BiomeGenerationSettings.Builder builder = new BiomeGenerationSettings.Builder();
 		MobSpawnInfo.Builder spawn = new MobSpawnInfo.Builder();
 		BiomeAmbience.Builder ambienceBuilder = new BiomeAmbience.Builder();
@@ -69,7 +72,7 @@ public class ExampleBiome4 {
 				Feature.TREE.withConfiguration(ModDefaultBiomeFeatures.FANCY_TREE_WITH_MORE_BEEHIVES_CONFIG).withPlacement(
 						Placement.CHANCE.configure(new ChanceConfig(25))).withPlacement(Placement.TOP_SOLID_HEIGHTMAP.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
 		ModDefaultBiomeFeatures.addExtraTree(builder, FirgTree.FIRG_TREE_CONFIG0, 18, 4.8f, 10);
-		builder.withSurfaceBuilder(configuredSurfaceBuilderSupplier);
+		builder.withSurfaceBuilder(configuredSurfaceBuilder.func_242929_a(config));
 
 		DefaultBiomeFeatures.withOverworldOres(builder);
 		DefaultBiomeFeatures.withExtraGoldOre(builder);
@@ -105,7 +108,7 @@ public class ExampleBiome4 {
 		ModDefaultBiomeFeatures.addExtraVilktBlock13(builder);
 		ModDefaultBiomeFeatures.addExtraVilktBlock14(builder);
 		ModDefaultBiomeFeatures.addExtraVilktBlock15(builder);
-		ModDefaultBiomeFeatures.addEmeraldOreFeature(builder, GenerationStage.Decoration.UNDERGROUND_ORES, Blocks.STONE.getDefaultState(), BlockItemInit.KALT_BLOCK.getDefaultState(), Placement.COUNT.configure(new FeatureSpreadConfig(FeatureSpread.create(20, 10))).range(30));
+		ModDefaultBiomeFeatures.addEmeraldOreFeature(builder, GenerationStage.Decoration.UNDERGROUND_ORES, Blocks.STONE.getDefaultState(), BlockItemInit.KALT_BLOCK.get().getDefaultState(), Placement.COUNT.configure(new FeatureSpreadConfig(FeatureSpread.create(20, 10))).range(30));
 		ModBiomeFeatures.addExampleFeature(builder, 10000);
 		ModDefaultBiomeFeatures.addKiomne(builder);
 		ModDefaultBiomeFeatures.addStones(builder);

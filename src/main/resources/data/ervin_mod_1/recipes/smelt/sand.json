@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "tag": "minecraft:cobblestone"
+  },
+  "result": "minecraft:sand",
+  "experience": 0.2,
+  "cookingtime": 500
+}

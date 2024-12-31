@@ -12,11 +12,11 @@ public class GreenTripWireHook extends ModTripWireHookBlock {
 
    @Override
    public Block getTripWire() {
-      return BlockInit.GREEN_TRIPWIRE;
+      return BlockInit.GREEN_TRIPWIRE.get();
    }
 
    @Override
    public Block getTripWireHook() {
-      return BlockInit.GREEN_TRIPWIRE_HOOK;
+      return BlockInit.GREEN_TRIPWIRE_HOOK.get();
    }
 }

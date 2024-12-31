@@ -12,6 +12,7 @@ import net.minecraft.item.UseAction;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.RegistryObject;
 
 public class UsingBlockItem extends BlockItem {
    private final UseAction useAction;

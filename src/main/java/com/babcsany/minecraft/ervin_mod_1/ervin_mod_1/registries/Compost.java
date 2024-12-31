@@ -14,9 +14,17 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
 public class Compost {
+
+    public static void registerCompostable(float chance, IItemProvider itemIn) {
+        ComposterBlock.CHANCES.put(itemIn.asItem(), chance);
+    }
+
+    public static <T extends IItemProvider & IForgeRegistryEntry<? super T>> void registerCompostable(float chance, RegistryObject<T> supplierIn) {
+        registerCompostable(chance, supplierIn.get());
+    }
     public static void init() {
         ComposterBlock.CHANCES.defaultReturnValue(-1.0F);
-        registerCompostable(0.3F, com.babcsany.minecraft.init.item.ItemInit.ENCHANTED_BOOK_BLACK);
+        ComposterBlock.CHANCES.put(((IItemProvider) ItemInit.EPKIN.get()).asItem(), 0.3F);
         registerCompostable(0.3F, SeedsItemInit.TARG_SEEDS);
         registerCompostable(0.35F, BlockItemInit.FRIM_LEAVES);
         registerCompostable(0.35F, BlockItemInit.FRIM_SAPLING);
@@ -36,13 +44,5 @@ public class Compost {
         registerCompostable(16.0F, SpecialBlockFoodItemInit.GRINT_BLOCK);
         registerCompostable(64.0F, isBurnableFoodItemInit.DURG);
         registerCompostable(210.0F, SpecialBlockFoodItemInit.VIRK_BLOCK);
-    }
-
-    public static void registerCompostable(float chance, IItemProvider itemIn) {
-        ComposterBlock.CHANCES.put(itemIn.asItem(), chance);
-    }
-
-    public static <T extends IItemProvider & IForgeRegistryEntry<? super T>> void registerCompostable(float chance, RegistryObject<T> supplierIn) {
-        registerCompostable(chance, supplierIn.get());
     }
 }

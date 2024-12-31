@@ -2,8 +2,10 @@ package com.babcsany.minecraft.ervin_mod_1.world.biome.biomes;
 
 import com.babcsany.minecraft.ervin_mod_1.init.ModConfiguredSurfaceBuilders;
 import com.babcsany.minecraft.ervin_mod_1.world.biome.ModBiomeMaker;
+import com.babcsany.minecraft.ervin_mod_1.world.biome.surface_builders.ScrafthBiomeSurfaceBuilder;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.ModDefaultBiomeFeatures;
 import com.babcsany.minecraft.ervin_mod_1.world.biome.spawn.SpawnListEntry;
+import com.babcsany.minecraft.ervin_mod_1.world.gen.feature.ModSurfaceBuilder;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.world.biome.Biome;
@@ -13,15 +15,16 @@ import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.carver.ConfiguredCarvers;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
 import java.util.function.Supplier;
 
 public class ScrafthBiome {
 	public ScrafthBiome() {
-		make(() -> ModConfiguredSurfaceBuilders.SCRAFTH);
+		make(ModConfiguredSurfaceBuilders.SCRAFTH.get(), ModSurfaceBuilder.SCRAFTH_CONFIG);
 	}
 
-	public static Biome make(final Supplier<ConfiguredSurfaceBuilder<?>> configuredSurfaceBuilderSupplier) {
+	public static Biome make(final ScrafthBiomeSurfaceBuilder configuredSurfaceBuilder, SurfaceBuilderConfig config) {
 		BiomeGenerationSettings.Builder biomeBuilder = new BiomeGenerationSettings.Builder();
 		MobSpawnInfo.Builder spawnInfoBuilder = new MobSpawnInfo.Builder();
 		BiomeAmbience.Builder ambienceBuilder = new BiomeAmbience.Builder();
@@ -50,7 +53,7 @@ public class ScrafthBiome {
 		biomeBuilder.withCarver(GenerationStage.Carving.AIR, ConfiguredCarvers.CAVE);
 		biomeBuilder.withCarver(GenerationStage.Carving.AIR, ConfiguredCarvers.NETHER_CAVE);
 		biomeBuilder.withCarver(GenerationStage.Carving.AIR, ConfiguredCarvers.CANYON);
-		biomeBuilder.withSurfaceBuilder(configuredSurfaceBuilderSupplier);
+		biomeBuilder.withSurfaceBuilder(configuredSurfaceBuilder.func_242929_a(config));
 
 		ModDefaultBiomeFeatures.addExtraDirt(biomeBuilder);
 		ModDefaultBiomeFeatures.addExtraScrafth(biomeBuilder);

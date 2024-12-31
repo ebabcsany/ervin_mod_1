@@ -18,7 +18,7 @@ public class BiomeInit {
 	public static final DeferredRegister<Biome> BIOMES = DeferredRegister.create(ForgeRegistries.BIOMES,
 			Ervin_mod_1.MOD_ID);
 
-	public static final RegistryObject<Biome> MIGT_BIOME = BIOMES.register("migt_biome", () -> ModBiomeMaker.MIG_BIOME);
+	public static final RegistryObject<Biome> MIGT_BIOME = BIOMES.register("migt_biome", com.babcsany.minecraft.ervin_mod_1.init.BiomeInit.MIG);
 
 	public static void registerBiomes() {
 		registerBiomeCool1(MIGT_BIOME.get(), BiomeDictionary.Type.fromVanilla(Category.PLAINS), BiomeDictionary.Type.OVERWORLD);

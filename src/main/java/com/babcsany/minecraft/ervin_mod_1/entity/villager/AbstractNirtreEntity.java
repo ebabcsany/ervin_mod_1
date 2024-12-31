@@ -41,7 +41,7 @@ public abstract class AbstractNirtreEntity extends AgeableEntity implements INPC
     protected MerchantOffers offers;
     private int despawnDelay;
     private final Inventory nirtreInventory = new Inventory(8);
-    private Item spawnEgg = ModSpawnEggItemInit.SPAWN_EGG_1;
+    private Item spawnEgg = ModSpawnEggItemInit.SPAWN_EGG_1.get();
     private Item droppedItem = null;
     private int xp = 0;
 

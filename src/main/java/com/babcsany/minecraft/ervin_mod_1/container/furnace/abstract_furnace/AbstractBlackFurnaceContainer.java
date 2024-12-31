@@ -1,17 +1,20 @@
 package com.babcsany.minecraft.ervin_mod_1.container.furnace.abstract_furnace;
 
 import com.babcsany.minecraft.ervin_mod_1.container.furnace.fuel_slot.BlackFurnaceFuelSlot;
-import com.babcsany.minecraft.ervin_mod_1.tile_entity.furnace.abstract_furnace.AbstractBlackFurnaceTileEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.IRecipeHelperPopulator;
 import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.container.*;
+import net.minecraft.inventory.container.ContainerType;
+import net.minecraft.inventory.container.FurnaceResultSlot;
+import net.minecraft.inventory.container.RecipeBookContainer;
+import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.*;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.tileentity.AbstractFurnaceTileEntity;
 import net.minecraft.util.IIntArray;
 import net.minecraft.util.IntArray;
 import net.minecraft.world.World;
@@ -157,7 +160,7 @@ public abstract class AbstractBlackFurnaceContainer extends RecipeBookContainer<
    }
 
    public boolean isFuel(ItemStack stack) {
-      return AbstractBlackFurnaceTileEntity.isFuel(stack);
+      return AbstractFurnaceTileEntity.isFuel(stack);
    }
 
    @OnlyIn(Dist.CLIENT)

@@ -11,11 +11,11 @@
       "item": "minecraft:bone_block"
     },
     "X": {
-      "item": "minecraft:dark_oak_wood"
+      "tag": "minecraft:dark_oak_wood"
       }
     },
     "result": {
       "item": "minecraft:dark_oak_sapling",
-      "count": 1
+      "count": 3
     }
   }

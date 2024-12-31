@@ -1,6 +1,7 @@
 package com.babcsany.minecraft.ervin_mod_1.init.unused;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
+import com.babcsany.minecraft.ervin_mod_1.init.unused.init.UnusedBlockInit;
 import com.babcsany.minecraft.ervin_mod_1.util.Cast;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -10,6 +11,7 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraftforge.common.ToolType;
+import net.minecraftforge.fml.RegistryObject;
 
 import java.util.ArrayList;
 
@@ -64,10 +66,11 @@ public class UnusedBlocks {
     }
 
     private static Block register(String key, Block blockIn) {
-        return registerDefault(Ervin_mod_1.getKey(key), blockIn);
+        RegistryObject<Block> registryObject = UnusedBlockInit.defaultRegistryObject(UnusedBlockInit.BLOCK_DEFERRED_REGISTER, key, () -> blockIn);
+        return (Block) registryObject.get();
     }
 
-    public static Block registerDefault(ResourceLocation key, Block blockIn) {
+    private static Block registerDefault(ResourceLocation key, Block blockIn) {
         boolean notContains = !BLOCK_PATHS.contains(key.getPath()) && !BLOCKS.contains(blockIn);
         addDefault(key.getPath(), blockIn);
         return (Block) Registry.register(Registry.BLOCK, key.toString(), blockIn);

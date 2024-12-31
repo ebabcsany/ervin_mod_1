@@ -4,9 +4,11 @@ import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.ModBiomeFeatures;
 import com.babcsany.minecraft.ervin_mod_1.init.ModConfiguredSurfaceBuilders;
 import com.babcsany.minecraft.ervin_mod_1.world.biome.ModBiomeMaker;
+import com.babcsany.minecraft.ervin_mod_1.world.biome.surface_builders.ExampleBiomeSurfaceBuilder;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.FirgTree;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.ModDefaultBiomeFeatures;
 import com.babcsany.minecraft.ervin_mod_1.world.biome.spawn.SpawnListEntry;
+import com.babcsany.minecraft.ervin_mod_1.world.gen.feature.ModSurfaceBuilder;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.world.biome.*;
@@ -15,27 +17,28 @@ import net.minecraft.world.gen.carver.ConfiguredCarvers;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.placement.*;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
 import java.util.function.Supplier;
 
 public class ExampleBiome {
 	public ExampleBiome() {
-		make(() -> ModConfiguredSurfaceBuilders.EXAMPLE_SURFACE);
+		make(ModConfiguredSurfaceBuilders.EXAMPLE_SURFACE.get(), ModSurfaceBuilder.COARSE_DIRT_DIRT_DIRT_CONFIG);
 	}
 
-	public static Biome make(final Supplier<ConfiguredSurfaceBuilder<?>> configuredSurfaceBuilderSupplier) {
+	public static Biome make(final ExampleBiomeSurfaceBuilder configuredSurfaceBuilder, SurfaceBuilderConfig config) {
 		BiomeGenerationSettings.Builder biomeBuilder = new BiomeGenerationSettings.Builder();
 		MobSpawnInfo.Builder spawnInfoBuilder = new MobSpawnInfo.Builder();
 		BiomeAmbience.Builder ambienceBuilder = new BiomeAmbience.Builder();
 		Biome.Builder builder = new Biome.Builder();
 		spawnInfoBuilder.withSpawner(EntityClassification.MONSTER, new SpawnListEntry(EntityType.ZOMBIE, 30, 1, 20));
-		spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.LIWRAY, 1, 1, 3));
-		spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.ROVENT_ENTITY, 1, 1, 3));
-		spawnInfoBuilder.withSpawner(EntityClassification.MONSTER, new SpawnListEntry(EntityInit.ZUR, 20, 1, 1));
-		spawnInfoBuilder.withSpawner(EntityClassification.WATER_CREATURE, new SpawnListEntry(EntityInit.GUBROV, 1, 1, 4));
-		spawnInfoBuilder.withSpawner(EntityClassification.MONSTER, new SpawnListEntry(EntityInit.FREIN, 1, 0, 2));
+		spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.LIWRAY.get(), 1, 1, 3));
+		spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.ROVENT_ENTITY.get(), 1, 1, 3));
+		spawnInfoBuilder.withSpawner(EntityClassification.MONSTER, new SpawnListEntry(EntityInit.ZUR.get(), 20, 1, 1));
+		spawnInfoBuilder.withSpawner(EntityClassification.WATER_CREATURE, new SpawnListEntry(EntityInit.GUBROV.get(), 1, 1, 4));
+		spawnInfoBuilder.withSpawner(EntityClassification.MONSTER, new SpawnListEntry(EntityInit.FREIN.get(), 1, 0, 2));
 		spawnInfoBuilder.withSpawner(EntityClassification.AMBIENT, new SpawnListEntry(EntityType.BAT, 40, 1, 20));
-		spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.VILT, 2, 0, 2));
+		spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.VILT.get(), 2, 0, 2));
 		DefaultBiomeFeatures.withStrongholdAndMineshaft(biomeBuilder);
 		biomeBuilder.withCarver(GenerationStage.Carving.AIR, ConfiguredCarvers.CAVE);
 		biomeBuilder.withCarver(GenerationStage.Carving.AIR, ConfiguredCarvers.NETHER_CAVE);
@@ -82,7 +85,7 @@ public class ExampleBiome {
 						.withPlacement(Placement.TOP_SOLID_HEIGHTMAP.configure(IPlacementConfig.NO_PLACEMENT_CONFIG))
 						.withChance(10).feature.get());
 		ModDefaultBiomeFeatures.addExtraTree(biomeBuilder, FirgTree.FIRG_TREE_CONFIG0, 45, 12.0f, 25);
-		biomeBuilder.withSurfaceBuilder(configuredSurfaceBuilderSupplier);
+		biomeBuilder.withSurfaceBuilder(configuredSurfaceBuilder.func_242929_a(config));
 
 		ModDefaultBiomeFeatures.addOres(biomeBuilder);
 		ModDefaultBiomeFeatures.addBlackIronOres(biomeBuilder);

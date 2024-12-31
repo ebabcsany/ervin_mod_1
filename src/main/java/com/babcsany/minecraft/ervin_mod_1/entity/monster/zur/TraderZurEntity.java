@@ -139,26 +139,26 @@ public abstract class TraderZurEntity extends TameableZurEntity implements INPC,
       this.playSound(SoundEvents.AMBIENT_BASALT_DELTAS_LOOP, this.getSoundVolume(), this.getSoundPitch());
    }
 
-   public void writeAdditional(CompoundNBT compound) {
-      super.writeAdditional(compound);
+   public void writeAdditional(CompoundNBT nbt) {
+      super.writeAdditional(nbt);
       MerchantOffers merchantoffers = this.getOffers();
       if (!merchantoffers.isEmpty()) {
-         compound.put("Offers", merchantoffers.write());
+         nbt.put("Offers", merchantoffers.write());
       }
 
-      compound.put("Inventory", this.zurInventory.write());
+      nbt.put("Inventory", this.zurInventory.write());
    }
 
    /**
     * (abstract) Protected helper method to read subclass entity data from NBT.
     */
-   public void readAdditional(CompoundNBT compound) {
-      super.readAdditional(compound);
-      if (compound.contains("Offers", 10)) {
-         this.offers = new MerchantOffers(compound.getCompound("Offers"));
+   public void readAdditional(CompoundNBT nbt) {
+      super.readAdditional(nbt);
+      if (nbt.contains("Offers", 10)) {
+         this.offers = new MerchantOffers(nbt.getCompound("Offers"));
       }
 
-      this.zurInventory.read(compound.getList("Inventory", 10));
+      this.zurInventory.read(nbt.getList("Inventory", 10));
    }
 
    @Nullable

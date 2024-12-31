@@ -6,6 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.RegistryObject;
 
 import java.util.Map;
 
@@ -21,8 +22,8 @@ public class ModBlockModelsProperties {
         registerProperty(key, new ResourceLocation(name), getter);
     }
 
-    public static void initi() {
-        registerProperty(BlockInit.FIGHIV, new ResourceLocation("time"), (state, world, living) -> {
+    public static void init() {
+        registerProperty(BlockInit.FIGHIV.get(), new ResourceLocation("time"), (state, world, living) -> {
             if (world == null) {
                 return 0.0F;
             } else {

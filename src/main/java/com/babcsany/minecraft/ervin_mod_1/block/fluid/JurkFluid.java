@@ -12,16 +12,13 @@ import net.minecraft.block.FlowingFluidBlock;
 import net.minecraft.fluid.FlowingFluid;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
-import net.minecraft.fluid.Fluids;
 import net.minecraft.item.Item;
-import net.minecraft.item.Items;
 import net.minecraft.particles.IParticleData;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
@@ -38,15 +35,15 @@ import java.util.Random;
 
 public abstract class JurkFluid extends FlowingFluid {
     public Fluid getFlowingFluid() {
-        return FluidInit.FLOWING_JURK;
+        return FluidInit.FLOWING_JURK.get();
     }
 
     public Fluid getStillFluid() {
-        return FluidInit.JURK;
+        return FluidInit.JURK.get();
     }
 
     public Item getFilledBucket() {
-        return ItemInit.JURK_BUCKET;
+        return ItemInit.JURK_BUCKET.get();
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -77,15 +74,15 @@ public abstract class JurkFluid extends FlowingFluid {
     }
 
     public int getSlopeFindDistance(IWorldReader worldIn) {
-        return 4;
+        return worldIn.getDimensionType().isUltrawarm() ? 4 : 3;
     }
 
     public BlockState getBlockState(FluidState state) {
-        return BlockInit.JURK.getDefaultState().with(FlowingFluidBlock.LEVEL, Integer.valueOf(getLevelFromState(state)));
+        return BlockInit.JURK.get().getDefaultState().with(FlowingFluidBlock.LEVEL, getLevelFromState(state));
     }
 
     public boolean isEquivalentTo(Fluid fluidIn) {
-        return fluidIn == FluidInit.JURK || fluidIn == FluidInit.FLOWING_JURK;
+        return fluidIn == FluidInit.JURK.get() || fluidIn == FluidInit.FLOWING_JURK.get();
     }
 
     public int getLevelDecreasePerBlock(IWorldReader worldIn) {
@@ -98,6 +95,21 @@ public abstract class JurkFluid extends FlowingFluid {
 
     public boolean canDisplace(FluidState fluidState, IBlockReader blockReader, BlockPos pos, Fluid fluid, Direction direction) {
         return direction == Direction.DOWN && !fluid.isIn(ModFluidTags.JURK);
+    }
+
+    protected void flowInto(IWorld worldIn, BlockPos pos, BlockState blockStateIn, Direction direction, FluidState fluidStateIn) {
+        if (direction == Direction.DOWN) {
+            FluidState fluidstate = worldIn.getFluidState(pos);
+            if (this.isIn(FluidTags.LAVA) && fluidstate.isTagged(FluidTags.WATER)) {
+                if (blockStateIn.getBlock() instanceof FlowingFluidBlock) {
+                    worldIn.setBlockState(pos, net.minecraftforge.event.ForgeEventFactory.fireFluidPlaceBlockEvent(worldIn, pos, pos, Blocks.STONE.getDefaultState()), 3);
+                }
+
+                return;
+            }
+        }
+
+        super.flowInto(worldIn, pos, blockStateIn, direction, fluidStateIn);
     }
 
     @Override

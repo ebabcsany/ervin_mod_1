@@ -21,6 +21,7 @@ package com.babcsany.minecraft.ervin_mod_1.entity.event;
 
 import com.babcsany.minecraft.ervin_mod_1.entity.projectile.Huihk;
 import com.google.common.base.Preconditions;
+import net.minecraft.entity.projectile.FishingBobberEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -43,7 +44,7 @@ public class ItemHuihkedEvent extends PlayerEvent {
     private int rodDamage;
 
     public ItemHuihkedEvent(List<ItemStack> stacks, int rodDamage, Huihk hook) {
-        super(hook.getPlayer());
+        super(hook.func_234606_i_());
         this.stacks.addAll(stacks);
         this.rodDamage = rodDamage;
         this.hook = hook;

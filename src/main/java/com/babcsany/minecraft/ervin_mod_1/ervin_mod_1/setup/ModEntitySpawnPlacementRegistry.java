@@ -23,31 +23,31 @@ public class ModEntitySpawnPlacementRegistry extends DefaultEntitySpawnPlacement
     }
 
     public static void register() {
-        registerNoRestrictionsNoLeaves(EntityInit.$_TRADER, Abstract$TraderEntity::canSpawnOn);
-        registerOnGroundNoLeaves(EntityInit.ROVENT_ENTITY, MobEntity::canSpawnOn);
-        registerNoRestrictionsNoLeaves(EntityInit.HHIJ, HhijAnimalEntity::canAnimalSpawn);
-        registerNoRestrictionsNoLeaves(EntityInit.FREIN, FreinEntity::canFreinSpawn);
-        registerNoRestrictionsNoLeaves(EntityInit.GUBROV, GubrovEntity::canGubrovSpawn);
-        registerNoRestrictionsNoLeaves(EntityInit.DGRURB, DrurbFishEntity::canSpawnOn);
-        registerNoRestrictionsNoLeaves(EntityInit.GWURST, GwurstEntity::canAnimalSpawn);
-        registerOnGroundNoLeaves(EntityInit.SHERT_ENTITY, ShertEntity::canAnimalSpawn);
-        registerNoRestrictionsNoLeaves(EntityInit.TRADER_NIRTRE_ENTITY, MobEntity::canSpawnOn);
-        registerOnGroundNoLeaves(EntityInit.VILT, AnimalEntity::canAnimalSpawn);
-        registerNoRestrictionsNoLeaves(EntityInit.WANDERING_TRADER_NIRTRE_ENTITY, MobEntity::canSpawnOn);
-        registerNoRestrictionsNoLeaves(EntityInit.ZOMBIE_TRADER_ENTITY, MobEntity::canSpawnOn);
+        registerNoRestrictionsNoLeaves(EntityInit.$_TRADER.get(), Abstract$TraderEntity::canSpawnOn);
+        registerOnGroundNoLeaves(EntityInit.ROVENT_ENTITY.get(), MobEntity::canSpawnOn);
+        registerNoRestrictionsNoLeaves(EntityInit.HHIJ.get(), HhijAnimalEntity::canAnimalSpawn);
+        registerNoRestrictionsNoLeaves(EntityInit.FREIN.get(), FreinEntity::canFreinSpawn);
+        registerNoRestrictionsNoLeaves(EntityInit.GUBROV.get(), GubrovEntity::canGubrovSpawn);
+        registerNoRestrictionsNoLeaves(EntityInit.DGRURB.get(), DrurbFishEntity::canSpawnOn);
+        registerNoRestrictionsNoLeaves(EntityInit.GWURST.get(), GwurstEntity::canAnimalSpawn);
+        registerOnGroundNoLeaves(EntityInit.SHERT_ENTITY.get(), ShertEntity::canAnimalSpawn);
+        registerNoRestrictionsNoLeaves(EntityInit.TRADER_NIRTRE_ENTITY.get(), MobEntity::canSpawnOn);
+        registerOnGroundNoLeaves(EntityInit.VILT.get(), AnimalEntity::canAnimalSpawn);
+        registerNoRestrictionsNoLeaves(EntityInit.WANDERING_TRADER_NIRTRE_ENTITY.get(), MobEntity::canSpawnOn);
+        registerNoRestrictionsNoLeaves(EntityInit.ZOMBIE_TRADER_ENTITY.get(), MobEntity::canSpawnOn);
 //        EntitySpawnPlacementRegistry.register(EntityInit.NIRTRE_ENTITY, EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canSpawnOn);
-        registerOnGroundNoLeaves(EntityInit.LIWRAY, MobEntity::canSpawnOn);
-        registerOnGroundNoLeaves(EntityInit.ZUR, ZurEntity::canAnimalSpawn);
+        registerOnGroundNoLeaves(EntityInit.LIWRAY.get(), MobEntity::canSpawnOn);
+        registerOnGroundNoLeaves(EntityInit.ZUR.get(), ZurEntity::canAnimalSpawn);
         Ervin_mod_1.register(ModEntitySpawnPlacementRegistry.class);
     }
 
     public void heightmapType() {
-        getHeightmapType(EntityInit.VILT);
-        getHeightmapType(EntityInit.LIWRAY);
+        getHeightmapType(EntityInit.VILT.get());
+        getHeightmapType(EntityInit.LIWRAY.get());
     }
 
     public void placementType() {
-        getPlacementType(EntityInit.VILT);
-        getPlacementType(EntityInit.LIWRAY);
+        getPlacementType(EntityInit.VILT.get());
+        getPlacementType(EntityInit.LIWRAY.get());
     }
 }

@@ -2,8 +2,10 @@ package com.babcsany.minecraft.ervin_mod_1.world.biome.biomes;
 
 import com.babcsany.minecraft.ervin_mod_1.init.ModBiomeFeatures;
 import com.babcsany.minecraft.ervin_mod_1.init.ModConfiguredSurfaceBuilders;
+import com.babcsany.minecraft.ervin_mod_1.world.biome.surface_builders.EndBiomeSurfaceBuilder0;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.ModDefaultBiomeFeatures;
 import com.babcsany.minecraft.ervin_mod_1.world.biome.spawn.SpawnListEntry;
+import com.babcsany.minecraft.ervin_mod_1.world.gen.feature.ModSurfaceBuilder;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.world.biome.*;
@@ -14,15 +16,17 @@ import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.placement.ChanceConfig;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
 import java.util.function.Supplier;
 
 public class EndBiome0 {
 	public EndBiome0() {
-		make(() -> ModConfiguredSurfaceBuilders.MUHK);
+		make(ModConfiguredSurfaceBuilders.END_SURFACE0.get(), SurfaceBuilder.END_STONE_CONFIG);
 	}
 
-	public static Biome make(final Supplier<ConfiguredSurfaceBuilder<?>> configuredSurfaceBuilderSupplier) {
+	public static Biome make(final EndBiomeSurfaceBuilder0 configuredSurfaceBuilder, SurfaceBuilderConfig config) {
 		BiomeGenerationSettings.Builder biomeBuilder = new BiomeGenerationSettings.Builder();
 		MobSpawnInfo.Builder spawnInfoBuilder = new MobSpawnInfo.Builder();
 		BiomeAmbience.Builder ambienceBuilder = new BiomeAmbience.Builder();
@@ -47,7 +51,7 @@ public class EndBiome0 {
 		biomeBuilder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
 				Feature.RANDOM_PATCH.withConfiguration(ModDefaultBiomeFeatures.RED_MUSHROOM_CONFIG).withPlacement(
 						Placement.COUNT_MULTILAYER.configure(new FeatureSpreadConfig(1)).chance(25)));
-		biomeBuilder.withSurfaceBuilder(configuredSurfaceBuilderSupplier);
+		biomeBuilder.withSurfaceBuilder(configuredSurfaceBuilder.func_242929_a(config));
 
 		DefaultBiomeFeatures.withOverworldOres(biomeBuilder);
 		DefaultBiomeFeatures.withExtraGoldOre(biomeBuilder);

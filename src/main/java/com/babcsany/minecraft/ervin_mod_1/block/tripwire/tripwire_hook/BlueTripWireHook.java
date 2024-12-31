@@ -12,11 +12,11 @@ public class BlueTripWireHook extends ModTripWireHookBlock {
 
    @Override
    public Block getTripWire() {
-      return BlockInit.BLUE_TRIPWIRE;
+      return BlockInit.BLUE_TRIPWIRE.get();
    }
 
    @Override
    public Block getTripWireHook() {
-      return BlockInit.BLUE_TRIPWIRE_HOOK;
+      return BlockInit.BLUE_TRIPWIRE_HOOK.get();
    }
 }

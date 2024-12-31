@@ -1,6 +1,5 @@
 package com.babcsany.minecraft.ervin_mod_1.block.furnace.abstract_furnace;
 
-import com.babcsany.minecraft.ervin_mod_1.tile_entity.furnace.abstract_furnace.AbstractBlackFurnaceTileEntity;
 import net.minecraft.block.*;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -12,6 +11,7 @@ import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.tileentity.AbstractFurnaceTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
@@ -53,8 +53,8 @@ public abstract class AbstractBlackFurnace extends ContainerBlock {
    public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
       if (stack.hasDisplayName()) {
          TileEntity tileentity = worldIn.getTileEntity(pos);
-         if (tileentity instanceof AbstractBlackFurnaceTileEntity) {
-            ((AbstractBlackFurnaceTileEntity)tileentity).setCustomName(stack.getDisplayName());
+         if (tileentity instanceof AbstractFurnaceTileEntity) {
+            ((AbstractFurnaceTileEntity)tileentity).setCustomName(stack.getDisplayName());
          }
       }
 
@@ -63,9 +63,9 @@ public abstract class AbstractBlackFurnace extends ContainerBlock {
    public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
       if (!state.matchesBlock(newState.getBlock())) {
          TileEntity tileentity = worldIn.getTileEntity(pos);
-         if (tileentity instanceof AbstractBlackFurnaceTileEntity) {
-            InventoryHelper.dropInventoryItems(worldIn, pos, (AbstractBlackFurnaceTileEntity)tileentity);
-            ((AbstractBlackFurnaceTileEntity)tileentity).func_235640_a_(worldIn, Vector3d.copyCentered(pos));
+         if (tileentity instanceof AbstractFurnaceTileEntity) {
+            InventoryHelper.dropInventoryItems(worldIn, pos, (AbstractFurnaceTileEntity)tileentity);
+            ((AbstractFurnaceTileEntity)tileentity).grantStoredRecipeExperience(worldIn, Vector3d.copyCentered(pos));
             worldIn.updateComparatorOutputLevel(pos, this);
          }
 

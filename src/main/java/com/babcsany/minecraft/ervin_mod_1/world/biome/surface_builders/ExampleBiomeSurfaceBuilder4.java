@@ -28,16 +28,16 @@ public class ExampleBiomeSurfaceBuilder4 extends SurfaceBuilder<SurfaceBuilderCo
 		if (i == 0) {
 			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock,
 					defaultFluid, seaLevel, seed,
-					new SurfaceBuilderConfig(com.babcsany.minecraft.init.BlockInit.FIRT_BLOCK.getDefaultState(),
-							isBurnableBlockItemInit.LEAT_BLOCK_CRAFTING_TABLE.getBlock().getDefaultState(), BlockInit.GRITH_BLOCK.getDefaultState()
+					new SurfaceBuilderConfig(com.babcsany.minecraft.init.BlockInit.FIRT_BLOCK.get().getDefaultState(),
+							isBurnableBlockItemInit.LEAT_BLOCK_CRAFTING_TABLE.get().getDefaultState(), BlockInit.GRITH_BLOCK.get().getDefaultState()
 					));
 		} else {
 			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock,
 					defaultFluid, seaLevel, seed,
 					new SurfaceBuilderConfig(
 							i == 1 ? Blocks.DIRT.getDefaultState()
-									: BlockItemInit.DURT.getBlock().getDefaultState(),
-							isBurnableBlockItemInit.VILTDROP_BLOCK.getDefaultState(), BlockItemInit_.EPKIN.getDefaultState()
+									: BlockItemInit.DURT.get().getDefaultState(),
+							isBurnableBlockItemInit.VILTDROP_BLOCK.get().getDefaultState(), BlockItemInit_.EPKIN.get().getDefaultState()
 					));
 		}
 	}

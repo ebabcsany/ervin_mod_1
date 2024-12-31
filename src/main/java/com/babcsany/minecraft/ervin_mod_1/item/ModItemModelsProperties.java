@@ -15,7 +15,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 public class ModItemModelsProperties {
     public static void init() {
-        ItemModelsProperties.registerProperty(BlockItemInit_.FIGHIV, new ResourceLocation("time"), (stack, world, living) -> {
+        ItemModelsProperties.registerProperty(BlockItemInit_.FIGHIV.get(), new ResourceLocation("time"), (stack, world, living) -> {
             Entity entity = living != null ? living : stack.getAttachedEntity();
             if (entity == null) {
                 return 0.0F;
@@ -33,7 +33,7 @@ public class ModItemModelsProperties {
                 }
             }
         });
-        ItemModelsProperties.registerProperty(isBurnableItemInit.HUIHK_ROD, new ResourceLocation("cast"), (stack, world, living) -> {
+        ItemModelsProperties.registerProperty(isBurnableItemInit.HUIHK_ROD.get(), new ResourceLocation("cast"), (stack, world, living) -> {
             if (living == null) {
                 return 0.0F;
             } else {
@@ -46,6 +46,6 @@ public class ModItemModelsProperties {
                 return (flag || flag1) && living instanceof PlayerEntity && ModPlayer.huihk != null ? 1.0F : 0.0F;
             }
         });
-        ItemModelsProperties.registerProperty(ItemInit.TURG_SHIELD, new ResourceLocation("blocking"), (stack, world, living) -> living != null && living.isHandActive() && living.getActiveItemStack() == stack ? 1.0F : 0.0F);
+        ItemModelsProperties.registerProperty(ItemInit.TURG_SHIELD.get(), new ResourceLocation("blocking"), (stack, world, living) -> living != null && living.isHandActive() && living.getActiveItemStack() == stack ? 1.0F : 0.0F);
     }
 }

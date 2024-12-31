@@ -6,6 +6,7 @@ import com.babcsany.minecraft.ervin_mod_1.init.ModConfiguredSurfaceBuilders;
 import com.babcsany.minecraft.ervin_mod_1.world.biome.ModBiomeMaker;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.ModDefaultBiomeFeatures;
 import com.babcsany.minecraft.ervin_mod_1.world.biome.spawn.SpawnListEntry;
+import com.babcsany.minecraft.ervin_mod_1.world.gen.feature.ModSurfaceBuilder;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.world.biome.*;
@@ -15,15 +16,17 @@ import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.structure.StructureFeatures;
 import net.minecraft.world.gen.placement.*;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
 import java.util.function.Supplier;
 
 public class BlomujnBiome {
     public BlomujnBiome() {
-        make(() -> ModConfiguredSurfaceBuilders.BLOMUJN);
+        make(ModConfiguredSurfaceBuilders.BLOMUJN.get(), ModSurfaceBuilder.BLOMUJN_CONFIG);
     }
 
-    public static Biome make(Supplier<ConfiguredSurfaceBuilder<?>> configuredSurfaceBuilderSupplier) {
+    public static Biome make(final SurfaceBuilder<SurfaceBuilderConfig> configuredSurfaceBuilder, SurfaceBuilderConfig config) {
         BiomeGenerationSettings.Builder biomeBuilder = new BiomeGenerationSettings.Builder();
         MobSpawnInfo.Builder spawnInfoBuilder = new MobSpawnInfo.Builder();
         BiomeAmbience.Builder ambienceBuilder = new BiomeAmbience.Builder();
@@ -31,9 +34,9 @@ public class BlomujnBiome {
         float temperature = 6.86428648622135309935614699977474100243124564054F;
         spawnInfoBuilder.withSpawner(EntityClassification.MONSTER, new SpawnListEntry(EntityType.ZOMBIE, 10, 2, 5));
         spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityType.BEE, 20, 2, 10));
-        spawnInfoBuilder.withSpawnCost(EntityInit.VILT, 5, 12);
-        spawnInfoBuilder.withSpawnCost(EntityInit.HHIJ, 5, 12);
-        spawnInfoBuilder.withSpawnCost(EntityInit.LIWRAY, 5, 12);
+        spawnInfoBuilder.withSpawnCost(EntityInit.VILT.get(), 5, 12);
+        spawnInfoBuilder.withSpawnCost(EntityInit.HHIJ.get(), 5, 12);
+        spawnInfoBuilder.withSpawnCost(EntityInit.LIWRAY.get(), 5, 12);
         biomeBuilder.withCarver(GenerationStage.Carving.AIR,
                 ConfiguredCarvers.CAVE);
         biomeBuilder.withCarver(GenerationStage.Carving.AIR,
@@ -54,7 +57,7 @@ public class BlomujnBiome {
                 Feature.RANDOM_PATCH.withConfiguration(ModDefaultBiomeFeatures.RED_MUSHROOM_CONFIG).withPlacement(
                         Placement.COUNT_NOISE_BIASED.configure(new TopSolidWithNoiseConfig(1, 0.125F, 2))));
         ModDefaultBiomeFeatures.addExtraFirgTree(biomeBuilder, 9, 4.7f, 15);
-        biomeBuilder.withSurfaceBuilder(configuredSurfaceBuilderSupplier);
+        biomeBuilder.withSurfaceBuilder(configuredSurfaceBuilder.func_242929_a(config));
 
         DefaultBiomeFeatures.withOverworldOres(biomeBuilder);
         ModDefaultBiomeFeatures.addBlackIronOres(biomeBuilder);

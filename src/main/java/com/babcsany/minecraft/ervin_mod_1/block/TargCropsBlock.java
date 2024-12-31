@@ -206,7 +206,7 @@ public class TargCropsBlock extends BushBlock implements IGrowable {
    }
 
    protected IItemProvider getSeedsItem() {
-      return SeedsItemInit.TARG_SEEDS;
+      return SeedsItemInit.TARG_SEEDS.get();
    }
 
    @Override

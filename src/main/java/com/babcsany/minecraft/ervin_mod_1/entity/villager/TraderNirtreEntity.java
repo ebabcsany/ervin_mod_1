@@ -35,7 +35,7 @@ public class TraderNirtreEntity extends AbstractNirtreEntity {
 
     public TraderNirtreEntity(EntityType<? extends TraderNirtreEntity> type, World worldIn) {
         super(type, worldIn);
-        super.setSpawnEgg(ModSpawnEggItemInit.TRADER_NIRTRE_SPAWN_EGG);
+        super.setSpawnEgg((SpawnEggItem) ModSpawnEggItemInit.TRADER_NIRTRE_SPAWN_EGG.get());
         this.forceSpawn = true;
     }
 
@@ -78,7 +78,7 @@ public class TraderNirtreEntity extends AbstractNirtreEntity {
     @Nullable
     @Override
     public AgeableEntity createChild(ServerWorld world, AgeableEntity mate) {
-        return EntityInit.TRADER_NIRTRE_ENTITY.create(world);
+        return EntityInit.TRADER_NIRTRE_ENTITY.get().create(world);
     }
 
     public void writeAdditional(CompoundNBT compound) {
@@ -134,7 +134,7 @@ public class TraderNirtreEntity extends AbstractNirtreEntity {
         super.livingTick();
         this.wingRotation += this.wingRotDelta * 2.0F;
         int nextTimeUntilNextItem = this.rand.nextInt(12000) + 12000;
-        Item droppedItem = SpecialItemInit.TFJHU_1;
+        Item droppedItem = SpecialItemInit.TFJHU_1.get();
         super.dropItem(this.timeUntilNextItem, droppedItem, nextTimeUntilNextItem);
         this.timeUntilNextItem = nextTimeUntilNextItem;
     }

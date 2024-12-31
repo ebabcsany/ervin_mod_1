@@ -50,7 +50,7 @@ public class UnderlavaCaveWorldCarver extends CaveWorldCarver {
                   iChunk.setBlockState(mutable, Blocks.MAGMA_BLOCK.getDefaultState(), false);
                   iChunk.getBlocksToBeTicked().scheduleTick(mutable, Blocks.MAGMA_BLOCK, 0);
                } else {
-                  iChunk.setBlockState(mutable, BlockItemInit.DURT.getBlock().getDefaultState(), false);
+                  iChunk.setBlockState(mutable, BlockItemInit.DURT.get().getDefaultState(), false);
                }
 
                return true;

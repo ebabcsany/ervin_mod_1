@@ -3,6 +3,7 @@ package com.babcsany.minecraft.ervin_mod_1.init.minecraft.block.item;
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.init.unused.UnusedBlockItems;
 import com.babcsany.minecraft.ervin_mod_1.init.unused.UnusedItems;
+import com.babcsany.minecraft.ervin_mod_1.init.unused.init.UnusedItemInit;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.BlockItem;
@@ -13,10 +14,12 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class MinecraftBlockNamedItemInit {
-    public static final Item NETHER_PORTAL = register("nether_portal", Blocks.NETHER_PORTAL);
-    public static final Item END_PORTAL = register("end_portal", Blocks.END_PORTAL);
-    public static final Item END_GATEWAY = register("end_gateway", Blocks.END_GATEWAY);
-    public static final Item WATER = register("water", Blocks.WATER);
+    private static final DeferredRegister<Item> ITEMS = UnusedItemInit.ITEM_DEFERRED_REGISTER;
+
+    public static final RegistryObject<Item> NETHER_PORTAL = ITEMS.register("nether_portal", () -> new BlockNamedItem(Blocks.NETHER_PORTAL, (new Item.Properties())));
+    public static final RegistryObject<Item> END_PORTAL = ITEMS.register("end_portal", () -> new BlockNamedItem(Blocks.END_PORTAL, (new Item.Properties())));
+    public static final RegistryObject<Item> END_GATEWAY = ITEMS.register("end_gateway", () -> new BlockNamedItem(Blocks.END_GATEWAY, (new Item.Properties())));
+    public static final RegistryObject<Item> WATER = ITEMS.register("water", () -> new BlockNamedItem(Blocks.WATER, (new Item.Properties())));
 
     public static Item register(String name, Block blockIn) {
         return register(name, new BlockNamedItem(blockIn, (new Item.Properties())));

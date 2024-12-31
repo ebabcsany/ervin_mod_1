@@ -4,8 +4,10 @@ import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.ModConfiguredSurfaceBuilders;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.world.biome.ModBiomeMaker;
+import com.babcsany.minecraft.ervin_mod_1.world.biome.surface_builders.SriunkValleySurfaceBuilder;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.ModDefaultBiomeFeatures;
 import com.babcsany.minecraft.ervin_mod_1.world.biome.spawn.SpawnListEntry;
+import com.babcsany.minecraft.ervin_mod_1.world.gen.feature.ModSurfaceBuilder;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.world.biome.*;
@@ -15,15 +17,16 @@ import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.structure.StructureFeatures;
 import net.minecraft.world.gen.placement.*;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
 import java.util.function.Supplier;
 
 public class SriunkValleyBiome {
    public SriunkValleyBiome() {
-      make(() -> ModConfiguredSurfaceBuilders.SRIUNK_VALLEY_SURFACE);
+      make(ModConfiguredSurfaceBuilders.SRIUNK_VALLEY_SURFACE.get(), ModSurfaceBuilder.SRIUNK_VALLEY_CONFIG);
    }
 
-   public static Biome make(final Supplier<ConfiguredSurfaceBuilder<?>> surfaceBuilderSupplier) {
+   public static Biome make(final SriunkValleySurfaceBuilder surfaceBuilder, SurfaceBuilderConfig config) {
       BiomeGenerationSettings.Builder generationSettingsBuilder = new BiomeGenerationSettings.Builder();
       MobSpawnInfo.Builder spawnInfoBuilder = new MobSpawnInfo.Builder();
       BiomeAmbience.Builder ambienceBuilder = new BiomeAmbience.Builder();
@@ -41,10 +44,10 @@ public class SriunkValleyBiome {
       generationSettingsBuilder.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.RANDOM_PATCH.withConfiguration(ModDefaultBiomeFeatures.BLUE_ORCHID_CONFIG).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(3, 0, 128))).withChance(12).feature.get());
       generationSettingsBuilder.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.RANDOM_PATCH.withConfiguration(ModDefaultBiomeFeatures.TALL_GRASS_CONFIG).withPlacement(Placement.COUNT.configure(new FeatureSpreadConfig(10))));
       generationSettingsBuilder.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.RANDOM_PATCH.withConfiguration(ModDefaultBiomeFeatures.NETHER_SOUL_FIRE).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(35, 2, 10))));
-      generationSettingsBuilder.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NETHERRACK, BlockItemInit.KALT_BLOCK.getDefaultState(), 33)).withPlacement(Placement.MAGMA.configure(new NoPlacementConfig())));
+      generationSettingsBuilder.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NETHERRACK, BlockItemInit.KALT_BLOCK.get().getDefaultState(), 33)).withPlacement(Placement.MAGMA.configure(new NoPlacementConfig())));
       generationSettingsBuilder.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.SPRING_FEATURE.withConfiguration(ModDefaultBiomeFeatures.ENCLOSED_NETHER_SPRING_CONFIG).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(14, 20, 128))));
-      generationSettingsBuilder.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NETHERRACK, isBurnableBlockItemInit.SRIUNK_BLOCK.getDefaultState(), 12)).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(4, 0, 32))));
-      generationSettingsBuilder.withSurfaceBuilder(surfaceBuilderSupplier);
+      generationSettingsBuilder.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NETHERRACK, isBurnableBlockItemInit.SRIUNK_BLOCK.get().getDefaultState(), 12)).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(4, 0, 32))));
+      generationSettingsBuilder.withSurfaceBuilder(surfaceBuilder.func_242929_a(config));
       DefaultBiomeFeatures.withBadlandsStructures(generationSettingsBuilder);
       DefaultBiomeFeatures.withFrozenTopLayer(generationSettingsBuilder);
       spawnInfoBuilder.withSpawner(EntityClassification.MONSTER, new SpawnListEntry(EntityType.SKELETON, 20, 5, 5));

@@ -3,8 +3,10 @@ package com.babcsany.minecraft.ervin_mod_1.world.biome.biomes;
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.ModBiomeFeatures;
 import com.babcsany.minecraft.ervin_mod_1.init.ModConfiguredSurfaceBuilders;
+import com.babcsany.minecraft.ervin_mod_1.world.biome.surface_builders.MigBiomeSurfaceBuilder;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.ModDefaultBiomeFeatures;
 import com.babcsany.minecraft.ervin_mod_1.world.biome.spawn.SpawnListEntry;
+import com.babcsany.minecraft.ervin_mod_1.world.gen.feature.ModSurfaceBuilder;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.world.biome.*;
@@ -18,23 +20,28 @@ import net.minecraft.world.gen.placement.ChanceConfig;
 import net.minecraft.world.gen.placement.NoPlacementConfig;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
 import java.util.function.Supplier;
 
 public class MigvBiome {
     public MigvBiome() {
-        make(() -> ModConfiguredSurfaceBuilders.MIG_SURFACE);
+        make(ModConfiguredSurfaceBuilders.MIG_SURFACE, ModSurfaceBuilder.MIG_CONFIG);
     }
 
-    public static Biome make(final Supplier<ConfiguredSurfaceBuilder<?>> surfaceBuilderSupplier) {
+    public static <C extends SurfaceBuilderConfig> Biome make(final ConfiguredSurfaceBuilder<C> surfaceBuilder, final C config) {
+        return make(surfaceBuilder.builder.func_242929_a(config));
+    }
+
+    public static <C extends SurfaceBuilderConfig> Biome make(final ConfiguredSurfaceBuilder<C> surfaceBuilder) {
         BiomeGenerationSettings.Builder generationSettingsBuilder = new BiomeGenerationSettings.Builder();
         MobSpawnInfo.Builder spawnInfoBuilder = new MobSpawnInfo.Builder();
         BiomeAmbience.Builder ambienceBuilder = new BiomeAmbience.Builder();
         Biome.Builder builder = new Biome.Builder();
         spawnInfoBuilder.withSpawner(EntityClassification.MONSTER, new SpawnListEntry(EntityType.ZOMBIE, 10, 2, 5));
         spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityType.BEE, 20, 2, 10));
-        spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.VILT, 4, 2, 5));
-        spawnInfoBuilder.withSpawner(EntityClassification.MONSTER, new SpawnListEntry(EntityInit.ZUR, 8, 2, 4));
+        spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.VILT.get(), 4, 2, 5));
+        spawnInfoBuilder.withSpawner(EntityClassification.MONSTER, new SpawnListEntry(EntityInit.ZUR.get(), 8, 2, 4));
         generationSettingsBuilder.withCarver(GenerationStage.Carving.AIR, ConfiguredCarvers.CAVE);
         generationSettingsBuilder.withCarver(GenerationStage.Carving.AIR, ConfiguredCarvers.NETHER_CAVE);
         DefaultBiomeFeatures.withBadlandsStructures(generationSettingsBuilder);
@@ -50,7 +57,7 @@ public class MigvBiome {
                 Feature.RANDOM_PATCH.withConfiguration(ModDefaultBiomeFeatures.RED_MUSHROOM_CONFIG).withPlacement(
                         Placement.HEIGHTMAP_SPREAD_DOUBLE.configure(NoPlacementConfig.INSTANCE)));
         ModDefaultBiomeFeatures.addExtraFirgTree(generationSettingsBuilder, 9, 4.7f, 15);
-        generationSettingsBuilder.withSurfaceBuilder(surfaceBuilderSupplier);
+        generationSettingsBuilder.withSurfaceBuilder(surfaceBuilder);
 
         DefaultBiomeFeatures.withCommonOverworldBlocks(generationSettingsBuilder);
         DefaultBiomeFeatures.withExtraGoldOre(generationSettingsBuilder);

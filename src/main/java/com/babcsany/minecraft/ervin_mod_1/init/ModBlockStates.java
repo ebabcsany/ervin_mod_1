@@ -8,9 +8,11 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
+import net.minecraftforge.fml.RegistryObject;
+
+import java.util.function.Supplier;
 
 public class ModBlockStates {
-    private static final ModBlockStates STATES = getInstance();
     private final String name;
     private final BlockState state;
     public static final BlockState AIR = Blocks.AIR.getDefaultState();
@@ -56,19 +58,23 @@ public class ModBlockStates {
         this.state = stateIn;
     }
 
-    private static ModBlockStates states(String name, Block blockIn) {
+    public static ModBlockStates states(String name, Block blockIn) {
         return new ModBlockStates(name, blockIn);
     }
 
-    private static ModBlockStates states(Block blockIn) {
+    public static ModBlockStates states(String name, RegistryObject<Block> blockIn) {
+        return new ModBlockStates(name, blockIn.orElse(AIR.getBlock()));
+    }
+
+    public static ModBlockStates states(Block blockIn) {
         return new ModBlockStates(blockIn);
     }
 
-    private static BlockState state(Block blockIn) {
+    public static BlockState state(Block blockIn) {
         return blockIn.getDefaultState();
     }
 
-    private static ModBlockStates getInstance() {
+    public static ModBlockStates getInstance() {
         return new ModBlockStates();
     }
 

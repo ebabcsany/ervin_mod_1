@@ -5,6 +5,7 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.UseAction;
+import net.minecraftforge.fml.RegistryObject;
 
 public class UsingAndBurningBlockItem extends UsingBlockItem {
    private final int burnTime;

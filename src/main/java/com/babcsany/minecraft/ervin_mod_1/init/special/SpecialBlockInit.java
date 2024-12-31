@@ -16,8 +16,8 @@ public class SpecialBlockInit {
 
     public static final DeferredRegister<Block> SPECIAL_BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Ervin_mod_1.MOD_ID);
 
-    public static final Block GTRZIUZHIZJKJ = register("gtrziuzhizjkj", new Gtrziuzhizjkj(Block.Properties.create(Material.ROCK, MaterialColor.MAGENTA).harvestTool(ToolType.PICKAXE).hardnessAndResistance(5000.0F, 150000.0F).sound(SoundType.ROOT)));
-    public static final Block TFJHU_1 = register("tfjhu/tfjhu_1", new Block(Block.Properties.create(Material.ROCK).speedFactor(3).sound(SoundType.CHAIN)));
+    public static final RegistryObject<Block> GTRZIUZHIZJKJ = SPECIAL_BLOCKS.register("gtrziuzhizjkj", () -> new Gtrziuzhizjkj(Block.Properties.create(Material.ROCK, MaterialColor.MAGENTA).harvestTool(ToolType.PICKAXE).hardnessAndResistance(5000.0F, 150000.0F).sound(SoundType.ROOT)));
+    public static final RegistryObject<Block> TFJHU_1 = SPECIAL_BLOCKS.register("tfjhu/tfjhu_1", () -> new Block(Block.Properties.create(Material.ROCK).speedFactor(3).sound(SoundType.CHAIN)));
 
     public static Block register(String name, Block block) {
         return UnusedBlocks.registerDefault(string(name), block);

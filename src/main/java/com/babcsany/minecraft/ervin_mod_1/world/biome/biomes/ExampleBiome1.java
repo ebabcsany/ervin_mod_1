@@ -4,9 +4,11 @@ import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.ModBiomeFeatures;
 import com.babcsany.minecraft.ervin_mod_1.init.ModConfiguredSurfaceBuilders;
 import com.babcsany.minecraft.ervin_mod_1.world.biome.ModBiomeMaker;
+import com.babcsany.minecraft.ervin_mod_1.world.biome.surface_builders.ExampleBiomeSurfaceBuilder1;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.FirgTree;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.ModDefaultBiomeFeatures;
 import com.babcsany.minecraft.ervin_mod_1.world.biome.spawn.SpawnListEntry;
+import com.babcsany.minecraft.ervin_mod_1.world.gen.feature.ModSurfaceBuilder;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.world.biome.*;
@@ -15,15 +17,16 @@ import net.minecraft.world.gen.carver.ConfiguredCarvers;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.placement.*;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
 import java.util.function.Supplier;
 
 public class ExampleBiome1 {
 	public ExampleBiome1() {
-		make(() -> ModConfiguredSurfaceBuilders.EXAMPLE_SURFACE1);
+		make(ModConfiguredSurfaceBuilders.EXAMPLE_SURFACE1.get(), ModSurfaceBuilder.EXAMPLE_CONFIG1);
 	}
 
-	public static Biome make(final Supplier<ConfiguredSurfaceBuilder<?>> configuredSurfaceBuilderSupplier) {
+	public static Biome make(final ExampleBiomeSurfaceBuilder1 configuredSurfaceBuilder, SurfaceBuilderConfig config) {
 		BiomeGenerationSettings.Builder biomeBuilder = new BiomeGenerationSettings.Builder();
 		MobSpawnInfo.Builder spawnInfoBuilder = new MobSpawnInfo.Builder();
 		BiomeAmbience.Builder ambienceBuilder = new BiomeAmbience.Builder();
@@ -37,11 +40,11 @@ public class ExampleBiome1 {
 		spawnInfoBuilder.withSpawner(EntityClassification.MISC, new SpawnListEntry(EntityType.ARROW, 25, 20, 50));
 		spawnInfoBuilder.withSpawner(EntityClassification.MONSTER, new SpawnListEntry(EntityType.CAT, 30, 20, 50));
 
-		spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.ZUR, 5, 5, 20));
+		spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.ZUR.get(), 5, 5, 20));
 		spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityType.BEE, 20, 2, 10));
-		spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.LIWRAY, 15, 10, 30));
-		spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.VILT, 30, 15, 40));
-		spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.SRACH_ENTITY, 8, 8, 16));
+		spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.LIWRAY.get(), 15, 10, 30));
+		spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.VILT.get(), 30, 15, 40));
+		spawnInfoBuilder.withSpawner(EntityClassification.CREATURE, new SpawnListEntry(EntityInit.SRACH_ENTITY.get(), 8, 8, 16));
 		DefaultBiomeFeatures.withBadlandsStructures(biomeBuilder);
 		biomeBuilder.withCarver(GenerationStage.Carving.AIR, ConfiguredCarvers.UNDERWATER_CAVE);
 		biomeBuilder.withCarver(GenerationStage.Carving.AIR, ConfiguredCarvers.NETHER_CAVE);
@@ -77,7 +80,7 @@ public class ExampleBiome1 {
 				Feature.TREE.withConfiguration(ModDefaultBiomeFeatures.FIRG_TREE_WITH_MORE_BEEHIVES_CONFIG1).withPlacement(
 						Placement.CHANCE.configure(new ChanceConfig(250))));
 		ModDefaultBiomeFeatures.addExtraTree(biomeBuilder, FirgTree.FIRG_TREE_CONFIG0, 18, 4.8f, 10);
-		biomeBuilder.withSurfaceBuilder(configuredSurfaceBuilderSupplier);
+		biomeBuilder.withSurfaceBuilder(configuredSurfaceBuilder.func_242929_a(config));
 
 		DefaultBiomeFeatures.withOverworldOres(biomeBuilder);
 		DefaultBiomeFeatures.withExtraGoldOre(biomeBuilder);

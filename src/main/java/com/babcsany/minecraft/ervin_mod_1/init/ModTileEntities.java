@@ -17,7 +17,7 @@ import java.util.function.Supplier;
 
 public class ModTileEntities {
     private static final Logger LOGGER = LogManager.getLogger();
-    public static final TileEntityType<LeatBlockCraftingTableTileEntity> LEAT_BLOCK_CRAFTING_TABLE = register("barrel", Builder.create(LeatBlockCraftingTableTileEntity::new, isBurnableBlockItemInit.LEAT_BLOCK_CRAFTING_TABLE.getBlock()));
+    public static final TileEntityType<LeatBlockCraftingTableTileEntity> LEAT_BLOCK_CRAFTING_TABLE = register("barrel", Builder.create(LeatBlockCraftingTableTileEntity::new, isBurnableBlockItemInit.LEAT_BLOCK_CRAFTING_TABLE.get()));
 
     @Deprecated
     public static <T extends TileEntity> TileEntityType<T> register(String key, Builder<T> builder) {

@@ -24,16 +24,16 @@ public class FirgBiomeSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig
 		if (i == 0) {
 			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock,
 					defaultFluid, seaLevel, seed,
-					new SurfaceBuilderConfig(BlockInit.FIRG_SLAB.getDefaultState(),
-							BlockInit.FIRG.getDefaultState(), BlockInit.FIRG_STAIRS.getDefaultState()
+					new SurfaceBuilderConfig(BlockInit.FIRG_SLAB.get().getDefaultState(),
+							BlockInit.FIRG.get().getDefaultState(), BlockInit.FIRG_STAIRS.get().getDefaultState()
 					));
 		} else {
 			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock,
 					defaultFluid, seaLevel, seed,
 					new SurfaceBuilderConfig(
-							i == 1 ? BlockInit.FIRG.getDefaultState()
-									: BlockInit.FIRG_SLAB.getDefaultState(),
-							BlockInit.FIRG_STAIRS.getDefaultState(), BlockInit.FIRG.getDefaultState()
+							i == 1 ? BlockInit.FIRG.get().getDefaultState()
+									: BlockInit.FIRG_SLAB.get().getDefaultState(),
+							BlockInit.FIRG_STAIRS.get().getDefaultState(), BlockInit.FIRG.get().getDefaultState()
 					));
 		}
 	}

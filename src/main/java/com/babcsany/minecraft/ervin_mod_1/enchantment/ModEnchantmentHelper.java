@@ -6,10 +6,10 @@ import net.minecraft.item.ItemStack;
 
 public class ModEnchantmentHelper extends EnchantmentHelper {
     public static int getHuihkingLuckBonus(ItemStack stack) {
-        return getEnchantmentLevel(ModEnchantments.LUCK_OF_THE_SEA, stack);
+        return getEnchantmentLevel(ModEnchantments.LUCK_OF_THE_SEA.get(), stack);
     }
 
     public static int getHuihkingSpeedBonus(ItemStack stack) {
-        return getEnchantmentLevel(ModEnchantments.LURE, stack);
+        return getEnchantmentLevel(ModEnchantments.LURE.get(), stack);
     }
 }

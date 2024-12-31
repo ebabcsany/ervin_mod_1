@@ -48,8 +48,8 @@ public class HuihkingPredicate {
         } else if (!(entity instanceof Huihk)) {
             return false;
         } else {
-            Huihk huihk = (Huihk)entity;
-            return this.field_234636_b_ == huihk.isCanCatched();
+//            Huihk huihk = (Huihk)entity;
+            return false;//this.field_234636_b_ == huihk.isCanCatched();
         }
     }
 }

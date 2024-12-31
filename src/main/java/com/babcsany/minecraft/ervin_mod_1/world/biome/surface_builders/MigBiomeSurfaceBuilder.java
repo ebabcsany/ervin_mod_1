@@ -28,15 +28,15 @@ public class MigBiomeSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig>
 					defaultFluid, seaLevel, seed,
 					new SurfaceBuilderConfig(
 							Blocks.GRASS_BLOCK.getDefaultState(),
-							BlockItemInit.KALT_BLOCK.getDefaultState(),
+							BlockItemInit.KALT_BLOCK.get().getDefaultState(),
 							Blocks.WATER.getDefaultState()));
 		} else {
 			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock,
 					defaultFluid, seaLevel, seed,
 					new SurfaceBuilderConfig(
 							Blocks.GRASS_BLOCK.getDefaultState(),
-							isBurnableBlockItemInit.SRURG.getDefaultState(),
-							BlockItemInit.GNITH_BLOCK.getDefaultState()
+							isBurnableBlockItemInit.SRURG.get().getDefaultState(),
+							BlockItemInit.GNITH_BLOCK.get().getDefaultState()
 					));
 		}
 	}

@@ -62,14 +62,14 @@ public class BreakingParticle extends SpriteTexturedParticle {
    @OnlyIn(Dist.CLIENT)
    public static class FreinFactory implements IParticleFactory<BasicParticleType> {
       public Particle makeParticle(BasicParticleType typeIn, ClientWorld worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-         return new BreakingParticle(worldIn, x, y, z, new ItemStack(ItemInit.FREIN_BALL));
+         return new BreakingParticle(worldIn, x, y, z, new ItemStack(ItemInit.FREIN_BALL.get()));
       }
    }
 
    @OnlyIn(Dist.CLIENT)
    public static class FreinFactory1 implements IParticleFactory<BasicParticleType> {
       public Particle makeParticle(BasicParticleType typeIn, ClientWorld worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-         return new BreakingParticle(worldIn, x, y, z, new ItemStack(ItemInit.FREIN_BALL));
+         return new BreakingParticle(worldIn, x, y, z, new ItemStack(ItemInit.FREIN_BALL.get()));
       }
    }
 }

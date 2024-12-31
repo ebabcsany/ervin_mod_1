@@ -8,7 +8,6 @@ import com.babcsany.minecraft.ervin_mod_1.data.ModLootTableProvider;
 import com.babcsany.minecraft.ervin_mod_1.enchantment.ModEnchantments;
 import com.babcsany.minecraft.ervin_mod_1.entity.ModEntityClassification;
 import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.registries.Compost;
-import com.babcsany.minecraft.ervin_mod_1.ervin_mod_1.setup.ModEntitySpawnPlacementRegistry;
 import com.babcsany.minecraft.ervin_mod_1.init.*;
 import com.babcsany.minecraft.ervin_mod_1.init.block.animation.colors.AnimationBlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.container.ContainerInit;
@@ -48,35 +47,34 @@ import com.babcsany.minecraft.ervin_mod_1.init.minecraft.block.item.MinecraftBlo
 import com.babcsany.minecraft.ervin_mod_1.init.minecraft.item.spawn_egg.SpawnEggItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.special.SpecialBlockInit;
 import com.babcsany.minecraft.ervin_mod_1.init.special.SpecialItemInit;
-import com.babcsany.minecraft.ervin_mod_1.item.ModItemModelsProperties;
 import com.babcsany.minecraft.ervin_mod_1.network.play.ModServerPlayNetHandler;
 import com.babcsany.minecraft.ervin_mod_1.world.biome.ModBiomeMaker;
 import com.babcsany.minecraft.ervin_mod_1.world.biome.provider.ModBiomeProvider;
-import com.babcsany.minecraft.init.BlockItemInit;
 import com.babcsany.minecraft.init.EntityInit;
 import com.babcsany.minecraft.init.ParticleInit;
 import com.babcsany.minecraft.init.*;
 import com.babcsany.minecraft.init.item.ItemInit;
 import com.babcsany.minecraft.init.lc.block.blocks.H_u_fBlockInit;
 import net.minecraftforge.eventbus.api.IEventBus;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public class Init extends DefaultInit {
-    public static final Logger LOGGER = LogManager.getLogger();
-
     public Init(IEventBus modEventBus) {
-        super();
-        register(modEventBus);
+        super(modEventBus);
         default_register(modEventBus);
+        register(modEventBus);
     }
 
     public static void register(IEventBus modEventBus) {
-        com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit.register();
+        BlockItemInit.register();
         ModBlockStates.register();
         ModConfiguredFeatures.register();
-        SoundInit.register();
+//        SoundInit.register();
+        BlockInit.DEFERRED_REGISTER.register(modEventBus);
+        FeatureInit.FEATURES.register(modEventBus);
+        EffectInit.EFFECTS.register(modEventBus);
         BiomeInit.BIOMES.register(modEventBus);
+        ModEnchantments.ENCHANTMENTS.register(modEventBus);
+        ModBiomeFeatures.FEATURES.register(modEventBus);
         IMolaBlocks.BLOCKS.register(modEventBus);
         com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit.BLOCKS.register(modEventBus);
         BlockItemInit_.BLOCK_ITEMS.register(modEventBus);
@@ -113,9 +111,9 @@ public class Init extends DefaultInit {
         EnderToolItemInit.register();
         SpecialItemInit.SPECIAL_ITEMS.register(modEventBus);
         $ItemInit.register();
-        SeedsItemInit.register();
         CropItemInit.register();
         com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit.ITEMS.register(modEventBus);
+//        Compost.init();
         MilkBlockFoodItemInit.register();
         MilkFoodItemInit.FOOD_ITEMS.register(modEventBus);
         MinecraftBlockNamedItemInit.register();
@@ -130,47 +128,18 @@ public class Init extends DefaultInit {
     }
 
     public void default_register(IEventBus modEventBus) {
-        BlockInit.register();
         H_u_fBlockInit.H_U_F_BLOCKS.register(modEventBus);
         BlockInit BLOCKS = BlockInit.BLOCKS;
-        BlockItemInit.ITEMS.register(modEventBus);
+        BlockItems.ITEMS.register(modEventBus);
         EntityInit ENTITIES = EntityInit.ENTITIES;
         ItemInit.REGISTER_ITEMS.register(modEventBus);
-        FeatureInit.FEATURES.register(modEventBus);
-        EffectInit EFFECTS = EffectInit.EFFECTS;
+        SeedsItemInit.SEEDS.register(modEventBus);
         ParticleInit PARTICLES = ParticleInit.PARTICLES;
         PaintingInit.PAINTINGS.register(modEventBus);
         registers();
     }
 
     public void registers() {
-//        Minecraft minecraft = Minecraft.getInstance();
-//        String worldName = "";
-//        SaveFormat.LevelSave saveFormat$levelSave;
-//        try {
-//            saveFormat$levelSave = minecraft.getSaveLoader().getLevelSave(worldName);
-//        } catch (IOException ioexception2) {
-//            LOGGER.warn("Failed to read level {} data", worldName, ioexception2);
-//            SystemToast.func_238535_a_(minecraft, worldName);
-//            minecraft.displayGuiScreen((Screen) null);
-//            return;
-//        }
-//
-//        Function<SaveFormat.LevelSave, DatapackCodec> quadFunction = Minecraft::loadDataPackCodec;
-//        Function4<SaveFormat.LevelSave, DynamicRegistries.Impl, IResourceManager, DatapackCodec, IServerConfiguration> worldStorage = Minecraft::loadWorld;
-//        boolean vanillaOnly = false;
-//        DatapackCodec dataPackCodec = quadFunction.apply((SaveFormat.LevelSave) worldStorage);
-//        ResourcePackList resourcePackList = new ResourcePackList(new ServerPackFinder(), new FolderPackFinder(saveFormat$levelSave.resolveFilePath(FolderName.DATAPACKS).toFile(), IPackNameDecorator.WORLD));
-//
-//        try {
-//            DatapackCodec dataPackCodec1 = MinecraftServer.func_240772_a_(resourcePackList, dataPackCodec, vanillaOnly);
-//            CompletableFuture<DataPackRegistries> completableFuture = ModDataPackRegistries.func_240961_a_(resourcePackList.func_232623_f_(), Commands.EnvironmentType.DEDICATED, 2, Util.getServerExecutor(), Runnable::run);
-//            minecraft.driveUntil(completableFuture::isDone);
-//            DataPackRegistries dataPackRegistries = completableFuture.get();
-//            IServerConfiguration iServerConfiguration = worldStorage.apply(saveFormat$levelSave, DynamicRegistries.func_239770_b_(), dataPackRegistries.getResourceManager(), dataPackCodec1);
-//        } catch (ExecutionException | InterruptedException interruptedException) {
-//            resourcePackList.close();
-//        }
         ModBiomeProvider.register();
         ModConfiguredSurfaceBuilders.register();
         ModBiomeMaker.register();
@@ -188,11 +157,8 @@ public class Init extends DefaultInit {
         ModBiomeFeatures.register();
         ModEntityRendererManager.register();
         ModServerPlayNetHandler.register();
-        ModEntitySpawnPlacementRegistry.register();
 //        FireBlock.init();
-        ModItemModelsProperties.init();
 //        ModBlockModelsProperties.init();
-        Compost.init();
     }
 
     public static Init init(IEventBus modEventBus) {

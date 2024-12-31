@@ -1,29 +1,32 @@
 package com.babcsany.minecraft.ervin_mod_1.world.biome.biomes;
 
 import com.babcsany.minecraft.ervin_mod_1.init.ModConfiguredSurfaceBuilders;
+import com.babcsany.minecraft.ervin_mod_1.world.biome.surface_builders.ExampleBiomeSurfaceBuilder6;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.ModDefaultBiomeFeatures;
+import com.babcsany.minecraft.ervin_mod_1.world.gen.feature.ModSurfaceBuilder;
 import net.minecraft.world.biome.*;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.carver.ConfiguredCarvers;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
 import java.util.function.Supplier;
 
 public final class ExampleBiome6 {
 
    public ExampleBiome6() {
-      make(() -> ModConfiguredSurfaceBuilders.EXAMPLE_SURFACE6);
+      make(ModConfiguredSurfaceBuilders.EXAMPLE_SURFACE6.get(), ModSurfaceBuilder.EXAMPLE_CONFIG6);
    }
 
-   public static Biome make(final Supplier<ConfiguredSurfaceBuilder<?>> configuredSurfaceBuilderSupplier) {
+   public static Biome make(final ExampleBiomeSurfaceBuilder6 configuredSurfaceBuilder, SurfaceBuilderConfig config) {
       BiomeGenerationSettings.Builder generationSettingsBuilder = new BiomeGenerationSettings.Builder();
       BiomeAmbience.Builder ambienceBuilder = new BiomeAmbience.Builder();
       Biome.Builder builder = new Biome.Builder();
       generationSettingsBuilder.withFeature(GenerationStage.Decoration.TOP_LAYER_MODIFICATION, Feature.VOID_START_PLATFORM.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
       generationSettingsBuilder.withCarver(GenerationStage.Carving.AIR, ConfiguredCarvers.CAVE);
-      generationSettingsBuilder.withSurfaceBuilder(configuredSurfaceBuilderSupplier);
+      generationSettingsBuilder.withSurfaceBuilder(configuredSurfaceBuilder.func_242929_a(config));
       ModDefaultBiomeFeatures.addNirtkb1(generationSettingsBuilder);
       DefaultBiomeFeatures.withFrozenTopLayer(generationSettingsBuilder);
       ambienceBuilder.setWaterColor(10456252);

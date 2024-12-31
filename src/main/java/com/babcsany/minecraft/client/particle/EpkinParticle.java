@@ -35,7 +35,7 @@ public class EpkinParticle extends SpriteTexturedParticle {
    @OnlyIn(Dist.CLIENT)
    public static class Factory implements IParticleFactory<BasicParticleType> {
       public Particle makeParticle(BasicParticleType typeIn, ClientWorld worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-         return new EpkinParticle(worldIn, x, y, z, BlockItemInit_.EPKIN.asItem());
+         return new EpkinParticle(worldIn, x, y, z, BlockItemInit_.EPKIN.get().asItem());
       }
    }
 }

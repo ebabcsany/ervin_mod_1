@@ -20,7 +20,7 @@ public class EntitySpawnPlacementRegistry extends net.minecraft.entity.EntitySpa
    public EntitySpawnPlacementRegistry() {
       ENTITY_SPAWN_PLACEMENT_REGISTRY = new EntitySpawnPlacementRegistry();
       entitySpawnPlacementRegistry(ENTITY_SPAWN_PLACEMENT_REGISTRY);
-      System.out.println(getHeightmapType(EntityInit.SRECH_ENTITY));
+      System.out.println(getHeightmapType(EntityInit.SRECH_ENTITY.get()));
    }
 
    @SuppressWarnings("UnusedDeclaration")

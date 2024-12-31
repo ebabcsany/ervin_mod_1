@@ -12,8 +12,8 @@ import java.util.Random;
 public class JazzTree extends Tree {
 
 	public static final BaseTreeFeatureConfig JAZZ_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
-			new SimpleBlockStateProvider(BlockItemInit.JAZZ_LOG.getDefaultState()),
-			new SimpleBlockStateProvider(BlockItemInit.JAZZ_LEAVES.getDefaultState()),
+			new SimpleBlockStateProvider(BlockItemInit.JAZZ_LOG.get().getDefaultState()),
+			new SimpleBlockStateProvider(BlockItemInit.JAZZ_LEAVES.get().getDefaultState()),
 			new BlobFoliagePlacer(FeatureSpread.create(20, 1), FeatureSpread.create(4, 10), 1),
 			new StraightTrunkPlacer(8, 15, 20),
             new TwoLayerFeature(6, 8, 4))).setIgnoreVines().build();

@@ -48,16 +48,16 @@ public class Grithk extends Item {
 
 	@Override
 	public ActionResultType onItemUse(ItemUseContext context) {
-		if (context.getWorld().getBlockState(context.getPos()).getBlock() == BlockInit.GRITH_BLOCK) {
+		if (context.getWorld().getBlockState(context.getPos()).getBlock() == BlockInit.GRITH_BLOCK.get()) {
 			for (ItemStack stack : Objects.requireNonNull(context.getPlayer()).inventory.mainInventory) {
 				if (stack.isEmpty()) {
-					context.getPlayer().addItemStackToInventory(new ItemStack(isBurnableSpecialItemInit.GRITH));
+					context.getPlayer().addItemStackToInventory(new ItemStack(isBurnableSpecialItemInit.GRITH.get()));
 					context.getItem().damageItem(1, context.getPlayer(), (playerIn) -> playerIn.sendBreakAnimation(context.getHand()));
 					return ActionResultType.SUCCESS;
 				}
 			}
 			context.getWorld().addEntity(new ItemEntity(context.getWorld(), context.getPos().getX(),
-					context.getPos().getY(), context.getPos().getZ(), new ItemStack(isBurnableSpecialItemInit.GRITH)));
+					context.getPos().getY(), context.getPos().getZ(), new ItemStack(isBurnableSpecialItemInit.GRITH.get())));
 			return ActionResultType.SUCCESS;
 		}
 		return ActionResultType.FAIL;

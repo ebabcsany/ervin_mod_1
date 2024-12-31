@@ -17,10 +17,10 @@ public class FoodItemInit {
     public static final RegistryObject<Item> MRONT = FOODS.register("meat/mront", () -> new Item((new Item.Properties()).food(Foods.MRONT).group(net.minecraft.item.ItemGroup.FOOD).group(ModItemGroup.ERVIN_MOD_1_SEARCH)));
     public static final RegistryObject<Item> COOKED_MRONT = FOODS.register("meat/cooked_mront", () -> new Item((new Item.Properties()).food(Foods.COOKED_MRONT).group(net.minecraft.item.ItemGroup.FOOD).group(ModItemGroup.ERVIN_MOD_1_SEARCH)));
     public static final RegistryObject<Item> COOKED_STEEF = FOODS.register("meat/cooked_steef", () -> new Item((new Item.Properties()).food(Foods.COOKED_STEEF).group(net.minecraft.item.ItemGroup.FOOD).group(ModItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final Item FRIM = UnusedItems.register("frim", new Item((new Item.Properties()).food(Foods.FRIM).group(ItemGroup.FOOD).group(ModItemGroup.ERVIN_MOD_1_SEARCH)));
+    public static final RegistryObject<Item> FRIM = FOODS.register("frim", () -> new Item((new Item.Properties()).food(Foods.FRIM).group(ItemGroup.FOOD).group(ModItemGroup.ERVIN_MOD_1_SEARCH)));
     public static final RegistryObject<Item> VOLMINT = FOODS.register("volmint", () -> new Item((new Item.Properties()).food(Foods.VOLMINT).group(net.minecraft.item.ItemGroup.FOOD).group(ModItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final Item REAT = UnusedItems.register("reat", new Item((new Item.Properties()).food(Foods.REAT).group(ItemGroup.FOOD).group(ModItemGroup.ERVIN_MOD_1_SEARCH)));
+    public static final RegistryObject<Item> REAT = FOODS.register("reat", () -> new Item((new Item.Properties()).food(Foods.REAT).group(ItemGroup.FOOD).group(ModItemGroup.ERVIN_MOD_1_SEARCH)));
     public static final RegistryObject<Item> GUBROV = FOODS.register("gubrov", () -> new Item((new Item.Properties()).food(Foods.GUBROV).group(net.minecraft.item.ItemGroup.FOOD).group(ModItemGroup.ERVIN_MOD_1_SEARCH)));
     public static final RegistryObject<Item> COOKED_GUBROV = FOODS.register("cooked_gubrov", () -> new Item((new Item.Properties()).food(Foods.COOKED_GUBROV).group(net.minecraft.item.ItemGroup.FOOD).group(ModItemGroup.ERVIN_MOD_1_SEARCH)));
-    public static final Item JAZZ_FRUIT = UnusedItems.register("jazz_fruit", new Item((new Item.Properties()).food(Foods.JAZZ_FRUIT).group(ItemGroup.FOOD).group(ModItemGroup.ERVIN_MOD_1_SEARCH)));
+    public static final RegistryObject<Item> JAZZ_FRUIT = FOODS.register("jazz_fruit", () -> new Item((new Item.Properties()).food(Foods.JAZZ_FRUIT).group(ItemGroup.FOOD).group(ModItemGroup.ERVIN_MOD_1_SEARCH)));
 }

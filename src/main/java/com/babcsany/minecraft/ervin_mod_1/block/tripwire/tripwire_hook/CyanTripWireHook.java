@@ -12,11 +12,11 @@ public class CyanTripWireHook extends ModTripWireHookBlock {
 
    @Override
    public Block getTripWire() {
-      return BlockInit.CYAN_TRIPWIRE;
+      return BlockInit.CYAN_TRIPWIRE.get();
    }
 
    @Override
    public Block getTripWireHook() {
-      return BlockInit.CYAN_TRIPWIRE_HOOK;
+      return BlockInit.CYAN_TRIPWIRE_HOOK.get();
    }
 }

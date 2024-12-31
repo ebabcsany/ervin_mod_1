@@ -7,7 +7,7 @@ import com.babcsany.minecraft.ervin_mod_1.init.item.isBurnableItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.spawn_egg.ModSpawnEggItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.special.SpecialItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.tool.isBurnableSpecialToolItemInit;
-import com.babcsany.minecraft.init.BlockItemInit;
+import com.babcsany.minecraft.init.BlockItems;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
@@ -38,12 +38,12 @@ import java.util.stream.Collectors;
 
 public class ZurTrades {
    public static final Int2ObjectMap<ZurTrades.ITrade[]> trade = gatAsIntMap(ImmutableMap.of(1, new ZurTrades.ITrade[]{
-           new ZurTrades.ItemsForKirtsTrade(ModSpawnEggItemInit.DRURB_SPAWN_EGG, 5, 1, 50, 2),
-           new ZurTrades.ItemsForItemsTrade(ItemInit.SIRK, isBurnableItemInit.TIRSK, 1, 50, 2),
+           new ZurTrades.ItemsForKirtsTrade(ModSpawnEggItemInit.DRURB_SPAWN_EGG.get(), 5, 1, 50, 2),
+           new ZurTrades.ItemsForItemsTrade(ItemInit.SIRK.get(), isBurnableItemInit.TIRSK.get(), 1, 50, 2),
            new ZurTrades.ItemsForBedrocksTrade(SpecialItemInit.GRITHK.get(), 5, 1, 50, 10),
-           new ZurTrades.ItemsForItemsTrade(ItemInit.KIRT, Items.PRISMARINE_CRYSTALS, 5, 6, 100, 50),
-           new ZurTrades.ItemsForTirskBlocksAndItemsTrade(SpecialItemInit.GRITHK.get(), 1, isBurnableSpecialToolItemInit.TERAT, 4, 30, 30),
-           new ZurTrades.ItemsForTirskBlocksAndItemsTrade(ItemInit.SIRK, 1, ModSpawnEggItemInit.ROVENT_SPAWN_EGG, 4, 30, 30),
+           new ZurTrades.ItemsForItemsTrade(ItemInit.KIRT.get(), Items.PRISMARINE_CRYSTALS, 5, 6, 100, 50),
+           new ZurTrades.ItemsForTirskBlocksAndItemsTrade(SpecialItemInit.GRITHK.get(), 1, isBurnableSpecialToolItemInit.TERAT.get(), 4, 30, 30),
+           new ZurTrades.ItemsForTirskBlocksAndItemsTrade(ItemInit.SIRK.get(), 1, ModSpawnEggItemInit.ROVENT_SPAWN_EGG.get(), 4, 30, 30),
    }));
 
    private static Int2ObjectMap<ZurTrades.ITrade[]> gatAsIntMap(ImmutableMap<Integer, ZurTrades.ITrade[]> p_221238_0_) {
@@ -110,7 +110,7 @@ public class ZurTrades {
       }
 
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         ItemStack itemstack = new ItemStack(ItemInit.RUBY, this.price);
+         ItemStack itemstack = new ItemStack(ItemInit.RUBY.get(), this.price);
          ItemStack itemstack1 = new ItemStack(this.tradeItem);
          if (this.tradeItem instanceof DyeableArmorItem) {
             List<DyeItem> list = Lists.newArrayList();
@@ -172,7 +172,7 @@ public class ZurTrades {
 
       public MerchantOffer getOffer(Entity trader, Random rand) {
          ItemStack itemstack = new ItemStack(this.tradeItem, this.count);
-         return new MerchantOffer(itemstack, new ItemStack(ItemInit.RUBY), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(itemstack, new ItemStack(ItemInit.RUBY.get()), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 
@@ -238,7 +238,7 @@ public class ZurTrades {
                FilledMapItem.func_226642_a_(serverworld, itemstack);
                MapData.addTargetDecoration(itemstack, blockpos, "+", this.mapDecorationType);
                itemstack.setDisplayName(new TranslationTextComponent("filled_map." + this.structureName.getStructureName().toLowerCase(Locale.ROOT)));
-               return new MerchantOffer(new ItemStack(ItemInit.RUBY, this.count), new ItemStack(Items.COMPASS), itemstack, this.maxUses, this.xpValue, 0.2F);
+               return new MerchantOffer(new ItemStack(ItemInit.RUBY.get(), this.count), new ItemStack(Items.COMPASS), itemstack, this.maxUses, this.xpValue, 0.2F);
             } else {
                return null;
             }
@@ -335,7 +335,7 @@ public class ZurTrades {
             j = 64;
          }
 
-         return new MerchantOffer(new ItemStack(ItemInit.RUBY, j), new ItemStack(Items.BOOK), itemstack, 12, this.xpValue, 0.2F);
+         return new MerchantOffer(new ItemStack(ItemInit.RUBY.get(), j), new ItemStack(Items.BOOK), itemstack, 12, this.xpValue, 0.2F);
       }
       public MerchantOffer getOffer1(Entity trader, Random rand) {
          List<Enchantment> list = Registry.ENCHANTMENT.stream().filter(Enchantment::canVillagerTrade).collect(Collectors.toList());
@@ -351,7 +351,7 @@ public class ZurTrades {
             j = 64;
          }
 
-         return new MerchantOffer(new ItemStack(ItemInit.RUBY, j), new ItemStack(Items.BOOK), itemstack, 12, this.xpValue, 0.2F);
+         return new MerchantOffer(new ItemStack(ItemInit.RUBY.get(), j), new ItemStack(Items.BOOK), itemstack, 12, this.xpValue, 0.2F);
       }
    }
 
@@ -407,8 +407,8 @@ public class ZurTrades {
          int i = 5 + rand.nextInt(15);
          ItemStack itemstack = EnchantmentHelper.addRandomEnchantment(rand, new ItemStack(this.sellingStack.getItem()), i, false);
          int j = Math.min(this.rubyCount + i, 2048);
-         ItemStack itemstack1 = new ItemStack(ItemInit.RUBY, j);
-         ItemStack itemstack2 = new ItemStack(ItemInit.RUBY, j);
+         ItemStack itemstack1 = new ItemStack(ItemInit.RUBY.get(), j);
+         ItemStack itemstack2 = new ItemStack(ItemInit.RUBY.get(), j);
          return new MerchantOffer(itemstack1, itemstack, this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
@@ -445,7 +445,7 @@ public class ZurTrades {
 
       @Nullable
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         return new MerchantOffer(new ItemStack(BlockItemInit.FIRT_BLOCK, this.firtCount), new ItemStack(this.buyingItem.getItem(), this.buyingItemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack(BlockItems.FIRT_BLOCK.get(), this.firtCount), new ItemStack(this.buyingItem.getItem(), this.buyingItemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 
@@ -476,7 +476,7 @@ public class ZurTrades {
 
       @Nullable
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         return new MerchantOffer(new ItemStack(isBurnableBlockItemInit.TIRSK_BLOCK, this.tirskBlockCount), new ItemStack(this.buyingItem.getItem(), this.buyingItemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack(isBurnableBlockItemInit.TIRSK_BLOCK.get(), this.tirskBlockCount), new ItemStack(this.buyingItem.getItem(), this.buyingItemCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 
@@ -583,7 +583,7 @@ public class ZurTrades {
       }
 
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         return new MerchantOffer(new ItemStack(isBurnableFoodItemInit.DURG, this.durgCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack(isBurnableFoodItemInit.DURG.get(), this.durgCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 
@@ -699,7 +699,7 @@ public class ZurTrades {
       }
 
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         return new MerchantOffer(new ItemStack(isBurnableItemInit.RUGT, this.rugtCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack(isBurnableItemInit.RUGT.get(), this.rugtCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 
@@ -737,7 +737,7 @@ public class ZurTrades {
       }
 
       public MerchantOffer getOffer(Entity trader, Random rand) {
-         return new MerchantOffer(new ItemStack(ItemInit.KIRT, this.kirtCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+         return new MerchantOffer(new ItemStack(ItemInit.KIRT.get(), this.kirtCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
       }
    }
 

@@ -36,14 +36,14 @@ public class ModClientPlayNetHandler extends ClientPlayNetHandler {
         double d2 = packetIn.getZ();
         EntityType<?> entitytype = packetIn.getType();
         Entity entity;
-        if (entitytype == EntityInit.HUIHK) {
+        /*if (entitytype == EntityInit.HUIHK.get()) {
             Entity entity1 = this.getWorld().getEntityByID(packetIn.getData());
             if (entity1 instanceof PlayerEntity) {
                 entity = new Huihk(this.getWorld(), (PlayerEntity) entity1, d0, d1, d2);
             } else {
                 entity = null;
             }
-        } else if (entitytype == EntityInit.TAWROL) {
+        } else if (entitytype == EntityInit.TAWROL.get()) {
             entity = new TawrolEntity(this.getWorld(), d0, d1, d2);
         } else if (entitytype == EntityType.ITEM) {
             entity = new ItemEntity(this.getWorld(), d0, d1, d2);
@@ -60,7 +60,7 @@ public class ModClientPlayNetHandler extends ClientPlayNetHandler {
             entity.setEntityId(i);
             entity.setUniqueId(packetIn.getUniqueId());
             this.getWorld().addEntity(i, entity);
-        }
+        }*/
     }
 
     public static void register() {

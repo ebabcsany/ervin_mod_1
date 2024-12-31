@@ -19,25 +19,25 @@ public abstract class ModItemGroup {
    public static final ItemGroup ERVIN_MOD_1_SEARCH = (new ItemGroup(14, "ervin_mod_1_search") {
       @OnlyIn(Dist.CLIENT)
       public ItemStack createIcon() {
-         return new ItemStack(isBurnableItemInit.SRIFROUL);
+         return new ItemStack(isBurnableItemInit.SRIFROUL.get());
       }
    }).setBackgroundImageName("item_search.png");
    public static final ItemGroup SEARCH = (new ItemGroup(15, "search1") {
       @OnlyIn(Dist.CLIENT)
       public ItemStack createIcon() {
-         return new ItemStack(isBurnableItemInit.SRIFROUL);
+         return new ItemStack(isBurnableItemInit.SRIFROUL.get());
       }
    }).setBackgroundImageName("item_search.png");
    public static final ItemGroup ERVIN_MOD_1 = (new ItemGroup(12, "ervin_mod_1") {
       @OnlyIn(Dist.CLIENT)
       public ItemStack createIcon() {
-         return new ItemStack(isBurnableItemInit.SRIFROUL);
+         return new ItemStack(isBurnableItemInit.SRIFROUL.get());
       }
    }).setGroupPath("ervin_mod_1_blocks");
    public static final net.minecraft.item.ItemGroup ERVIN_MOD_1_ITEMS = (new net.minecraft.item.ItemGroup(13, "ervin_mod_1_items") {
       @OnlyIn(Dist.CLIENT)
       public ItemStack createIcon() {
-         return new ItemStack(ItemInit.FIRT);
+         return new ItemStack(ItemInit.FIRT.get());
       }
    }).setGroupPath("ervin_mod_1_items");
    public static final net.minecraft.item.ItemGroup BREFK = new net.minecraft.item.ItemGroup(16, "brefk") {
@@ -49,7 +49,7 @@ public abstract class ModItemGroup {
    public static final net.minecraft.item.ItemGroup ERVIN_MOD_1_SPAWN_EGGS = new net.minecraft.item.ItemGroup(17, "ervin_mod_1_spawn_eggs") {
       @OnlyIn(Dist.CLIENT)
       public ItemStack createIcon() {
-         return new ItemStack(ModSpawnEggItemInit.DRURB_SPAWN_EGG);
+         return new ItemStack(ModSpawnEggItemInit.DRURB_SPAWN_EGG.get());
       }
    };
    /*public static final net.minecraft.item.ItemGroup REDSTONE = new net.minecraft.item.ItemGroup(2, "redstone") {

@@ -13,7 +13,7 @@ public class BlockNamedItemInit {
 
     public static final DeferredRegister<Item> BLOCK_ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Ervin_mod_1.MOD_ID);
 
-    public static final RegistryObject<Item> FI_RT_PLOCK = BLOCK_ITEMS.register("fi_rt_plock", () -> new BlockItem(H_u_fBlockInit.H_U_F_UUUUUUUU, (new Item.Properties()).isImmuneToFire().group(ModItemGroup.ERVIN_MOD_1_SEARCH)));
+    public static final RegistryObject<Item> FI_RT_PLOCK = BLOCK_ITEMS.register("fi_rt_plock", () -> new BlockItem(H_u_fBlockInit.H_U_F_UUUUUUUU.get(), (new Item.Properties()).isImmuneToFire().group(ModItemGroup.ERVIN_MOD_1_SEARCH)));
 
 
 }

@@ -30,7 +30,7 @@ public enum UnusedItemTier implements IItemTier {
             Items.RED_DYE,
             Items.WHITE_DYE,
             Items.YELLOW_DYE,
-            ItemInit.LIGHT_BLUE1_DYE
+            ItemInit.LIGHT_BLUE1_DYE.get()
     ));
 
     private final int harvestLevel;

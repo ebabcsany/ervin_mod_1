@@ -19,9 +19,9 @@ public class ModNetworkManager extends SimpleChannelInboundHandler<IPacket<?>> {
     }
 
     public void tick() {
-        if (getNetHandler() instanceof ModServerPlayNetHandler) {
+//        if (getNetHandler() instanceof ModServerPlayNetHandler) {
             ((ModServerPlayNetHandler) getNetHandler()).tick();
-        }
+//        }
     }
 
     @Override

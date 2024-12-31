@@ -35,12 +35,11 @@ import javax.annotation.Nullable;
 
 public class ZurEntity extends AbstractZurEntity {
 
-    public ZurEntity(EntityType<ZurEntity> p_i48549_1_, World p_i48549_2_) {
-        super(p_i48549_1_, p_i48549_2_);
+    public ZurEntity(EntityType<ZurEntity> type, World worldIn) {
+        super(type, worldIn);
     }
 
     protected void registerGoals() {
-        super.registerGoals();
         this.goalSelector.addGoal(1, new ZurTradeWithPlayerGoal(this));
         this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 9.0F));
         this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
@@ -189,21 +188,21 @@ public class ZurEntity extends AbstractZurEntity {
     @Nullable
     @Override
     public AgeableEntity createChild(ServerWorld serverWorld, AgeableEntity ageableEntity) {
-        return EntityInit.ZUR.create(serverWorld);
+        return EntityInit.ZUR.get().create(serverWorld);
     }
 
-    public void writeAdditional(CompoundNBT compound) {
-        super.writeAdditional(compound);
+    public void writeAdditional(CompoundNBT nbt) {
+        super.writeAdditional(nbt);
         MerchantOffers merchantoffers = this.getOffers();
         if (!merchantoffers.isEmpty()) {
-            compound.put("Offers", merchantoffers.write());
+            nbt.put("Offers", merchantoffers.write());
         }
     }
 
-    public void readAdditional(CompoundNBT compound) {
-        super.readAdditional(compound);
-        if (compound.contains("Offers", 50)) {
-            this.offers = new MerchantOffers(compound.getCompound("Offers"));
+    public void readAdditional(CompoundNBT nbt) {
+        super.readAdditional(nbt);
+        if (nbt.contains("Offers", 50)) {
+            this.offers = new MerchantOffers(nbt.getCompound("Offers"));
         }
     }
 
@@ -236,6 +235,6 @@ public class ZurEntity extends AbstractZurEntity {
     }
 
     protected ItemStack getSkullDrop() {
-        return new ItemStack(isBurnableSpecialToolItemInit.THUFR);
+        return new ItemStack(isBurnableSpecialToolItemInit.THUFR.get());
     }
 }

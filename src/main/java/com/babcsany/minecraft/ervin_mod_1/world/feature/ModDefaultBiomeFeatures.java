@@ -32,6 +32,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.OptionalInt;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -42,47 +43,47 @@ public class ModDefaultBiomeFeatures {
    private static final BlockState SOUL_FIRE = Blocks.GRASS.getDefaultState();
    private static final BlockState OBSIDIAN = Blocks.OBSIDIAN.getDefaultState();
    private static final BlockState AIR = Blocks.AIR.getDefaultState();
-   private static final BlockState FIRG = BlockInit.FIRG.getDefaultState();
-   private static final BlockState NIRTKB = isBurnableBlockItemInit.NIRTKB.getDefaultState();
-   private static final BlockState SCRAFTH = BlockInit.SCRAFTH.getDefaultState();
-   private static final BlockState GRITH_BLOCK = BlockInit.GRITH_BLOCK.getDefaultState();
-   private static final BlockState GRINT_BLOCK = BlockInit.GRINT_BLOCK.getDefaultState();
-   private static final BlockState RED_GRASS_BLOCK = BlockItemInit.RED_GRASS_BLOCK.getBlock().getDefaultState();
+   private static final BlockState FIRG = BlockInit.FIRG.get().getDefaultState();
+   private static final BlockState NIRTKB = isBurnableBlockItemInit.NIRTKB.get().getDefaultState();
+   private static final BlockState SCRAFTH = BlockInit.SCRAFTH.get().getDefaultState();
+   private static final BlockState GRITH_BLOCK = BlockInit.GRITH_BLOCK.get().getDefaultState();
+   private static final BlockState GRINT_BLOCK = BlockInit.GRINT_BLOCK.get().getDefaultState();
+   private static final BlockState RED_GRASS_BLOCK = BlockItemInit.RED_GRASS_BLOCK.get().getBlock().getDefaultState();
    private static final BlockState BARRIER = Blocks.BARRIER.getDefaultState();
    private static final BlockState END_STONE = Blocks.END_STONE.getDefaultState();
    private static final BlockState END_SRACKT = ModBlockStates.END_SRACKT.getState();
-   private static final BlockState END_SRACT = BlockItemInit.END_SRACT.getDefaultState();
-   private static final BlockState END_STONE_CISK = BlockItemInit.END_STONE_CISK.getDefaultState();
-   private static final BlockState END_STONE_CRISK = BlockItemInit.END_STONE_CRISK.getDefaultState();
-   private static final BlockState ENDER_SACKT = BlockItemInit.ENDER_SACKT.getDefaultState();
-   private static final BlockState ENDER_SACT = BlockItemInit.ENDER_SACT.getDefaultState();
-   private static final BlockState ENDER_SRACK = BlockItemInit.ENDER_SRACK.getDefaultState();
-   private static final BlockState ENDER_SRACKH = BlockItemInit.ENDER_SRACKH.getDefaultState();
-   private static final BlockState ENDER_SRACT = BlockItemInit.ENDER_SRACT.getDefaultState();
-   private static final BlockState BLACK_STONE = BlockItemInit.BLACK_STONE.getBlock().getDefaultState();
-   private static final BlockState BLUE_STONE = BlockItemInit.BLUE_STONE.getBlock().getDefaultState();
-   private static final BlockState BROWN_STONE = BlockItemInit.BROWN_STONE.getBlock().getDefaultState();
-   private static final BlockState CYAN_STONE = BlockItemInit.CYAN_STONE.getBlock().getDefaultState();
-   private static final BlockState GREEN_STONE = BlockItemInit.GREEN_STONE.getBlock().getDefaultState();
-   private static final BlockState LIGHT_BLUE1_STONE = BlockItemInit.LIGHT_BLUE1_STONE.getBlock().getDefaultState();
-   private static final BlockState LIGHT_BLUE_STONE = BlockItemInit.LIGHT_BLUE_STONE.getBlock().getDefaultState();
-   private static final BlockState LIGHT_GRAY_STONE = BlockItemInit.LIGHT_GRAY_STONE.getBlock().getDefaultState();
-   private static final BlockState LIME_STONE = BlockItemInit.LIME_STONE.getBlock().getDefaultState();
-   private static final BlockState MAGENTA_STONE = BlockItemInit.MAGENTA_STONE.getBlock().getDefaultState();
-   private static final BlockState ORANGE_STONE = BlockItemInit.ORANGE_STONE.getBlock().getDefaultState();
-   private static final BlockState PINK_STONE = BlockItemInit.PINK_STONE.getBlock().getDefaultState();
-   private static final BlockState PURPLE_STONE = BlockItemInit.PURPLE_STONE.getBlock().getDefaultState();
-   private static final BlockState RED_STONE = BlockItemInit.RED_STONE.getBlock().getDefaultState();
-   private static final BlockState WHITE_STONE = BlockItemInit.WHITE_STONE.getBlock().getDefaultState();
-   private static final BlockState YELLOW_STONE = BlockItemInit.YELLOW_STONE.getBlock().getDefaultState();
-   private static final BlockState SRIUNK_ORE = BlockItemInit.SRIUNK_ORE.getDefaultState();
-   private static final BlockState SRIUNK_BLOCK = isBurnableBlockItemInit.SRIUNK_BLOCK.getDefaultState();
-   private static final BlockState KALT_BLOCK = BlockItemInit.KALT_BLOCK.getDefaultState();
-   private static final BlockState VILKT_BLOCK = isBurnableBlockItemInit.VILKT_BLOCK.getDefaultState();
-   private static final BlockState FIRG_LOG = BlockItemInit.FIRG_LOG.getBlock().getDefaultState();
-   private static final BlockState FRIM_LOG = BlockItemInit.FRIM_LOG.getBlock().getDefaultState();
-   private static final BlockState FIRG_LEAVES = isBurnableBlockItemInit.FIRG_LEAVES.getDefaultState();
-   private static final BlockState FRIM_LEAVES = BlockItemInit.FRIM_LEAVES.getBlock().getDefaultState();
+   private static final BlockState END_SRACT = BlockItemInit.END_SRACT.get().getDefaultState();
+   private static final BlockState END_STONE_CISK = BlockItemInit.END_STONE_CISK.get().getDefaultState();
+   private static final BlockState END_STONE_CRISK = BlockItemInit.END_STONE_CRISK.get().getDefaultState();
+   private static final BlockState ENDER_SACKT = BlockItemInit.ENDER_SACKT.get().getDefaultState();
+   private static final BlockState ENDER_SACT = BlockItemInit.ENDER_SACT.get().getDefaultState();
+   private static final BlockState ENDER_SRACK = BlockItemInit.ENDER_SRACK.get().getDefaultState();
+   private static final BlockState ENDER_SRACKH = BlockItemInit.ENDER_SRACKH.get().getDefaultState();
+   private static final BlockState ENDER_SRACT = BlockItemInit.ENDER_SRACT.get().getDefaultState();
+   private static final BlockState BLACK_STONE = BlockItemInit.BLACK_STONE.get().getDefaultState();
+   private static final BlockState BLUE_STONE = BlockItemInit.BLUE_STONE.get().getDefaultState();
+   private static final BlockState BROWN_STONE = BlockItemInit.BROWN_STONE.get().getDefaultState();
+   private static final BlockState CYAN_STONE = BlockItemInit.CYAN_STONE.get().getDefaultState();
+   private static final BlockState GREEN_STONE = BlockItemInit.GREEN_STONE.get().getDefaultState();
+   private static final BlockState LIGHT_BLUE1_STONE = BlockItemInit.LIGHT_BLUE1_STONE.get().getDefaultState();
+   private static final BlockState LIGHT_BLUE_STONE = BlockItemInit.LIGHT_BLUE_STONE.get().getDefaultState();
+   private static final BlockState LIGHT_GRAY_STONE = BlockItemInit.LIGHT_GRAY_STONE.get().getDefaultState();
+   private static final BlockState LIME_STONE = BlockItemInit.LIME_STONE.get().getDefaultState();
+   private static final BlockState MAGENTA_STONE = BlockItemInit.MAGENTA_STONE.get().getDefaultState();
+   private static final BlockState ORANGE_STONE = BlockItemInit.ORANGE_STONE.get().getDefaultState();
+   private static final BlockState PINK_STONE = BlockItemInit.PINK_STONE.get().getDefaultState();
+   private static final BlockState PURPLE_STONE = BlockItemInit.PURPLE_STONE.get().getDefaultState();
+   private static final BlockState RED_STONE = BlockItemInit.RED_STONE.get().getDefaultState();
+   private static final BlockState WHITE_STONE = BlockItemInit.WHITE_STONE.get().getDefaultState();
+   private static final BlockState YELLOW_STONE = BlockItemInit.YELLOW_STONE.get().getDefaultState();
+   private static final BlockState SRIUNK_ORE = BlockItemInit.SRIUNK_ORE.get().getDefaultState();
+   private static final BlockState SRIUNK_BLOCK = isBurnableBlockItemInit.SRIUNK_BLOCK.get().getDefaultState();
+   private static final BlockState KALT_BLOCK = BlockItemInit.KALT_BLOCK.get().getDefaultState();
+   private static final BlockState VILKT_BLOCK = isBurnableBlockItemInit.VILKT_BLOCK.get().getDefaultState();
+   private static final BlockState FIRG_LOG = BlockItemInit.FIRG_LOG.get().getDefaultState();
+   private static final BlockState FRIM_LOG = BlockItemInit.FRIM_LOG.get().getDefaultState();
+   private static final BlockState FIRG_LEAVES = isBurnableBlockItemInit.FIRG_LEAVES.get().getDefaultState();
+   private static final BlockState FRIM_LEAVES = BlockItemInit.FRIM_LEAVES.get().getDefaultState();
    private static final BlockState FERN = Blocks.FERN.getDefaultState();
    private static final BlockState PODZOL = Blocks.PODZOL.getDefaultState();
    private static final BlockState OAK_LOG = Blocks.OAK_LOG.getDefaultState();
@@ -106,56 +107,56 @@ public class ModDefaultBiomeFeatures {
    private static final BlockState ANDESITE = Blocks.ANDESITE.getDefaultState();
    private static final BlockState COAL_ORE = Blocks.COAL_ORE.getDefaultState();
    private static final BlockState IRON_ORE = Blocks.IRON_ORE.getDefaultState();
-   private static final BlockState BLUE_STONE_IRON_ORE = BlockItemInit.BLUE_STONE_IRON_ORE.getDefaultState();
-   private static final BlockState BROWN_STONE_IRON_ORE = BlockItemInit.BROWN_STONE_IRON_ORE.getDefaultState();
-   private static final BlockState CYAN_STONE_IRON_ORE = BlockItemInit.CYAN_STONE_IRON_ORE.getDefaultState();
-   private static final BlockState GREEN_STONE_IRON_ORE = BlockItemInit.GREEN_STONE_IRON_ORE.getDefaultState();
-   private static final BlockState LIGHT_BLUE_STONE_IRON_ORE = BlockItemInit.LIGHT_BLUE_STONE_IRON_ORE.getDefaultState();
-   private static final BlockState LIGHT_BLUE1_STONE_IRON_ORE = BlockItemInit.LIGHT_BLUE1_STONE_IRON_ORE.getDefaultState();
-   private static final BlockState LIGHT_GRAY_STONE_IRON_ORE = BlockItemInit.LIGHT_GRAY_STONE_IRON_ORE.getDefaultState();
-   private static final BlockState LIME_STONE_IRON_ORE = BlockItemInit.LIME_STONE_IRON_ORE.getDefaultState();
-   private static final BlockState MAGENTA_STONE_IRON_ORE = BlockItemInit.MAGENTA_STONE_IRON_ORE.getDefaultState();
-   private static final BlockState ORANGE_STONE_IRON_ORE = BlockItemInit.ORANGE_STONE_IRON_ORE.getDefaultState();
-   private static final BlockState PINK_STONE_IRON_ORE = BlockItemInit.PINK_STONE_IRON_ORE.getDefaultState();
-   private static final BlockState PURPLE_STONE_IRON_ORE = BlockItemInit.PURPLE_STONE_IRON_ORE.getDefaultState();
-   private static final BlockState RED_STONE_IRON_ORE = BlockItemInit.RED_STONE_IRON_ORE.getDefaultState();
-   private static final BlockState WHITE_STONE_IRON_ORE = BlockItemInit.WHITE_STONE_IRON_ORE.getDefaultState();
-   private static final BlockState YELLOW_STONE_IRON_ORE = BlockItemInit.YELLOW_STONE_IRON_ORE.getDefaultState();
-   private static final BlockState BLACK_STONE_BLACK_IRON_ORE = BlockItemInit.BLACK_STONE_BLACK_IRON_ORE.getDefaultState();
-   private static final BlockState BLACK_STONE_BLUE_IRON_ORE = BlockItemInit.BLACK_STONE_BLUE_IRON_ORE.getDefaultState();
-   private static final BlockState BLACK_STONE_BROWN_IRON_ORE = BlockItemInit.BLACK_STONE_BROWN_IRON_ORE.getDefaultState();
-   private static final BlockState BLACK_STONE_CYAN_IRON_ORE = BlockItemInit.BLACK_STONE_CYAN_IRON_ORE.getDefaultState();
-   private static final BlockState BLACK_STONE_GRAY_IRON_ORE = BlockItemInit.BLACK_STONE_GRAY_IRON_ORE.getDefaultState();
-   private static final BlockState BLACK_STONE_GREEN_IRON_ORE = BlockItemInit.BLACK_STONE_GREEN_IRON_ORE.getDefaultState();
-   private static final BlockState BLACK_STONE_IRON_ORE = BlockItemInit.BLACK_STONE_IRON_ORE.getDefaultState();
-   private static final BlockState BLACK_STONE_LIGHT_BLUE1_IRON_ORE = BlockItemInit.BLACK_STONE_LIGHT_BLUE1_IRON_ORE.getDefaultState();
-   private static final BlockState BLACK_STONE_LIGHT_BLUE_IRON_ORE = BlockItemInit.BLACK_STONE_LIGHT_BLUE_IRON_ORE.getDefaultState();
-   private static final BlockState BLACK_STONE_LIGHT_GRAY_IRON_ORE = BlockItemInit.BLACK_STONE_LIGHT_GRAY_IRON_ORE.getDefaultState();
-   private static final BlockState BLACK_STONE_LIME_IRON_ORE = BlockItemInit.BLACK_STONE_LIME_IRON_ORE.getDefaultState();
-   private static final BlockState BLACK_STONE_MAGENTA_IRON_ORE = BlockItemInit.BLACK_STONE_MAGENTA_IRON_ORE.getDefaultState();
-   private static final BlockState BLACK_STONE_ORANGE_IRON_ORE = BlockItemInit.BLACK_STONE_ORANGE_IRON_ORE.getDefaultState();
-   private static final BlockState BLACK_STONE_PINK_IRON_ORE = BlockItemInit.BLACK_STONE_PINK_IRON_ORE.getDefaultState();
-   private static final BlockState BLACK_STONE_PURPLE_IRON_ORE = BlockItemInit.BLACK_STONE_PURPLE_IRON_ORE.getDefaultState();
-   private static final BlockState BLACK_STONE_RED_IRON_ORE = BlockItemInit.BLACK_STONE_RED_IRON_ORE.getDefaultState();
-   private static final BlockState BLACK_STONE_YELLOW_IRON_ORE = BlockItemInit.BLACK_STONE_YELLOW_IRON_ORE.getDefaultState();
-   private static final BlockState BLUE_STONE_BLACK_IRON_ORE = BlockItemInit.BLUE_STONE_BLACK_IRON_ORE.getDefaultState();
-   private static final BlockState BLUE_STONE_BLUE_IRON_ORE = BlockItemInit.BLUE_STONE_BLUE_IRON_ORE.getDefaultState();
-   private static final BlockState BROWN_STONE_BLACK_IRON_ORE = BlockItemInit.BROWN_STONE_BLACK_IRON_ORE.getDefaultState();
-   private static final BlockState CYAN_STONE_BLACK_IRON_ORE = BlockItemInit.CYAN_STONE_BLACK_IRON_ORE.getDefaultState();
-   private static final BlockState GREEN_STONE_BLACK_IRON_ORE = BlockItemInit.GREEN_STONE_BLACK_IRON_ORE.getDefaultState();
-   private static final BlockState LIGHT_BLUE_STONE_BLACK_IRON_ORE = BlockItemInit.LIGHT_BLUE_STONE_BLACK_IRON_ORE.getDefaultState();
-   private static final BlockState LIGHT_BLUE1_STONE_BLACK_IRON_ORE = BlockItemInit.LIGHT_BLUE1_STONE_BLACK_IRON_ORE.getDefaultState();
-   private static final BlockState LIGHT_GRAY_STONE_BLACK_IRON_ORE = BlockItemInit.LIGHT_GRAY_STONE_BLACK_IRON_ORE.getDefaultState();
-   private static final BlockState LIME_STONE_BLACK_IRON_ORE = BlockItemInit.LIME_STONE_BLACK_IRON_ORE.getDefaultState();
-   private static final BlockState MAGENTA_STONE_BLACK_IRON_ORE = BlockItemInit.MAGENTA_STONE_BLACK_IRON_ORE.getDefaultState();
-   private static final BlockState ORANGE_STONE_BLACK_IRON_ORE = BlockItemInit.ORANGE_STONE_BLACK_IRON_ORE.getDefaultState();
-   private static final BlockState PINK_STONE_BLACK_IRON_ORE = BlockItemInit.PINK_STONE_BLACK_IRON_ORE.getDefaultState();
-   private static final BlockState PURPLE_STONE_BLACK_IRON_ORE = BlockItemInit.PURPLE_STONE_BLACK_IRON_ORE.getDefaultState();
-   private static final BlockState RED_STONE_BLACK_IRON_ORE = BlockItemInit.RED_STONE_BLACK_IRON_ORE.getDefaultState();
-   private static final BlockState STONE_BLACK_IRON_ORE = BlockItemInit.STONE_BLACK_IRON_ORE.getDefaultState();
-   private static final BlockState WHITE_STONE_BLACK_IRON_ORE = BlockItemInit.WHITE_STONE_BLACK_IRON_ORE.getDefaultState();
-   private static final BlockState YELLOW_STONE_BLACK_IRON_ORE = BlockItemInit.YELLOW_STONE_BLACK_IRON_ORE.getDefaultState();
-   private static final BlockState RUBY_ORE = BlockItemInit.RUBY_ORE.getDefaultState();
+   private static final BlockState BLUE_STONE_IRON_ORE = BlockItemInit.BLUE_STONE_IRON_ORE.get().getDefaultState();
+   private static final BlockState BROWN_STONE_IRON_ORE = BlockItemInit.BROWN_STONE_IRON_ORE.get().getDefaultState();
+   private static final BlockState CYAN_STONE_IRON_ORE = BlockItemInit.CYAN_STONE_IRON_ORE.get().getDefaultState();
+   private static final BlockState GREEN_STONE_IRON_ORE = BlockItemInit.GREEN_STONE_IRON_ORE.get().getDefaultState();
+   private static final BlockState LIGHT_BLUE_STONE_IRON_ORE = BlockItemInit.LIGHT_BLUE_STONE_IRON_ORE.get().getDefaultState();
+   private static final BlockState LIGHT_BLUE1_STONE_IRON_ORE = BlockItemInit.LIGHT_BLUE1_STONE_IRON_ORE.get().getDefaultState();
+   private static final BlockState LIGHT_GRAY_STONE_IRON_ORE = BlockItemInit.LIGHT_GRAY_STONE_IRON_ORE.get().getDefaultState();
+   private static final BlockState LIME_STONE_IRON_ORE = BlockItemInit.LIME_STONE_IRON_ORE.get().getDefaultState();
+   private static final BlockState MAGENTA_STONE_IRON_ORE = BlockItemInit.MAGENTA_STONE_IRON_ORE.get().getDefaultState();
+   private static final BlockState ORANGE_STONE_IRON_ORE = BlockItemInit.ORANGE_STONE_IRON_ORE.get().getDefaultState();
+   private static final BlockState PINK_STONE_IRON_ORE = BlockItemInit.PINK_STONE_IRON_ORE.get().getDefaultState();
+   private static final BlockState PURPLE_STONE_IRON_ORE = BlockItemInit.PURPLE_STONE_IRON_ORE.get().getDefaultState();
+   private static final BlockState RED_STONE_IRON_ORE = BlockItemInit.RED_STONE_IRON_ORE.get().getDefaultState();
+   private static final BlockState WHITE_STONE_IRON_ORE = BlockItemInit.WHITE_STONE_IRON_ORE.get().getDefaultState();
+   private static final BlockState YELLOW_STONE_IRON_ORE = BlockItemInit.YELLOW_STONE_IRON_ORE.get().getDefaultState();
+   private static final BlockState BLACK_STONE_BLACK_IRON_ORE = BlockItemInit.BLACK_STONE_BLACK_IRON_ORE.get().getDefaultState();
+   private static final BlockState BLACK_STONE_BLUE_IRON_ORE = BlockItemInit.BLACK_STONE_BLUE_IRON_ORE.get().getDefaultState();
+   private static final BlockState BLACK_STONE_BROWN_IRON_ORE = BlockItemInit.BLACK_STONE_BROWN_IRON_ORE.get().getDefaultState();
+   private static final BlockState BLACK_STONE_CYAN_IRON_ORE = BlockItemInit.BLACK_STONE_CYAN_IRON_ORE.get().getDefaultState();
+   private static final BlockState BLACK_STONE_GRAY_IRON_ORE = BlockItemInit.BLACK_STONE_GRAY_IRON_ORE.get().getDefaultState();
+   private static final BlockState BLACK_STONE_GREEN_IRON_ORE = BlockItemInit.BLACK_STONE_GREEN_IRON_ORE.get().getDefaultState();
+   private static final BlockState BLACK_STONE_IRON_ORE = BlockItemInit.BLACK_STONE_IRON_ORE.get().getDefaultState();
+   private static final BlockState BLACK_STONE_LIGHT_BLUE1_IRON_ORE = BlockItemInit.BLACK_STONE_LIGHT_BLUE1_IRON_ORE.get().getDefaultState();
+   private static final BlockState BLACK_STONE_LIGHT_BLUE_IRON_ORE = BlockItemInit.BLACK_STONE_LIGHT_BLUE_IRON_ORE.get().getDefaultState();
+   private static final BlockState BLACK_STONE_LIGHT_GRAY_IRON_ORE = BlockItemInit.BLACK_STONE_LIGHT_GRAY_IRON_ORE.get().getDefaultState();
+   private static final BlockState BLACK_STONE_LIME_IRON_ORE = BlockItemInit.BLACK_STONE_LIME_IRON_ORE.get().getDefaultState();
+   private static final BlockState BLACK_STONE_MAGENTA_IRON_ORE = BlockItemInit.BLACK_STONE_MAGENTA_IRON_ORE.get().getDefaultState();
+   private static final BlockState BLACK_STONE_ORANGE_IRON_ORE = BlockItemInit.BLACK_STONE_ORANGE_IRON_ORE.get().getDefaultState();
+   private static final BlockState BLACK_STONE_PINK_IRON_ORE = BlockItemInit.BLACK_STONE_PINK_IRON_ORE.get().getDefaultState();
+   private static final BlockState BLACK_STONE_PURPLE_IRON_ORE = BlockItemInit.BLACK_STONE_PURPLE_IRON_ORE.get().getDefaultState();
+   private static final BlockState BLACK_STONE_RED_IRON_ORE = BlockItemInit.BLACK_STONE_RED_IRON_ORE.get().getDefaultState();
+   private static final BlockState BLACK_STONE_YELLOW_IRON_ORE = BlockItemInit.BLACK_STONE_YELLOW_IRON_ORE.get().getDefaultState();
+   private static final BlockState BLUE_STONE_BLACK_IRON_ORE = BlockItemInit.BLUE_STONE_BLACK_IRON_ORE.get().getDefaultState();
+   private static final BlockState BLUE_STONE_BLUE_IRON_ORE = BlockItemInit.BLUE_STONE_BLUE_IRON_ORE.get().getDefaultState();
+   private static final BlockState BROWN_STONE_BLACK_IRON_ORE = BlockItemInit.BROWN_STONE_BLACK_IRON_ORE.get().getDefaultState();
+   private static final BlockState CYAN_STONE_BLACK_IRON_ORE = BlockItemInit.CYAN_STONE_BLACK_IRON_ORE.get().getDefaultState();
+   private static final BlockState GREEN_STONE_BLACK_IRON_ORE = BlockItemInit.GREEN_STONE_BLACK_IRON_ORE.get().getDefaultState();
+   private static final BlockState LIGHT_BLUE_STONE_BLACK_IRON_ORE = BlockItemInit.LIGHT_BLUE_STONE_BLACK_IRON_ORE.get().getDefaultState();
+   private static final BlockState LIGHT_BLUE1_STONE_BLACK_IRON_ORE = BlockItemInit.LIGHT_BLUE1_STONE_BLACK_IRON_ORE.get().getDefaultState();
+   private static final BlockState LIGHT_GRAY_STONE_BLACK_IRON_ORE = BlockItemInit.LIGHT_GRAY_STONE_BLACK_IRON_ORE.get().getDefaultState();
+   private static final BlockState LIME_STONE_BLACK_IRON_ORE = BlockItemInit.LIME_STONE_BLACK_IRON_ORE.get().getDefaultState();
+   private static final BlockState MAGENTA_STONE_BLACK_IRON_ORE = BlockItemInit.MAGENTA_STONE_BLACK_IRON_ORE.get().getDefaultState();
+   private static final BlockState ORANGE_STONE_BLACK_IRON_ORE = BlockItemInit.ORANGE_STONE_BLACK_IRON_ORE.get().getDefaultState();
+   private static final BlockState PINK_STONE_BLACK_IRON_ORE = BlockItemInit.PINK_STONE_BLACK_IRON_ORE.get().getDefaultState();
+   private static final BlockState PURPLE_STONE_BLACK_IRON_ORE = BlockItemInit.PURPLE_STONE_BLACK_IRON_ORE.get().getDefaultState();
+   private static final BlockState RED_STONE_BLACK_IRON_ORE = BlockItemInit.RED_STONE_BLACK_IRON_ORE.get().getDefaultState();
+   private static final BlockState STONE_BLACK_IRON_ORE = BlockItemInit.STONE_BLACK_IRON_ORE.get().getDefaultState();
+   private static final BlockState WHITE_STONE_BLACK_IRON_ORE = BlockItemInit.WHITE_STONE_BLACK_IRON_ORE.get().getDefaultState();
+   private static final BlockState YELLOW_STONE_BLACK_IRON_ORE = BlockItemInit.YELLOW_STONE_BLACK_IRON_ORE.get().getDefaultState();
+   private static final BlockState RUBY_ORE = BlockItemInit.RUBY_ORE.get().getDefaultState();
    private static final BlockState GOLD_ORE = Blocks.GOLD_ORE.getDefaultState();
    private static final BlockState REDSTONE_ORE = Blocks.REDSTONE_ORE.getDefaultState();
    private static final BlockState DIAMOND_ORE = Blocks.DIAMOND_ORE.getDefaultState();
@@ -174,7 +175,7 @@ public class ModDefaultBiomeFeatures {
    private static final BlockState PEONY = Blocks.PEONY.getDefaultState();
    private static final BlockState BROWN_MUSHROOM = Blocks.BROWN_MUSHROOM.getDefaultState();
    private static final BlockState RED_MUSHROOM = Blocks.RED_MUSHROOM.getDefaultState();
-   private static final BlockState GRINTH_MUSHROOM = BlockItemInit.GRINTH_MUSHROOM.getBlock().getDefaultState();
+   private static final BlockState GRINTH_MUSHROOM = BlockItemInit.GRINTH_MUSHROOM.get().getDefaultState();
    private static final BlockState SEAGRASS = Blocks.SEAGRASS.getDefaultState();
    private static final BlockState PACKED_ICE = Blocks.PACKED_ICE.getDefaultState();
    private static final BlockState BLUE_ICE = Blocks.BLUE_ICE.getDefaultState();
@@ -201,7 +202,7 @@ public class ModDefaultBiomeFeatures {
    public static final StructureFeature<NoFeatureConfig, ? extends Structure<NoFeatureConfig>> STRONGHOLD = Structure.STRONGHOLD.withConfiguration(NoFeatureConfig.INSTANCE);
    public static final StructureFeature<ProbabilityConfig, ? extends Structure<ProbabilityConfig>> BURIED_TREASURE = Structure.BURIED_TREASURE.withConfiguration(new ProbabilityConfig(0.01F));
    private static final BlockState RED_MUSHROOM_BLOCK = Blocks.RED_MUSHROOM_BLOCK.getDefaultState().with(HugeMushroomBlock.DOWN, Boolean.FALSE);
-   private static final BlockState GRINTH_MUSHROOM_BLOCK = BlockItemInit.GRINTH_MUSHROOM_BLOCK.getBlock().getDefaultState().with(HugeMushroomBlock.DOWN, Boolean.FALSE);
+   private static final BlockState GRINTH_MUSHROOM_BLOCK = BlockItemInit.GRINTH_MUSHROOM_BLOCK.get().getDefaultState().with(HugeMushroomBlock.DOWN, Boolean.FALSE);
    private static final BlockState BROWN_MUSHROOM_BLOCK = Blocks.BROWN_MUSHROOM_BLOCK.getDefaultState().with(HugeMushroomBlock.UP, Boolean.TRUE).with(HugeMushroomBlock.DOWN, Boolean.FALSE);
    private static final BlockState MUSHROOM_STEM = Blocks.MUSHROOM_STEM.getDefaultState().with(HugeMushroomBlock.UP, Boolean.FALSE).with(HugeMushroomBlock.DOWN, Boolean.FALSE);
    public static final BaseTreeFeatureConfig OAK_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(OAK_LOG), new SimpleBlockStateProvider(OAK_LEAVES), new BlobFoliagePlacer(FeatureSpread.create(2, 0), FeatureSpread.create(0, 0), 3), new StraightTrunkPlacer(4, 2, 0), new TwoLayerFeature(1, 0, 1))).setIgnoreVines().build();
@@ -323,7 +324,7 @@ public class ModDefaultBiomeFeatures {
    public static final BlockStateProvidingFeatureConfig SRIUNK_PILE_CONFIG1 = new BlockStateProvidingFeatureConfig((new WeightedBlockStateProvider()).addWeightedBlockstate(SRIUNK_BLOCK, 19).addWeightedBlockstate(BARRIER, 1));
    public static final BlockStateProvidingFeatureConfig BLUE_ICE_PILE_CONFIG = new BlockStateProvidingFeatureConfig((new WeightedBlockStateProvider()).addWeightedBlockstate(BLUE_ICE, 1).addWeightedBlockstate(PACKED_ICE, 5));
    public static final LiquidsConfig WATER_SPRING_CONFIG = new LiquidsConfig(Fluids.WATER.getDefaultState(), true, 4, 1, ImmutableSet.of(Blocks.STONE, Blocks.GRANITE, Blocks.DIORITE, Blocks.ANDESITE));
-   public static final LiquidsConfig WATER1_SPRING_CONFIG = new LiquidsConfig(Fluids.WATER.getDefaultState(), true, 20, 12, ImmutableSet.of(BlockItemInit.BLACK_STONE.getBlock(), BlockItemInit.BLUE_STONE.getBlock(), BlockItemInit.BROWN_STONE.getBlock(), BlockItemInit.CYAN_STONE.getBlock(), BlockItemInit.GREEN_STONE.getBlock(), BlockItemInit.LIGHT_BLUE_STONE.getBlock(), BlockItemInit.LIGHT_BLUE1_STONE.getBlock(), BlockItemInit.LIGHT_GRAY_STONE.getBlock(), BlockItemInit.LIME_STONE.getBlock(), BlockItemInit.MAGENTA_STONE.getBlock(), BlockItemInit.ORANGE_STONE.getBlock(), BlockItemInit.PINK_STONE.getBlock(), BlockItemInit.PURPLE_STONE.getBlock(), BlockItemInit.RED_STONE.getBlock(), BlockItemInit.WHITE_STONE.getBlock(), BlockItemInit.YELLOW_STONE.getBlock(), Blocks.GRANITE, Blocks.DIORITE, Blocks.ANDESITE));
+   public static final LiquidsConfig WATER1_SPRING_CONFIG = new LiquidsConfig(Fluids.WATER.getDefaultState(), true, 20, 12, ImmutableSet.of(BlockItemInit.BLACK_STONE.get(), BlockItemInit.BLUE_STONE.get(), BlockItemInit.BROWN_STONE.get(), BlockItemInit.CYAN_STONE.get(), BlockItemInit.GREEN_STONE.get(), BlockItemInit.LIGHT_BLUE_STONE.get(), BlockItemInit.LIGHT_BLUE1_STONE.get(), BlockItemInit.LIGHT_GRAY_STONE.get(), BlockItemInit.LIME_STONE.get(), BlockItemInit.MAGENTA_STONE.get(), BlockItemInit.ORANGE_STONE.get(), BlockItemInit.PINK_STONE.get(), BlockItemInit.PURPLE_STONE.get(), BlockItemInit.RED_STONE.get(), BlockItemInit.WHITE_STONE.get(), BlockItemInit.YELLOW_STONE.get(), Blocks.GRANITE, Blocks.DIORITE, Blocks.ANDESITE));
    public static final LiquidsConfig LAVA_SPRING_CONFIG = new LiquidsConfig(Fluids.LAVA.getDefaultState(), true, 4, 1, ImmutableSet.of(Blocks.STONE, Blocks.GRANITE, Blocks.DIORITE, Blocks.ANDESITE));
    public static final LiquidsConfig NETHER_SPRING_CONFIG = new LiquidsConfig(Fluids.LAVA.getDefaultState(), false, 4, 1, ImmutableSet.of(Blocks.NETHERRACK));
    public static final LiquidsConfig ENCLOSED_NETHER_SPRING_CONFIG = new LiquidsConfig(Fluids.LAVA.getDefaultState(), false, 5, 0, ImmutableSet.of(Blocks.NETHERRACK));
@@ -357,16 +358,16 @@ public class ModDefaultBiomeFeatures {
    }
 
    public static void addEndStoneVariants(BiomeGenerationSettings.Builder builder) {
-      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.BASE_END_STONES, END_STONE, 20)).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 64))));
-      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.BASE_END_STONES, END_SRACKT, 16)).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 64))));
-      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.BASE_END_STONES, END_SRACT, 12)).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 64))));
-      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.BASE_END_STONES, END_STONE_CISK, 4)).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 64))));
-      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.BASE_END_STONES, END_STONE_CRISK, 2)).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 64))));
-      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.BASE_END_STONES, ENDER_SACKT, 8)).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 64))));
-      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.BASE_END_STONES, ENDER_SACT, 6)).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 64))));
-      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.BASE_END_STONES, ENDER_SRACK, 10)).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 64))));
-      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.BASE_END_STONES, ENDER_SRACKH, 14)).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 64))));
-      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.BASE_END_STONES, ENDER_SRACT, 18)).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 64))));
+      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, FeatureInit.GEN_ORE.get().withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.BASE_END_STONES, END_STONE, 20)).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 64))));
+      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, FeatureInit.GEN_ORE.get().withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.BASE_END_STONES, END_SRACKT, 16)).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 64))));
+      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, FeatureInit.GEN_ORE.get().withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.BASE_END_STONES, END_SRACT, 12)).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 64))));
+      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, FeatureInit.GEN_ORE.get().withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.BASE_END_STONES, END_STONE_CISK, 4)).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 64))));
+      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, FeatureInit.GEN_ORE.get().withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.BASE_END_STONES, END_STONE_CRISK, 2)).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 64))));
+      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, FeatureInit.GEN_ORE.get().withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.BASE_END_STONES, ENDER_SACKT, 8)).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 64))));
+      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, FeatureInit.GEN_ORE.get().withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.BASE_END_STONES, ENDER_SACT, 6)).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 64))));
+      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, FeatureInit.GEN_ORE.get().withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.BASE_END_STONES, ENDER_SRACK, 10)).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 64))));
+      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, FeatureInit.GEN_ORE.get().withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.BASE_END_STONES, ENDER_SRACKH, 14)).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 64))));
+      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, FeatureInit.GEN_ORE.get().withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.BASE_END_STONES, ENDER_SRACT, 18)).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 64))));
    }
 
    public static void addFirgs(BiomeGenerationSettings.Builder builder) {
@@ -429,13 +430,13 @@ public class ModDefaultBiomeFeatures {
    }
 
    public static void addOrangeStoneOres(BiomeGenerationSettings.Builder builder) {
-      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.BASE_ORANGE_STONE_OVERWORLD, COAL_ORE, 17)).withPlacement(Placement.COUNT.configure(new FeatureSpreadConfig(128))));
-      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.BASE_ORANGE_STONE_OVERWORLD, ORANGE_STONE_IRON_ORE, 9)).withPlacement(Placement.COUNT_MULTILAYER.configure(new FeatureSpreadConfig(64))));
-      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.BASE_ORANGE_STONE_OVERWORLD, GOLD_ORE, 9)).withPlacement(Placement.RANGE_VERY_BIASED.configure(new TopSolidRangeConfig(0, 0, 15))));
-      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.BASE_ORANGE_STONE_OVERWORLD, REDSTONE_ORE, 8)).withPlacement(Placement.COUNT_MULTILAYER.configure(new FeatureSpreadConfig(20))));
-      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.BASE_ORANGE_STONE_OVERWORLD, DIAMOND_ORE, 8)).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 16))));
-      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.BASE_ORANGE_STONE_OVERWORLD, LAPIS_ORE, 7)).withPlacement(Placement.RANGE_BIASED.configure(new TopSolidRangeConfig(1, 16, 16))));
-      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.BASE_ORANGE_STONE_OVERWORLD, RUBY_ORE, 6)).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(2, 32, 32))));
+      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, FeatureInit.GEN_ORE.get().withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.BASE_ORANGE_STONE_OVERWORLD, COAL_ORE, 17)).withPlacement(Placement.COUNT.configure(new FeatureSpreadConfig(128))));
+      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, FeatureInit.GEN_ORE.get().withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.BASE_ORANGE_STONE_OVERWORLD, ORANGE_STONE_IRON_ORE, 9)).withPlacement(Placement.COUNT_MULTILAYER.configure(new FeatureSpreadConfig(64))));
+      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, FeatureInit.GEN_ORE.get().withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.BASE_ORANGE_STONE_OVERWORLD, GOLD_ORE, 9)).withPlacement(Placement.RANGE_VERY_BIASED.configure(new TopSolidRangeConfig(0, 0, 15))));
+      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, FeatureInit.GEN_ORE.get().withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.BASE_ORANGE_STONE_OVERWORLD, REDSTONE_ORE, 8)).withPlacement(Placement.COUNT_MULTILAYER.configure(new FeatureSpreadConfig(20))));
+      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, FeatureInit.GEN_ORE.get().withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.BASE_ORANGE_STONE_OVERWORLD, DIAMOND_ORE, 8)).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 16))));
+      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, FeatureInit.GEN_ORE.get().withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.BASE_ORANGE_STONE_OVERWORLD, LAPIS_ORE, 7)).withPlacement(Placement.RANGE_BIASED.configure(new TopSolidRangeConfig(1, 16, 16))));
+      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, FeatureInit.GEN_ORE.get().withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.BASE_ORANGE_STONE_OVERWORLD, RUBY_ORE, 6)).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(2, 32, 32))));
    }
 
    public static void addBlackIronOres(BiomeGenerationSettings.Builder builder) {
@@ -637,7 +638,7 @@ public class ModDefaultBiomeFeatures {
    }
 
    public static void addExtraSriunkOre(BiomeGenerationSettings.Builder builder) {
-      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.END_STONE, SRIUNK_ORE, 12)).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(0, 0, 115))));
+      builder.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureInit.GEN_ORE.get().withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.END_STONE, SRIUNK_ORE, 12)).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(0, 0, 115))));
    }
 
    public static void addExtraKaltBlock(BiomeGenerationSettings.Builder builder) {
@@ -888,6 +889,34 @@ public class ModDefaultBiomeFeatures {
 
    public static void addGiantTreeTaigaTrees(BiomeGenerationSettings.Builder builder) {
       builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(Feature.TREE.withConfiguration(MEGA_SPRUCE_TREE_CONFIG).withChance(0.025641026F), Feature.TREE.withConfiguration(MEGA_PINE_TREE_CONFIG).withChance(0.30769232F), Feature.TREE.withConfiguration(PINE_TREE_CONFIG).withChance(0.33333334F)), Feature.TREE.withConfiguration(SPRUCE_TREE_CONFIG))).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(10, 0.1F, 1))));
+   }
+
+   public static void addFeatureWithRandomBooleanSelector(BiomeGenerationSettings.Builder builder, GenerationStage.Decoration decoration, Supplier<ConfiguredFeature<?, ?>> featureTrue, Supplier<ConfiguredFeature<?, ?>> featureFalse, ConfiguredPlacement<?> placement) {
+      addFeature(builder, decoration, Feature.RANDOM_BOOLEAN_SELECTOR.withConfiguration(new TwoFeatureChoiceConfig(featureTrue, featureFalse)).withPlacement(placement));
+   }
+
+   public static void addFeatureWithRandomPatch(BiomeGenerationSettings.Builder builder, GenerationStage.Decoration decoration, BlockClusterFeatureConfig config, ConfiguredPlacement<?> placement) {
+      addFeature(builder, decoration, Feature.RANDOM_PATCH.withConfiguration(config).withPlacement(placement));
+   }
+
+   public static void addMushroomWithRandomPatch(BiomeGenerationSettings.Builder builder, BlockClusterFeatureConfig config, ConfiguredPlacement<?> placement) {
+      addFeatureWithRandomPatch(builder, GenerationStage.Decoration.VEGETAL_DECORATION, config, placement);
+   }
+
+   public static void addMushroomWithRandomPatch(BiomeGenerationSettings.Builder builder, BlockClusterFeatureConfig config, int base, int spread) {
+      addMushroomWithRandomPatch(builder, config, Placement.COUNT.configure(new FeatureSpreadConfig(FeatureSpread.create(base, spread))));
+   }
+
+   public static void addBrownMushroomWithRandomPatch(BiomeGenerationSettings.Builder builder, int base, int spread) {
+      addMushroomWithRandomPatch(builder, BROWN_MUSHROOM_CONFIG, base, spread);
+   }
+
+   public static void addRedMushroomWithRandomPatch(BiomeGenerationSettings.Builder builder, int base, int spread) {
+      addMushroomWithRandomPatch(builder, RED_MUSHROOM_CONFIG, base, spread);
+   }
+
+   public static void addFeatureWithRandomBooleanSelector(BiomeGenerationSettings.Builder builder, GenerationStage.Decoration decoration, ConfiguredFeature<?, ?> featureTrue, ConfiguredFeature<?, ?> featureFalse, ConfiguredPlacement<?> placement) {
+      addFeatureWithRandomBooleanSelector(builder, decoration, () -> featureTrue, () -> featureFalse, placement);
    }
 
    public static void addTaigaGrassDeadBushesMushrooms(BiomeGenerationSettings.Builder builder) {

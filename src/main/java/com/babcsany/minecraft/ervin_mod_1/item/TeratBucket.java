@@ -72,9 +72,9 @@ public class TeratBucket extends BucketItem {
 
     private Item fixBucketItem(Item bucketIn, PlayerEntity playerIn) {
         boolean isCreative = playerIn.isCreative();
-        Item teratBucketIn = isBurnableItemInit.TERAT_BUCKET;
-        Item waterTeratBucketIn = isBurnableItemInit.WATER_TERAT_BUCKET;
-        Item lavaTeratBucketIn = isBurnableItemInit.LAVA_TERAT_BUCKET;
+        Item teratBucketIn = isBurnableItemInit.TERAT_BUCKET.get();
+        Item waterTeratBucketIn = isBurnableItemInit.WATER_TERAT_BUCKET.get();
+        Item lavaTeratBucketIn = isBurnableItemInit.LAVA_TERAT_BUCKET.get();
         Item value;
         if (bucketIn == teratBucketIn) {
             Item item = teratBucketIn;
@@ -95,7 +95,7 @@ public class TeratBucket extends BucketItem {
     }
 
     protected ItemStack emptyBucket(ItemStack p_203790_1_, PlayerEntity p_203790_2_) {
-        return !p_203790_2_.abilities.isCreativeMode ? new ItemStack(isBurnableItemInit.TERAT_BUCKET) : p_203790_1_;
+        return !p_203790_2_.abilities.isCreativeMode ? new ItemStack(isBurnableItemInit.TERAT_BUCKET.get()) : p_203790_1_;
     }
 
     public void onLiquidPlaced(World p_203792_1_, ItemStack p_203792_2_, BlockPos p_203792_3_) {

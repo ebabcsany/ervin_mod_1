@@ -27,7 +27,7 @@ public class ChakTraderEntity extends AnimalEntity {
       this.goalSelector.addGoal(0, new SwimGoal(this));
       this.goalSelector.addGoal(1, new PanicGoal(this, 2.0D));
       this.goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
-      this.goalSelector.addGoal(3, new TemptGoal(this, 1.25D, Ingredient.fromItems(BlockItemInit.SURV), false));
+      this.goalSelector.addGoal(3, new TemptGoal(this, 1.25D, Ingredient.fromItems(BlockItemInit.SURV.get()), false));
       this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.25D));
       this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
       this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 6.0F));
@@ -65,7 +65,7 @@ public class ChakTraderEntity extends AnimalEntity {
       ItemStack itemstack = p_230254_1_.getHeldItem(p_230254_2_);
       if (itemstack.getItem() == Items.BUCKET && !this.isChild()) {
          p_230254_1_.playSound(SoundEvents.ENTITY_COW_MILK, 1.0F, 1.0F);
-         ItemStack itemstack1 = DrinkHelper.fill(itemstack, p_230254_1_, ItemInit.JURK_BUCKETI.getDefaultInstance());
+         ItemStack itemstack1 = DrinkHelper.fill(itemstack, p_230254_1_, ItemInit.JURK_BUCKETI.get().getDefaultInstance());
          p_230254_1_.setHeldItem(p_230254_2_, itemstack1);
          return ActionResultType.func_233537_a_(this.world.isRemote);
       } else {
@@ -74,7 +74,7 @@ public class ChakTraderEntity extends AnimalEntity {
    }
 
    public SrachEntity createChild(ServerWorld serverWorld, AgeableEntity ageable) {
-      return EntityInit.SRACH_ENTITY.create(this.world);
+      return EntityInit.SRACH_ENTITY.get().create(this.world);
    }
 
    protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {

@@ -32,7 +32,7 @@ public class $TraderEntity extends Abstract$TraderEntity {
 
     public $TraderEntity(EntityType<? extends $TraderEntity> type, World worldIn) {
         super(type, worldIn);
-        super.setSpawnEgg(ModSpawnEggItemInit.$_TRADER);
+        super.setSpawnEgg((SpawnEggItem) ModSpawnEggItemInit.$_TRADER.get());
         this.forceSpawn = true;
     }
 
@@ -132,7 +132,7 @@ public class $TraderEntity extends Abstract$TraderEntity {
     }
 
     public AgeableEntity createChild(ServerWorld serverWorld, AgeableEntity ageable) {
-        return Objects.requireNonNull(EntityInit.$_TRADER.create(serverWorld));
+        return Objects.requireNonNull(EntityInit.$_TRADER.get().create(serverWorld));
     }
 
     public void set$traderTarget(@Nullable BlockPos pos) {

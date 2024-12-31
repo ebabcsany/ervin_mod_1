@@ -36,54 +36,54 @@ import static net.minecraft.entity.EntityClassification.CREATURE;
 import static net.minecraft.world.gen.GenerationStage.Decoration;
 
 public class FeatureGen {
-	private static final BlockState RUBY_ORE = BlockItemInit.RUBY_ORE.getDefaultState();
+	private static final BlockState RUBY_ORE = BlockItemInit.RUBY_ORE.get().getDefaultState();
 	private static final BlockState AIR = UnusedBlocks.get("air").getDefaultState();
-	private static final BlockState KALT_BLOCK = BlockItemInit.KALT_BLOCK.getDefaultState();
-	private static final BlockState SURVI = BlockItemInit.SURVI.getDefaultState();
-	private static final BlockState TRIRIJ = BlockInit.TRIRIJ.getDefaultState();
-	private static final BlockState TRUGN = isBurnableBlockItemInit.TRUGN.getDefaultState();
+	private static final BlockState KALT_BLOCK = BlockItemInit.KALT_BLOCK.get().getDefaultState();
+	private static final BlockState SURVI = BlockItemInit.SURVI.get().getDefaultState();
+	private static final BlockState TRIRIJ = BlockInit.TRIRIJ.get().getDefaultState();
+	private static final BlockState TRUGN = isBurnableBlockItemInit.TRUGN.get().getDefaultState();
 	private static final BlockState NETHERRACK = Blocks.NETHERRACK.getDefaultState();
 	private static final BlockState OBSIDIAN = Blocks.OBSIDIAN.getDefaultState();
-	private static final BlockState FIRT_BLOCK = BlockInit.FIRT_BLOCK.getDefaultState();
+	private static final BlockState FIRT_BLOCK = BlockInit.FIRT_BLOCK.get().getDefaultState();
 	private static final BlockState MAGMA_BLOCK = Blocks.MAGMA_BLOCK.getDefaultState();
 	private static final BlockState STONE = Blocks.STONE.getDefaultState();
-	private static final BlockState BLACK_STONE = BlockItemInit.BLACK_STONE.getBlock().getDefaultState();
-	private static final BlockState BLUE_STONE = BlockItemInit.BLUE_STONE.getBlock().getDefaultState();
-	private static final BlockState BROWN_STONE = BlockItemInit.BROWN_STONE.getBlock().getDefaultState();
-	private static final BlockState CYAN_STONE = BlockItemInit.CYAN_STONE.getBlock().getDefaultState();
-	private static final BlockState GREEN_STONE = BlockItemInit.GREEN_STONE.getBlock().getDefaultState();
-	private static final BlockState GRINT_BLOCK = com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit.GRINT_BLOCK.getDefaultState();
-	private static final BlockState FIGHIV = com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit.FIGHIV.getDefaultState();
-	private static final BlockState LIGHT_BLUE1_STONE = BlockItemInit.LIGHT_BLUE1_STONE.getBlock().getDefaultState();
-	private static final BlockState LIGHT_BLUE_STONE = BlockItemInit.LIGHT_BLUE_STONE.getBlock().getDefaultState();
-	private static final BlockState LIGHT_GRAY_STONE = BlockItemInit.LIGHT_GRAY_STONE.getBlock().getDefaultState();
-	private static final BlockState LIME_STONE = BlockItemInit.LIME_STONE.getBlock().getDefaultState();
-	private static final BlockState MAGENTA_STONE = BlockItemInit.MAGENTA_STONE.getBlock().getDefaultState();
-	private static final BlockState ORANGE_STONE = BlockItemInit.ORANGE_STONE.getBlock().getDefaultState();
-	private static final BlockState PINK_STONE = BlockItemInit.PINK_STONE.getBlock().getDefaultState();
-	private static final BlockState PURPLE_STONE = BlockItemInit.PURPLE_STONE.getBlock().getDefaultState();
-	private static final BlockState RED_STONE = BlockItemInit.RED_STONE.getBlock().getDefaultState();
-	private static final BlockState WHITE_STONE = BlockItemInit.WHITE_STONE.getBlock().getDefaultState();
-	private static final BlockState YELLOW_STONE = BlockItemInit.YELLOW_STONE.getBlock().getDefaultState();
-	private static final BlockState SRIUNK_ORE = BlockItemInit.SRIUNK_ORE.getDefaultState();
+	private static final BlockState BLACK_STONE = BlockItemInit.BLACK_STONE.get().getDefaultState();
+	private static final BlockState BLUE_STONE = BlockItemInit.BLUE_STONE.get().getDefaultState();
+	private static final BlockState BROWN_STONE = BlockItemInit.BROWN_STONE.get().getDefaultState();
+	private static final BlockState CYAN_STONE = BlockItemInit.CYAN_STONE.get().getDefaultState();
+	private static final BlockState GREEN_STONE = BlockItemInit.GREEN_STONE.get().getDefaultState();
+	private static final BlockState GRINT_BLOCK = com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit.GRINT_BLOCK.get().getDefaultState();
+	private static final BlockState FIGHIV = com.babcsany.minecraft.ervin_mod_1.init.block.BlockInit.FIGHIV.get().getDefaultState();
+	private static final BlockState LIGHT_BLUE1_STONE = BlockItemInit.LIGHT_BLUE1_STONE.get().getDefaultState();
+	private static final BlockState LIGHT_BLUE_STONE = BlockItemInit.LIGHT_BLUE_STONE.get().getDefaultState();
+	private static final BlockState LIGHT_GRAY_STONE = BlockItemInit.LIGHT_GRAY_STONE.get().getDefaultState();
+	private static final BlockState LIME_STONE = BlockItemInit.LIME_STONE.get().getDefaultState();
+	private static final BlockState MAGENTA_STONE = BlockItemInit.MAGENTA_STONE.get().getDefaultState();
+	private static final BlockState ORANGE_STONE = BlockItemInit.ORANGE_STONE.get().getDefaultState();
+	private static final BlockState PINK_STONE = BlockItemInit.PINK_STONE.get().getDefaultState();
+	private static final BlockState PURPLE_STONE = BlockItemInit.PURPLE_STONE.get().getDefaultState();
+	private static final BlockState RED_STONE = BlockItemInit.RED_STONE.get().getDefaultState();
+	private static final BlockState WHITE_STONE = BlockItemInit.WHITE_STONE.get().getDefaultState();
+	private static final BlockState YELLOW_STONE = BlockItemInit.YELLOW_STONE.get().getDefaultState();
+	private static final BlockState SRIUNK_ORE = BlockItemInit.SRIUNK_ORE.get().getDefaultState();
 	private static final BlockState END_STONE = Blocks.END_STONE.getDefaultState();
 	private static final BlockState END_SRACKT = ModBlockStates.END_SRACKT.getState();
-	private static final BlockState END_SRACT = BlockItemInit.END_SRACT.getDefaultState();
-	private static final BlockState END_STONE_CISK = BlockItemInit.END_STONE_CISK.getDefaultState();
-	private static final BlockState END_STONE_CRISK = BlockItemInit.END_STONE_CRISK.getDefaultState();
-	private static final BlockState ENDER_SACKT = BlockItemInit.ENDER_SACKT.getDefaultState();
-	private static final BlockState ENDER_SACT = BlockItemInit.ENDER_SACT.getDefaultState();
-	private static final BlockState ENDER_SRACK = BlockItemInit.ENDER_SRACK.getDefaultState();
-	private static final BlockState ENDER_SRACKH = BlockItemInit.ENDER_SRACKH.getDefaultState();
-	private static final BlockState ENDER_SRACT = BlockItemInit.ENDER_SRACT.getDefaultState();
-	private static final BlockState ACACIA_TURG = BlockItemInit.ACACIA_TURG.getDefaultState();
-	private static final BlockState BIRCH_TURG = BlockItemInit.BIRCH_TURG.getDefaultState();
-	private static final BlockState DARK_OAK_TURG = BlockItemInit.DARK_OAK_TURG.getDefaultState();
-	private static final BlockState JUNGLE_TURG = BlockItemInit.JUNGLE_TURG.getDefaultState();
-	private static final BlockState OAK_TURG = BlockItemInit.OAK_TURG.getDefaultState();
-	private static final BlockState SPRUCE_TURG = BlockItemInit.SPRUCE_TURG.getDefaultState();
-	private static final BlockState FIRG_TURG = BlockItemInit.FIRG_TURG.getDefaultState();
-	private static final BlockState FRIM_TURG = BlockItemInit.FRIM_TURG.getDefaultState();
+	private static final BlockState END_SRACT = BlockItemInit.END_SRACT.get().getDefaultState();
+	private static final BlockState END_STONE_CISK = BlockItemInit.END_STONE_CISK.get().getDefaultState();
+	private static final BlockState END_STONE_CRISK = BlockItemInit.END_STONE_CRISK.get().getDefaultState();
+	private static final BlockState ENDER_SACKT = BlockItemInit.ENDER_SACKT.get().getDefaultState();
+	private static final BlockState ENDER_SACT = BlockItemInit.ENDER_SACT.get().getDefaultState();
+	private static final BlockState ENDER_SRACK = BlockItemInit.ENDER_SRACK.get().getDefaultState();
+	private static final BlockState ENDER_SRACKH = BlockItemInit.ENDER_SRACKH.get().getDefaultState();
+	private static final BlockState ENDER_SRACT = BlockItemInit.ENDER_SRACT.get().getDefaultState();
+	private static final BlockState ACACIA_TURG = BlockItemInit.ACACIA_TURG.get().getDefaultState();
+	private static final BlockState BIRCH_TURG = BlockItemInit.BIRCH_TURG.get().getDefaultState();
+	private static final BlockState DARK_OAK_TURG = BlockItemInit.DARK_OAK_TURG.get().getDefaultState();
+	private static final BlockState JUNGLE_TURG = BlockItemInit.JUNGLE_TURG.get().getDefaultState();
+	private static final BlockState OAK_TURG = BlockItemInit.OAK_TURG.get().getDefaultState();
+	private static final BlockState SPRUCE_TURG = BlockItemInit.SPRUCE_TURG.get().getDefaultState();
+	private static final BlockState FIRG_TURG = BlockItemInit.FIRG_TURG.get().getDefaultState();
+	private static final BlockState FRIM_TURG = BlockItemInit.FRIM_TURG.get().getDefaultState();
 	private static final BlockState[] END_BLOCKS = new BlockState[]{GRINT_BLOCK, FIGHIV};
 	public static final BlockStateProvidingFeatureConfig ACACIA_TURG_PILE_CONFIG = new BlockStateProvidingFeatureConfig(new SimpleBlockStateProvider(ACACIA_TURG));
 	public static final BlockStateProvidingFeatureConfig BIRCH_TURG_PILE_CONFIG = new BlockStateProvidingFeatureConfig(new SimpleBlockStateProvider(BIRCH_TURG));
@@ -874,8 +874,8 @@ public class FeatureGen {
 		for (RegistryKey<Biome> biome : BiomeKeys.BIOMES) {
 			BiomeGenerationSettings.Builder builder = new BiomeGenerationSettings.Builder();
 			if (biome == Biomes.THE_END) {
-				builder.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(BASE_END_STONES, SRIUNK_ORE, 50)).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(0, 0, 320))));
-				builder.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(BASE_END_STONES, BLACK_STONE, 20)).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(10, 80, 465))));
+				builder.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureInit.GEN_ORE.get().withConfiguration(new GenOreFeatureConfig(BASE_END_STONES, SRIUNK_ORE, 50)).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(0, 0, 320))));
+				builder.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureInit.GEN_ORE.get().withConfiguration(new GenOreFeatureConfig(BASE_END_STONES, BLACK_STONE, 20)).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(10, 80, 465))));
 			}
 		}
 	}
@@ -938,26 +938,26 @@ public class FeatureGen {
 	}
 
 	public static void addNaturalEndStone(BiomeGenerationSettings.Builder builder) {
-		builder.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(BASE_END_STONES, END_STONE, 20)).withPlacement(Placement.COUNT_NOISE.configure(new NoiseDependant(0, 0, 256))));
-		builder.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(BASE_END_STONES, END_SRACKT, 16)).withPlacement(Placement.COUNT_NOISE.configure(new NoiseDependant(0, 0, 204))));
-		builder.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(BASE_END_STONES, END_SRACT, 12)).withPlacement(Placement.COUNT_NOISE.configure(new NoiseDependant(0, 0, 154))));
-		builder.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(BASE_END_STONES, END_STONE_CISK, 4)).withPlacement(Placement.COUNT_NOISE.configure(new NoiseDependant(0, 0, 51))));
-		builder.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(BASE_END_STONES, END_STONE_CRISK, 2)).withPlacement(Placement.COUNT_NOISE.configure(new NoiseDependant(0, 0, 26))));
+		builder.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureInit.GEN_ORE.get().withConfiguration(new GenOreFeatureConfig(BASE_END_STONES, END_STONE, 20)).withPlacement(Placement.COUNT_NOISE.configure(new NoiseDependant(0, 0, 256))));
+		builder.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureInit.GEN_ORE.get().withConfiguration(new GenOreFeatureConfig(BASE_END_STONES, END_SRACKT, 16)).withPlacement(Placement.COUNT_NOISE.configure(new NoiseDependant(0, 0, 204))));
+		builder.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureInit.GEN_ORE.get().withConfiguration(new GenOreFeatureConfig(BASE_END_STONES, END_SRACT, 12)).withPlacement(Placement.COUNT_NOISE.configure(new NoiseDependant(0, 0, 154))));
+		builder.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureInit.GEN_ORE.get().withConfiguration(new GenOreFeatureConfig(BASE_END_STONES, END_STONE_CISK, 4)).withPlacement(Placement.COUNT_NOISE.configure(new NoiseDependant(0, 0, 51))));
+		builder.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureInit.GEN_ORE.get().withConfiguration(new GenOreFeatureConfig(BASE_END_STONES, END_STONE_CRISK, 2)).withPlacement(Placement.COUNT_NOISE.configure(new NoiseDependant(0, 0, 26))));
 	}
 
 	public static void addNetherBlocks(BiomeGenerationSettings.Builder builder) {
 		builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NETHERRACK, TRIRIJ, 6)).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 64))));
-		builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.MAGMA_BLOCK, TRIRIJ, 16)).withPlacement(Placement.MAGMA.configure(new NoPlacementConfig())));
-		builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.TRIRIJ, MAGMA_BLOCK, 8)).withPlacement(Placement.MAGMA.configure(new NoPlacementConfig())));
+		builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, FeatureInit.GEN_ORE.get().withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.MAGMA_BLOCK, TRIRIJ, 16)).withPlacement(Placement.MAGMA.configure(new NoPlacementConfig())));
+		builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, FeatureInit.GEN_ORE.get().withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.TRIRIJ, MAGMA_BLOCK, 8)).withPlacement(Placement.MAGMA.configure(new NoPlacementConfig())));
 		builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_NETHER, TRIRIJ, 8)).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 96))));
 	}
 
 	public static void addEndStoneVariants(BiomeGenerationSettings.Builder builder) {
-		builder.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(BASE_END_STONE_VARIANTS, ENDER_SACKT, 16)).withPlacement(Placement.RANGE_BIASED.configure(new TopSolidRangeConfig(0, 0, 256))));
-		builder.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(BASE_END_STONE_VARIANTS, ENDER_SACT, 12)).withPlacement(Placement.RANGE_BIASED.configure(new TopSolidRangeConfig(0, 0, 256))));
-		builder.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(BASE_END_STONE_VARIANTS, ENDER_SRACK, 20)).withPlacement(Placement.RANGE_BIASED.configure(new TopSolidRangeConfig(0, 0, 256))));
-		builder.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(BASE_END_STONE_VARIANTS, ENDER_SRACKH, 28)).withPlacement(Placement.RANGE_BIASED.configure(new TopSolidRangeConfig(0, 0, 256))));
-		builder.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(BASE_END_STONE_VARIANTS, ENDER_SRACT, 36)).withPlacement(Placement.RANGE_BIASED.configure(new TopSolidRangeConfig(0, 0, 256))));
+		builder.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureInit.GEN_ORE.get().withConfiguration(new GenOreFeatureConfig(BASE_END_STONE_VARIANTS, ENDER_SACKT, 16)).withPlacement(Placement.RANGE_BIASED.configure(new TopSolidRangeConfig(0, 0, 256))));
+		builder.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureInit.GEN_ORE.get().withConfiguration(new GenOreFeatureConfig(BASE_END_STONE_VARIANTS, ENDER_SACT, 12)).withPlacement(Placement.RANGE_BIASED.configure(new TopSolidRangeConfig(0, 0, 256))));
+		builder.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureInit.GEN_ORE.get().withConfiguration(new GenOreFeatureConfig(BASE_END_STONE_VARIANTS, ENDER_SRACK, 20)).withPlacement(Placement.RANGE_BIASED.configure(new TopSolidRangeConfig(0, 0, 256))));
+		builder.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureInit.GEN_ORE.get().withConfiguration(new GenOreFeatureConfig(BASE_END_STONE_VARIANTS, ENDER_SRACKH, 28)).withPlacement(Placement.RANGE_BIASED.configure(new TopSolidRangeConfig(0, 0, 256))));
+		builder.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureInit.GEN_ORE.get().withConfiguration(new GenOreFeatureConfig(BASE_END_STONE_VARIANTS, ENDER_SRACT, 36)).withPlacement(Placement.RANGE_BIASED.configure(new TopSolidRangeConfig(0, 0, 256))));
 	}
 
 	private static void addAcaciaTurgs(BiomeGenerationSettings.Builder builder) {
@@ -993,27 +993,27 @@ public class FeatureGen {
 	}
 
 	private static void addTrugnInNaturalStone1(BiomeGenerationSettings.Builder builder, int size, int chance) {
-		builder.withFeature(Decoration.TOP_LAYER_MODIFICATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(BASE_STONES_OVERWORLD, TRUGN, size)).withPlacement(Placement.CHANCE.configure(new ChanceConfig(chance))));
+		builder.withFeature(Decoration.TOP_LAYER_MODIFICATION, FeatureInit.GEN_ORE.get().withConfiguration(new GenOreFeatureConfig(BASE_STONES_OVERWORLD, TRUGN, size)).withPlacement(Placement.CHANCE.configure(new ChanceConfig(chance))));
 	}
 
 	private static void addFirtBlocksInNaturalDirts(BiomeGenerationSettings.Builder builder, int size, int chance) {
-		builder.withFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(BASE_DIRTS_OVERWORLD, FIRT_BLOCK, size)).withPlacement(Placement.CHANCE.configure(new ChanceConfig(chance)).withPlacement(Placement.HEIGHTMAP.configure(IPlacementConfig.NO_PLACEMENT_CONFIG))));
+		builder.withFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.get().withConfiguration(new GenOreFeatureConfig(BASE_DIRTS_OVERWORLD, FIRT_BLOCK, size)).withPlacement(Placement.CHANCE.configure(new ChanceConfig(chance)).withPlacement(Placement.HEIGHTMAP.configure(IPlacementConfig.NO_PLACEMENT_CONFIG))));
 	}
 
 	private static void addFirtBlocksInTurgs(BiomeGenerationSettings.Builder builder, int size, int chance) {
-		builder.withFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(BASE_TURGS_OVERWORLD, FIRT_BLOCK, size)).withPlacement(Placement.CHANCE.configure(new ChanceConfig(chance))));
+		builder.withFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.get().withConfiguration(new GenOreFeatureConfig(BASE_TURGS_OVERWORLD, FIRT_BLOCK, size)).withPlacement(Placement.CHANCE.configure(new ChanceConfig(chance))));
 	}
 
 	private static void addKaltBlockInTerracottaVariants(BiomeGenerationSettings.Builder builder, int size, int chance) {
-		builder.withFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(BASE_TERRACOTTA_VARIANTS_OVERWORLD, KALT_BLOCK, size)).withPlacement(Placement.CHANCE.configure(new ChanceConfig(chance))));
+		builder.withFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.get().withConfiguration(new GenOreFeatureConfig(BASE_TERRACOTTA_VARIANTS_OVERWORLD, KALT_BLOCK, size)).withPlacement(Placement.CHANCE.configure(new ChanceConfig(chance))));
 	}
 
 	private static void addAir1Feature(BiomeGenerationSettings.Builder builder, int size, int chance) {
-		builder.withFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(BASE_STONES_OVERWORLD, AIR, size)).withPlacement(Placement.CHANCE.configure(new ChanceConfig(chance))));
+		builder.withFeature(GenerationStage.Decoration.RAW_GENERATION, FeatureInit.GEN_ORE.get().withConfiguration(new GenOreFeatureConfig(BASE_STONES_OVERWORLD, AIR, size)).withPlacement(Placement.CHANCE.configure(new ChanceConfig(chance))));
 	}
 
 	private static void addGenOreFeature(BiomeGenerationSettings.Builder builder, GenerationStage.Decoration decoration, RuleTest ruleTest, BlockState state, int size, ConfiguredPlacement<?> placement) {
-		builder.withFeature(decoration, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(ruleTest, state, size)).withPlacement(placement));
+		builder.withFeature(decoration, FeatureInit.GEN_ORE.get().withConfiguration(new GenOreFeatureConfig(ruleTest, state, size)).withPlacement(placement));
 	}
 
 	private static void addOreFeature(BiomeGenerationSettings.Builder builder, GenerationStage.Decoration decoration, RuleTest ruleTest, BlockState state, int size, ConfiguredPlacement<?> placement) {
@@ -1103,12 +1103,12 @@ public class FeatureGen {
 	public static native void lok(Feature<?> feature);
 
 	public enum ModSpawnerType {
-		GUBROV(EntityClassification.WATER_CREATURE, EntityInit.GUBROV),
-		SRACH(EntityClassification.CREATURE, EntityInit.SRACH_ENTITY),
-		GWURST(EntityClassification.CREATURE, EntityInit.GWURST),
-		FREIN(EntityClassification.MONSTER, EntityInit.FREIN),
-		LIWRAY(EntityClassification.CREATURE, EntityInit.LIWRAY),
-		ZUR(EntityClassification.CREATURE, EntityInit.ZUR);
+		GUBROV(EntityClassification.WATER_CREATURE, EntityInit.GUBROV.get()),
+		SRACH(EntityClassification.CREATURE, EntityInit.SRACH_ENTITY.get()),
+		GWURST(EntityClassification.CREATURE, EntityInit.GWURST.get()),
+		FREIN(EntityClassification.MONSTER, EntityInit.FREIN.get()),
+		LIWRAY(EntityClassification.CREATURE, EntityInit.LIWRAY.get()),
+		ZUR(EntityClassification.CREATURE, EntityInit.ZUR.get());
 
 		private final EntityClassification classification;
 		private final EntityType<?> type;

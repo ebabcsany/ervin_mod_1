@@ -1,21 +1,23 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="runClient" type="Application" factoryName="Application" singleton="false">
+    <option name="ALTERNATIVE_JRE_PATH" value="C:\Users\ervin\.jdks\corretto-1.8.0_302\jre" />
+    <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
     <envs>
       <env name="MOD_CLASSES" value="ervin_mod_1%%$PROJECT_DIR$/../ervin_mod_1\build\resources\main;ervin_mod_1%%$PROJECT_DIR$/../ervin_mod_1\build\classes\java\main" />
       <env name="MCP_MAPPINGS" value="snapshot_20210309-1.16.5" />
-      <env name="MCP_VERSION" value="20200812.004259" />
-      <env name="FORGE_VERSION" value="33.0.61" />
+      <env name="MCP_VERSION" value="20201025.185957" />
+      <env name="FORGE_VERSION" value="34.1.42" />
       <env name="assetIndex" value="1.16" />
       <env name="assetDirectory" value="C:\Users\ervin\.gradle\caches\forge_gradle\assets" />
       <env name="nativesDirectory" value="$PROJECT_DIR$/../ervin_mod_1\build\natives" />
       <env name="FORGE_GROUP" value="net.minecraftforge" />
       <env name="target" value="fmluserdevclient" />
-      <env name="MC_VERSION" value="1.16.2" />
+      <env name="MC_VERSION" value="1.16.3" />
     </envs>
     <option name="MAIN_CLASS_NAME" value="net.minecraftforge.userdev.LaunchTesting" />
-    <module name="com.babcsany.minecraft.ervin_mod_1.main" />
+    <module name="projects.ervin_mod_1.main" />
     <option name="VM_PARAMETERS" value="-Dforge.logging.console.level=debug -Dforge.logging.markers=SCAN,REGISTRIES,REGISTRYDUMP -XX:HeapDumpPath=MojangTricksIntelDriversForPerformance_javaw.exe_minecraft.exe.heapdump &quot;-Dos.name=Windows 10&quot; -Dos.version=10.0" />
-    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/run" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/run/backups" />
     <method v="2">
       <option name="Make" enabled="true" />
       <option name="Gradle.BeforeRunTask" enabled="true" tasks=":prepareRunClient" externalProjectPath="$PROJECT_DIR$" />

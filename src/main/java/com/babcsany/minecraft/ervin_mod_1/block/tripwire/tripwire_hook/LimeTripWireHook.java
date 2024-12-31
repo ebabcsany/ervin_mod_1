@@ -12,11 +12,11 @@ public class LimeTripWireHook extends ModTripWireHookBlock {
 
    @Override
    public Block getTripWire() {
-      return BlockInit.LIME_TRIPWIRE;
+      return BlockInit.LIME_TRIPWIRE.get();
    }
 
    @Override
    public Block getTripWireHook() {
-      return BlockInit.LIME_TRIPWIRE_HOOK;
+      return BlockInit.LIME_TRIPWIRE_HOOK.get();
    }
 }

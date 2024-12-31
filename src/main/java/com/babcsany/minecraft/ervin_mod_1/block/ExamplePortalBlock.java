@@ -58,8 +58,8 @@ public class ExamplePortalBlock extends Block {
                 pos = pos.down();
             }
 
-            if (worldIn.getBlockState(pos).canEntitySpawn(worldIn, pos, EntityInit.ZUR)) {
-                Entity entity = EntityInit.ZUR.spawn(worldIn, (CompoundNBT)null, (ITextComponent)null, (PlayerEntity)null, pos.up(), SpawnReason.STRUCTURE, false, false);
+            if (worldIn.getBlockState(pos).canEntitySpawn(worldIn, pos, EntityInit.ZUR.get())) {
+                Entity entity = EntityInit.ZUR.get().spawn(worldIn, (CompoundNBT)null, (ITextComponent)null, (PlayerEntity)null, pos.up(), SpawnReason.STRUCTURE, false, false);
                 if (entity != null) {
                     entity.setPortalCooldown();
                 }

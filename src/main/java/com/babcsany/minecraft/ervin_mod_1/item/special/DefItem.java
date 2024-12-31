@@ -71,7 +71,7 @@ public class DefItem extends Item {
 
 	@Override
 	public boolean onEntityItemUpdate(ItemStack stack, ItemEntity entity) {
-		entity.getEntityWorld().setBlockState(entity.getPosition().down(), BlockItemInit.DEFERRED_BLOCK.getDefaultState());
+		entity.getEntityWorld().setBlockState(entity.getPosition().down(), BlockItemInit.DEFERRED_BLOCK.get().getDefaultState());
 		return super.onEntityItemUpdate(stack, entity);
 	}
 
@@ -96,16 +96,16 @@ public class DefItem extends Item {
 
 	@Override
 	public ActionResultType onItemUse(ItemUseContext context) {
-		if (context.getWorld().getBlockState(context.getPos()).getBlock() == BlockItemInit.DEFERRED_BLOCK) {
+		if (context.getWorld().getBlockState(context.getPos()).getBlock() == BlockItemInit.DEFERRED_BLOCK.get()) {
 			for (ItemStack stack : Objects.requireNonNull(context.getPlayer()).inventory.mainInventory) {
 				if (stack.isEmpty()) {
-					context.getPlayer().addItemStackToInventory(new ItemStack(isBurnableSpecialItemInit.DEF_ITEM));
+					context.getPlayer().addItemStackToInventory(new ItemStack(isBurnableSpecialItemInit.DEF_ITEM.get()));
 					context.getItem().damageItem(1, context.getPlayer(), (playerIn) -> playerIn.sendBreakAnimation(context.getHand()));
 					return ActionResultType.SUCCESS;
 				}
 			}
 			context.getWorld().addEntity(new ItemEntity(context.getWorld(), context.getPos().getX(),
-					context.getPos().getY(), context.getPos().getZ(), new ItemStack(isBurnableSpecialItemInit.DEF_ITEM)));
+					context.getPos().getY(), context.getPos().getZ(), new ItemStack(isBurnableSpecialItemInit.DEF_ITEM.get())));
 			return ActionResultType.SUCCESS;
 		}
 		return ActionResultType.FAIL;

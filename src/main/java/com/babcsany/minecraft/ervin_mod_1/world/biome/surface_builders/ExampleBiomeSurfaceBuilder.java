@@ -26,16 +26,16 @@ public class ExampleBiomeSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderCon
 		if (i == 0) {
 			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock,
 					defaultFluid, seaLevel, seed,
-					new SurfaceBuilderConfig(isBurnableBlockItemInit.LEAT_BLOCK_CRAFTING_TABLE.getBlock().getDefaultState(),
-							isBurnableBlockItemInit.CRASK.getDefaultState(), BlockItemInit.GRITK_BLOCK.getDefaultState()
+					new SurfaceBuilderConfig(isBurnableBlockItemInit.LEAT_BLOCK_CRAFTING_TABLE.get().getDefaultState(),
+							isBurnableBlockItemInit.CRASK.get().getDefaultState(), BlockItemInit.GRITK_BLOCK.get().getDefaultState()
 					));
 		} else {
 			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock,
 					defaultFluid, seaLevel, seed,
 					new SurfaceBuilderConfig(
 							i == 1 ? Blocks.GRASS_BLOCK.getDefaultState()
-									: isBurnableBlockItemInit.SRIUNK_BLOCK.getDefaultState(),
-							isBurnableBlockItemInit.TRUGN.getDefaultState(), BlockItemInit.TRINKS.getDefaultState()
+									: isBurnableBlockItemInit.SRIUNK_BLOCK.get().getDefaultState(),
+							isBurnableBlockItemInit.TRUGN.get().getDefaultState(), BlockItemInit.TRINKS.get().getDefaultState()
 					));
 		}
 	}

@@ -2,7 +2,6 @@ package com.babcsany.minecraft.ervin_mod_1.init.unused;
 
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.item.ToolTypeInit;
-import com.babcsany.minecraft.ervin_mod_1.util.Cast;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -19,7 +18,7 @@ import java.util.Collection;
 public class UnusedBlockItems {
     private static BlockItem LAST_BLOCK_ITEM;
     private static final ArrayList<String> BLOCK_ITEM_PATHS = new ArrayList<>();
-    private static ArrayList<BlockItem> BLOCK_ITEMS = new ArrayList<>();
+    private static final ArrayList<BlockItem> BLOCK_ITEMS = new ArrayList<>();
 
     public static Collection<Item> unusedBlockItemsProperties(String... strings) {
         ArrayList<Item> list = new ArrayList<>();
@@ -103,7 +102,7 @@ public class UnusedBlockItems {
     private static <T extends BlockItem> Item registerDefault(Block blockIn, T blockItemIn) {
         ResourceLocation key = getKey(blockIn);
         boolean notContains = !BLOCK_ITEM_PATHS.contains(key.getPath()) && !BLOCK_ITEMS.contains(blockItemIn);
-        UnusedBlocks.registerDefault(key, blockIn);
+        UnusedBlocks.registerDefault(key.getPath(), blockIn);
         UnusedItems.register(key, blockItemIn);
         if (notContains) {
             addDefault(blockIn);
@@ -137,7 +136,7 @@ public class UnusedBlockItems {
         return addDefault(path, path);
     }
 
-    private static BlockItem addDefault(Block blockIn) {
+    public static BlockItem addDefault(Block blockIn) {
         return addDefault(getPath(blockIn), blockIn);
     }
 
@@ -146,7 +145,7 @@ public class UnusedBlockItems {
     }
 
     @Deprecated
-    private static ResourceLocation getKey(Block blockIn) {
+    public static ResourceLocation getKey(Block blockIn) {
         return Registry.BLOCK.getKey(blockIn);
     }
 

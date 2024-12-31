@@ -6,6 +6,9 @@ import com.babcsany.minecraft.ervin_mod_1.entity.animal.hhij.HhijEntity;
 import com.babcsany.minecraft.ervin_mod_1.entity.event.HhijAnimalTameEvent;
 import com.babcsany.minecraft.ervin_mod_1.entity.event.ZurTameEvent;
 import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.goal.BowAttackGoal;
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.goal.PlaceBlockGoal;
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.goal.TakeBlockGoal;
+import com.babcsany.minecraft.ervin_mod_1.entity.monster.zur.task.ZurTasks;
 import com.babcsany.minecraft.ervin_mod_1.entity.villager.trades.ZurTrades;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.item.ItemInit;
@@ -20,6 +23,7 @@ import com.babcsany.minecraft.ervin_mod_1.trigger.ModCriteriaTriggers;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Sets;
+import com.mojang.serialization.Dynamic;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
@@ -29,15 +33,17 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.ai.brain.Brain;
 import net.minecraft.entity.ai.brain.memory.MemoryModuleType;
-import net.minecraft.entity.ai.goal.BreakDoorGoal;
-import net.minecraft.entity.ai.goal.Goal;
-import net.minecraft.entity.ai.goal.MeleeAttackGoal;
-import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
+import net.minecraft.entity.ai.brain.sensor.Sensor;
+import net.minecraft.entity.ai.brain.sensor.SensorType;
+import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.merchant.IMerchant;
 import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
 import net.minecraft.entity.merchant.villager.VillagerData;
+import net.minecraft.entity.monster.EndermanEntity;
+import net.minecraft.entity.monster.piglin.PiglinEntity;
+import net.minecraft.entity.monster.piglin.PiglinTasks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
@@ -94,7 +100,7 @@ public abstract class AbstractZurEntity extends TameableZurEntity implements INP
     protected static final DataParameter<Optional<BlockState>> CARRIED_BLOCK = EntityDataManager.createKey(AbstractZurEntity.class, DataSerializers.OPTIONAL_BLOCK_STATE);
     public static final Map<Item, Integer> FOOD_VALUES = ImmutableMap.of(Items.BREAD, 4, Items.POTATO, 1, Items.CARROT, 1, Items.BEETROOT, 1);
     protected static final DataParameter<Optional<UUID>> OWNER_UNIQUE_ID = EntityDataManager.createKey(AbstractZurEntity.class, DataSerializers.OPTIONAL_UNIQUE_ID);
-    public final ItemStack LEAT = new ItemStack(isBurnableItemInit.LEAT);
+    public final ItemStack LEAT = new ItemStack(isBurnableItemInit.LEAT.get());
     @Nullable
     public BlockPos zurTarget;
     @Nullable
@@ -142,6 +148,8 @@ public abstract class AbstractZurEntity extends TameableZurEntity implements INP
     private BlockPos patrolTarget;
     private boolean patrolLeader;
     private boolean patrolling;
+    protected static final ImmutableList<SensorType<? extends Sensor<? super AbstractZurEntity>>> field_234405_b_ = ImmutableList.of(SensorType.NEAREST_LIVING_ENTITIES, SensorType.NEAREST_PLAYERS, SensorType.NEAREST_ITEMS, SensorType.HURT_BY, SensorType.PIGLIN_SPECIFIC_SENSOR);
+    protected static final ImmutableList<MemoryModuleType<?>> field_234414_c_ = ImmutableList.of(MemoryModuleType.LOOK_TARGET, MemoryModuleType.OPENED_DOORS, MemoryModuleType.MOBS, MemoryModuleType.VISIBLE_MOBS, MemoryModuleType.NEAREST_VISIBLE_PLAYER, MemoryModuleType.NEAREST_VISIBLE_TARGETABLE_PLAYER, MemoryModuleType.NEAREST_VISIBLE_ADULT_PIGLINS, MemoryModuleType.NEAREST_ADULT_PIGLINS, MemoryModuleType.NEAREST_VISIBLE_WANTED_ITEM, MemoryModuleType.HURT_BY, MemoryModuleType.HURT_BY_ENTITY, MemoryModuleType.WALK_TARGET, MemoryModuleType.CANT_REACH_WALK_TARGET_SINCE, MemoryModuleType.ATTACK_TARGET, MemoryModuleType.ATTACK_COOLING_DOWN, MemoryModuleType.INTERACTION_TARGET, MemoryModuleType.PATH, MemoryModuleType.ANGRY_AT, MemoryModuleType.UNIVERSAL_ANGER, MemoryModuleType.AVOID_TARGET, MemoryModuleType.ADMIRING_ITEM, MemoryModuleType.TIME_TRYING_TO_REACH_ADMIRE_ITEM, MemoryModuleType.ADMIRING_DISABLED, MemoryModuleType.DISABLE_WALK_TO_ADMIRE_ITEM, MemoryModuleType.CELEBRATE_LOCATION, MemoryModuleType.DANCING, MemoryModuleType.HUNTED_RECENTLY, MemoryModuleType.NEAREST_VISIBLE_BABY_HOGLIN, MemoryModuleType.NEAREST_VISIBLE_NEMESIS, MemoryModuleType.NEAREST_VISIBLE_ZOMBIFIED, MemoryModuleType.RIDE_TARGET, MemoryModuleType.VISIBLE_ADULT_PIGLIN_COUNT, MemoryModuleType.VISIBLE_ADULT_HOGLIN_COUNT, MemoryModuleType.NEAREST_VISIBLE_HUNTABLE_HOGLIN, MemoryModuleType.NEAREST_TARGETABLE_PLAYER_NOT_WEARING_GOLD, MemoryModuleType.NEAREST_PLAYER_HOLDING_WANTED_ITEM, MemoryModuleType.ATE_RECENTLY, MemoryModuleType.NEAREST_REPELLENT);
     private final MeleeAttackGoal aiAttackOnCollide = new MeleeAttackGoal(this, 1.2D, true) {
         /**
          * Reset the task's internal state. Called when this task is interrupted by another one
@@ -305,13 +313,21 @@ public abstract class AbstractZurEntity extends TameableZurEntity implements INP
     }
 
     protected void registerGoals() {
+        this.goalSelector.addGoal(0, new UseItemGoal<>(this, PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.INVISIBILITY), SoundEvents.ENTITY_WANDERING_TRADER_DISAPPEARED, (trader) -> !this.world.isDaytime() && !trader.isInvisible()));
+        this.goalSelector.addGoal(0, new UseItemGoal<>(this, new ItemStack(Items.MILK_BUCKET), SoundEvents.ENTITY_WANDERING_TRADER_REAPPEARED, (trader) -> this.world.isDaytime() && trader.isInvisible()));
         this.goalSelector.addGoal(4, new AttackGoal(this));
         this.goalSelector.addGoal(8, new LeapAtTargetGoal(this, 53));
         this.goalSelector.addGoal(6, new AbstractZurEntity.TargetGoal<>(this, AbstractVillagerEntity.class));
+        this.goalSelector.addGoal(10, new PlaceBlockGoal(this));
+        this.goalSelector.addGoal(11, new TakeBlockGoal(this));
     }
 
-    public void func_234438_m_(ItemStack p_234438_1_) {
-        this.func_233657_b_(EquipmentSlotType.MAINHAND, p_234438_1_);
+    public void addGoal(int priority, Goal goal) {
+        this.goalSelector.addGoal(priority, goal);
+    }
+
+    public void func_234438_m_(ItemStack stack) {
+        this.func_233657_b_(EquipmentSlotType.MAINHAND, stack);
     }
 
     protected boolean shouldDrown() {
@@ -397,6 +413,14 @@ public abstract class AbstractZurEntity extends TameableZurEntity implements INP
             }
         }
 
+    }
+
+    protected Brain.BrainCodec<AbstractZurEntity> getBrainCodec() {
+        return Brain.createCodec(field_234414_c_, field_234405_b_);
+    }
+
+    protected Brain<?> createBrain(Dynamic<?> dynamicIn) {
+        return ZurTasks.func_234469_a_(this, this.getBrainCodec().deserialize(dynamicIn));
     }
 
     public void startSleeping(BlockPos pos) {
@@ -507,7 +531,7 @@ public abstract class AbstractZurEntity extends TameableZurEntity implements INP
         ItemStack itemstack = player.getHeldItem(hand);
         Item item = itemstack.getItem();
         if (this.world.isRemote) {
-            boolean flag = this.isOwner(player) || this.isTamed() || item == isBurnableItemInit.LEAT && !this.isTamed();
+            boolean flag = this.isOwner(player) || this.isTamed() || item == isBurnableItemInit.LEAT.get() && !this.isTamed();
             return flag ? ActionResultType.CONSUME : ActionResultType.PASS;
         } else {
             if (this.isTamed()) {
@@ -531,7 +555,7 @@ public abstract class AbstractZurEntity extends TameableZurEntity implements INP
 
                     return actionresulttype;
                 }
-            } else if (item == isBurnableItemInit.LEAT) {
+            } else if (item == isBurnableItemInit.LEAT.get()) {
                 if (!player.abilities.isCreativeMode) {
                     itemstack.shrink(1);
                 }
@@ -571,6 +595,28 @@ public abstract class AbstractZurEntity extends TameableZurEntity implements INP
 
     protected boolean canBreakDoors() {
         return true;
+    }
+
+    protected void dropSpecialItems(DamageSource source, int looting, boolean recentlyHitIn) {
+        super.dropSpecialItems(source, looting, recentlyHitIn);
+        BlockState blockstate = this.getHeldBlockState();
+        if (blockstate != null) {
+            this.entityDropItem(blockstate.getBlock());
+        }
+
+    }
+
+    public boolean preventDespawn() {
+        return super.preventDespawn() || this.getHeldBlockState() != null;
+    }
+
+    public void setHeldBlockState(@Nullable BlockState state) {
+        this.dataManager.set(CARRIED_BLOCK, Optional.ofNullable(state));
+    }
+
+    @Nullable
+    public BlockState getHeldBlockState() {
+        return this.dataManager.get(CARRIED_BLOCK).orElse(null);
     }
 
     /**
@@ -615,12 +661,12 @@ public abstract class AbstractZurEntity extends TameableZurEntity implements INP
     public ActionResultType getEntityInteractionResult(PlayerEntity player, Hand hand) {
         ItemStack itemstack = player.getHeldItem(hand);
         Item item = itemstack.getItem();
-        if (itemstack.getItem() != ModSpawnEggItemInit.ZUR_SPAWN_EGG && this.isAlive() && !this.hasCustomer() && !this.isChild()) {
+        if (itemstack.getItem() != ModSpawnEggItemInit.ZUR_SPAWN_EGG.get() && this.isAlive() && !this.hasCustomer() && !this.isChild()) {
             if (hand == Hand.MAIN_HAND) {
                 player.addStat(Stats.TALKED_TO_VILLAGER);
             }
 
-            if (item == isBurnableItemInit.LEAT) {
+            if (item == isBurnableItemInit.LEAT.get()) {
                 return setTameActionResultType(player, hand);
             } else if (!this.getOffers().isEmpty()) {
                 if (!this.world.isRemote) {
@@ -734,7 +780,7 @@ public abstract class AbstractZurEntity extends TameableZurEntity implements INP
             {
                 int i = this.rand.nextInt(180);
                 if (i == 0) {
-                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.NIRK));
+                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.NIRK.get()));
                 } else {
                     this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableToolItemInit.NIRK_AXE.get()));
                 }
@@ -744,7 +790,7 @@ public abstract class AbstractZurEntity extends TameableZurEntity implements INP
             {
                 int i = this.rand.nextInt(144);
                 if (i == 0) {
-                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.NIRK));
+                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.NIRK.get()));
                 } else {
                     this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableToolItemInit.NIRK_SHOVEL.get()));
                 }
@@ -754,7 +800,7 @@ public abstract class AbstractZurEntity extends TameableZurEntity implements INP
             {
                 int i = this.rand.nextInt(108);
                 if (i == 0) {
-                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.NIRK));
+                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.NIRK.get()));
                 } else {
                     this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableToolItemInit.NIRK_SWORD.get()));
                 }
@@ -764,7 +810,7 @@ public abstract class AbstractZurEntity extends TameableZurEntity implements INP
             {
                 int i = this.rand.nextInt(72);
                 if (i == 0) {
-                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.NIRK));
+                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.NIRK.get()));
                 } else {
                     this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableToolItemInit.NIRK_PICKAXE.get()));
                 }
@@ -774,7 +820,7 @@ public abstract class AbstractZurEntity extends TameableZurEntity implements INP
             {
                 int i = this.rand.nextInt(36);
                 if (i == 0) {
-                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.NIRK));
+                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.NIRK.get()));
                 } else {
                     this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableToolItemInit.NIRK_HOE.get()));
                 }
@@ -784,7 +830,7 @@ public abstract class AbstractZurEntity extends TameableZurEntity implements INP
             {
                 int i = this.rand.nextInt(120);
                 if (i == 0) {
-                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableFoodItemInit.DURG));
+                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableFoodItemInit.DURG.get()));
                 } else {
                     this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableToolItemInit.DURG_AXE.get()));
                 }
@@ -794,7 +840,7 @@ public abstract class AbstractZurEntity extends TameableZurEntity implements INP
             {
                 int i = this.rand.nextInt(96);
                 if (i == 0) {
-                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableFoodItemInit.DURG));
+                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableFoodItemInit.DURG.get()));
                 } else {
                     this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableToolItemInit.DURG_SHOVEL.get()));
                 }
@@ -804,7 +850,7 @@ public abstract class AbstractZurEntity extends TameableZurEntity implements INP
             {
                 int i = this.rand.nextInt(72);
                 if (i == 0) {
-                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableFoodItemInit.DURG));
+                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableFoodItemInit.DURG.get()));
                 } else {
                     this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableToolItemInit.DURG_SWORD.get()));
                 }
@@ -814,7 +860,7 @@ public abstract class AbstractZurEntity extends TameableZurEntity implements INP
             {
                 int i = this.rand.nextInt(48);
                 if (i == 0) {
-                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableFoodItemInit.DURG));
+                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableFoodItemInit.DURG.get()));
                 } else {
                     this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableToolItemInit.DURG_PICKAXE.get()));
                 }
@@ -824,11 +870,11 @@ public abstract class AbstractZurEntity extends TameableZurEntity implements INP
             {
                 int i = this.rand.nextInt(24);
                 if (i == 0) {
-                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableFoodItemInit.DURG));
+                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableFoodItemInit.DURG.get()));
                 } else if (i == 1) {
                     this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableToolItemInit.DURG_HOE.get()));
                 } else if (i == 2) {
-                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.SRIUNK));
+                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.SRIUNK.get()));
                 } else {
                     this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableToolItemInit.SRIUNK_PICKAXE.get()));
                 }
@@ -836,7 +882,7 @@ public abstract class AbstractZurEntity extends TameableZurEntity implements INP
             if (this.rand.nextFloat() < (this.world.getDifficulty() == Difficulty.EASY ? 2.0F : 0.4F)) {
                 int i = this.rand.nextInt(60);
                 if (i == 0) {
-                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.SRIUNK));
+                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.SRIUNK.get()));
                 } else {
                     this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableToolItemInit.SRIUNK_AXE.get()));
                 }
@@ -844,7 +890,7 @@ public abstract class AbstractZurEntity extends TameableZurEntity implements INP
             if (this.rand.nextFloat() < (this.world.getDifficulty() == Difficulty.EASY ? 2.0F : 0.4F)) {
                 int i = this.rand.nextInt(48);
                 if (i == 0) {
-                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.SRIUNK));
+                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.SRIUNK.get()));
                 } else {
                     this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableToolItemInit.SRIUNK_SHOVEL.get()));
                 }
@@ -852,7 +898,7 @@ public abstract class AbstractZurEntity extends TameableZurEntity implements INP
             if (this.rand.nextFloat() < (this.world.getDifficulty() == Difficulty.EASY ? 2.0F : 0.4F)) {
                 int i = this.rand.nextInt(36);
                 if (i == 0) {
-                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.SRIUNK));
+                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.SRIUNK.get()));
                 } else {
                     this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableToolItemInit.SRIUNK_SWORD.get()));
                 }
@@ -860,7 +906,7 @@ public abstract class AbstractZurEntity extends TameableZurEntity implements INP
             if (this.rand.nextFloat() < (this.world.getDifficulty() == Difficulty.EASY ? 2.0F : 0.4F)) {
                 int i = this.rand.nextInt(12);
                 if (i == 0) {
-                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.SRIUNK));
+                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableItemInit.SRIUNK.get()));
                 } else {
                     this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(isBurnableToolItemInit.SRIUNK_HOE.get()));
                 }
@@ -868,9 +914,9 @@ public abstract class AbstractZurEntity extends TameableZurEntity implements INP
             if (this.rand.nextFloat() < (this.world.getDifficulty() == Difficulty.PEACEFUL ? 0.5F : 0.1F)) {
                 int i = this.rand.nextInt(6);
                 if (i == 0) {
-                    this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(isBurnableItemInit.DURK));
+                    this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(isBurnableItemInit.DURK.get()));
                 } else {
-                    this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(isBurnableItemInit.LEAT));
+                    this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(isBurnableItemInit.LEAT.get()));
                 }
             }
         }
@@ -879,41 +925,41 @@ public abstract class AbstractZurEntity extends TameableZurEntity implements INP
 
     protected void setEquipmentBasedOnDifficulty1(DifficultyInstance difficulty) {
         if (this.isNotChild()) {
-            this.equipmentSlotType(EquipmentSlotType.HEAD, new ItemStack(ArmorItemInit.FIRT_HELMET));
-            this.equipmentSlotType(EquipmentSlotType.CHEST, new ItemStack(ArmorItemInit.FIRT_CHESTPLATE));
-            this.equipmentSlotType(EquipmentSlotType.LEGS, new ItemStack(ArmorItemInit.FIRT_LEGGINGS));
-            this.equipmentSlotType(EquipmentSlotType.FEET, new ItemStack(ArmorItemInit.FIRT_BOOTS));
+            this.equipmentSlotType(EquipmentSlotType.HEAD, new ItemStack(ArmorItemInit.FIRT_HELMET.get()));
+            this.equipmentSlotType(EquipmentSlotType.CHEST, new ItemStack(ArmorItemInit.FIRT_CHESTPLATE.get()));
+            this.equipmentSlotType(EquipmentSlotType.LEGS, new ItemStack(ArmorItemInit.FIRT_LEGGINGS.get()));
+            this.equipmentSlotType(EquipmentSlotType.FEET, new ItemStack(ArmorItemInit.FIRT_BOOTS.get()));
         }
         if (this.rand.nextFloat() < (this.world.getDifficulty() == Difficulty.PEACEFUL ? 0.5F : 0.1F)) {
             int i = this.rand.nextInt(40);
             if (i == 0) {
-                this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.END_STONE_STIK));
+                this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.END_STONE_STIK.get()));
             } else if (i == 1) {
-                this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.KALT));
+                this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.KALT.get()));
             } else if (i == 2) {
-                this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.FIRK));
+                this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.FIRK.get()));
             } else if (i == 3) {
-                this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.NIRG));
+                this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.NIRG.get()));
             } else if (i == 4) {
-                this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.REGDEM));
+                this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.REGDEM.get()));
             } else {
-                this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.FRIT));
+                this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.FRIT.get()));
             }
         }
         if (this.rand.nextFloat() < (this.world.getDifficulty() == Difficulty.PEACEFUL ? 0.5F : 0.1F)) {
             int i = this.rand.nextInt(60);
             if (i == 0) {
-                this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.KIRT_STIK));
+                this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.KIRT_STIK.get()));
             } else if (i == 1) {
-                this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.KIRT_STICK));
+                this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.KIRT_STICK.get()));
             } else if (i == 2) {
-                this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.SCIK));
+                this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.SCIK.get()));
             } else if (i == 3) {
-                this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.SCRA));
+                this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.SCRA.get()));
             } else if (i == 4) {
-                this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.GURT));
+                this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.GURT.get()));
             } else {
-                this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.CRAST));
+                this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ItemInit.CRAST.get()));
             }
         }
 
@@ -932,11 +978,11 @@ public abstract class AbstractZurEntity extends TameableZurEntity implements INP
     }
 
     ItemStack func_234432_eW_() {
-        return this.rand.nextFloat() < 0.5D ? new ItemStack(isBurnableItemInit.SRIUNK_STICK) : new ItemStack(isBurnableSpecialItemInit.DEBUG_SRIUNK_STICK);
+        return this.rand.nextFloat() < 0.5D ? new ItemStack(isBurnableItemInit.SRIUNK_STICK.get()) : new ItemStack(isBurnableSpecialItemInit.DEBUG_SRIUNK_STICK.get());
     }
 
     ItemStack func_234432_eW1_() {
-        return this.rand.nextFloat() < 0.5D ? new ItemStack(isBurnableItemInit.VIRKT) : new ItemStack(isBurnableBlockItemInit.NETHER_PORTAL);
+        return this.rand.nextFloat() < 0.5D ? new ItemStack(isBurnableItemInit.VIRKT.get()) : new ItemStack(isBurnableBlockItemInit.NETHER_PORTAL.get());
     }
 
     public static boolean onAnimalTame(HhijAnimalEntity animal, PlayerEntity tamer)
@@ -1048,61 +1094,74 @@ public abstract class AbstractZurEntity extends TameableZurEntity implements INP
         this.playSound(SoundEvents.AMBIENT_BASALT_DELTAS_LOOP, this.getSoundVolume(), this.getSoundPitch());
     }
 
-    public void writeAdditional(CompoundNBT compound) {
-        super.writeAdditional(compound);
+    public void writeAdditional(CompoundNBT nbt) {
+        super.writeAdditional(nbt);
+        BlockState blockstate = this.getHeldBlockState();
+        if (blockstate != null) {
+            nbt.put("carriedBlockState", NBTUtil.writeBlockState(blockstate));
+        }
 
-        compound.putInt("DespawnDelay", this.despawnDelay);
-        compound.putInt("InLove", this.inLove);
+        nbt.putInt("DespawnDelay", this.despawnDelay);
+        nbt.putInt("InLove", this.inLove);
         if (this.playerInLove != null) {
-            compound.putUniqueId("LoveCause", this.playerInLove);
+            nbt.putUniqueId("LoveCause", this.playerInLove);
         }
         if (this.getOwnerId() != null) {
-            compound.putUniqueId("Owner", this.getOwnerId());
+            nbt.putUniqueId("Owner", this.getOwnerId());
         }
         if (this.wanderTarget != null) {
-            compound.put("ZurTarget", NBTUtil.writeBlockPos(this.wanderTarget));
+            nbt.put("ZurTarget", NBTUtil.writeBlockPos(this.wanderTarget));
         }
 
-        compound.putBoolean("rewardExp", this.doesRewardEXP);
-        compound.putByte("FoodLevel", this.foodLevel);
-        compound.putInt("Xp", this.xp);
+        nbt.putBoolean("rewardExp", this.doesRewardEXP);
+        nbt.putByte("FoodLevel", this.foodLevel);
+        nbt.putInt("Xp", this.xp);
 
         if (this.isChild()) {
-            compound.putBoolean("IsBaby", true);
+            nbt.putBoolean("IsBaby", true);
         }
 
         if (this.patrolTarget != null) {
-            compound.put("PatrolTarget", NBTUtil.writeBlockPos(this.patrolTarget));
+            nbt.put("PatrolTarget", NBTUtil.writeBlockPos(this.patrolTarget));
         }
 
-        compound.putBoolean("PatrolLeader", this.patrolLeader);
-        compound.putBoolean("Patrolling", this.patrolling);
+        nbt.putBoolean("PatrolLeader", this.patrolLeader);
+        nbt.putBoolean("Patrolling", this.patrolling);
 
-        compound.putShort("SleepTimer", (short) this.sleepTimer);
-        compound.putFloat("XpP", this.experience);
-        compound.putInt("XpLevel", this.experienceLevel);
-        compound.putInt("XpTotal", this.experienceTotal);
-        compound.putInt("XpSeed", this.xpSeed);
+        nbt.putShort("SleepTimer", (short) this.sleepTimer);
+        nbt.putFloat("XpP", this.experience);
+        nbt.putInt("XpLevel", this.experienceLevel);
+        nbt.putInt("XpTotal", this.experienceTotal);
+        nbt.putInt("XpSeed", this.xpSeed);
     }
 
     /**
      * (abstract) Protected helper method to read subclass entity data from NBT.
      */
-    public void readAdditional(CompoundNBT compound) {
-        super.readAdditional(compound);
-        if (compound.contains("DespawnDelay", 99)) {
-            this.despawnDelay = compound.getInt("DespawnDelay");
+    public void readAdditional(CompoundNBT nbt) {
+        super.readAdditional(nbt);
+        BlockState blockstate = null;
+        if (nbt.contains("carriedBlockState", 10)) {
+            blockstate = NBTUtil.readBlockState(nbt.getCompound("carriedBlockState"));
+            if (blockstate.isAir()) {
+                blockstate = null;
+            }
         }
 
-        this.inLove = compound.getInt("InLove");
-        this.playerInLove = compound.hasUniqueId("LoveCause") ? compound.getUniqueId("LoveCause") : null;
+        this.setHeldBlockState(blockstate);
+        if (nbt.contains("DespawnDelay", 99)) {
+            this.despawnDelay = nbt.getInt("DespawnDelay");
+        }
+
+        this.inLove = nbt.getInt("InLove");
+        this.playerInLove = nbt.hasUniqueId("LoveCause") ? nbt.getUniqueId("LoveCause") : null;
 
         UUID uuid;
-        if (compound.hasUniqueId("Owner")) {
-            uuid = compound.getUniqueId("Owner");
+        if (nbt.hasUniqueId("Owner")) {
+            uuid = nbt.getUniqueId("Owner");
         } else {
-            String s = compound.getString("Owner");
-            uuid = PreYggdrasilConverter.convertMobOwnerIfNeeded(this.getServer(), s);
+            String s = nbt.getString("Owner");
+            uuid = PreYggdrasilConverter.convertMobOwnerIfNeeded(Objects.requireNonNull(this.getServer()), s);
         }
 
         if (uuid != null) {
@@ -1114,33 +1173,33 @@ public abstract class AbstractZurEntity extends TameableZurEntity implements INP
             }
         }
 
-        if (compound.contains("ZurTarget")) {
-            this.zurTarget = NBTUtil.readBlockPos(compound.getCompound("ZurTarget"));
+        if (nbt.contains("ZurTarget")) {
+            this.zurTarget = NBTUtil.readBlockPos(nbt.getCompound("ZurTarget"));
         }
 
-        if (compound.getBoolean("IsBaby")) {
+        if (nbt.getBoolean("IsBaby")) {
             this.setChild(true);
         }
 
-        if (compound.contains("FoodLevel", 1)) {
-            this.foodLevel = compound.getByte("FoodLevel");
+        if (nbt.contains("FoodLevel", 1)) {
+            this.foodLevel = nbt.getByte("FoodLevel");
         }
 
-        if (compound.contains("Xp", 3)) {
-            this.xp = compound.getInt("Xp");
+        if (nbt.contains("Xp", 3)) {
+            this.xp = nbt.getInt("Xp");
         }
 
-        if (compound.contains("PatrolTarget")) {
-            this.patrolTarget = NBTUtil.readBlockPos(compound.getCompound("PatrolTarget"));
+        if (nbt.contains("PatrolTarget")) {
+            this.patrolTarget = NBTUtil.readBlockPos(nbt.getCompound("PatrolTarget"));
         }
 
-        this.patrolLeader = compound.getBoolean("PatrolLeader");
-        this.patrolling = compound.getBoolean("Patrolling");
+        this.patrolLeader = nbt.getBoolean("PatrolLeader");
+        this.patrolling = nbt.getBoolean("Patrolling");
 
-        this.experience = compound.getFloat("XpP");
-        this.experienceLevel = compound.getInt("XpLevel");
-        this.experienceTotal = compound.getInt("XpTotal");
-        this.xpSeed = compound.getInt("XpSeed");
+        this.experience = nbt.getFloat("XpP");
+        this.experienceLevel = nbt.getInt("XpLevel");
+        this.experienceTotal = nbt.getInt("XpTotal");
+        this.xpSeed = nbt.getInt("XpSeed");
         if (this.xpSeed == 0) {
             this.xpSeed = this.rand.nextInt();
         }
@@ -1237,7 +1296,7 @@ public abstract class AbstractZurEntity extends TameableZurEntity implements INP
                 }
 
                 if (potion != null) {
-                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, PotionUtils.addPotionToItemStack(new ItemStack(isBurnableItemInit.VIRKT), potion));
+                    this.setItemStackToSlot(EquipmentSlotType.MAINHAND, PotionUtils.addPotionToItemStack(new ItemStack(isBurnableItemInit.VIRKT.get()), potion));
                     this.potionUseTimer = this.getHeldItemMainhand().getUseDuration();
                     this.setDrinkingPotion(true);
                     if (!this.isSilent()) {
@@ -1255,7 +1314,7 @@ public abstract class AbstractZurEntity extends TameableZurEntity implements INP
             }
         }
         if (!this.world.isRemote && this.isAlive() && !this.isChild() && this.isZurDropItem() && --this.timeUntilNextItem <= 0) {
-            this.entityDropItem(isBurnableItemInit.LEAT);
+            this.entityDropItem(isBurnableItemInit.LEAT.get());
             this.timeUntilNextItem = this.rand.nextInt(12000) + 12000;
         }
     }

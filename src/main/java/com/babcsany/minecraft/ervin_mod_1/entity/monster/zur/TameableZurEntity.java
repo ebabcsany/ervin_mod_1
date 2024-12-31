@@ -33,6 +33,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -86,7 +87,7 @@ public abstract class TameableZurEntity extends AnimalEntity {
                this.setDrinkingPotion(false);
                ItemStack itemstack = this.getHeldItemMainhand();
                this.setItemStackToSlot(EquipmentSlotType.MAINHAND, ItemStack.EMPTY);
-               if (itemstack.getItem() == isBurnableItemInit.VIRKT) {
+               if (itemstack.getItem() == isBurnableItemInit.VIRKT.get()) {
                   List<EffectInstance> list = PotionUtils.getEffectsFromStack(itemstack);
                   for(EffectInstance effectinstance : list) {
                      this.addPotionEffect(new EffectInstance(effectinstance));
@@ -108,7 +109,7 @@ public abstract class TameableZurEntity extends AnimalEntity {
             }
 
             if (potion != null) {
-               this.setItemStackToSlot(EquipmentSlotType.MAINHAND, PotionUtils.addPotionToItemStack(new ItemStack(isBurnableItemInit.VIRKT), potion));
+               this.setItemStackToSlot(EquipmentSlotType.MAINHAND, PotionUtils.addPotionToItemStack(new ItemStack(isBurnableItemInit.VIRKT.get()), potion));
                this.potionUseTimer = this.getHeldItemMainhand().getUseDuration();
                this.setDrinkingPotion(true);
                if (!this.isSilent()) {
@@ -126,7 +127,7 @@ public abstract class TameableZurEntity extends AnimalEntity {
          }
       }
       if (!this.world.isRemote && this.isAlive() && !this.isChild() && this.isZurDropItem() && --this.timeUntilNextItem <= 0) {
-         this.entityDropItem(isBurnableItemInit.LEAT);
+         this.entityDropItem(isBurnableItemInit.LEAT.get());
          this.timeUntilNextItem = this.rand.nextInt(12000) + 12000;
       }
    }
@@ -150,26 +151,26 @@ public abstract class TameableZurEntity extends AnimalEntity {
       return this.getDataManager().get(IS_DRINKING);
    }
 
-   public void writeAdditional(CompoundNBT compound) {
-      super.writeAdditional(compound);
+   public void writeAdditional(CompoundNBT nbt) {
+      super.writeAdditional(nbt);
       if (this.getOwnerId() != null) {
-         compound.putUniqueId("Owner", this.getOwnerId());
+         nbt.putUniqueId("Owner", this.getOwnerId());
       }
 
-      compound.putBoolean("Sitting", this.field_233683_bw_);
+      nbt.putBoolean("Sitting", this.field_233683_bw_);
    }
 
    /**
     * (abstract) Protected helper method to read subclass entity data from NBT.
     */
-   public void readAdditional(CompoundNBT compound) {
-      super.readAdditional(compound);
+   public void readAdditional(CompoundNBT nbt) {
+      super.readAdditional(nbt);
       UUID uuid;
-      if (compound.hasUniqueId("Owner")) {
-         uuid = compound.getUniqueId("Owner");
+      if (nbt.hasUniqueId("Owner")) {
+         uuid = nbt.getUniqueId("Owner");
       } else {
-         String s = compound.getString("Owner");
-         uuid = PreYggdrasilConverter.convertMobOwnerIfNeeded(this.getServer(), s);
+         String s = nbt.getString("Owner");
+         uuid = PreYggdrasilConverter.convertMobOwnerIfNeeded(Objects.requireNonNull(this.getServer()), s);
       }
 
       if (uuid != null) {
@@ -181,7 +182,7 @@ public abstract class TameableZurEntity extends AnimalEntity {
          }
       }
 
-      this.field_233683_bw_ = compound.getBoolean("Sitting");
+      this.field_233683_bw_ = nbt.getBoolean("Sitting");
       this.func_233686_v_(this.field_233683_bw_);
    }
 

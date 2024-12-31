@@ -47,7 +47,7 @@ public class WanderingTraderNirtreEntity extends AbstractNirtreEntity {
 
     public WanderingTraderNirtreEntity(EntityType<? extends WanderingTraderNirtreEntity> type, World worldIn) {
         super(type, worldIn);
-        super.setSpawnEgg(ModSpawnEggItemInit.WANDERING_TRADER_NIRTRE);
+        super.setSpawnEgg((SpawnEggItem) ModSpawnEggItemInit.WANDERING_TRADER_NIRTRE.get());
         this.forceSpawn = true;
     }
 
@@ -237,7 +237,7 @@ public class WanderingTraderNirtreEntity extends AbstractNirtreEntity {
         Item droppedItem = isBurnableToolItemInit.Bj_PICKAXE.get();
         super.dropItem(this.timeUntilNextItem, droppedItem, nextTimeUntilNextItem);
         nextTimeUntilNextItem = this.rand.nextInt(28000) + 14000;
-        droppedItem = BlockItemInit_.FIGHIV;
+        droppedItem = BlockItemInit_.FIGHIV.get();
         super.dropItem(this.timeUntilNextItem_, droppedItem, nextTimeUntilNextItem);
     }
 }

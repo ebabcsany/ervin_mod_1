@@ -22,7 +22,7 @@ public class ModFluidTagsProvider extends FluidTagsProvider {
     @Override
     protected void registerTags() {
         super.registerTags();
-        this.getOrCreateBuilder(ModFluidTags.JURK).add(FluidInit.JURK, FluidInit.FLOWING_JURK);
+        this.getOrCreateBuilder(ModFluidTags.JURK).add(FluidInit.JURK.get(), FluidInit.FLOWING_JURK.get());
     }
 
     public static void register() {

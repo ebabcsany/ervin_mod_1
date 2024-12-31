@@ -12,7 +12,7 @@ public enum ModItemTier1 implements IItemTier1 {
     /** int harvestLevel, int maxUses, float efficiency, float attackDamage, int
     enchantAbility, Supplier<Ingredient> repairMaterial */
     CRAINT(12,13214,5432.0F,56,320, () -> Ingredient.fromItems(SpecialToolItemInit.CRAINT.get())),
-    TERAT(28,145241,123621.0F,324,1643, () -> Ingredient.fromItems(isBurnableItemInit.TERAT_NUGGET));
+    TERAT(28,145241,123621.0F,324,1643, () -> Ingredient.fromItems(isBurnableItemInit.TERAT_NUGGET.get()));
 
     private final int harvestLevel;
     private final int maxUses;

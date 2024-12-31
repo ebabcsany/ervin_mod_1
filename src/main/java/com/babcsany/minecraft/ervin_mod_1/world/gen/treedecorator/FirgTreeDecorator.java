@@ -39,7 +39,7 @@ public class FirgTreeDecorator extends BeehiveTreeDecorator {
          if (!list.isEmpty()) {
             BlockPos blockpos = list.get(p_225576_2_.nextInt(list.size()));
             if (Feature.isDirtAt(p_225576_1_, blockpos) && Feature.isDirtAt(p_225576_1_, blockpos.offset(Direction.SOUTH))) {
-               BlockState blockstate = BlockInit.FIRG.getDefaultState();
+               BlockState blockstate = BlockInit.FIRG.get().getDefaultState();
                this.func_227423_a_(p_225576_1_, blockpos, blockstate, p_225576_5_, p_225576_6_);
 
             }

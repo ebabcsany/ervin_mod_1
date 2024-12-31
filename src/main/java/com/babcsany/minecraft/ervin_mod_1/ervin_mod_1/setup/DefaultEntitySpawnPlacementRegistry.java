@@ -15,14 +15,14 @@ public class DefaultEntitySpawnPlacementRegistry extends EntitySpawnPlacementReg
     }
 
     public static void register() {
-        registerOnGroundNoLeaves(EntityInit.SRACH_ENTITY, AnimalEntity::canAnimalSpawn);
+        registerOnGroundNoLeaves(EntityInit.SRACH_ENTITY.get(), AnimalEntity::canAnimalSpawn);
     }
 
     public void heightmapType() {
-        getHeightmapType(EntityInit.SRACH_ENTITY);
+        getHeightmapType(EntityInit.SRACH_ENTITY.get());
     }
 
     public void placementType() {
-        getPlacementType(EntityInit.SRACH_ENTITY);
+        getPlacementType(EntityInit.SRACH_ENTITY.get());
     }
 }

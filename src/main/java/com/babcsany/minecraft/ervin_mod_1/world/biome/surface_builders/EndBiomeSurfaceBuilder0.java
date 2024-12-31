@@ -27,14 +27,14 @@ public class EndBiomeSurfaceBuilder0 extends SurfaceBuilder<SurfaceBuilderConfig
 			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock,
 					defaultFluid, seaLevel, seed,
 					new SurfaceBuilderConfig(UnusedBlocks.get("air").getDefaultState(),
-							BlockItemInit.DEFERRED_BLOCK.getDefaultState(), Blocks.END_STONE.getDefaultState()));
+							BlockItemInit.DEFERRED_BLOCK.get().getDefaultState(), Blocks.END_STONE.getDefaultState()));
 		} else {
 			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock,
 					defaultFluid, seaLevel, seed,
 					new SurfaceBuilderConfig(
 							i == 1 ? Blocks.END_STONE.getDefaultState()
-									: BlockItemInit.AVTER_BLOCK.getDefaultState(),
-							BlockItemInit.DEFERRED_BLOCK.getDefaultState(), Blocks.END_STONE.getDefaultState()));
+									: BlockItemInit.AVTER_BLOCK.get().getDefaultState(),
+							BlockItemInit.DEFERRED_BLOCK.get().getDefaultState(), Blocks.END_STONE.getDefaultState()));
 		}
 	}
 }

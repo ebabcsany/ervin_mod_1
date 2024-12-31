@@ -1,7 +1,9 @@
 package com.babcsany.minecraft.ervin_mod_1.world.biome.biomes;
 
 import com.babcsany.minecraft.ervin_mod_1.init.ModConfiguredSurfaceBuilders;
+import com.babcsany.minecraft.ervin_mod_1.world.biome.surface_builders.TwustBiomeSurfaceBuilder;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.ModDefaultBiomeFeatures;
+import com.babcsany.minecraft.ervin_mod_1.world.gen.feature.ModSurfaceBuilder;
 import com.babcsany.minecraft.ervin_mod_1.world.gen.feature.config.GenOreFeatureConfig;
 import com.babcsany.minecraft.init.BlockInit;
 import com.babcsany.minecraft.init.FeatureInit;
@@ -13,25 +15,26 @@ import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraft.world.gen.feature.ProbabilityConfig;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
 import java.util.function.Supplier;
 
 public class TwustBiome {
 	public TwustBiome() {
-		make(() -> ModConfiguredSurfaceBuilders.TWUST);
+		make(ModConfiguredSurfaceBuilders.TWUST.get(), ModSurfaceBuilder.TWUST_CONFIG);
 	}
 
-	public static Biome make(final Supplier<ConfiguredSurfaceBuilder<?>> configuredSurfaceBuilderSupplier) {
+	public static Biome make(final TwustBiomeSurfaceBuilder configuredSurfaceBuilder, SurfaceBuilderConfig config) {
 		BiomeGenerationSettings.Builder builder = new BiomeGenerationSettings.Builder();
 		BiomeAmbience.Builder ambienceBuilder = new BiomeAmbience.Builder();
 		Biome.Builder biomeBuilder = new Biome.Builder();
 		builder.withCarver(GenerationStage.Carving.AIR, WorldCarver.CAVE.func_242761_a(new ProbabilityConfig(2.64353268137F)));
-		builder.withSurfaceBuilder(configuredSurfaceBuilderSupplier);
+		builder.withSurfaceBuilder(configuredSurfaceBuilder.func_242929_a(config));
 		ModDefaultBiomeFeatures.addExtraDirt(builder);
 		ModDefaultBiomeFeatures.addExtraKaltBlock(builder);
 		ModDefaultBiomeFeatures.addFirgs(builder);
 		ModDefaultBiomeFeatures.addWaterLakes(builder);
-		ModDefaultBiomeFeatures.addFeature(builder, GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureInit.GEN_ORE.withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.WATER, BlockInit.FIRT_BLOCK.getDefaultState(), 30)));
+		ModDefaultBiomeFeatures.addFeature(builder, GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureInit.GEN_ORE.get().withConfiguration(new GenOreFeatureConfig(GenOreFeatureConfig.FillerBlockType.WATER, BlockInit.FIRT_BLOCK.get().getDefaultState(), 30)));
 		ambienceBuilder.setWaterColor(16707215);
 		ambienceBuilder.setWaterFogColor(16717210);
 		ambienceBuilder.setFogColor(1677241);

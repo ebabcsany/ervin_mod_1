@@ -3,9 +3,16 @@ package com.babcsany.minecraft.ervin_mod_1.init;
 import com.babcsany.minecraft.ervin_mod_1.Ervin_mod_1;
 import com.babcsany.minecraft.ervin_mod_1.block.fluid.JurkFluid;
 import net.minecraft.block.Block;
+import net.minecraft.block.FlowingFluidBlock;
+import net.minecraft.block.material.Material;
 import net.minecraft.fluid.*;
+import net.minecraft.item.Rarity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.registry.Registry;
+import net.minecraftforge.fluids.FluidAttributes;
+import net.minecraftforge.fluids.ForgeFlowingFluid;
+import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -22,9 +29,8 @@ public class FluidInit {
 	public static final DeferredRegister<Fluid> FLUIDS = DeferredRegister.create(ForgeRegistries.FLUIDS, Ervin_mod_1.MOD_ID);
 
 	//public static final RegistryObject<FlowingFluid> FLOWING_JURK = FLUIDS.register("flowing_jurk", () -> new JurkFluid.Flowing());
-	public static final FlowingFluid JURK = register("jurk", new JurkFluid.Source());
-	public static final FlowingFluid FLOWING_JURK = register("flowing_jurk", new JurkFluid.Flowing());
-	//public static final RegistryObject<FlowingFluid> JURK = FLUIDS.register("jurkt", WaterFluid.Source::new);
+	public static final RegistryObject<FlowingFluid> JURK = FLUIDS.register("jurk", JurkFluid.Source::new);
+	public static final RegistryObject<FlowingFluid> FLOWING_JURK = FLUIDS.register("flowing_jurk", JurkFluid.Flowing::new);
 
     //public static final RegistryObject<FlowingFluid> MILK_FLUID = FLUIDS.register("milk_fluid",
     //		() -> new ForgeFlowingFluid.Source(FluidInit.MILK_PROPERTIES));
@@ -42,7 +48,7 @@ public class FluidInit {
     //				.sound(SoundEvents.ITEM_HONEY_BOTTLE_DRINK).overlay(MILK_OVERLAY_RL))
     //						.block(FluidInit.MILK_BLOCK);
 
-	/*public static final RegistryObject<FlowingFluid> JURK_FLUID = FLUIDS.register("jurk_fluid",
+	public static final RegistryObject<FlowingFluid> JURK_FLUID = FLUIDS.register("jurk_fluid",
 			() -> new ForgeFlowingFluid.Source(FluidInit.JURK_PROPERTIES));
 
 	public static final RegistryObject<FlowingFluid> JURK_FLOWING = FLUIDS.register("jurk_flowing",
@@ -53,10 +59,10 @@ public class FluidInit {
 					.doesNotBlockMovement().hardnessAndResistance(100.0f).noDrops()));
 
 	public static final ForgeFlowingFluid.Properties JURK_PROPERTIES = new ForgeFlowingFluid.Properties(
-			() -> JURK_FLUID.get(), () -> JURK_FLOWING.get(),
+            JURK_FLUID, JURK_FLOWING,
 			FluidAttributes.builder(JURK_STILL_RL, JURK_FLOWING_RL).density(5).luminosity(10).rarity(Rarity.RARE)
 					.sound(SoundEvents.ITEM_HONEY_BOTTLE_DRINK).overlay(JURK_OVERLAY_RL))
-			.block(() -> FluidInit.JURK_BLOCK.get());*/
+			.block(FluidInit.JURK_BLOCK);
 
 	/*public static final RegistryObject<FlowingFluid> JURK_FLUID1 = FLUIDS.register("jurk_fluid",
 			() -> new ForgeFlowingFluid1.Source(FluidInit.JURK_PROPERTIES1));

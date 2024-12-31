@@ -11,11 +11,11 @@ public class YellowTripWireHook extends ModTripWireHookBlock {
 
    @Override
    public Block getTripWire() {
-      return BlockInit.YELLOW_TRIPWIRE;
+      return BlockInit.YELLOW_TRIPWIRE.get();
    }
 
    @Override
    public Block getTripWireHook() {
-      return BlockInit.YELLOW_TRIPWIRE_HOOK;
+      return BlockInit.YELLOW_TRIPWIRE_HOOK.get();
    }
 }

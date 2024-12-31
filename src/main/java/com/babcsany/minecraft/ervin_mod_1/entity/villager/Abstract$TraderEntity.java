@@ -38,7 +38,7 @@ public abstract class Abstract$TraderEntity extends AgeableEntity implements INP
     @Nullable
     protected MerchantOffers offers;
     private final Inventory $traderInventory = new Inventory(8);
-    private Item spawnEgg = ModSpawnEggItemInit.SPAWN_EGG_1;
+    private Item spawnEgg = ModSpawnEggItemInit.SPAWN_EGG_1.get();
     private Item droppedItem = null;
     private int despawnDelay = 0;
     private int xp = 0;
@@ -61,7 +61,7 @@ public abstract class Abstract$TraderEntity extends AgeableEntity implements INP
         }
         if (isSpawnItem()) {
             int nextTimeUntilNextItem = super.rand.nextInt(8321) - 1857;
-            this.dropItem(this.timeUntilNextItem, ItemInit.FIRT, nextTimeUntilNextItem);
+            this.dropItem(this.timeUntilNextItem, ItemInit.FIRT.get(), nextTimeUntilNextItem);
         }
     }
 
@@ -167,7 +167,7 @@ public abstract class Abstract$TraderEntity extends AgeableEntity implements INP
     }
 
     public boolean isSpawnItem() {
-        return this.spawnEgg == ModSpawnEggItemInit.SPAWN_EGG_1;
+        return this.spawnEgg == ModSpawnEggItemInit.SPAWN_EGG_1.get();
     }
 
     @Override

@@ -12,11 +12,11 @@ public class MagentaTripWireHook extends ModTripWireHookBlock {
 
    @Override
    public Block getTripWire() {
-      return BlockInit.MAGENTA_TRIPWIRE;
+      return BlockInit.MAGENTA_TRIPWIRE.get();
    }
 
    @Override
    public Block getTripWireHook() {
-      return BlockInit.MAGENTA_TRIPWIRE_HOOK;
+      return BlockInit.MAGENTA_TRIPWIRE_HOOK.get();
    }
 }
