@@ -55,25 +55,25 @@ public class ModConfiguredSurfaceBuilders {
 //        }
 //    });
 
-    public static ConfiguredSurfaceBuilder<?> RIFT_SURFACE = register("rift_surface", ModSurfaceBuilder.RIFT_CONFIG);
-    public static ConfiguredSurfaceBuilder<?> BHJUIG_SURFACE = register("bhjuig_surface", new TheBhjuigBiomeSurfaceBuilder(CODEC), ModSurfaceBuilder.BHJUIG_CONFIG);
+    public static ConfiguredSurfaceBuilder<SurfaceBuilderConfig> RIFT_SURFACE = register("rift_surface", ModSurfaceBuilder.RIFT_CONFIG);
+    public static ConfiguredSurfaceBuilder<SurfaceBuilderConfig> BHJUIG_SURFACE = register("bhjuig_surface", new TheBhjuigBiomeSurfaceBuilder(CODEC), ModSurfaceBuilder.BHJUIG_CONFIG);
     public static ConfiguredSurfaceBuilder<SurfaceBuilderConfig> MIG_SURFACE = register("mig_surface", new MigBiomeSurfaceBuilder(CODEC), ModSurfaceBuilder.MIG_CONFIG);
     public static ConfiguredSurfaceBuilder<SurfaceBuilderConfig> MIGV_SURFACE = register("migv_surface", new MigBiomeSurfaceBuilder(CODEC), ModSurfaceBuilder.MIG_CONFIG);
-    public static ConfiguredSurfaceBuilder<?> EXAMPLE0_SURFACE = register("example0_surface", new ExampleBiomeSurfaceBuilder(CODEC), ModSurfaceBuilder.EXAMPLE0_CONFIG);
-    public static ConfiguredSurfaceBuilder<?> END_SURFACE0 = register("end_surface0", new EndBiomeSurfaceBuilder0(CODEC), SurfaceBuilder.END_STONE_CONFIG);
-    public static ConfiguredSurfaceBuilder<?> EXAMPLE_SURFACE = register("example_surface", new ExampleBiomeSurfaceBuilder(CODEC), ModSurfaceBuilder.COARSE_DIRT_DIRT_DIRT_CONFIG);
-    public static ConfiguredSurfaceBuilder<?> EXAMPLE_SURFACE1 = register("example_surface1", new ExampleBiomeSurfaceBuilder1(CODEC), ModSurfaceBuilder.EXAMPLE_CONFIG1);
-    public static ConfiguredSurfaceBuilder<?> EXAMPLE_SURFACE2 = register("example_surface2", new ExampleBiomeSurfaceBuilder2(CODEC), ModSurfaceBuilder.COARSE_DIRT_DIRT_DIRT_CONFIG);
-    public static ConfiguredSurfaceBuilder<?> EXAMPLE_SURFACE3 = register("example_surface3", new ExampleBiomeSurfaceBuilder3(CODEC), ModSurfaceBuilder.EXAMPLE_CONFIG3);
-    public static ConfiguredSurfaceBuilder<?> EXAMPLE_SURFACE4 = register("example_surface4", new ExampleBiomeSurfaceBuilder4(CODEC), ModSurfaceBuilder.EXAMPLE_CONFIG4);
-    public static ConfiguredSurfaceBuilder<?> EXAMPLE_SURFACE5 = register("example_surface5", new ExampleBiomeSurfaceBuilder5(CODEC), ModSurfaceBuilder.COARSE_DIRT_DIRT_DIRT_CONFIG);
-    public static ConfiguredSurfaceBuilder<?> EXAMPLE_SURFACE6 = register("example_surface6", new ExampleBiomeSurfaceBuilder6(CODEC), ModSurfaceBuilder.EXAMPLE_CONFIG6);
-    public static ConfiguredSurfaceBuilder<?> SRIUNK_VALLEY_SURFACE = register("sriunk_valley_surface", new SriunkValleySurfaceBuilder(CODEC), ModSurfaceBuilder.SRIUNK_VALLEY_CONFIG);
-    public static ConfiguredSurfaceBuilder<?> FIRG = register("firg_surface", new FirgBiomeSurfaceBuilder(CODEC), ModSurfaceBuilder.FIRG_CONFIG);
-    public static ConfiguredSurfaceBuilder<?> SCRAFTH = register("scrafth_surface", new ScrafthBiomeSurfaceBuilder(CODEC), ModSurfaceBuilder.SCRAFTH_CONFIG);
-    public static ConfiguredSurfaceBuilder<?> TWUST = register("twust_surface", new TwustBiomeSurfaceBuilder(CODEC), ModSurfaceBuilder.TWUST_CONFIG);
-    public static ConfiguredSurfaceBuilder<?> MUHK = register("muhk_surface", SurfaceBuilder.GRASS_DIRT_GRAVEL_CONFIG);
-    public static ConfiguredSurfaceBuilder<?> BLOMUJN = register("blomujn_surface", ModSurfaceBuilder.BLOMUJN_CONFIG);
+    public static ConfiguredSurfaceBuilder<SurfaceBuilderConfig> EXAMPLE0_SURFACE = register("example0_surface", new ExampleBiomeSurfaceBuilder(CODEC), ModSurfaceBuilder.EXAMPLE0_CONFIG);
+    public static ConfiguredSurfaceBuilder<SurfaceBuilderConfig> END_SURFACE0 = register("end_surface0", new EndBiomeSurfaceBuilder0(CODEC), SurfaceBuilder.END_STONE_CONFIG);
+    public static ConfiguredSurfaceBuilder<SurfaceBuilderConfig> EXAMPLE_SURFACE = register("example_surface", new ExampleBiomeSurfaceBuilder(CODEC), ModSurfaceBuilder.COARSE_DIRT_DIRT_DIRT_CONFIG);
+    public static ConfiguredSurfaceBuilder<SurfaceBuilderConfig> EXAMPLE_SURFACE1 = register("example_surface1", new ExampleBiomeSurfaceBuilder1(CODEC), ModSurfaceBuilder.EXAMPLE_CONFIG1);
+    public static ConfiguredSurfaceBuilder<SurfaceBuilderConfig> EXAMPLE_SURFACE2 = register("example_surface2", new ExampleBiomeSurfaceBuilder2(CODEC), ModSurfaceBuilder.COARSE_DIRT_DIRT_DIRT_CONFIG);
+    public static ConfiguredSurfaceBuilder<SurfaceBuilderConfig> EXAMPLE_SURFACE3 = register("example_surface3", new ExampleBiomeSurfaceBuilder3(CODEC), ModSurfaceBuilder.EXAMPLE_CONFIG3);
+    public static ConfiguredSurfaceBuilder<SurfaceBuilderConfig> EXAMPLE_SURFACE4 = register("example_surface4", new ExampleBiomeSurfaceBuilder4(CODEC), ModSurfaceBuilder.EXAMPLE_CONFIG4);
+    public static ConfiguredSurfaceBuilder<SurfaceBuilderConfig> EXAMPLE_SURFACE5 = register("example_surface5", new ExampleBiomeSurfaceBuilder5(CODEC), ModSurfaceBuilder.COARSE_DIRT_DIRT_DIRT_CONFIG);
+    public static ConfiguredSurfaceBuilder<SurfaceBuilderConfig> EXAMPLE_SURFACE6 = register("example_surface6", new ExampleBiomeSurfaceBuilder6(CODEC), ModSurfaceBuilder.EXAMPLE_CONFIG6);
+    public static ConfiguredSurfaceBuilder<SurfaceBuilderConfig> SRIUNK_VALLEY_SURFACE = register("sriunk_valley_surface", new SriunkValleySurfaceBuilder(CODEC), ModSurfaceBuilder.SRIUNK_VALLEY_CONFIG);
+    public static ConfiguredSurfaceBuilder<SurfaceBuilderConfig> FIRG = register("firg_surface", new FirgBiomeSurfaceBuilder(CODEC), ModSurfaceBuilder.FIRG_CONFIG);
+    public static ConfiguredSurfaceBuilder<SurfaceBuilderConfig> SCRAFTH = register("scrafth_surface", new ScrafthBiomeSurfaceBuilder(CODEC), ModSurfaceBuilder.SCRAFTH_CONFIG);
+    public static ConfiguredSurfaceBuilder<SurfaceBuilderConfig> TWUST = register("twust_surface", new TwustBiomeSurfaceBuilder(CODEC), ModSurfaceBuilder.TWUST_CONFIG);
+    public static ConfiguredSurfaceBuilder<SurfaceBuilderConfig> MUHK = register("muhk_surface", SurfaceBuilder.GRASS_DIRT_GRAVEL_CONFIG);
+    public static ConfiguredSurfaceBuilder<SurfaceBuilderConfig> BLOMUJN = register("blomujn_surface", ModSurfaceBuilder.BLOMUJN_CONFIG);
 
 
     private static <C extends ISurfaceBuilderConfig, F extends SurfaceBuilder<C>> ConfiguredSurfaceBuilder<C> register(String key, F builderIn, C config) {

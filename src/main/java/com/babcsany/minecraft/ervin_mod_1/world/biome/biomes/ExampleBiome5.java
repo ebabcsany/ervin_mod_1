@@ -3,10 +3,9 @@ package com.babcsany.minecraft.ervin_mod_1.world.biome.biomes;
 import com.babcsany.minecraft.ervin_mod_1.init.ModBiomeFeatures;
 import com.babcsany.minecraft.ervin_mod_1.init.ModConfiguredSurfaceBuilders;
 import com.babcsany.minecraft.ervin_mod_1.world.biome.ModBiomeMaker;
-import com.babcsany.minecraft.ervin_mod_1.world.biome.surface_builders.ExampleBiomeSurfaceBuilder5;
+import com.babcsany.minecraft.ervin_mod_1.world.biome.spawn.SpawnListEntry;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.JazzTree;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.ModDefaultBiomeFeatures;
-import com.babcsany.minecraft.ervin_mod_1.world.biome.spawn.SpawnListEntry;
 import com.babcsany.minecraft.ervin_mod_1.world.gen.feature.ModSurfaceBuilder;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
@@ -15,23 +14,21 @@ import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.carver.ConfiguredCarver;
 import net.minecraft.world.gen.carver.ConfiguredCarvers;
 import net.minecraft.world.gen.carver.WorldCarver;
-import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.Features;
 import net.minecraft.world.gen.feature.ProbabilityConfig;
-import net.minecraft.world.gen.placement.AtSurfaceWithExtraConfig;
-import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
-import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
-import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
-
-import java.util.function.Supplier;
+import net.minecraft.world.gen.surfacebuilders.ISurfaceBuilderConfig;
 
 public class ExampleBiome5 {
 	public ExampleBiome5() {
-		make(ModConfiguredSurfaceBuilders.EXAMPLE_SURFACE5.get(), ModSurfaceBuilder.COARSE_DIRT_DIRT_DIRT_CONFIG);
+		make(ModConfiguredSurfaceBuilders.EXAMPLE_SURFACE5, ModSurfaceBuilder.COARSE_DIRT_DIRT_DIRT_CONFIG);
 	}
 
-	public static Biome make(final ExampleBiomeSurfaceBuilder5 configuredSurfaceBuilder, SurfaceBuilderConfig config) {
+	public static <C extends ISurfaceBuilderConfig, F extends ConfiguredSurfaceBuilder<C>> Biome make(final F configuredSurfaceBuilder, final C config) {
+		return make(configuredSurfaceBuilder.builder.func_242929_a(config));
+	}
+
+	public static <C extends ISurfaceBuilderConfig, F extends ConfiguredSurfaceBuilder<C>> Biome make(final F configuredSurfaceBuilder) {
 		BiomeGenerationSettings.Builder generationSettingsBuilder = new BiomeGenerationSettings.Builder();
 		MobSpawnInfo.Builder spawnInfoBuilder = new MobSpawnInfo.Builder();
 		BiomeAmbience.Builder ambienceBuilder = new BiomeAmbience.Builder();
@@ -45,7 +42,7 @@ public class ExampleBiome5 {
 		generationSettingsBuilder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Features.RED_MUSHROOM_NORMAL);
 		generationSettingsBuilder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Features.BROWN_MUSHROOM_NORMAL);
 		ModDefaultBiomeFeatures.addExtraTree(generationSettingsBuilder, JazzTree.JAZZ_TREE_CONFIG, 7, 0.1f, 1);
-		generationSettingsBuilder.withSurfaceBuilder(configuredSurfaceBuilder.func_242929_a(config));
+		generationSettingsBuilder.withSurfaceBuilder(configuredSurfaceBuilder);
 
 		DefaultBiomeFeatures.withOverworldOres(generationSettingsBuilder);
 		DefaultBiomeFeatures.withExtraGoldOre(generationSettingsBuilder);

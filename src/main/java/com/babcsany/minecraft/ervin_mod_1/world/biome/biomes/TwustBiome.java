@@ -1,7 +1,6 @@
 package com.babcsany.minecraft.ervin_mod_1.world.biome.biomes;
 
 import com.babcsany.minecraft.ervin_mod_1.init.ModConfiguredSurfaceBuilders;
-import com.babcsany.minecraft.ervin_mod_1.world.biome.surface_builders.TwustBiomeSurfaceBuilder;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.ModDefaultBiomeFeatures;
 import com.babcsany.minecraft.ervin_mod_1.world.gen.feature.ModSurfaceBuilder;
 import com.babcsany.minecraft.ervin_mod_1.world.gen.feature.config.GenOreFeatureConfig;
@@ -15,21 +14,23 @@ import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraft.world.gen.feature.ProbabilityConfig;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
-import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
-
-import java.util.function.Supplier;
+import net.minecraft.world.gen.surfacebuilders.ISurfaceBuilderConfig;
 
 public class TwustBiome {
 	public TwustBiome() {
-		make(ModConfiguredSurfaceBuilders.TWUST.get(), ModSurfaceBuilder.TWUST_CONFIG);
+		make(ModConfiguredSurfaceBuilders.TWUST, ModSurfaceBuilder.TWUST_CONFIG);
 	}
 
-	public static Biome make(final TwustBiomeSurfaceBuilder configuredSurfaceBuilder, SurfaceBuilderConfig config) {
+	public static <C extends ISurfaceBuilderConfig, F extends ConfiguredSurfaceBuilder<C>> Biome make(final F configuredSurfaceBuilder, final C config) {
+		return make(configuredSurfaceBuilder.builder.func_242929_a(config));
+	}
+
+	public static <C extends ISurfaceBuilderConfig, F extends ConfiguredSurfaceBuilder<C>> Biome make(final F configuredSurfaceBuilder) {
 		BiomeGenerationSettings.Builder builder = new BiomeGenerationSettings.Builder();
 		BiomeAmbience.Builder ambienceBuilder = new BiomeAmbience.Builder();
 		Biome.Builder biomeBuilder = new Biome.Builder();
 		builder.withCarver(GenerationStage.Carving.AIR, WorldCarver.CAVE.func_242761_a(new ProbabilityConfig(2.64353268137F)));
-		builder.withSurfaceBuilder(configuredSurfaceBuilder.func_242929_a(config));
+		builder.withSurfaceBuilder(configuredSurfaceBuilder);
 		ModDefaultBiomeFeatures.addExtraDirt(builder);
 		ModDefaultBiomeFeatures.addExtraKaltBlock(builder);
 		ModDefaultBiomeFeatures.addFirgs(builder);

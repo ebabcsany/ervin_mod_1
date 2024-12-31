@@ -4,10 +4,9 @@ import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.ModBiomeFeatures;
 import com.babcsany.minecraft.ervin_mod_1.init.ModConfiguredSurfaceBuilders;
 import com.babcsany.minecraft.ervin_mod_1.world.biome.ModBiomeMaker;
-import com.babcsany.minecraft.ervin_mod_1.world.biome.surface_builders.ExampleBiomeSurfaceBuilder4;
+import com.babcsany.minecraft.ervin_mod_1.world.biome.spawn.SpawnListEntry;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.FirgTree;
 import com.babcsany.minecraft.ervin_mod_1.world.feature.ModDefaultBiomeFeatures;
-import com.babcsany.minecraft.ervin_mod_1.world.biome.spawn.SpawnListEntry;
 import com.babcsany.minecraft.ervin_mod_1.world.gen.feature.ModSurfaceBuilder;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityClassification;
@@ -15,18 +14,23 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.world.biome.*;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.*;
-import net.minecraft.world.gen.placement.*;
+import net.minecraft.world.gen.placement.ChanceConfig;
+import net.minecraft.world.gen.placement.IPlacementConfig;
+import net.minecraft.world.gen.placement.NoPlacementConfig;
+import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
-import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
-
-import java.util.function.Supplier;
+import net.minecraft.world.gen.surfacebuilders.ISurfaceBuilderConfig;
 
 public class ExampleBiome4 {
 	public ExampleBiome4() {
-		make(ModConfiguredSurfaceBuilders.EXAMPLE_SURFACE4.get(), ModSurfaceBuilder.EXAMPLE_CONFIG4);
+		make(ModConfiguredSurfaceBuilders.EXAMPLE_SURFACE4, ModSurfaceBuilder.EXAMPLE_CONFIG4);
 	}
 
-	public static Biome make(final ExampleBiomeSurfaceBuilder4 configuredSurfaceBuilder, SurfaceBuilderConfig config) {
+	public static <C extends ISurfaceBuilderConfig, F extends ConfiguredSurfaceBuilder<C>> Biome make(final F configuredSurfaceBuilder, final C config) {
+		return make(configuredSurfaceBuilder.builder.func_242929_a(config));
+	}
+
+	public static <C extends ISurfaceBuilderConfig, F extends ConfiguredSurfaceBuilder<C>> Biome make(final F configuredSurfaceBuilder) {
 		BiomeGenerationSettings.Builder builder = new BiomeGenerationSettings.Builder();
 		MobSpawnInfo.Builder spawn = new MobSpawnInfo.Builder();
 		BiomeAmbience.Builder ambienceBuilder = new BiomeAmbience.Builder();
@@ -72,7 +76,7 @@ public class ExampleBiome4 {
 				Feature.TREE.withConfiguration(ModDefaultBiomeFeatures.FANCY_TREE_WITH_MORE_BEEHIVES_CONFIG).withPlacement(
 						Placement.CHANCE.configure(new ChanceConfig(25))).withPlacement(Placement.TOP_SOLID_HEIGHTMAP.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
 		ModDefaultBiomeFeatures.addExtraTree(builder, FirgTree.FIRG_TREE_CONFIG0, 18, 4.8f, 10);
-		builder.withSurfaceBuilder(configuredSurfaceBuilder.func_242929_a(config));
+		builder.withSurfaceBuilder(configuredSurfaceBuilder);
 
 		DefaultBiomeFeatures.withOverworldOres(builder);
 		DefaultBiomeFeatures.withExtraGoldOre(builder);

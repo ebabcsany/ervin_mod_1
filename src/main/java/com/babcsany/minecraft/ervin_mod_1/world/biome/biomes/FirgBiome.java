@@ -2,9 +2,8 @@ package com.babcsany.minecraft.ervin_mod_1.world.biome.biomes;
 
 import com.babcsany.minecraft.ervin_mod_1.init.EntityInit;
 import com.babcsany.minecraft.ervin_mod_1.init.ModConfiguredSurfaceBuilders;
-import com.babcsany.minecraft.ervin_mod_1.world.biome.surface_builders.FirgBiomeSurfaceBuilder;
-import com.babcsany.minecraft.ervin_mod_1.world.feature.ModDefaultBiomeFeatures;
 import com.babcsany.minecraft.ervin_mod_1.world.biome.spawn.SpawnListEntry;
+import com.babcsany.minecraft.ervin_mod_1.world.feature.ModDefaultBiomeFeatures;
 import com.babcsany.minecraft.ervin_mod_1.world.gen.feature.ModSurfaceBuilder;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
@@ -15,17 +14,19 @@ import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.carver.ConfiguredCarvers;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
-import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
-
-import java.util.function.Supplier;
+import net.minecraft.world.gen.surfacebuilders.ISurfaceBuilderConfig;
 
 public class FirgBiome {
 
 	public FirgBiome() {
-		make(ModConfiguredSurfaceBuilders.FIRG.get(), ModSurfaceBuilder.FIRG_CONFIG);
+		make(ModConfiguredSurfaceBuilders.FIRG, ModSurfaceBuilder.FIRG_CONFIG);
 	}
 
-	public static Biome make(final FirgBiomeSurfaceBuilder surfaceBuilder, SurfaceBuilderConfig config) {
+	public static <C extends ISurfaceBuilderConfig, F extends ConfiguredSurfaceBuilder<C>> Biome make(final F configuredSurfaceBuilder, final C config) {
+		return make(configuredSurfaceBuilder.builder.func_242929_a(config));
+	}
+
+	public static <C extends ISurfaceBuilderConfig, F extends ConfiguredSurfaceBuilder<C>> Biome make(final F surfaceBuilder) {
 		BiomeGenerationSettings.Builder biomeBuilder = new BiomeGenerationSettings.Builder();
 		MobSpawnInfo.Builder spawnInfoBuilder = new MobSpawnInfo.Builder();
 		BiomeAmbience.Builder ambienceBuilder = new BiomeAmbience.Builder();
@@ -55,7 +56,7 @@ public class FirgBiome {
 		biomeBuilder.withCarver(GenerationStage.Carving.AIR, ConfiguredCarvers.CAVE);
 		biomeBuilder.withCarver(GenerationStage.Carving.AIR, ConfiguredCarvers.NETHER_CAVE);
 		biomeBuilder.withCarver(GenerationStage.Carving.AIR, ConfiguredCarvers.CANYON);
-		biomeBuilder.withSurfaceBuilder(surfaceBuilder.func_242929_a(config));
+		biomeBuilder.withSurfaceBuilder(surfaceBuilder);
 
 		ModDefaultBiomeFeatures.addExtraDirt(biomeBuilder);
 		ModDefaultBiomeFeatures.addFirgTrees(biomeBuilder);

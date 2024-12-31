@@ -4,9 +4,8 @@ import com.babcsany.minecraft.ervin_mod_1.init.BlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.init.ModConfiguredSurfaceBuilders;
 import com.babcsany.minecraft.ervin_mod_1.init.isBurnableBlockItemInit;
 import com.babcsany.minecraft.ervin_mod_1.world.biome.ModBiomeMaker;
-import com.babcsany.minecraft.ervin_mod_1.world.biome.surface_builders.SriunkValleySurfaceBuilder;
-import com.babcsany.minecraft.ervin_mod_1.world.feature.ModDefaultBiomeFeatures;
 import com.babcsany.minecraft.ervin_mod_1.world.biome.spawn.SpawnListEntry;
+import com.babcsany.minecraft.ervin_mod_1.world.feature.ModDefaultBiomeFeatures;
 import com.babcsany.minecraft.ervin_mod_1.world.gen.feature.ModSurfaceBuilder;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
@@ -17,16 +16,18 @@ import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.structure.StructureFeatures;
 import net.minecraft.world.gen.placement.*;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
-import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
-
-import java.util.function.Supplier;
+import net.minecraft.world.gen.surfacebuilders.ISurfaceBuilderConfig;
 
 public class SriunkValleyBiome {
    public SriunkValleyBiome() {
-      make(ModConfiguredSurfaceBuilders.SRIUNK_VALLEY_SURFACE.get(), ModSurfaceBuilder.SRIUNK_VALLEY_CONFIG);
+      make(ModConfiguredSurfaceBuilders.SRIUNK_VALLEY_SURFACE, ModSurfaceBuilder.SRIUNK_VALLEY_CONFIG);
    }
 
-   public static Biome make(final SriunkValleySurfaceBuilder surfaceBuilder, SurfaceBuilderConfig config) {
+   public static <C extends ISurfaceBuilderConfig, F extends ConfiguredSurfaceBuilder<C>> Biome make(final F configuredSurfaceBuilder, final C config) {
+      return make(configuredSurfaceBuilder.builder.func_242929_a(config));
+   }
+
+   public static <C extends ISurfaceBuilderConfig, F extends ConfiguredSurfaceBuilder<C>> Biome make(final F surfaceBuilder) {
       BiomeGenerationSettings.Builder generationSettingsBuilder = new BiomeGenerationSettings.Builder();
       MobSpawnInfo.Builder spawnInfoBuilder = new MobSpawnInfo.Builder();
       BiomeAmbience.Builder ambienceBuilder = new BiomeAmbience.Builder();
@@ -47,7 +48,7 @@ public class SriunkValleyBiome {
       generationSettingsBuilder.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NETHERRACK, BlockItemInit.KALT_BLOCK.get().getDefaultState(), 33)).withPlacement(Placement.MAGMA.configure(new NoPlacementConfig())));
       generationSettingsBuilder.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.SPRING_FEATURE.withConfiguration(ModDefaultBiomeFeatures.ENCLOSED_NETHER_SPRING_CONFIG).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(14, 20, 128))));
       generationSettingsBuilder.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NETHERRACK, isBurnableBlockItemInit.SRIUNK_BLOCK.get().getDefaultState(), 12)).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(4, 0, 32))));
-      generationSettingsBuilder.withSurfaceBuilder(surfaceBuilder.func_242929_a(config));
+      generationSettingsBuilder.withSurfaceBuilder(surfaceBuilder);
       DefaultBiomeFeatures.withBadlandsStructures(generationSettingsBuilder);
       DefaultBiomeFeatures.withFrozenTopLayer(generationSettingsBuilder);
       spawnInfoBuilder.withSpawner(EntityClassification.MONSTER, new SpawnListEntry(EntityType.SKELETON, 20, 5, 5));
